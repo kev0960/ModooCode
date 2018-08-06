@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/md-parser.dir/src/content.cc.o CMakeFiles/md-parser.dir/src/main.cc.o CMakeFiles/md-parser.dir/src/parser.cc.o  -o md-parser -rdynamic 

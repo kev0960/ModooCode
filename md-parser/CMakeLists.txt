@@ -1,10 +1,8 @@
-cmake_minimum_required (VERSION 2.6)
-project (MDParser)
+cmake_minimum_required(VERSION 3.0)
+project(md_parser)
 
-# The version number.
-set (MDParser_VERSION_MAJOR 1)
-set (MDParser_VERSION_MINOR 0)
 
-file(GLOB SOURCES "src/*.cc")
+file(GLOB SOURCES src/*.cc src/*.h)
 
-add_executable(mdparser ${SOURCES})
+add_executable(md-parser ${SOURCES})
+set (CMAKE_CXX_STANDARD 17)

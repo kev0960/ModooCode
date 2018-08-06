@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Jaebum/Desktop/ModooCode/md-parser/src/content.cc
+content.h
+/mnt/c/Users/Jaebum/Desktop/ModooCode/md-parser/src/content.h
+
+/mnt/c/Users/Jaebum/Desktop/ModooCode/md-parser/src/content.h
+string
+-
+
+/mnt/c/Users/Jaebum/Desktop/ModooCode/md-parser/src/main.cc
+iostream
+-
+string
+-
+parser.h
+/mnt/c/Users/Jaebum/Desktop/ModooCode/md-parser/src/parser.h
+
+/mnt/c/Users/Jaebum/Desktop/ModooCode/md-parser/src/parser.cc
+parser.h
+/mnt/c/Users/Jaebum/Desktop/ModooCode/md-parser/src/parser.h
+experimental/optional
+-
+utility
+-
+
+/mnt/c/Users/Jaebum/Desktop/ModooCode/md-parser/src/parser.h
+string
+-
+vector
+-
+

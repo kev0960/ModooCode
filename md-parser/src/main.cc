@@ -1,9 +1,7 @@
 #include <iostream>
+#include <string>
 
-class MDParser {
+#include "parser.h"
+int main() {
 
-};
-
-int main()
-{
 }

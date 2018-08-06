@@ -1,0 +1,12 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "default",
+      "project": "md-parser\\CMakeLists.txt",
+      "projectTarget": "mdparser.exe",
+      "name": "mdparser.exe"
+    }
+  ]
+}
