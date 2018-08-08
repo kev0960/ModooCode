@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/md-parser.dir/src/content.cc.o"
   "CMakeFiles/md-parser.dir/src/main.cc.o"
   "CMakeFiles/md-parser.dir/src/parser.cc.o"
+  "CMakeFiles/md-parser.dir/src/util.cc.o"
   "md-parser.pdb"
   "md-parser"
 )

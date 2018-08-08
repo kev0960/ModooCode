@@ -1,7 +1,9 @@
 #pragma once
 
 #include <string>
+#include <utility>
 #include <vector>
+
 /*
 
 Parsing Rules.
@@ -48,10 +50,10 @@ Line Breaks
      e.g
 
      * aa
-     
+
      bb
 
-     is interpreted as 
+     is interpreted as
      - aa
        bb
   3) Triple linebreaks are considered as an actual linebreak. It also
@@ -60,8 +62,26 @@ Line Breaks
 */
 
 namespace md_parser {
-// Current Parser State.
-enum ParserState { IDLE, BOLD_START, ITALIC_START, ENUM_START, LIST_START };
+enum ParserStateInfo { IDLE, BOLD_START, ITALIC_START, ENUM_START, LIST_START };
+enum TokenTypes {
+  TEXT,
+  LIST_ENUM,
+  LIST_UNORDER,
+  HEADER1,
+  HEADER2,
+  HEADER3,
+  HEADER4,
+  QUOTE,
+  HORIZONTAL_LINE,
+  CODE
+};
+
+struct ParserState {
+  ParserStateInfo state;
+
+  // The thing comes below are optional.
+  int list_depth;
+};
 
 class MDParser {
   std::string content_;
@@ -70,5 +90,7 @@ class MDParser {
  public:
   MDParser(std::string content);
   void Parser();
+  void AnalyzeLine(const std::string& line, std::pair<int, int> space_and_tab);
+  TokenTypes GetTokenInfo(const std::string& token);
 };
 }  // namespace md_parser

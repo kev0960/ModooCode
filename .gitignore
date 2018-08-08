@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+md-parser/CMakeFiles
+md-parser/googletest-build
+md-parser/googletest-download
+md-parser/googletest-src
+md-parser/gtest

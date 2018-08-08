@@ -2,6 +2,4 @@
 #include <string>
 
 #include "parser.h"
-int main() {
-
-}
+int main() {}
