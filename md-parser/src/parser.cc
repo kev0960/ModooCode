@@ -34,22 +34,24 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
       default:
         return TokenTypes::HEADER4;
     }
-  }
-  else if (token.length() == 1) {
+  } else if (token.length() == 1) {
     if (token[0] == '*') {
       return LIST_UNORDER;
     } else if (token[0] == '>') {
       return QUOTE;
     }
   } else if (token.length() == 3) {
-    if (token == "---") return HORIZONTAL_LINE;
-    else if (token == "```") return CODE;
+    if (token == "---")
+      return HORIZONTAL_LINE;
+    else if (token == "```")
+      return CODE;
   } else if (token[token.length() - 1] == '.') {
     size_t num_digits = 0;
-    for (size_t i = 0; i < token.length() - 1; i ++) {
+    for (size_t i = 0; i < token.length() - 1; i++) {
       if ('0' <= token[i] && token[i] <= '9') {
-        num_digits ++;
-      } else break;
+        num_digits++;
+      } else
+        break;
     }
     if (num_digits > 0 && num_digits == token.length() - 1) {
       return LIST_ENUM;
@@ -73,16 +75,19 @@ void MDParser::AnalyzeLine(const std::string& line,
 
   // Fetch the first token.
   const string first_token = std::string(line.begin(), first_white_space);
+  auto first_token_info = GetTokenInfo(first_token);
+
 }
 
 void MDParser::Parser() {
   size_t start_pos = 0;
-  optional<size_t> end_of_line;
-  while (end_of_line = ReadUntilEndOfLine(content_, start_pos)) {
+  optional<size_t> end_of_line = ReadUntilEndOfLine(content_, start_pos);
+  while (end_of_line) {
     string line = content_.substr(start_pos, end_of_line.value() - start_pos);
     auto trimmed = TrimLeft(&line);
     AnalyzeLine(line, trimmed);
     start_pos = end_of_line.value() + 1;
+    end_of_line = ReadUntilEndOfLine(content_, start_pos);
   }
 }
 }  // namespace md_parser

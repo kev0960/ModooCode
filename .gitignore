@@ -65,3 +65,7 @@ md-parser/googletest-build
 md-parser/googletest-download
 md-parser/googletest-src
 md-parser/gtest
+
+*.swp
+*.swo
+.*.sw?
