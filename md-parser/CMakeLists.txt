@@ -4,7 +4,7 @@ project(${PROJECT_NAME})
 
 set (CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set (CMAKE_CXX_FLAGS "-g -Wall")
-set (CMAKE_CXX_STANDARD 17)
+set (CMAKE_CXX_STANDARD 14)
 file(GLOB SOURCES src/*.cc src/*.h)
 
 add_executable(md-parser ${SOURCES})

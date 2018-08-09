@@ -1,5 +1,7 @@
 #pragma once
 
+#include "content.h"
+
 #include <string>
 #include <utility>
 #include <vector>
@@ -63,18 +65,6 @@ Line Breaks
 
 namespace md_parser {
 enum ParserStateInfo { IDLE, BOLD_START, ITALIC_START, ENUM_START, LIST_START };
-enum TokenTypes {
-  TEXT,
-  LIST_ENUM,
-  LIST_UNORDER,
-  HEADER1,
-  HEADER2,
-  HEADER3,
-  HEADER4,
-  QUOTE,
-  HORIZONTAL_LINE,
-  CODE
-};
 
 struct ParserState {
   ParserStateInfo state;

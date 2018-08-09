@@ -77,6 +77,10 @@ void MDParser::AnalyzeLine(const std::string& line,
   const string first_token = std::string(line.begin(), first_white_space);
   auto first_token_info = GetTokenInfo(first_token);
 
+  switch (first_token_info) {
+    case TEXT:
+      break;
+  }
 }
 
 void MDParser::Parser() {

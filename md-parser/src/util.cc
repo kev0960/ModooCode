@@ -45,5 +45,4 @@ string::const_iterator FindFirstOfAny(const string& str,
   }
   return str.end();
 }
-
 }

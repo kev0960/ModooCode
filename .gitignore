@@ -66,6 +66,7 @@ md-parser/googletest-download
 md-parser/googletest-src
 md-parser/gtest
 
+CMakeCache.txt
 *.swp
 *.swo
 .*.sw?
