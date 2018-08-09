@@ -37,5 +37,8 @@ TEST(UtilTest, FindFirstOfAny) {
   EXPECT_EQ(line_1.begin() + 2, res);
 }
 
+TEST(UtilTest, StrCat) {
+  EXPECT_EQ("con cat", StrCat("c", "on", " ", "cat"));
+}
 }
 

@@ -16,18 +16,38 @@ enum TokenTypes {
   HORIZONTAL_LINE,
   CODE
 };
+
+// Class for the regular Text content.
 class Content {
  protected:
   string content_;
 
  public:
   Content(const string& content);
-  virtual string OutputHtml() = 0;
+  virtual string OutputHtml();
+
+  // Continuation of the content.
+  virtual void AddContent(const string& content) = 0;
+  virtual ~Content(){};
 };
 
 class HeaderContent : public Content {
+  int header_cnt_;
+
  public:
+  // Content does not include the ###s.
   HeaderContent(const string& content, TokenTypes header_type);
   string OutputHtml() override;
+  void AddContent(const string& content) override;
+};
+
+class EnumListContent : public Content {
+  int enum_cnt_;
+  int enum_depth_;
+
+ public:
+  EnumListContent(const string& content, int enum_cnt, int enum_depth);
+  string OutputHtml() override;
+  void AddContent(const string& content) override;
 };
 }

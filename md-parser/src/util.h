@@ -10,4 +10,13 @@ std::pair<int, int> TrimLeft(string* str);
 string FetchFirstToken(const string& line);
 string::const_iterator FindFirstOfAny(const string& str,
                                       const string& matching_chars);
+
+// Concatenates strings into one.
+string StrCat(const string& s);
+
+template<typename... Ts>
+string StrCat(const string& s, Ts ...args) {
+  return s + StrCat(args...);
+}
+
 }

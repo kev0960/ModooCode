@@ -45,4 +45,9 @@ string::const_iterator FindFirstOfAny(const string& str,
   }
   return str.end();
 }
+
+string StrCat(const string& s) {
+  return s;
+}
+
 }

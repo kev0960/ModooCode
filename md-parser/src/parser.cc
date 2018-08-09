@@ -80,6 +80,13 @@ void MDParser::AnalyzeLine(const std::string& line,
   switch (first_token_info) {
     case TEXT:
       break;
+    case HEADER1:
+    case HEADER2:
+    case HEADER3:
+    case HEADER4:
+      content_list.emplace_back(
+          new HeaderContent(first_token, first_token_info));
+      break;
   }
 }
 
