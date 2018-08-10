@@ -2,8 +2,8 @@
 
 #include <algorithm>
 
-using std::experimental::optional;
 using std::string;
+using std::experimental::optional;
 
 namespace md_parser {
 
@@ -46,8 +46,6 @@ string::const_iterator FindFirstOfAny(const string& str,
   return str.end();
 }
 
-string StrCat(const string& s) {
-  return s;
-}
+string StrCat(const string& s) { return s; }
 
-}
+}  // namespace md_parser

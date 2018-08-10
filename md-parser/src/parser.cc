@@ -4,8 +4,8 @@
 #include <utility>
 #include "util.h"
 
-using std::experimental::optional;
 using std::string;
+using std::experimental::optional;
 
 namespace md_parser {
 namespace {}  // namespace

@@ -2,10 +2,10 @@
 
 #include "content.h"
 
+#include <memory>
 #include <string>
 #include <utility>
 #include <vector>
-#include <memory>
 
 /*
 
@@ -80,6 +80,7 @@ class MDParser {
 
   // List of parsed contents of MD file.
   std::vector<std::unique_ptr<Content>> content_list;
+
  public:
   MDParser(std::string content);
   void Parser();

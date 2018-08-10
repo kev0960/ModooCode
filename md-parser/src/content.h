@@ -27,7 +27,7 @@ class Content {
   virtual string OutputHtml();
 
   // Continuation of the content.
-  virtual void AddContent(const string& content) = 0;
+  virtual void AddContent(const string& content);
   virtual ~Content(){};
 };
 
@@ -50,4 +50,4 @@ class EnumListContent : public Content {
   string OutputHtml() override;
   void AddContent(const string& content) override;
 };
-}
+}  // namespace md_parser

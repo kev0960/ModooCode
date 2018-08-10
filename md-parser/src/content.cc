@@ -16,9 +16,11 @@ int FindOneOrTwoConsecutiveChar(const string& s, size_t start, char c) {
   }
   return 0;
 }
-}
+}  // namespace
 
 Content::Content(const string& content) : content_(content) { return; }
+
+void Content::AddContent(const string& s) { content_ += s; }
 
 string Content::OutputHtml() {
   struct HtmlFragments {
@@ -42,44 +44,52 @@ string Content::OutputHtml() {
   const int int_max = std::numeric_limits<int>::max();
   int bold_start = int_max;
   int italic_start = int_max;
-  int text_start = -1;
 
+  int text_start = -1;
   std::vector<HtmlFragments> fragments;
 
   // Any unescaped * or _ are considered as a format token.
   for (size_t i = 0; i < content_.size(); i++) {
     int matches = std::max(FindOneOrTwoConsecutiveChar(content_, i, '*'),
                            FindOneOrTwoConsecutiveChar(content_, i, '_'));
-    if (matches == 2) {
-      // If italic * is defined later than the defined italic, then we only read
-      // one *.
-      if (bold_start < italic_start && italic_start != int_max) {
-        matches = 1;
-        italic_start = int_max;
-        fragments.push_back(
-            HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
-        fragments.push_back(HtmlFragments(HtmlFragments::Types::ITALIC));
-      } else {
-        bold_start = (bold_start == int_max ? i : int_max);
-        fragments.push_back(
-            HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
-        fragments.push_back(HtmlFragments(HtmlFragments::Types::BOLD));
-      }
-      text_start = -1;
-    } else if (matches == 1) {
-      italic_start = (italic_start == int_max ? i : int_max);
-      fragments.push_back(
-          HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
-      fragments.push_back(HtmlFragments(HtmlFragments::Types::ITALIC));
-      text_start = -1;
-    } else {
+    if (matches == 0) {
       if (text_start == -1) {
         text_start = i;
       }
+    } else {
+      // Mark the end of the text segment.
+      if (text_start != -1) {
+        fragments.push_back(
+            HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
+        text_start = -1;
+      }
+      if (matches == 2) {
+        // If italic * is defined later than the defined italic, then we only
+        // read one *.
+        if (bold_start < italic_start && italic_start != int_max) {
+          matches = 1;
+          italic_start = int_max;
+          fragments.push_back(HtmlFragments(HtmlFragments::Types::ITALIC));
+        } else {
+          bold_start = (bold_start == int_max ? i : int_max);
+          fragments.push_back(HtmlFragments(HtmlFragments::Types::BOLD));
+        }
+        i++;
+      } else if (matches == 1) {
+        italic_start = (italic_start == int_max ? i : int_max);
+        if (text_start != -1) {
+          fragments.push_back(
+              HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
+          text_start = -1;
+        }
+        fragments.push_back(HtmlFragments(HtmlFragments::Types::ITALIC));
+      }
     }
   }
-  fragments.push_back(HtmlFragments(HtmlFragments::Types::TEXT, text_start,
-                                    content_.size() - 1));
+  if (text_start != -1) {
+    fragments.push_back(HtmlFragments(HtmlFragments::Types::TEXT, text_start,
+                                      content_.size() - 1));
+  }
 
   // Now we have to generate formatted html.
   bool bold = false;
@@ -94,7 +104,7 @@ string Content::OutputHtml() {
       bold = !bold;
     } else if (fragments[i].type == HtmlFragments::Types::ITALIC) {
       if (!italic)
-        html += "<span class='font-weight-italic'>";
+        html += "<span class='font-italic'>";
       else
         html += "</span>";
       italic = !italic;
@@ -141,5 +151,7 @@ EnumListContent::EnumListContent(const string& content, int enum_cnt,
 
 string EnumListContent::OutputHtml() {
   return StrCat("<li>", Content::OutputHtml(), "</li>");
-};
 }
+
+void EnumListContent::AddContent(const string& content) {}
+}  // namespace md_parser
