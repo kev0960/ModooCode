@@ -44,3 +44,7 @@ endif()
 add_executable(util_test test/util_test.cc src/util.cc)
 target_link_libraries(util_test gtest_main)
 add_test(NAME util_test COMMAND util_test)
+
+add_executable(content_test test/content_test.cc src/content.cc src/util.cc)
+target_link_libraries(content_test gtest_main)
+add_test(NAME content_test COMMAND content_test)

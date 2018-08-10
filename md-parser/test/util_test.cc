@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include "../src/util.h"
+#include "gtest/gtest.h"
 
 namespace md_parser {
 
@@ -37,8 +37,5 @@ TEST(UtilTest, FindFirstOfAny) {
   EXPECT_EQ(line_1.begin() + 2, res);
 }
 
-TEST(UtilTest, StrCat) {
-  EXPECT_EQ("con cat", StrCat("c", "on", " ", "cat"));
-}
-}
-
+TEST(UtilTest, StrCat) { EXPECT_EQ("con cat", StrCat("c", "on", " ", "cat")); }
+}  // namespace md_parser
