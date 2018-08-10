@@ -38,4 +38,11 @@ TEST(UtilTest, FindFirstOfAny) {
 }
 
 TEST(UtilTest, StrCat) { EXPECT_EQ("con cat", StrCat("c", "on", " ", "cat")); }
+
+TEST(UtilTest, Max) {
+  EXPECT_EQ(5, Max(1, 2, 5, 4, 3));
+  EXPECT_EQ(5, Max(3, 5, 2, 3, 4));
+  EXPECT_EQ(5, Max(5, 2, 3, 1, 3));
+  EXPECT_EQ(5, Max(4, 2, 3, 4, 5));
+}
 }  // namespace md_parser

@@ -1,6 +1,5 @@
 #include "content.h"
 #include <limits>
-#include <vector>
 #include "util.h"
 
 namespace md_parser {
@@ -23,18 +22,6 @@ Content::Content(const string& content) : content_(content) { return; }
 void Content::AddContent(const string& s) { content_ += s; }
 
 string Content::OutputHtml() {
-  struct HtmlFragments {
-    enum Types { BOLD, ITALIC, TEXT } type;
-
-    // Start and end are inclusive.
-    int str_start;
-    int str_end;
-
-    HtmlFragments(Types t) : type(t) {}
-    HtmlFragments(Types t, int start, int end)
-        : type(t), str_start(start), str_end(end) {}
-  };
-
   // When both not defined :
   //  Neither of bold_start < italic_start nor bold_start > italic_start
   // When only one of them are defined :
@@ -50,13 +37,23 @@ string Content::OutputHtml() {
 
   // Any unescaped * or _ are considered as a format token.
   for (size_t i = 0; i < content_.size(); i++) {
-    int matches = std::max(FindOneOrTwoConsecutiveChar(content_, i, '*'),
-                           FindOneOrTwoConsecutiveChar(content_, i, '_'));
+    // Handles Link.
+    if (int temp = HandleLinks(i, &fragments) != i) {
+      i = temp;
+      continue;
+    }
+
+    // Handles Bold, Italic, Strikethroughs here.
+    int matches = Max(FindOneOrTwoConsecutiveChar(content_, i, '*'),
+                      FindOneOrTwoConsecutiveChar(content_, i, '_'),
+                      FindOneOrTwoConsecutiveChar(content_, i, '~'));
     if (matches == 0) {
       if (text_start == -1) {
         text_start = i;
       }
     } else {
+      // Since tilde (~) is ignored.
+      if (matches == 1 && content_[i] == '~') continue;
       // Mark the end of the text segment.
       if (text_start != -1) {
         fragments.push_back(
@@ -108,6 +105,15 @@ string Content::OutputHtml() {
       else
         html += "</span>";
       italic = !italic;
+    } else if (fragments[i].type == HtmlFragments::Types::LINK) {
+      html += StrCat(
+          "<a href='",
+          content_.substr(fragments[i].link_start,
+                          fragments[i].link_end - fragments[i].link_start + 1),
+          "'>",
+          content_.substr(fragments[i].str_start,
+                          fragments[i].str_end - fragments[i].str_start + 1),
+          "</a>");
     } else {
       html +=
           content_.substr(fragments[i].str_start,
@@ -117,41 +123,27 @@ string Content::OutputHtml() {
   return html;
 }
 
-HeaderContent::HeaderContent(const string& content, TokenTypes token_type)
-    : Content(content) {
-  // Header type to the actual number of #s
-  header_cnt_ = 4;
-  switch (token_type) {
-    case TokenTypes::HEADER1:
-      header_cnt_ = 1;
-      break;
-    case TokenTypes::HEADER2:
-      header_cnt_ = 2;
-      break;
-    case TokenTypes::HEADER3:
-      header_cnt_ = 3;
-      break;
-    default:
-      break;
+size_t Content::HandleLinks(int start_pos,
+                            std::vector<HtmlFragments>* fragments) {
+  if (content_[start_pos] != '[') {
+    return start_pos;
   }
+
+  // Search for the ending ']'.
+  size_t end_bracket = content_.find(']', start_pos);
+  if (end_bracket == string::npos) return start_pos;
+
+  if (end_bracket + 1 >= content_.size() || content_[end_bracket + 1] != '(') {
+    return start_pos;
+  }
+  size_t link_start = end_bracket + 2;
+  size_t link_end = content_.find(')', link_start + 1);
+  if (link_end == string::npos) return start_pos;
+
+  fragments->push_back(HtmlFragments(HtmlFragments::Types::LINK, start_pos + 1,
+                                     end_bracket - 1, link_start,
+                                     link_end - 1));
+  return link_end;
 }
 
-string HeaderContent::OutputHtml() {
-  const string start_header = StrCat("<h", std::to_string(header_cnt_), ">");
-  const string end_header = StrCat("</h", std::to_string(header_cnt_), ">");
-
-  return StrCat(start_header, Content::OutputHtml(), end_header);
-}
-
-void HeaderContent::AddContent(const string& content) { content_ += content; }
-
-EnumListContent::EnumListContent(const string& content, int enum_cnt,
-                                 int enum_depth)
-    : Content(content), enum_cnt_(enum_cnt), enum_depth_(enum_depth) {}
-
-string EnumListContent::OutputHtml() {
-  return StrCat("<li>", Content::OutputHtml(), "</li>");
-}
-
-void EnumListContent::AddContent(const string& content) {}
 }  // namespace md_parser

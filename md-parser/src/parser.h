@@ -1,6 +1,8 @@
 #pragma once
 
 #include "content.h"
+#include "content_header.h"
+#include "content_list.h"
 
 #include <memory>
 #include <string>

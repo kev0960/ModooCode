@@ -22,6 +22,17 @@ string StrCat(const string& s, Ts... args) {
   return s + StrCat(args...);
 }
 
+template <typename T>
+T Max(const T& a, const T& b) {
+  return a > b ? a : b;
+}
+
+template <typename... Ts, typename T>
+T Max(const T& a, Ts... args) {
+  const T& b = Max(args...);
+  return a > b ? a : b;
+}
+
 // Class for a convenient logging. This is a singleton class.
 class Log {
  public:

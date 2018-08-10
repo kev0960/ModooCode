@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 using std::string;
 
 namespace md_parser {
@@ -12,6 +13,8 @@ enum TokenTypes {
   HEADER2,
   HEADER3,
   HEADER4,
+  HEADER5,
+  HEADER6,
   QUOTE,
   HORIZONTAL_LINE,
   CODE
@@ -29,25 +32,30 @@ class Content {
   // Continuation of the content.
   virtual void AddContent(const string& content);
   virtual ~Content(){};
+
+ private:
+  struct HtmlFragments {
+    enum Types { BOLD, ITALIC, TEXT, LINK } type;
+
+    // Start and end are inclusive.
+    int str_start;
+    int str_end;
+
+    int link_start;
+    int link_end;
+
+    HtmlFragments(Types t) : type(t) {}
+    HtmlFragments(Types t, int start, int end)
+        : type(t), str_start(start), str_end(end) {}
+    HtmlFragments(Types t, int start, int end, int link_start, int link_end)
+        : str_start(start),
+          str_end(end),
+          link_start(link_start),
+          link_end(link_end) {}
+  };
+
+  // Returns start_pos again if nothing is handled.
+  size_t HandleLinks(int start_pos, std::vector<HtmlFragments>* fragments);
 };
 
-class HeaderContent : public Content {
-  int header_cnt_;
-
- public:
-  // Content does not include the ###s.
-  HeaderContent(const string& content, TokenTypes header_type);
-  string OutputHtml() override;
-  void AddContent(const string& content) override;
-};
-
-class EnumListContent : public Content {
-  int enum_cnt_;
-  int enum_depth_;
-
- public:
-  EnumListContent(const string& content, int enum_cnt, int enum_depth);
-  string OutputHtml() override;
-  void AddContent(const string& content) override;
-};
 }  // namespace md_parser
