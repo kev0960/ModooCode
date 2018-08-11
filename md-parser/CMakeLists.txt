@@ -10,7 +10,6 @@ file(GLOB SOURCES src/*.cc src/*.h)
 add_library(chroma SHARED IMPORTED)
 set_target_properties(chroma PROPERTIES
   IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/lib/chroma.so"
-  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/src/chroma.h"
 )
 add_executable(md-parser ${SOURCES})
 target_link_libraries(md-parser chroma)
@@ -48,9 +47,9 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 add_executable(util_test test/util_test.cc src/util.cc)
-target_link_libraries(util_test gtest_main)
+target_link_libraries(util_test gtest_main chroma)
 add_test(NAME util_test COMMAND util_test)
 
 add_executable(content_test test/content_test.cc src/content.cc src/util.cc)
-target_link_libraries(content_test gtest_main)
+target_link_libraries(content_test gtest_main chroma)
 add_test(NAME content_test COMMAND content_test)

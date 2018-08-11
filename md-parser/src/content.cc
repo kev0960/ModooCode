@@ -59,18 +59,19 @@ string Content::OutputHtml() {
 
   // Any unescaped * or _ are considered as a format token.
   for (size_t i = 0; i < content_.size(); i++) {
+    size_t temp;
     // Handles Link.
-    if (int temp = HandleLinks(i, &fragments) != i) {
+    if ((temp = HandleLinks(i, &fragments)) != i) {
       i = temp;
       continue;
     }
     // Handles Images.
-    if (int temp = HandleImages(i, &fragments) != i) {
+    if ((temp = HandleImages(i, &fragments)) != i) {
       i = temp;
       continue;
     }
-    // Handle Codes.
-    if (int temp = HandleCodes(i, &fragments) != i) {
+    // Handle (inline) Codes.
+    if ((temp = HandleCodes(i, &fragments)) != i) {
       i = temp;
       continue;
     }
@@ -95,14 +96,13 @@ string Content::OutputHtml() {
         // If italic * is defined later than the defined italic, then we only
         // read one *.
         if (bold_start < italic_start && italic_start != int_max) {
-          matches = 1;
           italic_start = int_max;
           fragments.push_back(HtmlFragments(HtmlFragments::Types::ITALIC));
         } else {
           bold_start = (bold_start == int_max ? i : int_max);
           fragments.push_back(HtmlFragments(HtmlFragments::Types::BOLD));
+          i++;
         }
-        i++;
       } else if (matches == 1) {
         italic_start = (italic_start == int_max ? i : int_max);
         if (text_start != -1) {
@@ -141,8 +141,9 @@ string Content::OutputHtml() {
                      GetHtmlFragmentText(content_, fragments[i], false), "'>",
                      GetHtmlFragmentText(content_, fragments[i]), "</a>");
     } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
-      html += StrCat("<img src='", GetHtmlFragmentText(content_, fragments[i]),
-                     "'>");
+      html += StrCat(
+          "<img src='", GetHtmlFragmentText(content_, fragments[i], false),
+          "' alt='", GetHtmlFragmentText(content_, fragments[i]), "'>");
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
       html += FormatCodeUsingChroma(GetHtmlFragmentText(content_, fragments[i]),
                                     "cpp", "github");
@@ -167,7 +168,7 @@ size_t Content::HandleLinks(size_t start_pos,
     return start_pos;
   }
   size_t link_start = end_bracket + 2;
-  size_t link_end = content_.find(')', link_start + 1);
+  size_t link_end = content_.find(')', link_start);
   if (link_end == string::npos) return start_pos;
 
   fragments->push_back(HtmlFragments(HtmlFragments::Types::LINK, start_pos + 1,

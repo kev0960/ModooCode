@@ -34,7 +34,8 @@ struct HtmlFragments {
   HtmlFragments(Types t, int start, int end)
       : type(t), str_start(start), str_end(end) {}
   HtmlFragments(Types t, int start, int end, int link_start, int link_end)
-      : str_start(start),
+      : type(t),
+        str_start(start),
         str_end(end),
         link_start(link_start),
         link_end(link_end) {}
