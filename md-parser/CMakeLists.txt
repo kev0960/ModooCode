@@ -7,7 +7,13 @@ set (CMAKE_CXX_FLAGS "-g -Wall")
 set (CMAKE_CXX_STANDARD 14)
 file(GLOB SOURCES src/*.cc src/*.h)
 
+add_library(chroma SHARED IMPORTED)
+set_target_properties(chroma PROPERTIES
+  IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/lib/chroma.so"
+  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/src/chroma.h"
+)
 add_executable(md-parser ${SOURCES})
+target_link_libraries(md-parser chroma)
 
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .

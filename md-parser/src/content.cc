@@ -1,5 +1,6 @@
 #include "content.h"
 #include <limits>
+#include "chroma.h"
 #include "util.h"
 
 namespace md_parser {
@@ -15,6 +16,27 @@ int FindOneOrTwoConsecutiveChar(const string& s, size_t start, char c) {
   }
   return 0;
 }
+
+string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
+                           bool is_str = true) {
+  if (is_str) {
+    return content.substr(fragment.str_start,
+                          fragment.str_end - fragment.str_start + 1);
+  }
+  return content.substr(fragment.link_start,
+                        fragment.link_end - fragment.link_start + 1);
+}
+
+string FormatCodeUsingChroma(const string& code, const string& lang,
+                             const string& schema) {
+  GoString g_code{code.c_str(), 0};
+  GoString g_lang{lang.c_str(), 0};
+  GoString g_schema{schema.c_str(), 0};
+  GoString formatted = FormatCode(g_code, g_lang, g_schema);
+
+  return string(formatted.p);
+}
+
 }  // namespace
 
 Content::Content(const string& content) : content_(content) { return; }
@@ -42,7 +64,16 @@ string Content::OutputHtml() {
       i = temp;
       continue;
     }
-
+    // Handles Images.
+    if (int temp = HandleImages(i, &fragments) != i) {
+      i = temp;
+      continue;
+    }
+    // Handle Codes.
+    if (int temp = HandleCodes(i, &fragments) != i) {
+      i = temp;
+      continue;
+    }
     // Handles Bold, Italic, Strikethroughs here.
     int matches = Max(FindOneOrTwoConsecutiveChar(content_, i, '*'),
                       FindOneOrTwoConsecutiveChar(content_, i, '_'),
@@ -106,24 +137,23 @@ string Content::OutputHtml() {
         html += "</span>";
       italic = !italic;
     } else if (fragments[i].type == HtmlFragments::Types::LINK) {
-      html += StrCat(
-          "<a href='",
-          content_.substr(fragments[i].link_start,
-                          fragments[i].link_end - fragments[i].link_start + 1),
-          "'>",
-          content_.substr(fragments[i].str_start,
-                          fragments[i].str_end - fragments[i].str_start + 1),
-          "</a>");
+      html += StrCat("<a href='",
+                     GetHtmlFragmentText(content_, fragments[i], false), "'>",
+                     GetHtmlFragmentText(content_, fragments[i]), "</a>");
+    } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
+      html += StrCat("<img src='", GetHtmlFragmentText(content_, fragments[i]),
+                     "'>");
+    } else if (fragments[i].type == HtmlFragments::Types::CODE) {
+      html += FormatCodeUsingChroma(GetHtmlFragmentText(content_, fragments[i]),
+                                    "cpp", "github");
     } else {
-      html +=
-          content_.substr(fragments[i].str_start,
-                          fragments[i].str_end - fragments[i].str_start + 1);
+      html += GetHtmlFragmentText(content_, fragments[i]);
     }
   }
   return html;
 }
 
-size_t Content::HandleLinks(int start_pos,
+size_t Content::HandleLinks(size_t start_pos,
                             std::vector<HtmlFragments>* fragments) {
   if (content_[start_pos] != '[') {
     return start_pos;
@@ -144,6 +174,38 @@ size_t Content::HandleLinks(int start_pos,
                                      end_bracket - 1, link_start,
                                      link_end - 1));
   return link_end;
+}
+
+size_t Content::HandleImages(size_t start_pos,
+                             std::vector<HtmlFragments>* fragments) {
+  if (content_[start_pos] != '!' || start_pos == content_.size() - 1)
+    return start_pos;
+  // Images are in exact same format as the links except for the starting !
+  // symbol.
+  size_t res = HandleLinks(start_pos + 1, fragments);
+  if (res == start_pos + 1) return start_pos;
+
+  // Need to change LINK to IMAGE.
+  fragments->back().type = HtmlFragments::Types::IMAGE;
+  return res;
+}
+
+size_t Content::HandleCodes(size_t start_pos,
+                            std::vector<HtmlFragments>* fragments) {
+  if (start_pos + 2 >= content_.size() ||
+      content_.substr(start_pos, 3) != "```") {
+    return start_pos;
+  }
+  size_t code_start = start_pos + 3;
+  size_t code_end;
+  if ((code_end = content_.find("```", code_start)) == string::npos) {
+    return start_pos;
+  }
+
+  code_end--;
+  fragments->push_back(
+      HtmlFragments(HtmlFragments::Types::CODE, code_start, code_end));
+  return code_end + 3;
 }
 
 }  // namespace md_parser
