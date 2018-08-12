@@ -8,9 +8,41 @@ using std::string;
 using std::experimental::optional;
 
 namespace md_parser {
-namespace {}  // namespace
+namespace {
+
+int IndentSize(std::pair<int, int> space_and_tab) {
+  return space_and_tab.first + 2 * space_and_tab.second;
+}
+
+}  // namespace
 
 const static char kWhiteLists[] = " \t";
+
+EnumListManager::EnumListManager() : current_cnt_(0), current_depth_(0) {}
+
+void EnumListManager::AddNextList(std::pair<int, int> space_and_tab) {
+  int indent_size = IndentSize(space_and_tab);
+
+  // 2 spaces ==> One indent.
+  int depth = indent_size / spaces_per_indent;
+
+  while (!state_.empty()) {
+    auto& depth_and_enum = state_.top();
+    if (depth_and_enum.first == depth) {
+      depth_and_enum.second += 1;
+      return;
+    } else if (depth_and_enum.first > depth) {
+      state_.push(std::make_pair(depth, 0));
+    }
+
+    state_.pop();
+  }
+  state_.push(std::make_pair(depth, 0));
+}
+
+std::pair<int, int> EnumListManager::GetCurrentEnum() const {
+  return state_.top();
+}
 
 MDParser::MDParser(std::string content) : content_(content) {}
 
@@ -76,6 +108,7 @@ void MDParser::AnalyzeLine(const std::string& line,
   // Fetch the first token.
   const string first_token = std::string(line.begin(), first_white_space);
   auto first_token_info = GetTokenInfo(first_token);
+  const string line_except_first_token = line.substr(first_token.size());
 
   switch (first_token_info) {
     case TEXT:
@@ -85,7 +118,24 @@ void MDParser::AnalyzeLine(const std::string& line,
     case HEADER3:
     case HEADER4:
       content_list.emplace_back(
-          new HeaderContent(first_token, first_token_info));
+          new HeaderContent(line_except_first_token, first_token_info));
+      break;
+    case LIST_ENUM: {
+      enum_list_manager.AddNextList(space_and_tab);
+      auto depth_and_enum = enum_list_manager.GetCurrentEnum();
+      content_list.emplace_back(new EnumListContent(line_except_first_token,
+                                                    depth_and_enum.second,
+                                                    depth_and_enum.first));
+      break;
+    }
+    case LIST_UNORDER: {
+      unordered_list_manager.AddNextList(space_and_tab);
+      auto depth_and_enum = unordered_list_manager.GetCurrentEnum();
+      content_list.emplace_back(new UnorderedListContent(
+          line_except_first_token, depth_and_enum.first));
+      break;
+    }
+    default:
       break;
   }
 }

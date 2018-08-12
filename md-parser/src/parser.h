@@ -5,6 +5,7 @@
 #include "content_list.h"
 
 #include <memory>
+#include <stack>
 #include <string>
 #include <utility>
 #include <vector>
@@ -76,12 +77,29 @@ struct ParserState {
   int list_depth;
 };
 
+class EnumListManager {
+ public:
+  EnumListManager();
+
+  void AddNextList(std::pair<int, int> space_and_tab);
+  std::pair<int, int> GetCurrentEnum() const;
+
+ private:
+  static const int spaces_per_indent = 2;
+  int current_cnt_;
+  int current_depth_;
+  std::stack<std::pair</* depth */ int, /* enum */ int>> state_;
+};
+
 class MDParser {
+ private:
   std::string content_;
   std::vector<ParserState> states_;
 
   // List of parsed contents of MD file.
   std::vector<std::unique_ptr<Content>> content_list;
+  EnumListManager enum_list_manager;
+  EnumListManager unordered_list_manager;
 
  public:
   MDParser(std::string content);

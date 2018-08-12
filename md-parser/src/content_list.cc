@@ -14,4 +14,12 @@ string EnumListContent::OutputHtml() {
 }
 
 void EnumListContent::AddContent(const string& content) {}
+
+UnorderedListContent::UnorderedListContent(const string& content,
+                                           int list_depth)
+    : Content(content), list_depth_(list_depth) {}
+
+string UnorderedListContent::OutputHtml() {}
+
+void UnorderedListContent::AddContent(const string& content) {}
 }  // namespace md_parser
