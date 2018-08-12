@@ -1,4 +1,5 @@
 #include "content.h"
+#include <functional>
 #include <limits>
 #include "chroma.h"
 #include "util.h"
@@ -57,24 +58,23 @@ string Content::OutputHtml() {
   int text_start = -1;
   std::vector<HtmlFragments> fragments;
 
+  std::vector<std::function<size_t(Content*, size_t,
+                                   std::vector<HtmlFragments>*, int*)>>
+      handlers = {&Content::HandleLinks, &Content::HandleImages,
+                  &Content::HandleCodes};
   // Any unescaped * or _ are considered as a format token.
   for (size_t i = 0; i < content_.size(); i++) {
-    size_t temp;
-    // Handles Link.
-    if ((temp = HandleLinks(i, &fragments)) != i) {
-      i = temp;
-      continue;
+    bool handled = false;
+    for (const auto& handler : handlers) {
+      size_t result = handler(this, i, &fragments, &text_start);
+      if (result != i) {
+        i = result;
+        handled = true;
+        break;
+      }
     }
-    // Handles Images.
-    if ((temp = HandleImages(i, &fragments)) != i) {
-      i = temp;
-      continue;
-    }
-    // Handle (inline) Codes.
-    if ((temp = HandleCodes(i, &fragments)) != i) {
-      i = temp;
-      continue;
-    }
+    if (handled) continue;
+
     // Handles Bold, Italic, Strikethroughs here.
     int matches = Max(FindOneOrTwoConsecutiveChar(content_, i, '*'),
                       FindOneOrTwoConsecutiveChar(content_, i, '_'),
@@ -155,7 +155,8 @@ string Content::OutputHtml() {
 }
 
 size_t Content::HandleLinks(size_t start_pos,
-                            std::vector<HtmlFragments>* fragments) {
+                            std::vector<HtmlFragments>* fragments,
+                            int* text_start) {
   if (content_[start_pos] != '[') {
     return start_pos;
   }
@@ -167,23 +168,29 @@ size_t Content::HandleLinks(size_t start_pos,
   if (end_bracket + 1 >= content_.size() || content_[end_bracket + 1] != '(') {
     return start_pos;
   }
-  size_t link_start = end_bracket + 2;
+  size_t link_start = end_bracket + 1;
   size_t link_end = content_.find(')', link_start);
   if (link_end == string::npos) return start_pos;
 
+  if (*text_start != -1) {
+    fragments->push_back(
+        HtmlFragments(HtmlFragments::Types::TEXT, *text_start, start_pos - 1));
+    *text_start = -1;
+  }
   fragments->push_back(HtmlFragments(HtmlFragments::Types::LINK, start_pos + 1,
-                                     end_bracket - 1, link_start,
+                                     end_bracket - 1, link_start + 1,
                                      link_end - 1));
   return link_end;
 }
 
 size_t Content::HandleImages(size_t start_pos,
-                             std::vector<HtmlFragments>* fragments) {
+                             std::vector<HtmlFragments>* fragments,
+                             int* text_start) {
   if (content_[start_pos] != '!' || start_pos == content_.size() - 1)
     return start_pos;
   // Images are in exact same format as the links except for the starting !
   // symbol.
-  size_t res = HandleLinks(start_pos + 1, fragments);
+  size_t res = HandleLinks(start_pos + 1, fragments, text_start);
   if (res == start_pos + 1) return start_pos;
 
   // Need to change LINK to IMAGE.
@@ -192,7 +199,8 @@ size_t Content::HandleImages(size_t start_pos,
 }
 
 size_t Content::HandleCodes(size_t start_pos,
-                            std::vector<HtmlFragments>* fragments) {
+                            std::vector<HtmlFragments>* fragments,
+                            int* text_start) {
   if (start_pos + 2 >= content_.size() ||
       content_.substr(start_pos, 3) != "```") {
     return start_pos;
@@ -204,6 +212,11 @@ size_t Content::HandleCodes(size_t start_pos,
   }
 
   code_end--;
+  if (*text_start != -1) {
+    fragments->push_back(
+        HtmlFragments(HtmlFragments::Types::TEXT, *text_start, start_pos - 1));
+    *text_start = -1;
+  }
   fragments->push_back(
       HtmlFragments(HtmlFragments::Types::CODE, code_start, code_end));
   return code_end + 3;

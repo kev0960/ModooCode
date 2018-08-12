@@ -56,9 +56,12 @@ class Content {
 
  private:
   // Returns start_pos again if nothing is handled.
-  size_t HandleLinks(size_t start_pos, std::vector<HtmlFragments>* fragments);
-  size_t HandleImages(size_t start_pos, std::vector<HtmlFragments>* fragments);
-  size_t HandleCodes(size_t start_pos, std::vector<HtmlFragments>* fragments);
+  size_t HandleLinks(size_t start_pos, std::vector<HtmlFragments>* fragments,
+                     int* text_start);
+  size_t HandleImages(size_t start_pos, std::vector<HtmlFragments>* fragments,
+                      int* text_start);
+  size_t HandleCodes(size_t start_pos, std::vector<HtmlFragments>* fragments,
+                     int* text_start);
 };
 
 }  // namespace md_parser

@@ -33,6 +33,10 @@ TEST(ContentTest, BasicContent) {
   Content simple_bold_and_italic("***abc***");
   EXPECT_EQ(CreateBoldHtml(CreateItalicHtml("abc")),
             simple_bold_and_italic.OutputHtml());
+
+  Content simple_bold_and_italic_mixed("*__abc__*");
+  EXPECT_EQ(CreateItalicHtml(CreateBoldHtml("abc")),
+            simple_bold_and_italic_mixed.OutputHtml());
 }
 
 TEST(ContentTest, ComplexContent) {
@@ -60,6 +64,13 @@ TEST(ContentTest, Link) {
   EXPECT_EQ(CreateLinkHtml("Modoo Code", "http://modoocode.com"),
             plain_link.OutputHtml());
 
+  Content empty_name("[](http://modoocode.com)");
+  EXPECT_EQ(CreateLinkHtml("", "http://modoocode.com"),
+            empty_name.OutputHtml());
+
+  Content empty_link("[link]()");
+  EXPECT_EQ(CreateLinkHtml("link", ""), empty_link.OutputHtml());
+
   Content not_valid_link1("abc[");
   Content not_valid_link2("abc[abc]");
   Content not_valid_link3("abc[abc](");
@@ -72,6 +83,25 @@ TEST(ContentTest, Link) {
 
   Content link_in_between("this is the [link](http://google.com) thanks");
   EXPECT_EQ(StrCat("this is the ", CreateLinkHtml("link", "http://google.com"),
-                   " thanks"), link_in_between.OutputHtml());
+                   " thanks"),
+            link_in_between.OutputHtml());
+
+  Content link_in_bold("can __[link](http://google.com) in bold? __ maybe");
+  EXPECT_EQ(StrCat("can ", CreateBoldHtml(StrCat(
+                               CreateLinkHtml("link", "http://google.com"),
+                               " in bold? ")),
+                   " maybe"),
+            link_in_bold.OutputHtml());
+
+  Content bold_in_link_ignored("[**bold**]()");
+}
+
+TEST(ContentTest, Image) {
+  Content plain_image("![The Image](/img/a.png)");
+  EXPECT_EQ(CreateImageHtml("The Image", "/img/a.png"),
+            plain_image.OutputHtml());
+
+  Content excl_and_link("! [a](b)");
+  EXPECT_EQ(StrCat("! ", CreateLinkHtml("a", "b")), excl_and_link.OutputHtml());
 }
 }  // namespace md_parser
