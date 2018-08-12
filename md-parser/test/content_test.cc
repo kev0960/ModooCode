@@ -20,6 +20,11 @@ string CreateImageHtml(const string& img_name, const string& img) {
   return StrCat("<img src='", img, "' alt='", img_name, "'>");
 }
 
+static char kFormattedCode[] =
+    "<pre class=\"chroma\"><span class=\"n\">print</span> <span "
+    "class=\"err\">&#39;</span><span class=\"n\">hi</span><span "
+    "class=\"err\">&#39;</span>\n</pre>";
+
 TEST(ContentTest, BasicContent) {
   Content plain_content("abcd");
   EXPECT_EQ("abcd", plain_content.OutputHtml());
@@ -103,5 +108,14 @@ TEST(ContentTest, Image) {
 
   Content excl_and_link("! [a](b)");
   EXPECT_EQ(StrCat("! ", CreateLinkHtml("a", "b")), excl_and_link.OutputHtml());
+}
+
+TEST(ContentTest, Code) {
+  Content code("```print 'hi'```");
+  EXPECT_EQ(string(kFormattedCode), code.OutputHtml());
+
+  Content code_in_middle("something ```print 'hi'``` and else");
+  EXPECT_EQ(StrCat("something ", kFormattedCode, " and else"),
+            code_in_middle.OutputHtml());
 }
 }  // namespace md_parser

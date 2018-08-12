@@ -1,6 +1,8 @@
 #include "content.h"
 #include <functional>
 #include <limits>
+#include <memory>
+#include <cstdlib>
 #include "chroma.h"
 #include "util.h"
 
@@ -18,6 +20,15 @@ int FindOneOrTwoConsecutiveChar(const string& s, size_t start, char c) {
   return 0;
 }
 
+std::unique_ptr<char[]> cstring_from_string(const string& s) {
+  std::unique_ptr<char[]> c_str{new char[s.size() + 1]};
+  for (size_t i = 0; i < s.size(); i++) {
+    c_str[i] = s.at(i);
+  }
+  c_str[s.size()] = '\0';
+  return c_str;
+}
+
 string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
                            bool is_str = true) {
   if (is_str) {
@@ -30,12 +41,16 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
 
 string FormatCodeUsingChroma(const string& code, const string& lang,
                              const string& schema) {
-  GoString g_code{code.c_str(), 0};
-  GoString g_lang{lang.c_str(), 0};
-  GoString g_schema{schema.c_str(), 0};
-  GoString formatted = FormatCode(g_code, g_lang, g_schema);
+  auto code_ = cstring_from_string(code);
+  auto lang_ = cstring_from_string(lang);
+  auto schema_ = cstring_from_string(schema);
 
-  return string(formatted.p);
+  char* formatted =
+      FormatCodeWithoutInlineCss(code_.get(), lang_.get(), schema_.get());
+  string formatted_code = formatted;
+  free (formatted);
+
+  return formatted_code;
 }
 
 }  // namespace
@@ -58,7 +73,7 @@ string Content::OutputHtml() {
   int text_start = -1;
   std::vector<HtmlFragments> fragments;
 
-  std::vector<std::function<size_t(Content*, size_t,
+  std::vector<std::function<size_t(Content*, const size_t,
                                    std::vector<HtmlFragments>*, int*)>>
       handlers = {&Content::HandleLinks, &Content::HandleImages,
                   &Content::HandleCodes};
@@ -154,7 +169,7 @@ string Content::OutputHtml() {
   return html;
 }
 
-size_t Content::HandleLinks(size_t start_pos,
+size_t Content::HandleLinks(const size_t start_pos,
                             std::vector<HtmlFragments>* fragments,
                             int* text_start) {
   if (content_[start_pos] != '[') {
@@ -183,7 +198,7 @@ size_t Content::HandleLinks(size_t start_pos,
   return link_end;
 }
 
-size_t Content::HandleImages(size_t start_pos,
+size_t Content::HandleImages(const size_t start_pos,
                              std::vector<HtmlFragments>* fragments,
                              int* text_start) {
   if (content_[start_pos] != '!' || start_pos == content_.size() - 1)
@@ -198,7 +213,7 @@ size_t Content::HandleImages(size_t start_pos,
   return res;
 }
 
-size_t Content::HandleCodes(size_t start_pos,
+size_t Content::HandleCodes(const size_t start_pos,
                             std::vector<HtmlFragments>* fragments,
                             int* text_start) {
   if (start_pos + 2 >= content_.size() ||

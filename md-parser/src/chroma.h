@@ -65,7 +65,11 @@ extern "C" {
 #endif
 
 
-extern GoString FormatCode(GoString p0, GoString p1, GoString p2);
+extern char* FormatCode(char* p0, char* p1, char* p2);
+
+extern char* FormatCodeWithoutInlineCss(char* p0, char* p1, char* p2);
+
+extern char* GetChromaCss(char* p0);
 
 #ifdef __cplusplus
 }
