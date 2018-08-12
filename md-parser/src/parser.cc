@@ -18,7 +18,7 @@ int IndentSize(std::pair<int, int> space_and_tab) {
 
 const static char kWhiteLists[] = " \t";
 
-EnumListManager::EnumListManager() : current_cnt_(0), current_depth_(0) {}
+EnumListManager::EnumListManager() {}
 
 void EnumListManager::AddNextList(std::pair<int, int> space_and_tab) {
   int indent_size = IndentSize(space_and_tab);
@@ -44,9 +44,12 @@ std::pair<int, int> EnumListManager::GetCurrentEnum() const {
   return state_.top();
 }
 
-MDParser::MDParser(std::string content) : content_(content) {}
+MDParser::MDParser(std::string content)
+    : content_(content), newline_started_(true) {}
 
 TokenTypes MDParser::GetTokenInfo(const string& token) {
+  if (token.empty()) return TokenTypes::NEWLINE;
+
   // Check Header.
   if (token[0] == '#') {
     size_t num_sharps = 0;
@@ -110,33 +113,47 @@ void MDParser::AnalyzeLine(const std::string& line,
   auto first_token_info = GetTokenInfo(first_token);
   const string line_except_first_token = line.substr(first_token.size());
 
-  switch (first_token_info) {
-    case TEXT:
-      break;
-    case HEADER1:
-    case HEADER2:
-    case HEADER3:
-    case HEADER4:
-      content_list.emplace_back(
-          new HeaderContent(line_except_first_token, first_token_info));
-      break;
-    case LIST_ENUM: {
-      enum_list_manager.AddNextList(space_and_tab);
-      auto depth_and_enum = enum_list_manager.GetCurrentEnum();
-      content_list.emplace_back(new EnumListContent(line_except_first_token,
-                                                    depth_and_enum.second,
-                                                    depth_and_enum.first));
-      break;
+  if (first_token_info == TokenTypes::NEWLINE) {
+    newline_started_ = true;
+  } else if (first_token_info == TokenTypes::TEXT) {
+    // Then we have to continue whatever has done previously.
+    if (newline_started_) {
+      content_list_.emplace_back(new Content(line));
+    } else {
+      // Otherwise add curent content to the previous content list.
+      if (content_list_.empty()) {
+        LOG << "(ERROR) Content list is empty :(";
+        return;
+      }
+      content_list_.back()->AddContent(line);
     }
-    case LIST_UNORDER: {
-      unordered_list_manager.AddNextList(space_and_tab);
-      auto depth_and_enum = unordered_list_manager.GetCurrentEnum();
-      content_list.emplace_back(new UnorderedListContent(
-          line_except_first_token, depth_and_enum.first));
-      break;
+  } else {
+    switch (first_token_info) {
+      case HEADER1:
+      case HEADER2:
+      case HEADER3:
+      case HEADER4:
+        content_list_.emplace_back(
+            new HeaderContent(line_except_first_token, first_token_info));
+        break;
+      case LIST_ENUM: {
+        enum_list_manager_.AddNextList(space_and_tab);
+        auto depth_and_enum = enum_list_manager_.GetCurrentEnum();
+        content_list_.emplace_back(new EnumListContent(line_except_first_token,
+                                                      depth_and_enum.second,
+                                                      depth_and_enum.first));
+        break;
+      }
+      case LIST_UNORDER: {
+        unordered_list_manager_.AddNextList(space_and_tab);
+        auto depth_and_enum = unordered_list_manager_.GetCurrentEnum();
+        content_list_.emplace_back(new UnorderedListContent(
+            line_except_first_token, depth_and_enum.first));
+        break;
+      }
+      default:
+        break;
     }
-    default:
-      break;
   }
 }
 

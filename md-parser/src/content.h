@@ -9,6 +9,7 @@ enum TokenTypes {
   TEXT,
   LIST_ENUM,
   LIST_UNORDER,
+  HEADER,  // General Header
   HEADER1,
   HEADER2,
   HEADER3,
@@ -17,7 +18,8 @@ enum TokenTypes {
   HEADER6,
   QUOTE,
   HORIZONTAL_LINE,
-  CODE
+  CODE,
+  NEWLINE
 };
 
 struct HtmlFragments {
@@ -53,15 +55,16 @@ class Content {
   // Continuation of the content.
   virtual void AddContent(const string& content);
   virtual ~Content(){};
+  virtual TokenTypes GetContentType() const { return TokenTypes::TEXT; }
 
  private:
   // Returns start_pos again if nothing is handled.
-  size_t HandleLinks(const size_t start_pos, std::vector<HtmlFragments>* fragments,
-                     int* text_start);
-  size_t HandleImages(const size_t start_pos, std::vector<HtmlFragments>* fragments,
-                      int* text_start);
-  size_t HandleCodes(const size_t start_pos, std::vector<HtmlFragments>* fragments,
-                     int* text_start);
+  size_t HandleLinks(const size_t start_pos,
+                     std::vector<HtmlFragments>* fragments, int* text_start);
+  size_t HandleImages(const size_t start_pos,
+                      std::vector<HtmlFragments>* fragments, int* text_start);
+  size_t HandleCodes(const size_t start_pos,
+                     std::vector<HtmlFragments>* fragments, int* text_start);
 };
 
 }  // namespace md_parser

@@ -14,8 +14,8 @@ class EnumListContent : public Content {
   EnumListContent(const string& content, int enum_cnt, int enum_depth);
   string OutputHtml() override;
   void AddContent(const string& content) override;
+  TokenTypes GetContentType() const override { return TokenTypes::LIST_ENUM; }
 };
-
 
 class UnorderedListContent : public Content {
   int list_depth_;
@@ -24,5 +24,8 @@ class UnorderedListContent : public Content {
   UnorderedListContent(const string& content, int list_depth);
   string OutputHtml() override;
   void AddContent(const string& content) override;
+  TokenTypes GetContentType() const override {
+    return TokenTypes::LIST_UNORDER;
+  }
 };
 }  // namespace md_parser

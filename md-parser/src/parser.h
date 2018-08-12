@@ -86,8 +86,6 @@ class EnumListManager {
 
  private:
   static const int spaces_per_indent = 2;
-  int current_cnt_;
-  int current_depth_;
   std::stack<std::pair</* depth */ int, /* enum */ int>> state_;
 };
 
@@ -97,9 +95,10 @@ class MDParser {
   std::vector<ParserState> states_;
 
   // List of parsed contents of MD file.
-  std::vector<std::unique_ptr<Content>> content_list;
-  EnumListManager enum_list_manager;
-  EnumListManager unordered_list_manager;
+  std::vector<std::unique_ptr<Content>> content_list_;
+  EnumListManager enum_list_manager_;
+  EnumListManager unordered_list_manager_;
+  bool newline_started_;
 
  public:
   MDParser(std::string content);
