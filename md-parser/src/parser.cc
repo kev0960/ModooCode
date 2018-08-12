@@ -1,4 +1,6 @@
 #include "parser.h"
+#include "content_list.h"
+#include "content_header.h"
 
 #include <experimental/optional>
 #include <utility>
@@ -140,8 +142,8 @@ void MDParser::AnalyzeLine(const std::string& line,
         enum_list_manager_.AddNextList(space_and_tab);
         auto depth_and_enum = enum_list_manager_.GetCurrentEnum();
         content_list_.emplace_back(new EnumListContent(line_except_first_token,
-                                                      depth_and_enum.second,
-                                                      depth_and_enum.first));
+                                                       depth_and_enum.second,
+                                                       depth_and_enum.first));
         break;
       }
       case LIST_UNORDER: {
@@ -167,5 +169,9 @@ void MDParser::Parser() {
     start_pos = end_of_line.value() + 1;
     end_of_line = ReadUntilEndOfLine(content_, start_pos);
   }
+}
+
+const std::vector<std::unique_ptr<Content>>& MDParser::GetContentList() const {
+  return content_list_;
 }
 }  // namespace md_parser

@@ -100,6 +100,9 @@ class MDParser {
   EnumListManager unordered_list_manager_;
   bool newline_started_;
 
+ protected:
+  virtual const std::vector<std::unique_ptr<Content>>& GetContentList() const;
+
  public:
   MDParser(std::string content);
   void Parser();
