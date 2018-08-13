@@ -6,14 +6,14 @@ namespace md_parser {
 TEST(UtilTest, ReadUntilEndOfLine) {
   string line_1 = "abc\ndef\n";
   auto eol = ReadUntilEndOfLine(line_1, 0);
-  EXPECT_EQ(3, eol.value());
+  EXPECT_EQ(3, eol);
 
   auto eol2 = ReadUntilEndOfLine(line_1, 3);
-  EXPECT_EQ(3, eol2.value());
+  EXPECT_EQ(3, eol2);
 
   string no_newline = "abc";
   auto eol3 = ReadUntilEndOfLine(no_newline, 0);
-  EXPECT_EQ(std::experimental::nullopt, eol3);
+  EXPECT_EQ(3, eol3);
 }
 
 TEST(UtilTest, TrimLeft) {

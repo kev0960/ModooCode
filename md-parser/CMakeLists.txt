@@ -3,8 +3,9 @@ set(PROJECT_NAME md_parser)
 project(${PROJECT_NAME})
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_CXX_FLAGS "-g -Wall")
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 file(GLOB SOURCES src/*.cc src/*.h)
 
 add_library(chroma SHARED IMPORTED)

@@ -8,10 +8,12 @@ using std::experimental::optional;
 namespace md_parser {
 
 // Find the End of line and return it.
-optional<size_t> ReadUntilEndOfLine(const string& content, size_t start) {
+size_t ReadUntilEndOfLine(const string& content, size_t start) {
+  if (start >= content.size()) return content.size() + 1;
+
   size_t eol = content.find('\n', start);
   if (eol == string::npos) {
-    return std::experimental::nullopt;
+    return content.size();
   }
   return eol;
 }

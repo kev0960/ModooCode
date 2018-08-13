@@ -1,6 +1,6 @@
 #include "parser.h"
-#include "content_list.h"
 #include "content_header.h"
+#include "content_list.h"
 
 #include <experimental/optional>
 #include <utility>
@@ -14,6 +14,10 @@ namespace {
 
 int IndentSize(std::pair<int, int> space_and_tab) {
   return space_and_tab.first + 2 * space_and_tab.second;
+}
+
+void RemoveNewLineAtEnd(string* s) {
+  if (!s->empty() && s->back() == '\n') s->erase(s->end() - 1);
 }
 
 }  // namespace
@@ -50,7 +54,7 @@ MDParser::MDParser(std::string content)
     : content_(content), newline_started_(true) {}
 
 TokenTypes MDParser::GetTokenInfo(const string& token) {
-  if (token.empty()) return TokenTypes::NEWLINE;
+  if (token.empty()) return NEWLINE;
 
   // Check Header.
   if (token[0] == '#') {
@@ -58,18 +62,18 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
     for (; num_sharps < token.length(); num_sharps++) {
       if (token[num_sharps] != '#') {
         // Header should be separate sequence of #s.
-        return TokenTypes::TEXT;
+        return TEXT;
       }
     }
     switch (num_sharps) {
       case 1:
-        return TokenTypes::HEADER1;
+        return HEADER1;
       case 2:
-        return TokenTypes::HEADER2;
+        return HEADER2;
       case 3:
-        return TokenTypes::HEADER3;
+        return HEADER3;
       default:
-        return TokenTypes::HEADER4;
+        return HEADER4;
     }
   } else if (token.length() == 1) {
     if (token[0] == '*') {
@@ -105,22 +109,18 @@ void MDParser::AnalyzeLine(const std::string& line,
                            std::pair<int, int> space_and_tab) {
   auto first_white_space = FindFirstOfAny(line, kWhiteLists);
 
-  // There is no whitespace in the line.
-  if (first_white_space == line.end()) {
-    return;
-  }
-
   // Fetch the first token.
   const string first_token = std::string(line.begin(), first_white_space);
   auto first_token_info = GetTokenInfo(first_token);
   const string line_except_first_token = line.substr(first_token.size());
 
-  if (first_token_info == TokenTypes::NEWLINE) {
+  if (first_token_info == NEWLINE) {
     newline_started_ = true;
-  } else if (first_token_info == TokenTypes::TEXT) {
+  } else if (first_token_info == TEXT) {
     // Then we have to continue whatever has done previously.
     if (newline_started_) {
       content_list_.emplace_back(new Content(line));
+      newline_started_ = false;
     } else {
       // Otherwise add curent content to the previous content list.
       if (content_list_.empty()) {
@@ -130,11 +130,14 @@ void MDParser::AnalyzeLine(const std::string& line,
       content_list_.back()->AddContent(line);
     }
   } else {
+    newline_started_ = false;
     switch (first_token_info) {
       case HEADER1:
       case HEADER2:
       case HEADER3:
       case HEADER4:
+      case HEADER5:
+      case HEADER6:
         content_list_.emplace_back(
             new HeaderContent(line_except_first_token, first_token_info));
         break;
@@ -161,12 +164,13 @@ void MDParser::AnalyzeLine(const std::string& line,
 
 void MDParser::Parser() {
   size_t start_pos = 0;
-  optional<size_t> end_of_line = ReadUntilEndOfLine(content_, start_pos);
-  while (end_of_line) {
-    string line = content_.substr(start_pos, end_of_line.value() - start_pos);
+  size_t end_of_line = ReadUntilEndOfLine(content_, start_pos);
+  while (end_of_line <= content_.size()) {
+    string line = content_.substr(start_pos, end_of_line - start_pos);
     auto trimmed = TrimLeft(&line);
+    RemoveNewLineAtEnd(&line);
     AnalyzeLine(line, trimmed);
-    start_pos = end_of_line.value() + 1;
+    start_pos = end_of_line + 1;
     end_of_line = ReadUntilEndOfLine(content_, start_pos);
   }
 }
