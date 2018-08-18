@@ -1,7 +1,7 @@
 #include "parser.h"
 #include "content_header.h"
 #include "content_list.h"
-
+#include "parser_environment.h"
 #include <experimental/optional>
 #include <utility>
 #include "util.h"
@@ -12,10 +12,6 @@ using std::experimental::optional;
 namespace md_parser {
 namespace {
 
-int IndentSize(std::pair<int, int> space_and_tab) {
-  return space_and_tab.first + 2 * space_and_tab.second;
-}
-
 void RemoveNewLineAtEnd(string* s) {
   if (!s->empty() && s->back() == '\n') s->erase(s->end() - 1);
 }
@@ -23,32 +19,6 @@ void RemoveNewLineAtEnd(string* s) {
 }  // namespace
 
 const static char kWhiteLists[] = " \t";
-
-EnumListManager::EnumListManager() {}
-
-void EnumListManager::AddNextList(std::pair<int, int> space_and_tab) {
-  int indent_size = IndentSize(space_and_tab);
-
-  // 2 spaces ==> One indent.
-  int depth = indent_size / spaces_per_indent;
-
-  while (!state_.empty()) {
-    auto& depth_and_enum = state_.top();
-    if (depth_and_enum.first == depth) {
-      depth_and_enum.second += 1;
-      return;
-    } else if (depth_and_enum.first > depth) {
-      state_.push(std::make_pair(depth, 0));
-    }
-
-    state_.pop();
-  }
-  state_.push(std::make_pair(depth, 0));
-}
-
-std::pair<int, int> EnumListManager::GetCurrentEnum() const {
-  return state_.top();
-}
 
 MDParser::MDParser(std::string content)
     : content_(content), newline_started_(true) {}

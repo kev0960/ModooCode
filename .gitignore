@@ -79,3 +79,5 @@ CTestTestfile.cmake
 *.swp
 *.swo
 .*.sw?
+
+.idea

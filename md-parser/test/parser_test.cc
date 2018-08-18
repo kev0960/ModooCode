@@ -63,6 +63,4 @@ TEST(ParserTest, SimpleParser) {
                            {TEXT, LIST_ENUM, LIST_ENUM, TEXT, LIST_ENUM});
 }
 
-TEST(ParserTest, Header) {
-}
 }

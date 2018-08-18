@@ -1,0 +1,197 @@
+
+										
+											<ol>
+												
+													<li id="comment14940859">
+														<div class="rp_general floatWrapper">
+															<div class="name">김윤수</div>
+															<div class="wrapper">
+																<p>레퍼런스로 리턴하는 경우<br>
+Complex a = b + b + c;<br>
+값이 (b + c) + (b + c) 로 계산되서 사칙연산의 경우 반드시 값을 리턴해야한다고 하셨는데요.<br>
+레퍼런스를 리턴하는 operator+로 테스트를 해도<br>
+2b + c 의 결과를 보여줍니다. 제 컴파일러가 이상한건가요?<br>
+Visual C++ 2010 Express 에서 테스트 해보았습니다.</p>
+																<span class="date"> 2014.08.12 14:33 <a href="/toolbar/popup/abuseReport/?entryId=202&amp;commentId=14940859" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">신고</a></span>
+																<span class="control">
+																	[ <a href="/202#comment14940859" class="address" title="댓글주소">ADDR</a> :
+																	<a href="#" onclick="deleteComment(14940859);return false" class="modify" title="수정/삭제">EDIT/ DEL</a> :
+																	<a href="#" onclick="commentComment(14940859); return false" class="write" title="댓글쓰기">REPLY</a> ]
+																</span>
+															</div>
+														</div>
+														
+															<ul>
+																
+																	<li id="comment14940888">
+																		<div class="rp_general floatWrapper">
+																			<div class="name">김윤수</div>
+																			<div class="wrapper">
+																				<p>대입 사칙연산 시에 계산값이 이상하게 나오네요....<br>
+<br>
+Complex a(1.0, 2.0);<br>
+Complex b(3.0, -2.0);<br>
+<br>
+Complex e = b + b + a;<br>
+<br>
+a += b;<br>
+<br>
+------------------------------------------<br>
+e 값은 (7, -2) 로 동일하게 나오나.<br>
+<br>
+a, b 값은<br>
+<br>
+값 리턴시 (operator+)<br>
+<br>
+a (4, 0)<br>
+b (3,-2)<br>
+<br>
+레퍼런스 리턴시 (operator+)<br>
+<br>
+a (8, 0)<br>
+b (7,-2)<br>
+<br>
+값 리턴시에 올바른 결과 값이 나오네요..</p>
+																				<span class="date"> 2014.08.12 15:20 <a href="/toolbar/popup/abuseReport/?entryId=202&amp;commentId=14940888" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">신고</a></span>
+																				<span class="control">
+																					[ <a href="/202#comment14940888" class="address" title="댓글주소">ADDR</a> :
+																					<a href="#" onclick="deleteComment(14940888); return false;" class="modify" title="수정/삭제">EDIT/ DEL</a> ]
+																				</span>
+																			</div>
+																		</div>
+																	</li>
+																
+																	<li id="comment15079246">
+																		<div class="rp_admin floatWrapper">
+																			<div class="name"><img src="http://itguru.tistory.com/index.gif" alt="BlogIcon" width="16" height="16" onerror="this.parentNode.removeChild(this)"> <a href="http://itguru.tistory.com" onclick="return openLinkInNewWindow(this)"> Psi</a></div>
+																			<div class="wrapper">
+																				<p>지적 감사합니다 :) 질문자님께서 오류를 정확히 짚어주셨습니다. 실제로<br>
+<br>
+a = b + b + c 는 레퍼런스든 값이든 잘 작동됩니다. 왜냐하면 b + b 가 2b 를 리턴하고 c 를 더하기 때문이지요. <br>
+<br>
+그렇다면 a = b + c + b 는 어떨까요.<br>
+<br>
+b + c 에서  b 에 b + c 값이 들어가고, 다시 b ( 값은 이전의 b + c)  를 더한다면 결과적으로 2b + 2c  가 되겠지요? </p>
+																				<span class="date"> 2014.11.23 10:34 <a href="/toolbar/popup/abuseReport/?entryId=202&amp;commentId=15079246" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">신고</a></span>
+																				<span class="control">
+																					[ <a href="/202#comment15079246" class="address" title="댓글주소">ADDR</a> :
+																					<a href="#" onclick="deleteComment(15079246); return false;" class="modify" title="수정/삭제">EDIT/ DEL</a> ]
+																				</span>
+																			</div>
+																		</div>
+																	</li>
+																
+															</ul>
+														
+													</li>
+												
+													<li id="comment15414709">
+														<div class="rp_general floatWrapper">
+															<div class="name">이헌형</div>
+															<div class="wrapper">
+																<p>저기 operator(... &amp;C) 할때 왜 인자로 레퍼런스로 주는 건가요?<br>
+속도 때문인가요?</p>
+																<span class="date"> 2015.08.23 06:13 <a href="/toolbar/popup/abuseReport/?entryId=202&amp;commentId=15414709" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">신고</a></span>
+																<span class="control">
+																	[ <a href="/202#comment15414709" class="address" title="댓글주소">ADDR</a> :
+																	<a href="#" onclick="deleteComment(15414709);return false" class="modify" title="수정/삭제">EDIT/ DEL</a> :
+																	<a href="#" onclick="commentComment(15414709); return false" class="write" title="댓글쓰기">REPLY</a> ]
+																</span>
+															</div>
+														</div>
+														
+															<ul>
+																
+																	<li id="comment15448971">
+																		<div class="rp_admin floatWrapper">
+																			<div class="name"><img src="http://itguru.tistory.com/index.gif" alt="BlogIcon" width="16" height="16" onerror="this.parentNode.removeChild(this)"> <a href="http://itguru.tistory.com" onclick="return openLinkInNewWindow(this)"> Psi</a></div>
+																			<div class="wrapper">
+																				<p>맞습니다! 굳이 객체 전체를 복사할 필요가 없기 때문입니다</p>
+																				<span class="date"> 2015.10.07 19:04 <a href="/toolbar/popup/abuseReport/?entryId=202&amp;commentId=15448971" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">신고</a></span>
+																				<span class="control">
+																					[ <a href="/202#comment15448971" class="address" title="댓글주소">ADDR</a> :
+																					<a href="#" onclick="deleteComment(15448971); return false;" class="modify" title="수정/삭제">EDIT/ DEL</a> ]
+																				</span>
+																			</div>
+																		</div>
+																	</li>
+																
+															</ul>
+														
+													</li>
+												
+													<li id="comment16734078">
+														<div class="rp_general floatWrapper">
+															<div class="name">박재형</div>
+															<div class="wrapper">
+																<p>3년전 글이라  좀 타이밍은 안맞지만 간단한 질문남깁니다 !<br>
+<br>
+Complex&amp; Complex::operator=(const Complex &amp;c)<br>
+{<br>
+	real = c.real; img = c.img;<br>
+	return *this;<br>
+}<br>
+<br>
+여기 대입연산자 부분 코드에서    기존의   왼쪽에있던 (real,img) 에 새로 인자로 입력받은 값을 대입해 주는데요<br>
+여기서 기존에있던  Complex 객체를  <br>
+delete   real;<br>
+delete    img;<br>
+real = new Complex c.real<br>
+img= new Complex c.img      이런식으로 기존것   delete하고  새로 동적할당 해주는 게 더 올바른 방법이지 않을까 문득 생각이 들었습니다 !<br>
+<br>
+이렇게 코드가 길어지는 해제와 동적할당 을 생략해도 되는 이유가 있을까요 ??   </p>
+																<span class="date"> 2017.10.25 16:35 <a href="/toolbar/popup/abuseReport/?entryId=202&amp;commentId=16734078" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">신고</a></span>
+																<span class="control">
+																	[ <a href="/202#comment16734078" class="address" title="댓글주소">ADDR</a> :
+																	<a href="#" onclick="deleteComment(16734078);return false" class="modify" title="수정/삭제">EDIT/ DEL</a> :
+																	<a href="#" onclick="commentComment(16734078); return false" class="write" title="댓글쓰기">REPLY</a> ]
+																</span>
+															</div>
+														</div>
+														
+													</li>
+												
+													<li id="comment16975458">
+														<div class="rp_general floatWrapper">
+															<div class="name">misoj</div>
+															<div class="wrapper">
+																<p>str1.insert(str1.length(), str2) 하지 말고 str1 = str1 + str2; 하면 어떨까? 이부분을 이렇게 작성해봤는데<br>
+<br>
+MyString&amp; MyString::operator+(MyString&amp; str)<br>
+{<br>
+	MyString temp(*this);<br>
+	return temp.insert(temp.length(), str);<br>
+}<br>
+<br>
+MyString&amp; MyString::operator=(MyString&amp; str)<br>
+{<br>
+	return (*this).assign(str);<br>
+}<br>
+<br>
+이렇게 작성을 하면 메모리 부분에서 오류가 있는지 실행 중 끝나버리네요..<br>
+MyString&amp; MyString::operator+(MyString&amp; str)<br>
+{<br>
+	return (*this).insert((*this).length(), str);<br>
+}<br>
+<br>
+MyString&amp; MyString::operator=(MyString&amp; str)<br>
+{<br>
+	return (*this).assign(str);<br>
+}<br>
+이렇게 작성을 하면 작동을 하고요.<br>
+<br>
+temp 객체가 멤버함수가 종료되면서 소멸되기때문에 리턴이 될 수 없어서가 맞나요?</p>
+																<span class="date"> 2018.07.24 09:28 <a href="/toolbar/popup/abuseReport/?entryId=202&amp;commentId=16975458" onclick="window.open(this.href, 'tistoryThisBlogPopup', 'width=550, height=510, toolbar=no, menubar=no, status=no, scrollbars=no'); return false;">신고</a></span>
+																<span class="control">
+																	[ <a href="/202#comment16975458" class="address" title="댓글주소">ADDR</a> :
+																	<a href="#" onclick="deleteComment(16975458);return false" class="modify" title="수정/삭제">EDIT/ DEL</a> :
+																	<a href="#" onclick="commentComment(16975458); return false" class="write" title="댓글쓰기">REPLY</a> ]
+																</span>
+															</div>
+														</div>
+														
+													</li>
+												
+											</ol>
+										
+									

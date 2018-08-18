@@ -1,0 +1,958 @@
+
+<center>								
+<table border="0">
+<tbody><tr>
+<td width="336" height="280" align="center">
+
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- itguru Top -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-6608926154840997" data-ad-slot="9540252860" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:336px;height:280px;"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+	
+</td><td width="336" height="280" align="center">
+
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- itguru Top -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-6608926154840997" data-ad-slot="9540252860" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;width:336px;height:280px;"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</td>
+</tr>
+</tbody></table>
+</center>
+<br><br>
+<div style="border-style: solid; border-width: 1px; border-color: rgb(254, 137, 67); background-color: rgb(254, 222, 199); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">이 레퍼런스의 모든 내용은 <a title="[http://www.cplusplus.com/reference/iostream/]로 이동합니다." target="_blank" href="http://www.cplusplus.com/reference/iostream/">http://www.cplusplus.com/reference/iostream/</a>
+ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 &lt;&lt;The C++ 
+Programming Language&gt;&gt; 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 </span><a title="[http://itguru.tistory.com/notice/107]로 이동합니다." target="_blank" href="http://itguru.tistory.com/notice/107"><span style="font-size: 12pt;">저의 모토인 '지식전파'</span></a><span style="font-size: 12pt;"> 를 위해 모든 이들에게 공개하도록 하겠습니다.</span>
+</div>
+<span style="font-size:18pt;"><span style="font-family: Verdana;"><br>
+<div style="border-style: solid; border-width: 1px; border-color: rgb(159, 211, 49); background-color: rgb(231, 253, 181); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">아직 C++ 에 친숙하지 않다면 <a title="[http://itguru.tistory.com/135]로 이동합니다." target="_blank" href="http://itguru.tistory.com/135">씹어먹는 C++ 강좌</a>는 어때요?</span></div>
+</span></span><br>
+<span style="font-size:18pt;"><span style="font-family: Verdana;">istream::operator&gt;&gt;</span></span><br>
+<div>
+<div style="border-left: 200px solid rgb(0, 0, 0); padding: 3px 6px; background-color: rgb(232, 232, 232); width: 690px; font: bold 1pt/1 나눔고딕,Sans-serif; margin-bottom: 10px; height: 1px; color: rgb(255, 255, 255);">
+<span style="font-size:10pt;"><span style="font-family: Batang;"><span style="font-size:1pt;"><br>
+</span></span></span></div>
+<div style="line-height: 1.7;">
+
+</div>
+</div>
+
+<br>
+<div style="border-style: solid; border-width: 1px; border-color: rgb(193, 193, 193); background-color: rgb(238, 238, 238); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (bool&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (short&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (unsigned short&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (int&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (unsigned int&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (long&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (unsigned long&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (float&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (double&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (long double&amp; val );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (void*&amp; val );</span><br>
+<span style="font-size: 12pt;">
+&nbsp;</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (streambuf* sb );</span><br>
+<span style="font-size: 12pt;">
+&nbsp;</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (istream&amp; ( *pf )(istream&amp;));</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (ios&amp; ( *pf )(ios&amp;));</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (ios_base&amp; ( *pf )(ios_base&amp;));</span><br>
+<br>
+<span style="font-size: 12pt;">
+// 아래 함수들은 멤버들이 아니라, 전역 함수들이다. </span><br>
+<span style="font-size: 12pt;">
+&nbsp;</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (istream&amp; is, char&amp; ch );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (istream&amp; is, signed char&amp; ch );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (istream&amp; is, unsigned char&amp; ch );</span><br>
+<span style="font-size: 12pt;">
+&nbsp;</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (istream&amp; is, char* str );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (istream&amp; is, signed char* str );</span><br>
+<span style="font-size: 12pt;">
+istream&amp; operator&gt;&gt; (istream&amp; is, unsigned char* str );</span></div>
+<br>
+<span style="font-size: 12pt;">&nbsp;<span style="font-weight: bold;">서식화 된 데이터를 추출(extract)한다.</span></span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 이 연산자(&gt;&gt;) 은 입력 스트림에서 사용되는데, '추출 연산자(extraction operator)' 이라 불리기도 한다. 이는 오른쪽 쉬프트 연산자와 다른 것이다. 이 연산자는 스트림에서 데이터의 해석을 필요로 하는 입력 작업을 수행하게 된다. 예를 들어, 입력 받은 숫자 데이터 (문자 형태로 입력될 것이다) 를 사용자가 지정한 수치 형태로 변환한다든지 등 말이다.</span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 참고적으로 3 가지 종류의 멤버 함수들과, 한 가지 종류의 전역 함수들이 <a title="[http://itguru.tistory.com/146]로 이동합니다." target="_blank" href="http://itguru.tistory.com/146">istream</a> 객체에 적용되는 추출 연산자에서 오버로드 된다.</span><br>
+<br>
+<ul style="list-style-type: disc;">
+<li><span style="font-size: 12pt;">첫번재 종류의 멤버 함수는 산술 추출자(arithmetic extractor) 이다. 이들은 입력 데이터로 부터 문자들을 받아서 이 추출자의 인자의 특정 타입의 형태로 값을 해석하게 된다. 그 결과값은 인자로 전달된 변수에 저장되게 된다. (위 소스에서 상단 부분)</span><br>
+</li>
+<li><span style="font-size: 12pt;">streambuf 형태의 복사는 연산자 우변에 전달된 스트림 버퍼 객체로 부터 더 이상 복사 할 수 없을 때 까지 최대한 많은 문자들을 복사한다. </span><br>
+</li>
+<li><span style="font-size: 12pt;">마지막 종류의 멤버 함수는 인자로 함수 포인터를 가지고 있다. 이들은 조작자(manipulator) 함수로 사용되게 만들어졌다. 조작자 함수는 이 연산자와 함께 사용되도록 특이적으로 만들어진 함수들이다. (위 소스에서 세번째 부분)</span><br>
+</li>
+<li><span style="font-size: 12pt;">전역 함수가 오버로드 하는 경우는 인자가 문자거나 C 형식 문자열일 때 연산자를 오버로드 하는데, 이들은 입력스트림으로 부터 한 개의 문자 혹은 문자들의 나열을 입력 받는다. (위 소스에서 마지막 부분)</span><br>
+</li>
+</ul>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 이 함수들이 연산자 오버로딩 함수들이기 때문에 이 연산자를 사용하기 위해서는</span><br>
+<span style="font-size: 12pt;">
+&nbsp; &nbsp;&nbsp;&nbsp; </span><br>
+<div style="border-style: solid; border-width: 1px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">
+strm &gt;&gt; variable;</span></div>
+<br>
+<span style="font-size: 12pt;">
+&nbsp;와 같이 사용하면 된다. 이 때 strm 은 <a title="[http://itguru.tistory.com/146]로 이동합니다." target="_blank" href="http://itguru.tistory.com/146">istream</a> 객체의 이름이고, variable 은 우변으로 전달되는 인자이다. 물론 이 연산자를 아래처럼 쭉 이어나가서 사용해도 된다.</span><br>
+<br>
+<div style="border-style: solid; border-width: 1px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">
+strm &gt;&gt; variable1 &gt;&gt; variable2 &gt;&gt; variable3; //... </span></div>
+<br>
+<span style="font-size: 12pt;">
+이는 strm 객체에 추출 연산을 계속 진행하는 것과 다름 없다. </span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 표준 <a title="[http://itguru.tistory.com/146]로 이동합니다." target="_blank" href="http://itguru.tistory.com/146">istream</a> 객체에 사용시 효과가 있는 조작자들은</span><br>
+<br>
+<ul style="list-style-type: disc;">
+<li><span style="font-size:12pt;">boolalpha&nbsp; :&nbsp; bool 값을 문자열로(true, false)</span></li>
+<li><span style="font-size:12pt;">dec&nbsp; :&nbsp; 십진수를 사용</span></li>
+<li><span style="font-size:12pt;">hex&nbsp; :&nbsp; 16 진수를 사용한다.&nbsp;&nbsp; </span><br>
+</li>
+<li><span style="font-size:12pt;">noboolalpha&nbsp; :&nbsp; bool 값에 문자열을 사용하지 않는다 (0,1)&nbsp; </span><br>
+</li>
+<li><span style="font-size:12pt;">noskipws :&nbsp; 공백문자(whitespace) 를 생략하지 않는다.&nbsp;</span></li>
+<li><span style="font-size:12pt;">oct&nbsp; :&nbsp; 8 진수를 사용한다. </span><br>
+</li>
+<li><span style="font-size:12pt;">skipws&nbsp; :&nbsp; 공백 문자(whitespace)를 생략한다 </span>
+</li>
+<li><span style="font-size:12pt;">ws&nbsp; :&nbsp; 공백문자를 추출한다.</span></li>
+</ul>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 다른 조작자들도 <a title="[http://itguru.tistory.com/146]로 이동합니다." target="_blank" href="http://itguru.tistory.com/146">istream</a> 객체에 사용 가능하지만 효과는 없다. </span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 아래의 인자를 가지는 조작자들은 istream 객체에 영향이 있다. 이들은 &lt;iomanip&gt; 헤더파일에 정의되어 있으며 명시적으로 include 를 시켜 주어야만 한다.</span><br>
+<br>
+<ul style="list-style-type: disc;">
+<li><span style="font-size:12pt;">setiosflags&nbsp; :&nbsp; 서식 플래그를 설정한다.</span></li>
+<li><span style="font-size:12pt;">setbase&nbsp; :&nbsp; 진법 플래그를 설정한다.&nbsp; </span><br>
+</li>
+<li><span style="font-size:12pt;">resetiosflags : 서식 플래그를 재설정 한다. </span></li>
+</ul>
+<br>
+<div>
+<table style="WIDTH: 634px; BORDER-COLLAPSE: collapse; HEIGHT: 31px" bgcolor="#ffffff" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" bgcolor="#3058d2" width="1%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;</span></span></span></span></td>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="99%"><span style="COLOR: rgb(48,88,210); FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;인자들</span></span></span></span><font color="#c8056a"><strong><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><br>
+</span></span></strong></font></td>
+<td style="BORDER-BOTTOM: rgb(255,70,197) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="100%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="font-size: 12pt;">&nbsp;</span></span></span></td>
+</tr>
+</tbody></table>
+<br>
+<font face="굴림"><span style="FONT-SIZE: 9pt"></span></font>
+<div>
+</div>
+<div>
+</div>
+<br>
+</div>
+<span style="font-size: 12pt;">
+<span style="font-style: italic;">val</span></span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 입력 시퀀스(sequence)에서 문자들을 추출하여 주어진 인자의 타입에 맞게 수치값으로 해석하려 한다. 만일 성공적으로 해석하였다면 그 값은 val 에 저장된다. 데이터가 정확히 어떠한 방식으로 해석될지는 이전에 스트림에 적용된 조작자와, 로케일(locale) 에 의해 결정된다. </span><br>
+<br>
+<span style="font-size: 12pt;">
+<span style="font-style: italic;">sb</span></span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 입력 시퀀스로 부터 문자들을 추출하여 End Of File 이 나타나기 전이나, 버퍼가 성공적으로 문자를 삽입(insert)할 때 까지 sb 에 저장한다. </span><br>
+<br>
+<span style="font-size: 12pt;">
+<span style="font-style: italic;">pf</span></span><br style="font-style: italic;">
+<br>
+<span style="font-size: 12pt;">
+&nbsp; pf(*this) 를 호출하는데, 보통 조작자 함수이다. </span><br>
+<br>
+<span style="font-size: 12pt;">
+<span style="font-style: italic;">ch</span></span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 단일 문자를 추출하여 ch 에 저장한다. </span><br>
+<br>
+<span style="font-size: 12pt;">
+<span style="font-style: italic;">str</span></span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 문자를 추출하여 C 형식 문자열로 저장한다. (즉 str 이 문자열의 시작 부분을 가리키고, null 문자로 문자열이 끝난다) 추출은 다음 문자가 공백 문자(whitespace) 이거나 널 문자 혹은 End of file 에 도달하였을 때 종료된다. 입력 받은 문자열 끝에는 자동적으로 널 문자가 붙게 된다. </span><br>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 이 때 만일 필드의 너비가 0 보다 크게 설정되었다면 (이는 <a title="[http://itguru.tistory.com/152]로 이동합니다." target="_blank" href="http://itguru.tistory.com/152">ios_base::width</a> 혹은 setw 로 설정할 수 있다)&nbsp; 입력 받을 문자의 수를 제한할 수 도 있다(버퍼 오버플로우 문제를 막기 위해). 이 경우 입력 받은 문자의 수가 필드 너비 값에 도달하기 하나 전에, 입력을 중단하고 나머지 한 문자를 널 종료 문자(null terminating character) 로 채운다. 그리고 자동으로 필드 너비 값이 0 으로 재설정 되버린다. </span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; </span><br>
+<span style="font-size: 12pt;">
+<span style="font-style: italic;">is</span></span><br style="font-style: italic;">
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 작업이 수행될 스트림 객체. 이는 전역 함수의 첫 번째 인자로 연산자의 왼쪽에 위치한다. </span><br>
+<br>
+<br>
+<div>
+<table style="WIDTH: 634px; BORDER-COLLAPSE: collapse; HEIGHT: 31px" bgcolor="#ffffff" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" bgcolor="#3058d2" width="1%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;</span></span></span></span></td>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="99%"><span style="COLOR: rgb(48,88,210); FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;리턴값</span></span></span></span><font color="#c8056a"><strong><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><br>
+</span></span></strong></font></td>
+<td style="BORDER-BOTTOM: rgb(255,70,197) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="100%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="font-size: 12pt;">&nbsp;</span></span></span></td>
+</tr>
+</tbody></table>
+<br>
+<font face="굴림"><span style="FONT-SIZE: 9pt"></span></font>
+<div>
+</div>
+<div>
+</div>
+<span style="font-size: 12pt;">
+객체 자기 자신을 리턴한다 (*this)</span><br>
+<br>
+<span style="font-size: 12pt;">
+발생된 오류는 내부 플래그를 변화시키게 된다. </span><br>
+<br>
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:View>Normal</w:View>
+  <w:Zoom>0</w:Zoom>
+  <w:TrackMoves/>
+  <w:TrackFormatting/>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>KO</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:AdjustLineHeightInTable/>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:DontVertAlignCellWithSp/>
+   <w:DontBreakConstrainedForcedTables/>
+   <w:DontVertAlignInTxbx/>
+   <w:Word11KerningPairs/>
+   <w:CachedColBalance/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="59" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]--><!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"표준 표";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	;
+	font-family:"맑은 고딕";
+	mso-ascii-font-family:"맑은 고딕";
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"맑은 고딕";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"맑은 고딕";
+	mso-hansi-theme-font:minor-latin;
+	mso-font-kerning:1.0pt;}
+table.MsoTableGrid
+	{mso-style-name:"표 구분선";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-priority:59;
+	mso-style-unhide:no;
+	border:solid windowtext 1.0pt;
+	mso-border-alt:solid windowtext .5pt;
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-border-insideh:.5pt solid windowtext;
+	mso-border-insidev:.5pt solid windowtext;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	;
+	font-family:"맑은 고딕";
+	mso-ascii-font-family:"맑은 고딕";
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:"맑은 고딕";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"맑은 고딕";
+	mso-hansi-theme-font:minor-latin;
+	mso-font-kerning:1.0pt;}
+</style>
+<![endif]-->
+
+<span style="font-size: 12pt;">
+ </span><span style="font-size: 12pt;">
+  </span><span style="font-size: 12pt;">
+  </span><span style="font-size: 12pt;">
+ </span><span style="font-size: 12pt;">
+ </span><span style="font-size: 12pt;">
+  </span><span style="font-size: 12pt;">
+  </span><span style="font-size: 12pt;">
+ </span><span style="font-size: 12pt;">
+ </span><span style="font-size: 12pt;">
+  </span><span style="font-size: 12pt;">
+  </span><span style="font-size: 12pt;">
+ </span><span style="font-size: 12pt;">
+ </span><span style="font-size: 12pt;">
+  </span><span style="font-size: 12pt;">
+  </span><span style="font-size: 12pt;">
+ </span><table class="MsoTableGrid" style="border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt" border="1" cellpadding="0" cellspacing="0">
+<tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes">
+<td style="width:47.95pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;background:#7F7F7F;mso-background-themecolor:
+  text1;mso-background-themetint:128;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="64"><span style="font-size: 12pt;">
+  </span><p style="text-align:center" align="center"><span style="font-size:12.0pt;color:white;mso-themecolor:background1"><span style="font-size: 12pt;">플래그</span></span></p>
+<span style="font-size: 12pt;">
+  </span></td>
+<td style="width:413.25pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;background:#7F7F7F;mso-background-themecolor:text1;
+  mso-background-themetint:128;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="551"><span style="font-size: 12pt;">
+  </span><p style="text-align:center" align="center"><span style="font-size:12.0pt;color:white;mso-themecolor:background1"><span style="font-size: 12pt;">오류</span></span></p>
+<span style="font-size: 12pt;">
+  </span></td>
+</tr>
+<tr style="mso-yfti-irow:1">
+<td style="width:47.95pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="64"><span style="font-size: 12pt;">
+  </span><p><span style="font-size:12pt;">eofbit</span></p>
+<span style="font-size: 12pt;">
+  </span></td>
+<td style="width:413.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="551"><span style="font-size: 12pt;">
+  </span><p><span style="font-size:12pt;">작업 중 문자들의 끝에 도달하였을 때</span></p>
+<span style="font-size: 12pt;">
+  </span></td>
+</tr>
+<tr style="mso-yfti-irow:2">
+<td style="width:47.95pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="64"><span style="font-size: 12pt;">
+  </span><p><span style="font-size:12pt;">failbit</span></p>
+<span style="font-size: 12pt;">
+  </span></td>
+<td style="width:413.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="551"><span style="font-size: 12pt;">
+  </span><p><span style="font-size:12pt;">입력받은 데이터가 올바른 타입으로 해석이 되지 않을
+  경우 </span><br>
+</p>
+<p><span style="font-size:12pt;">(</span><span style="font-size:12pt;">참고로</span><span><span style="font-size: 12pt;"> eofbit </span><span style="font-size: 12pt;">시</span><span><span style="font-size: 12pt;"> failbit </span><span style="font-size: 12pt;">도 참이 된다</span><span><span style="font-size: 12pt;">)</span></span></span></span></p>
+<span style="font-size: 12pt;">
+  </span></td>
+</tr>
+<tr style="mso-yfti-irow:3;mso-yfti-lastrow:yes">
+<td style="width:47.95pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="64"><span style="font-size: 12pt;">
+  </span><p><span style="font-size:12pt;">badbit</span></p>
+<span style="font-size: 12pt;">
+  </span></td>
+<td style="width:413.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt" valign="top" width="551"><span style="font-size: 12pt;">
+  </span><p><span style="font-size:12pt;">위 같은 일들 외의 다른 오류가 발생시</span></p>
+<p><span style="font-size:12pt;">(ios_base::iostate
+  </span><span style="font-size:12pt;">를 참조</span><span><span style="font-size: 12pt;">)</span></span></p>
+<span style="font-size: 12pt;">
+  </span></td>
+</tr>
+</tbody></table>
+
+<br>
+</div>
+<br>
+<span style="font-size: 12pt;">
+&nbsp; 추가적으로 <a title="[http://itguru.tistory.com/150]로 이동합니다." target="_blank" href="http://itguru.tistory.com/150">ios::exceptions</a> 의 멤버 함수를 통해 적절하게 플래그가 설정되어있다면, 위와 같은 상황 발생 시 ios_base::failure 예외가 throw 된다.</span><br>
+<br>
+<br>
+<div>
+<table style="WIDTH: 634px; BORDER-COLLAPSE: collapse; HEIGHT: 31px" bgcolor="#ffffff" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" bgcolor="#3058d2" width="1%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;</span></span></span></span></td>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="99%"><span style="COLOR: rgb(48,88,210); FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;실행 예제</span></span></span></span><font color="#c8056a"><strong><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><br>
+</span></span></strong></font></td>
+<td style="BORDER-BOTTOM: rgb(255,70,197) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="100%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="font-size: 12pt;">&nbsp;</span></span></span></td>
+</tr>
+</tbody></table>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; </span><br>
+</div>
+<div style="border-style: solid; border-width: 1px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/*</span><br>
+<br>
+<span style="font-size: 12pt;">cin 으로 여러 작업을 수행한다. </span><br>
+<span style="font-size: 12pt;">
+이 예제는 </span><br>
+<span style="font-size: 12pt;">
+http://www.cplusplus.com/reference/iostream/istream/operator%3E%3E/</span><br>
+<span style="font-size: 12pt;">
+에서 가져왔습니다.</span><br>
+<br>
+<span style="font-size: 12pt;">*/</span><br>
+<span style="font-size: 12pt;">
+#include &lt;iostream&gt;</span><br>
+<span style="font-size: 12pt;">
+using namespace std;</span><br>
+<br>
+<span style="font-size: 12pt;">int main () </span><br>
+<span style="font-size: 12pt;">
+{</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; int n;</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; char str[10];</span><br>
+<br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter a number: ";</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; cin &gt;&gt; n;</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; cout &lt;&lt; "You have entered: " &lt;&lt; n &lt;&lt; endl;</span><br>
+<br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter a hexadecimal number: ";</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; cin &gt;&gt; hex &gt;&gt; n;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // manipulator</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Its decimal equivalent is: " &lt;&lt; n &lt;&lt; endl;</span><br>
+<br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Enter a word: ";</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; cin.width (10);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // limit width</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; cin &gt;&gt; str;</span><br>
+<span style="font-size: 12pt;">
+&nbsp;&nbsp;&nbsp; cout &lt;&lt; "The first 9 chars of your word are: " &lt;&lt; str &lt;&lt; endl;</span><br>
+<br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;</span><br>
+<span style="font-size: 12pt;">
+}</span><br>
+</div>
+<br>
+<span style="font-size: 12pt;">
+<span style="font-weight: bold;">&nbsp; 실행 결과</span></span><br>
+<br>
+<span style="font-size: 12pt;"><p style="text-align: center;"><span class="imageblock" style="display:inline-block;width:404px;;height:auto;max-width:100%"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F144DE2524E4B71D4023599 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F144DE2524E4B71D4023599 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F144DE2524E4B71D4023599 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F144DE2524E4B71D4023599 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F144DE2524E4B71D4023599 480w" src="https://t1.daumcdn.net/cfile/tistory/144DE2524E4B71D402" style="max-width:100%;height:auto" width="404" height="182" filename="cin1.png" filemime="image/png"></span></p></span><br>
+<div>
+<table style="WIDTH: 634px; BORDER-COLLAPSE: collapse; HEIGHT: 31px" bgcolor="#ffffff" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" bgcolor="#3058d2" width="1%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;</span></span></span></span></td>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="99%"><span style="COLOR: rgb(48,88,210); FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;템플릿 멤버 정의</span></span></span></span><font color="#c8056a"><strong><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><br>
+</span></span></strong></font></td>
+<td style="BORDER-BOTTOM: rgb(255,70,197) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="100%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="font-size: 12pt;">&nbsp;</span></span></span></td>
+</tr>
+</tbody></table>
+<br>
+</div>
+<div style="border-style: solid; border-width: 1px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<div>
+<span style="font-size: 12pt;">// basic_istream&lt;charT,traits&gt; <br>
+// 맨 위에 나와 있는 예는 charT 에 char 을 전달한 것들. </span><span style="font-size: 12pt;">&lt;</span><a title="[http://itguru.tistory.com/143]로 이동합니다." target="_blank" href="http://itguru.tistory.com/143"><span style="font-size: 12pt;">여기</span></a><span style="font-size: 12pt;">&gt; 참조</span><br>
+</div>
+<span style="font-size: 12pt;">basic_istream&amp; operator&gt;&gt; (bool&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (short&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (unsigned short&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (int&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (unsigned int&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (long&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (unsigned long&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (float&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (double&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (long double&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (void*&amp; val );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (basic_streambuf&lt;charT,traits&gt;* sb );</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (basic_istream&amp; ( *pf )(istream&amp;));</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (basic_ios&lt;charT,traits&gt;&amp; ( *pf )(basic_ios&lt;charT,traits&gt;&amp;));</span><br>
+<span style="font-size: 12pt;">
+basic_istream&amp; operator&gt;&gt; (ios_base&amp; ( *pf )(ios_base&amp;));</span></div>
+<br>
+<br>
+<br>
+<br>
+<div>
+<table style="WIDTH: 634px; BORDER-COLLAPSE: collapse; HEIGHT: 31px" bgcolor="#ffffff" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" bgcolor="#3058d2" width="1%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;</span></span></span></span></td>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="99%"><span style="COLOR: rgb(48,88,210); FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;템플릿 전역 함수들</span></span></span></span><font color="#c8056a"><strong><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><br>
+</span></span></strong></font></td>
+<td style="BORDER-BOTTOM: rgb(255,70,197) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="100%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="font-size: 12pt;">&nbsp;</span></span></span></td>
+</tr>
+</tbody></table>
+<br>
+<font face="굴림"><span style="FONT-SIZE: 9pt"></span></font>
+<div>
+</div>
+<div>
+</div>
+</div>
+<div style="border-style: solid; border-width: 1px; border-color: rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">template &lt;class charT, class traits&gt;</span><br>
+<span style="font-size: 12pt;">
+&nbsp; basic_istream&lt;charT,traits&gt;&amp; operator&gt;&gt; (basic_istream&lt;charT,traits&gt;&amp; is, charT&amp; ch );</span><br>
+<br>
+<span style="font-size: 12pt;">
+template &lt;class charT, class traits&gt;</span><br>
+<span style="font-size: 12pt;">
+&nbsp; basic_istream&lt;charT,traits&gt;&amp; operator&gt;&gt; (basic_istream&lt;charT,traits&gt;&amp; is, signed char&amp; ch );</span><br>
+<br>
+<span style="font-size: 12pt;">
+template &lt;class charT, class traits&gt;</span><br>
+<span style="font-size: 12pt;">
+&nbsp; basic_istream&lt;charT,traits&gt;&amp; operator&gt;&gt; (basic_istream&lt;charT,traits&gt;&amp; is, unsigned char&amp; ch );</span><br>
+<br>
+<span style="font-size: 12pt;">
+template &lt;class charT, class traits&gt;</span><br>
+<span style="font-size: 12pt;">
+&nbsp; basic_istream&lt;charT,traits&gt;&amp; operator&gt;&gt; (basic_istream&lt;charT,traits&gt;&amp; is, charT* str );</span><br>
+<br>
+<span style="font-size: 12pt;">
+template &lt;class charT, class traits&gt;</span><br>
+<span style="font-size: 12pt;">
+&nbsp; basic_istream&lt;charT,traits&gt;&amp; operator&gt;&gt; (basic_istream&lt;charT,traits&gt;&amp; is, signed char* str );</span><br>
+<br>
+<span style="font-size: 12pt;">
+template &lt;class charT, class traits&gt;</span><br>
+<span style="font-size: 12pt;">
+&nbsp; basic_istream&lt;charT,traits&gt;&amp; operator&gt;&gt; (basic_istream&lt;charT,traits&gt;&amp; is, unsigned char* str );</span><br>
+</div>
+<br>
+<br>
+<div>
+<table style="WIDTH: 634px; BORDER-COLLAPSE: collapse; HEIGHT: 31px" bgcolor="#ffffff" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" bgcolor="#3058d2" width="1%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;</span></span></span></span></td>
+<td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="99%"><span style="COLOR: rgb(48,88,210); FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="FONT-WEIGHT: bold"><span style="font-size: 12pt;">&nbsp;연관된 함수</span></span></span></span><font color="#c8056a"><strong><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><br>
+</span></span></strong></font></td>
+<td style="BORDER-BOTTOM: rgb(255,70,197) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid" width="100%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span style="font-size: 12pt;">&nbsp;</span></span></span></td>
+</tr>
+</tbody></table>
+<br>
+<font face="굴림"><span style="FONT-SIZE: 9pt"></span></font>
+<div>
+</div>
+<div>
+</div>
+</div>
+<ul style="list-style-type: disc;">
+<li><span style="font-size: 12pt;">
+<a href="http://itguru.tistory.com/191" target="_blank" class="tx-link">istream::get&nbsp;</a> :&nbsp; 서식화 되지 않는 데이터를 스트림에서 가져온다.</span></li>
+<li><span style="font-size: 12pt;"><a title="[http://itguru.tistory.com/149]로 이동합니다." target="_blank" href="http://itguru.tistory.com/149">istream::getline</a>&nbsp; :&nbsp; 스트림에서 한 줄을 입력 받는다.</span></li>
+<li><span style="font-size: 12pt;">ostream::operator&lt;&lt;&nbsp; :&nbsp; 서식에 맞게 데이터를 삽입한다.&nbsp;&nbsp;</span></li>
+<li><span style="font-size: 12pt;">istream::sentry&nbsp; :&nbsp; 예외에 안전한 접두/접미 작업을 수행한다. </span><br>
+</li>
+</ul>
+<br><div class="container_postbtn"><div class="postbtn_like"><div class="like_btn" data-uoc-svc="tistory" data-uoc-uid="329162_147" data-uoc-sc="" data-uoc-pcurl="http://itguru.tistory.com/147" data-uoc-fetchurl="http://api.kakao.tistory.com/like/fetch?uid=329162_147"><label class="uoc-icon"><span class="ico_postbtn ico_like"></span> <span class="txt_like uoc-text">공감</span><span class="txt_like uoc-count" style="display: none;"></span><input type="button" class="inp_btn uoc-button"></label></div><span class="ico_bar"></span><label data-thumbnail-url="http://cfile8.uf.tistory.com/image/144DE2524E4B71D4023599" data-title="C++ 레퍼런스 - istream::operator>> (추출 연산자)" data-description="이 레퍼런스의 모든 내용은 http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습.." data-profile-image="http://cfile30.uf.tistory.com/image/24672D3F58DB509F14CA8E" data-profile-name="Psi" data-pc-url="http://itguru.tistory.com/147" data-blog-title="Programming IT"><span class="ico_postbtn ico_sns">sns</span><input type="button" class="inp_btn"></label><span class="ico_bar"></span><label data-entry-id="147"><span class="ico_postbtn ico_report">신고</span><input type="button" class="inp_btn"></label></div><div class="postbtn_ccl" data-ccl-type="3"><a href="http://creativecommons.org/licenses/by/4.0/deed.ko" target="_blank" class="link_ccl"><span class="bundle_ccl"><span class="ico_postbtn ico_ccl1">저작자표시</span></span></a></div></div>    <!--
+	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		<Work rdf:about="">
+			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />
+		</Work>
+		<License rdf:about="http://creativecommons.org/licenses/by-fr/">
+			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+			<requires rdf:resource="http://web.resource.org/cc/Notice"/>
+			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
+		</License>
+	</rdf:RDF>
+	--><div style="text-align:center; padding-top:10px;clear:both">
+<iframe src="//www.facebook.com/plugins/like.php?href=http://itguru.tistory.com/147&amp;layout=standard&amp;show_faces=true&amp;width=310&amp;action=like&amp;font=tahoma&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:310px; height:65px;" allowtransparency="true"></iframe>
+</div>
+<div class="another_category another_category_color_gray">
+<h4>'<a href="/category/C++%20Reference">C++ Reference</a>&nbsp;&gt;&nbsp;<a href="/category/C++%20Reference/IOstream">IOstream</a>' 카테고리의 다른 글</h4>
+<table>
+<tbody><tr>
+<th>
+<a href="/150?category=391549">C++ 레퍼런스 - ios::exceptions</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2011.08.18</td>
+</tr>
+<tr>
+<th>
+<a href="/149?category=391549">C++ 레퍼런스 - istream::getline 함수</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2011.08.18</td>
+</tr>
+<tr>
+<th>
+<a href="/147?category=391549" class="current">C++ 레퍼런스 - istream::operator&gt;&gt; (추출 연산자)</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2011.08.17</td>
+</tr>
+<tr>
+<th>
+<a href="/146?category=391549">C++ 레퍼런스 - istream 클래스</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2011.08.17</td>
+</tr>
+<tr>
+<th>
+<a href="/145?category=391549">C++ 레퍼런스 - ios 클래스</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2011.08.17</td>
+</tr>
+<tr>
+<th>
+<a href="/144?category=391549">C++ 레퍼런스 - ios_base 클래스</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2011.08.17</td>
+</tr>
+</tbody></table></div>
+<br> <br>
+
+
+					

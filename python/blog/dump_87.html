@@ -1,0 +1,1799 @@
+
+<center>								
+<table border="0">
+<tbody><tr>
+<td width="336" height="280" align="center">
+
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- itguru Top -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-6608926154840997" data-ad-slot="9540252860" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;width:336px;height:280px;"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+	
+</td><td width="336" height="280" align="center">
+
+<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- itguru Top -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-6608926154840997" data-ad-slot="9540252860" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><ins id="aswift_2_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent;"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;width:336px;height:280px;"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</td>
+</tr>
+</tbody></table>
+</center>
+<br><br>
+<span style="font-size: 12pt;"><span style="font-size: 8pt;">이번 강좌에서는</span><br>
+<ul style="list-style-type: square;">
+<li><span style="font-size: 8pt;">모듈화 프로그래밍 (파일 나누기)</span></li>
+<li><span style="font-size: 8pt;">#include 전처리기에 대한 이해</span></li>
+</ul>
+<div>
+<hr style="height: 1px; border-width: 1px 0px 0px; border-color: black; display: block;"></div>
+<div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/194C3F154C4076333A?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F194C3F154C4076333A0245 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F194C3F154C4076333A0245 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F194C3F154C4076333A0245 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F194C3F154C4076333A0245 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F194C3F154C4076333A0245 480w" src="https://t1.daumcdn.net/cfile/tistory/194C3F154C4076333A" style="cursor: pointer;max-width:100%;height:auto" width="730" height="548" alt="" filename="C-gods-programming-language.jpg" filemime="image/jpeg"></span></div><br>
+안녕하세요 여러분. 저도 강좌를 쓰는 것이 참으로 오래간만 입니다. 현재 저는 강좌를 모두 모두 모아 하나의 pdf 파일로 만드려고 노력중입니다. 이를 위해 Latex 를 사용하고 있는데 한국 Latex 커뮤니티 (KTUG) 분들께서 훌륭하게 만들어주신 kotex 덕분에 수월하게 파일 제작이 가능합니다. 아무튼 감사하다는 말씀을 드리며 강좌를 시작해 나가보도록 하겠습니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">현재까지 여러분은 모든 소스 코드를 하나의 소스 파일에서 작성하였습니다. 사실 이는 큰 문제가 아니였습니다. 왜냐하면 우리가 여태 까지 만들었던 프로그램의 총 소스 길이는 그다지 길지 않았고 또 나 혼자 만들기 때문에 하나의 파일에 모조리 작성해도 상관이 없었습니다. 하지만 여러분이 프로그래머가 되어서 회사에서 프로그래밍을 한다면 소스의 길이도 수천~ 수만줄에 이르고, 여러 사람들이 만들기 때문에 파일을 여러개로 나누어야 할 필요성이 있습니다. 물론 파일을 나눌 때 에는 비슷한 작업을 하는 것 끼리 나누는 것이 좋겠죠.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/* 평범한 문장 */   </span><br>
+<span style="font-size: 12pt;">#include &lt;stdio.h&gt;   </span><br>
+<span style="font-size: 12pt;">char compare(char *str1, char *str2);   </span><br>
+<span style="font-size: 12pt;">int main()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char str1[20];   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char str2[20];   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", str1);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", str2);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(compare(str1, str2))   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("%s 와 %s 는 같은 문장 입니다. \n", str1, str2);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;"><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("%s 와 %s 는 다른 문장 입니다. \n", str1, str2);   </span></span><br>
+<span style="font-size: 12pt;"><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span></span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp; return 0;</span><br>
+<span style="font-size: 12pt;"><span style="font-size: 12pt;">}   </span></span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">char compare(char *str1, char *str2)   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; while (*str1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(*str1 != *str2)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str1++;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str2++;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(*str2 == '\0')   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1;   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">성공적으로 컴파일 하였다면   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/130E31144C40527F92?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 480w" src="https://t1.daumcdn.net/cfile/tistory/130E31144C40527F92" style="cursor: pointer;max-width:100%;height:auto" width="&quot;677&quot;" height="&quot;442&quot;" alt="&quot;&quot;" filename="&quot;18.1.1.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">와 같이 나옵니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">만일 같은 두 문장을 사용하였다면 같다는 메세지가 뜨겠지요. 위 소스 코드는 아주아주 쉬운 내용으로 여태까지 내용을 잘 이수하였다면 잘 이해하실 수 있을 것입니다. 다만,   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(compare(str1, str2))   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">이 부분에서 살짝 갸우뚱 하시는 분들이 있으실 텐데 우리가 만든 compare 함수는 두 문자열이 같으면 1, 다르면 0 을 리턴합니다. 그런데 if 문의 경우 괄호 안의 값이 0 이면 '거짓' 으로, 0 이 아니면 '참' 으로 판단하기 때문에 (이는 이전 강좌에서 이야기 했던 바 입니다. 기억이 안나면 <a title="[http://itguru.tistory.com/10]로 이동합니다." target="_blank" href="http://itguru.tistory.com/10">http://itguru.tistory.com/10</a> 를 보세요) 우리가 원하는 결과를 얻을 수 있었던 것이지요.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">그렇다면 이번에는 이 강좌의 주제에 맞게 파일을 분할해봅시다. compare 함수는 상당히 다른 일을 하고 있기 때문에 굳이 main 함수와 같은 파일에 둘 필요가 없습니다. 따라서 다른 파일에 만들어 보겠습니다.   </span><br>
+<br>
+<div>
+<table style="width: 634px; border-collapse: collapse; height: 31px;" bgcolor="#ffffff" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="border-width: 0px 0px 1px; border-style: solid; border-color: rgb(48, 88, 210);" bgcolor="#3058d2" width="1%"><span style="font-size: 10pt;"><span style="font-family: Gulim;"><span style="font-weight: bold;" class="Apple-style-span">&nbsp;</span></span></span></td>
+<td style="border-width: 0px 0px 1px; border-style: solid; border-color: rgb(48, 88, 210);" width="99%"><span style="color: rgb(48, 88, 210); font-size: 10pt;"><span style="font-family: Gulim;"><span style="font-weight: bold;" class="Apple-style-span">&nbsp;파일 나누기</span></span></span><font color="#c8056a"><strong><span style="font-size: 10pt;"><span style="font-family: Gulim;"><span style="color: rgb(48, 88, 210);"></span><br>
+</span></span></strong></font></td>
+<td style="border-width: 0px 0px 1px; border-style: solid; border-color: rgb(48, 88, 210) rgb(48, 88, 210) rgb(255, 70, 197);" width="100%"><span style="font-size: 10pt;"><span style="font-family: Gulim;">&nbsp;</span></span></td>
+</tr>
+</tbody></table>
+<font face="굴림"><span style="font-size: 9pt;"><span style="color: rgb(92, 127, 176); font-weight: bold;"></span></span></font>
+<div>
+</div>
+<div>
+</div>
+</div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/190193344C4053CBBD?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190193344C4053CBBD99BB 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190193344C4053CBBD99BB 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190193344C4053CBBD99BB 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190193344C4053CBBD99BB 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190193344C4053CBBD99BB 480w" src="https://t1.daumcdn.net/cfile/tistory/190193344C4053CBBD" style="cursor: pointer;max-width:100%;height:auto" width="&quot;504&quot;" height="&quot;321&quot;" alt="&quot;&quot;" filename="&quot;18.1.2.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">먼저 위의 그림과 같이 오른쪽 파일 목록이 나와 있는 부분에서 '소스 파일' 폴더를 클릭한 후 마우스 오른쪽 클릭을 한 후, '새 항목' 을 위와 같이 누릅니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/172A08344C4053CC2C?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F172A08344C4053CC2CB431 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F172A08344C4053CC2CB431 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F172A08344C4053CC2CB431 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F172A08344C4053CC2CB431 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F172A08344C4053CC2CB431 480w" src="https://t1.daumcdn.net/cfile/tistory/172A08344C4053CC2C" style="cursor: pointer;max-width:100%;height:auto" width="&quot;730&quot;" height="&quot;467&quot;" alt="&quot;&quot;" filename="&quot;18.1.3.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">그러면 위와 같이 새 항목을 추가할 수 있는 화면이 뜨는데 우리는 'C++ 파일(.cpp)' 을 선택하고, 이름에 str 을 적습니다. str 을 적은 이유는 우리가 만든 compare 함수는 문자열을 처리하므로 이에 맞게 str 이라는 이름을 붙여 주었습니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/160643374C40544BC7?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F160643374C40544BC789F8 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F160643374C40544BC789F8 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F160643374C40544BC789F8 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F160643374C40544BC789F8 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F160643374C40544BC789F8 480w" src="https://t1.daumcdn.net/cfile/tistory/160643374C40544BC7" style="cursor: pointer;max-width:100%;height:auto" width="&quot;185&quot;" height="&quot;202&quot;" alt="&quot;&quot;" filename="&quot;18.1.5.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">하지만 우리가 하려는 것이 C 언어 이지 C++ 이 아니므로 파일 이름을 str.c 로 변경해줍니다. 이는 파일을 클릭한 후 F2 를 누르면 파일이름을 변경할 수 있습니다. (또는 마우스 오른쪽 클릭 후 이름 바꾸기를 누른다)   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/112028344C4053CC73?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F112028344C4053CC733B8F 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F112028344C4053CC733B8F 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F112028344C4053CC733B8F 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F112028344C4053CC733B8F 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F112028344C4053CC733B8F 480w" src="https://t1.daumcdn.net/cfile/tistory/112028344C4053CC73" style="cursor: pointer;max-width:100%;height:auto" width="&quot;355&quot;" height="&quot;369&quot;" alt="&quot;&quot;" filename="&quot;18.1.4.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">이제, test.c (저의 기존 소스를 보관했던 파일 명 입니다. 여러분의 경우 다를 수 있습니다. ) 에 쓰여 있던 기존의 compare 함수 소스를 잘라옵니다. 즉, test.c 에 있던 compare 함수 소스는 사라지고 str.c 에 compare 함수 소스를 넣는 것입니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">위 작업이 끝나게 된다면 각 파일에는 다음과 같이 소스가 들어가 있을 것입니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/*   </span><br>
+<span style="font-size: 12pt;">test.c   </span><br>
+<span style="font-size: 12pt;">여러분과 파일 이름은 다를 수 있습니다.   </span><br>
+<span style="font-size: 12pt;">*/   </span><br>
+<span style="font-size: 12pt;">#include &lt;stdio.h&gt;   </span><br>
+<span style="font-size: 12pt;">char compare(char *str1, char *str2);   </span><br>
+<span style="font-size: 12pt;">int main()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char str1[20];   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char str2[20];   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", str1);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", str2);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(compare(str1, str2))   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("%s 와 %s 는 같은 문장 입니다. \n", str1, str2);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("%s 와 %s 는 다른 문장 입니다. \n", str1, str2);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp; return 0;</span><br>
+<span style="font-size: 12pt;">}   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><div>
+<span style="font-size: 12pt;">   </span><hr style="border-color: black; border-width: 1px 0px 0px; display: block; height: 1px;"></div>
+<span style="font-size: 12pt;"> </span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/*   </span><br>
+<span style="font-size: 12pt;">str.c   </span><br>
+<span style="font-size: 12pt;">*/   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">char compare(char *str1, char *str2)   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; while (*str1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(*str1 != *str2)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str1++;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str2++;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(*str2 == '\0')   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1;   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">성공적으로 컴파일 하였다면   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/130E31144C40527F92?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130E31144C40527F9208AF 480w" src="https://t1.daumcdn.net/cfile/tistory/130E31144C40527F92" style="cursor: pointer;max-width:100%;height:auto" width="&quot;677&quot;" height="&quot;442&quot;" alt="&quot;&quot;" filename="&quot;18.1.1.png&quot;" filemime="&quot;&quot;"></span></div></span><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">아까와 동일한 결과를 얻을 수 있었습니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">일단 위 프로그램이 어떻게 작동하는지 살펴 봅시다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/13697A0E4C406E8688?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F13697A0E4C406E8688A9DF 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F13697A0E4C406E8688A9DF 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F13697A0E4C406E8688A9DF 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F13697A0E4C406E8688A9DF 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F13697A0E4C406E8688A9DF 480w" src="https://t1.daumcdn.net/cfile/tistory/13697A0E4C406E8688" style="cursor: pointer;max-width:100%;height:auto" width="&quot;584&quot;" height="&quot;530&quot;" alt="&quot;&quot;" filename="&quot;18.1.8.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">아마 예전에 배워서 까먹었을 가능성이 있는데 우리가 실행 파일을 만들기 위해서는 먼저 C 코드를 컴퓨터가 이해할 수 있는 언어로 바꿔주는 컴파일(compile) 이라는 과정이 진행됩니다. 이는 단일 소스 코드 전체를 어셈블리어 (기계어와 1 : 1 대응이 되어 있음) 로 변환해 줍니다 (이 때, 목적코드라 불리는 확장자가 .o 인 파일이 생성됩니다) . 이 과정이 끝나게 되면 링킹(linking) 이라는 과정이 진행되는데 말그대로 각기 다른 파일에 위치한 소스 코드들을 한데 엮어서 하나의 실행 파일로 만들어지는 과정이라 생각하시면 됩니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">링킹 과정에서 특정한 소스 파일에 있는 함수들이 어디어디에 있는지 찾는 과정을 거치게 되는데 예를 들어서 test.c 의 경우 compare 함수가 어디있는지 찾게 됩니다. (눈치가 빠른 독자라면 printf 함수 역시 찾아야 함을 알 수 있는데 이에 대한 설명은 나중에 하겠습니다) 우리의 예제의 경우 compare 함수는 str.c 에 있기 때문에 링커(링킹을 해주는 것, 컴파일을 해주는 것이 컴파일러인 것과 일맥 상통하다) 는 'test.c 에서 compare 함수를 호출하는 경우 str.c 에서 찾아라' 정도로 처리해 주게 됩니다. 덕분에 우리는 test.c 에서 compare 함수를 호출하더라도 str.c 의 compare 함수를 이용할 수 있게 되는 것이지요.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">만일 test.c 에서   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">char compare(char *str1, char *str2);   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">부분을 지워버리면 어떨까요? 이렇게 된다면 컴파일러는 'main 함수에서 compare 함수를 호출하였는데, 도대체 compare 함수는 어떻게 생긴 모양이야!' 가 되어 컴파일 시에 오류가 발생하게 됩니다. 물론 링커의 경우도 compare 함수의 정확한 모양이 무엇인지 알 수 없으므로 오류가 발생하게 되죠.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">따라서 이렇게 언제나 함수의 선언을 명시해 주는 것은 매우 중요한 일입니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">하지만 compare 라는 함수 말고도 copy 라는 함수가 str.c 에 추가되었습니다. 이 함수는 두 문자열을 복사해주는 역할을 합니다. copy 라는 함수를 test.c 에서 이용하기 위해선 역시 copy 함수의 원형을 써주어야 합니다. 이는 상당히 귀찮은 일이지요. 뿐만 아니라 다른 파일에서도 compare 함수와 copy 함수를 이용할 수 있는데 이 파일 역시 이 두 함수의 원형을 써주어야 합니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">이렇게 귀찮은 작업을 막기 위해 C 에서는 아주 놀라운 해결책을 제시하였는데 바로 헤더파일 (header file) 을 이용하는 것입니다. 헤더파일은 다음과 같은 방법으로 만들 수 있습니다.   </span><br>
+<br>
+<div>
+<table style="width: 634px; border-collapse: collapse; height: 31px;" bgcolor="#ffffff" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="border-width: 0px 0px 1px; border-style: solid; border-color: rgb(48, 88, 210);" bgcolor="#3058d2" width="1%"><span style="font-size: 10pt;"><span style="font-family: Gulim;"><span style="font-weight: bold;" class="Apple-style-span">&nbsp;</span></span></span></td>
+<td style="border-width: 0px 0px 1px; border-style: solid; border-color: rgb(48, 88, 210);" width="99%"><span style="color: rgb(48, 88, 210); font-size: 10pt;"><span style="font-family: Gulim;"><span style="font-weight: bold;" class="Apple-style-span">&nbsp;헤더 파일</span></span></span><font color="#c8056a"><strong><span style="font-size: 10pt;"><span style="font-family: Gulim;"><span style="color: rgb(48, 88, 210);"></span><br>
+</span></span></strong></font></td>
+<td style="border-width: 0px 0px 1px; border-style: solid; border-color: rgb(48, 88, 210) rgb(48, 88, 210) rgb(255, 70, 197);" width="100%"><span style="font-size: 10pt;"><span style="font-family: Gulim;">&nbsp;</span></span></td>
+</tr>
+</tbody></table>
+<br>
+<font face="굴림"><span style="font-size: 9pt;"><span style="color: rgb(92, 127, 176); font-weight: bold;"></span></span></font>
+<div>
+</div>
+<div>
+</div>
+</div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/160941104C4069157A?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F160941104C4069157ABB63 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F160941104C4069157ABB63 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F160941104C4069157ABB63 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F160941104C4069157ABB63 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F160941104C4069157ABB63 480w" src="https://t1.daumcdn.net/cfile/tistory/160941104C4069157A" style="cursor: pointer;max-width:100%;height:auto" width="&quot;452&quot;" height="&quot;356&quot;" alt="&quot;&quot;" filename="&quot;18.1.6.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">먼저 기존에 str.c 파일을 추가했을 때 했던 것 처럼 하되 이번에는 헤더파일 폴더에 파일을 추가해보도록 합시다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/206DC2104C4069211A?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F206DC2104C4069211A9828 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F206DC2104C4069211A9828 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F206DC2104C4069211A9828 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F206DC2104C4069211A9828 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F206DC2104C4069211A9828 480w" src="https://t1.daumcdn.net/cfile/tistory/206DC2104C4069211A" style="cursor: pointer;max-width:100%;height:auto" width="&quot;730&quot;" height="&quot;467&quot;" alt="&quot;&quot;" filename="&quot;18.1.7.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">헤더파일을 추가하는 것이므로 '헤더파일' 을 선택한 후, 이름에 str 을 적습니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/1367AB104C40696025?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1367AB104C40696025CB87 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1367AB104C40696025CB87 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1367AB104C40696025CB87 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1367AB104C40696025CB87 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1367AB104C40696025CB87 480w" src="https://t1.daumcdn.net/cfile/tistory/1367AB104C40696025" style="cursor: pointer;max-width:100%;height:auto" width="&quot;448&quot;" height="&quot;255&quot;" alt="&quot;&quot;" filename="&quot;18.1.9.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">그리고 헤더파일에는 위와 같이 내용을 기록합니다. 그 후, 각 소스 코드를 다음과 같이 수정해줍니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/* test.c */   </span><br>
+<span style="font-size: 12pt;">#include &lt;stdio.h&gt;   </span><br>
+<span style="font-size: 12pt;">#include "str.h"   </span><br>
+<span style="font-size: 12pt;">int main()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char str1[20];   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char str2[20];   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", str1);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", str2);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(compare(str1, str2))   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("%s 와 %s 는 같은 문장 입니다. \n", str1, str2);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("%s 와 %s 는 다른 문장 입니다. \n", str1, str2);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp; return 0;</span><br>
+<span style="font-size: 12pt;">}   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">  </span><div>
+<span style="font-size: 12pt;">   </span><hr style="border-color: black; border-width: 1px 0px 0px; display: block; height: 1px;"></div>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/* str.c */   </span><br>
+<span style="font-size: 12pt;">#include "str.h"   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">char compare(char *str1, char *str2)   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; while (*str1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(*str1 != *str2)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str1++;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str2++;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(*str2 == '\0')   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1;   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><span style="font-size: 12pt;"></span><br>
+<span style="font-size: 12pt;">  </span><div>
+<span style="font-size: 12pt;">   </span></div>
+</div>
+<div>
+<hr style="border-color: black; border-width: 1px 0px 0px; display: block; height: 1px;"></div>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/* str.h */   </span><br>
+<span style="font-size: 12pt;">char compare(char *str1, char *str2);   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp; 성공적으로 컴파일 하였다면   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><div class="imageblock center" style="text-align: center; clear: both;"><span data-url="https://t1.daumcdn.net/cfile/tistory/15681B1C4C406A0562?original" data-lightbox="lightbox"><img srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F15681B1C4C406A05628C04 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F15681B1C4C406A05628C04 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F15681B1C4C406A05628C04 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F15681B1C4C406A05628C04 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F15681B1C4C406A05628C04 480w" src="https://t1.daumcdn.net/cfile/tistory/15681B1C4C406A0562" style="cursor: pointer;max-width:100%;height:auto" width="&quot;677&quot;" height="&quot;442&quot;" alt="&quot;&quot;" filename="&quot;18.1.10.png&quot;" filemime="&quot;image/png&quot;"></span></div></span><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">역시 위와 같이 잘 작동하고 있음을 알 수 있습니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">먼저 test.c 부터 살펴봅시다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">#include &lt;stdio.h&gt;   </span><br>
+<span style="font-size: 12pt;">#include "str.h"   </span><br>
+<span style="font-size: 12pt;">  </span></div>
+<br>
+<span style="font-size: 12pt;">#include 와 같은 명령들은 '전처리기(Preprocessor)' 명령이라고 부르는데 이러한 명령들의 특징은 컴파일 이전에 실행된다는 점 입니다. <span style="font-weight: bold;">이 명령은 우리가 지칭하는 파일의 내용을 정확히 100% 복사해서 붙여 넣는다</span>는 점입니다. 따라서 #include "str.h" 라는 명령은 str.h 에 있었던 내용, 즉 char compare(char *str1, char *str2); 로 컴파일이 시작하기 전에 바뀌어 버립니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">그렇다면 #include &lt;stdio.h&gt; 는 어떨까요? 이 역시 똑같습니다. stdio.h 에 써있는 내용들이 정확히 복사되어 컴파일 이전에 코드에 붙어버립니다. 그런데 한 가지 이상한 점은 stdio.h 는 &lt;&gt; 로 감쌌는데, str.h 는 왜 " " 로 감쌌을까요? 그 이유는 단순한데, &lt; &gt; 로 감싸는 헤더파일은 컴파일러에서 기본으로 지원하는 헤더파일의 경우이고 " " 로 감싸는 헤더파일은 사용자가 직접 제작한 헤더파일의 경우 입니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">여러분은 stdio.h 에 무엇이 써져 있는지 궁금하지 않으세요? 한 번 제가 그 내용을 올려드리겠습니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<p id="more87_0" class="moreless_fold"><span style="cursor: pointer;" onclick="toggleMoreLess(this, '87_0','stdio.h 내용 보기','닫기'); return false;">stdio.h 내용 보기</span></p><div id="content87_0" class="moreless_content" style="display: none;"><span style="font-size: 12pt;">   </span>/***<br>
+*stdio.h - definitions/declarations for standard I/O routines<br>
+*<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Copyright (c) Microsoft Corporation. All rights reserved.<br>
+*<br>
+*Purpose:<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This file defines the structures, values, macros, and functions<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; used by the level 2 I/O ("standard I/O") routines.<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [ANSI/System V]<br>
+*<br>
+*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Public]<br>
+*<br>
+****/<br>
+<br>
+#if&nbsp;&nbsp;&nbsp;&nbsp; _MSC_VER &gt; 1000<br>
+#pragma once<br>
+#endif<br>
+<br>
+#ifndef _INC_STDIO<br>
+#define _INC_STDIO<br>
+<br>
+#include &lt;crtdefs.h&gt;<br>
+#ifdef&nbsp; _MSC_VER<br>
+/*<br>
+&nbsp;* Currently, all MS C compilers for Win32 platforms default to 8 byte<br>
+&nbsp;* alignment.<br>
+&nbsp;*/<br>
+#pragma pack(push,_CRT_PACKING)<br>
+#endif&nbsp; /* _MSC_VER */<br>
+<br>
+#ifdef&nbsp; __cplusplus<br>
+extern "C" {<br>
+#endif<br>
+<br>
+<br>
+/* Buffered I/O macros */<br>
+<br>
+#define BUFSIZ&nbsp; 512<br>
+<br>
+<br>
+/*<br>
+&nbsp;* Default number of supported streams. _NFILE is confusing and obsolete, but<br>
+&nbsp;* supported anyway for backwards compatibility.<br>
+&nbsp;*/<br>
+#define _NFILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _NSTREAM_<br>
+<br>
+#define _NSTREAM_&nbsp;&nbsp; 512<br>
+<br>
+/*<br>
+&nbsp;* Number of entries in _iob[] (declared below). Note that _NSTREAM_ must be<br>
+&nbsp;* greater than or equal to _IOB_ENTRIES.<br>
+&nbsp;*/<br>
+#define _IOB_ENTRIES 20<br>
+<br>
+#define EOF&nbsp;&nbsp;&nbsp;&nbsp; (-1)<br>
+<br>
+<br>
+#ifndef _FILE_DEFINED<br>
+struct _iobuf {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char *_ptr;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp; _cnt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char *_base;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp; _flag;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp; _file;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp; _charbuf;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int&nbsp;&nbsp; _bufsiz;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char *_tmpfname;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; };<br>
+typedef struct _iobuf FILE;<br>
+#define _FILE_DEFINED<br>
+#endif<br>
+<br>
+<br>
+/* Directory where temporary files may be created. */<br>
+<br>
+#ifdef&nbsp; _POSIX_<br>
+#define _P_tmpdir&nbsp;&nbsp; "/"<br>
+#define _wP_tmpdir&nbsp; L"/"<br>
+#else<br>
+#define _P_tmpdir&nbsp;&nbsp; "\\"<br>
+#define _wP_tmpdir&nbsp; L"\\"<br>
+#endif<br>
+<br>
+/* L_tmpnam = length of string _P_tmpdir<br>
+&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 1 if _P_tmpdir does not end in "/" or "\", else 0<br>
+&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 12 (for the filename string)<br>
+&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 1 (for the null terminator)<br>
+&nbsp;* L_tmpnam_s = length of string _P_tmpdir<br>
+&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 1 if _P_tmpdir does not end in "/" or "\", else 0<br>
+&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 16 (for the filename string)<br>
+&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; + 1 (for the null terminator)<br>
+&nbsp;*/<br>
+#define L_tmpnam&nbsp;&nbsp; (sizeof(_P_tmpdir) + 12)<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+#define L_tmpnam_s (sizeof(_P_tmpdir) + 16)<br>
+#endif<br>
+<br>
+#ifdef&nbsp; _POSIX_<br>
+#define L_ctermid&nbsp;&nbsp; 9<br>
+#define L_cuserid&nbsp;&nbsp; 32<br>
+#endif<br>
+<br>
+<br>
+/* Seek method constants */<br>
+<br>
+#define SEEK_CUR&nbsp;&nbsp;&nbsp; 1<br>
+#define SEEK_END&nbsp;&nbsp;&nbsp; 2<br>
+#define SEEK_SET&nbsp;&nbsp;&nbsp; 0<br>
+<br>
+<br>
+#define FILENAME_MAX&nbsp;&nbsp;&nbsp; 260<br>
+#define FOPEN_MAX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20<br>
+#define _SYS_OPEN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20<br>
+#define TMP_MAX&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32767&nbsp; /* SHRT_MAX */<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+#define TMP_MAX_S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _TMP_MAX_S<br>
+#define _TMP_MAX_S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2147483647 /* INT_MAX */<br>
+#endif<br>
+<br>
+/* Define NULL pointer value */<br>
+#ifndef NULL<br>
+#ifdef __cplusplus<br>
+#define NULL&nbsp;&nbsp;&nbsp; 0<br>
+#else<br>
+#define NULL&nbsp;&nbsp;&nbsp; ((void *)0)<br>
+#endif<br>
+#endif<br>
+<br>
+/* Declare _iob[] array */<br>
+<br>
+#ifndef _STDIO_DEFINED<br>
+_CRTIMP FILE * __cdecl __iob_func(void);<br>
+#endif&nbsp; /* _STDIO_DEFINED */<br>
+<br>
+<br>
+/* Define file position type */<br>
+<br>
+#ifndef _FPOS_T_DEFINED<br>
+#undef _FPOSOFF<br>
+<br>
+#if&nbsp;&nbsp;&nbsp;&nbsp; defined (_POSIX_)<br>
+typedef long fpos_t;<br>
+#define _FPOSOFF(fp) ((long)(fp))<br>
+#else&nbsp;&nbsp; /* _POSIX_ */<br>
+<br>
+#if&nbsp;&nbsp;&nbsp;&nbsp; !__STDC__<br>
+/* At this point we could switch both to long long, but we won't do that till next version to avoid any potential compat issues */<br>
+typedef __int64 fpos_t;<br>
+#define _FPOSOFF(fp) ((long)(fp))<br>
+#else<br>
+typedef long long fpos_t;<br>
+#define _FPOSOFF(fp) ((long)(fp))<br>
+#endif<br>
+#endif&nbsp; /* _POSIX_ */<br>
+<br>
+#define _FPOS_T_DEFINED<br>
+#endif<br>
+<br>
+#ifndef _STDSTREAM_DEFINED<br>
+#define stdin&nbsp; (&amp;__iob_func()[0])<br>
+#define stdout (&amp;__iob_func()[1])<br>
+#define stderr (&amp;__iob_func()[2])<br>
+#define _STDSTREAM_DEFINED<br>
+#endif <br>
+<br>
+#define _IOREAD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0001<br>
+#define _IOWRT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0002<br>
+<br>
+#define _IOFBF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0000<br>
+#define _IOLBF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0040<br>
+#define _IONBF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0004<br>
+<br>
+#define _IOMYBUF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0008<br>
+#define _IOEOF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0010<br>
+#define _IOERR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0020<br>
+#define _IOSTRG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0040<br>
+#define _IORW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0080<br>
+#ifdef&nbsp; _POSIX_<br>
+#define _IOAPPEND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0200<br>
+#endif<br>
+<br>
+/* constants used by _set_output_format */<br>
+#define _TWO_DIGIT_EXPONENT 0x1<br>
+<br>
+/* Function prototypes */<br>
+<br>
+#ifndef _STDIO_DEFINED<br>
+<br>
+_Check_return_ _CRTIMP int __cdecl _filbuf(_Inout_ FILE * _File );<br>
+_Check_return_opt_ _CRTIMP int __cdecl _flsbuf(_In_ int _Ch, _Inout_ FILE * _File);<br>
+<br>
+#ifdef&nbsp; _POSIX_<br>
+_Check_return_ _CRTIMP FILE * __cdecl _fsopen(_In_z_ const char * _Filename, _In_z_ const char * _Mode);<br>
+#else<br>
+_Check_return_ _CRTIMP FILE * __cdecl _fsopen(_In_z_ const char * _Filename, _In_z_ const char * _Mode, _In_ int _ShFlag);<br>
+#endif<br>
+<br>
+_CRTIMP void __cdecl clearerr(_Inout_ FILE * _File);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_wat_ _CRTIMP errno_t __cdecl clearerr_s(_Inout_ FILE * _File );<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl fclose(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fcloseall(void);<br>
+<br>
+#ifdef&nbsp; _POSIX_<br>
+_Check_return_ _CRTIMP FILE * __cdecl fdopen( _In_ int _FileHandle, _In_z_ const char * _Mode);<br>
+#else<br>
+_Check_return_ _CRTIMP FILE * __cdecl _fdopen(_In_ int _FileHandle, _In_z_ const char * _Mode);<br>
+#endif<br>
+<br>
+_Check_return_ _CRTIMP int __cdecl feof(_In_ FILE * _File);<br>
+_Check_return_ _CRTIMP int __cdecl ferror(_In_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl fflush(_Inout_opt_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl fgetc(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fgetchar(void);<br>
+_Check_return_opt_ _CRTIMP int __cdecl fgetpos(_Inout_ FILE * _File , _Out_ fpos_t * _Pos);<br>
+_Check_return_opt_ _CRTIMP char * __cdecl fgets(_Out_z_cap_(_MaxCount) char * _Buf, _In_ int _MaxCount, _Inout_ FILE * _File);<br>
+<br>
+#ifdef&nbsp; _POSIX_<br>
+_Check_return_ _CRTIMP int __cdecl fileno(_In_ FILE * _File);<br>
+#else<br>
+_Check_return_ _CRTIMP int __cdecl _fileno(_In_ FILE * _File);<br>
+#endif<br>
+<br>
+#if defined(_DEBUG) &amp;&amp; defined(_CRTDBG_MAP_ALLOC)<br>
+#pragma push_macro("_tempnam")<br>
+#undef _tempnam<br>
+#endif<br>
+<br>
+_Check_return_ _CRTIMP char * __cdecl _tempnam(_In_opt_z_ const char * _DirName, _In_opt_z_ const char * _FilePrefix);<br>
+<br>
+#if defined(_DEBUG) &amp;&amp; defined(_CRTDBG_MAP_ALLOC)<br>
+#pragma pop_macro("_tempnam")<br>
+#endif<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _flushall(void);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s) _CRTIMP FILE * __cdecl fopen(_In_z_ const char * _Filename, _In_z_ const char * _Mode);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_wat_ _CRTIMP errno_t __cdecl fopen_s(_Deref_out_opt_ FILE ** _File, _In_z_ const char * _Filename, _In_z_ const char * _Mode);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl fprintf(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl fprintf_s(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl fputc(_In_ int _Ch, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fputchar(_In_ int _Ch);<br>
+_Check_return_opt_ _CRTIMP int __cdecl fputs(_In_z_ const char * _Str, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP size_t __cdecl fread(_Out_bytecap_x_(_ElementSize*_Count) void * _DstBuf, _In_ size_t _ElementSize, _In_ size_t _Count, _Inout_ FILE * _File);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP size_t __cdecl fread_s(_Out_bytecap_x_(_ElementSize*_Count) void * _DstBuf, _In_ size_t _DstSize, _In_ size_t _ElementSize, _In_ size_t _Count, _Inout_ FILE * _File);<br>
+#endif<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(freopen_s) _CRTIMP FILE * __cdecl freopen(_In_z_ const char * _Filename, _In_z_ const char * _Mode, _Inout_ FILE * _File);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_wat_ _CRTIMP errno_t __cdecl freopen_s(_Deref_out_opt_ FILE ** _File, _In_z_ const char * _Filename, _In_z_ const char * _Mode, _Inout_ FILE * _OldFile);<br>
+#endif<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(fscanf_s) _CRTIMP int __cdecl fscanf(_Inout_ FILE * _File, _In_z_ _Scanf_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_fscanf_s_l) _CRTIMP int __cdecl _fscanf_l(_Inout_ FILE * _File, _In_z_ _Scanf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+#pragma warning(push)<br>
+#pragma warning(disable:6530)<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl fscanf_s(_Inout_ FILE * _File, _In_z_ _Scanf_s_format_string_ const char * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fscanf_s_l(_Inout_ FILE * _File, _In_z_ _Scanf_s_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl fsetpos(_Inout_ FILE * _File, _In_ const fpos_t * _Pos);<br>
+_Check_return_opt_ _CRTIMP int __cdecl fseek(_Inout_ FILE * _File, _In_ long _Offset, _In_ int _Origin);<br>
+_Check_return_ _CRTIMP long __cdecl ftell(_Inout_ FILE * _File);<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fseeki64(_Inout_ FILE * _File, _In_ __int64 _Offset, _In_ int _Origin);<br>
+_Check_return_ _CRTIMP __int64 __cdecl _ftelli64(_Inout_ FILE * _File);<br>
+<br>
+_Check_return_opt_ _CRTIMP size_t __cdecl fwrite(_In_count_x_(_Size*_Count) const void * _Str, _In_ size_t _Size, _In_ size_t _Count, _Inout_ FILE * _File);<br>
+_Check_return_ _CRTIMP int __cdecl getc(_Inout_ FILE * _File);<br>
+_Check_return_ _CRTIMP int __cdecl getchar(void);<br>
+_Check_return_ _CRTIMP int __cdecl _getmaxstdio(void);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_CRTIMP char * __cdecl gets_s(_Out_z_cap_(_Size) char * _Buf, _In_ rsize_t _Size);<br>
+#endif<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_0(char *, gets_s, char, _Buffer)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_0(char *, __RETURN_POLICY_SAME, _CRTIMP, gets, _Pre_notnull_ _Post_z_ _Out_z_cap_c_(((size_t)-1)), char, _Buffer)<br>
+_Check_return_ int __cdecl _getw(_Inout_ FILE * _File);<br>
+#ifndef _CRT_PERROR_DEFINED<br>
+#define _CRT_PERROR_DEFINED<br>
+_CRTIMP void __cdecl perror(_In_opt_z_ const char * _ErrMsg);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl _pclose(_Inout_ FILE * _File);<br>
+_Check_return_ _CRTIMP FILE * __cdecl _popen(_In_z_ const char * _Command, _In_z_ const char * _Mode);<br>
+_Check_return_opt_ _CRTIMP int __cdecl printf(_In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl printf_s(_In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl putc(_In_ int _Ch, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl putchar(_In_ int _Ch);<br>
+_Check_return_opt_ _CRTIMP int __cdecl puts(_In_z_ const char * _Str);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _putw(_In_ int _Word, _Inout_ FILE * _File);<br>
+#ifndef _CRT_DIRECTORY_DEFINED<br>
+#define _CRT_DIRECTORY_DEFINED<br>
+_Check_return_ _CRTIMP int __cdecl remove(_In_z_ const char * _Filename);<br>
+_Check_return_ _CRTIMP int __cdecl rename(_In_z_ const char * _OldFilename, _In_z_ const char * _NewFilename);<br>
+_Check_return_ _CRTIMP int __cdecl _unlink(_In_z_ const char * _Filename);<br>
+#if !__STDC__<br>
+_Check_return_ _CRT_NONSTDC_DEPRECATE(_unlink) _CRTIMP int __cdecl unlink(_In_z_ const char * _Filename);<br>
+#endif<br>
+#endif<br>
+_CRTIMP void __cdecl rewind(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _rmtmp(void);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(scanf_s) _CRTIMP int __cdecl scanf(_In_z_ _Scanf_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_scanf_s_l) _CRTIMP int __cdecl _scanf_l(_In_z_ _Scanf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl scanf_s(_In_z_ _Scanf_s_format_string_ const char * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _scanf_s_l(_In_z_ _Scanf_s_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_CRT_INSECURE_DEPRECATE(setvbuf) _CRTIMP void __cdecl setbuf(_Inout_ FILE * _File, _Inout_opt_cap_c_(BUFSIZ) _Post_count_c_(0) char * _Buffer);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _setmaxstdio(_In_ int _Max);<br>
+_Check_return_opt_ _CRTIMP unsigned int __cdecl _set_output_format(_In_ unsigned int _Format);<br>
+_Check_return_opt_ _CRTIMP unsigned int __cdecl _get_output_format(void);<br>
+_Check_return_opt_ _CRTIMP int __cdecl setvbuf(_Inout_ FILE * _File, _Inout_opt_z_bytecap_(_Size) char * _Buf, _In_ int _Mode, _In_ size_t _Size);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _snprintf_s(_Out_z_bytecap_(_SizeInBytes) char * _DstBuf, _In_ size_t _SizeInBytes, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_2_ARGLIST(int, _snprintf_s, _vsnprintf_s, char, _Dest, _In_ size_t, _MaxCount, _In_z_ _Printf_format_string_ const char *,_Format)<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl sprintf_s(_Out_z_bytecap_(_SizeInBytes) char * _DstBuf, _In_ size_t _SizeInBytes, _In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+#endif<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_1_ARGLIST(int, sprintf_s, vsprintf_s, char, _Dest, _In_z_ _Printf_format_string_ const char *, _Format)<br>
+_Check_return_ _CRTIMP int __cdecl _scprintf(_In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(sscanf_s) _CRTIMP int __cdecl sscanf(_In_z_ const char * _Src, _In_z_ _Scanf_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_sscanf_s_l) _CRTIMP int __cdecl _sscanf_l(_In_z_ const char * _Src, _In_z_ _Scanf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl sscanf_s(_In_z_ const char * _Src, _In_z_ _Scanf_s_format_string_ const char * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _sscanf_s_l(_In_z_ const char * _Src, _In_z_ _Scanf_s_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_snscanf_s) _CRTIMP int __cdecl _snscanf(_In_bytecount_(_MaxCount) _Pre_z_ const char * _Src, _In_ size_t _MaxCount, _In_z_ _Scanf_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_snscanf_s_l) _CRTIMP int __cdecl _snscanf_l(_In_bytecount_(_MaxCount) _Pre_z_ const char * _Src, _In_ size_t _MaxCount, _In_z_ _Scanf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _snscanf_s(_In_bytecount_(_MaxCount) _Pre_z_ const char * _Src, _In_ size_t _MaxCount, _In_z_ _Scanf_s_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _snscanf_s_l(_In_bytecount_(_MaxCount) _Pre_z_ const char * _Src, _In_ size_t _MaxCount, _In_z_ _Scanf_s_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(tmpfile_s) _CRTIMP FILE * __cdecl tmpfile(void);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_wat_ _CRTIMP errno_t __cdecl tmpfile_s(_Out_opt_ _Deref_post_valid_ FILE ** _File);<br>
+_Check_return_wat_ _CRTIMP errno_t __cdecl tmpnam_s(_Out_z_cap_(_Size) char * _Buf, _In_ rsize_t _Size);<br>
+#endif<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_0(errno_t, tmpnam_s, _Deref_post_z_ char, _Buf)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_0(char *, __RETURN_POLICY_DST, _CRTIMP, tmpnam, _Pre_maybenull_ _Post_z_, char, _Buffer)<br>
+_Check_return_opt_ _CRTIMP int __cdecl ungetc(_In_ int _Ch, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl vfprintf(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl vfprintf_s(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl vprintf(_In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl vprintf_s(_In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+#endif<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(vsnprintf_s) _CRTIMP int __cdecl vsnprintf(_Out_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl vsnprintf_s(_Out_z_cap_(_DstSize) char * _DstBuf, _In_ size_t _DstSize, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _vsnprintf_s(_Out_z_cap_(_SizeInBytes) char * _DstBuf, _In_ size_t _SizeInBytes, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_3(int, _vsnprintf_s, char, _Dest, _In_ size_t, _MaxCount, _In_z_ _Printf_format_string_ const char *, _Format, va_list, _Args)<br>
+#pragma warning(push)<br>
+#pragma warning(disable:4793)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_NFUNC_0_2_ARGLIST_EX(int, __RETURN_POLICY_SAME, _CRTIMP, _snprintf, _vsnprintf, _Pre_notnull_ _Post_maybez_ char, _Out_cap_(_Count) _Post_maybez_, char, _Dest, _In_ size_t, _Count, _In_z_ _Printf_format_string_ const char *, _Format)<br>
+#pragma warning(pop)<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_CRTIMP_ALTERNATIVE int __cdecl vsprintf_s(_Out_z_cap_(_SizeInBytes) char * _DstBuf, _In_ size_t _SizeInBytes, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+#endif<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_2(int, vsprintf_s, char, _Dest, _In_z_ _Printf_format_string_ const char *, _Format, va_list, _Args)<br>
+#pragma warning(push)<br>
+#pragma warning(disable:4793)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_ARGLIST(int, __RETURN_POLICY_SAME, _CRTIMP, sprintf, vsprintf, _Pre_notnull_ _Post_z_, char, _Dest, _In_z_ _Printf_format_string_ const char *, _Format)<br>
+#pragma warning(pop)<br>
+_Check_return_ _CRTIMP int __cdecl _vscprintf(_In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _snprintf_c(_Out_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vsnprintf_c(_Out_cap_(_MaxCount) char *_DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fprintf_p(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _printf_p(_In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _sprintf_p(_Out_z_cap_(_MaxCount) char * _Dst, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vfprintf_p(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vprintf_p(_In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vsprintf_p(_Out_z_cap_(_MaxCount) char * _Dst, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+_Check_return_ _CRTIMP int __cdecl _scprintf_p(_In_z_ _Printf_format_string_ const char * _Format, ...);<br>
+_Check_return_ _CRTIMP int __cdecl _vscprintf_p(_In_z_ _Printf_format_string_ const char * _Format, va_list _ArgList);<br>
+_CRTIMP int __cdecl _set_printf_count_output(_In_ int _Value);<br>
+_CRTIMP int __cdecl _get_printf_count_output();<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _printf_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _printf_p_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _printf_s_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vprintf_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vprintf_p_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vprintf_s_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fprintf_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fprintf_p_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fprintf_s_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vfprintf_l(_Inout_ FILE * _File, _In_z_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vfprintf_p_l(_Inout_ FILE * _File, _In_z_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vfprintf_s_l(_Inout_ FILE * _File, _In_z_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_sprintf_s_l) _CRTIMP int __cdecl _sprintf_l(_Pre_notnull_ _Post_z_ char * _DstBuf, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _sprintf_p_l(_Out_z_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _sprintf_s_l(_Out_z_bytecap_(_DstSize) char * _DstBuf, _In_ size_t _DstSize, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_vsprintf_s_l) _CRTIMP int __cdecl _vsprintf_l(_Pre_notnull_ _Post_z_ char * _DstBuf, _In_z_ const char * _Format, _In_opt_ _locale_t, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vsprintf_p_l(_Out_z_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char* _Format, _In_opt_ _locale_t _Locale,&nbsp; va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _vsprintf_s_l(_Out_z_cap_(_DstSize) char * _DstBuf, _In_ size_t _DstSize, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _scprintf_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _scprintf_p_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vscprintf_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vscprintf_p_l(_In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_snprintf_s_l) _CRTIMP int __cdecl _snprintf_l(_Out_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _snprintf_c_l(_Out_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _snprintf_s_l(_Out_z_cap_(_DstSize) char * _DstBuf, _In_ size_t _DstSize, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_vsnprintf_s_l) _CRTIMP int __cdecl _vsnprintf_l(_Out_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vsnprintf_c_l(_Out_cap_(_MaxCount) char * _DstBuf, _In_ size_t _MaxCount, const char *, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vsnprintf_s_l(_Out_z_cap_(_DstSize) char * _DstBuf, _In_ size_t _DstSize, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const char* _Format,_In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+#ifndef _WSTDIO_DEFINED<br>
+<br>
+/* wide function prototypes, also declared in wchar.h&nbsp; */<br>
+<br>
+#ifndef WEOF<br>
+#define WEOF (wint_t)(0xFFFF)<br>
+#endif<br>
+<br>
+#ifdef&nbsp; _POSIX_<br>
+_Check_return_ _CRTIMP FILE * __cdecl _wfsopen(_In_z_ const wchar_t * _Filename, _In_z_ const wchar_t * _Mode);<br>
+#else<br>
+_Check_return_ _CRTIMP FILE * __cdecl _wfsopen(_In_z_ const wchar_t * _Filename, _In_z_ const wchar_t * _Mode, _In_ int _ShFlag);<br>
+#endif<br>
+<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl fgetwc(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl _fgetwchar(void);<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl fputwc(_In_ wchar_t _Ch, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl _fputwchar(_In_ wchar_t _Ch);<br>
+_Check_return_ _CRTIMP wint_t __cdecl getwc(_Inout_ FILE * _File);<br>
+_Check_return_ _CRTIMP wint_t __cdecl getwchar(void);<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl putwc(_In_ wchar_t _Ch, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl putwchar(_In_ wchar_t _Ch);<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl ungetwc(_In_ wint_t _Ch, _Inout_ FILE * _File);<br>
+<br>
+_Check_return_opt_ _CRTIMP wchar_t * __cdecl fgetws(_Out_z_cap_(_SizeInWords) wchar_t * _Dst, _In_ int _SizeInWords, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl fputws(_In_z_ const wchar_t * _Str, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP wchar_t * __cdecl _getws_s(_Out_z_cap_(_SizeInWords) wchar_t * _Str, _In_ size_t _SizeInWords);<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_0(wchar_t *, _getws_s, wchar_t, _String)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_0(wchar_t *, __RETURN_POLICY_SAME, _CRTIMP, _getws, _Pre_notnull_ _Post_z_, wchar_t, _String)<br>
+_Check_return_opt_ _CRTIMP int __cdecl _putws(_In_z_ const wchar_t * _Str);<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl fwprintf(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl fwprintf_s(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl wprintf(_In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl wprintf_s(_In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+#endif<br>
+_Check_return_ _CRTIMP int __cdecl _scwprintf(_In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl vfwprintf(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl vfwprintf_s(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl vwprintf(_In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl vwprintf_s(_In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+#endif<br>
+<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_CRTIMP_ALTERNATIVE int __cdecl swprintf_s(_Out_z_cap_(_SizeInWords) wchar_t * _Dst, _In_ size_t _SizeInWords, _In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+#endif<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_1_ARGLIST(int, swprintf_s, vswprintf_s, wchar_t, _Dest, _In_z_ _Printf_format_string_ const wchar_t *, _Format)<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_CRTIMP_ALTERNATIVE int __cdecl vswprintf_s(_Out_z_cap_(_SizeInWords) wchar_t * _Dst, _In_ size_t _SizeInWords, _In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+#endif<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_2(int, vswprintf_s, wchar_t, _Dest, _In_z_ _Printf_format_string_ const wchar_t *, _Format, va_list, _Args)<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _swprintf_c(_Out_z_cap_(_SizeInWords) wchar_t * _DstBuf, _In_ size_t _SizeInWords, _In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vswprintf_c(_Out_z_cap_(_SizeInWords) wchar_t * _DstBuf, _In_ size_t _SizeInWords, _In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _snwprintf_s(_Out_z_cap_(_SizeInWords) wchar_t * _DstBuf, _In_ size_t _SizeInWords, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_2_ARGLIST(int, _snwprintf_s, _vsnwprintf_s, wchar_t, _Dest, _In_ size_t, _Count, _In_z_ _Printf_format_string_ const wchar_t *, _Format)<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _vsnwprintf_s(_Out_z_cap_(_SizeInWords) wchar_t * _DstBuf, _In_ size_t _SizeInWords, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_3(int, _vsnwprintf_s, wchar_t, _Dest, _In_ size_t, _Count, _In_z_ _Printf_format_string_ const wchar_t *, _Format, va_list, _Args)<br>
+#pragma warning(push)<br>
+#pragma warning(disable:4793)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_NFUNC_0_2_ARGLIST_EX(int, __RETURN_POLICY_SAME, _CRTIMP, _snwprintf, _vsnwprintf, _Pre_notnull_ _Post_maybez_ wchar_t, _Out_cap_(_Count) _Post_maybez_, wchar_t, _Dest, _In_ size_t, _Count, _In_z_ _Printf_format_string_ const wchar_t *, _Format)<br>
+#pragma warning(pop)<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fwprintf_p(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _wprintf_p(_In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vfwprintf_p(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vwprintf_p(_In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _swprintf_p(_Out_z_cap_(_MaxCount) wchar_t * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vswprintf_p(_Out_z_cap_(_MaxCount) wchar_t * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+_Check_return_ _CRTIMP int __cdecl _scwprintf_p(_In_z_ _Printf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_ _CRTIMP int __cdecl _vscwprintf_p(_In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _wprintf_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _wprintf_p_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _wprintf_s_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vwprintf_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vwprintf_p_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vwprintf_s_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fwprintf_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fwprintf_p_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fwprintf_s_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vfwprintf_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vfwprintf_p_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vfwprintf_s_l(_Inout_ FILE * _File, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _swprintf_c_l(_Out_z_cap_(_MaxCount) wchar_t * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _swprintf_p_l(_Out_z_cap_(_MaxCount) wchar_t * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _swprintf_s_l(_Out_z_cap_(_DstSize) wchar_t * _DstBuf, _In_ size_t _DstSize, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vswprintf_c_l(_Out_z_cap_(_MaxCount) wchar_t * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _vswprintf_p_l(_Out_z_cap_(_MaxCount) wchar_t * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _vswprintf_s_l(_Out_z_cap_(_DstSize) wchar_t * _DstBuf, _In_ size_t _DstSize, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+_Check_return_ _CRTIMP int __cdecl _scwprintf_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_ _CRTIMP int __cdecl _scwprintf_p_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_ _CRTIMP int __cdecl _vscwprintf_p_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_snwprintf_s_l) _CRTIMP int __cdecl _snwprintf_l(_Out_cap_(_MaxCount) wchar_t * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _snwprintf_s_l(_Out_z_cap_(_DstSize) wchar_t * _DstBuf, _In_ size_t _DstSize, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_vsnwprintf_s_l) _CRTIMP int __cdecl _vsnwprintf_l(_Out_cap_(_MaxCount) wchar_t * _DstBuf, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _vsnwprintf_s_l(_Out_z_cap_(_DstSize) wchar_t * _DstBuf, _In_ size_t _DstSize, _In_ size_t _MaxCount, _In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+<br>
+<br>
+#ifndef _CRT_NON_CONFORMING_SWPRINTFS<br>
+<br>
+#define _SWPRINTFS_DEPRECATED _CRT_DEPRECATE_TEXT("swprintf has been changed to conform with the ISO C standard, adding an extra character count parameter. To use traditional Microsoft swprintf, set _CRT_NON_CONFORMING_SWPRINTFS.")<br>
+<br>
+#else<br>
+<br>
+#define _SWPRINTFS_DEPRECATED <br>
+<br>
+#endif /* ifndef _CRT_NON_CONFORMING_SWPRINTFS */<br>
+<br>
+/* we could end up with a double deprecation, disable warnings 4141 and 4996 */<br>
+#pragma warning(push)<br>
+#pragma warning(disable:4141 4996 4793)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_ARGLIST_EX(int, __RETURN_POLICY_SAME, _SWPRINTFS_DEPRECATED _CRTIMP, _swprintf, _swprintf_s, _vswprintf, vswprintf_s, _Pre_notnull_ _Post_z_, wchar_t, _Dest, _In_z_ _Printf_format_string_ const wchar_t *, _Format)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_2_ARGLIST_EX(int, __RETURN_POLICY_SAME, _SWPRINTFS_DEPRECATED _CRTIMP, __swprintf_l, __vswprintf_l, _vswprintf_s_l, _Pre_notnull_ _Post_z_ wchar_t, , wchar_t, _Dest, _In_z_ _Printf_format_string_ const wchar_t *, _Format, _locale_t, _Plocinfo)<br>
+#pragma warning(pop)<br>
+<br>
+#if !defined(RC_INVOKED) &amp;&amp; !defined(__midl)<br>
+#include &lt;swprintf.inl&gt;<br>
+#endif<br>
+<br>
+#ifdef _CRT_NON_CONFORMING_SWPRINTFS<br>
+#ifndef __cplusplus<br>
+#define swprintf _swprintf<br>
+#define vswprintf _vswprintf<br>
+#define _swprintf_l __swprintf_l<br>
+#define _vswprintf_l __vswprintf_l<br>
+#endif<br>
+#endif<br>
+<br>
+#if defined(_DEBUG) &amp;&amp; defined(_CRTDBG_MAP_ALLOC)<br>
+#pragma push_macro("_wtempnam")<br>
+#undef _wtempnam<br>
+#endif<br>
+<br>
+_Check_return_ _CRTIMP wchar_t * __cdecl _wtempnam(_In_opt_z_ const wchar_t * _Directory, _In_opt_z_ const wchar_t * _FilePrefix);<br>
+<br>
+#if defined(_DEBUG) &amp;&amp; defined(_CRTDBG_MAP_ALLOC)<br>
+#pragma pop_macro("_wtempnam")<br>
+#endif<br>
+<br>
+_Check_return_ _CRTIMP int __cdecl _vscwprintf(_In_z_ _Printf_format_string_ const wchar_t * _Format, va_list _ArgList);<br>
+_Check_return_ _CRTIMP int __cdecl _vscwprintf_l(_In_z_ _Printf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, va_list _ArgList);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(fwscanf_s) _CRTIMP int __cdecl fwscanf(_Inout_ FILE * _File, _In_z_ _Scanf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_fwscanf_s_l) _CRTIMP int __cdecl _fwscanf_l(_Inout_ FILE * _File, _In_z_ _Scanf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP int __cdecl fwscanf_s(_Inout_ FILE * _File, _In_z_ _Scanf_s_format_string_ const wchar_t * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fwscanf_s_l(_Inout_ FILE * _File, _In_z_ _Scanf_s_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(swscanf_s) _CRTIMP int __cdecl swscanf(_In_z_ const wchar_t * _Src, _In_z_ _Scanf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_swscanf_s_l) _CRTIMP int __cdecl _swscanf_l(_In_z_ const wchar_t * _Src, _In_z_ _Scanf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl swscanf_s(_In_z_ const wchar_t *_Src, _In_z_ _Scanf_s_format_string_ const wchar_t * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _swscanf_s_l(_In_z_ const wchar_t * _Src, _In_z_ _Scanf_s_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_snwscanf_s) _CRTIMP int __cdecl _snwscanf(_In_count_(_MaxCount) _Pre_z_ const wchar_t * _Src, _In_ size_t _MaxCount, _In_z_ _Scanf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_snwscanf_s_l) _CRTIMP int __cdecl _snwscanf_l(_In_count_(_MaxCount) _Pre_z_ const wchar_t * _Src, _In_ size_t _MaxCount, _In_z_ _Scanf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _snwscanf_s(_In_count_(_MaxCount) _Pre_z_ const wchar_t * _Src, _In_ size_t _MaxCount, _In_z_ _Scanf_s_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _snwscanf_s_l(_In_count_(_MaxCount) _Pre_z_ const wchar_t * _Src, _In_ size_t _MaxCount, _In_z_ _Scanf_s_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(wscanf_s) _CRTIMP int __cdecl wscanf(_In_z_ _Scanf_format_string_ const wchar_t * _Format, ...);<br>
+_Check_return_opt_ _CRT_INSECURE_DEPRECATE(_wscanf_s_l) _CRTIMP int __cdecl _wscanf_l(_In_z_ _Scanf_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+#if __STDC_WANT_SECURE_LIB__<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl wscanf_s(_In_z_ _Scanf_s_format_string_ const wchar_t * _Format, ...);<br>
+#endif<br>
+_Check_return_opt_ _CRTIMP_ALTERNATIVE int __cdecl _wscanf_s_l(_In_z_ _Scanf_s_format_string_ const wchar_t * _Format, _In_opt_ _locale_t _Locale, ...);<br>
+#pragma warning(pop)<br>
+<br>
+_Check_return_ _CRTIMP FILE * __cdecl _wfdopen(_In_ int _FileHandle , _In_z_ const wchar_t * _Mode);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(_wfopen_s) _CRTIMP FILE * __cdecl _wfopen(_In_z_ const wchar_t * _Filename, _In_z_ const wchar_t * _Mode);<br>
+_Check_return_wat_ _CRTIMP errno_t __cdecl _wfopen_s(_Deref_out_opt_ FILE ** _File, _In_z_ const wchar_t * _Filename, _In_z_ const wchar_t * _Mode);<br>
+_Check_return_ _CRT_INSECURE_DEPRECATE(_wfreopen_s) _CRTIMP FILE * __cdecl _wfreopen(_In_z_ const wchar_t * _Filename, _In_z_ const wchar_t * _Mode, _Inout_ FILE * _OldFile);<br>
+_Check_return_wat_ _CRTIMP errno_t __cdecl _wfreopen_s(_Deref_out_opt_ FILE ** _File, _In_z_ const wchar_t * _Filename, _In_z_ const wchar_t * _Mode, _Inout_ FILE * _OldFile);<br>
+<br>
+#ifndef _CRT_WPERROR_DEFINED<br>
+#define _CRT_WPERROR_DEFINED<br>
+_CRTIMP void __cdecl _wperror(_In_opt_z_ const wchar_t * _ErrMsg);<br>
+#endif <br>
+_Check_return_ _CRTIMP FILE * __cdecl _wpopen(_In_z_ const wchar_t *_Command, _In_z_ const wchar_t * _Mode);<br>
+_Check_return_ _CRTIMP int __cdecl _wremove(_In_z_ const wchar_t * _Filename);<br>
+_Check_return_wat_ _CRTIMP errno_t __cdecl _wtmpnam_s(_Out_z_cap_(_SizeInWords) wchar_t * _DstBuf, _In_ size_t _SizeInWords);<br>
+__DEFINE_CPP_OVERLOAD_SECURE_FUNC_0_0(errno_t, _wtmpnam_s, _Deref_post_z_ wchar_t, _Buffer)<br>
+__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_0(wchar_t *, __RETURN_POLICY_DST, _CRTIMP, _wtmpnam, _Pre_maybenull_ _Post_z_, wchar_t, _Buffer)<br>
+<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl _fgetwc_nolock(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl _fputwc_nolock(_In_ wchar_t _Ch, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP wint_t __cdecl _ungetwc_nolock(_In_ wint_t _Ch, _Inout_ FILE * _File);<br>
+<br>
+#undef _CRT_GETPUTWCHAR_NOINLINE<br>
+<br>
+#if !defined(__cplusplus) || defined(_M_CEE_PURE) || defined(_CRT_GETPUTWCHAR_NOINLINE)<br>
+#define getwchar()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fgetwc(stdin)<br>
+#define putwchar(_c)&nbsp;&nbsp;&nbsp; fputwc((_c),stdout)<br>
+#else&nbsp;&nbsp; /* __cplusplus */<br>
+inline wint_t __CRTDECL getwchar()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {return (fgetwc(stdin)); }&nbsp;&nbsp; /* stdin */<br>
+inline wint_t __CRTDECL putwchar(wchar_t _C)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {return (fputwc(_C, stdout)); }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* stdout */<br>
+#endif&nbsp; /* __cplusplus */<br>
+<br>
+#define getwc(_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fgetwc(_stm)<br>
+#define putwc(_c,_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fputwc(_c,_stm)<br>
+#define _putwc_nolock(_c,_stm)&nbsp;&nbsp;&nbsp;&nbsp; _fputwc_nolock(_c,_stm)<br>
+#define _getwc_nolock(_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _fgetwc_nolock(_stm)<br>
+<br>
+#if defined(_CRT_DISABLE_PERFCRIT_LOCKS) &amp;&amp; !defined(_DLL)<br>
+#define fgetwc(_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _getwc_nolock(_stm)<br>
+#define fputwc(_c,_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _putwc_nolock(_c,_stm)<br>
+#define ungetwc(_c,_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _ungetwc_nolock(_c,_stm)<br>
+#endif<br>
+<br>
+#define _WSTDIO_DEFINED<br>
+#endif&nbsp; /* _WSTDIO_DEFINED */<br>
+<br>
+#define _STDIO_DEFINED<br>
+#endif&nbsp; /* _STDIO_DEFINED */<br>
+<br>
+<br>
+/* Macro definitions */<br>
+<br>
+#if defined(_CRT_DISABLE_PERFCRIT_LOCKS) &amp;&amp; !defined(_DLL)<br>
+#define feof(_stream)&nbsp;&nbsp;&nbsp;&nbsp; ((_stream)-&gt;_flag &amp; _IOEOF)<br>
+#define ferror(_stream)&nbsp;&nbsp; ((_stream)-&gt;_flag &amp; _IOERR)<br>
+#define _fileno(_stream)&nbsp; ((_stream)-&gt;_file)<br>
+#define fgetc(_stream)&nbsp;&nbsp;&nbsp;&nbsp; (--(_stream)-&gt;_cnt &gt;= 0 \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ? 0xff &amp; *(_stream)-&gt;_ptr++ : _filbuf(_stream))<br>
+#define putc(_c,_stream)&nbsp; (--(_stream)-&gt;_cnt &gt;= 0 \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ? 0xff &amp; (*(_stream)-&gt;_ptr++ = (char)(_c)) :&nbsp; _flsbuf((_c),(_stream)))<br>
+#define getc(_stream)&nbsp;&nbsp;&nbsp; fgetc(_stream)<br>
+#define getchar()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getc(stdin)<br>
+#define putchar(_c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; putc((_c),stdout)<br>
+#endif<br>
+<br>
+<br>
+#define _fgetc_nolock(_stream)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (--(_stream)-&gt;_cnt &gt;= 0 ? 0xff &amp; *(_stream)-&gt;_ptr++ : _filbuf(_stream))<br>
+#define _fputc_nolock(_c,_stream)&nbsp;&nbsp;&nbsp; (--(_stream)-&gt;_cnt &gt;= 0 ? 0xff &amp; (*(_stream)-&gt;_ptr++ = (char)(_c)) :&nbsp; _flsbuf((_c),(_stream)))<br>
+#define _getc_nolock(_stream)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _fgetc_nolock(_stream)<br>
+#define _putc_nolock(_c, _stream)&nbsp;&nbsp; _fputc_nolock(_c, _stream)<br>
+#define _getchar_nolock()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _getc_nolock(stdin)<br>
+#define _putchar_nolock(_c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _putc_nolock((_c),stdout)<br>
+#define _getwchar_nolock()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _getwc_nolock(stdin)<br>
+#define _putwchar_nolock(_c)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _putwc_nolock((_c),stdout)<br>
+<br>
+#ifdef _MT<br>
+_CRTIMP void __cdecl _lock_file(_Inout_ FILE * _File);<br>
+_CRTIMP void __cdecl _unlock_file(_Inout_ FILE * _File);<br>
+#else<br>
+#define _lock_file(c)<br>
+#define _unlock_file(c)<br>
+#endif<br>
+<br>
+<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fclose_nolock(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fflush_nolock(_Inout_opt_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP size_t __cdecl _fread_nolock(_Out_bytecap_x_(_ElementSize*_Count) void * _DstBuf, _In_ size_t _ElementSize, _In_ size_t _Count, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP size_t __cdecl _fread_nolock_s(_Out_bytecap_x_(_ElementSize*_Count) void * _DstBuf, _In_ size_t _DstSize, _In_ size_t _ElementSize, _In_ size_t _Count, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fseek_nolock(_Inout_ FILE * _File, _In_ long _Offset, _In_ int _Origin);<br>
+_Check_return_ _CRTIMP long __cdecl _ftell_nolock(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _fseeki64_nolock(_Inout_ FILE * _File, _In_ __int64 _Offset, _In_ int _Origin);<br>
+_Check_return_ _CRTIMP __int64 __cdecl _ftelli64_nolock(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP size_t __cdecl _fwrite_nolock(_In_bytecount_x_(_Size*_Count) const void * _DstBuf, _In_ size_t _Size, _In_ size_t _Count, _Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRTIMP int __cdecl _ungetc_nolock(_In_ int _Ch, _Inout_ FILE * _File);<br>
+<br>
+#if defined(_CRT_DISABLE_PERFCRIT_LOCKS) &amp;&amp; !defined(_DLL)<br>
+#define fclose(_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _fclose_nolock(_stm)<br>
+#define fflush(_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _fflush_nolock(_stm)<br>
+#define fread(_DstBuf, _ElementSize, _Count, _File)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _fread_nolock(_DstBuf, _ElementSize, _Count, _File)<br>
+#define fread_s(_DstBuf, _DstSize, _ElementSize, _Count, _File) _fread_nolock_s(_DstBuf, _DstSize, _ElementSize, _Count, _File)<br>
+#define fseek(_stm,_offset,_origin)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _fseek_nolock(_stm,_offset,_origin)<br>
+#define ftell(_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _ftell_nolock(_stm)<br>
+#define _fseeki64(_stm,_offset,_origin)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _fseeki64_nolock(_stm,_offset,_origin)<br>
+#define _ftelli64(_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _ftelli64_nolock(_stm)<br>
+#define fwrite(_buf,_siz,_cnt,_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _fwrite_nolock(_buf,_siz,_cnt,_stm)<br>
+#define ungetc(_c,_stm)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _ungetc_nolock(_c,_stm)<br>
+#endif<br>
+<br>
+#if&nbsp;&nbsp;&nbsp;&nbsp; !__STDC__ &amp;&amp; !defined(_POSIX_)<br>
+<br>
+/* Non-ANSI names for compatibility */<br>
+<br>
+#define P_tmpdir&nbsp; _P_tmpdir<br>
+#define SYS_OPEN&nbsp; _SYS_OPEN<br>
+<br>
+#if defined(_DEBUG) &amp;&amp; defined(_CRTDBG_MAP_ALLOC)<br>
+#pragma push_macro("tempnam")<br>
+#undef tempnam<br>
+#endif<br>
+<br>
+_CRT_NONSTDC_DEPRECATE(_tempnam) _CRTIMP char * __cdecl tempnam(_In_opt_z_ const char * _Directory, _In_opt_z_ const char * _FilePrefix);<br>
+<br>
+#if defined(_DEBUG) &amp;&amp; defined(_CRTDBG_MAP_ALLOC)<br>
+#pragma pop_macro("tempnam")<br>
+#endif<br>
+<br>
+_Check_return_opt_ _CRT_NONSTDC_DEPRECATE(_fcloseall) _CRTIMP int __cdecl fcloseall(void);<br>
+_Check_return_ _CRT_NONSTDC_DEPRECATE(_fdopen) _CRTIMP FILE * __cdecl fdopen(_In_ int _FileHandle, _In_z_ const char * _Format);<br>
+_Check_return_opt_ _CRT_NONSTDC_DEPRECATE(_fgetchar) _CRTIMP int __cdecl fgetchar(void);<br>
+_Check_return_ _CRT_NONSTDC_DEPRECATE(_fileno) _CRTIMP int __cdecl fileno(_In_ FILE * _File);<br>
+_Check_return_opt_ _CRT_NONSTDC_DEPRECATE(_flushall) _CRTIMP int __cdecl flushall(void);<br>
+_Check_return_opt_ _CRT_NONSTDC_DEPRECATE(_fputchar) _CRTIMP int __cdecl fputchar(_In_ int _Ch);<br>
+_Check_return_ _CRT_NONSTDC_DEPRECATE(_getw) _CRTIMP int __cdecl getw(_Inout_ FILE * _File);<br>
+_Check_return_opt_ _CRT_NONSTDC_DEPRECATE(_putw) _CRTIMP int __cdecl putw(_In_ int _Ch, _Inout_ FILE * _File);<br>
+_Check_return_ _CRT_NONSTDC_DEPRECATE(_rmtmp) _CRTIMP int __cdecl rmtmp(void);<br>
+<br>
+#endif&nbsp; /* __STDC__ */<br>
+<br>
+#ifdef&nbsp; __cplusplus<br>
+}<br>
+#endif<br>
+<br>
+#ifdef&nbsp; _MSC_VER<br>
+#pragma pack(pop)<br>
+#endif&nbsp; /* _MSC_VER */<br>
+<br>
+#endif&nbsp; /* _INC_STDIO */<br>
+<br>
+</div><span style="font-size: 12pt;">   </span><br>
+<span style="font-size: 12pt;">만일 헤더 파일이라는 것이 존재하지 않았더라면 우리는 printf 함수를 이용하기 위해서 위 모든 내용은 아니지만 적어도 printf 함수의 원형을 써주어야 하는데 이는   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">_Check_return_opt_ _CRTIMP int __cdecl printf(_In_z_ _Printf_format_string_ const char * _Format, ...);   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">로 무지하게 복잡합니다. 아무튼, 이렇게 printf, scanf 함수와 같이 매 함수를 쓰기 위해서 위 모든 내용을 쓰는 것 대신에 헤더파일 include 하나로 간단하게 해결할 수 있습니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">보통 헤더파일을 만들 때 에는 그 헤더파일에 있는 함수들이 정의되어 있는 소스 파일의 이름을 따서 짓는 것이 보통입니다. 위 경우 str.h 에 선언되어 있는 함수들이 모두 str.c 에 정의되어 있으므로 헤더파일의 이름을 str.h 로 하였습니다. 또한 한 가지 흥미로운 점은 str.c 에서도 str.h 를 include 하고 있다는 점입니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">이는 다음과 같은 상황을 방지할 수 있습니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(243, 197, 52); background-color: rgb(254, 254, 184); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/* something.c */   </span><br>
+<span style="font-size: 12pt;">int A()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; B();   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><br>
+<span style="font-size: 12pt;">int B()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 1;   </span><br>
+<span style="font-size: 12pt;">}   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">만일 something.c 라는 파일에 위와 같은 소스가 있다고 합시다. 이는 100% 오류가 발생됩니다. 왜냐하면 A() 함수에서 B() 를 호출할 때 B 가 무엇인지 뭔지 모르므로 오류가 발생하게 되는 것이지요. (이는 함수 단원에서 공부한 한 바 입니다) 다시 말해 B() 를 위에 선언 해주어야 합니다. 아래와 같이요.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(243, 197, 52); background-color: rgb(254, 254, 184); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/* something.c */   </span><br>
+<span style="font-size: 12pt;">int B();   </span><br>
+<span style="font-size: 12pt;">int A()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; B();   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><br>
+<span style="font-size: 12pt;">int B()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 1;   </span><br>
+<span style="font-size: 12pt;">}   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">하지만 헤더파일을 배웠으니 차라리 이렇게 할 바에는 아래와 같이 하는 것이 훨씬 낫을 것이라는 거죠.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(243, 197, 52); background-color: rgb(254, 254, 184); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/* something.c */   </span><br>
+<span style="font-size: 12pt;">#include "something.h"   </span><br>
+<span style="font-size: 12pt;">int A()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; B();   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><br>
+<span style="font-size: 12pt;">int B()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 1;   </span><br>
+<span style="font-size: 12pt;">}   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">  </span><div>
+<span style="font-size: 12pt;">   </span><hr style="border-color: black; border-width: 1px 0px 0px; display: block; height: 1px;"></div>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(243, 197, 52); background-color: rgb(254, 254, 184); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">/* something.h*/   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">int A();   </span><br>
+<span style="font-size: 12pt;">int B();   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"><span style="font-size: 12pt;">이와 같은 이유로 str.c 에서도 (이 경우 꼭 필요는 없었지만) str.h 를 include 해준 것입니다.   </span></span><br>
+<br>
+<span style="font-size: 12pt; font-weight: bold;">도서 관리 프로그램 리모델링</span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">그렇다면 이번에는 여태까지 쌓은 지식을 바탕으로 이전에 만들었던 도서 관리 프로그램을 파일을 나누어서 깔끔하게 만들어봅시다.   </span><br>
+<br>
+<span style="font-size: 12pt;">아래는 기존의 소스 입니다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;"></span><div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<span style="font-size: 12pt;">#include &lt;stdio.h&gt;   </span><br>
+<span style="font-size: 12pt;">int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30],   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int *borrowed, int *num_total_book);   </span><br>
+<span style="font-size: 12pt;">int search_book(char (*book_name)[30], char (*auth_name)[30],   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char (*publ_name)[30], int num_total_book);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">char compare(char *str1, char *str2);   </span><br>
+<span style="font-size: 12pt;">int borrow_book(int *borrowed);   </span><br>
+<span style="font-size: 12pt;">int return_book(int *borrowed);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">int main ()   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int user_choice; /* 유저가 선택한 메뉴 */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int num_total_book = 0; /* 현재 책의 수 */   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 각각 책, 저자, 출판사를 저장할 배열 생성. 책의 최대 개수는 100 권*/   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char book_name[100][30], auth_name[100][30], publ_name[100][30];   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 빌렸는지 상태를 표시 */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int borrowed[100];   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; while (1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("도서 관리 프로그램 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("메뉴를 선택하세요 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("1. 책을 새로 추가하기 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("2. 책을 검색하기 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("3. 책을 빌리기 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("4. 책을 반납하기 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("5. 프로그램 종료 \n");   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("당신의 선택은 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scanf("%d", &amp;user_choice);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(user_choice == 1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 책을 새로 추가하는 함수 호출 */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add_book(book_name, auth_name, publ_name, borrowed, &amp;num_total_book);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(user_choice == 2)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 책을 검색하는 함수 호출 */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; search_book(book_name, auth_name, publ_name, num_total_book);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(user_choice == 3)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 책을 빌리는 함수 호출 */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; borrow_book(borrowed);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(user_choice == 4)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 책을 반납하는 함수 호출 */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return_book(borrowed);   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(user_choice == 5)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 프로그램을 종료한다. */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><br>
+<span style="font-size: 12pt;">/* 책을 추가하는 함수*/   </span><br>
+<span style="font-size: 12pt;">int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30],   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int *borrowed, int *num_total_book)   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 제목 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", book_name[*num_total_book]);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 저자 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", auth_name[*num_total_book]);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 출판사 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", publ_name[*num_total_book]);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; borrowed[*num_total_book] = 0; /* 빌려지지 않음*/   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가 완료! \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; (*num_total_book)++;   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><br>
+<span style="font-size: 12pt;">/* 책을 검색하는 함수 */   </span><br>
+<span style="font-size: 12pt;">int search_book(char (*book_name)[30], char (*auth_name)[30],   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char (*publ_name)[30], int num_total_book)   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int user_input; /* 사용자의 입력을 받는다. */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int i;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char user_search[30];   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("어느 것으로 검색 할 것인가요? \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("1. 책 제목 검색 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("2. 지은이 검색 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("3. 출판사 검색 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;user_input);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("검색할 단어를 입력해주세요 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", user_search);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("검색 결과 \n");   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(user_input == 1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(book_name[i], user_search))   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else if(user_input == 2)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(auth_name[i], user_search))   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else if(user_input == 3)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다.   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(publ_name[i], user_search))   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><br>
+<span style="font-size: 12pt;">char compare(char *str1, char *str2)   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; while (*str1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(*str1 != *str2)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str1++;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str2++;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(*str2 == '\0')   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1;   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><br>
+<span style="font-size: 12pt;">int borrow_book(int *borrowed)   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 사용자로 부터 책번호를 받을 변수*/   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int book_num;   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("빌릴 책의 번호를 말해주세요 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("책 번호 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;book_num);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(borrowed[book_num] == 1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("이미 대출된 책입니다! \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("책이 성공적으로 대출되었습니다. \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; borrowed[book_num] = 1;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span><br>
+<span style="font-size: 12pt;">int return_book(int *borrowed)   </span><br>
+<span style="font-size: 12pt;">{   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 반납할 책의 번호 */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int num_book;   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("반납할 책의 번호를 써주세요 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("책 번호 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;num_book);   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(borrowed[num_book] == 0)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("이미 반납되어 있는 상태입니다\n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; borrowed[num_book] = 0;   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("성공적으로 반납되었습니다\n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">  </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}   </span></div>
+<br>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">파일들로 나누기 전에 가장 먼저 고려해야 할 사실은 바로 '어떠한 파일들로 나눌 것인가?’ 입니다. 파일을 나눌 때 가장 먼저 살펴보아야 할 점은 각 파일들을 특정한 역할을 가지도록 나누는 것인데 우리의 프로그램의 경우 다음과 같이 나누면 될 것 같습니다.</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">main 함수를 가지는 test.c , 도서 관리 함수들을 가지는 book_function.c, 그리고 문자열 관리 함수를 가지는 str.c 로 나누면 될 것 같습니다. 따라서 book_function.h 와 str.h 라는 헤더파일도 가지겠네요. </span></p><div class="google-auto-placed ap_container" style="text-align: center; width: 100%; height: auto; clear: none;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-6608926154840997" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent;"><ins id="aswift_5_expand" style="display:inline-table;border:none;height:183px;margin:0;padding:0;position:relative;visibility:visible;width:730px;background-color:transparent;"><ins id="aswift_5_anchor" style="display:block;border:none;height:183px;margin:0;padding:0;position:relative;visibility:visible;width:730px;background-color:transparent;"><iframe width="730" height="183" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_5" name="aswift_5" style="left:0;position:absolute;top:0;width:730px;height:183px;"></iframe></ins></ins></ins></div>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">먼저 가장 단순한 str.c 부터 봅시다. str.c 에는 compare 함수가 들어가면 적당할 것 같습니다.</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;"></span></p>
+<div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<p><span style="font-size: 12pt;">/* str.c */</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">#include "str.h" </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">char compare(char *str1, char *str2)    </span><br>
+<span style="font-size: 12pt;">{     </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; while (*str1)     </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {     </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(*str1 != *str2)     </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {     </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;     </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str1++;    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; str2++;     </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(*str2 == '\0')    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;    </span><br>
+<span style="font-size: 12pt;">}</span></p>
+</div>
+<p><span style="font-size: 12pt;"></span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">또한 str.h 에는 compare 함수의 원형이 선언되어 있죠.</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;"></span></p>
+<div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<p><span style="font-size: 12pt;">/* str.h */</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">char compare(char *str1, char *str2);</span></p>
+</div>
+<p><span style="font-size: 12pt;"></span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">그럼 이제, 책들을 처리하는 함수들을 모아놓은 book_function.c 를 살펴봅시다. 단순하게 생각해보면 아래와 같이 하면 될 것 같습니다. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;"></span></p>
+<div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<p><span style="font-size: 12pt;">#include "book_function.h" </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">/* 책을 추가하는 함수*/   </span><br>
+<span style="font-size: 12pt;">int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30],    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int *borrowed, int *num_total_book)    </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 제목 : ");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", book_name[*num_total_book]); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 저자 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", auth_name[*num_total_book]); </span></p><div class="google-auto-placed ap_container" style="text-align: center; width: 100%; height: auto; clear: none;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-6608926154840997" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent;"><ins id="aswift_6_expand" style="display:inline-table;border:none;height:177px;margin:0;padding:0;position:relative;visibility:visible;width:708px;background-color:transparent;"><ins id="aswift_6_anchor" style="display:block;border:none;height:177px;margin:0;padding:0;position:relative;visibility:visible;width:708px;background-color:transparent;"><iframe width="708" height="177" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_6" name="aswift_6" style="left:0;position:absolute;top:0;width:708px;height:177px;"></iframe></ins></ins></ins></div>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 출판사 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", publ_name[*num_total_book]); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; borrowed[*num_total_book] = 0; /* 빌려지지 않음*/   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가 완료! \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; (*num_total_book)++; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}    </span><br>
+<span style="font-size: 12pt;">/* 책을 검색하는 함수 */    </span><br>
+<span style="font-size: 12pt;">int search_book(char (*book_name)[30], char (*auth_name)[30],    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char (*publ_name)[30], int num_total_book)    </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int user_input; /* 사용자의 입력을 받는다. */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int i;    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char user_search[30]; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("어느 것으로 검색 할 것인가요? \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("1. 책 제목 검색 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("2. 지은이 검색 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("3. 출판사 검색 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;user_input); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("검색할 단어를 입력해주세요 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", user_search); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("검색 결과 \n"); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(user_input == 1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(book_name[i], user_search))    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else if(user_input == 2)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(auth_name[i], user_search))    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </span></p><div class="google-auto-placed ap_container" style="text-align: center; width: 100%; height: auto; clear: none;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-6608926154840997" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent;"><ins id="aswift_7_expand" style="display:inline-table;border:none;height:177px;margin:0;padding:0;position:relative;visibility:visible;width:708px;background-color:transparent;"><ins id="aswift_7_anchor" style="display:block;border:none;height:177px;margin:0;padding:0;position:relative;visibility:visible;width:708px;background-color:transparent;"><iframe width="708" height="177" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_7" name="aswift_7" style="left:0;position:absolute;top:0;width:708px;height:177px;"></iframe></ins></ins></ins></div>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else if(user_input == 3)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(publ_name[i], user_search))    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}    </span><br>
+<span style="font-size: 12pt;">int borrow_book(int *borrowed)    </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 사용자로 부터 책번호를 받을 변수*/    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int book_num; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("빌릴 책의 번호를 말해주세요 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("책 번호 : ");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;book_num); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(borrowed[book_num] == 1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("이미 대출된 책입니다! \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("책이 성공적으로 대출되었습니다. \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; borrowed[book_num] = 1;    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}    </span><br>
+<span style="font-size: 12pt;">int return_book(int *borrowed)    </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 반납할 책의 번호 */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int num_book; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("반납할 책의 번호를 써주세요 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("책 번호 : ");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;num_book); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(borrowed[num_book] == 0)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("이미 반납되어 있는 상태입니다\n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; borrowed[num_book] = 0;    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("성공적으로 반납되었습니다\n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}</span></p>
+</div>
+<p><span style="font-size: 12pt;"></span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">그런데 이렇게 하게 되면 100% 오류가 발생하게 됩니다. 왜냐하면 add_book 함수의 경우만 보아도 printf 함수와 scanf 함수를 사용하고 있기 때문이죠. 이 함수들을 사용하기 위해서는 stdio.h 를 꼭 include 해주어야 합니다. 뿐만 아니라 search_book 함수의 경우 compare 함수를 호출하고 있는데 이 때문에 역시 str.h 를 include 해주어야 합니다. 따라서 올바른 book_function.c 의 모습은 아래와 같이 되어야 합니다. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;"></span></p>
+<div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<p><span style="font-size: 12pt;">/* book_function.c&nbsp; */</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">#include &lt;stdio.h&gt;   </span><br>
+<span style="font-size: 12pt;">#include "str.h"    </span><br>
+<span style="font-size: 12pt;">#include "book_function.h" </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">/* 책을 추가하는 함수*/   </span><br>
+<span style="font-size: 12pt;">int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30],    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int *borrowed, int *num_total_book)    </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 제목 : ");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", book_name[*num_total_book]); </span></p><div class="google-auto-placed ap_container" style="text-align: center; width: 100%; height: auto; clear: none;"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-6608926154840997" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent;"><ins id="aswift_8_expand" style="display:inline-table;border:none;height:177px;margin:0;padding:0;position:relative;visibility:visible;width:708px;background-color:transparent;"><ins id="aswift_8_anchor" style="display:block;border:none;height:177px;margin:0;padding:0;position:relative;visibility:visible;width:708px;background-color:transparent;"><iframe width="708" height="177" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_8" name="aswift_8" style="left:0;position:absolute;top:0;width:708px;height:177px;"></iframe></ins></ins></ins></div>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 저자 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", auth_name[*num_total_book]); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가할 책의 출판사 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", publ_name[*num_total_book]); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; borrowed[*num_total_book] = 0; /* 빌려지지 않음*/   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("추가 완료! \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; (*num_total_book)++; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}    </span><br>
+<span style="font-size: 12pt;">/* 책을 검색하는 함수 */    </span><br>
+<span style="font-size: 12pt;">int search_book(char (*book_name)[30], char (*auth_name)[30],    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char (*publ_name)[30], int num_total_book)    </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int user_input; /* 사용자의 입력을 받는다. */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int i;    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char user_search[30]; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("어느 것으로 검색 할 것인가요? \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("1. 책 제목 검색 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("2. 지은이 검색 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("3. 출판사 검색 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;user_input); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("검색할 단어를 입력해주세요 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%s", user_search); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("검색 결과 \n"); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(user_input == 1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(book_name[i], user_search))    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else if(user_input == 2)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(auth_name[i], user_search))    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else if(user_input == 3)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사용자가 입력한 검색어와 비교하고 있다. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0;i &lt; num_total_book; i++)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(compare(publ_name[i], user_search))    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i, book_name[i], auth_name[i], publ_name[i] );    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}    </span><br>
+<span style="font-size: 12pt;">int borrow_book(int *borrowed)    </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 사용자로 부터 책번호를 받을 변수*/    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int book_num; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("빌릴 책의 번호를 말해주세요 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("책 번호 : ");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;book_num); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(borrowed[book_num] == 1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("이미 대출된 책입니다! \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("책이 성공적으로 대출되었습니다. \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; borrowed[book_num] = 1;    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}    </span><br>
+<span style="font-size: 12pt;">int return_book(int *borrowed)    </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 반납할 책의 번호 */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int num_book; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("반납할 책의 번호를 써주세요 \n");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; printf("책 번호 : ");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; scanf("%d", &amp;num_book); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; if(borrowed[num_book] == 0)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("이미 반납되어 있는 상태입니다\n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; else    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; borrowed[num_book] = 0;    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("성공적으로 반납되었습니다\n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}</span></p>
+</div>
+<p><span style="font-size: 12pt;"></span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">또한 당연하게도 book_function.h 의 모습은 아래와 같겠죠.</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;"></span></p>
+<div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<p><span style="font-size: 12pt;">/* book_function.h */</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30],   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int *borrowed, int *num_total_book);    </span><br>
+<span style="font-size: 12pt;">int search_book(char (*book_name)[30], char (*auth_name)[30],    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; char (*publ_name)[30], int num_total_book); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">int borrow_book(int *borrowed);   </span><br>
+<span style="font-size: 12pt;">int return_book(int *borrowed);</span></p>
+</div>
+<p><span style="font-size: 12pt;"></span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">이제 마지막으로 main 함수가 있는 test.c 를 살펴볼 차례 입니다.</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">main 함수에서는 printf 와 scanf 등과, book_function 에 정의되어 있는 함수들을 사용하고 있고 compare 함수는 사용하지 않으므로 다음과 같이만 해주면 됩니다.</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;"></span></p>
+<div style="border: 1px solid rgb(121, 165, 228); background-color: rgb(219, 232, 251); padding: 10px;" class="txc-textbox">
+<p><span style="font-size: 12pt;">/* test.c */</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">#include &lt;stdio.h&gt;   </span><br>
+<span style="font-size: 12pt;">#include "book_function.h" </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">int main ()   </span><br>
+<span style="font-size: 12pt;">{    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int user_choice; /* 유저가 선택한 메뉴 */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int num_total_book = 0; /* 현재 책의 수 */ </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 각각 책, 저자, 출판사를 저장할 배열 생성. 책의 최대 개수는 100 권*/   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; char book_name[100][30], auth_name[100][30], publ_name[100][30];    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; /* 빌렸는지 상태를 표시 */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; int borrowed[100]; </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; while (1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("도서 관리 프로그램 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("메뉴를 선택하세요 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("1. 책을 새로 추가하기 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("2. 책을 검색하기 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("3. 책을 빌리기 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("4. 책을 반납하기 \n");    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("5. 프로그램 종료 \n"); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; printf("당신의 선택은 : ");   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; scanf("%d", &amp;user_choice); </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(user_choice == 1)   </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 책을 새로 추가하는 함수 호출 */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; add_book(book_name, auth_name, publ_name, borrowed, &amp;num_total_book);    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(user_choice == 2)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 책을 검색하는 함수 호출 */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; search_book(book_name, auth_name, publ_name, num_total_book);    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(user_choice == 3)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 책을 빌리는 함수 호출 */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; borrow_book(borrowed);    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(user_choice == 4)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 책을 반납하는 함수 호출 */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return_book(borrowed);    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(user_choice == 5)    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* 프로그램을 종료한다. */    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }    </span><br>
+<span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; } </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;&nbsp;&nbsp; return 0;   </span><br>
+<span style="font-size: 12pt;">}</span></p>
+</div>
+<p><span style="font-size: 12pt;"></span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">어때요? 꽤 간단하지요. 이 작업을 한 후 컴파일 후 실행하면 역시나 잘 작동됨을 알 수 있습니다. 이렇게 여러분은 파일을 나누는 방법에 대해서 알게 되었습니다. 이렇게 파일을 나누어서 처리하게 되면 상당히 체계적으로 프로그래밍을 할 수 있는데 이렇게 하는 프로그래밍을 모듈화 프로그래밍 (modular programming) 이라고 합니다. 즉 프로그램의 각 부분 부분을 나누어서 따로 처리 한다는 의미지요. </span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">우리는 여태까지 헤더 파일에는 함수의 선언 밖에 쓰지 않았지만 사실 헤더파일에도 많은 것들이 올 수 있습니다. 이에 대해서는 다음 시간에 알아보도록 합시다.</span></p>
+<span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">&nbsp;</span></p>
+<span style="font-size: 12pt;">  </span><p style="font-weight: bold;"><span style="font-size: 12pt;">생각해 볼 문제</span></p>
+<p><br>
+</p>
+<span style="font-size: 12pt;">  </span><span style="font-size: 12pt;">  </span><p><span style="font-size: 12pt;">1. 위 도서 관리 프로그램을 구조체를 이용하여 만든 것이 있을 것입니다. (</span><a title="http://itguru.tistory.com/60" href="http://itguru.tistory.com/60"><span style="font-size: 12pt;">http://itguru.tistory.com/60</span></a><span style="font-size: 12pt;"> 생각해 볼 문제 참조) 이 역시 위와 같이 파일로 쪼개 보세요. <br>
+</span></p>
+<p><span style="font-size: 12pt;"><br>
+</span></p>
+<p><span style="font-size: 12pt;"></span></p><div>
+<div style="border: 1px solid rgb(254, 137, 67); padding: 10px; background-color: rgb(254, 222, 199);" class="txc-textbox">
+<span style="font-size: 11pt;"><span style="font-size: 12pt;">강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 <span style="font-weight: bold;">꼭 댓글을 남겨주시기 바랍니다</span>. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. </span></span><span style="font-size: 11pt;"><span style="font-size: 12pt;"></span></span><br>
+<br>
+<span style="font-size: 11pt;"><span style="font-size: 12pt;">현재 여러분이 보신 강좌는<span style="font-style: italic;">&lt;&lt;씹어먹는 C 언어 - &lt;18 - 1. 파일 뽀개기 (헤더파일과 #include) &gt;&gt;&gt;</span> 입니다. 이번 강좌의 <span style="font-weight: bold;">모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전</span>까지 다음 강좌로 넘어가지 말아주세요 </span></span><br>
+<br>
+<div style="text-align: right;">
+<span style="font-size: 12pt;"><a style="font-weight: bold;" title="[http://itguru.tistory.com/notice/15]로 이동합니다." target="_blank" href="http://itguru.tistory.com/notice/15">다음 강좌 보러가기</a><br>
+</span>
+</div>
+</div>
+</div>
+<br>
+<p></p><div class="container_postbtn"><div class="postbtn_like"><div class="like_btn" data-uoc-svc="tistory" data-uoc-uid="329162_87" data-uoc-sc="" data-uoc-pcurl="http://itguru.tistory.com/87" data-uoc-fetchurl="http://api.kakao.tistory.com/like/fetch?uid=329162_87"><label class="uoc-icon"><span class="ico_postbtn ico_like"></span> <span class="txt_like uoc-text">공감</span><span class="txt_like uoc-count" style="display: none;"></span><input type="button" class="inp_btn uoc-button"></label></div><span class="ico_bar"></span><label data-thumbnail-url="http://cfile1.uf.tistory.com/image/130E31144C40527F9208AF" data-title="씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >" data-description="이번 강좌에서는 모듈화 프로그래밍 (파일 나누기) #include 전처리기에 대한 이해  안녕하세요 여러분. 저도 강좌를 쓰는 것이 참으로 오래간만 입니다. 현재 저는 강좌를 모두 모두 모아 하나의 pdf 파일로 만드.." data-profile-image="http://cfile30.uf.tistory.com/image/24672D3F58DB509F14CA8E" data-profile-name="Psi" data-pc-url="http://itguru.tistory.com/87" data-blog-title="Programming IT"><span class="ico_postbtn ico_sns">sns</span><input type="button" class="inp_btn"></label><span class="ico_bar"></span><label data-entry-id="87"><span class="ico_postbtn ico_report">신고</span><input type="button" class="inp_btn"></label></div><div class="postbtn_ccl" data-ccl-type="3"><a href="http://creativecommons.org/licenses/by/4.0/deed.ko" target="_blank" class="link_ccl"><span class="bundle_ccl"><span class="ico_postbtn ico_ccl1">저작자표시</span></span></a></div></div>    <!--
+	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		<Work rdf:about="">
+			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />
+		</Work>
+		<License rdf:about="http://creativecommons.org/licenses/by-fr/">
+			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+			<requires rdf:resource="http://web.resource.org/cc/Notice"/>
+			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>
+		</License>
+	</rdf:RDF>
+	--><div style="text-align:center; padding-top:10px;clear:both">
+<iframe src="//www.facebook.com/plugins/like.php?href=http://itguru.tistory.com/87&amp;layout=standard&amp;show_faces=true&amp;width=310&amp;action=like&amp;font=tahoma&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:310px; height:65px;" allowtransparency="true"></iframe>
+</div>
+<div class="another_category another_category_color_gray">
+<h4>'<a href="/category/C">C</a>' 카테고리의 다른 글</h4>
+<table>
+<tbody><tr>
+<th>
+<a href="/89?category=194983">씹어먹는 C 언어 - &lt;19. main 함수의 인자, 텅 빈 void 형&gt;</a>&nbsp;&nbsp;<span>(32)</span>
+</th>
+<td>
+2010.08.02</td>
+</tr>
+<tr>
+<th>
+<a href="/88?category=194983">씹어먹는 C 언어 - &lt;18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)&gt;</a>&nbsp;&nbsp;<span>(13)</span>
+</th>
+<td>
+2010.07.20</td>
+</tr>
+<tr>
+<th>
+<a href="/87?category=194983" class="current">씹어먹는 C 언어 - &lt;18 - 1. 파일 뽀개기 (헤더파일과 #include) &gt;</a>&nbsp;&nbsp;<span>(24)</span>
+</th>
+<td>
+2010.07.16</td>
+</tr>
+<tr>
+<th>
+<a href="/83?category=194983">씹어먹는 C 언어 - &lt;17. 변수의 생존 조건 및 데이터 세그먼트의 구조&gt;</a>&nbsp;&nbsp;<span>(14)</span>
+</th>
+<td>
+2010.06.19</td>
+</tr>
+<tr>
+<th>
+<a href="/71?category=194983">씹어먹는 C 언어 - &lt;16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))&gt;</a>&nbsp;&nbsp;<span>(20)</span>
+</th>
+<td>
+2010.06.13</td>
+</tr>
+<tr>
+<th>
+<a href="/60?category=194983">씹어먹는 C 언어 - &lt;16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수&gt;</a>&nbsp;&nbsp;<span>(41)</span>
+</th>
+<td>
+2010.04.11</td>
+</tr>
+</tbody></table></div>
+<br> <br>
+
+
+					
