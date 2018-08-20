@@ -1,26 +1,12 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "parser_environment.h"
+#include "token_types.h"
+
 using std::string;
 
 namespace md_parser {
-
-enum TokenTypes {
-  TEXT,
-  LIST_ENUM,
-  LIST_UNORDER,
-  HEADER,  // General Header
-  HEADER1,
-  HEADER2,
-  HEADER3,
-  HEADER4,
-  HEADER5,
-  HEADER6,
-  QUOTE,
-  HORIZONTAL_LINE,
-  CODE,
-  NEWLINE
-};
 
 struct HtmlFragments {
   enum Types { BOLD, ITALIC, TEXT, LINK, IMAGE, CODE } type;
@@ -45,17 +31,18 @@ struct HtmlFragments {
 
 // Class for the regular Text content.
 class Content {
- protected:
-  string content_;
-
  public:
   Content(const string& content);
-  virtual string OutputHtml();
 
   // Continuation of the content.
   virtual void AddContent(const string& content);
   virtual ~Content(){};
   virtual TokenTypes GetContentType() const { return TokenTypes::TEXT; }
+  virtual string OutputHtml(ParserEnvironment* parser_env);
+  virtual string OutputHtml();
+
+ protected:
+  string content_;
 
  private:
   // Returns start_pos again if nothing is handled.

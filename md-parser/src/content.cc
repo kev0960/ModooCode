@@ -237,4 +237,8 @@ size_t Content::HandleCodes(const size_t start_pos,
   return code_end + 3;
 }
 
+string Content::OutputHtml(ParserEnvironment*) {
+  return OutputHtml();
+}
+
 }  // namespace md_parser

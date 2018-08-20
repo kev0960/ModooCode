@@ -54,7 +54,8 @@ add_executable(content_test
                src/content.cc
                src/util.cc
                src/content_header.cc
-               src/content_list.cc)
+               src/content_list.cc
+               src/parser_environment.cc)
 target_link_libraries(content_test gtest_main chroma)
 add_test(NAME content_test COMMAND content_test)
 
@@ -64,6 +65,7 @@ add_executable(parser_test
                src/util.cc
                src/parser.cc
                src/content_header.cc
-               src/content_list.cc)
+               src/content_list.cc
+               src/parser_environment.cc)
 target_link_libraries(parser_test gtest_main chroma)
 add_test(NAME parser_test COMMAND parser_test)

@@ -3,6 +3,7 @@
 #include "content.h"
 #include "content_header.h"
 #include "content_list.h"
+#include "parser_environment.h"
 
 #include <memory>
 #include <stack>
@@ -78,19 +79,18 @@ struct ParserState {
 };
 
 class MDParser {
- private:
-  std::string content_;
-  std::vector<ParserState> states_;
-
-  bool newline_started_;
-
- protected:
-  virtual const std::vector<std::unique_ptr<Content>>& GetContentList() const;
-
  public:
   MDParser(std::string content);
   void Parser();
   void AnalyzeLine(const std::string& line, std::pair<int, int> space_and_tab);
   TokenTypes GetTokenInfo(const std::string& token);
+  string ConvertToHtml();
+
+ private:
+  std::string content_;
+  bool newline_started_;
+  ParserEnvironment parser_env_;
+ protected:
+  const std::vector<std::unique_ptr<Content>>& GetContentList() const;
 };
 }  // namespace md_parser

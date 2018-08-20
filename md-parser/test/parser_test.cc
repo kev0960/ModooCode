@@ -63,4 +63,16 @@ TEST(ParserTest, SimpleParser) {
                            {TEXT, LIST_ENUM, LIST_ENUM, TEXT, LIST_ENUM});
 }
 
+TEST(ParserTest, SimpleOrderedListParser) {
+  string enum_list = R"(
+    1. a
+    1. a
+      1. b
+      1. b
+        1. c
+    1. a
+  )";
+  MockMDParser parser_enum_list(enum_list);
+  EXPECT_EQ(parser_enum_list.ConvertToHtml(), "");
+}
 }

@@ -1,9 +1,9 @@
 #include "parser.h"
+#include <experimental/optional>
+#include <utility>
 #include "content_header.h"
 #include "content_list.h"
 #include "parser_environment.h"
-#include <experimental/optional>
-#include <utility>
 #include "util.h"
 
 using std::string;
@@ -89,15 +89,14 @@ void MDParser::AnalyzeLine(const std::string& line,
   } else if (first_token_info == TEXT) {
     // Then we have to continue whatever has done previously.
     if (newline_started_) {
-      content_list_.emplace_back(new Content(line));
+      parser_env_.AddNewContent(new Content(line));
       newline_started_ = false;
     } else {
       // Otherwise add curent content to the previous content list.
-      if (content_list_.empty()) {
+      if (!parser_env_.AppendToLastContent(line)) {
         LOG << "(ERROR) Content list is empty :(";
         return;
       }
-      content_list_.back()->AddContent(line);
     }
   } else {
     newline_started_ = false;
@@ -108,21 +107,20 @@ void MDParser::AnalyzeLine(const std::string& line,
       case HEADER4:
       case HEADER5:
       case HEADER6:
-        content_list_.emplace_back(
+        parser_env_.AddNewContent(
             new HeaderContent(line_except_first_token, first_token_info));
         break;
       case LIST_ENUM: {
-        enum_list_manager_.AddNextList(space_and_tab);
-        auto depth_and_enum = enum_list_manager_.GetCurrentEnum();
-        content_list_.emplace_back(new EnumListContent(line_except_first_token,
-                                                       depth_and_enum.second,
-                                                       depth_and_enum.first));
+        parser_env_.AddNextList(LIST_ENUM, space_and_tab);
+        auto depth_and_enum = parser_env_.GetCurrentEnum(LIST_ENUM);
+        parser_env_.AddNewContent(new EnumListContent(line_except_first_token,
+                                                      depth_and_enum.first));
         break;
       }
       case LIST_UNORDER: {
-        unordered_list_manager_.AddNextList(space_and_tab);
-        auto depth_and_enum = unordered_list_manager_.GetCurrentEnum();
-        content_list_.emplace_back(new UnorderedListContent(
+        parser_env_.AddNextList(LIST_UNORDER, space_and_tab);
+        auto depth_and_enum = parser_env_.GetCurrentEnum(LIST_UNORDER);
+        parser_env_.AddNewContent(new UnorderedListContent(
             line_except_first_token, depth_and_enum.first));
         break;
       }
@@ -146,6 +144,14 @@ void MDParser::Parser() {
 }
 
 const std::vector<std::unique_ptr<Content>>& MDParser::GetContentList() const {
-  return content_list_;
+  return parser_env_.GetContentList();
+}
+
+string MDParser::ConvertToHtml() {
+  string output_html;
+  do {
+    output_html += parser_env_.ParseCurrentContent();
+  } while (parser_env_.AdvanceToNextContent());
+  return output_html;
 }
 }  // namespace md_parser
