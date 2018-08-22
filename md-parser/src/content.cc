@@ -1,8 +1,8 @@
 #include "content.h"
+#include <cstdlib>
 #include <functional>
 #include <limits>
 #include <memory>
-#include <cstdlib>
 #include "chroma.h"
 #include "util.h"
 
@@ -48,7 +48,7 @@ string FormatCodeUsingChroma(const string& code, const string& lang,
   char* formatted =
       FormatCodeWithoutInlineCss(code_.get(), lang_.get(), schema_.get());
   string formatted_code = formatted;
-  free (formatted);
+  free(formatted);
 
   return formatted_code;
 }
@@ -161,7 +161,7 @@ string Content::OutputHtml() {
           "' alt='", GetHtmlFragmentText(content_, fragments[i]), "'>");
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
       html += FormatCodeUsingChroma(GetHtmlFragmentText(content_, fragments[i]),
-                                    "cpp", "github");
+                                    fragments[i].code_style, "github");
     } else {
       html += GetHtmlFragmentText(content_, fragments[i]);
     }
@@ -179,14 +179,12 @@ size_t Content::HandleLinks(const size_t start_pos,
   // Search for the ending ']'.
   size_t end_bracket = content_.find(']', start_pos);
   if (end_bracket == string::npos) return start_pos;
-
   if (end_bracket + 1 >= content_.size() || content_[end_bracket + 1] != '(') {
     return start_pos;
   }
   size_t link_start = end_bracket + 1;
   size_t link_end = content_.find(')', link_start);
   if (link_end == string::npos) return start_pos;
-
   if (*text_start != -1) {
     fragments->push_back(
         HtmlFragments(HtmlFragments::Types::TEXT, *text_start, start_pos - 1));
@@ -220,7 +218,13 @@ size_t Content::HandleCodes(const size_t start_pos,
       content_.substr(start_pos, 3) != "```") {
     return start_pos;
   }
-  size_t code_start = start_pos + 3;
+  // Need to find the code style.
+  size_t first_white_space =
+      FindFirstOfAny(content_, start_pos, " \n") - content_.begin();
+  const string code_style =
+      content_.substr(start_pos + 3, first_white_space - (start_pos + 3));
+
+  size_t code_start = first_white_space + 1;
   size_t code_end;
   if ((code_end = content_.find("```", code_start)) == string::npos) {
     return start_pos;
@@ -228,17 +232,15 @@ size_t Content::HandleCodes(const size_t start_pos,
 
   code_end--;
   if (*text_start != -1) {
-    fragments->push_back(
-        HtmlFragments(HtmlFragments::Types::TEXT, *text_start, start_pos - 1));
+    fragments->push_back(HtmlFragments(HtmlFragments::Types::TEXT, *text_start,
+                                       start_pos - 1, code_style));
     *text_start = -1;
   }
-  fragments->push_back(
-      HtmlFragments(HtmlFragments::Types::CODE, code_start, code_end));
+  fragments->push_back(HtmlFragments(HtmlFragments::Types::CODE, code_start,
+                                     code_end, code_style));
   return code_end + 3;
 }
 
-string Content::OutputHtml(ParserEnvironment*) {
-  return OutputHtml();
-}
+string Content::OutputHtml(ParserEnvironment*) { return OutputHtml(); }
 
 }  // namespace md_parser

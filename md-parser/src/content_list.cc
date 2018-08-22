@@ -17,7 +17,6 @@ string EnumListContent::OutputHtml(ParserEnvironment* parser_env) {
   }
   output_html += OutputHtml();
   int close_tag_count = parser_env->ShouldEndListTag();
-  LOG << "Close tag count : " << close_tag_count;
   while (close_tag_count) {
     output_html += "</ol>";
     close_tag_count--;

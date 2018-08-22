@@ -14,6 +14,8 @@ string FetchFirstToken(const string& line);
 string::const_iterator FindFirstOfAny(const string& str,
                                       const string& matching_chars);
 
+string::const_iterator FindFirstOfAny(const string& str, const size_t start_pos,
+                                      const string& matching_chars);
 // Concatenates strings into one.
 string StrCat(const string& s);
 

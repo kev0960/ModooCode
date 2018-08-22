@@ -21,7 +21,7 @@ void RemoveNewLineAtEnd(string* s) {
 const static char kWhiteLists[] = " \t";
 
 MDParser::MDParser(std::string content)
-    : content_(content), newline_started_(true) {}
+    : content_(content), newline_started_(true), in_code_(false) {}
 
 TokenTypes MDParser::GetTokenInfo(const string& token) {
   if (token.empty()) return NEWLINE;
@@ -45,18 +45,21 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
       default:
         return HEADER4;
     }
-  } else if (token.length() == 1) {
+  }
+  if (token.length() == 1) {
     if (token[0] == '*') {
       return LIST_UNORDER;
     } else if (token[0] == '>') {
       return QUOTE;
     }
-  } else if (token.length() == 3) {
+  }
+  if (token.length() == 3) {
     if (token == "---")
       return HORIZONTAL_LINE;
     else if (token == "```")
       return CODE;
-  } else if (token[token.length() - 1] == '.') {
+  }
+  if (token[token.length() - 1] == '.') {
     size_t num_digits = 0;
     for (size_t i = 0; i < token.length() - 1; i++) {
       if ('0' <= token[i] && token[i] <= '9') {
@@ -68,6 +71,9 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
       return LIST_ENUM;
     }
     return TEXT;
+  }
+  if (token.length() >= 3 && token.find("```") == 0) {
+    return CODE;
   }
 
   // TEXT does not mean it is not used as a keyword.
@@ -83,8 +89,23 @@ void MDParser::AnalyzeLine(const std::string& line,
   const string first_token = std::string(line.begin(), first_white_space);
   auto first_token_info = GetTokenInfo(first_token);
   const string line_except_first_token = line.substr(first_token.size());
-
-  if (first_token_info == NEWLINE) {
+  if (first_token_info == CODE) {
+    if (in_code_) {
+      in_code_ = false;
+      newline_started_ = true;
+      parser_env_.AppendToLastContent(StrCat("\n", line));
+    } else {
+      in_code_ = true;
+      // For codes, we have to respect the line break. Think it as a verbatim
+      // environment.
+      parser_env_.AddNewContent(new Content(line));
+    }
+    return;
+  } else if (in_code_) {
+    if (!parser_env_.AppendToLastContent(StrCat("\n", line))) {
+      LOG << "(ERROR) Code parinsg error!";
+    }
+  } else if (first_token_info == NEWLINE) {
     newline_started_ = true;
   } else if (first_token_info == TEXT) {
     // Then we have to continue whatever has done previously.
@@ -113,8 +134,8 @@ void MDParser::AnalyzeLine(const std::string& line,
       case LIST_ENUM: {
         parser_env_.AddNextList(LIST_ENUM, space_and_tab);
         auto depth_and_enum = parser_env_.GetCurrentEnum(LIST_ENUM);
-        parser_env_.AddNewContent(new EnumListContent(line_except_first_token,
-                                                      depth_and_enum.first));
+        parser_env_.AddNewContent(
+            new EnumListContent(line_except_first_token, depth_and_enum.first));
         break;
       }
       case LIST_UNORDER: {

@@ -17,10 +17,13 @@ struct HtmlFragments {
 
   int link_start;
   int link_end;
+  string code_style;
 
   HtmlFragments(Types t) : type(t) {}
   HtmlFragments(Types t, int start, int end)
       : type(t), str_start(start), str_end(end) {}
+  HtmlFragments(Types t, int start, int end, const string& style)
+      : type(t), str_start(start), str_end(end), code_style(style) {}
   HtmlFragments(Types t, int start, int end, int link_start, int link_end)
       : type(t),
         str_start(start),

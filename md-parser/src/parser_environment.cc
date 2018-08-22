@@ -121,7 +121,6 @@ bool ParserEnvironment::ShouldStartNewListTag() {
         // identical. If they are identical, then there is no reason to start a
         // new list tag.
         auto* prev_list = dynamic_cast<ListContent*>(previous_content);
-        LOG << "Prev depth : " << prev_list->GetDepth() << " my depth : " << current_depth << current;
         if (prev_list->GetDepth() < current_depth) {
           return true;
         } else if (prev_list->GetDepth() == current_depth) {
@@ -144,14 +143,12 @@ int ParserEnvironment::ShouldEndListTag() {
   auto* current_content = content_list_[current_content_].get();
   int next_depth = 0;
   int current_depth = dynamic_cast<ListContent*>(current_content)->GetDepth();
-  LOG << "My depth : " << current_depth;
   // First need to check there is need to close the tag.
   if (current_content_ < content_list_.size() - 1) {
     auto* next_content = content_list_[current_content_ + 1].get();
     if (IsList(next_content->GetContentType())) {
       if (next_content->GetContentType() == current_content->GetContentType()) {
         auto* next_list = dynamic_cast<ListContent*>(next_content);
-        LOG << "Next list depth : " << next_list->GetDepth();
         if (current_depth <= next_list->GetDepth()) {
           return 0;
         }

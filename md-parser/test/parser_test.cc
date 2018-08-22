@@ -15,6 +15,27 @@ bool CheckParsedContentOrders(
   }
   return true;
 }
+
+struct ListOrElem {
+  string content;
+  bool is_list;
+
+  ListOrElem(const string& s, bool is_list = false)
+      : content(s), is_list(is_list) {}
+};
+
+ListOrElem MakeOrderedList(std::vector<ListOrElem> list) {
+  string output = "<ol>";
+  for (const auto& s : list) {
+    if (s.is_list) {
+      output += s.content;
+    } else {
+      output += StrCat("<li>", s.content, "</li>");
+    }
+  }
+  output += "</ol>";
+  return ListOrElem(output, true);
+}
 }
 
 class MockMDParser : public MDParser {
@@ -73,6 +94,27 @@ TEST(ParserTest, SimpleOrderedListParser) {
     1. a
   )";
   MockMDParser parser_enum_list(enum_list);
-  EXPECT_EQ(parser_enum_list.ConvertToHtml(), "");
+  const auto list_elem_a = ListOrElem(" a");
+  const auto list_elem_b = ListOrElem(" b");
+  const auto list_elem_c = ListOrElem(" c");
+  EXPECT_EQ(parser_enum_list.ConvertToHtml(),
+            MakeOrderedList({list_elem_a, list_elem_a,
+                             MakeOrderedList({list_elem_b, list_elem_b,
+                                              MakeOrderedList({list_elem_c})}),
+                             list_elem_a})
+                .content);
+
+  string enum_list2 = R"(
+    1. a
+        1. c
+      1. b
+        1. c
+  )";
+  MockMDParser parser_enum_list2(enum_list2);
+  EXPECT_EQ(parser_enum_list2.ConvertToHtml(),
+            MakeOrderedList({list_elem_a, MakeOrderedList({list_elem_c}),
+                             MakeOrderedList({list_elem_b,
+                                              MakeOrderedList({list_elem_c})})})
+                .content);
 }
 }

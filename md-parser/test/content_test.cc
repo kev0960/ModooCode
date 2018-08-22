@@ -111,10 +111,10 @@ TEST(ContentTest, Image) {
 }
 
 TEST(ContentTest, Code) {
-  Content code("```print 'hi'```");
+  Content code("```cpp\nprint 'hi'```");
   EXPECT_EQ(string(kFormattedCode), code.OutputHtml());
 
-  Content code_in_middle("something ```print 'hi'``` and else");
+  Content code_in_middle("something ```cpp\nprint 'hi'``` and else");
   EXPECT_EQ(StrCat("something ", kFormattedCode, " and else"),
             code_in_middle.OutputHtml());
 }

@@ -39,7 +39,12 @@ std::pair<int, int> TrimLeft(string* str) {
 
 string::const_iterator FindFirstOfAny(const string& str,
                                       const string& matching_chars) {
-  for (auto itr = str.begin(); itr != str.end(); itr++) {
+  return FindFirstOfAny(str, 0, matching_chars);
+}
+
+string::const_iterator FindFirstOfAny(const string& str, const size_t start_pos,
+                                      const string& matching_chars) {
+  for (auto itr = str.begin() + start_pos; itr != str.end(); itr++) {
     if (std::any_of(matching_chars.begin(), matching_chars.end(),
                     [&](const char c) { return c == *itr; })) {
       return itr;

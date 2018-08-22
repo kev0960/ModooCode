@@ -89,6 +89,7 @@ class MDParser {
  private:
   std::string content_;
   bool newline_started_;
+  bool in_code_;
   ParserEnvironment parser_env_;
  protected:
   const std::vector<std::unique_ptr<Content>>& GetContentList() const;
