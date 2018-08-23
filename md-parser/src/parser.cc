@@ -1,6 +1,7 @@
 #include "parser.h"
 #include <experimental/optional>
 #include <utility>
+#include <algorithm>
 #include "content_header.h"
 #include "content_list.h"
 #include "parser_environment.h"
@@ -14,6 +15,12 @@ namespace {
 
 void RemoveNewLineAtEnd(string* s) {
   if (!s->empty() && s->back() == '\n') s->erase(s->end() - 1);
+}
+
+bool IsHeaderStartOrEnd(const string& s) {
+  return std::all_of(s.begin(), s.end(), [](const char c) {
+    return c == '-';
+  });
 }
 
 }  // namespace
@@ -64,8 +71,9 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
     for (size_t i = 0; i < token.length() - 1; i++) {
       if ('0' <= token[i] && token[i] <= '9') {
         num_digits++;
-      } else
+      } else {
         break;
+      }
     }
     if (num_digits > 0 && num_digits == token.length() - 1) {
       return LIST_ENUM;
@@ -152,7 +160,7 @@ void MDParser::AnalyzeLine(const std::string& line,
 }
 
 void MDParser::Parser() {
-  size_t start_pos = 0;
+  size_t start_pos = ParseHeaderContent();
   size_t end_of_line = ReadUntilEndOfLine(content_, start_pos);
   while (end_of_line <= content_.size()) {
     string line = content_.substr(start_pos, end_of_line - start_pos);
@@ -175,4 +183,45 @@ string MDParser::ConvertToHtml() {
   } while (parser_env_.AdvanceToNextContent());
   return output_html;
 }
+
+// The header content is defined as follows.
+// -------------------- (Arbitrary length of - s; Should be more than 3)
+// title    : <Title of the content>
+// date     : <Published date; current date if omitted>
+// category : <Path to serve the content>
+// <key>    : <value>
+// --------------------
+size_t MDParser::ParseHeaderContent() {
+  size_t start_pos = 0;
+  size_t end_of_line = ReadUntilEndOfLine(content_, start_pos);
+  bool header_started = false;
+  while (end_of_line <= content_.size()) {
+    string line = content_.substr(start_pos, end_of_line - start_pos);
+    TrimLeft(&line);
+    RemoveNewLineAtEnd(&line);
+    if (!header_started) {
+      if (!IsHeaderStartOrEnd(line)) {
+        return 0;
+      }
+      header_started = true;
+    } else {
+      if (IsHeaderStartOrEnd(line)) {
+        return end_of_line + 1;
+      }
+      // Then it must be () : () format.
+      auto sep = FindFirstOfAny(line, ":");
+      string key = string(line.cbegin(), sep);
+      string value = string(sep + 1, line.cend());
+
+      // Any spaces around : will be removed.
+      TrimLeft(&value);
+      TrimRight(&key);
+      header_[key] = value;
+    }
+    start_pos = end_of_line + 1;
+    end_of_line = ReadUntilEndOfLine(content_, start_pos);
+  }
+  return end_of_line;
+}
+
 }  // namespace md_parser

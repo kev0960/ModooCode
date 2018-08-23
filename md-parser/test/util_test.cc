@@ -30,6 +30,20 @@ TEST(UtilTest, TrimLeft) {
   EXPECT_EQ(std::make_pair(0, 0), res_2);
 }
 
+TEST(UtilTest, TrimRight) {
+  string line_1 = "aaa    \t\t";
+  auto res = TrimRight(&line_1);
+
+  EXPECT_STREQ("aaa", line_1.c_str());
+  EXPECT_EQ(std::make_pair(4, 2), res);
+
+  string empty_line = "";
+  auto res_2 = TrimRight(&empty_line);
+
+  EXPECT_STREQ("", empty_line.c_str());
+  EXPECT_EQ(std::make_pair(0, 0), res_2);
+}
+
 TEST(UtilTest, FindFirstOfAny) {
   string line_1 = "ab c\td";
   auto res = FindFirstOfAny(line_1, " \t");

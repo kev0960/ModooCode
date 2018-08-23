@@ -117,4 +117,18 @@ TEST(ParserTest, SimpleOrderedListParser) {
                                               MakeOrderedList({list_elem_c})})})
                 .content);
 }
+
+TEST(ParserTest, Header) {
+  string header = R"(
+  ------------
+  title : some title
+  date : 2018-08-22
+  )";
+  std::map<string, string> parsed_header {
+    {"title", "some title"},
+    {"date", "2018-08-22"}
+  };
+  MockMDParser header_parser(header);
+  EXPECT_THAT(header_parser.GetHeaderInfo(), ::testing::ContainerEq(parsed_header));
+}
 }

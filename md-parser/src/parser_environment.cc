@@ -188,7 +188,6 @@ int ParserEnvironment::ShouldEndListTag() {
 
 bool ParserEnvironment::AdvanceToNextContent() {
   current_content_++;
-  if (current_content_ >= content_list_.size()) return false;
-  return true;
+  return current_content_ < content_list_.size();
 }
-}
+} // namespace md_parser

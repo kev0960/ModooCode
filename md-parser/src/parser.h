@@ -10,6 +10,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <map>
 
 /*
 
@@ -85,8 +86,13 @@ class MDParser {
   void AnalyzeLine(const std::string& line, std::pair<int, int> space_and_tab);
   TokenTypes GetTokenInfo(const std::string& token);
   string ConvertToHtml();
+  const std::map<string, string>& GetHeaderInfo() { return header_; }
 
  private:
+  // Parses the header of the content file.
+  size_t ParseHeaderContent();
+  std::map<string, string> header_;
+
   std::string content_;
   bool newline_started_;
   bool in_code_;

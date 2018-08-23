@@ -10,6 +10,8 @@ namespace md_parser {
 size_t ReadUntilEndOfLine(const string& content, size_t start);
 
 std::pair<int, int> TrimLeft(string* str);
+std::pair<int, int> TrimRight(string* str);
+
 string FetchFirstToken(const string& line);
 string::const_iterator FindFirstOfAny(const string& str,
                                       const string& matching_chars);
