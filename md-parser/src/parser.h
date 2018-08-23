@@ -86,6 +86,7 @@ class MDParser {
   void AnalyzeLine(const std::string& line, std::pair<int, int> space_and_tab);
   TokenTypes GetTokenInfo(const std::string& token);
   string ConvertToHtml();
+  string GetCss();
   const std::map<string, string>& GetHeaderInfo() { return header_; }
 
  private:

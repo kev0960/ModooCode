@@ -9,6 +9,23 @@
 namespace md_parser {
 
 namespace {
+
+// Remove empty p tags. (e.g <p></p>).
+void RemoveEmptyPTag(string* s) {
+  for (size_t i = 0; i < s->size(); i++) {
+    if (s->at(i) == '<') {
+      if (i + 2 < s->size() && s->substr(i, 3) == "<p>") {
+        size_t p_tag_start = i;
+        i += 3;
+        if (i + 3 < s->size() && s->substr(i, 4) == "</p>") {
+          s->erase(p_tag_start, 7);
+          i = p_tag_start - 1;
+        }
+      }
+    }
+  }
+}
+
 // Return how many matches.
 int FindOneOrTwoConsecutiveChar(const string& s, size_t start, char c) {
   if (s[start] == c) {
@@ -137,7 +154,7 @@ string Content::OutputHtml() {
   // Now we have to generate formatted html.
   bool bold = false;
   bool italic = false;
-  string html;
+  string html = "<p>";
   for (size_t i = 0; i < fragments.size(); i++) {
     if (fragments[i].type == HtmlFragments::Types::BOLD) {
       if (!bold)
@@ -157,15 +174,19 @@ string Content::OutputHtml() {
                      GetHtmlFragmentText(content_, fragments[i]), "</a>");
     } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
       html += StrCat(
-          "<img src='", GetHtmlFragmentText(content_, fragments[i], false),
-          "' alt='", GetHtmlFragmentText(content_, fragments[i]), "'>");
+          "</p><img src='", GetHtmlFragmentText(content_, fragments[i], false),
+          "' alt='", GetHtmlFragmentText(content_, fragments[i]), "'><p>");
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
-      html += FormatCodeUsingChroma(GetHtmlFragmentText(content_, fragments[i]),
-                                    fragments[i].code_style, "github");
+      html += StrCat("</p>", FormatCodeUsingChroma(
+                                 GetHtmlFragmentText(content_, fragments[i]),
+                                 fragments[i].code_style, "github"),
+                     "<p>");
     } else {
       html += GetHtmlFragmentText(content_, fragments[i]);
     }
   }
+  html += "</p>";
+  RemoveEmptyPTag(&html);
   return html;
 }
 

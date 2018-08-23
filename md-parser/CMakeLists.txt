@@ -42,7 +42,11 @@ add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
 # automatically when using CMake 2.8.11 or later. Otherwise we have to add them
 # here ourselves.
 if(CMAKE_VERSION VERSION_LESS 2.8.11)
-  include_directories("${gtest_SOURCE_DIR}/include")
+  include_directories(
+    "${gtest_SOURCE_DIR}/include" "${gmock_SOURCE_DIR}/include")
+else()
+  target_include_directories(gmock_main SYSTEM BEFORE INTERFACE
+    "${gtest_SOURCE_DIR}/include" "${gmock_SOURCE_DIR}/include")
 endif()
 
 add_executable(util_test test/util_test.cc src/util.cc)
@@ -67,5 +71,5 @@ add_executable(parser_test
                src/content_header.cc
                src/content_list.cc
                src/parser_environment.cc)
-target_link_libraries(parser_test gtest_main chroma)
+target_link_libraries(parser_test gmock_main chroma)
 add_test(NAME parser_test COMMAND parser_test)

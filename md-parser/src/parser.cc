@@ -1,7 +1,8 @@
 #include "parser.h"
+#include <algorithm>
 #include <experimental/optional>
 #include <utility>
-#include <algorithm>
+#include "chroma.h"
 #include "content_header.h"
 #include "content_list.h"
 #include "parser_environment.h"
@@ -18,17 +19,24 @@ void RemoveNewLineAtEnd(string* s) {
 }
 
 bool IsHeaderStartOrEnd(const string& s) {
-  return std::all_of(s.begin(), s.end(), [](const char c) {
-    return c == '-';
-  });
+  return s.size() >= 4 &&
+         std::all_of(s.begin(), s.end(), [](const char c) { return c == '-'; });
+}
+
+std::unique_ptr<char[]> cstring_from_string(const string& s) {
+  std::unique_ptr<char[]> c_str{new char[s.size() + 1]};
+  for (size_t i = 0; i < s.size(); i++) {
+    c_str[i] = s.at(i);
+  }
+  c_str[s.size()] = '\0';
+  return c_str;
 }
 
 }  // namespace
 
-const static char kWhiteLists[] = " \t";
-
 MDParser::MDParser(std::string content)
-    : content_(content), newline_started_(true), in_code_(false) {}
+    : content_(content), newline_started_(true), in_code_(false) {
+}
 
 TokenTypes MDParser::GetTokenInfo(const string& token) {
   if (token.empty()) return NEWLINE;
@@ -91,12 +99,15 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
 // Analyze the line. It may change the parser state.
 void MDParser::AnalyzeLine(const std::string& line,
                            std::pair<int, int> space_and_tab) {
-  auto first_white_space = FindFirstOfAny(line, kWhiteLists);
+  auto first_white_space = FindFirstWhitespace(line);
 
   // Fetch the first token.
   const string first_token = std::string(line.begin(), first_white_space);
   auto first_token_info = GetTokenInfo(first_token);
   const string line_except_first_token = line.substr(first_token.size());
+  if (first_token_info == NEWLINE && line.size() > 0) {
+    first_token_info = TEXT;
+  }
   if (first_token_info == CODE) {
     if (in_code_) {
       in_code_ = false;
@@ -200,6 +211,9 @@ size_t MDParser::ParseHeaderContent() {
     TrimLeft(&line);
     RemoveNewLineAtEnd(&line);
     if (!header_started) {
+      if (line.size() == 0) {
+        goto go_next_line;
+      }
       if (!IsHeaderStartOrEnd(line)) {
         return 0;
       }
@@ -210,18 +224,25 @@ size_t MDParser::ParseHeaderContent() {
       }
       // Then it must be () : () format.
       auto sep = FindFirstOfAny(line, ":");
+      if (sep == line.cend()) {
+        return end_of_line + 1;
+      }
       string key = string(line.cbegin(), sep);
       string value = string(sep + 1, line.cend());
 
       // Any spaces around : will be removed.
-      TrimLeft(&value);
-      TrimRight(&key);
+      Trim(&value);
+      Trim(&key);
       header_[key] = value;
     }
+  go_next_line:
     start_pos = end_of_line + 1;
     end_of_line = ReadUntilEndOfLine(content_, start_pos);
   }
   return end_of_line;
 }
 
+string MDParser::GetCss() {
+  return GetChromaCss(cstring_from_string("github").get());
+}
 }  // namespace md_parser

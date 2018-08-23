@@ -22,4 +22,5 @@ int main(int argc, char** argv) {
   md_parser::MDParser parser(content);
   parser.Parser();
   std::cout << parser.ConvertToHtml();
+  std::cout << "<style>" << parser.GetCss() << "</style>";
 }

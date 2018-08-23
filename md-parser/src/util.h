@@ -11,6 +11,7 @@ size_t ReadUntilEndOfLine(const string& content, size_t start);
 
 std::pair<int, int> TrimLeft(string* str);
 std::pair<int, int> TrimRight(string* str);
+void Trim(string* str);
 
 string FetchFirstToken(const string& line);
 string::const_iterator FindFirstOfAny(const string& str,
@@ -18,6 +19,11 @@ string::const_iterator FindFirstOfAny(const string& str,
 
 string::const_iterator FindFirstOfAny(const string& str, const size_t start_pos,
                                       const string& matching_chars);
+
+string::const_iterator FindFirstWhitespace(const string& str);
+
+string::const_iterator FindFirstWhitespace(const string& str,
+                                           const size_t start_pos);
 // Concatenates strings into one.
 string StrCat(const string& s);
 

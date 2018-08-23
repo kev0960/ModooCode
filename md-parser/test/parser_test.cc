@@ -1,5 +1,6 @@
 #include "../src/parser.h"
 #include "../src/util.h"
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
 namespace md_parser {
@@ -94,9 +95,9 @@ TEST(ParserTest, SimpleOrderedListParser) {
     1. a
   )";
   MockMDParser parser_enum_list(enum_list);
-  const auto list_elem_a = ListOrElem(" a");
-  const auto list_elem_b = ListOrElem(" b");
-  const auto list_elem_c = ListOrElem(" c");
+  const auto list_elem_a = ListOrElem("<p> a</p>");
+  const auto list_elem_b = ListOrElem("<p> b</p>");
+  const auto list_elem_c = ListOrElem("<p> c</p>");
   EXPECT_EQ(parser_enum_list.ConvertToHtml(),
             MakeOrderedList({list_elem_a, list_elem_a,
                              MakeOrderedList({list_elem_b, list_elem_b,
@@ -123,12 +124,24 @@ TEST(ParserTest, Header) {
   ------------
   title : some title
   date : 2018-08-22
+  ------------
   )";
-  std::map<string, string> parsed_header {
-    {"title", "some title"},
-    {"date", "2018-08-22"}
-  };
+  std::map<string, string> parsed_header{{"title", "some title"},
+                                         {"date", "2018-08-22"}};
   MockMDParser header_parser(header);
-  EXPECT_THAT(header_parser.GetHeaderInfo(), ::testing::ContainerEq(parsed_header));
+  EXPECT_THAT(header_parser.GetHeaderInfo(),
+              ::testing::ContainerEq(parsed_header));
+
+  string header2 = R"(
+  ------------
+  date :
+  k e y               :             v
+  ------------
+  )";
+  std::map<string, string> parsed_header2{{"date", ""},
+                                         {"k e y", "v"}};
+  MockMDParser header_parser2(header2);
+  EXPECT_THAT(header_parser2.GetHeaderInfo(),
+              ::testing::ContainerEq(parsed_header2));
 }
 }

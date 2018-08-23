@@ -56,6 +56,11 @@ std::pair<int, int> TrimRight(string* str) {
   return std::make_pair(space_cnt, tab_cnt);
 }
 
+void Trim(string* str) {
+  TrimLeft(str);
+  TrimRight(str);
+}
+
 string::const_iterator FindFirstOfAny(const string& str,
                                       const string& matching_chars) {
   return FindFirstOfAny(str, 0, matching_chars);
@@ -65,8 +70,29 @@ string::const_iterator FindFirstOfAny(const string& str, const size_t start_pos,
                                       const string& matching_chars) {
   for (auto itr = str.begin() + start_pos; itr != str.end(); itr++) {
     if (std::any_of(matching_chars.begin(), matching_chars.end(),
+                    [&](const char c) {  return c == *itr; })) {
+      return itr;
+    }
+  }
+  return str.end();
+}
+
+string::const_iterator FindFirstWhitespace(const string& str) {
+  return FindFirstWhitespace(str, 0);
+}
+
+string::const_iterator FindFirstWhitespace(const string& str,
+                                           const size_t start_pos) {
+  const string matching_chars = " \t";
+  for (auto itr = str.begin() + start_pos; itr != str.end(); itr++) {
+    if (std::any_of(matching_chars.begin(), matching_chars.end(),
                     [&](const char c) { return c == *itr; })) {
       return itr;
+    } else if (static_cast<unsigned char>(*itr) == 194) {
+      if ((itr + 1) != str.end() &&
+          static_cast<unsigned char>(*(itr + 1)) == 160) {
+        return itr;
+      }
     }
   }
   return str.end();
