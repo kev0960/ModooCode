@@ -1,0 +1,111 @@
+<p>itguru Top itguru Top</p><pre class="chroma">이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 &lt;&lt;The C++ Programming Language&gt;&gt; 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39;를 위해 모든 이들에게 공개하도록 하겠습니다.
+</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+</pre><p>ios::fill</p><pre class="chroma">char fill ( ) const;
+char fill ( char fillch );
+</pre><p>현재 채우기 문자(fill character)를 얻거나 설정한다.</p><p>첫번째 형태의 함수의 경우 채우기 문자를 리턴한다.두번째 형태의 함수의 경우 fillch 로 현재의 채우기 문자를 설정하고, 이전의 채우기 문자를 리턴한다.</p><p>인자를 가지는 조작자 (manipulator) setfill 역시 채우기 문자를 설정하는데 사용할 수 있다.</p><p> 인자</p><p>fillch</p><p>새롭게 사용할 채우기 문자</p><p> 리턴값</p><p>함수 호출 이전에 설정되어 있던 채우기 문자.</p><p> 실행 예제</p><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">채우기 문자를 &#39;x&#39; 로 설정하고 이를 사용한다.
+</span><span class="cm">
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/iostream/ios/fill/
+</span><span class="cm">에서 가져왔습니다
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">prev</span><span class="p">;</span>
+
+    <span class="n">cout</span><span class="p">.</span><span class="n">width</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">40</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">prev</span> <span class="o">=</span> <span class="n">cout</span><span class="p">.</span><span class="n">fill</span> <span class="p">(</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">x</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">cout</span><span class="p">.</span><span class="n">width</span> <span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">40</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">cout</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span><span class="n">prev</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1609C6464F6E78A9187FE3' alt=''><p> 템플릿 멤버 정의</p><pre class="chroma"><span class="p">(</span> <span class="n">basic_ios</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span><span class="n">traits</span><span class="o">&gt;</span> <span class="p">)</span>
+
+<span class="k">typedef</span> <span class="n">charT</span> <span class="n">char_type</span><span class="p">;</span>
+<span class="n">char_type</span> <span class="nf">fill</span> <span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="n">char_type</span> <span class="nf">fill</span> <span class="p">(</span> <span class="n">char_type</span> <span class="n">fillch</span> <span class="p">)</span><span class="p">;</span>
+
+
+</pre><p> 연관된 함수</p><ul><li><p> setfill : 채우기 문자를 설정한다. (조작자)</p></li><li><p> ios<span class='font-italic'>base::width : 필드 폭을 설정하거나 그 값을 얻어온다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::tie 함수(0)2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)2012.03.25C++ 레퍼런스 - ios::fill 함수(0)2012.03.25C++ 레퍼런스 - ios::clear(0)2012.03.25C++ 레퍼런스 - ios::setstate 함수(0)2012.03.25C++ 레퍼런스 - ios::rdstate 함수(0)2012.03.25</p><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

@@ -1,0 +1,109 @@
+<p>itguru Top itguru Top</p><pre class="chroma">이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 &lt;&lt;The C++ Programming Language&gt;&gt; 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39;를 위해 모든 이들에게 공개하도록 하겠습니다.
+</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+</pre><p>istream::gcount</p><pre class="chroma">
+streamsize  gcount ( ) const;
+</pre><p>마지막 서식화 되지 않은 (unformatted) 입력 작업에서 읽어들인 문자의 개수를 리턴한다.</p><p>서식화 되지 않는 작업을 하는 함수들은get,getline, ignore,peek, read, readsome, putback, unget 을 들 수 있는데,peek, putback, unget 의 경우 문자를 추출하는 함수가 아니기 때문에 gcount 의 리턴값은 항상 0 이 되게 된다.</p><p> 인자</p><p>없음</p><p> 리턴값</p><p>streamsize 타입의 정수값으로, 마지막 서식화되지 않는 입력 작업에서 읽어들인 문자의 수를 리턴한다.</p><p> 실행 예제</p><pre class="chroma">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
+ <span class="p">{</span>
+<span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="p">;</span>
+<span class="n">ifstream</span> <span class="n">is</span><span class="p">;</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Enter the name of an existing text file: </span><span class="s">&#34;</span><span class="p">;</span>
+<span class="n">cin</span><span class="p">.</span><span class="n">get</span> <span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="mi">256</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="n">is</span><span class="p">.</span><span class="n">open</span> <span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>        <span class="c1">// open file
+</span><span class="c1"></span><span class="n">is</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 파일의 내용을 읽는다.
+</span><span class="c1"></span>
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">is</span><span class="p">.</span><span class="n">gcount</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 입력 받은 문자의 수
+</span><span class="c1"></span>
+
+<span class="n">is</span><span class="p">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>           <span class="c1">// close file
+</span><span class="c1"></span>
+
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>실행 결과</p><p> 템플릿 멤버 정의</p><pre class="chroma">
+<span class="p">(</span> <span class="n">basic_istream</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span><span class="n">traits</span><span class="o">&gt;</span> <span class="p">)</span>
+<span class="n">streamsize</span> <span class="n">gcount</span> <span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</pre><p> 연관된 함수</p><ul><li><p> istream::get : 스트림에서 서식화 되지 않은 데이터를 입력 받는다.</p></li><li><p> istream::getline : 스트림에서 한 줄 입력받는다.</p></li><li><p> istream::ignore : 스트림에서 문자를 받고 버린다.</p></li><li><p> istream::read : 한 데이터 블록을 읽는다.</p></li><li><p> istream::readsome : 버퍼에 가능한 데이터 블록을 읽는다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::peak 함수(0)2012.11.09C++ 레퍼런스 - istream::ignore 함수(1)2012.11.07C++ 레퍼런스 - istream::gcount 함수(0)2012.11.07C++ 레퍼런스 - istream::get 함수(0)2012.11.07C++ 레퍼런스 - ios::tie 함수(0)2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)2012.03.25</p><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

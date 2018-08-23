@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-
+import os
+from tqdm import tqdm
 
 class BlogDumpParser:
     def __init__(self, filename):
@@ -76,6 +77,7 @@ class BlogDumpParser:
         self.output_file.write(line + '\n')
 
     def parse(self):
+        print("Dumping File :: ", self.filename)
         with open(self.filename) as file:
             soup = BeautifulSoup(file, "lxml")
             for current in soup.recursiveChildGenerator():
@@ -104,6 +106,8 @@ class BlogDumpParser:
                         self.print("")  # New line.
                     elif tag == 'script':
                         self.in_script = True
+                    elif tag == 'p':
+                        self.print("")
                     elif tag == 'span':
                         text_color = BlogDumpParser.what_color_is_this(current.attrs['style'])
                         if text_color == 'light-blue':
@@ -138,5 +142,12 @@ class BlogDumpParser:
 
 
 if __name__ == "__main__":
-    dump = BlogDumpParser('./blog/dump_25.html')
-    dump.parse()
+
+    for filename in tqdm(os.listdir('./blog')):
+        if 'comment' in filename:
+            continue
+        blog_dump = BlogDumpParser(os.path.join('./blog', filename))
+        blog_dump.parse()
+
+    #blog_dump = BlogDumpParser(os.path.join('./blog/dump_228.html'))
+    #blog_dump.parse()

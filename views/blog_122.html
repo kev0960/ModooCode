@@ -1,0 +1,102 @@
+<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+
+</pre><p>strftime</p><pre class="chroma">#include &lt;time.h&gt; // C++ 에서는 &lt;ctime&gt;
+
+size_t strftime ( char * ptr, size_t maxsize, const char * format, const struct tm * timeptr );
+</pre><p>시간을 사용자가 원하는 형식에 맞추어 출력한다.format 에 들어있는 형식에 맞추어서 timeptr 이 가리키는 tm 구조체의 값을 해석하여 현재 시간을 출력한다. 이 때, 출력되는 문자열의 최대 길이는 maxsize 로 한다.</p><h3><p> 인자</p></h3><p>ptr</p><p>C 형식 문자열이 복사되는 배열을 가리키는 포인터</p><p>maxsize</p><p>ptr 에 복사되는 문자열의 최대 길이</p><p>format</p><p>  C 형식 문자열로 특정한 형식 지정자(format specifier) 들을 포함하고 있다. 이는 printf 에서 %d 나 %c 와 같이 사용하는 것과 유사하다. 다만 printf 는 인자로 지정한 변수들의 값을 출력하지만 strftime 함수는 인자로 지정한 timeptr 의 값을 해석하여 형식 지정자에 따라 문자열을 출력하게 된다. printf 와 같이 모든 형식 지정자의 앞에는 % 를 붙이면 된다.</p><p>형식지정자형식 지정자를 대체하여 들어가는 값예시%a요일 이름을 약자로 표기<span class='font-italic'>Thu%A요일 이름을 완전하게 표기</span>Thursday%b월 이름을 약자로 표기<span class='font-italic'>Aug%B월 이름을 완전하게 표기</span>August%c날짜와 시간 표시 형식<span class='font-italic'>Thu Aug 23 14:55:02 2001%d몇 일인지(01-31)23%H24 시간 형식으로 시간을 표기 (00-23)14%I12 시간 형식으로 시간을 표기(01-12)02%j1 년 중 몇 번째 일인지(001-366)235%m월을 숫자로 표시 (01-12)08%M몇 분인지 (00-59)55%pAM 또는 PM 을 나타낸다.PM%S몇 초 인지(00-61)02%U그 해의 첫번째 일요일을 첫 번째 주의 시작이라고 할 때 몇 번째 주인지 표시한다(00-53)33%w요일을 숫자로 표시한다. (일요일은 0, 0 부터 6까지)4%W그 해의 첫번째 월요일을 첫 번째 주의 시작이라고 할 때 몇 번째 주인지 표시한다 (00-53)34%x날짜 표시</span>08/23/01%X시간 표시<span class='font-italic'>14:55:02%yY년도를 끝 두 자리만 표시01%Y년도 표시2001%ZTimezone 을 표시CDT%%% 기호를 표시%    참고로 </span> 표가 붙은 것들은 지역에 따라 표시 형식이 다를 수 있다.</p><p>timeptr</p><p>tm 구조체를 가리키는 포인터</p><h3><p> 리턴값</p></h3><p>만일 만들어지는 문자열의 길이가 종료 널 문자를 포함하여 maxsize 보다 작다면 ptr 에 복사된 문자의 수가 리턴되고 (이 때에는 종료 널 문자를 포함하지 않는다), 보다 크다면 0 이 리턴된다. 이 때 ptr 에 복사되는 문자열의 내용은 알 수 없다.</p><h3><p> 이식성</p></h3><p>  C++ 에서의 strftime 함수는 1990 년의 ISO-C 표준에서와 동일하다. C 컴파일러는 위에 나타나 있는 형식 지정자 말고도 부가적인 형식 지정자를 더 가질 수 있는데 위의 C 표준에서는 나타나 있지 않다.</p><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/ctime/strftime/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm"> */</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">time_t</span> <span class="n">rawtime</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">tm</span> <span class="o">*</span> <span class="n">timeinfo</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buffer</span> <span class="p">[</span><span class="mi">80</span><span class="p">]</span><span class="p">;</span>
+
+    <span class="n">time</span> <span class="p">(</span> <span class="o">&amp;</span><span class="n">rawtime</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">timeinfo</span> <span class="o">=</span> <span class="n">localtime</span> <span class="p">(</span> <span class="o">&amp;</span><span class="n">rawtime</span> <span class="p">)</span><span class="p">;</span>
+
+    <span class="n">strftime</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Now it&#39;s %I:%M%p.</span><span class="s">&#34;</span><span class="p">,</span><span class="n">timeinfo</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">puts</span> <span class="p">(</span><span class="n">buffer</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F111039584D246E6A33FF6E' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> asctime  :  tm 구조체를 문자열로 변환한다.</p></li><li><p> ctime  :  time<span class='font-italic'>t 값을 토대로 asctime 함수와 동일한 작업을 한다.공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - strftime 함수(0)2011.01.05C 언어 레퍼런스 - localtime 함수(0)2010.12.30C 언어 레퍼런스 - gmtime 함수(0)2010.12.29C 언어 레퍼런스 - ctime 함수(0)2010.12.29C 언어 레퍼런스 - asctime 함수(0)2010.12.26C 언어 레퍼런스 - time 함수(2)2010.12.26</p></li></ul><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

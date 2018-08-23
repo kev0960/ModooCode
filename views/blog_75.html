@@ -1,0 +1,108 @@
+<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+
+</pre><p>rewind</p><pre class="chroma">#include &lt;stdio.h&gt; // C++ 에서는 &lt;cstdio&gt;
+
+void rewind ( FILE * stream );
+
+</pre><p>스트림의 위치 지정자를 맨 처음으로 설정한다.참고로 위 함수의 작업은</p><pre class="chroma"><span class="n">fseek</span> <span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">)</span><span class="p">;</span>
+</pre><p>과 정확히 동일하다.단,fseek 함수와는 달리 rewind 함수는 오류 지정자를 초기화 한다.따라서, 스트림이 읽기 및 쓰기 형식으로 열려있을 경우, rewind 함수를 호출함으로써 읽기에서 쓰기 모드로, 쓰기에서 읽기 모드로 변경할 수 있다.</p><h3><p> 인자</p></h3><p>stream</p><p>스트림의 FILE 객체를 가리키는 포인터</p><h3><p> 리턴값</p></h3><p>없음</p><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">myfile.txt 에 A 부터 Z 까지 출력한 뒤, 다시 pFile 을 파일의 처음으로 옮긴 후 파일의 내용을 읽어들인다. 즉, buffer 에는 A 부터 Z 까지 들어가게 된다. 따라서 화면에는 ABCDEFGHIZKLMNOPQRSTUVWXYZ 가 출력된다.
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstdio/rewind/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="n">FILE</span> <span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buffer</span> <span class="p">[</span><span class="mi">27</span><span class="p">]</span><span class="p">;</span>
+
+    <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">myfile.txt</span><span class="s">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s">&#34;</span><span class="s">w+</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">n</span><span class="o">=</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">A</span><span class="sc">&#39;</span> <span class="p">;</span> <span class="n">n</span><span class="o">&lt;</span><span class="o">=</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">Z</span><span class="sc">&#39;</span> <span class="p">;</span> <span class="n">n</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+        <span class="n">fputc</span> <span class="p">(</span> <span class="n">n</span><span class="p">,</span> <span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="n">rewind</span> <span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">fread</span> <span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">fclose</span> <span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">buffer</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span><span class="o">=</span><span class="sa"></span><span class="sc">&#39;</span><span class="sc">\0</span><span class="sc">&#39;</span><span class="p">;</span>
+    <span class="n">puts</span> <span class="p">(</span><span class="n">buffer</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F2010CA164BD2B5D56CBB0B' alt=''><p>myfile.txt 의 모습</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F1745BD164BD2B5D502B924' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> fseek :  스트림 위치 지정자를 설정한다.</p></li><li><p> fsetpos  :  스트림 위치 지정자를 설정한다.</p></li><li><p> fflush  :  스트림을 비운다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sscanf 함수(8)2011.01.03C 언어 레퍼런스 - printf 함수(3)2010.11.27C 언어 레퍼런스 - rewind 함수(4)2010.04.24C 언어 레퍼런스 - ftell 함수(1)2010.04.24C 언어 레퍼런스 - fsetpos 함수(0)2010.04.24C 언어 레퍼런스 - fseek 함수(0)2010.04.24</p><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

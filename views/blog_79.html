@@ -1,0 +1,106 @@
+<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+
+</pre><p>strcpy</p><pre class="chroma">#include &lt;string.h&gt; // C++ 에서는 &lt;cstring&gt;
+
+char * strcpy ( char * destination, const char * source );
+</pre><p>문자열을 복사한다.source 가 가리키는 C 형식의 문자열 (널null 종료 문자열) 을 destination 이 가리키는 곳에 복사한다. 이 때, 널도 포함해서 복사한다.오버플로우를 방지하기 위해서, destination 이 가리키는 배열의 크기는 반드시 source 문자열의 크기와 같거나 이보다 커야 한다. 또한, 복사하는 영역이 source 와 겹치면 안된다.</p><p>참고로 위와 같은 오버플로우 문제를 방지하기 위해 ISO/IEC TR 24731 에서 제안된 strcpy<span class='font-italic'>s 함수를 이용하면 된다. 이 함수는 마이크로소프트 C 런타임 라이브러리와 일부 C 라이브러리에서 사용 가능하다. 하지만 GLibc 와 같은 라이브러리 에서는 지원되지 않는다. 일각에서는 마이크로소프트 컴파일러가 strcpy 나 strncpy 함수를 사용시 경고 메세지를 뜨게 하는 이유가, 자사의 플랫폼에만 묶어두기 위한 계획이라고도 한다. 이 strcpy</span>s 함수는 만일 source 의 크기가 destination 보다 크다면 복사를 수행하지 않고 0 이 아닌 값을 리턴하며, (호출자가 리턴값을 무시하였을 때를 대비하여) 버퍼를 비워버린다.</p><h3><p> 간단한 strcpy 함수의 구현</p></h3><p>별다른 변수들을 사용하지 않고도 다음과 같이 간단하게 구현할 수 있다.</p><pre class="chroma"><span class="cm">/* 이 소스는 http://www.jbox.dk/sanos/source/lib/string.c.html#:38  에서 가져옴*/</span>
+<span class="kt">char</span> <span class="o">*</span><span class="nf">strcpy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span> <span class="o">=</span> <span class="n">dst</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">cp</span><span class="o">+</span><span class="o">+</span> <span class="o">=</span> <span class="o">*</span><span class="n">src</span><span class="o">+</span><span class="o">+</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">dst</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><h3><p> 인자</p></h3><p>destination</p><p>문자열이 복사될 곳을 가리키는 포인터</p><p>source</p><p>복사할 문자열을 보관하고 있는 포인터</p><h3><p> 리턴값</p></h3><p>destination 이 리턴된다.</p><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">str2 에 str1 의 내용, 즉 &#34;Sample string&#34; 을 복사하고, str3 에는 &#34;copy successful&#34; 을 복사한다.
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strcpy/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm"> */</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">str1</span><span class="p">[</span><span class="p">]</span><span class="o">=</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sample string</span><span class="s">&#34;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">str2</span><span class="p">[</span><span class="mi">40</span><span class="p">]</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">str3</span><span class="p">[</span><span class="mi">40</span><span class="p">]</span><span class="p">;</span>
+    <span class="n">strcpy</span> <span class="p">(</span><span class="n">str2</span><span class="p">,</span><span class="n">str1</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">strcpy</span> <span class="p">(</span><span class="n">str3</span><span class="p">,</span><span class="sa"></span><span class="s">&#34;</span><span class="s">copy successful</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">str1: %s</span><span class="se">\n</span><span class="s">str2: %s</span><span class="se">\n</span><span class="s">str3: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">str1</span><span class="p">,</span><span class="n">str2</span><span class="p">,</span><span class="n">str3</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1344D41A4BDD61EA254EAF' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> strncpy : 문자열에서 일부 문자들을 복사한다.</p></li><li><p> memcpy  :  메모리 블록을 복사한다.</p></li><li><p> memmove :  메모리 블록을 옮긴다.</p></li><li><p> memchr  :  메모리 블록에 문자를 위치시킨다.</p></li><li><p> memcmp  :  두 개의 메모리 블록을 비교한다.</p></li><li><p> memset  :  메모리 블록을 채운다.공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strcat 함수(0)2010.05.21C 언어 레퍼런스 - strncpy 함수(5)2010.05.09C 언어 레퍼런스 - strcpy 함수(8)2010.05.02C 언어 레퍼런스 - memmove 함수(7)2010.04.25C 언어 레퍼런스 - memcpy 함수(11)2010.04.24C 언어 레퍼런스 - string.h (cstring) 헤더파일(2)2010.04.24</p></li></ul><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

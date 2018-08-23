@@ -1,0 +1,75 @@
+<p>itguru Top itguru Top</p><pre class="chroma">이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 &lt;&lt;The C++ Programming Language&gt;&gt; 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39;를 위해 모든 이들에게 공개하도록 하겠습니다.
+</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+</pre><p>ifstream</p><p>파일 입력 스트림 클래스 이다.  ifstream 은 입력 스트림으로 부터 데이터를 읽을 수 있게 해준다. 이 함수의 객체는 내부적으로 filebuf 객체를 가리키는 포인터로, 이는rdbuf 함수를 통해 얻어질 수 있다. 이 스트림과 파일을 연관(associate)시키기 위해서 생성자에 인자로 파일 이름을 지정하거나, open 함수를 통해서 할 수 있다.</p><p>  만일 모든 파일 작업이 끝나게 되면 close 함수를 통해 스트림과 파일 관계를 끊을 수 있다. 한 번 끊어진다면 같은 다른 파일과 스트림을 연관시켜서 사용할 수 있게 된다.</p><p>  is<span class='font-italic'>open 함수를 통해 현재 스트림 객체가 파일과 연관이 되어 있는지 확인할 수 있다.</p><p> Public 멤버</p><ul><li><p> 생성자 - 객체를 생성하며 부가적으로 파일과 연관시킬 수 있다.</p></li><li><p> rdbuf  :  filebuf 객체를 얻는다.</p></li><li><p> is<span class='font-italic'>open :  파일이 열려있는지 확인한다.</p></li><li><p> open  :  파일을 연다.</p></li><li><p> close  :  파일을 닫는다.</p></li></ul><p>istream 으로 부터 상속 받은 멤버들</p><ul><li><p> operator>> :  서식화된 데이터를 추출(입력)한다.</p></li><li><p> gcount  :  마지막 서식화 되지 않은 입력에서 받아들였었던 문자의 개수를 구한다.</p></li><li><p> get  :  스트림으로 부터 서식화 되지 않은 데이터를 얻는다.</p></li><li><p> getline :  스트림으로 부터 한 줄을 입력받는다.</p></li><li><p> ignore:  문자들을 입력 받고 지운다.</p></li><li><p> peek :  그 다음으로 추출될 문자를 얻어온다.</p></li><li><p> read  :  데이터 블록을 읽는다.</p></li><li><p> readsome  :  버퍼에서 읽기 가능한 데이터 블록을 읽어온다.</p></li><li><p> putback  :  문자를 다시 집어넣는다.</p></li><li><p> unget :  get pointer 을 감소 시킨다.</p></li><li><p> tellg  :  get pointer 의 위치를 얻는다.</p></li><li><p> seekg  :  get pointer 의 위치를 설정한다.</p></li><li><p> sync  :  입력 버퍼를 문자들의 소스에 동기화 시킨다.</p></li><li><p> sentry  :  예외로 부터 안전한 접두/접미 작업을 수행한다. (클래스)</p></li></ul><p>ios 로 부터 상속 받은 함수들</p><ul><li><p> good  :  스트림의 상태가 입출력 작업을 할 수 있는지 확인한다.</p></li><li><p> eof  :  eof 비트가 설정되었는지 확인한다.</p></li><li><p> fail  :  fail 비트나 bad 비트가 설정되었는지 확인한다.</p></li><li><p> bad :  bad 비트가 설정되었는지 확인한다.</p></li><li><p> operator! :  스트림 객체에 오류 플래그(fail 비트나 bad 비트)가 설정되었는지 확인한다.</p></li><li><p> operator void<span class='font-italic'> :  포인터로 변환한다.</p></li><li><p> rdstate  :  오류 상태 플래그(error state flag)를 얻어온다.</p></li><li><p> setstate  :  오류 상태 플래그를 설정한다.</p></li><li><p> clear  :   오류 상태 플래그들을 설정한다</p></li><li><p> copyfmt  :  서식 정보를 복사한다.</p></li><li><p> fill :  채우기 문자(fill character) 을 얻거나 설정한다.</p></li><li><p> exceptions :  예외 마스크를 얻거나 설정한다.</p></li><li><p> imbue :  로케일을 설정한다.</p></li><li><p> tie  :  엮어진 스트림(tied stream)을 얻거나 설정한다.</p></li><li><p> rdbuf  :  연관된 스트림 버퍼를 얻거나 설정한다.</p></li><li><p> narrow  : 표준 char 형으로 문자를 변환한다.</p></li><li><p> widen :  표준 wchar<span class='font-italic'>t 형으로 문자를 변환한다.</p></li></ul><p>ios<span class='font-italic'>base 로 부터 상속된 함수들</p><ul><li><p> flags :  서식 플래그를 수정하거나 얻어온다.</p></li><li><p> setf  :  특정 서식 플래그를 설정한다.</p></li><li><p> unsetf  :  특정 서식 플래그를 초기화 한다.</p></li><li><p> precision  :  부동 소수점 정밀도를 수정하거나 얻어온다.</p></li><li><p> width  :  필드의 너비를 수정하거나 얻어온다</p></li><li><p> imbue  :  로케일을 채운다.</p></li><li><p> getloc  :  현재 로케일을 얻어온다</p></li><li><p> xalloc  :  내부 확장 가능 배열의 새로운 인덱스를 리턴한다. (정적 함수)</p></li><li><p> iword  :  내부 확장 가능 배열의 특정 정수 원소의 레퍼런스를 얻는다.</p></li><li><p> pword  :  내부 확장 가능 배열의 포인터의 레퍼런스를 얻는다.</p></li><li><p> register<span class='font-italic'>callback  :  이벤트 콜백 함수를 등록한다.</p></li><li><p> sync<span class='font-italic'>with</span>stdio :  iostream 과 cstdio 스트림과의 동기화를 활성화 하거나 비활성화 한다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios<span class='font-italic'>base::flags 함수(0)2011.08.19C++ 레퍼런스 - ios</span>base::width(0)2011.08.18C++ 레퍼런스 - ifstream 클래스(0)2011.08.18C++ 레퍼런스 - ios::exceptions(0)2011.08.18C++ 레퍼런스 - istream::getline 함수(0)2011.08.18C++ 레퍼런스 - istream::operator>> (추출 연산자)(0)2011.08.17</p><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

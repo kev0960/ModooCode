@@ -1,0 +1,475 @@
+<p>itguru Top itguru Top</p><p>이번 강좌에서는</p><ul><li><p> C++ 표준 템플릿 라이브러리 개요</p></li><li><p> 시퀀스 컨테이너(sequence container)</p></li><li><p> 반복자 (iterator)에 대해 배웁니다.</p></li></ul><p>안녕하세요 여러분! 지난번 템플릿 메타프로그래밍 강좌는 어떠셨나요? TMP 를 활용해서 프로그래밍을 하는 것은 엄청 머리아픈 일이지만 적당히 잘 쓰면 꽤 괜찮은 도구입니다.</p><p>하지만 이번 강좌는 조금 다룹니다. 이번 강좌에서 배우게 될 C++ 의 표준 템플릿 라이브러리 (STL) 은 사용하는 것도 엄청 간단한데, 여러분이 하는 프로그래밍 능률을 100% 향상 시킬 수 있는 엄청난 도구 입니다. 사실 이 STL 의 도입으로 C++ 이 한발 더 도약한 것도 과언이 아니라 볼 수 있습니다.</p><p> C++ 표준 템플릿 라이브러리 (Standard Template Library - STL)</p><p>사실 C++ 표준 라이브러리를 보면 꽤나 많은 종류의 라이브러리들이 있습니다. 예를 들어서, 대표적으로 입출력 라이브러리 (iostream 등등), 시간 관련 라이브러리 (chrono), 정규표현식 라이브러리 (regex) 등등 들이 있지요. 하지만 보통 C++ 템플릿 라이브러리(STL)를 일컫는다면 다음과 같은 세 개의 라이브러리들을 의미합니다.</p><ul><li><p> 임의 타입의 객체를 보관할 수 있는 컨테이너 (container)</p></li><li><p> 컨테이너에 보관된 원소에 접근할 수 있는 반복자 (iterator)</p></li><li><p> 반복자들을 가지고 일련의 작업을 수행하는 알고리즘 (algorithm)</p></li></ul><p>각 라이브러리의 역할을 쉽게 생각하면 다음과 같이 볼 수 있습니다. 여러분이 우편 배달부가 되어서 편지들을 여러개의 편지함에 넣는다고 생각해봅시다. 편지를 보관하는 각각의 편지함들은 '컨테이너' 라고 생각하시면 됩니다. 그리고, 편지를 보고 원하는 편지함을 찾는 일은 '반복자' 들이 수행하지요. 마지막으로, 만일 편지들을 편지함에 날짜 순서로 정렬하여 넣는 일은 '알고리즘' 이 수행할 것입니다.한 가지 주목할 만한 점은</p><ul><li><p> 임의 타입의 객체를 보관할 수 있는 컨테이너 (container)</p></li></ul><p>에서 나타나 있듯이 우리가 다루려는 객체가 어떤 특성을 갖는지 무관하게 라이브러리를 자유롭게 사용할 수 있다는 것입니다 (바로 템플릿 덕분이죠!). 우리가 만일 사용하려는 자료형이 int 나 string 과 같은 평범한 애들이 아니라, 우리가 만든 임의이 클래스의 객체들이여도 자유롭게 위 라이브러리의 기능들을 모두 활용할 수 있습니다. 만일 C 였다면 불가능했을 일입니다.</p><p>또한 반복자의 도입으로 알고리즘 라이브러리에 필요한 최소한의 코드만을 작성할 수 있게 되었습니다. 다시 말하면, 기존의 경우 M 개 종류의 컨테이가 있고 N 종류의 알고리즘이 있다면 이 모든 것을 지원하려면 MN 개의 알고리즘 코드가 있어야만 했습니다.</p><p>하지만 반복자를 이용해서 컨테이너를 추상화 시켜서 접근할 수 있기 때문에 N 개의 알고리즘 코드 만으로 M 종류의 컨테이너들을 모두 지원할 수 있게됩니다. (후에 알고리즘 라이브러리에 대해서 설명할 때 더 와닿을 것입니다)</p><p> C++ STL 컨테이너 - 벡터 (vector)</p><p>C++ STL 에서 컨테이너는 크게 두 가지 종류가 있습니다. 먼저 배열 처럼 객체들을 순차적으로 보관하는 시퀀스 컨테이너 (sequence container) 와 키를 바탕으로 대응되는 값을 찾아주는 연관 컨테이너 (associative container) 가 있습니다.</p><p>먼저 시퀀스 컨테이너의 경우 vector, list, deque 이렇게 3 개가 정의되어 있습니다. 먼저 벡터(vector) 의 경우, 쉽게 생각하면 가변길이 배열이라 보시면 됩니다 (템플릿 강의에서 Vector 를 제작하신 것을 기억 하시나요?) 벡터에는 원소들이 메모리 상에서 실제로 순차적으로 저장되어 있고, 따라서 임의의 위치에 있는 원소를 접근하는 것을 매우 빠르게 수행할 수 있습니다.</p><p>정확히 얼마나 빠르다고?</p><p>사실 '매우 빠르다' 라는 말은 주관적일 수 밖에 없습니다. 따라서 어떠한 작업의 수행 속도를 나타내기 위해선 수학적으로 나타내야 합니다.</p><p>컴퓨터 공학에선 어떠한 작업의 처리 속도를 '복잡도(complexity)' 라고 부르고, 그 복잡도를 Big O 표기법이라는 것으로 나타냅니다. 이 표기법은, N 개의 데이터가 주어져 있을 때 그 작업을 수행하기 위해 몇 번의 작업을 필요로 하는지 N 에 대한 식으로 표현하는 방식입니다. (즉 복잡도가 클 수록 작업이 수행되는데 걸리는 시간이 늘어나겠지요)</p><p>예를 들어 가장 기초적인 버블 정렬을 생각해봅시다. 버블 정렬의 코드는 간단히 보자면 아래와 같습니다.</p><pre class="chroma">
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre><p>따라서 N 개의 원소가 있는 arr 이라는 배열을 정렬하기 위해서는 일단 적어도</p><p>번의 반복이 필요하지요 (N -1 + N- 2 + ... + 1) . 따라서 Big O 표현법으로 이 정렬이 얼마나 빠르게 수행될 수 있는지 나타내면</p><p>라고 볼 수 있습니다. 보통 Big O 표현법으로 나타낼 때, 최고차항만을 나타냅니다 (그리고 통상적으로 최고차항의 계수도 생략합니다). 왜냐하면 N 이 엄청 커지게 되면 최고 차항 말고는 그닥 의미가 없게 되버리기 때문이지요 (최고 차항에 비해 크기가 너무 작기 때문에). 따라서 최종적으로, 버블 정렬 알고리즘의 복잡도는</p><p>라고 볼 수 있습니다. 일반적으로 어떠한 알고리즘이 O(N²) 꼴이면 그닥 좋은 편은 아닙니다. 왜냐하면 N 이 10000 만 되더라도, 10의 8 번의 작업을 처리해야 하기 때문이죠. 다행이도 정렬 알고리즘의 경우 퀵소트(Quicksort) 라는 알고리즘을 활용하면 아래와 같은 복잡도로 연산을 처리할 수 있습니다.</p><p>물론 퀵소트 알고리즘을 사용했을 때 항상 버블 정렬 방식 보다 빠르게 정렬할 수 있다는 의미는 아닙니다. 왜냐하면 저 항 앞에 어떠한 계수가 붙어있는지 알 수 없기 때문이지요. 만약에 버블 정렬이 O(N²) 이고 퀵소트가 O(100000 N log N) 이였다면 N 이 1000 일 때 버블 정렬 이 더 빠르게 수행됩니다.  (물론 이렇게 극단적이지 않습니다. 퀵소트가 거의 대부분 더 빠르게 됩니다!)</p><p>하지만, N 이 정말 커진다면 언젠가는 퀵소트가 버블 정렬보다 더 빨리 수행되는 때가 발생합니다.</p><p>아래 그림을 보면 각각의 O 에 대해 복잡도가 어떻게 증가하는지 볼 수 있습니다.</p><p>가장 이상적인 복잡도는 O(1) 이지만 이는 거의 불가능하고 (이는 마치 전체 데이터를 채 보지 않은 채 작업을 끝낼 수 있다는 의미 입니다), 보통 O(log n) 이 알고리즘이 낼 수 있는 가장 빠른 속도를 의미합니다. 그 다음으로 좋은 것이 당연히 O(n) 이고, O(n log n) 순 입니다.</p><p>그렇다면 다시 벡터 자료형으로 돌아오겠습니다. vector 의 경우, 임의의 위치에 있는 원소에 접근을 O(1) 로 수행할 수 있습니다. 게다가 맨 뒤에 새로운 원소를 추가하거나 제거하는 것 역시 O(1) 에 수행합니다. vector 의 임의의 원소에 접근하는 것은 배열처럼 [] 를 이용하거나, at 함수를 이용하면 됩니다. 또한 맨 뒤에 원소를 추가하거나 제거하기 위해서는 push<span class='font-italic'>back 혹은 pop</span>back 함수를 사용하면 됩니다. 아래 예를 보겠습니다.</p><pre class="chroma">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 맨 뒤에 10 추가
+</span><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 맨 뒤에 20 추가
+</span><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 맨 뒤에 30 추가
+</span><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 맨 뒤에 40 추가
+</span><span class="c1"></span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">size_type</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">vec</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">vec 의 </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> 번째 원소 :: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였으면</p><p>와 같이 우리가 넣은 순서대로 잘 나옴을 알 수 있습니다.</p><p>참고로 벡터의 크기를 리턴하는 함수인 size 의 경우, 그리턴하는 값의 타입은 size<span class='font-italic'>type 멤버 타입으로 정의되어 있습니다.</p><p>참고로 맨 뒤에 원소를 추가하는 작업은 엄밀히 말하자면 amortized O(1) 이라고 합니다. (amortized 의 뜻은 분할상환이란 뜻인데, 아마 아래 설명을 읽으시면 왜 그런 이름을 붙였는지 이해하실 수 있을 것입니다)</p><p>왜냐면 보통은 vector 의 경우 현재 가지고 있는 원소의 개수 보다 더 많은 공간을 할당해 놓고 있습니다. 예를 들어 현재 vector 에 있는 원소의 개수가 10 개라면 이미 20개를 저장할 수 있는 공간을 미리 할당해놓게됩니다. 따라서 만약에 뒤에 새로운 원소를 추가하게 된다면 새롭게 메모리를 할당할 필요가 없이, 그냥 이미 할당된 공간에 그 원소를 쓰기만 하면 됩니다. 따라서 대부분의 경우 O(1) 으로 vector 맨 뒤에 새로운 원소를 추가하거나 지울 수 있습니다.</p><p>문제가 되는 상황은 할당된 공간을 다 채웠을 때 입니다. 이 때는 어쩔 수 없이, 새로운 큰 공간을 다시 할당하고, 기존의 원소들을 복사하는 수 밖에 없습니다. 따라서 이 경우 n 개의 원소를 모두 복사해야 하기 때문에 O(n) 으로 수행됩니다. 하지만 이 O(n) 으로 수행되는 경우가 매우 드물기 때문에, 전체적으로 평균을 내보았을 때 O(1) 으로 수행됨을 알 수 있습니다. 이렇기에 amortized O(1) 이라고 부르게 됩니다. 아래 그림에서 자세히 설명하고 있습니다.</p><p>물론 vector 라고 만능은 아닙니다. 맨 뒤에 원소를 추가하거나 제거하는 것은 빠르지만, 임의의 위치에 원소를 추가하거나 제거하는 것은 O(n) 으로 느립니다. 왜냐하면 어떤 자리에 새로운 원소를 추가하거나 뺄 경우 그 뒤에 오는 원소들을 한 칸 씩 이동시켜 주어야만 하기 때문이지요. 따라서 이는 n 번의 복사가 필요로 합니다.</p><p>따라서 만일 맨 뒤가 아닌 위치에 데이터를 추가하거나 제거하는 작업이 많은 일일 경우 vector 를 사용하면 안되겠지요. 결과적으로 vector 의 복잡도를 정리해보자면 아래와 같습니다.</p><ul><li><p> 임의의 위치 원소 접근 ([], at) : O(1)</p></li><li><p> 맨 뒤에 원소 추가 및 제거 (push<span class='font-italic'>back/pop</span>back) : amortized O(1); (평균적으로 O(1) 이지만 최악의 경우 O(n) )</p></li><li><p> 임의의 위치 원소 추가 및 제거 (insert, erase) : O(n)</p></li></ul><p>위 처럼 어떠한 작업을 하냐에 따라서 속도차가 매우 크기 때문에, C++ 표준 라이브러리를 잘 사용하기 위해서는 내가 이 컨테이너를 어떠한 작업을 위해 사용하는지 정확히 인지하고, 적절한 컨테이너를 골라야 합니다. 후에 설명할 다른 자료 구조를 사용하면 vector 가 빠른 작업이 느릴 수 도 있고, vector 가 느린 작업을 빠르게 할 수 도 있습니다.</p><p> 반복자 (iterator)</p><p>앞서 반복자는 컨테이너에 원소에 접근할 수 있는 포인터와 같은 객체라고 하였습니다. 물론 벡터의 경우 [ ] 를 이용해서 정수형 변수로 마치 배열 처럼 임의의 위치에 접근할 수 있지만, 반복자를 사용해서도 마찬가지 작업을 수행할 수 있습니다. 특히 후에 배울 알고리즘 라이브러리의 경우 대부분이 반복자를 인자로 받아서 알고리즘을 수행합니다.</p><p>반복자는 컨테이너에 iterator 멤버 타입으로 정의되어 있습니다. vector 의 경우 반복자를 얻기 위해서는 begin() 함수와 end() 함수를 사용할 수 있는데 이는 다음과 같은 위치를 리턴합니다.</p><p>begin() 함수는 예상했던 대로, vector 의 첫번째 원소를 가리키는 반복자를 리턴합니다. 그런데, 흥미롭게도 end() 의 경우 vector 의 마지막 원소 한 칸 뒤를 가리키는 반복자를 리턴하게 됩니다. 왜 end 의 경우 vector 의 마지막 원소를 가리것이 아니라, 마지막 원소의 뒤를 가리키는 반복자를 리턴할까요?</p><p>이에 여러가지 이유가 있겠지만, 가장 중요한 점이 이를 통해 빈 벡터를 표현할 수 있다는 점입니다. 만일 begin() == end() 라면 원소가 없는 벡터를 의미하겠지요. 만약에 vec.end() 가 마지막 원소를 가리킨다면 비어있는 벡터를 표현할 수 없게 됩니다.</p><pre class="chroma">
+<span class="c1">// 반복자 사용 예시
+</span><span class="c1"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="c1">// 전체 벡터를 출력하기
+</span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span> <span class="o">!</span><span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c1">// int arr[4] = {10, 20, 30, 40}
+</span><span class="c1"></span><span class="c1">// *(arr + 2) == arr[2] == 30;
+</span><span class="c1"></span><span class="c1">// *(itr + 2) == vec[2] == 30;
+</span><span class="c1"></span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">3 번째 원소 :: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><p>와 같이 잘 수행됨을 알 수 있습니다.</p><pre class="chroma">
+<span class="c1">// 전체 벡터를 출력하기
+</span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span> <span class="o">!</span><span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>vector 의 반복자의 타입은 위 처럼 vector<>::iterator 멤버 타입으로 정의되어 있고, vec.begin() 이나 vec.end() 함수가 이를 리턴합니다. end() 가 vector 의 마지막 원소 바로 뒤를 가리키기 때문에 for 문에서 vector 전체 원소를 보고 싶다면 vec.end() 가 아닐 때 까지 반복하면 됩니다.</p><p>앞서 반복자를 마치 포인터 처럼 사용한다고 하였는데, 실제로 현재 반복자가 가리키는 원소의 값을 보고 싶다면;</p><pre class="chroma">
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre><p>포인터로 <span class='font-italic'> 를 해서 가리키는 주소값의 값을 보았던 것처럼, </span> 연산자를 이용해서 itr 이 가리키는 원소를 볼 수 있습니다. 물론 itr 은 실제 포인터가 아니고 <span class='font-italic'> 연산자를 오버로딩해서 마치 포인터 처럼 동작하게 만든 것입니다. </span> 연산자는 itr 이 가리키는 원소의 레퍼런스를 리턴합니다.</p><pre class="chroma">
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">3 번째 원소 :: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre><p>또한 반복자 역시 + 연산자를 통해서 그 만큼 떨어져 있는 원소를 가리키게 할 수 도 있습니다. (그냥 배열을 가리키는 포인터와 정확히 똑같이 동작한다고 생각하시면 됩니다!)</p><p>반복자를 이용하면 아래와 같이 insert 와 erase 함수도 사용할 수 있습니다.</p><pre class="chroma">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">print_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">vec</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="c1">// 전체 벡터를 출력하기
+</span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="k">typename</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span> <span class="o">!</span><span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">처음 벡터 상태</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">----------------------------</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+
+<span class="c1">// vec[2] 앞에 15 추가
+</span><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span><span class="p">;</span>
+<span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">----------------------------</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="c1">// vec[3] 제거
+</span><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span><span class="p">;</span>
+<span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><p>와 같이 잘 나옵니다.</p><p>참고로 템플릿 버전의 경우,</p><pre class="chroma">
+<span class="k">for</span> <span class="p">(</span><span class="k">typename</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span> <span class="o">!</span><span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>와 같이 앞에 typename 을 추가해줘야만 합니다. 그 이유는, iterator 가 vector<T> 의 의존 타입이기 때문입니다.의존 타입이 무엇인지 기억 안나시는 분은 이 강좌를 참조하시기 바랍니다.</p><pre class="chroma">
+<span class="c1">// vec[2] 앞에 15 추가
+</span><span class="c1"></span><span class="n">vec</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span><span class="p">;</span>
+</pre><p>앞서 insert 함수를 소개하였는데, 위 처럼 인자로 반복자를 받고, 그 반복자 앞에 원소를 추가해줍니다. 위 경우 vec.begin() + 2, 앞에 15 를 추가하므로 10, 20, 30, 40 에서 10, 20, 15, 30, 40 이 됩니다.</p><pre class="chroma">
+<span class="n">vec</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span><span class="p">;</span>
+<span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+</pre><p>또 아까전에 언급하였던 erase 도 인자로 반복자를 받고, 그 반복자가 가리키는 원소를 제거합니다. 위 경우 4번째 원소인 30이 지워지겠지요. 물론 insert 과 erase 함수 모두 O(n) 으로 느린편입니다.</p><p>참고로 vector 에서 반복자로 erase 나 insert 함수를 사용할 때 주의해야할 점이 있습니다.</p><pre class="chroma">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">print_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">vec</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="c1">// 전체 벡터를 출력하기
+</span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">[ </span><span class="s">&#34;</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">typenamevector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span> <span class="o">!</span><span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> </span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">]</span><span class="s">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">처음 벡터 상태</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">end_itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="k">for</span> <span class="p">(</span><span class="p">;</span> <span class="n">itr</span> <span class="o">!</span><span class="o">=</span> <span class="n">end_itr</span><span class="p">;</span> <span class="n">itr</span> <span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">itr</span> <span class="o">=</span><span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">itr</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">값이 20 인 원소를 지운다!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="p">}</span>
+</pre><p>컴파일 후 실행하였다면 아래와 같은 오류가 발생합니다.</p><p>왜 이런 오류가 발생하는 것일까요?</p><pre class="chroma">
+for (; itr != end_itr; itr ++) {
+if (*itr == 20) {
+vec.erase(itr);
+}
+}
+</pre><p>문제는 바로 위 코드에서 발생합니다.컨테이너에 원소를 추가하거나 제거하게 되면 기존에 사용하였던 모든 반복자들을 사용할 수 없게됩니다. 다시 말해 위 경우 vec.erase(itr) 을 수행하게 되면 더이상 itr 은 유효한 반복자가 아니게 되는 것이지요. 또한 end<span class='font-italic'>itr 역시 무효화 됩니다.</p><p>따라서 itr != end<span class='font-italic'>itr 이 영원히 성립되며 무한 루프에 빠지게되어 위와 같은 오류가 발생합니다.</p><p>그렇다면</p><pre class="chroma">
+vector&lt;int&gt;::iterator itr = vec.begin();
+
+
+for (; itr != vec.end(); itr ++) {
+if (*itr == 20) {
+vec.erase(itr);
+}
+}
+</pre><p>와 같이 코드를 고치면 오류가 없어질까요? 실행해보시면 알겠지만 여전히 위와 같은 오류가 발생합니다. 왜냐하면 itr 이 유효한 반복자가 아니기 때문에 vec.end() 로 올바른 end 반복자 값을 매번 가지고 와도 for 문이 끝나지 않게 되는 것입니다. 결과적으로 코드를 제대로 고치려면 다음과 같이 해야 합니다.</p><pre class="chroma">
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="k">for</span> <span class="p">(</span><span class="p">;</span> <span class="n">itr</span> <span class="o">!</span><span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span> <span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">itr</span> <span class="o">=</span><span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">itr</span><span class="p">)</span><span class="p">;</span>
+<span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><p>와 같이 제대로 값이 20 인 원소만 지워졌음을 알 수 있습니다.</p><p>사실 생각해보면 위 바뀐 코드는 꽤나 비효율적임을 알 수 있습니다. 왜냐하면 20 인 원소를 지우고, 다시 처음으로 돌아가서 원소들을 찾고 있기 때문이지요. 그냥 20 인 원소 바로 다음 위치 부터 찾아나가면 될 텐데 말입니다.</p><pre class="chroma">
+<span class="k">for</span> <span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">size_type</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!</span><span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="mi">20</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+<span class="n">i</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</pre><p>그렇다면 아예 위 처럼 굳이 반복자를 쓰지 않고 erase 함수에만 반복자를 바로 만들어서 전달하면 됩니다.</p><pre class="chroma">
+<span class="n">vec</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+</pre><p>를 하게 되면 vec[i] 를 가리키는 반복자를 erase 에 전달할 수 있습니다. 하지만 사실 위 방법은 그리 권장하는 방법은 아닙니다. 기껏 원소에 접근하는 방식은 반복자를 사용하는 것으로 통일하였는데, 위 방법은 이를 모두 깨버리고 그냥 기존의 배열 처럼 정수형 변수 i 로 원소에 접근하는 것이기 때문입니다.</p><p>하지만 후에 C++ 알고리즘 라이브러리에 대해 배우면서 이 문제를 깔끔하게 해결 하는 방법에 대해 다루도록 할 것입니다. 일단 임시로는 위 방법 처럼 처리하도록 하세요 :)</p><p>vector 에서 지원하는 반복자로 const<span class='font-italic'>iterator 가 있습니다. 이는 마치 const 포인터를 생각하시면 됩니다. 즉, const</span>iterator 의 경우 가리키고 있는 원소의 값을 바꿀 수 없습니다. 예를 들어서</p><pre class="chroma">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">print_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">vec</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="c1">// 전체 벡터를 출력하기
+</span><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="n">typenamevector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span> <span class="o">!</span><span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="n">itr</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="o">*</span><span class="n">itr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="p">;</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">초기 vec 상태</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="c1">// itr 은 vec[2] 를 가리킨다.
+</span><span class="c1"></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+
+
+<span class="c1">// vec[2] 의 값을 50으로 바꾼다.
+</span><span class="c1"></span><span class="o">*</span><span class="n">itr</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">---------------</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">const_iterator</span> <span class="n">citr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+
+
+<span class="c1">// 상수 반복자가 가리키는 값은 바꿀수 없다. 불가능!
+</span><span class="c1"></span><span class="o">*</span><span class="n">citr</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>컴파일 하였다면</p><pre class="chroma">&#39;citr&#39;: you cannot assign to a variable that is const
+</pre><p>와 같이, const 반복자가 가리키고 있는 값은 바꿀 수 없다고 오류가 발생합니다. 주의할 점은, const 반복자의 경우</p><pre class="chroma"><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">const_iterator</span> <span class="n">citr</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+</pre><p>와 같이 cbegin() 과 cend() 함수를 이용하여 얻을 수 있습니다. 많은 경우 반복자의 값을 바꾸지 않고 참조만 하는 경우가 많으므로, const iterator 를 적절히 이용하는 것이 좋습니다.vector 에서 지원하는 반복자 중 마지막 종류로 역반복자 (reverse iterator) 가 있습니다. 이는 반복자와 똑같지만 벡터 뒤에서 부터 앞으로 거꾸로 간다는 특징이 있습니다. 아래 예제를 살펴볼까요.</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;#include &lt;vector&gt;using namespace std;</span><span class="cp">
+</span><span class="cp"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">print_vector</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">vec</span><span class="p">)</span><span class="p">{</span><span class="c1">// 전체 벡터를 출력하기for (typenamevector&lt;T&gt;::iterator itr = vec.begin(); itr != vec.end(); itr++) {cout &lt;&lt; *itr &lt;&lt; endl;}}int main(){vector&lt;int&gt; vec;vec.push_back(10);vec.push_back(20);vec.push_back(30);vec.push_back(40);
+</span><span class="c1"></span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">초기 vec 상태</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="n">print_vector</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">역으로 vec 출력하기!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">// itr 은 vec[2] 를 가리킨다.vector&lt;int&gt;::reverse_iterator r_iter = vec.rbegin();for (; r_iter != vec.rend(); r_iter++) {cout &lt;&lt; *r_iter &lt;&lt; endl;}}
+</span><span class="c1"></span><span class="err">성</span><span class="err">공</span><span class="err">적</span><span class="err">으</span><span class="err">로</span> <span class="err">컴</span><span class="err">파</span><span class="err">일</span> <span class="err">하</span><span class="err">였</span><span class="err">다</span><span class="err">면</span>
+
+
+
+
+<span class="err">와</span> <span class="err">같</span><span class="err">이</span> <span class="err">역</span><span class="err">으</span><span class="err">로</span> <span class="err">벡</span><span class="err">터</span><span class="err">의</span> <span class="err">원</span><span class="err">소</span><span class="err">들</span><span class="err">을</span> <span class="err">출</span><span class="err">력</span><span class="err">할</span> <span class="err">수</span> <span class="err">있</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+
+
+
+<span class="err">이</span><span class="err">전</span><span class="err">에</span> <span class="err">반</span><span class="err">복</span><span class="err">자</span><span class="err">의</span> <span class="n">end</span><span class="p">(</span><span class="p">)</span> <span class="err">가</span> <span class="err">맨</span> <span class="err">마</span><span class="err">지</span><span class="err">막</span> <span class="err">원</span><span class="err">소</span><span class="err">의</span> <span class="err">바</span><span class="err">로</span> <span class="err">뒤</span><span class="err">를</span> <span class="err">가</span><span class="err">리</span><span class="err">켰</span><span class="err">던</span> <span class="err">것</span><span class="err">처</span><span class="err">럼</span><span class="p">,</span> <span class="err">역</span><span class="err">반</span><span class="err">복</span><span class="err">자</span><span class="err">의</span> <span class="n">rend</span><span class="p">(</span><span class="p">)</span> <span class="err">역</span><span class="err">시</span> <span class="err">맨</span> <span class="err">앞</span> <span class="err">원</span><span class="err">소</span><span class="err">의</span> <span class="err">바</span><span class="err">로</span> <span class="err">앞</span><span class="err">을</span> <span class="err">가</span><span class="err">리</span><span class="err">키</span><span class="err">게</span> <span class="err">됩</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="err">또</span><span class="err">한</span> <span class="err">반</span><span class="err">복</span><span class="err">자</span><span class="err">의</span> <span class="err">경</span><span class="err">우</span> <span class="err">값</span><span class="err">이</span> <span class="err">증</span><span class="err">가</span><span class="err">하</span><span class="err">면</span> <span class="err">뒤</span><span class="err">쪽</span> <span class="err">원</span><span class="err">소</span><span class="err">로</span> <span class="err">가</span><span class="err">는</span> <span class="err">것</span><span class="err">처</span><span class="err">럼</span><span class="p">,</span> <span class="err">역</span><span class="err">반</span><span class="err">복</span><span class="err">자</span><span class="err">의</span> <span class="err">경</span><span class="err">우</span> <span class="err">값</span><span class="err">이</span> <span class="err">증</span><span class="err">가</span><span class="err">하</span><span class="err">면</span> <span class="err">앞</span><span class="err">쪽</span> <span class="err">원</span><span class="err">소</span><span class="err">로</span> <span class="err">가</span><span class="err">게</span> <span class="err">됩</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+
+
+<span class="err">또</span> <span class="err">반</span><span class="err">복</span><span class="err">자</span><span class="err">가</span> <span class="err">상</span><span class="err">수</span> <span class="err">반</span><span class="err">복</span><span class="err">자</span><span class="err">가</span> <span class="err">있</span><span class="err">는</span> <span class="err">것</span> <span class="err">처</span><span class="err">럼</span> <span class="err">역</span><span class="err">반</span><span class="err">복</span><span class="err">자</span> <span class="err">역</span><span class="err">시</span> <span class="err">상</span><span class="err">수</span> <span class="err">역</span><span class="err">반</span><span class="err">복</span><span class="err">자</span><span class="err">가</span> <span class="err">있</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="err">그</span> <span class="err">타</span><span class="err">입</span><span class="err">은</span> <span class="n">const_reverse_iterator</span> <span class="err">타</span><span class="err">입</span><span class="err">이</span><span class="err">고</span><span class="p">,</span> <span class="n">crbegin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">crend</span><span class="p">(</span><span class="p">)</span> <span class="err">로</span> <span class="err">얻</span><span class="err">을</span> <span class="err">수</span> <span class="err">있</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+<span class="err">앞</span><span class="err">서</span> <span class="err">설</span><span class="err">명</span><span class="err">한</span> <span class="err">함</span><span class="err">수</span><span class="err">들</span> <span class="err">말</span><span class="err">고</span><span class="err">도</span> <span class="n">vector</span> <span class="err">에</span><span class="err">는</span> <span class="err">수</span> <span class="err">많</span><span class="err">은</span> <span class="err">함</span><span class="err">수</span><span class="err">들</span><span class="err">이</span> <span class="err">있</span><span class="err">고</span><span class="p">,</span> <span class="err">또</span> <span class="err">오</span><span class="err">버</span><span class="err">로</span><span class="err">드</span> <span class="err">되</span><span class="err">는</span> <span class="err">여</span><span class="err">러</span><span class="err">가</span><span class="err">지</span> <span class="err">버</span><span class="err">전</span><span class="err">들</span><span class="err">이</span> <span class="err">있</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="err">예</span><span class="err">를</span> <span class="err">들</span><span class="err">어</span> <span class="n">insert</span> <span class="err">함</span><span class="err">수</span><span class="err">만</span> <span class="err">해</span><span class="err">도</span> <span class="mi">5</span> <span class="err">개</span><span class="err">의</span> <span class="err">오</span><span class="err">버</span><span class="err">로</span><span class="err">드</span> <span class="err">되</span><span class="err">는</span> <span class="err">버</span><span class="err">전</span><span class="err">들</span><span class="err">이</span> <span class="err">있</span><span class="err">습</span><span class="err">니</span><span class="err">다</span> <span class="p">(</span><span class="err">물</span><span class="err">론</span> <span class="err">하</span><span class="err">는</span> <span class="err">역</span><span class="err">할</span><span class="err">은</span> <span class="err">똑</span><span class="err">같</span><span class="err">지</span><span class="err">만</span> <span class="err">편</span><span class="err">의</span><span class="err">를</span> <span class="err">위</span><span class="err">해</span> <span class="err">여</span><span class="err">러</span><span class="err">가</span><span class="err">지</span> <span class="err">방</span><span class="err">식</span><span class="err">으</span><span class="err">로</span> <span class="err">사</span><span class="err">용</span><span class="err">할</span> <span class="err">수</span> <span class="err">있</span><span class="err">게</span> <span class="err">만</span><span class="err">들</span><span class="err">어</span> <span class="err">놓</span><span class="err">은</span><span class="err">것</span><span class="err">입</span><span class="err">니</span><span class="err">다</span><span class="p">)</span><span class="p">.</span> <span class="err">이</span> <span class="err">모</span><span class="err">든</span> <span class="err">것</span><span class="err">들</span><span class="err">을</span> <span class="err">강</span><span class="err">좌</span><span class="err">에</span><span class="err">서</span> <span class="err">소</span><span class="err">개</span><span class="err">하</span><span class="err">는</span> <span class="err">것</span><span class="err">은</span> <span class="err">시</span><span class="err">간</span> <span class="err">낭</span><span class="err">비</span><span class="err">이</span><span class="err">고</span><span class="p">,</span><span class="n">C</span><span class="o">+</span><span class="o">+</span> <span class="err">레</span><span class="err">퍼</span><span class="err">런</span><span class="err">스</span><span class="err">를</span> <span class="err">보</span><span class="err">면</span> <span class="err">잘</span> <span class="err">정</span><span class="err">리</span><span class="err">되</span><span class="err">어</span> <span class="err">있</span><span class="err">으</span><span class="err">니</span> <span class="err">이</span><span class="err">를</span> <span class="err">참</span><span class="err">조</span><span class="err">하</span><span class="err">시</span><span class="err">기</span> <span class="err">바</span><span class="err">랍</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+ <span class="err">리</span><span class="err">스</span><span class="err">트</span> <span class="o">-</span> <span class="n">list</span>
+
+
+<span class="err">리</span><span class="err">스</span><span class="err">트</span><span class="p">(</span><span class="n">list</span><span class="p">)</span> <span class="err">의</span> <span class="err">경</span><span class="err">우</span> <span class="err">양</span><span class="err">방</span><span class="err">향</span> <span class="err">연</span><span class="err">결</span> <span class="err">구</span><span class="err">조</span><span class="err">를</span> <span class="err">가</span><span class="err">진</span> <span class="err">자</span><span class="err">료</span><span class="err">형</span><span class="err">이</span><span class="err">라</span> <span class="err">볼</span> <span class="err">수</span> <span class="err">있</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+
+
+
+<span class="err">따</span><span class="err">라</span><span class="err">서</span> <span class="n">vector</span> <span class="err">와</span><span class="err">는</span> <span class="err">달</span><span class="err">리</span> <span class="err">임</span><span class="err">의</span><span class="err">의</span> <span class="err">위</span><span class="err">치</span><span class="err">에</span> <span class="err">있</span><span class="err">는</span> <span class="err">원</span><span class="err">소</span><span class="err">에</span> <span class="err">접</span><span class="err">근</span><span class="err">을</span> <span class="err">바</span><span class="err">로</span> <span class="err">할</span> <span class="err">수</span> <span class="err">없</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="n">list</span> <span class="err">컨</span><span class="err">테</span><span class="err">이</span><span class="err">너</span> <span class="err">자</span><span class="err">체</span><span class="err">에</span><span class="err">서</span><span class="err">는</span> <span class="err">시</span><span class="err">작</span> <span class="err">원</span><span class="err">소</span><span class="err">와</span> <span class="err">마</span><span class="err">지</span><span class="err">막</span> <span class="err">원</span><span class="err">소</span><span class="err">의</span> <span class="err">위</span><span class="err">치</span><span class="err">만</span><span class="err">을</span> <span class="err">기</span><span class="err">억</span><span class="err">하</span><span class="err">기</span> <span class="err">때</span><span class="err">문</span><span class="err">에</span><span class="p">,</span> <span class="err">임</span><span class="err">의</span><span class="err">의</span> <span class="err">위</span><span class="err">치</span><span class="err">에</span> <span class="err">있</span><span class="err">는</span> <span class="err">원</span><span class="err">소</span><span class="err">에</span> <span class="err">접</span><span class="err">근</span><span class="err">하</span><span class="err">기</span> <span class="err">위</span><span class="err">해</span><span class="err">서</span><span class="err">는</span> <span class="err">하</span><span class="err">나</span><span class="err">씩</span> <span class="err">링</span><span class="err">크</span><span class="err">를</span> <span class="err">따</span><span class="err">라</span><span class="err">가</span><span class="err">야</span> <span class="err">합</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+
+
+<span class="err">그</span><span class="err">래</span><span class="err">서</span> <span class="err">리</span><span class="err">스</span><span class="err">트</span><span class="err">에</span><span class="err">는</span> <span class="err">아</span><span class="err">예</span> <span class="p">[</span><span class="p">]</span> <span class="err">나</span> <span class="n">at</span> <span class="err">함</span><span class="err">수</span><span class="err">가</span> <span class="err">아</span><span class="err">예</span> <span class="err">정</span><span class="err">의</span><span class="err">되</span><span class="err">어</span> <span class="err">있</span><span class="err">지</span> <span class="err">않</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+
+
+<span class="err">물</span><span class="err">론</span> <span class="err">리</span><span class="err">스</span><span class="err">트</span><span class="err">의</span> <span class="err">장</span><span class="err">점</span><span class="err">이</span> <span class="err">없</span><span class="err">는</span> <span class="err">것</span><span class="err">은</span> <span class="err">아</span><span class="err">닙</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="n">vector</span> <span class="err">의</span> <span class="err">경</span><span class="err">우</span> <span class="err">맨</span> <span class="err">뒤</span><span class="err">를</span> <span class="err">제</span><span class="err">외</span><span class="err">하</span><span class="err">고</span><span class="err">는</span> <span class="err">임</span><span class="err">의</span><span class="err">의</span> <span class="err">위</span><span class="err">치</span><span class="err">에</span> <span class="err">원</span><span class="err">소</span><span class="err">를</span> <span class="err">추</span><span class="err">가</span><span class="err">하</span><span class="err">거</span><span class="err">나</span> <span class="err">제</span><span class="err">거</span><span class="err">하</span><span class="err">는</span> <span class="err">작</span><span class="err">업</span><span class="err">이</span> <span class="n">O</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="err">이</span><span class="err">였</span><span class="err">지</span><span class="err">만</span> <span class="err">리</span><span class="err">스</span><span class="err">트</span><span class="err">의</span> <span class="err">경</span><span class="err">우</span> <span class="n">O</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="err">으</span><span class="err">로</span> <span class="err">매</span><span class="err">우</span> <span class="err">빠</span><span class="err">르</span><span class="err">게</span> <span class="err">수</span><span class="err">행</span><span class="err">될</span> <span class="err">수</span> <span class="err">있</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="err">왜</span><span class="err">냐</span><span class="err">하</span><span class="err">면</span> <span class="err">원</span><span class="err">하</span><span class="err">는</span> <span class="err">위</span><span class="err">치</span> <span class="err">앞</span><span class="err">과</span> <span class="err">뒤</span><span class="err">에</span> <span class="err">있</span><span class="err">는</span> <span class="err">링</span><span class="err">크</span><span class="err">값</span><span class="err">만</span> <span class="err">바</span><span class="err">꿔</span><span class="err">주</span><span class="err">면</span> <span class="err">되</span><span class="err">기</span> <span class="err">때</span><span class="err">문</span><span class="err">입</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+
+</pre><p>cpp</p><p>#include <iostream>#include <list>using namespace std;</p><p>int main(){list<int> lst;</p><p>lst.push<span class='font-italic'>back(10);lst.push</span>back(20);lst.push<span class='font-italic'>back(30);lst.push</span>back(40);</p><p>for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {cout << <span class='font-italic'>itr << endl;}}</p><pre class="chroma">
+성공적으로 컴파일 하였다면
+
+
+
+
+와 같이 잘 나옵니다.
+
+
+한 가지 재미있는점은 리스트의 반복자의 경우 다음과 같은 연산밖에 수행할 수 없습니다.
+
+</pre><p>cpp</p><p>itr ++ // ++itritr -- // --itr 도 됩니다.</p><pre class="chroma">
+
+
+다시말해
+
+</pre><p>warning</p><p>itr + 5 // 불가능!</p><pre class="chroma">
+
+
+와 같이임의의 위치에 있는 원소를 가리킬 수 없다는 것입니다. 반복자는 오직 한 칸 씩 밖에 움직일 수 없습니다. 이와 같은 이유는 list 의 구조를 생각해보면 알 수 있습니다. 앞서 말했듯이 리스트는 왼쪽 혹은 오른쪽을 가리키고 있는 원소들의 모임으로 이루어져 있기 때문에, 한 번에 한 칸 씩 밖에 이동할 수 없습니다. 즉, 메모리 상에서 원소들이 연속적으로 존재하지 않을 수 있다는 뜻입니다. 반면에 벡터의 경우 메모리 상에서 연속적으로 존재하기 때문에 쉽게 임의의 위치에 있는 원소를 참조할 수 있습니다.
+
+
+이렇게 리스트 에서 정의되는 반복자의 타입을 보면 BidirectionalIterator 타입임을 알 수 있습니다. 이름에서도 알 수 있듯이 양방향으로 이동할 수 있되, 한 칸 씩 밖에 이동할 수 없습니다. 반면에 벡터에서 정의되는 반복자의 타입은 RandomAccessIterator 타입 입니다. 즉, 임의의 위치에 접근할 수 있는 반복자 입니다 (참고로 RandomAccessIterator 는 BidirectionalIterator 를 상속받고 있습니다)
+
+</pre><p>cpp</p><p>#include <iostream>#include <list>using namespace std;</p><p>template <typename T>void print<span class='font-italic'>list(list<T>& lst){cout << "[";// 전체 리스트를 출력하기for (list<T>::iterator itr = lst.begin(); itr != lst.end(); itr++) {cout << </span>itr << " ";}cout << "]" << endl;}int main(){list<int> lst;</p><p>lst.push<span class='font-italic'>back(10);lst.push</span>back(20);lst.push<span class='font-italic'>back(30);lst.push</span>back(40);</p><p>cout << "처음 리스트의 상태 " << endl;print<span class='font-italic'>list(lst);</p><p>for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {// 만일 현재 원소가 20 이라면// 그 앞에 50 을 집어넣는다.if (<span class='font-italic'>itr == 20) {lst.insert(itr, 50);}}</p><p>cout << "값이 20 인 원소 앞에 50을 추가 " << endl;print<span class='font-italic'>list(lst);</p><p>for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {// 값이 30 인 원소를 삭제한다.if (<span class='font-italic'>itr == 30) {lst.erase(itr);break;}}</p><p>cout << "값이 30 인 원소를 제거한다" << endl;print<span class='font-italic'>list(lst);}</p><pre class="chroma">
+성공적으로 컴파일 하면
+
+
+
+
+와 같이 잘 나옵니다.
+
+</pre><p>cpp</p><p>for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {// 만일 현재 원소가 20 이라면// 그 앞에 50 을 집어넣는다.if (<span class='font-italic'>itr == 20) {lst.insert(itr, 50);}}</p><pre class="chroma">
+
+
+앞서 설명하였지만 리스트의 반복자는 BidirectionalIterator 이기 때문에 ++ 과 -- 연산만 사용 가능합니다. 따라서 위 처럼 for 문으로 하나 하나 원소를 확인해보는것은 가능하지요. vector 와는 다르게 insert 작업은 O(1) 으로 매우 빠르게 실행됩니다.
+
+</pre><p>cpp</p><p>for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {// 값이 30 인 원소를 삭제한다.if (<span class='font-italic'>itr == 30) {lst.erase(itr);break;}}</p><pre class="chroma">
+
+
+마찬가지로 erase 함수를 이용하여 원하는 위치에 있는 원소를 지울 수 도 있습니다. 물론 리스트의 경우도 벡터와 마찬가지로 한 번 원소를 지우거나 추가하면 기존의 모든 반복자들이 무효화 됨을 생각해야 합니다.
+
+
+ 덱 (deque - double ended queue)
+
+
+마지막으로 살펴볼 컨테이너는 덱(deque - deck 이라고 발음합니다) 이라고 불리는 자료형 입니다. 덱은 벡터와 비슷하게 O(1) 으로 임의의 위치의 원소에 접근할 수 있으며 맨 뒤에 원소를 추가/제거 하는 작업도 O(1) 으로 수행할 수 있습니다. 뿐만아니라 벡터와는 다르게 맨 앞에 원소를 추가/제거 하는 작업 까지도 O(1) 으로 수행 가능합니다.
+
+
+임의의 위치에 있는 원소를 제거/추가 하는 작업은 벡터와 마찬가지로 O(n) 으로 수행 가능합니다. 뿐만 아니라 그 속도도 벡터 보다 더 빠릅니다 (이 부분은 아래 덱이 어떻게 구현되어 있는지 설명하면서 살펴보겠습니다.)
+
+
+그렇다면 덱이 벡터에 비해 모든 면에서 비교 우위에 있는 걸까요? 안타깝게도 벡터와는 다르게 덱의 경우 원소들이 실제로 메모리 상에서 연속적으로 존재하지는 않습니다. 이 때문에 원소들이 어디에 저장되어 있는지에 대한 정보를 보관하기 위해 추가적인 메모리가 더 필요로 합니다. (실제 예로, 64 비트 libc++ 라이브러리의 경우 1 개의 원소를 보관하는 덱은 그 원소 크기에 비해 8 배나 더 많은 메모리를 필요로 합니다).
+
+
+즉 덱은 실행 속도를 위해 메모리를 (많이) 희생하는 컨테이너라 보면 됩니다.
+
+위 그림은 덱이 어떠한 구조를 가지는지 보여줍니다. 일단, 벡터와는 다르게 원소들이 메모리에 연속되어 존재하는 것이 아니라 일정 크기로 잘려서 각각의 블록 속에 존재합니다. 따라서 이 블록들이 메모리 상에 어느 곳에 위치하여 있는지 저장하기 위해서 각각의 블록들의 주소를 저장하는 벡터가 필요로 합니다.
+
+
+
+참고로 이 벡터는 기존의 벡터와는 조금 다르게, 새로 할당 시에 앞쪽 및 뒤쪽 모두에 공간을 남겨놓게 됩니다. (벡터의 경우 뒤쪽에만 공간이 남았지요) 따라서 이를 통해 맨 앞과 맨 뒤에 O(1) 의 속도로 insert 및 erase 를 수행할 수 있는 것입니다. 그렇다면 왜 덱이 벡터 보다 원소를 삽입하는 작업이 더 빠른 것일까요?
+
+
+
+
+
+위와 같은 상황에서 deq.push_back(10) 을 수행하였다고 생각해봅시다.
+
+
+
+그렇다면 단순히 새로운 블록을 만들어서 뒤에 추가되는 원소를 넣어주면 됩니다. 즉 기존의 원소들을 복사할 필요가 전혀 없다는 의미 입니다. 반면에 벡터의 경우
+
+
+
+
+
+위 그림에서도 잘 알 수 있듯이, 만약에 기존에 할당한 메모리가 꽉 차면 모든 원소들을 새로운 공간에 복사해야 합니다. 따라서 평균적으로 덱이 벡터보다 더 빠르게 작동합니다. (물론 덱의 경우 블록 주소를 보관하는 벡터가 꽉 차게 되면 새로운 공간에 모두 복사해야 합니다. 하지만 블록 주소의 개수는전체 원소 개수 보다 적고 ( 위 경우 N / 5 가 되겠네요. 왜냐하면 각 블록에 원소가 5개 씩 있으므로), 대체로 벡터에 저장되는객체들의 크기가 주소값의 크기보다 크기 때문에 복사 속도가 훨씬 빠릅니다.)
+
+</pre><p>cpp</p><p>#include <iostream>#include <deque>using namespace std;</p><p>template <typename T>void print<span class='font-italic'>deque(deque<T>& dq){// 전체 덱을 출력하기cout << "[ ";for (deque<T>::iterator itr = dq.begin(); itr != dq.end(); itr++) {cout << </span>itr << " ";}cout << " ] " << endl;}int main(){deque<int> dq;dq.push<span class='font-italic'>back(10);dq.push</span>back(20);dq.push<span class='font-italic'>front(30);dq.push</span>front(40);</p><p>cout << "초기 dq 상태" << endl;print<span class='font-italic'>deque(dq);</p><p>cout << "맨 앞의 원소 제거" << endl;dq.pop<span class='font-italic'>front();print</span>deque(dq);}</p><pre class="chroma">
+
+
+성공적으로 컴파일 하였다면
+
+
+
+
+
+와 같이 잘 수행됩니다.
+
+
+</pre><p>cpp</p><p>dq.push<span class='font-italic'>back(10);dq.push</span>back(20);dq.push<span class='font-italic'>front(30);dq.push</span>front(40);</p><pre class="chroma">
+
+
+위와 같이 push_back 과 push_front 를 이용해서 맨 앞과 뒤에 원소들을 추가하였고,
+
+</pre><p>cpp</p><p>dq.pop<span class='font-italic'>front();</p><pre class="chroma">
+
+
+pop_front 함수를 이용해서 맨 앞의 원소를 제거할 수 있습니다.
+
+
+앞서 말했듯이 덱 역시 벡터 처럼 임의의 위치에 원소에 접근할 수 있으므로 [] 와 at 함수를 제공하고 있고, 반복자 역시 RandomAccessIterator 타입 이고 벡터랑 정확히 동일한 방식으로 작동합니다.
+
+
+ 그래서 어떤 컨테이너를 사용해야돼?
+
+
+
+
+어떠한 컨테이너를 사용할지는 전적으로 이 컨테이너를 가지고 어떠한 작업들을 많이 하냐에 달려있습니다.
+* 일반적인 상황에서는 그냥 벡터를 사용한다 (거의 만능이다!)
+* 만약에 맨 끝이 아닌 중간에 원소들을 추가하거나 제거하는 일을 많이 하고,원소들을 순차적으로만 접근한다면 리스트를 사용한다.
+* 만약에 맨 처음과 끝 모두에 원소들을 추가하는 작업을 많이하면 덱을 사용한다.
+자 이번 강좌는 이것으로 마치도록 하겠습니다. 다음 강좌에서는 다른 종류의 컨테이너인 연관 컨테이너에 대해서 배웁니다.
+
+ 생각 해보기
+
+
+1. deque 를 구현해보세요. (난이도 : 중)
+
+2.여기에서 시퀀스 컨테이너들의 모든 함수들을 찾아볼 수 있습니다. 한 번 읽어보세요!
+</pre><p>warning</p><p>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.</p><p>현재 여러분이 보신 강좌는<<씹어먹는 C++ - <10 - 1. C++ 의 표준 템플릿 라이브러리 (STL) - 시퀀스 컨테이너>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요</p><p>다음 강좌 보러가기</p><p>```
+
+
+공감1sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++' 카테고리의 다른 글씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>(16)2017.07.09씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered<span class='font-italic'>set, unordered</span>map>(5)2017.07.08씹어먹는 C++ - <10 - 1. C++ STL - 벡터(vector), 리스트(list), 데크(deque)>(2)2017.07.04씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>(8)2017.07.02씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>(2)2017.06.26씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)2017.04.07
+</p><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

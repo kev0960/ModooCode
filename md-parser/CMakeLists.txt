@@ -13,7 +13,7 @@ set_target_properties(chroma
                       PROPERTIES IMPORTED_LOCATION
                                  "${CMAKE_SOURCE_DIR}/lib/chroma.so")
 add_executable(md-parser ${SOURCES})
-target_link_libraries(md-parser chroma)
+target_link_libraries(md-parser chroma stdc++fs)
 
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .

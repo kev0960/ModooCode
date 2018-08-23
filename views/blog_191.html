@@ -1,0 +1,133 @@
+<p>itguru Top itguru Top</p><pre class="chroma">이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 &lt;&lt;The C++ Programming Language&gt;&gt; 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39;를 위해 모든 이들에게 공개하도록 하겠습니다.
+</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+</pre><p>istream::get</p><pre class="chroma">
+int get();
+istream&amp; get ( char&amp; c );
+istream&amp; get ( char* s, streamsize n );
+istream&amp; get ( char* s, streamsize n, char delim );
+istream&amp; get ( streambuf&amp; sb);
+istream&amp; get ( streambuf&amp; sb, char delim );
+</pre><p>스트림에서 서식화되지(unformatted) 않는 데이터를 가져온다.이 멤버 함수들은 서식화되지 않는 입력 연산을 수행한다. 함수 호출 시 인자의 타입과 개수에 따라서 다음과 같이 오버로딩 된다.</p><p>int get();스트림에서 문자 한 개를 가져온뒤, 그 값을 리턴한다 (int 로 형변환 됨)</p><p>istream& get ( char& c );스트림에서 문자 한 개를 가져온 뒤, c 에 저장한다.</p><p>istream& get (char<span class='font-italic'> s, streamsize n );스트림에서 문자들을 가져온 뒤, s 에 C 형식 문자열로 저장한다. 문자는제한 문자 '\n' 이 나올 때 까지나, n - 1 개의 문자를 받을 때 까지 입력받게 된다. 또한 입력 작업 시 오류가 발생할 경우 또한 중단되게 된다. 또한 이 함수는 제한 문자는 스트림에서 빼내지 않기 때문에 (즉, 다음 번 입력 시 가장 첫번째로 입력 받는 것이 그 제한 문자일 것이다) 만일 제한 문자를 스트림에서 빼내 버리기 위해서는getline과 같은 함수를 이용해야만 한다. s 맨 마지막에는 자동으로 널 문자(Null terminating character)가 붙여지게 된다.</p><p>istream& get (char<span class='font-italic'> s, streamsize n, char delim );위와 동일하지만, 제한 문자를 '\n' 대신에 사용자가 임의로 지정할 수 있다.</p><p>istream& get (streambuf& sb);스트림에서 문자들을 받는뒤, 이를 스트림 버퍼 sb 에 입력 한다. 문자는 제한 문자 '\n' 이 나올 때 까지나, 파일 끝에 도달할 때 까지 입력 받는다. 또한, 이 함수는 입력 스트림에서 입력 과정에 오류가 발생하였을 때나, sb 에서 출력시 오류가 발생하였을 때 중단하게 된다.</p><p>istream& get (streambuf& sb, char delim );위와 동일하지만 제한 문자를 '\n' 대신에 사용자가 원하는 것으로 설정할 수 있다.</p><p>바로 직전의 입력 과정에서 읽어들인 문자의 수는gcount함수로 알아 낼 수 있다.</p><p> 인자</p><p>c</p><p>추출한 문자를 저장할 char 변수</p><p>s</p><p>추출한 문자열을 C 형식 문자열로 저장하기 위한 포인터</p><p>n</p><p>입력 받을 최대 문자의 수 (널 종료 문자열을 포함해서) 이는 또한 streamsize 타입의 정수값이다.</p><p>delim</p><p>제한 문자. 이 문자를 읽어들이기게 되면 입력 작업이 종료된다. 만일 이 문자를 사용자가 지정하지 않았다면 디폴트로 '\n' 이 설정된다.</p><p>sb</p><p>출력 스트림 버퍼 (streambuf 의 객체 혹은 이 스트림을 상속하고 있는 클래스들의 객체)</p><p> 리턴값</p><p>맨 첫 번째 오버로딩의 경우 이 함수는 읽어들인 문자의 수를 리턴한다. 나머지 것들의 경우 <span class='font-italic'>this 를 리턴한다.</p><p>스트림 상의 오류는 다음과 같은 내부 상태 플래그들로 설정된다.</p><p>플래그오류eofbit작업 중 문자들의 끝에 도달하였을 때failbit끝에 바로 도달해버려서 어떠한 문자도 추출해 낼 수 없을 경우. (streambuf 를 사용하는 경우 sb 에 문자 출력 불가시에도 설정될 수 있다) 또한 eofbit 이 설정되는 경우 failbit 또한 같이 설정될 수 있다</p><p>badbit위 같은 일들 외의 다른 오류가 발생시</p><p>위와 같은 플래그들이ios::exceptions함수로 설정되었다면, ios<span class='font-italic'>base::failure 가 throw 된다.</p><p> 실행 예제</p><pre class="chroma">
+<span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/iostream/istream/get/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="n">str</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="p">;</span>
+<span class="n">ifstream</span> <span class="n">is</span><span class="p">;</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Enter the name of an existing text file: </span><span class="s">&#34;</span><span class="p">;</span>
+<span class="n">cin</span><span class="p">.</span><span class="n">get</span> <span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="mi">256</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="n">is</span><span class="p">.</span><span class="n">open</span> <span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>        <span class="c1">// open file
+</span><span class="c1"></span>
+
+<span class="k">while</span> <span class="p">(</span><span class="n">is</span><span class="p">.</span><span class="n">good</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>     <span class="c1">// loop while extraction from file is possible
+</span><span class="c1"></span><span class="p">{</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">is</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>       <span class="c1">// get character from file
+</span><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">is</span><span class="p">.</span><span class="n">good</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="n">is</span><span class="p">.</span><span class="n">close</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>           <span class="c1">// close file
+</span><span class="c1"></span>
+
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>실행 결과</p><p> 템플릿 멤버 정의</p><pre class="chroma">
+<span class="p">(</span> <span class="n">basic_istream</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span><span class="n">traits</span><span class="o">&gt;</span> <span class="p">)</span>
+
+
+<span class="k">typedef</span> <span class="n">charT</span> <span class="n">char_type</span><span class="p">;</span>
+<span class="n">int_type</span> <span class="nf">get</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="n">basic_istream</span><span class="o">&amp;</span> <span class="n">get</span> <span class="p">(</span><span class="n">char_type</span><span class="o">&amp;</span> <span class="n">c</span> <span class="p">)</span><span class="p">;</span>
+<span class="n">basic_istream</span><span class="o">&amp;</span> <span class="n">get</span> <span class="p">(</span><span class="n">char_type</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">streamsize</span> <span class="n">n</span> <span class="p">)</span><span class="p">;</span>
+<span class="n">basic_istream</span><span class="o">&amp;</span> <span class="n">get</span> <span class="p">(</span><span class="n">char_type</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="n">streamsize</span> <span class="n">n</span><span class="p">,</span> <span class="n">char_type</span> <span class="n">delim</span> <span class="p">)</span><span class="p">;</span>
+<span class="n">basic_istream</span><span class="o">&amp;</span> <span class="n">get</span> <span class="p">(</span><span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="n">char_type</span><span class="p">,</span><span class="n">traits</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">sb</span><span class="p">)</span><span class="p">;</span>
+<span class="n">basic_istream</span><span class="o">&amp;</span> <span class="n">get</span> <span class="p">(</span><span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="n">char_type</span><span class="p">,</span><span class="n">traits</span><span class="o">&gt;</span><span class="o">&amp;</span> <span class="n">sb</span><span class="p">,</span> <span class="n">char_type</span> <span class="n">delim</span> <span class="p">)</span><span class="p">;</span>
+</pre><p> 연관된 함수</p><ul><li><p> istream::getline : 스트림에서 한 줄을 입력받는다.</p></li><li><p> istream::ignore : 문자를 스트림에서 입력받고 버린다.</p></li><li><p> istream::gcount : 마지막 서식화되지 않는 입력 작업에서 입력 받은 문자의 수를 얻는다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::ignore 함수(1)2012.11.07C++ 레퍼런스 - istream::gcount 함수(0)2012.11.07C++ 레퍼런스 - istream::get 함수(0)2012.11.07C++ 레퍼런스 - ios::tie 함수(0)2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)2012.03.25C++ 레퍼런스 - ios::fill 함수(0)2012.03.25</p><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

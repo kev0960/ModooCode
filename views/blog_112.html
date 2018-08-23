@@ -1,0 +1,121 @@
+<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+
+</pre><p>mktime</p><pre class="chroma">#include &lt;time.h&gt; // C++ 에서는 &lt;ctime&gt;
+
+time_t mktime ( struct tm * timeptr );
+
+</pre><p>tm 구조체를 time<span class='font-italic'>t 형식으로 변환한다.timeptr 이 가리키는 tm 구조체를 읽어 들여서time</span>t 형식으로 리턴한다. 이 때, 이 함수가 tm 구조체에서 참조하는 값은 현재 시각과 날짜 뿐이다. 나머지 정보인 tm<span class='font-italic'>wday 와 tm</span>yday 는 무시한다. 참고로 이 함수는 timeptr 이 가리키는 tm 구조체의 내용을 수정하는데, tm 구조체에 들어있는 시각과 날짜 정보를 가지고 tm<span class='font-italic'>wday 와 tm</span>yday 를 설정한다. 따라서 이를 통해 역으로 mktime 함수를 호출 하여서 특정한 날짜가 무슨 요일이고, 몇 번째 날인지 추적할 수 도 있다.</p><h3><p> 인자</p></h3><p>timeptr</p><p>tm 구조체를 가리키는 포인터로 반드시 날짜와 시간에 관한 정보가 들어 있어야 한다.</p><h3><p> 리턴값</p></h3><p>현재 timeptr 로 전달된 날짜와 시각에 맞추어서 이에 대한time<span class='font-italic'>t 값이 리턴된다. 오류 발생시에는 -1 이 리턴된다.</p><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">특정한 날짜가 무슨 요일인지 알아온다.
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/ctime/mktime/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm"> */</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">time_t</span> <span class="n">rawtime</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">tm</span> <span class="o">*</span> <span class="n">timeinfo</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span> <span class="p">,</span><span class="n">day</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span> <span class="n">weekday</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Sunday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Monday</span><span class="s">&#34;</span><span class="p">,</span>
+        <span class="sa"></span><span class="s">&#34;</span><span class="s">Tuesday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Wednesday</span><span class="s">&#34;</span><span class="p">,</span>
+        <span class="sa"></span><span class="s">&#34;</span><span class="s">Thursday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Friday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Saturday</span><span class="s">&#34;</span><span class="p">}</span><span class="p">;</span>
+
+    <span class="cm">/* 사용자로 부터 날짜를 입력 받는다. */</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter year: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span> <span class="n">scanf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">year</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter month: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span> <span class="n">scanf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">month</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter day: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span> <span class="n">scanf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">day</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="cm">/* rawtime 에 time 함수로 현재 시간 정보로 세팅한 뒤,
+</span><span class="cm">       사용자로 부터 입력받은 데이터로 년/월/일 정보를 수정한다. */</span>
+    <span class="n">time</span> <span class="p">(</span> <span class="o">&amp;</span><span class="n">rawtime</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">timeinfo</span> <span class="o">=</span> <span class="n">localtime</span> <span class="p">(</span> <span class="o">&amp;</span><span class="n">rawtime</span> <span class="p">)</span><span class="p">;</span>
+    <span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span> <span class="mi">1900</span><span class="p">;</span>
+    <span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_mon</span> <span class="o">=</span> <span class="n">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_mday</span> <span class="o">=</span> <span class="n">day</span><span class="p">;</span>
+
+    <span class="cm">/* mktime 함수를 호출하면 년/월/일 데이터에 따라
+</span><span class="cm">       tm_wday 와 tm_yday 를 설정한다. 이 때 리턴되는 time_t 데이터는 사용하지 않는다.*/</span>
+    <span class="n">mktime</span> <span class="p">(</span> <span class="n">timeinfo</span> <span class="p">)</span><span class="p">;</span>
+
+    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">That day is a %s.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">weekday</span><span class="p">[</span><span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_wday</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2053CC544D1607BD2BED84' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> asctime : tm 구조체를 문자열로 변환한다.</p></li><li><p> gmtime  :  time<span class='font-italic'>t 값을 UTC 시간에 따라 tm 구조체로 변환한다.</p></li><li><p> localtime :time<span class='font-italic'>t 값을 지역 시간에 따라 tm 구조체로 변환한다.</p></li><li><p> time  :  현재 시각을 알아온다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - asctime 함수(0)2010.12.26C 언어 레퍼런스 - time 함수(2)2010.12.26C 언어 레퍼런스 - mktime 함수(0)2010.12.26C 언어 레퍼런스 - time<span class='font-italic'>t 형(1)2010.12.25C 언어 레퍼런스 - difftime 함수(0)2010.12.25C 언어 레퍼런스 - clock 함수(2)2010.12.25</p><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>

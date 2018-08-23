@@ -1,0 +1,69 @@
+ itguru Top itguru Top
+
+```warning
+아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+
+```
+
+fclose
+```info
+#include <stdio.h> // C++ 에서는 <cstdio>
+
+int fclose ( FILE * stream );
+
+```
+
+파일을 닫는다.
+인자로 지정한 스트림에 해당하는 파일을 닫는다.
+이 때, 그 스트림의 모든 버퍼들은 비워(flush)진다. 아직 파일에 쓰이지 않고 남아있던 버퍼의 내용물은 모두 파일에 쓰이고, 아직 읽히지 않고 남아있떤 버퍼의 내용물은 모두 사라진다.
+fclose 함수의 호출이 실패하더라도 인자로 전달된 스트림과 이에 해당하는 파일의 관계는 끊어지게 된다.
+
+### 인자
+
+stream
+
+파일을 닫을 스트림의 FILE 객체를 가리키는 포인터.
+
+### 리턴값
+
+많일 스트림이 성공적으로 닫힌다면 0 이 리턴된다.
+실패할 경우 EOF 가 리턴된다.
+
+### 실행 예제
+
+```cpp
+/*
+myfile.txt 를 오픈하여 "fclose example" 을 쓴 후 파일을 닫는다.
+이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fclose/
+에서 가져왔습니다.
+*/
+#include <stdio.h>
+int main ()
+{
+    FILE * pFile;
+    pFile = fopen ("myfile.txt","wt");
+    fprintf (pFile, "fclose example");
+    fclose (pFile);
+    return 0;
+}
+
+```
+
+실행 결과
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F192A9D1F4B702E01249504)
+
+파일에 쓰여진 모습
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F127B681F4B702E017E42DF)
+
+
+
+### 연관된 함수
+
+
+* fopen  :  파일을 연다(open)
+* fflush  :  스트림을 비운다(flush)
+
+공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fopen 함수(0)2010.02.11C 언어 레퍼런스 - fflush 함수(4)2010.02.10C 언어 레퍼런스 - fclose 함수(3)2010.02.08C 언어 레퍼런스 - perror 함수(0)2010.02.08C 언어 레퍼런스 - ferror 함수(1)2010.02.05C 언어 레퍼런스 - feof 함수(1)2010.02.05
+

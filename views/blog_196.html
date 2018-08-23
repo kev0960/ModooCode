@@ -1,0 +1,379 @@
+<p>itguru Top itguru Top</p><pre class="chroma">이 글은 http://ciere.com/cppnow12/lambda.pdf 에서 가져왔고 한국말로 번역되었습니다. 또한 저의 개인적인 C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39;를 위해 모든 이들에게 공개하도록 하겠습니다.
+</pre><pre class="chroma">이 글을 이해하기 위해서는 초보 이상의 C++ 지식이 필요합니다.
+아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+
+
+안녕하세요? 이 글은 지난번에 우측값 레퍼런스에 관련한 글에 이어서 두 번째로 쓰는 C++ 토막글 입니다. C++ 토막글에서는 주로 C++ 11 에 추가된 최신 기술들을 다루고 있는데요, 아직 국내에 자료가 많이 부족하다 보니 체계적으로 쓰인 외국 자료들을 번역하는 형태로 제공하고 있습니다. 이 글은 http://ciere.com/cppnow12/lambda.pdf 에 올라온 pdf 자료를 바탕으로 번역된 글입니다. 사실 이 pdf 는 내용은 없고 소스만 있는 발표 자료이지만, 제가 발표자가 되었다고 가정해서 내용을 소개해보고자 합니다. 이 글이 C++ 11 의 강력한 기술인 Lambda 를 이해하는데 많은 도움이 되기를 바라겠습니다 :)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 서론
+
+어떤 벡터의 원소들의 모든 곱을 계산하는 코드를 구성한다고 생각해봅시다. 아마 가장 초보적으로 이 코드를 구성하는 방법은 아마 아래와 같을 것입니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre><p>cpp</p><p>vector<int>::const<span class='font-italic'>iterator iter = cardinal.begin();vector<int>::const</span>iterator iter<span class='font-italic'>end = cardinal.end();int total</span>elements = 1;while( iter != iter<span class='font-italic'>end ){total</span>elements <span class='font-italic'>= </span>iter;++iter;}위는 반복자(iterator) 를 이용해서 cardinal 이라는 vector<int> 의 각 원소들을 순차적으로 참조해가며 total<span class='font-italic'>elements 에 곱해나가는 코드입니다. 아주 직관적이고 단순하지만, C++ 을 처음 배우는, 아직 C++ 의 기능을 전부 접해보지 못한 초보자 수준의 코드이겠죠?만일 "나는 C++ 쫌 해" 정도 되는 사람이라는 Functor 를 이용해서 아래와 같은 코드를 짜냈을 것입니다.</p><pre class="chroma"><span class="kt">int</span> <span class="n">total_elements</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="n">for_each</span><span class="p">(</span> <span class="n">cardinal</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">cardinal</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">product</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">total_elements</span><span class="p">)</span> <span class="p">)</span><span class="p">;</span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span><span class="k">struct</span> <span class="n">product</span><span class="p">{</span><span class="n">product</span><span class="p">(</span> <span class="n">T</span> <span class="o">&amp;</span> <span class="n">storage</span> <span class="p">)</span> <span class="o">:</span> <span class="n">value</span><span class="p">(</span><span class="n">storage</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span><span class="k">template</span><span class="o">&lt;</span> <span class="k">typename</span> <span class="n">V</span><span class="o">&gt;</span><span class="kt">void</span> <span class="k">operator</span><span class="p">(</span><span class="p">)</span><span class="p">(</span> <span class="n">V</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="p">)</span><span class="p">{</span><span class="n">value</span> <span class="o">*</span><span class="o">=</span> <span class="n">v</span><span class="p">;</span><span class="p">}</span><span class="n">T</span> <span class="o">&amp;</span> <span class="n">value</span><span class="p">;</span><span class="p">}</span><span class="p">;</span>
+<span class="err">위</span> <span class="err">코</span><span class="err">드</span><span class="err">는</span> <span class="n">C</span><span class="o">+</span><span class="o">+</span> <span class="err">고</span><span class="err">수</span> <span class="err">답</span><span class="err">게</span> <span class="n">for_each</span> <span class="err">와</span> <span class="n">Functor</span> <span class="err">를</span> <span class="err">이</span><span class="err">용</span><span class="err">한</span> <span class="err">코</span><span class="err">드</span><span class="err">를</span> <span class="err">짜</span><span class="err">냈</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="n">for_each</span> <span class="err">를</span> <span class="err">사</span><span class="err">용</span><span class="err">해</span><span class="err">서</span> <span class="err">이</span><span class="err">전</span> <span class="err">코</span><span class="err">드</span><span class="err">의</span> <span class="k">while</span> <span class="err">문</span> <span class="err">부</span><span class="err">분</span><span class="err">을</span> <span class="err">싸</span><span class="err">그</span><span class="err">리</span> <span class="err">없</span><span class="err">앨</span> <span class="err">수</span> <span class="err">있</span><span class="err">지</span><span class="err">만</span><span class="p">,</span> <span class="err">이</span><span class="err">를</span> <span class="err">위</span><span class="err">해</span> <span class="err">필</span><span class="err">요</span><span class="err">한</span> <span class="n">Functor</span> <span class="err">를</span> <span class="err">구</span><span class="err">성</span><span class="err">하</span><span class="err">는</span> <span class="err">코</span><span class="err">드</span><span class="err">가</span> <span class="err">훨</span><span class="err">씬</span> <span class="err">깁</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="err">마</span><span class="err">치</span> <span class="err">배</span><span class="err">보</span><span class="err">다</span> <span class="err">배</span><span class="err">꼽</span><span class="err">이</span> <span class="err">더</span> <span class="err">큰</span> <span class="err">격</span><span class="err">이</span><span class="err">군</span><span class="err">요</span><span class="p">.</span> <span class="err">물</span><span class="err">론</span> <span class="err">전</span><span class="err">체</span><span class="err">적</span><span class="err">인</span> <span class="err">코</span><span class="err">드</span><span class="err">의</span> <span class="err">질</span><span class="err">이</span> <span class="err">높</span><span class="err">아</span><span class="err">졌</span><span class="err">다</span><span class="err">고</span> <span class="err">볼</span> <span class="err">수</span> <span class="err">있</span><span class="err">지</span><span class="err">만</span><span class="p">,</span> <span class="n">Functor</span> <span class="err">을</span> <span class="err">이</span><span class="err">용</span><span class="err">하</span><span class="err">기</span> <span class="err">위</span><span class="err">해</span> <span class="n">product</span> <span class="err">라</span><span class="err">는</span> <span class="err">구</span><span class="err">조</span><span class="err">체</span><span class="err">를</span> <span class="err">생</span><span class="err">성</span><span class="err">하</span><span class="err">면</span><span class="err">서</span> <span class="err">구</span><span class="err">질</span><span class="err">구</span><span class="err">질</span><span class="err">하</span><span class="err">게</span> <span class="err">생</span><span class="err">성</span><span class="err">자</span><span class="err">도</span> <span class="err">만</span><span class="err">들</span><span class="err">고</span><span class="p">,</span> <span class="err">또</span> <span class="kt">void</span> <span class="k">operator</span><span class="p">(</span><span class="p">)</span> <span class="err">도</span> <span class="err">정</span><span class="err">의</span><span class="err">해</span><span class="err">주</span><span class="err">어</span><span class="err">야</span><span class="err">겠</span><span class="err">죠</span><span class="p">.</span> <span class="err">상</span><span class="err">당</span><span class="err">히</span> <span class="err">귀</span><span class="err">찮</span><span class="err">은</span> <span class="err">일</span><span class="err">이</span> <span class="err">아</span><span class="err">닐</span> <span class="err">수</span> <span class="err">없</span><span class="err">습</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+</pre><p>cpp</p><p>int total<span class='font-italic'>elements = 1;for</span>each( cardinal.begin(), cardinal.end(), <a href='int i'>&total_elements</a>{total<span class='font-italic'>elements </span>= i;} );자. 그럼 위 코드를 한번 봅시다. 짧고 간결하며, 무엇 보다도 while 문이나 functor 와 같은 구질구질한 코드 없이 깔끔하게 for<span class='font-italic'>each 의 특징을 그대로 살려주었다고 볼 수 있습니다. 즉 Functor 에 들어갈 내용을 product 라는 구조체를 정의하면서 쭉 써내려갈 내용을 한 번에 깔끔하게 정리해놓은 것이지요. 이것이 바로 Lambda 의 위력입니다.</p><p>간단히 Functor 를 이용한 코드와 Lambda 를 이용한 코드를 비교해 보아도 그 차이를 실감할 수 있을 것입니다.</p><pre class="chroma">
+<span class="c1">// Functor 사용
+</span><span class="c1"></span>
+<span class="k">struct</span> <span class="n">mod</span>
+<span class="p">{</span>
+<span class="n">mod</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="o">:</span> <span class="n">modulus</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+<span class="kt">int</span> <span class="k">operator</span><span class="p">(</span><span class="p">)</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span><span class="p">{</span> <span class="k">return</span> <span class="n">v</span> <span class="o">%</span> <span class="n">modulus</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">modulus</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">my_mod</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="n">transform</span><span class="p">(</span> <span class="n">in</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">in</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">out</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+<span class="n">mod</span><span class="p">(</span><span class="n">my_mod</span><span class="p">)</span> <span class="p">)</span><span class="p">;</span>
+</pre><pre class="chroma">
+<span class="c1">// Lambda 사용
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">my_mod</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="n">transform</span><span class="p">(</span> <span class="n">in</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">in</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">out</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+<span class="p">[</span><span class="n">my_mod</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span>
+<span class="p">{</span> <span class="k">return</span> <span class="n">v</span> <span class="o">%</span> <span class="n">my_mod</span><span class="p">;</span> <span class="p">}</span> <span class="p">)</span><span class="p">;</span>
+</pre><p> 람다(Lambda) 의 구성</p><p>자 그럼 Lambda 를 사용하기 위해 Lambda 를 어떻게 C++ 에서 정의하는지 살펴보도록 합시다.</p><p>람다는 위 그림과 같이 4 개의 부분으로 구성되어 있습니다. 그 4 개의 부분은 각각 개시자 (introducer), 인자(parameters), 반환 타입 (return type), 그리고 함수의 몸통 (statement) 라 합니다. 일단, 람다 맨 처음에 나타나는 [] 는 개시자로, 그 안에 어떤 외부 변수를 써 넣는다면 람다 함수가 이를 Capture 해서, 이 변수를 람다 내부에서 이용할 수 있게 됩니다 (이에 대한 이야기는 뒤에서...) 위 경우 my<span class='font-italic'>mod 라는 변수를 람다 내부에서 이용할 수 있게 됩니다.</p><p>그 다음의 () 는 람다가 실행시 받을 인자들을 써 넣습니다. 위 람다는 int 형의 v<span class='font-italic'> 를 인자로 받는 군요. 여기는 그냥 실제로 함수에서 사용하는 인자 리스트와 동일하게 적어주면 됩니다. 이제, 그 옆으로 보면 -> 가 있고 반환 타입을 적어주시면 됩니다. 위 람다의 경우 int 를 리턴합니다. 마지막으로 람다 내부에서 실행할 내용을 적어주면 되는데, 위 람다의 경우 v</span> 와 my<span class='font-italic'>mod 를 모듈러 연산해서 그 결과를 리턴하네요.</p><p>만일 우리가</p><pre class="chroma">
+<span class="p">[</span><span class="n">my_mod</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">v_</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span><span class="p">{</span><span class="k">return</span> <span class="n">v_</span> <span class="o">%</span> <span class="n">my_mod</span><span class="p">;</span><span class="p">}</span>
+</pre><p>위와 같이 코드 상에 Lambda 를 썼다고 해봅시다. 그러면 런타임시 이름은 없지만, 메모리 상에 임시적으로 존재하는 클로져 (Closure) 객체가 생성됩니다. 이 클로져 객체는함수 객체(function object) 처럼 행동합니다. (이러한 연유로 람다를 람다 함수라고 부르는 경우가 있습니다 - 사실 엄밀히 말하면 클로져 객체지 함수는 아닙니다)</p><p>그렇다면</p><pre class="chroma">
+<span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="p">)</span><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">foo</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span><span class="p">(</span><span class="p">)</span>
+</pre><p>를 실행하였을 때 어떠한 결과가 나올까요? 일단</p><pre class="chroma">
+<span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="p">)</span><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">foo</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+</pre><p>로 임시적인 클로져 객체가 생성되었는데 () 를 붙여서 바로 이 임시 클로져 객체를 실행시켜 버리지요. 위 람다는 Capture 하는 변수들도 없고, 인자로 받는 것도 없고 리턴 타입도 없고 (참고로 리턴 타입이 void 일 경우 -> 를 생각 가능합니다) 함수 몸통만 덜렁 있기에 특별히 생각할 것도 없이 함수 몸통만 덜렁 실행되서</p><p>라고 나오게 됩니다.</p><p>그러면 조금 더 복잡한 예제를 살펴볼까요?</p><pre class="chroma">
+<span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span><span class="p">{</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">v</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">*6=</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">v</span><span class="o">*</span><span class="mi">6</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="p">}</span> <span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="p">;</span>
+</pre><p>는 어떨까요.</p><pre class="chroma">
+  <span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span><span class="p">{</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">v</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">*6=</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">v</span><span class="o">*</span><span class="mi">6</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="p">}</span>
+</pre><p>부분에서 인자로 v 를 받는 클로져가 생성되었는데, (7) 로 이 클로져에 인자로 7 을 전달시키면서 실행시켜버립니다. 따라서 모두가 예상 하였던 결과인</p><p>가 나오겠네요.</p><p>람다 자체가 함수 처럼 자유롭게 사용할 수 있는 것이기 때문에 인자로 (당연히) 레퍼런스 들도 전달 가능합니다. 예를 들어</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span> <span class="n">v</span><span class="p">)</span><span class="p">{</span> <span class="n">v</span><span class="o">*</span><span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="p">}</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">the correct value is: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre><p>를 실행해보면</p><p>가 나옵니다.</p><p>참고로 받는 인자가 없을 경우, 예컨대</p><pre class="chroma">
+<span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="p">)</span><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">foo</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+</pre><p>의 경우 인자 () 를 생략 할 수 있습니다. 즉,</p><pre class="chroma">
+<span class="p">[</span><span class="p">]</span><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">foo</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+</pre><p>도 동일한 의미입니다. (하지만 [] 는 지울 수 없습니다! )</p><p> Capture</p><p>사실 많은 경우 우리의 람다 안에서 람다 밖에 있는 변수들에게 접근하고 싶을 때가 있을 것입니다. 물론 "그렇다면 그 변수들을 그냥 인자로 받아버리면 되자나!" 라고 반문할 수 도 있겠지만, for<span class='font-italic'>each 나 fill, transform 등의 C++ 의 파워풀한 STL 을 수행하기 위해서는 인자들을 맞추어 주어야 하는데 이 때문에 함수 내부로 전하고 싶어도 전달하지 못하는 인자들이 있기 마련 입니다.</p><p>따라서 이를 방지하기 위해, 람다 내부와 소통할 수 있는 또다른 문, Capture 를 제공하고 있습니다. Capture 하고자 하는 내용은 앞에서 말했듯이 [] 안에 들어오게 되는데, 대표적으로 아래의 4 개의 형태들이 있습니다.</p><ol><li><p> <a href=''>&</a> { . . . } 외부의 모든 변수들을 레퍼런스로 가져온다. (함수의 Call - by - reference 를 생각)</p></li><li><p> <a href=''>=</a> { . . . } 외부의 모든 변수들을 값으로 가져온다. (함수의 Call - by - value 를 생각)</p></li><li><p> [=, &x, &y] { . . . }, [&, x, y] { . . . } 외부의 모든 변수들을 값/레퍼런스로 가져오되, x 와 y 만 레퍼런스/값으로 가져온다</p></li><li><p> [x, &y, &z] { . . . } 지정한 변수들을 지정한 바에 따라 가져온다.</p></li></ol><p>그렇다면 한 번 예제를 살펴볼까요.</p><pre class="chroma"><span class="kt">int</span> <span class="n">total_elements</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">cardinal</span><span class="p">;</span>
+<span class="n">cardinal</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span><span class="n">cardinal</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span><span class="n">cardinal</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="p">;</span><span class="n">cardinal</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="p">;</span>
+<span class="n">for_each</span><span class="p">(</span> <span class="n">cardinal</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">cardinal</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">,</span><span class="p">[</span><span class="o">&amp;</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="p">{</span> <span class="n">total_elements</span><span class="o">*</span><span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="p">}</span> <span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">total elements : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">total_elements</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="err">위</span> <span class="err">코</span><span class="err">드</span><span class="err">에</span><span class="err">서</span> <span class="n">cardinal</span> <span class="err">에</span><span class="err">는</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span> <span class="err">이</span><span class="err">라</span><span class="err">는</span> <span class="err">원</span><span class="err">소</span><span class="err">들</span><span class="err">이</span> <span class="err">들</span><span class="err">어</span><span class="err">있</span><span class="err">고</span> <span class="err">그</span><span class="err">것</span><span class="err">을</span> <span class="n">for_each</span> <span class="err">를</span> <span class="err">통</span><span class="err">해</span> <span class="err">순</span><span class="err">회</span><span class="err">하</span><span class="err">면</span><span class="err">서</span> <span class="n">total_elements</span> <span class="err">에</span> <span class="err">곱</span><span class="err">하</span><span class="err">게</span> <span class="err">됩</span><span class="err">니</span><span class="err">다</span><span class="p">.</span> <span class="err">이</span> <span class="err">때</span> <span class="n">Capture</span> <span class="err">는</span> <span class="o">&amp;</span> <span class="err">로</span> <span class="err">이</span><span class="err">므</span><span class="err">로</span> <span class="n">total_elements</span> <span class="err">를</span> <span class="n">Capture</span> <span class="err">할</span> <span class="err">수</span> <span class="err">있</span><span class="err">고</span><span class="p">,</span> <span class="err">람</span><span class="err">다</span> <span class="err">외</span><span class="err">부</span> <span class="err">변</span><span class="err">수</span><span class="err">인</span> <span class="n">total_elements</span> <span class="err">를</span> <span class="err">성</span><span class="err">공</span><span class="err">적</span><span class="err">으</span><span class="err">로</span> <span class="err">바</span><span class="err">꿀</span> <span class="err">수</span> <span class="err">있</span><span class="err">었</span><span class="err">던</span> <span class="err">것</span><span class="err">이</span><span class="err">죠</span><span class="p">.</span> <span class="err">위</span> <span class="err">코</span><span class="err">드</span><span class="err">를</span> <span class="err">실</span><span class="err">행</span><span class="err">하</span><span class="err">면</span> <span class="err">예</span><span class="err">상</span><span class="err">하</span><span class="err">던</span><span class="err">대</span><span class="err">로</span>
+
+
+
+
+<span class="err">가</span> <span class="err">나</span><span class="err">오</span><span class="err">게</span> <span class="err">됩</span><span class="err">니</span><span class="err">다</span><span class="p">.</span>
+<span class="err">이</span><span class="err">번</span><span class="err">에</span><span class="err">는</span> <span class="err">조</span><span class="err">금</span> <span class="err">더</span> <span class="err">복</span><span class="err">잡</span><span class="err">한</span> <span class="err">예</span><span class="err">제</span><span class="err">를</span> <span class="err">살</span><span class="err">펴</span><span class="err">보</span><span class="err">도</span><span class="err">록</span> <span class="err">합</span><span class="err">시</span><span class="err">다</span><span class="p">.</span>
+</pre><p>cpp</p><p>template< typename T >void fill( vector<int> & v, T done ){int i = 0;while( !done() ){v.push<span class='font-italic'>back( i++ );}}vector<int> stuff;fill( stuff,<a href=''>&</a>->bool{ return stuff.size() >= 8; } );for</span>each (stuff.begin(), stuff.end(), <a href='int i'></a> {cout << i << " " ;});</p><pre class="chroma">
+참고로 클로져 객체는 분명 특정 타입의 객체 이므로 위와 같이 template 에서 typename T 로 받을 수 있습니다. 위의 fill 함수는 특정 타입 T 의 변수 done 으로 클로져 객체를 받았습니다. 이 때, 클로져 객체 자체는 이미 stuff 를 Capture 해서 stuff 에 대한 레퍼런스를 계속 가지고 있는 상태이고, fill 의 while 문에서 돌면서 stuff 의 크기가 8 이하 일 때 까지 수행되게 됩니다. 따라서
+
+
+
+
+로 출력됩니다.
+
+
+
+
+</pre><p>cpp</p><p>void fill( vector<int> & v, T done ){int i = 0;while( !done() ){v.push<span class='font-italic'>back( i++ );}}vector<int> stuff;fill( stuff,<a href=''>&</a>->bool{ int sum=0;for</span>each( stuff.begin(), stuff.end(),<a href='int i'>&</a>{ sum += i; } );return sum >= 10;});for<span class='font-italic'>each (stuff.begin(), stuff.end(), <a href='int i'></a> {cout << i << " " ;});머리를 쫌만 굴려보면, 현재 stuff 의 원소 합이 10 이하일 때 까지 stuff 의 원소를 추가하는 람다라고 볼 수 있습니다.당연히 그 결과는</p><p> 한 가지 흥미로운 점은 Capture 를 레퍼런스가 아닌 값으로 할 때 언제 Capture 가 되냐는 것입니다.</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">func</span> <span class="o">=</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">v</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">v</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="n">func</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
+</pre><p>과연 위 소스에서 v 는 func 이 처음 정의될 때, 즉 클로져 객체가 생성될 때 Capture 될까요, 아니면 func 이 실행될 때 일까요? 만일 전자라면 42 가 출력될 것이고 후자라면 8 이 출력될 것입니다.</p><p>과연!</p><p>흥미롭게도 람다는 클로져 객체가 처음 생성될때 변수들의 값을 Capture 합니다.</p><p>Capture 를 값으로 할 때 주의점은 그 변수들에는 자동으로 const 속성이 붙는 다는 것입니다. 즉 값으로 Capture 시 그 변수들의 내용을 바꿀 수 없습니다. 따라서 아래와 같은 코드는</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">two_i</span> <span class="o">=</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">(</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span><span class="p">{</span> <span class="n">i</span><span class="o">*</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">2i:</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">two_i</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> i:</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre><p>컴파일 오류 "'i': a by-value capture cannot be modified in a non-mutable lambda " 가 나게 됩니다. 위 코드에서 i 는 분명히 값으로 받았으므로 const 인데, i <span class='font-italic'>= 2 를 통해 i 의 값을 바꾸려 하고 있으니 오류가 발생한 것입니다. 하지만, 함수 내부에서 i 의 값을 바꾸고자 하면 어떨까요? (물론 실제 외부의 i 의 값은 바뀌지 않습니다... 함수 내부에서만 - 마치 지역 변수처럼 말이죠)</p><p>답은 간단합니다. 람다에 mutable 속성을 추가해주면 됩니다.</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">two_i</span> <span class="o">=</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">(</span><span class="p">)</span> <span class="k">mutable</span> <span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span><span class="p">{</span> <span class="n">i</span><span class="o">*</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="k">return</span> <span class="n">i</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">2i:</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">two_i</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> i:</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre><p>이로써 람다 내부에서 i 의 값을 변경할 수 있습니다. 물론, 다시 말하지만 외부의 i 의 값이 바뀌는 것이 아닙니다. 오직 람다 함수 내에서  '어떤 다른 i ' 의 값이 두 배가 되는 것이지요. 그 결과</p><p>로 나타남을 알 수 있습니다.</p><p>이제 그럼 조금 복잡한 코드를 살펴볼까요.</p><pre class="chroma">
+<span class="k">class</span><span class="err"> </span><span class="nc">gorp</span>
+<span class="p">{</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">values</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">m_</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="n">gorp</span><span class="p">(</span><span class="kt">int</span> <span class="n">mod</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_</span><span class="p">(</span><span class="n">mod</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+<span class="n">gorp</span><span class="o">&amp;</span> <span class="n">put</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span><span class="p">{</span> <span class="n">values</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="p">;</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">extras</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">for_each</span><span class="p">(</span> <span class="n">values</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">values</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+<span class="p">[</span><span class="o">=</span><span class="p">,</span><span class="o">&amp;</span><span class="n">count</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span><span class="p">{</span> <span class="n">count</span> <span class="o">+</span><span class="o">=</span> <span class="n">v</span> <span class="o">%</span> <span class="n">m_</span><span class="p">;</span> <span class="p">}</span> <span class="p">)</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+
+
+<span class="n">gorp</span> <span class="nf">g</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="p">;</span>
+<span class="n">g</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">extras: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">g</span><span class="p">.</span><span class="n">extras</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</pre><p>사실 위 코드는 상당히 재미있는 코드입니다. extras 함수를 호출하면 람다가 각 원소를 4 로 나눈 나머지들의 합을 구해서 더해주는데요, 한 가지 궁금한점! 과연 람다에서 어떻게 m<span class='font-italic'> 을 capture 할 수 있었을까요? 람다는 여기서 암묵적으로 (implicit) 클래스의 this 를 Capture 했기 때문에 m</span> 을 접근할 수 있었던 것입니다.</p><p>따라서 위 코드는</p><p>으로 성공적인 결과를 보여줍니다.</p><p>이렇게 this 를 암묵적으로 Capture 할 수 있기에 아래와 같은 놀라운 일도 발생할 수 있습니다.</p><pre class="chroma">
+<span class="k">struct</span> <span class="n">foo</span>
+<span class="p">{</span>
+<span class="n">foo</span><span class="p">(</span><span class="p">)</span> <span class="o">:</span> <span class="n">i</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+<span class="kt">void</span> <span class="n">amazing</span><span class="p">(</span><span class="p">)</span><span class="p">{</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">{</span> <span class="n">i</span><span class="o">=</span><span class="mi">8</span><span class="p">;</span> <span class="p">}</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="n">foo</span> <span class="n">f</span><span class="p">;</span>
+<span class="n">f</span><span class="p">.</span><span class="n">amazing</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">f.i : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">f</span><span class="p">.</span><span class="n">i</span><span class="p">;</span>
+</pre><p>위 코드를 언뜻 보면 i 를 값으로 capture 햇는데 어떻게 8 을 대입할 수 있냐고 물을 수 있는데, 사실 this 를 Capture 해서 this.i = 8 을 통해 mutable 없이도 값을 바꿀 수 있습니다. 왜냐하면 분명 this.i = 8 에서 상수인 this 를 변경한 것은 아니기 때문이죠.</p><p> Capture 의 범위</p><p>Capture 되는 개체들은 모두 람다가 정의된 위치에서 접근 가능해야만 합니다. 예를 들어</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span><span class="o">/</span><span class="n">j</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">f</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>의 코드는 람다의 위치에서 i, j 모두 접근 가능하기 때문에 Capture 가능하므로 정상적으로</p><p>가 나옵니다.</p><p>그렇다면 아래 코드는 어떨까요?</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span>
+<span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span><span class="o">/</span><span class="n">j</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">m</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="n">f</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</pre><p>바깥의 람다에서 i 를 Capture 하였기에, 바깥의 람다 몸통 안에서 i 를 사용할 수 있겠지요. 따라서 내부의 람다는 i 를 Capture 할 수 있게 됩니다. 그렇기에, 위와 동일한 결과인</p><p>가 나오게 됩니다. 하지만, 만일 바깥의 람다에서 i 를 Capture 하지 않았다면 어떨까요.</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span>
+<span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span><span class="o">/</span><span class="n">j</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">m</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="n">f</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</pre><p>그러면 예상했던 대로 컴파일 오류 error C3493: 'i' cannot be implicitly captured because no default capture mode has been specified 가 나오게 됩니다.</p><p>조금 더 복잡한 예로 아래의 코드를 살펴봅시다.</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span>
+<span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">(</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]</span><span class="p">{</span> <span class="n">i</span> <span class="o">/</span><span class="o">=</span> <span class="n">j</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">m</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">inner: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="n">f</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> outer: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span>
+</pre><p>일단 바깥의 람다는 i 를 값으로 Capture 하였기 때문에 바깥의 람다(f) 몸통에서는 i 에 const 속성이 붙습니다. 그런데, 내부의 람다(m) 가 그 i 를 레퍼런스로 Capture 해서 값을 변경하려고 했습니다. 그렇다면, 당연히 오류가 나겠지요. 실제로 컴파일 오류 'i': a by-value capture cannot be modified in a non-mutable lambda가 발생하게 됩니다.</p><p>이를 해결하려면, 당연히도 mutable 속성을 붙여주면 됩니다.</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span>
+<span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">(</span><span class="p">)</span> <span class="k">mutable</span>
+<span class="p">{</span>
+<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="p">(</span><span class="p">)</span> <span class="k">mutable</span><span class="p">{</span> <span class="n">i</span> <span class="o">/</span><span class="o">=</span> <span class="n">j</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">m</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">inner: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="n">f</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> outer: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span>
+</pre><p>i 자체가 값으로 입력 되었기 때문에 outer i 의 값은 바뀌지 않고 8 로 남아 있고, 값으로 받은 i 가 m 에 의해서 2 로 나눠지므로 4 가 됩니다. 따라서, 그 결과</p><p>로 나오게 되죠.</p><p> 클로져 객체의 복사 생성자와 소멸자</p><p>모든 클로져 객체들은 암묵적으로 정의된 복사 생성자(copy constructor)와 소멸자(destructor)를 가지고 있습니다. 이 때 클로져 객체가 복사 생성 될 때 값으로 Capture 된 것들의 복사 생성이 일어나겠지요. 아래의 예를 한번 보도록 하겠습니다.</p><p>일단</p><pre class="chroma">
+<span class="k">struct</span> <span class="n">trace</span>
+<span class="p">{</span>
+<span class="n">trace</span><span class="p">(</span><span class="p">)</span> <span class="o">:</span> <span class="n">i</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">construct</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="p">}</span>
+<span class="n">trace</span><span class="p">(</span><span class="n">trace</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">copy construct</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="p">}</span>
+<span class="o">~</span><span class="n">trace</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">destroy</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="p">}</span>
+<span class="n">trace</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">trace</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">assign</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="p">}</span>
+<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+</pre><p>와 같이 생성, 복사 생성, 소멸, 그리고 대입 연산을 확인할 수 있는 trace 라는 구조체를 정의해놓고</p><pre class="chroma">
+<span class="n">trace</span> <span class="n">t</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+</pre><p>를 한다면 어떻게 나올까요? f 에서 t 를 사용하지 않았으므로, t 를 Capture 하지 않게 됩니다. 따라서 그냥</p><p>이 나오게 됩니다.</p><p>그렇다면 아래의 예는 어떨까요</p><pre class="chroma">
+<span class="n">trace</span> <span class="n">t</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+
+
+<span class="k">auto</span> <span class="n">m1</span> <span class="o">=</span> <span class="p">[</span><span class="o">=</span><span class="p">]</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">i</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> --- make copy --- </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+
+<span class="k">auto</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="p">;</span>
+</pre><p>먼저 m1 을 생성하면서, 람다가 t 를 Capture 하였으므로 t 의 복사 생성자가 호출되게 됩니다. 왜냐하면 값으로 받았기 때문이지요. 만일 레퍼런스로 받았다면 복사 생성자가 호출되지 않았을 것입니다 (확인해보세요!) 그리고 아래의 auto m2 = m1; 에서 클로져 객체의 복사 생성이 일어나는데, 이 때, 클로져 객체의 복사 생성자가 값으로 Capture 된 객체들을 똑같이 복사 생성 해주게 됩니다. 따라서 또 한번 t 의 복사 생성자가 호출되겠지요. 그 결과 아래와 같이 출력됩니다.</p><p> 람다의 전달 및 저장</p><p>람다를 저장 및 전달하는 방식으로 앞에서 두 가지 방법을 보았습니다. 바로</p><pre class="chroma">
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">foo</span><span class="p">(</span><span class="n">T</span> <span class="n">f</span><span class="p">)</span>
+<span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">{</span><span class="p">}</span><span class="p">;</span>
+</pre><p>이지요. 우리가 만들어낸 클로져 객체의 타입이 정확히 무엇인지 몰라도 위와 같은 방법으로 성공적으로 처리할 수 있습니다.</p><p>또 다른 방법으로는 함수 포인터를 이용하는 방법이 있는데요, 이 경우 람다가 Capture 하는 것이 없어야만 합니다.</p><pre class="chroma">
+<span class="k">typedef</span> <span class="nf">int</span><span class="p">(</span><span class="o">*</span><span class="n">f_type</span><span class="p">)</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">;</span>
+<span class="n">f_type</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span><span class="p">{</span> <span class="k">return</span> <span class="n">i</span><span class="o">+</span><span class="mi">20</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="p">;</span>
+</pre><p>(참고로 위 기능은 Visual Studio 2010 에서 지원되지 않습니다 - 그 후의 버전에서만 가능합니다)</p><p>위 역시 성공적으로 28 을 출력함을 알 수 있습니다.</p><p>그런데, C++ 11 에서는 클로져 객체를 전달하고 또 저장할 수 있는 막강한 기능이 제공됩니다. 바로 std::function 인데요, 그 어떤 클로져 객체나 함수 등을 모두 보관할 수 있는 만능 저장소 입니다. (참고로 std::function 은 Visual Studio 2010 에서 <functional> 을 include 해야 합니다)</p><pre class="chroma">
+<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">function</span><span class="o">&lt;</span> <span class="kt">int</span><span class="p">(</span><span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">f</span><span class="p">;</span>
+<span class="n">f</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span><span class="p">{</span> <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">http://itguru.tistory.com</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+
+
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">size</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre><p>std::function 은 위와 같이 std::function < 반환 타입 ( 인자 ) > 와 같은 형태로 쓰며, Capture 가 있어도 상관이 없습니다. 물론 위 코드는 실행하면</p><p>와 같이 잘 나오지요.</p><p>이 std::function 을 통해 아래와 같이 재밌는 코드도 짤 수 있습니다.</p><pre class="chroma">
+<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f1</span><span class="p">;</span>
+<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f2</span> <span class="o">=</span>
+<span class="p">[</span><span class="o">&amp;</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span>
+<span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> </span><span class="s">&#34;</span><span class="p">;</span>
+<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">f1</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="n">f1</span> <span class="o">=</span>
+<span class="p">[</span><span class="o">&amp;</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span>
+<span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> </span><span class="s">&#34;</span><span class="p">;</span>
+<span class="k">return</span> <span class="nf">f2</span><span class="p">(</span><span class="o">+</span><span class="o">+</span><span class="n">i</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="n">f1</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+</pre><p>이것이 가능한 이유는 만일 auto 를 이용하였더라면 auto f1 을 한 시점에서 f1 이 명확히 구현이 되어야 컴파일러에서 타입을 추정할 수 있는데, 위와 같은 경우 f1 을 구현하려면 f2 를 먼저 구현해야 하고, 또 f2 를 구현하려면 다시 f1 을 먼저 구현해야 하는 순환적인 논리 딜레마에 빠지게 됩니다. 따라서 function 을 이용해서 f1 을 선언만 해 놓은 뒤, f2 를 구현하고, 다시 f1 을 구현하면 됩니다.</p><p>위 코드를 실행하면</p><p>와 같이 잘 나옴을 알 수 있습니다.</p><p>마찬가지로 아래와 같은 재귀 호출 함수도 구현할 수 있습니다.</p><pre class="chroma">
+<span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">fact</span><span class="p">;</span>
+<span class="n">fact</span> <span class="o">=</span>
+<span class="p">[</span><span class="o">&amp;</span><span class="n">fact</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span><span class="o">-</span><span class="o">&gt;</span><span class="kt">int</span>
+<span class="p">{</span>
+<span class="k">if</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="p">{</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+<span class="k">return</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span><span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">factorial(4) : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">fact</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre><p>이 역시 auto 를 이용했더라면, 처음 Capture 부분에서 Capture 하는 대상의 타입이 명확히 정해지지 않은 상태이므로 컴파일러가 타입을 추정할 수 없게 됩니다. 하지만 function 을 이용해서 성공적으로 구현할 수 있습니다. 위 계산 결과는 당연히</p><p>가 나오겠지요.</p><p> 마치며</p><p>C++ 에 새롭게 추가된 람다는 기존의 C++ 과 전혀 다른 새로운 개념 입니다. 하지만 람다를 이용하면 수십줄의 코드도 한 두 줄로 간추릴 수 있는, 엄청난 기능이 아닐 수 없습니다.</p><p>이제 여러분들 손에는 람다라는 막강한 도구가 주어졌습니다. 이를 어떻게 사용하느냐는 여러분의 몫이지요 :)</p><p>그리고 이런 훌륭한 강의를 제공해주신 Michael Caisse 님에게 감사의 말을 전합니다.</p><p>공감1sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++' 카테고리의 다른 글씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>(29)2013.08.15씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)2013.05.26씹어먹는 C++ 토막글 ② - 람다(lambda) 함수(12)2013.01.08씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>(41)2013.01.06씹어먹는 C++ 토막글 ① - Rvalue(우측값) 레퍼런스에 관해(6)2012.11.03씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자) >(42)2012.08.04</p><style>/* Background */ .chroma { background-color: #ffffff }
+/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
+/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
+/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
+/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
+/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
+/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
+/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
+/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
+/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
+/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
+/* NameAttribute */ .chroma .na { color: #008080 }
+/* NameBuiltin */ .chroma .nb { color: #0086b3 }
+/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
+/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
+/* NameConstant */ .chroma .no { color: #008080 }
+/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
+/* NameEntity */ .chroma .ni { color: #800080 }
+/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
+/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
+/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
+/* NameNamespace */ .chroma .nn { color: #555555 }
+/* NameTag */ .chroma .nt { color: #000080 }
+/* NameVariable */ .chroma .nv { color: #008080 }
+/* NameVariableClass */ .chroma .vc { color: #008080 }
+/* NameVariableGlobal */ .chroma .vg { color: #008080 }
+/* NameVariableInstance */ .chroma .vi { color: #008080 }
+/* LiteralString */ .chroma .s { color: #dd1144 }
+/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
+/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
+/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
+/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
+/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
+/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
+/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
+/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
+/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
+/* LiteralStringRegex */ .chroma .sr { color: #009926 }
+/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
+/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
+/* LiteralNumber */ .chroma .m { color: #009999 }
+/* LiteralNumberBin */ .chroma .mb { color: #009999 }
+/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
+/* LiteralNumberHex */ .chroma .mh { color: #009999 }
+/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
+/* LiteralNumberOct */ .chroma .mo { color: #009999 }
+/* Operator */ .chroma .o { color: #000000; font-weight: bold }
+/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
+/* Comment */ .chroma .c { color: #999988; font-style: italic }
+/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
+/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
+/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
+/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
+/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
+/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
+/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
+/* GenericError */ .chroma .gr { color: #aa0000 }
+/* GenericHeading */ .chroma .gh { color: #999999 }
+/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
+/* GenericOutput */ .chroma .go { color: #888888 }
+/* GenericPrompt */ .chroma .gp { color: #555555 }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
+/* GenericTraceback */ .chroma .gt { color: #aa0000 }
+/* GenericUnderline */ .chroma .gl { text-decoration: underline }
+/* TextWhitespace */ .chroma .w { color: #bbbbbb }
+</style>
