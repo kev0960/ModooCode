@@ -1,8 +1,10 @@
 #include "content.h"
+#include <unistd.h>
 #include <cstdlib>
 #include <functional>
 #include <limits>
 #include <memory>
+#include <thread>
 #include "chroma.h"
 #include "util.h"
 
@@ -70,6 +72,59 @@ string FormatCodeUsingChroma(const string& code, const string& lang,
   return formatted_code;
 }
 
+void DoClangFormat(const string& code, string* formatted_code) {
+  int pipe_p2c[2], pipe_c2p[2];
+  if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
+    LOG << "Pipe error!";
+    return;
+  }
+  int pid = fork();
+  if (pid < 0) {
+    LOG << "Fork error!";
+    return;
+  }
+  // Parent process;
+  if (pid > 0) {
+    // Close unused pipes.
+    close(pipe_p2c[0]);
+    close(pipe_c2p[1]);
+
+    // Write the code we are trying to format.
+    write(pipe_p2c[1], code.c_str(), code.size());
+    close(pipe_p2c[1]);
+
+    // Retrieve the formatted code from the child process.
+    char buf[100];
+    int read_cnt;
+    while ((read_cnt = read(pipe_c2p[0], buf, 100)) > 0) {
+      auto current_size = formatted_code->size();
+      formatted_code->reserve(current_size + read_cnt + 1);
+      for (int i = 0; i < read_cnt; i++) {
+        formatted_code->push_back(buf[i]);
+      }
+    }
+    close(pipe_c2p[0]);
+  } else {
+    // In child process, call execve into the clang format.
+
+    // Close unused pipes.
+    close(pipe_p2c[1]);
+    close(pipe_c2p[0]);
+
+    // Bind the input and output stream to the pipe.
+    dup2(pipe_p2c[0], STDIN_FILENO);
+    dup2(pipe_c2p[1], STDOUT_FILENO);
+
+    close(pipe_p2c[0]);
+    close(pipe_c2p[0]);
+
+    char* clang_format_argv[] = {"clang-format", "-style=google",
+                                 NULL};
+    char* env[] = {NULL};
+    int ret = execve("/usr/bin/clang-format", clang_format_argv, env);
+    LOG << "CLANG FORMAT ERROR : " << ret;
+  }
+}
 }  // namespace
 
 Content::Content(const string& content) : content_(content) { return; }
@@ -152,6 +207,9 @@ string Content::OutputHtml() {
   }
 
   // Now we have to generate formatted html.
+
+  // First Format all the code.
+  ClangFormatEntireCode(&fragments);
   bool bold = false;
   bool italic = false;
   string html = "<p>";
@@ -178,7 +236,7 @@ string Content::OutputHtml() {
           "' alt='", GetHtmlFragmentText(content_, fragments[i]), "'><p>");
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
       html += StrCat("</p>", FormatCodeUsingChroma(
-                                 GetHtmlFragmentText(content_, fragments[i]),
+                                 fragments[i].formatted_code,
                                  fragments[i].code_style, "github"),
                      "<p>");
     } else {
@@ -262,6 +320,22 @@ size_t Content::HandleCodes(const size_t start_pos,
   return code_end + 3;
 }
 
+void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
+  std::vector<std::thread> format_ops;
+
+  for (size_t i = 0; i < fragments->size(); i++) {
+    auto& fragment = fragments->at(i);
+    if (fragment.type == HtmlFragments::Types::CODE) {
+      string unformatted_code = content_.substr(
+          fragment.str_start, fragment.str_end - fragment.str_start + 1);
+      format_ops.push_back(std::thread(DoClangFormat, unformatted_code,
+                                       &fragment.formatted_code));
+    }
+  }
+  for (auto& t : format_ops) {
+    t.join();
+  }
+}
 string Content::OutputHtml(ParserEnvironment*) { return OutputHtml(); }
 
 }  // namespace md_parser

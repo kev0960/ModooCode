@@ -17,6 +17,7 @@ struct HtmlFragments {
 
   int link_start;
   int link_end;
+  string formatted_code;
   string code_style;
 
   HtmlFragments(Types t) : type(t) {}
@@ -55,6 +56,7 @@ class Content {
                       std::vector<HtmlFragments>* fragments, int* text_start);
   size_t HandleCodes(const size_t start_pos,
                      std::vector<HtmlFragments>* fragments, int* text_start);
+  void ClangFormatEntireCode(std::vector<HtmlFragments>* fragments);
 };
 
 }  // namespace md_parser
