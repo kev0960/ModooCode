@@ -1,16 +1,11 @@
- itguru Top itguru Top
-
-
-이번 강좌에서는
-* 멤버 함수가 아닌 연산자 함수 오버로딩
-* 입출력 연산자 오버로딩 (정확히 보면 <<, >> 연산자)
-* 첨자 연산자 [] 오버로딩
-* 타입 변환 연산자 오버로딩
-* 증감 연산자 ++, -- 오버로딩
-에 대해 다룹니다.
 
 
 
+이번 강좌에서는* 멤버 함수가 아닌 연산자 함수 오버로딩입출력 연산자 오버로딩 (정확히 보면 <<, >> 연산자)첨자 연산자 [] 오버로딩타입 변환 연산자 오버로딩증감 연산자 ++, -- 오버로딩에 대해 다룹니다.
+
+
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F24418A45521E2A8F25D22A)
 
 
 
@@ -35,15 +30,13 @@ a = "-1.1 + i3.923" + a; // ②
 
 
 
-는 컴파일 되지 않습니다. 왜냐하면, ① 의 경우 a.operator+("i3.923"); 으로 변환될 수 있지만 ② 는 그렇지 못하기 때문이죠. 하지만, 원칙적으로  클래스를 사용하는 사용자의 입장에서① 이 된다면 당연히② 도 수행될 수 있어야 연산자 오버로딩을 하는 명분이 생깁니다. 다행 스럽게도, 사실 컴파일러는 이항 연산자 (피연산자를 두 개를 취하는 연산자 - 예를 들어서 +, -, *, /, ->, = 등이 이항 연산자 이다) 를 다음과 같은 두 개의 방식으로 해석합니다.
+는 컴파일 되지 않습니다. 왜냐하면, ① 의 경우 a.operator+("i3.923"); 으로 변환될 수 있지만 ② 는 그렇지 못하기 때문이죠. 하지만, 원칙적으로  클래스를 사용하는 사용자의 입장에서 ① 이 된다면 당연히 ② 도 수행될 수 있어야 연산자 오버로딩을 하는 명분이 생깁니다. 다행 스럽게도, 사실 컴파일러는 이항 연산자 (피연산자를 두 개를 취하는 연산자 - 예를 들어서 +, -, *, /, ->, = 등이 이항 연산자 이다) 를 다음과 같은 두 개의 방식으로 해석합니다.
 
 
 어떤 임의의 연산자 @ 에 대해서, a @ b 는
 
 ```cpp
-
-* a.operator@(b);
-* operator@(a, b);
+* a.operator@(b);operator@(a, b);
 ```
 
 
@@ -51,10 +44,10 @@ a = "-1.1 + i3.923" + a; // ②
 두 가지 방법으로 해석됩니다.
 
 
- (* 참고로 이는 일부 연산자들에 대해서는 해당되지 않는데 대표적으로 [] 연산자 (첨자), -> 연산자 (멤버 접근), 대입 연산자 (=), () 함수 호출 연산자들의 경우 멤버 함수로만 존재할 수 있습니다. 즉, 따로 멤버 함수가 아닌 전역 함수로 뺄 수 없다는 의미 입니다. 따라서 이들 함수를 오버로딩 할 때 주의하시기 바랍니다.)
+ (* 참고로 이는 일부 연산자들에 대해서는 해당되지 않는데 대표적으로 [] 연산자 (첨자), -> 연산자 (멤버 접근), 대입 연산자 (=), () 함수 호출 연산자들의 경우 멤버 함수로만 존재할 수 있습니다. 즉, 따로 멤버 함수가 아닌 전역 함수로 뺄 수 없다는 의미 입니다. 따라서 이들 함수를 오버로딩 할 때 주의하시기 바랍니다.) 
 
 
-즉, 컴파일 시에 둘 중 하나의 가장 가까운 것을 택해서 처리됩니다. a.operator@(b) 에서의 operator@ 는 a 의 클래스의 멤버 변수로써 사용되는 것이고, operator@(a,b) 에서의 operator@ 는 그냥 일반적인 함수를 의미하게 됩니다. 따라서 이를 처리하기 위해 함수를 정의하여 봅시다.
+즉, 컴파일 시에 둘 중 하나의 가장 가까운 것을 택해서 처리됩니다. a.operator@(b) 에서의 operator@ 는 a 의 클래스의 멤버 변수로써 사용되는 것이고, operator@(a,b) 에서의 operator@ 는 그냥 일반적인 함수를 의미하게 됩니다. 따라서 이를 처리하기 위해 함수를 정의하여 봅시다. 
 
 ```cpp
 
@@ -67,7 +60,7 @@ return temp.operator+(b);
 
 
 
-우리의 또 다른 operator+ 는 두 개의 const Complex& 타입의 인자 a,b 를 받게 됩니다. 앞에서도 말했지만 컴파일러는 정확히 일치 하지 않는 경우, 가장 가까운 '가능한' 오버로딩 되는 함수를 찾게 되는데, 마침 우리에게는 Complex(const char *) 타입의 생성자가 있으므로,
+우리의 또 다른 operator+ 는 두 개의 const Complex& 타입의 인자 a,b 를 받게 됩니다. 앞에서도 말했지만 컴파일러는 정확히 일치 하지 않는 경우, 가장 가까운 '가능한' 오버로딩 되는 함수를 찾게 되는데, 마침 우리에게는 Complex(const char *) 타입의 생성자가 있으므로, 
 
 ```cpp
 
@@ -76,7 +69,7 @@ return temp.operator+(b);
 
 
 
-는
+는 
 
 ```cpp
 
@@ -99,7 +92,7 @@ private:
 double real, img;
 
 
-double get_number(const char *str, int from, int to);
+double get_number(const char *str, int from, int to); 
 
 
 public:
@@ -138,7 +131,7 @@ Complex::Complex(const char* str)
 
 int begin = 0, end = strlen(str);
 img = 0.0;
-real = 0.0;
+real = 0.0; 
 
 
 // 먼저 가장 기준이 되는 'i' 의 위치를 찾는다.
@@ -167,7 +160,7 @@ if(pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
 double Complex::get_number(const char *str, int from, int to)
 {
-bool minus = false;
+bool minus = false; 
 if(from > to) return 0;
 
 
@@ -187,7 +180,7 @@ num += (str[i] - '0');
 }
 else if(str[i] == '.') integer_part = false;
 else if(isdigit(str[i]) && !integer_part) {
-decimal /= 10.0;
+decimal /= 10.0; 
 num += ((str[i] - '0') * decimal);
 }
 else break; // 그 이외의 이상한 문자들이 올 경우
@@ -248,7 +241,7 @@ return *this;
 int main()
 {
 Complex a(0, 0);
-a = "-1.1 + i3.923" + a;
+a = "-1.1 + i3.923" + a; 
 a.println();
 }
 ```
@@ -258,6 +251,7 @@ a.println();
 성공적으로 컴파일 하였다면
 
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F2434EE495218CD59169D96)
 
 
 
@@ -316,23 +310,23 @@ error C2662: 'Complex::operator +' : cannot convert 'this' pointer from 'const C
 
 
 
-이 말은 즉슨, a 가 const Complex 인데, 우리가 호출하고자 하는 멤버 함수 operator+ 는 const 함수가 아니기 때문입니다. 상당히 골치아픈 문제가 아닐 수 없습니다. (참고로const 함수가 무엇인지 기억이 나지 않으시는 분들은 이 강좌를 다시 읽어보시기 바랍니다)const 객체는 언제나 값이 바뀔 수 없으며, 만일 const 객체의 멤버 함수 호출 시에는 그 함수가 객체의 값을 바꾸지 않는 다고 보장할 수 있도록 const 함수여야만 합니다. 하지만 멤버 함수 operator+ 는 const 성이 없으므로, operator+ 를 호출하는 것은 불가능 해지지요.
+이 말은 즉슨, a 가 const Complex 인데, 우리가 호출하고자 하는 멤버 함수 operator+ 는 const 함수가 아니기 때문입니다. 상당히 골치아픈 문제가 아닐 수 없습니다. (참고로 const 함수가 무엇인지 기억이 나지 않으시는 분들은 이 강좌를 다시 읽어보시기 바랍니다) const 객체는 언제나 값이 바뀔 수 없으며, 만일 const 객체의 멤버 함수 호출 시에는 그 함수가 객체의 값을 바꾸지 않는 다고 보장할 수 있도록 const 함수여야만 합니다. 하지만 멤버 함수 operator+ 는 const 성이 없으므로, operator+ 를 호출하는 것은 불가능 해지지요. 
 
 
-이 문제를 해결할 수 있는 유일한 방법은Complex operator+(const Complex& a, const Complex& b) 내부에서 다른 함수들을 호출하지 않고 직접 덧셈을 수행하면 됩니다. 다만 이 방법도 문제가 있지요. 멤버 함수가 아닌 외부 함수 operator+ 에서 객체의 private 정보에 접근할 수 있어야만 하는데, 이 것이 불가능 하기 때문입니다. 하지만, 놀랍게도 C++ 에서는 이를 가능케 하는 키워드가 있습니다.
-
-
-
-
-
- friend 는 모든 것을 공유한다.
+이 문제를 해결할 수 있는 유일한 방법은 Complex operator+(const Complex& a, const Complex& b) 내부에서 다른 함수들을 호출하지 않고 직접 덧셈을 수행하면 됩니다. 다만 이 방법도 문제가 있지요. 멤버 함수가 아닌 외부 함수 operator+ 에서 객체의 private 정보에 접근할 수 있어야만 하는데, 이 것이 불가능 하기 때문입니다. 하지만, 놀랍게도 C++ 에서는 이를 가능케 하는 키워드가 있습니다.
 
 
 
-아마 이 글을 읽는 독자 여러분들은 자신의 모든 것을 아낌없이 털어놓을 수 있는 절친한 친구 한 두 명 쯤은 있을 것입니다. 그 친구와 나 사이에는 어떠한 정보도 열람할 수 있는 관계가 되지요.
 
 
-그런데 재미있는 사실에는 비슷한 역할을 하는 키워드가 C++ 에도 있다는 점입니다. 그 이름도 역시 'friend' 입니다.
+ friend 는 모든 것을 공유한다.### 
+
+
+
+아마 이 글을 읽는 독자 여러분들은 자신의 모든 것을 아낌없이 털어놓을 수 있는 절친한 친구 한 두 명 쯤은 있을 것입니다. 그 친구와 나 사이에는 어떠한 정보도 열람할 수 있는 관계가 되지요. 
+
+
+그런데 재미있는 사실에는 비슷한 역할을 하는 키워드가 C++ 에도 있다는 점입니다. 그 이름도 역시 'friend' 입니다. 
 
 
 ```cpp
@@ -343,7 +337,7 @@ private:
 double real, img;
 
 
-double get_number(const char *str, int from, int to);
+double get_number(const char *str, int from, int to); 
 
 
 public:
@@ -380,12 +374,12 @@ void println() { cout << "( " << real << " , " << img << " ) " << endl;}
 
 ```cpp
 
-friend Complex operator+(const Complex& a, const Complex& b);
+friend Complex operator+(const Complex& a, const Complex& b); 
 ```
 
 
 
-라 같이 쓰면 우리의Complex operator+(const Complex& a, const Complex& b);  함수는 이제 Complex 의 friend 가 됩니다. 즉, Complex 클래스의 입장에서는 자신의 새로운 친구인 operator+ 에게 마음의 문을 열고 모든 정보에 접근할 수 있도록 허가하는 것입니다. private 냐 public 이냐에 관계 없이Complex operator+(const Complex& a, const Complex& b); 함수는 이제 어떤 Complex 객체라도 그 내부 정보에 접근할 수 있습니다.
+라 같이 쓰면 우리의 Complex operator+(const Complex& a, const Complex& b);  함수는 이제 Complex 의 friend 가 됩니다. 즉, Complex 클래스의 입장에서는 자신의 새로운 친구인 operator+ 에게 마음의 문을 열고 모든 정보에 접근할 수 있도록 허가하는 것입니다. private 냐 public 이냐에 관계 없이 Complex operator+(const Complex& a, const Complex& b); 함수는 이제 어떤 Complex 객체라도 그 내부 정보에 접근할 수 있습니다. 
 
 
 따라서, 다음과 같은 코드를 사용하는 것도 가능하지요.
@@ -402,7 +396,7 @@ return temp;
 
 
 
-이제 이 operator+ 함수는 마치 Complex 클래스의 멤버 변수인양, 객체들의 정보에 접근할 수 있게 됩니다. real 변수는 private 이지만, a.real 을 해도 무방하지요. 이렇게 된다면, 이전의 operator+ 에서 불필요하게 temp 객체를 생성했던 것 과는 달리 필요한 것만 사용하면 됩니다.
+이제 이 operator+ 함수는 마치 Complex 클래스의 멤버 변수인양, 객체들의 정보에 접근할 수 있게 됩니다. real 변수는 private 이지만, a.real 을 해도 무방하지요. 이렇게 된다면, 이전의 operator+ 에서 불필요하게 temp 객체를 생성했던 것 과는 달리 필요한 것만 사용하면 됩니다. 
 
 
 한 가지 재미 있는 사실은 friend 키워드는 함수에만 적용할 수 있는 것이 아니라, 다른 클래스 자체도 friend 로 지정할 수 있습니다. 예를 들어서,
@@ -428,7 +422,7 @@ int y;
 
 
 
-와 같이 할 경우, A 는 B 를 friend 로 지정하게 된 것입니다. 한 가지 주의할 사실은, 우리가 흔히 생각하는 'friend' 관계와는 다르게, C++ 에서 friend 는 짝사랑과 비슷합니다. 즉, A 는 자기 생각에 B 가 friend 라고 생각하는 것이므로, B 에게 A 의 모든 것을 공개합니다. 즉 클래스 B 에서 A 의 private 변수인 x 에 접근할 수 있게 됩니다. 하지만 B 에는 A 가 friend 라고 지정하지 않았으므로, B 의 입장에서는 A 에게 어떠한 내용도 공개하지 않습니다 (public 변수들 빼고). 따라서 A 는 B 의 private 변수인 int y 에 접근할 수 없게 됩니다.
+와 같이 할 경우, A 는 B 를 friend 로 지정하게 된 것입니다. 한 가지 주의할 사실은, 우리가 흔히 생각하는 'friend' 관계와는 다르게, C++ 에서 friend 는 짝사랑과 비슷합니다. 즉, A 는 자기 생각에 B 가 friend 라고 생각하는 것이므로, B 에게 A 의 모든 것을 공개합니다. 즉 클래스 B 에서 A 의 private 변수인 x 에 접근할 수 있게 됩니다. 하지만 B 에는 A 가 friend 라고 지정하지 않았으므로, B 의 입장에서는 A 에게 어떠한 내용도 공개하지 않습니다 (public 변수들 빼고). 따라서 A 는 B 의 private 변수인 int y 에 접근할 수 없게 됩니다. 
 
 
 
@@ -436,7 +430,7 @@ int y;
 
  입출력 연산자 오버로딩 하기
 
-아마도, 눈치를 채신 분들이 있겠지만 우리가
+아마도, 눈치를 채신 분들이 있겠지만 우리가 
 ```cpp
 cout << a;
 ```
@@ -461,7 +455,7 @@ ostream& operator<< (void* val);
 
 
 
-와 같이 엄청난 수의 operator<< 가 정의되어 있는 것을 알 수 있습니다. 이들 덕분에 우리가 편하게 인자의 타입에 관계없이 손쉽게 출력을 사용할 수 있게 되는 것이지요.
+와 같이 엄청난 수의 operator<< 가 정의되어 있는 것을 알 수 있습니다. 이들 덕분에 우리가 편하게 인자의 타입에 관계없이 손쉽게 출력을 사용할 수 있게 되는 것이지요. 
 
 
 그렇다면 한 번 우리의 Complex 클래스에서 ostream 클래스의 연산자 operator<< 를 자유롭게 사용할 수 있으면 어떨까요. 예를 들어서
@@ -479,7 +473,7 @@ cout << c;
 ```cpp
 
 Complex c;
-c.println();
+c.println(); 
 ```
 
 
@@ -518,7 +512,7 @@ friend ostream& operator<<(ostream& os, const Complex& c);
 
 
 
-위와 같이 friend 선언을 해주시면 됩니다. 비슷한 방법으로 Complex 객체 c 에 대해 cin >> c; 와 같은 작업을 할 수 있습니다. 다만, 이번에는 cin 은 istream 객체이고, opreator>> 를 오버로딩 해야 된다는 점이 다를 뿐이지요.
+위와 같이 friend 선언을 해주시면 됩니다. 비슷한 방법으로 Complex 객체 c 에 대해 cin >> c; 와 같은 작업을 할 수 있습니다. 다만, 이번에는 cin 은 istream 객체이고, opreator>> 를 오버로딩 해야 된다는 점이 다를 뿐이지요. 
 
 ```cpp
 
@@ -530,7 +524,7 @@ private:
 double real, img;
 
 
-double get_number(const char *str, int from, int to);
+double get_number(const char *str, int from, int to); 
 
 
 public:
@@ -579,7 +573,7 @@ Complex::Complex(const char* str)
 
 int begin = 0, end = strlen(str);
 img = 0.0;
-real = 0.0;
+real = 0.0; 
 
 
 // 먼저 가장 기준이 되는 'i' 의 위치를 찾는다.
@@ -608,7 +602,7 @@ if(pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
 double Complex::get_number(const char *str, int from, int to)
 {
-bool minus = false;
+bool minus = false; 
 if(from > to) return 0;
 
 
@@ -628,7 +622,7 @@ num += (str[i] - '0');
 }
 else if(str[i] == '.') integer_part = false;
 else if(isdigit(str[i]) && !integer_part) {
-decimal /= 10.0;
+decimal /= 10.0; 
 num += ((str[i] - '0') * decimal);
 }
 else break; // 그 이외의 이상한 문자들이 올 경우
@@ -689,7 +683,7 @@ return *this;
 int main()
 {
 Complex a(0, 0);
-a = "-1.1 + i3.923" + a;
+a = "-1.1 + i3.923" + a; 
 cout << "a 의 값은 : " << a << " 이다. " << endl;
 }
 ```
@@ -701,10 +695,11 @@ cout << "a 의 값은 : " << a << " 이다. " << endl;
 
 
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F2716843D521A1746343770)
 
 
 
-와 같이 잘 실행됨을 알 수 있습니다.
+와 같이 잘 실행됨을 알 수 있습니다. 
 
 
 
@@ -715,7 +710,7 @@ cout << "a 의 값은 : " << a << " 이다. " << endl;
 
 
 
-이번에는 배열에서 원소를 지정할 때 사용되는 첨자 연산자 [] 를 오버로딩 해보도록 합시다. (참고로 왜 첨자 연산자라고 부르냐면, 배열의 원소를 지정할 때 [] 안에 넣는 수를 첨자(subscript) 라고 부르기 때문입니다)우리가 전에 만들었던 MyString 클래스에서 개개의 문자에 접근하기 위해 [] 를 지원해주어야만 하는데요, [] 를 이용해서 str[10] 과 같이 10 번째 문자에 정확하게 접근할 수 있게 됩니다.
+이번에는 배열에서 원소를 지정할 때 사용되는 첨자 연산자 [] 를 오버로딩 해보도록 합시다. (참고로 왜 첨자 연산자라고 부르냐면, 배열의 원소를 지정할 때 [] 안에 넣는 수를 첨자(subscript) 라고 부르기 때문입니다) 우리가 전에 만들었던 MyString 클래스에서 개개의 문자에 접근하기 위해 [] 를 지원해주어야만 하는데요, [] 를 이용해서 str[10] 과 같이 10 번째 문자에 정확하게 접근할 수 있게 됩니다. 
 
 
 여기서 그렇다면 MyString 클래스의 operator[] 를 추가해보도록 합시다. operator[] 함수는 자명하게도 인자로 몇 번째 문자인지, int 형 변수를 인덱스로 받게 됩니다. 따라서 operator[] 는 다음과 같은 원형을 가집니다.
@@ -727,7 +722,7 @@ char& operator[] (const int index);
 
 
 
-index 로 [] 안에 들어가는 값을 받게 됩니다. 그리고 char& 를 인자로 리턴하는 이유는
+index 로 [] 안에 들어가는 값을 받게 됩니다. 그리고 char& 를 인자로 리턴하는 이유는 
 
 ```cpp
 
@@ -748,7 +743,7 @@ return string_content[index];
 
 
 
-위와 같이 index 번째의 string_content 를 리턴해서, operator[] 를 사용하는 사용자가, 이의 레퍼런스를 가질 수 있게 되지요. 그렇다면, 전체 소스를 한 번 살펴보도록 합시다.
+위와 같이 index 번째의 string_content 를 리턴해서, operator[] 를 사용하는 사용자가, 이의 레퍼런스를 가질 수 있게 되지요. 그렇다면, 전체 소스를 한 번 살펴보도록 합시다. 
 
 ```cpp
 
@@ -811,7 +806,7 @@ int find(int find_from, const char* str);
 int find(int find_from, char c);
 
 
-int compare(MyString& str);
+int compare(MyString& str); 
 };
 
 
@@ -867,7 +862,7 @@ cout << endl;
 MyString& MyString::assign(MyString& str)
 {
 if(str.string_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
+// 그러면 다시 할당을 해줘야만 한다. 
 delete [] string_content;
 
 
@@ -880,7 +875,7 @@ string_content[i] = str.string_content[i];
 
 
 // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다. 
 
 
 string_length = str.string_length;
@@ -892,7 +887,7 @@ MyString& MyString::assign(const char *str)
 {
 int str_length = strlen(str);
 if(str_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
+// 그러면 다시 할당을 해줘야만 한다. 
 delete [] string_content;
 
 
@@ -932,7 +927,7 @@ delete [] prev_string_content;
 
 
 // 만일 예약하려는 size 가 현재 capacity 보다 작다면
-// 아무것도 안해도 된다.
+// 아무것도 안해도 된다. 
 }
 char MyString::at(int i)
 {
@@ -950,16 +945,16 @@ MyString& MyString::insert(int loc, MyString& str)
 
 
 // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-if(loc < 0 || loc > string_length) return *this;
+if(loc < 0 || loc > string_length) return *this; 
 
 
 if(string_length + str.string_length > memory_capacity) {
-// 이제 새롭게 동적으로 할당을 해야 한다.
+// 이제 새롭게 동적으로 할당을 해야 한다. 
 
 
 if(memory_capacity * 2 > string_length + str.string_length)
 memory_capacity *= 2;
-elsememory_capacity = string_length + str.string_length;
+else memory_capacity = string_length + str.string_length;
 
 
 char *prev_string_content = string_content;
@@ -994,7 +989,7 @@ return *this;
 
 
 // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
-// 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
+// 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다. 
 
 
 for(int i = string_length - 1; i >= loc; i --) {
@@ -1028,7 +1023,7 @@ if(num < 0 || loc < 0 || loc > string_length) return *this;
 
 
 // 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
-// 생각하면 됩니다.
+// 생각하면 됩니다. 
 
 
 for(int i = loc + num; i < string_length; i ++) {
@@ -1042,7 +1037,7 @@ return *this;
 int MyString::find(int find_from, MyString& str)
 {
 int i, j;
-if(str.string_length == 0) return -1;
+if(str.string_length == 0) return -1; 
 for(i = find_from; i < string_length - str.string_length; i ++) {
 for(j = 0; j < str.string_length; j ++) {
 if(string_content[i + j] != str.string_content[j]) break;
@@ -1108,13 +1103,14 @@ str.println();
 
 
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F214AAE41521E0EB60BE46C)
 
 
 
-와 같이 제대로 str[3] 의 'd' 를 'c' 로 잘 바꾸었음을 알 수 있습니다.
+와 같이 제대로 str[3] 의 'd' 를 'c' 로 잘 바꾸었음을 알 수 있습니다. 
 
 
-이 정도만 하면 MyString 클래스는 거의 왠만한 문자열 클래스 뺨치게 완전한 모습을 갖추었다고 볼 수 있습니다. 문자열 삽입, 삭제, 대입 뿐만이 아니라 개개의 문자의 조작 까지 원활하게 수행할 수 있는 훌륭한 문자열 클래스라고 할 수 있지요.
+이 정도만 하면 MyString 클래스는 거의 왠만한 문자열 클래스 뺨치게 완전한 모습을 갖추었다고 볼 수 있습니다. 문자열 삽입, 삭제, 대입 뿐만이 아니라 개개의 문자의 조작 까지 원활하게 수행할 수 있는 훌륭한 문자열 클래스라고 할 수 있지요. 
 
 
 
@@ -1166,7 +1162,7 @@ int a = x + 4; // 그냥 평범한 int 형 변수 a
 이라고 생각이 들 것입니다. 물론, 이렇게 해도 잘 작동하는 Wrapper 클래스를 만들 수 있을 것입니다. 하지만, 그 수 많은 연산자들을 일일히 오버로딩을 하는 것은 정말로 고통스러운 일이 아닐 수 없습니다. 왜 이러한 일이 고통스러운 것이냐면, Complex 클래스를 만들 때만 해도, Complex 객체에서 + 나 - 연산자가 하는 일 자체가 int 변수 끼리 하는 일과 완전히 달랐기 때문에 반드시 operator+ 나 operator- 등을 만들어주어야만 했을 것입니다. 하지만 이 int Wrapper 클래스 객체끼리 하는 일은 그냥 단순히 int 형 변수 끼리 하는 일과 정확히 똑같기 때문에 굳이 이미 제공하는 기능을 다시 만들어야 한다는 점이지요.
 
 
-그렇다면, 그냥 이 Wrapper 클래스의 객체를 마치 'int 형 변수' 라고 컴파일러가 생각할 수 는 없는 것일까요. 물론 가능합니다. 왜냐하면 우리에게는 타입 변환 연산자가 있기 때문이지요. 만일 컴파일러가 이 클래스의 객체를 int 형 변수로 변환할 수 있다면, 비록 operator+ 등을 정의하지 않더라도 컴파일러가 가장 이 객체를 int 형 변수로 변환 한 다음에 + 를 수행할 수 있기 때문입니다.
+그렇다면, 그냥 이 Wrapper 클래스의 객체를 마치 'int 형 변수' 라고 컴파일러가 생각할 수 는 없는 것일까요. 물론 가능합니다. 왜냐하면 우리에게는 타입 변환 연산자가 있기 때문이지요. 만일 컴파일러가 이 클래스의 객체를 int 형 변수로 변환할 수 있다면, 비록 operator+ 등을 정의하지 않더라도 컴파일러가 가장 이 객체를 int 형 변수로 변환 한 다음에 + 를 수행할 수 있기 때문입니다. 
 
 
 타입 변환 연산자는 다음과 같이 정의합니다.
@@ -1191,7 +1187,7 @@ operator int()
 
 ```cpp
 
-operator int()
+operator int() 
 {
 return data;
 }
@@ -1199,7 +1195,7 @@ return data;
 
 
 
-그냥 단순히 data 를 리턴해주면 됩니다. 그렇게 된다면 우리의 Wrapper 클래스의 객체를 '읽는' 데에는 아무런 문제가 없게 됩니다. 왜냐하면 컴파일러 입장에서 적절한 변환 연산자로 operator int 를 찾아서 결국 int 로 변환해서 처리하기 때문이지요. 다만 문제는 '대입' 시에 발생하는데, 다행이도 디폴트 대입 연산자가 이 역시 알아서 잘 처리할 것이기 때문에 걱정 안하셔도 됩니다.
+그냥 단순히 data 를 리턴해주면 됩니다. 그렇게 된다면 우리의 Wrapper 클래스의 객체를 '읽는' 데에는 아무런 문제가 없게 됩니다. 왜냐하면 컴파일러 입장에서 적절한 변환 연산자로 operator int 를 찾아서 결국 int 로 변환해서 처리하기 때문이지요. 다만 문제는 '대입' 시에 발생하는데, 다행이도 디폴트 대입 연산자가 이 역시 알아서 잘 처리할 것이기 때문에 걱정 안하셔도 됩니다. 
 
 ```cpp
 
@@ -1218,7 +1214,7 @@ Int(int data) : data(data) {}
 Int(const Int& i) : data(i.data) {}
 
 
-operator int()
+operator int() 
 {
 return data;
 }
@@ -1241,10 +1237,11 @@ cout << x << endl;
 
 
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F23729548521E20860F2135)
 
 
 
-와 같이 Int 객체가 int 변수 처럼 정확히 동일하게 작동되고 있음을 알 수 있습니다.
+와 같이 Int 객체가 int 변수 처럼 정확히 동일하게 작동되고 있음을 알 수 있습니다. 
 
 
 
@@ -1304,7 +1301,7 @@ public:
 Test(int x) : x(x) {}
 Test& operator++()
 {
-x ++;
+x ++; 
 cout << "전위 증감 연산자" << endl;
 return *this;
 }
@@ -1319,7 +1316,7 @@ return *this;
 
 
 
-클래스 자체에는 별거 없지만 전위와 후위가 호출될 때를 구별하기 위해 메세지를 출력하도록 하였습니다.
+클래스 자체에는 별거 없지만 전위와 후위가 호출될 때를 구별하기 위해 메세지를 출력하도록 하였습니다. 
 
 ```cpp
 
@@ -1336,7 +1333,7 @@ public:
 Test(int x) : x(x) {}
 Test& operator++()
 {
-x ++;
+x ++; 
 cout << "전위 증감 연산자" << endl;
 return *this;
 }
@@ -1364,10 +1361,11 @@ x++;
 
 
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2775AA35521E26D0278F37)
 
 
 
-와 같이 제대로 골라서 실행되고 있음을 알 수 있습니다.
+와 같이 제대로 골라서 실행되고 있음을 알 수 있습니다. 
 
 
 
@@ -1377,14 +1375,9 @@ x++;
  정리
 
 연산자 오버로딩에 대해 다루면서 몇 가지 중요한 포인트 들만 따로 정리해보자면;
+* 두 개의 동등한 객체 사이에서의 이항 연산자는 멤버 함수가 아닌 외부 함수로 오버로딩 하는 것이 좋습니다. (예를 들어 Complex 의 operator+(const Complex&, const Complex&) 와 같이 말입니다. )두 개의 객체 사이의 이항 연산자 이지만 한 객체만 값이 바뀐다던지 등의 동등하지 않는 이항 연산자는 멤버 함수로 오버로딩 하는 것이 좋습니다. (예를 들어서 operator+= 는 이항 연산자 이지만 operator+=(const Complex&) 가 낫다)단항 연산자는 멤버 함수로 오버로딩 하는 것이 좋습니다 (예를 들어 operator++ 의 경우 멤버 함수로 오버로딩 합니다)일부 연산자들은 반드시 멤버 함수로만 오버로딩 해야 합니다 (강좌 앞 부분 참고)
 
-* 두 개의 동등한 객체 사이에서의 이항 연산자는 멤버 함수가 아닌외부 함수로 오버로딩 하는 것이 좋습니다. (예를 들어 Complex 의 operator+(const Complex&, const Complex&) 와 같이 말입니다. )
-* 두 개의 객체 사이의 이항 연산자 이지만 한 객체만 값이 바뀐다던지 등의동등하지 않는 이항 연산자는 멤버 함수로 오버로딩 하는 것이 좋습니다. (예를 들어서 operator+= 는 이항 연산자 이지만 operator+=(const Complex&) 가 낫다)
-* 단항 연산자는 멤버 함수로 오버로딩 하는 것이 좋습니다 (예를 들어 operator++ 의 경우 멤버 함수로 오버로딩 합니다)
-* 일부 연산자들은 반드시 멤버 함수로만 오버로딩 해야 합니다 (강좌 앞 부분 참고)
-
-
-자, 이것으로 가장 많이 사용되는 연산자 함수들에 대해 알아보았습니다. 이제 슬슬 C++ 언어의 강력함이 느껴지시나요? 다음 강좌에서는 여태까지 배운 내용들을 총 망라하는 조그마한 프로젝트를 해볼려고 합니다. 그 프로젝트는 아래 '생각해보기'에 나와 있는데요, 다음 강좌를 보기 전 까지 아래 문제를 한 번 해결해 보시기 (해결은 못해도 최소한 노력은 하시기) 바랍니다.
+자, 이것으로 가장 많이 사용되는 연산자 함수들에 대해 알아보았습니다. 이제 슬슬 C++ 언어의 강력함이 느껴지시나요? 다음 강좌에서는 여태까지 배운 내용들을 총 망라하는 조그마한 프로젝트를 해볼려고 합니다. 그 프로젝트는 아래 '생각해보기'에 나와 있는데요, 다음 강좌를 보기 전 까지 아래 문제를 한 번 해결해 보시기 (해결은 못해도 최소한 노력은 하시기) 바랍니다. 
 
 
 
@@ -1397,14 +1390,14 @@ x++;
 1. N 차원 배열을 제공하는 클래스를 만들어보세요. 이는 여러분이 여태까지 배운 내용을 시험할 것입니다. 참고로, 원소에 접근하기 위해서는 a[1][2][3] 과 같은 방법으로 접근하겠지요. 다만 N 차원 배열이기 때문에 (N은 객체 생성시에 사용자가 입력합니다) 2 차원 배열은 a[1][2], 3 차원 배열은 a[1][2][3] 과 같은 방식으로 접근할 것입니다. (난이도 : 最上)
 
 
-2. 영어를 잘하시는 분들은 연산자 오버로딩에 관해 정리해 놓은 다음 글을 읽어보시기를 추천합니다. 참고로 이 글에서 다루지만 본 강좌에서는 다루지 않는 일부 내용들은 아직 배운 내용이 아니라 생략한 것이므로 너무 걱정하지 마시고 복습하는 느낌으로 천천히 읽어보시면 좋습니다. (난이도 : 中)
->>http://stackoverflow.com/questions/4421706/operator-overloading
+2. 영어를 잘하시는 분들은 연산자 오버로딩에 관해 정리해 놓은 다음 글을 읽어보시기를 추천합니다. 참고로 이 글에서 다루지만 본 강좌에서는 다루지 않는 일부 내용들은 아직 배운 내용이 아니라 생략한 것이므로 너무 걱정하지 마시고 복습하는 느낌으로 천천히 읽어보시면 좋습니다. (난이도 : 中) 
+>> http://stackoverflow.com/questions/4421706/operator-overloading
 
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
 
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
+현재 여러분이 보신 강좌는<<씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 
 다음 강좌 보러가기
 
@@ -1421,5 +1414,11 @@ x++;
 
 
 
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++' 카테고리의 다른 글씹어먹는 C++ - <6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속>(10)2014.03.30씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>(24)2013.09.04씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>(5)2013.08.29씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>(7)2013.08.25씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>(29)2013.08.15씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)2013.05.26
+공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속>(10)
+2014.03.30씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>(24)
+2013.09.04씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>(5)
+2013.08.29씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>(7)
+2013.08.25씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>(29)
+2013.08.15씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)
+2013.05.26
 

@@ -1,4 +1,4 @@
- itguru Top itguru Top
+
 
 atoi
 ```info
@@ -15,7 +15,7 @@ C 형식 문자열을 정수로 변환하여 변환된 값을 리턴한다.
 
 \n\n-123aaa
 
-이라는 문자열이 있다면 -123 으로 변환된다.
+이라는 문자열이 있다면 -123 으로 변환된다. 
 만일 문자열에서 첫 번째로 나타나는 비-공백 문자가 숫자 혹은 + 나 - 가 아니라면 어떠한 변환도 이루어 지지 않는다. 또한 문자열이 공백 문자로만 이루어져 있어도 변환이 이루어 지지 않는다. 예로
 
 a123
@@ -31,25 +31,25 @@ a123
 ```
 
 
-와 같은 형태로 입력을 받으면 설사 문자를 입력 했다고 해도 오류가 나지 않고 정수를 입력하면 atoi 로 잘 변환된다.
+와 같은 형태로 입력을 받으면 설사 문자를 입력 했다고 해도 오류가 나지 않고 정수를 입력하면 atoi 로 잘 변환된다. 
 
-### 인자
-
+###  인자
+### 
 str
 
 정수를 포함하고 있는 C 형식 문자열
 
 
-### 리턴값
-
+###  리턴값
+### 
 성공적으로 변환을 하였다면 int 값을 리턴한다.
 만일 변환을 실패하였다면 0 이 리턴된다.
-만일 변환을 하였지만 그 값이 표현 가능한 범위를 벗어난다면 INT_MAX 혹은 INT_MIN 이 리턴된다.
+만일 변환을 하였지만 그 값이 표현 가능한 범위를 벗어난다면 INT_MAX 혹은 INT_MIN 이 리턴된다. 
 
-### 구현 예
-
+###  구현 예
+### 
 ```cpp
-/*
+/* 
 
 아래 예제는
 http://cboard.cprogramming.com/linux-programming/125356-complete-function-definition-i-e-atoi.html
@@ -74,10 +74,10 @@ int atoi(char s[])
 
 
 
-### 실행 예제
-
+###  실행 예제
+### 
 ```cpp
-/*
+/* 
 
 수를 문자열로 입력받은 뒤 atoi 함수로 이를 정수로 변환한다.
 이 예제는
@@ -107,14 +107,16 @@ int main ()
 
 
 
-### 연관된 함수
+###  연관된 함수
+### * atol  :  문자열을 long 형 정수로 변환한다.  
+atof  :  문자열을 double 형으로 변환한다.  
+strtol  :  문자열을 long 형 정수로 변환한다.  
 
-* atol  :  문자열을 long 형 정수로 변환한다.
-
-* atof  :  문자열을 double 형으로 변환한다.
-
-* strtol  :  문자열을 long 형 정수로 변환한다.
-
-
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdlib.h (cstdlib)' 카테고리의 다른 글C 언어 레퍼런스 - srand 함수(0)2011.05.05C 언어 레퍼런스 - rand 함수(2)2011.05.05C 언어 레퍼런스 - atol 함수(4)2011.01.27C 언어 레퍼런스 - atoi 함수(0)2011.01.27C 언어 레퍼런스 - atof 함수(0)2011.01.09C 언어 레퍼런스 - stdlib.h (cstlib)(1)2011.01.05
+공감sns신고저작자표시'C Reference > stdlib.h (cstdlib)' 카테고리의 다른 글C 언어 레퍼런스 - srand 함수(0)
+2011.05.05C 언어 레퍼런스 - rand 함수(2)
+2011.05.05C 언어 레퍼런스 - atol 함수(4)
+2011.01.27C 언어 레퍼런스 - atoi 함수(0)
+2011.01.27C 언어 레퍼런스 - atof 함수(0)
+2011.01.09C 언어 레퍼런스 - stdlib.h (cstlib)(1)
+2011.01.05
 

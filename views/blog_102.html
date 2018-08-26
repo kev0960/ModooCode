@@ -1,67 +1,93 @@
-<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>strtok</p><pre class="chroma">#include &lt;string.h&gt;  // C++ 에서는 &lt;cstring&gt;
 
-</pre><p>strtok</p><pre class="chroma">#include &lt;string.h&gt; // C++ 에서는 &lt;cstring&gt;
-
-char * strtok ( char * str, const char * delimiters );
-</pre><p>문자열을 토큰들로 분리한다.이 함수를 여러분 호출함을 통해 문자열을 토큰들로 분리할 수 있다. 이 때 토큰(token) 은 구분문자(delimiter) 로 쪼개진 문자열 조각을 의미한다. 이 함수에 str 에 인자로 전달하며 처음 호출하게 된다면 str 의 첫번째 문자 부터 토큰들의 위치를 찾아내게 된다. 이 다음에 인자로 NULL 을 전달하며 함수를 호출하게 된다면 이전에 찾았던 토큰 바로 다음 문자 부터 시작하여 토큰들의 위치를 찾게 된다.</p><p>토큰들의 시작과 끝을 결정하기 위해서 strtok 함수는 구분 문자를 포함하지 않는 가장 첫번째 문자 부터 (이 문자가 토큰의 시작이 된다) 그 다음으로 등장하는 첫번째 구분 문자가 토큰의 마지막이 된다. 이 때, 토큰의 마지막은 (아마도 구분 문자가 있었을 곳) 은 함수에 의해 널 문자로 바뀌며 이 토큰의 시작 주소가 리턴된다.</p><p>만일 strtok 에서 맨 처음에 str 에 인자로 전달하였던 문자열의 종료 널 문자에 도달하게 된다면 그 후의 str 에 널을 전달하는 모든 호출에서는 널 포인터를 리턴하게 된다. 물론 나중에 str 에 다른 문자열을 전달한다면 그 문자열을 토큰으로 분리하기 시작할 것이다.</p><h3><p> 인자</p></h3><p>str</p><p>토큰으로 불리할 C 형식 문자열이다. 만일 기존에 str 에 전달하였던 문자열을 계속 토큰으로 분리해 나가고 싶다면 str 에 널을 전달하면 된다.</p><p>delimiters</p><p>구분 문자들을 포함하고 있는 C 형식 문자열이다.</p><h3><p> 리턴값</p></h3><p>문자열에서 찾은 마지막 토큰의 주소값을 리턴하며 토큰이 더이상 없다면 널 포인터를 리턴한다.</p><h3><p> 구현 예</p></h3><pre class="chroma"><span class="cm">/*
+char* strtok(char* str, const char* delimiters);
+</pre><p>문자열을 토큰들로 분리한다.</p><p>이 함수를 여러분 호출함을 통해 문자열을 토큰들로 분리할 수 있다. 이 때 토큰(token) 은 구분문자(delimiter) 로 쪼개진 문자열 조각을 의미한다. 이 함수에 str 에 인자로 전달하며 처음 호출하게 된다면 str 의 첫번째 문자 부터 토큰들의 위치를 찾아내게 된다. 이 다음에 인자로 NULL 을 전달하며 함수를 호출하게 된다면 이전에 찾았던 토큰 바로 다음 문자 부터 시작하여 토큰들의 위치를 찾게 된다.</p><p>토큰들의 시작과 끝을 결정하기 위해서 strtok 함수는 구분 문자를 포함하지 않는 가장 첫번째 문자 부터 (이 문자가 토큰의 시작이 된다) 그 다음으로 등장하는 첫번째 구분 문자가 토큰의 마지막이 된다. 이 때, 토큰의 마지막은 (아마도 구분 문자가 있었을 곳) 은 함수에 의해 널 문자로 바뀌며 이 토큰의 시작 주소가 리턴된다. </p><p>만일 strtok 에서 맨 처음에 str 에 인자로 전달하였던 문자열의 종료 널 문자에 도달하게 된다면 그 후의 str 에 널을 전달하는 모든 호출에서는 널 포인터를 리턴하게 된다. 물론 나중에 str 에 다른 문자열을 전달한다면 그 문자열을 토큰으로 분리하기 시작할 것이다. </p><h3><p>  인자</p></h3><h3><p> str</p></h3><p>토큰으로 불리할 C 형식 문자열이다. 만일 기존에 str 에 전달하였던 문자열을 계속 토큰으로 분리해 나가고 싶다면 str 에 널을 전달하면 된다. </p><p>delimiters</p><p>구분 문자들을 포함하고 있는 C 형식 문자열이다. </p><h3><p>  리턴값</p></h3><h3><p> </p></h3><p>문자열에서 찾은 마지막 토큰의 주소값을 리턴하며 토큰이 더이상 없다면 널 포인터를 리턴한다. </p><h3><p>  구현 예</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">이 소스는
+</span><span class="cm">
 </span><span class="cm">http://research.microsoft.com/en-us/um/redmond/projects/invisible/src/crt/strtok.c.htm
+</span><span class="cm">
 </span><span class="cm">에서 가져왔습니다.
 </span><span class="cm">
 </span><span class="cm">*/</span>
-<span class="kt">char</span> <span class="o">*</span> <span class="kr">__cdecl</span> <span class="nf">strtok</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">delimit</span><span class="p">)</span>
+<span class="kt">char</span> <span class="o">*</span><span class="kr">__cdecl</span> <span class="nf">strtok</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">delimit</span><span class="p">)</span>
+
 <span class="p">{</span>
-    <span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">lastToken</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="cm">/* UNSAFE SHARED STATE! */</span>
-    <span class="kt">char</span> <span class="o">*</span><span class="n">tmp</span><span class="p">;</span>
+  <span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">lastToken</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span> <span class="cm">/* UNSAFE SHARED STATE! */</span>
 
-    <span class="cm">/* Skip leading delimiters if new string. */</span>
-    <span class="k">if</span> <span class="p">(</span> <span class="n">s1</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="n">s1</span> <span class="o">=</span> <span class="n">lastToken</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">s1</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span>         <span class="cm">/* End of story? */</span>
-            <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="n">s1</span> <span class="o">+</span><span class="o">=</span> <span class="n">strspn</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">delimit</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">tmp</span><span class="p">;</span>
 
-    <span class="cm">/* Find end of segment */</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">strpbrk</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">delimit</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
-        <span class="cm">/* Found another delimiter, split string and save state. */</span>
-        <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">\0</span><span class="sc">&#39;</span><span class="p">;</span>
-        <span class="n">lastToken</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="cm">/* Last segment, remember that. */</span>
-        <span class="n">lastToken</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-    <span class="p">}</span>
+  <span class="cm">/* Skip leading delimiters if new string. */</span>
 
-    <span class="k">return</span> <span class="n">s1</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">s1</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">lastToken</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">s1</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="cm">/* End of story? */</span>
+
+      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">s1</span> <span class="o">+</span><span class="o">=</span> <span class="n">strspn</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">delimit</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/* Find end of segment */</span>
+
+  <span class="n">tmp</span> <span class="o">=</span> <span class="n">strpbrk</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">delimit</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* Found another delimiter, split string and save state. */</span>
+
+    <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">\0</span><span class="sc">&#39;</span><span class="p">;</span>
+
+    <span class="n">lastToken</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="cm">/* Last segment, remember that. */</span>
+
+    <span class="n">lastToken</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">s1</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</pre><h3><p>  실행 예제### </p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
-</span><span class="cm">&#39; &#39;, &#39;,&#39;, &#39;-&#39;, &#39;.&#39; 들을 구분 문자로 이용하여 - This, a sample string. 이라는 문자열을 토큰들로 분리한다.
+</span><span class="cm">&#39; &#39;, &#39;,&#39;, &#39;-&#39;, &#39;.&#39; 들을 구분 문자로 이용하여 - This, a sample string. 이라는
+</span><span class="cm">문자열을 토큰들로 분리한다.
+</span><span class="cm">
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strtok/
 </span><span class="cm">에서 가져왔습니다
 </span><span class="cm">
-</span><span class="cm"> */</span>
+</span><span class="cm">
+</span><span class="cm">*/</span>
+
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
+
 <span class="p">{</span>
-    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span><span class="sa"></span><span class="s">&#34;</span><span class="s">- This, a sample string.</span><span class="s">&#34;</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="o">*</span> <span class="n">pch</span><span class="p">;</span>
-    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Splitting string </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s"> into tokens:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">pch</span> <span class="o">=</span> <span class="n">strtok</span> <span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="sa"></span><span class="s">&#34;</span><span class="s"> ,.-</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">pch</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">pch</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">pch</span> <span class="o">=</span> <span class="n">strtok</span> <span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> ,.-</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">- This, a sample string.</span><span class="s">&#34;</span><span class="p">;</span>
+
+  <span class="kt">char</span><span class="o">*</span> <span class="n">pch</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Splitting string </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s"> into tokens:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">pch</span> <span class="o">=</span> <span class="n">strtok</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> ,.-</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">pch</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span>
+
+  <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pch</span><span class="p">)</span><span class="p">;</span>
+
+    <span class="n">pch</span> <span class="o">=</span> <span class="n">strtok</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> ,.-</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F1415910C4CF0E82149948F' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> strcspn  :  특정한 문자를 찾을 때 까지의 길이를 구한다.</p></li><li><p> strpbrk  :  문자열에서 특정한 문자를 찾는다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strerror 함수(0)2010.12.12C 언어 레퍼런스 - memset 함수(5)2010.11.28C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21C 언어 레퍼런스 - strrchr 함수(0)2010.08.02</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F1415910C4CF0E82149948F' alt=''><h3><p>  연관된 함수</p></h3><h3><p> <span class='font-italic'> strcspn  :  특정한 문자를 찾을 때 까지의 길이를 구한다.strpbrk  :  문자열에서 특정한 문자를 찾는다.  </p></h3><p>공감sns신고저작자표시'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strerror 함수(0)2010.12.12C 언어 레퍼런스 - memset 함수(5)2010.11.28C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21C 언어 레퍼런스 - strrchr 함수(0)2010.08.02</p><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

@@ -1,14 +1,14 @@
- itguru Top itguru Top
+
 
 
 
 
 ```warning
 
-오픈북 프로젝트는 인터넷 상의양질의 컴퓨터 문서를 번역하여 우리 말로 공급하는 프로젝트 입니다. 번역된 문서들은 인터넷 상으로어떠한 제한 조건 없이 배포되고 있으며, 다만 원 번역자의 허락 없는 무단 수정을 금합니다.
+오픈북 프로젝트는 인터넷 상의 양질의 컴퓨터 문서를 번역하여 우리 말로 공급하는 프로젝트 입니다. 번역된 문서들은 인터넷 상으로 어떠한 제한 조건 없이 배포되고 있으며, 다만 원 번역자의 허락 없는 무단 수정을 금합니다. 
 
 
-현재 까지 번역된 문서들의 리스트는여기에서 확인하시면 됩니다.
+현재 까지 번역된 문서들의 리스트는 여기에서 확인하시면 됩니다.
 
 ```
 
@@ -19,17 +19,17 @@
 
 
 ```info
-이 문서의 내용을 쉽게 이해 하려면일정 수준 이상의 C++ 지식이 필요로 합니다. 아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌를 보시는 것은 어때요?
+이 문서의 내용을 쉽게 이해 하려면 일정 수준 이상의 C++ 지식이 필요로 합니다. 아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌를 보시는 것은 어때요?
 ```
 
 
 
 
 
-이번에 번역된 문서는 C++ 언어의 창시자 이신Bjarne Stroustrup 씨의 개인 홈페이지에 올라와 있는 C++ 11 FAQ 를 번역한 것입니다. C++ 11 은 출시된지 2년여가 흘렀음에도 불구하고 국내에 양질의 C++ 11 에 추가된 내용들을 다루는 문서가 별로 없습니다. 따라서 저는 C++ 11 FAQ 를 한국어로 번역해서 많은 분들이 C++ 11 의 새롭게 추가된 기능과 C++ 표준 위원회에서 하는 일에 대해 전반적으로 훑어보고 이해할 수 있도록 하고자 합니다. 특히 심도 있는 공부나, 각 기능에 관한 전문적인 기술 문서들을 찾으려는 분들은, 각 질문에 대한 답 밑에 있는 '참고자료' 를 이용하시면 쉽게 찾을 수 있습니다.이 문서에는 아래와 같은 질문들이 포함되어 있습니다.
+이번에 번역된 문서는 C++ 언어의 창시자 이신 Bjarne Stroustrup 씨의 개인 홈페이지에 올라와 있는 C++ 11 FAQ 를 번역한 것입니다. C++ 11 은 출시된지 2년여가 흘렀음에도 불구하고 국내에 양질의 C++ 11 에 추가된 내용들을 다루는 문서가 별로 없습니다. 따라서 저는 C++ 11 FAQ 를 한국어로 번역해서 많은 분들이 C++ 11 의 새롭게 추가된 기능과 C++ 표준 위원회에서 하는 일에 대해 전반적으로 훑어보고 이해할 수 있도록 하고자 합니다. 특히 심도 있는 공부나, 각 기능에 관한 전문적인 기술 문서들을 찾으려는 분들은, 각 질문에 대한 답 밑에 있는 '참고자료' 를 이용하시면 쉽게 찾을 수 있습니다. 이 문서에는 아래와 같은 질문들이 포함되어 있습니다. 
 
 
-아래는 먼저 위원회와 C++ 11 에 대해 전반적인 내용에 대한 질문들입니다. 아래 모든 질문들에 대한 답변은 첨부된 pdf 파일에서 확인할 수 있으며, 조만간 인터넷에서 쉽게 확인할 수 있도록 웹버전으로도 제작할 생각입니다. 오탈자 관련 문제는 kev0960@gmail.com 으로 보내주시면 감사하겠습니다.
+아래는 먼저 위원회와 C++ 11 에 대해 전반적인 내용에 대한 질문들입니다. 아래 모든 질문들에 대한 답변은 첨부된 pdf 파일에서 확인할 수 있으며, 조만간 인터넷에서 쉽게 확인할 수 있도록 웹버전으로도 제작할 생각입니다. 오탈자 관련 문제는 kev0960@gmail.com 으로 보내주시면 감사하겠습니다. 
 
 
 
@@ -61,7 +61,7 @@
 • 당신이 별로 마음에 들지 않는 기능들이 있나요?
 
 
-개개의 언어 기능 자체에 대한 질문들은 아래와 같습니다. 이 역시 pdf 파일 내에서 확인할 수 있습니다.
+개개의 언어 기능 자체에 대한 질문들은 아래와 같습니다. 이 역시 pdf 파일 내에서 확인할 수 있습니다. 
 
 
 • __cplusplus
@@ -113,7 +113,7 @@
 • 가변인자(variadic) 템플릿
 
 
-아래는 라이브러리 측면에서 향상된 부분들에 관한 질문 입니다.
+아래는 라이브러리 측면에서 향상된 부분들에 관한 질문 입니다. 
 
 
 • 표준 알고리즘의 향상된 부분들
@@ -143,9 +143,10 @@
 
 ```cpp
 
-아래는 위 내용들에 대한 모든 대답을 담은 pdf 파일 입니다. 전체 페이지는 103쪽 입니다.
+아래는 위 내용들에 대한 모든 대답을 담은 pdf 파일 입니다. 전체 페이지는 103쪽 입니다. 
 
 
+![](http://)
  cplusplus_faq.pdf
 
 
@@ -154,5 +155,8 @@
 
 
 
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'Open Book Project' 카테고리의 다른 글C++ 11 자주 질문되는 것들 모음 (C++ 11 FAQs - Bjarne Stroustup)(4)2013.10.02모든 컴퓨터 과학자가 알아야 할 부동 소수점의 모든 것(What Every Computer Scientists Should Know About Floating Point Arithmetic)(12)2013.08.04오픈북 프로젝트 - 양질의 컴퓨터 문서 공급 프로젝트(25)2013.08.04
+공감sns신고저작자표시'Open Book Project' 카테고리의 다른 글C++ 11 자주 질문되는 것들 모음 (C++ 11 FAQs - Bjarne Stroustup)(4)
+2013.10.02모든 컴퓨터 과학자가 알아야 할 부동 소수점의 모든 것(What Every Computer Scientists Should Know About Floating Point Arithmetic)(12)
+2013.08.04오픈북 프로젝트 - 양질의 컴퓨터 문서 공급 프로젝트(25)
+2013.08.04
 

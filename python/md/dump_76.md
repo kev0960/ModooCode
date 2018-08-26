@@ -1,82 +1,56 @@
- itguru Top itguru Top
+
 
 ```warning
-아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
 
 ```
 
-<string.h> (cstring)
 
-이 헤더파일에는 C 형식 문자열 (널 종료 문자열) 을 다룰 수 있는 함수들을 포함하고 있다. 이 string.h 는 C 표준 라이브러리에 들어간 이후, 널리 쓰이게 되어 대부분의 C 를 지원하는 곳에서는 이 헤더파일에 정의되어 있는 함수들의 사용을 가능케 한다.
+<string.h> (cstring) 
+
+이 헤더파일에는 C 형식 문자열 (널 종료 문자열) 을 다룰 수 있는 함수들을 포함하고 있다. 이 string.h 는 C 표준 라이브러리에 들어간 이후, 널리 쓰이게 되어 대부분의 C 를 지원하는 곳에서는 이 헤더파일에 정의되어 있는 함수들의 사용을 가능케 한다. 
 
 문자열 복사 함수
 
-
-* memcpy  :  메모리의 특정한 블록을 복사한다.
-
-* memmove  :  메모리의 특정한 블록을 이동시킨다.
-
-* strcpy  :  문자열을 복사한다.
-* strncpy :  문자열에서 지정한 부분 만큼 복사한다.
-
+* memcpy  :  메모리의 특정한 블록을 복사한다. 
+memmove  :  메모리의 특정한 블록을 이동시킨다. 
+strcpy  :  문자열을 복사한다. strncpy :  문자열에서 지정한 부분 만큼 복사한다. 
 
 문자열 합치는 함수
 
-
-* strcat  :  두 개의 문자열을 합친다.
-* strncat  :  두 개의 문자열을 지정한 부분 만큼 합친다.
-
+* strcat  :  두 개의 문자열을 합친다. strncat  :  두 개의 문자열을 지정한 부분 만큼 합친다.
 문자열 비교 함수
 
-
-* memcmp  :  메모리의 두 부분을 비교한다.
-* strcmp  :  두 개의 문자열을 비교한다.
-
-* strcoll  :   locale 을 이용하여 두 개의 문자열을 비교한다.
-
-* strncmp  :  두 개의 문자열의 일부분을 비교한다.
-* strxfrm :  locale 을 이용하여 문자열을 변환한다.
-
+* memcmp  :  메모리의 두 부분을 비교한다.strcmp  :  두 개의 문자열을 비교한다. 
+strcoll  :   locale 을 이용하여 두 개의 문자열을 비교한다. 
+strncmp  :  두 개의 문자열의 일부분을 비교한다. strxfrm :  locale 을 이용하여 문자열을 변환한다.
 
 문자열 검색함수[각주:1]
 
-
-* memchr :  메모리 블록에서 특정한 문자를 찾는다.
-
-* strchr  :  문자열에서 특정한 문자를 찾아 그 위치를 구한다.
-
-* strcspn  :  특정한 문자열에 포함된 문자들을 다른 문자열에서 찾아 가장 먼저 나오는 것을 구한다.
-
-* strpbrk :  특정한 문자열에 포함된 문자들을 다른 문자열에서 찾아 일치되는 것을 가리킨다.
-
-* strrchr  :  문자열에서 특정한 문자를 찾되, 뒤에서 부터 찾는다.
-
-* strspn  :  특정한 문자열에서 다른 문자열에 포함되어 있는 부분을 찾되, 처음 부터 연속된 부분으로 구한다.
-* strstr  :  특정한 문자열을 다른 문자열에서 검색한다.
-
-* strtok  :  문자열을 토큰으로 분리한다.
-
+* memchr  :  메모리 블록에서 특정한 문자를 찾는다.  
+strchr  :  문자열에서 특정한 문자를 찾아 그 위치를 구한다. 
+strcspn  :  특정한 문자열에 포함된 문자들을 다른 문자열에서 찾아 가장 먼저 나오는 것을 구한다. 
+strpbrk :  특정한 문자열에 포함된 문자들을 다른 문자열에서 찾아 일치되는 것을 가리킨다. 
+strrchr  :  문자열에서 특정한 문자를 찾되, 뒤에서 부터 찾는다. 
+strspn  :  특정한 문자열에서 다른 문자열에 포함되어 있는 부분을 찾되, 처음 부터 연속된 부분으로 구한다.  strstr  :  특정한 문자열을 다른 문자열에서 검색한다. 
+strtok  :  문자열을 토큰으로 분리한다. 
 다른 잡다한 함수들
 
-
-* memset  :  메모리 블록을 채운다.
-
-* strerror  :  오류 메세지 문자열을 가리키는 포인터를 구한다.
-* strlen  :  문자열의 길이를 잰다.
-
+* memset  :  메모리 블록을 채운다. 
+strerror  :  오류 메세지 문자열을 가리키는 포인터를 구한다. strlen  :  문자열의 길이를 잰다.
 
 매크로
 
-
 * NULL  :  널 포인터
-
 
 타입
 
-
 * size_t  :  부호없는 정수
-
-
-1. 각 함수에 대한 설명이 복잡하므로 함수 이름을 클릭해서 보도록 하는 것이 좋다.[본문으로]
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strcat 함수(0)2010.05.21C 언어 레퍼런스 - strncpy 함수(5)2010.05.09C 언어 레퍼런스 - strcpy 함수(8)2010.05.02C 언어 레퍼런스 - memmove 함수(7)2010.04.25C 언어 레퍼런스 - memcpy 함수(11)2010.04.24C 언어 레퍼런스 - string.h (cstring) 헤더파일(2)2010.04.24
+1. 각 함수에 대한 설명이 복잡하므로 함수 이름을 클릭해서 보도록 하는 것이 좋다.  [본문으로]공감sns신고저작자표시'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strcat 함수(0)
+2010.05.21C 언어 레퍼런스 - strncpy 함수(5)
+2010.05.09C 언어 레퍼런스 - strcpy 함수(8)
+2010.05.02C 언어 레퍼런스 - memmove 함수(7)
+2010.04.25C 언어 레퍼런스 - memcpy 함수(11)
+2010.04.24C 언어 레퍼런스 - string.h (cstring) 헤더파일(2)
+2010.04.24
 

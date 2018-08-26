@@ -1,9 +1,8 @@
-<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>feof</p><pre class="chroma">#include &lt;stdio.h&gt;  // C++ 에서는 &lt;cstdio&gt;
 
-</pre><p>feof</p><pre class="chroma">#include &lt;stdio.h&gt; // C++ 에서는 &lt;cstdio&gt;
-
-int feof ( FILE * stream );
-</pre><p>파일 끝 표시자(End-of-File indicator)를 검사한다.인자로 넘겨준 스트림의 파일 끝 표시자를 검사하여 설정(set) 되어 있다면 0 이 아닌 값을 리턴한다.보통 표시자는 이전의 입출력 작업에 의해 스트림이 파일 끝에 도달하였을 때 설정된다.rewind 이나fseek,fsetpos 함수들 중 어느 하나가 성공적으로 위치 표시자의 값을 바꾸기 전 까지, 모든 입출력 작업들은 오류를 리턴하게 된다.</p><h3><p> 인자</p></h3><p>stream</p><p>작업을 수행할 스트림의 FILE 객체를 가리키는 포인터.</p><h3><p> 리턴값</p></h3><p>인자로 전달된 스트림의 파일 끝 지시자가 설정되어 있다면 0 이 아닌 값을 리턴한다.그렇지 않을 경우 0 이 리턴된다.</p><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+int feof(FILE* stream);
+</pre><p>파일 끝 표시자(End-of-File indicator)를 검사한다. </p><p>인자로 넘겨준 스트림의 파일 끝 표시자를 검사하여 설정(set) 되어 있다면 0 이 아닌 값을 리턴한다. </p><p>보통 표시자는 이전의 입출력 작업에 의해 스트림이 파일 끝에 도달하였을 때 설정된다.rewind 이나 fseek, fsetpos 함수들 중 어느 하나가 성공적으로 위치 표시자의 값을 바꾸기 전 까지, 모든 입출력 작업들은 오류를 리턴하게 된다. </p><h3><p>  인자### </p></h3><p>stream</p><p>작업을 수행할 스트림의 FILE 객체를 가리키는 포인터. </p><h3><p>  리턴값</p></h3><h3><p> 인자로 전달된 스트림의 파일 끝 지시자가 설정되어 있다면 0 이 아닌 값을 리턴한다. 그렇지 않을 경우 0 이 리턴된다. </p></h3><h3><p>  실행 예제</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">myfile.txt 의 총 바이트 수를 센다.
 </span><span class="cm">이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/feof/
@@ -11,25 +10,24 @@ int feof ( FILE * stream );
 </span><span class="cm">
 </span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">FILE</span> <span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
-    <span class="kt">long</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">myfile.txt</span><span class="s">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s">&#34;</span><span class="s">rb</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">pFile</span><span class="o">=</span><span class="o">=</span><span class="nb">NULL</span><span class="p">)</span> <span class="n">perror</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Error opening file</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FILE</span><span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">myfile.txt</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">rb</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pFile</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="n">perror</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Error opening file</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="k">else</span>
-    <span class="p">{</span>
-        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">fgetc</span> <span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
-            <span class="n">n</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">fclose</span> <span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Total number of bytes: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">feof</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">fgetc</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+      <span class="n">n</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">fclose</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Total number of bytes: %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>myfile.txt 의 내용</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F145B2A1B4B6EEADA2826C0' alt=''><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F135DE91B4B6EEADA159C42' alt=''><p>만일 파일을 읽어들이다가 파일 끝에 도달하게 되면 feof 가 0 이 아닌 값을 리턴하게 되어 while 문을 빠져나가게 된다.</p><h3><p> 연관된 함수</p></h3><ul><li><p> clearerr :  오류 표시자들을 클리어한다.</p></li><li><p> ferror  :  오류 표시자를 검사한다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - perror 함수(0)2010.02.08C 언어 레퍼런스 - ferror 함수(1)2010.02.05C 언어 레퍼런스 - feof 함수(1)2010.02.05C 언어 레퍼런스 - clearerr 함수(0)2010.02.05C 언어 레퍼런스 - ungetc 함수(0)2010.02.04C 언어 레퍼런스 - puts 함수(0)2010.02.04</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>myfile.txt 의 내용</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F145B2A1B4B6EEADA2826C0' alt=''><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F135DE91B4B6EEADA159C42' alt=''><p>만일 파일을 읽어들이다가 파일 끝에 도달하게 되면 feof 가 0 이 아닌 값을 리턴하게 되어 while 문을 빠져나가게 된다. </p><h3><p>  연관된 함수</p></h3><h3><p> </p></h3><ul><li><p> clearerr  :  오류 표시자들을 클리어한다. ferror  :  오류 표시자를 검사한다.</p></li></ul><p>공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - perror 함수(0)2010.02.08C 언어 레퍼런스 - ferror 함수(1)2010.02.05C 언어 레퍼런스 - feof 함수(1)2010.02.05C 언어 레퍼런스 - clearerr 함수(0)2010.02.05C 언어 레퍼런스 - ungetc 함수(0)2010.02.04C 언어 레퍼런스 - puts 함수(0)2010.02.04</p><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

@@ -1,25 +1,21 @@
-<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>fclose</p><pre class="chroma">#include &lt;stdio.h&gt;  // C++ 에서는 &lt;cstdio&gt;
 
-</pre><p>fclose</p><pre class="chroma">#include &lt;stdio.h&gt; // C++ 에서는 &lt;cstdio&gt;
-
-int fclose ( FILE * stream );
-
-</pre><p>파일을 닫는다.인자로 지정한 스트림에 해당하는 파일을 닫는다.이 때, 그 스트림의 모든 버퍼들은 비워(flush)진다. 아직 파일에 쓰이지 않고 남아있던 버퍼의 내용물은 모두 파일에 쓰이고, 아직 읽히지 않고 남아있떤 버퍼의 내용물은 모두 사라진다.fclose 함수의 호출이 실패하더라도 인자로 전달된 스트림과 이에 해당하는 파일의 관계는 끊어지게 된다.</p><h3><p> 인자</p></h3><p>stream</p><p>파일을 닫을 스트림의 FILE 객체를 가리키는 포인터.</p><h3><p> 리턴값</p></h3><p>많일 스트림이 성공적으로 닫힌다면 0 이 리턴된다.실패할 경우 EOF 가 리턴된다.</p><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+int fclose(FILE* stream);
+</pre><p>파일을 닫는다.</p><p>인자로 지정한 스트림에 해당하는 파일을 닫는다. </p><p>이 때, 그 스트림의 모든 버퍼들은 비워(flush)진다. 아직 파일에 쓰이지 않고 남아있던 버퍼의 내용물은 모두 파일에 쓰이고, 아직 읽히지 않고 남아있떤 버퍼의 내용물은 모두 사라진다.</p><p>fclose 함수의 호출이 실패하더라도 인자로 전달된 스트림과 이에 해당하는 파일의 관계는 끊어지게 된다. </p><h3><p>  인자</p></h3><h3><p> stream</p></h3><p>파일을 닫을 스트림의 FILE 객체를 가리키는 포인터.</p><h3><p>  리턴값</p></h3><h3><p> 많일 스트림이 성공적으로 닫힌다면 0 이 리턴된다.</p></h3><p>실패할 경우 EOF 가 리턴된다. </p><h3><p>  실행 예제</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">myfile.txt 를 오픈하여 &#34;fclose example&#34; 을 쓴 후 파일을 닫는다.
 </span><span class="cm">이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fclose/
 </span><span class="cm">에서 가져왔습니다.
 </span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">FILE</span> <span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
-    <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">myfile.txt</span><span class="s">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s">&#34;</span><span class="s">wt</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">fprintf</span> <span class="p">(</span><span class="n">pFile</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">fclose example</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">fclose</span> <span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FILE</span><span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
+  <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">myfile.txt</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">wt</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">fprintf</span><span class="p">(</span><span class="n">pFile</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">fclose example</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F192A9D1F4B702E01249504' alt=''><p>파일에 쓰여진 모습</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F127B681F4B702E017E42DF' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> fopen  :  파일을 연다(open)</p></li><li><p> fflush  :  스트림을 비운다(flush)</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fopen 함수(0)2010.02.11C 언어 레퍼런스 - fflush 함수(4)2010.02.10C 언어 레퍼런스 - fclose 함수(3)2010.02.08C 언어 레퍼런스 - perror 함수(0)2010.02.08C 언어 레퍼런스 - ferror 함수(1)2010.02.05C 언어 레퍼런스 - feof 함수(1)2010.02.05</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F192A9D1F4B702E01249504' alt=''><p>파일에 쓰여진 모습</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F127B681F4B702E017E42DF' alt=''><h3><p>  연관된 함수</p></h3><h3><p> </p></h3><ul><li><p> fopen  :  파일을 연다(open)fflush  :  스트림을 비운다(flush) 공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fopen 함수(0)2010.02.11C 언어 레퍼런스 - fflush 함수(4)2010.02.10C 언어 레퍼런스 - fclose 함수(3)2010.02.08C 언어 레퍼런스 - perror 함수(0)2010.02.08C 언어 레퍼런스 - ferror 함수(1)2010.02.05C 언어 레퍼런스 - feof 함수(1)2010.02.05</p></li></ul><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

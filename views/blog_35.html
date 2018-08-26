@@ -1,71 +1,91 @@
-<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-* 참고적으로 이 레퍼런스는 printf 함수에 대한 기초적인 이해가 있는 사람들을 위한 것이므로 printf 함수를 처음 보는 사람은http://itguru.tistory.com/7를 보시는 것을 추천합니다.
-
-</pre><p>printf</p><pre class="chroma">&lt;stdio.h&gt; // C++ 의 경우 &lt;cstdio&gt;
-int printf ( const char * format, ... );
-</pre><p>일련의 데이터를 특정한 형식에 맞추어 stdout 에 출력한다.</p><p>표준 출력(stdout) 에 일련의 데이터들을 형식 문자열(format)에 지정되어 있는 형태로 출력한다. 형식 문자열 다음에는 출력할 데이터들을 쭈르륵 나열해 주면 된다. printf 함수는 적어도 형식 문자열 속에 지정된 데이터 이상의 인자를 받기로 기대한다.</p><h3><p> 인자 (parameter)</p></h3><p>형식 문자열(format)형식 문자열에는 stdout 에 출력할 문자열이 들어있다. 이 때, 형식 문자열에는 형식 태그(format tag)라 불리는 것이 추가적으로 들어갈 수 있는데, 이는 이에 대응하는 인자를 형식 태그가 지정한 형태로 치환되어 출력된다. (말이 조금 어려울 수 있으니 아래 예제를 보기 바란다).따라서, 형식 문자열 다음으로 오는 인자들의 개수는 반드시 형식 문자열 속의 태그의 개수보다 같거나 많아야 한다.형식 태그는 아래와 같은 꼴로 생겼다.</p><pre class="chroma">%[플래그(flag)][폭(width)][.정밀도][크기(length)]서식 문자(specifier)
-</pre><p>이 때 서식 문자(specifier) 는 대응하는 인자를 어떠한 형태로 표현할지를 결정하는데에 가장 중요한 역할을 한다.</p><p>서식문자출력 형태예c문자ad ori부호 있는 십진법으로 나타난 정수392e지수 표기법(Scientific notation) 으로 출력하되, e 문자를 이용한다.3.9265e+2E지수 표기법(Scientific notation) 으로 출력하되, E 문자를 이용한다.3.9265E+2f십진법으로 나타낸 부동 소수점 수392.65g%e나 %f 보다 간략하게 출력392.65G%E나 %f 보다 간략하게 출력392.65o부호 있는 팔진수610s문자열sampleu부호없는 십진법으로 나타낸 정수7235x부호없는 16 진법으로 나타낸 정수 (소문자 사용)7faX부호없는 16 진법으로 나타낸 정수 (대문자 사용)7FAp포인터 주소B800:0000n아무것도 출력하지 않는다. 그 대신, 인자로 부호 있는 int 형을 가리키는 포인터를 전달해야 되는데, 여기에 현재까지 쓰여진 문자 수가 저장된다.%% 다음에 %를 또 붙이면 stdout 에 % 를 출력한다.</p><p>위 서식 문자를 이용한 다양한 출력 형태는 아래와 같다.</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">integer</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="n">character</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">c</span><span class="sc">&#39;</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="n">string</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">hello, world</span><span class="s">&#34;</span><span class="p">;</span>
-    <span class="kt">int</span><span class="o">*</span> <span class="n">pointer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">integer</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.141592</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">integer : (decimal) %d (octal) %o </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">integer</span><span class="p">,</span> <span class="n">integer</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">character : %c </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">character</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">string : %s </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">pointer addr : %p </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pointer</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">floating point : %e // %f </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">percent symbol : %% </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre><p>출력 결과!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2049BB054B5DA6D6012A5A' alt=''><p>  형식 태그에는 위 말고도 플래그, 폭, .정확도, 제한자(modifier), 부-서식문자(sub-specifiers) 에 관련한 정보들이 포함될 수 있다. 먼저 플래그를 살펴보면 플래그는 기본적으로 출력되는 형태에 대해 조금 더 자세하게 지정할 수 있게 해준다. 플래그는 아래와 같다.</p><p>플래그설명-폭에 맞추어 왼쪽 정렬을 하여 출력한다. - 를 붙이지 않는다면 기본적으로 오른쪽 정렬이 되어 출력한다. (아래 폭 지정자 참조).+출력 결과값이 양수인 경우라도 + 기호를 앞에 붙여서 출력하도록 한다. (물론 음수면 자동적으로 - 가 붙는다). 기본적으로 지정하지 않았을 경우 음수에만 앞에 - 가 붙는다.(공백)앞에 부호가 붙지 않는다면 한 칸을 띄어서 출력한다. (다시말해 123 은 " 123" 으로 출력되고 -123 은 "-123" 으로 출력된다)</p><h1><p>o, x, X 서식 문자들과 사용되면 출력되는 값 앞에 각각 0, 0x, 0X 가 붙게 된다. (이 때 0 은 제외한다)e, E, f 서식 문자들과 사용되면 소수점 아래 수들이 없음에도 불구하고 강제적으로 소수점을 붙이도록 한다. 원래 소수점 아래 수들이 없다면 소수점을 붙이지 않는다.g 와 G 서식 문자들과 사용되면 e 와 E 일때와 동일한 작업을 하지만 소수들의 뒷부분에 붙는 0 들 (123.1200 등) 은 제거되지 않는다.0수들을 왼쪽으로 정렬하되 빈 칸을 삽입하는 대신에 0 을 삽입한다. (폭 지정자 참조)</p></h1><p>  폭은 말그대로 출력되는 데이터의 폭을 지정해준다. 참고로 여기서의 폭(width)은 뒤에 나오는 길이(length) 와는 완전히 다른 개념이므로 유의 하시기 바란다.</p><p>폭설명(수)출력할 최소의 문자 개수. 만일 이 수 보다 출력할 수 보다 작다면 빈칸을 삽입하여 길이를 맞춘다. 대신에, 이 수 보다 출력할 수가 큰 수의 경우 잘려서 출력되지는 않는다.<span class='font-italic'>폭을 형식 문자열에 지정해서 받지 않지만, 그 대신에 형식 문자열 뒤에 오는 인자들에 넣어서 받는다. 이 때, 이는 정수 값이여야 하며 폭을 지정하는 변수 뒤에 출력할 데이터가 위치하면 된다.</p><pre class="chroma"><span class="cm">/* 사용 예 */</span>
+<pre class="chroma">아직 C 언어와 친숙하지 않다면,
+    씹어먹는 C 언어 강좌를 보는 것이 어떻까요
+        ? *참고적으로 이 레퍼런스는 printf 함수에 대한 기초적인 이해가 있는
+              사람들을 위한 것이므로 printf 함수를 처음 보는 사람은 http
+        :  // itguru.tistory.com/7 를 보시는 것을 추천합니다.
+</pre><p>printf </p><pre class="chroma">&lt;stdio.h&gt;  // C++ 의 경우 &lt;cstdio&gt;
+    int printf(const char* format, ...);
+</pre><p>일련의 데이터를 특정한 형식에 맞추어 stdout 에 출력한다.</p><p>표준 출력(stdout) 에 일련의 데이터들을 형식 문자열(format)에 지정되어 있는 형태로 출력한다. 형식 문자열 다음에는 출력할 데이터들을 쭈르륵 나열해 주면 된다. printf 함수는 적어도 형식 문자열 속에 지정된 데이터 이상의 인자를 받기로 기대한다.  </p><h3><p>  인자 (parameter)</p></h3><h3><p> 형식 문자열(format)형식 문자열에는 stdout 에 출력할 문자열이 들어있다. 이 때, 형식 문자열에는 형식 태그(format tag)라 불리는 것이 추가적으로 들어갈 수 있는데, 이는 이에 대응하는 인자를 형식 태그가 지정한 형태로 치환되어 출력된다. (말이 조금 어려울 수 있으니 아래 예제를 보기 바란다).따라서, 형식 문자열 다음으로 오는 인자들의 개수는 반드시 형식 문자열 속의 태그의 개수보다 같거나 많아야 한다. 형식 태그는 아래와 같은 꼴로 생겼다. </p></h3><pre class="chroma">
+% [플래그(flag)][폭(width)][.정밀도][크기(length)] 서식 문자(specifier)
+</pre><p>이 때 서식 문자(specifier) 는 대응하는 인자를 어떠한 형태로 표현할지를 결정하는데에 가장 중요한 역할을 한다. </p><p>서식문자출력 형태예c문자ad or i부호 있는 십진법으로 나타난 정수392e지수 표기법(Scientific notation) 으로 출력하되, e 문자를 이용한다. 3.9265e+2E지수 표기법(Scientific notation) 으로 출력하되, E 문자를 이용한다. 3.9265E+2f십진법으로 나타낸 부동 소수점 수392.65g%e나 %f 보다 간략하게 출력392.65G%E나 %f 보다 간략하게 출력392.65o부호 있는 팔진수610s문자열sampleu부호없는 십진법으로 나타낸 정수7235x부호없는 16 진법으로 나타낸 정수 (소문자 사용)7faX부호없는 16 진법으로 나타낸 정수 (대문자 사용)7FAp포인터 주소B800:0000n아무것도 출력하지 않는다. 그 대신, 인자로 부호 있는 int 형을 가리키는 포인터를 전달해야 되는데, 여기에 현재까지 쓰여진 문자 수가 저장된다.%% 다음에 %를 또 붙이면 stdout 에 % 를 출력한다. </p><p>위 서식 문자를 이용한 다양한 출력 형태는 아래와 같다.</p><pre class="chroma">
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="o">-</span><span class="mi">123</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">f</span> <span class="o">=</span> <span class="mf">3.141592</span><span class="p">;</span>
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
 
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">폭 맞추기 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %6d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %7d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %2d </span><span class="se">\n</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">왼쪽 정렬 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %-5d끝 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">오른쪽 정렬 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %5d끝 </span><span class="se">\n</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s"># 문자의 사용 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %#x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %#X </span><span class="se">\n</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
-
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">부호 붙이기 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%+d, %+d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre><p>출력결과!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F18555A374CE4EDDE0AC611' alt=''><p>정밀도는 말그대로 수치 데이터를 출력할 때 어떠한 정밀도로 출력하는지 (즉, 몇 자리 까지 출력해야 되는지) 를 지정해준다. 참고적으로 정밀도를 나타낼 때, 앞에 꼭 마침표(.) 을 찍는 것을 잊지 말기 바란다. 마침표를 찍는 이유는 앞에 폭과 구분을 하기 위해서 이다.</p><p>.정밀도설명.숫자정수 지정자 (d,i,o,u,x,X) 의 경우 : 정밀도는 출력되야할 최소의 자리수를 일컫는다. 만일, 어떤 정수의 자리수가 정밀도 보다 작다면 앞에 0 이 붙어서 자리수를 맞추게 된다. 또한 자리수가 더 크다고 해서 정수를 잘라서 출력하지는 않는다. 만일 정밀도가 0 이라면, 소수점 뒤에 자리수를 출력하지 않는다.e,E, F 의 경우 : 여기서 정밀도는 소수점 이하 출력될 자리수를 의미한다.g, G 의 경우 : 출력될 유효 숫자의 수를 의미한다.s 의 경우 : 출력될 문자의 최대 개수를 의미한다. 원래는 널 문자를 만나기 전까지 모든 문자가 출력되었었다.c 의 경우 : 아무 효과 없다.만일 정밀도가 지정되지 않는다면 기본값으로 1 이 된다. 또한, 마침표(.) 을 찍었는데 아무런 숫자를 적지 않았다면 기본적으로 0 이 적혔다고 생각한다..<span class='font-italic'>형식 문자열에서 정밀도를 나타내지는 않지만 뒤에 인자로 정밀도 값을 준다. 이 때 인자는 형식 태그가 적용되는 데이타 앞에 있어야 한다.  길이는 출력하는 데이터의 정확한 크기를 지정하는데 사용된다. 예를 들어서 %d 서식문자의 경우 막연하게 '정수형 데이터를 십진법으로 출력한다' 였지만 길이를 지정해주면 어떻나 크기로 데이터를 출력해야되는지 (int 냐 short 냐 등등) 을 지정할 수 있다.길이설명h인자를 short int 혹은 unsigned short int 로 생각한다. (오직 i, d, o, u , x, X 서식 문자에만 적용된다)l정수 서식 문자(i,d,o,u,x, X) 에 사용되었을 경우 인자를 long int 나 unsigned long int 로 생각하며 c 나 s 에 사용되었을 경우 wide character 나 wide string 으로 생각한다.L인자를 long double 로 생각한다. (오직 부동 소수점 서식 문자인 e,E,f,g, G 에만 적용된다)</p><pre class="chroma"><span class="cm">/* 사용 예 */</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="kt">double</span> <span class="n">f</span> <span class="o">=</span> <span class="mf">3.141592</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">12345</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">integer</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
 
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">f : %.3f </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %.10d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">character</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">c</span><span class="sc">&#39;</span><span class="p">;</span>
 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">string</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">hello, world</span><span class="s">&#34;</span><span class="p">;</span>
+
+  <span class="kt">int</span><span class="o">*</span> <span class="n">pointer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">integer</span><span class="p">;</span>
+
+  <span class="kt">double</span> <span class="n">pi</span> <span class="o">=</span> <span class="mf">3.141592</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">integer : (decimal) %d (octal) %o </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">integer</span><span class="p">,</span> <span class="n">integer</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">character : %c </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">character</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">string : %s </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">pointer addr : %p </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pointer</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">floating point : %e // %f </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">pi</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">percent symbol : %% </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
+</pre><p>출력 결과!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2049BB054B5DA6D6012A5A' alt=''><p>  형식 태그에는 위 말고도 플래그, 폭, .정확도, 제한자(modifier), 부-서식문자(sub-specifiers) 에 관련한 정보들이 포함될 수 있다. 먼저 플래그를 살펴보면 플래그는 기본적으로 출력되는 형태에 대해 조금 더 자세하게 지정할 수 있게 해준다. 플래그는 아래와 같다. </p><p>플래그설명-폭에 맞추어 왼쪽 정렬을 하여 출력한다. - 를 붙이지 않는다면 기본적으로 오른쪽 정렬이 되어 출력한다. (아래 폭 지정자 참조).+출력 결과값이 양수인 경우라도 + 기호를 앞에 붙여서 출력하도록 한다. (물론 음수면 자동적으로 - 가 붙는다). 기본적으로 지정하지 않았을 경우 음수에만 앞에 - 가 붙는다. (공백)앞에 부호가 붙지 않는다면 한 칸을 띄어서 출력한다. (다시말해 123 은 " 123" 으로 출력되고 -123 은 "-123" 으로 출력된다)</p><h1></h1><p>o, x, X 서식 문자들과 사용되면 출력되는 값 앞에 각각 0, 0x, 0X 가 붙게 된다. (이 때 0 은 제외한다)</p><p>e, E, f 서식 문자들과 사용되면 소수점 아래 수들이 없음에도 불구하고 강제적으로 소수점을 붙이도록 한다. 원래 소수점 아래 수들이 없다면 소수점을 붙이지 않는다. </p><p>g 와 G 서식 문자들과 사용되면 e 와 E 일때와 동일한 작업을 하지만 소수들의 뒷부분에 붙는 0 들 (123.1200 등) 은 제거되지 않는다. 0수들을 왼쪽으로 정렬하되 빈 칸을 삽입하는 대신에 0 을 삽입한다. (폭 지정자 참조)</p><p>  폭은 말그대로 출력되는 데이터의 폭을 지정해준다. 참고로 여기서의 폭(width)은 뒤에 나오는 길이(length) 와는 완전히 다른 개념이므로 유의 하시기 바란다. </p><p>폭설명(수)출력할 최소의 문자 개수. 만일 이 수 보다 출력할 수 보다 작다면 빈칸을 삽입하여 길이를 맞춘다. 대신에, 이 수 보다 출력할 수가 큰 수의 경우 잘려서 출력되지는 않는다. <span class='font-italic'>폭을 형식 문자열에 지정해서 받지 않지만, 그 대신에 형식 문자열 뒤에 오는 인자들에 넣어서 받는다. 이 때, 이는 정수 값이여야 하며 폭을 지정하는 변수 뒤에 출력할 데이터가 위치하면 된다. </p><pre class="chroma"><span class="cm">/* 사용 예 */</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
 
-</pre><p>출력 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F135054234B5DB76133E080' alt=''><p>부수적인 인자</p><p>형식 문자열에 따라 함수는 여러 인자들을 가지며, 각 인자는 형식 문자열의 각 형식 태그에 순차적으로 대응된다. 기본적으로 형식 문자열에 들어 있는 형식 태그의 수와 뒤따라 붙는 인자들의 수는 같아야 한다. (물론 .<span class='font-italic'> 이나 </span> 과 같은 예외적인 상황은 제외한다)</p><h3><p> 리턴값</p></h3><p>출력에 성공하면 출력된 전체 문자의 개수가 리턴된다. 출력에 실패하면 음수가 리턴된다.</p><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sscanf 함수(8)2011.01.03C 언어 레퍼런스 - printf 함수(3)2010.11.27C 언어 레퍼런스 - rewind 함수(4)2010.04.24C 언어 레퍼런스 - ftell 함수(1)2010.04.24C 언어 레퍼런스 - fsetpos 함수(0)2010.04.24C 언어 레퍼런스 - fseek 함수(0)2010.04.24</p><style>/* Background */ .chroma { background-color: #ffffff }
+  <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="o">-</span><span class="mi">123</span><span class="p">;</span>
+
+  <span class="kt">double</span> <span class="n">f</span> <span class="o">=</span> <span class="mf">3.141592</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">폭 맞추기 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %6d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %7d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %2d </span><span class="se">\n</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">왼쪽 정렬 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %-5d끝 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">오른쪽 정렬 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %5d끝 </span><span class="se">\n</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s"># 문자의 사용 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %#x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %#X </span><span class="se">\n</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">부호 붙이기 </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%+d, %+d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>출력결과!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F18555A374CE4EDDE0AC611' alt=''><p>정밀도는 말그대로 수치 데이터를 출력할 때 어떠한 정밀도로 출력하는지 (즉, 몇 자리 까지 출력해야 되는지) 를 지정해준다. 참고적으로 정밀도를 나타낼 때, 앞에 꼭 마침표(.) 을 찍는 것을 잊지 말기 바란다. 마침표를 찍는 이유는 앞에 폭과 구분을 하기 위해서 이다. </p><p>.정밀도설명.숫자정수 지정자 (d,i,o,u,x,X) 의 경우 : 정밀도는 출력되야할 최소의 자리수를 일컫는다. 만일, 어떤 정수의 자리수가 정밀도 보다 작다면 앞에 0 이 붙어서 자리수를 맞추게 된다. 또한 자리수가 더 크다고 해서 정수를 잘라서 출력하지는 않는다. 만일 정밀도가 0 이라면, 소수점 뒤에 자리수를 출력하지 않는다.e,E, F 의 경우 : 여기서 정밀도는 소수점 이하 출력될 자리수를 의미한다. g, G 의 경우 : 출력될 유효 숫자의 수를 의미한다.s 의 경우 : 출력될 문자의 최대 개수를 의미한다. 원래는 널 문자를 만나기 전까지 모든 문자가 출력되었었다.c 의 경우 : 아무 효과 없다.만일 정밀도가 지정되지 않는다면 기본값으로 1 이 된다. 또한, 마침표(.) 을 찍었는데 아무런 숫자를 적지 않았다면 기본적으로 0 이 적혔다고 생각한다. .<span class='font-italic'>형식 문자열에서 정밀도를 나타내지는 않지만 뒤에 인자로 정밀도 값을 준다. 이 때 인자는 형식 태그가 적용되는 데이타 앞에 있어야 한다.     길이는 출력하는 데이터의 정확한 크기를 지정하는데 사용된다. 예를 들어서 %d 서식문자의 경우 막연하게 '정수형 데이터를 십진법으로 출력한다' 였지만 길이를 지정해주면 어떻나 크기로 데이터를 출력해야되는지 (int 냐 short 냐 등등) 을 지정할 수 있다. 길이설명h인자를 short int 혹은 unsigned short int 로 생각한다. (오직 i, d, o, u , x, X 서식 문자에만 적용된다)l정수 서식 문자(i,d,o,u,x, X) 에 사용되었을 경우 인자를 long int 나 unsigned long int 로 생각하며 c 나 s 에 사용되었을 경우 wide character 나 wide string 으로 생각한다.L인자를 long double 로 생각한다. (오직 부동 소수점 서식 문자인 e,E,f,g, G 에만 적용된다)</p><pre class="chroma"><span class="cm">/* 사용 예 */</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">f</span> <span class="o">=</span> <span class="mf">3.141592</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">12345</span><span class="p">;</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">f : %.3f </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %.10d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>출력 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F135054234B5DB76133E080' alt=''><p>부수적인 인자</p><p>형식 문자열에 따라 함수는 여러 인자들을 가지며, 각 인자는 형식 문자열의 각 형식 태그에 순차적으로 대응된다. 기본적으로 형식 문자열에 들어 있는 형식 태그의 수와 뒤따라 붙는 인자들의 수는 같아야 한다. (물론 .<span class='font-italic'> 이나 </span> 과 같은 예외적인 상황은 제외한다) </p><h3><p>  리턴값</p></h3><h3><p> 출력에 성공하면 출력된 전체 문자의 개수가 리턴된다. 출력에 실패하면 음수가 리턴된다. </p></h3><p>공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sscanf 함수(8)2011.01.03C 언어 레퍼런스 - printf 함수(3)2010.11.27C 언어 레퍼런스 - rewind 함수(4)2010.04.24C 언어 레퍼런스 - ftell 함수(1)2010.04.24C 언어 레퍼런스 - fsetpos 함수(0)2010.04.24C 언어 레퍼런스 - fseek 함수(0)2010.04.24</p><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

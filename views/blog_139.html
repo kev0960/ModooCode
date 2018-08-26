@@ -1,43 +1,41 @@
-<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>rand</p><h1></h1><pre class="chroma">#include &lt;stdlib.h&gt;  // C++ 에서는 &lt;cstdlib&gt;
 
-</pre><p>rand</p><h1></h1><pre class="chroma">#include &lt;stdlib.h&gt; // C++ 에서는 &lt;cstdlib&gt;
-
-int rand ( void );
-
-</pre><p>난수를 생성한다.0 부터 RAND<span class='font-italic'>MAX 범위의 정수들로 의사 난수(pseudo-random) 를 생성한다. 의사 난수란 실질적인 난수가 아니라 컴퓨터 상에서 일련의 복잡한 연산에 의해 만들어지는 난수 같아 보이는 수들을 말한다.</p><p>rand 함수를 실행할 때 마다 특정한 알고리즘에 의해 연관성이 없어 보이는 수들이 생성된다. 이 알고리즘은 난순열을 생성하기 위해 초기값이 필요한데, srand 함수를 통해 이 초기값을 설정할 수 있다.</p><p> 인자</p><p>없음</p><p> 리턴값</p><p>0 과 RAND<span class='font-italic'>MAX 사이의 정수</p><p> 실행 예제</p><pre class="chroma"><span class="cm">/*
+int rand(void);
+</pre><p>난수를 생성한다. 0 부터 RAND<span class='font-italic'>MAX 범위의 정수들로 의사 난수(pseudo-random) 를 생성한다. 의사 난수란 실질적인 난수가 아니라 컴퓨터 상에서 일련의 복잡한 연산에 의해 만들어지는 난수 같아 보이는 수들을 말한다. </p><p>rand 함수를 실행할 때 마다 특정한 알고리즘에 의해 연관성이 없어 보이는 수들이 생성된다. 이 알고리즘은 난순열을 생성하기 위해 초기값이 필요한데, srand 함수를 통해 이 초기값을 설정할 수 있다.</p><p> 인자</p><p>없음</p><p> 리턴값</p><p>0 과 RAND<span class='font-italic'>MAX 사이의 정수</p><p> 실행 예제</p><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">숫자 맞추기
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstdlib/rand/
 </span><span class="cm">에서 가져왔습니다
 </span><span class="cm">
-</span><span class="cm"> */</span>
+</span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">int</span> <span class="n">iSecret</span><span class="p">,</span> <span class="n">iGuess</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">iSecret</span><span class="p">,</span> <span class="n">iGuess</span><span class="p">;</span>
 
-    <span class="cm">/* initialize random seed: */</span>
-    <span class="n">srand</span> <span class="p">(</span> <span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">)</span><span class="p">;</span>
+  <span class="cm">/* initialize random seed: */</span>
+  <span class="n">srand</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="cm">/* generate secret number: */</span>
-    <span class="n">iSecret</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="cm">/* generate secret number: */</span>
+  <span class="n">iSecret</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 
-    <span class="k">do</span> <span class="p">{</span>
-        <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Guess the number (1 to 10): </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">scanf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">iGuess</span><span class="p">)</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">iSecret</span><span class="o">&lt;</span><span class="n">iGuess</span><span class="p">)</span> <span class="n">puts</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The secret number is lower</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">iSecret</span><span class="o">&gt;</span><span class="n">iGuess</span><span class="p">)</span> <span class="n">puts</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The secret number is higher</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">iSecret</span><span class="o">!</span><span class="o">=</span><span class="n">iGuess</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Guess the number (1 to 10): </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">iGuess</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">iSecret</span> <span class="o">&lt;</span> <span class="n">iGuess</span><span class="p">)</span>
+      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The secret number is lower</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">iSecret</span> <span class="o">&gt;</span> <span class="n">iGuess</span><span class="p">)</span>
+      <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The secret number is higher</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">iSecret</span> <span class="o">!</span><span class="o">=</span> <span class="n">iGuess</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="n">puts</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Congratulations!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">puts</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Congratulations!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F206A0F394DC2B23C3487C4' alt=''><p>위 예제에서 난수의 초기값으로 time() 함수의 리턴값 (1970 년 부터 현재 까지 지난 초 수) 를 사용하였다. 대부분의 경우 이 방법을 사용한다.</p><p> 연관된 함수</p><ul><li><p> srand  :  난순열의 초기값을 설정한다.</p></li></ul><p>공감1sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdlib.h (cstdlib)' 카테고리의 다른 글C 언어 레퍼런스 - srand 함수(0)2011.05.05C 언어 레퍼런스 - rand 함수(2)2011.05.05C 언어 레퍼런스 - atol 함수(4)2011.01.27C 언어 레퍼런스 - atoi 함수(0)2011.01.27C 언어 레퍼런스 - atof 함수(0)2011.01.09C 언어 레퍼런스 - stdlib.h (cstlib)(1)2011.01.05</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F206A0F394DC2B23C3487C4' alt=''><p>위 예제에서 난수의 초기값으로 time() 함수의 리턴값 (1970 년 부터 현재 까지 지난 초 수) 를 사용하였다. 대부분의 경우 이 방법을 사용한다. </p><p> 연관된 함수</p><ul><li><p> srand  :  난순열의 초기값을 설정한다. </p></li></ul><p>공감1sns신고저작자표시'C Reference > stdlib.h (cstdlib)' 카테고리의 다른 글C 언어 레퍼런스 - srand 함수(0)2011.05.05C 언어 레퍼런스 - rand 함수(2)2011.05.05C 언어 레퍼런스 - atol 함수(4)2011.01.27C 언어 레퍼런스 - atoi 함수(0)2011.01.27C 언어 레퍼런스 - atof 함수(0)2011.01.09C 언어 레퍼런스 - stdlib.h (cstlib)(1)2011.01.05</p><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

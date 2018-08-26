@@ -1,14 +1,16 @@
- itguru Top itguru Top
+
 
 
 
 
 ```warning
-이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파'를 위해 모든 이들에게 공개하도록 하겠습니다.
+이 레퍼런스의 모든 내용은 http://www.cplusplus.com/reference/iostream/
+ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ 
+Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
 
 ```info
-아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요?
 ```
 
 
@@ -25,11 +27,11 @@ void push_back ( const T& x );
 
 
 
-벡터 끝에 원소를 추가한다.
+벡터 끝에 원소를 추가한다. 
 현재의 마지막 원소 뒤에 새로운 원소를 추가하며, 그 원소의 값은 x 의 복사본으로 초기화 된다.
 
 
-이 함수는 효과적으로 벡터의 크기를 1 늘리는데, 만일 capacity 와 벡터 size 가 같다면 내부적으로 재할당이 일어나게 된다. 이 때 이전에 사용되었던 반복자(iterator) , 레퍼런스, 포인터들은 사용할 수 없게 된다.
+이 함수는 효과적으로 벡터의 크기를 1 늘리는데, 만일 capacity 와 벡터 size 가 같다면 내부적으로 재할당이 일어나게 된다. 이 때 이전에 사용되었던 반복자(iterator) , 레퍼런스, 포인터들은 사용할 수 없게 된다. 
 
 
  인자
@@ -79,7 +81,7 @@ int myint;
 cout << "Please enter some integers (enter 0 to end):\n";
 
 
-do
+do 
 {
 cin >> myint;
 myvector.push_back (myint);
@@ -98,6 +100,7 @@ return 0;
 실행 결과
 
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1519CE4C501DD721070E78)
 
 
 
@@ -113,12 +116,15 @@ return 0;
  연관된 함수
 
 
-
-* vector::pop_back : 마지막 원소를 삭제한다.
-* vector::insert: 원소를 추가한다.
+* vector::pop_back : 마지막 원소를 삭제한다.vector::insert : 원소를 추가한다. 
 
 
 
-
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)2012.08.05C++ 레퍼런스 - vector::push_back(0)2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)2012.03.24
+공감sns신고저작자표시'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)
+2012.08.05C++ 레퍼런스 - vector::push_back(0)
+2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)
+2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)
+2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)
+2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)
+2012.03.24
 

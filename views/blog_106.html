@@ -1,42 +1,40 @@
-<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>strlen</p><pre class="chroma">#include &lt;string.h&gt;  // C++ 에서는 &lt;cstring&gt;
 
-</pre><p>strlen</p><pre class="chroma">#include &lt;string.h&gt; // C++ 에서는 &lt;cstring&gt;
-
-size_t strlen ( const char * str );
-</pre><p>문자열의 길이를 구한다.문자열의 길이는 리턴한다. C 문자열의 길이는 마지막 널 문자에 의해 결정된다. 따라서 strlen 은 문자열의 시작 부터, 널 문자 직전 까지의 문자의 개수를 센다.</p><p>간혹</p><pre class="chroma"><span class="kt">char</span> <span class="n">mystr</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span><span class="o">=</span><span class="sa"></span><span class="s">&#34;</span><span class="s">test string</span><span class="s">&#34;</span><span class="p">;</span>
-</pre><p>라 되어 있으면 strlen 이 100 을 리턴할 것 같지만 mystr 은 오직 11 개의 문자로만 선언되어 있으므로 11 이 리턴된다.</p><h3><p> 인자</p></h3><p>string</p><p>C 형식 문자열</p><h3><p> 리턴값</p></h3><p>문자열의 길이. 참고로 size<span class='font-italic'>t 형으로 선언 되어 있는데 대부분의 string.h 에서는 부호 없는 정수형으로 선언되어 있다.</p><h3><p> 구현 예</p></h3><pre class="chroma"><span class="cm">/*
+size_t strlen(const char* str);
+</pre><p>문자열의 길이를 구한다.문자열의 길이는 리턴한다. C 문자열의 길이는 마지막 널 문자에 의해 결정된다. 따라서 strlen 은 문자열의 시작 부터, 널 문자 직전 까지의 문자의 개수를 센다. </p><p>간혹 </p><pre class="chroma"><span class="kt">char</span> <span class="n">mystr</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">test string</span><span class="s">&#34;</span><span class="p">;</span>
+</pre><p>라 되어 있으면 strlen 이 100 을 리턴할 것 같지만 mystr 은 오직 11 개의 문자로만 선언되어 있으므로 11 이 리턴된다. </p><h3><p>  인자### </p></h3><p>string</p><p>C 형식 문자열</p><h3><p>  리턴값### </p></h3><p>문자열의 길이. 참고로 size<span class='font-italic'>t 형으로 선언 되어 있는데 대부분의 string.h 에서는 부호 없는 정수형으로 선언되어 있다. </p><h3><p>  구현 예### </p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.jbox.dk/sanos/source/lib/string.c.html
 </span><span class="cm">에서 가져왔습니다.
 </span><span class="cm">
 </span><span class="cm">*/</span>
-<span class="n">size_t</span> <span class="nf">strlen</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span>
-<span class="p">{</span>
-  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">eos</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">eos</span><span class="o">+</span><span class="o">+</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">eos</span> <span class="o">-</span> <span class="n">s</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+<span class="n">size_t</span> <span class="nf">strlen</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">eos</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">eos</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+    <span class="p">;</span>
+  <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="p">(</span><span class="n">eos</span> <span class="o">-</span> <span class="n">s</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</pre><h3><p>  실행 예제</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">문자열을 하나 입력 받아서 그 길이를 리턴한다.
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strlen/
 </span><span class="cm">에서 가져왔습니다.
 </span><span class="cm">
-</span><span class="cm"> */</span>
+</span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">char</span> <span class="n">szInput</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="p">;</span>
-    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter a sentence: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">gets</span> <span class="p">(</span><span class="n">szInput</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The sentence entered is %u characters long.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">szInput</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">szInput</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter a sentence: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">gets</span><span class="p">(</span><span class="n">szInput</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The sentence entered is %u characters long.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">szInput</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1772BF1F4D0420B837D97C' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> strcmp  :  두 개의 문자열을 비교한다.</p></li><li><p> strchr  :  문자열에서 특정한 문자의 첫번째로 나타나는 위치를 찾는다.</p></li><li><p> strrchr  :  문자열에서 특정한 문자의 마지막으로 나타나는 위치를 찾는다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strlen 함수(0)2010.12.12C 언어 레퍼런스 - strerror 함수(0)2010.12.12C 언어 레퍼런스 - memset 함수(5)2010.11.28C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1772BF1F4D0420B837D97C' alt=''><h3><p>  연관된 함수</p></h3><h3><p> <span class='font-italic'> strcmp  :  두 개의 문자열을 비교한다.  strchr  :  문자열에서 특정한 문자의 첫번째로 나타나는 위치를 찾는다.strrchr  :  문자열에서 특정한 문자의 마지막으로 나타나는 위치를 찾는다. </p></h3><p>공감sns신고저작자표시'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strlen 함수(0)2010.12.12C 언어 레퍼런스 - strerror 함수(0)2010.12.12C 언어 레퍼런스 - memset 함수(5)2010.11.28C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21</p><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

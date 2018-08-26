@@ -1,9 +1,10 @@
- itguru Top itguru Top
+
 
 ```warning
-아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
 
 ```
+
 
 strrchr
 ```info
@@ -14,8 +15,8 @@ const char * strrchr ( const char * str, int character );
 ```
 
 
-문자열에서 문자를 검색하되 가장 마지막으로 나타나는 위치를 찾는다. 그리고 이를 가리키는 포인터를 리턴한다.
-이 때 문자열의 널 종료 문자 역시 C 문자열의 일부분이라 생각한다. 따라서 이 함수는 문자열의 널 종료 문자를 가리키는데 사용될 수 도 있다.
+문자열에서 문자를 검색하되 가장 마지막으로 나타나는 위치를 찾는다. 그리고 이를 가리키는 포인터를 리턴한다. 
+이 때 문자열의 널 종료 문자 역시 C 문자열의 일부분이라 생각한다. 따라서 이 함수는 문자열의 널 종료 문자를 가리키는데 사용될 수 도 있다. 
 
 C++ 에서는 함수 오버로딩이 가능하므로 위와 같이 두 개의 원형을 가져도 되지만 C 에서는 불가능 하므로 아래와 같은 하나의 원형만을 가진다.
 
@@ -24,22 +25,22 @@ char * strrchr ( const char *, int );
 ```
 
 
-### 인자
-
+###  인자
+### 
 str
 
 C 문자열
 
 character
 
-str 에서 찾을 문자로 int 로 전달되지만 함수 내부적으로는 다시 char 로 변환되어 처리된다.
+str 에서 찾을 문자로 int 로 전달되지만 함수 내부적으로는 다시 char 로 변환되어 처리된다. 
 
-### 리턴값
+###  리턴값
+### 
+str 에서 찾은 문자의 위치를 리턴한다. 만일 찾지 못한다면 널을 리턴한다. 
 
-str 에서 찾은 문자의 위치를 리턴한다. 만일 찾지 못한다면 널을 리턴한다.
-
-### 함수의 구현
-
+###  함수의 구현
+### 
 ```cpp
 /*
 
@@ -61,8 +62,8 @@ char *strrchr(const char *s, int ch)
 ```
 
 
-### 실행 예제
-
+###  실행 예제
+### 
 
 
 ```cpp
@@ -93,15 +94,17 @@ int main ()
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1132541D4C5629879BDA45)
 
 
-### 연관된 함수
+###  연관된 함수
+### 
+* strchr  :   특정한 문자가 포함되어 있는 가장 왼쪽 위치를 찾는다. 
+memchr  :  메모리에서 특정한 문자를 찾는다. 
+strpbrk  :  다른 문자들의 문자를 검색어로 삼아 특정한 문자열의 문자들을 찾는다. 
 
-
-* strchr  :   특정한 문자가 포함되어 있는 가장 왼쪽 위치를 찾는다.
-
-* memchr  :  메모리에서 특정한 문자를 찾는다.
-
-* strpbrk  :  다른 문자들의 문자를 검색어로 삼아 특정한 문자열의 문자들을 찾는다.
-
-
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21C 언어 레퍼런스 - strrchr 함수(0)2010.08.02C 언어 레퍼런스 - strpbrk 함수(0)2010.08.02C 언어 레퍼런스 - strcspn 함수(4)2010.08.02C 언어 레퍼런스 - strchr 함수(0)2010.08.02
+공감sns신고저작자표시'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strstr 함수(3)
+2010.11.27C 언어 레퍼런스 - strspn 함수(0)
+2010.11.21C 언어 레퍼런스 - strrchr 함수(0)
+2010.08.02C 언어 레퍼런스 - strpbrk 함수(0)
+2010.08.02C 언어 레퍼런스 - strcspn 함수(4)
+2010.08.02C 언어 레퍼런스 - strchr 함수(0)
+2010.08.02
 

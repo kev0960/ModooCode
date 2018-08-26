@@ -1,15 +1,17 @@
- itguru Top itguru Top
+
 
 
 
 
 
 ```warning
-이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파'를 위해 모든 이들에게 공개하도록 하겠습니다.
+이 레퍼런스의 모든 내용은 http://www.cplusplus.com/reference/iostream/
+ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ 
+Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
 
 ```info
-아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요?
 ```
 
 
@@ -35,7 +37,7 @@ template <class InputIterator>
 이 함수는 벡터의 크기를 효과적으로 증가시키는데, 만일 새로운 벡터의 size 가 현재 벡터의 capacity 보다 크다면 재할당을 하게 된다. 재할당 시, 벡터 컨테이너의 이전에 얻은 모든 반복자(iterator), 레퍼런스들은 무효화 된다.
 
 
-벡터는 배열의 형태로 저장되기 때문에 벡터 끝이 아닌 임의의 위치에 원소를 삽입하게 되면 그 뒤에 있는 원소들을 뒤로 이동시키게 된다. 따라서벡터에서 원소들 중간에 새로운 원소들을 삽입하는 일은 그다시 효율적이지 못하다. 따라서 이러한 작업을 많이 하게 된다면 다른 순차 컨테이너 (deque,list) 를 참고하기 바란다.
+벡터는 배열의 형태로 저장되기 때문에 벡터 끝이 아닌 임의의 위치에 원소를 삽입하게 되면 그 뒤에 있는 원소들을 뒤로 이동시키게 된다. 따라서 벡터에서 원소들 중간에 새로운 원소들을 삽입하는 일은 그다시 효율적이지 못하다. 따라서 이러한 작업을 많이 하게 된다면 다른 순차 컨테이너 (deque, list) 를 참고하기 바란다. 
 
 
  인자
@@ -58,7 +60,7 @@ n
 
 
 first, last
-특정 범위의 원소들을 지칭하는 반복자이다. first 에서 last 전 까지의 원소들을 position 에 삽입하게 된다. 한 가지 주의할 것은 first 에서 last 까지가 아닌 last 직전 까지의 원소들이다. 즉 last 번째의 원소는 삽입되지 않는다.
+특정 범위의 원소들을 지칭하는 반복자이다. first 에서 last 전 까지의 원소들을 position 에 삽입하게 된다. 한 가지 주의할 것은 first 에서 last 까지가 아닌 last 직전 까지의 원소들이다. 즉 last 번째의 원소는 삽입되지 않는다. 
 
 
 
@@ -132,6 +134,7 @@ return 0;
 
 실행 결과
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1243AE4F501DDDF2111AAA)
 
 
 
@@ -142,10 +145,10 @@ return 0;
 
 
 
-삽입 이후의 벡터의 크기가 삽입 이전에 결정될 수 있다면 입력되는 원소의 개수와 (복사 생성) 삽입 위치 뒤에 있는 원소들의 개수 (이동 연산) 의 합에 선형으로 비례한다.
+삽입 이후의 벡터의 크기가 삽입 이전에 결정될 수 있다면 입력되는 원소의 개수와 (복사 생성) 삽입 위치 뒤에 있는 원소들의 개수 (이동 연산) 의 합에 선형으로 비례한다. 
 
 
-만일 삽입 이후의 벡터의 크기가 결정될 수 없다면 삽입 이전에 결정되지 않는다면 (이는void insert ( iterator position, InputIterator first, InputIterator last ); 함수에서 InputIterator 가 순방향, 양방향, 임의 접근 반복자 모두가 아닐 경우) 삽입되는 원소의 수와 삽입 위치 뒤에 있는 원소의 개수의 곱에 비례한다.
+만일 삽입 이후의 벡터의 크기가 결정될 수 없다면 삽입 이전에 결정되지 않는다면 (이는 void insert ( iterator position, InputIterator first, InputIterator last ); 함수에서 InputIterator 가 순방향, 양방향, 임의 접근 반복자 모두가 아닐 경우) 삽입되는 원소의 수와 삽입 위치 뒤에 있는 원소의 개수의 곱에 비례한다. 
 
 
 
@@ -154,9 +157,12 @@ return 0;
 
 
 
-
-* vector::push_back : 벡터 끝에 원소를 추가한다.
-* vector::erase :원소를 삭제한다.
-
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)2012.08.05C++ 레퍼런스 - vector::push_back(0)2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)2012.03.24
+* vector::push_back : 벡터 끝에 원소를 추가한다.vector::erase : 원소를 삭제한다. 
+공감sns신고저작자표시'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)
+2012.08.05C++ 레퍼런스 - vector::push_back(0)
+2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)
+2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)
+2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)
+2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)
+2012.03.24
 

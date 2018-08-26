@@ -1,9 +1,10 @@
- itguru Top itguru Top
+
 
 ```warning
-아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
 
 ```
+
 
 fseek
 
@@ -14,43 +15,48 @@ int fseek ( FILE * stream, long int offset, int origin );
 
 ```
 
-스트림 위치 지정자 (position indicator) 의 위치를 조정한다.
-origin 인자로 전달된 위치로 부터 offset 인자로 전달된 만큼 더한 위치로 위치 지정자를 설정한다.
-이 함수를 호출한 이후에는 파일 끝 지정자 (End of File indicator) 가 초기화 되고, 이전에 만일ungetc 함수를 호출하였다면 이로 인한 효과는 모두 사라지게 된다.
-한가지 명심해야 할 점은, 만일 텍스트 파일에 fseek 함수를 사용할 때, offset 값으로 0 이 아닌 값 혹은 ftell 함수에 의해 반환된 값을 사용할 때에는 일부 플랫폼에서는 약간 문제가 생겨서 예상치 못했던 위치에 위치 지정자가 설정되어 있는 경우가 있으니 주의해야 한다.
-fseek 함수는 또한 스트림이 읽기 및 쓰기 형식으로 열려있을 때, 이 함수를 호출함을 통해 읽기 - 쓰기 모드를 전환할 수 있다. (자세한 내용은fopen 함수를 참조하기 바란다)
+스트림 위치 지정자 (position indicator) 의 위치를 조정한다. 
 
-### 인자
+origin 인자로 전달된 위치로 부터 offset 인자로 전달된 만큼 더한 위치로 위치 지정자를 설정한다. 
 
+이 함수를 호출한 이후에는 파일 끝 지정자 (End of File indicator) 가 초기화 되고, 이전에 만일 ungetc 함수를 호출하였다면 이로 인한 효과는 모두 사라지게 된다. 
+
+한가지 명심해야 할 점은, 만일 텍스트 파일에 fseek 함수를 사용할 때, offset 값으로 0 이 아닌 값 혹은 ftell 함수에 의해 반환된 값을 사용할 때에는 일부 플랫폼에서는 약간 문제가 생겨서 예상치 못했던 위치에 위치 지정자가 설정되어 있는 경우가 있으니 주의해야 한다. 
+
+fseek 함수는 또한 스트림이 읽기 및 쓰기 형식으로 열려있을 때, 이 함수를 호출함을 통해 읽기 - 쓰기 모드를 전환할 수 있다. (자세한 내용은 fopen 함수를 참조하기 바란다)  
+
+###  인자
+### 
 stream
 
-작업을 수행할 스트림의 FILE 객체를 가리키는 포인터
+작업을 수행할 스트림의 FILE 객체를 가리키는 포인터 
 
 offset
+
 
 orgin 으로 부터 얼마나 떨어진 곳에 설정할 지에 대한 값
 
 origin
 
-오프셋이 더해지는 위치로, <stdio.h> 에 정의된 다음과 같은 상수들을 이용한다.
+오프셋이 더해지는 위치로, <stdio.h> 에 정의된 다음과 같은 상수들을 이용한다. 
 
 SEEK_SET파일의 시작
 SEEK_CUR현재 파일 포인터의 위치
 SEEK_END파일의 끝
 
 
-### 리턴값
+###  리턴값
+### 
+만일 성공하였으면 0 을 리턴한다. 그렇지 않다면 0 이 아닌 값을 리턴한다. 
 
-만일 성공하였으면 0 을 리턴한다. 그렇지 않다면 0 이 아닌 값을 리턴한다.
-
-### 실행 예제
-
+###  실행 예제
+### 
 ```cpp
 /*
 
-example.txt 에 "This is an apple" 을 쓴 뒤에 다시 fseek 함수를 이용하여 n 부터 sam 으로 바꾼다. 즉, example.txt 에는 "This is an sample" 이 들어가게 된다.
+example.txt 에 "This is an apple" 을 쓴 뒤에 다시 fseek 함수를 이용하여 n 부터 sam 으로 바꾼다. 즉, example.txt 에는 "This is an sample" 이 들어가게 된다. 
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fseek/
-에서 가져왔습니다.
+에서 가져왔습니다. 
 
  */
 #include <stdio.h>
@@ -78,14 +84,16 @@ myfile.txt 에는
 
 
 
-### 연관된 함수
+###  연관된 함수
+### 
+* ftell  :  스트림의 현재 위치를 구한다. 
+fsetpos :  스트림의 위치 지정자를 설정한다. rewind  :  스트림의 위치 지정자를 맨 처음으로 설정한다.
 
-
-* ftell  :  스트림의 현재 위치를 구한다.
-
-* fsetpos :  스트림의 위치 지정자를 설정한다.
-* rewind  :  스트림의 위치 지정자를 맨 처음으로 설정한다.
-
-
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - ftell 함수(1)2010.04.24C 언어 레퍼런스 - fsetpos 함수(0)2010.04.24C 언어 레퍼런스 - fseek 함수(0)2010.04.24C 언어 레퍼런스 - fgetpos 함수(0)2010.04.18C 언어 레퍼런스 - fwrite 함수(1)2010.04.11C 언어 레퍼런스 - fread 함수(2)2010.03.21
+공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - ftell 함수(1)
+2010.04.24C 언어 레퍼런스 - fsetpos 함수(0)
+2010.04.24C 언어 레퍼런스 - fseek 함수(0)
+2010.04.24C 언어 레퍼런스 - fgetpos 함수(0)
+2010.04.18C 언어 레퍼런스 - fwrite 함수(1)
+2010.04.11C 언어 레퍼런스 - fread 함수(2)
+2010.03.21
 

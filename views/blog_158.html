@@ -1,7 +1,15 @@
-<p>itguru Top itguru Top</p><pre class="chroma">이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 &lt;&lt;The C++ Programming Language&gt;&gt; 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39;를 위해 모든 이들에게 공개하도록 하겠습니다.
-</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
-</pre><p>ios<span class='font-italic'>base::imbue</p><pre class="chroma"><span class="n">locale</span> <span class="nf">imbue</span> <span class="p">(</span> <span class="k">const</span> <span class="n">locale</span><span class="o">&amp;</span> <span class="n">loc</span> <span class="p">)</span><span class="p">;</span>
-</pre><p>로케일을 설정(imbue) 한다.loc 를 스트림의 새로운 로케일(locale) 객체로 사용하여, 로케일과 관련있는 작업에 이를 사용한다.</p><p>imbue 함수 종료 직전에 imbue<span class='font-italic'>event 가 발생되며register</span>callback 함수를 통해 등록되었던 함수들이 모두 호출되게 된다.</p><p> 인자</p><p>loc</p><p>  스트림의 새롭게 설정될 로케일 객체이다.</p><p> 리턴값</p><p>  함수 호출 이전 상태의 로케일 객체</p><p> 실행 예제</p><pre class="chroma"><span class="cm">/*
+<pre class="chroma">이 레퍼런스의 모든 내용은 http
+    :  // www.cplusplus.com/reference/iostream/
+       의 내용을 기초로 하여,
+       Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책
+               &lt;&lt; The C++ Programming Language &gt;&gt;
+           를 참고로 하여 만들어졌습니다
+               .이는 또한 저의 개인적인
+                   C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39; 를 위해 모든 이들에게
+                       공개하도록 하겠습니다.
+</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
+</pre><p>ios<span class='font-italic'>base::imbue</p><pre class="chroma"><span class="n">locale</span> <span class="nf">imbue</span><span class="p">(</span><span class="k">const</span> <span class="n">locale</span><span class="o">&amp;</span> <span class="n">loc</span><span class="p">)</span><span class="p">;</span>
+</pre><p>로케일을 설정(imbue) 한다.loc 를 스트림의 새로운 로케일(locale) 객체로 사용하여, 로케일과 관련있는 작업에 이를 사용한다. </p><p>imbue 함수 종료 직전에 imbue<span class='font-italic'>event 가 발생되며 register</span>callback 함수를 통해 등록되었던 함수들이 모두 호출되게 된다. </p><p> 인자</p><p>loc</p><p>  스트림의 새롭게 설정될 로케일 객체이다.</p><p> 리턴값</p><p>  함수 호출 이전 상태의 로케일 객체</p><p> 실행 예제</p><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/iostream/ios_base/imbue/
@@ -9,17 +17,24 @@
 </span><span class="cm">
 </span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;locale&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</span><span class="cp"></span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;locale&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
+
 <span class="p">{</span>
-    <span class="n">locale</span> <span class="n">mylocale</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">french</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>      <span class="c1">// 로케일 객체를 &#39;프랑스&#39; 로 설정한다.
-</span><span class="c1"></span>    <span class="n">cout</span><span class="p">.</span><span class="n">imbue</span><span class="p">(</span> <span class="n">mylocale</span> <span class="p">)</span><span class="p">;</span>   <span class="c1">// 이를 cout 로케일로 설정한다.
-</span><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="mf">3.14159</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//프랑스에서는 . 대신 , 를 사용하므로 3,14159 로 표시된다.
-</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">locale</span> <span class="n">mylocale</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">french</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 로케일 객체를 &#39;프랑스&#39; 로 설정한다.
+</span><span class="c1"></span>
+  <span class="n">cout</span><span class="p">.</span><span class="n">imbue</span><span class="p">(</span><span class="n">mylocale</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 이를 cout 로케일로 설정한다.
+</span><span class="c1"></span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="mf">3.14159</span>
+       <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">//프랑스에서는 . 대신 , 를 사용하므로 3,14159 로 표시된다.
+</span><span class="c1"></span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><p> 연관된 것들</p><ul><li><p> ios<span class='font-italic'>base::getloc : 현재 로케일을 알아온다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios<span class='font-italic'>base::xalloc 함수(0)2011.10.22C++ 레퍼런스 - ios</span>base::getloc 함수(1)2011.08.20C++ 레퍼런스 - ios<span class='font-italic'>base::imbue(0)2011.08.20C++ 레퍼런스 - ios</span>base::register<span class='font-italic'>callback 함수(0)2011.08.20C++ 레퍼런스 - ios</span>base::precision 함수(0)2011.08.19C++ 레퍼런스 - ios<span class='font-italic'>base::usetf 함수(0)2011.08.19</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F13095D574E4E10412DED75' alt=''><p> 연관된 것들</p><ul><li><p> ios<span class='font-italic'>base::getloc : 현재 로케일을 알아온다.공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios</span>base::xalloc 함수(0)2011.10.22C++ 레퍼런스 - ios<span class='font-italic'>base::getloc 함수(1)2011.08.20C++ 레퍼런스 - ios</span>base::imbue(0)2011.08.20C++ 레퍼런스 - ios<span class='font-italic'>base::register</span>callback 함수(0)2011.08.20C++ 레퍼런스 - ios<span class='font-italic'>base::precision 함수(0)2011.08.19C++ 레퍼런스 - ios</span>base::usetf 함수(0)2011.08.19</p></li></ul><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

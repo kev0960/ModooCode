@@ -1,30 +1,35 @@
-<p>itguru Top itguru Top</p><pre class="chroma">이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 &lt;&lt;The C++ Programming Language&gt;&gt; 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39;를 위해 모든 이들에게 공개하도록 하겠습니다.
-</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
-</pre><p>ios::operator void<span class='font-italic'></p><pre class="chroma">operator void * ( ) const;
-</pre><p>포인터로 변환한다. (형 변환 연산자 이다)ios 로 부터 얻어진 스트림 객체는 포인터로 캐스팅 될 수 있다. 만일 오류 플래그 (error flag - failbit 혹은 badbit) 중 어느 하나가 설정된다면 포인터는 NULL 포인터가 되고, 아니면 NULL 이 아닌 포인터가 된다.</p><p>리턴된 포인터는 다른 어떤 변수를 가리키는 것이 아니고 단순히 오류 플래그가 설정되었는지, 아닌지만 알려주는 역할을 한다.</p><p> 인자</p><p>없다</p><p> 리턴값</p><p>만일 failbit 이나 badbit 이 설정되어 있으면 NULL 포인터를 리턴하고 아니면 NULL 포인터가 아닌 것을 리턴한다.</p><p> 실행 예제</p><pre class="chroma"><span class="cm">/*
+<pre class="chroma">이 레퍼런스의 모든 내용은 http
+    :  // www.cplusplus.com/reference/iostream/
+       의 내용을 기초로 하여,
+       Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책
+               &lt;&lt; The C++ Programming Language &gt;&gt;
+           를 참고로 하여 만들어졌습니다
+               .이는 또한 저의 개인적인
+                   C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39; 를 위해 모든 이들에게
+                       공개하도록 하겠습니다.
+</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
+</pre><p>ios::operator void<span class='font-italic'></p><pre class="chroma">operator void*() const;
+</pre><p>포인터로 변환한다. (형 변환 연산자 이다)ios 로 부터 얻어진 스트림 객체는 포인터로 캐스팅 될 수 있다. 만일 오류 플래그 (error flag - failbit 혹은 badbit) 중 어느 하나가 설정된다면 포인터는 NULL 포인터가 되고, 아니면 NULL 이 아닌 포인터가 된다. </p><p>리턴된 포인터는 다른 어떤 변수를 가리키는 것이 아니고 단순히 오류 플래그가 설정되었는지, 아닌지만 알려주는 역할을 한다. </p><p> 인자</p><p>없다</p><p> 리턴값</p><p>만일 failbit 이나 badbit 이 설정되어 있으면 NULL 포인터를 리턴하고 아니면 NULL 포인터가 아닌 것을 리턴한다.</p><p> 실행 예제</p><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/iostream/ios/operator_voidpt/
 </span><span class="cm">에서 가져왔습니다.
 </span><span class="cm">
 </span><span class="cm">*/</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">ifstream</span> <span class="n">is</span><span class="p">;</span>
-    <span class="n">is</span><span class="p">.</span><span class="n">open</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">test.txt</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">ifstream</span> <span class="n">is</span><span class="p">;</span>
+  <span class="n">is</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">test.txt</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">is</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">cerr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Error opening &#39;test.txt&#39;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="n">is</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">cerr</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Error opening &#39;test.txt&#39;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F202325454F004D441E9371' alt=''><p> 템플릿 멤버 정의</p><pre class="chroma"><span class="p">(</span> <span class="n">basic_ios</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span><span class="n">traits</span><span class="o">&gt;</span> <span class="p">)</span>
-<span class="k">operator</span> <span class="kt">void</span> <span class="o">*</span> <span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-</pre><p> 연관된 것들</p><ul><li><p> ios::fail  :  failbit 나 badbit 이 설정되었는지 확인한다.</p></li><li><p> ios::operator! :  스트림 객체를 확인한다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::setstate 함수(0)2012.03.25C++ 레퍼런스 - ios::rdstate 함수(0)2012.03.25C++ 레퍼런스 - ios::operator void<span class='font-italic'>(0)2012.01.01C++ 레퍼런스 - ios::operator!(2)2011.10.23C++ 레퍼런스 - ios::eof 함수(0)2011.10.23C++ 레퍼런스 - ios::bad 함수(0)2011.10.23</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F202325454F004D441E9371' alt=''><p> 템플릿 멤버 정의</p><pre class="chroma"><span class="p">(</span><span class="n">basic_ios</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span><span class="p">)</span><span class="k">operator</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</pre><p> 연관된 것들</p><ul><li><p> ios::fail  :  failbit 나 badbit 이 설정되었는지 확인한다.ios::operator! :  스트림 객체를 확인한다.공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::setstate 함수(0)2012.03.25C++ 레퍼런스 - ios::rdstate 함수(0)2012.03.25C++ 레퍼런스 - ios::operator void<span class='font-italic'>(0)2012.01.01C++ 레퍼런스 - ios::operator!(2)2011.10.23C++ 레퍼런스 - ios::eof 함수(0)2011.10.23C++ 레퍼런스 - ios::bad 함수(0)2011.10.23</p></li></ul><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

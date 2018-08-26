@@ -28,6 +28,16 @@ void RemoveEmptyPTag(string* s) {
   }
 }
 
+// Nbsp; 0xC2 0xA0 as a utf-8 format.
+void RemoveNbsp(string* s) {
+  for (size_t i = 0; i < s->size(); i++) {
+    if (static_cast<unsigned char>(s->at(i)) == 0xc2 && i + 1 < s->size() &&
+        static_cast<unsigned char>(s->at(i + 1)) == 0xa0) {
+      s->erase(i, 2);
+      i--;
+    }
+  }
+}
 // Return how many matches.
 int FindOneOrTwoConsecutiveChar(const string& s, size_t start, char c) {
   if (s[start] == c) {
@@ -118,8 +128,7 @@ void DoClangFormat(const string& code, string* formatted_code) {
     close(pipe_p2c[0]);
     close(pipe_c2p[0]);
 
-    char* clang_format_argv[] = {"clang-format", "-style=google",
-                                 NULL};
+    char* clang_format_argv[] = {"clang-format", "-style=google", NULL};
     char* env[] = {NULL};
     int ret = execve("/usr/bin/clang-format", clang_format_argv, env);
     LOG << "CLANG FORMAT ERROR : " << ret;
@@ -235,9 +244,9 @@ string Content::OutputHtml() {
           "</p><img src='", GetHtmlFragmentText(content_, fragments[i], false),
           "' alt='", GetHtmlFragmentText(content_, fragments[i]), "'><p>");
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
-      html += StrCat("</p>", FormatCodeUsingChroma(
-                                 fragments[i].formatted_code,
-                                 fragments[i].code_style, "github"),
+      html += StrCat("</p>",
+                     FormatCodeUsingChroma(fragments[i].formatted_code,
+                                           fragments[i].code_style, "github"),
                      "<p>");
     } else {
       html += GetHtmlFragmentText(content_, fragments[i]);
@@ -328,6 +337,9 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
     if (fragment.type == HtmlFragments::Types::CODE) {
       string unformatted_code = content_.substr(
           fragment.str_start, fragment.str_end - fragment.str_start + 1);
+      // Sometimes the code contains NBSP character. This hinders the code to be
+      // correctly formatted by the clang-format.
+      RemoveNbsp(&unformatted_code);
       format_ops.push_back(std::thread(DoClangFormat, unformatted_code,
                                        &fragment.formatted_code));
     }

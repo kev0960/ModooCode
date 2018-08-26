@@ -1,14 +1,16 @@
- itguru Top itguru Top
+
 
 
 
 
 ```warning
-이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파'를 위해 모든 이들에게 공개하도록 하겠습니다.
+이 레퍼런스의 모든 내용은 http://www.cplusplus.com/reference/iostream/
+ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ 
+Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
 
 ```info
-아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요?
 ```
 
 
@@ -32,8 +34,8 @@ istream& get ( streambuf& sb, char delim );
 
 
 
-스트림에서 서식화되지(unformatted) 않는 데이터를 가져온다.
-이 멤버 함수들은 서식화되지 않는 입력 연산을 수행한다. 함수 호출 시 인자의 타입과 개수에 따라서 다음과 같이 오버로딩 된다.
+스트림에서 서식화되지(unformatted) 않는 데이터를 가져온다. 
+이 멤버 함수들은 서식화되지 않는 입력 연산을 수행한다. 함수 호출 시 인자의 타입과 개수에 따라서 다음과 같이 오버로딩 된다. 
 
 
 int get();
@@ -45,7 +47,7 @@ istream& get ( char& c );
 
 
 istream& get (char* s, streamsize n );
-스트림에서 문자들을 가져온 뒤, s 에 C 형식 문자열로 저장한다. 문자는제한 문자 '\n' 이 나올 때 까지나, n - 1 개의 문자를 받을 때 까지 입력받게 된다. 또한 입력 작업 시 오류가 발생할 경우 또한 중단되게 된다. 또한 이 함수는 제한 문자는 스트림에서 빼내지 않기 때문에 (즉, 다음 번 입력 시 가장 첫번째로 입력 받는 것이 그 제한 문자일 것이다) 만일 제한 문자를 스트림에서 빼내 버리기 위해서는getline과 같은 함수를 이용해야만 한다. s 맨 마지막에는 자동으로 널 문자(Null terminating character)가 붙여지게 된다.
+스트림에서 문자들을 가져온 뒤, s 에 C 형식 문자열로 저장한다. 문자는 제한 문자 '\n' 이 나올 때 까지나, n - 1 개의 문자를 받을 때 까지 입력받게 된다. 또한 입력 작업 시 오류가 발생할 경우 또한 중단되게 된다. 또한 이 함수는 제한 문자는 스트림에서 빼내지 않기 때문에 (즉, 다음 번 입력 시 가장 첫번째로 입력 받는 것이 그 제한 문자일 것이다) 만일 제한 문자를 스트림에서 빼내 버리기 위해서는 getline 과 같은 함수를 이용해야만 한다. s 맨 마지막에는 자동으로 널 문자(Null terminating character)가 붙여지게 된다. 
 
 
 istream& get (char* s, streamsize n, char delim );
@@ -53,14 +55,14 @@ istream& get (char* s, streamsize n, char delim );
 
 
 istream& get (streambuf& sb);
-스트림에서 문자들을 받는뒤, 이를 스트림 버퍼 sb 에 입력 한다. 문자는 제한 문자 '\n' 이 나올 때 까지나, 파일 끝에 도달할 때 까지 입력 받는다. 또한, 이 함수는 입력 스트림에서 입력 과정에 오류가 발생하였을 때나, sb 에서 출력시 오류가 발생하였을 때 중단하게 된다.
+스트림에서 문자들을 받는뒤, 이를 스트림 버퍼 sb 에 입력 한다. 문자는 제한 문자 '\n' 이 나올 때 까지나, 파일 끝에 도달할 때 까지 입력 받는다. 또한, 이 함수는 입력 스트림에서 입력 과정에 오류가 발생하였을 때나, sb 에서 출력시 오류가 발생하였을 때 중단하게 된다. 
 
 
 istream& get (streambuf& sb, char delim );
 위와 동일하지만 제한 문자를 '\n' 대신에 사용자가 원하는 것으로 설정할 수 있다.
 
 
-바로 직전의 입력 과정에서 읽어들인 문자의 수는gcount함수로 알아 낼 수 있다.
+바로 직전의 입력 과정에서 읽어들인 문자의 수는 gcount 함수로 알아 낼 수 있다. 
 
 
 
@@ -85,13 +87,13 @@ s
 n
 
 
-입력 받을 최대 문자의 수 (널 종료 문자열을 포함해서) 이는 또한 streamsize 타입의 정수값이다.
+입력 받을 최대 문자의 수 (널 종료 문자열을 포함해서) 이는 또한 streamsize 타입의 정수값이다. 
 
 
 delim
 
 
-제한 문자. 이 문자를 읽어들이기게 되면 입력 작업이 종료된다. 만일 이 문자를 사용자가 지정하지 않았다면 디폴트로 '\n' 이 설정된다.
+제한 문자. 이 문자를 읽어들이기게 되면 입력 작업이 종료된다. 만일 이 문자를 사용자가 지정하지 않았다면 디폴트로 '\n' 이 설정된다. 
 
 
 sb
@@ -106,10 +108,10 @@ sb
 
 
 
-맨 첫 번째 오버로딩의 경우 이 함수는 읽어들인 문자의 수를 리턴한다. 나머지 것들의 경우 *this 를 리턴한다.
+맨 첫 번째 오버로딩의 경우 이 함수는 읽어들인 문자의 수를 리턴한다. 나머지 것들의 경우 *this 를 리턴한다. 
 
 
-스트림 상의 오류는 다음과 같은 내부 상태 플래그들로 설정된다.
+스트림 상의 오류는 다음과 같은 내부 상태 플래그들로 설정된다. 
 
 
 
@@ -127,7 +129,7 @@ badbit
 
 
 
-위와 같은 플래그들이ios::exceptions함수로 설정되었다면, ios_base::failure 가 throw 된다.
+위와 같은 플래그들이 ios::exceptions함수로 설정되었다면, ios_base::failure 가 throw 된다. 
 
 
 
@@ -186,6 +188,7 @@ return 0;
 
 
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F130C9946509A59621796E3)
 
 
 
@@ -217,10 +220,12 @@ basic_istream& get (basic_streambuf<char_type,traits>& sb, char_type delim );
 
 
 
-
-* istream::getline : 스트림에서 한 줄을 입력받는다.
-* istream::ignore : 문자를 스트림에서 입력받고 버린다.
-* istream::gcount : 마지막 서식화되지 않는 입력 작업에서 입력 받은 문자의 수를 얻는다.
-
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::ignore 함수(1)2012.11.07C++ 레퍼런스 - istream::gcount 함수(0)2012.11.07C++ 레퍼런스 - istream::get 함수(0)2012.11.07C++ 레퍼런스 - ios::tie 함수(0)2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)2012.03.25C++ 레퍼런스 - ios::fill 함수(0)2012.03.25
+* istream::getline : 스트림에서 한 줄을 입력받는다. istream::ignore : 문자를 스트림에서 입력받고 버린다. istream::gcount : 마지막 서식화되지 않는 입력 작업에서 입력 받은 문자의 수를 얻는다. 
+공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::ignore 함수(1)
+2012.11.07C++ 레퍼런스 - istream::gcount 함수(0)
+2012.11.07C++ 레퍼런스 - istream::get 함수(0)
+2012.11.07C++ 레퍼런스 - ios::tie 함수(0)
+2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)
+2012.03.25C++ 레퍼런스 - ios::fill 함수(0)
+2012.03.25
 

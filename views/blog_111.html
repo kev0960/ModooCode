@@ -1,9 +1,8 @@
-<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>difftime</p><pre class="chroma">#include &lt;time.h&gt;  // C++ 에서는 &lt;ctime&gt;
 
-</pre><p>difftime</p><pre class="chroma">#include &lt;time.h&gt; // C++ 에서는 &lt;ctime&gt;
-
-double difftime ( time_t time2, time_t time1 );
-</pre><p>두 개 시각의 차이를 구한다.time1 과 time2 가 몇 초 차이나는지 계산한다.</p><h3><p> 인자</p></h3><p>time2</p><p>  time<span class='font-italic'>t 형 변수로 나중 시각을 나타낸다.</p><p>time1</p><p>  time<span class='font-italic'>t 형 변수로 이전 시각을 나타낸다.</p><h3><p> 리턴값</p></h3><p>time2 와 time1 가 몇 초 차이 나는지를 double 형으로 리턴한다.</p><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+double difftime(time_t time2, time_t time1);
+</pre><p>두 개 시각의 차이를 구한다.time1 과 time2 가 몇 초 차이나는지 계산한다. </p><h3><p>  인자</p></h3><h3><p> time2</p></h3><p>  time<span class='font-italic'>t 형 변수로 나중 시각을 나타낸다. </p><p>time1</p><p>  time<span class='font-italic'>t 형 변수로 이전 시각을 나타낸다. </p><h3><p>  리턴값</p></h3><h3><p> time2 와 time1 가 몇 초 차이 나는지를 double 형으로 리턴한다. </p></h3><h3><p>  실행 예제### </p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">이름을 쓰는데 얼마나 걸리는지 알아온다.
 </span><span class="cm">이 예제는
@@ -14,23 +13,22 @@ double difftime ( time_t time2, time_t time1 );
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">time_t</span> <span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">;</span>
-    <span class="kt">char</span> <span class="n">szInput</span> <span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">dif</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">time_t</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">szInput</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">dif</span><span class="p">;</span>
 
-    <span class="n">time</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Please, enter your name: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">gets</span> <span class="p">(</span><span class="n">szInput</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">time</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">dif</span> <span class="o">=</span> <span class="n">difftime</span> <span class="p">(</span><span class="n">end</span><span class="p">,</span><span class="n">start</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Hi %s.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">szInput</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">printf</span> <span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">It took you %.2lf seconds to type your name.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">dif</span> <span class="p">)</span><span class="p">;</span>
+  <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Please, enter your name: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">gets</span><span class="p">(</span><span class="n">szInput</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">dif</span> <span class="o">=</span> <span class="n">difftime</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Hi %s.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">szInput</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">It took you %.2lf seconds to type your name.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">dif</span><span class="p">)</span><span class="p">;</span>
 
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F177A173A4D15F9B43D6540' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> asctime :  tm 구조체를 문자열로 변환한다.</p></li><li><p> gmtime  :  time<span class='font-italic'>t 를 tm 으로 바꾸되 UTC 형식 시간으로 바꾼다.</p></li><li><p> localtime  :  time<span class='font-italic'>t 를 tm 으로 바꾸되 지역 시간으로 바꾼다.</p></li><li><p> time  :  현재 시각을 구한다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - mktime 함수(0)2010.12.26C 언어 레퍼런스 - time<span class='font-italic'>t 형(1)2010.12.25C 언어 레퍼런스 - difftime 함수(0)2010.12.25C 언어 레퍼런스 - clock 함수(2)2010.12.25C 언어 레퍼런스 - struct tm ( tm 구조체 )(0)2010.12.25C 언어 레퍼런스 - time.h 헤더파일(0)2010.12.25</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F177A173A4D15F9B43D6540' alt=''><h3><p>  연관된 함수</p></h3><h3><p> <span class='font-italic'> asctime :  tm 구조체를 문자열로 변환한다.    gmtime  :  time</span>t 를 tm 으로 바꾸되 UTC 형식 시간으로 바꾼다. localtime  :  time<span class='font-italic'>t 를 tm 으로 바꾸되 지역 시간으로 바꾼다. time  :  현재 시각을 구한다.</p></h3><p>공감sns신고저작자표시'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - mktime 함수(0)2010.12.26C 언어 레퍼런스 - time<span class='font-italic'>t 형(1)2010.12.25C 언어 레퍼런스 - difftime 함수(0)2010.12.25C 언어 레퍼런스 - clock 함수(2)2010.12.25C 언어 레퍼런스 - struct tm ( tm 구조체 )(0)2010.12.25C 언어 레퍼런스 - time.h 헤더파일(0)2010.12.25</p><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }

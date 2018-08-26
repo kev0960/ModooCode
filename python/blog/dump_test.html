@@ -1,0 +1,75 @@
+<div class="tt_article_useless_p_margin"><p><span style="font-size: 8pt;">.이번 강좌에서는</span></p>
+    <ul style="list-style-type: disc;">
+        <li><span style="font-size: 8pt;">의존 타입 (dependent type)</span></li>
+        <li><span style="font-size: 8pt;">Unit 라이브러리 만들기</span></li>
+        <li><span style="font-size: 8pt;">auto 키워드</span></li>
+    </ul>
+    <div><span style="font-size: 8pt;">에 대해서 배웁니다.</span></div>
+    <div><span style="font-size: 16px;"><hr><p style="text-align: center; clear: none; float: none;"><span
+            class="imageblock" style="display:inline-block;width:730px;;height:auto;max-width:100%"><span
+            data-url="https://t1.daumcdn.net/cfile/tistory/2634C0465958BE1736?original" data-lightbox="lightbox"><img
+            srcset="//img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2634C0465958BE17369176 1920w, //img1.daumcdn.net/thumb/R960x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2634C0465958BE17369176 960w, //img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2634C0465958BE17369176 720w, //img1.daumcdn.net/thumb/R640x0.q70/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2634C0465958BE17369176 640w, //img1.daumcdn.net/thumb/R480x0.q70/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2634C0465958BE17369176 480w"
+            src="https://t1.daumcdn.net/cfile/tistory/2634C0465958BE1736"
+            style="cursor: pointer;max-width:100%;height:auto" width="730" height="158"
+            filename="__CODE____C___by_webblaster48.jpg" filemime="image/jpeg"></span></span></p><p><br></p></span>
+    </div>
+    <p><span style="font-size: 12pt;">안녕하세요 여러분! 지난 강좌에서 왜 TMP 를 활용하여 힘들게 힘들게 Ratio 클래스를 만들었는데,&nbsp;아직 아마 이걸 왜 굳이 TMP 로 만들었는지는 설명하지 않았었습니다.</span>
+    </p>
+    <p><span style="font-size: 12pt;"><br></span></p>
+    <p><span
+            style="font-size: 12pt;">그에 앞서, 이번 강좌에서 왜 Ratio 클래스를 만들었는지 설명하기 전에 지난 강좌의 생각 해보기에 대해서 짚고 넘어가보자 합니다.&nbsp;</span>
+    </p>
+    <p><br></p>
+    <p></p>
+    <table style="WIDTH: 634px; BORDER-COLLAPSE: collapse; HEIGHT: 31px" cellspacing="1" cellpadding="1"
+           bgcolor="#ffffff">
+        <tbody>
+        <tr>
+            <td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid"
+                bgcolor="#3058d2" width="1%"><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><span
+                    style="font-weight: bold; font-size: 12pt;">&nbsp;</span></span></span></td>
+            <td style="BORDER-BOTTOM: rgb(48,88,210) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid"
+                width="99%"><p><span style="COLOR: rgb(48,88,210); FONT-SIZE: 10pt"><span
+                    style="FONT-FAMILY: Gulim"><span
+                    style="font-weight: bold; font-size: 12pt;">&nbsp;지난 강의 생각해보기 문제</span></span></span><font
+                    color="#c8056a"><strong><span style="FONT-SIZE: 10pt"><span style="FONT-FAMILY: Gulim"><br><span
+                    style="font-size: 12pt;">
+</span></span></span></strong></font></p></td>
+            <td style="BORDER-BOTTOM: rgb(255,70,197) 1px solid; BORDER-LEFT: rgb(48,88,210) 0px solid; BORDER-TOP: rgb(48,88,210) 0px solid; BORDER-RIGHT: rgb(48,88,210) 0px solid"
+                width="100%"><span style="FONT-SIZE: 10pt"><span
+                    style="font-family: Gulim; font-size: 12pt;">&nbsp;</span></span></td>
+        </tr>
+        </tbody>
+    </table>
+    <br><span style="font-size: 12pt;">
+
+</span>
+    <p></p>
+    <div></div>
+    <span style="font-size: 12pt;">
+</span>
+    <div></div>
+    <p><span style="font-size: 12pt;">지난번 생각해보기 문제는 아래와 같습니다.</span></p>
+    <p></p>
+    <p><br></p>
+    <div class="txc-textbox"
+         style="border-style: solid; border-width: 1px; border-color: rgb(159, 211, 49); background-color: rgb(231, 253, 181); padding: 10px;">
+        <p><span style="font-size: 12pt;">1. TMP 를 사용해서 어떤 수가 소수인지 아닌지를 판별하는 프로그램을 만들어보세요. (난이도 : 상)</span></p>
+        <p><br></p>
+        <p><span style="font-size: 12pt;">int main()</span></p>
+        <p><span style="font-size: 12pt;">{</span></p>
+        <p><span style="white-space: pre; font-size: 12pt;">	</span><span style="font-size: 12pt;">cout &lt;&lt; boolalpha;</span>
+        </p>
+        <p><span style="white-space: pre; font-size: 12pt;">	</span><span style="font-size: 12pt;">cout &lt;&lt; "Is prime ? :: " &lt;&lt; is_prime&lt;2&gt;::result &lt;&lt; endl; // true</span>
+        </p>
+        <p><span style="white-space: pre; font-size: 12pt;">	</span><span style="font-size: 12pt;">cout &lt;&lt; "Is prime ? :: " &lt;&lt; is_prime&lt;10&gt;::result &lt;&lt; endl; // false</span>
+        </p>
+        <p><span style="white-space: pre; font-size: 12pt;">	</span><span style="font-size: 12pt;">cout &lt;&lt; "Is prime ? :: " &lt;&lt; is_prime&lt;11&gt;::result &lt;&lt; endl; // true</span>
+        </p>
+        <p><span style="white-space: pre; font-size: 12pt;">	</span><span style="font-size: 12pt;">cout &lt;&lt; "Is prime ? :: " &lt;&lt; is_prime&lt;61&gt;::result &lt;&lt; endl; // true</span>
+        </p>
+        <p><span style="font-size: 12pt;">}</span></p></div>
+    <p><br></p>
+    <p><span style="font-size: 12pt;">사실 처음에 딱 보았을 때 도대체 어떻게 TMP 로 구현할 것인지 감이 안잡혔을 것입니다. 하지만 만약에 소수 인지 아닌지 판별하라는 '함수' 를 작성하게 하였다면 잘 작성하였겠지요. 아마 여러분은 아래와 같은 코드를 쓰셨을 것입니다.</span>
+    </p>
+    <p><br></p>

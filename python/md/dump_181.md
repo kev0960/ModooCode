@@ -1,11 +1,13 @@
- itguru Top itguru Top
+
 
 ```warning
-이 레퍼런스의 모든 내용은http://www.cplusplus.com/reference/iostream/ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파'를 위해 모든 이들에게 공개하도록 하겠습니다.
+이 레퍼런스의 모든 내용은 http://www.cplusplus.com/reference/iostream/
+ 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ 
+Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
 
 ```info
-아직 C++ 에 친숙하지 않다면씹어먹는 C++ 강좌는 어때요?
+아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요?
 ```
 
 ios::fill
@@ -16,9 +18,9 @@ char fill ( char fillch );
 ```
 
 
-현재 채우기 문자(fill character)를 얻거나 설정한다.
+현재 채우기 문자(fill character)를 얻거나 설정한다. 
 
-첫번째 형태의 함수의 경우 채우기 문자를 리턴한다.
+첫번째 형태의 함수의 경우 채우기 문자를 리턴한다. 
 두번째 형태의 함수의 경우 fillch 로 현재의 채우기 문자를 설정하고, 이전의 채우기 문자를 리턴한다.
 
 인자를 가지는 조작자 (manipulator) setfill 역시 채우기 문자를 설정하는데 사용할 수 있다.
@@ -41,7 +43,7 @@ fillch
 ```cpp
 /*
 
-채우기 문자를 'x' 로 설정하고 이를 사용한다.
+채우기 문자를 'x' 로 설정하고 이를 사용한다. 
 
 이 예제는
 http://www.cplusplus.com/reference/iostream/ios/fill/
@@ -51,7 +53,7 @@ http://www.cplusplus.com/reference/iostream/ios/fill/
 #include <iostream>
 using namespace std;
 
-int main ()
+int main () 
 {
     char prev;
 
@@ -90,11 +92,14 @@ char_type fill ( char_type fillch );
 
 
  연관된 함수
-
-* setfill : 채우기 문자를 설정한다. (조작자)
-* ios_base::width : 필드 폭을 설정하거나 그 값을 얻어온다.
+* setfill : 채우기 문자를 설정한다. (조작자)ios_base::width : 필드 폭을 설정하거나 그 값을 얻어온다.
 
 
-
-공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C++ Reference >IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::tie 함수(0)2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)2012.03.25C++ 레퍼런스 - ios::fill 함수(0)2012.03.25C++ 레퍼런스 - ios::clear(0)2012.03.25C++ 레퍼런스 - ios::setstate 함수(0)2012.03.25C++ 레퍼런스 - ios::rdstate 함수(0)2012.03.25
+공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::tie 함수(0)
+2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)
+2012.03.25C++ 레퍼런스 - ios::fill 함수(0)
+2012.03.25C++ 레퍼런스 - ios::clear(0)
+2012.03.25C++ 레퍼런스 - ios::setstate 함수(0)
+2012.03.25C++ 레퍼런스 - ios::rdstate 함수(0)
+2012.03.25
 

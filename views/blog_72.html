@@ -1,29 +1,27 @@
-<p>itguru Top itguru Top</p><pre class="chroma">아직 C 언어와 친숙하지 않다면,씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
+<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>fseek</p><pre class="chroma">#include &lt;stdio.h&gt;  // C++ 에서는 &lt;cstdio&gt;
 
-</pre><p>fseek</p><pre class="chroma">#include &lt;stdio.h&gt; // C++ 에서는 &lt;cstdio&gt;
-
-int fseek ( FILE * stream, long int offset, int origin );
-
-</pre><p>스트림 위치 지정자 (position indicator) 의 위치를 조정한다.origin 인자로 전달된 위치로 부터 offset 인자로 전달된 만큼 더한 위치로 위치 지정자를 설정한다.이 함수를 호출한 이후에는 파일 끝 지정자 (End of File indicator) 가 초기화 되고, 이전에 만일ungetc 함수를 호출하였다면 이로 인한 효과는 모두 사라지게 된다.한가지 명심해야 할 점은, 만일 텍스트 파일에 fseek 함수를 사용할 때, offset 값으로 0 이 아닌 값 혹은 ftell 함수에 의해 반환된 값을 사용할 때에는 일부 플랫폼에서는 약간 문제가 생겨서 예상치 못했던 위치에 위치 지정자가 설정되어 있는 경우가 있으니 주의해야 한다.fseek 함수는 또한 스트림이 읽기 및 쓰기 형식으로 열려있을 때, 이 함수를 호출함을 통해 읽기 - 쓰기 모드를 전환할 수 있다. (자세한 내용은fopen 함수를 참조하기 바란다)</p><h3><p> 인자</p></h3><p>stream</p><p>작업을 수행할 스트림의 FILE 객체를 가리키는 포인터</p><p>offset</p><p>orgin 으로 부터 얼마나 떨어진 곳에 설정할 지에 대한 값</p><p>origin</p><p>오프셋이 더해지는 위치로, <stdio.h> 에 정의된 다음과 같은 상수들을 이용한다.</p><p>SEEK<span class='font-italic'>SET파일의 시작SEEK</span>CUR현재 파일 포인터의 위치SEEK<span class='font-italic'>END파일의 끝</p><h3><p> 리턴값</p></h3><p>만일 성공하였으면 0 을 리턴한다. 그렇지 않다면 0 이 아닌 값을 리턴한다.</p><h3><p> 실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+int fseek(FILE* stream, long int offset, int origin);
+</pre><p>스트림 위치 지정자 (position indicator) 의 위치를 조정한다. </p><p>origin 인자로 전달된 위치로 부터 offset 인자로 전달된 만큼 더한 위치로 위치 지정자를 설정한다. </p><p>이 함수를 호출한 이후에는 파일 끝 지정자 (End of File indicator) 가 초기화 되고, 이전에 만일 ungetc 함수를 호출하였다면 이로 인한 효과는 모두 사라지게 된다. </p><p>한가지 명심해야 할 점은, 만일 텍스트 파일에 fseek 함수를 사용할 때, offset 값으로 0 이 아닌 값 혹은 ftell 함수에 의해 반환된 값을 사용할 때에는 일부 플랫폼에서는 약간 문제가 생겨서 예상치 못했던 위치에 위치 지정자가 설정되어 있는 경우가 있으니 주의해야 한다. </p><p>fseek 함수는 또한 스트림이 읽기 및 쓰기 형식으로 열려있을 때, 이 함수를 호출함을 통해 읽기 - 쓰기 모드를 전환할 수 있다. (자세한 내용은 fopen 함수를 참조하기 바란다)  </p><h3><p>  인자</p></h3><h3><p> stream</p></h3><p>작업을 수행할 스트림의 FILE 객체를 가리키는 포인터 </p><p>offset</p><p>orgin 으로 부터 얼마나 떨어진 곳에 설정할 지에 대한 값</p><p>origin</p><p>오프셋이 더해지는 위치로, <stdio.h> 에 정의된 다음과 같은 상수들을 이용한다. </p><p>SEEK<span class='font-italic'>SET파일의 시작SEEK</span>CUR현재 파일 포인터의 위치SEEK<span class='font-italic'>END파일의 끝</p><h3><p>  리턴값</p></h3><h3><p> 만일 성공하였으면 0 을 리턴한다. 그렇지 않다면 0 이 아닌 값을 리턴한다. </p></h3><h3><p>  실행 예제</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
-</span><span class="cm">example.txt 에 &#34;This is an apple&#34; 을 쓴 뒤에 다시 fseek 함수를 이용하여 n 부터 sam 으로 바꾼다. 즉, example.txt 에는 &#34;This is an sample&#34; 이 들어가게 된다.
+</span><span class="cm">example.txt 에 &#34;This is an apple&#34; 을 쓴 뒤에 다시 fseek 함수를 이용하여 n 부터
+</span><span class="cm">sam 으로 바꾼다. 즉, example.txt 에는 &#34;This is an sample&#34; 이 들어가게 된다.
 </span><span class="cm">이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fseek/
 </span><span class="cm">에서 가져왔습니다.
 </span><span class="cm">
-</span><span class="cm"> */</span>
+</span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">FILE</span> <span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
-    <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span> <span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">example.txt</span><span class="s">&#34;</span> <span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">w</span><span class="s">&#34;</span> <span class="p">)</span><span class="p">;</span>
-    <span class="n">fputs</span> <span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">This is an apple.</span><span class="s">&#34;</span> <span class="p">,</span> <span class="n">pFile</span> <span class="p">)</span><span class="p">;</span>
-    <span class="n">fseek</span> <span class="p">(</span> <span class="n">pFile</span> <span class="p">,</span> <span class="mi">9</span> <span class="p">,</span> <span class="n">SEEK_SET</span> <span class="p">)</span><span class="p">;</span>
-    <span class="n">fputs</span> <span class="p">(</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> sam</span><span class="s">&#34;</span> <span class="p">,</span> <span class="n">pFile</span> <span class="p">)</span><span class="p">;</span>
-    <span class="n">fclose</span> <span class="p">(</span> <span class="n">pFile</span> <span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">FILE</span><span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
+  <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">example.txt</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">w</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">fputs</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">This is an apple.</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">fseek</span><span class="p">(</span><span class="n">pFile</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">fputs</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s"> sam</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1470C5114BD23C5D569FE8' alt=''><p>myfile.txt 에는</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1470A1114BD23C5D437B49' alt=''><h3><p> 연관된 함수</p></h3><ul><li><p> ftell  :  스트림의 현재 위치를 구한다.</p></li><li><p> fsetpos :  스트림의 위치 지정자를 설정한다.</p></li><li><p> rewind  :  스트림의 위치 지정자를 맨 처음으로 설정한다.</p></li></ul><p>공감sns신고저작자표시	<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">		<Work rdf:about="">			<license rdf:resource="http://creativecommons.org/licenses/by-fr/2.0/kr/" />		</Work>		<License rdf:about="http://creativecommons.org/licenses/by-fr/">			<permits rdf:resource="http://web.resource.org/cc/Reproduction"/>			<permits rdf:resource="http://web.resource.org/cc/Distribution"/>			<requires rdf:resource="http://web.resource.org/cc/Notice"/>			<requires rdf:resource="http://web.resource.org/cc/Attribution"/>			<permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/>		</License>	</rdf:RDF>'C Reference >stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - ftell 함수(1)2010.04.24C 언어 레퍼런스 - fsetpos 함수(0)2010.04.24C 언어 레퍼런스 - fseek 함수(0)2010.04.24C 언어 레퍼런스 - fgetpos 함수(0)2010.04.18C 언어 레퍼런스 - fwrite 함수(1)2010.04.11C 언어 레퍼런스 - fread 함수(2)2010.03.21</p><style>/* Background */ .chroma { background-color: #ffffff }
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1470C5114BD23C5D569FE8' alt=''><p>myfile.txt 에는</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1470A1114BD23C5D437B49' alt=''><h3><p>  연관된 함수</p></h3><h3><p> </p></h3><ul><li><p> ftell  :  스트림의 현재 위치를 구한다. fsetpos :  스트림의 위치 지정자를 설정한다. rewind  :  스트림의 위치 지정자를 맨 처음으로 설정한다.</p></li></ul><p>공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - ftell 함수(1)2010.04.24C 언어 레퍼런스 - fsetpos 함수(0)2010.04.24C 언어 레퍼런스 - fseek 함수(0)2010.04.24C 언어 레퍼런스 - fgetpos 함수(0)2010.04.18C 언어 레퍼런스 - fwrite 함수(1)2010.04.11C 언어 레퍼런스 - fread 함수(2)2010.03.21</p><style>/* Background */ .chroma { background-color: #ffffff }
 /* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
