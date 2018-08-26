@@ -10,7 +10,7 @@ string GetOutputFile(const string& s) {
   string filename = s.substr(s.find_last_of("/") + 1);
   string filename_without_ext = filename.substr(0, filename.find_last_of("."));
   filename_without_ext.replace(0, 4, "blog");
-  return md_parser::StrCat("../views/", filename_without_ext, ".html");
+  return md_parser::StrCat("../views/old/", filename_without_ext, ".html");
 }
 
 int main(int argc, char** argv) {
