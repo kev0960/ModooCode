@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios_base::iword
+--------------
+
 
 
 ```warning
@@ -12,6 +16,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 
 ios_base::iword
+
+
+
 
 ```info
 long& iword (int idx);
@@ -32,7 +39,12 @@ idx 의 값은 이전에 xalloc 에 의해 리턴된 값이여야만 한다.
   
 내부 확장 가능 배열은 스트림에서 여러 용도(general purpose)로 사용되는 word 크기의 원소들을 가진 배열로 데이터를 임시적으로 저장하는데 사용된다.
 
- 인자
+
+
+###  인자
+
+
+
 
 
 idx
@@ -40,52 +52,60 @@ idx
 
   내부 확장 가능 배열의 특정 원소의 인덱스값. 이 값은 이전의 xalloc 함수 호출을 통해 얻어진 값이여야 한다.
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
   인덱스가 idx 인 내부 확장 가능 배열의 원소의 레퍼런스를 리턴한다. 이 때, 그 레퍼런스는 long 형의 원소의 레퍼런스 이다. 실패시, 값이 0 인, long 형 원소의 레퍼런스가 리턴된다.
 
- 실행 예제
+
+
+###  실행 예제
+
+
+
 
 ```cpp
-/* 
-
-이 예제는
-
+/* 이 예제는
 http://msdn.microsoft.com/en-us/library/77z9kz41.aspx
-
 에서 가져왔습니다.
-
-
 i, j 가 각각 xalloc 을 통해 얻어낸 index 들이고, cout 과 cin 의 내부 확장 가능 배열의 i , j 번째 원소에 각각 11 과 13 을 넣는다. 
-
 */
-
-#include <iostream>
-using namespace std;
-int main( ) 
-{
-    static const int i = ios_base::xalloc();
-    static const int j = ios_base::xalloc();
-
-    cout.iword( i ) = 11;
-    cin.iword( j ) = 13;
-
-    cout << cout.iword( i ) << endl;
-    cout << cin.iword( j ) << endl;
-
-}
+#include <iostream>using namespace std;int main( ) {    static const int i = ios_base::xalloc();    static const int j = ios_base::xalloc();    cout.iword( i ) = 11;    cin.iword( j ) = 13;    cout << cout.iword( i ) << endl;    cout << cin.iword( j ) << endl;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F1701413C4EA213713E82A5)
 
 
- 연관된 함수
 
-* ios_base::xalloc :  내부 확장 가능 배열의 새로운 인덱스를 리턴한다.ios_base::pword  :  내부 확장 가능 배열의 포인터의 레퍼런스를 얻는다.
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::good 함수(0)
+
+###  연관된 함수
+
+
+
+* ios_base::
+xalloc
+
+ :  내부 확장 가능 배열의 새로운 인덱스를 리턴한다.
+
+* ios_base::pword
+  :  내부 확장 가능 배열의 포인터의 레퍼런스를 얻는다.
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::good 함수(0)
 2011.10.23C++ 레퍼런스 - ios_base::pword 함수(0)
 2011.10.22C++ 레퍼런스 - ios_base::iword(0)
 2011.10.22C++ 레퍼런스 - ios_base::xalloc 함수(0)

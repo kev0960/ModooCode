@@ -1,17 +1,26 @@
+----------------
+title : C 언어 레퍼런스 - printf 함수
+--------------
+
+
 
 
 
 ```warning
-아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-* 참고적으로 이 레퍼런스는 printf 함수에 대한 기초적인 이해가 있는 사람들을 위한 것이므로 printf 함수를 처음 보는 사람은 http://itguru.tistory.com/7 를 보시는 것을 추천합니다.
-
+아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?* 참고적으로 이 레퍼런스는 printf 함수에 대한 기초적인 이해가 있는 사람들을 위한 것이므로 printf 함수를 처음 보는 사람은 http://itguru.tistory.com/7 를 보시는 것을 추천합니다.
 ```
 
 
+
+
+
+
 printf 
+
+
+
 ```info
-<stdio.h> // C++ 의 경우 <cstdio>
-int printf ( const char * format, ... );
+<stdio.h> // C++ 의 경우 <cstdio>int printf ( const char * format, ... );
 ```
 
 
@@ -19,10 +28,14 @@ int printf ( const char * format, ... );
 일련의 데이터를 특정한 형식에 맞추어 stdout 에 출력한다.
 
 
+
 표준 출력(stdout) 에 일련의 데이터들을 형식 문자열(format)에 지정되어 있는 형태로 출력한다. 형식 문자열 다음에는 출력할 데이터들을 쭈르륵 나열해 주면 된다. printf 함수는 적어도 형식 문자열 속에 지정된 데이터 이상의 인자를 받기로 기대한다.  
 
+
+
 ###  인자 (parameter)
-### 
+
+
 형식 문자열(format)형식 문자열에는 stdout 에 출력할 문자열이 들어있다. 이 때, 형식 문자열에는 형식 태그(format tag)라 불리는 것이 추가적으로 들어갈 수 있는데, 이는 이에 대응하는 인자를 형식 태그가 지정한 형태로 치환되어 출력된다. (말이 조금 어려울 수 있으니 아래 예제를 보기 바란다).따라서, 형식 문자열 다음으로 오는 인자들의 개수는 반드시 형식 문자열 속의 태그의 개수보다 같거나 많아야 한다. 
 형식 태그는 아래와 같은 꼴로 생겼다. 
 
@@ -51,46 +64,25 @@ B800:0000n아무것도 출력하지 않는다. 그 대신, 인자로 부호 있�
 ```cpp
 
 #include <stdio.h>
-
 int main()
-
 {
-
     int integer = 123;
-
     char character = 'c';
-
     char string[] = "hello, world";
-
     int* pointer = &integer;
-
     double pi = 3.141592;
-
-
     printf("integer : (decimal) %d (octal) %o \n", integer, integer);
-
-
     printf("character : %c \n", character);
-
-
     printf("string : %s \n", string);
-
-
     printf("pointer addr : %p \n", pointer);
-
-
     printf("floating point : %e // %f \n", pi, pi);
-
-
     printf("percent symbol : %% \n");
-
-
     return 0;
-
 } 
 ```
 
 출력 결과
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2049BB054B5DA6D6012A5A)
 
 
@@ -113,52 +105,29 @@ g 와 G 서식 문자들과 사용되면 e 와 E 일때와 동일한 작업을 �
 *폭을 형식 문자열에 지정해서 받지 않지만, 그 대신에 형식 문자열 뒤에 오는 인자들에 넣어서 받는다. 이 때, 이는 정수 값이여야 하며 폭을 지정하는 변수 뒤에 출력할 데이터가 위치하면 된다. 
 
 ```cpp
-/* 사용 예 */
-#include <stdio.h>
-int main(){
-
+/* 사용 예 */#include <stdio.h>int main(){
     int i = 123;
-
     int j = -123;
-
     double f = 3.141592;
-
-
     printf("폭 맞추기 \n");
-
     printf("i : %6d \n", i);
-
     printf("i : %7d \n", i);
-
     printf("i : %2d \n\n", i);
-
-
     printf("왼쪽 정렬 \n");
-
     printf("i : %-5d끝 \n", i);
-
     printf("오른쪽 정렬 \n");
-
     printf("i : %5d끝 \n\n", i);
-
-
     printf("# 문자의 사용 \n");
-
     printf("i : %#x \n", i);
-
     printf("i : %#X \n\n", i);
-
-
     printf("부호 붙이기 \n");
-
     printf("%+d, %+d \n", i,j);
-
     return 0;
-
 } 
 ```
 
 출력결과
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F18555A374CE4EDDE0AC611)
 
 
@@ -178,22 +147,11 @@ c 의 경우 : 아무 효과 없다.
 설명h인자를 short int 혹은 unsigned short int 로 생각한다. (오직 i, d, o, u , x, X 서식 문자에만 적용된다)
 l정수 서식 문자(i,d,o,u,x, X) 에 사용되었을 경우 인자를 long int 나 unsigned long int 로 생각하며 c 나 s 에 사용되었을 경우 wide character 나 wide string 으로 생각한다.L인자를 long double 로 생각한다. (오직 부동 소수점 서식 문자인 e,E,f,g, G 에만 적용된다)
 ```cpp
-/* 사용 예 */
-#include <stdio.h>
-int main()
-{
-    double f = 3.141592;
-    int i = 12345;
-
-    printf("f : %.3f \n", f);
-    printf("i : %.10d \n", i);
-
-    return 0;
-} 
-
+/* 사용 예 */#include <stdio.h>int main(){    double f = 3.141592;    int i = 12345;    printf("f : %.3f \n", f);    printf("i : %.10d \n", i);    return 0;} 
 ```
 
 출력 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F135054234B5DB76133E080)
 
@@ -202,12 +160,23 @@ int main()
 
 형식 문자열에 따라 함수는 여러 인자들을 가지며, 각 인자는 형식 문자열의 각 형식 태그에 순차적으로 대응된다. 기본적으로 형식 문자열에 들어 있는 형식 태그의 수와 뒤따라 붙는 인자들의 수는 같아야 한다. (물론 .* 이나 * 과 같은 예외적인 상황은 제외한다) 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 출력에 성공하면 출력된 전체 문자의 개수가 리턴된다. 출력에 실패하면 음수가 리턴된다. 
 
 
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sscanf 함수(8)
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sscanf 함수(8)
 2011.01.03C 언어 레퍼런스 - printf 함수(3)
 2010.11.27C 언어 레퍼런스 - rewind 함수(4)
 2010.04.24C 언어 레퍼런스 - ftell 함수(1)

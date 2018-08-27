@@ -1,8 +1,9 @@
-<p>이번 강좌에서는 <span class='font-italic'> 직접 만드는 문자열 클래스(MyString) 에 대해 다룹니다.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F24492E3D520C9AF6158D25' alt=''><p>안녕하세요? 여러분. C++ 강좌도 벌써 10 번째 강좌입니다. 그 동안 잘 따라오고 있으셨나요? 이번 강좌는 그 동안 배운 내용을 종합해서 하나의 작은 프로젝트를 진행해보도록 할 것입니다. 이 강좌를 통해 여태까지 배운 C++ 클래스의 중요한 내용들을 복습하고 점검할 수 있는 기회가 되었으면 합니다. </p><p>이 강좌를 읽기 전에 앞서, 여러분들은 직접 자신만의 문자열 클래스를 만들어보기 바랍니다. 그 문자열 클래스는 아래와 같은 내용들을 지원해야 합니다.</p><pre class="chroma">1. 문자(char) 로 부터의 생성, C 문자열(char *) 로 부터의
-    생성문자열 길이를 구하는 함수문자열 뒤에 다른 문자열 붙이기문자열 내에
-    포함되어 있는 문자열 구하기문자열이 같은지 비교문자열 크기 비교(사전 순)
-</pre><p>만일 위 내용을 다 만드셨다면 아래 내용을 읽으셔도 되고, 그렇지 않다면, 다시 한 번 도전해보시기 바랍니다!</p><p> 문자열 클래스를 만들자</p><p>기존 C 언어에서는 문자열을 나타내기 위해 널 종료 문자열(Null-terminating string) 이라는 개념을 도입해서 문자열 끝에 NULL 문자를 붙여 문자열을 나타내는 방식을 사용하였습니다. 하지만 C 언어 문자열을 사용하는데에는 번거로움이 많았는데, 예를 들어서 만들어진 문자열의 크기를 바꾼다던지, 문자열 뒤에 다른 문자열을 붙인다던지 등의 작업들은 상당히 프로그래머 입장에서는 귀찮을 수 밖에 없습니다. 이와 같은 작업들을 문자열 클래스를 따로 만들어서 클래스 차원에서 지원해주면 상당히 편할 텐데 말이지요. 그래서 우리는 직접 문자열 클래스를 만들고자 합니다.</p><p>사실 C++ 에서는 표준 라이브러리로 string 클래스를 지원하고 있습니다. (실제로 <string> 헤더파일을 include 하면 사용할 수 있습니다.) 하지만 이 막강한 string 클래스를 사용하기 이전에 우리는 직접 string 클래스를 만들고자 합니다. 일단 간단히 생각해서 우리가 만들 MyString 클래스에 멤버 변수로 무엇이 필요할지 생각해봅시다. 아마, 대표적으로 아래 두 개의 데이터들이 필요하다고 볼 수 있습니다. </p><pre class="chroma">1. 문자열 데이터가 저장된 공간을 가리키는 포인터문자열 데이터의 길이
-</pre><p>왜 객체에 문자열 데이터를 직접 보관하는 것이 아니라, 그 저장된 공간을 가리키는 포인터를 보관하냐고 물을 수 있습니다. 이렇게 하는 이유는 나중에 문자열 데이터의 크기가 바뀔 때, 저장된 공간을 가리키는 방식으로 하면 그 메모리를 해제한 뒤에, 다시 할당할 수 있지만 직접 보관하면 그럴 수 없기 때문이죠.</p><p> 또한, 문자열 데이터의 길이를 보관하는 이유는 문자열 길이를 사용할 일이 굉장히 많은데, 그 때 마다 계속 길이를 구하는 것은 상당히 불필요한 일이기 때문입니다. 따라서 길이를 한 번 구해놓고 길이가 바뀔 때 까지 변경하지 않는 방법이 유용할 것입니다. 그럼, 위 내용을 바탕으로 한번 MyString 을 구성해보도록 하겠습니다.</p><pre class="chroma">
+<p>이번 강좌에서는 <span class='font-italic'> 직접 만드는 문자열 클래스(MyString) </p><p>에 대해 다룹니다.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F24492E3D520C9AF6158D25' alt=''><p>안녕하세요? 여러분. C++ 강좌도 벌써 10 번째 강좌입니다. 그 동안 잘 따라오고 있으셨나요? 이번 강좌는 그 동안 배운 내용을 종합해서 하나의 작은 프로젝트를 진행해보도록 할 것입니다. 이 강좌를 통해 여태까지 배운 C++ 클래스의 중요한 내용들을 복습하고 점검할 수 있는 기회가 되었으면 합니다. </p><p>이 강좌를 읽기 전에 앞서, 여러분들은 직접 자신만의 문자열 클래스를 만들어보기 바랍니다. 그 문자열 클래스는 아래와 같은 내용들을 지원해야 합니다.</p><pre class='info'>1. 문자(char) 로 부터의 생성,
+    C 문자열(char *) 로 부터의 생성 1. 문자열 길이를 구하는 함수
+    1. 문자열 뒤에 다른 문자열 붙이기 1. 문자열 내에 포함되어 있는 문자열 구하기
+    1. 문자열이 같은지 비교 1. 문자열 크기 비교(사전 순)
+</pre><p>만일 위 내용을 다 만드셨다면 아래 내용을 읽으셔도 되고, 그렇지 않다면, 다시 한 번 도전해보시기 바랍니다!</p><h3><p>  문자열 클래스를 만들자</p></h3><p>기존 C 언어에서는 문자열을 나타내기 위해 널 종료 문자열(Null-terminating string) 이라는 개념을 도입해서 문자열 끝에 NULL 문자를 붙여 문자열을 나타내는 방식을 사용하였습니다. 하지만 C 언어 문자열을 사용하는데에는 번거로움이 많았는데, 예를 들어서 만들어진 문자열의 크기를 바꾼다던지, 문자열 뒤에 다른 문자열을 붙인다던지 등의 작업들은 상당히 프로그래머 입장에서는 귀찮을 수 밖에 없습니다. 이와 같은 작업들을 문자열 클래스를 따로 만들어서 클래스 차원에서 지원해주면 상당히 편할 텐데 말이지요. 그래서 우리는 직접 문자열 클래스를 만들고자 합니다.사실 C++ 에서는 표준 라이브러리로 string 클래스를 지원하고 있습니다. (실제로 <string> 헤더파일을 include 하면 사용할 수 있습니다.) 하지만 이 막강한 string 클래스를 사용하기 이전에 우리는 직접 string 클래스를 만들고자 합니다. 일단 간단히 생각해서 우리가 만들 MyString 클래스에 멤버 변수로 무엇이 필요할지 생각해봅시다. 아마, 대표적으로 아래 두 개의 데이터들이 필요하다고 볼 수 있습니다. </p><pre class='info'>1. 문자열 데이터가 저장된 공간을 가리키는 포인터 1. 문자열 데이터의 길이
+</pre><p>왜 객체에 문자열 데이터를 직접 보관하는 것이 아니라, 그 저장된 공간을 가리키는 포인터를 보관하냐고 물을 수 있습니다. 이렇게 하는 이유는 나중에 문자열 데이터의 크기가 바뀔 때, 저장된 공간을 가리키는 방식으로 하면 그 메모리를 해제한 뒤에, 다시 할당할 수 있지만 직접 보관하면 그럴 수 없기 때문이죠. 또한, 문자열 데이터의 길이를 보관하는 이유는 문자열 길이를 사용할 일이 굉장히 많은데, 그 때 마다 계속 길이를 구하는 것은 상당히 불필요한 일이기 때문입니다. 따라서 길이를 한 번 구해놓고 길이가 바뀔 때 까지 변경하지 않는 방법이 유용할 것입니다. 그럼, 위 내용을 바탕으로 한번 MyString 을 구성해보도록 하겠습니다.</p><pre class="chroma">
 <span class="k">class</span><span class="err"> </span><span class="nc">MyString</span> <span class="p">{</span>
   <span class="kt">char</span><span class="o">*</span> <span class="n">string_content</span><span class="p">;</span>  <span class="c1">// 문자열 데이터를 가리키는 포인터
 </span><span class="c1"></span>  <span class="kt">int</span> <span class="n">string_length</span><span class="p">;</span>     <span class="c1">// 문자열 길이
@@ -100,7 +101,7 @@
   <span class="n">str1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="n">str2</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F252B213A5208FCDC10EE24' alt=''><p>와 같이 잘 실행됨을 알 수 있습니다. </p><p> assign 함수</p><p>assign 함수는 '지정하다' 라는 뜻을 가진 함수로, 우리가 흔히 생각하는 '=' 과 동일한 역할을 하게 됩니다. 예를 들어서 우리의 MyString 변수 str 에서 </p><pre class="chroma">
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F252B213A5208FCDC10EE24' alt=''><p>와 같이 잘 실행됨을 알 수 있습니다. </p><h3><p>  assign 함수</p></h3><p>assign 함수는 '지정하다' 라는 뜻을 가진 함수로, 우리가 흔히 생각하는 '=' 과 동일한 역할을 하게 됩니다. 예를 들어서 우리의 MyString 변수 str 에서 </p><pre class="chroma">
 <span class="n">str</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">abc</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 </pre><p>를 하게 된다면 str 에는 원래 있었던 문자열이 지워지고 abc 가 들어가게 되겠지요. 그렇다면 우리는 다음과 같은 두 개의 assign 함수를 준비할 수 있습니다.</p><pre class="chroma">
 <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">assign</span><span class="p">(</span><span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
@@ -332,11 +333,12 @@
   <span class="k">else</span>
     <span class="k">return</span> <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>위와 같이 i 가 허용되는 범위를 초과한다면 NULL 을 리턴하도록 하였습니다. </p><p>자 이것으로 해서, 우리가 직접 제작한 문자열 클래스 MyString 의 기본적인 함수들은 모두 제작하였다고 볼 수 있습니다.</p><pre class="chroma">*문자 c 혹은 C 형식 문자열 str 에서 생성할 수 있는 생성자와 복사 생성자문자열의
-    길이를 리턴하는 함수(length) 문자열 대입 함수(assign) 문자열 메모리 할당
-    함수(reserve) 및 현재 할당된 크기를 알아오는
-    함수(capacity) 특정 위치의 문자를 리턴하는 함수(at)
-</pre><p>이제 MyString 을 사용하는 다른 프로그래머들은 이 최소한의 인터페이스를 이용해서, 여러가지 문자열에 관련한 모든 작업을 수행할 수 있게 됩니다. 하지만 실제로 여러분이 MyString 함수를 널리 편하게 사용하고 싶다면, 더 많은 기능을 제공할 수 있어야 하겠습니다. </p><p> 문자열 삽입하기 (insert)</p><p>문자열 처리에서 가장 빈번하게 사용되는 작업으로, 문자열 중간에 다른 문자열을 삽입하는 작업을 들 수 있습니다. 사실 여태까지 만들언 놓은 함수들만을 가지고도 insert 작업을 쉽게 구현할 수 있겠지만, 빈번하게 사용되는 작업이다 보니까 미리 만들어 놓아서 인터페이스로 제공하는 것도 나쁘지 않을 것이라 생각됩니다. </p><pre class="chroma">
+</pre><p>위와 같이 i 가 허용되는 범위를 초과한다면 NULL 을 리턴하도록 하였습니다. </p><p>자 이것으로 해서, 우리가 직접 제작한 문자열 클래스 MyString 의 기본적인 함수들은 모두 제작하였다고 볼 수 있습니다.</p><pre class='info'>*문자 c 혹은 C 형식 문자열 str 에서 생성할 수 있는 생성자와 복사
+        생성자* 문자열의 길이를 리턴하는 함수(length) *
+    문자열 대입 함수(assign) * 문자열 메모리 할당
+    함수(reserve) 및 현재 할당된 크기를 알아오는 함수(capacity) *
+    특정 위치의 문자를 리턴하는 함수(at)
+</pre><p>이제 MyString 을 사용하는 다른 프로그래머들은 이 최소한의 인터페이스를 이용해서, 여러가지 문자열에 관련한 모든 작업을 수행할 수 있게 됩니다. 하지만 실제로 여러분이 MyString 함수를 널리 편하게 사용하고 싶다면, 더 많은 기능을 제공할 수 있어야 하겠습니다. </p><h3><p>  문자열 삽입하기 (insert)</p></h3><p>문자열 처리에서 가장 빈번하게 사용되는 작업으로, 문자열 중간에 다른 문자열을 삽입하는 작업을 들 수 있습니다. 사실 여태까지 만들언 놓은 함수들만을 가지고도 insert 작업을 쉽게 구현할 수 있겠지만, 빈번하게 사용되는 작업이다 보니까 미리 만들어 놓아서 인터페이스로 제공하는 것도 나쁘지 않을 것이라 생각됩니다. </p><pre class="chroma">
 <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
 <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
 <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
@@ -607,44 +609,66 @@
   <span class="n">str1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">str2</span><span class="p">)</span><span class="p">;</span>
   <span class="n">str1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F243BAC4F520BC85D06DF34' alt=''><p>와 같이 잘 나옵니다. 훌륭한 MyString 클래스를 만들기 위해서, 한 가지 좀 더 생각해보아야 할 점들이 있습니다. 과연 insert 를 사용하는 경우는 보통 어떤 경우일까요? 많은 경우 insert 는 많은 문자열을 한 꺼번에 집어넣는 것이 아니라, 작은 크기의 문자열들을 자주 집어넣는 경우가 많습니다. 즉, 큰 크기의 문자열을 한 번에 insert 하는 작업 보다는 작은 크기의 문자열들을 여러번 insert 하는 명령을 많이 수행한다는 뜻이지요. 그런데, 만일 이미 capacity 한계에 달한 문자열 클래스에 문자 'a' 를 계속 추가하는 명령을 생각해보도록 합시다.</p><pre class="chroma"><span class="k">while</span> <span class="p">(</span><span class="n">some_condition</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F243BAC4F520BC85D06DF34' alt=''><p>와 같이 잘 나옵니다. </p><p>훌륭한 MyString 클래스를 만들기 위해서, 한 가지 좀 더 생각해보아야 할 점들이 있습니다. 과연 insert 를 사용하는 경우는 보통 어떤 경우일까요? 많은 경우 insert 는 많은 문자열을 한 꺼번에 집어넣는 것이 아니라, 작은 크기의 문자열들을 자주 집어넣는 경우가 많습니다. 즉, 큰 크기의 문자열을 한 번에 insert 하는 작업 보다는 작은 크기의 문자열들을 여러번 insert 하는 명령을 많이 수행한다는 뜻이지요. 그런데, 만일 이미 capacity 한계에 달한 문자열 클래스에 문자 'a' 를 계속 추가하는 명령을 생각해보도록 합시다.</p><pre class="chroma">
+<span class="k">while</span> <span class="p">(</span><span class="n">some_condition</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">str</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">some_location</span><span class="p">,</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">a</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>마치 위와 같은 명령 말이지요. 이미 str 가 capacity 한계에 도달했다고 가정했으므로, 매 insert 마다 메모리를 해제하고, 1 만큼 큰 메모리를 할당하는 작업을 반복하게 될 것입니다. 이는 str 의 크기가 크다면 엄청난 작업의 낭비가 아닐 수 없습니다. 즉, 짜잘하게 계속 insert 하는 명령에서 메모리 할당과 해제를 반복하지 않도록 하기 위해서라면, 통 크게 메모리를 미리 reserve 해놓는 것이 필요합니다. 물론, 무턱대고 미리 엄청난 크기의 메모리를 할당해 놓을 수 도 없는 일이지요. 만일 10 바이트 밖에 사용하지 않는데, 이와 같이 짜잘하게 insert 하는 문제를 피하기 위해 1000 바이트를 미리 할당해 놓는다면 소중한 자원의 낭비가 될 것입니다.따라서 'insert 작업에서의 잦은 할당/해제를 피하기 위해 미리 메모리를 할당해놓기' 와 '메모리를 할당해 놓되, 많은 자원을 낭비하지 않는다' 라는 두 조건을 모두 만족하는 방법이 있을까요? 물론 있습니다. 메모리를 미리 할당할 경우, 현재 메모리 크기의 두 배 정도를 할당해 놓는 다는 것입니다. 이를 코드로 표현하면 아래와 같습니다.</p><pre class="chroma"><span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span>
-                           <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 이는 i 의 위치 바로 앞에 문자를
-</span><span class="c1"></span>                                             <span class="c1">// 삽입하게 된다. 예를 들어서// abc
-</span><span class="c1"></span>                                             <span class="c1">// 라는 문자열에 insert(1, &#34;d&#34;) 를
-</span><span class="c1"></span>                                             <span class="c1">// 하게 된다면 adbc 가 된다.
-</span><span class="c1"></span>  <span class="c1">// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.if(loc &lt; 0 || loc &gt;
-</span><span class="c1"></span>  <span class="c1">// string_length) return *this;
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span> <span class="o">&gt;</span>
-      <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 이제 새롭게 동적으로 할당을 해야 한다.
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">memory_capacity</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">)</span>
+</pre><p>마치 위와 같은 명령 말이지요. 이미 str 가 capacity 한계에 도달했다고 가정했으므로, 매 insert 마다 메모리를 해제하고, 1 만큼 큰 메모리를 할당하는 작업을 반복하게 될 것입니다. 이는 str 의 크기가 크다면 엄청난 작업의 낭비가 아닐 수 없습니다. 즉, 짜잘하게 계속 insert 하는 명령에서 메모리 할당과 해제를 반복하지 않도록 하기 위해서라면, 통 크게 메모리를 미리 reserve 해놓는 것이 필요합니다. 물론, 무턱대고 미리 엄청난 크기의 메모리를 할당해 놓을 수 도 없는 일이지요. 만일 10 바이트 밖에 사용하지 않는데, 이와 같이 짜잘하게 insert 하는 문제를 피하기 위해 1000 바이트를 미리 할당해 놓는다면 소중한 자원의 낭비가 될 것입니다.</p><p>따라서 'insert 작업에서의 잦은 할당/해제를 피하기 위해 미리 메모리를 할당해놓기' 와 '메모리를 할당해 놓되, 많은 자원을 낭비하지 않는다' 라는 두 조건을 모두 만족하는 방법이 있을까요? 물론 있습니다. 메모리를 미리 할당할 경우, 현재 메모리 크기의 두 배 정도를 할당해 놓는 다는 것입니다. 이를 코드로 표현하면 아래와 같습니다.</p><pre class="chroma">
+<span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
+</span><span class="c1"></span>  <span class="c1">// abc 라는 문자열에 insert(1, &#34;d&#34;) 를 하게 된다면 adbc 가 된다.
+</span><span class="c1"></span>
+  <span class="c1">// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">loc</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">|</span><span class="o">|</span> <span class="n">loc</span> <span class="o">&gt;</span> <span class="n">string_length</span><span class="p">)</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span> <span class="o">&gt;</span> <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 이제 새롭게 동적으로 할당을 해야 한다.
+</span><span class="c1"></span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">memory_capacity</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">)</span>
       <span class="n">memory_capacity</span> <span class="o">*</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
     <span class="k">else</span>
       <span class="n">memory_capacity</span> <span class="o">=</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
+
 <span class="c1">// 생략..
-</span><span class="c1"></span></pre><p>즉 새로 할당해야 할 메모리 크기(string<span class='font-italic'>length + str.string</span>length) 가 현재의 memory<span class='font-italic'>capacity 의 두 배 이하라면, 아예 memory</span>capacity 의 두 배에 달하는 크기를 할당해버리는 것입니다. 그리고 물론 insert 되는 문자열의 크기가 엄청 커서 memory<span class='font-italic'>capacity 의 두 배를 뛰어 넘어버린다면 그냥 예약을 생각하지 않고 필요한 만큼 할당해버리면 됩니다. 이와 같은 방식으로 처리한다면, 빈번한 메모리의 할당/해제를 막을 수 있고 또 많은 메모리 공간을 낭비하지 않을수 있습니다. 참고로 이러한 방법은 C++ 에서 동적으로 할당되는 메모리를 처리하는데 매우 빈번하게 사용되는 기법중 하나입니다.</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;using namespace std;</span><span class="cp">
-</span><span class="cp"></span><span class="k">class</span><span class="err"> </span><span class="nc">MyString</span> <span class="p">{</span>
-  <span class="kt">char</span><span class="o">*</span> <span class="n">string_content</span><span class="p">;</span>  <span class="c1">// 문자열 데이터를 가리키는 포인터int string_length; //
-</span><span class="c1"></span>                         <span class="c1">// 문자열 길이
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">memory_capacity</span><span class="p">;</span>  <span class="c1">// 현재 할당된 용량
-</span><span class="c1"></span> <span class="k">public</span><span class="o">:</span>                <span class="c1">// 문자 하나로 생성MyString(char c);
-</span><span class="c1"></span>  <span class="c1">// 문자열로 부터 생성MyString(const char* str);
-</span><span class="c1"></span>  <span class="c1">// 복사 생성자MyString(const MyString &amp;str);
-</span><span class="c1"></span>  <span class="o">~</span><span class="n">MyString</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span></pre><p>즉 새로 할당해야 할 메모리 크기(string<span class='font-italic'>length + str.string</span>length) 가 현재의 memory<span class='font-italic'>capacity 의 두 배 이하라면, 아예 memory</span>capacity 의 두 배에 달하는 크기를 할당해버리는 것입니다. 그리고 물론 insert 되는 문자열의 크기가 엄청 커서 memory<span class='font-italic'>capacity 의 두 배를 뛰어 넘어버린다면 그냥 예약을 생각하지 않고 필요한 만큼 할당해버리면 됩니다. 이와 같은 방식으로 처리한다면, 빈번한 메모리의 할당/해제를 막을 수 있고 또 많은 메모리 공간을 낭비하지 않을수 있습니다. </p><p>참고로 이러한 방법은 C++ 에서 동적으로 할당되는 메모리를 처리하는데 매우 빈번하게 사용되는 기법중 하나입니다.</p><pre class="chroma">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">MyString</span> <span class="p">{</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">string_content</span><span class="p">;</span>  <span class="c1">// 문자열 데이터를 가리키는 포인터
+</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">string_length</span><span class="p">;</span>     <span class="c1">// 문자열 길이
+</span><span class="c1"></span>
+  <span class="kt">int</span> <span class="n">memory_capacity</span><span class="p">;</span>  <span class="c1">// 현재 할당된 용량
+</span><span class="c1"></span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="c1">// 문자 하나로 생성
+</span><span class="c1"></span>  <span class="n">MyString</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="c1">// 문자열로 부터 생성
+</span><span class="c1"></span>  <span class="n">MyString</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="c1">// 복사 생성자
+</span><span class="c1"></span>  <span class="n">MyString</span><span class="p">(</span><span class="k">const</span> <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="o">~</span><span class="n">MyString</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
   <span class="kt">int</span> <span class="nf">length</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
   <span class="kt">int</span> <span class="nf">capacity</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
   <span class="kt">void</span> <span class="nf">reserve</span><span class="p">(</span><span class="kt">int</span> <span class="n">size</span><span class="p">)</span><span class="p">;</span>
+
   <span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="kt">void</span> <span class="nf">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
   <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">assign</span><span class="p">(</span><span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
   <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">assign</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
+
   <span class="kt">char</span> <span class="nf">at</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
+
   <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
   <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
   <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">;</span>
+
 <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">MyString</span><span class="p">(</span><span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">;</span>
   <span class="n">string_content</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
@@ -655,11 +679,13 @@
   <span class="n">string_length</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>
   <span class="n">memory_capacity</span> <span class="o">=</span> <span class="n">string_length</span><span class="p">;</span>
   <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">string_length</span><span class="p">]</span><span class="p">;</span>
+
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!</span><span class="o">=</span> <span class="n">string_length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">MyString</span><span class="p">(</span><span class="k">const</span> <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">string_length</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
   <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">string_length</span><span class="p">]</span><span class="p">;</span>
+
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!</span><span class="o">=</span> <span class="n">string_length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
     <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
 <span class="p">}</span>
@@ -670,103 +696,148 @@
 <span class="p">}</span>
 <span class="kt">void</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">println</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!</span><span class="o">=</span> <span class="n">string_length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
+
 <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">assign</span><span class="p">(</span><span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">string_length</span> <span class="o">&gt;</span> <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 그러면 다시 할당을 해줘야만
-</span><span class="c1"></span>                                              <span class="c1">// 한다.delete [] string_content;
-</span><span class="c1"></span>    <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">]</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">string_length</span> <span class="o">&gt;</span> <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 그러면 다시 할당을 해줘야만 한다.
+</span><span class="c1"></span>    <span class="k">delete</span><span class="p">[</span><span class="p">]</span> <span class="n">string_content</span><span class="p">;</span>
+
+    <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">]</span><span class="p">;</span>
     <span class="n">memory_capacity</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!</span><span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="c1">// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화// 시킬
-</span><span class="c1"></span>  <span class="c1">// 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
-</span><span class="c1"></span>  <span class="n">string_length</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
+
+  <span class="c1">// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
+</span><span class="c1"></span>  <span class="c1">// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+</span><span class="c1"></span>
+  <span class="n">string_length</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
+
   <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">assign</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">str_length</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">str_length</span> <span class="o">&gt;</span> <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 그러면 다시 할당을 해줘야만
-</span><span class="c1"></span>                                       <span class="c1">// 한다.delete [] string_content;
-</span><span class="c1"></span>    <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">str_length</span><span class="p">]</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">str_length</span> <span class="o">&gt;</span> <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 그러면 다시 할당을 해줘야만 한다.
+</span><span class="c1"></span>    <span class="k">delete</span><span class="p">[</span><span class="p">]</span> <span class="n">string_content</span><span class="p">;</span>
+
+    <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">str_length</span><span class="p">]</span><span class="p">;</span>
     <span class="n">memory_capacity</span> <span class="o">=</span> <span class="n">str_length</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!</span><span class="o">=</span> <span class="n">str_length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
   <span class="p">}</span>
+
   <span class="n">string_length</span> <span class="o">=</span> <span class="n">str_length</span><span class="p">;</span>
+
   <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">int</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">capacity</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">memory_capacity</span><span class="p">;</span> <span class="p">}</span>
 <span class="kt">void</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">reserve</span><span class="p">(</span><span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">char</span><span class="o">*</span> <span class="n">prev_string_content</span> <span class="o">=</span> <span class="n">string_content</span><span class="p">;</span>
+
     <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">size</span><span class="p">]</span><span class="p">;</span>
     <span class="n">memory_capacity</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!</span><span class="o">=</span> <span class="n">string_length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
       <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+
     <span class="k">delete</span><span class="p">[</span><span class="p">]</span> <span class="n">prev_string_content</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="c1">// 만일 예약하려는 size 가 현재 capacity 보다 작다면// 아무것도 안해도
-</span><span class="c1"></span>  <span class="c1">// 된다.}char MyString::at(int i){if(i &gt;= string_length || i &lt; 0) return
-</span><span class="c1"></span>  <span class="c1">// NULL;else return string_content[i];}MyString&amp; MyString::insert(int loc,
-</span><span class="c1"></span>  <span class="c1">// MyString&amp; str){// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를
-</span><span class="c1"></span>  <span class="c1">// 들어서// abc 라는 문자열에 insert(1, &#34;d&#34;) 를 하게 된다면 adbc 가 된다.
-</span><span class="c1"></span>  <span class="c1">// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.if(loc &lt; 0 || loc &gt;
-</span><span class="c1"></span>  <span class="c1">// string_length) return *this;
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span> <span class="o">&gt;</span>
-      <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 이제 새롭게 동적으로 할당을 해야 한다.
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">memory_capacity</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">)</span>
+
+  <span class="c1">// 만일 예약하려는 size 가 현재 capacity 보다 작다면
+</span><span class="c1"></span>  <span class="c1">// 아무것도 안해도 된다.
+</span><span class="c1"></span><span class="p">}</span>
+<span class="kt">char</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">at</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">string_length</span> <span class="o">|</span><span class="o">|</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
+</span><span class="c1"></span>  <span class="c1">// abc 라는 문자열에 insert(1, &#34;d&#34;) 를 하게 된다면 adbc 가 된다.
+</span><span class="c1"></span>
+  <span class="c1">// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="n">loc</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">|</span><span class="o">|</span> <span class="n">loc</span> <span class="o">&gt;</span> <span class="n">string_length</span><span class="p">)</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span> <span class="o">&gt;</span> <span class="n">memory_capacity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 이제 새롭게 동적으로 할당을 해야 한다.
+</span><span class="c1"></span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">memory_capacity</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">)</span>
       <span class="n">memory_capacity</span> <span class="o">*</span><span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
     <span class="k">else</span>
       <span class="n">memory_capacity</span> <span class="o">=</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
+
     <span class="kt">char</span><span class="o">*</span> <span class="n">prev_string_content</span> <span class="o">=</span> <span class="n">string_content</span><span class="p">;</span>
     <span class="n">string_content</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">memory_capacity</span><span class="p">]</span><span class="p">;</span>
-    <span class="c1">// 일단 insert 되는 부분 직전까지의 내용을 복사한다.int i;for(i = 0; i &lt;
-</span><span class="c1"></span>    <span class="c1">// loc; i ++) {string_content[i] = prev_string_content[i];}
-</span><span class="c1"></span>    <span class="c1">// 그리고 새롭에 insert 되는 문자열을 넣는다.for(int j = 0; j !=
-</span><span class="c1"></span>    <span class="c1">// str.string_length; j ++) {string_content[i + j] = str.string_content[j];}
-</span><span class="c1"></span>    <span class="c1">// 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.for(; i &lt; string_length; i
-</span><span class="c1"></span>    <span class="c1">// ++) {string_content[str.string_length + i] = prev_string_content[i];}
-</span><span class="c1"></span>    <span class="k">delete</span><span class="p">[</span><span class="p">]</span> <span class="n">prev_string_content</span><span class="p">;</span>
+
+    <span class="c1">// 일단 insert 되는 부분 직전까지의 내용을 복사한다.
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">loc</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 그리고 새롭에 insert 되는 문자열을 넣는다.
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">!</span><span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span> <span class="n">j</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">string_content</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">string_length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">string_content</span><span class="p">[</span><span class="n">str</span><span class="p">.</span><span class="n">string_length</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">prev_string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">delete</span><span class="p">[</span><span class="p">]</span> <span class="n">prev_string_content</span><span class="p">;</span>
+
     <span class="n">string_length</span> <span class="o">=</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
     <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="c1">// 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.// 효율적으로
-</span><span class="c1"></span>  <span class="c1">// insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
-</span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">string_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">loc</span><span class="p">;</span>
-       <span class="n">i</span><span class="o">-</span><span class="o">-</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게
-</span><span class="c1"></span>               <span class="c1">// 함string_content[i + str.string_length] =
-</span><span class="c1"></span>               <span class="c1">// string_content[i];}// 그리고 insert 되는 문자 다시
-</span><span class="c1"></span>               <span class="c1">// 집어넣기for(int i = 0; i &lt; str.string_length; i
-</span><span class="c1"></span>               <span class="c1">// ++)string_content[i + loc] = str.string_content[i];
-</span><span class="c1"></span>    <span class="n">string_length</span> <span class="o">=</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
-    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+
+  <span class="c1">// 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
+</span><span class="c1"></span>  <span class="c1">// 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
+</span><span class="c1"></span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">string_length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">loc</span><span class="p">;</span> <span class="n">i</span><span class="o">-</span><span class="o">-</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
+</span><span class="c1"></span>    <span class="n">string_content</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">]</span> <span class="o">=</span> <span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">MyString</span> <span class="n">temp</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nf">insert</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">MyString</span> <span class="n">temp</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">;</span>
-    <span class="k">return</span> <span class="nf">insert</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">MyString</span> <span class="n">str1</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">very long string</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">MyString</span> <span class="nf">str2</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">&lt;some string inserted between&gt;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">str1</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Capacity : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">String length : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    <span class="n">str1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">str1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">str2</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">str1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Capacity : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">String length : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
-    <span class="n">str1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F27026D45520BCCA7197826' alt=''><p>로 잘 수행됨을 알 수 있습니다.</p><p> erase 함수</p><p>앞서 insert 함수를 만들었으니, 이번에는 정 반대의 역할을 하는 erase 함수를 만들어보도록 합시다. erase 함수는 insert 함수보다 만들기 훨씬 쉬운데, 왜냐하면 기본적으로 데이터의 양이 줄어 드는 것이기 때문에 복잡하게 capacity 이런 것들을 생각할 필요가 없기 때문입니다. </p><pre class="chroma">
+  <span class="c1">// 그리고 insert 되는 문자 다시 집어넣기
+</span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
+    <span class="n">string_content</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">loc</span><span class="p">]</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
+
+  <span class="n">string_length</span> <span class="o">=</span> <span class="n">string_length</span> <span class="o">+</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">;</span>
+  <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">MyString</span> <span class="n">temp</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nf">insert</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">MyString</span> <span class="n">temp</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nf">insert</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">MyString</span> <span class="n">str1</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">very long string</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">MyString</span> <span class="nf">str2</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">&lt;some string inserted between&gt;</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">str1</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Capacity : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">String length : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">str1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">str1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">str2</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">str1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Capacity : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">capacity</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">String length : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">str1</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F27026D45520BCCA7197826' alt=''><p>로 잘 수행됨을 알 수 있습니다.</p><h3><p>  erase 함수</p></h3><p>앞서 insert 함수를 만들었으니, 이번에는 정 반대의 역할을 하는 erase 함수를 만들어보도록 합시다. erase 함수는 insert 함수보다 만들기 훨씬 쉬운데, 왜냐하면 기본적으로 데이터의 양이 줄어 드는 것이기 때문에 복잡하게 capacity 이런 것들을 생각할 필요가 없기 때문입니다. </p><pre class="chroma">
 <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">erase</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">num</span><span class="p">)</span><span class="p">;</span>
 </pre><p>erase 함수는 위와 같이 생겼고, loc 은 insert 와 동일하게 loc 의 해당하는 문자 '앞' 을 의미합니다. 그리고 num 은 지우는 문자의 수를 의미하죠. 예를 들어서 abcd 라는 문자열에서 erase(1, 2); 를 하게 된다면, 1 에 해당하는 문자 'b' 의 앞에서 부터 2 문자를 지우게 되어, bc 가 지워져서 ad 가 리턴됩니다. </p><pre class="chroma">
 <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">erase</span><span class="p">(</span><span class="kt">int</span> <span class="n">loc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">num</span><span class="p">)</span>
@@ -785,7 +856,7 @@
   <span class="n">string_length</span> <span class="o">-</span><span class="o">=</span> <span class="n">num</span><span class="p">;</span>
   <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>위와 같이 간단히 처리할 수 있습니다. string<span class='font-italic'>length 를 도입하여서 정말 편리한 점이 무엇이냐면, 어차피 string</span>length 뒤에 어떠한 정보가 오든지 간에 별로 신경을 안써도 된다는 점입니다. 위와 같이 앞으로 문자들을 끌고 오면서 뒤의 문자들을 초기화 하지 않았지만, string<span class='font-italic'>length 값을 처리하였기 때문에 뒤의 문자들에 신경 쓰지 않아도 됩니다. </p><p>물론 실제로 컴파일 해보면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F223EB14F520BCEBF0B22EC' alt=''><p>로 아주 잘 작동함을 알 수 있습니다.</p><p> find 함수</p><p>이제 insert 와 erase 이외에 매우 빈번하게 사용되는 또 다른 작업으로 find 함수가 있습니다. 사실 insert, erase, find 는 문자열 연산의 기초 중의 기초라고 불러도 과언이 아닐 만큼 필수적인 함수 입니다. 그렇기 때문에 find 함수 자체를 어떻게 구현하느냐에 따라 문자열 클래스의 전반적인 성능이 좌지우지 되는 경우도 있습니다. 왜냐하면 insert 와 erase 는 사실 연산 시간이 크게 오래 걸리지는 않지만 문자열의 크기가 매우 크다면 find 연산은 엄청나게 오래 걸릴 수 있게 될 수 있지요. </p><p>문자열을 검색하는 알고리즘은 수 없이 많지만, 어떤 상황에 대해서도 좋은 성능을 발휘하는 알고리즘은 없습니다. (예를 들어 짧은 문자열 검색에 최적화 된 알고리즘과 긴 문자열 검색에 최적화 된 알고리즘들 같이 말입니다) 그렇기에 특별한 알고리즘을 사용하는 경우에는 그 클래스의 사용 목적이 명확해서 그 알고리즘이 좋은 성능을 발휘할 수 있는 경우에만 사용하는 것이 보통입니다. 따라서 우리의 MyString 의 경우, 가장 간단한 방법으로 find 알고리즘을 구현하기로 하였습니다. </p><pre class="chroma">
+</pre><p>위와 같이 간단히 처리할 수 있습니다. string<span class='font-italic'>length 를 도입하여서 정말 편리한 점이 무엇이냐면, 어차피 string</span>length 뒤에 어떠한 정보가 오든지 간에 별로 신경을 안써도 된다는 점입니다. 위와 같이 앞으로 문자들을 끌고 오면서 뒤의 문자들을 초기화 하지 않았지만, string<span class='font-italic'>length 값을 처리하였기 때문에 뒤의 문자들에 신경 쓰지 않아도 됩니다. </p><p>물론 실제로 컴파일 해보면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F223EB14F520BCEBF0B22EC' alt=''><p>로 아주 잘 작동함을 알 수 있습니다.</p><h3><p>  find 함수</p></h3><p>이제 insert 와 erase 이외에 매우 빈번하게 사용되는 또 다른 작업으로 find 함수가 있습니다. 사실 insert, erase, find 는 문자열 연산의 기초 중의 기초라고 불러도 과언이 아닐 만큼 필수적인 함수 입니다. 그렇기 때문에 find 함수 자체를 어떻게 구현하느냐에 따라 문자열 클래스의 전반적인 성능이 좌지우지 되는 경우도 있습니다. 왜냐하면 insert 와 erase 는 사실 연산 시간이 크게 오래 걸리지는 않지만 문자열의 크기가 매우 크다면 find 연산은 엄청나게 오래 걸릴 수 있게 될 수 있지요. 문자열을 검색하는 알고리즘은 수 없이 많지만, 어떤 상황에 대해서도 좋은 성능을 발휘하는 알고리즘은 없습니다. (예를 들어 짧은 문자열 검색에 최적화 된 알고리즘과 긴 문자열 검색에 최적화 된 알고리즘들 같이 말입니다) 그렇기에 특별한 알고리즘을 사용하는 경우에는 그 클래스의 사용 목적이 명확해서 그 알고리즘이 좋은 성능을 발휘할 수 있는 경우에만 사용하는 것이 보통입니다. 따라서 우리의 MyString 의 경우, 가장 간단한 방법으로 find 알고리즘을 구현하기로 하였습니다. </p><pre class="chroma">
 <span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="kt">int</span> <span class="n">find_from</span><span class="p">,</span> <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
 
 <span class="kt">int</span> <span class="nf">find</span><span class="p">(</span><span class="kt">int</span> <span class="n">find_from</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
@@ -1044,7 +1115,7 @@
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Location of second &lt;very&gt; in the string : </span><span class="s">&#34;</span>
        <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">str1</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">very</span><span class="s">&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">very</span><span class="s">&#34;</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F2427513A520C79810311EE' alt=''><p>와 같이 잘 처리되고 있음을 알 수 있습니다. 참고로 첫 번째 str1.find(0, "very") 에서는, 맨 처음 부터 시작해서 "very" 를 찾습니다. 그 결과 10 의 위치에 있음을 알 수 있었지요. 그 다음 "very" 를 찾기 위해 이전의 검색 한 위치 바로 다음 부터 시작하여 또 "very" 를 찾습니다. 그 결과 15 의 위치에 있는 "very" 를 찾을 수 있게 됩니다. </p><p> 크기 비교 함수 compare</p><p>마지막으로 만들 함수는 문자열 간의 크기를 비교하는 compare 함수 입니다. 여기서 '크기' 를 비교한다는 의미는 사전식으로 배열해서 어떤 문자열이 더 뒤에 오는지 판단한다는 의미가 됩니다. 이 함수를 이용해서 문자열 전체를 정렬하는 함수라던지, 기존의 C 언어에서 strcmp 함수 등으로 지원하였던 것들을 그대로 사용할 수 있게 됩니다. </p><pre class="chroma">
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F2427513A520C79810311EE' alt=''><p>와 같이 잘 처리되고 있음을 알 수 있습니다. 참고로 첫 번째 str1.find(0, "very") 에서는, 맨 처음 부터 시작해서 "very" 를 찾습니다. 그 결과 10 의 위치에 있음을 알 수 있었지요. 그 다음 "very" 를 찾기 위해 이전의 검색 한 위치 바로 다음 부터 시작하여 또 "very" 를 찾습니다. 그 결과 15 의 위치에 있는 "very" 를 찾을 수 있게 됩니다. </p><h3><p>  크기 비교 함수 compare</p></h3><p>마지막으로 만들 함수는 문자열 간의 크기를 비교하는 compare 함수 입니다. 여기서 '크기' 를 비교한다는 의미는 사전식으로 배열해서 어떤 문자열이 더 뒤에 오는지 판단한다는 의미가 됩니다. 이 함수를 이용해서 문자열 전체를 정렬하는 함수라던지, 기존의 C 언어에서 strcmp 함수 등으로 지원하였던 것들을 그대로 사용할 수 있게 됩니다. </p><pre class="chroma">
 <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
 </pre><p>일단 함수의 원형은 위와 같이 <span class='font-italic'>this 와 str 을 비교하는 형태로 이루어집니다. </p><pre class="chroma">
 <span class="kt">int</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="n">compare</span><span class="p">(</span><span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span>
@@ -1057,6 +1128,7 @@
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">min</span><span class="p">(</span><span class="n">string_length</span><span class="p">,</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">)</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span>
       <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+
     <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span>
       <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
@@ -1321,6 +1393,7 @@
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">min</span><span class="p">(</span><span class="n">string_length</span><span class="p">,</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">)</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span>
       <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+
     <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span>
       <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
@@ -1342,95 +1415,21 @@
 
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">str1 and str2 compare : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">str1</span><span class="p">.</span><span class="n">compare</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F26015949520C84A512589D' alt=''><p>와 같이 잘 나옴을 알 수 있습니다. </p><p>이것으로, 여태까지 배운 C++ 에 대한 내용을 종합해서 훌륭한 MyString 클래스를 만들었다고 볼 수 있습니다. 우리의 MyString 클래스는 다음과 같은 인터페이스를 제공합니다.</p><pre class="chroma">*문자 c 혹은 C 형식 문자열 str 에서 생성할 수 있는 생성자와 복사 생성자문자열의
-    길이를 리턴하는 함수(length) 문자열 대입 함수(assign) 문자열 메모리 할당
-    함수(reserve) 및 현재 할당된 크기를 알아오는
-    함수(capacity) 특정 위치의 문자를 리턴하는
-    함수(at) 특정 위치에 특정 문자열을 삽입하는
-    함수(insert) 특정 위치의 특정 개수의 문자를 지우는
-    함수(erase) 특정 위치를 시작으로 특정 문자열을 검색하는
-    함수(find) 두 문자열을 사전식 비교하는 함수(compare)
-</pre><p>이 정도면 괜찮은 문자열 클래스라고 볼 수 있지 않나요 ㅎㅎ. 이번 강좌를 통해서 현재 까지 배운 C++ 클래스에 좀더 친숙해 질 수 있는 좋은 경험이 되었으면 합니다. 자, 그럼 이것으로 이번 강좌를 마치도록 하겠습니다. </p><p> 생각해보기</p><ol><li><p> 여러가지 검색 알고리즘(KMP, Boyer - Moore) 들을 이용하는 find 함수를 만들어보세요. 어떤 알고리즘의 경우 미리 계산된 테이블이 필요할 텐데, 이러한 정보들 역시 class 변수로 처리하셔도 됩니다. (난이도 : 上)</p></li></ol><pre class="chroma">강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F26015949520C84A512589D' alt=''><p>와 같이 잘 나옴을 알 수 있습니다. </p><p>이것으로, 여태까지 배운 C++ 에 대한 내용을 종합해서 훌륭한 MyString 클래스를 만들었다고 볼 수 있습니다. 우리의 MyString 클래스는 다음과 같은 인터페이스를 제공합니다.</p><pre class='info'>*문자 c 혹은 C 형식 문자열 str 에서 생성할 수 있는 생성자와 복사
+        생성자* 문자열의 길이를 리턴하는 함수(length) *
+    문자열 대입 함수(assign) * 문자열 메모리 할당
+    함수(reserve) 및 현재 할당된 크기를 알아오는 함수(capacity) *
+    특정 위치의 문자를 리턴하는 함수(at) * 특정 위치에 특정 문자열을 삽입하는
+    함수(insert) *
+    특정 위치의 특정 개수의 문자를 지우는 함수(erase) *
+    특정 위치를 시작으로 특정 문자열을 검색하는 함수(find) * 두 문자열을 사전식
+    비교하는 함수(compare)
+</pre><p>이 정도면 괜찮은 문자열 클래스라고 볼 수 있지 않나요 ㅎㅎ. 이번 강좌를 통해서 현재 까지 배운 C++ 클래스에 좀더 친숙해 질 수 있는 좋은 경험이 되었으면 합니다. 자, 그럼 이것으로 이번 강좌를 마치도록 하겠습니다. </p><h3><p>  생각해보기</p></h3><ol><li><p> 여러가지 검색 알고리즘(KMP, Boyer - Moore) 들을 이용하는 find 함수를 만들어보세요. 어떤 알고리즘의 경우 미리 계산된 테이블이 필요할 텐데, 이러한 정보들 역시 class 변수로 처리하셔도 됩니다. (난이도 : 上)</p></li></ol><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
             바랍니다
                 .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
-                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-        현재 여러분이 보신 강좌는
-        &lt;&lt; 씹어먹는 C++ - &lt;4 - 5. 내가 만드는 String 클래스&gt;&gt;&gt;
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을
+                        달아주세요.현재 여러분이 보신 강좌는
+        << 씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>>>
     입니다.이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어
-        보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-            다음 강좌 보러가기
-</pre><p>공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>(5)2013.08.29씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>(7)2013.08.25씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>(29)2013.08.15씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)2013.05.26씹어먹는 C++ 토막글 ② - 람다(lambda) 함수(12)2013.01.08씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>(41)2013.01.06</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+        보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기
+</pre><p>공감sns신고저작자표시</p><p>'C++' 카테고리의 다른 글씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>(5)2013.08.29씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>(7)2013.08.25씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>(29)2013.08.15씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)2013.05.26씹어먹는 C++ 토막글 ② - 람다(lambda) 함수(12)2013.01.08씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>(41)2013.01.06</p>

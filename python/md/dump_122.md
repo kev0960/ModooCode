@@ -1,24 +1,33 @@
+----------------
+title : C 언어 레퍼런스 - strftime 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 strftime
 
-```info
-#include <time.h> // C++ 에서는 <ctime>
 
-size_t strftime ( char * ptr, size_t maxsize, const char * format, const struct tm * timeptr );
+
+
+```info
+#include <time.h> // C++ 에서는 <ctime>size_t strftime ( char * ptr, size_t maxsize, const char * format, const struct tm * timeptr );
 ```
 
 
 시간을 사용자가 원하는 형식에 맞추어 출력한다.
 format 에 들어있는 형식에 맞추어서 timeptr 이 가리키는 tm 구조체의 값을 해석하여 현재 시간을 출력한다. 이 때, 출력되는 문자열의 최대 길이는 maxsize 로 한다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 ptr
 
 C 형식 문자열이 복사되는 배열을 가리키는 포인터
@@ -44,54 +53,69 @@ timeptr
 tm 구조체를 가리키는 포인터
 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 
 만일 만들어지는 문자열의 길이가 종료 널 문자를 포함하여 maxsize 보다 작다면 ptr 에 복사된 문자의 수가 리턴되고 (이 때에는 종료 널 문자를 포함하지 않는다), 보다 크다면 0 이 리턴된다. 이 때 ptr 에 복사되는 문자열의 내용은 알 수 없다. 
 
 
-###  이식성### 
+
+
+###  이식성
+
+
+
 
   C++ 에서의 strftime 함수는 1990 년의 ISO-C 표준에서와 동일하다. C 컴파일러는 위에 나타나 있는 형식 지정자 말고도 부가적인 형식 지정자를 더 가질 수 있는데 위의 C 표준에서는 나타나 있지 않다. 
 
+
+
 ###  실행 예제
-### 
+
+
+
+
 ```cpp
-/* 
-
-이 예제는
-http://www.cplusplus.com/reference/clibrary/ctime/strftime/
-에서 가져왔습니다.
-
- */
-#include <stdio.h>
-#include <time.h>
-
-int main ()
-{
-    time_t rawtime;
-    struct tm * timeinfo;
-    char buffer [80];
-
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
-
-    strftime (buffer,80,"Now it's %I:%M%p.",timeinfo);
-    puts (buffer);
-
-    return 0;
-}
+/* 이 예제는http://www.cplusplus.com/reference/clibrary/ctime/strftime/에서 가져왔습니다. */#include <stdio.h>#include <time.h>int main (){    time_t rawtime;    struct tm * timeinfo;    char buffer [80];    time ( &rawtime );    timeinfo = localtime ( &rawtime );    strftime (buffer,80,"Now it's %I:%M%p.",timeinfo);    puts (buffer);    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F111039584D246E6A33FF6E)
 
 
+
+
 ###  연관된 함수
-### 
-* asctime  :  tm 구조체를 문자열로 변환한다.ctime  :  time_t 값을 토대로 asctime 함수와 동일한 작업을 한다.공감sns신고저작자표시'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - strftime 함수(0)
+
+
+
+* 
+
+asctime
+  :  tm 구조체를 문자열로 변환한다.
+
+
+* 
+
+ctime
+  :  time_t 값을 토대로 asctime 함수와 동일한 작업을 한다.
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - strftime 함수(0)
 2011.01.05C 언어 레퍼런스 - localtime 함수(0)
 2010.12.30C 언어 레퍼런스 - gmtime 함수(0)
 2010.12.29C 언어 레퍼런스 - ctime 함수(0)

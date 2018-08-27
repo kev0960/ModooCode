@@ -1,3 +1,8 @@
+----------------
+title : C++ 레퍼런스 - ios::tie 함수
+--------------
+
+
 
 
 
@@ -20,6 +25,8 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 ios::tie
 
 
+
+
 ```info
 
 ostream* tie ( ) const;
@@ -37,19 +44,20 @@ ostream* tie ( ostream* tiestr );
 
 
 
- 인자
+
+
+###  인자
+
 
 
 
 tiestr
-
-
 엮을 출력 스트림
 
 
 
+###  리턴값
 
- 리턴값
 
 
 
@@ -57,8 +65,8 @@ tiestr
 
 
 
+###  실행 예제
 
- 실행 예제### 
 
 
 
@@ -66,23 +74,18 @@ tiestr
 
 /* 
 
-
  처음에 *cin.tie() 를 통해 cout 에 내용을 출력한 뒤, cin.tie(&ofs) 로 
  파일으로 엮여진 출력스트림을 변경 한 뒤, 다시 그 내용을 출력한다. 
  이 예제는
 
-
 http://www.cplusplus.com/reference/iostream/ios/tie/
 
-
  에서 가져왔습니다.
-
 
 */
 #include <iostream>
 #include <fstream>
 using namespace std;
-
 
 int main () 
 {
@@ -90,24 +93,24 @@ ostream *prevstr;
 ofstream ofs;
 ofs.open ("test.txt");
 
-
 cout << "tie example:" << endl;
-
 
 *cin.tie() << "This is inserted into cout";
 prevstr = cin.tie (&ofs);
 *cin.tie() << "This is inserted into the file";
 cin.tie (prevstr);
 
-
 ofs.close();
-
 
 return 0;
 }
 ```
 
+
+
 실행 결과
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F155C9141509A42E43CB76F)
 
@@ -119,9 +122,9 @@ return 0;
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F0160DD43509A432F0179D7)
 
 
- 템플릿 멤버 정의
 
 
+###  템플릿 멤버 정의
 
 
 ```cpp
@@ -133,7 +136,15 @@ basic_ostream<charT,traits> * tie ( basic_ostream<charT,traits> tiestr );
 
 
 
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::gcount 함수(0)
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::gcount 함수(0)
 2012.11.07C++ 레퍼런스 - istream::get 함수(0)
 2012.11.07C++ 레퍼런스 - ios::tie 함수(0)
 2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)

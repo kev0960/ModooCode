@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios_base::pword 함수
+--------------
+
 
 
 ```warning
@@ -14,9 +18,11 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 ios_base::pword
 
 
+
+
+
 ```info
 void* & pword (int idx);
-
 ```
 
 내부 확장 가능 배열을 가리키는 포인터의 레퍼런스를 얻는다. 
@@ -28,47 +34,66 @@ xalloc 함수를 통해 얻어진 인덱스 값은 스트림에 다른 작업 (p
 
   내부 확장 가능 배열은 범용의 word 크기의 원소들을 가진 배열로, 스트림 객체 마다 하나 씩 가지게 된다. 이 내부 확장 가능 배열은 임시적으로 데이터를 저장하는데 사용된다.
 
- 인자
+
+
+###  인자
+
+
+
 
 idx
 
   내부 확장 가능 배열의 특정 원소의 인덱스 값이다. 이 값은 이전의 xalloc 함수 호출을 통해 얻어져야 한다.
 
- 리턴값
+
+
+###  리턴값
+
+
 
   idx 번째의 원소를 가리키는 포인터의 레퍼런스를 얻는다. 이 때, 이 값은 void* 타입 객체의 레퍼런스가 된다. 실패시, 값이 0 인 void*& 가 리턴된다. 
 
- 실행 예제
+
+
+###  실행 예제
+
 
 ```cpp
-/* 
+/* 이 예제는http://msdn.microsoft.com/en-us/library/77z9kz41.aspx에서 가져왔습니다.pword 로 cin 객체의 내부 확장 가능 배열의 i 번째 원소에 testing 의 주소를 넣고 이를 출력한다. */
 
-이 예제는
-http://msdn.microsoft.com/en-us/library/77z9kz41.aspx
-에서 가져왔습니다.
-
-pword 로 cin 객체의 내부 확장 가능 배열의 i 번째 원소에 testing 의 주소를 넣고 이를 출력한다. 
-*/
-#include <iostream>
-using namespace std;
-
-int main( ) 
-{
-    static const int i = ios_base::xalloc();
-    cin.pword( i ) = "testing";
-    cout << ( char * )cin.pword( i ) << endl;
-}
+#include <iostream>using namespace std;int main( ) {    static const int i = ios_base::xalloc();    cin.pword( i ) = "testing";    cout << ( char * )cin.pword( i ) << endl;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F133CFD414EA216FB40D60D)
 
- 연관된 함수
 
-* ios_base::xalloc  :  내부 확장 가능 배열의 새로운 인덱스를 리턴하게 된다. (정적 함수)ios_base::iword  :  내부 확장 가능 배열의 정수 원소의 레퍼런스를 리턴한다.
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::fail 함수(0)
+
+###  연관된 함수
+
+
+
+
+
+* ios_base::
+xalloc
+  :  내부 확장 가능 배열의 새로운 인덱스를 리턴하게 된다. (정적 함수)
+
+* ios_base::
+iword
+  :  내부 확장 가능 배열의 정수 원소의 레퍼런스를 리턴한다.
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::fail 함수(0)
 2011.10.23C++ 레퍼런스 - ios::good 함수(0)
 2011.10.23C++ 레퍼런스 - ios_base::pword 함수(0)
 2011.10.22C++ 레퍼런스 - ios_base::iword(0)

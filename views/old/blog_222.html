@@ -1,14 +1,14 @@
-<p>.이번 강좌에서는<span class='font-italic'> 의존 타입 (dependent type)Unit 라이브러리 만들기auto 키워드에 대해서 배웁니다.!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2634C0465958BE17369176' alt=''><p>안녕하세요 여러분! 지난 강좌에서 왜 TMP 를 활용하여 힘들게 힘들게 Ratio 클래스를 만들었는데, 아직 아마 이걸 왜 굳이 TMP 로 만들었는지는 설명하지 않았었습니다.</p><p>그에 앞서, 이번 강좌에서 왜 Ratio 클래스를 만들었는지 설명하기 전에 지난 강좌의 생각 해보기에 대해서 짚고 넘어가보자 합니다. </p><p> 지난 강의 생각해보기 문제</p><p>지난번 생각해보기 문제는 아래와 같습니다.</p><pre class="chroma">
+<p>.이번 강좌에서는</p><ul><li><p> 의존 타입 (dependent type)</p></li><li><p> Unit 라이브러리 만들기</p></li><li><p> auto 키워드</p></li></ul><p>에 대해서 배웁니다.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2634C0465958BE17369176' alt=''><p>안녕하세요 여러분! 지난 강좌에서 왜 TMP 를 활용하여 힘들게 힘들게 Ratio 클래스를 만들었는데, 아직 아마 이걸 왜 굳이 TMP 로 만들었는지는 설명하지 않았었습니다.</p><p>그에 앞서, 이번 강좌에서 왜 Ratio 클래스를 만들었는지 설명하기 전에 지난 강좌의 생각 해보기에 대해서 짚고 넘어가보자 합니다. </p><h3><p>  지난 강의 생각해보기 문제</p></h3><p>지난번 생각해보기 문제는 아래와 같습니다.</p><pre class='info'>
 1. TMP 를 사용해서 어떤 수가 소수인지 아닌지를 판별하는 프로그램을
     만들어보세요.(난이도
                   : 상)
 
         int main() {
-  cout &lt;&lt; boolalpha;
-  cout &lt;&lt; &#34;Is prime ? :: &#34; &lt;&lt; is_prime&lt;2&gt;::result &lt;&lt; endl;   // true
-  cout &lt;&lt; &#34;Is prime ? :: &#34; &lt;&lt; is_prime&lt;10&gt;::result &lt;&lt; endl;  // false
-  cout &lt;&lt; &#34;Is prime ? :: &#34; &lt;&lt; is_prime&lt;11&gt;::result &lt;&lt; endl;  // true
-  cout &lt;&lt; &#34;Is prime ? :: &#34; &lt;&lt; is_prime&lt;61&gt;::result &lt;&lt; endl;  // true
+  cout << boolalpha;
+  cout << "Is prime ? :: " << is_prime<2>::result << endl;   // true
+  cout << "Is prime ? :: " << is_prime<10>::result << endl;  // false
+  cout << "Is prime ? :: " << is_prime<11>::result << endl;  // true
+  cout << "Is prime ? :: " << is_prime<61>::result << endl;  // true
 }
 </pre><p>사실 처음에 딱 보았을 때 도대체 어떻게 TMP 로 구현할 것인지 감이 안잡혔을 것입니다. 하지만 만약에 소수 인지 아닌지 판별하라는 '함수' 를 작성하게 하였다면 잘 작성하였겠지요. 아마 여러분은 아래와 같은 코드를 쓰셨을 것입니다.</p><pre class="chroma">
 <span class="kt">bool</span> <span class="nf">is_prime</span><span class="p">(</span><span class="kt">int</span> <span class="n">N</span><span class="p">)</span> <span class="p">{</span>
@@ -46,8 +46,8 @@
 <span class="k">struct</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="k">static</span> <span class="k">const</span> <span class="kt">bool</span> <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">%</span> <span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">;</span>
-</pre><p>무언가 잘 짜여진 코드 같습니다. 하지만 실제로 컴파일 해보면 다음과 같은 오류가 발생합니다.</p><pre class="chroma">
-check_div&lt;N, N /&gt;
+</pre><p>무언가 잘 짜여진 코드 같습니다. 하지만 실제로 컴파일 해보면 다음과 같은 오류가 발생합니다.</p><pre class='warning'>
+check_div<N, N />
     : non -
       type parameter of a partial specialization must be a simple identifier
 </pre><p>바로 </p><pre class="chroma">
@@ -55,8 +55,8 @@ check_div&lt;N, N /&gt;
 <span class="k">struct</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="k">static</span> <span class="k">const</span> <span class="kt">bool</span> <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span> <span class="o">%</span> <span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">;</span>
-</pre><p>이 부분에서 발생하는 문제 이지요. 위 오류가 발생한 문제는 템플릿 부분 특수화 시에 반드시 다른 연산자가 붙지 않고 단순한 식별자만 입력해주어야만 합니다. 따라서 C++ 컴파일러에 한계 상</p><pre class="chroma">
-struct check_div&lt;N, N / 2&gt;
+</pre><p>이 부분에서 발생하는 문제 이지요. 위 오류가 발생한 문제는 템플릿 부분 특수화 시에 반드시 다른 연산자가 붙지 않고 단순한 식별자만 입력해주어야만 합니다. 따라서 C++ 컴파일러에 한계 상</p><pre class='warning'>
+struct check_div<N, N / 2>
 </pre><p>와 같은 문법은 불가능 합니다. 그렇다면 이를 어떻게 해결할 수 있을까요? 생각을 잘 해보면, N 을 int 인자로 나타내는 대신에, 아예 N 을 나타내는 '타입' 으로 구현하면 어떨까요? 그렇다면 N / 2 역시, 직접 계산하는것이 아니라 N / 2 를 나타내는 타입으로 대체할 수 있고 따라서 템플릿 부분 특수화 문제를 해결할 수 있습니다. </p><p>따라서 아래와 같이 int 값을 표현하는 타입을 만들 수 있습니다.</p><pre class="chroma">
 <span class="k">template</span> <span class="o">&lt;</span><span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>
 <span class="k">struct</span> <span class="n">INT</span> <span class="p">{</span>
@@ -107,29 +107,40 @@ struct check_div&lt;N, N / 2&gt;
 <span class="k">struct</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">divide</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">two</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="k">static</span> <span class="k">const</span> <span class="kt">bool</span> <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">N</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">%</span> <span class="p">(</span><span class="n">N</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">;</span>
-</pre><p>그런데 컴파일 한다면 다음과 같은 오류를 보게 됩니다. </p><pre class="chroma">&#39;check_div&#39;: &#39;divide&lt;N,two&gt;::result&#39; is not a valid template type argument for parameter &#39;d&#39;
-</pre><p>왜 저런 오류가 발생하였을까요? 일단 오류가 발생하는 다음 두 부분의 코드를 살펴보겠습니다.</p><pre class="chroma"><span class="p">(</span><span class="n">N</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">%</span> <span class="n">d</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">add</span><span class="o">&lt;</span><span class="n">d</span><span class="p">,</span> <span class="n">one</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="p">;</span>
-</pre><p>와</p><pre class="chroma"><span class="k">struct</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">divide</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">two</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span> <span class="p">{</span>
-</pre><p>입니다. 먼저 컴파일러 입장에서 저 ::result 를 어떻게 해석할지에 대해 생각해봅시다. 물론 우리는 add<d, one>::result 가 언제나 INT<> 타입 이라는 사실을 알고 있습니다. 왜냐하면 typename 인자로 들어오는 N 과 d 가 항상 INT 타입이기 때문에 저 result 를 항상 '타입'이네 라고 생각할 것입니다. 그런데, 컴파일러에 구조상 어떠한 식별자(변수 이름이든 함수 이름이든 코드 상의 이름들 - 위 코드의 경우 add, check<span class='font-italic'>div,, result, one 등등 ... ) 를 보았을 때 이 식별자가 '값' 인지 '타입' 인지 결정을 해야 합니다. 왜냐하면 예를들어서 </p><pre class="chroma">template &lt;typename T&gt;
+</pre><p>그런데 컴파일 한다면 다음과 같은 오류를 보게 됩니다. </p><pre class='warning'>
+'check_div': 'divide<N,two>::result' is not a valid template type argument for parameter 'd'
+</pre><p>왜 저런 오류가 발생하였을까요? 일단 오류가 발생하는 다음 두 부분의 코드를 살펴보겠습니다.</p><pre class="chroma">
+<span class="p">(</span><span class="n">N</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">%</span> <span class="n">d</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">add</span><span class="o">&lt;</span><span class="n">d</span><span class="p">,</span> <span class="n">one</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="p">;</span>
+</pre><p>와</p><pre class="chroma">
+<span class="k">struct</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">divide</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">two</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span> <span class="p">{</span>
+</pre><p>입니다. 먼저 컴파일러 입장에서 저 ::result 를 어떻게 해석할지에 대해 생각해봅시다. 물론 우리는 add<d, one>::result 가 언제나 INT<> 타입 이라는 사실을 알고 있습니다. 왜냐하면 typename 인자로 들어오는 N 과 d 가 항상 INT 타입이기 때문에 저 result 를 항상 '타입'이네 라고 생각할 것입니다. </p><p>그런데, 컴파일러에 구조상 어떠한 식별자(변수 이름이든 함수 이름이든 코드 상의 이름들 - 위 코드의 경우 add, check<span class='font-italic'>div,, result, one 등등 ... ) 를 보았을 때 이 식별자가 '값' 인지 '타입' 인지 결정을 해야 합니다. 왜냐하면 예를들어서 </p><pre class='info'>
+template <typename T>
 int func() {
   T::t* p;
 }
+
 class A {
   const static int t;
 };
+
 class B {
   using t = int;
 };
-</pre><p>위와 같은 템플릿 함수에서 저 문장을 해석할 때 만약에 클래스 A 에 대해서, func 함수를 특수화 한다면, t 가 어떠한 int 값이 되어서 </p><pre class="chroma">T::t* p;
-</pre><p>위 문장은 단순히 클래스 A 의 t 와 p 를 곱하는 식으로 해석이 됩니다.반면에 func 함수가 클래스 B 에 대해서 특수화 된다면, </p><pre class="chroma">T::t* p;
-</pre><p>이 문장은 int 형 포인터 p 를 선언하는 꼴이 되겠지요. 따라서 컴파일러가 이 두 상황을 명확히 구분하기 위해 저 T::t 가 타입인지 아니면 값인지 명확하게 알려줘야만 합니다. 우리가 쓴 코드도 마찬가지로 컴파일러가 'result' 가 항상 '타입' 인지 아니면 '값' 인지 알 수 없습니다. 예컨대 만약에 </p><pre class="chroma">
-template &lt;&gt;
-struct divide&lt;int a, int b&gt; {
+</pre><p>위와 같은 템플릿 함수에서 저 문장을 해석할 때 만약에 클래스 A 에 대해서, func 함수를 특수화 한다면, t 가 어떠한 int 값이 되어서 </p><pre class='info'>
+T::t* p;
+</pre><p>위 문장은 단순히 클래스 A 의 t 와 p 를 곱하는 식으로 해석이 됩니다.</p><p>반면에 func 함수가 클래스 B 에 대해서 특수화 된다면, </p><pre class='info'>
+T::t* p;
+</pre><p>이 문장은 int 형 포인터 p 를 선언하는 꼴이 되겠지요. 따라서 컴파일러가 이 두 상황을 명확히 구분하기 위해 저 T::t 가 타입인지 아니면 값인지 명확하게 알려줘야만 합니다. </p><p>우리가 쓴 코드도 마찬가지로 컴파일러가 'result' 가 항상 '타입' 인지 아니면 '값' 인지 알 수 없습니다. 예컨대 만약에 </p><pre class='info'>
+template <>
+struct divide<int a, int b> {
   const static int result = a + b;
 };
-</pre><p>이런 템플릿이 정의가 되어있다면, 만약에 N 과 two 가 그냥 int 값이였다면 저 result 는 static const int 타입의 '값' 이 됩니다. 이렇게 템플릿 인자에 따라서 어떠한 타입이 달라질 수 있는 것을 '의존 타입(dependent type)' 이라고 부릅니다. 위 경우 저 result 는 N 에 의존하기 때문에 의존 타입이 되겠지요.</p><p>따라서 컴파일러가 저 문장을 성공적으로 해석하기 위해서는 우리가 반드시 "야 저 result 는 무조건 타입이야" 라고 알려주어야만 합니다. 이를 위해서는 간단히 아래 코드 처럼</p><pre class="chroma"><span class="k">struct</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="k">typename</span> <span class="n">divide</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">two</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span> <span class="p">{</span>
-</pre><p>'typename' 키워드를 붙여주면 됩니다. 마찬가지로 </p><pre class="chroma"><span class="p">(</span><span class="n">N</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">%</span> <span class="n">d</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">add</span><span class="o">&lt;</span><span class="n">d</span><span class="p">,</span> <span class="n">one</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="p">;</span>
-</pre><p>에서 typename 키워드를 붙인다면 </p><pre class="chroma"><span class="p">(</span><span class="n">N</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">%</span> <span class="n">d</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="k">typename</span> <span class="n">add</span><span class="o">&lt;</span><span class="n">d</span><span class="p">,</span> <span class="n">one</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="p">;</span>
+</pre><p>이런 템플릿이 정의가 되어있다면, 만약에 N 과 two 가 그냥 int 값이였다면 저 result 는 static const int 타입의 '값' 이 됩니다. 이렇게 템플릿 인자에 따라서 어떠한 타입이 달라질 수 있는 것을 '의존 타입(dependent type)' 이라고 부릅니다. 위 경우 저 result 는 N 에 의존하기 때문에 의존 타입이 되겠지요.</p><p>따라서 컴파일러가 저 문장을 성공적으로 해석하기 위해서는 우리가 반드시 "야 저 result 는 무조건 타입이야" 라고 알려주어야만 합니다. 이를 위해서는 간단히 아래 코드 처럼</p><pre class="chroma">
+<span class="k">struct</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="k">typename</span> <span class="n">divide</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">two</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span> <span class="p">{</span>
+</pre><p>'typename' 키워드를 붙여주면 됩니다. 마찬가지로 </p><pre class="chroma">
+<span class="p">(</span><span class="n">N</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">%</span> <span class="n">d</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="n">add</span><span class="o">&lt;</span><span class="n">d</span><span class="p">,</span> <span class="n">one</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="p">;</span>
+</pre><p>에서 typename 키워드를 붙인다면 </p><pre class="chroma">
+<span class="p">(</span><span class="n">N</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">%</span> <span class="n">d</span><span class="o">:</span><span class="o">:</span><span class="n">num</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span><span class="o">|</span> <span class="n">check_div</span><span class="o">&lt;</span><span class="n">N</span><span class="p">,</span> <span class="k">typename</span> <span class="n">add</span><span class="o">&lt;</span><span class="n">d</span><span class="p">,</span> <span class="n">one</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span><span class="p">;</span>
 </pre><p>이 되겠지요. 참고로 의존 '값' 의 경우 typename 을 안 붙여줘도 됩니다. 컴파일러는 어떤 식별자를 보았을 때 기본으로 '값' 이라고 생각합니다. 따라서 check<span class='font-italic'>div 앞에 아무것도 안올 수 있는 것입니다 (check</span>div 의 result 는 static const bool 이기 때문에!) </p><p>따라서 이를 고치면 다음과 같습니다. </p><pre class="chroma">
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">N</span><span class="p">,</span> <span class="k">typename</span> <span class="n">d</span><span class="o">&gt;</span>
 <span class="k">struct</span> <span class="n">check_div</span> <span class="p">{</span>
@@ -211,10 +222,11 @@ struct divide&lt;int a, int b&gt; {
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">boolalpha</span><span class="p">;</span>
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Is 2 prime ? :: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">is_prime</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Is 10 prime ? :: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">is_prime</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Is 11 prime ? :: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">is_prime</span><span class="o">&lt;</span><span class="mi">11</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Is 61 prime ? :: </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">is_prime</span><span class="o">&lt;</span><span class="mi">61</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">result</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F246E4050595360293409F3' alt=''><p>와 같이 제대로 판별함을 알 수 있습니다. </p><p>참고로 컴파일러에 따라서 재귀적으로 몇 번까지 사용 가능한지 깊이가 정해져있기 때문에, 꽤 큰 수를 넣는다면 컴파일 오류가 발생할 수 도 있습니다. </p><p>자, 그렇다면 본격적으로 이번 강의를 시작해보도록 하겠습니다. 지난 강좌에서 Ratio 클래스를 만들면서 왜 굳이 이것을 TMP 로 만들었을까, 그냥 일반적인 클래스로 만들었다면 훨씬 직관적이고 편하지 않나라고 많이 생각하셨을 것입니다. 바로 지금부터 TMP 의 진짜 파워에 대해서 알아보도록 하겠습니다.</p><h3><p>  단위(Unit) 라이브러리</p></h3><p>C++ 코드를 작성하는 이유는 여러가지가 있겠지만, 그 중 하나로 바로 여러 수치 계산을 사용하는데에도 많이 사용합니다. 예를 들어서 인공위성의 궤도를 계산한다던지, 입자의 운동을 계산한다던지 말이지요. 이러한 물리적 수치 계산 시에 꼭 필요한 것이 바로 '단위' 입니다. </p><p>단위라 하면 쉽게 말해 킬로그램 (kg), 미터 (m), 초 (s) 등을 생각하시면 됩니다. 이러한 것들을 계산하는 프로그램들의 경우, double 이나 float 변수에 들어가는 값에는 '단위' 가 붙어서 들어가겠지요. </p><p>예를 들어서 핸드폰의 가속도 센서에서 부터 데이터를 받는 프로그램은 아마도 m/s^2 단위로 데이터를 받겠지요. 혹은 시계로 부터 데이터를 받는 프로그램은 s 단위로 데이터를 받을 것 입니다. </p><p>아무튼 이렇게 단위가 붙은 데이터를 처리할 때 중요한 점은 바로 데이터를 연산할 때 항상 단위를 확인해야 된다는 점입니다. 예를 들어서, 다음과 같은 코드가 있다고 생각해봅시다.</p><pre class="chroma">
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F246E4050595360293409F3' alt=''><p>와 같이 제대로 판별함을 알 수 있습니다. </p><p>참고로 컴파일러에 따라서 재귀적으로 몇 번까지 사용 가능한지 깊이가 정해져있기 때문에, 꽤 큰 수를 넣는다면 컴파일 오류가 발생할 수 도 있습니다. </p><p>자, 그렇다면 본격적으로 이번 강의를 시작해보도록 하겠습니다. 지난 강좌에서 Ratio 클래스를 만들면서 왜 굳이 이것을 TMP 로 만들었을까, 그냥 일반적인 클래스로 만들었다면 훨씬 직관적이고 편하지 않나라고 많이 생각하셨을 것입니다. 바로 지금부터 TMP 의 진짜 파워에 대해서 알아보도록 하겠습니다.</p><h3><p>  단위(Unit) 라이브러리</p></h3><p>C++ 코드를 작성하는 이유는 여러가지가 있겠지만, 그 중 하나로 바로 여러 수치 계산을 사용하는데에도 많이 사용합니다. 예를 들어서 인공위성의 궤도를 계산한다던지, 입자의 운동을 계산한다던지 말이지요. 이러한 물리적 수치 계산 시에 꼭 필요한 것이 바로 '단위' 입니다. 단위라 하면 쉽게 말해 킬로그램 (kg), 미터 (m), 초 (s) 등을 생각하시면 됩니다. 이러한 것들을 계산하는 프로그램들의 경우, double 이나 float 변수에 들어가는 값에는 '단위' 가 붙어서 들어가겠지요. </p><p>예를 들어서 핸드폰의 가속도 센서에서 부터 데이터를 받는 프로그램은 아마도 m/s^2 단위로 데이터를 받겠지요. 혹은 시계로 부터 데이터를 받는 프로그램은 s 단위로 데이터를 받을 것 입니다. 아무튼 이렇게 단위가 붙은 데이터를 처리할 때 중요한 점은 바로 데이터를 연산할 때 항상 단위를 확인해야 된다는 점입니다. 예를 들어서, 다음과 같은 코드가 있다고 생각해봅시다.</p><pre class="chroma">
 <span class="kt">float</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">;</span>  <span class="c1">// v1, v2 는 속도
 </span><span class="c1"></span>
 <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">v1</span> <span class="o">+</span> <span class="n">v2</span><span class="p">;</span>
@@ -368,16 +380,17 @@ struct divide&lt;int a, int b&gt; {
   <span class="c1">// Bad
 </span><span class="c1"></span>  <span class="n">kg</span> <span class="o">+</span> <span class="n">meter</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>컴파일 하였다면 다음과 같은 오류가 납니다.</p><pre class="chroma">*no operator&#34;+&#34; matches these operands
+</pre><p>컴파일 하였다면 다음과 같은 오류가 납니다.</p><pre class='warning'>
+*no operator"+" matches these operands
 
-    binary &#39;+&#39; : no
-                 operator found which takes a right -
-                 hand operand of type &#39;quantity&lt;double,Dim&lt;zero,one,zero&gt;&gt;&#39;(
-                     or there is no acceptable conversion)
-</pre><p>즉 위 + 에 해당하는 연산자 함수를 찾을 수 없다는 것이지요. 예상했던 대로, </p><pre class="chroma">
+    * binary '+' : no
+                   operator found which takes a right -
+                   hand operand of type 'quantity<double,Dim<zero,one,zero>>'(
+                       or there is no acceptable conversion)
+</pre><p>즉 위 + 에 해당하는 연산자 함수를 찾을 수 없다는 것이지요. 예상했던 대로, </p><pre class='warning'>
 // Bad
 kg + meter;
-</pre><p>위 부분에서 오류가 발생하는데, kg 와 meter 의 단위가 다르기 때문에 발생하게 됩니다. 반면에</p><pre class="chroma">
+</pre><p>위 부분에서 오류가 발생하는데, kg 와 meter 의 단위가 다르기 때문에 발생하게 됩니다. 반면에</p><pre class='info'>
 // Good
 kg + kg;
 </pre><p>는 잘 컴파일되지요. </p><p>그렇다면 이제 <span class='font-italic'> 와 / 연산자만 만들어주면 되겠습니다. 하지만 </span> 와 / 의 경우 + 와 - 보다 좀 더 까다롭습니다. 왜냐하면 <span class='font-italic'> 와 / 의 경우 굳이 Dim 이 일치하지 않아도 되거든요! 다만 이 연산을 수행하였을 때 새로운 차원의 데이터가 나올 뿐입니다. </p><p>예를 들어서 가속도를 나타내기 위해서는</p><pre class="chroma">
@@ -393,13 +406,20 @@ kg + kg;
     <span class="n">quantity</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D2</span><span class="o">&gt;</span> <span class="n">quant</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="n">quantity</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">subtract_dim_</span><span class="o">&lt;</span><span class="n">D</span><span class="p">,</span> <span class="n">D2</span><span class="o">&gt;</span><span class="o">:</span><span class="o">:</span><span class="n">type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span> <span class="o">/</span> <span class="n">quant</span><span class="p">.</span><span class="n">q</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>새로 만들어지는 타입의 차원은 당연히도 add<span class='font-italic'>dim</span><D, D2>::type 이 되겠고 (opreator<span class='font-italic'> 의 경우), 그 값은 그냥 실제 값을 곱해주면 됩니다. 이와 더불어서</p><pre class="chroma"><span class="mi">3</span> <span class="o">*</span> <span class="n">kg</span>
-</pre><p>과 같은 곱도 처리해야 하기 때문에, 아래와 같은 함수들도 정의해줘야 합니다.</p><pre class="chroma"><span class="n">quantity</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">T</span> <span class="n">scalar</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">quantity</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+</pre><p>새로 만들어지는 타입의 차원은 당연히도 add<span class='font-italic'>dim</span><D, D2>::type 이 되겠고 (opreator<span class='font-italic'> 의 경우), 그 값은 그냥 실제 값을 곱해주면 됩니다. 이와 더불어서</p><pre class="chroma">
+<span class="mi">3</span> <span class="o">*</span> <span class="n">kg</span>
+</pre><p>과 같은 곱도 처리해야 하기 때문에, 아래와 같은 함수들도 정의해줘야 합니다.</p><pre class="chroma">
+
+<span class="n">quantity</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">T</span> <span class="n">scalar</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">quantity</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span> <span class="o">*</span> <span class="n">scalar</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+
 <span class="n">quantity</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="n">T</span> <span class="n">scalar</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">quantity</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">D</span><span class="o">&gt;</span><span class="p">(</span><span class="n">q</span> <span class="o">/</span> <span class="n">scalar</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
-</pre><p>이는 위 처럼 일반적인 차원이 없는 값 과의 곱도 지원해줍니다. 그렇다면 예를 들어서 아래와 같이 정의된 F 의 타입은 어떻게 될까요?</p><pre class="chroma"><span class="c1">// F 의 타입은?F = kg * meter / (second * second);
-</span><span class="c1"></span></pre><p>일단 F 의 차원은 계산해보면 (1, 1, -2) 이렇게 나올 것 입니다. 따라서, F 의 dim 타입은 <Ratio<1, 1>, Ratio<1, 1>, Ratio<-2, 1>> 가 되겠지요. 다시 말해, F 를 다음과 같이 나타낼 수 있습니다. </p><pre class="chroma"><span class="n">quantity</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="n">Dim</span><span class="o">&lt;</span><span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">Ratio</span><span class="o">&lt;</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">F</span> <span class="o">=</span>
+</pre><p>이는 위 처럼 일반적인 차원이 없는 값 과의 곱도 지원해줍니다. 그렇다면 예를 들어서 아래와 같이 정의된 F 의 타입은 어떻게 될까요?</p><pre class="chroma">
+<span class="c1">// F 의 타입은?
+</span><span class="c1"></span><span class="n">F</span> <span class="o">=</span> <span class="n">kg</span> <span class="o">*</span> <span class="n">meter</span> <span class="o">/</span> <span class="p">(</span><span class="n">second</span> <span class="o">*</span> <span class="n">second</span><span class="p">)</span><span class="p">;</span>
+</pre><p>일단 F 의 차원은 계산해보면 (1, 1, -2) 이렇게 나올 것 입니다. 따라서, F 의 dim 타입은 <Ratio<1, 1>, Ratio<1, 1>, Ratio<-2, 1>> 가 되겠지요. 다시 말해, F 를 다음과 같이 나타낼 수 있습니다. </p><pre class="chroma">
+<span class="n">quantity</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="n">Dim</span><span class="o">&lt;</span><span class="n">one</span><span class="p">,</span> <span class="n">one</span><span class="p">,</span> <span class="n">Ratio</span><span class="o">&lt;</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span><span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">F</span> <span class="o">=</span>
     <span class="n">kg</span> <span class="o">*</span> <span class="n">meter</span> <span class="o">/</span> <span class="p">(</span><span class="n">second</span> <span class="o">*</span> <span class="n">second</span><span class="p">)</span><span class="p">;</span>
-</pre><p>그런데, 매번 변수를 정의할 때 마다 저렇게 길고 긴 타입을 써주는 것은 매우 귀찮은 일입니다. 저 kg <span class='font-italic'> meter / (second </span> second) 를 계산해서 나오는 객체의 타입이 저렇게 된다는 사실은 저도 알고 컴파일러도 알고 있습니다. 컴파일러가 쉽게 알아낼 수 있는 타입을 굳이 우리가 써주어야 할까요? 똑똑한 컴파일러가 타입을 알아서 생각하도록 하면 안될까요?물론 가능합니다. </p><p> 타입을 알아서 추측해라! - auto 키워드</p><p>C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 경우 굳이 타입을 쓰지 않아도 알아서 추측할 수 있는 경우들이 많이 있습니다. 예를 들어서,</p><pre class="chroma">
+</pre><p>그런데, 매번 변수를 정의할 때 마다 저렇게 길고 긴 타입을 써주는 것은 매우 귀찮은 일입니다. 저 kg <span class='font-italic'> meter / (second </span> second) 를 계산해서 나오는 객체의 타입이 저렇게 된다는 사실은 저도 알고 컴파일러도 알고 있습니다. 컴파일러가 쉽게 알아낼 수 있는 타입을 굳이 우리가 써주어야 할까요? 똑똑한 컴파일러가 타입을 알아서 생각하도록 하면 안될까요?</p><p>물론 가능합니다. </p><h3><p>  타입을 알아서 추측해라! - auto 키워드</p></h3><p>C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 경우 굳이 타입을 쓰지 않아도 알아서 추측할 수 있는 경우들이 많이 있습니다. 예를 들어서,</p><pre class="chroma">
 <span class="p">(</span><span class="o">?</span><span class="o">?</span><span class="p">)</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 </pre><p>와 같이 썼다면 저 (??) 는 아마 int 를 의도한 것이겠지요. 아니면 </p><pre class="chroma">
 <span class="n">some_class</span> <span class="n">a</span><span class="p">;</span>
@@ -590,87 +610,12 @@ kg + kg;
 </span><span class="c1"></span>  <span class="k">auto</span> <span class="n">F</span> <span class="o">=</span> <span class="n">kg</span> <span class="o">*</span> <span class="n">meter</span> <span class="o">/</span> <span class="p">(</span><span class="n">second</span> <span class="o">*</span> <span class="n">second</span><span class="p">)</span><span class="p">;</span>
   <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">2 kg 물체를 3m/s^2 의 가속도로 밀기 위한 힘의 크기는? </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">F</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2104A74C5958A785159302' alt=''><p>와 같이 잘 나옵니다. </p><p>auto 키워드는 템플릿의 사용으로 복잡해진 타입 이름들을 간단하게 나타낼 수 있는 획기적인 방법입니다. 물론 짧은 이름의 타입일 경우 그냥 써주는 것이 좋지만 (왜냐면 그 코드를 읽는 사람에 입장에서 한눈에 타입을 알 수 있으면 좋기 때문에), 위 경우 처럼 복잡한 타입 이름의 경우, 그 타입을 쉽게 추측할 수 있다면 auto 키워드를 활용하는 것도 좋습니다. </p><p>이것으로 템플릿 메타프로그래밍에 대한 강좌를 마치도록 하겠습니다. 사실 실제 현업에서 템플릿 메타 프로그래밍을 활용하는 경우는 그다지 많지 않습니다. 왜냐하면 일단 TMP 의 특성상 복잡하고, 머리를 매우 많이 써야되고, 무엇보다도 버그가 발생하였을 때 찾는 것이 매우 힘듧니다.</p><p>하지만 우리의 Unit 클래스 처럼 TMP 를 적절하게 활용하면 런타임에서 찾아야 하는 오류를 컴파일 타임에서 미리 다 잡아낼 수 도 있고, 런타임 시에 수행해야 하는 연산들도 일부 컴파일 타임으로 옮길 수 있습니다. </p><p>만약에 TMP 를 직접 작성할 일이 있다면 이미 TMP 를 그나마 편하게 수행하기 위해 만들어진 boost::MPL 라이브러리가 있습니다. 이 라이브러리를 활용하신다면 비교적 쉽게 TMP 코드를 짤 수 있을 것입니다!</p><p>다음 강좌에서는 C++ 의 또다른 막강한 무기인 표준 라이브러리 (STL) 에 대해 알아보도록 하겠습니다!</p><p> 생각 해보기</p><ol><li><p> 컴파일러가 auto 키워드에 들어갈 타입을 추측하는 방법은 템플릿에서 들어갈 타입을 추측하는 방법과 같습니다. 여기를 클릭해서 읽어보세요!</p></li></ol><pre class="chroma">강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2104A74C5958A785159302' alt=''><p>와 같이 잘 나옵니다. </p><p>auto 키워드는 템플릿의 사용으로 복잡해진 타입 이름들을 간단하게 나타낼 수 있는 획기적인 방법입니다. 물론 짧은 이름의 타입일 경우 그냥 써주는 것이 좋지만 (왜냐면 그 코드를 읽는 사람에 입장에서 한눈에 타입을 알 수 있으면 좋기 때문에), 위 경우 처럼 복잡한 타입 이름의 경우, 그 타입을 쉽게 추측할 수 있다면 auto 키워드를 활용하는 것도 좋습니다. </p><p>이것으로 템플릿 메타프로그래밍에 대한 강좌를 마치도록 하겠습니다. 사실 실제 현업에서 템플릿 메타 프로그래밍을 활용하는 경우는 그다지 많지 않습니다. 왜냐하면 일단 TMP 의 특성상 복잡하고, 머리를 매우 많이 써야되고, 무엇보다도 버그가 발생하였을 때 찾는 것이 매우 힘듧니다.</p><p>하지만 우리의 Unit 클래스 처럼 TMP 를 적절하게 활용하면 런타임에서 찾아야 하는 오류를 컴파일 타임에서 미리 다 잡아낼 수 도 있고, 런타임 시에 수행해야 하는 연산들도 일부 컴파일 타임으로 옮길 수 있습니다. </p><p>만약에 TMP 를 직접 작성할 일이 있다면 이미 TMP 를 그나마 편하게 수행하기 위해 만들어진 boost::MPL 라이브러리가 있습니다. 이 라이브러리를 활용하신다면 비교적 쉽게 TMP 코드를 짤 수 있을 것입니다!</p><p>다음 강좌에서는 C++ 의 또다른 막강한 무기인 표준 라이브러리 (STL) 에 대해 알아보도록 하겠습니다!</p><h3><p>  생각 해보기</p></h3><ol><li><p> 컴파일러가 auto 키워드에 들어갈 타입을 추측하는 방법은 템플릿에서 들어갈 타입을 추측하는 방법과 같습니다. 여기를 클릭해서 읽어보세요!</p></li></ol><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
             바랍니다
                 .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
-                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-        현재 여러분이 보신 강좌는
-        &lt;&lt; 씹어먹는 C++ - &lt;9 - 3. 템플릿 메타 프로그래밍 2&gt;&gt;&gt;
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을
+                        달아주세요.현재 여러분이 보신 강좌는
+        << 씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>>>
     입니다.이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어
-        보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-            다음 강좌 보러가기
-</pre><p>공감1sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered<span class='font-italic'>set,unordered</span>map>(5)2017.07.08씹어먹는 C++ - <10 - 1. C++ STL - 벡터(vector), 리스트(list),데크(deque)>(2)2017.07.04씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>(8)2017.07.02씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Metaprogramming)>(2)2017.06.26씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)2017.04.07씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트2부>(6)2016.07.19</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+        보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기
+</pre><p>공감1sns신고저작자표시</p><p>'C++' 카테고리의 다른 글씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered<span class='font-italic'>set,unordered</span>map>(5)2017.07.08씹어먹는 C++ - <10 - 1. C++ STL - 벡터(vector), 리스트(list),데크(deque)>(2)2017.07.04씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>(8)2017.07.02씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Metaprogramming)>(2)2017.06.26씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)2017.04.07씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트2부>(6)2016.07.19</p>

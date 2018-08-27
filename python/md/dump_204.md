@@ -1,7 +1,17 @@
+----------------
+title : 씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>
+--------------
 
 
 
-이번 강좌에서는* C++ 스타일의 캐스팅 (static_cast 등등)디폴트 인자 (default argument)N 차원 배열의 제작반복자(iterator)에 대해 다룹니다.
+
+이번 강좌에서는* C++ 스타일의 캐스팅 (static_cast 등등)
+* 디폴트 인자 (default argument)
+* N 차원 배열의 제작
+* 반복자(iterator)
+
+에 대해 다룹니다.
+
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F211C1644522621D508FEDA)
@@ -20,16 +30,13 @@
 
 
 
- C++ 스타일의 캐스팅
+###  C++ 스타일의 캐스팅
 
 
 
 
 기존의 C 언어에서는, 캐스팅은 크게 2 가지 방법으로 발생하였습니다. 하나는 그냥 컴파일러에서 알아서 캐스팅 하는 암시적(implicit) 캐스팅과, 우리가 직접 이러이러 하게 캐스팅 하라고 지정하는 명시적(explicit) 캐스팅이 있었지요. 암시적 캐스팅의 경우 int 와 double 변수와의 덧셈을 수행할 때, int 형 변수가 자동으로 double 변수로 캐스팅 되는 것과 같은 것을 말하고, 명시적 캐스팅의 경우 예를 들어 void * 타입의 주소를 특정 구조체 포인터 타입의 주소로 바꾼다던지 등의 캐스팅이 있습니다. 
-
-
 이 때, 명시적 캐스팅은 다음과 같이 수행되었지요.
-
 ```cpp
 
 ptr = (Something *)other_ptr;
@@ -52,37 +59,53 @@ function((int)variable);
 
 하지만 C++ 에서는 다음과 같은 4 가지의 캐스팅을 제공하고 있습니다.
 
-* static_cast : 우리가 흔히 생각하는, 언어적 차원에서 지원하는 일반적인 타입 변환const_cast : 객체의 상수성(const) 를 없애는 타입 변환. 쉽게 말해 const int 가 int 로 바뀐다.dynamic_cast : 파생 클래스 사이에서의 다운 캐스팅 (→ 정확한 의미는 나중에 다시 배울 것입니다)reinterpret_cast : 위험을 감수하고 하는 캐스팅으로 서로 관련이 없는 포인터들 사이의 캐스팅 등이 때 이러한 캐스팅을 사용하는 방법은 다음과 같습니다.
+* static_cast : 우리가 흔히 생각하는, 언어적 차원에서 지원하는 일반적인 타입 변환
+* const_cast : 객체의 상수성(const) 를 없애는 타입 변환. 쉽게 말해 const int 가 int 로 바뀐다.
+* dynamic_cast : 파생 클래스 사이에서의 다운 캐스팅 (→ 정확한 의미는 나중에 다시 배울 것입니다)
+* reinterpret_cast : 위험을 감수하고 하는 캐스팅으로 서로 관련이 없는 포인터들 사이의 캐스팅 등
+
+이 때 이러한 캐스팅을 사용하는 방법은 다음과 같습니다.
+
 ```info
+
 (원하는 캐스팅 종류)<바꾸려는 타입>(무엇을 바꿀 것인가?)
 ```
 
+
+
 예를 들어서, static_cast 로 float 타입의 'float_variable' 이라는 변수를 int 타입의 변수로 타입 변환하기 위해서는;
+
 ```cpp
+
 static_cast<int>(float_variable) ;
 ```
 
+
+
 이렇게 해주시면 됩니다. 이는 C 언어에서
+
 ```cpp
+
 (int)(float_variable)
 ```
+
+
 
 을 한 것과 동일한 문장 입니다. 사실 현재까지 배운 내용 정도 에서는, static_cast 만 사용하지 나머지 캐스팅들은 별로 신경 안쓰셔도 됩니다. 여러분이 C 언어에서 수행하였던 대부분의 아무런 문제없는 캐스팅들은 모두 static_cast 로 해주시면 됩니다. 강좌를 진행하면서 나머지 캐스팅들을 어떠한 상황에서 사용하는지 차근 차근 알아보도록 할 것입니다. 
 
 
- N 차원 배열 만들기### 
+
+
+###  N 차원 배열 만들기
+
 
 
 
 N 차원 배열을 구현하는 방법은 크게 두 가지 방법이 있다고 생각합니다. 사용자가 원하는 배열을 arr[x1][x2]...[xn] 이라고 해본다면, 첫 번째 방법은 말 그대로 x1 * x2 * ... * xn 크기의 일 차원 배열을 할당한 뒤에 접근할 때 정확한 위치를 찾아주는 방법이지요. 이러한 방식으로 구현한다면 메모리도 정확히 필요한 만큼만 사용할 수 있기에 좋은 방법이라고 생각합니다. 이 방법으로 한번 여러분들이 직접 구현해 보시기 바랍니다. 
-
-
 제가 이 N 차원 배열을 구현하는 프로젝트에서 사용할 아이디어는, 이전에 2 차원 배열의 동적할당을 수행하면서 얻은 아이디어와 비슷합니다. 예전에 동적으로 2 차원 배열을 구현할 때 다음과 같이 구성하였습니다. (참고로 아래 코드에서 할당한 2 차원 배열의 크기는 arr[x1][x2] 입니다)
-
 ```cpp
 
 int **arr;
-
 
 arr = new int* [x1];
 for(int i = 0; i < x1; i ++)
@@ -129,6 +152,7 @@ void* next; 
 이 것이 어떻게 가능하다면, top 이라는 Address 객체를 도입을 합니다. 이 top 은 위 그림에서 맨 위의 레벨 0 에 해당하며 (그래서 이름도 역시 top 입니다) 따라서 top 의 level 값은 0 이 됩니다. 그렇다면 이 top 의 next 에는 무엇이 들어가게 될까요? 이미 예상하겠지만, 레벨이 1 인 Address 배열의 시작 주소가 들어가게 됩니다. 그럼, 이 top 이 가리키고 있는 Address 배열의 각각 원소들의 level 은 당연히 1 이 되겟고, 이들의 next 에는 무엇이 들어갈까요. 예상했던 대로, 이번에는 Address 배열이 아닌, int 배열의 시작 주소가 들어가겠지요. (왜냐하면 2 차원 배열이기 때문이죠!. 실질적으로 데이터는 여기에 보관이 됩니다) 
 
 
+
 여기서 좋은 점은 포인터라는 것이 타입의 상관없이 모두 void * 으로 값을 보관할 수 있으므로 필요할 때에만 적당한 포인터 타입으로 변환하면 됩니다. 정리해보자면, N 차원 배열이라고 할때 Address 들은 총 0 레벨 부터 N - 1 레벨 까지 생성되며, N - 1 레벨의 경우 next 에 실제로 보관할 데이터에 해당하는 배열(여기서는 int) 의 시작 주소값이 들어가게 되고, 나머지 0 부터 N - 2 레벨 까지는 그 다음 레벨의 Address 배열의 시작 주소값이 들어가게 됩니다. 
 
 
@@ -141,6 +165,7 @@ void* next; 
 이러한 레벨 방식을 도입해서 처리하는 이유는 각 레벨에서의 배열 크기가 모두 다를 수 있기 때문입니다. 예를 들어서, arr[3][2][1] 을 했을 경우, 1 레벨의 배열 크기가 3, 2 레벨의 배열 크기가 2, 그리고 마지막 int 배열 (레벨 3에 해당) 크기가 1 이 되면 됩니다. 위 그림의 경우 arr[4][3][1] 을 나타낸 것이라 볼 수 있겠지요. 
 
 
+
 이러한 아이디어를 바탕으로 일단 우리의 N 차원 Array 배열의 클래스를 대략적으로 설계해보도록 합시다. 
 
 ```cpp
@@ -149,7 +174,6 @@ class Array
 {
 const int dim; // 몇 차원 배열인지
 int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
-
 
 public:
 Array(int dim, int* array_size)  : dim(dim)
@@ -174,9 +198,7 @@ class Array
 const int dim; // 몇 차원 배열인지
 int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
 
-
 Address* top; 
-
 
 public:
 Array(int dim, int* array_size)  : dim(dim)
@@ -198,7 +220,6 @@ class Array
 const int dim; // 몇 차원 배열인지
 int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
 
-
 struct Address
 {
 int level; 
@@ -207,7 +228,6 @@ int level; 
 void* next; 
 };
 Address* top; 
-
 
 public:
 Array(int dim, int* array_size)  : dim(dim)
@@ -219,15 +239,25 @@ for(int i = 0; i < dim; i ++) size[i] = array_size[i];
 ```
 
 
+
 따라서 최종적으로 위와 같은 모습이 됩니다. 
 
 
 자 그러면 이제 본격적으로 top 을 시작으로 N 차원 배열을 생성해보도록 하겠습니다. 위의 그림과 같은 구조를 구현하기 위해서는 이전에 동적으로 2 차원 배열을 생성하였을 때 처럼 for 문으로 간단히 수행할 수 있는 것이 아닙니다. 왜냐하면 일단 for 문으로 하기 위해서는 몇 중 for 문을 사용할지 컴파일 시에 정해져야 하는데, 이 경우 N 차원인 임의의 차원이므로 그럴 수 없기 때문입니다.
 
 
-하지만 이와 같은 문제를 해결하는 아주 좋은 아이디어가 있는데 바로 재귀 함수를 이용하는 것입니다. 재귀 함수를 구성하기 위해서는 다음과 같은 두 가지 스텝만 머리속으로 생각하고 있으면 됩니다.* 함수에서 처리하는 것, 즉 현재 단계에서 다음 단계로 넘어가는 과정은 무엇인가?재귀 호출이 종료되는 조건은 무엇인가?일단 우리는 두 번째 질문에 대한 해답을 이미 알고 있습니다. 재귀 함수 호출이 종료되기 위한 조건은 바로 현재 처리하고 있는 Address 배열의 레벨이 (dim - 1) 이면 됩니다. 즉, Address 배열의 레벨이 (dim - 1) 이면, 이 배열의 원소들 (즉 (dim - 1) 레벨들의 Address 들) 의 next 에는 int 배열의 데이터가 들어가게 재귀 호출이 끊나게 되지요.
+하지만 이와 같은 문제를 해결하는 아주 좋은 아이디어가 있는데 바로 재귀 함수를 이용하는 것입니다. 재귀 함수를 구성하기 위해서는 다음과 같은 두 가지 스텝만 머리속으로 생각하고 있으면 됩니다.* 함수에서 처리하는 것, 즉 현재 단계에서 다음 단계로 넘어가는 과정은 무엇인가?
+* 재귀 호출이 종료되는 조건은 무엇인가?
+
+일단 우리는 두 번째 질문에 대한 해답을 이미 알고 있습니다. 재귀 함수 호출이 종료되기 위한 조건은 바로 현재 처리하고 있는 Address 배열의 레벨이 (dim - 1) 이면 됩니다. 즉, Address 배열의 레벨이 (dim - 1) 이면, 이 배열의 원소들 (즉 (dim - 1) 레벨들의 Address 들) 의 next 에는 int 배열의 데이터가 들어가게 재귀 호출이 끊나게 되지요.
+
+
 그렇다면 첫 번째 질문에 대한 답, 즉 현재 단계에서 다음 단계로 넘어 가는 과정은 무엇일까요?  이 역시 사실 간단합니다. 현재 n 레벨의 Address 배열이라면, 이들의 next 에 다음 레벨인 n + 1 레벨의 Address 배열을 지정해주고, 또 이 각각의 원소에 대해 처리하도록 하면 되는 것입니다. 
+
+
 따라서 이 생각들을 정리하면 다음과 같은 코드를 짤 수 있습니다.
+
+
 ```cpp
 
 // address 를 초기화 하는 함수이다. 재귀 호출로 구성되어 있다.
@@ -241,6 +271,7 @@ return; 
 current->next = new Address[size[current->level]];
 for(int i = 0; i != size[current->level]; i ++) { // 다음 단계로 넘어가는 과정
 (static_cast<Address *>(current->next)+ i)->level = current->level + 1;
+
 initialize_address(static_cast<Address *>(current->next) + i);
 }
 }
@@ -274,23 +305,39 @@ initialize_address(static_cast<Address *>(current->next) + i);
 ```
 
 
+
 새롭게 생성한 각각의 원소들에 대해 initialize_address 를 동일하게 수행하고 있습니다.
+
 ```cpp
+
 (static_cast<Address *>(current->next)+ i)->level = current->level + 1;
 ```
 
+
+
 위 처럼 그 current 의 next 가 가리키고 있는 원소들의 레벨 값을 다음 단계로 설정한 다음에 
+
 ```cpp
+
 initialize_address(static_cast<Address *>(current->next) + i);
 ```
 
+
+
 각각의 원소들에 대한 initialize_address 함수를 호출하게 됩니다. 참고로, 
+
 ```cpp
+
 (static_cast<Address *>(current->next) + i)
 ```
 
+
+
 라는 표현이 무슨 뜻인지는 C 언어를 충실히 배운 여러분이라면 무슨 의미인지 잘 알고 계실 것이라 생각합니다. (current->next 를 시작 주소로 하는 Address 배열의 i 번째 원소를 가리키는 포인터) 
+
+
 참고로 말하자면, 이러한 방식으로 함수를 재귀호출하게 된다면, 맨 위의 그림을 '깊이 우선 탐색' 하는 것과 동일합니다. (아래 그림 참조)
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F236DD24D5224B08D3357D7)
 
@@ -306,7 +353,6 @@ if (!current) return;
 for(int i = 0; current->level < dim - 1 && i < size[current->level]; i ++) {
 delete_address(static_cast<Address *>(current->next) + i);
 }
-
 
 delete [] current->next; 
 }
@@ -326,10 +372,8 @@ Array(int dim, int* array_size) : dim(dim)
 size = new int [dim];
 for(int i = 0; i < dim; i ++) size[i] = array_size[i];
 
-
 top = new Address;
 top->level = 0;
-
 
 initialize_address(top);
 }
@@ -338,10 +382,8 @@ Array(const Array& arr) : dim(arr.dim) 
 size = new int [dim];
 for(int i = 0; i < dim; i ++) size[i] = arr.size[i];
 
-
 top = new Address;
 top->level = 0;
-
 
 initialize_address(top);
 }
@@ -360,16 +402,13 @@ delete [] size;
 
 
 
- operator[] 문제
+###  operator[] 문제
 
 
 
 
 이제 생성을 하였는데, 문제는 어떻게 N 차원 배열의 각각의 원소에 접근하느냐 입니다. 우리의 클래스는 다른 복잡한 방법을 사용하지 않고 마치 진짜 배열을 다루던 것 처럼 [] 를 이용해서 원소에 접근하는 기능을 제공하고 싶습니다. 하지만 문제는 C++ 에는 1 개의 [] 를 취하는 연산자는 있어도 N 개의 [] 들을 취하는 연산자는 없다는 점입니다. 
-
-
 그렇다면, 여러개의 [] 들을 어떻게 처리하냐면 예를 들어 우리가
-
 ```cpp
 
 arr[1][2][3][4]
@@ -440,6 +479,7 @@ arr[1][2] = 3;
 하지만 조금만 기억을 더듬어 올라간다면, 필요할 때 int 처럼 작동하지만 int 가 아닌 클래스를 만들 수 있었습니다. 바로 int 의 Wrapper 클래스 였지요. int 의 Wrapper 클래스는 타입 변환 연산자를 제공해서 int 와의 연산을 수행하거나, 대입등을 할 때 마치 int 처럼 작동하도록 만들 수 있습니다. 그렇다면 우리는 operator[] 가 int 의 Wrapper 클래스 객체를 리턴해서, 실제 int 값에 접근할 때에는 int 변수 처럼 행동하고, 위에서 T 나 T' 처럼 원소에 접근해 가는 중간 단계의 산물일 경우, 그 중간 단계의 정보를 포함하는 것으로 사용하면 됩니다. 
 
 
+
 이러한 생각을 바탕으로 int 의 Wrapper 클래스 Int 의 얼개를 그려보자면 다음과 같습니다.
 
 ```cpp
@@ -447,7 +487,6 @@ arr[1][2] = 3;
 class Int
 {
 void* data;
-
 
 int level;
 Array* array;
@@ -676,19 +715,15 @@ return 0;
 #include <iostream>
 using namespace std;
 
-
 class Array;
 class Int;
-
 
 class Array
 {
 friend Int;
 
-
 const int dim; // 몇 차원 배열 인지
 int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
-
 
 struct Address
 {
@@ -698,22 +733,17 @@ int level; 
 void* next; 
 };
 
-
 Address* top; 
 
-
 public:
-
 
 Array(int dim, int* array_size) : dim(dim)
 {
 size = new int [dim];
 for(int i = 0; i < dim; i ++) size[i] = array_size[i];
 
-
 top = new Address;
 top->level = 0;
-
 
 initialize_address(top);
 }
@@ -722,10 +752,8 @@ Array(const Array& arr) : dim(arr.dim) 
 size = new int [dim];
 for(int i = 0; i < dim; i ++) size[i] = arr.size[i];
 
-
 top = new Address;
 top->level = 0;
-
 
 initialize_address(top);
 }
@@ -750,7 +778,6 @@ for(int i = 0; current->level < dim - 1 && i < size[current->level]; i ++) {
 delete_address(static_cast<Address *>(current->next) + i);
 }
 
-
 delete [] current->next; 
 }
 Int operator[](const int index);
@@ -760,17 +787,14 @@ delete_address(top);
 delete [] size;
 }
 
-
 };
 class Int
 {
 void* data;
 
-
 int level;
 Array* array;
 public:
-
 
 Int(int index, int _level = 0, void* _data = NULL, Array* _array = NULL) 
 : level(_level), data(_data), array(_array)
@@ -792,9 +816,7 @@ static_cast<Array::Address *>(data)->next) + index);
 }
 };
 
-
 Int(const Int& i) : data(i.data), level(i.level), array(i.array) {}
-
 
 operator int() 
 {
@@ -806,7 +828,6 @@ Int& operator=(const int& a) 
 if(data) *static_cast<int *>(data) = a ;
 return *this;
 }
-
 
 Int operator[] (const int index) 
 {
@@ -822,7 +843,6 @@ int main()
 {
 int size[] = {2, 3, 4};
 Array arr(3, size);
-
 
 for(int i = 0; i < 2; i ++) {
 for(int j = 0; j < 3; j ++) {
@@ -863,12 +883,20 @@ class Array;
 class Int;
 ```
 
+
+
 와 같이 클래스를 '선언' 하였습니다. 클래스를 선언하지 않는다면, 아래 Array 클래스에서
+
 ```cpp
+
 friend Int;
 ```
 
+
+
 를 할 수 없게 됩니다. 왜냐하면 컴파일러 입장에서 Int 가 뭔지 알 턱이 없기 때문입니다. 따라서 friend 선언을 하기 전에, 이와 같이 class Int 를 먼저 맨 위에 선언해서 사용할 수 있도록 해야 합니다. 그럼에도 불구하고, 맨 밑에
+
+
 ```cpp
 
 Int Array::operator[](const int index)
@@ -921,7 +949,6 @@ Iterator& operator++()
 {
 if(location[0] >= arr->size[0]) return (*this);
 
-
 bool carry = false; // 받아 올림이 있는지
 int i = arr->dim - 1;
 do {
@@ -935,9 +962,7 @@ carry = true;
 i --;
 } else carry = false; 
 
-
 } while (i >= 0 && carry);
-
 
 return (*this);
 }
@@ -1017,10 +1042,8 @@ Iterator begin()
 int * arr = new int[dim];
 for(int i = 0; i != dim; i ++) arr[i] = 0;
 
-
 Iterator temp(this, arr);
 delete [] arr;
-
 
 return temp;
 }
@@ -1030,10 +1053,8 @@ int * arr = new int[dim];
 arr[0] = size[0];
 for(int i = 1; i < dim; i ++) arr[i] = 0;
 
-
 Iterator temp(this, arr);
 delete [] arr;
-
 
 return temp;
 }
@@ -1054,21 +1075,17 @@ return temp;
 #include <iostream>
 using namespace std;
 
-
 class Array;
 class Int;
 class Iterator;
-
 
 class Array
 {
 friend Int;
 friend Iterator;
 
-
 const int dim; // 몇 차원 배열 인지
 int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
-
 
 struct Address
 {
@@ -1078,16 +1095,13 @@ int level; 
 void* next; 
 };
 
-
 Address* top; 
-
 
 public:
 class Iterator
 {
 int* location; 
 Array* arr;
-
 
 friend Int;
 public:
@@ -1107,7 +1121,6 @@ Iterator& operator++()
 {
 if(location[0] >= arr->size[0]) return (*this);
 
-
 bool carry = false; // 받아 올림이 있는지
 int i = arr->dim - 1;
 do {
@@ -1121,9 +1134,7 @@ carry = true;
 i --;
 } else carry = false; 
 
-
 } while (i >= 0 && carry);
-
 
 return (*this);
 }
@@ -1133,7 +1144,6 @@ arr = itr.arr;
 location = new int [itr.arr->dim];
 for(int i = 0; i != arr->dim; i ++)
 location[i] = itr.location[i];
-
 
 return (*this);
 }
@@ -1146,11 +1156,9 @@ bool operator!=(const Iterator &itr)
 {
 if(itr.arr->dim != arr->dim) return true;
 
-
 for(int i = 0; i != arr->dim; i ++) {
 if(itr.location[i] != location[i]) return true;
 }
-
 
 return false;
 }
@@ -1161,10 +1169,8 @@ Array(int dim, int* array_size) : dim(dim)
 size = new int [dim];
 for(int i = 0; i < dim; i ++) size[i] = array_size[i];
 
-
 top = new Address;
 top->level = 0;
-
 
 initialize_address(top);
 }
@@ -1173,10 +1179,8 @@ Array(const Array& arr) : dim(arr.dim) 
 size = new int [dim];
 for(int i = 0; i < dim; i ++) size[i] = arr.size[i];
 
-
 top = new Address;
 top->level = 0;
-
 
 initialize_address(top);
 }
@@ -1201,7 +1205,6 @@ for(int i = 0; current->level < dim - 1 && i < size[current->level]; i ++) {
 delete_address(static_cast<Address *>(current->next) + i);
 }
 
-
 delete [] current->next; 
 }
 Int operator[](const int index);
@@ -1211,16 +1214,13 @@ delete_address(top);
 delete [] size;
 }
 
-
 Iterator begin()
 {
 int * arr = new int[dim];
 for(int i = 0; i != dim; i ++) arr[i] = 0;
 
-
 Iterator temp(this, arr);
 delete [] arr;
-
 
 return temp;
 }
@@ -1230,10 +1230,8 @@ int * arr = new int[dim];
 arr[0] = size[0];
 for(int i = 1; i < dim; i ++) arr[i] = 0;
 
-
 Iterator temp(this, arr);
 delete [] arr;
-
 
 return temp;
 }
@@ -1242,11 +1240,9 @@ class Int
 {
 void* data;
 
-
 int level;
 Array* array;
 public:
-
 
 Int(int index, int _level = 0, void* _data = NULL, Array* _array = NULL) 
 : level(_level), data(_data), array(_array)
@@ -1268,9 +1264,7 @@ static_cast<Array::Address *>(data)->next) + index);
 }
 };
 
-
 Int(const Int& i) : data(i.data), level(i.level), array(i.array) {}
-
 
 operator int() 
 {
@@ -1282,7 +1276,6 @@ Int& operator=(const int& a) 
 if(data) *static_cast<int *>(data) = a ;
 return *this;
 }
-
 
 Int operator[] (const int index) 
 {
@@ -1310,7 +1303,6 @@ Array arr(3, size);
 Array::Iterator itr = arr.begin();
 for(int i = 0;itr != arr.end(); itr ++, i ++) (*itr) = i;
 for(itr = arr.begin();itr != arr.end(); itr ++) cout << *itr << endl;
-
 
 for(int i = 0; i < 2; i ++) {
 for(int j = 0; j < 3; j ++) {
@@ -1359,29 +1351,29 @@ for(int i = 0;itr != arr.end(); itr ++, i ++) (*itr) = i;
 
 
 
- 생각해보기### 
+
+
+###  생각해보기
+
+
 
 
 1. 앞서 N 차원 배열을 구현하는 또 다른 방법 (그냥 x1 * ... * xn 개의 1 차원 배열을 만든 뒤에, [] 연산자를 위와 같이 특별한 방법을 이용하여 접근할 수 있게 하는 것) 으로 N 차원 배열을 구현해봅시다. (난이도 : 上)
 
 
-
-
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
 
 
 
+공감sns신고
+저작자표시
 
-공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>(35)
+'C++' 카테고리의 다른 글씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>(35)
 2014.03.31씹어먹는 C++ - <6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속>(10)
 2014.03.30씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>(24)
 2013.09.04씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>(5)

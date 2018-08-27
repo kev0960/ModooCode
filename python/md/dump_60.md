@@ -1,8 +1,19 @@
+----------------
+title : 씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>
+--------------
 
 
 
 이번 강좌에서는
-* 구조체 포인터구조체를 인자로 받기구조체의 대입
+
+* 구조체 포인터
+
+* 구조체를 인자로 받기
+
+* 구조체의 대입
+
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F147DD5274BC143036690CB)
 
   안녕하세요 여러분~ 드디어 구조체의 두번째 강의를 시작하게 되었습니다. 지금 강좌를 쓰다가 느낀 건데 제가 구조체를 배웠을 때 에는 정말로 재미있게 배웠던 것 같습니다. 일단 이전 강좌에서도 말했듯이 -> 기호가 상당히 매력적으로 다가왔는데 그것 이외에도 "struct" 라는 단어를 정말 좋아했던 것 같네요. 여러분은 안그러시나요? 
@@ -10,50 +21,29 @@
 
 
 
+
+
 ###  구조체 포인터 
 연습하기
+
 일단, 이번 장의 진도를 나가기 위해선 구조체 포인터에 아주 능숙해 져야 하므로 지난번의 내용을 잠깐 복습하도록 하겠습니다. 
 
 ```cpp
 /* 포인터 갖고 놀기 */
-
 #include <stdio.h>
-
 struct TEST
-
 {
-
     int c;
-
 };
-
 int main()
-
 {
-
     struct TEST t;
-
-    struct TEST *pt = &t;
-
-    /* pt 가 가리키는 구조체 변수의 c 멤버의 값을 0 으로 한다*/
-
-    (*pt).c = 0;
-
-    printf("t.c : %d \n", t.c);
-
-    /* pt 가 가리키는 구조체 변수의 c 멤버의 값을 1 으로 한다*/
-
-    pt->c = 1; 
-
-    printf("t.c : %d \n", t.c);
-
-    return 0;
-
-}
+    struct TEST *pt = &t;    /* pt 가 가리키는 구조체 변수의 c 멤버의 값을 0 으로 한다*/
+    (*pt).c = 0;    printf("t.c : %d \n", t.c);    /* pt 가 가리키는 구조체 변수의 c 멤버의 값을 1 으로 한다*/
+    pt->c = 1;     printf("t.c : %d \n", t.c);    return 0;}
 ```
 
 성공적으로 컴파일 했다면
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F18181F034B7D593F6DD7A5)
 
@@ -62,7 +52,6 @@ int main()
 
 ```cpp
     struct TEST t;
-
     struct TEST *pt = &t;
 ```
 
@@ -71,9 +60,7 @@ int main()
 이 때, pt 는 t 의 주소값을 가지고 있으므로 pt 는 t 를 가리키게 됩니다.
 
 ```cpp
-    (*pt).c = 0;
-
-    printf("t.c : %d \n", t.c);
+    (*pt).c = 0;    printf("t.c : %d \n", t.c);
 ```
 
 
@@ -87,9 +74,7 @@ int main()
 하지만 (*pt).c 는 너무 쓰기 불편합니다. 항상 *pt 를 괄호로 닫아 주어야 하는데, 괄호는 Shift 를 누르고 키보드의 9 번과 0 번을 눌러야 하니 정말로 손가락도 아프로 불편할 따름이지요. 그래서 훌륭한 C 언어 제작자들은 새로운 편리한 연산자를 만들었습니다. 
 
 ```cpp
-    pt->c = 1; 
-
-    printf("t.c : %d \n", t.c);
+    pt->c = 1;     printf("t.c : %d \n", t.c);
 ```
 
 
@@ -97,65 +82,30 @@ int main()
 
 ```cpp
 /* 헷깔림 */
-
 #include <stdio.h>
-
 struct TEST
-
 {
-
     int c;
-
     int *pointer;
-
 };
-
 int main()
-
 {
-
     struct TEST t;
-
     struct TEST *pt = &t;
-
-    int i = 0;
-
-    /* t 의 멤버 pointer 는 i 를 가리키게 된다*/
-
-    t.pointer = &i;
-
-    /* t 의 멤버 pointer 가 가리키는 변수의 값을 3 으로 만든다*/
-
-    *t.pointer = 3;
-
-    printf("i : %d \n", i);
-
-    /*
-
-
+    int i = 0;    /* t 의 멤버 pointer 는 i 를 가리키게 된다*/
+    t.pointer = &i;    /* t 의 멤버 pointer 가 가리키는 변수의 값을 3 으로 만든다*/
+    *t.pointer = 3;    printf("i : %d \n", i);    /*
     -> 가 * 보다 우선순위가 높으므로 먼저 해석하게 된다. 
-
     즉, 
-
     (pt 가 가리키는 구조체 변수의 pointer 멤버) 가 가리키는 변수의 값을 4 로 바꾼다. 
-
     라는 뜻이다/
-
-
     */
-
-    *pt->pointer = 4;
-
-    printf("i : %d \n", i);
-
-    return 0;
-
-}
+    *pt->pointer = 4;    printf("i : %d \n", i);
+    return 0;}
 ```
 
 
 성공적으로 컴파일 했다면
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F19492E144B7D5C5B2117C3)
 
@@ -166,13 +116,9 @@ int main()
 
 ```cpp
 struct TEST
-
 {
-
     int c;
-
     int *pointer;
-
 };
 ```
 
@@ -181,9 +127,7 @@ struct TEST
 
 ```cpp
     struct TEST t;
-
     struct TEST *pt = &t;
-
     int i = 0;
 ```
 
@@ -209,79 +153,34 @@ struct TEST
 . 과 마찬가지로 -> 도 * 보다 우선순위가 높습니다. 즉, *(pt->pointer) 와 *pt->pointer 는 동일한 의미라는 것입니다. 아무튼, pt->pointer 를 통해 "pt 가 가리키는 구조체 변수의 pointer 멤버", 즉 t.pointer 을 의미할 수 *(pt->pointer) = 4 를 통해 pointer 가 가리키는 변수의 값을 4 로 바꿀 수 있게 됩니다.
 
 ```cpp
-/*
-
-구조체 포인터 연습
-
- */
-
+/*구조체 포인터 연습 */
 #include <stdio.h>
-
 int add_one(int *a);
-
 struct TEST
-
 {
-
     int c;
-
 };
-
 int main()
-
 {
-
     struct TEST t;
-
-    struct TEST *pt = &t;
-
-    /* pt 가 가리키는 구조체 변수의 c 멤버의 값을 0 으로 한다*/
-
-    pt->c = 0;
-
-    /*
-
+    struct TEST *pt = &t;    /* pt 가 가리키는 구조체 변수의 c 멤버의 값을 0 으로 한다*/
+    pt->c = 0;    /*
     add_one 함수의 인자에 t 구조체 변수의 멤버 c 의 주소값을
-
     전달하고 있다.
-
     */
-
-    add_one(&t.c);
-
-    printf("t.c : %d \n", t.c);
-
-    /*
-
+    add_one(&t.c);    printf("t.c : %d \n", t.c);    /*
     add_one 함수의 인자에 pt 가 가리키는 구조체 변수의 멤버 c
-
     의 주소값을 전달하고 있다.
-
-
     */
-
-    add_one(&pt->c);
-
-    printf("t.c : %d \n", t.c);
-
-    return 0;
-
-}
-
+    add_one(&pt->c);    printf("t.c : %d \n", t.c);    return 0;}
 int add_one(int *a)
-
 {
-
     *a += 1;
-
     return 0;
-
 }
-
 ```
 
 성공적으로 컴파일 했다면
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F146925104B7D5EF68E44B1)
 
@@ -290,7 +189,6 @@ int add_one(int *a)
 
 ```cpp
     struct TEST t;
-
     struct TEST *pt = &t;
 ```
 
@@ -311,49 +209,33 @@ int add_one(int *a)
 
 이해가 잘 되시죠?
 
-### ### 구조체의 대입
+
+
+### 구조체의 대입
+
+
+
  구조체의 복사라 하면 무언가 거창할 것 같지만 사실은 상당히 단순한 내용입니다.
 
 바로, 구조체도 보통의 변수들과 같이 = 를 사용할 수 있다는 것이지요. (= 가 대입 연산자 라는 사실은 기억하시죠??) 
 
-
 ```cpp
 #include <stdio.h>
-
 struct TEST
-
 {
-
     int i;
-
     char c;
-
 };
-
 int main()
-
 {
-
-    struct TEST st, st2;
-
-    st.i = 1;
-
-    st.c = 'c';
-
-    st2 = st;
-
-    printf("st2.i : %d \n", st2.i);
-
-    printf("st2.c : %c \n", st2.c);
-
-    return 0;
-
+    struct TEST st, st2;    st.i = 1;
+    st.c = 'c';    st2 = st;    printf("st2.i : %d \n", st2.i);
+    printf("st2.c : %c \n", st2.c);    return 0;
 }
 ```
 
 
   성공적으로 컴파일 했다면
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F203B51194B815A09E19D54)
 
@@ -362,15 +244,10 @@ int main()
 
 ```cpp
 struct TEST
-
 {
-
     int i;
-
     char c;
-
 };
-
 ```
 
 멤버가 i 와 c 인 struct TEST 를 정의하였고, 이 구조체의 변수인 
@@ -384,75 +261,39 @@ st 와 st2 를 정의하였습니다. 그리고 st 의 각 멤버에
 
 ```cpp
     st.i = 1;
-
     st.c = 'c';
-
 ```
 
 를 넣였죠. 
 
 ```cpp
     st2 = st;
-
 ```
 
 그리고 우리는 위와 같이 st 를 st2 에 대입하였습니다. 우리가 변수 i 를 j 에 대입하면 i 의 값이 j 에 그대로 복사되듯이, st2 의 멤버 i 의 값은 st 의 멤버 i 의 값과 같아지고, st2 의 멤버 c 의 값은 st 의 멤버 c 의 값과 동일해졌습니다. 이는 상당히 합리적이고 대입 연산자의 역할을 잘 해내는 것 같네요. 
 
 ```cpp
 #include <stdio.h>
-
 char copy_str(char *dest, char *src);
-
 struct TEST
-
 {
-
     int i;
-
     char str[20];
-
 };
-
 int main()
-
 {
-
-    struct TEST a,b;
-
-    b.i = 3;
-
-    copy_str(b.str, "hello, world");
-
-    a = b;
-
-    printf("a.str : %s \n", a.str);
-
-    printf("a.i : %d \n", a.i);
-
-    return 0;
-
+    struct TEST a,b;    b.i = 3;
+    copy_str(b.str, "hello, world");    a = b;    printf("a.str : %s \n", a.str);
+    printf("a.i : %d \n", a.i);    return 0;
 }
-
 char copy_str(char *dest, char *src)
-
 {
-
     while (*src)
-
     {
-
         *dest = *src;
-
         src ++;
-
         dest ++;
-
-    }
-
-    *dest = '\0';
-
-    return 1;
-
+    }    *dest = '\0';    return 1;
 }
 ```
 
@@ -465,13 +306,9 @@ char copy_str(char *dest, char *src)
 
 ```cpp
 struct TEST
-
 {
-
     int i;
-
     char str[20];
-
 };
 ```
 
@@ -479,10 +316,7 @@ struct TEST
 위와 같이 struct TEST 를 정의하였습니다. 이번에는 int i 와 char str[20] 을 멤버로 가지고 있습니다. 
 
 ```cpp
-    struct TEST a,b;
-
-    b.i = 3;
-
+    struct TEST a,b;    b.i = 3;
     copy_str(b.str, "hello, world");
 ```
 
@@ -496,44 +330,28 @@ struct TEST
 
 그리고 우리는 위와 같이 b 구조체를 a 구조체에 대입하였습니다. 따라서, b 구조체의 모든 멤버의 데이터가 a 구조체에 일대일로 대응이 되어 값이 복사됩니다. 즉, i 는 i 끼리, str 은 str 의 각 원소 끼리 쭈르륵 복사가 됩니다. 결과적으로 각각의 멤버의 값을 출력해 보면 동일하게 나옵니다.
 
-### ### 구조체를 인자로 전달하기
+
+
+### 구조체를 인자로 전달하기
+
+
+
 ```cpp
 
-/*구조체를 인자로 전달하기 */#include <stdio.h>
-struct TEST 
-{
-    int age;
-    int gender;
 
+/*구조체를 인자로 전달하기 */#include <stdio.h>struct TEST {    int age;    int gender;
 };
 int set_human(struct TEST a, int age, int gender);
-
 int main()
-
 {
-
-    struct TEST human;
-
-    set_human(human, 10, 1);
-
-    printf("AGE : %d // Gender : %d ", human.age, human.gender);
-
+    struct TEST human;    set_human(human, 10, 1);    printf("AGE : %d // Gender : %d ", human.age, human.gender);
     return 0;
-
 }
-
 int set_human(struct TEST a, int age, int gender)
-
 {
-
     a.age = age;
-
-    a.gender = gender;
-
-    return 0;
-
+    a.gender = gender;    return 0;
 }
-
 ```
 
 
@@ -548,13 +366,9 @@ int set_human(struct TEST a, int age, int gender)
 
 ```cpp
 struct TEST 
-
 {
-
     int age;
-
     int gender;
-
 };
 ```
 
@@ -563,17 +377,10 @@ struct TEST
 
 ```cpp
 int set_human(struct TEST a, int age, int gender)
-
 {
-
     a.age = age;
-
-    a.gender = gender;
-
-    return 0;
-
+    a.gender = gender;    return 0;
 }
-
 ```
 
 set_human 이라는 함수를 만들어서 TEST 구조체 변수들을 초기화 하도록 했습니다. 따라서, 
@@ -590,41 +397,18 @@ set_human 이라는 함수를 만들어서 TEST 구조체 변수들을 초기화
 
 ```cpp
 /* 인자로 제대로 전달하기 */
-
-#include <stdio.h>
-struct TEST {
-    int age;
-    int gender;
-};
-
+#include <stdio.h>struct TEST {    int age;    int gender;};
 int set_human(struct TEST *a, int age, int gender);
-
 int main()
-
 {
-
-    struct TEST human;
-
-    set_human(&human, 10, 1);
-
-    printf("AGE : %d // Gender : %d ", human.age, human.gender);
-
+    struct TEST human;    set_human(&human, 10, 1);    printf("AGE : %d // Gender : %d ", human.age, human.gender);
     return 0;
-
 }
-
 int set_human(struct TEST *a, int age, int gender)
-
 {
-
     a->age = age;
-
-    a->gender = gender;
-
-    return 0;
-
+    a->gender = gender;    return 0;
 }
-
 ```
 
 
@@ -640,17 +424,10 @@ int set_human(struct TEST *a, int age, int gender)
 
 ```cpp
 int set_human(struct TEST *a, int age, int gender)
-
 {
-
     a->age = age;
-
-    a->gender = gender;
-
-    return 0;
-
+    a->gender = gender;    return 0;
 }
-
 ```
 
 위 set_human 함수는 이전 예제에서의 set_human 함수와는 다르게 구조체의 포인터를 인자로 취하고 있습니다. 그렇기 때문에 set_human 함수를 호출할 때 에서도
@@ -667,66 +444,26 @@ int set_human(struct TEST *a, int age, int gender)
 
 ```cpp
 /* 살짝 업그레이드*/
-
-#include <stdio.h>
-struct TEST 
-{
-    int age;
-    int gender;
-    char name[20];
-};
-int set_human(struct TEST *a, int age, int gender, char *name);
-char copy_str(char *dest, char *src);
-
-
+#include <stdio.h>struct TEST {    int age;    int gender;    char name[20];};int set_human(struct TEST *a, int age, int gender, char *name);char copy_str(char *dest, char *src);
 int main()
-
 {
-
-    struct TEST human;
-
-    set_human(&human, 10, 1, "Lee");
-
-    printf("AGE : %d // Gender : %d // Name : %s \n", human.age, human.gender, human.name);
-
+    struct TEST human;    set_human(&human, 10, 1, "Lee");    printf("AGE : %d // Gender : %d // Name : %s \n", human.age, human.gender, human.name);
     return 0;
-
 }
-
 int set_human(struct TEST *a, int age, int gender, char *name)
-
 {
-
     a->age = age;
-
     a->gender = gender;
-
-    copy_str(a->name, name);
-
-    return 0;
-
+    copy_str(a->name, name);    return 0;
 }
-
 char copy_str(char *dest, char *src)
-
 {
-
     while (*src)
-
     {
-
         *dest = *src;
-
         src ++;
-
         dest ++;
-
-    }
-
-    *dest = '\0';
-
-    return 1;
-
+    }    *dest = '\0';    return 1;
 }
 ```
 
@@ -741,15 +478,10 @@ char copy_str(char *dest, char *src)
 
 ```cpp
 struct TEST 
-
 {
-
     int age;
-
     int gender;
-
     char name[20];
-
 };
 ```
 
@@ -772,17 +504,10 @@ int set_human(struct TEST *a, int age, int gender, char *name);
 
 ```cpp
 int set_human(struct TEST *a, int age, int gender, char *name)
-
 {
-
     a->age = age;
-
     a->gender = gender;
-
-    copy_str(a->name, name);
-
-    return 0;
-
+    copy_str(a->name, name);    return 0;
 }
 
 ```
@@ -806,19 +531,12 @@ int set_human(struct TEST *a, int age, int gender, char *name)
 
 ```cpp
  struct BigNum
-
 {
-
     int i_digit[100]; // 정수 부분
-
     int d_digit[100]; // 소수 부분
-
     int i_total_digit; // 전체 사용되고 있는 정수부분 자리수
-
     int d_total_digit; // 전체 사용되고 있는 소수부분 자리수
-
     char sign; // 부호, 0 이면 양수, 1 이면 음수. 0 은 양수로 간주한다. 
-
 };
 ```
 
@@ -830,17 +548,25 @@ int set_human(struct TEST *a, int age, int gender, char *name)
 참고로 BigNum 구조체를 다룰 때 중요한 점은 수의 크기가 위 배열에 들어가지 않을 정도로 클 때를 적절히 처리해 주어야 한다는 점에 있습니다. 
 
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>>입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>>입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
-1. 역시, 여기에 태클은 금물입니다.  [본문으로]공감1sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>(14)
+
+
+1. 역시, 여기에 태클은 금물입니다.  
+[본문으로]
+
+
+
+
+공감1sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>(14)
 2010.06.19씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>(20)
 2010.06.13씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>(41)
 2010.04.11씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>(26)

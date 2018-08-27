@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios::fill 함수
+--------------
+
 
 
 ```warning
@@ -12,9 +16,11 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 ios::fill
 
+
+
+
 ```info
-char fill ( ) const;
-char fill ( char fillch );
+char fill ( ) const;char fill ( char fillch );
 ```
 
 
@@ -26,76 +32,79 @@ char fill ( char fillch );
 인자를 가지는 조작자 (manipulator) setfill 역시 채우기 문자를 설정하는데 사용할 수 있다.
 
 
- 인자
+
+
+###  인자
+
+
+
 
 
 fillch
 
 새롭게 사용할 채우기 문자
 
- 리턴값
+
+
+###  리턴값
+
 
 
 함수 호출 이전에 설정되어 있던 채우기 문자.
 
- 실행 예제
+
+
+
+
+###  실행 예제
+
+
+
 
 ```cpp
-/*
-
-채우기 문자를 'x' 로 설정하고 이를 사용한다. 
-
-이 예제는
-http://www.cplusplus.com/reference/iostream/ios/fill/
-에서 가져왔습니다
-
-*/
-#include <iostream>
-using namespace std;
-
-int main () 
-{
-    char prev;
-
-    cout.width (10);
-    cout << 40 << endl;
-
-    prev = cout.fill ('x');
-    cout.width (10);
-    cout << 40 << endl;
-
-    cout.fill(prev);
-
-    return 0;
-}
+/*채우기 문자를 'x' 로 설정하고 이를 사용한다. 이 예제는http://www.cplusplus.com/reference/iostream/ios/fill/에서 가져왔습니다*/#include <iostream>using namespace std;int main () {    char prev;    cout.width (10);    cout << 40 << endl;    prev = cout.fill ('x');    cout.width (10);    cout << 40 << endl;    cout.fill(prev);    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1609C6464F6E78A9187FE3)
 
 
 
- 템플릿 멤버 정의
+
+
+###  템플릿 멤버 정의
+
+
+
 
 
 ```cpp
-( basic_ios<charT,traits> )
-
-typedef charT char_type;
-char_type fill () const;
-char_type fill ( char_type fillch );
-
-
+( basic_ios<charT,traits> )typedef charT char_type;char_type fill () const;char_type fill ( char_type fillch );
 ```
 
 
- 연관된 함수
-* setfill : 채우기 문자를 설정한다. (조작자)ios_base::width : 필드 폭을 설정하거나 그 값을 얻어온다.
 
 
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::tie 함수(0)
+###  연관된 함수
+
+
+* setfill : 채우기 문자를 설정한다. (조작자)
+
+* ios_base::width : 필드 폭을 설정하거나 그 값을 얻어온다.
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::tie 함수(0)
 2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)
 2012.03.25C++ 레퍼런스 - ios::fill 함수(0)
 2012.03.25C++ 레퍼런스 - ios::clear(0)

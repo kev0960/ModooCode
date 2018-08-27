@@ -1,38 +1,32 @@
+----------------
+title : C 언어 레퍼런스 - struct tm ( tm 구조체 )
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 
 struct tm
 
+
+
+
 ```info
 #include <time.h> // C++ 에서는 <ctime>
-
 struct tm
-
 {
-
     int tm_sec;
-
     int tm_min;
-
     int tm_hour;
-
     int tm_mday;
-
     int tm_mon;
-
     int tm_year;
-
     int tm_wday;
-
     int tm_yday;
-
     int tm_isdst;
-
 };
 ```
 
@@ -59,7 +53,13 @@ tm_wday지금이 무슨 요일 인지
 
    tm_year 의 경우 1900 년 이후의 년 수를 입력하는 것이므로 2000 년의 경우 100 이 들어가게 된다. 
 
-공감sns신고저작자표시'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - mktime 함수(0)
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - mktime 함수(0)
 2010.12.26C 언어 레퍼런스 - time_t 형(1)
 2010.12.25C 언어 레퍼런스 - difftime 함수(0)
 2010.12.25C 언어 레퍼런스 - clock 함수(2)

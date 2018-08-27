@@ -1,33 +1,21 @@
-<p>이번 강좌에서는</p><ul><li><p> 매크로 함수에 대해 배운다인라인 함수에 대해 배운다.!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F116007104CE883F6707510' alt=''></li></ul><p>안녕하세요 여러분. 저의 36 번째 강좌가 시작되었습니다. 요즘에 뒤로 갈 수 록 강좌들의 댓글 수가 적어지는 것을 보아 처음에 큰마음 먹고 강좌 보기를 시작하였다가 시간적 여유의 한계나 온라인 상의 한계를 느끼고 포기하신 분들이 많은 것 같은데 과연 누가 여기 까지 성공적으로 달려왔는지 궁금하네요. 전체 강좌의 앞부분은 C 언어 자체를 아는데 주력하였다면 후반으로 갈 수록 C 언어 자체를 이해하기 보다는 C 언어와 친해지는 과정으로 진행이 되고 있습니다.    </p><p>아무튼. 적어도 제 강좌만 다 이해한다면 C 의 기초 부분은 훌륭하게 다진 프로그래머로 만들어 줄 수 있으니 열심히 따라와주세요:)    </p><h3><p>  매크로 함수### </p></h3><pre class="chroma"><span class="cm">/* 매크로 함수*/</span>
-
+<p>이번 강좌에서는</p><ul><li><p> 매크로 함수에 대해 배운다</p></li><li><p> 인라인 함수에 대해 배운다.</p></li></ul><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F116007104CE883F6707510' alt=''><p>안녕하세요 여러분. 저의 36 번째 강좌가 시작되었습니다. 요즘에 뒤로 갈 수 록 강좌들의 댓글 수가 적어지는 것을 보아 처음에 큰마음 먹고 강좌 보기를 시작하였다가 시간적 여유의 한계나 온라인 상의 한계를 느끼고 포기하신 분들이 많은 것 같은데 과연 누가 여기 까지 성공적으로 달려왔는지 궁금하네요. 전체 강좌의 앞부분은 C 언어 자체를 아는데 주력하였다면 후반으로 갈 수록 C 언어 자체를 이해하기 보다는 C 언어와 친해지는 과정으로 진행이 되고 있습니다.    </p><p>아무튼. 적어도 제 강좌만 다 이해한다면 C 의 기초 부분은 훌륭하게 다진 프로그래머로 만들어 줄 수 있으니 열심히 따라와주세요:)    </p><h3><p>  매크로 함수</p></h3><pre class="chroma"><span class="cm">/* 매크로 함수*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define square(x) x *x</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define square(x) x *x</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">square(3) : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면    </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1574AB204C597BDD8BE6F9' alt='""'><p>와 같이 나옵니다.     </p><p>매크로 함수를 정의하는 방법은 아래와 같습니다.    </p><pre class="chroma">#define 함수 이름(인자) 치환할 것
+</pre><p>성공적으로 컴파일 하였다면    </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1574AB204C597BDD8BE6F9' alt='""'><p>와 같이 나옵니다.     </p><p>매크로 함수를 정의하는 방법은 아래와 같습니다.    </p><pre class='info'>#define 함수 이름(인자) 치환할 것
 </pre><p>그렇다면    </p><pre class="chroma"><span class="cp">#</span><span class="cp">define square(x) x* x</span><span class="cp">
 </span><span class="cp"></span></pre><p>  위 문장의 의미는 square 라는 이름의 매크로 함수고 인자로 x 를 x<span class='font-italic'>x 로 치환한다는 의미 입니다. #define 문은 앞서 배웠듯이 '어떠한 것을 다른 것으로 치환해주는 것' 이라고 배웠습니다. 여기서도 그 역할이 똑같습니다. squre(x) 부분을 x</span>x 로 치환해주게 되지요. 따라서     </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">square(3) : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
 </pre><p>위 문장은     </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">square(3) : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span><span class="p">;</span>
 </pre><p>과 정확히 동일하게 됩니다. 위와 같은 것을 '매크로 함수' 라 부르는 이유는 정말 하는 일이 함수와 비슷하기 때문입니다. 만일 우리가 int squre(x) 라는 함수를 만들어서 x<span class='font-italic'>x 를 리턴하게 하였다면 말그대로 3</span>3 이 리턴될 것이지요. 하지만 이 매크로 함수와 진짜 함수는 엄연한 차이가 있습니다.    </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">square(3) : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
 </pre><p>우리가 컴파일러라고 생각하고 위 문장을 어떻게 해석할지 봅시다. 만일 int squre(int x) 라는 실제 함수가 있다면 'square 라는 함수를 호출해서 인자에 3 을 전달하고 9 를 리턴한다' 가 됩니다. 하지만 매크로 함수는 위 문장이 컴파일 되기 전에 전처리기에 의해 그냥    </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">square(3) : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span><span class="p">;</span>
 </pre><p>로 바뀌어 버립니다. 여기서 중요한 점은 '컴파일 되기 전에' 부분에 있지요. 다시 말해 컴퓨터는 함수를 호출하고 뭐시기 뭐시기 하는 부분 없이 그냥 3<span class='font-italic'>3 을 계산해 버립니다. 이는 앞서 보았던 #define 문을 통한 치환과 동일합니다.     </p><pre class="chroma"><span class="cm">/* 매크로 함수*/</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define square(x) x *x</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define square(x) x *x</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">square(3) : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>성공적으로 컴파일 하였다면    </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F112AFA224C8F0EC197F54B' alt='""'><p>흠. 조금 놀라운 결과가 나왔습니다.    </p><p>분명히     </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">square(3) : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
@@ -36,16 +24,10 @@
 </span><span class="cp"></span></pre><p>를     </p><pre class="chroma"><span class="cp">#</span><span class="cp">define square(x) (x) * (x)</span><span class="cp">
 </span><span class="cp"></span></pre><p>로 바꾸어 주기만 하면 됩니다. 그렇게 된다면 printf 안에 있었던 문장은    </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">square(3) : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
 </pre><p>가 되어 16 이 성공적으로 출력될 것입니다.     </p><pre class="chroma"><span class="cm">/* 라디안에서 도로 바꾸기*/</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define RADTODEG(x) (x) * 57.295</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define RADTODEG(x) (x) * 57.295</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">5 rad 는 : %f 도</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">RADTODEG</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>  성공적으로 컴파일 하였다면    </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1904F7164C8F12790B161E' alt='""'><p>아마 위 소스 코드의 내용 보다 라디안(radian) 이 무엇인지 모르는 분들이 더 많을 듯 한데, 그냥 말하자면 원주의 길이와 반지름의 길이의 비를 이용해 각도를 나타내는 단위로 자세한 내용은 생략하고 여기서는 단순히 1 rad 는 57.295 도 라는 것만 아시면 됩니다.     </p><pre class="chroma"><span class="cp">#</span><span class="cp">define RADTODEG(x) (x) * 57.295</span><span class="cp">
@@ -54,18 +36,11 @@
 </pre><p>로 잘 바뀌어 값이 잘 출력되었습니다. 물론 RADTODEG(1+4) 를 하더라도 (1+4) <span class='font-italic'> 57.295 로 잘 바뀌어 원하는 결과를 출력할 수 있게 되지요. 그렇다면 위와 같이 정의한 RADTODEG 는 문제가 없을까요? 한 5 초 만 생각해보세요. 위와 같이 완벽하게 잘 정의했다고 하더라도 문제는 있습니다. 바로 아래와 같은 문장이지요    </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">5 rad 는 : %f 도</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">RADTODEG</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
 </pre><p>위 문장은 전처리기에 의해    </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">5 rad 는 : %f 도</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">*</span> <span class="mf">57.295</span><span class="p">)</span><span class="p">;</span>
 </pre><p>로 바뀝니다. 이는 우리가 원하는 결과인 1 / (5 <span class='font-italic'> 57.295) 와 전혀 다른 것이지요. 이와 같은 문제를 막기 위해서 역시 전체 수식을 소괄호로 감싸 #define RADTODEG(x) ((x) </span> 57.295) 와 같이 만들어야 합니다. 상당히 귀찮은 일이지요. 사소한 실수 하나로 꽤 큰 문제가 초래될 수 있으니까요.    </p><pre class="chroma"><span class="cm">/* 변수의 이름 출력하기 */</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define PrintVariableName(var) printf(#var &#34;\n&#34;);</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define PrintVariableName(var) printf(#var &#34;\n&#34;);</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-
   <span class="n">PrintVariableName</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>성공적으로 컴파일 하였다면    </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F140BEE1D4C8F14514649BF' alt='""'><p>와 같이 잘 나옵니다.    </p><pre class="chroma"><span class="cp">#</span><span class="cp">define PrintVariableName(var) printf(#var &#34;\n&#34;);</span><span class="cp">
@@ -75,52 +50,46 @@
     <span class="sa"></span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 </pre><p>으로 바뀌게 되지요. 이 때 C 언어에서 연속한 두 개의 문자열은 그냥 하나로 합쳐지므로 위 코드는 그냥    </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
 </pre><p>와 동일하게 됩니다. 따라서 결과적으로 a 가 화면에 출력되는 것이지요. 여러분은 # 가 붙으면 단순히 '이 것을 문자열로 바꾼다' 라고 생각만 해주시면 됩니다.     </p><pre class="chroma"><span class="cm">/* ## 의 사용 */</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="cp">#</span><span class="cp">define AddName(x, y) x##y</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">define AddName(x, y) x##y</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">AddName</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">ab</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">ab</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>  성공적으로 컴파일 하였다면    </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F114F850C4C8F1D4D15BA94' alt='""'><p>와 같이 나옵니다.     </p><p>이번에는 # 의 친구 격인 ## 에 대해 보도록 합시다. 한 가지 명심할 점은 # 나 ## 모두 '전처리기 문' 에서만 사용할 수 있다는 것입니다. 즉 #define 에서만 사용할 수 있다는 정도로만 알아두세요. ## 문은 아마 짐작했지만 입력된 것을 하나로 '합쳐주는' 역할을 합니다.     </p><pre class="chroma"><span class="cp">#</span><span class="cp">define AddName(x, y) x##y</span><span class="cp">
 </span><span class="cp"></span></pre><p>위와 같이 AddName 에서는 x##y 는 'x' 에 있는 것과 'y' 에 있는 것을 하나로 합쳐줍니다. 따라서     </p><pre class="chroma">
 <span class="kt">int</span> <span class="nf">AddName</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-</pre><p>이 부분은 전처리기에 의해```cpp</p><p>    int ab;</p><pre class="chroma">
-로 정확히 치환됩니다
-    .따라서 컴파일러는 ab 라는 이름의 변수를 선언하게 되고 그 뒤로 쭉 가는
-        것이지요
-    .매크로함수가 위와 같이 여러 편리한 점들은 있지만 앞서 집고 나간 것 처럼
-        여러가지 어려운 문제점들도 많습니다
-    .위에서 처럼 괄호를 제대로 쓰지 않아 오류가 나는 경우가 많은데 이 경우
-        디버깅하기가 매우 까다롭기 때문에 오랜 시간을 잡아먹는 경우도 많습니다
-    .이러한 문제를 해결하기 위해 C 언어에서는 또다른 해결책을 제시하였는데요,
-    이는 바로 인라인(inline) 함수 입니다.## #인라인 함수## #
-</pre><p>cpp</p><p>/<span class='font-italic'> 인라인 함수 </span>/#include <stdio.h><span class='font-weight-bold'>inline int square(int a){  return a<span class='font-italic'>a;}int main(int argc, char </span><span class='font-italic'>argv){printf("%d", square(3));    return 0;}</p><pre class="chroma">
-성공적으로 컴파일 하였다면![&#34;&#34;](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F12778B224C8F233008B8C8)
+</pre><p>이 부분은 전처리기에 의해</p><pre class="chroma">
+<span class="kt">int</span> <span class="n">ab</span><span class="p">;</span>
+</pre><p>로 정확히 치환됩니다. 따라서 컴파일러는 ab 라는 이름의 변수를 선언하게 되고 그 뒤로 쭉 가는 것이지요. </p><p>매크로함수가 위와 같이 여러 편리한 점들은 있지만 앞서 집고 나간 것 처럼 여러가지 어려운 문제점들도 많습니다. 위에서 처럼 괄호를 제대로 쓰지 않아 오류가 나는 경우가 많은데 이 경우 디버깅하기가 매우 까다롭기 때문에 오랜 시간을 잡아먹는 경우도 많습니다. 이러한 문제를 해결하기 위해 C 언어에서는 또다른 해결책을 제시하였는데요, 이는 바로 인라인(inline) 함수 입니다. </p><h3><p>  인라인 함수</p></h3><pre class="chroma">
+<span class="cm">/* 인라인 함수 */</span>
 
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kr">__inline</span> <span class="kt">int</span> <span class="nf">square</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
 
-음. 일단 내용만을 보아서는 크게 어렵지 않습니다.</pre><p>cpp
-<span class='font-weight-bold'>inline int square(int a)
-{
-  return a<span class='font-italic'>a;
-}
-```</p><p>위 부분은 <span class='font-weight-bold'>inline 을 빼고 본다면 단순히 square 라는 함수를 만든데 지나지 않습니다. 또한 printf 에서도 역시 함수를 호출했던 것처럼 똑같은 방식으로 ```cppprintf("%d", square(3));</p><pre class="chroma">
-로 사용하고 있지요.하지만 이는 함수와는 전혀 다른 행동을 합니다
-    .함수의 경우 호출을 하게 되면 프로그램의 흐름이 완전히 다른 곳으로 넘어가게
-        됩니다.예를 들어서
-</pre><p>cpp</p><p>int cubic(int a)   </p><p>{    </p><p>    return a<span class='font-italic'>a</span>a;    </p><p>}</p><pre class="chroma">
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
 
-와 같은 세제곱을 하는 ‘평범한’ 함수 하나를 만들고, main 함수에서
-</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   </p><p>{    </p><p>    printf("%d", cubic(3));    return 0;   </p><p>}</p><pre class="chroma">
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="o">*</span><span class="n">argv</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F12778B224C8F233008B8C8' alt='""'><p>음. 일단 내용만을 보아서는 크게 어렵지 않습니다. </p><pre class="chroma">
+<span class="kr">__inline</span> <span class="kt">int</span> <span class="nf">square</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>위 부분은 <span class='font-weight-bold'>inline 을 빼고 본다면 단순히 square 라는 함수를 만든데 지나지 않습니다. 또한 printf 에서도 역시 함수를 호출했던 것처럼 똑같은 방식으로 </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+</pre><p>로 사용하고 있지요. 하지만 이는 함수와는 전혀 다른 행동을 합니다. 함수의 경우 호출을 하게 되면 프로그램의 흐름이 완전히 다른 곳으로 넘어가게 됩니다. 예를 들어서</p><pre class="chroma"><span class="kt">int</span> <span class="nf">cubic</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
+</pre><p>와 같은 세제곱을 하는 ‘평범한’ 함수 하나를 만들고, main 함수에서```cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   {        printf("%d", cubic(3));    return 0;   }</p><pre class="chroma">
 
 와 같이 cubic 함수를 호출을 하게 된다면, cubic(3) 을 실행 시,
     프로그램의 흐름이 main 함수를 벗어나 메모리 어딘가에 위치한 cubic 함수에
@@ -143,10 +112,10 @@
     .위에서 inline 형식으로 만든 square 함수는 우리가 생각하는 함수가 전혀
         아닙니다.단순히 ‘함수 처럼 보이는 것’ 일 뿐이지요.inline 함수를 사용하게
             되면 마치 매크로 함수처럼
-</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   </p><p>{    </p><p>    printf("%d", square(3));    return 0;   </p><p>}</p><pre class="chroma">
+</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   {        printf("%d", square(3));    return 0;   }</p><pre class="chroma">
 
 위 코드가
-</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   </p><p>{    </p><p>    printf("%d", 3 <span class='font-italic'> 3);    return 0;   </p><p>}</p><pre class="chroma">
+</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   {        printf("%d", 3 <span class='font-italic'> 3);    return 0;   }</p><pre class="chroma">
 
 과 정확히 동일해집니다
     .한 가지 매크로 함수와 차이점이 있다면 매크로 함수와는 달리 인라인 함수는
@@ -158,21 +127,28 @@
                     것처럼’ 바꿔 줍니다.
 
     다시 말해
-</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   </p><p>{    </p><p>    printf("%d", square(3+1));    return 0;   </p><p>}</p><pre class="chroma">
+</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   {        printf("%d", square(3+1));    return 0;   }</p><pre class="chroma">
 
 과 같은 문장은 우리가 보통 함수를 사용 하는 것처럼 처리가 되기 때문에 똑똑하게
-</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   </p><p>{    </p><p>    printf("%d", (3+1)<span class='font-italic'>(3+1));    return 0;   </p><p>}</p><pre class="chroma">
+</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   {        printf("%d", (3+1)<span class='font-italic'>(3+1));    return 0;   }</p><pre class="chroma">
 
 이 됩니다.
-</pre><p>cpp</p><p>/<span class='font-italic'> 다른 인라인 함수 예제</span>/#include <stdio.h>   </p><p><span class='font-weight-bold'>inline int max(int a, int b)    </p><p>{    </p><p>    if(a > b)    </p><p>        return a;    </p><p>    else    </p><p>        return b;    </p><p>}int main(int argc, char <span class='font-weight-bold'>argv)   </p><p>{    </p><p>    printf("3 과 2 중 최대값은 : %d", max(3,2));    </p><p>    return 0;    </p><p>}    </p><pre class="chroma">
+</pre><p>cpp</p><p>/<span class='font-italic'> 다른 인라인 함수 예제</span>/#include <stdio.h>   <span class='font-weight-bold'>inline int max(int a, int b)    {        if(a > b)            return a;        else            return b;    }int main(int argc, char </span>argv)   {        printf("3 과 2 중 최대값은 : %d", max(3,2));        return 0;    }    </p><pre class="chroma">
 
-성공적으로 컴파일 하였다면![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F11402F164CE8823F55E151)
+성공적으로 컴파일 하였다면
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F11402F164CE8823F55E151)
+
 
 
 와 같이 나옵니다.
+
+
 이번에도 역시 인라인 함수를 사용하였습니다. 컴파일러는 max(3,2) 라는 문장을 보고 max 함수 내부의 코드를 어떻게 하면 printf 안에 쑤셔 놓을 수 있을지 고민을 하게 되는데, 만일 쑤셔 놓을 수 있다면 인라인 함수의 역할이 발휘되는 것이고 쑤셔 놓을 수 없다고 판명된다면 단순히 int 형을 ‘리턴’ 하는 함수로 간주하여 보통 함수처럼 생각하게 됩니다. 즉, inline 키워드를 빼버린다고 보면 됩니다. 
+
+
 다행히도 이 max 함수의 경우 한 문장으로 표현할 수 있는데 아마 컴파일러는 이 함수의 내용을 아마
-</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   </p><p>{    </p><p>    printf("%d 과 %d 중 최대값은 : %d \n", 3,2, 3>2?3:2);    </p><p>    return 0;    </p><p>}</p><pre class="chroma">
+</pre><p>cpp</p><p>int main(int argc, char <span class='font-weight-bold'>argv)   {        printf("%d 과 %d 중 최대값은 : %d \n", 3,2, 3>2?3:2);        return 0;    }</p><pre class="chroma">
 
 같은 문장으로 변환 시켜서 3 이 출력되게 할 것입니다. 
 
@@ -185,86 +161,20 @@
 
 
 1. 다음과 같은 인라인 함수를 여러분이 컴파일러라면 어떻게 하나의 문장으로 바꿀 수 있는지 생각해보세요.
-</pre><p>cpp</p><p><span class='font-weight-bold'>inline int some<span class='font-italic'>function(int a)</p><p>{</p><p>    if(a == 0)</p><p>        return 1;</p><p>    else if(a == 1)</p><p>        return 3;</p><p>    else</p><p>        return a <span class='font-italic'> 2;</p><p>}</p><pre class="chroma">
-</pre><p>warning</p><p>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. </p><p>현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 </p><p>다음 강좌 보러가기</p><p>```
+</pre><p>cpp</p><p><span class='font-weight-bold'>inline int some<span class='font-italic'>function(int a){    if(a == 0)        return 1;    else if(a == 1)        return 3;    else        return a </span> 2;}</p><pre class="chroma">
+</pre><p>warning</p><p>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기</p><p>```
 
-공감sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <23 - 1. 파일 하고 이야기 하기 (파일 입출력에 대한 기본적 이해)>(34)
+
+
+
+공감sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <23 - 1. 파일 하고 이야기 하기 (파일 입출력에 대한 기본적 이해)>(34)
 2010.12.28씹어먹는 C 언어 - <22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)>(23)
 2010.12.25씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>(42)
 2010.11.21씹어먹는 C 언어 - <20 - 2. 메모리 동적할당 + 메모리 갖고 놀기>(38)
 2010.09.13씹어먹는 C 언어 - <20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)>(35)
 2010.08.03씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>(32)
 2010.08.02
-</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+</p>

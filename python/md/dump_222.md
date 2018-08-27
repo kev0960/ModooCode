@@ -1,7 +1,20 @@
+----------------
+title : 씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>
+--------------
 
 
 
-.이번 강좌에서는* 의존 타입 (dependent type)Unit 라이브러리 만들기auto 키워드에 대해서 배웁니다.
+
+.이번 강좌에서는
+* 의존 타입 (dependent type)
+
+* Unit 라이브러리 만들기
+
+* auto 키워드
+
+
+에 대해서 배웁니다.
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2634C0465958BE17369176)
 
 
@@ -13,17 +26,15 @@
 
 
 
- 지난 강의 생각해보기 문제
+###  지난 강의 생각해보기 문제
+
 
 
 
 지난번 생각해보기 문제는 아래와 같습니다.
-
-
 ```info
 
 1. TMP 를 사용해서 어떤 수가 소수인지 아닌지를 판별하는 프로그램을 만들어보세요. (난이도 : 상)
-
 
 int main()
 {
@@ -46,11 +57,9 @@ bool is_prime(int N)
 if (N == 2) return true;
 if (N == 3) return true;
 
-
 for (int i = 2; i <= N / 2; i++) {
 if (N % i == 0) return false;
 }
-
 
 return true;
 }
@@ -67,24 +76,20 @@ struct is_prime<2> {
 static const bool result = true;
 };
 
-
 template <>
 struct is_prime<3> {
 static const bool result = true;
 };
-
 
 template<int N>
 struct is_prime {
 static const bool result = !check_div<N, 2>::result;
 };
 
-
 template<int N, int d>
 struct check_div {
 static const bool result = (N % d == 0) || check_div<N, d + 1>::result;
 };
-
 
 template<int N>
 struct check_div<N, N / 2> {
@@ -136,23 +141,19 @@ struct INT {
 static const int num = N;
 };
 
-
 template <typename a, typename b>
 struct add {
 typedef INT<a::num + b::num> result;
 };
-
 
 template <typename a, typename b>
 struct divide {
 typedef INT<a::num / b::num> result;
 };
 
-
 using one = INT<1>;
 using two = INT<2>;
 using three = INT<3>;
-
 
 ```
 
@@ -166,7 +167,6 @@ using one = INT<1>;
 using two = INT<2>;
 using three = INT<3>;
 
-
 template <typename N, typename d>
 struct check_div {
 // result 중에서 한 개라도 true 면 전체가 true
@@ -175,31 +175,25 @@ static const bool result
 };
 
 
-
-
 template <typename N>
 struct is_prime {
 static const bool result = !check_div<N, two>::result;
 };
-
 
 template<>
 struct is_prime<two> {
 static const bool result = true;
 };
 
-
 template<>
 struct is_prime<three> {
 static const bool result = true;
 };
 
-
 template <typename N>
 struct check_div <N, divide<N, two>::result> {
 static const bool result = (N::num % (N::num / 2) == 0);
 };
-
 
 ```
 
@@ -207,41 +201,82 @@ static const bool result = (N::num % (N::num / 2) == 0);
 
 그런데 컴파일 한다면 다음과 같은 오류를 보게 됩니다. 
 
+
 ```warning
+
 'check_div': 'divide<N,two>::result' is not a valid template type argument for parameter 'd'
 ```
 
+
+
 왜 저런 오류가 발생하였을까요? 일단 오류가 발생하는 다음 두 부분의 코드를 살펴보겠습니다.
+
 ```cpp
+
 (N::num % d::num == 0) || check_div<N, add<d, one>::result>::result; 
 ```
 
+
+
 와
+
 ```cpp
+
 struct check_div <N, divide<N, two>::result> {
 ```
 
+
+
 입니다. 먼저 컴파일러 입장에서 저 ::result 를 어떻게 해석할지에 대해 생각해봅시다. 물론 우리는 add<d, one>::result 가 언제나 INT<> 타입 이라는 사실을 알고 있습니다. 왜냐하면 typename 인자로 들어오는 N 과 d 가 항상 INT 타입이기 때문에 저 result 를 항상 '타입'이네 라고 생각할 것입니다. 
+
+
 그런데, 컴파일러에 구조상 어떠한 식별자(변수 이름이든 함수 이름이든 코드 상의 이름들 - 위 코드의 경우 add, check_div,, result, one 등등 ... ) 를 보았을 때 이 식별자가 '값' 인지 '타입' 인지 결정을 해야 합니다. 왜냐하면 예를들어서 
+
 ```info
-template <typename T>int func() {T::t* p;}
-class A {const static int t;};
-class B {using t = int; };
+
+template <typename T>
+int func() {
+T::t* p;
+}
+
+class A {
+const static int t;
+};
+
+class B {
+using t = int; 
+};
 ```
 
+
+
 위와 같은 템플릿 함수에서 저 문장을 해석할 때 만약에 클래스 A 에 대해서, func 함수를 특수화 한다면, t 가 어떠한 int 값이 되어서 
+
 ```info
+
 T::t * p;
 ```
 
+
+
 위 문장은 단순히 클래스 A 의 t 와 p 를 곱하는 식으로 해석이 됩니다.
+
+
 반면에 func 함수가 클래스 B 에 대해서 특수화 된다면, 
+
 ```info
+
 T::t* p;
 ```
 
+
+
 이 문장은 int 형 포인터 p 를 선언하는 꼴이 되겠지요. 따라서 컴파일러가 이 두 상황을 명확히 구분하기 위해 저 T::t 가 타입인지 아니면 값인지 명확하게 알려줘야만 합니다. 
+
+
 우리가 쓴 코드도 마찬가지로 컴파일러가 'result' 가 항상 '타입' 인지 아니면 '값' 인지 알 수 없습니다. 예컨대 만약에 
+
+
 ```info
 
 template <>
@@ -258,20 +293,29 @@ const static int result = a + b;
 따라서 컴파일러가 저 문장을 성공적으로 해석하기 위해서는 우리가 반드시 "야 저 result 는 무조건 타입이야" 라고 알려주어야만 합니다. 이를 위해서는 간단히 아래 코드 처럼
 
 ```cpp
+
 struct check_div <N, typename divide<N, two>::result> {
 ```
+
 
 
 'typename' 키워드를 붙여주면 됩니다. 마찬가지로 
 
 ```cpp
+
 (N::num % d::num == 0) || check_div<N, add<d, one>::result>::result; 
 ```
 
+
+
 에서 typename 키워드를 붙인다면 
+
 ```cpp
+
 (N::num % d::num == 0) || check_div<N, typename add<d, one>::result>::result; 
 ```
+
+
 
 이 되겠지요. 참고로 의존 '값' 의 경우 typename 을 안 붙여줘도 됩니다. 컴파일러는 어떤 식별자를 보았을 때 기본으로 '값' 이라고 생각합니다. 따라서 check_div 앞에 아무것도 안올 수 있는 것입니다 (check_div 의 result 는 static const bool 이기 때문에!) 
 
@@ -287,9 +331,7 @@ static const bool result
 = (N::num % d::num == 0) || check_div<N, typename add<d, one>::result>::result;
 };
 
-
 // 생략
-
 
 template <typename N>
 struct check_div <N, typename divide<N, two>::result> {
@@ -328,29 +370,24 @@ static const bool result = _is_prime<INT<N>>::result;
 #include <typeinfo>
 using namespace std;
 
-
 template <int N>
 struct INT {
 static const int num = N;
 };
-
 
 template <typename a, typename b>
 struct add {
 typedef INT<a::num + b::num> result;
 };
 
-
 template <typename a, typename b>
 struct divide {
 typedef INT<a::num / b::num> result;
 };
 
-
 using one = INT<1>;
 using two = INT<2>;
 using three = INT<3>;
-
 
 template <typename N, typename d>
 struct check_div {
@@ -360,25 +397,20 @@ static const bool result
 };
 
 
-
-
 template <typename N>
 struct _is_prime {
 static const bool result = !check_div<N, two>::result;
 };
-
 
 template<>
 struct _is_prime<two> {
 static const bool result = true;
 };
 
-
 template<>
 struct _is_prime<three> {
 static const bool result = true;
 };
-
 
 template <typename N>
 struct check_div <N, typename divide<N, two>::result> {
@@ -386,19 +418,17 @@ static const bool result = (N::num % (N::num / 2) == 0);
 };
 
 
-
-
 template <int N>
 struct is_prime {
 static const bool result = _is_prime<INT<N>>::result;
 };
-
 
 int main()
 {
 cout << boolalpha;
 cout << "Is 2 prime ? :: " << is_prime<2>::result << endl;
 cout << "Is 10 prime ? :: " << is_prime<10>::result << endl;
+
 cout << "Is 11 prime ? :: " << is_prime<11>::result << endl;
 cout << "Is 61 prime ? :: " << is_prime<61>::result << endl;
 }
@@ -424,21 +454,17 @@ cout << "Is 61 prime ? :: " << is_prime<61>::result << endl;
 
 
 
+
 ###  단위(Unit) 라이브러리
 
 
 
+
 C++ 코드를 작성하는 이유는 여러가지가 있겠지만, 그 중 하나로 바로 여러 수치 계산을 사용하는데에도 많이 사용합니다. 예를 들어서 인공위성의 궤도를 계산한다던지, 입자의 운동을 계산한다던지 말이지요. 이러한 물리적 수치 계산 시에 꼭 필요한 것이 바로 '단위' 입니다. 
-
-
 단위라 하면 쉽게 말해 킬로그램 (kg), 미터 (m), 초 (s) 등을 생각하시면 됩니다. 이러한 것들을 계산하는 프로그램들의 경우, double 이나 float 변수에 들어가는 값에는 '단위' 가 붙어서 들어가겠지요. 
 
-
 예를 들어서 핸드폰의 가속도 센서에서 부터 데이터를 받는 프로그램은 아마도 m/s^2 단위로 데이터를 받겠지요. 혹은 시계로 부터 데이터를 받는 프로그램은 s 단위로 데이터를 받을 것 입니다. 
-
-
 아무튼 이렇게 단위가 붙은 데이터를 처리할 때 중요한 점은 바로 데이터를 연산할 때 항상 단위를 확인해야 된다는 점입니다. 예를 들어서, 다음과 같은 코드가 있다고 생각해봅시다.
-
 ```cpp
 
   float v1, v2; // v1, v2 는 속도 
@@ -485,7 +511,6 @@ using M = U; // kg
 using L = V; // m 
 using T = W; // s
 
-
 using type = Dim <M, L, T>;
 };
 ```
@@ -495,6 +520,7 @@ using type = Dim <M, L, T>;
 
 
 예를 들어서 속도의 경우 m/s 이므로, 저 Dim 클래스로 표현하자면 Dim<0, 1, -1> 로 나타낼 수 있습니다. 왜냐하면 m/s = kg^0 m^1 s^-1 이기 때문이지요.
+
 
 
 마찬가지로 힘의 경우 단위가 kg m /s^2 이므로 Dim 클래스로 표현하자면 Dim<1, 1, -2> 가 됩니다. 
@@ -530,7 +556,6 @@ typename Ratio_add<typename U::L, typename V::L>::type,
 typename Ratio_add<typename U::T, typename V::T>::type> type;
 };
 
-
 template<typename U, typename V>
 struct subtract_dim_ {
 typedef Dim <
@@ -564,6 +589,7 @@ using dim_type = D;
 자 이제, 실제로 quantity 객체를 가지고 연산을 수행하기 위해서는 우리가 연산자들을 오버로드 해줘야만 합니다. 일단 간단히 + 와 - 연산자를 어떻게 오버로드 할 지 생각해봅시다. 앞서 말했듯이, 두 개의 데이터를 더하거나 빼기 위해서는 반드시 단위가 일치해야 합니다. 이 말은, dim_type 이 같은 타입이어야만 하다는 것이지요. 
 
 
+
 따라서 operator+ 와 operator- 는 다음과 같이 간단히 정의할 수 있습니다. 
 
 ```cpp
@@ -571,7 +597,6 @@ using dim_type = D;
 quantity operator+(quantity<T, D> quant) {
 return quantity<T, D>(q + quant.q);
 }
-
 
 quantity operator-(quantity<T, D> quant) {
 return quantity<T, D>(q - quant.q);
@@ -590,13 +615,11 @@ return quantity<T, D>(q - quant.q);
 #include <iostream>
 using namespace std;
 
-
 template <int X, int Y>
 struct GCD
 {
 static const int value = GCD<Y, X%Y>::value;
 };
-
 
 template <int X>
 struct GCD<X, 0>
@@ -604,13 +627,11 @@ struct GCD<X, 0>
 static const int value = X;
 };
 
-
 template <int N, int D = 1>
 struct Ratio
 {
 private:
 const static int _gcd = GCD<N, D>::value;
-
 
 public:
 typedef Ratio<N / _gcd, D / _gcd> type;
@@ -623,10 +644,8 @@ struct _Ratio_add
 using type = Ratio <R1::num * R2::den + R2::num * R1::den, R1::den * R2::den>;
 };
 
-
 template <class R1, class R2>
 struct Ratio_add : _Ratio_add<R1, R2>::type {};
-
 
 template <class R1, class R2>
 struct _Ratio_subtract
@@ -634,10 +653,8 @@ struct _Ratio_subtract
 using type = Ratio <R1::num * R2::den - R2::num * R1::den, R1::den * R2::den>;
 };
 
-
 template <class R1, class R2>
 struct Ratio_subtract : _Ratio_subtract<R1, R2>::type {};
-
 
 template <class R1, class R2>
 struct _Ratio_multiply
@@ -645,17 +662,14 @@ struct _Ratio_multiply
 using type = Ratio <R1::num * R2::num , R1::den * R2::den>;
 };
 
-
 template <class R1, class R2>
 struct Ratio_multiply : _Ratio_multiply<R1, R2>::type {};
-
 
 template <class R1, class R2>
 struct _Ratio_divide
 {
 using type = Ratio < R1::num * R2::den, R1::den * R2::num>;
 };
-
 
 template <class R1, class R2>
 struct Ratio_divide : _Ratio_divide<R1, R2>::type {};
@@ -666,10 +680,8 @@ using M = U;
 using L = V;
 using T = W;
 
-
 using type = Dim <M, L, T>;
 };
-
 
 template<typename U, typename V>
 struct add_dim_ {
@@ -679,7 +691,6 @@ typename Ratio_add<typename U::L, typename V::L>::type,
 typename Ratio_add<typename U::T, typename V::T>::type> type;
 };
 
-
 template<typename U, typename V>
 struct subtract_dim_ {
 typedef Dim <
@@ -688,17 +699,14 @@ typename Ratio_subtract<typename U::L, typename V::L>::type,
 typename Ratio_subtract<typename U::T, typename V::T>::type> type;
 };
 
-
 template <typename T, typename D>
 struct quantity {
 T q;
 using dim_type = D;
 
-
 quantity operator+(quantity<T, D> quant) {
 return quantity<T, D>(q + quant.q);
 }
-
 
 quantity operator-(quantity<T, D> quant) {
 return quantity<T, D>(q - quant.q);
@@ -709,15 +717,12 @@ int main()
 using one = Ratio<1, 1>;
 using zero =  Ratio<0, 1>;
 
-
 quantity<double, Dim<one, zero, zero>> kg(1);
 quantity<double, Dim<zero, one, zero>> meter(1);
 quantity<double, Dim<zero, zero, one>> second(1);
 
-
 // Good
 kg + kg;
-
 
 // Bad
 kg + meter;
@@ -729,9 +734,13 @@ kg + meter;
 컴파일 하였다면 다음과 같은 오류가 납니다.
 
 ```warning
+
 * no operator "+" matches these operands
 
-binary '+': no operator found which takes a right-hand operand of type 'quantity<double,Dim<zero,one,zero>>' (or there is no acceptable conversion)
+* binary '+': no operator found which takes a right-hand operand of type 'quantity<double,Dim<zero,one,zero>>' (or there is no acceptable conversion)
+
+
+
 ```
 
 
@@ -780,7 +789,6 @@ quantity<T, typename add_dim_<D, D2>::type> operator*(quantity<T, D2> quant) {
 return quantity<T, typename add_dim_<D, D2>::type>(q * quant.q);
 }
 
-
 template <typename D2>
 quantity<T, typename subtract_dim_<D, D2>::type> operator/(quantity<T, D2> quant) {
 return quantity<T, typename subtract_dim_<D, D2>::type>(q / quant.q);
@@ -788,35 +796,66 @@ return quantity<T, typename subtract_dim_<D, D2>::type>(q / quant.q);
 
 ```
 
+
+
 새로 만들어지는 타입의 차원은 당연히도 add_dim_<D, D2>::type 이 되겠고 (opreator* 의 경우), 그 값은 그냥 실제 값을 곱해주면 됩니다. 이와 더불어서
+
 ```cpp
+
 3 * kg
 ```
 
+
+
 과 같은 곱도 처리해야 하기 때문에, 아래와 같은 함수들도 정의해줘야 합니다.
+
 ```cpp
-quantity<T, D> operator*(T scalar) {return quantity<T, D>(q * scalar);}
-quantity<T, D> operator/(T scalar) {return quantity<T, D>(q / scalar);}
+
+
+quantity<T, D> operator*(T scalar) {
+return quantity<T, D>(q * scalar);
+}
+
+quantity<T, D> operator/(T scalar) {
+return quantity<T, D>(q / scalar);
+}
 ```
+
+
 
 이는 위 처럼 일반적인 차원이 없는 값 과의 곱도 지원해줍니다. 그렇다면 예를 들어서 아래와 같이 정의된 F 의 타입은 어떻게 될까요?
+
+
 ```cpp
-// F 의 타입은?F = kg * meter / (second * second);
+
+// F 의 타입은?
+F = kg * meter / (second * second);
 ```
 
+
+
 일단 F 의 차원은 계산해보면 (1, 1, -2) 이렇게 나올 것 입니다. 따라서, F 의 dim 타입은 <Ratio<1, 1>, Ratio<1, 1>, Ratio<-2, 1>> 가 되겠지요. 다시 말해, F 를 다음과 같이 나타낼 수 있습니다. 
+
 ```cpp
+
 quantity<double, Dim<one, one, Ratio<-2, 1>>> F = kg * meter / (second * second);
 ```
 
+
+
 그런데, 매번 변수를 정의할 때 마다 저렇게 길고 긴 타입을 써주는 것은 매우 귀찮은 일입니다. 저 kg * meter / (second * second) 를 계산해서 나오는 객체의 타입이 저렇게 된다는 사실은 저도 알고 컴파일러도 알고 있습니다. 컴파일러가 쉽게 알아낼 수 있는 타입을 굳이 우리가 써주어야 할까요? 똑똑한 컴파일러가 타입을 알아서 생각하도록 하면 안될까요?
+
+
 물론 가능합니다. 
 
- 타입을 알아서 추측해라! - auto 키워드
+
+
+###  타입을 알아서 추측해라! - auto 키워드
+
+
 
 
 C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 경우 굳이 타입을 쓰지 않아도 알아서 추측할 수 있는 경우들이 많이 있습니다. 예를 들어서,
-
 ```cpp
 
 (??) a = 3;
@@ -830,7 +869,6 @@ C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 
 
 some_class a;
 (??) b = a;
-
 ```
 
 
@@ -881,7 +919,6 @@ int sum(int a, int b)
 return a + b;
 }
 
-
 class SomeClass
 {
 int data;
@@ -889,7 +926,6 @@ public:
 SomeClass(int d) : data(d) {}
 SomeClass(const SomeClass& s) : data(s.data) {}
 };
-
 
 int main()
 {
@@ -899,9 +935,7 @@ auto num = 1.0 + 2.0; // double 로 추측 가능!
 SomeClass some(10);
 auto some2 = some;
 
-
 auto some3(10); // SomeClass 객체를 만들까요?
-
 
 cout << "c 의 타입은? :: " << typeid(c).name() << endl;
 cout << "num 의 타입은? :: " << typeid(num).name() << endl;
@@ -968,7 +1002,6 @@ out << q.q << "kg^" << D::M::num / D::M::den 
 << "m^" << D::L::num / D::L::den
 << "s^" << D::T::num / D::T::den;
 
-
 return out;
 }
 ```
@@ -983,13 +1016,11 @@ return out;
 #include <typeinfo>
 using namespace std;
 
-
 template <int X, int Y>
 struct GCD
 {
 static const int value = GCD<Y, X%Y>::value;
 };
-
 
 template <int X>
 struct GCD<X, 0>
@@ -997,13 +1028,11 @@ struct GCD<X, 0>
 static const int value = X;
 };
 
-
 template <int N, int D = 1>
 struct Ratio
 {
 private:
 const static int _gcd = GCD<N, D>::value;
-
 
 public:
 typedef Ratio<N / _gcd, D / _gcd> type;
@@ -1016,10 +1045,8 @@ struct _Ratio_add
 using type = Ratio <R1::num * R2::den + R2::num * R1::den, R1::den * R2::den>;
 };
 
-
 template <class R1, class R2>
 struct Ratio_add : _Ratio_add<R1, R2>::type {};
-
 
 template <class R1, class R2>
 struct _Ratio_subtract
@@ -1027,10 +1054,8 @@ struct _Ratio_subtract
 using type = Ratio <R1::num * R2::den - R2::num * R1::den, R1::den * R2::den>;
 };
 
-
 template <class R1, class R2>
 struct Ratio_subtract : _Ratio_subtract<R1, R2>::type {};
-
 
 template <class R1, class R2>
 struct _Ratio_multiply
@@ -1038,17 +1063,14 @@ struct _Ratio_multiply
 using type = Ratio <R1::num * R2::num , R1::den * R2::den>;
 };
 
-
 template <class R1, class R2>
 struct Ratio_multiply : _Ratio_multiply<R1, R2>::type {};
-
 
 template <class R1, class R2>
 struct _Ratio_divide
 {
 using type = Ratio < R1::num * R2::den, R1::den * R2::num>;
 };
-
 
 template <class R1, class R2>
 struct Ratio_divide : _Ratio_divide<R1, R2>::type {};
@@ -1059,10 +1081,8 @@ using M = U;
 using L = V;
 using T = W;
 
-
 using type = Dim <M, L, T>;
 };
-
 
 template<typename U, typename V>
 struct add_dim_ {
@@ -1072,7 +1092,6 @@ typename Ratio_add<typename U::L, typename V::L>::type,
 typename Ratio_add<typename U::T, typename V::T>::type> type;
 };
 
-
 template<typename U, typename V>
 struct subtract_dim_ {
 typedef Dim <
@@ -1081,51 +1100,41 @@ typename Ratio_subtract<typename U::L, typename V::L>::type,
 typename Ratio_subtract<typename U::T, typename V::T>::type> type;
 };
 
-
 template <typename T, typename D>
 struct quantity {
 T q;
 using dim_type = D;
 
-
 quantity operator+(quantity<T, D> quant) {
 return quantity<T, D>(q + quant.q);
 }
 
-
 quantity operator-(quantity<T, D> quant) {
 return quantity<T, D>(q - quant.q);
 }
-
 
 template <typename D2>
 quantity<T, typename add_dim_<D, D2>::type> operator*(quantity<T, D2> quant) {
 return quantity<T, typename add_dim_<D, D2>::type>(q * quant.q);
 }
 
-
 template <typename D2>
 quantity<T, typename subtract_dim_<D, D2>::type> operator/(quantity<T, D2> quant) {
 return quantity<T, typename subtract_dim_<D, D2>::type>(q / quant.q);
 }
-
 
 // Scalar multiplication and division
 quantity<T, D> operator*(T scalar) {
 return quantity<T, D>(q * scalar);
 }
 
-
 quantity<T, D> operator/(T scalar) {
 return quantity<T, D>(q / scalar);
 }
 
-
 quantity(T q) : q(q) {}
 
-
 };
-
 
 template <typename T, typename D>
 ostream& operator<< (ostream& out, const quantity<T, D>& q)
@@ -1134,21 +1143,17 @@ out << q.q << "kg^" << D::M::num / D::M::den 
 << "m^" << D::L::num / D::L::den
 << "s^" << D::T::num / D::T::den;
 
-
 return out;
 }
-
 
 int main()
 {
 using one = Ratio<1, 1>;
 using zero =  Ratio<0, 1>;
 
-
 quantity<double, Dim<one, zero, zero>> kg(2);
 quantity<double, Dim<zero, one, zero>> meter(3);
 quantity<double, Dim<zero, zero, one>> second(1);
-
 
 // F 의 타입은 굳이 알필요 없다!
 auto F = kg * meter / (second * second);
@@ -1185,24 +1190,17 @@ auto 키워드는 템플릿의 사용으로 복잡해진 타입 이름들을 �
 
 
 
- 생각 해보기
+###  생각 해보기
+
 
 
 
 
 1. 컴파일러가 auto 키워드에 들어갈 타입을 추측하는 방법은 템플릿에서 들어갈 타입을 추측하는 방법과 같습니다. 여기를 클릭해서 읽어보세요!
 
-
-
-
-
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
@@ -1215,11 +1213,10 @@ auto 키워드는 템플릿의 사용으로 복잡해진 타입 이름들을 �
 
 
 
+공감1sns신고
+저작자표시
 
-
-
-
-공감1sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set,
+'C++' 카테고리의 다른 글씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set,
                         unordered_map>(5)
                     2017.07.08
                 씹어먹는 C++ - <10 - 1. C++ STL - 벡터(vector), 리스트(list),

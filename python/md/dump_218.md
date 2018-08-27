@@ -1,7 +1,14 @@
+----------------
+title : 씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>
+--------------
 
 
 
-이번 강좌에서는* Excel 만들기 프로젝트 완성.중위 표기법(Infix notation), 후위 표기법(postfix notation) 간의 변환
+
+이번 강좌에서는* Excel 만들기 프로젝트 완성.
+* 중위 표기법(Infix notation), 후위 표기법(postfix notation) 간의 변환
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F2404D335578FA9AA0F1250)
 
 
@@ -18,14 +25,14 @@
 하지만 시간에 만들었던 엑셀은 아직 엑셀이라 하기에는 기능이 조금 부족하였습니다. 실제 엑셀을 살펴보자면 셀에 문자열만 넣을 수 있는 것이 아니라 숫자 데이터도 넣을 수 있고 날짜도 넣을 수 있고, 심지어는 수식도 넣어서 연산 까지 할 수 있는 만능 셀입니다. 
 
 
- Cell 클래스 확장
+
+###  Cell 클래스 확장
 
 
 
 
 
 앞서 말했듯이, Cell 클래스에는 string 데이터만 저장할 수 있기 때문에 이를 상속 받는 클래스들을 만들어서 셀에 다양한 데이터들을 보관할 수 있게 할 것입니다. 
-
 ```cpp
 
 class Cell
@@ -35,11 +42,9 @@ protected:
 int x, y;
 Table* table;
 
-
 public:
 virtual string stringify() = 0;
 virtual int to_numeric() = 0;
-
 
 Cell(int x, int y, Table* table);
 };
@@ -58,7 +63,6 @@ public:
 string stringify();
 int to_numeric();
 
-
 StringCell(string data, int x, int y, Table* t);
 };
 class NumberCell : public Cell
@@ -67,7 +71,6 @@ int data;
 public:
 string stringify();
 int to_numeric();
-
 
 NumberCell(int data, int x, int y, Table* t);
 };
@@ -78,10 +81,8 @@ public:
 string stringify();
 int to_numeric();
 
-
 DateCell(string s, int x, int y, Table* t);
 };
-
 
 ```
 
@@ -93,7 +94,6 @@ DateCell(string s, int x, int y, Table* t);
 
 Cell::Cell(int x, int y, Table* table) : x(x), y(y), table(table) { }
 
-
 StringCell::StringCell(string data, int x, int y, Table* t) : data(data), Cell(x, y, t) {}
 string StringCell::stringify() {
 return data;
@@ -102,16 +102,12 @@ int StringCell::to_numeric() {
 return 0;
 }
 
-
 /*
-
 
 NumberCell
 
-
 */
 NumberCell::NumberCell(int data, int x, int y, Table* t) : data(data), Cell(x, y, t) {}
-
 
 string NumberCell::stringify() {
 return to_string(data);
@@ -120,12 +116,9 @@ int NumberCell::to_numeric() {
 return data;
 }
 
-
 /*
 
-
 DateCell
-
 
 */
 string DateCell::stringify() {
@@ -133,9 +126,7 @@ char buf[50];
 tm temp; 
 localtime_s(&temp, &data);
 
-
 strftime(buf, 50, "%F", &temp);
-
 
 return string(buf);
 }
@@ -143,16 +134,13 @@ int DateCell::to_numeric() {
 return static_cast<int>(data);
 }
 
-
 DateCell::DateCell(string s, int x, int y, Table* t) : Cell(x, y, t) {
 // 입력받는 Date 형식은 항상 yyyy-mm-dd 꼴이라 가정한다.
 int year = atoi(s.c_str());
 int month = atoi(s.c_str() + 5);
 int day = atoi(s.c_str() + 8);
 
-
 tm timeinfo;
-
 
 timeinfo.tm_year = year - 1900;
 timeinfo.tm_mon = month - 1;
@@ -161,13 +149,15 @@ timeinfo.tm_hour = 0;
 timeinfo.tm_min = 0;
 timeinfo.tm_sec = 0;
 
-
 data = mktime(&timeinfo);
 }
 
 ```
 
+
+
 참고로 DateCell 의 경우 구현이 조금 복잡한데 자세히 살펴보도록 하겠습니다. 
+
 
 ```cpp
 
@@ -185,14 +175,12 @@ int day = atoi(s.c_str() + 8);
 
 tm timeinfo;
 
-
 timeinfo.tm_year = year - 1900;
 timeinfo.tm_mon = month - 1;
 timeinfo.tm_mday = day;
 timeinfo.tm_hour = 0;
 timeinfo.tm_min = 0;
 timeinfo.tm_sec = 0;
-
 
 data = mktime(&timeinfo);
 ```
@@ -207,26 +195,20 @@ class ExprCell : public Cell {
 string data;
 string* parsed_expr;
 
-
 Vector exp_vec;
-
 
 // 연산자 우선 순위를 반환합니다. 
 int precedence(char c);
 
-
 // 수식을 분석합니다. 
 void parse_expression();
-
 
 public:
 ExprCell(string data, int x, int y, Table* t);
 
-
 string stringify();
 int to_numeric();
 };
-
 
 ```
 
@@ -237,13 +219,12 @@ int to_numeric();
 
 
 
- 수식 계산하기 - 중위 표기법과 후위 표기법
+###  수식 계산하기 - 중위 표기법과 후위 표기법
 
 
 
 
 우리는 흔히 수식을 나타내기 위해 다음과 같이 써 왔습니다.
-
 ```info
 
 3 + 4 * 5 + 4 * (7 - 2)
@@ -255,6 +236,7 @@ int to_numeric();
 
 
 쉽게 말해 위 수식의 경우 비록 맨 앞에 3 + 4 이 있지만 사실은 4 * 5 를 먼저 계산해야 됩니다. 즉, 컴퓨터가 이 수식을 계산하기 위해서는 계산하는 위치를 우선 순위에 맞게 이러 저리 옮겨다녀야 합니다.
+
 
 
 위 처럼 피연산자와 피연산자 사이에 연산자를 넣는 형태로 수식을 표현하는 방법을 중위 표기법(infix notation) 이라고 부릅니다. 쉽게 말해 연산자가 '중간' 에 들어가서 중위 표기법이지요. 
@@ -284,7 +266,9 @@ int to_numeric();
 
 그렇다면 이 후위 표기법으로 표현된 식을 컴퓨터가 어떻게 해석하는지 살펴보겠습니다. 컴퓨터는 아래와 같은 과정으로 위 후위 표기법으로 변환된 식을 계산합니다. 
 
-1. 피연산자를 만나면 스택에 push 합니다.연산자를 만나면 스택에서 두 개를 pop 한 뒤에 그 둘에 해당 연산을 한 후, 그 결과를 다시 스택에 push 합니다.
+1. 피연산자를 만나면 스택에 push 합니다.
+1. 연산자를 만나면 스택에서 두 개를 pop 한 뒤에 그 둘에 해당 연산을 한 후, 그 결과를 다시 스택에 push 합니다.
+
 
 
 이와 같은 방식으로 위 수식을 계산해보도록 하겠습니다. 
@@ -303,10 +287,8 @@ int ExprCell::to_numeric() {
 double result = 0;
 NumStack stack;
 
-
 for (int i = 0; i < exp_vec.size(); i++) {
 string s = exp_vec[i];
-
 
 // 셀 일 경우
 if (isalpha(s[0])) {
@@ -410,20 +392,19 @@ return stack.pop();
 
 
 
- 중위 표기법을 후위 표기법으로 변환하기 (parse_expression 함수)
+###  중위 표기법을 후위 표기법으로 변환하기 (parse_expression 함수)
 
 
 
 
 중위 표기법을 후위 표기법으로 변환하는 것은 다음의 방식을 따릅니다.
 
-
-1. 피연산자 (셀 이름이나 숫자) 일 경우 그냥 exp_vec 에 넣습니다. 여는 괄호( (, [, { 와 같은 것들 ) 을 만날 경우 스택에 push 합니다.닫는 괄호( ), ], } 와 같은 것들 ) 을 만날 경우 여는 괄호가 pop 될 때 까지 pop 되는 연산자들을 exp_vec 에 넣습니다.연산자일 경우 자기 보다 우선순위가 낮은 연산자가 스택 최상단에 올 때 까지 (혹은 스택이 빌 때 까지) 스택을 pop 하고 (낮은 것은 pop 하지 않습니다), pop 된 연산자들을 exp_vec 에 넣습니다. 그리고 마지막에 자신을 스택에 push 합니다. 
-
-
+1. 피연산자 (셀 이름이나 숫자) 일 경우 그냥 exp_vec 에 넣습니다. 
+1. 여는 괄호( (, [, { 와 같은 것들 ) 을 만날 경우 스택에 push 합니다.
+1. 닫는 괄호( ), ], } 와 같은 것들 ) 을 만날 경우 여는 괄호가 pop 될 때 까지 pop 되는 연산자들을 exp_vec 에 넣습니다.
+1. 연산자일 경우 자기 보다 우선순위가 낮은 연산자가 스택 최상단에 올 때 까지 (혹은 스택이 빌 때 까지) 스택을 pop 하고 (낮은 것은 pop 하지 않습니다), pop 된 연산자들을 exp_vec 에 넣습니다. 그리고 마지막에 자신을 스택에 push 합니다. 
 
 그리고 연산자들의 우선 순위는 아래의 함수에 의해 정의됩니다.
-
 ```cpp
 
 int ExprCell::precedence(char c) {
@@ -461,11 +442,9 @@ return 0;
 void ExprCell::parse_expression() {
 Stack stack; 
 
-
 // 수식 전체를 () 로 둘러 사서 exp_vec 에 남아있는 연산자들이 push 되게 해줍니다. 
 data.insert(0, "(");
 data.push_back(')');
-
 
 for (int i = 0; i < data.length(); i++) {
 if (isalpha(data[i])) {
@@ -558,7 +537,6 @@ stack.push(data.substr(i, 1));
 data.insert(0, "(");
 data.push_back(')');
 
-
 ```
 
 
@@ -576,11 +554,11 @@ int main()
 TxtTable table(5, 5);
 table.reg_cell(new NumberCell(2, 1, 1, &table), 1, 1);
 table.reg_cell(new NumberCell(3, 1, 2, &table), 1, 2);
+
 table.reg_cell(new NumberCell(4, 2, 1, &table), 2, 1);
 table.reg_cell(new NumberCell(5, 2, 2, &table), 2, 2);
 table.reg_cell(new ExprCell("B2+B3*(C2+C3-2)", 3, 3, &table), 3, 2);
 table.reg_cell(new StringCell("B2 + B3 * ( C2 + C3 - 2 ) = ", 3, 2, &table), 3, 1);
-
 
 cout << table;
 }
@@ -601,14 +579,13 @@ cout << table;
 
 
 
- 엑셀 프로그램
+###  엑셀 프로그램
 
 
 
 
 
 그렇다면 이제 실제로 사용자의 입력을 받아서 비록 마우스는 쓸 수 없더라도 키보드로 명령을 처리하는 엑셀 프로그램을 만들어보도록 하겠습니다. 
-
 
 ```cpp
 
@@ -617,10 +594,8 @@ class Excel
 {
 Table* current_table;
 
-
 public:
 Excel(int max_row, int max_col, int choice);
-
 
 int parse_user_input(string s);
 void command_line();
@@ -669,7 +644,6 @@ break;
 }
 }
 
-
 string to = "";
 for (int i = next; i < s.length(); i++) {
 if (s[i] == ' ' || i == s.length() - 1) {
@@ -684,14 +658,11 @@ break;
 }
 }
 
-
 // Cell 이름으로 받는다. 
 int col = to[0] - 'A';
 int row = atoi(to.c_str() + 1) - 1;
 
-
 string rest = s.substr(next);
-
 
 if (command == "sets") {
 current_table->reg_cell(new StringCell(rest, row, col, current_table), row, col);
@@ -713,7 +684,6 @@ cout << to << " 에 내용이 저장되었습니다" << endl;
 else if (command == "exit") {
 return 0;
 }
-
 
 return 1;
 }
@@ -753,7 +723,6 @@ void Excel::command_line() {
 string s;
 getline(cin, s);
 
-
 while (parse_user_input(s)) {
 cout << *current_table << endl << ">> ";
 getline(cin, s);
@@ -764,7 +733,6 @@ int main()
 cout << "테이블 (타입) (최대 행 크기) (최대 열 크기) 를 순서대로 입력해주세요" << endl;
 cout << "* 참고 * " << endl;
 cout << "1 : 텍스트 테이블, 2 : CSV 테이블, 3 : HTML 테이블" << endl;
-
 
 int type, max_row, max_col;
 cin >> type >> max_row >> max_col;
@@ -789,39 +757,30 @@ m.command_line();
 
 
 
- 생각해보기
+###  생각해보기
 
 
 
 
 
 1. ExprCell 의 쉭에서 셀의 이름은 A3 과 같이 단 두 글자만 가능하다는 제약 조건이 있었습니다. 이를 임의의 크기의 이름도 가능하게 확장해보세요. (난이도 : 下)
-
-
 2. 마찬가지로 가능한 숫자도 임의의 길이가 상관없게 확장해보세요. (난이도 : 下)
-
-
 3. 사실 위와 같이 수식을 계산하는 경우 한 가지 문제가 있습니다. 바로 셀들이 서로를 참조할 수 있다는 것입니다. 예를 들어서 A1 = B1 이고 B1 = A1 으로 설정하였다면 B1 의 값을 알기 위해 A1 의 값을 알아야 하고, 그럼 A1 의 값을 알기 위해 B1 의 값을 알아야 하고. .... 와 같은 순환 참조 문제가 발생합니다.
-
-
 따라서 사용자가 타의든 자의든 순환 참조가 있는 식을 입력하였을 때 이를 감지하고 입력을 방지하는 루틴을 제공해야 합니다. (실제 Excel 에서도 순환 참조되는 식을 입력하면 오류가 발생합니다) (난이도 : 上)
 
-
 4. 실제 Excel 의 경우 수식에서 여러가지 함수들을 지원합니다. 여기서도 수식에서 간단한 함수들을 지원하게 해보세요.. (난이도 : 上)
-
-
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
 
-공감6sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>(2)
+
+공감6sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>(2)
 2017.06.26씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)
 2017.04.07씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>(6)
 2016.07.19씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>(0)

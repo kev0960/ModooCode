@@ -1,20 +1,9 @@
-<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>atol</p><pre class="chroma">#include &lt;stdlib.h&gt;  // C++ 에서는 &lt;cstdlib&gt;
-
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>atol</p><pre class='info'>#include <stdlib.h>              // C++ 에서는 <cstdlib>
 long int atol(const char* str);  // long atol (const char *str) 인 경우도 있음
-</pre><p>문자열을 long 형 정수로 변환한다.C 형식 문자열을 long 형 정수로 변환하여 변환된 값을 리턴한다.</p><p>이 함수는 C 형식 문자열에서 비-공백 문자가 나오기 전 까지 최대한 많은 공백 문자(' ', '\t', \n') 들을 무시한다. 그 다음에 첫 번째 비-공백 문자부터 최대한 많은 숫자들을 수로 변환한다. 이 때, 숫자의 맨 앞부분에는 + 나 - 가 올 수 도 있다. 숫자들 다음에 나타나는 문자들은 모두 무시된다. 예를 들면</p><p>\n\n-123aaa</p><p>이라는 문자열이 있다면 -123 으로 변환된다. 만일 문자열에서 첫 번째로 나타나는 비-공백 문자가 숫자 혹은 + 나 - 가 아니라면 어떠한 변환도 이루어 지지 않는다. 또한 문자열이 공백 문자로만 이루어져 있어도 변환이 이루어 지지 않는다. 예로</p><p>a123</p><p>의 경우 123 이 있지만 첫번째 비-공백 문자가 a 이기 때문에 변환이 이루어지지 않는다. 변환이 이루어 지지 않는 경우 0 이 리턴된다. </p><h3><p>  인자</p></h3><h3><p> str</p></h3><p>정수를 포함하고 있는 C 형식 문자열</p><h3><p>  리턴값</p></h3><h3><p> 성공적으로 변환하였다면 변환된 long 형 정수를 리턴한다.만일 변환이 실패하였다면 0 이 리턴된다.변환된 수가 long 형으로 표현 가능한 범위를 넘어갔다면 LONG<span class='font-italic'>MAX 혹은 LONG</span>MIN 이 리턴된다. </p></h3><h3><p>  실행 예제</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/*
-</span><span class="cm">
-</span><span class="cm">문자열로 데이터를 입력 받아서 long int 형으로 변환한다.
-</span><span class="cm">이 예제는
-</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstdlib/atol/
-</span><span class="cm">에서 가져왔습니다.
-</span><span class="cm">
-</span><span class="cm">
-</span><span class="cm">*/</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>문자열을 long 형 정수로 변환한다.C 형식 문자열을 long 형 정수로 변환하여 변환된 값을 리턴한다.</p><p>이 함수는 C 형식 문자열에서 비-공백 문자가 나오기 전 까지 최대한 많은 공백 문자(' ', '\t', \n') 들을 무시한다. 그 다음에 첫 번째 비-공백 문자부터 최대한 많은 숫자들을 수로 변환한다. 이 때, 숫자의 맨 앞부분에는 + 나 - 가 올 수 도 있다. 숫자들 다음에 나타나는 문자들은 모두 무시된다. 예를 들면</p><p>\n\n-123aaa</p><p>이라는 문자열이 있다면 -123 으로 변환된다. 만일 문자열에서 첫 번째로 나타나는 비-공백 문자가 숫자 혹은 + 나 - 가 아니라면 어떠한 변환도 이루어 지지 않는다. 또한 문자열이 공백 문자로만 이루어져 있어도 변환이 이루어 지지 않는다. 예로</p><p>a123</p><p>의 경우 123 이 있지만 첫번째 비-공백 문자가 a 이기 때문에 변환이 이루어지지 않는다. 변환이 이루어 지지 않는 경우 0 이 리턴된다. </p><h3><p>  인자</p></h3><p>str</p><p>정수를 포함하고 있는 C 형식 문자열</p><h3><p>  리턴값</p></h3><p>성공적으로 변환하였다면 변환된 long 형 정수를 리턴한다.만일 변환이 실패하였다면 0 이 리턴된다.변환된 수가 long 형으로 표현 가능한 범위를 넘어갔다면 LONG<span class='font-italic'>MAX 혹은 LONG</span>MIN 이 리턴된다. </p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/* 문자열로 데이터를 입력 받아서 long int 형으로 변환한다.이 예제는http://www.cplusplus.com/reference/clibrary/cstdlib/atol/에서 가져왔습니다. */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
+</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt; int</span><span class="cp">
+</span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">long</span> <span class="kt">int</span> <span class="n">li</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">szInput</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter a long number: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
@@ -23,76 +12,4 @@ long int atol(const char* str);  // long atol (const char *str) 인 경우도 �
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The value entered is %d. The double is %d.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">li</span><span class="p">,</span> <span class="n">li</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1130654A4D414D3E29BE90' alt=''><h3><p>  연관된 함수</p></h3><h3><p> <span class='font-italic'> atoi  :  문자열을 정수로 변환한다.atof  :  문자열을 double 형으로 변환한다. strtol  :  문자열을 long 형으로 변환한다.</p></h3><p>공감sns신고저작자표시'C Reference > stdlib.h (cstdlib)' 카테고리의 다른 글C 언어 레퍼런스 - srand 함수(0)2011.05.05C 언어 레퍼런스 - rand 함수(2)2011.05.05C 언어 레퍼런스 - atol 함수(4)2011.01.27C 언어 레퍼런스 - atoi 함수(0)2011.01.27C 언어 레퍼런스 - atof 함수(0)2011.01.09C 언어 레퍼런스 - stdlib.h (cstlib)(1)2011.01.05</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1130654A4D414D3E29BE90' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> atoi  :  문자열을 정수로 변환한다.</p></li><li><p> atof  :  문자열을 double 형으로 변환한다. </p></li><li><p> strtol  :  문자열을 long 형으로 변환한다.</p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > stdlib.h (cstdlib)' 카테고리의 다른 글C 언어 레퍼런스 - srand 함수(0)2011.05.05C 언어 레퍼런스 - rand 함수(2)2011.05.05C 언어 레퍼런스 - atol 함수(4)2011.01.27C 언어 레퍼런스 - atoi 함수(0)2011.01.27C 언어 레퍼런스 - atof 함수(0)2011.01.09C 언어 레퍼런스 - stdlib.h (cstlib)(1)2011.01.05</p>

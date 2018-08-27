@@ -1,8 +1,16 @@
+----------------
+title : 씹어먹는 C 언어 - <24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)>
+--------------
 
 
 
 이번 강좌에서는
-* C 언어 코드의 최적화 기법에 대해 살펴본다.![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F16723B4C4D34460C133159)
+
+* C 언어 코드의 최적화 기법에 대해 살펴본다.
+
+
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F16723B4C4D34460C133159)
 
 
   안녕하세요 여러분~ 이제 저의 마지막 강의(총 41 강)가 되겠네요 ㅎㅎ 그럼, 오늘도 강의를 시작해 볼까요? 혹시 1 강 부터 시작해서 여기까지 도달하신 분이라면 http://itguru.tistory.com/notice/126#/에 가셔서 자유 게시판에 꼭 글을 남겨주시기 바랍니다~ 
@@ -31,23 +39,13 @@
 아래는 초 를 증가시켜주는 함수 입니다.    
 
 ```cpp
-int inc_second(int second)    
-{    
-    return (++second)%60;    
-}    
-
+int inc_second(int second)    {        return (++second)%60;    }    
 ```
 
   초의 범위는 0 부터 59 이므로 1 증가시킨 뒤에 만일 60 을 넘었을 때를 대비하여 위와 같이 60 으로 나눈 나머지를 구해야 되겠지요. 그런데 여기서 문제는 나눗셈은 매우매우 느린 연산이라는 것입니다. 다른 덧셈 뺄셈에 비해 몇 배 가까이 느리기 때문에 엄청난 시간 손해가 있겠지요. 우리가 만약 second 가 60 보다 커질 일이 없다는 것을 알고 있다면 굳이 60 으로 나눌 필요 없이 if 문으로 60 일 때만 0 을 리턴해주면 되는 것입니다. 왜냐하면 if 문은 나눗셈 보다는 훨씬 빠르게 처리가 되기 때문이지요.    
 
 ```cpp
-int inc_second(int second)    
-{    
-    ++second;    
-    if(second >= 60)    
-        return 0;    
-    return second;    
-}    
+int inc_second(int second)    {        ++second;        if(second >= 60)            return 0;        return second;    }    
 ```
 
 
@@ -62,22 +60,12 @@ int inc_second(int second)
   이 아이디어를 이용하면 1000 (이진수) 으로 나눌 때 에는 수를 오른쪽으로 3 칸 쉬프트 해버리면 됩니다. 즉, 오른쪽으로 3 칸 밀어버리는 것이지요 (쉬프트가 기억이 나지 않으면 4 강 계산하리를 보시기 바랍니다) 아래 예제는 32 로 나누는 것입니다. 32 는 2 의 5 승이므로 오른쪽으로 5 칸 쉬프트 해버리면 됩니다.    
 
 ```cpp
-#include <stdio.h>    
-int main()    
-{    
-    int i;    
-    printf("정수를 입력하세요 : ");    
-    scanf("%d", &i);    
-
-    printf("%d 를 32 로 나누면 : %d \n", i, i/32);    
-    printf("%d 를 5 칸 쉬프트 하면 : %d \n", i, i >> 5);    
-
-    return 0;    
-}    
+#include <stdio.h>    int main()    {        int i;        printf("정수를 입력하세요 : ");        scanf("%d", &i);        printf("%d 를 32 로 나누면 : %d \n", i, i/32);        printf("%d 를 5 칸 쉬프트 하면 : %d \n", i, i >> 5);        return 0;    }    
 ```
 
 
 성공적으로 컴파일 하였다면 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F123D4E494D3405F70A846B)
 
@@ -89,62 +77,17 @@ int main()
   비트 연산(OR, AND, XOR 등등) 은 컴퓨터에서 가장 빠르게 실행되는 연산들 입니다. 이러한 연산들을 잘 활용하면 좋겠지요. 일단 비트연산은 다음과 같이 여러가지 정보를 하나의 변수에 포함하는데 자주 사용됩니다. 예를 들어서 우리가 하나의 사람에 대한 여러가지 상태에 관한 정보를 나타내는 변수를 만든다고 합시다. 구조체를 배운 여러분으로써는 아래와 같이 만들 것입니다.    
 
 ```cpp
-struct HUMAN    
-{    
-    int is_Alive;    
-    int is_Walking;    
-    int is_Running;    
-    int is_Jumping;    
-    int is_Sleeping;    
-    int is_Eating;    
-};    
+struct HUMAN    {        int is_Alive;        int is_Walking;        int is_Running;        int is_Jumping;        int is_Sleeping;        int is_Eating;    };    
 ```
 
 이는 상당한 메모리 낭비가 되겠지요. 6 가지 정보를 나타내는데 192 개의 비트나 소모하였기 때문이지요. 물론 이를 char 로 바꾸면 되지 않나 라고 물어볼 수 있지만 결국은 같은 얘기 입니다. 굳이 하나의 정보를 한 개의 비트에 대응시켜서 사용할 수 도 있는데 이를 각각의 변수에 모두 대응 시켜서 사용한 것이 문제이지요. 하지만 비트 연산을 잘 이용하면 이를 해결할 수 있습니다. 아래의 예제를 보세요    
 
 ```cpp
-#include <stdio.h>    
-#define ALIVE    0x1    // 2 진수로 1    
-#define WALKING  0x2    // 2 진수로 10    
-#define RUNNING  0x4    // 2 진수로 100    
-#define JUMPING  0x8    // 2 진수로 1000    
-#define SLEEPING 0x10    // 2 진수로 10000    
-#define EATING   0x20    // 2 진수로 100000    
-int main()    
-{    
-
-    int my_status = ALIVE | WALKING | EATING;    
-
-    if(my_status & ALIVE)    
-    {    
-        printf("I am ALIVE!! \n");    
-    }    
-    if(my_status & WALKING)    
-    {    
-        printf("I am WALKING!! \n");    
-    }    
-    if(my_status & RUNNING)    
-    {    
-        printf("I am RUNNING!! \n");    
-    }    
-    if(my_status & JUMPING)    
-    {    
-        printf("I am JUMPING!! \n");    
-    }    
-    if(my_status & SLEEPING)    
-    {    
-        printf("I am SLEEPING!! \n");    
-    }    
-    if(my_status & EATING)    
-    {    
-        printf("I am EATING!! \n");    
-    }    
-    return 0;    
-}    
-
+#include <stdio.h>    #define ALIVE    0x1    // 2 진수로 1    #define WALKING  0x2    // 2 진수로 10    #define RUNNING  0x4    // 2 진수로 100    #define JUMPING  0x8    // 2 진수로 1000    #define SLEEPING 0x10    // 2 진수로 10000    #define EATING   0x20    // 2 진수로 100000    int main()    {        int my_status = ALIVE | WALKING | EATING;        if(my_status & ALIVE)        {            printf("I am ALIVE!! \n");        }        if(my_status & WALKING)        {            printf("I am WALKING!! \n");        }        if(my_status & RUNNING)        {            printf("I am RUNNING!! \n");        }        if(my_status & JUMPING)        {            printf("I am JUMPING!! \n");        }        if(my_status & SLEEPING)        {            printf("I am SLEEPING!! \n");        }        if(my_status & EATING)        {            printf("I am EATING!! \n");        }        return 0;    }    
 ```
 
 성공적으로 컴파일 하였다면    
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F203281334D3409E03A15C4)
 
@@ -152,12 +95,7 @@ int main()
 와 같이 단순히 하나의 int 변수에 위 모든 데이터를 나타낼 수 있었습니다. 그 이유는 아래와 같이 
 
 ```cpp
-#define ALIVE    0x1    // 2 진수로 1    
-#define WALKING  0x2    // 2 진수로 10    
-#define RUNNING  0x4    // 2 진수로 100    
-#define JUMPING  0x8    // 2 진수로 1000    
-#define SLEEPING 0xC    // 2 진수로 10000    
-#define EATING   0x10    // 2 진수로 100000    
+#define ALIVE    0x1    // 2 진수로 1    #define WALKING  0x2    // 2 진수로 10    #define RUNNING  0x4    // 2 진수로 100    #define JUMPING  0x8    // 2 진수로 1000    #define SLEEPING 0xC    // 2 진수로 10000    #define EATING   0x10    // 2 진수로 100000    
 ```
 
 define 을 이용해 여러개의 변수에 값을 대응시켰는데 한가지 특징은 각 데이터에는 오직 한 개의 비트만 1 이고 나머지는 모두 0 인 것입니다. 예를 들면 JUMPING 을 보면 16 진수 8 을 대응시켰는데, 이를 2 진수로 보면 끝에서 4 번째 자리만 1 이고 나머지 모든 자리는 0 인 수가 됩니다. 따라서 이와 같은 방식으로 수를 대응시키고    
@@ -169,16 +107,22 @@ define 을 이용해 여러개의 변수에 값을 대응시켰는데 한가지 
 와 같이 my_status 에 OR 연산을 시켜주게 되면 각 데이터들이 나타내는 자리만 1 이 되고 나머지 모든 자리는 0 이 됩니다. 따라서 my_status 에는 0...0100011 이 되겠지요. 이제 이를 이용하여 if 문에서도 쉽게 사용할 수 있는데 단순히 유무를 파악하고자 하는 데이터와 AND 연산을 시키면 됩니다.    
 
 ```cpp
-    if(my_status & WALKING)    
-    {    
-        printf("I am WALKING!! \n");    
-    }    
+    if(my_status & WALKING)        {            printf("I am WALKING!! \n");        }    
 ```
 
 
   예를 들면 위와 같이 내가 현재 WALKING 중인지 아닌지 파악하기 위해 WALKING 과 AND 연산을 시켜보면 만일 내가 WALKING 중이였다면 AND 연산시 '나머지 부분은 모두 0 이고, WALKING 에 해당하는 자리수만  1 이 될 것' 이여서 if 문에서 참으로 판단되고 (if 문은 0 이 아닌 모든 값을 참으로 생각한다) , 내가 WALKING 중이 아니였다면 '나머지 부분은 모두 0 이고 WALKING 에 해당하는 자리수 조차 0 이 될 것' 이므로 0 이 되어서 if 문에서 거짓으로 판단됩니다. 참으로 재밌는 일이지요. 참고로 비트 연산에 관련하여 아래의 내용을 기억하시면 편합니다.    
 
-1. 어떠한 정수의 특정 자리를 1 로 만들고 싶다면 그 자리만 1 이고 나머지는 0 인수와 OR 하면 됩니다. 어떠한 정수의 특정 자리가 1 인지 검사하고 싶다면 그 자리만 1 이고 나머지는 0 인 수와 AND 하면 됩니다.      
+
+
+1. 어떠한 정수의 특정 자리를 1 로 만들고 싶다면 그 자리만 1 이고 나머지는 0 인수와 OR 하면 됩니다. 
+
+
+1. 어떠한 정수의 특정 자리가 1 인지 검사하고 싶다면 그 자리만 1 이고 나머지는 0 인 수와 AND 하면 됩니다.      
+
+
+
+
 
 
 
@@ -187,52 +131,24 @@ define 을 이용해 여러개의 변수에 값을 대응시켰는데 한가지 
 비트 연산을 가장 많이 활용하는 예로 또한 홀수/짝수 판별이 있습니다. 여태까지 여러분들은 아마 홀수 짝수 판별을 
 
 ```cpp
-    if(i % 2 == 1) // 이 수가 홀수인가    
-    {    
-        printf("%d 는 홀수 입니다 \n", i);    
-    }    
-    else    
-    {    
-        printf("%d 는 짝수 입니다 \n", i);    
-    }    
+    if(i % 2 == 1) // 이 수가 홀수인가        {            printf("%d 는 홀수 입니다 \n", i);        }        else        {            printf("%d 는 짝수 입니다 \n", i);        }    
 ```
 
 와 같이 만드셨을 것입니다. 그런데 제가 앞에서 계속 강조해 왔던 것이지만, 나눗셈 연산은 매우 느립니다! 하지만 놀랍게도 단순한 AND 연산 한번으로 이를 해결할 수 있습니다.    
 
 ```cpp
-    if(i & 1) // 이 수가 홀수인가    
-    {    
-        printf("%d 는 홀수 입니다 \n", i);    
-    }    
-    else    
-    {    
-        printf("%d 는 짝수 입니다 \n", i);    
-    }    
+    if(i & 1) // 이 수가 홀수인가        {            printf("%d 는 홀수 입니다 \n", i);        }        else        {            printf("%d 는 짝수 입니다 \n", i);        }    
 ```
 
   만일 어떤 정수가 홀수라면, 2 진수로 나타냈을 때 맨 마지막 자리가 1 이여야 합니다 (당연하지요?) 이를 이용해서 단순히 어떤 정수의 맨 마지막 비트가 1 인지만 확인하면 되지요? 근데 위에서 강조했듯 것을 보면 맨 마지막 비트가 1 인지 확인하려면 맨 마지막 비트만 1 인 수(즉 1) 과 AND 하면 됩니다. 아래 소스로 컴파일해서 실행해보면 잘 됨을 알 수 있습니다.     
 
 ```cpp
-#include <stdio.h>    
-int main()    
-{    
-    int i;    
-    scanf("%d", &i);    
-
-    if(i & 1) // 이 수가 홀수인가    
-    {    
-        printf("%d 는 홀수 입니다 \n", i);    
-    }    
-    else    
-    {    
-        printf("%d 는 짝수 입니다 \n", i);    
-    }    
-    return 0;    
-}    
+#include <stdio.h>    int main()    {        int i;        scanf("%d", &i);        if(i & 1) // 이 수가 홀수인가        {            printf("%d 는 홀수 입니다 \n", i);        }        else        {            printf("%d 는 짝수 입니다 \n", i);        }        return 0;    }    
 ```
 
 
 성공적으로 컴파일 하였다면    
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1938A6594D34119938AE3D)
 
@@ -244,11 +160,7 @@ int main()
 대표적으로 이야기 하자면 1 부터 n 까지 더하는 함수를 만들 때 입니다. 일반적으로 이러한 작업을 하는 코드를 짤 때에는     
 
 ```cpp
-    for(i=1;i<=n;i++)    
-    {    
-        sum += i;    
-    }    
-
+    for(i=1;i<=n;i++)        {            sum += i;        }    
 ```
 
 위와 같이 for 문으로 구현하는 경우가 대부분 입니다. 하지만 여러분이 초등학생 가우스 정도의 머리를 가졌더라면 위와 같이 일일히 더하는 것 말고도     
@@ -265,30 +177,13 @@ int main()
 아래 코드는 특정한 문자열에 'a' 라는 문자가 포함되어 있는지 검사하는 코드 입니다.    
 
 ```cpp
-    while(*pstr)    
-    {    
-        if(*pstr != 'a')    
-        {    
-            does_string_has_a = 1;    
-        }    
-
-        pstr ++;    
-    }    
+    while(*pstr)        {            if(*pstr != 'a')            {                does_string_has_a = 1;            }            pstr ++;        }    
 ```
 
 위 코드에서 does_string_has_a 가 한 번 1 이 되었다면 뒤에서 바뀔 일이 없으므로 굳이 루프를 끝까지 실행하는 것은 무의미한 짓입니다. 이 때 이런 곳에 break 문을 넣어서 빠져 나갈 수 있게 한다면 불필요한 실행을 줄일 수 있습니다.    
 
 ```cpp
-    while(*pstr)    
-    {    
-        if(*pstr != 'a')    
-        {    
-            does_string_has_a = 1;    
-            break;    
-        }    
-
-        pstr ++;    
-    }    
+    while(*pstr)        {            if(*pstr != 'a')            {                does_string_has_a = 1;                break;            }            pstr ++;        }    
 ```
 
 위 코드 처럼 말이지요.    
@@ -300,56 +195,19 @@ int main()
   아래 코드는 정수 n 에서 값이 1 인 비트가 몇 개나 존재하는지 세는 프로그램 입니다.    
 
 ```cpp
-    while(n != 0)    
-    {    
-        if(n & 1)    
-        {    
-            one_bit ++;    
-        }    
-        n >>= 1;    
-    }    
+    while(n != 0)        {            if(n & 1)            {                one_bit ++;            }            n >>= 1;        }    
 ```
 
    위 코드에서는 맨 끝 한개의 비트를 검사하고 오른쪽으로 쉬프트 해서 또 다시 맨 끝 비트를 검사하는 식으로 해서 결과적으로 모든 비트를 검사하여 값이 1 인 것의 개수를 셉니다. 하지만 우리는 C 언어에서 모든 정수 자료형의 크기가 8 비트의 배수 임을 알고 있습니다. 예를 들면 char 은 1 바이트로 8 비트, int 는 4 바이트로 32 비트 이지요. 따라서 굳이 1 개 비트씩 검사할 필요 없이 8 비트를 한꺼번에 묶어서 검사해도 상관이 없다는 말입니다. 이 때 8 비트를 한꺼번에 비교하면 너무 난잡하므로 4 비트씩 비교하는 것으로 하지요.    
 
 ```cpp
-     while(n != 0)    
-    {    
-        if(n & 1)    
-        {    
-            one_bit ++;    
-        }    
-        if(n & 2)    
-        {    
-            one_bit ++;    
-        }    
-        if(n & 4)    
-        {    
-            one_bit ++;    
-        }    
-        if(n & 8)    
-        {    
-            one_bit ++;    
-        }    
-        n >>= 4;    
-    }    
+     while(n != 0)        {            if(n & 1)            {                one_bit ++;            }            if(n & 2)            {                one_bit ++;            }            if(n & 4)            {                one_bit ++;            }            if(n & 8)            {                one_bit ++;            }            n >>= 4;        }    
 ```
 
 와 같이 하면 됩니다. 사실 C 언어에서 if 문이나 for 문 다음에 한 줄만이 올 경우 중괄호를 생략해도 되는데,     
 
 ```cpp
-    while(n != 0)    
-    {    
-        if(n & 1)    
-            one_bit ++;    
-        if(n & 2)    
-            one_bit ++;    
-        if(n & 4)    
-            one_bit ++;    
-        if(n & 8)    
-            one_bit ++;    
-        n >>= 4;    
-    }    
+    while(n != 0)        {            if(n & 1)                one_bit ++;            if(n & 2)                one_bit ++;            if(n & 4)                one_bit ++;            if(n & 8)                one_bit ++;            n >>= 4;        }    
 ```
 
 로 쓰셔도 됩니다. 아무튼 위와 같이 할 경우 루프 도는 회수를 줄일 수 있게 되므로 어느 정도의 시간 절약 효과를 보게 됩니다.    
@@ -357,15 +215,7 @@ int main()
 4. 루프에서는 되도록 0 과 비교하여라    
 
 ```cpp
-    for(i=0;i<10;i++)    
-    {    
-        printf("a");    
-    }    
-
-    for(i=9;i!=0;i--)    
-    {    
-        printf("a");    
-    }    
+    for(i=0;i<10;i++)        {            printf("a");        }        for(i=9;i!=0;i--)        {            printf("a");        }    
 ```
 
 위 두 개의 for 문 중에서 무엇이 더 빠르게 실행될까? 실제로는 그리 큰 차이는 없을 테지만 엄밀히 따지고 보면 아래의 루프가 더 빠르게 돌아갑니다. 왜냐하면 위 루프의 경우 i 가 10 보다 작은지 비교하고 있고, 아래 루프에서는  i 가 0 과 다른지 비교하고 있는데 일반적으로 0 과 비교하는 명령어는 CPU 에서 따로 만들어져 있기 때문에 더 빠르게 작동될 수 있습니다.     
@@ -375,20 +225,14 @@ int main()
 루프문을 굳이 쓰지 않고 쓸 수 있는 문장들은 되도록 직접 쓰는 것이 좋습니다. 예를 들어    
 
 ```cpp
-    int i;    
-    for(i=1;i<=3;i++)    
-    {    
-        func(i);    
-    }    
+    int i;        for(i=1;i<=3;i++)        {            func(i);        }    
 ```
 
 
 보다는    
 
 ```cpp
-    func(1);    
-    func(2);    
-    func(3);    
+    func(1);        func(2);        func(3);    
 ```
 
 와 같이 루프를 풀어버리는 것이 더 좋을 때가 있습니다. 물론 루프를 쓰면 무엇을 하는지 한눈에 알 수 있지만 for 문 자체에서 여러가지 비교를 수행하는데 시간이 들기 때문에 위와 같이 간단히 루프를 쓰지 않고도 나타낼수 있다면 그 방법을 선택하시기 바랍니다. 
@@ -400,87 +244,14 @@ if 및 switch 문 관련
 예를 들면 아래와 같은 비교 명령들이 있다고 합시다.    
 
 ```cpp
-    if(i==1)    
-    {    
-    }    
-    else if(i==2)    
-    {    
-    }    
-    else if(i==3)    
-    {    
-    }    
-    else if(i==4)    
-    {    
-    }    
-    else if(i==5)    
-    {    
-    }    
-    else if(i==6)    
-    {    
-    }    
-    else if(i==7)    
-    {    
-    }    
-    else if(i==8)    
-    {    
-    }    
+    if(i==1)        {        }        else if(i==2)        {        }        else if(i==3)        {        }        else if(i==4)        {        }        else if(i==5)        {        }        else if(i==6)        {        }        else if(i==7)        {        }        else if(i==8)        {        }    
 ```
 
 (물론 위와 같은 명령들은 switch 문을 이용하는 것이 훨씬 바람직합니다)    
 위 경우 if 문에서는 최악의 경우 최대 8 번의 비교작업을 해야 하는 상황이 발생합니다. 이는 엄청난 낭비가 아닐 수 없죠.     
 
 ```cpp
-if(i<=4)  
-    {  
-        if(i<=2)  
-        {  
-            if(i==1)  
-            {  
-                /* i is 1 */  
-            }  
-            else  
-            {  
-                /* i must be 2 */  
-            }  
-        }  
-        else  
-        {  
-            if(i==3)  
-            {  
-                /* i is 3 */  
-            }  
-            else  
-            {  
-                /* i must be 4 */  
-            }  
-        }  
-    }  
-    else  
-    {  
-        if(i<=6)  
-        {  
-            if(i==5)  
-            {  
-                /* i is 5 */  
-            }  
-            else  
-            {  
-                /* i must be 6 */  
-            }  
-        }  
-        else  
-        {  
-            if(i==7)  
-            {  
-                /* i is 7 */  
-            }  
-            else  
-            {  
-                /* i must be 8 */  
-            }  
-        }  
-    }    
-
+if(i<=4)      {          if(i<=2)          {              if(i==1)              {                  /* i is 1 */              }              else              {                  /* i must be 2 */              }          }          else          {              if(i==3)              {                  /* i is 3 */              }              else              {                  /* i must be 4 */              }          }      }      else      {          if(i<=6)          {              if(i==5)              {                  /* i is 5 */              }              else              {                  /* i must be 6 */              }          }          else          {              if(i==7)              {                  /* i is 7 */              }              else              {                  /* i must be 8 */              }          }      }    
 ```
 
 하지만 if 문을 위와 같이 구성하게 된다면 어떨까요? 이와 같이 if 문을 쪼개는 것을 Binary Breakdown 이라고 하는데 이진의 형태로 쪼갠 것이지요. 이럴 경우 i 가 1 에서 8 까지 어떠한 값을 가지더라도 3 번만의 비교로 값을 알아낼 수 있습니다. 참고로 이전의 if 문의 형태로는 평균적으로 4 번의 비교가 필요했지요.     
@@ -492,25 +263,7 @@ if(i<=4) 
   즉 아래와 같은 코드가 훨씬 더 효율적입니다. 
 
 ```cpp
-switch(i)   
-{    
-case 1:    
-    break;    
-case 2:    
-    break;    
-case 3:    
-    break;    
-case 4:    
-    break;    
-case 5:    
-    break;    
-case 6:    
-    break;    
-case 7:    
-    break;    
-case 8:    
-    break;    
-}    
+switch(i)   {    case 1:        break;    case 2:        break;    case 3:        break;    case 4:        break;    case 5:        break;    case 6:        break;    case 7:        break;    case 8:        break;    }    
 ```
 
 
@@ -522,44 +275,14 @@ case 8:
   이렇게 만들어 놓은 테이블을 룩업 테이블이라고 부릅니다. 즉, 필요한 데이터를 쉽게 ‘찾을 수 있도록’ 만들어 놓은 표라고 보시면 됩니다. 예를 들면 아래와 같은 경우 사용할 수 있습니다.
 
 ```cpp
-char * Condition_String1(int condition)   
-{     
-        switch(condition)     
-        {     
-        case 0: return "EQ";     
-        case 1: return "NE";     
-        case 2: return "CS";     
-        case 3: return "CC";     
-        case 4: return "MI";     
-        case 5: return "PL";     
-        case 6: return "VS";     
-        case 7: return "VC";     
-        case 8: return "HI";     
-        case 9: return "LS";     
-        case 10: return "GE";     
-        case 11: return "LT";     
-        case 12: return "GT";     
-        case 13: return "LE";     
-        case 14: return "";     
-        default: return 0;     
-        }     
-    } 
+char * Condition_String1(int condition)   {             switch(condition)             {             case 0: return "EQ";             case 1: return "NE";             case 2: return "CS";             case 3: return "CC";             case 4: return "MI";             case 5: return "PL";             case 6: return "VS";             case 7: return "VC";             case 8: return "HI";             case 9: return "LS";             case 10: return "GE";             case 11: return "LT";             case 12: return "GT";             case 13: return "LE";             case 14: return "";             default: return 0;             }         } 
 ```
 
 
 위 코드의 경우 꽤 괜찮지만 아래 처럼 훨씬 간단하게 만들 수 있습니다.
 
 ```cpp
-char * Condition_String2(int condition)    
-{     
-    if ((unsigned) condition >= 15)    
-    {    
-        return 0;     
-    }    
-    return     
-        "EQ\0NE\0CS\0CC\0MI\0PL\0VS\0VC\0HI\0LS\0GE\0LT\0GT\0LE\0\0" +     
-        3 * condition;     
-}     
+char * Condition_String2(int condition)    {         if ((unsigned) condition >= 15)        {            return 0;         }        return             "EQ\0NE\0CS\0CC\0MI\0PL\0VS\0VC\0HI\0LS\0GE\0LT\0GT\0LE\0\0" +             3 * condition;     }     
 ```
 
 
@@ -584,21 +307,9 @@ char * Condition_String2(int condition)
 ```cpp
 
 #include <stdio.h> void print_a();  
-
-
-int main()    
-{    
-    int i;
-    for(i=0;i<10;i++)   
-    {    
-        print_a();    
-    }    
-    return 0;    
-}
-void print_a()   
-{    
-    printf("a");    
-}
+int main()    {        int i;
+    for(i=0;i<10;i++)       {            print_a();        }        return 0;    }
+void print_a()   {        printf("a");    }
 ```
 
 
@@ -607,21 +318,8 @@ void print_a()
 
 ```cpp
 
-#include <stdio.h>   
-void print_a();    
-int main()    
-{    
-    print_a();    
-    return 0;    
-}    
-void print_a()    
-{    
-    int i;
-    for(i=0;i<10;i++)   
-    {    
-        printf("a");    
-    }    
-}
+#include <stdio.h>   void print_a();    int main()    {        print_a();        return 0;    }    void print_a()    {        int i;
+    for(i=0;i<10;i++)       {            printf("a");        }    }
 ```
 
 
@@ -632,25 +330,10 @@ void print_a()
 
 ```cpp
 
-#include <stdio.h>   
-int max(int a, int b)    
-{    
-    if(a > b)    
-        return a;
-    return b;   
-}    
-__inline int imax(int a, int b)    
-{    
-    if(a > b)    
-        return a;
-    return b;   
-}    
-int main()    
-{    
-    printf("4 와 5 중 큰 것은?", max(4,5));    
-    printf("4 와 5 중 큰 것은?", imax(4,5));    
-    return 0;    
-}
+#include <stdio.h>   int max(int a, int b)    {        if(a > b)            return a;
+    return b;   }    __inline int imax(int a, int b)    {        if(a > b)            return a;
+
+    return b;   }    int main()    {        printf("4 와 5 중 큰 것은?", max(4,5));        printf("4 와 5 중 큰 것은?", imax(4,5));        return 0;    }
 ```
 
 
@@ -661,10 +344,7 @@ int main()
 
 ```cpp
 
-struct big   
-{    
-    int arr[1000];    
-    char str[1000];
+struct big   {        int arr[1000];        char str[1000];
 };
 ```
 
@@ -673,26 +353,21 @@ struct big
 위와 같은 매우 거대한 구조체가 있다고 합시다. 만일 이 구조체 변수의 arr[3] 값을 얻어 오는 함수를 만들고 싶다면 어떻게 해야 할까요? 물론 아래와 같이 프로그램을 짜는 사람도 있을 것입니다. 
 
 ```cpp
-void modify(struct big arg)   
-{    
-    /* 무언가를 한다 */    
-}
+void modify(struct big arg)   {        /* 무언가를 한다 */    }
 ```
 
 
 하지만 이 함수를 호출하게 될 경우 modify 함수의 arg 인자로 구조체 변수의 모든 데이터가 복사가 되야 하는데 이는 엄청난 시간이 걸리게 됩니다. 말그대로 5000 바이트나 되는 데이터의 복사를 수행해야 할 뿐더러 modify 변수의 메모리 공간을 위한 할당도 따로 필요하기 때문이지요. 그렇다면 아래의 코드는 어떨까요?
 
 ```cpp
-void modify(struct big *arg)   
-{    
-    /* 무언가를 한다 */    
-}
+void modify(struct big *arg)   {        /* 무언가를 한다 */    }
 ```
 
 
 위 함수는 구조체 변수의 주소값을 얻어옵니다. 이는 단순히 4 바이트의 주소값 복사만이 일어날 뿐 이전의 예와 같은 무지막지한 복사는 일어나지 않습니다. 뿐만 아니라 동일하게 인자로 전달된 구조체 변수의 데이터들도 손쉽게 읽어들일 수 있게 됩니다. 단순히 arg->arr[3] 과 같은 방식으로 말이지요. 여러분들은 언제나 이 점을 명심하시고 되도록 인자를 전달할 때에는 포인터를 자주 활용하시기 바랍니다. 
 
 그럼 이것으로 마지막 강좌를 끝내도록 하겠습니다~ 혹시 1 강 부터 시작해서 여기까지 도달하신 분이라면 http://itguru.tistory.com/notice/126#/ 에 가셔서 자유 게시판에 꼭 글을 남겨주시기 바랍니다~ 
+
 
 생각해보기
 
@@ -701,16 +376,19 @@ http://decoder.tistory.com/529
 http://www.azillionmonkeys.com/qed/optimize.html
 
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
-공감2sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - 찾아보기(11)
+
+
+
+공감2sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - 찾아보기(11)
 2012.03.25초보자를 위한 C 언어 강좌 - 씹어먹는 C 언어 (완결)(139)
 2011.01.20씹어먹는 C 언어 - <24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)>(46)
 2011.01.18씹어먹는 C 언어 - <23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)>(19)

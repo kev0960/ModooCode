@@ -1,56 +1,34 @@
-<p>이번 강의에서는</p><ul><li><p> 산술 연산자대입 연산자비트 연산자, 쉬프트 연산자변수에 관한 추가적인 내용산술 변환, 우선 순위 </p></li></ul><p>등을 배우게 됩니다. !</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F174F980E49F540DF99EEA2' alt=''><p>  안녕하세요 여러분. 지난 강의에서 모두들 변수에 대해 감이 잡혔을 것이라 믿고 강의를 진행하도록 하겠습니다. </p><p>  최초의 컴퓨터는 무엇을 하기 위해 태어났을까요? 오락용? 영화 시청? (물론 그 때에는 불가능 했을 터이지만). 아닙니다. 최초의 컴퓨터라 일컫어 지는 에니악(ENIAC.. 물론 에니악이 최초의 컴퓨터이냐 아니냐에 관한 논쟁은 길다. 한편에서는 콜로서스라는 주장도 있는데 아무튼) 은 포탄을 어떤 각도로 발사했을 때, 어디에 떨어질 지를 예측하는 기계였습니다. 단지, 계산 만 할 뿐. 그 후에서 수 많은 컴퓨터들이 나왔지만 20세기 후반 까지만 해도 컴퓨터는 단지 계산에 이용될 뿐이였습니다. 물론 지금도 컴퓨터의 가장 중요한 역할은 인간이 할 수 없는 복잡한 수식을 계산하는 것입니다. 다시말해, 컴퓨터는 '계산' 을 위해 태어난 기계인 것입니다. </p><p> 산술 연산자, 대입 연산자 </p><p> 따라서, 이번 강의는 컴퓨터의 목적 달성 욕구를 채워주기 위한 강좌라 볼 수 있다. 컴퓨터의 역할에 걸맞게 C 프로그램을 통해 실컷 계산을 할 수 있게 해주자. </p><p> 일단, '계산' 이라 하면 머리속에 가장 먼저 떠오르는 것은 사칙연산, 즉 ＋,－,× ,÷ 을 가리킨다. 컴퓨터 상에서는 × 와 ÷ 기호를 쓰기 힘드므로, <span class='font-italic'> 와 / 로 대체한다. 즉, 8 × 5 는 8 </span> 5 와 같은 것이고, 10 ÷ 7 은 10 / 7 과 같은 것이다. 또한, 색다른 연산자로 % 가 있는데 이는 나눈 나머지를 뜻한다. 예를들어 10 % 3 은 1 이 된다. 왜냐하면 10 을 3 으로 나눈 나머지가 1 이기 때문이다. 이러한 ＋,－,× ,÷ 들을 산술 연산자(Arithmetic Operator) 라고 합니다. </p><pre class="chroma">
+<p>이번 강의에서는</p><ul><li><p> 산술 연산자</p></li><li><p> 대입 연산자</p></li><li><p> 비트 연산자, 쉬프트 연산자</p></li><li><p> 변수에 관한 추가적인 내용</p></li><li><p> 산술 변환, 우선 순위 </p></li></ul><p>등을 배우게 됩니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F174F980E49F540DF99EEA2' alt=''><p>  안녕하세요 여러분. 지난 강의에서 모두들 변수에 대해 감이 잡혔을 것이라 믿고 강의를 진행하도록 하겠습니다. </p><p>  최초의 컴퓨터는 무엇을 하기 위해 태어났을까요? 오락용? 영화 시청? (물론 그 때에는 불가능 했을 터이지만). 아닙니다. 최초의 컴퓨터라 일컫어 지는 에니악(ENIAC.. 물론 에니악이 최초의 컴퓨터이냐 아니냐에 관한 논쟁은 길다. 한편에서는 콜로서스라는 주장도 있는데 아무튼) 은 포탄을 어떤 각도로 발사했을 때, 어디에 떨어질 지를 예측하는 기계였습니다. 단지, 계산 만 할 뿐. 그 후에서 수 많은 컴퓨터들이 나왔지만 20세기 후반 까지만 해도 컴퓨터는 단지 계산에 이용될 뿐이였습니다. 물론 지금도 컴퓨터의 가장 중요한 역할은 인간이 할 수 없는 복잡한 수식을 계산하는 것입니다. 다시말해, 컴퓨터는 '계산' 을 위해 태어난 기계인 것입니다. </p><p> 산술 연산자, 대입 연산자 </p><p> 따라서, 이번 강의는 컴퓨터의 목적 달성 욕구를 채워주기 위한 강좌라 볼 수 있다. 컴퓨터의 역할에 걸맞게 C 프로그램을 통해 실컷 계산을 할 수 있게 해주자. </p><p> 일단, '계산' 이라 하면 머리속에 가장 먼저 떠오르는 것은 사칙연산, 즉 ＋,－,× ,÷ 을 가리킨다. 컴퓨터 상에서는 × 와 ÷ 기호를 쓰기 힘드므로, <span class='font-italic'> 와 / 로 대체한다. 즉, 8 × 5 는 8 </span> 5 와 같은 것이고, 10 ÷ 7 은 10 / 7 과 같은 것이다. 또한, 색다른 연산자로 % 가 있는데 이는 나눈 나머지를 뜻한다. 예를들어 10 % 3 은 1 이 된다. 왜냐하면 10 을 3 으로 나눈 나머지가 1 이기 때문이다. 이러한 ＋,－,× ,÷ 들을 산술 연산자(Arithmetic Operator) 라고 합니다. </p><pre class="chroma">
 <span class="cm">/* 산술 연산 */</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">;</span>
-
   <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-
   <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a + b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a - b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a * b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a / b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a %% b 는 : %d </span><span class="se">\n</span><span class="s"> </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a / b 는 : %f </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 해서는 안될 짓
-</span><span class="c1"></span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>만약 위 코드를 잘 컴파일 했다면 아래와 같이 나온다. (컴파일 하는 방법을 까먹은 사람들은 1강을 참조하세요) </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1452B11C49F096D5AA2B50' alt=''><p>참고로, 맨 마지막 부분에 나오는 이상한 숫자는 저와 다를 수 있으니 걱정하지 마세요</p><pre class="chroma"><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-
 <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 </pre><p>  이러한 문장은 딱 봐도 한눈에 알 수 있다. a 의 값을 10, b 의 값을 3 이라 하는 것이다. 그런데 간혹가다가 위 문장을 아래와 같이 적는 사람도 있습니다. </p><pre class="chroma">
 <span class="mi">10</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
-
 <span class="mi">3</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
 </pre><p>  언뜻 보기에 맞는 문장인 것 같다. 왜냐하면, 실제 수학을 공부한 사람이라면 a = 10 이나 10 = a 나 별반 다를 것이 없기 때문이죠. 하지만, C 언어 컴파일러는 '=' 라는 기호를 뒤에서 부터 해석합니다. 즉, a = 10 은 '10 을 a 에 대입하라' 라는 문장이 되지만, 10 = a 는' a 의 값을 10 에 대입하라' 라는 이상한 문장이 되서 오류가 뜨는 것 입니다. 이렇게 '=' 를  유식한 말로 대입 연산자(Assignment Operator) 라고 합니다.  왜냐하면 우측의 값을 좌측에 '대입' 하는 것이기 때문이죠. </p><p>따라서,</p><pre class="chroma">
 <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-
 <span class="n">b</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-
 <span class="n">c</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-
 <span class="n">d</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 </pre><p>라는 문장이나,</p><pre class="chroma">
 <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">=</span> <span class="n">c</span> <span class="o">=</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 </pre><p>  라는 문장은 완전히 같은 것이 됩니다. 왜냐하면, 앞에서 말했듯이 = 는 뒤에서 부터 해석한다고 했으므로, 제일 먼저 d = 5 를 해석한 후, 그 다음에 c = d, b = c, a = b 로 차례대로 해석해 나가기 때문에 a = 5; b = 5; c = 5; d = 5; 라는 문장과 같은 것이지요. </p><pre class="chroma"><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a + b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a - b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a * b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a / b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a %% b 는 : %d </span><span class="se">\n</span><span class="s"> </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
 </pre><p>  자, 이제 산술 연산자들에 대해 살펴보도록 합시다. 일단, 한 눈에 보게 a + b, a - b, a <span class='font-italic'> b, a / b 는 각각 덧셈, 뺄셈, 곱셈, 나눗셈을 하여서 그 값이 %d 에 들어가 출력된 것 같습니다. 그런데, a + b, a - b, a </span> b 는 각각 계산 결과가 13, 7, 30 이 나온 사실을 쉽게 받아들일 수 있지만, a / b 가 왜 3 이 나왔는지는 이해하기 힘듭니다. 왜, a ÷ b 가 3 이 되었을까요?</p><p>  사실, 3 강에서 말했지만 a 와 b 는 모두 int 형으로 선언된 변수 입니다. 즉, a 와 b 는 오직 '정수' 데이터만 담당합니다. 즉, a 와 b 는 모두 정수 데이터만 처리하기 때문에 a 를 b 로 나누면, 즉 10 을 3 으로 나누면 3.3333... 이 되겠지만 정수 부분인 3 만을 처리하게 되는 것 입니다. 따라서, 값은 3 이 출력됩니다. </p><p>  마지막으로 생소한 % 라는 연산자에 대해 살펴봅시다. +,-,<span class='font-italic'>,/ 연산자는 모두 정수,실수형 데이터에 대해서 모두 연산이 가능한데, % 는 오직 정수형 데이터에서만 연산이 가능합니다. 왜냐하면 % 는 나눈 나머지를 표시하는 연산자 이기 때문이죠. a % b 는 a 를 b 로 나눈 나머지를 표시합니다. 즉, 10 % 3 = 1 이  되는 것이지요. </p><p>  이 때,</p><pre class="chroma">
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a %% b 는 : %d </span><span class="se">\n</span><span class="s"> </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
@@ -58,277 +36,112 @@
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a / b 는 : %f </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 해서는 안될 짓
 </span><span class="c1"></span></pre><p>  위 프로그램을 실행 시켜 보신 분들은 알겠지만, 마지막 문장에서 엄청나게 긴 숫자가 튀어나오게 되죠. 물론, 그 숫자는 아무런 의미가 없는 숫자 입니다. 이러한 이상한 숫자가 출력된 이유는 바로 우리가 '해서는 안될 짓' 을 하였기 때문이죠. 3강 에서 우리는  %f 가 오직 실수형 데이터 만을 출력하기 위해 있는 것이라 하였습니다. 그런데, a / b 가 3.3333 이라고 해서 실수형 데이터가 되는 것이 아니라, (정수형 변수) (연산) (정수형 변수) 는 언제나 (정수) 이기 때문에 실수형 데이터를 출력하는 %f 를 이용하면 이와 같이 엄청난 오류가 뜨는 것 입니다. </p><p>  그렇다면 아래의 경우 어떻까요?</p><pre class="chroma">
 <span class="cm">/* 산술 변환 */</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-
   <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
-
   <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-
   <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a / b 는 : %f </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">b / a 는 : %f </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>만약 제대로 컴파일 했다면 아래와 같이 나오게 됩니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F191B8E1749F32487F3F3B7' alt=''><p>  a 는 정수형 변수, b 는 실수형 변수 입니다. 그런데, 이들에 대해 연산을 한 후에 결과를 실수형으로 출력하였는데 '정상적' 으로 나왔습니다. 그 것은 왜 일까요? 이는 컴파일러가 '산술 변환' 이라는 과정을 거치기 때문입니다. 즉, 어떠한 자료형이 다른 두 변수를 연산 할 때, 숫자의 범위가 큰 자료형으로 자료형들이 바뀝니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F11757E0E49F3260ADBDEC9' alt=''><p>  즉, 위 그림에서도 보듯이 a 가 int 형 변수이고 b 가 double 형 변수인데, double 이 int 에 비해 포함하는 숫자가 더 크므로 큰 쪽으로 산술 변환됩니다. 일단, 정수형 변수와 실수형 변수가 만나면 무조건 실수형 변수쪽으로 상승되는데, 이는 실수형 변수의 수 범위가 최소 1038 이상 되기 때문입니다. 위와 같은 산술 변환을 통해 애러가 없이 무사히 실행 될 수 있었습니다. 또한 double 형태로 산술 변환 되므로 결과도 double 형태로 나오기 때문에 </p><pre class="chroma">
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s"> a / b 는 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
 </pre><p>와 같이 하면 오류가 생기게 됩니다. 왜냐하면 전에도 누누히 말했듯이 %d 는 정수형 값을 출력하는 방식이기 때문이죠. </p><pre class="chroma">
 <span class="cm">/* 대입 연산자  */</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-
   <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a 의 값은 : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>위 결과를 컴파일 하면 아래와 같이 나옵니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F1444341149F327F6580EC8' alt=''><p>일단, 변수 선언 부분 부터 살펴 봅시다. </p><pre class="chroma">
-<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</pre><p>위 결과를 컴파일 하면 아래와 같이 나옵니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F1444341149F327F6580EC8' alt=''><p>일단, 변수 선언 부분 부터 살펴 봅시다. </p><pre class="chroma"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 </pre><p>사실, 위 문장을 딱 보고 감이 바로 옵니다. "음... a 라는 변수를 선언하고 a 변수에 3 의 값을 집어 넣는구나" . 맞습니다. 사실 위 문장이나 아래 문장이나 다를 바가 없습니다. </p><pre class="chroma">
 <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
-
 <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 </pre><p>  그냥, 타이핑 하기 귀찮아서 짧게 써 놓은 것 뿐입니다. </p><pre class="chroma"><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
-</pre><p>그 다음 부분은 대입 연산자와 산술 연산자가 함께 나와 있군요. 만일, 우리가 방정식에 대해서 공부해 본 사람이라면 다음과 같이 이의를 제기할 수 도 있습니다. </p><pre class="chroma">
-a = a + 3
-
-    따라서 양변에서 a 를 빼면
-
-    0 =
-        3 ? ? ?
+</pre><p>그 다음 부분은 대입 연산자와 산술 연산자가 함께 나와 있군요. 만일, 우리가 방정식에 대해서 공부해 본 사람이라면 다음과 같이 이의를 제기할 수 도 있습니다. </p><pre class='info'>
+a = a + 3 따라서 양변에서 a 를 빼면 0 = 3 ? ? ?
 </pre><p>  물론, 위는 수학적으로 맞지만 C 언어 에서 의미하는 바는 다릅니다. 위에서 말했듯이, = 는 등호가 아닙니다. '대입' 연산자 입니다. 무엇을 대입하냐구요? 오른쪽의 값을 왼쪽으로 대입합니다. 즉, a + 3 의 값(6) 을 a 에 대입합니다. 따라서, a  =  6 이 되는 것이지요. </p><p>  이 때, 이와 같이 계산 될 수 있는 이유는 + 를 = 보다 먼저 연산하기 때문이죠. 즉, a + 3 을 먼저 한 후(+), 그 값을 대입(=) 하는 순서를 거치기 때문에 a 에 6 이라는 값이 들어갈 수 있게 됩니다. 이러한 것을 '연산자 우선순위' 라고 하는데, 밑에서 조금 있다가 다루어 보도록 하겠습니다. </p><pre class="chroma">
 <span class="cm">/* 더하기 1 을 하는 방법 */</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
   <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">b</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">b : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>
-
   <span class="o">+</span><span class="o">+</span><span class="n">c</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">c : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">d</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">d : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>위 코드를 컴파일 하면 아래와 같이 나옵니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1427821049F32CD7A211BB' alt=''><p>  음, 모두 2 가 되었군요. 사실 위에 나온 4 개의 코드는 더하기 1 을 한다는 점에서 모두 같습니다. 일단, 하나하나 차례대로 살펴봅시다. </p><pre class="chroma">
 <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 </pre><p>  가장, 기초적으로 1 을 더하는 방법입니다. 위 문장은 "a 에 a 에 1 을 더한 값을 대입한다. " 라는 뜻을 가지고 있죠? </p><pre class="chroma"><span class="n">b</span> <span class="o">+</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</pre><p>  이게 뭔가요! 처음 본 연산인 += 입니다. 이러한 연산을 복합 대입연산 이라 하며, b = b + 1 과 같습니다. 이렇게 쓰는 이유는 단지, b = b + 1 을 쓰기 귀찮아서 간략하게 쓰는 것입니다. 물론, b = b+1 과 b += 1 은 엄밀히 말하자면 같은 것은 아니지만 이에 대해서는 나중에 다루어 보도록 하겠습니다(우선 순위에서 약간 차이가 있습니다). 복합 대입 연산은 아래와 같이 여러 가지 형태로 이용될 수 있습니다. </p><pre class="chroma">b += x;  // b = b + x; 와 같다
-
-b -= x;  // b = b - x; 와 같다
-b *= x;  // b = b * x; 와 같다
-b /= x;  // b = b / x; 와 같다
+</pre><p>  이게 뭔가요! 처음 본 연산인 += 입니다. 이러한 연산을 복합 대입연산 이라 하며, b = b + 1 과 같습니다. 이렇게 쓰는 이유는 단지, b = b + 1 을 쓰기 귀찮아서 간략하게 쓰는 것입니다. 물론, b = b+1 과 b += 1 은 엄밀히 말하자면 같은 것은 아니지만 이에 대해서는 나중에 다루어 보도록 하겠습니다(우선 순위에서 약간 차이가 있습니다). 복합 대입 연산은 아래와 같이 여러 가지 형태로 이용될 수 있습니다. </p><pre class='info'>b += x;  // b = b + x; 와 같다
+b -= x;  // b = b - x; 와 같다b *= x; // b = b * x; 와 같다b /= x; // b = b / x;
+         // 와 같다
 </pre><p>  마지막으로, 비슷하게 생긴 두 부분을 함께 살펴 보도록 하겠습니다. </p><pre class="chroma"><span class="o">+</span><span class="o">+</span><span class="n">c</span><span class="p">;</span>
-
 <span class="n">d</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
 </pre><p>  위와 같은 연산자(++)를 증감 연산자라고 합니다. 둘 다, c 와 d 를 1 씩 증가시켜 줍니다. 그런데, ++ 의 위치가 다릅니다. 전자의 경우 ++ 이 피연산자(c) 앞에 있지만 후자의 경우 ++ 이 피연산자(d) 뒤에 있습니다. ++ 이 앞에 있는 것을 전위형 (prefix), ++ 이 뒤에 있는 것을 후위형(postfix) 라 하는데 이는 본질적으로 다릅니다. 전위형의 경우, 먼저 1 을 더해준 후 결과를 돌려주는데 반해, 후위형의 경우 결과를 돌려준 이후 1 을 더해줍니다. 사실, 이해가 잘 안될테니 아래를 보세요. </p><pre class="chroma">
 <span class="cm">/* prefix, postfix */</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-
-<span class="p">{</span>
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">++a : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">+</span><span class="o">+</span><span class="n">a</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a++ : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="o">+</span><span class="p">)</span><span class="p">;</span>
-
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>위 소스를 성공적으로 컴파일 했다면 아래와 같이 결과가 나온다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F204C7B1749F3F1494AE9B7' alt=''><p> 분명히, 위에서 ++c 나 d++ 이나 결과를 출력했을 때 에는 결과가 1 이 잘 더해져서 2 가 나왔는데 여기서는 왜 일까? 앞서 말했듯이 ++ a 는 먼저 1 을 더한 후 결과를 반환한다고 했고 a++ 은 먼저 결과를 반환 한 후, 1 을 더한 다고 했습니다. </p><pre class="chroma">
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">++a : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">+</span><span class="o">+</span><span class="n">a</span><span class="p">)</span><span class="p">;</span>
 </pre><p>  즉, 위의 경우 a 에 먼저 1 을 더한 값인 2 를 printf 함수에 반환하여 %d 에 2 가 들어가게 됩니다. 그런데, </p><pre class="chroma">
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">a++ : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="o">+</span><span class="p">)</span><span class="p">;</span>
-</pre><p>  이 경우, 먼저 a 의 값을 printf 에 반환하며 %d 에 1 이란 값이 '먼저' 들어 간 후, 1 이 출력된 이후 a 에 1 이 더해집니다. 따라서, 다시 printf 문으로 a 의 값을 출력하였을 때 에는 2 라는 값이 나오게 되는 것입니다. 참고로, 위 4 개의 연산 중에서 가장 빨리 연산되는 것은 a++ 과 같은 증감 연산입니다(왜냐하면, a = a + 1 의 경우 ADD a  1 로 하지만, a++ 은 INC a 로 좀 더 빨리 계산된다. 자세한 내용은 나중에... ) 하지만, 요즈음의 컴파일러는 최적화가 잘 되어 있어, a = a + 1 같은 것은 a ++ 로 바꾸어 컴파일 해버립니다.</p><p>  비트 연산자</p><p>  마지막으로 생소한 연산자에 대해 알아보록 하겠습니다. 비트 연산자라고 부르는 이 것들은 정말 비트(bit) 를 가지고 연산을 합니다. 비트는 컴퓨터 기억 장치의 최소 단위로 1 비트는 0 과 1 만을 구분합니다. 이진법의 1 자리라 볼 수 있죠. 보통, 8개의 비트(8 bit) 를 묶어서 1 바이트(byte) 라고 하고, 이진법으로 8 자리 수라 볼 수 있죠. 따라서, 1 바이트로 나타낼 수 있는 수의 범위가 0 부터 11111111b 로 십진수로 바꾸면 0 부터 255 까지 나타낼 수 있습니다. </p><p>  비트연산자에는 & (And 연산), | (\ 위에 있는 것이다. 영문자 i 가 아닌다. Or 연산), ^ (XOR 연산), <<, >> (쉬프트 연산) , ~ (반전) 등이 있습니다. 일단, 각 연산자가 어떠한 역할을 하는지 살펴보도록 합시다. </p><p>AND 연산 (&)</p><p>AND 연산은 아래와 같은 규칙으로 연산된다.  </p><pre class="chroma">
-1 &amp; 1 = 1
-
-    1 &amp; 0 = 0
-
-    0 &amp; 1 = 0
-
-    0 &amp; 0 = 0
-</pre><p>비트 연산은 각 자리를 연산하는데, 예를들어, 1010 & 0011 의 경우 </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F19089F0F49F472A5C0B43C' alt='각 자리수 별로 일의 자리 부터 연산해 나갑니다. 처음에는 0 과 1, 그 다음에 1 과 1, 그 다음에 0 과 0, 그 다음에 1 과 0 을 AND 연산하게 되면 0010 이라는 결과가 나오지요'><p>위와 같이 한자리 한자리 각각 AND 연산하여, 위에 써 놓은 규칙대로 연산이 됩니다. 만약 두 숫자의 자리수가 맞지 않을 경우 ,예를들어 1111100 과 11 을 AND 연산 할 때 에는 11 앞에 0 을 추가하여 자리수를 맞추어 준다. 즉, 1111100 과 0000011 의 연산과 같습니다. </p><p>OR 연산 (|)</p><pre class="chroma">
-1 | 1 = 1
-
-        1 |
-        0 = 1
-
-            0 |
-            1 = 1
-
-                0 |
-                0 = 0
-</pre><p>  OR 연산은 AND 연산과 대조적이다. 어느 하나만 1 이여도 모두 1 이 되는데, 예를들어 1101 | 1000 은 결과가 1101 이 됩니다. </p><p>XOR 연산 (^)</p><pre class="chroma">
-1 ^ 1 = 0
-
-        0 ^
-        1 = 1
-
-            1 ^
-            0 = 1
-
-                0 ^
-                0 = 0
+</pre><p>  이 경우, 먼저 a 의 값을 printf 에 반환하며 %d 에 1 이란 값이 '먼저' 들어 간 후, 1 이 출력된 이후 a 에 1 이 더해집니다. 따라서, 다시 printf 문으로 a 의 값을 출력하였을 때 에는 2 라는 값이 나오게 되는 것입니다. 참고로, 위 4 개의 연산 중에서 가장 빨리 연산되는 것은 a++ 과 같은 증감 연산입니다(왜냐하면, a = a + 1 의 경우 ADD a  1 로 하지만, a++ 은 INC a 로 좀 더 빨리 계산된다. 자세한 내용은 나중에... ) 하지만, 요즈음의 컴파일러는 최적화가 잘 되어 있어, a = a + 1 같은 것은 a ++ 로 바꾸어 컴파일 해버립니다.</p><p>  비트 연산자</p><p>  마지막으로 생소한 연산자에 대해 알아보록 하겠습니다. 비트 연산자라고 부르는 이 것들은 정말 비트(bit) 를 가지고 연산을 합니다. 비트는 컴퓨터 기억 장치의 최소 단위로 1 비트는 0 과 1 만을 구분합니다. 이진법의 1 자리라 볼 수 있죠. 보통, 8개의 비트(8 bit) 를 묶어서 1 바이트(byte) 라고 하고, 이진법으로 8 자리 수라 볼 수 있죠. 따라서, 1 바이트로 나타낼 수 있는 수의 범위가 0 부터 11111111b 로 십진수로 바꾸면 0 부터 255 까지 나타낼 수 있습니다. </p><p>  비트연산자에는 & (And 연산), | (\ 위에 있는 것이다. 영문자 i 가 아닌다. Or 연산), ^ (XOR 연산), <<, >> (쉬프트 연산) , ~ (반전) 등이 있습니다. 일단, 각 연산자가 어떠한 역할을 하는지 살펴보도록 합시다. </p><p>AND 연산 (&)</p><p>AND 연산은 아래와 같은 규칙으로 연산된다.  </p><pre class='info'>
+1 & 1 = 1 1 & 0 = 0 0 & 1 = 0 0 & 0 = 0
+</pre><p>비트 연산은 각 자리를 연산하는데, 예를들어, 1010 & 0011 의 경우 </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F19089F0F49F472A5C0B43C' alt='각 자리수 별로 일의 자리 부터 연산해 나갑니다. 처음에는 0 과 1, 그 다음에 1 과 1, 그 다음에 0 과 0, 그 다음에 1 과 0 을 AND 연산하게 되면 0010 이라는 결과가 나오지요'><p>위와 같이 한자리 한자리 각각 AND 연산하여, 위에 써 놓은 규칙대로 연산이 됩니다. 만약 두 숫자의 자리수가 맞지 않을 경우 ,예를들어 1111100 과 11 을 AND 연산 할 때 에는 11 앞에 0 을 추가하여 자리수를 맞추어 준다. 즉, 1111100 과 0000011 의 연산과 같습니다. </p><p>OR 연산 (|)</p><pre class='info'>
+1 | 1 = 1 1 | 0 = 1 0 | 1 = 1 0 | 0 = 0
+</pre><p>  OR 연산은 AND 연산과 대조적이다. 어느 하나만 1 이여도 모두 1 이 되는데, 예를들어 1101 | 1000 은 결과가 1101 이 됩니다. </p><p>XOR 연산 (^)</p><pre class='info'>
+1 ^ 1 = 0 0 ^ 1 = 1 1 ^ 0 = 1 0 ^ 0 = 0
 </pre><p>  XOR 연산은 특이하게도 두 수가 달라야지만 1 이 된다. 예를들어, 1100 ^ 1010 의 경우 결과가 0110 이 됩니다. </p><p>반전 연산(~)</p><p>  반전연산은 간단히 말에 0 을 1 로 1 을 0 으로 바꿔주는 것입니다. 예를들어서 ~ 1100 을 하면 그 결과는 0011 이 된다. </p><p><< 연산 (쉬프트 연산)</p><p>위 연산 기호에서 볼 수 있듯이, 비트를 왼쪽으로 쉬프트(Shift) 시킨다. 예를 들어, 101011 를 1 만큼 쉬프트 시키면 ( 이를 a << 1 이라 나타냅니다) </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1829FB0F49F474DAC07F7D' alt=''><p>  위 처럼 결과가 010110 이 됩니다. 이 때, << 쉬프트 시, 만일 앞에 쉬프트된 숫자가 갈 자리가 없다면, 그 부분은 버려집니다. 또한 뒤에서 새로 채워지는 부분은 앞에서 버려진 숫자가 가는 것이 아니라 무조건 0 으로 채워집니다. </p><p>>> 연산</p><p> 이는 위와 같은 종류로 이는 << 와 달리 오른쪽으로 쉬프트 해줍니다. 이 때, 오른쪽으로 쉬프트 하되, 그 숫자가 갈 자리가 없다면 그 숫자는 버려집니다. 이 때, 무조건 0 이 채워지는 << 연산과는 달리 앞부분에 맨 왼쪽에 있었던 수가 채워지게 되죠. 예를들어서 11100010 >> 3 = 11111100 이 되고, 00011001 >> 3 = 00000011 이 됩니다. </p><p>비트 연산자를 자세히 다룬 이유는 이 부분이 약간 생소하기 때문입니다. 또한, 처음에 비트 연산자를 접할 때, '저런거 뭐에다 쓰지?' 라는 생각이 들기도 합니다. 그런데, 사실 비트 연산은 암호 분야에서 많이 쓰이며 쉬프트 연산도 가끔씩 유용하게 쓰입니다. </p><pre class="chroma"><span class="cm">/* 비트 연산 */</span>
-
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-
-<span class="p">{</span>
-  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0xAF</span><span class="p">;</span>  <span class="c1">// 10101111
-</span><span class="c1"></span>
-  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0xB5</span><span class="p">;</span>  <span class="c1">// 10110101
-</span><span class="c1"></span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// a &amp; b = 10100101
-</span><span class="c1"></span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// a | b = 10111111
-</span><span class="c1"></span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// a ^ b = 00011010
-</span><span class="c1"></span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">~</span><span class="n">a</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// ~a = 1....1 01010000
-</span><span class="c1"></span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// a &lt;&lt; 2 = 1010111100
-</span><span class="c1"></span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// b &gt;&gt; 3 = 00010110
-</span><span class="c1"></span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0xAF</span><span class="p">;</span>             <span class="c1">// 10101111
+</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mh">0xB5</span><span class="p">;</span>             <span class="c1">// 10110101
+</span><span class="c1"></span>  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// a &amp; b = 10100101
+</span><span class="c1"></span>  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">|</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// a | b = 10111111
+</span><span class="c1"></span>  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">^</span> <span class="n">b</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// a ^ b = 00011010
+</span><span class="c1"></span>  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">~</span><span class="n">a</span><span class="p">)</span><span class="p">;</span>      <span class="c1">// ~a = 1....1 01010000
+</span><span class="c1"></span>  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// a &lt;&lt; 2 = 1010111100
+</span><span class="c1"></span>  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// b &gt;&gt; 3 = 00010110
+</span><span class="c1"></span>  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>위를 성공적으로 컴파일 했다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F200CD91E49F47B31C40ACF' alt=''><p> 위와 같이 나오게 됩니다. 일단, 첫 세줄은 그럭 저럭 이해가 잘 갑니다. 그런데, 네 번째 줄인 ~ a 연산에 대해 의문을 품는 사람들이 많습니다. </p><pre class="chroma">
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">~</span><span class="n">a</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// ~a = 1....1 01010000
 </span><span class="c1"></span></pre><p>  우리의 기억을 되돌려 3 강으로 가 봅시다. 강의 중간쯤에 보면 여러가지 자료형 들에 대한 설명과 함께 작은 표가 있을 텐데 말이죠. 이를 다시 아래에 불러와 봅시다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F16216E0949F47C0DD3A2AC' alt=''><p>  int 형 변수에 대한 설명을 보니 옆에 'Size<span class='font-italic'>' 이라 표시된 것이 있습니다. 이는 int 형 변수의 크기를 나타내는데 4 바이트라고 되어 있군요. 맞습니다. int 형 변수는 하나의 데이터를 저장하기 위하여 메모리 상의 4 바이트 - 즉 32 비트를 사용합니다. ( 1 byte = 8 bits) 아까, 하나의 비트가 0 과 1 을 나타낸다고 했으므로 (즉 1 개의 비트가 2 진수의 한 자리를 나타내게 되죠), 하나의 int 형 변수는 32 자리의 이진수라고 볼 수 있습니다. 예를들어 우리가 a = 1 이라 한 것은 실제로 컴퓨터에는 a = 00000000000000000000000000000001 이라 저장되는 것과 같게 되는 거죠. </p><p>  즉, 우리가 int a = 0xAF; 라고 한 것은 a = 10101111; 이 맞지만 사실 컴퓨터 메모리 상에서는 a 가 int 형이기 때문에 a = 00000000000000000000000010101111 ( 10101111 앞에 0 이 24 개 있다 ) 이라 기억하는 것이 됩니다. 따라서, 이 숫자를 반전 시키게 되면 </p><p>a = 11111111111111111111111101010000, 즉 0xFFFFFF50 이 되는 것이지요. 마찬가지로 생각해 보면,</p><pre class="chroma">
 <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// a &lt;&lt; 2 = 1010111100
-</span><span class="c1"></span>
-<span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// b &gt;&gt; 3 = 00010110
+</span><span class="c1"></span><span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// b &gt;&gt; 3 = 00010110
 </span><span class="c1"></span></pre><p>  이 두 문장도 사실은 각각 00000000000000000000000010101111 과 00000000000000000000000010110101 을 쉬프트 연산한 것과 같습니다. 이 때, a 의 경우 00000000000000000000000010101111 을 왼쪽으로 2 칸 쉬프트 하면 00000000000000000000001010111100 이 되어 0x2BC 가 되고, b 의 경우 마치 앞에 1 이 있는 것 같지만 실제로는 int 형 데이터에 저장되어 있으므로 4 바이트로, 00000000000000000000000010110101 이므로 맨 왼쪽의 비트는 0 입니다. 따라서 쉬프트를 하게 되면 오른쪽에 0 이 채워지면서 00000000000000000000000000010110 이 되어 0x16 이 됩니다.</p><p>복잡한 연산</p><p>마지막으로 여러 연산이 중첩된 혼합 연산에 대해 살펴 보도록 합시다. 우리가 연산을 하는데 에도 순서가 있듯이 컴퓨터에도 연산을 하는데 무엇을 먼저 연산을 할 지 우선 순위가 정해져 있을 뿐더러 연산 방향 까지도 정해져 있습니다. 이를 간단히 살펴 보자면 아래와 같습니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F205C9C4F501D010E144AA9' alt=''><p>이와 같이 순위가 매겨져 있습니다. 수학에서 우리가 혼합 계산을 할 때, 소괄호 → 중괄호 → 대괄호 순으로 괄호를 써 주어야 되었었는데, C 언어에서는 소괄호 하나만으로 충분할 뿐더러 중괄호는 사용하면 안됩니다. </p><p>예를들어 수학에서 {a + b <span class='font-italic'> (c + d) } / (23 </span> 12) 라고 했던 문장을 C 언어 에서는 그냥 (a + b <span class='font-italic'> (c +d) ) / (23 </span> 12) 와 같이 소괄호 만으로 사용해도 괜찮습니다. 이 때, 눈여겨 보아야 할 점은 괄호들이 제 1 우선 순위에 위치하였다는 점 입니다. 따라서, 어떠한 연산이라도 괄호롤 싸 주게 되면 먼저 실행 됩니다. </p><p>마지막으로, 결합 순위에 대해 잠시 다루어 보도록 하겠습니다. 표의 오른쪽을 보면 결합 순위가 나와 있는데, 대부분이 '왼쪽 우선' 이지만 몇 개는 '오른쪽 우선' 입니다. 이 말이 뜻하는 바가 무엇이냐면, 아래와 같은 문장을 수행할 때 계산하는 순위를 이야기 합니다. </p><pre class="chroma">
 <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span> <span class="o">+</span> <span class="n">e</span><span class="p">;</span>
-</pre><p>  위 표에서 보듯이, 덧셈의 결합 순서가 왼쪽 우선이므로 위 계산과정은 아래의 순서대로 진행됩니다. </p><pre class="chroma">
-b + c 를 계산하고 그 결과를 반환(그 결과를 C 라 하면)
-
-        C
-    + d 를 계산하고 그 결과를 반환(그 결과를 D 라 하면)
-
-          D
+</pre><p>  위 표에서 보듯이, 덧셈의 결합 순서가 왼쪽 우선이므로 위 계산과정은 아래의 순서대로 진행됩니다. </p><pre class='info'>
+b + c 를 계산하고 그 결과를 반환(그 결과를 C 라 하면) C
+    + d 를 계산하고 그 결과를 반환(그 결과를 D 라 하면) D
     + e 를 계산하고 그 결과를 반환(그 결과를 E 라 하면)
-</pre><p> 따라서, 위 식은 </p><pre class="chroma">
+</pre><p> 따라서, 위 식은 </p><pre class='info'>
 a = E
-</pre><p> 가 되죠. 따라서, a 에 E 의 값, 즉 b + c + d + e 의 값이 들어가게 됩니다. </p><p>또한, 위 표에서 몇 안되는 '오른쪽이 우선' 인 대입 연산자(=) 를 살펴봅시다. 만약 대입 연산자가 왼쪽 우선이였다면 아래의 식이 어떻게 계산될 지 생각해 봅시다. </p><pre class="chroma">
+</pre><p> 가 되죠. 따라서, a 에 E 의 값, 즉 b + c + d + e 의 값이 들어가게 됩니다. </p><p>또한, 위 표에서 몇 안되는 '오른쪽이 우선' 인 대입 연산자(=) 를 살펴봅시다. 만약 대입 연산자가 왼쪽 우선이였다면 아래의 식이 어떻게 계산될 지 생각해 봅시다. </p><pre class='info'>
 a = b = c = d = 3;
-</pre><p>만약 왼쪽 우선이였다면 a = b; b = c; c = d; d = 3 의 형식으로 계산되어 a , b, c 에는 알 수 없는 값이 들어가겠죠. 하지만 오른쪽이 우선이므로 위 식은 d = 3, c = d, b = c, a = b 의 형식으로 계산되어 a,b,c,d 의 값이 모두 3 이 될 수 있었습니다.  </p><p>자, 이제 연산자에 대한 강의가 끝났습니다. 연산자는 C 언어에서 가장 기초적인 부분이라 할 수 있습니다. 마치 수학에서 덧셈, 뺄셈을 가장 처음에 배우는 것 처럼 말이죠. 이번 강좌에서는 특별히 예제를 많이 만들어 보지는 않았지만 여러분 께서 C 언어를 통해 복잡한 수식의 계산을 하거나, 복잡한 수식을 보고 이러한 연산은 이 순서로 연산될 것이다 라고 예측해 보는 것도 우선순위를 이해하는데 도움이 될 것입니다. 보통, 우선순위를 잘못 고려하여 나는 오류들은 찾기가 매우 힘들기 때문에 우선순위를 빠삭하게 잘 이해하는 것이 좋습니다. </p><p> <span class='font-italic'> 사진 출처 </span></p><p>www.winapi.co.kr</p><pre class="chroma">강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
+</pre><p>만약 왼쪽 우선이였다면 a = b; b = c; c = d; d = 3 의 형식으로 계산되어 a , b, c 에는 알 수 없는 값이 들어가겠죠. 하지만 오른쪽이 우선이므로 위 식은 d = 3, c = d, b = c, a = b 의 형식으로 계산되어 a,b,c,d 의 값이 모두 3 이 될 수 있었습니다.  </p><p>자, 이제 연산자에 대한 강의가 끝났습니다. 연산자는 C 언어에서 가장 기초적인 부분이라 할 수 있습니다. 마치 수학에서 덧셈, 뺄셈을 가장 처음에 배우는 것 처럼 말이죠. 이번 강좌에서는 특별히 예제를 많이 만들어 보지는 않았지만 여러분 께서 C 언어를 통해 복잡한 수식의 계산을 하거나, 복잡한 수식을 보고 이러한 연산은 이 순서로 연산될 것이다 라고 예측해 보는 것도 우선순위를 이해하는데 도움이 될 것입니다. 보통, 우선순위를 잘못 고려하여 나는 오류들은 찾기가 매우 힘들기 때문에 우선순위를 빠삭하게 잘 이해하는 것이 좋습니다. </p><p> <span class='font-italic'> 사진 출처 </span></p><p>www.winapi.co.kr</p><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
             바랍니다
                 .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
-                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-        현재 여러분이 보신 강좌는
-        &lt;&lt; 씹어먹는 C 언어 - &lt;4. 계산하리&gt;&gt;&gt;
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을
+                        달아주세요.현재 여러분이 보신 강좌는
+        << 씹어먹는 C 언어 - <4. 계산하리>>>
     입니다.이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어
-        보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-            다음 강좌 보러가기
-</pre><p>공감1sns신고'C' 카테고리의 다른 글씹어먹는 C 언어 - <6. 만약에...(if 문)>(182)2009.04.28씹어먹는 C 언어 - <5. 문자 입력 받기>(182)2009.04.27씹어먹는 C 언어 - <4. 계산하리 >(239)2009.04.24씹어먹는 C 언어 - <3. 변수가 뭐지? >(365)2009.04.22씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>(227)2009.04.17씹어먹는 C 언어 - <1. C 언어가 뭐야?>(544)2009.04.16</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+        보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기
+</pre><p>공감1sns신고</p><p>'C' 카테고리의 다른 글씹어먹는 C 언어 - <6. 만약에...(if 문)>(182)2009.04.28씹어먹는 C 언어 - <5. 문자 입력 받기>(182)2009.04.27씹어먹는 C 언어 - <4. 계산하리 >(239)2009.04.24씹어먹는 C 언어 - <3. 변수가 뭐지? >(365)2009.04.22씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>(227)2009.04.17씹어먹는 C 언어 - <1. C 언어가 뭐야?>(544)2009.04.16</p>

@@ -1,9 +1,20 @@
+----------------
+title : 씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>
+--------------
 
 
 이번 강좌에서는
 * 객체 지향 프로그래밍의 도래 
-객체란 무엇인가, 클래스란 무엇인가
-접근 지시자 (public, private)
+
+
+* 객체란 무엇인가, 클래스란 무엇인가
+
+
+
+* 접근 지시자 (public, private)
+
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1342EB504F4DAD7604F48F)
 
   안녕하세요 여러분~ 그간 침묵을 깨고 오래간만에 C++ 강좌를 이어 나가고자 합니다. 앞선 3 강을 읽으셨던 분들은 다 느껴셨겠지만 기존의 C 언어를 통해서 대형 프로젝트를 개발하기 위해서는 많은 어려움들이 있기 마련입니다. (그래도 아직도 많은 수의 프로그램이 C 로 쓰여지고 있습니다)
@@ -44,20 +55,17 @@ Pascal
 
   그렇게 해서 절차 지향 언어로 몇십년을 버텨왔습니다. 그러나, 프로그램의 크기가 예전보다 상상도 할 수 없을 만큼 거대해 지자 새로운 패러다임이 필요하게 되었는데요, 그것이 바로 객체 지향 언어(Object oriented language) 입니다. 이를 사용하는 언어는 C++ 을 비롯한 Java, Python, C# 등등 아마 90년대 이후에 생긴 언어들은 대부분 객체 지향 언어 일 것입니다. 
 
- 객체란?
+
+
+###  객체란?
+
+
+
 
   그럼, 절차 지향적 언어의 뭐가 부족해서 였는지 객체 지향 언어를 필요로 하게 된 것일까요? 먼저 지난 강좌의 Animal 구조체를 가져와서 살펴 봅시다. 우리는 
 
 ```cpp
-typedef struct Animal
-{
-    char name[30]; // 이름
-    int age; // 나이
-
-    int health; // 체력
-    int food; // 배부른 정도
-    int clean; // 깨끗한 정도
-} Animal;
+typedef struct Animal{    char name[30]; // 이름    int age; // 나이    int health; // 체력    int food; // 배부른 정도    int clean; // 깨끗한 정도} Animal;
 ```
 
   위와 같이 Animal 구조체를 정의한 후, animal 변수를 만들어서 이를 필요로 하는 함수들에게 
@@ -72,12 +80,7 @@ typedef struct Animal
 다시 말해서 Animal 자체가 Play 를 하는 것이지, Play 가 Animal 을 해주는 것이 아닙니다. 만일 Animal 자체가 Play 를 한다 라는 개념을 생각하게 된다면, 다음과 같이 생각할 수 있을 것입니다.
 
 ```cpp
-Animal animal;
-
-// 여러가지 초기화 (생략)
-
-animal.play(); // 즉 내가 (animal 이) Play 를 한다!
-animal.sleep(); // 내가 sleep 을 한다!
+Animal animal;// 여러가지 초기화 (생략)animal.play(); // 즉 내가 (animal 이) Play 를 한다!animal.sleep(); // 내가 sleep 을 한다!
 ```
 
 
@@ -87,12 +90,10 @@ animal.sleep(); // 내가 sleep 을 한다!
 
 객체란, 변수들과 연관된 함수들로 이루어진 소프트웨어 덩어리 이다.
 
-
   이 때 객체가 현실 세계에서의 존재하는 것들을 나타내기 위해서는 '추상화(abstraction)' 라는 과정이 필요합니다. 컴퓨터 상에서 현실 세계를 100% 나타낼 수 없는 것이기 때문에, 적절하게 컴퓨터에서 처리할 수 있도록 바꾸는 것인데, 예를 들어서 핸드폰의 경우 '전화를 한다', '문자를 보낸다' 와 같은 것들은 '핸드폰이 하는 것' 이므로 함수로 추상화 시킬 수 있고, 핸드폰의 상태를 나타내는 것들, 예를 들어서 자기 자신의 전화 번호나 배터리 잔량 같은 것은 변수로 추상화 시킬 수 있습니다. 
 
 
   아래 그림은 흔히 객체를 나타내기 위한 그림 입니다. 
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F2012E33F4F4CCAF12C29D8)
 http://journals.ecs.soton.ac.uk/java/tutorial/java/objects/object.html에서 인용하였습니다.
@@ -100,15 +101,9 @@ http://journals.ecs.soton.ac.uk/java/tutorial/java/objects/object.html에서 인
 
   그림을 메소드가 변수들을 감싸고 있는 것 처럼 그리는 이유는 진짜로 변수들이 외부로 부터 '보호' 되고 있기 때문입니다. 다시 말해, 외부에서 어떠한 객체의 인스턴스 변수의 값을 바꾸지 못하고 오직 객체의 인스턴스 함수를 통해서만 가능하다는 것이지요 (물론 항상 이렇게 극단적으로 불가능 한 것은 아니고 사실 사용자가 조절할 수 있습니다) 이를 단순히 코드로 표현한다면, 예컨대 Animal 의 food 를 바꾼다고 할 때
 
-
 ```cpp
-Animal animal;
-// 초기화 과정 생략
-
-animal.food += 100; // --> 불가능
-animal.increase_food(100); // --> 가능
+Animal animal;// 초기화 과정 생략animal.food += 100; // --> 불가능animal.increase_food(100); // --> 가능
 ```
-
 
 
   이렇게 된다는 것입니다. 일단 animal.food += 100; 자체는 외부에서 animal 이라는 '객체' 의 '인스턴스 변수' 에 '직접' 접근하는 것이기 때문에 불가능 한 것이고, 아래의 animal.increase_food(100); 의 경우 animal 객체의 '인스턴스 함수' 를 통해서 값을 수정하는 것이기 때문에 가능한 것이지요. 이와 같이 외부에서 직접 인스턴스 변수의 값을 바꿀 수 없고 항상 인스턴스 메소드를 통해서 간접적으로 조절하는 것을 캡슐화(Encapsulation) 라고 부릅니다. 
@@ -116,9 +111,7 @@ animal.increase_food(100); // --> 가능
   이 개념을 처음 들었을 때 이게 왜 필요하냐고 생각하시는 분들이 많습니다. 저도 캡슐화를 굳이 해야될 이유를 못찼었거든요. 그냥, animal.food += 100; 하나 animal.increase_food(100); 하나 거기서 거기이지 라는 생각을 말이죠. 일단 여기서는 캡슐화의 장점에 대해서는 나중에 설명하겠지만 간단하게 말하자면, "객체가 내부적으로 어떻게 작동하는지 몰라도 사용할 줄 알게 된다" 라고 볼 수 있습니다. 예컨대 animal.increase_food(100); 을 하면 내부적으로 food 변수 값이 100 증가하는것 뿐만이 아니라 몸무게도 바뀔 수 있고, 행복도도 올라갈 수 있고 등등 여러가지 작업들이 일어나겠지요. 만일 increase_food 함수를 사용하지 않았다면 
 
 ```cpp
-animal.food += 100;
-animal.weight += 10;
-//... 여러가지 처리
+animal.food += 100;animal.weight += 10;//... 여러가지 처리
 ```
 
 
@@ -126,57 +119,25 @@ animal.weight += 10;
 
   "내부적으로 어떻가 처리되는지는 알 필요가 없다!" 라는 말이 조금 못마땅 하다고 생각하시는 분들이 있을 것입니다. 사람이 그렇게 무책임 해서도 되나 말이죠. 하지만 곰곰히 생각해보면 우리가 접하는 모든 전자 기기들은 캡슐화 되어 있다고 볼 수 있습니다. 노트북의 경우도, 화면에 글자 'a' 를 띄우기 위해서 우리는 컴퓨터 내부에서 어떠한 연산이 처리되는지 알 필요 없습니다. 단순히 우리가 하는 일은 '키보드의 a 를 누른다' 라는, 마치 my_computer.keyboard_hit('a'); 라는 메소드를 호출하는 것과 동일한 작업이지요. 만일 노트북이 캡슐화 되어 있지 않다면요? 그건 여러분의 상상에 맡기겠습니다. 
 
- 클래스
+
+
+###  클래스
+
+
+
 
   자 그러면 객체는 C++ 상에서 어떻게 만들어낼까요. 이를 위해 C++ 에서 객체를 만들 수 있는 장치를 준비하였습니다. 쉽게 말하면 객체의 '설계도' 라고 볼 수 있지요. 바로 클래스(class) 입니다. 
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F16603A484F4D993B0DC2A3)
 
   위와 같이 안의 내용은 차있지 않고 빈 껍질로만 생각할 수 있습니다. 그리고 우리는 이 객체의 설계도를 통해서 실제 객체를 만들게 되지요. C++ 에서 이와 같이 클래스를 이용해서 만들어진 객체를 인스턴스(instance) 라고 부릅니다. 앞서 객체의 변수와 메소드를 왜 인스턴스 변수와 인스턴스 메소드라고 했는지 아시겠죠? 
 
 ```cpp
-#include <iostream>
-using namespace std;
-
-class Animal
-{
-private:
-    int food;
-    int weight;
-
-public:
-    void set_animal(int _food, int _weight)
-    {
-        food = _food;
-        weight = _weight;
-    }
-    void increase_food(int inc)
-    {
-        food += inc;
-        weight += (inc / 3);
-    }
-    void view_stat()
-    {
-        cout << "이 동물의 food   : " << food << endl;
-        cout << "이 동물의 weight : " << weight << endl;
-    }
-}; // 세미콜론 잊지 말자!
-
-int main()
-{
-    Animal animal;
-    animal.set_animal(100, 50);
-    animal.increase_food(30);
-
-    animal.view_stat();
-    return 0;
-}
+#include <iostream>using namespace std;class Animal{private:    int food;    int weight;public:    void set_animal(int _food, int _weight)    {        food = _food;        weight = _weight;    }    void increase_food(int inc)    {        food += inc;        weight += (inc / 3);    }    void view_stat()    {        cout << "이 동물의 food   : " << food << endl;        cout << "이 동물의 weight : " << weight << endl;    }}; // 세미콜론 잊지 말자!int main(){    Animal animal;    animal.set_animal(100, 50);    animal.increase_food(30);    animal.view_stat();    return 0;}
 ```
 
 
   성공적으로 컴파일 하였다면
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F1324C5384F4D9B8B374245)
 
@@ -191,29 +152,7 @@ int main()
   먼저 main 함수에서 Animal 클래스의 인스턴스를 어떻게 생성하였는지 살펴 봅시다. 기존의 구조체에서 구조체 변수를 생성할 때와 동일한데, 구조체의 경우 앞에 struct 를 명시 했어야 했지만 여기서는 그러지 않아도 됩니다. 그냥 int 나 char 처럼 Animal 이라고 써주면 됩니다. 이와 같이 Animal animal; 을 했으면 Animal 클래스의 인스턴스 animal 을 만들게 된 것이지요. 이제 본격적으로 클래스가 어떻게 되어 있는지 살펴봅시다.
 
 ```cpp
-class Animal
-{
-private:
-    int food;
-    int weight;
-
-public:
-    void set_animal(int _food, int _weight)
-    {
-        food = _food;
-        weight = _weight;
-    }
-    void increase_food(int inc)
-    {
-        food += inc;
-        weight += (inc / 3);
-    }
-    void view_stat()
-    {
-        cout << "이 동물의 food   : " << food << endl;
-        cout << "이 동물의 weight : " << weight << endl;
-    }
-};
+class Animal{private:    int food;    int weight;public:    void set_animal(int _food, int _weight)    {        food = _food;        weight = _weight;    }    void increase_food(int inc)    {        food += inc;        weight += (inc / 3);    }    void view_stat()    {        cout << "이 동물의 food   : " << food << endl;        cout << "이 동물의 weight : " << weight << endl;    }};
 ```
 
 
@@ -222,64 +161,35 @@ public:
   즉, 인스턴스로 생성된 객체에서는 인스턴스 변수, 인스턴스 함수, 그리고 그냥 클래스 상에서는 멤버 변수, 멤버 함수 라고 부르는 것입니다. 멤버 변수와 멤버 함수는 실재 하는 것이 아니지요. 인스턴스가 만들어져야 비로소 세상에 나타나는 것입니다. 즉, 설계도 상에 있다고 해서 아파트가 실제로 존재하는 것이 아닌 것 처럼 말이지요. 
 
 ```cpp
- private:
-    int food;
-    int weight;
-
+ private:    int food;    int weight;
 ```
 
   먼저 멤버 변수들을 정의한 부분을 봅시다. 처음 보는 키워드가 있지요? 이러한 키워드를 '접근 지시자' 라고 하는데, 외부에서 이러한 멤버들에 접근을 할 수 있냐 없냐를 지시해주는 것입니다. private 키워드의 경우, 아래에 쓰여진 것들은 모두 객체 내에서 보호되고 있다 라는 의미이지요. 즉, 앞서 객체 그림을 떠올리면 멤버 변수들이 안에서 보호 받고 있던 것 기억하시죠? private 되고 있는 모든 것들은 자기 객체 안에서만 접근할 수 있을 뿐 객체 외부에서는 접근할 수 없게 됩니다. 다시 말해
 
 ```cpp
-    void set_animal(int _food, int _weight)
-    {
-        food = _food;
-        weight = _weight;
-    }
+    void set_animal(int _food, int _weight)    {        food = _food;        weight = _weight;    }
 ```
 
 
 와 같이 같은 객체 안에서 food 와 weight 에 접근하는 것은 가능한 일이지만
 
 ```cpp
-int main()
-{
-    Animal animal;
-    animal.food = 100; 
-}
+int main(){    Animal animal;    animal.food = 100; }
 ```
 
 
   처럼 객체 밖에서 인위적으로 food 에 접근하는 것은 불가능 하다는 것입니다. (실제로 컴파일 해보면 오류가 발생합니다) 반면에 public 키워드의 경우,
 
 ```cpp
-public:
-    void set_animal(int _food, int _weight)
-    {
-        food = _food;
-        weight = _weight;
-    }
-    void increase_food(int inc)
-    {
-        food += inc;
-        weight += (inc / 3);
-    }
-    void view_stat()
-    {
-        cout << "이 동물의 food   : " << food << endl;
-        cout << "이 동물의 weight : " << weight << endl;
-    }
+public:    void set_animal(int _food, int _weight)    {        food = _food;        weight = _weight;    }    void increase_food(int inc)    {        food += inc;        weight += (inc / 3);    }    void view_stat()    {        cout << "이 동물의 food   : " << food << endl;        cout << "이 동물의 weight : " << weight << endl;    }
 ```
 
 
 이와 같이 멤버 함수들을 public 으로 지정하였습니다. public 이라는 것은 말 그대로 공개된 것으로 외부에서 마음껏 이용할 수 있게 됩니다. 그래서 main 함수에서도 이들을 
 
 ```cpp
-    animal.set_animal(100, 50);
-    animal.increase_food(30);
-    animal.view_stat();
+    animal.set_animal(100, 50);    animal.increase_food(30);    animal.view_stat();
 ```
-
 
 
   처럼 마음껏 접근할 수 있었습니다. 만일 멤버 함수들을 private 로 설정해버렸다면 어떨까요. public 키워드를 지워봅시다. 
@@ -296,11 +206,7 @@ public:
   참고로 키워드 명시를 하지 않았다면 기본적으로 private 로 설정됩니다. 즉, 맨 위의 private 키워드를 지워도 상관이 없다는 것이지요. 그냥 private 없이
 
 ```cpp
-class Animal
-{
-    int food;
-    int weight;
-// ... 생략
+class Animal{    int food;    int weight;// ... 생략
 ```
 
 
@@ -316,22 +222,14 @@ class Animal
 로 손쉽게 접근할 수 있게 됩니다. 이제 멤버 변수에 대해 조금 더 자세히 살펴 보도록 합시다.
 
 ```cpp
-    void set_animal(int _food, int _weight)
-    {
-        food = _food;
-        weight = _weight;
-    }
+    void set_animal(int _food, int _weight)    {        food = _food;        weight = _weight;    }
 ```
 
 
 위는 각 멤버 변수들의 값을 설정하는 부분인데요, 여기서 food 와 weight 는 누구의 것일까요? 당연하게도, 객체 자신의 것입니다. 그렇기 때문에 food 와 weight 가 누구 것인지 명시할 필요 없이 그냥 food, weight 라고 사용하면 됩니다. set_animal 을 호출한 객체의 food 와 weight 값이기 때문이지요. 마찬가지로 increase_food 를 살펴보면
 
 ```cpp
-    void increase_food(int inc)
-    {
-        food += inc;
-        weight += (inc / 3);
-    }
+    void increase_food(int inc)    {        food += inc;        weight += (inc / 3);    }
 ```
 
 
@@ -344,42 +242,22 @@ class Animal
 1. 여러분은 아래와 같은 Date 클래스를 디자인 하려고 합니다. set_date 는 말그대로 Date 함수 내부를 초기화 하는 것이고 add_day, add_month, add_year 는 일, 월, 년을 원하는 만큼 더하게 됩니다. 한 가지 주의할 점은 만일 2012 년 2 월 28 일에 3 일을 더하면 2012 년 2 월 31 일이 되는 것이 아니라 2012 년 3 월 2 일이 되겠지요? (난이도 : 上)
 
 ```cpp
-class Date
-{
-    int year;
-    int month;
-    int day;
-
-public:
-    void set_date(int _year, int _month, int _day)
-    {
-    }
-    void add_day(int inc)
-    {
-    }
-    void add_month(int inc)
-    {
-    }
-    void add_year(int inc)
-    {
-    }
-    void get_date()
-    {
-    }
-};
+class Date{    int year;    int month;    int day;public:    void set_date(int _year, int _month, int _day)    {    }    void add_day(int inc)    {    }    void add_month(int inc)    {    }    void add_year(int inc)    {    }    void get_date()    {    }};
 ```
+
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
-공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ 토막글 ① - Rvalue(우측값) 레퍼런스에 관해(6)
+
+
+공감sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ 토막글 ① - Rvalue(우측값) 레퍼런스에 관해(6)
 2012.11.03씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자) >(42)
 2012.08.04씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>(50)
 2012.02.29씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>(41)

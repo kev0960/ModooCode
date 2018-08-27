@@ -1,17 +1,26 @@
+----------------
+title : C 언어 레퍼런스 - sscanf 함수
+--------------
 
 
 sscanf
-```info
-#include <stdio.h> // C++ 에서는 <cstdio>
 
-int sscanf ( const char * str, const char * format, ...);
+
+
+```info
+#include <stdio.h> // C++ 에서는 <cstdio>int sscanf ( const char * str, const char * format, ...);
 ```
 
 
 문자열에서 형식화 된 데이터를 읽어온다.
 str 에서 데이터를 형식 문자열(format)에서 지정하는 바에 따라 읽어와 그 데이터를 뒤에 부수적인 인자들이 가리키는 메모리 공간에 저장하게 된다. 이 때, 데이터가 저장되는 방식 역시 형식 문자열에 의해 결정된다. 
 
-###  인자### 
+
+
+###  인자
+
+
+
 
 str
 
@@ -20,14 +29,24 @@ C 문자열로 sscanf 함수가 데이터를 얻어올 문자열이다.
 format
 
 C 문자열로 다음의 것들을 포함하고 있다. 
+
 * 공백 
-문자 (Whitespace character 이라 부르며, 개행 문자(\n), 탭 문자, 띄어쓰기(' ') 를 일컫는다)  :
- fscanf 함수는 비-공백 문자를 읽어들이기 전까지 읽혀지는 모든 공백 문자들을 무시한다. 비-공백
- 문자 (Non whitespcae character), 단 % 를 제외한다 : 공백 문자가 아니거나 형식 지정자에 
+문자
+ (Whitespace character 이라 부르며, 개행 문자(\n), 탭 문자, 띄어쓰기(' ') 를 일컫는다)  :
+ fscanf 함수는 비-공백 문자를 읽어들이기 전까지 읽혀지는 모든 공백 문자들을 무시한다. 
+
+* 비-공백
+ 문자
+ (Non whitespcae character), 단 % 를 제외한다 : 공백 문자가 아니거나 형식 지정자에 
 포함되지 않는 것들은 함수로 하여금 다음 문자를 스트림에서 읽어 들이고 이와 이 비-공백 문자와 비교하여 같다면 버리고 다음 
-문자와 형식으로 진행한다. 만일 다르다면 함수가 종료되고, 스트림에서 읽혀지지 않은 다른 문자들은 모두 남아있게 된다.형식 
-지정자 : 이는 % 로 지정되는 것들로 스트림에서 어떠한 형식으로 데이터를 읽어오고, 또 각각의 형식 지정자에 
+문자와 형식으로 진행한다. 만일 다르다면 함수가 종료되고, 스트림에서 읽혀지지 않은 다른 문자들은 모두 남아있게 된다.
+
+* 형식 
+지정자
+ : 이는 % 로 지정되는 것들로 스트림에서 어떠한 형식으로 데이터를 읽어오고, 또 각각의 형식 지정자에 
 대응되는 인자에 어떠한 형식으로 저장할 지에 대해 결정한다. 형식 지정자는 아래와 같은 꼴로 생겼다.
+
+
 ```info
 %[*][폭(width)][한정자(modifiers)]타입(type)
 ```
@@ -50,12 +69,20 @@ str
 한정자입력받는 
 데이터의 크기를 지정한다. int (d, i, n), 
 unsigned int (o, u, x) float (e, f, g) 형에 대해 입력받는 데이터의 크기를 설정할 수 있다. 
+
 * h : 
 short int (d, i, n 의 경우) 혹은 
-unsigned short int (o, u, x 일 경우)l : 
+unsigned short int (o, u, x 일 경우)
+
+* l : 
 long int (d, i, n 의 경우) 혹은 
-unsigned long int (o, u, x 일 경우), 혹은 double (e,f, g 일 경우)L : 
+unsigned long int (o, u, x 일 경우), 혹은 double (e,f, g 일 경우)
+
+* L : 
 long double (e, f, g 일 경우)
+
+
+
 타입
 데이터를 
 어떠한 형식으로 혹은 어떠한 값만을 읽어들어야 할 지에 
@@ -104,80 +131,83 @@ int
 예를 들면 다음과 같다.
 
 ```cpp
-    char str[30]="word";
-    char c;
-
-    sscanf(str, "%c", &c);
+    char str[30]="word";    char c;    sscanf(str, "%c", &c);
 ```
+
+
 
 
 ###  sscanf 함수를 이용해서 문자열을 수로 바꾸기
 
+
+
+
 보통 우리는 문자열을 수로 바꿀 때 atoi 함수를 호출한다. 이는 stdlib.h 에 정의되어 있는데 이를 사용하게 되면 불필요하게 stdlib.h 를 포함해야 하므로 상당히 불편하게 된다. 하지만 sscanf 함수를 사용하면 단순히 stdio.h 에서 문자열을 수로 바꿀 수 있다. 
 
 ```cpp
-#include <stdio.h>
-int main()
-{
-    char str[30]="1234";
-    int i;
-
-    sscanf(str, "%d", &i);
-
-    printf("Number from : '%s' \n", str);
-    printf("number : %d \n", i);
-
-   return 0;
-}
-
+#include <stdio.h>int main(){    char str[30]="1234";    int i;    sscanf(str, "%d", &i);    printf("Number from : '%s' \n", str);    printf("number : %d \n", i);   return 0;}
 ```
 
 실행 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F2019520D4B8290B942A3FF)
 
 위와 같이 str 에서 sscanf 함수로 %d 형식, 즉 정수 형식으로 수를 읽어오면 이 값을 i 에 저장하게 된다. 
 위 함수의 장점은 %d 뿐만이 아니라 %o 나 %f, %x 등이 가능하기 때문에 팔진수나 부동소수점 수, 16 진수 들도 모두 동일한 방법으로 입력받을 수 있다. 반면에 atoi 계열 함수들은 atoi, atof 등 세분화 되어 있기 때문에 불편한 면이 있다. 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 입력 성공 시에 이 함수는 읽어들인 것의 개수를 리턴한다. 물론, 0 이 리턴될 수 도 있다. (이 경우에는 str 에서 format 에서 지정한 형식과 일치하는 데이터가 없어서 아무것도 읽어들이지 않은 경우 발생한다. 아래의 EOF 가 리턴되는 경우와 조금 다르다)
 만일 어떠한 데이터도 성공적으로 읽기 전에 입력이 실패한다면 EOF 가 리턴된다. 
 
-###  실행 예제### 
+
+
+###  실행 예제
+
+
+
 
 ```cpp
-/*
 
-sentence 로 부터 Rudolph 와 12 라는 수를 sscanf 함수를 이용해 추출한다. 
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/sscanf/
-에서 가져왔습니다.
-
- */
-#include <stdio.h>
-int main ()
-{
-    char sentence []="Rudolph is 12 years old";
-    char str [20];
-    int i;
-
-    sscanf (sentence,"%s %*s %d",str,&i);
-    printf ("%s -> %d\n",str,i);
-
-    return 0;
-}
+/*sentence 로 부터 Rudolph 와 12 라는 수를 sscanf 함수를 이용해 추출한다. 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/sscanf/에서 가져왔습니다. */#include <stdio.h>int main (){    char sentence []="Rudolph is 12 years old";    char str [20];    int i;    sscanf (sentence,"%s %*s %d",str,&i);    printf ("%s -> %d\n",str,i);    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F166187534D209A7F15737F)
 
 
+
+
 ###  연관된 함수
-### 
-* scanf  :  표준입력(stdin) 으로 부터 데이터를 형식에 맞추어 읽어온다. sprintf  :  문자열에 데이터를 형식에 맞추어 쓴다.
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sscanf 함수(8)
+
+
+
+
+
+* scanf
+  :  표준입력(stdin) 으로 부터 데이터를 형식에 맞추어 읽어온다. 
+
+* sprintf
+  :  문자열에 데이터를 형식에 맞추어 쓴다.
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sscanf 함수(8)
 2011.01.03C 언어 레퍼런스 - printf 함수(3)
 2010.11.27C 언어 레퍼런스 - rewind 함수(4)
 2010.04.24C 언어 레퍼런스 - ftell 함수(1)

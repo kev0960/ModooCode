@@ -1,86 +1,16 @@
-<pre class="chroma">이 레퍼런스의 모든 내용은 http
+<pre class='warning'>이 레퍼런스의 모든 내용은 http
     :  // www.cplusplus.com/reference/iostream/
        의 내용을 기초로 하여,
        Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책
-               &lt;&lt; The C++ Programming Language &gt;&gt;
+               << The C++ Programming Language >>
            를 참고로 하여 만들어졌습니다
                .이는 또한 저의 개인적인
-                   C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39; 를 위해 모든 이들에게
+                   C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게
                        공개하도록 하겠습니다.
-</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
-</pre><p>ios::good</p><pre class="chroma">bool good() const;
+</pre><pre class='info'>아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
+</pre><p>ios::good</p><pre class='info'>bool good() const;
 </pre><p>스트림이 입출력 작업이 가능한 상태인지 확인한다.이 함수는 스트림의 오류 상태 플래그(eofbit, failbit, badbit) 이 모두 설정되지 않을 때 true 를 리턴한다.</p><p>한 가지 주의할 점은 이 함수는 bad() 함수와 정 반대가 아니라는 사실이다. bad 함수는 badbit 플래그가 설정되어 있는지의 여부만 확인하는 함수이다. </p><p>오류 상태 플래그들은 eof, fail, bad 함수들을  이용해서 독립적으로 체크할 수  있다.</p><p>이 함수가 리턴하는 값은 아래의 작업의 결과와 동일하다.</p><pre class="chroma"><span class="p">(</span><span class="n">rdstate</span><span class="p">(</span><span class="p">)</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
-</pre><p> 인자</p><p>없다.</p><p> 리턴값</p><p>  만일 스트림의 어떠한 오류 상태 플래그(eofbit, failbit, badbit) 이 설정되어 있지 않다면 true 를 리턴한다. 그렇지 않으면 false 를 리턴한다. </p><p> 템플릿 멤버 선언</p><pre class="chroma"><span class="p">(</span><span class="n">basic_ios</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span><span class="p">)</span><span class="kt">bool</span> <span class="n">good</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-</pre><p> 연관된 함수</p><ul><li><p> ios::fail  :  failbit 이나 badbit 이 설정되어 있는지 확인한다. ios::bad  :  badbit 이 설정되어 있는지 확인한다.  ios::eof  :  eofbit 이 설정되어 있는지 확인한다. ios::rdstate  :  오류 상태 플래그를 얻는다. ios::setstate  :  오류 상태 플래그를 설정한다.ios::clear  :  오류 상태 플래그를 설정한다.공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::bad 함수(0)2011.10.23C++ 레퍼런스 - ios::fail 함수(0)2011.10.23C++ 레퍼런스 - ios::good 함수(0)2011.10.23C++ 레퍼런스 - ios<span class='font-italic'>base::pword 함수(0)2011.10.22C++ 레퍼런스 - ios</span>base::iword(0)2011.10.22C++ 레퍼런스 - ios<span class='font-italic'>base::xalloc 함수(0)2011.10.22</p></li></ul><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+</pre><h3><p>  인자</p></h3><p>없다.</p><h3><p>  리턴값</p></h3><p>  만일 스트림의 어떠한 오류 상태 플래그(eofbit, failbit, badbit) 이 설정되어 있지 않다면 true 를 리턴한다. 그렇지 않으면 false 를 리턴한다. </p><h3><p>  템플릿 멤버 선언</p></h3><pre class="chroma">
+
+<span class="p">(</span><span class="n">basic_ios</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span><span class="p">)</span><span class="kt">bool</span> <span class="n">good</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</pre><h3><p>  연관된 함수</p></h3><ul><li><p> ios::fail  :  failbit 이나 badbit 이 설정되어 있는지 확인한다. </p></li><li><p> ios::bad  :  badbit 이 설정되어 있는지 확인한다.  </p></li><li><p> ios::eof  :  eofbit 이 설정되어 있는지 확인한다. </p></li><li><p> ios::rdstate  :  오류 상태 플래그를 얻는다. </p></li><li><p> ios::setstate  :  오류 상태 플래그를 설정한다.</p></li><li><p> ios::clear  :  오류 상태 플래그를 설정한다.</p></li></ul><p>공감sns신고저작자표시</p><p>'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::bad 함수(0)2011.10.23C++ 레퍼런스 - ios::fail 함수(0)2011.10.23C++ 레퍼런스 - ios::good 함수(0)2011.10.23C++ 레퍼런스 - ios<span class='font-italic'>base::pword 함수(0)2011.10.22C++ 레퍼런스 - ios</span>base::iword(0)2011.10.22C++ 레퍼런스 - ios<span class='font-italic'>base::xalloc 함수(0)2011.10.22</p>

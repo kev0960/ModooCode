@@ -1,18 +1,21 @@
+----------------
+title : C 언어 레퍼런스 - fseek 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 
 fseek
 
+
+
+
 ```info
-#include <stdio.h> // C++ 에서는 <cstdio>
-
-int fseek ( FILE * stream, long int offset, int origin );
-
+#include <stdio.h> // C++ 에서는 <cstdio>int fseek ( FILE * stream, long int offset, int origin );
 ```
 
 스트림 위치 지정자 (position indicator) 의 위치를 조정한다. 
@@ -25,8 +28,13 @@ origin 인자로 전달된 위치로 부터 offset 인자로 전달된 만큼 �
 
 fseek 함수는 또한 스트림이 읽기 및 쓰기 형식으로 열려있을 때, 이 함수를 호출함을 통해 읽기 - 쓰기 모드를 전환할 수 있다. (자세한 내용은 fopen 함수를 참조하기 바란다)  
 
+
+
 ###  인자
-### 
+
+
+
+
 stream
 
 작업을 수행할 스트림의 FILE 객체를 가리키는 포인터 
@@ -45,51 +53,68 @@ SEEK_CUR현재 파일 포인터의 위치
 SEEK_END파일의 끝
 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 만일 성공하였으면 0 을 리턴한다. 그렇지 않다면 0 이 아닌 값을 리턴한다. 
 
+
+
 ###  실행 예제
-### 
+
+
+
+
 ```cpp
-/*
-
-example.txt 에 "This is an apple" 을 쓴 뒤에 다시 fseek 함수를 이용하여 n 부터 sam 으로 바꾼다. 즉, example.txt 에는 "This is an sample" 이 들어가게 된다. 
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fseek/
-에서 가져왔습니다. 
-
- */
-#include <stdio.h>
-
-int main ()
-{
-    FILE * pFile;
-    pFile = fopen ( "example.txt" , "w" );
-    fputs ( "This is an apple." , pFile );
-    fseek ( pFile , 9 , SEEK_SET );
-    fputs ( " sam" , pFile );
-    fclose ( pFile );
-    return 0;
-}
+/*example.txt 에 "This is an apple" 을 쓴 뒤에 다시 fseek 함수를 이용하여 n 부터 sam 으로 바꾼다. 즉, example.txt 에는 "This is an sample" 이 들어가게 된다. 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fseek/에서 가져왔습니다.  */#include <stdio.h>int main (){    FILE * pFile;    pFile = fopen ( "example.txt" , "w" );    fputs ( "This is an apple." , pFile );    fseek ( pFile , 9 , SEEK_SET );    fputs ( " sam" , pFile );    fclose ( pFile );    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1470C5114BD23C5D569FE8)
 
 myfile.txt 에는
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1470A1114BD23C5D437B49)
 
 
 
-###  연관된 함수
-### 
-* ftell  :  스트림의 현재 위치를 구한다. 
-fsetpos :  스트림의 위치 지정자를 설정한다. rewind  :  스트림의 위치 지정자를 맨 처음으로 설정한다.
 
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - ftell 함수(1)
+
+###  연관된 함수
+
+
+
+
+
+* ftell
+  :  스트림의 현재 위치를 구한다. 
+
+
+
+* fsetpos
+ :  스트림의 위치 지정자를 설정한다. 
+
+* rewind
+  :  스트림의 위치 지정자를 맨 처음으로 설정한다.
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - ftell 함수(1)
 2010.04.24C 언어 레퍼런스 - fsetpos 함수(0)
 2010.04.24C 언어 레퍼런스 - fseek 함수(0)
 2010.04.24C 언어 레퍼런스 - fgetpos 함수(0)

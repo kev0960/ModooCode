@@ -1,8 +1,18 @@
+----------------
+title : 씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>
+--------------
 
 
 
 이번 강좌에서는
-* 매크로 함수에 대해 배운다인라인 함수에 대해 배운다.![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F116007104CE883F6707510)
+
+* 매크로 함수에 대해 배운다
+
+* 인라인 함수에 대해 배운다.
+
+
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F116007104CE883F6707510)
 
 안녕하세요 여러분. 저의 36 번째 강좌가 시작되었습니다. 요즘에 뒤로 갈 수 록 강좌들의 댓글 수가 적어지는 것을 보아 처음에 큰마음 먹고 강좌 보기를 시작하였다가 시간적 여유의 한계나 온라인 상의 한계를 느끼고 포기하신 분들이 많은 것 같은데 과연 누가 여기 까지 성공적으로 달려왔는지 궁금하네요. 전체 강좌의 앞부분은 C 언어 자체를 아는데 주력하였다면 후반으로 갈 수록 C 언어 자체를 이해하기 보다는 C 언어와 친해지는 과정으로 진행이 되고 있습니다.    
 
@@ -10,31 +20,26 @@
 아무튼. 적어도 제 강좌만 다 이해한다면 C 의 기초 부분은 훌륭하게 다진 프로그래머로 만들어 줄 수 있으니 열심히 따라와주세요:)    
 
 
-###  매크로 함수### 
+
+
+###  매크로 함수
+
 
 ```cpp
 /* 매크로 함수*/    
-
 #include <stdio.h>    
-
 #define square(x) x*x    
-
-
 int main(int argc, char **argv)    
-
 {    
-
     printf("square(3) : %d \n", square(3));    
-
-
     return 0;    
-
 }    
 ```
 
 
 
 성공적으로 컴파일 하였다면    
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1574AB204C597BDD8BE6F9)
 
@@ -94,27 +99,19 @@ int main(int argc, char **argv)
 
 ```cpp
 /* 매크로 함수*/    
-
 #include <stdio.h>    
-
 #define square(x) x*x    
-
-
 int main(int argc, char **argv)    
-
 {    
-
     printf("square(3) : %d \n", square(3+1));    
-
-
     return 0;    
-
 }    
 ```
 
 
 
 성공적으로 컴파일 하였다면    
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F112AFA224C8F0EC197F54B)
 
@@ -166,27 +163,18 @@ int main(int argc, char **argv)
 
 ```cpp
 /* 라디안에서 도로 바꾸기*/    
-
 #include <stdio.h>    
-
 #define RADTODEG(x) (x) * 57.295    
-
-
 int main(int argc, char **argv)    
-
 {    
-
     printf("5 rad 는 : %f 도", RADTODEG(5));    
-
-
     return 0;    
-
 }    
-
 ```
 
 
   성공적으로 컴파일 하였다면    
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1904F7164C8F12790B161E)
 
@@ -235,30 +223,20 @@ int main(int argc, char **argv)
 
 ```cpp
 /* 변수의 이름 출력하기 */    
-
 #include <stdio.h>    
-
 #define PrintVariableName(var) printf(#var"\n");    
-
-
 int main(int argc, char **argv)    
-
 {    
-
     int a;    
-
-
     PrintVariableName(a);    
-
-
     return 0;    
-
 }    
 ```
 
 
 
 성공적으로 컴파일 하였다면    
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F140BEE1D4C8F14514649BF)
 
@@ -299,33 +277,20 @@ int main(int argc, char **argv)
 
 ```cpp
 /* ## 의 사용 */    
-
 #include <stdio.h>    
-
 #define AddName(x,y) x##y    
-
-
 int main(int argc, char **argv)    
-
 {    
-
     int AddName(a,b);    
-
-
     ab = 3;    
-
-
     printf("%d \n", ab);    
-
-
     return 0;    
-
 }    
-
 ```
 
 
   성공적으로 컴파일 하였다면    
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F114F850C4C8F1D4D15BA94)
 
@@ -342,69 +307,111 @@ int main(int argc, char **argv)
 
 
 위와 같이 AddName 에서는 x##y 는 'x' 에 있는 것과 'y' 에 있는 것을 하나로 합쳐줍니다. 따라서     
+
+
 ```cpp
 
     int AddName(a,b);
 ```
 
-이 부분은 전처리기에 의해```cpp
+
+
+이 부분은 전처리기에 의해
+
+```cpp
 
     int ab;
 ```
 
+
+
 로 정확히 치환됩니다. 따라서 컴파일러는 ab 라는 이름의 변수를 선언하게 되고 그 뒤로 쭉 가는 것이지요. 
-매크로함수가 위와 같이 여러 편리한 점들은 있지만 앞서 집고 나간 것 처럼 여러가지 어려운 문제점들도 많습니다. 위에서 처럼 괄호를 제대로 쓰지 않아 오류가 나는 경우가 많은데 이 경우 디버깅하기가 매우 까다롭기 때문에 오랜 시간을 잡아먹는 경우도 많습니다. 이러한 문제를 해결하기 위해 C 언어에서는 또다른 해결책을 제시하였는데요, 이는 바로 인라인(inline) 함수 입니다. ###  인라인 함수### 
+
+
+매크로함수가 위와 같이 여러 편리한 점들은 있지만 앞서 집고 나간 것 처럼 여러가지 어려운 문제점들도 많습니다. 위에서 처럼 괄호를 제대로 쓰지 않아 오류가 나는 경우가 많은데 이 경우 디버깅하기가 매우 까다롭기 때문에 오랜 시간을 잡아먹는 경우도 많습니다. 이러한 문제를 해결하기 위해 C 언어에서는 또다른 해결책을 제시하였는데요, 이는 바로 인라인(inline) 함수 입니다. 
+
+
+
+###  인라인 함수
+
+
+
 
 ```cpp
+
 /* 인라인 함수 */
+
+
 #include <stdio.h>
+
 __inline int square(int a)
+
 {
+
   return a*a;
+
 }
+
 int main(int argc, char **argv)
-{printf("%d", square(3));
-    return 0;
-}
-```
 
-성공적으로 컴파일 하였다면![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F12778B224C8F233008B8C8)
-
-
-음. 일단 내용만을 보아서는 크게 어렵지 않습니다. ```cpp
-__inline int square(int a)
 {
-  return a*a;
+printf("%d", square(3));
+
+
+    return 0;
+
 }
 ```
 
-위 부분은 __inline 을 빼고 본다면 단순히 square 라는 함수를 만든데 지나지 않습니다. 또한 printf 에서도 역시 함수를 호출했던 것처럼 똑같은 방식으로 ```cpp
+
+
+
+
+성공적으로 컴파일 하였다면
+
+
+![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F12778B224C8F233008B8C8)
+
+
+
+음. 일단 내용만을 보아서는 크게 어렵지 않습니다. 
+
+
+```cpp
+
+__inline int square(int a)
+
+{
+
+  return a*a;
+
+}
+```
+
+
+
+
+위 부분은 __inline 을 빼고 본다면 단순히 square 라는 함수를 만든데 지나지 않습니다. 또한 printf 에서도 역시 함수를 호출했던 것처럼 똑같은 방식으로 
+
+```cpp
 printf("%d", square(3));
 ```
+
+
 
 로 사용하고 있지요. 하지만 이는 함수와는 전혀 다른 행동을 합니다. 함수의 경우 호출을 하게 되면 프로그램의 흐름이 완전히 다른 곳으로 넘어가게 됩니다. 예를 들어서
 ```cpp
 int cubic(int a)   
-
 {    
-
     return a*a*a;    
-
 }
 ```
-
-
-와 같은 세제곱을 하는 ‘평범한’ 함수 하나를 만들고, main 함수에서
-
-```cpp
+와 같은 세제곱을 하는 ‘평범한’ 함수 하나를 만들고, main 함수에서```cpp
 
 int main(int argc, char **argv)   
-
 {    
-
     printf("%d", cubic(3));
     return 0;   
-
 }
 ```
 
@@ -424,15 +431,13 @@ int main(int argc, char **argv)
 으로 하는 것이 훨씬 효율적일 것입니다.
 
 이러한 생각을 살려 만든 것이 inline 함수 입니다. 위에서 inline 형식으로 만든 square 함수는 우리가 생각하는 함수가 전혀 아닙니다. 단순히 ‘함수 처럼 보이는 것’ 일 뿐이지요. inline 함수를 사용하게 되면 마치 매크로 함수처럼 
+
 ```cpp
 
 int main(int argc, char **argv)   
-
 {    
-
     printf("%d", square(3));
     return 0;   
-
 }
 ```
 
@@ -443,12 +448,9 @@ int main(int argc, char **argv)
 ```cpp
 
 int main(int argc, char **argv)   
-
 {    
-
     printf("%d", 3 * 3);
     return 0;   
-
 }
 ```
 
@@ -461,12 +463,9 @@ int main(int argc, char **argv)
 ```cpp
 
 int main(int argc, char **argv)   
-
 {    
-
     printf("%d", square(3+1));
     return 0;   
-
 }
 ```
 
@@ -477,12 +476,9 @@ int main(int argc, char **argv)
 ```cpp
 
 int main(int argc, char **argv)   
-
 {    
-
     printf("%d", (3+1)*(3+1));
     return 0;   
-
 }
 ```
 
@@ -494,48 +490,42 @@ int main(int argc, char **argv)
 
 /* 다른 인라인 함수 예제*/
 #include <stdio.h>   
-
 __inline int max(int a, int b)    
-
 {    
-
     if(a > b)    
-
         return a;    
-
     else    
-
         return b;    
-
 }
 int main(int argc, char **argv)   
-
 {    
-
     printf("3 과 2 중 최대값은 : %d", max(3,2));    
-
     return 0;    
-
 }    
 ```
 
 
 
-성공적으로 컴파일 하였다면![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F11402F164CE8823F55E151)
+
+성공적으로 컴파일 하였다면
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F11402F164CE8823F55E151)
+
 
 
 와 같이 나옵니다.
+
+
 이번에도 역시 인라인 함수를 사용하였습니다. 컴파일러는 max(3,2) 라는 문장을 보고 max 함수 내부의 코드를 어떻게 하면 printf 안에 쑤셔 놓을 수 있을지 고민을 하게 되는데, 만일 쑤셔 놓을 수 있다면 인라인 함수의 역할이 발휘되는 것이고 쑤셔 놓을 수 없다고 판명된다면 단순히 int 형을 ‘리턴’ 하는 함수로 간주하여 보통 함수처럼 생각하게 됩니다. 즉, inline 키워드를 빼버린다고 보면 됩니다.  
+
+
 다행히도 이 max 함수의 경우 한 문장으로 표현할 수 있는데 아마 컴파일러는 이 함수의 내용을 아마 
+
 ```cpp
 int main(int argc, char **argv)   
-
 {    
-
     printf("%d 과 %d 중 최대값은 : %d \n", 3,2, 3>2?3:2);    
-
     return 0;    
-
 }
 ```
 
@@ -554,34 +544,29 @@ int main(int argc, char **argv)
 
 ```cpp
 __inline int some_function(int a)
-
 {
-
     if(a == 0)
-
         return 1;
-
     else if(a == 1)
-
         return 3;
-
     else
-
         return a * 2;
-
 }
 ```
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
-공감sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <23 - 1. 파일 하고 이야기 하기 (파일 입출력에 대한 기본적 이해)>(34)
+
+
+
+공감sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <23 - 1. 파일 하고 이야기 하기 (파일 입출력에 대한 기본적 이해)>(34)
 2010.12.28씹어먹는 C 언어 - <22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)>(23)
 2010.12.25씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>(42)
 2010.11.21씹어먹는 C 언어 - <20 - 2. 메모리 동적할당 + 메모리 갖고 놀기>(38)

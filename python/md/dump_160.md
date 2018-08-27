@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios_base::getloc 함수
+--------------
+
 
 
 ```warning
@@ -13,6 +17,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 ios_base::getloc
 
+
+
+
 ```cpp
 locale getloc ( ) const;
 ```
@@ -22,47 +29,67 @@ locale getloc ( ) const;
 스트림 객체의 로케일을 리턴한다.
 
 
- 인자
+
+
+###  인자
+
+
+
 
 
 
 없다.
 
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
 
 
 스트림의 로케일 객체를 리턴한다.
 
 
- 실행 예제
+
+
+###  실행 예제
+
+
+
 
 ```cpp
-// 로케일 이름을 출력한다. 
-#include <iostream>
-#include <locale>
-using namespace std;
-
-int main () 
-{
-    locale current = cout.getloc();
-    cout << current.name() << endl; // 현재 로케일 이름을 출력한다. 
-    return 0;
-}
+// 로케일 이름을 출력한다. #include <iostream>#include <locale>using namespace std;int main () {    locale current = cout.getloc();    cout << current.name() << endl; // 현재 로케일 이름을 출력한다.     return 0;}
 ```
 
 
 실행 결과
 
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F161A3C3B4E4E83B81B0A87)
 
- 연관된 함수
 
-* ios_base::imbue  :  로케일을 설정한다. 
 
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::iword(0)
+###  연관된 함수
+
+
+
+
+
+* ios_base::imbue
+  :  로케일을 설정한다. 
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::iword(0)
 2011.10.22C++ 레퍼런스 - ios_base::xalloc 함수(0)
 2011.10.22C++ 레퍼런스 - ios_base::getloc 함수(1)
 2011.08.20C++ 레퍼런스 - ios_base::imbue(0)

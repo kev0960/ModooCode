@@ -1,3 +1,8 @@
+----------------
+title : C++ 레퍼런스 - vector::push_back
+--------------
+
+
 
 
 
@@ -19,10 +24,12 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 vector::push_back
 
 
+
+
+
 ```info
 
 void push_back ( const T& x );
-
 ```
 
 
@@ -34,25 +41,31 @@ void push_back ( const T& x );
 이 함수는 효과적으로 벡터의 크기를 1 늘리는데, 만일 capacity 와 벡터 size 가 같다면 내부적으로 재할당이 일어나게 된다. 이 때 이전에 사용되었던 반복자(iterator) , 레퍼런스, 포인터들은 사용할 수 없게 된다. 
 
 
- 인자
 
 
+###  인자
 
 
 x
+새로 추가 될 원소에 복사 될 원소T 는 벡터에 저장되어있는 원소들의 타입이다.
 
 
-새로 추가 될 원소에 복사 될 원소
-T 는 벡터에 저장되어있는 원소들의 타입이다.
+
+###  리턴값
 
 
- 리턴값
+
 
 없음
+
+
 만일 재할당이 발생한다면 이는 Allocator::allocate() 를 이용해서 수행되는데, 예외를 던질(throw) 수 있다. (디폴트 할당자의 경우 만일 요청한 할당이 성공하지 않을 경우 bad_alloc 이 던져진다)
 
 
- 실행 예제
+
+
+###  실행 예제
+
 
 
 
@@ -60,26 +73,21 @@ T 는 벡터에 저장되어있는 원소들의 타입이다.
 
 /*
 
-
 이 예제는
 http://www.cplusplus.com/reference/stl/vector/push_back/
 에서 가져왔습니다
-
 
 */
 #include <iostream>
 #include <vector>
 using namespace std;
 
-
 int main ()
 {
 vector<int> myvector;
 int myint;
 
-
 cout << "Please enter some integers (enter 0 to end):\n";
-
 
 do 
 {
@@ -87,13 +95,12 @@ cin >> myint;
 myvector.push_back (myint);
 } while (myint);
 
-
 cout << "myvector stores " << (int) myvector.size() << " numbers.\n";
-
 
 return 0;
 }
 ```
+
 
 
 
@@ -106,21 +113,31 @@ return 0;
 
 
 
- 시간 복잡도
+###  시간 복잡도
+
 
 
 상수 (다만 재할당이 일어 날 수 있음)
 
 
-
- 연관된 함수
-
-
-* vector::pop_back : 마지막 원소를 삭제한다.vector::insert : 원소를 추가한다. 
+###  연관된 함수
 
 
 
-공감sns신고저작자표시'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)
+
+* vector::pop_back : 마지막 원소를 삭제한다.
+* vector::insert 
+: 원소를 추가한다. 
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)
 2012.08.05C++ 레퍼런스 - vector::push_back(0)
 2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)
 2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)

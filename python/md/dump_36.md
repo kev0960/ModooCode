@@ -1,14 +1,25 @@
+----------------
+title : C 언어 레퍼런스 - scanf 함수
+--------------
+
 
 
 ```warning
-아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-참고로 이 레퍼런스는 scanf 함수에 대해 어느 정도의 지식을 가지고 있는 사람을 대상으로 하는 것이므로 scanf 함수를 처음 접하시는 분들은 여기를 클릭하시기 바랍니다. 또한 scanf 와 버퍼에 관련지어 공부를 하시고 싶은 분들은 여기를 클릭하시기 바랍니다. 
-
+아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?참고로 이 레퍼런스는 scanf 함수에 대해 어느 정도의 지식을 가지고 있는 사람을 대상으로 하는 것이므로 scanf 함수를 처음 접하시는 분들은 여기를 클릭하시기 바랍니다. 또한 scanf 와 버퍼에 관련지어 공부를 하시고 싶은 분들은 여기를 클릭하시기 바랍니다. 
 ```
 
 scanf
+
+
+
+
+
+
+
 ```info
+
 <stdio.h> // C++ 의 경우 <cstdio>
+
 int  scanf ( const char * format, ... );
 ```
 
@@ -20,15 +31,28 @@ int  scanf ( const char * format, ... );
 
 scanf 함수는 표준입력(stdin) 으로 부터 데이터를 읽어와 형식(format) 문자열에 따라 나머지 인자들이 가리키는 장소에 값을 대입한다. 이 때, 나머지 인자들은 반드시 할당된 공간을 가리켜야 하며, 형식 문자열의 형식 태그(format tag) 가 지정하는 바에 따라 대응되는 인자들이 가리키는 공간에 값이 대입된다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 형식(format) 문자열
 
 
 형식 문자열은 한 개 이상의 아래 것을 포함하는 C 형식 문자열이다.
 
-* 공백 문자(Whitespace character) : scanf 함수는 공백문자(띄어쓰기 한 칸, 개행 문자, 탭 문자) 가 아닌 것들 이전에 나오는 모든 공백 문자 를 모두 무시한다. 퍼센트 기호(%) 를 제외한 비-공백문자들(non-whitespace character) : 형식 문자열에 있는 공백 문자나 형식 지정자(% 로 시작하는 것들) 을 제외한 나머지 문자들은 scanf 함수로 하여금 stdin 에서 다음 문자를 읽어여 이 비-공백 문자와 비교하여 같다면 무시한 후, 형식 문자열의 다음 문자들을 처리하고, 다르다면 함수를 종료하게 되고 stdin 에는 읽히지 않은 다음 문자들이 남아 있게 된다. 
-형식 지정자(Format specifier) : % 다음에 오는 문자들은 scanf 함수의 형식 지정자를 나타내며 이 형식 지정자는 stdin 에서 어떠한 타입과 형식의 데이터를 가져올지에 대해서 알려준다. 이 때, 형식 지정자에 따라 stdin 에서 입력받은 데이터는 각 형식 지정자에 대응되는 인자들이 가리키는 주소에 저장된다. 형식 지정자는 아래와 같이 생겼다. 
+
+* 공백 문자(Whitespace character) : scanf 함수는 공백문자(띄어쓰기 한 칸, 개행 문자, 탭 문자) 가 아닌 것들 이전에 나오는 모든 공백 문자 를 모두 무시한다. 
+
+* 퍼센트 기호(%) 를 제외한 비-공백문자들(non-whitespace character) : 형식 문자열에 있는 공백 문자나 형식 지정자(% 로 시작하는 것들) 을 제외한 나머지 문자들은 scanf 함수로 하여금 stdin 에서 다음 문자를 읽어여 이 비-공백 문자와 비교하여 같다면 무시한 후, 형식 문자열의 다음 문자들을 처리하고, 다르다면 함수를 종료하게 되고 stdin 에는 읽히지 않은 다음 문자들이 남아 있게 된다. 
+
+
+
+* 형식 지정자(Format specifier) : % 다음에 오는 문자들은 scanf 함수의 형식 지정자를 나타내며 이 형식 지정자는 stdin 에서 어떠한 타입과 형식의 데이터를 가져올지에 대해서 알려준다. 이 때, 형식 지정자에 따라 stdin 에서 입력받은 데이터는 각 형식 지정자에 대응되는 인자들이 가리키는 주소에 저장된다. 형식 지정자는 아래와 같이 생겼다. 
+
+
 ```info
 
 %[*][폭(width)][한정자(modifiers)]타입(type)
@@ -43,7 +67,15 @@ stdin 에서 읽어들일 최대 문자 수를 지정한다.
 
 예를 들어 scanf("%10s", str); 로 했을 경우 stdin 에서 최대 10 문자를 읽어와 str 에 저장한다. 이 때 주의할 점은 str 에는 NULL 문자가 들어갈 수 있는 충분한 공간이 남아 있어야 한다. 
 한정자입력받는 데이터의 크기를 지정한다. int (d, i, n), unsigned int (o, u, x) float (e, f, g) 형에 대해 입력받는 데이터의 크기를 설정할 수 있다. 
-* h : short int (d, i, n 의 경우) 혹은 unsigned short int (o, u, x 일 경우)l : long int (d, i, n 의 경우) 혹은 unsigned long int (o, u, x 일 경우), 혹은 double (e,f, g 일 경우)L : long double (e, f, g 일 경우)
+
+* h : short int (d, i, n 의 경우) 혹은 unsigned short int (o, u, x 일 경우)
+
+* l : long int (d, i, n 의 경우) 혹은 unsigned long int (o, u, x 일 경우), 혹은 double (e,f, g 일 경우)
+
+* L : long double (e, f, g 일 경우)
+
+
+
 타입
 데이터를 어떠한 형식으로 혹은 어떠한 값만을 읽어들어야 할 지에 대해 지정해준다. 아래 표를 참고.
 
@@ -66,8 +98,13 @@ int
 
 형식 문자열의 정의된 순서대로 각 형식 지정자는 이에 대응하는 인자가 가리키는 메모리 공간에 데이터를 집어넣는다. 이 때, 부수적 인자들은 모두 포인터의 형태 (주소값) 여야 한다. 예를 들어서 i 라는 변수에 값을 대입하려면 인자로 &i 를 전달해야 한다. 절대로 i 를 전달하면 안된다. 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 입력이 성공적이였다면 함수는 성공적으로 읽어들인 것의 개수를 리턴한다. 
 
 (즉 scanf("%d%d", &i, &j); 를 했는데 성공적으로 읽어들였다면 2 가 리턴되는 셈이다). 
@@ -77,8 +114,11 @@ int
 만일 성공적으로 읽어보기도 전에 읽기 오류가 발생한다면 EOF 가 리턴된다. 
 
 
+
+
 ###  scanf 함수의 고질적인 문제 및 해결책
-### 
+
+
 
 
 scanf 함수를 사용하다 보면 다음과 같이 입력을 받지 않고 넘어가는 경우가 종종 있다.
@@ -86,12 +126,8 @@ scanf 함수를 사용하다 보면 다음과 같이 입력을 받지 않고 넘
 ```cpp
     
 printf("숫자를 입력하세요 : ");
-
     scanf("%d", &num);
-
-
     printf("문자를 입력하세요 : ");
-
     scanf("%c", &c);
 ```
 
@@ -101,7 +137,6 @@ printf("숫자를 입력하세요 : ");
 
 ```cpp
 scanf("%d", &num);
-
 scanf("%*c%c", &c);
 ```
 
@@ -109,15 +144,17 @@ scanf("%*c%c", &c);
 
 하지만 이러한 문제를 가장 잘 해결하는 방법은 fgets 함수를 이용하는 것이다. 
 
+
+
 ###  scanf 함수 사용시 주의할 점
-### 
+
+
 
 
 scanf 함수는 문자열 입력시 입력받을 문자열의 최대 개수를 제한을 두지 않으므로 버퍼 오버플로우가 발생할 여지가 충분히 있다. 이를 해결하기 위해서는 역시 fgets 함수를 이용하거나 폭을 지정해 주면 된다. 예를 들어서
 
 ```cpp
 char str[10];
-
 scanf("%9s", str);
 ```
 
@@ -129,102 +166,89 @@ scanf("%9s%*s", str);
 
 왜냐하면 처음 %9s 를 통해서 9 문자만 입력 받고 stdin 에 남아있는 나머지 문자열들은 %*s 가 날려버리기 때문이다. 
 
+
+
 ###  실행 예제
-### 
+
+
 ```cpp
+
 /* 각 형식에 맞는 입력을 받은 뒤 이를 출력한다.*/
 
-
 #include <stdio.h>
-
 int main()
-
 {
-
     char str[10];
-
     char ch;
-
     int dec, hex, oct;
-
-    float db;
-
-    printf("문자열, 문자, 십진수, 16 진수, 8 진수, 소수를 각각 입력하세요\n");
-
-    scanf("%9s %*s %c %d %x %o %f", str, &ch, &dec, &hex, &oct, &db);
-
-    printf("문자열 : %s \n", str);
-
+    float db;    printf("문자열, 문자, 십진수, 16 진수, 8 진수, 소수를 각각 입력하세요\n");
+    scanf("%9s %*s %c %d %x %o %f", str, &ch, &dec, &hex, &oct, &db);    printf("문자열 : %s \n", str);
     printf("문자 : %c \n", ch);
-
     printf("십진수 : %d \n", dec);
-
     printf("16 진수 : %x \n", hex);
-
     printf("8 진수 : %o \n", oct);
-
     printf("소수 : %f \n", db);
-
     return 0;
-
 }
-
 ```
 
 
 실행 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1653C4014B6857C23335C6)
 
 ```cpp
-/*
 
-다음 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/scanf/
-
+/*다음 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/scanf/
 에서 가져왔습니다. 
-
-
-*/
-#include <stdio.h>
-
-int main ()
-
+*/#include <stdio.h>int main ()
 {
-
     char str [80];
-
-    int i;
-
-    printf ("Enter your family name: ");
-
+    int i;    printf ("Enter your family name: ");
     scanf ("%s",str);  
-
     printf ("Enter your age: ");
-
     scanf ("%d",&i);
-
     printf ("Mr. %s , %d years old.\n",str,i);
-
     printf ("Enter a hexadecimal number: ");
-
     scanf ("%x",&i);
-
-    printf ("You have entered %#x (%d).\n",i,i);
-
-    return 0;
-
+    printf ("You have entered %#x (%d).\n",i,i);    return 0;
 }
 ```
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F1612E6054B685860348FB9)
 
-###  연관된 함수들
-### 
-* fscanf  :  스트림에서 특정한 형식으로 데이터를 읽어온다.printf   :  stdout 에 특정한 형식으로 데이터를 출력한다. gets    :  stdin 에서 문자열을 가져온다.fopen  :  파일을 연다
 
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - gets 함수(3)
+
+###  연관된 함수들
+
+
+
+
+
+* fscanf  :  스트림에서 특정한 형식으로 데이터를 읽어온다.
+
+* printf 
+  :  stdout 에 특정한 형식으로 데이터를 출력한다. 
+
+* gets
+    :  stdin 에서 문자열을 가져온다.
+
+* fopen  :  파일을 연다
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - gets 함수(3)
 2010.02.03C 언어 레퍼런스 - getchar 함수(7)
 2010.02.03C 언어 레퍼런스 - scanf 함수(2)
 2010.02.03C 언어 레퍼런스 - getc 함수(0)

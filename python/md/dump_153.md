@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios_base::flags 함수
+--------------
+
 
 
 ```warning
@@ -13,9 +17,11 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 ios_base::flags
 
+
+
+
 ```cpp
-fmtflags flags ( ) const;
-fmtflags flags ( fmtflags fmtfl );
+fmtflags flags ( ) const;fmtflags flags ( fmtflags fmtfl );
 ```
 
 
@@ -27,7 +33,12 @@ fmtflags flags ( fmtflags fmtfl );
 
 fmtfl 에 서식 플래그를 전달할 때, 기존의 스트림의 서식 플래그의 내용은 모두 지워지고, 전달된 fmtfl 의 내용으로 덮어 씌워지게 된다. 다른 서식 플래그를 바꾸지 않고, 한 개의 서식 플래그 만 바꾸기 위해서는 setf 함수나 unsetf 함수를 이용하면 된다. 
 
- 인자
+
+
+###  인자
+
+
+
 
 
 
@@ -36,48 +47,63 @@ fmtfl
   스트림에서 사용되는 서식 플래그. 이 값은 ios_base::fmtflags 형이다. 
 
 
- 리턴값
+
+
+###  리턴값
+
 
 
 함수 호출 직전의 서식 플래그 
 
 
- 실행 예제
+
+
+
+
+###  실행 예제
+
+
 
 ```cpp
-/*
-
-cout 의 서식 플래그로 right, hex, showbase 를 전달한다.
-이를 통해 100 은 오른쪽에 10 크기로 맞추어서, 16 진수로, 무슨 진법으로(0x) 표시하였는지 명시되어 출력된다.
-이 예제는
-http://www.cplusplus.com/reference/iostream/ios_base/flags/
-에서 가져왔습니다
-
-*/
-#include <iostream>
-using namespace std;
-
-int main () 
-{
-    cout.flags ( ios::right | ios::hex | ios::showbase );
-    cout.width (10);
-    cout << 100;
-    return 0;
-}
+/*cout 의 서식 플래그로 right, hex, showbase 를 전달한다.이를 통해 100 은 오른쪽에 10 크기로 맞추어서, 16 진수로, 무슨 진법으로(0x) 표시하였는지 명시되어 출력된다.이 예제는http://www.cplusplus.com/reference/iostream/ios_base/flags/에서 가져왔습니다*/#include <iostream>using namespace std;int main () {    cout.flags ( ios::right | ios::hex | ios::showbase );    cout.width (10);    cout << 100;    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F110B09414E4D3E30316DF2)
 
 
 
- 연관된 것들
 
-* ios_base::setf  :  특정 서식 플래그를 설정한다. ios_base::unsetf  :  특정 서식 플래그를 초기화 한다.   ios_base::fmtflags  :  스트림 서식 플래그의 타입setiosflags  :  서식 플래그를 설정한다. 
 
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::setf 함수(0)
+###  연관된 것들
+
+
+
+
+* ios_base::setf
+  :  특정 서식 플래그를 설정한다. 
+
+* ios_base::unsetf
+  :  특정 서식 플래그를 초기화 한다.   
+
+* ios_base::fmtflags
+  :  스트림 서식 플래그의 타입
+
+* setiosflags  :  서식 플래그를 설정한다. 
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::setf 함수(0)
 2011.08.19C++ 레퍼런스 - ios_base::fmtflags 타입(0)
 2011.08.19C++ 레퍼런스 - ios_base::flags 함수(0)
 2011.08.19C++ 레퍼런스 - ios_base::width(0)

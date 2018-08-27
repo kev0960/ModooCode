@@ -1,44 +1,50 @@
+----------------
+title : C 언어 레퍼런스 - time_t 형
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 time_t 
+
+
+
 
   time_t 형은 ISO C 라이브러리에서 정의된 데이터 타입이다. 이 타입은 time() 과 같은 라이브러리 함수에서 리턴되는 타입인데, <time.h> 헤더에서 (C++ 의 경우 <ctime> ) typedef 를 통해 정의되어 있다. ISO C 에 따르면 time_t 는 산술 연산이 가능한 타입이지만 특정한 크기가 값의 범위 등을 명시하고 있지는 않다. 더군다나, 어떠한 산술 연산이 적용 가능해야하는지 조차 불분명 하게 정의되어 있다.
 
 유닉스와 POSIX 시스템에서는 time_t 를 정수 (통상적으로 32 또는 64 비트 정수) 혹은 부동 소수점 형으로 정의하고 있다. 이 때, 이 값은 1970 년 1 월 1 일 자정 (UTC) 에서 부터 현재 까지 흐른 초 수를 의미한다. 윈도우즈의 경우도 마찬가지로 1970년 1 월 1일 자정 부터 현재까지 흐른 초 수를 의미하며 32 비트 혹은 64 비트 정수형을 사용한다. 현재 많은 경우 time_t 형을 32 비트 정수형으로 잡고 있는데 이때문에 2038년이 되면 32 비트 형에서 오버플로우가 일어나므로 64 비트로의 전환이 시급한 문제이다. 참고로 Visual C++ 2008 에서 time_t 는 __time64_t 로 정의되어 있고 __time64_t 는 __int64 로 정의되어 있어서 2038 년의 오버플로우 문제는 발생하지 않는다.  
 
+
+
 ### 실행 예제
 ### 
 
+
+
+
 ```cpp
-#include <stdio.h>
-#include <time.h>
-
-int main ()
-{
-    time_t seconds;
-
-    time (&seconds);
-
-    printf("1970년 부터 몇 초나 지났나 : %d 초 \n", seconds);
-
-    return 0;
-}
+#include <stdio.h>#include <time.h>int main (){    time_t seconds;    time (&seconds);    printf("1970년 부터 몇 초나 지났나 : %d 초 \n", seconds);    return 0;}
 ```
 
 
 실행 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F143FF65A4D16845F19903F)
 
 
 
 
-공감sns신고저작자표시'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - time 함수(2)
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - time 함수(2)
 2010.12.26C 언어 레퍼런스 - mktime 함수(0)
 2010.12.26C 언어 레퍼런스 - time_t 형(1)
 2010.12.25C 언어 레퍼런스 - difftime 함수(0)

@@ -1,97 +1,13 @@
-<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>setvbuf</p><pre class="chroma">#include &lt;stdio.h&gt;  // C++ 에서는 &lt;cstdio&gt;
-
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>setvbuf</p><pre class='info'>#include <stdio.h>  // C++ 에서는 <cstdio>
 int setvbuf(FILE* stream, char* buffer, int mode, size_t size);
-</pre><p>스트림 버퍼링 방식을 변경한다.</p><p>버퍼를 특정한 스트림의 입출력 연산에 사용될 수 있도록 변경한다. 이 함수는 버퍼링 방식과 버퍼의 크기를 설정할 수 있게 지원한다. </p><p>버퍼의 크기는 세번째 인자에 바이트 수로 전달된다. </p><p>만일 버퍼를 설정하지 않는다면 (즉, 두 번째 인자가 NULL 이라면), 시스템은 동적으로, 함수에 의해 요청된 크기 만큼 메모리를 할당하게 되며 이를 스트림의 버퍼로 사용하게 된다.</p><p>mode 인자는 이 버퍼를 fully buffered, line buffered, 아니면 unbuffered 로 할 지 결정한다.</p><p>fully buffered 스트림의 경우 읽기 작업은 스트림에 대응되는 장비에 바로 쓰여지지 않는다. 그 대신에 쓰여질 데이터는 버퍼에 잠시 저장되었다가 버퍼에 일정한 블록 이상 쌓이게 되면 그제서야 장비에 쓰여지게 된다. 물론, 한 블록이 다 채워지지 않았는데도 불구하고 스트림을 강제로 비움으로써 (flush) 장비에 쓸 수 있는데 이는 fflush 함수를 호출하거나 fclose 함수를 호출해 파일을 닫으면 된다. 참고적으로 모든 버퍼는 프로그램이 종료시 자동적으로 비워지게 된다.</p><p>line buffered 스트림의 경우 버퍼에 개행 문자가 입력될 때 마다 장비에 쓰여지게 된다.</p><p>unbuffered 스트림의 경우 데이터는 버퍼와 같은 중간 경유지를 거치지 않고 직접적으로 쓰여지게 된다. 즉, 쓰기 작업을 할 때 바로바로 쓰이게 된다.</p><p>모든 열려진 파일들은 기본적으로 할당된 버퍼를 가지고 있다. 이 함수는 그렇게 할당된 버퍼의 크기를 재조정 하거나, 사용자가 특별히 할당한 버퍼로 버퍼를 바꾸거나, 파일의 버퍼링 방식을 변경할 수 있게 해준다. 표준 출력(stdout) 이나 표준 오류(stderr) 같은 시스템 표준 스트림은 리다이렉트(redirect) 되지 않는 한 기본적으로 unbuffered 로 설정되어 있다. </p><h3><p>  인자</p></h3><h3><p> stream</p></h3><p>작업을 수행할 열린 스트림의 FILE 객체를 가리키는 포인터. </p><p>buffer</p><p>유저가 할당한 버퍼로 최소한 1 바이트의 크기는 되야 한다. </p><p>만일 NULL 로 설정하면 함수는 자동으로 지정한 크기의 버퍼를 할당하게 된다</p><p>mode</p><p>파일 버퍼링의 형식을 지정한다.<span class='font-italic'>IOFBF완전한 버퍼링(Full Buffering): 앞에서 설명한 fully buffered 스트림을 일컫는다. </span>IOLBF행 버퍼링(Line Buffering): 출력시, 버퍼가 채워지거나 스트림에 개행 문자가 입력되었다면 데이터가 버퍼에서 출력된다. 입력 시에는 버퍼가 개행 문자를 만날 때 까지 버퍼를 채우게 된다. <span class='font-italic'>IONBF버퍼링 사용 안함(No Buffering): 버퍼를 사용하지 않는다. 각각의 입출력 작업은 버퍼를 지나지 않고 요청 즉시 진행되며 이 겨우 buffer 인자와 size 인자는 모두 무시된다. </p><p>size</p><p>지정할 버퍼의 크기로 단위는 바이트 이다. 이 때, 버퍼로 지정한 배열의 크기 보다 반드시 작거나 같아야 한다. 만일 이 인자가 NULL 이라면 컴퓨터가 스스로 버퍼가 취할 수 있는 최소의 크기를 결정하게 된다. </p><h3><p>  리턴값</p></h3><h3><p> 만일 버퍼가 성공적으로 지정 되었다면 0 이 리턴된다.그렇지 않을 경우 0 이 아닌 값이 리턴되는데 보통 적당하지 않은 size 값을 인자로 넘겼거나, size 에 NULL 을 넘겼지만 컴퓨터가 메모리를 할당하는 과정 중 오류가 발생하는 경우이다. </p></h3><h3><p>  실행 예제</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/*
-</span><span class="cm">
-</span><span class="cm">파일을 _IOFBF 형식으로 열며, 버퍼는 크기가 1024 바이트로 컴퓨터가 자동으로
-</span><span class="cm">할당하게 한다.
-</span><span class="cm">이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/setvbuf/
-</span><span class="cm">에서 가져왔습니다.
-</span><span class="cm">
-</span><span class="cm">*/</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>스트림 버퍼링 방식을 변경한다.</p><p>버퍼를 특정한 스트림의 입출력 연산에 사용될 수 있도록 변경한다. 이 함수는 버퍼링 방식과 버퍼의 크기를 설정할 수 있게 지원한다. </p><p>버퍼의 크기는 세번째 인자에 바이트 수로 전달된다. </p><p>만일 버퍼를 설정하지 않는다면 (즉, 두 번째 인자가 NULL 이라면), 시스템은 동적으로, 함수에 의해 요청된 크기 만큼 메모리를 할당하게 되며 이를 스트림의 버퍼로 사용하게 된다.</p><p>mode 인자는 이 버퍼를 fully buffered, line buffered, 아니면 unbuffered 로 할 지 결정한다.</p><p>fully buffered 스트림의 경우 읽기 작업은 스트림에 대응되는 장비에 바로 쓰여지지 않는다. 그 대신에 쓰여질 데이터는 버퍼에 잠시 저장되었다가 버퍼에 일정한 블록 이상 쌓이게 되면 그제서야 장비에 쓰여지게 된다. 물론, 한 블록이 다 채워지지 않았는데도 불구하고 스트림을 강제로 비움으로써 (flush) 장비에 쓸 수 있는데 이는 fflush 함수를 호출하거나 fclose 함수를 호출해 파일을 닫으면 된다. 참고적으로 모든 버퍼는 프로그램이 종료시 자동적으로 비워지게 된다.</p><p>line buffered 스트림의 경우 버퍼에 개행 문자가 입력될 때 마다 장비에 쓰여지게 된다.</p><p>unbuffered 스트림의 경우 데이터는 버퍼와 같은 중간 경유지를 거치지 않고 직접적으로 쓰여지게 된다. 즉, 쓰기 작업을 할 때 바로바로 쓰이게 된다.</p><p>모든 열려진 파일들은 기본적으로 할당된 버퍼를 가지고 있다. 이 함수는 그렇게 할당된 버퍼의 크기를 재조정 하거나, 사용자가 특별히 할당한 버퍼로 버퍼를 바꾸거나, 파일의 버퍼링 방식을 변경할 수 있게 해준다. 표준 출력(stdout) 이나 표준 오류(stderr) 같은 시스템 표준 스트림은 리다이렉트(redirect) 되지 않는 한 기본적으로 unbuffered 로 설정되어 있다. </p><h3><p>  인자</p></h3><p>stream</p><p>작업을 수행할 열린 스트림의 FILE 객체를 가리키는 포인터. </p><p>buffer</p><p>유저가 할당한 버퍼로 최소한 1 바이트의 크기는 되야 한다. </p><p>만일 NULL 로 설정하면 함수는 자동으로 지정한 크기의 버퍼를 할당하게 된다</p><p>mode</p><p>파일 버퍼링의 형식을 지정한다.<span class='font-italic'>IOFBF완전한 버퍼링(Full Buffering): 앞에서 설명한 fully buffered 스트림을 일컫는다. </span>IOLBF행 버퍼링(Line Buffering): 출력시, 버퍼가 채워지거나 스트림에 개행 문자가 입력되었다면 데이터가 버퍼에서 출력된다. 입력 시에는 버퍼가 개행 문자를 만날 때 까지 버퍼를 채우게 된다. <span class='font-italic'>IONBF버퍼링 사용 안함(No Buffering): 버퍼를 사용하지 않는다. 각각의 입출력 작업은 버퍼를 지나지 않고 요청 즉시 진행되며 이 겨우 buffer 인자와 size 인자는 모두 무시된다. </p><p>size</p><p>지정할 버퍼의 크기로 단위는 바이트 이다. 이 때, 버퍼로 지정한 배열의 크기 보다 반드시 작거나 같아야 한다. 만일 이 인자가 NULL 이라면 컴퓨터가 스스로 버퍼가 취할 수 있는 최소의 크기를 결정하게 된다. </p><h3><p>  리턴값</p></h3><p>만일 버퍼가 성공적으로 지정 되었다면 0 이 리턴된다.그렇지 않을 경우 0 이 아닌 값이 리턴되는데 보통 적당하지 않은 size 값을 인자로 넘겼거나, size 에 NULL 을 넘겼지만 컴퓨터가 메모리를 할당하는 과정 중 오류가 발생하는 경우이다. </p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/* 파일을 _IOFBF 형식으로 열며, 버퍼는 크기가 1024 바이트로 컴퓨터가 자동으로 할당하게 한다. 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/setvbuf/에서 가져왔습니다. */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
+</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="kt">int</span>
+<span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">FILE</span> <span class="o">*</span><span class="n">pFile</span><span class="p">;</span>
   <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">myfile.txt</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">w</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">setvbuf</span><span class="p">(</span><span class="n">pFile</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IOFBF</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span><span class="p">;</span>
-
-  <span class="cm">/* 여러 파일 입출력 작업들 */</span>
-
+  <span class="n">setvbuf</span><span class="p">(</span><span class="n">pFile</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">_IOFBF</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span><span class="p">;</span> <span class="cm">/* 여러 파일 입출력 작업들 */</span>
   <span class="n">fclose</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>스트림 버퍼 형식이 <span class='font-italic'>IOFBF, 즉 fully buffered 스트림이기 때문에 버퍼가 다 차지 않는 이상 쓰기 작업을 하지 않게 된다. 즉, 버퍼에 1024 바이트 이상 쓰이지 않는 이상 myfile.txt 에 쓰이지 않는다. </p><h3><p>  연관된 함수</p></h3><h3><p> <span class='font-italic'> setbuf  :  스트림 버퍼를 설정한다.fopen   :  파일을 연다.fflush   :  스트림을 비운다. 공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fscanf 함수(2)2010.02.22C 언어 레퍼런스 - fprintf 함수(1)2010.02.19C 언어 레퍼런스 - setvbuf 함수(0)2010.02.18C 언어 레퍼런스 - setbuf 함수(0)2010.02.16C 언어 레퍼런스 - freopen 함수(0)2010.02.13C 언어 레퍼런스 - fopen 함수(0)2010.02.11</p></h3><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+</pre><p>스트림 버퍼 형식이 <span class='font-italic'>IOFBF, 즉 fully buffered 스트림이기 때문에 버퍼가 다 차지 않는 이상 쓰기 작업을 하지 않게 된다. 즉, 버퍼에 1024 바이트 이상 쓰이지 않는 이상 myfile.txt 에 쓰이지 않는다. </p><h3><p>  연관된 함수</p></h3><ul><li><p> setbuf  :  스트림 버퍼를 설정한다.</p></li><li><p> fopen   :  파일을 연다.</p></li><li><p> fflush   :  스트림을 비운다. </p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fscanf 함수(2)2010.02.22C 언어 레퍼런스 - fprintf 함수(1)2010.02.19C 언어 레퍼런스 - setvbuf 함수(0)2010.02.18C 언어 레퍼런스 - setbuf 함수(0)2010.02.16C 언어 레퍼런스 - freopen 함수(0)2010.02.13C 언어 레퍼런스 - fopen 함수(0)2010.02.11</p>

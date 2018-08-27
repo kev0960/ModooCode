@@ -1,10 +1,6 @@
-<p>이번 강좌에서는 아래와 같은 내용을 배우게 됩니다. </p><ul><li><p> Hello, World! 빠삭하게 분석주석(Comment)의 사용</p></li></ul><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F155F761749EE18AB1B569B' alt='신나는 씹어먹는 C 언어!'><p>  안녕하세요 여러분. 저번 강의에서의 희열을 아직도 느끼시나요? 방금 자신의 손으로 최초의 프로그램 - Hello, World! 를 만들었다는 사실을 말이죠. 하지만 자신이 프로그램을 만들었다는 사실을 친구들에게 자랑하기 전에, 그 프로그램이 어떻게 동작하는지 살펴보도록 합시다.</p><p>Hello, World 프로그램 분석하기 </p><p>  일단, 여러분이 지난번에 쓰셨던 코드는 다음과 같습니다. 사실, 지난번에는 이 코드가 뭔 내용인가 하면서 쓰셨겠죠. 다만 한 가지 눈치 챘을 법한 부분은 바로 큰 따옴표로 닫혀 있는 부분의 "Hello, World!" 가 프로그램에 출력된다는 점이죠. 만약 여러분들께서 이를 "I LOVE U" 라 던지 여러가지 문장으로 바꿔보아서 실행 해 보았었으면 매우 훌륭한 일을 하신 겁니다. 호기심은 좋은 덕목 중의 하나이죠. </p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span>
-
-<span class="p">{</span>
+<p>이번 강좌에서는 아래와 같은 내용을 배우게 됩니다. </p><ul><li><p> Hello, World! 빠삭하게분석</p></li><li><p> 주석(Comment)의 사용</p></li></ul><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F155F761749EE18AB1B569B' alt='신나는 씹어먹는 C 언어!'><p>  안녕하세요 여러분. 저번 강의에서의 희열을 아직도 느끼시나요? 방금 자신의 손으로 최초의 프로그램 - Hello, World! 를 만들었다는 사실을 말이죠. 하지만 자신이 프로그램을 만들었다는 사실을 친구들에게 자랑하기 전에, 그 프로그램이 어떻게 동작하는지 살펴보도록 합시다.</p><p>Hello, World 프로그램 분석하기 </p><p>  일단, 여러분이 지난번에 쓰셨던 코드는 다음과 같습니다. 사실, 지난번에는 이 코드가 뭔 내용인가 하면서 쓰셨겠죠. 다만 한 가지 눈치 챘을 법한 부분은 바로 큰 따옴표로 닫혀 있는 부분의 "Hello, World!" 가 프로그램에 출력된다는 점이죠. 만약 여러분들께서 이를 "I LOVE U" 라 던지 여러가지 문장으로 바꿔보아서 실행 해 보았었으면 매우 훌륭한 일을 하신 겁니다. 호기심은 좋은 덕목 중의 하나이죠. </p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, World! </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>  일단 위 프로그램의 첫 줄 부터 봅시다. </p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
@@ -18,87 +14,12 @@
 <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </pre><p>  영어로 읽어 보면 대충 뜻을 짐작하셨겠지만, 0 을 반환(return)한다는 뜻 입니다. 0 을 왜 반환할까요? 그리고 그 것을 반환한다면 '누구' 한테 반환하는 것인가요? 쉽게 말해 운영체제에게로 반환합니다. (정확히 말하면 이 프로그램을 호출한 프로그램 - 예를 들면 프로그램 관리자(O/S) 등 ) 그런데 왜 하필이면 0 일까요? 1 이면 안되고 왜 2 이면 안되죠. </p><p>  그렇다면 한 번 1 이나 다른 원하는 숫자를 반환하도록 해보세요. 결과는 똑같습니다. 그런데 왜 굳이 0 을 반환하는 것일까요? </p><p>  사실은 0 을 반환한다는 것은 컴퓨터에게 '프로그램이 무사히 종료되었음' 을 알리는 것이죠. 반면에 1 을 반환한다면 컴퓨터에게 '프로그램이 무사히 종료되지 않았어요. 즉, 오류가 발생했어요.' 를 알리는 것입니다. (이는 국제 표준화기구인 ISO에서 결정된 바 입니다.)  즉, 프로그래머들끼리 만든 일종의 약속인 셈입니다. 하지만 지금 이 정도 수준의 프로그램에서 꼭 리턴값을 지키지 않는 다고 해서 큰 문제는 없습니다. </p><pre class="chroma">
 <span class="p">}</span>
-</pre><p>  마지막으로 이렇게 꼭 중괄호로 닫아주어야지, 그렇지 않을 경우 파일의 끝이 없다는 오류가 발생하게 됩니다. 와우! 이쯤 되면 위 프로그램을 빠삭하게 분석해 보았다고 할 수 있습니다. </p><p>주석(Comment) 넣기 </p><p>  마지막으로 모든 프로그래밍 언어에 기본으로 있는 기능이자, 그 만큼 중요한 기능인 주석 넣기에 대해 알아봅시다. 주석이라 하면, 코멘트, 즉 자신의 코드에 대해 설명을 해주는 것입니다. 아마 위의 대여섯 줄 짜리 코드에 뭐가 설명할 필요가 있겠어? 라고 생각할 수 있지만 실제로 '쓸만한' 프로그램을 만들게 되면 코드의 길이가 수천줄을 넘어가는 것은 예삿일입니다. 물론 그런 파일들이 여러개 모여서 프로그램을 만들게 되는 것이지요. </p><p>  그렇게 된다면 코멘트 없이는 이 코드가 도대체 무슨 역할을 하는지도 잘 모르고, 남이 쓴 코드가 어떤일을 하고, 어떻게 돌아가는지 이해가 잘 안되는 경우가 많습니다. 더욱 심각한 사실은 자신이 쓴 코드도 못알아 보는 경우가 있다는 것입니다. 이처럼, 이런 기분나쁜 일을 미연에 방지하기 위해 이 코드가 무슨 역할을 하고 어떻게 동작되는지 간단하게 나마 설명해 주는 것이 필요하겠죠. 그런 것을 바로 주석 이라 합니다. </p><p>  우리가 코드를 이해하기 위해 필요한 것이지, 컴퓨터에는 아무런 도움이 되지 않는 것이므로 컴파일러는 이 주석을 완전히 무시해 버립니다. 마치 우리만이 볼 수 있는 것 처럼 말이죠. 그렇기 때문에 주석에 무슨 짓을 해도 상관이 없습니다. </p><p>  기본적으로 C 언어 에서는 두 가지 형태의 주석을 지원합니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1728BF0C49EE1719061C9D' alt=''><p>  마치 컴파일러가 철저히 무시한다는 것을 반영하기라도 한 것인지, 주석은 초록색으로 표시됩니다. 보통 한 줄에 쓸 수 있는 주석은 // 로 나타내고, 주석이 조금 길어저 여러 줄에 걸쳐 표시하려면 /<span class='font-italic'> 와 </span>/ 를 이용합니다. 한 번, 위 Hello, World! 프로그램에 자기 나름대로 주석을 넣어 설명을 해보세요. </p><pre class="chroma">강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
+</pre><p>  마지막으로 이렇게 꼭 중괄호로 닫아주어야지, 그렇지 않을 경우 파일의 끝이 없다는 오류가 발생하게 됩니다. 와우! 이쯤 되면 위 프로그램을 빠삭하게 분석해 보았다고 할 수 있습니다. </p><p>주석(Comment) 넣기 </p><p>  마지막으로 모든 프로그래밍 언어에 기본으로 있는 기능이자, 그 만큼 중요한 기능인 주석 넣기에 대해 알아봅시다. 주석이라 하면, 코멘트, 즉 자신의 코드에 대해 설명을 해주는 것입니다. 아마 위의 대여섯 줄 짜리 코드에 뭐가 설명할 필요가 있겠어? 라고 생각할 수 있지만 실제로 '쓸만한' 프로그램을 만들게 되면 코드의 길이가 수천줄을 넘어가는 것은 예삿일입니다. 물론 그런 파일들이 여러개 모여서 프로그램을 만들게 되는 것이지요. </p><p>  그렇게 된다면 코멘트 없이는 이 코드가 도대체 무슨 역할을 하는지도 잘 모르고, 남이 쓴 코드가 어떤일을 하고, 어떻게 돌아가는지 이해가 잘 안되는 경우가 많습니다. 더욱 심각한 사실은 자신이 쓴 코드도 못알아 보는 경우가 있다는 것입니다. 이처럼, 이런 기분나쁜 일을 미연에 방지하기 위해 이 코드가 무슨 역할을 하고 어떻게 동작되는지 간단하게 나마 설명해 주는 것이 필요하겠죠. 그런 것을 바로 주석 이라 합니다. </p><p>  우리가 코드를 이해하기 위해 필요한 것이지, 컴퓨터에는 아무런 도움이 되지 않는 것이므로 컴파일러는 이 주석을 완전히 무시해 버립니다. 마치 우리만이 볼 수 있는 것 처럼 말이죠. 그렇기 때문에 주석에 무슨 짓을 해도 상관이 없습니다. </p><p>  기본적으로 C 언어 에서는 두 가지 형태의 주석을 지원합니다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1728BF0C49EE1719061C9D' alt=''><p>  마치 컴파일러가 철저히 무시한다는 것을 반영하기라도 한 것인지, 주석은 초록색으로 표시됩니다. 보통 한 줄에 쓸 수 있는 주석은 // 로 나타내고, 주석이 조금 길어저 여러 줄에 걸쳐 표시하려면 /<span class='font-italic'> 와 </span>/ 를 이용합니다. 한 번, 위 Hello, World! 프로그램에 자기 나름대로 주석을 넣어 설명을 해보세요. </p><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
             바랍니다
                 .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
-                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-        현재 여러분이 보신 강좌는
-        &lt;&lt; 씹어먹는 C 언어 - &lt;2 - 1. C 언어 본격 맛보기&gt;&gt;&gt;&gt;
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을
+                        달아주세요.현재 여러분이 보신 강좌는
+        << 씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>>>>
     입니다.이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어
-        보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-            다음 강좌 보러가기
-</pre><p>공감sns신고'C' 카테고리의 다른 글씹어먹는 C 언어 - <6. 만약에...(if 문)>(182)2009.04.28씹어먹는 C 언어 - <5. 문자 입력 받기>(182)2009.04.27씹어먹는 C 언어 - <4. 계산하리 >(239)2009.04.24씹어먹는 C 언어 - <3. 변수가 뭐지? >(365)2009.04.22씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>(227)2009.04.17씹어먹는 C 언어 - <1. C 언어가 뭐야?>(544)2009.04.16</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+        보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기
+</pre><p>공감sns신고</p><p>'C' 카테고리의 다른 글씹어먹는 C 언어 - <6. 만약에...(if 문)>(182)2009.04.28씹어먹는 C 언어 - <5. 문자 입력 받기>(182)2009.04.27씹어먹는 C 언어 - <4. 계산하리 >(239)2009.04.24씹어먹는 C 언어 - <3. 변수가 뭐지? >(365)2009.04.22씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>(227)2009.04.17씹어먹는 C 언어 - <1. C 언어가 뭐야?>(544)2009.04.16</p>

@@ -1,7 +1,16 @@
+----------------
+title : 씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>
+--------------
 
 
 
-이번 강좌에서는* C++ 템플릿 (template) 도입클래스 템플릿과 함수 템플릿템플릿 인스턴스화와 템플릿 특수화함수 객체 (Functor)에 대해서 배웁니다.
+
+이번 강좌에서는* C++ 템플릿 (template) 도입
+* 클래스 템플릿과 함수 템플릿
+* 템플릿 인스턴스화와 템플릿 특수화
+* 함수 객체 (Functor)
+
+에 대해서 배웁니다.
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F2143F24558E6C84424FCCA)
 
 
@@ -26,7 +35,6 @@ int length;
 
 
 
-
 public:
 
 // 생성자 
@@ -35,9 +43,7 @@ Vector(int n = 1) : data(new string[n]), capacity(n), length(0) {
 
 
 
-
 }
-
 
 
 
@@ -65,13 +71,11 @@ capacity *= 2;
 
 
 
-
 data[length] = s;
 
 length++;
 
 }
-
 
 
 
@@ -82,8 +86,6 @@ string operator[] (int i) {
 return data[i];
 
 }
-
-
 
 
 
@@ -105,7 +107,6 @@ length--;
 
 
 
-
 // 현재 벡터의 크기를 구한다.
 
 int size() {
@@ -113,7 +114,6 @@ int size() {
 return length;
 
 }
-
 
 
 
@@ -146,7 +146,6 @@ int length;
 
 
 
-
 public:
 
 // 생성자 
@@ -155,9 +154,7 @@ Vector(int n = 1) : data(new char[n]), capacity(n), length(0) {
 
 
 
-
 }
-
 
 
 
@@ -185,13 +182,11 @@ capacity *= 2;
 
 
 
-
 data[length] = s;
 
 length++;
 
 }
-
 
 
 
@@ -202,8 +197,6 @@ char operator[] (int i) {
 return data[i];
 
 }
-
-
 
 
 
@@ -225,7 +218,6 @@ length--;
 
 
 
-
 // 현재 벡터의 크기를 구한다.
 
 int size() {
@@ -233,7 +225,6 @@ int size() {
 return length;
 
 }
-
 
 
 
@@ -269,7 +260,6 @@ int length;
 
 
 
-
 public:
 
 // 생성자 
@@ -278,9 +268,7 @@ Vector(int n = 1) : data(new T[n]), capacity(n), length(0) {
 
 
 
-
 }
-
 
 
 
@@ -308,13 +296,11 @@ capacity *= 2;
 
 
 
-
 data[length] = s;
 
 length++;
 
 }
-
 
 
 
@@ -325,8 +311,6 @@ T operator[] (int i) {
 return data[i];
 
 }
-
-
 
 
 
@@ -348,7 +332,6 @@ length--;
 
 
 
-
 // 현재 벡터의 크기를 구한다.
 
 int size() {
@@ -356,7 +339,6 @@ int size() {
 return length;
 
 }
-
 
 
 
@@ -384,16 +366,14 @@ delete[] data;
 
 
 
- C++ 템플릿(template)
+###  C++ 템플릿(template)
+
 
 
 
 
 놀랍게도, 우리가 원하는 작업을 C++ 에서는 template 이라는 이름으로 지원하고 있습니다. 영어 단어 template 의 뜻을 찾아보자면, '형판' 이라고 나옵니다. 쉽게 말해 어떠한 물건을 찍어내는 틀 이라고 생각하면 됩니다. 
-
-
 C++ 에서도 정확히 같은 의미로 사용되고 있습니다. 사용자 (프로그래머)가 원하는 타입을 넣어주면 딱딱 알아서 코드를 찍어내는 틀 이라고 생각하면 됩니다. 
-
 ```cpp
 
 // 템플릿 첫 활용 
@@ -405,7 +385,6 @@ C++ 에서도 정확히 같은 의미로 사용되고 있습니다. 사용자 (�
 #include <string>
 
 using namespace std;
-
 
 
 
@@ -421,7 +400,6 @@ int length;
 
 
 
-
 public:
 
 // 생성자 
@@ -430,9 +408,7 @@ Vector(int n = 1) : data(new T[n]), capacity(n), length(0) {
 
 
 
-
 }
-
 
 
 
@@ -460,13 +436,11 @@ capacity *= 2;
 
 
 
-
 data[length] = s;
 
 length++;
 
 }
-
 
 
 
@@ -477,8 +451,6 @@ T operator[] (int i) {
 return data[i];
 
 }
-
-
 
 
 
@@ -500,7 +472,6 @@ length--;
 
 
 
-
 // 현재 벡터의 크기를 구한다.
 
 int size() {
@@ -508,7 +479,6 @@ int size() {
 return length;
 
 }
-
 
 
 
@@ -528,8 +498,6 @@ delete[] data;
 
 
 
-
-
 int main()
 
 {
@@ -544,13 +512,11 @@ int_vec.push_back(2);
 
 
 
-
 cout << "-------- int vector ----------" << endl;
 
 cout << "첫번째 원소 : " << int_vec[0] << endl;
 
 cout << "두번째 원소 : " << int_vec[1] << endl;
-
 
 
 
@@ -571,7 +537,11 @@ cout << "두번째 원소 : " << str_vec[1] << endl;
 }
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F256BAA3958E4332F1E0C9C)
 
@@ -594,7 +564,6 @@ T* data;
 int capacity;
 
   // ... 
-
 
 
 ```
@@ -671,13 +640,11 @@ int length;
 
 
 
-
 public:
 
 // 어떤 타입을 보관하는지
 
 typedef T value_type;
-
 
 
 
@@ -687,9 +654,7 @@ Vector(int n = 1) : data(new int[n]), capacity(n), length(0) {
 
 
 
-
 }
-
 
 
 
@@ -717,13 +682,11 @@ capacity *= 2;
 
 
 
-
 data[length] = s;
 
 length++;
 
 }
-
 
 
 
@@ -734,8 +697,6 @@ int operator[] (int i) {
 return data[i];
 
 }
-
-
 
 
 
@@ -757,7 +718,6 @@ length--;
 
 
 
-
 // 현재 벡터의 크기를 구한다.
 
 int size() {
@@ -765,7 +725,6 @@ int size() {
 return length;
 
 }
-
 
 
 
@@ -808,6 +767,7 @@ Vector<int> int_vec;
 템플릿이 인스턴스화 되지 않고 덩그러니 있다면 컴파일 시에 아무런 코드로 변환되지 않습니다. 템플릿은 반드시 인스턴스화 되어야지만 비로소 컴파일러가 실제 코드를 생성하게 되지요. 마치 틀 자체로는 아무런 의미가 없지만, 그 틀에 채워넣어 나오는 물건에 관심이 있는 것 처럼 말이지요.
 
 
+
 위와 같이 템플릿에 사용자가 원하는 타입을 템플릿 인자로 전달하면, 컴파일러는 그 인자를 바탕으로 코드를 생성하여 이를 컴파일 하게 됩니다. 하지만, 간혹 일부 타입에 대해서는 다른 방식으로 처리해야 할 경우가 있습니다. 
 
 
@@ -826,12 +786,13 @@ Vector<bool> int_vec;
 다시 말해 사실 bool 데이터 형은 1개 비트 만으로도 충분히 저장할 수 있지만, 8 비트를 사용해서 1개 bool 값을 저장해야 된다는 뜻이지요. 이는 엄청난 메모리 낭비가 아닐 수 없습니다. 따라서 우리는 Vector<bool> 에 대해서는 특별히 따로 처리해줘야만 합니다. '
 
 
- 템플릿 특수화 (template specialization)### 
+
+###  템플릿 특수화 (template specialization)
+
 
 
 
 이와 같이 일부 경우에 대해서 따로 처리하는 것을 템플릿 특수화 라고 합니다. 템플릿 특수화는 다음과 같이 수행할 수 있습니다. 예를 들어서
-
 ```cpp
 
 template<typename A, typename B, typename C>
@@ -892,7 +853,6 @@ class Vector<bool> {
 
 
 
-
 }
 ```
 
@@ -923,7 +883,6 @@ using namespace std;
 
 
 
-
 template <typename T>
 
 class Vector {
@@ -936,13 +895,11 @@ int length;
 
 
 
-
 public:
 
 // 어떤 타입을 보관하는지
 
 typedef T value_type;
-
 
 
 
@@ -952,9 +909,7 @@ Vector(int n = 1) : data(new T[n]), capacity(n), length(0) {
 
 
 
-
 }
-
 
 
 
@@ -982,13 +937,11 @@ capacity *= 2;
 
 
 
-
 data[length] = s;
 
 length++;
 
 }
-
 
 
 
@@ -999,8 +952,6 @@ T operator[] (int i) {
 return data[i];
 
 }
-
-
 
 
 
@@ -1022,7 +973,6 @@ length--;
 
 
 
-
 // 현재 벡터의 크기를 구한다.
 
 int size() {
@@ -1030,7 +980,6 @@ int size() {
 return length;
 
 }
-
 
 
 
@@ -1048,13 +997,11 @@ delete[] data;
 
 
 
-
 template <>
 
 class Vector<bool> {
 
 unsigned int* data;
-
 
 
 
@@ -1064,11 +1011,9 @@ int length;
 
 
 
-
 public:
 
 typedef bool value_type;
-
 
 
 
@@ -1084,7 +1029,6 @@ length(0) {
 
 
 
-
 for (int i = 0; i < capacity; i++) {
 
 data[i] = 0;
@@ -1092,7 +1036,6 @@ data[i] = 0;
 }
 
 }
-
 
 
 
@@ -1118,7 +1061,6 @@ temp[i] = 0;
 
 
 
-
 delete[] data;
 
 data = temp;
@@ -1126,7 +1068,6 @@ data = temp;
 capacity *= 2;
 
 }
-
 
 
 
@@ -1138,11 +1079,9 @@ data[length / 32] |= (1 << (length % 32));
 
 
 
-
 length++;
 
 }
-
 
 
 
@@ -1158,8 +1097,6 @@ return (data[i / 32] & (1 << (i % 32))) != 0;
 
 
 
-
-
 // x 번째 위치한 원소를 제거한다.
 
 void remove(int x) {
@@ -1169,7 +1106,6 @@ for (int i = x + 1; i < length; i++) {
 int prev = i - 1;
 
 int curr = i;
-
 
 
 
@@ -1203,7 +1139,6 @@ length--;
 
 
 
-
 // 현재 벡터의 크기를 구한다.
 
 int size() {
@@ -1211,7 +1146,6 @@ int size() {
 return length;
 
 }
-
 
 
 
@@ -1229,7 +1163,6 @@ delete[] data;
 
 
 
-
 int main()
 
 {
@@ -1244,13 +1177,11 @@ int_vec.push_back(2);
 
 
 
-
 cout << "-------- int vector ----------" << endl;
 
 cout << "첫번째 원소 : " << int_vec[0] << endl;
 
 cout << "두번째 원소 : " << int_vec[1] << endl;
-
 
 
 
@@ -1267,7 +1198,6 @@ cout << "-------- string vector -------" << endl;
 cout << "첫번째 원소 : " << str_vec[0] << endl;
 
 cout << "두번째 원소 : " << str_vec[1] << endl;
-
 
 
 
@@ -1309,7 +1239,6 @@ bool_vec.push_back(false);
 
 
 
-
 cout << "-------- bool vector ---------" << endl;
 
 for (int i = 0; i < bool_vec.size(); i++) {
@@ -1323,7 +1252,11 @@ cout << endl;
 }
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F232DED3658E4D77B3029B9)
 
@@ -1334,10 +1267,8 @@ cout << endl;
 
 unsigned int* data;
 
-
    int capacity;
    int length;
-
 
 ```
 
@@ -1371,7 +1302,6 @@ temp[i] = 0;
 
 
 
-
 delete[] data;
 
 data = temp;
@@ -1382,13 +1312,11 @@ capacity *= 2;
 
 
 
-
 if (s) {
 
 data[length / 32] |= (1 << (length % 32));
 
 }
-
 
 
 
@@ -1467,7 +1395,6 @@ for (int i = x + 1; i < length; i++) {
 int prev = i - 1;
 
 int curr = i;
-
 
 
 
@@ -1567,12 +1494,12 @@ all_ones_except_prev 는 0 으로 지우려고 하는 위치만 0 이고 나머�
 
 
 
- 함수 템플릿 (Function template)
+###  함수 템플릿 (Function template)
+
 
 
 
 이번에는 클래스 템플릿이 아닌 함수 템플릿에 대해 알아보도록 하겠습니다. 
-
 
 ```cpp
 
@@ -1581,7 +1508,6 @@ all_ones_except_prev 는 0 으로 지우려고 하는 위치만 0 이고 나머�
 #include <string>
 
 using namespace std;
-
 
 
 
@@ -1595,7 +1521,6 @@ return a > b ? a : b;
 
 
 
-
 int main()
 
 {
@@ -1606,7 +1531,6 @@ cout << "Max (" << a << "," << b << ") ? : " << max(a, b) << endl;
 
 
 
-
 string s = "hello", t = "world";
 
 cout << "Max (" << s << "," << t << ") ? : " << max(s, t) << endl;
@@ -1614,7 +1538,10 @@ cout << "Max (" << s << "," << t << ") ? : " << max(s, t) << endl;
 }
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
 
 
 
@@ -1719,13 +1646,11 @@ int length;
 
 
 
-
 public:
 
 // 어떤 타입을 보관하는지
 
 typedef T value_type;
-
 
 
 
@@ -1735,9 +1660,7 @@ Vector(int n = 1) : data(new T[n]), capacity(n), length(0) {
 
 
 
-
 }
-
 
 
 
@@ -1765,13 +1688,11 @@ capacity *= 2;
 
 
 
-
 data[length] = s;
 
 length++;
 
 }
-
 
 
 
@@ -1782,8 +1703,6 @@ T operator[] (int i) {
 return data[i];
 
 }
-
-
 
 
 
@@ -1805,7 +1724,6 @@ length--;
 
 
 
-
 // 현재 벡터의 크기를 구한다.
 
 int size() {
@@ -1813,7 +1731,6 @@ int size() {
 return length;
 
 }
-
 
 
 
@@ -1831,7 +1748,6 @@ data[j] = temp;
 
 
 
-
 ~Vector() {
 
 if (data) {
@@ -1843,7 +1759,6 @@ delete[] data;
 }
 
 };
-
 
 
 
@@ -1869,7 +1784,6 @@ cont.swap(i, j);
 
 
 
-
 int main()
 
 {
@@ -1890,7 +1804,6 @@ int_vec.push_back(3);
 
 
 
-
 cout << "정렬 이전 ---- " << endl;
 
 for (int i = 0; i < int_vec.size(); i++) {
@@ -1898,7 +1811,6 @@ for (int i = 0; i < int_vec.size(); i++) {
 cout << int_vec[i] << " ";
 
 }
-
 
 
 
@@ -1987,9 +1899,7 @@ cont.swap(i, j);
 struct dummy
 {
 
-
 };
-
 
 dummy a;
 bubble_sort(a);
@@ -2013,9 +1923,13 @@ error C2039: 'size': is not a member of 'dummy'
 재미있게도, 이와 같이 컴파일 시에 모든 템플릿들이 인스턴스화 되다는 사실을 가지고 또 여러가지 흥미로운 코드를 짤 수 있는데 이러한 방식을 템플릿 메타프로그래밍 (template metaprogramming) 이라고 합니다. 자세한 내용은 나중 강좌들에서 다루도록 하겠습니다.
 
 
+
 그런데 위 bubble_sort 함수에서는 한 가지 부족한 점이 있습니다. 만약에, 정렬 순서를 역순으로 하고 싶다면 어떨까요? 위는 오름 차순으로 정렬하였지만, 간혹 내림 차순으로 정렬을 하고 싶을 수 도 있습니다. 아니면 아예 다른 기준으로 정렬을 할 수 도 있겠지요. 이를 위해서라면 크게 세 가지 방법이 있습니다.
 
-1. bubble_sort2 를 만들어서 부등호 방향을 반대로 바꿔준다.operator> 를 오버로딩해서 원하는 방식으로 만들어준다.cont[i] 와 cont[j] 의 비교를 > 로 하지 말고 특정 함수에 넣어서 전달한다.
+1. bubble_sort2 를 만들어서 부등호 방향을 반대로 바꿔준다.
+1. operator> 를 오버로딩해서 원하는 방식으로 만들어준다.
+1. cont[i] 와 cont[j] 의 비교를 > 로 하지 말고 특정 함수에 넣어서 전달한다.
+
 
 
 첫번째 방법은 C 를 배우는 단계에서나 적합한 방법입니다. 여러분은 C++ 를 배우고 있으니 더 나은 방법을 생각해야겠지요?
@@ -2026,12 +1940,10 @@ error C2039: 'size': is not a member of 'dummy'
 struct customClass {
 // ..
 
-
 bool operator< (const customClass & c) {
 // Do something
 }
 };
-
 
 Vector<customClass> a;
 bubble_sort(a);
@@ -2046,12 +1958,12 @@ bubble_sort(a);
 
 
 
- 함수 객체(Function Object - Functor) 의 도입### 
+###  함수 객체(Function Object - Functor) 의 도입
+
 
 
 
 그럼 다음과 같은 함수를 생각해봅시다.
-
 ```cpp
 
 template <typename Cont, typename Comp>
@@ -2091,18 +2003,14 @@ T* data;
 int capacity;
 int length;
 
-
 public:
 // 어떤 타입을 보관하는지
 typedef T value_type;
 
-
 // 생성자 
 Vector(int n = 1) : data(new T[n]), capacity(n), length(0) {
 
-
 }
-
 
 // 맨 뒤에 새로운 원소를 추가한다.
 void push_back(int s) {
@@ -2116,18 +2024,14 @@ data = temp;
 capacity *= 2;
 }
 
-
 data[length] = s;
 length++;
 }
-
 
 // 임의의 위치의 원소에 접근한다.
 T operator[] (int i) {
 return data[i];
 }
-
-
 
 
 // x 번째 위치한 원소를 제거한다.
@@ -2138,12 +2042,10 @@ data[i - 1] = data[i];
 length--;
 }
 
-
 // 현재 벡터의 크기를 구한다.
 int size() {
 return length;
 }
-
 
 // i 번째 원소와 j 번째 원소 위치를 바꾼다.
 void swap(int i, int j) {
@@ -2152,14 +2054,12 @@ data[i] = data[j];
 data[j] = temp;
 }
 
-
 ~Vector() {
 if (data) {
 delete[] data;
 }
 }
 };
-
 
 template <typename Cont>
 void bubble_sort(Cont& cont) {
@@ -2172,7 +2072,6 @@ cont.swap(i, j);
 }
 }
 
-
 template <typename Cont, typename Comp>
 void bubble_sort(Cont& cont, Comp& comp) {
 for (int i = 0; i < cont.size(); i++) {
@@ -2184,20 +2083,17 @@ cont.swap(i, j);
 }
 }
 
-
 struct Comp1 {
 bool operator() (int a, int b) {
 return a > b;
 }
 };
 
-
 struct Comp2 {
 bool operator() (int a, int b) {
 return a < b;
 }
 };
-
 
 int main()
 {
@@ -2209,16 +2105,13 @@ int_vec.push_back(8);
 int_vec.push_back(5);
 int_vec.push_back(3);
 
-
 cout << "정렬 이전 ---- " << endl;
 for (int i = 0; i < int_vec.size(); i++) {
 cout << int_vec[i] << " ";
 }
 
-
 Comp1 comp1;
 bubble_sort(int_vec, comp1);
-
 
 cout << endl << endl << "내림차순 정렬 이후 ---- " << endl;
 for (int i = 0; i < int_vec.size(); i++) {
@@ -2226,10 +2119,8 @@ cout << int_vec[i] << " ";
 }
 cout << endl;
 
-
 Comp2 comp2;
 bubble_sort(int_vec, comp2);
-
 
 cout << endl << "오름차순 정렬 이후 ---- " << endl;
 for (int i = 0; i < int_vec.size(); i++) {
@@ -2239,7 +2130,11 @@ cout << endl;
 }
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F27495C4458E6BF2C188F1C)
 
@@ -2254,7 +2149,6 @@ bool operator() (int a, int b) {
 return a > b;
 }
 };
-
 
 struct Comp2 {
 bool operator() (int a, int b) {
@@ -2298,6 +2192,7 @@ void bubble_sort(Cont& cont, Comp& comp)
 
 
 특수한 경우에 따로 비교 하는 것을 직접 수행하고 싶은 경우에 Comp 객체를 받아서 비교를 수행하는 새로운 bubble_sort 함수를 사용할 수 있습니다. 
+
 
 물론
 
@@ -2353,36 +2248,31 @@ void sort( RandomIt first, RandomIt last, Compare comp );
 (실제로 C 의 qsort 와 C++ 의 표준 sort 함수를 비교한다면 C++ 버전이 훨씬 빠르다고 합니다)
 
 
+
 이상으로 C++ 템플릿 첫 번째 강좌를 마치도록 하겠습니다. 다음 강좌에서는 템플릿이 C++ 에게 하사한 새로운 패러다임의 세계로 떠나볼 것입니다.
 
 
 
- 생각 해보기### 
+###  생각 해보기
 
 
 
 
 1. template 을 사용해서 이전에 만들어 놓았던 Excel 프로젝트 코드를 깔끔하게 만들어보세요. 아마 10 배는 깔끔해질 것입니다 :) (난이도 : 下)
-
-
 2. 위 Vector 로 2차원, 3차원 배열 등을 똑같이 만들어낼 수 있을까요? (난이도 : 下)
-
-
 3. 위에서 컴파일러가 마법 처럼 템플릿 인자에 타입을 정해준다고 하지만 사실은 어떤 타입으로 추측할지 결정하는 일련의 규칙들이 있습니다. 자세한 내용은 여기를 참고해주세요!
-
-
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
 
-공감5sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>(8)
+
+공감5sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>(8)
 2017.07.02씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>(2)
 2017.06.26씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)
 2017.04.07씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>(6)

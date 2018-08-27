@@ -1,7 +1,16 @@
+----------------
+title : 씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>
+--------------
 
 
 
-이번 강좌에서는* 산술 연산자 오버로딩비교 연산자 오버로딩대입 연산자 오버로딩에 대해서 다룹니다.
+
+이번 강좌에서는* 산술 연산자 오버로딩
+* 비교 연산자 오버로딩
+* 대입 연산자 오버로딩
+
+에 대해서 다룹니다.
+
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F24253D3C52177993100B09)
@@ -10,7 +19,10 @@
 
 안녕하세요 여러분! 지난 강좌에서 만들었던 MyString 을 손 좀 봐주었나요? 아마도 MyString 을 이용하여 여러가지 작업을 하면서 다음과 같은 생각을 하셨을 수도 있었을 것입니다. 
 
-* if(str1.compare(str2) == 0) 하지 말고 if(str1 == str2) 하면 어떨까?str1.insert(str1.length(), str2) 하지 말고 str1 = str1 + str2; 하면 어떨까?str1[10] = 'c'; 와 같은 것도 할 수 있을까?
+* if(str1.compare(str2) == 0) 하지 말고 if(str1 == str2) 하면 어떨까?
+* str1.insert(str1.length(), str2) 하지 말고 str1 = str1 + str2; 하면 어떨까?
+* str1[10] = 'c'; 와 같은 것도 할 수 있을까?
+
 
 
 물론 C 언어에서는 이러한 것을 상상조차 할 수 없었습니다. +, -, ==, [] 와 같은 기본 연산자들은 모두 C 언어에 기본적으로 정의되어 있는 데이터 타입(int, float 등)에만 사용 가능한 것들 이였기 때문이죠. 이들을 구조체 변수에 사용한다는 것은 불가능하였습니다. 
@@ -25,11 +37,13 @@
 
 
 
- MyString 의 == 연산자 오버로딩### 
+
+###  MyString 의 == 연산자 오버로딩
+
+
 
 
 일단 연산자 오버로딩을 사용하기 위해서는, 다음과 같이 오버로딩을 원하는 연산자 함수를 제작하면 됩니다.
-
 ```info
 
 (리턴 타입) operator(연산자) (연산자가 받는 인자)
@@ -66,36 +80,28 @@ return !compare(str); // str 과 같으면 compare 에서 0 을 리턴한다.
 #include <iostream>
 using namespace std;
 
-
 class MyString
 {
 char * string_content; // 문자열 데이터를 가리키는 포인터
 int string_length; // 문자열 길이
 
-
 int memory_capacity; // 현재 할당된 용량
-
 
 public:
 // 문자 하나로 생성
 MyString(char c);
 
-
 // 문자열로 부터 생성
 MyString(const char* str);
-
 
 // 복사 생성자
 MyString(const MyString &str);
 
-
 ~MyString();
-
 
 int length();
 int capacity();
 void reserve(int size);
-
 
 void print();
 void println();
@@ -103,29 +109,22 @@ void println();
 MyString& assign(MyString& str);
 MyString& assign(const char *str);
 
-
 char at(int i);
-
 
 MyString& insert(int loc, MyString& str);
 MyString& insert(int loc, const char* str);
 MyString& insert(int loc, char c);
 
-
 MyString& erase(int loc, int num);
-
 
 int find(int find_from, MyString& str);
 int find(int find_from, const char* str);
 int find(int find_from, char c);
 
-
 int compare(MyString& str); 
-
 
 bool operator== (MyString& str);
 };
-
 
 MyString::MyString(char c)
 {
@@ -140,7 +139,6 @@ string_length = strlen(str);
 memory_capacity = string_length;
 string_content = new char[string_length];
 
-
 for(int i = 0; i != string_length; i ++)
 string_content[i] = str[i];
 }
@@ -148,7 +146,6 @@ MyString::MyString(const MyString &str)
 {
 string_length = str.string_length;
 string_content = new char[string_length];
-
 
 for(int i = 0; i != string_length; i ++)
 string_content[i] = str.string_content[i];
@@ -171,17 +168,14 @@ void MyString::println()
 for(int i = 0; i != string_length; i ++)
 cout << string_content[i];
 
-
 cout << endl;
 }
-
 
 MyString& MyString::assign(MyString& str)
 {
 if(str.string_length > memory_capacity) {
 // 그러면 다시 할당을 해줘야만 한다. 
 delete [] string_content;
-
 
 string_content = new char [str.string_length];
 memory_capacity = str.string_length;
@@ -190,13 +184,10 @@ for(int i = 0; i != str.string_length; i ++) {
 string_content[i] = str.string_content[i];
 }
 
-
 // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
 // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다. 
 
-
 string_length = str.string_length;
-
 
 return *this;
 }
@@ -207,7 +198,6 @@ if(str_length > memory_capacity) {
 // 그러면 다시 할당을 해줘야만 한다. 
 delete [] string_content;
 
-
 string_content = new char [str_length];
 memory_capacity = str_length;
 }
@@ -215,9 +205,7 @@ for(int i = 0; i != str_length; i ++) {
 string_content[i] = str[i];
 }
 
-
 string_length = str_length;
-
 
 return *this;
 }
@@ -230,18 +218,14 @@ void MyString::reserve(int size)
 if(size > memory_capacity) {
 char *prev_string_content = string_content;
 
-
 string_content = new char [size];
 memory_capacity = size;
-
 
 for(int i = 0; i != string_length; i ++)
 string_content[i] = prev_string_content[i];
 
-
 delete [] prev_string_content;
 }
-
 
 // 만일 예약하려는 size 가 현재 capacity 보다 작다면
 // 아무것도 안해도 된다. 
@@ -256,23 +240,18 @@ MyString& MyString::insert(int loc, MyString& str)
 // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
 // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
 
-
 // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
 if(loc < 0 || loc > string_length) return *this; 
 
-
 if(string_length + str.string_length > memory_capacity) {
 // 이제 새롭게 동적으로 할당을 해야 한다. 
-
 
 if(memory_capacity * 2 > string_length + str.string_length)
 memory_capacity *= 2;
 else memory_capacity = string_length + str.string_length;
 
-
 char *prev_string_content = string_content;
 string_content = new char[memory_capacity];
-
 
 // 일단 insert 되는 부분 직전까지의 내용을 복사한다.
 int i;
@@ -280,30 +259,24 @@ for(i = 0; i < loc; i ++) {
 string_content[i] = prev_string_content[i];
 }
 
-
 // 그리고 새롭에 insert 되는 문자열을 넣는다.
 for(int j = 0; j != str.string_length; j ++) {
 string_content[i + j] = str.string_content[j];
 }
-
 
 // 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
 for(; i < string_length; i ++) {
 string_content[str.string_length + i] = prev_string_content[i];
 }
 
-
 delete [] prev_string_content;
-
 
 string_length = string_length + str.string_length;
 return *this;
 }
 
-
 // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
 // 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다. 
-
 
 for(int i = string_length - 1; i >= loc; i --) {
 // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
@@ -312,7 +285,6 @@ string_content[i + str.string_length] = string_content[i];
 // 그리고 insert 되는 문자 다시 집어넣기
 for(int i = 0; i < str.string_length; i ++)
 string_content[i + loc] = str.string_content[i];
-
 
 string_length = string_length + str.string_length;
 return *this;
@@ -328,7 +300,6 @@ MyString temp(c);
 return insert(loc, temp);
 }
 
-
 MyString& MyString::erase(int loc, int num)
 {
 // loc 의 앞 부터 시작해서 num 문자를 지운다.
@@ -337,11 +308,9 @@ if(num < 0 || loc < 0 || loc > string_length) return *this;
 // 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
 // 생각하면 됩니다. 
 
-
 for(int i = loc + num; i < string_length; i ++) {
 string_content[i - num] = string_content[i];
 }
-
 
 string_length -= num;
 return *this;
@@ -355,10 +324,8 @@ for(j = 0; j < str.string_length; j ++) {
 if(string_content[i + j] != str.string_content[j]) break;
 }
 
-
 if(j == str.string_length) return i;
 }
-
 
 return -1; // 찾지 못했음
 }
@@ -378,19 +345,16 @@ int MyString::compare(MyString& str)
 // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
 // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
 
-
 for(int i = 0; i < min(string_length, str.string_length); i ++) {
 if(string_content[i] > str.string_content[i]) return 1;
+
 else if(string_content[i] < str.string_content[i]) return -1;
 }
-
 
 // 여기 까지 했는데 끝나지 않았다면 앞 부분 까지 모두 똑같은 것이 된다.
 // 만일 문자열 길이가 같다면 두 문자열은 아예 같은 문자열이 된다.
 
-
 if(string_length == str.string_length) return 0;
-
 
 // 참고로 abc 와 abcd 의 크기 비교는 abcd 가 더 뒤에 오게 된다.
 else if(string_length > str.string_length) return 1;
@@ -410,13 +374,16 @@ MyString str3("sentence");
 if(str1 == str2) cout << "str1 and str2 are same" << endl;
 else cout << "st1 and str2 are different" << endl;
 
-
 if(str2 == str3) cout << "str2 and str3 are same" << endl;
 else cout << "st2 and str3 are different" << endl;
 }
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F245A6D4B520CF2291D03B6)
 
@@ -429,84 +396,187 @@ else cout << "st2 and str3 are different" << endl;
 
 
 
- 복소수 (Complex number) 클래스 만들기
+###  복소수 (Complex number) 클래스 만들기
 
 
 
-MyString 클래스를 이용해서 설명을 계속 하려고 했지만, MyString 자체가 너무 비대한 바람에 좀더 간결하게 설명을 하기 위해 새로운 클래스를 만들어보도록 할 것입니다. 바로 복소수(Complex Number) 클래스 인데요, 아마 이 강좌를 보시는 분들 중에서는 복소수가 정확히 무엇인지 모르시는 분들 도 있을 것입니다. 그 분들을 위해서 간략하게 먼저 설명을 하고 가겠습니다. 
-![](http://)
 
+MyString 클래스를 이용해서 설명을 계속 하려고 했지만, MyString 자체가 너무 비대한 바람에 좀더 간결하게 설명을 하기 위해 새로운 클래스를 만들어보도록 할 것입니다. 바로 복소수(Complex Number) 클래스 인데요, 아마 이 강좌를 보시는 분들 중에서는 복소수가 정확히 무엇인지 모르시는 분들 도 있을 것입니다. 그 분들을 위해서 간략하게 먼저 설명을 하고 가겠습니다. ![](http://)
 일단 실수의 제곱근에 대해서는 무엇인지 다들 아실 것이라 생각합니다. 그런데 실수의 제곱은 언제나 양수이기 때문에 위와 같이 음수의 제곱근은 실수로 표현할 수 없게 됩니다. 따라서, 음수의 제곱근을 나타내기 위해서 특별한 수를 정의하였는데 이를 허수(imaginary number) 이라 부르며, 실제로 존재하지 않는 수학적으로만 존재하는 수라고 볼 수 있습니다. 그리고 특히 -1 의 제곱근을 위의 수식 처럼 i 로 표기합니다. 
+따라서, 이 때문에 예를 들어서 -4 의 제곱근은![](http://)
 
-
-따라서, 이 때문에 예를 들어서 -4 의 제곱근은
+와 같이 생각할 수 있겠지요. 그리고 복소수는, 이 허수와 실수를 모두 포함하는 수 체계로, 허수와 실수의 합으로 표현할 수 있습니다. 다시 말해서, 임의의 복소수 z 는 다음과 같은 꼴입니다.
 ![](http://)
 
-와 같이 생각할 수 있겠지요. 그리고 복소수는, 이 허수와 실수를 모두 포함하는 수 체계로, 허수와 실수의 합으로 표현할 수 있습니다. 다시 말해서, 임의의 복소수 z 는 다음과 같은 꼴입니다.![](http://)
 물론 여기서 a,b 는 모두 실수 입니다.
+
+
 우리가 만들고자 하는 것은 이 복소수를 나타내는 클래스를 구성하겠다는 이야기 입니다. 임의의 복소수 하나를 표현하기 위해서 두 개의 값(실수부, 허수부)이 필요하기 때문에 반드시 클래스로 구현을 해야 하겠죠. 따라서, 기본적으로 복소수 클래스 Complex 는 다음과 같이 간단하게 만들 수 있습니다. 
+
+
 ```cpp
-class Complex{private:double real, img;
-public:Complex(double real, double img) : real(real), img(img) {}};
+
+class Complex
+{
+private:
+double real, img;
+
+public:
+Complex(double real, double img) : real(real), img(img) {}
+};
 ```
+
+
 
 복소수는 언제나 실수부와 허수부로 나뉘어지므로, Complex 클래스 역시 실수부의 값과 허수부의 값을 나타내는 real 과 img 변수가 있습니다. 여기서 문제는 이전에 만들었던 MyString 과는 다르게, 사칙 연산이 엄청나게 자주 쓰인다는 것입니다. 당연하게도 문자열의 덧셈 (+ 연산) 까지는 생각할 수 있었다 해도, 곱셈이나 나눗셈 연산 자체는 고려할 필요가 없는데, 복소수의 경우 당연히 클래스 인터페이스 차원에서 곱셈과 나눗셈을 지원해주어야만 합니다. 
-참고로, 복소수의 사칙 연산은 실수부와 허수부 따로 생각하여 진행됩니다. 간단히 말하면![](http://)
-와 같은 관계가 성립한다는 이야기 이죠. 곱셈의 경우는 좀더 복잡한데, 사실 분배법칙과 허수 둘을 곱하면 다시 -1 이 된다는 점만 생각하면 아래의 관계식도 어렵지 않게 생각할 수 있습니다.![](http://)
-나눗셈의 경우, 이전에 무리수의 유리화를 하셨던 것을 생각하면 간단합니다.![](http://)
+
+
+참고로, 복소수의 사칙 연산은 실수부와 허수부 따로 생각하여 진행됩니다. 간단히 말하면
+![](http://)
+
+와 같은 관계가 성립한다는 이야기 이죠. 곱셈의 경우는 좀더 복잡한데, 사실 분배법칙과 허수 둘을 곱하면 다시 -1 이 된다는 점만 생각하면 아래의 관계식도 어렵지 않게 생각할 수 있습니다.
+![](http://)
+
+나눗셈의 경우, 이전에 무리수의 유리화를 하셨던 것을 생각하면 간단합니다.
+![](http://)
+
 즉 분모를 실수화 할 수 있도록 분모의 켤레를 분자와 분모에 곱함으로써 실수로 나누는 것으로 쉽게 바꿀 수 있습니다. (실수로 나누는 것은 실수부, 허수부의 실수값을 그냥 실수로 나누면 됩니다) 
+
+
 그래서 만일 다음과 같이 연산자의 오버로딩을 모른다고 가정하고 Complex 클래스를 구성하여 봅시다.
+
+
 ```cpp
-class Complex{private:double real, img;
-public:Complex(double real, double img) : real(real), img(img) {}
-Complex plus(const Complex& c);Complex minus(constComplex& c);Complex times(constComplex& c);Complex divide(constComplex& c);};
+
+class Complex
+{
+private:
+double real, img;
+
+public:
+Complex(double real, double img) : real(real), img(img) {}
+
+Complex plus(const Complex& c);
+Complex minus(constComplex& c);
+Complex times(constComplex& c);
+Complex divide(constComplex& c);
+};
 ```
 
+
+
 이렇게 된다면 만일 int 형 변수였다면
+
 ```cpp
+
 a + b/c + d;
 ```
 
+
+
 로 간단하게 쓸 수 있었던 명령을 
+
 ```cpp
+
 a.plus(b.divide(c)).plus(d);
 ```
 
+
+
 와 같이 복잡한 함수식을 이용해서 표현해야만 합니다. 이는, 가독성이 떨어질 뿐더러 위 식을 딱 보고 도대체 무슨 작업을 하려고 하는지도 쉽게 알 수 없습니다. 하지만 연산자 오버로딩을 이용해서 plus 를 operator+ 로, divide 를 operator/ 로, 등등 바꿔준다면 단순히 프로그래머가 a + b/c + d; 게 쓴다고 해도, 컴파일러가 a.operator+(b.operator/(c)).operator+(d); 로 알아서 변환시켜서 처리하기 때문에 속도나 다른 면의 어떠한 차이 없이 뛰어난 가독성과 편리함을 얻을 수 있게 됩니다. 
+
+
 이를 바탕으로 간단히 Complex 클래스를 만들어본다면 
+
+
 ```cpp
-#include <iostream>using namespace std;
-class Complex{private:double real, img;
-public:Complex(double real, double img) : real(real), img(img) {}Complex(const Complex& c) { real = c.real, img = c.img;}
-Complex operator+(constComplex& c);Complex operator-(constComplex& c);Complex operator*(constComplex& c);Complex operator/(constComplex& c);
-void println() { cout << "( " << real << " , " << img << " ) " << endl;}};
-Complex Complex::operator+(constComplex& c){Complex temp(real + c.real, img + c.img);return temp;}Complex Complex::operator-(constComplex& c){Complex temp(real - c.real, img - c.img);return temp;}Complex Complex::operator*(constComplex& c){Complex temp(real* c.real - img * c.img, real * c.img + img * c.real);return temp;}Complex Complex::operator/(constComplex& c){Complex temp((real * c.real + img * c.img)/(c.real * c.real + c.img * c.img), (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img) );return temp;}
-int main(){Complex a(1.0, 2.0);Complex b(3.0, -2.0);
+
+#include <iostream>
+using namespace std;
+
+class Complex
+{
+private:
+double real, img;
+
+public:
+Complex(double real, double img) : real(real), img(img) {}
+Complex(const Complex& c) { real = c.real, img = c.img;}
+
+Complex operator+(constComplex& c);
+Complex operator-(constComplex& c);
+Complex operator*(constComplex& c);
+Complex operator/(constComplex& c);
+
+void println() { cout << "( " << real << " , " << img << " ) " << endl;}
+};
+
+Complex Complex::operator+(constComplex& c)
+{
+Complex temp(real + c.real, img + c.img);
+return temp;
+}
+Complex Complex::operator-(constComplex& c)
+{
+Complex temp(real - c.real, img - c.img);
+return temp;
+}
+Complex Complex::operator*(constComplex& c)
+{
+Complex temp(real* c.real - img * c.img, real * c.img + img * c.real);
+return temp;
+}
+Complex Complex::operator/(constComplex& c)
+{
+Complex temp((real * c.real + img * c.img)/(c.real * c.real + c.img * c.img)
+, (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img) );
+return temp;
+}
+
+int main()
+{
+Complex a(1.0, 2.0);
+Complex b(3.0, -2.0);
+
 Complex c = a*b;
-c.println();}
+
+c.println();
+}
 ```
+
+
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2160643D520CFD6F1D18E1)
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2160643D520CFD6F1D18E1)
 
 와 같이 잘 나옴을 알 수 있습니다. 여기서 가장 중요하게 봐야 할 부분은 바로, 사칙연산 연산자 함수들의 리턴 타입 입니다. 
 
-
 ```cpp
-Complex operator+(constComplex& c);Complex operator-(constComplex& c);Complex operator*(constComplex& c);Complex operator/(constComplex& c);
+
+Complex operator+(constComplex& c);
+Complex operator-(constComplex& c);
+Complex operator*(constComplex& c);
+Complex operator/(constComplex& c);
 ```
+
+
 
 위 4 개의 연산자 함수 모두 Complex& 가 아닌 Complex 를 리턴하고 있습니다. 간혹가다, 
+
+
 ```cpp
-Complex& operator+ (constComplex& c){real += c.real;img += c.img;return *this;}
+
+Complex& operator+ (constComplex& c)
+{
+real += c.real;
+img += c.img;
+return *this;
+}
 ```
 
-
-
 로 잘못 생각하는 경우도 있습니다. 물론 이렇게 설계하였을 경우, Complex 를 리턴하는 연산자 함수는 값의 복사가 일어나기 때문에 속도  저하가 발생하지만 위 처럼 레퍼런스를 리턴하게 되면 값의 복사 대신 레퍼런스만 복사하는 것이므로 큰 속도의 저하는 나타나지 않습니다. 하지만, 위와 같이 operator+ 를 정의할 경우 다음과 같은 문장이 어떻게 처리되는지 생각해봅시다.
-
 ```cpp
 
 Complex a = b + c + b;
@@ -529,13 +599,10 @@ Complex a = b + c + b;
 
 
 
- 대입 연산자 함수
-
-
+###  대입 연산자 함수
 
 
 아마 Complex 클래스를 구현하면서 한 가지 빠뜨렸다고 생각하고 있는 것이 있을 것입니다. 바로, 대입 연산자  (=) 이지요. 아마도, 대입 연산자야 말로 가장 먼저 구현했어야 할 연산자 함수가 아니였을까 합니다. 
-
 ```cpp
 
 Complex& operator=(constComplex& c);
@@ -570,28 +637,23 @@ return *this;
 #include <iostream>
 using namespace std;
 
-
 class Complex
 {
 private:
 double real, img;
 
-
 public:
 Complex(double real, double img) : real(real), img(img) {}
 Complex(const Complex& c) { real = c.real, img = c.img;}
-
 
 Complex operator+(const Complex& c);
 Complex operator-(const Complex& c);
 Complex operator*(const Complex& c);
 Complex operator/(const Complex& c);
 
-
 Complex& operator=(const Complex& c);
 void println() { cout << "( " << real << " , " << img << " ) " << endl;}
 };
-
 
 Complex Complex::operator+(const Complex& c)
 {
@@ -619,7 +681,6 @@ Complex& Complex::operator=(const Complex &c)
 real = c.real; img = c.img;
 return *this;
 }
-
 
 int main()
 {
@@ -649,6 +710,7 @@ c.println();
 
 
 디폴트 복사 생성자와 마찬가지로 디폴트 대입 연산자 역시 얕은 복사를 수행합니다. 따라서, 깊은 복사가 필요한 클래스의 경우 (예를 들어, 클래스 내부적으로 동적으로 할당되는 메모리를 관리하는 포인터가 있다던지) 대입 연산자 함수를 꼭 만들어주어야 할 필요가 있습니다. 
+
 
 
 여담이지만, 이제 여러분은 다음 두 문장의 차이를 완벽히 이해 하실 수 있을 것이라 믿습니다.
@@ -717,24 +779,28 @@ Complex& Complex::operator/=(constComplex& c)
 #include <iostream>
 using namespace std;
 
-
 class Complex
 {
 private:
 double real, img;
 
-
 public:
 Complex(double real, double img) : real(real), img(img) {}
 Complex(const Complex& c) { real = c.real, img = c.img;}
 
-Complex operator+(constComplex& c);Complex operator-(constComplex& c);Complex operator*(constComplex& c);Complex operator/(constComplex& c);
-Complex& operator+=(const Complex& c);Complex& operator-=(const Complex& c);Complex& operator*=(const Complex& c);Complex& operator/=(const Complex& c);
+Complex operator+(constComplex& c);
+Complex operator-(constComplex& c);
+Complex operator*(constComplex& c);
+Complex operator/(constComplex& c);
 
+
+Complex& operator+=(const Complex& c);
+Complex& operator-=(const Complex& c);
+Complex& operator*=(const Complex& c);
+Complex& operator/=(const Complex& c);
 
 void println() { cout << "( " << real << " , " << img << " ) " << endl;}
 };
-
 
 Complex Complex::operator+(constComplex& c)
 {
@@ -804,11 +870,13 @@ b.println();
 
 
 
- 문자열로 Complex 수와 덧셈하기### 
+
+###  문자열로 Complex 수와 덧셈하기
+
+
 
 
 이번에는 operator+ 를 개량해서, 꼭 Complex 수를 더하는 것이 아니라, 문자열로도 덧셈을 할 수 있도록 operator+ 함수를 만드려 보려고 합니다. 다시 말해서, 
-
 ```cpp
 
 y = z + "3+i2"; 
@@ -835,7 +903,6 @@ Complex Complex::operator+(const char* str)
 // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
 // 이 때 맨 앞의 부호는 생략 가능합니다. (생략시 + 라 가정)
 
-
 int begin = 0, end = strlen(str);
 double str_img = 0.0, str_real = 0.0; 
 
@@ -848,7 +915,6 @@ break;
 }
 }
 
-
 // 만일 'i' 가 없다면 이 수는 실수 뿐이다.
 if(pos_i == -1) {
 str_real = get_number(str, begin, end - 1);
@@ -857,14 +923,11 @@ Complex temp(str_real, str_img);
 return (*this) + temp;
 }
 
-
 // 만일 'i' 가 있다면,  실수부와 허수부를 나누어서 처리하면 된다.
 str_real = get_number(str, begin, pos_i - 1);
 str_img = get_number(str, pos_i + 1, end - 1);
 
-
 if(pos_i >= 1 && str[pos_i - 1] == '-') str_img *= -1.0;
-
 
 Complex temp(str_real, str_img);
 return (*this) + temp;
@@ -892,6 +955,7 @@ break;
 
 따라서 위와 같이 pos_i 에 str 의 'i' 의 위치를 찾도록 하였습니다. 물론, 입력 받은 문자열에 반드시 'i' 가 있어야만 하는 것은 아닙니다. 왜냐하면 이전에도 말했듯이 복소수가 그냥 실수 라면 굳이 허수 부분을 표현하지 않을 수 있기 때문입니다. 따라서, 아래와 같이 i 가 없을 경우 간단히 따로 처리할 수 있습니다. 
 
+
 ```cpp
 
 // 만일 'i' 가 없다면 이 수는 실수 뿐이다.
@@ -914,103 +978,32 @@ str_real = get_number(str, begin, pos_i - 1);
 str_img = get_number(str, pos_i + 1, end - 1);
 ```
 
+
+
 자 이제, 다시 operator+ 함수를 돌아와서 살펴보자면 만일 i 가 포함되어 있다면 i 를 기준으로 왼쪽의 실수부와 오른쪽의 허수부로 나뉘게 됩니다. 이 때 str_real 은 get_number 함수를 이용해서 정확히 실수 값을 얻을 수 있습니다. (왜냐하면 맨 뒤에 숫자 뒤에 딸려오는 문자들은 get_number 에서 알아서 무시된다) 하지만 str_img 의 경우 i 앞의 부호 부분이 잘리기 때문에 정확한 실수 값을 얻을 수 없기 때문에 따로
+
 ```cpp
+
 if(pos_i >= 1 && str[pos_i - 1] == '-') str_img *= -1.0;
 ```
 
+
+
 로 해서 str_img 의 정확한 부호를 처리하도록 하였습니다. 
-```cpp
-double Complex::get_number(const char *str, int from, int to){bool minus = false; if(from > to) return 0;
-if(str[from] == '-') minus = true;if(str[from] == '-' || str[from] == '+') from ++;
-double num = 0.0;double decimal = 1.0;
-bool integer_part = true;for(int i = from; i <= to; i ++) {if(isdigit(str[i]) && integer_part) {num *= 10.0;num += (str[i] - '0');}else if(str[i] == '.') integer_part = false;else if(isdigit(str[i]) && !integer_part) {decimal /= 10.0; num += ((str[i] - '0') * decimal);}else break; // 그 이외의 이상한 문자들이 올 경우}
-if(minus) num *= -1.0;
-return num;}
-```
 
-저의 경우 get_number 함수를 위와 같이 구현하였습니다. 만일 from 이 to 보다 크다면 당연히, 올바르지 않는 입력으로 0 을 반환하도록 하였습니다. (사실 이렇게 모든 예외적인 경우를 세세하게 처리하는 일도 매우 중요합니다) 그리고, 특별히 부호를 처리하기 위해서 minus 라는 bool 변수를 도입해서 마지막에 minus 가 true 일 경우에 부호를 음수로 바꾸도록 하였습니다. 
-```cpp
-if(str[from] == '-' || str[from] == '+') from ++;
-```
-
-일단 부호 부분은 위와 같이 처리해서 부호 부분 바로 다음 부터 처리하도록 합니다.
-```cpp
-for(int i = from; i <= to; i ++) {if(isdigit(str[i]) && integer_part) {num *= 10.0;num += (str[i] - '0');}else if(str[i] == '.') integer_part = false;else if(isdigit(str[i]) && !integer_part) {decimal /= 10.0; num += ((str[i] - '0') * decimal);}else break; // 그 이외의 이상한 문자들이 올 경우}
-```
-
-double 형 변수로 입력받은 문자열을 처리할 때 유의할 점은, for 문에서 맨 앞자리 수 부터 읽는 다는 점입니다. 예를 들어서 123.456 이라면 1,2,3... 순으로 값을 입력 받게 되는데 이 때문에 소수점 앞 부분과 뒷 부분의 처리를 다르게 해야만 합니다. 소수점 앞 부분을 입력받을 때 (즉, integer_part 변수가 true 일 때) 에는 간단히 
-```cpp
-num *= 10.0;num += (str[i] - '0');
-```
-
-를 해서 문자열 부분의 값을 읽어들일 수 있습니다. 즉 1 -> 12 -> 123 이 되겠지요. 참고로 str[i] - '0' 을 하는 기법은 상당히 자주 쓰이는데, ASCII 테이블 상에서 0 부터 9 까지 숫자들이 크기 순으로 연속적으로 배열되어 있기 때문에 단순히 '0' 을 빼버리면 그 숫자에 해당하는 실제 정수 값을 구할 수 있게 됩니다.
-```cpp
-else if(isdigit(str[i]) && !integer_part) {decimal /= 10.0; num += ((str[i] - '0') * decimal);}
-```
-
-그리고 이번에는 소수점 뒷 부분을 읽어들일 차례 입니다. 소수점 뒷 부분의 경우 decimal 이란 새로운 변수를 도입하여서, 현재 읽어들이는 위치에 해당하는 값을 구할 수 있게 되는데요, 예를 들어 123.456 에서 4 의 경우 decimal 은 0.1, 5 는 0.01 등이 되겠지요. 이와 같은 방식으로 해서 우리는 원래의 문자열을 double 값으로 바꿀 수 있게 됩니다. 
 
 ```cpp
 
-#include <iostream>
-using namespace std;
-
-
-class Complex
-{
-private:
-double real, img;
-
-
-double get_number(const char *str, int from, int to); 
-
-
-public:
-Complex(double real, double img) : real(real), img(img) {}
-Complex(const Complex& c) { real = c.real, img = c.img;}
-
-
-Complex operator+(constComplex& c);
-Complex operator+(const char *str);
-
-
-Complex operator-(constComplex& c);
-Complex operator*(constComplex& c);
-Complex operator/(constComplex& c);
-
-
-Complex& operator+=(const Complex& c);
-Complex& operator-=(const Complex& c);
-Complex& operator*=(const Complex& c);
-Complex& operator/=(const Complex& c);
-
-
-Complex& operator=(const Complex &c);
-
-
-void println() { cout << "( " << real << " , " << img << " ) " << endl;}
-};
-
-
-Complex Complex::operator+(constComplex& c)
-{
-Complex temp(real + c.real, img + c.img);
-return temp;
-}
 double Complex::get_number(const char *str, int from, int to)
 {
 bool minus = false; 
 if(from > to) return 0;
 
-
 if(str[from] == '-') minus = true;
 if(str[from] == '-' || str[from] == '+') from ++;
 
-
 double num = 0.0;
 double decimal = 1.0;
-
 
 bool integer_part = true;
 for(int i = from; i <= to; i ++) {
@@ -1026,9 +1019,133 @@ num += ((str[i] - '0') * decimal);
 else break; // 그 이외의 이상한 문자들이 올 경우
 }
 
-
 if(minus) num *= -1.0;
 
+return num;
+}
+```
+
+
+
+저의 경우 get_number 함수를 위와 같이 구현하였습니다. 만일 from 이 to 보다 크다면 당연히, 올바르지 않는 입력으로 0 을 반환하도록 하였습니다. (사실 이렇게 모든 예외적인 경우를 세세하게 처리하는 일도 매우 중요합니다) 그리고, 특별히 부호를 처리하기 위해서 minus 라는 bool 변수를 도입해서 마지막에 minus 가 true 일 경우에 부호를 음수로 바꾸도록 하였습니다. 
+
+```cpp
+
+if(str[from] == '-' || str[from] == '+') from ++;
+```
+
+
+
+일단 부호 부분은 위와 같이 처리해서 부호 부분 바로 다음 부터 처리하도록 합니다.
+
+
+```cpp
+
+for(int i = from; i <= to; i ++) {
+if(isdigit(str[i]) && integer_part) {
+num *= 10.0;
+num += (str[i] - '0');
+}
+else if(str[i] == '.') integer_part = false;
+else if(isdigit(str[i]) && !integer_part) {
+decimal /= 10.0; 
+num += ((str[i] - '0') * decimal);
+}
+else break; // 그 이외의 이상한 문자들이 올 경우
+}
+```
+
+
+
+double 형 변수로 입력받은 문자열을 처리할 때 유의할 점은, for 문에서 맨 앞자리 수 부터 읽는 다는 점입니다. 예를 들어서 123.456 이라면 1,2,3... 순으로 값을 입력 받게 되는데 이 때문에 소수점 앞 부분과 뒷 부분의 처리를 다르게 해야만 합니다. 소수점 앞 부분을 입력받을 때 (즉, integer_part 변수가 true 일 때) 에는 간단히 
+
+
+```cpp
+
+num *= 10.0;
+num += (str[i] - '0');
+```
+
+
+
+를 해서 문자열 부분의 값을 읽어들일 수 있습니다. 즉 1 -> 12 -> 123 이 되겠지요. 참고로 str[i] - '0' 을 하는 기법은 상당히 자주 쓰이는데, ASCII 테이블 상에서 0 부터 9 까지 숫자들이 크기 순으로 연속적으로 배열되어 있기 때문에 단순히 '0' 을 빼버리면 그 숫자에 해당하는 실제 정수 값을 구할 수 있게 됩니다.
+
+```cpp
+
+else if(isdigit(str[i]) && !integer_part) {
+decimal /= 10.0; 
+num += ((str[i] - '0') * decimal);
+}
+```
+
+
+
+그리고 이번에는 소수점 뒷 부분을 읽어들일 차례 입니다. 소수점 뒷 부분의 경우 decimal 이란 새로운 변수를 도입하여서, 현재 읽어들이는 위치에 해당하는 값을 구할 수 있게 되는데요, 예를 들어 123.456 에서 4 의 경우 decimal 은 0.1, 5 는 0.01 등이 되겠지요. 이와 같은 방식으로 해서 우리는 원래의 문자열을 double 값으로 바꿀 수 있게 됩니다. 
+
+```cpp
+
+#include <iostream>
+using namespace std;
+
+class Complex
+{
+private:
+double real, img;
+
+double get_number(const char *str, int from, int to); 
+
+public:
+Complex(double real, double img) : real(real), img(img) {}
+Complex(const Complex& c) { real = c.real, img = c.img;}
+
+Complex operator+(constComplex& c);
+Complex operator+(const char *str);
+
+Complex operator-(constComplex& c);
+Complex operator*(constComplex& c);
+Complex operator/(constComplex& c);
+
+Complex& operator+=(const Complex& c);
+Complex& operator-=(const Complex& c);
+Complex& operator*=(const Complex& c);
+Complex& operator/=(const Complex& c);
+
+Complex& operator=(const Complex &c);
+
+void println() { cout << "( " << real << " , " << img << " ) " << endl;}
+};
+
+Complex Complex::operator+(constComplex& c)
+{
+Complex temp(real + c.real, img + c.img);
+return temp;
+}
+double Complex::get_number(const char *str, int from, int to)
+{
+bool minus = false; 
+if(from > to) return 0;
+
+if(str[from] == '-') minus = true;
+if(str[from] == '-' || str[from] == '+') from ++;
+
+double num = 0.0;
+double decimal = 1.0;
+
+bool integer_part = true;
+for(int i = from; i <= to; i ++) {
+if(isdigit(str[i]) && integer_part) {
+num *= 10.0;
+num += (str[i] - '0');
+}
+else if(str[i] == '.') integer_part = false;
+else if(isdigit(str[i]) && !integer_part) {
+decimal /= 10.0; 
+num += ((str[i] - '0') * decimal);
+}
+else break; // 그 이외의 이상한 문자들이 올 경우
+}
+
+if(minus) num *= -1.0;
 
 return num;
 }
@@ -1037,7 +1154,6 @@ Complex Complex::operator+(const char* str)
 // 입력 받은 문자열을 분석하여 real 부분과 img 부분을 찾아야 한다.
 // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
 // 이 때 맨 앞의 부호는 생략 가능합니다. (생략시 + 라 가정)
-
 
 int begin = 0, end = strlen(str);
 double str_img = 0.0, str_real = 0.0; 
@@ -1051,7 +1167,6 @@ break;
 }
 }
 
-
 // 만일 'i' 가 없다면 이 수는 실수 뿐이다.
 if(pos_i == -1) {
 str_real = get_number(str, begin, end - 1);
@@ -1060,14 +1175,11 @@ Complex temp(str_real, str_img);
 return (*this) + temp;
 }
 
-
 // 만일 'i' 가 있다면,  실수부와 허수부를 나누어서 처리하면 된다.
 str_real = get_number(str, begin, pos_i - 1);
 str_img = get_number(str, pos_i + 1, end - 1);
 
-
 if(pos_i >= 1 && str[pos_i - 1] == '-') str_img *= -1.0;
-
 
 Complex temp(str_real, str_img);
 return (*this) + temp;
@@ -1109,7 +1221,6 @@ Complex& Complex::operator=(const Complex &c)
 real = c.real; img = c.img;
 return *this;
 }
-
 
 int main()
 {
@@ -1160,11 +1271,9 @@ Complex::Complex(const char* str)
 // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
 // 이 때 맨 앞의 부호는 생략 가능합니다. (생략시 + 라 가정)
 
-
 int begin = 0, end = strlen(str);
 img = 0.0;
 real = 0.0; 
-
 
 // 먼저 가장 기준이 되는 'i' 의 위치를 찾는다.
 int pos_i = -1;
@@ -1175,18 +1284,15 @@ break;
 }
 }
 
-
 // 만일 'i' 가 없다면 이 수는 실수 뿐이다.
 if(pos_i == -1) {
 real = get_number(str, begin, end - 1);
 return ;
 }
 
-
 // 만일 'i' 가 있다면,  실수부와 허수부를 나누어서 처리하면 된다.
 real = get_number(str, begin, pos_i - 1);
 img = get_number(str, pos_i + 1, end - 1);
-
 
 if(pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
@@ -1224,42 +1330,34 @@ return (*this) / temp;
 #include <iostream>
 using namespace std;
 
-
 class Complex
 {
 private:
 double real, img;
 
-
 double get_number(const char *str, int from, int to); 
-
 
 public:
 Complex(double real, double img) : real(real), img(img) {}
 Complex(const Complex& c) { real = c.real, img = c.img;}
 Complex(const char* str);
 
-
 Complex operator+(constComplex& c);
 Complex operator-(constComplex& c);
 Complex operator*(constComplex& c);
 Complex operator/(constComplex& c);
-
 
 Complex operator+(const char *str);
 Complex operator-(const char *str);
 Complex operator*(const char *str);
 Complex operator/(const char *str);
 
-
 Complex& operator+=(constComplex& c);
 Complex& operator-=(constComplex& c);
 Complex& operator*=(constComplex& c);
 Complex& operator/=(constComplex& c);
 
-
 Complex& operator=(const Complex &c);
-
 
 void println() { cout << "( " << real << " , " << img << " ) " << endl;}
 };
@@ -1269,11 +1367,9 @@ Complex::Complex(const char* str)
 // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
 // 이 때 맨 앞의 부호는 생략 가능합니다. (생략시 + 라 가정)
 
-
 int begin = 0, end = strlen(str);
 img = 0.0;
 real = 0.0; 
-
 
 // 먼저 가장 기준이 되는 'i' 의 위치를 찾는다.
 int pos_i = -1;
@@ -1284,18 +1380,15 @@ break;
 }
 }
 
-
 // 만일 'i' 가 없다면 이 수는 실수 뿐이다.
 if(pos_i == -1) {
 real = get_number(str, begin, end - 1);
 return ;
 }
 
-
 // 만일 'i' 가 있다면,  실수부와 허수부를 나누어서 처리하면 된다.
 real = get_number(str, begin, pos_i - 1);
 img = get_number(str, pos_i + 1, end - 1);
-
 
 if(pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
@@ -1304,14 +1397,11 @@ double Complex::get_number(const char *str, int from, int to)
 bool minus = false; 
 if(from > to) return 0;
 
-
 if(str[from] == '-') minus = true;
 if(str[from] == '-' || str[from] == '+') from ++;
 
-
 double num = 0.0;
 double decimal = 1.0;
-
 
 bool integer_part = true;
 for(int i = from; i <= to; i ++) {
@@ -1327,9 +1417,7 @@ num += ((str[i] - '0') * decimal);
 else break; // 그 이외의 이상한 문자들이 올 경우
 }
 
-
 if(minus) num *= -1.0;
-
 
 return num;
 }
@@ -1396,7 +1484,6 @@ real = c.real; img = c.img;
 return *this;
 }
 
-
 int main()
 {
 Complex a(0, 0);
@@ -1433,36 +1520,29 @@ a.println();
 #include <iostream>
 using namespace std;
 
-
 class Complex
 {
 private:
 double real, img;
 
-
 double get_number(const char *str, int from, int to); 
-
 
 public:
 Complex(double real, double img) : real(real), img(img) {}
 Complex(const Complex& c) { real = c.real, img = c.img;}
 Complex(const char* str);
 
-
 Complex operator+(const Complex& c);
 Complex operator-(const Complex& c);
 Complex operator*(const Complex& c);
 Complex operator/(const Complex& c);
-
 
 Complex& operator+=(const Complex& c);
 Complex& operator-=(const Complex& c);
 Complex& operator*=(const Complex& c);
 Complex& operator/=(const Complex& c);
 
-
 Complex& operator=(const Complex &c);
-
 
 void println() { cout << "( " << real << " , " << img << " ) " << endl;}
 };
@@ -1472,11 +1552,9 @@ Complex::Complex(const char* str)
 // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
 // 이 때 맨 앞의 부호는 생략 가능합니다. (생략시 + 라 가정)
 
-
 int begin = 0, end = strlen(str);
 img = 0.0;
 real = 0.0; 
-
 
 // 먼저 가장 기준이 되는 'i' 의 위치를 찾는다.
 int pos_i = -1;
@@ -1487,18 +1565,15 @@ break;
 }
 }
 
-
 // 만일 'i' 가 없다면 이 수는 실수 뿐이다.
 if(pos_i == -1) {
 real = get_number(str, begin, end - 1);
 return ;
 }
 
-
 // 만일 'i' 가 있다면,  실수부와 허수부를 나누어서 처리하면 된다.
 real = get_number(str, begin, pos_i - 1);
 img = get_number(str, pos_i + 1, end - 1);
-
 
 if(pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
@@ -1507,14 +1582,11 @@ double Complex::get_number(const char *str, int from, int to)
 bool minus = false; 
 if(from > to) return 0;
 
-
 if(str[from] == '-') minus = true;
 if(str[from] == '-' || str[from] == '+') from ++;
 
-
 double num = 0.0;
 double decimal = 1.0;
-
 
 bool integer_part = true;
 for(int i = from; i <= to; i ++) {
@@ -1530,9 +1602,7 @@ num += ((str[i] - '0') * decimal);
 else break; // 그 이외의 이상한 문자들이 올 경우
 }
 
-
 if(minus) num *= -1.0;
-
 
 return num;
 }
@@ -1558,7 +1628,6 @@ Complex temp((real * c.real + img * c.img)/(c.real * c.real + c.img * c.img)
 return temp;
 }
 
-
 Complex& Complex::operator+=(const Complex& c)
 {
 (*this) = (*this) + c; return *this;
@@ -1580,7 +1649,6 @@ Complex& Complex::operator=(const Complex &c)
 real = c.real; img = c.img;
 return *this;
 }
-
 
 int main()
 {
@@ -1686,27 +1754,28 @@ a = a + "-1.1 + i3.923";
 이에 대해서는 다음 시간에 다루어 보도록 하겠습니다.
 
 
- 생각해보기
+
+
+###  생각해보기
+
+
 
 
 1. 그렇다면 Complex 클래스의 연산자 오버로딩을 수행하면서 쌓은 지식을 바탕으로 MyString 함수를 완전하게 만들어봅시다. 즉, 강좌 서두에서 지적한 사항들을 모두 구현하시면 됩니다. (난이도 : 下)
 
 
-
-
-
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
 
-공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>(24)
+
+공감sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>(24)
 2013.09.04씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>(5)
 2013.08.29씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>(7)
 2013.08.25씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>(29)

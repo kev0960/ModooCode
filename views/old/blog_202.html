@@ -1,7 +1,7 @@
-<p>이번 강좌에서는<span class='font-italic'> 산술 연산자 오버로딩비교 연산자 오버로딩대입 연산자 오버로딩에 대해서 다룹니다.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F24253D3C52177993100B09' alt=''><p>안녕하세요 여러분! 지난 강좌에서 만들었던 MyString 을 손 좀 봐주었나요? 아마도 MyString 을 이용하여 여러가지 작업을 하면서 다음과 같은 생각을 하셨을 수도 있었을 것입니다. </p><ul><li><p> if(str1.compare(str2) == 0) 하지 말고 if(str1 == str2) 하면 어떨까?str1.insert(str1.length(), str2) 하지 말고 str1 = str1 + str2; 하면 어떨까?str1[10] = 'c'; 와 같은 것도 할 수 있을까?</p></li></ul><p>물론 C 언어에서는 이러한 것을 상상조차 할 수 없었습니다. +, -, ==, [] 와 같은 기본 연산자들은 모두 C 언어에 기본적으로 정의되어 있는 데이터 타입(int, float 등)에만 사용 가능한 것들 이였기 때문이죠. 이들을 구조체 변수에 사용한다는 것은 불가능하였습니다. </p><p>하지만 놀랍게도 C++ 에서는 사용자 정의 연산자를 사용할 수 있습니다. 어떠한 연산자들이 가능하나면, :: (범위 지정), . (멤버 지정), .<span class='font-italic'> (멤버 포인터로 멤버 지정) 을 제외한 여러분이 상상하는 모든 연산자를 사용할 수 있다는 것입니다. +, -, </span> 는 물론이고, +=, -= 와 같은 축약형들이나 >=, ==, 와 같은 비교 연산자, && 와 같은 논리 연산자, -> 와 같은 멤버 선택 연산자, ++, -- 증감 연산자, [] 와 심지어 () 까지 (함수 호출 연산자) 도 모두 여러분이 직접 만들 수 있습니다. </p><p>이 때 이러한 기본 연산자들을 직접 사용자가 정의하는 것을 연산자를 오버로딩(overloading) 한다고 부릅니다. 이전에 같은 이름의 함수를 인자만 다르게 사용하는 것을 '함수를 오버로딩 했다' 라고 불렀던 것 처럼, 기본 연산자를 여러분이 설계한 클래스에 맞게 직접 사용하는 것을 '연산자를 오버로딩 했다' 라고 부릅니다.</p><p> MyString 의 == 연산자 오버로딩### </p><p>일단 연산자 오버로딩을 사용하기 위해서는, 다음과 같이 오버로딩을 원하는 연산자 함수를 제작하면 됩니다.</p><pre class="chroma">
+<p>이번 강좌에서는<span class='font-italic'> 산술 연산자 오버로딩</p><ul><li><p> 비교 연산자 오버로딩</p></li><li><p> 대입 연산자 오버로딩</p></li></ul><p>에 대해서 다룹니다.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F24253D3C52177993100B09' alt=''><p>안녕하세요 여러분! 지난 강좌에서 만들었던 MyString 을 손 좀 봐주었나요? 아마도 MyString 을 이용하여 여러가지 작업을 하면서 다음과 같은 생각을 하셨을 수도 있었을 것입니다. </p><ul><li><p> if(str1.compare(str2) == 0) 하지 말고 if(str1 == str2) 하면 어떨까?</p></li><li><p> str1.insert(str1.length(), str2) 하지 말고 str1 = str1 + str2; 하면 어떨까?</p></li><li><p> str1[10] = 'c'; 와 같은 것도 할 수 있을까?</p></li></ul><p>물론 C 언어에서는 이러한 것을 상상조차 할 수 없었습니다. +, -, ==, [] 와 같은 기본 연산자들은 모두 C 언어에 기본적으로 정의되어 있는 데이터 타입(int, float 등)에만 사용 가능한 것들 이였기 때문이죠. 이들을 구조체 변수에 사용한다는 것은 불가능하였습니다. </p><p>하지만 놀랍게도 C++ 에서는 사용자 정의 연산자를 사용할 수 있습니다. 어떠한 연산자들이 가능하나면, :: (범위 지정), . (멤버 지정), .<span class='font-italic'> (멤버 포인터로 멤버 지정) 을 제외한 여러분이 상상하는 모든 연산자를 사용할 수 있다는 것입니다. +, -, </span> 는 물론이고, +=, -= 와 같은 축약형들이나 >=, ==, 와 같은 비교 연산자, && 와 같은 논리 연산자, -> 와 같은 멤버 선택 연산자, ++, -- 증감 연산자, [] 와 심지어 () 까지 (함수 호출 연산자) 도 모두 여러분이 직접 만들 수 있습니다. </p><p>이 때 이러한 기본 연산자들을 직접 사용자가 정의하는 것을 연산자를 오버로딩(overloading) 한다고 부릅니다. 이전에 같은 이름의 함수를 인자만 다르게 사용하는 것을 '함수를 오버로딩 했다' 라고 불렀던 것 처럼, 기본 연산자를 여러분이 설계한 클래스에 맞게 직접 사용하는 것을 '연산자를 오버로딩 했다' 라고 부릅니다.</p><h3><p>  MyString 의 == 연산자 오버로딩</p></h3><p>일단 연산자 오버로딩을 사용하기 위해서는, 다음과 같이 오버로딩을 원하는 연산자 함수를 제작하면 됩니다.</p><pre class='info'>
 (리턴 타입) operator(연산자)(연산자가받는 인자)
-</pre><p>(※ 참고적으로 위 방법 외에는 함수 이름으로 연산자를 절대 넣을 수 없습니다) 예를 들어서 우리가 == 를 오버로딩 하고 싶다면, == 연산자는 그 결과값이 언제나 bool 이고, 인자로는 == 로 비교하는 것 하나만 받게 됩니다. 따라서 다음과 같이 함수를 정의하면 됩니다.</p><pre class="chroma">
-bool operator==(MyString&amp; str);
+</pre><p>(※ 참고적으로 위 방법 외에는 함수 이름으로 연산자를 절대 넣을 수 없습니다) 예를 들어서 우리가 == 를 오버로딩 하고 싶다면, == 연산자는 그 결과값이 언제나 bool 이고, 인자로는 == 로 비교하는 것 하나만 받게 됩니다. 따라서 다음과 같이 함수를 정의하면 됩니다.</p><pre class='info'>
+bool operator==(MyString& str);
 </pre><p>이제, 우리가 str1 == str2 라는 명령을 한다면 이는 str1.operator==(str2) 로 내부적으로 변환되서 처리됩니다. 그리고 그 결과값을 리턴하게 되겠지요. 사실 operator== 를 만드는 것 자체는 별로 어려운 일은 아닙니다. 왜냐하면 이미 MyString 에서 compare 라는 좋은 함수를 제공하고 있기 때문이지요. 간단하게 만들어 보면 다음과 같습니다.</p><pre class="chroma">
 <span class="kt">bool</span> <span class="n">MyString</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">=</span><span class="o">=</span><span class="p">(</span><span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">)</span>
 
@@ -253,6 +253,7 @@ bool operator==(MyString&amp; str);
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">min</span><span class="p">(</span><span class="n">string_length</span><span class="p">,</span> <span class="n">str</span><span class="p">.</span><span class="n">string_length</span><span class="p">)</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span>
       <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+
     <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">str</span><span class="p">.</span><span class="n">string_content</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span>
       <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
   <span class="p">}</span>
@@ -286,40 +287,51 @@ bool operator==(MyString&amp; str);
   <span class="k">else</span>
     <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">st2 and str3 are different</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F245A6D4B520CF2291D03B6' alt=''><p>와 같이 잘 나옵니다. 위 코드에서도 쉽게 알 수 있지만 str1 과 str2 은 다르고, str2 와 str3 는 같기 때문에 위와 같이 제대로 처리되고 있음을 알 수 있습니다. </p><p> 복소수 (Complex number) 클래스 만들기</p><p>MyString 클래스를 이용해서 설명을 계속 하려고 했지만, MyString 자체가 너무 비대한 바람에 좀더 간결하게 설명을 하기 위해 새로운 클래스를 만들어보도록 할 것입니다. 바로 복소수(Complex Number) 클래스 인데요, 아마 이 강좌를 보시는 분들 중에서는 복소수가 정확히 무엇인지 모르시는 분들 도 있을 것입니다. 그 분들을 위해서 간략하게 먼저 설명을 하고 가겠습니다. !</p><img src='http://' alt=''><p>일단 실수의 제곱근에 대해서는 무엇인지 다들 아실 것이라 생각합니다. 그런데 실수의 제곱은 언제나 양수이기 때문에 위와 같이 음수의 제곱근은 실수로 표현할 수 없게 됩니다. 따라서, 음수의 제곱근을 나타내기 위해서 특별한 수를 정의하였는데 이를 허수(imaginary number) 이라 부르며, 실제로 존재하지 않는 수학적으로만 존재하는 수라고 볼 수 있습니다. 그리고 특히 -1 의 제곱근을 위의 수식 처럼 i 로 표기합니다. </p><p>따라서, 이 때문에 예를 들어서 -4 의 제곱근은!</p><img src='http://' alt=''><p>와 같이 생각할 수 있겠지요. 그리고 복소수는, 이 허수와 실수를 모두 포함하는 수 체계로, 허수와 실수의 합으로 표현할 수 있습니다. 다시 말해서, 임의의 복소수 z 는 다음과 같은 꼴입니다.!</p><img src='http://' alt=''><p>물론 여기서 a,b 는 모두 실수 입니다.우리가 만들고자 하는 것은 이 복소수를 나타내는 클래스를 구성하겠다는 이야기 입니다. 임의의 복소수 하나를 표현하기 위해서 두 개의 값(실수부, 허수부)이 필요하기 때문에 반드시 클래스로 구현을 해야 하겠죠. 따라서, 기본적으로 복소수 클래스 Complex 는 다음과 같이 간단하게 만들 수 있습니다. </p><pre class="chroma"><span class="k">class</span><span class="err"> </span><span class="nc">Complex</span> <span class="p">{</span>
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F245A6D4B520CF2291D03B6' alt=''><p>와 같이 잘 나옵니다. 위 코드에서도 쉽게 알 수 있지만 str1 과 str2 은 다르고, str2 와 str3 는 같기 때문에 위와 같이 제대로 처리되고 있음을 알 수 있습니다. </p><h3><p>  복소수 (Complex number) 클래스 만들기</p></h3><p>MyString 클래스를 이용해서 설명을 계속 하려고 했지만, MyString 자체가 너무 비대한 바람에 좀더 간결하게 설명을 하기 위해 새로운 클래스를 만들어보도록 할 것입니다. 바로 복소수(Complex Number) 클래스 인데요, 아마 이 강좌를 보시는 분들 중에서는 복소수가 정확히 무엇인지 모르시는 분들 도 있을 것입니다. 그 분들을 위해서 간략하게 먼저 설명을 하고 가겠습니다. !</p><img src='http://' alt=''><p>일단 실수의 제곱근에 대해서는 무엇인지 다들 아실 것이라 생각합니다. 그런데 실수의 제곱은 언제나 양수이기 때문에 위와 같이 음수의 제곱근은 실수로 표현할 수 없게 됩니다. 따라서, 음수의 제곱근을 나타내기 위해서 특별한 수를 정의하였는데 이를 허수(imaginary number) 이라 부르며, 실제로 존재하지 않는 수학적으로만 존재하는 수라고 볼 수 있습니다. 그리고 특히 -1 의 제곱근을 위의 수식 처럼 i 로 표기합니다. 따라서, 이 때문에 예를 들어서 -4 의 제곱근은!</p><img src='http://' alt=''><p>와 같이 생각할 수 있겠지요. 그리고 복소수는, 이 허수와 실수를 모두 포함하는 수 체계로, 허수와 실수의 합으로 표현할 수 있습니다. 다시 말해서, 임의의 복소수 z 는 다음과 같은 꼴입니다.!</p><img src='http://' alt=''><p>물론 여기서 a,b 는 모두 실수 입니다.</p><p>우리가 만들고자 하는 것은 이 복소수를 나타내는 클래스를 구성하겠다는 이야기 입니다. 임의의 복소수 하나를 표현하기 위해서 두 개의 값(실수부, 허수부)이 필요하기 때문에 반드시 클래스로 구현을 해야 하겠죠. 따라서, 기본적으로 복소수 클래스 Complex 는 다음과 같이 간단하게 만들 수 있습니다. </p><pre class="chroma">
+<span class="k">class</span><span class="err"> </span><span class="nc">Complex</span> <span class="p">{</span>
  <span class="k">private</span><span class="o">:</span>
   <span class="kt">double</span> <span class="n">real</span><span class="p">,</span> <span class="n">img</span><span class="p">;</span>
 
  <span class="k">public</span><span class="o">:</span>
   <span class="n">Complex</span><span class="p">(</span><span class="kt">double</span> <span class="n">real</span><span class="p">,</span> <span class="kt">double</span> <span class="n">img</span><span class="p">)</span> <span class="o">:</span> <span class="n">real</span><span class="p">(</span><span class="n">real</span><span class="p">)</span><span class="p">,</span> <span class="n">img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
 <span class="p">}</span><span class="p">;</span>
-</pre><p>복소수는 언제나 실수부와 허수부로 나뉘어지므로, Complex 클래스 역시 실수부의 값과 허수부의 값을 나타내는 real 과 img 변수가 있습니다. 여기서 문제는 이전에 만들었던 MyString 과는 다르게, 사칙 연산이 엄청나게 자주 쓰인다는 것입니다. 당연하게도 문자열의 덧셈 (+ 연산) 까지는 생각할 수 있었다 해도, 곱셈이나 나눗셈 연산 자체는 고려할 필요가 없는데, 복소수의 경우 당연히 클래스 인터페이스 차원에서 곱셈과 나눗셈을 지원해주어야만 합니다. 참고로, 복소수의 사칙 연산은 실수부와 허수부 따로 생각하여 진행됩니다. 간단히 말하면!</p><img src='http://' alt=''><p>와 같은 관계가 성립한다는 이야기 이죠. 곱셈의 경우는 좀더 복잡한데, 사실 분배법칙과 허수 둘을 곱하면 다시 -1 이 된다는 점만 생각하면 아래의 관계식도 어렵지 않게 생각할 수 있습니다.!</p><img src='http://' alt=''><p>나눗셈의 경우, 이전에 무리수의 유리화를 하셨던 것을 생각하면 간단합니다.!</p><img src='http://' alt=''><p>즉 분모를 실수화 할 수 있도록 분모의 켤레를 분자와 분모에 곱함으로써 실수로 나누는 것으로 쉽게 바꿀 수 있습니다. (실수로 나누는 것은 실수부, 허수부의 실수값을 그냥 실수로 나누면 됩니다) 그래서 만일 다음과 같이 연산자의 오버로딩을 모른다고 가정하고 Complex 클래스를 구성하여 봅시다.</p><pre class="chroma"><span class="k">class</span><span class="err"> </span><span class="nc">Complex</span> <span class="p">{</span>
+</pre><p>복소수는 언제나 실수부와 허수부로 나뉘어지므로, Complex 클래스 역시 실수부의 값과 허수부의 값을 나타내는 real 과 img 변수가 있습니다. 여기서 문제는 이전에 만들었던 MyString 과는 다르게, 사칙 연산이 엄청나게 자주 쓰인다는 것입니다. 당연하게도 문자열의 덧셈 (+ 연산) 까지는 생각할 수 있었다 해도, 곱셈이나 나눗셈 연산 자체는 고려할 필요가 없는데, 복소수의 경우 당연히 클래스 인터페이스 차원에서 곱셈과 나눗셈을 지원해주어야만 합니다. </p><p>참고로, 복소수의 사칙 연산은 실수부와 허수부 따로 생각하여 진행됩니다. 간단히 말하면!</p><img src='http://' alt=''><p>와 같은 관계가 성립한다는 이야기 이죠. 곱셈의 경우는 좀더 복잡한데, 사실 분배법칙과 허수 둘을 곱하면 다시 -1 이 된다는 점만 생각하면 아래의 관계식도 어렵지 않게 생각할 수 있습니다.!</p><img src='http://' alt=''><p>나눗셈의 경우, 이전에 무리수의 유리화를 하셨던 것을 생각하면 간단합니다.!</p><img src='http://' alt=''><p>즉 분모를 실수화 할 수 있도록 분모의 켤레를 분자와 분모에 곱함으로써 실수로 나누는 것으로 쉽게 바꿀 수 있습니다. (실수로 나누는 것은 실수부, 허수부의 실수값을 그냥 실수로 나누면 됩니다) </p><p>그래서 만일 다음과 같이 연산자의 오버로딩을 모른다고 가정하고 Complex 클래스를 구성하여 봅시다.</p><pre class="chroma">
+<span class="k">class</span><span class="err"> </span><span class="nc">Complex</span> <span class="p">{</span>
  <span class="k">private</span><span class="o">:</span>
   <span class="kt">double</span> <span class="n">real</span><span class="p">,</span> <span class="n">img</span><span class="p">;</span>
 
  <span class="k">public</span><span class="o">:</span>
   <span class="n">Complex</span><span class="p">(</span><span class="kt">double</span> <span class="n">real</span><span class="p">,</span> <span class="kt">double</span> <span class="n">img</span><span class="p">)</span> <span class="o">:</span> <span class="n">real</span><span class="p">(</span><span class="n">real</span><span class="p">)</span><span class="p">,</span> <span class="n">img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+
   <span class="n">Complex</span> <span class="n">plus</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="nf">minus</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="nf">times</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="nf">divide</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">;</span>
-</pre><p>이렇게 된다면 만일 int 형 변수였다면</p><pre class="chroma"><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">/</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
-</pre><p>로 간단하게 쓸 수 있었던 명령을 </p><pre class="chroma"><span class="n">a</span><span class="p">.</span><span class="n">plus</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">divide</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">)</span><span class="p">.</span><span class="n">plus</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="p">;</span>
-</pre><p>와 같이 복잡한 함수식을 이용해서 표현해야만 합니다. 이는, 가독성이 떨어질 뿐더러 위 식을 딱 보고 도대체 무슨 작업을 하려고 하는지도 쉽게 알 수 없습니다. 하지만 연산자 오버로딩을 이용해서 plus 를 operator+ 로, divide 를 operator/ 로, 등등 바꿔준다면 단순히 프로그래머가 a + b/c + d; 게 쓴다고 해도, 컴파일러가 a.operator+(b.operator/(c)).operator+(d); 로 알아서 변환시켜서 처리하기 때문에 속도나 다른 면의 어떠한 차이 없이 뛰어난 가독성과 편리함을 얻을 수 있게 됩니다. 이를 바탕으로 간단히 Complex 클래스를 만들어본다면 </p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;using namespace std;</span><span class="cp">
-</span><span class="cp"></span><span class="k">class</span><span class="err"> </span><span class="nc">Complex</span> <span class="p">{</span>
+</pre><p>이렇게 된다면 만일 int 형 변수였다면</p><pre class="chroma">
+<span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">/</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="p">;</span>
+</pre><p>로 간단하게 쓸 수 있었던 명령을 </p><pre class="chroma">
+<span class="n">a</span><span class="p">.</span><span class="n">plus</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">divide</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">)</span><span class="p">.</span><span class="n">plus</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="p">;</span>
+</pre><p>와 같이 복잡한 함수식을 이용해서 표현해야만 합니다. 이는, 가독성이 떨어질 뿐더러 위 식을 딱 보고 도대체 무슨 작업을 하려고 하는지도 쉽게 알 수 없습니다. 하지만 연산자 오버로딩을 이용해서 plus 를 operator+ 로, divide 를 operator/ 로, 등등 바꿔준다면 단순히 프로그래머가 a + b/c + d; 게 쓴다고 해도, 컴파일러가 a.operator+(b.operator/(c)).operator+(d); 로 알아서 변환시켜서 처리하기 때문에 속도나 다른 면의 어떠한 차이 없이 뛰어난 가독성과 편리함을 얻을 수 있게 됩니다. </p><p>이를 바탕으로 간단히 Complex 클래스를 만들어본다면 </p><pre class="chroma">
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">Complex</span> <span class="p">{</span>
  <span class="k">private</span><span class="o">:</span>
   <span class="kt">double</span> <span class="n">real</span><span class="p">,</span> <span class="n">img</span><span class="p">;</span>
 
  <span class="k">public</span><span class="o">:</span>
   <span class="n">Complex</span><span class="p">(</span><span class="kt">double</span> <span class="n">real</span><span class="p">,</span> <span class="kt">double</span> <span class="n">img</span><span class="p">)</span> <span class="o">:</span> <span class="n">real</span><span class="p">(</span><span class="n">real</span><span class="p">)</span><span class="p">,</span> <span class="n">img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
   <span class="n">Complex</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span> <span class="n">real</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">img</span><span class="p">;</span> <span class="p">}</span>
+
   <span class="n">Complex</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
+
   <span class="kt">void</span> <span class="nf">println</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">( </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">real</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> , </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">img</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s"> ) </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span><span class="p">;</span>
+
 <span class="n">Complex</span> <span class="n">Complex</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">Complex</span> <span class="n">temp</span><span class="p">(</span><span class="n">real</span> <span class="o">+</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">,</span> <span class="n">img</span> <span class="o">+</span> <span class="n">c</span><span class="p">.</span><span class="n">img</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
@@ -338,27 +350,32 @@ bool operator==(MyString&amp; str);
       <span class="p">(</span><span class="n">img</span> <span class="o">*</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span> <span class="o">-</span> <span class="n">real</span> <span class="o">*</span> <span class="n">c</span><span class="p">.</span><span class="n">img</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">real</span> <span class="o">*</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span> <span class="o">+</span> <span class="n">c</span><span class="p">.</span><span class="n">img</span> <span class="o">*</span> <span class="n">c</span><span class="p">.</span><span class="n">img</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
 <span class="p">}</span>
+
 <span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">Complex</span> <span class="n">a</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="nf">b</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="p">)</span><span class="p">;</span>
+
   <span class="n">Complex</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+
   <span class="n">c</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2160643D520CFD6F1D18E1' alt=''><p>와 같이 잘 나옴을 알 수 있습니다. 여기서 가장 중요하게 봐야 할 부분은 바로, 사칙연산 연산자 함수들의 리턴 타입 입니다. </p><pre class="chroma"><span class="n">Complex</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2160643D520CFD6F1D18E1' alt=''><p>와 같이 잘 나옴을 알 수 있습니다. 여기서 가장 중요하게 봐야 할 부분은 바로, 사칙연산 연산자 함수들의 리턴 타입 입니다. </p><pre class="chroma">
+<span class="n">Complex</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
 <span class="n">Complex</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
 <span class="n">Complex</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
 <span class="n">Complex</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
-</pre><p>위 4 개의 연산자 함수 모두 Complex& 가 아닌 Complex 를 리턴하고 있습니다. 간혹가다, </p><pre class="chroma"><span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>위 4 개의 연산자 함수 모두 Complex& 가 아닌 Complex 를 리턴하고 있습니다. 간혹가다, </p><pre class="chroma">
+<span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">real</span> <span class="o">+</span><span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">;</span>
   <span class="n">img</span> <span class="o">+</span><span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">img</span><span class="p">;</span>
   <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>로 잘못 생각하는 경우도 있습니다. 물론 이렇게 설계하였을 경우, Complex 를 리턴하는 연산자 함수는 값의 복사가 일어나기 때문에 속도  저하가 발생하지만 위 처럼 레퍼런스를 리턴하게 되면 값의 복사 대신 레퍼런스만 복사하는 것이므로 큰 속도의 저하는 나타나지 않습니다. 하지만, 위와 같이 operator+ 를 정의할 경우 다음과 같은 문장이 어떻게 처리되는지 생각해봅시다.</p><pre class="chroma">
 <span class="n">Complex</span> <span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-</pre><p>아마도 위 문장을 쓴 사람 입장에서는 결과적으로 a = 2 <span class='font-italic'> b + c; 를 의도하였을 것입니다. 하지만, 실제로 처리되는 것을 보자면, (b.plus(c)).plus(b) 가 되는데, b.plus(c) 를 하면서 b 에는 (b + c) 가 들어가고, 거기에 다시 plus(b) 를 하게 된다면 값 자체만 보자면 (b + c) + (b + c) 가 되서 (왜냐하면 현재 b 에는 b + c 가 들어가 있으니까) a = 2 </span> b + 2 <span class='font-italic'> c 가 되기 때문입니다. 이러한 문제를 막기 위해서는 반드시 사칙 연산의 경우 반드시 값을 리턴해야 만 합니다.</p><p>또한 함수 내부에서 '읽기' 만 수행되고 값이 바뀌지 않는 인자들에 대해서는 const 키워드를 붙여주는 것이 바람직합니다. operator+ 의 경우, c 의 값을 읽기만 하지 c 의 값에 어떠한 변화도 주지 않으므로 const Complex& 타입으로 인자를 받았습니다. </p><pre class="chroma">
+</pre><p>아마도 위 문장을 쓴 사람 입장에서는 결과적으로 a = 2 <span class='font-italic'> b + c; 를 의도하였을 것입니다. 하지만, 실제로 처리되는 것을 보자면, (b.plus(c)).plus(b) 가 되는데, b.plus(c) 를 하면서 b 에는 (b + c) 가 들어가고, 거기에 다시 plus(b) 를 하게 된다면 값 자체만 보자면 (b + c) + (b + c) 가 되서 (왜냐하면 현재 b 에는 b + c 가 들어가 있으니까) a = 2 </span> b + 2 <span class='font-italic'> c 가 되기 때문입니다. 이러한 문제를 막기 위해서는 반드시 사칙 연산의 경우 반드시 값을 리턴해야 만 합니다.</p><p>또한 함수 내부에서 '읽기' 만 수행되고 값이 바뀌지 않는 인자들에 대해서는 const 키워드를 붙여주는 것이 바람직합니다. operator+ 의 경우, c 의 값을 읽기만 하지 c 의 값에 어떠한 변화도 주지 않으므로 const Complex& 타입으로 인자를 받았습니다. </p><pre class='warning'>
 인자의 값이 함수 내부에서 바뀌지 않는 다고 확신할 때에는 반드시 const 키워드를
     붙여주시기 바랍니다.
-</pre><p> 대입 연산자 함수</p><p>아마 Complex 클래스를 구현하면서 한 가지 빠뜨렸다고 생각하고 있는 것이 있을 것입니다. 바로, 대입 연산자  (=) 이지요. 아마도, 대입 연산자야 말로 가장 먼저 구현했어야 할 연산자 함수가 아니였을까 합니다. </p><pre class="chroma">
+</pre><h3><p>  대입 연산자 함수</p></h3><p>아마 Complex 클래스를 구현하면서 한 가지 빠뜨렸다고 생각하고 있는 것이 있을 것입니다. 바로, 대입 연산자  (=) 이지요. 아마도, 대입 연산자야 말로 가장 먼저 구현했어야 할 연산자 함수가 아니였을까 합니다. </p><pre class="chroma">
 <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
 </pre><p>기본적으로 대입 연산자 함수는, 기존의 사칙연산 연산자 함수와는 다르게, Complex& 타입을 리턴합니다. 사실 대입 연산자 자체의 의미를 생각해 볼 때 리턴값을 void 로 해도 무방하지만, 프로그래머들은 종종 if((i = x) < y) 와 같은 문장을 사용하기 때문에 리턴값을 주는 것이 인터페이스 차원에서 더 낫다고 생각합니다. </p><p>이 때 Complex 타입을 리턴하지 않고 굳이 Complex& 타입을 리턴하냐면, 대입 연산 이후에 이 값을 가지고 다른 연산을 수행하지는 않기 때문입니다. 예를 들어서 (i = 3) + 4 와 같은 명령을 내리지는 않기 때문이지요. 그렇기에 값에 의한 복사가 발생하는 것 보다는 레퍼런스를 리턴하는 것이 더 올바른 판단이라고 봅니다. </p><p>이와 같은 사실을 바탕으로 operator= 함수를 완성시켜 보면 아래와 같습니다.</p><pre class="chroma">
 <span class="n">Complex</span><span class="o">&amp;</span> <span class="n">Complex</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span>
@@ -464,6 +481,7 @@ bool operator==(MyString&amp; str);
   <span class="n">Complex</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="n">constComplex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
+
   <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="n">Complex</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Complex</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
@@ -513,9 +531,9 @@ bool operator==(MyString&amp; str);
   <span class="n">a</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="n">b</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F26065741520D14F3047A36' alt=''><p>와 같이 잘 출력됨을 알 수 있습니다. a 의 값만 바뀐 채 b 에는 아무런 영향이 없지요. </p><p>참고로, 연산자 오버로딩을 사용하게 된다면 a+= b 와 a = a + b; 가 같다고 보장되지 않는다는 점을 명심해야 합니다. 컴파일러는 operator+ 와 operator= 를 정의해놓았다고 해서 a+=b 를 자동으로 a = a + b; 로 바꾸어 주지 않습니다. 반드시 operator+= 를 따로 만들어야지 += 를 사용할 수 있게 됩니다. 이와 같은 사실은 ++ 을 += 1 로 바꾸어 주지 않는다던지, -- 를 -= 1 로 바꾸어 주지 않는 다는 사실과 일맥상통합니다. 즉, 연산자 오버로딩을 하게 된다면 여러분이 생각하는 모든 연산자들에 대해 개별적인 정의가 필요합니다.</p><p> 문자열로 Complex 수와 덧셈하기### </p><p>이번에는 operator+ 를 개량해서, 꼭 Complex 수를 더하는 것이 아니라, 문자열로도 덧셈을 할 수 있도록 operator+ 함수를 만드려 보려고 합니다. 다시 말해서, </p><pre class="chroma">
+</pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F26065741520D14F3047A36' alt=''><p>와 같이 잘 출력됨을 알 수 있습니다. a 의 값만 바뀐 채 b 에는 아무런 영향이 없지요. </p><p>참고로, 연산자 오버로딩을 사용하게 된다면 a+= b 와 a = a + b; 가 같다고 보장되지 않는다는 점을 명심해야 합니다. 컴파일러는 operator+ 와 operator= 를 정의해놓았다고 해서 a+=b 를 자동으로 a = a + b; 로 바꾸어 주지 않습니다. 반드시 operator+= 를 따로 만들어야지 += 를 사용할 수 있게 됩니다. 이와 같은 사실은 ++ 을 += 1 로 바꾸어 주지 않는다던지, -- 를 -= 1 로 바꾸어 주지 않는 다는 사실과 일맥상통합니다. 즉, 연산자 오버로딩을 하게 된다면 여러분이 생각하는 모든 연산자들에 대해 개별적인 정의가 필요합니다.</p><h3><p>  문자열로 Complex 수와 덧셈하기</p></h3><p>이번에는 operator+ 를 개량해서, 꼭 Complex 수를 더하는 것이 아니라, 문자열로도 덧셈을 할 수 있도록 operator+ 함수를 만드려 보려고 합니다. 다시 말해서, </p><pre class="chroma">
 <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">+</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">3+i2</span><span class="s">&#34;</span><span class="p">;</span>
-</pre><p>이런 문장을 사용하였을 경우 성공적으로 처리할 수 있게 된다는 의미이지요. 참고로, 문자열로 복소수를 어떻게 표현해야 할 지에 대해서는 모종의 약속이 필요한데, 우리 Complex 클래스의 경우 다음과 같은 꼴로 표현하도록 정합시다.</p><pre class="chroma">
+</pre><p>이런 문장을 사용하였을 경우 성공적으로 처리할 수 있게 된다는 의미이지요. 참고로, 문자열로 복소수를 어떻게 표현해야 할 지에 대해서는 모종의 약속이 필요한데, 우리 Complex 클래스의 경우 다음과 같은 꼴로 표현하도록 정합시다.</p><pre class='info'>
 (부호)(실수부)(부호)i(허수부)
 </pre><p>예를 들어서 "2+i3" 은 Complex 수 (2 , 3) 을 나타낸 것이라 생각합니다. 또한, "2-i3" 은 (2, -3 ) 을 나타낸 것이 되겠지요. 만일 실수부나 허수부의 값이 0 이라면 굳이 안써주어도 되는데, 예를 들어서 그냥 "3" 은 (3 , 0) 을 나타내며, "-5i" 는 (0, -5) 를 나타내게 됩니다. 참고로 우리의 실수부와 허수부는 double 변수 이기 때문에 문자열로 입력 받을 때 단순히 정수 부분만 받는 것이 아니라 소수점 아래 부분도 처리해 주어야만 할 것입니다. 이를 바탕으로 operator+ 함수를 만들어 보도록 합시다. </p><pre class="chroma">
 <span class="n">Complex</span> <span class="n">Complex</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
@@ -573,14 +591,19 @@ bool operator==(MyString&amp; str);
 <span class="c1">// 만일 &#39;i&#39; 가 있다면, 실수부와 허수부를 나누어서 처리하면 된다.
 </span><span class="c1"></span><span class="n">str_real</span> <span class="o">=</span> <span class="n">get_number</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">pos_i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
 <span class="n">str_img</span> <span class="o">=</span> <span class="n">get_number</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">pos_i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-</pre><p>자 이제, 다시 operator+ 함수를 돌아와서 살펴보자면 만일 i 가 포함되어 있다면 i 를 기준으로 왼쪽의 실수부와 오른쪽의 허수부로 나뉘게 됩니다. 이 때 str<span class='font-italic'>real 은 get</span>number 함수를 이용해서 정확히 실수 값을 얻을 수 있습니다. (왜냐하면 맨 뒤에 숫자 뒤에 딸려오는 문자들은 get<span class='font-italic'>number 에서 알아서 무시된다) 하지만 str</span>img 의 경우 i 앞의 부호 부분이 잘리기 때문에 정확한 실수 값을 얻을 수 없기 때문에 따로</p><pre class="chroma"><span class="k">if</span> <span class="p">(</span><span class="n">pos_i</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">1</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">pos_i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">-</span><span class="sc">&#39;</span><span class="p">)</span> <span class="n">str_img</span> <span class="o">*</span><span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">;</span>
-</pre><p>로 해서 str<span class='font-italic'>img 의 정확한 부호를 처리하도록 하였습니다. </p><pre class="chroma"><span class="kt">double</span> <span class="n">Complex</span><span class="o">:</span><span class="o">:</span><span class="n">get_number</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">from</span><span class="p">,</span> <span class="kt">int</span> <span class="n">to</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>자 이제, 다시 operator+ 함수를 돌아와서 살펴보자면 만일 i 가 포함되어 있다면 i 를 기준으로 왼쪽의 실수부와 오른쪽의 허수부로 나뉘게 됩니다. 이 때 str<span class='font-italic'>real 은 get</span>number 함수를 이용해서 정확히 실수 값을 얻을 수 있습니다. (왜냐하면 맨 뒤에 숫자 뒤에 딸려오는 문자들은 get<span class='font-italic'>number 에서 알아서 무시된다) 하지만 str</span>img 의 경우 i 앞의 부호 부분이 잘리기 때문에 정확한 실수 값을 얻을 수 없기 때문에 따로</p><pre class="chroma">
+<span class="k">if</span> <span class="p">(</span><span class="n">pos_i</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">1</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">pos_i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">-</span><span class="sc">&#39;</span><span class="p">)</span> <span class="n">str_img</span> <span class="o">*</span><span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">;</span>
+</pre><p>로 해서 str<span class='font-italic'>img 의 정확한 부호를 처리하도록 하였습니다. </p><pre class="chroma">
+<span class="kt">double</span> <span class="n">Complex</span><span class="o">:</span><span class="o">:</span><span class="n">get_number</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">from</span><span class="p">,</span> <span class="kt">int</span> <span class="n">to</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">bool</span> <span class="n">minus</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">from</span> <span class="o">&gt;</span> <span class="n">to</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
   <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">-</span><span class="sc">&#39;</span><span class="p">)</span> <span class="n">minus</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">-</span><span class="sc">&#39;</span> <span class="o">|</span><span class="o">|</span> <span class="n">str</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">+</span><span class="sc">&#39;</span><span class="p">)</span> <span class="n">from</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+
   <span class="kt">double</span> <span class="n">num</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
   <span class="kt">double</span> <span class="n">decimal</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+
   <span class="kt">bool</span> <span class="n">integer_part</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">to</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">isdigit</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">integer_part</span><span class="p">)</span> <span class="p">{</span>
@@ -592,12 +615,17 @@ bool operator==(MyString&amp; str);
       <span class="n">decimal</span> <span class="o">/</span><span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
       <span class="n">num</span> <span class="o">+</span><span class="o">=</span> <span class="p">(</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">0</span><span class="sc">&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">decimal</span><span class="p">)</span><span class="p">;</span>
     <span class="p">}</span> <span class="k">else</span>
-      <span class="k">break</span><span class="p">;</span>  <span class="c1">// 그 이외의 이상한 문자들이 올 경우}
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">minus</span><span class="p">)</span> <span class="n">num</span> <span class="o">*</span><span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
-  <span class="p">}</span>
-</pre><p>저의 경우 get<span class='font-italic'>number 함수를 위와 같이 구현하였습니다. 만일 from 이 to 보다 크다면 당연히, 올바르지 않는 입력으로 0 을 반환하도록 하였습니다. (사실 이렇게 모든 예외적인 경우를 세세하게 처리하는 일도 매우 중요합니다) 그리고, 특별히 부호를 처리하기 위해서 minus 라는 bool 변수를 도입해서 마지막에 minus 가 true 일 경우에 부호를 음수로 바꾸도록 하였습니다. </p><pre class="chroma"><span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">-</span><span class="sc">&#39;</span> <span class="o">|</span><span class="o">|</span> <span class="n">str</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">+</span><span class="sc">&#39;</span><span class="p">)</span> <span class="n">from</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
-</pre><p>일단 부호 부분은 위와 같이 처리해서 부호 부분 바로 다음 부터 처리하도록 합니다.</p><pre class="chroma"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">to</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">break</span><span class="p">;</span>  <span class="c1">// 그 이외의 이상한 문자들이 올 경우
+</span><span class="c1"></span>  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">minus</span><span class="p">)</span> <span class="n">num</span> <span class="o">*</span><span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>저의 경우 get<span class='font-italic'>number 함수를 위와 같이 구현하였습니다. 만일 from 이 to 보다 크다면 당연히, 올바르지 않는 입력으로 0 을 반환하도록 하였습니다. (사실 이렇게 모든 예외적인 경우를 세세하게 처리하는 일도 매우 중요합니다) 그리고, 특별히 부호를 처리하기 위해서 minus 라는 bool 변수를 도입해서 마지막에 minus 가 true 일 경우에 부호를 음수로 바꾸도록 하였습니다. </p><pre class="chroma">
+<span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">-</span><span class="sc">&#39;</span> <span class="o">|</span><span class="o">|</span> <span class="n">str</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">+</span><span class="sc">&#39;</span><span class="p">)</span> <span class="n">from</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
+</pre><p>일단 부호 부분은 위와 같이 처리해서 부호 부분 바로 다음 부터 처리하도록 합니다.</p><pre class="chroma">
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">from</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">to</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">isdigit</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">integer_part</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">num</span> <span class="o">*</span><span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
     <span class="n">num</span> <span class="o">+</span><span class="o">=</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">0</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
@@ -607,10 +635,13 @@ bool operator==(MyString&amp; str);
     <span class="n">decimal</span> <span class="o">/</span><span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
     <span class="n">num</span> <span class="o">+</span><span class="o">=</span> <span class="p">(</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">0</span><span class="sc">&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">decimal</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span> <span class="k">else</span>
-    <span class="k">break</span><span class="p">;</span>  <span class="c1">// 그 이외의 이상한 문자들이 올 경우}
-</span><span class="c1"></span></pre><p>double 형 변수로 입력받은 문자열을 처리할 때 유의할 점은, for 문에서 맨 앞자리 수 부터 읽는 다는 점입니다. 예를 들어서 123.456 이라면 1,2,3... 순으로 값을 입력 받게 되는데 이 때문에 소수점 앞 부분과 뒷 부분의 처리를 다르게 해야만 합니다. 소수점 앞 부분을 입력받을 때 (즉, integer<span class='font-italic'>part 변수가 true 일 때) 에는 간단히 </p><pre class="chroma"><span class="n">num</span> <span class="o">*</span><span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
+    <span class="k">break</span><span class="p">;</span>  <span class="c1">// 그 이외의 이상한 문자들이 올 경우
+</span><span class="c1"></span><span class="p">}</span>
+</pre><p>double 형 변수로 입력받은 문자열을 처리할 때 유의할 점은, for 문에서 맨 앞자리 수 부터 읽는 다는 점입니다. 예를 들어서 123.456 이라면 1,2,3... 순으로 값을 입력 받게 되는데 이 때문에 소수점 앞 부분과 뒷 부분의 처리를 다르게 해야만 합니다. 소수점 앞 부분을 입력받을 때 (즉, integer<span class='font-italic'>part 변수가 true 일 때) 에는 간단히 </p><pre class="chroma">
+<span class="n">num</span> <span class="o">*</span><span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
 <span class="n">num</span> <span class="o">+</span><span class="o">=</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">0</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
-</pre><p>를 해서 문자열 부분의 값을 읽어들일 수 있습니다. 즉 1 -> 12 -> 123 이 되겠지요. 참고로 str[i] - '0' 을 하는 기법은 상당히 자주 쓰이는데, ASCII 테이블 상에서 0 부터 9 까지 숫자들이 크기 순으로 연속적으로 배열되어 있기 때문에 단순히 '0' 을 빼버리면 그 숫자에 해당하는 실제 정수 값을 구할 수 있게 됩니다.</p><pre class="chroma"><span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">isdigit</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="o">!</span><span class="n">integer_part</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>를 해서 문자열 부분의 값을 읽어들일 수 있습니다. 즉 1 -> 12 -> 123 이 되겠지요. 참고로 str[i] - '0' 을 하는 기법은 상당히 자주 쓰이는데, ASCII 테이블 상에서 0 부터 9 까지 숫자들이 크기 순으로 연속적으로 배열되어 있기 때문에 단순히 '0' 을 빼버리면 그 숫자에 해당하는 실제 정수 값을 구할 수 있게 됩니다.</p><pre class="chroma">
+<span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">isdigit</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">)</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="o">!</span><span class="n">integer_part</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">decimal</span> <span class="o">/</span><span class="o">=</span> <span class="mf">10.0</span><span class="p">;</span>
   <span class="n">num</span> <span class="o">+</span><span class="o">=</span> <span class="p">(</span><span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">0</span><span class="sc">&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">decimal</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
@@ -1116,87 +1147,12 @@ bool operator==(MyString&amp; str);
 <span class="n">a</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">-1.1 + i3.923</span><span class="s">&#34;</span> <span class="o">+</span> <span class="n">a</span><span class="p">;</span>
 </pre><p>사실 이 문장이나, 원래의 </p><pre class="chroma">
 <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">-1.1 + i3.923</span><span class="s">&#34;</span><span class="p">;</span>
-</pre><p>문장이나 정확히 동일한 식입니다. 왜냐하면 + 연산자는 교환 법칙이 성립해야만 하기 때문이죠. 하지만 여러분도 이미 짐작하셨겠지만 전자의 경우에는 성공적으로 컴파일 되지 않습니다. 왜냐하면 a + "-1.1+i3.923" 의 경우 이 문장이 a.operator+("-1.1+i3.923") 으로 변환되어서 정확히 수행될 수 있지만 "-1.1 + i3.923" + a 의 경우에는 이 같은 변환이 불가능 하기 때문입니다. </p><p>그렇다면 이러한 문제를 어떻게 해결할 수 있을까요?</p><p>이에 대해서는 다음 시간에 다루어 보도록 하겠습니다.</p><p> 생각해보기</p><ol><li><p> 그렇다면 Complex 클래스의 연산자 오버로딩을 수행하면서 쌓은 지식을 바탕으로 MyString 함수를 완전하게 만들어봅시다. 즉, 강좌 서두에서 지적한 사항들을 모두 구현하시면 됩니다. (난이도 : 下)</p></li></ol><pre class="chroma">강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
+</pre><p>문장이나 정확히 동일한 식입니다. 왜냐하면 + 연산자는 교환 법칙이 성립해야만 하기 때문이죠. 하지만 여러분도 이미 짐작하셨겠지만 전자의 경우에는 성공적으로 컴파일 되지 않습니다. 왜냐하면 a + "-1.1+i3.923" 의 경우 이 문장이 a.operator+("-1.1+i3.923") 으로 변환되어서 정확히 수행될 수 있지만 "-1.1 + i3.923" + a 의 경우에는 이 같은 변환이 불가능 하기 때문입니다. </p><p>그렇다면 이러한 문제를 어떻게 해결할 수 있을까요?</p><p>이에 대해서는 다음 시간에 다루어 보도록 하겠습니다.</p><h3><p>  생각해보기</p></h3><ol><li><p> 그렇다면 Complex 클래스의 연산자 오버로딩을 수행하면서 쌓은 지식을 바탕으로 MyString 함수를 완전하게 만들어봅시다. 즉, 강좌 서두에서 지적한 사항들을 모두 구현하시면 됩니다. (난이도 : 下)</p></li></ol><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
             바랍니다
                 .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
-                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-        현재 여러분이 보신 강좌는
-        &lt;&lt; 씹어먹는 C++ - &lt;5 - 1. 내가 만든 연산자 - 연산자 오버로딩&gt;&gt;&gt;
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을
+                        달아주세요.현재 여러분이 보신 강좌는
+        << 씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>>>
     입니다.이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어
-        보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-            다음 강좌 보러가기
-</pre><p>공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>(24)2013.09.04씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>(5)2013.08.29씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>(7)2013.08.25씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>(29)2013.08.15씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)2013.05.26씹어먹는 C++ 토막글 ② - 람다(lambda) 함수(12)2013.01.08</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+        보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기
+</pre><p>공감sns신고저작자표시</p><p>'C++' 카테고리의 다른 글씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>(24)2013.09.04씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>(5)2013.08.29씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>(7)2013.08.25씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>(29)2013.08.15씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)2013.05.26씹어먹는 C++ 토막글 ② - 람다(lambda) 함수(12)2013.01.08</p>

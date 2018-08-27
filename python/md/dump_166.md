@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios::bad 함수
+--------------
+
 
 
 ```warning
@@ -12,6 +16,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 ios::bad
 
+
+
+
 ```info
 bool bad ( ) const;
 ```
@@ -22,26 +29,67 @@ badbit 가 설정되어 있는지 확인한다.
 
   한 가지 조심할 점은 이 함수는 good 함수의 정 반대가 아니라는 점이다. good 함수는 3 개의 오류 상태 플래그(eofbit, failbit, badbit) 모두가 설정되지 않았을 때 true 를 리턴한다. 
 
- 인자
+
+
+###  인자
+
+
+
 
 없다
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
   badbit 이 설정되어 있을 때 true 를 리턴하고 아니면 false
 
- 템플릿 멤버 선언
+
+
+###  템플릿 멤버 선언
+
+
 
 ```cpp
-( basic_ios<charT,traits> )  
-bool bad () const;
-
+( basic_ios<charT,traits> )  bool bad () const;
 ```
 
- 연관된 함수
 
-* ios::fail  :  failbit 이나 badbit 이 설정되어 있는지 확인한다. ios::good :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
-ios::eof  :  eofbit 이 설정되어 있는지 확인한다. ios::rdstate  :  오류 상태 플래그를 얻는다. ios::clear  :  오류 상태 플래그를 설정한다.공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::operator!(2)
+
+###  연관된 함수
+
+
+
+
+
+* ios::fail
+  :  failbit 이나 badbit 이 설정되어 있는지 확인한다. 
+
+* ios::good
+ :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+
+
+
+
+* ios::eof
+  :  eofbit 이 설정되어 있는지 확인한다. 
+
+* ios::rdstate
+  :  오류 상태 플래그를 얻는다. 
+
+* ios::clear
+  :  오류 상태 플래그를 설정한다.
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::operator!(2)
 2011.10.23C++ 레퍼런스 - ios::eof 함수(0)
 2011.10.23C++ 레퍼런스 - ios::bad 함수(0)
 2011.10.23C++ 레퍼런스 - ios::fail 함수(0)

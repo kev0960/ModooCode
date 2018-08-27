@@ -1,16 +1,20 @@
+----------------
+title : C 언어 레퍼런스 - strtok 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 
 strtok
+
+
+
 ```info
 #include <string.h> // C++ 에서는 <cstring>
-
-
 char * strtok ( char * str, const char * delimiters );
 ```
 
@@ -25,8 +29,13 @@ char * strtok ( char * str, const char * delimiters );
 
 만일 strtok 에서 맨 처음에 str 에 인자로 전달하였던 문자열의 종료 널 문자에 도달하게 된다면 그 후의 str 에 널을 전달하는 모든 호출에서는 널 포인터를 리턴하게 된다. 물론 나중에 str 에 다른 문자열을 전달한다면 그 문자열을 토큰으로 분리하기 시작할 것이다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 str
 
 
@@ -37,128 +46,109 @@ delimiters
 
 구분 문자들을 포함하고 있는 C 형식 문자열이다. 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 
 문자열에서 찾은 마지막 토큰의 주소값을 리턴하며 토큰이 더이상 없다면 널 포인터를 리턴한다. 
 
+
+
 ###  구현 예
-### 
+
+
 ```cpp
-/* 
-
-이 소스는 
-
+/* 이 소스는 
 http://research.microsoft.com/en-us/um/redmond/projects/invisible/src/crt/strtok.c.htm
+에서 가져왔습니다. */
 
-에서 가져왔습니다. 
-
-*/
 char * __cdecl strtok(char *s1, const char *delimit)
-
 {
-
     static char *lastToken = NULL; /* UNSAFE SHARED STATE! */
-
-    char *tmp;
-
-    /* Skip leading delimiters if new string. */
-
+    char *tmp;    /* Skip leading delimiters if new string. */
     if ( s1 == NULL ) {
-
         s1 = lastToken;
-
         if (s1 == NULL)         /* End of story? */
-
             return NULL;
-
     } else {
-
         s1 += strspn(s1, delimit);
-
-    }
-
-    /* Find end of segment */
-
+    }    /* Find end of segment */
     tmp = strpbrk(s1, delimit);
-
     if (tmp) {
-
         /* Found another delimiter, split string and save state. */
-
         *tmp = '\0';
-
         lastToken = tmp + 1;
-
     } else {
-
         /* Last segment, remember that. */
-
         lastToken = NULL;
-
-    }
-
-    return s1;
-
+    }    return s1;
 }
 ```
 
 
-###  실행 예제### 
+
+
+###  실행 예제
+
 
 ```cpp
-/* 
-
-' ', ',', '-', '.' 들을 구분 문자로 이용하여 - This, a sample string. 이라는 문자열을 토큰들로 분리한다.
-
-이 예제는
-http://www.cplusplus.com/reference/clibrary/cstring/strtok/
-에서 가져왔습니다
 
 
+/* ' ', ',', '-', '.' 들을 구분 문자로 이용하여 - This, a sample string. 이라는 문자열을 토큰들로 분리한다.
+이 예제는http://www.cplusplus.com/reference/clibrary/cstring/strtok/에서 가져왔습니다
  */
-
 #include <stdio.h>
-
-#include <string.h>
-
-int main ()
-
+#include <string.h>int main ()
 {
-
     char str[] ="- This, a sample string.";
-
     char * pch;
-
     printf ("Splitting string \"%s\" into tokens:\n",str);
-
     pch = strtok (str," ,.-");
-
     while (pch != NULL)
-
     {
-
         printf ("%s\n",pch);
-
         pch = strtok (NULL, " ,.-");
-
     }
-
     return 0;
-
 }
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F1415910C4CF0E82149948F)
 
 
-###  연관된 함수
-### * strcspn  :  특정한 문자를 찾을 때 까지의 길이를 구한다.strpbrk  :  문자열에서 특정한 문자를 찾는다.  
 
-공감sns신고저작자표시'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strerror 함수(0)
+
+###  연관된 함수
+
+
+* 
+
+strcspn
+  :  특정한 문자를 찾을 때 까지의 길이를 구한다.
+
+
+* 
+strpbrk
+  :  문자열에서 특정한 문자를 찾는다.  
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strerror 함수(0)
 2010.12.12C 언어 레퍼런스 - memset 함수(5)
 2010.11.28C 언어 레퍼런스 - strtok 함수(0)
 2010.11.27C 언어 레퍼런스 - strstr 함수(3)

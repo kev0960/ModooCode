@@ -1,4 +1,4 @@
-<p>이번 강좌에서는<span class='font-italic'> C++ 템플릿 (template) 도입클래스 템플릿과 함수 템플릿템플릿 인스턴스화와 템플릿 특수화함수 객체 (Functor)에 대해서 배웁니다.!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F2143F24558E6C84424FCCA' alt=''><p>안녕하세요 여러분! 지난번 강좌 생각해보기는 잘 해결 하셨나요? 뭐 해결 하지 못하고 넘어왔더라도 괜찮습니다. 이번 강좌에서는 여태까지 배워 왔던 것과 전혀 다른 새로운 세계를 탐험해 볼 것입니다. </p><p>지난번 강좌에서 벡터와 스택 자료형을 만드셨던 것을 기억 하시나요? 벡터(vector) 는 쉽게 생각하면 가변 길이 배열로 사용자가 배열 처럼 사용하는데 크기를 마음대로 줄이고 늘일 수 있는 편리한 자료형입니다. 스택(stack)의 경우 나중에 들어간 것이 먼저 나온다(LIFO - last in first out) 형태의 자료형으로 pop 과 push 를 통해서 여러가지 작업들을 처리할 수 있습니다. </p><p>하지만 한 가지 문제는 우리가 담으려고 하는 데이터 타입이 바뀔 때 마다 다른 벡터를 만들어주어야 한다는 점이 있습니다. 예를 들어서 아래의 Vector 클래스를 살펴봅시다.</p><pre class="chroma">
+<p>이번 강좌에서는<span class='font-italic'> C++ 템플릿 (template) 도입</p><ul><li><p> 클래스 템플릿과 함수 템플릿</p></li><li><p> 템플릿 인스턴스화와 템플릿 특수화</p></li><li><p> 함수 객체 (Functor)</p></li></ul><p>에 대해서 배웁니다.!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F2143F24558E6C84424FCCA' alt=''><p>안녕하세요 여러분! 지난번 강좌 생각해보기는 잘 해결 하셨나요? 뭐 해결 하지 못하고 넘어왔더라도 괜찮습니다. 이번 강좌에서는 여태까지 배워 왔던 것과 전혀 다른 새로운 세계를 탐험해 볼 것입니다. </p><p>지난번 강좌에서 벡터와 스택 자료형을 만드셨던 것을 기억 하시나요? 벡터(vector) 는 쉽게 생각하면 가변 길이 배열로 사용자가 배열 처럼 사용하는데 크기를 마음대로 줄이고 늘일 수 있는 편리한 자료형입니다. 스택(stack)의 경우 나중에 들어간 것이 먼저 나온다(LIFO - last in first out) 형태의 자료형으로 pop 과 push 를 통해서 여러가지 작업들을 처리할 수 있습니다. </p><p>하지만 한 가지 문제는 우리가 담으려고 하는 데이터 타입이 바뀔 때 마다 다른 벡터를 만들어주어야 한다는 점이 있습니다. 예를 들어서 아래의 Vector 클래스를 살펴봅시다.</p><pre class="chroma">
 <span class="k">class</span><span class="err"> </span><span class="nc">Vector</span> <span class="p">{</span>
   <span class="n">string</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>
 
@@ -175,7 +175,7 @@
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span><span class="p">;</span>
-</pre><p>만약에 우리가 int 를 담는 vector 가 필요할 경우 T 를 int 로 바뀌면 되고, string 을 담는 것이 필요하다면 T 가 string 으로 바뀌면 됩니다. 쉽게 말해 컴파일러가 T 부분에 우리가 원하는 타입으로 채워서 코드를 생성해주면 엄청 편할 것입니다. </p><p>마치 어떠한 틀에 타입을 집어넣으면 원하는 코드가 딱딱 튀어 나오는 틀 같이 말이죠. </p><p> C++ 템플릿(template)</p><p>놀랍게도, 우리가 원하는 작업을 C++ 에서는 template 이라는 이름으로 지원하고 있습니다. 영어 단어 template 의 뜻을 찾아보자면, '형판' 이라고 나옵니다. 쉽게 말해 어떠한 물건을 찍어내는 틀 이라고 생각하면 됩니다. </p><p>C++ 에서도 정확히 같은 의미로 사용되고 있습니다. 사용자 (프로그래머)가 원하는 타입을 넣어주면 딱딱 알아서 코드를 찍어내는 틀 이라고 생각하면 됩니다. </p><pre class="chroma">
+</pre><p>만약에 우리가 int 를 담는 vector 가 필요할 경우 T 를 int 로 바뀌면 되고, string 을 담는 것이 필요하다면 T 가 string 으로 바뀌면 됩니다. 쉽게 말해 컴파일러가 T 부분에 우리가 원하는 타입으로 채워서 코드를 생성해주면 엄청 편할 것입니다. </p><p>마치 어떠한 틀에 타입을 집어넣으면 원하는 코드가 딱딱 튀어 나오는 틀 같이 말이죠. </p><h3><p>  C++ 템플릿(template)</p></h3><p>놀랍게도, 우리가 원하는 작업을 C++ 에서는 template 이라는 이름으로 지원하고 있습니다. 영어 단어 template 의 뜻을 찾아보자면, '형판' 이라고 나옵니다. 쉽게 말해 어떠한 물건을 찍어내는 틀 이라고 생각하면 됩니다. C++ 에서도 정확히 같은 의미로 사용되고 있습니다. 사용자 (프로그래머)가 원하는 타입을 넣어주면 딱딱 알아서 코드를 찍어내는 틀 이라고 생각하면 됩니다. </p><pre class="chroma">
 <span class="c1">// 템플릿 첫 활용
 </span><span class="c1"></span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
@@ -283,13 +283,13 @@
   <span class="kt">int</span> <span class="n">capacity</span><span class="p">;</span>
 
 <span class="c1">// ...
-</span><span class="c1"></span></pre><p>맨 위에 </p><pre class="chroma">
-template &lt;typename T&gt;
-</pre><p>는 아래에 정의되는 클래스에 대해 템플릿을 정의하고, 템플릿 인자로 T 를 받게 되며, T 는 반드시 어떠한 타입의 이름임을 명시하고 있습니다. 위 경우 템플릿 문장 아래 오는 것이 class Vector 이므로 이 Vector 클래스에 대한 템플릿을 명시하는데, 만약에 밑에 오는 것이 함수일 경우 함수에 대한 템플릿이 됩니다. (밑에 함수 템플릿에 대해서도 설명하겠습니다). </p><p>참고로, 간혹</p><pre class="chroma">
-template &lt;class T&gt;
-</pre><p>라고 쓰는 경우도 있는데, 이는 정확히 typename T 와 동일한 것 입니다. class T 라고 해서 T 자리에 꼭 클래스가 와야 하는 것이 아닙니다. 똑같이 int, char 등이 올 수 있습니다. 다시말해;</p><pre class="chroma">
-template &lt;typename T&gt;
-와 template &lt;class T&gt;
+</span><span class="c1"></span></pre><p>맨 위에 </p><pre class='info'>
+template <typename T>
+</pre><p>는 아래에 정의되는 클래스에 대해 템플릿을 정의하고, 템플릿 인자로 T 를 받게 되며, T 는 반드시 어떠한 타입의 이름임을 명시하고 있습니다. 위 경우 템플릿 문장 아래 오는 것이 class Vector 이므로 이 Vector 클래스에 대한 템플릿을 명시하는데, 만약에 밑에 오는 것이 함수일 경우 함수에 대한 템플릿이 됩니다. (밑에 함수 템플릿에 대해서도 설명하겠습니다). </p><p>참고로, 간혹</p><pre class='info'>
+template <class T>
+</pre><p>라고 쓰는 경우도 있는데, 이는 정확히 typename T 와 동일한 것 입니다. class T 라고 해서 T 자리에 꼭 클래스가 와야 하는 것이 아닙니다. 똑같이 int, char 등이 올 수 있습니다. 다시말해;</p><pre class='info'>
+template <typename T>
+와 template <class T>
 는 같습니다.
 </pre><p>왜 똑같은 템플릿에 두 개의 키워드를 정의하였냐였는지는 C++ 의 역사와 관련이 있습니다. C++ 을 처음 만들었던 Bjarne Stroustrup 은 처음에 template 의 인자로 class 키워드를 사용하였는데, 굳이 새로운 키워드를 만들고 싶지 않아서 였기 때문입니다. 하지만, 시간이 흘러서 C++ 위원회는 이로 인한 혼동을 막기 위해 (왜냐하면 class T 라 하면 T 자리에 꼭 클래스만 와야 하는 것 처럼 느껴지니까) typename 이라는 이름을 사용하기로 하였습니다. 물론, 이전 코드와의 호환을 위해 class 는 그대로 남겨 놓았지요. (자세한 내막은 http://stackoverflow.com/questions/213121/use-class-or-typename-for-template-parameters 참조)</p><p>이렇게 정의한 템플릿의 인자에 값을 전달하기 위해서는</p><pre class="chroma">
 <span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">int_vec</span><span class="p">;</span>
@@ -364,7 +364,7 @@ template &lt;typename T&gt;
 <span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">int_vec</span><span class="p">;</span>
 </pre><p>따라서 위 코드는 Vector 의 T 가 int 로 치환된 클래스의 객체 int<span class='font-italic'>vec 을 생성하게 되는 것이지요. 위와 같이 클래스 템플릿에 인자를 전달해서 실제 코드를 생성하는 것을 클래스 템플릿 인스턴스화 (class template instantiation) 라고 합니다. </p><p>템플릿이 인스턴스화 되지 않고 덩그러니 있다면 컴파일 시에 아무런 코드로 변환되지 않습니다. 템플릿은 반드시 인스턴스화 되어야지만 비로소 컴파일러가 실제 코드를 생성하게 되지요. 마치 틀 자체로는 아무런 의미가 없지만, 그 틀에 채워넣어 나오는 물건에 관심이 있는 것 처럼 말이지요.</p><p>위와 같이 템플릿에 사용자가 원하는 타입을 템플릿 인자로 전달하면, 컴파일러는 그 인자를 바탕으로 코드를 생성하여 이를 컴파일 하게 됩니다. 하지만, 간혹 일부 타입에 대해서는 다른 방식으로 처리해야 할 경우가 있습니다. </p><p>예를 들어서 bool 데이터를 보관하는 벡터를 생각해봅시다.</p><pre class="chroma">
 <span class="n">Vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">int_vec</span><span class="p">;</span>
-</pre><p>사실 쉽게 생각해보면 그냥 위 처럼 템플릿 인자에 bool 을 전달하여 bool 을 저장하는 벡터로 사용할 수 도 있을 것입니다. 하지만 문제가 하나 있는데, C++ 에서 기본으로 처리하는 단위가 1 byte 라는 점입니다.</p><p>다시 말해 사실 bool 데이터 형은 1개 비트 만으로도 충분히 저장할 수 있지만, 8 비트를 사용해서 1개 bool 값을 저장해야 된다는 뜻이지요. 이는 엄청난 메모리 낭비가 아닐 수 없습니다. 따라서 우리는 Vector<bool> 에 대해서는 특별히 따로 처리해줘야만 합니다. '</p><p> 템플릿 특수화 (template specialization)### </p><p>이와 같이 일부 경우에 대해서 따로 처리하는 것을 템플릿 특수화 라고 합니다. 템플릿 특수화는 다음과 같이 수행할 수 있습니다. 예를 들어서</p><pre class="chroma">
+</pre><p>사실 쉽게 생각해보면 그냥 위 처럼 템플릿 인자에 bool 을 전달하여 bool 을 저장하는 벡터로 사용할 수 도 있을 것입니다. 하지만 문제가 하나 있는데, C++ 에서 기본으로 처리하는 단위가 1 byte 라는 점입니다.</p><p>다시 말해 사실 bool 데이터 형은 1개 비트 만으로도 충분히 저장할 수 있지만, 8 비트를 사용해서 1개 bool 값을 저장해야 된다는 뜻이지요. 이는 엄청난 메모리 낭비가 아닐 수 없습니다. 따라서 우리는 Vector<bool> 에 대해서는 특별히 따로 처리해줘야만 합니다. '</p><h3><p>  템플릿 특수화 (template specialization)</p></h3><p>이와 같이 일부 경우에 대해서 따로 처리하는 것을 템플릿 특수화 라고 합니다. 템플릿 특수화는 다음과 같이 수행할 수 있습니다. 예를 들어서</p><pre class="chroma">
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">A</span><span class="p">,</span> <span class="k">typename</span> <span class="n">B</span><span class="p">,</span> <span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span>
 
 <span class="k">class</span><span class="err"> </span><span class="nc">test</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
@@ -724,7 +724,7 @@ template &lt;typename T&gt;
 <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">all_ones_except_prev</span> <span class="o">=</span> <span class="mh">0xFFFFFFFF</span><span class="p">;</span>
 
 <span class="n">all_ones_except_prev</span> <span class="o">^</span><span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="p">(</span><span class="n">prev</span> <span class="o">%</span> <span class="mi">32</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-</pre><p>all<span class='font-italic'>ones</span>except<span class='font-italic'>prev 는 0 으로 지우려고 하는 위치만 0 이고 나머지 부분은 1 인 값 입니다. 참고로 기억하는지는 모르겠지만, ^ 는 XOR 연산자로, 두 비트가 같으면 0, 다르면 1 이되는 연산 입니다 (덧셈을 생각하시면 됩니다). 따라서 0xFFFFFFFF 는 모든 비트가 1 인 int 인데, XOR 연산을 통해서 해당 비트만 0 으로 바꿔줍니다. </p><p>그 후에 AND 연산을 하게 되면 해당 비트만 0 으로 지워버릴 수 있게 되지요.</p><p>실제로, C++ 표준 라이브러리에서 vector 를 지원을 하는데, 그 구현을 살펴보면 위 처럼 bool 일 때만 따로 특수화 시켜서 처리하고 있습니다. C++ 표준 라이브러리의 vector 는 나중 강좌에서 다루도록 하겠습니다.</p><p>템플릿 특수화를 통해 템플릿 인자의 값이 특정 값일 때 따로 처리하는 방식에 대해 알아보았습니다. </p><p> 함수 템플릿 (Function template)</p><p>이번에는 클래스 템플릿이 아닌 함수 템플릿에 대해 알아보도록 하겠습니다. </p><pre class="chroma">
+</pre><p>all<span class='font-italic'>ones</span>except<span class='font-italic'>prev 는 0 으로 지우려고 하는 위치만 0 이고 나머지 부분은 1 인 값 입니다. 참고로 기억하는지는 모르겠지만, ^ 는 XOR 연산자로, 두 비트가 같으면 0, 다르면 1 이되는 연산 입니다 (덧셈을 생각하시면 됩니다). 따라서 0xFFFFFFFF 는 모든 비트가 1 인 int 인데, XOR 연산을 통해서 해당 비트만 0 으로 바꿔줍니다. </p><p>그 후에 AND 연산을 하게 되면 해당 비트만 0 으로 지워버릴 수 있게 되지요.</p><p>실제로, C++ 표준 라이브러리에서 vector 를 지원을 하는데, 그 구현을 살펴보면 위 처럼 bool 일 때만 따로 특수화 시켜서 처리하고 있습니다. C++ 표준 라이브러리의 vector 는 나중 강좌에서 다루도록 하겠습니다.</p><p>템플릿 특수화를 통해 템플릿 인자의 값이 특정 값일 때 따로 처리하는 방식에 대해 알아보았습니다. </p><h3><p>  함수 템플릿 (Function template)</p></h3><p>이번에는 클래스 템플릿이 아닌 함수 템플릿에 대해 알아보도록 하겠습니다. </p><pre class="chroma">
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
@@ -917,26 +917,26 @@ template &lt;typename T&gt;
 </pre><p>에서나,</p><pre class="chroma">
 <span class="k">if</span> <span class="p">(</span><span class="n">cont</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">cont</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">cont</span><span class="p">.</span><span class="n">swap</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span><span class="p">;</span>
-</pre><p>에서 size(), operator[], swap() 등이 사용되었다는 것입니다. 만약에 Cont 로 전달된 타입에 저러한 것들이 정의가 되어 있지 않다면 어떨까요? 예를 들어서 </p><pre class="chroma">
+</pre><p>에서 size(), operator[], swap() 등이 사용되었다는 것입니다. 만약에 Cont 로 전달된 타입에 저러한 것들이 정의가 되어 있지 않다면 어떨까요? 예를 들어서 </p><pre class='info'>
 struct dummy {};
 
 dummy a;
 bubble_sort(a);
-</pre><p>를 하게 된다면 </p><pre class="chroma">
-error C2039 : &#39;size&#39; : is not a member of &#39;dummy&#39;
+</pre><p>를 하게 된다면 </p><pre class='warning'>
+error C2039 : 'size' : is not a member of 'dummy'
                        // 생략 ...
-</pre><p>컴파일 시에, 위와 같은 저 클래스에서 멤버 함수나 변수들을 찾을 수 없다는 오류들을 뿜어내게 됩니다. 당연한 이야기지만 이와 같이 템플릿으로 발생되는 오류는 프로그램이 실행되었을 때가 아니라 컴파일 할 때 발생한 다는 사실입니다. 왜냐하면 컴파일 시에 모든 템플릿을 실제 코드로 변환하여 실행하기 때문이지요. </p><p>재미있게도, 이와 같이 컴파일 시에 모든 템플릿들이 인스턴스화 되다는 사실을 가지고 또 여러가지 흥미로운 코드를 짤 수 있는데 이러한 방식을 템플릿 메타프로그래밍 (template metaprogramming) 이라고 합니다. 자세한 내용은 나중 강좌들에서 다루도록 하겠습니다.</p><p>그런데 위 bubble<span class='font-italic'>sort 함수에서는 한 가지 부족한 점이 있습니다. 만약에, 정렬 순서를 역순으로 하고 싶다면 어떨까요? 위는 오름 차순으로 정렬하였지만, 간혹 내림 차순으로 정렬을 하고 싶을 수 도 있습니다. 아니면 아예 다른 기준으로 정렬을 할 수 도 있겠지요. 이를 위해서라면 크게 세 가지 방법이 있습니다.</p><ol><li><p> bubble<span class='font-italic'>sort2 를 만들어서 부등호 방향을 반대로 바꿔준다.operator> 를 오버로딩해서 원하는 방식으로 만들어준다.cont[i] 와 cont[j] 의 비교를 > 로 하지 말고 특정 함수에 넣어서 전달한다.</p></li></ol><p>첫번째 방법은 C 를 배우는 단계에서나 적합한 방법입니다. 여러분은 C++ 를 배우고 있으니 더 나은 방법을 생각해야겠지요?두번째 방법은 여러분들이 만든 객체를 사용할 때 적용할 수 있는 방법입니다. 예를 들어서, </p><pre class="chroma">
+</pre><p>컴파일 시에, 위와 같은 저 클래스에서 멤버 함수나 변수들을 찾을 수 없다는 오류들을 뿜어내게 됩니다. 당연한 이야기지만 이와 같이 템플릿으로 발생되는 오류는 프로그램이 실행되었을 때가 아니라 컴파일 할 때 발생한 다는 사실입니다. 왜냐하면 컴파일 시에 모든 템플릿을 실제 코드로 변환하여 실행하기 때문이지요. </p><p>재미있게도, 이와 같이 컴파일 시에 모든 템플릿들이 인스턴스화 되다는 사실을 가지고 또 여러가지 흥미로운 코드를 짤 수 있는데 이러한 방식을 템플릿 메타프로그래밍 (template metaprogramming) 이라고 합니다. 자세한 내용은 나중 강좌들에서 다루도록 하겠습니다.</p><p>그런데 위 bubble<span class='font-italic'>sort 함수에서는 한 가지 부족한 점이 있습니다. 만약에, 정렬 순서를 역순으로 하고 싶다면 어떨까요? 위는 오름 차순으로 정렬하였지만, 간혹 내림 차순으로 정렬을 하고 싶을 수 도 있습니다. 아니면 아예 다른 기준으로 정렬을 할 수 도 있겠지요. 이를 위해서라면 크게 세 가지 방법이 있습니다.</p><ol><li><p> bubble<span class='font-italic'>sort2 를 만들어서 부등호 방향을 반대로 바꿔준다.</p></li><li><p> operator> 를 오버로딩해서 원하는 방식으로 만들어준다.</p></li><li><p> cont[i] 와 cont[j] 의 비교를 > 로 하지 말고 특정 함수에 넣어서 전달한다.</p></li></ol><p>첫번째 방법은 C 를 배우는 단계에서나 적합한 방법입니다. 여러분은 C++ 를 배우고 있으니 더 나은 방법을 생각해야겠지요?두번째 방법은 여러분들이 만든 객체를 사용할 때 적용할 수 있는 방법입니다. 예를 들어서, </p><pre class='info'>
 struct customClass {
   // ..
 
-  bool operator&lt;(const customClass&amp; c) {
+  bool operator<(const customClass& c) {
     // Do something
   }
 };
 
-Vector&lt;customClass&gt; a;
+Vector<customClass> a;
 bubble_sort(a);
-</pre><p>와 같이 여러분이 직접 정의한 클래스에 대해 operator< 를 오버로딩 할 수 있다면 원하는 방식으로 정렬을 수행할 수 있겠지요. 하지만 위 처럼 기본적으로 operator< 를 오버로딩 할 수 없는 상황이라면 어떨까요? 예를 들어서 int 나 string 은 이미 내부적으로 operator< 가 정의되어 있기 때문에 이를 따로 오버로딩을 할 수 없습니다.</p><p>그렇다면 3 번째 방법은 어떨까요? </p><p> 함수 객체(Function Object - Functor) 의 도입### </p><p>그럼 다음과 같은 함수를 생각해봅시다.</p><pre class="chroma">
+</pre><p>와 같이 여러분이 직접 정의한 클래스에 대해 operator< 를 오버로딩 할 수 있다면 원하는 방식으로 정렬을 수행할 수 있겠지요. 하지만 위 처럼 기본적으로 operator< 를 오버로딩 할 수 없는 상황이라면 어떨까요? 예를 들어서 int 나 string 은 이미 내부적으로 operator< 가 정의되어 있기 때문에 이를 따로 오버로딩을 할 수 없습니다.</p><p>그렇다면 3 번째 방법은 어떨까요? </p><h3><p>  함수 객체(Function Object - Functor) 의 도입</p></h3><p>그럼 다음과 같은 함수를 생각해봅시다.</p><pre class="chroma">
 <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Cont</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Comp</span><span class="o">&gt;</span>
 
 <span class="kt">void</span> <span class="n">bubble_sort</span><span class="p">(</span><span class="n">Cont</span><span class="o">&amp;</span> <span class="n">cont</span><span class="p">,</span> <span class="n">Comp</span><span class="o">&amp;</span> <span class="n">comp</span><span class="p">)</span> <span class="p">{</span>
@@ -1093,93 +1093,18 @@ bubble_sort(a);
 <span class="n">bubble_sort</span><span class="p">(</span><span class="n">int_vec</span><span class="p">,</span> <span class="n">comp1</span><span class="p">)</span><span class="p">;</span>
 </pre><p>를 했다면 두 번째 버전으로 템플릿 인스턴스화 되서 함수가 호출되고,</p><pre class="chroma">
 <span class="n">bubble_sort</span><span class="p">(</span><span class="n">int_vec</span><span class="p">)</span><span class="p">;</span>
-</pre><p>그냥 위 처럼 한다면 첫 번째 버전으로 템플릿 인스턴스화 되서 함수가 호출되겠지요.</p><p>실제로, C++ 표준 라이브러리의 sort 함수를 살펴보아도 비교 클래스를 받지 않는</p><pre class="chroma">
-template &lt;class RandomIt&gt;
+</pre><p>그냥 위 처럼 한다면 첫 번째 버전으로 템플릿 인스턴스화 되서 함수가 호출되겠지요.</p><p>실제로, C++ 표준 라이브러리의 sort 함수를 살펴보아도 비교 클래스를 받지 않는</p><pre class='info'>
+template <class RandomIt>
 void sort(RandomIt first, RandomIt last);
-</pre><p>와 </p><pre class="chroma">
-template &lt;class RandomIt, class Compare&gt;
+</pre><p>와 </p><pre class='info'>
+template <class RandomIt, class Compare>
 void sort(RandomIt first, RandomIt last, Compare comp);
-</pre><p>비교 클래스를 받는 위 버전으로 구성되어 있습니다. (저 함수의 인자들에 대해서는 나중 강좌에서 자세히 다룰 테니 지금은 넘어가셔도 됩니다!)</p><p>이와 같이 비교 클래스를 받아서 원하는 비교 작업을 수행할 수 있게 됩니다. 만약에 C 였다면 위 sort 함수를 어떻게 만들었을 지 생각해봅시다. 일단 원하는 클래스를 받는 다는 생각 자체가 불가능하기 때문에 (template 이 없으니까) functor 는 꿈도 못 꾸었겠지요. 대신에, 비교 작업을 수행하는 함수의 포인터를 받아서 이를 처리하였을 것입니다.</p><p>그렇다면 뭐가 더 나은 방법일까요? Functor? 아니면 구닥다리 함수 포인터?</p><p>이미 예상하셨겠지만, Functor 를 사용하는것이 여러 모로 훨씬 편리한 점이 많습니다. 일단, 클래스 자체에 여러가지 내부 state 를 저장해서 비교 자체가 복잡한 경우에도 손쉽게 사용자가 원하는 방식으로 만들어낼 수 있습니다. 뿐만 아니라, 함수포인터로 함수를 받아서 처리한다면 컴파일러가 최적화를 할 수 없지만, Functor 를 넘기게 된다면 컴파일러가 operator() 자체를 인라인화 시켜서 매우 빠르게 작업을 수행할 수 있습니다.</p><p>(실제로 C 의 qsort 와 C++ 의 표준 sort 함수를 비교한다면 C++ 버전이 훨씬 빠르다고 합니다)</p><p>이상으로 C++ 템플릿 첫 번째 강좌를 마치도록 하겠습니다. 다음 강좌에서는 템플릿이 C++ 에게 하사한 새로운 패러다임의 세계로 떠나볼 것입니다.</p><p> 생각 해보기### </p><ol><li><p> template 을 사용해서 이전에 만들어 놓았던 Excel 프로젝트 코드를 깔끔하게 만들어보세요. 아마 10 배는 깔끔해질 것입니다 :) (난이도 : 下)</p></li><li><p> 위 Vector 로 2차원, 3차원 배열 등을 똑같이 만들어낼 수 있을까요? (난이도 : 下)</p></li><li><p> 위에서 컴파일러가 마법 처럼 템플릿 인자에 타입을 정해준다고 하지만 사실은 어떤 타입으로 추측할지 결정하는 일련의 규칙들이 있습니다. 자세한 내용은 여기를 참고해주세요!</p></li></ol><pre class="chroma">강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
+</pre><p>비교 클래스를 받는 위 버전으로 구성되어 있습니다. (저 함수의 인자들에 대해서는 나중 강좌에서 자세히 다룰 테니 지금은 넘어가셔도 됩니다!)</p><p>이와 같이 비교 클래스를 받아서 원하는 비교 작업을 수행할 수 있게 됩니다. 만약에 C 였다면 위 sort 함수를 어떻게 만들었을 지 생각해봅시다. 일단 원하는 클래스를 받는 다는 생각 자체가 불가능하기 때문에 (template 이 없으니까) functor 는 꿈도 못 꾸었겠지요. 대신에, 비교 작업을 수행하는 함수의 포인터를 받아서 이를 처리하였을 것입니다.</p><p>그렇다면 뭐가 더 나은 방법일까요? Functor? 아니면 구닥다리 함수 포인터?</p><p>이미 예상하셨겠지만, Functor 를 사용하는것이 여러 모로 훨씬 편리한 점이 많습니다. 일단, 클래스 자체에 여러가지 내부 state 를 저장해서 비교 자체가 복잡한 경우에도 손쉽게 사용자가 원하는 방식으로 만들어낼 수 있습니다. 뿐만 아니라, 함수포인터로 함수를 받아서 처리한다면 컴파일러가 최적화를 할 수 없지만, Functor 를 넘기게 된다면 컴파일러가 operator() 자체를 인라인화 시켜서 매우 빠르게 작업을 수행할 수 있습니다.</p><p>(실제로 C 의 qsort 와 C++ 의 표준 sort 함수를 비교한다면 C++ 버전이 훨씬 빠르다고 합니다)</p><p>이상으로 C++ 템플릿 첫 번째 강좌를 마치도록 하겠습니다. 다음 강좌에서는 템플릿이 C++ 에게 하사한 새로운 패러다임의 세계로 떠나볼 것입니다.</p><h3><p>  생각 해보기</p></h3><ol><li><p> template 을 사용해서 이전에 만들어 놓았던 Excel 프로젝트 코드를 깔끔하게 만들어보세요. 아마 10 배는 깔끔해질 것입니다 :) (난이도 : 下)</p></li><li><p> 위 Vector 로 2차원, 3차원 배열 등을 똑같이 만들어낼 수 있을까요? (난이도 : 下)</p></li><li><p> 위에서 컴파일러가 마법 처럼 템플릿 인자에 타입을 정해준다고 하지만 사실은 어떤 타입으로 추측할지 결정하는 일련의 규칙들이 있습니다. 자세한 내용은 여기를 참고해주세요!</p></li></ol><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
             바랍니다
                 .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
-                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-        현재 여러분이 보신 강좌는
-        &lt;&lt; 씹어먹는 C++ - &lt;9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)&gt;&gt;&gt;
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을
+                        달아주세요.현재 여러분이 보신 강좌는
+        << 씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>>>
     입니다.이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어
-        보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-            다음 강좌 보러가기
-</pre><p>공감5sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>(8)2017.07.02씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>(2)2017.06.26씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)2017.04.07씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>(6)2016.07.19씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>(0)2016.07.18씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>(13)2016.07.14</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+        보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기
+</pre><p>공감5sns신고저작자표시</p><p>'C++' 카테고리의 다른 글씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>(8)2017.07.02씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>(2)2017.06.26씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)2017.04.07씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>(6)2016.07.19씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>(0)2016.07.18씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>(13)2016.07.14</p>

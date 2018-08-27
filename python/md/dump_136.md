@@ -1,7 +1,16 @@
+----------------
+title : 씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>
+--------------
 
 
 이번 강좌에서는
-* 첫번째 C++ 프로그램 분석이름공간(namespace) 에 대한 이해
+
+* 첫번째 C++ 프로그램 분석
+
+* 이름공간(namespace) 에 대한 이해
+
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F2511664C578CC62C19E8C8)
 
 
@@ -9,14 +18,7 @@
   안녕하세요 여러분~ 씹어먹는 C++ 두번째 강좌 입니다. 지난번에는 아마도 여러분 인생 최초의 C++ 프로그램을 만들어 보았을 텐데요, 이번 강좌에서는 소스 코드를 따라가면서 분석을 하는 시간을 갖도록 하겠습니다. 사실, 지금 제 강좌를 보고 계시는 분들 중에서는 막 C 언어 공부를 끝내고 오신 분들도 많으실 텐데요, 무언가 초심자의 마음으로 돌아간 것 같지 않으세요? C 언어에서 막 어려운 프로그래밍 하다가 C++ 오니 다시 맨 밑바닥 부터 화면에 출력하는 것을 하니 답답한 마음이 들 것도 같네요.. 하지만 이것도 잠시라고 생각하세요. 곧 놀라운 C++ 의 세계가 펼쳐질 것입니다.
 
 ```cpp
-#include <iostream>
-using namespace std;
-
-int main()
-{
-    cout << "Hello, World!!" << endl;
-    return 0;
-}
+#include <iostream>using namespace std;int main(){    cout << "Hello, World!!" << endl;    return 0;}
 ```
 
 
@@ -49,8 +51,7 @@ int main()
 네. main 함수를 정의하는 부분 입니다. 그리고 그 함수의 몸체를 보면 
 
 ```cpp
-    cout << "Hello, World!!" << endl;
-    return 0;
+    cout << "Hello, World!!" << endl;    return 0;
 ```
 
 
@@ -69,33 +70,19 @@ using namespace std;
 위 문장을 직역해보면 'std 라는 이름 공간(namespace) 를 사용하겠다' 라는 의미가 됩니다. 그렇다면 이름 공간이란 것이 정확히 무엇일까요? 이름 공간은 말그대로 특정한 공간에 이름을 붙여준 것입니다. 예를 들어서 
 
 ```cpp
-#include "header1.h"
-#include "header2.h"
-
-int main()
-{
-    function();
-}
+#include "header1.h"#include "header2.h"int main(){    function();}
 ```
 
 
 와 같은 표현을 사용했다고 합시다. 그런데 문제는 header1.h 에도 function 이 정의되어 있고, header2.h 에도 이름만 똑같이 다른 일을 하는 function 이 정의되어 있는 것입니다. 보통 C 언어에서는 이러한 문제를 해결하기 위해 우리에게 주어진 선택권은 오직 하나, 함수의 이름을 바꾸는 것 밖에 없었지만 C++ 에서는 이름 공간을 도입한 덕분에 이 문제를 유연하게 해결할 수 있었습니다. 바로 namespace 를 사용하는 것이지요.
 
 ```cpp
-// header1.h 의 내용
-namespace header1
-{
-    int function();
-}
+// header1.h 의 내용namespace header1{    int function();}
 ```
 
 
 ```cpp
-// header2.h 의 내용
-namespace header2
-{
-    int function();
-}
+// header2.h 의 내용namespace header2{    int function();}
 ```
 
 
@@ -103,68 +90,40 @@ namespace header2
 
 
 ```cpp
-#include "header1.h"
-#include "header2.h"
-
-int main()
-{
-    header1::function(); // header1 이란 이름 공간에 있는 function 을 호출
-}
+#include "header1.h"#include "header2.h"int main(){    header1::function(); // header1 이란 이름 공간에 있는 function 을 호출}
 ```
 
 
 과 같이 사용하게 됩니다. 하지만 만일 위 같은 function 을 여러번 반복적으로 호출하게 되는 경우 어떨까요. 앞에 header1:: 을 붙이기가 상당히 귀찮게 됩니다. 그래서 아래와 같이 '나는 앞으로 header1 이란 이름 공간에 들어있는 것들만 쓸거다!' 라고 선언할 수 있습니다.
 
 ```cpp
-#include "header1.h"
-#include "header2.h"
-using namespace header1;
-int main()
-{
-    function(); // header1 에 있는 함수를 호출
-}
-
+#include "header1.h"#include "header2.h"using namespace header1;int main(){    function(); // header1 에 있는 함수를 호출}
 ```
 
 물론 그렇다고 해서 header2 에 있는 함수를 못 사용하는 것은 아니고 다음과 같이 지정해서 써주면 됩니다.
 
 ```cpp
-#include "header1.h"
-#include "header2.h"
-using namespace header1;
-int main()
-{
-    header2::function(); // header2 에 있는 함수를 호출
-    function(); // header1 에 있는 함수를 호출
-}
+#include "header1.h"#include "header2.h"using namespace header1;int main(){    header2::function(); // header2 에 있는 함수를 호출    function(); // header1 에 있는 함수를 호출}
 ```
 
 
 그렇다면 다시 원래 예제를 살펴보도록 합시다.
 
 ```cpp
-using namespace std;
-
-int main()
-{
-    cout << "Hello, World!!" << endl;
-    return 0;
-}
+using namespace std;int main(){    cout << "Hello, World!!" << endl;    return 0;}
 ```
 
 
 여기서 cout 과 endl 은 모두 iostream 헤더파일의 std 라는 이름 공간에 정의되어 있는 것들입니다. 따라서 만일 using namespace std; 를 붙여주지 않았더라면
 
 ```cpp
-int main()
-{
-    std::cout << "Hello, World!!" << std::endl;
-    return 0;
-}
+int main(){    std::cout << "Hello, World!!" << std::endl;    return 0;}
 ```
 
 
 로 꽤 귀찮게 써주야 했었을 것입니다. 
+
+
 
 그렇다면 cout 은 무엇일까요? 정확히 무엇인지 말하자면 ostream 클래스의 객체로 표준 출력(C 언어에서의 stdout 에 대응됩니다) 을 담당하고 있습니다. 너무나 어렵지요. 이게 정확히 무슨 의미인지는 나중 강좌에서 알아보도록 하겠고, 그냥 다음과 같이 쓴다는 것만 알아두시면 됩니다.
 
@@ -194,19 +153,22 @@ cout << endl;
 cout << "hi" << endl << "my name is " << "Psi" << endl;
 ```
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
 
 
-공감2sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>(41)
+
+
+
+공감2sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>(41)
 2012.01.01씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>(27)
 2012.01.01씹어먹는 C++ - <2 - 1. C++ 은 C 친구 - C 와 공통점>(30)
 2011.05.15씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>(52)

@@ -1,82 +1,12 @@
-<pre class="chroma">이 레퍼런스의 모든 내용은 http
+<pre class='info'>이 레퍼런스의 모든 내용은 http
     :  // www.cplusplus.com/reference/ 의 내용을 기초로 하여, Microsoft 의 MSDN
-       // 과 Bjarne Stroustrup 의 책 &lt;&lt;The C++ Programming Language&gt;&gt; 를 참고로
-       // 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 &#39;저의
-       // 모토인 지식 전파&#39; 를 위해 모든 이들에게 공개하도록 하겠습니다.
-</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
-</pre><p>STL 컨테이너 (STL Container)</p><p>  컨테이너(Container) 은 말 그대로 다른 객체들 (원소) 을 보관하는 하나의 커다란 객체라고 볼 수 있다. 특히, STL 컨테이너는 클래스 템플릿(class template) 의 형태로 구현되어 있기 때문에 다양한 타입의 원소들을 보관할 수 있게 된다. </p><p>  컨테이너는 자신이 보관하는 원소(element) 들의 저장 공간을 관리하며, 각각의 원소에 접근할 수 있도록 멤버 함수를 제공해준다. 컨테이서 상에서 원소에 접근하는 방법으로 크게 두 가지가 있는데, 하나는 직접 함수를 호출해서 접근하는 것이고 , 다른 하나는 반복자(iterator) 을 이용해서 접근하는 것이다. 이에 관해서는 나중에 설명하도록 하겠다. </p><pre class="chroma"><span class="err">시</span><span class="err">퀀</span><span class="err">스</span> <span class="err">컨</span><span class="err">테</span><span class="err">이</span><span class="err">너</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">list</span><span class="p">,</span> <span class="n">deque</span><span class="p">)</span> <span class="err">에</span> <span class="err">대</span><span class="err">한</span> <span class="err">자</span><span class="err">세</span><span class="err">한</span> <span class="err">설</span><span class="err">명</span><span class="err">을</span> <span class="err">보</span><span class="err">려</span><span class="err">면</span> <span class="err">여</span><span class="err">기</span><span class="err">를</span> <span class="err">클</span><span class="err">릭</span> <span class="o">!</span>
-</pre><p>   이처럼 컨테이너가 보관하는 원소의 타입에 크게 관계 없기 때문에 실제 프로그래밍에서 자주 사용되고 있다. 또한 표준 라이브러리에서는, 컨테이너를 여러가지 형태로 구현하여서 프로그래머들에게 각각의 상황에 적합한 컨테이너를 고를 수 있도록 제공하고 있는데, 예컨대 동적 배열(vector), 큐(queue), 스택(stack), 힙(priority<span class='font-italic'>queue), 링크드 리스트 (list), 트리 (set), 연관 컨테이너 (map) 등등이 지원되고 있다. </p><pre class="chroma"><span class="err">연</span><span class="err">관</span> <span class="err">컨</span><span class="err">테</span><span class="err">이</span><span class="err">너</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">map</span><span class="p">,</span> <span class="n">multiset</span><span class="p">,</span> <span class="n">multimap</span><span class="p">,</span> <span class="n">unordered_set</span><span class="p">,</span>
+       // 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로
+       // 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의
+       // 모토인 지식 전파' 를 위해 모든 이들에게 공개하도록 하겠습니다.
+</pre><pre class='info'>아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
+</pre><p>STL 컨테이너 (STL Container)</p><p>  컨테이너(Container) 은 말 그대로 다른 객체들 (원소) 을 보관하는 하나의 커다란 객체라고 볼 수 있다. 특히, STL 컨테이너는 클래스 템플릿(class template) 의 형태로 구현되어 있기 때문에 다양한 타입의 원소들을 보관할 수 있게 된다. </p><p>  컨테이너는 자신이 보관하는 원소(element) 들의 저장 공간을 관리하며, 각각의 원소에 접근할 수 있도록 멤버 함수를 제공해준다. 컨테이서 상에서 원소에 접근하는 방법으로 크게 두 가지가 있는데, 하나는 직접 함수를 호출해서 접근하는 것이고 , 다른 하나는 반복자(iterator) 을 이용해서 접근하는 것이다. 이에 관해서는 나중에 설명하도록 하겠다. </p><pre class="chroma">
+<span class="err">시</span><span class="err">퀀</span><span class="err">스</span> <span class="err">컨</span><span class="err">테</span><span class="err">이</span><span class="err">너</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">list</span><span class="p">,</span> <span class="n">deque</span><span class="p">)</span> <span class="err">에</span> <span class="err">대</span><span class="err">한</span> <span class="err">자</span><span class="err">세</span><span class="err">한</span> <span class="err">설</span><span class="err">명</span><span class="err">을</span> <span class="err">보</span><span class="err">려</span><span class="err">면</span> <span class="err">여</span><span class="err">기</span><span class="err">를</span> <span class="err">클</span><span class="err">릭</span> <span class="o">!</span>
+</pre><p>   이처럼 컨테이너가 보관하는 원소의 타입에 크게 관계 없기 때문에 실제 프로그래밍에서 자주 사용되고 있다. 또한 표준 라이브러리에서는, 컨테이너를 여러가지 형태로 구현하여서 프로그래머들에게 각각의 상황에 적합한 컨테이너를 고를 수 있도록 제공하고 있는데, 예컨대 동적 배열(vector), 큐(queue), 스택(stack), 힙(priority<span class='font-italic'>queue), 링크드 리스트 (list), 트리 (set), 연관 컨테이너 (map) 등등이 지원되고 있다. </p><pre class="chroma">
+<span class="err">연</span><span class="err">관</span> <span class="err">컨</span><span class="err">테</span><span class="err">이</span><span class="err">너</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">map</span><span class="p">,</span> <span class="n">multiset</span><span class="p">,</span> <span class="n">multimap</span><span class="p">,</span> <span class="n">unordered_set</span><span class="p">,</span>
               <span class="n">unordered_map</span><span class="p">)</span> <span class="err">에</span> <span class="err">대</span><span class="err">한</span> <span class="err">자</span><span class="err">세</span><span class="err">한</span> <span class="err">설</span><span class="err">명</span><span class="err">을</span> <span class="err">보</span><span class="err">려</span><span class="err">면</span> <span class="err">여</span><span class="err">기</span><span class="err">를</span> <span class="err">클</span><span class="err">릭</span> <span class="o">!</span>
-</pre><p>  한 가지 유의할 사항은 스택(stack), 큐(queue), 우선순위 큐(priority<span class='font-italic'>queue) 들로 이들은 컨테이너 어댑터(container adaptor) 이다. 이들은 다른 컨테이너 클래스들을 상속 받아서 다른 컨테이터 클래스의 객체에 특정한 인터페이스를 제공해준다. 이를 통해 원래 컨테이너의 기능을 제한하고, 어댑터가 제공하는 인터페이스를 사용할 수 있게 된다. 예컨대 stack 이 deque  에 작용한다면, deque 에 stack 이 제공하는 top, pop, push 등의 인터페이스를 사용할 수 있게 되는 것이다. </p><p>컨테이너 클래스 템플릿</p><p>순차 컨테이너 (Sequence Container)</p><ul><li><p> vector :  벡터 (Vector)deque :  데크 (double ended queue)list : 리스트 (List)컨테이너 어댑터 (Container Adaptor)</p></li><li><p> stack : LIFO (Last in First out) 스택queue : FIFO (First in First out) 큐priority<span class='font-italic'>queue : 우선순위 큐 (Priority queue)</p></li></ul><p>연관 컨테이너</p><ul><li><p> set : Setmultiset : 여러 키를 가지는 set map : Map multimap : 여러 키를 가지는 mapbitset :  Bitset순차 컨테이너 및 연관 컨테이너 멤버 함수 목록 정리</p></li></ul><p>아래는 각각의 컨테이너에 따라 멤버 함수들을 정리해 놓은 표이다.</p><p>순차 컨테이너연관 컨테이너</p><p>헤더 파일<vector><deque><list><set><map><bitset>멤버vectordequelistsetmultisetmapmultimapbitset<span class='font-italic'>생성자생성자생성자생성자생성자생성자생성자생성자O(n)소멸자소멸자소멸자소멸자소멸자소멸자소멸자O(n)operator= operator= operator= operator= operator= operator= operator= operators반복자O(1)beginbeginbeginbeginbeginbeginbeginO(1)endendendendendendendO(1)rbeginrbeginrbeginrbeginrbeginrbeginrbeginO(1)rendrendrendrendrendrendrend크기 관련</span>sizesizesizesizesizesizesizesize<span class='font-italic'>max</span>sizemax<span class='font-italic'>sizemax</span>sizemax<span class='font-italic'>sizemax</span>sizemax<span class='font-italic'>sizemax</span>sizeO(1)emptyemptyemptyemptyemptyemptyemptyO(n)resizeresizeresize</p><p>원소 접근자O(1)frontfrontfront</p><p>O(1)backbackback</p><p><span class='font-italic'>operator[] operator[] </p><p>operator[] operator[] O(1)atat</p><p>수정자(modifier)O(n)assignassignassign</p><p><span class='font-italic'>insertinsertinsertinsertinsertinsertinsert</span>eraseeraseeraseeraseeraseeraseeraseO(1)swapswapswapswapswapswapswapO(n)clearclearclearclearclearclearclearO(1)push<span class='font-italic'>frontpush</span>front</p><p>O(1)pop<span class='font-italic'>frontpop</span>front</p><p>O(1)push<span class='font-italic'>backpush</span>backpush<span class='font-italic'>back</p><p>O(1)pop<span class='font-italic'>backpop</span>backpop<span class='font-italic'>back</p><p>찾기O(1)</p><p>key<span class='font-italic'>compkey</span>compkey<span class='font-italic'>compkey</span>compO(1)</p><p>value<span class='font-italic'>compvalue</span>compvalue<span class='font-italic'>compvalue</span>comp작업들O(log n)</p><p>findfindfindfindO(log n)</p><p>countcountcountcountcountO(log n)</p><p>lower<span class='font-italic'>boundlower</span>boundlower<span class='font-italic'>boundlower</span>boundO(log n)</p><p>upper<span class='font-italic'>boundupper</span>boundupper<span class='font-italic'>boundupper</span>boundO(log n)</p><p>equal<span class='font-italic'>rangeequal</span>rangeequal<span class='font-italic'>rangeequal</span>range특별한 멤버들</p><p>capacityreservespliceremoveremove<span class='font-italic'>ifuniquemergesortreverse</p><p>setresetflipto<span class='font-italic'>ulongto</span>stringtestanynone컨테이너 어댑터 멤버 함수 정리</p><p>컨테이너 어댑터헤더<stack><queue>멤버 함수stackqueuepriority<span class='font-italic'>queue</span>생성자생성자생성자크기O(1)sizesizesizeO(1)emptyemptyempty원소 접근O(1)frontO(1)backO(1)toptop수정자O(1)pushpushpushO(1)poppoppop</DADA"></p><p>공감sns신고저작자표시'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 - vector(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 (STL Container)(2)2012.03.24</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+</pre><p>  한 가지 유의할 사항은 스택(stack), 큐(queue), 우선순위 큐(priority<span class='font-italic'>queue) 들로 이들은 컨테이너 어댑터(container adaptor) 이다. 이들은 다른 컨테이너 클래스들을 상속 받아서 다른 컨테이터 클래스의 객체에 특정한 인터페이스를 제공해준다. 이를 통해 원래 컨테이너의 기능을 제한하고, 어댑터가 제공하는 인터페이스를 사용할 수 있게 된다. 예컨대 stack 이 deque  에 작용한다면, deque 에 stack 이 제공하는 top, pop, push 등의 인터페이스를 사용할 수 있게 되는 것이다. </p><h3><p>  컨테이너 클래스 템플릿</p></h3><p>순차 컨테이너 (Sequence Container)</p><ul><li><p> vector :  벡터 (Vector)</p></li><li><p> deque:  데크 (double ended queue)</p></li><li><p> list : 리스트 (List)</p></li></ul><p>컨테이너 어댑터 (Container Adaptor)</p><ul><li><p> stack : LIFO (Last in First out) 스택</p></li><li><p> queue : FIFO (First in First out) 큐</p></li><li><p> priority<span class='font-italic'>queue : 우선순위 큐 (Priority queue)</p></li></ul><p>연관 컨테이너</p><ul><li><p> set : Set</p></li><li><p> multiset : 여러 키를 가지는 set </p></li><li><p> map : Map </p></li><li><p> multimap : 여러 키를 가지는 map</p></li><li><p> bitset :  Bitset</p></li></ul><h3><p>  순차 컨테이너 및 연관 컨테이너 멤버 함수 목록 정리</p></h3><p>아래는 각각의 컨테이너에 따라 멤버 함수들을 정리해 놓은 표이다.</p><p>순차 컨테이너연관 컨테이너</p><p>헤더 파일<vector><deque><list><set><map><bitset>멤버vectordequelistsetmultisetmapmultimapbitset<span class='font-italic'>생성자생성자생성자생성자생성자생성자생성자생성자O(n)소멸자소멸자소멸자소멸자소멸자소멸자소멸자O(n)operator= operator= operator= operator= operator= operator= operator= operators반복자O(1)beginbeginbeginbeginbeginbeginbeginO(1)endendendendendendendO(1)rbeginrbeginrbeginrbeginrbeginrbeginrbeginO(1)rendrendrendrendrendrendrend크기 관련</span>sizesizesizesizesizesizesizesize<span class='font-italic'>max</span>sizemax<span class='font-italic'>sizemax</span>sizemax<span class='font-italic'>sizemax</span>sizemax<span class='font-italic'>sizemax</span>sizeO(1)emptyemptyemptyemptyemptyemptyemptyO(n)resizeresizeresize</p><p>원소 접근자O(1)frontfrontfront</p><p>O(1)backbackback</p><p><span class='font-italic'>operator[] operator[] </p><p>operator[] operator[] O(1)atat</p><p>수정자(modifier)O(n)assignassignassign</p><p><span class='font-italic'>insertinsertinsertinsertinsertinsertinsert</span>eraseeraseeraseeraseeraseeraseeraseO(1)swapswapswapswapswapswapswapO(n)clearclearclearclearclearclearclearO(1)push<span class='font-italic'>frontpush</span>front</p><p>O(1)pop<span class='font-italic'>frontpop</span>front</p><p>O(1)push<span class='font-italic'>backpush</span>backpush<span class='font-italic'>back</p><p>O(1)pop<span class='font-italic'>backpop</span>backpop<span class='font-italic'>back</p><p>찾기O(1)</p><p>key<span class='font-italic'>compkey</span>compkey<span class='font-italic'>compkey</span>compO(1)</p><p>value<span class='font-italic'>compvalue</span>compvalue<span class='font-italic'>compvalue</span>comp작업들O(log n)</p><p>findfindfindfindO(log n)</p><p>countcountcountcountcountO(log n)</p><p>lower<span class='font-italic'>boundlower</span>boundlower<span class='font-italic'>boundlower</span>boundO(log n)</p><p>upper<span class='font-italic'>boundupper</span>boundupper<span class='font-italic'>boundupper</span>boundO(log n)</p><p>equal<span class='font-italic'>rangeequal</span>rangeequal<span class='font-italic'>rangeequal</span>range특별한 멤버들</p><p>capacityreservespliceremoveremove<span class='font-italic'>ifuniquemergesortreverse</p><p>setresetflipto<span class='font-italic'>ulongto</span>stringtestanynone</p><h3><p> 컨테이너 어댑터 멤버 함수 정리</p></h3><h3><p> </p></h3><p>컨테이너 어댑터헤더<stack><queue>멤버 함수stackqueuepriority<span class='font-italic'>queue</span>생성자생성자생성자크기O(1)sizesizesizeO(1)emptyemptyempty원소 접근O(1)frontO(1)backO(1)toptop수정자O(1)pushpushpushO(1)poppoppop</DADA"></p><p>공감sns신고저작자표시</p><p>'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 - vector(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 (STL Container)(2)2012.03.24</p>

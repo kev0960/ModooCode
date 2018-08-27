@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios::fail 함수
+--------------
+
 
 
 ```warning
@@ -13,6 +17,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 ios::fail
 
 
+
+
+
 ```info
 bool fail ( ) const;
 ```
@@ -25,58 +32,92 @@ failbit 이나 badbit 이 설정되어 있는지 확인한다.
 
 이 함수는 operator! 와 동일하게 작동한다.
 
- 인자
+
+
+###  인자
+
 
 없다
 
- 리턴값### 
+
+
+###  리턴값
+
+
+
 
 badbit 나 failbit 가 설정되어 있다면 true 를 리턴한다. 아니면 false
 
- 템플릿 멤버 선언
+
+
+###  템플릿 멤버 선언
+
+
+
 
 ```cpp
-( basic_ios<charT,traits> )
-bool fail () const;
+( basic_ios<charT,traits> )bool fail () const;
 ```
 
 
- 실행 예제
+
+
+###  실행 예제
+
+
+
 
 ```cpp
-/* 
-
-cin 으로 int 형 변수를 입력 받는데, 그 외의 타입의 값이 오면 failbit 가 설정되어 입력을 중지한다.
-
-*/
-#include <iostream>
-using namespace std;
-
-int main( ) 
-{
-    int i;
-    while(! cin.fail())
-    {
-        cin >> i;
-        cout << "What you typed : " << i << endl;
-    }
-
-    return 0;
-}
+/* cin 으로 int 형 변수를 입력 받는데, 그 외의 타입의 값이 오면 failbit 가 설정되어 입력을 중지한다.*/#include <iostream>using namespace std;int main( ) {    int i;    while(! cin.fail())    {        cin >> i;        cout << "What you typed : " << i << endl;    }    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F203CBC3E4EA35BD02BF7FF)
 
 
- 연관된 함수
 
-* ios_base::iostate  :  스트림 상태 플래그들을 위한 타입ios::bad  :  badbit 이 설정되어 있는지 확인한다.  
-ios::good :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
-ios::eof  :  eofbit 이 설정되어 있는지 확인한다. ios::rdstate  :  오류 상태 플래그를 얻는다. ios::setstate  :  오류 상태 플래그를 설정한다.ios::clear  :  오류 상태 플래그를 설정한다.
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::eof 함수(0)
+
+###  연관된 함수
+
+
+
+
+
+* ios_base::iostate  :  스트림 상태 플래그들을 위한 타입
+
+* ios::bad
+  :  badbit 이 설정되어 있는지 확인한다.  
+
+
+
+* ios::good
+ :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+
+
+
+* ios::eof
+  :  eofbit 이 설정되어 있는지 확인한다. 
+
+* ios::rdstate
+  :  오류 상태 플래그를 얻는다. 
+
+* ios::setstate
+  :  오류 상태 플래그를 설정한다.
+
+* ios::clear
+  :  오류 상태 플래그를 설정한다.
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::eof 함수(0)
 2011.10.23C++ 레퍼런스 - ios::bad 함수(0)
 2011.10.23C++ 레퍼런스 - ios::fail 함수(0)
 2011.10.23C++ 레퍼런스 - ios::good 함수(0)

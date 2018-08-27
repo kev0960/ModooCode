@@ -9,8 +9,11 @@ class BlogDumpHtmlParser(HTMLParser):
         super().__init__()
         self.in_box = False
         self.in_list = False
+        self.list_type = None
         self.in_script = False
         self.in_title = False
+        self.ignore_p = False
+        self.encounter_title = False
         self.filename = filename
         self.div_cnt = 0
         self.current_div_cnt = 0
@@ -49,20 +52,33 @@ class BlogDumpHtmlParser(HTMLParser):
                                                 BlogDumpParser.replace_bracket(check_attr(attrs, 'srcset')))))
         elif tag == 'ul':
             self.in_list = True
-            self.print_line("* ")
+            self.list_type = tag
         elif tag == 'ol':
             self.in_list = True
-            self.print_line("1. ")
-        elif tag == 'br':
+            self.list_type = tag
+        elif tag == 'li':
+            if self.in_list:
+                if self.list_type == 'ul':
+                    self.print_line("* ")
+                else:
+                    self.print_line("1. ")
+        elif tag == 'br' and not self.in_box:
             self.print("")  # New line.
         elif tag == 'script':
             self.in_script = True
-        elif tag == 'p':
+        elif tag == 'p' and (not self.ignore_p or self.in_box):
             self.print("")
-        elif tag == 'span':
+            self.ignore_p = False
+        elif tag == 'span' or tag == 'td':
             text_color = BlogDumpParser.what_color_is_this(check_attr(attrs, 'style'))
             if text_color == 'light-blue':
                 self.in_title = True
+                if not self.encounter_title:
+                    self.print_line("\n### ")
+                    if tag == 'td':
+                        self.ignore_p = True
+                    self.encounter_title = True
+
         elif tag == 'div' and 'txc-textbox' in check_attr(attrs, 'class'):
             box_color = BlogDumpParser.what_color_is_this(check_attr(attrs, 'style'))
             if box_color == 'blue':
@@ -75,6 +91,7 @@ class BlogDumpHtmlParser(HTMLParser):
             self.current_div_cnt = self.div_cnt
         elif tag == 'div':
             self.div_cnt += 1
+            self.print("")
 
     def handle_endtag(self, tag):
         if tag == 'ul' or tag == 'ol':
@@ -90,14 +107,20 @@ class BlogDumpHtmlParser(HTMLParser):
     def handle_data(self, data):
         if self.in_script:
             return
-
-        if self.in_title:
-            self.print_line("### ")
-            self.in_title = False
-
         stripped = BlogDumpParser.remove_whitespace(data)
+        if self.in_title:
+            self.in_title = False
+            self.encounter_title = True
+        elif not BlogDumpParser.is_only_whitespace(stripped):
+            self.encounter_title = False
+
         if not BlogDumpParser.is_only_whitespace(stripped):
             self.print_line(data)
+            if self.encounter_title:
+                self.print("")
+
+        if self.in_list:
+            self.print("")
 
 class BlogDumpParser:
     def __init__(self, filename):
@@ -152,7 +175,7 @@ class BlogDumpParser:
             return 'blue'
         elif 'rgb(243, 197, 52)' in style:
             return 'yellow'
-        elif 'rgb(48, 88, 210)' in style:
+        elif 'rgb(48, 88, 210)' in style or 'rgb(48,88,210)' in style:
             return 'light-blue'
 
     def check_box_ended(self, current):

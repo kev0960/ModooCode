@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios_base::precision 함수
+--------------
+
 
 
 ```warning
@@ -12,9 +16,11 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 ios_base::precision
 
+
+
+
 ```cpp
-streamsize precision ( ) const;
-streamsize precision ( streamsize prec );
+streamsize precision ( ) const;streamsize precision ( streamsize prec );
 ```
 
 
@@ -28,56 +34,69 @@ streamsize precision ( streamsize prec );
 
    정밀도는 인자를 가지는 조작자인 setprecision 을 통해서도 변경할 수 있다.
 
- 인자
+
+
+###  인자
+
+
 
 prec
 
   새로운 부동 소수점 정밀도 값. 이는 streamsize 타입의 정수형이다.
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
 함수 호출 이전의 precision 값이다.
 
- 실행 예제
+
+
+###  실행 예제
+
+
+
 
 ```cpp
-/*
-
-이 예제는
-http://www.cplusplus.com/reference/iostream/ios_base/precision/
-에서 가져왔습니다.
-
-*/
-#include <iostream>
-using namespace std;
-
-int main () 
-{
-    double f = 3.14159;
-    cout.setf(0,ios::floatfield);            // floatfield 설정 안됨
-    cout.precision(5);
-    cout << f << endl;
-    cout.precision(10);
-    cout << f << endl;
-    cout.setf(ios::fixed,ios::floatfield);   // floatfield 를 fixed 로 설정
-    cout << f << endl;
-    return 0;
-}
+/*이 예제는http://www.cplusplus.com/reference/iostream/ios_base/precision/에서 가져왔습니다.*/#include <iostream>using namespace std;int main () {    double f = 3.14159;    cout.setf(0,ios::floatfield);            // floatfield 설정 안됨    cout.precision(5);    cout << f << endl;    cout.precision(10);    cout << f << endl;    cout.setf(ios::fixed,ios::floatfield);   // floatfield 를 fixed 로 설정    cout << f << endl;    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F1318CA544E4E091A309789)
 
 
 
- 연관된 것들
 
-* setprecision  :  정밀도를 설정한다. ios_base::width :  필드 너비(field width) 를 설정한다. 
-ios_base::setf :  특정 서식 플래그를 설정한다. 
 
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::imbue(0)
+###  연관된 것들
+
+
+
+
+* setprecision  :  정밀도를 설정한다. 
+
+* ios_base::width
+ :  필드 너비(field width) 를 설정한다. 
+
+
+* ios_base::setf
+ :  특정 서식 플래그를 설정한다. 
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::imbue(0)
 2011.08.20C++ 레퍼런스 - ios_base::register_callback 함수(0)
 2011.08.20C++ 레퍼런스 - ios_base::precision 함수(0)
 2011.08.19C++ 레퍼런스 - ios_base::usetf 함수(0)

@@ -1,84 +1,63 @@
+----------------
+title : 씹어먹는 C 언어 - <13 - 3. 마술 상자 함수 3 (function)>
+--------------
 
 
 이번 강좌에서는
-* 더블 포인터 인자2 차원 배열 인자
-상수 인자함수 포인터에 대해서 배웁니다. 
+
+* 더블 포인터 인자
+
+* 2 차원 배열 인자
+
+
+
+* 상수 인자
+
+* 함수 포인터
+
+에 대해서 배웁니다. 
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1335B00C4B3086EA02598B)
 
   와.. 드디어, 함수만 세번째 강의입니다. 아마 이전 강좌에서 배운 내용들 중 어려운 것은 없으리라 생각됩니다. 물론, 이번 강좌의 내용도 이전까지의 내용을 잘 숙지 하셨더라면 무난하게 넘어갈 수 있으리라 생각됩니다. 
 
+
+
 ###  지난번 내용을 상기해보며
-### 
+
+
   지난번 내용은 잘 기억하고 있는지요?다시 한 번 요약해 보자면,"어떠한 함수가 특정한 타입의 변수/배열의 값을 바꾸려면 함수의 인자는 반드시 타입을 가리키는 포인터 형을 이용해야 한다!" 였습니다. 사실, 이 문장이 이해가 잘 되지 않았던 분들이 있으리라 생각됩니다. 하지만, 이번 강좌를 보고 난다면 이 문장의 의미를 정확하게 파악할 수 있을 것입니다. 
 
 ```cpp
 /* 눈 돌아가는 예제. 포인터가 가리키는 변수를 서로 바꾼다.  */
-
-#include <stdio.h>
-
-int pswap(int **pa, int **pb);
-
+#include <stdio.h>int pswap(int **pa, int **pb);
 int main()
-
 {
-
     int a,b;
-
-    int *pa, *pb;
-
-    pa = &a;
-
-    pb = &b;
-
-    printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
-
+    int *pa, *pb;    pa = &a;
+    pb = &b;    printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
     printf("pa 의 주소값 : %x \n \n", &pa);
-
     printf("pb 가 가리키는 변수의 주소값 : %x \n", pb);
-
-    printf("pb 의 주소값 : %x \n", &pb);
-
-    printf(" ------------- 호출 -------------- \n");
-
+    printf("pb 의 주소값 : %x \n", &pb);    printf(" ------------- 호출 -------------- \n");
     pswap(&pa, &pb);
-
-    printf(" ------------- 호출끝 -------------- \n");
-
-    printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
-
+    printf(" ------------- 호출끝 -------------- \n");    printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
     printf("pa 의 주소값 : %x \n \n", &pa);
-
     printf("pb 가 가리키는 변수의 주소값 : %x \n", pb);
-
     printf("pb 의 주소값 : %x \n", &pb);
-
-    return 0;
-
-}
-
+    return 0;}
 int pswap(int **ppa, int **ppb)
-
 {
-
-    int *temp = *ppa;
-
-    printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-
-    printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
-
-    *ppa = *ppb;
-
-    *ppb = temp;
-
-    return 0;
-
+    int *temp = *ppa;    printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
+    printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);    *ppa = *ppb;
+    *ppb = temp;    return 0;
 }
 ```
 
   성공적으로 컴파일 하면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F114B5C164B2CAA6E6CA90F)
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F114B5C164B2CAA6E6CA90F)
 여러분의 출력결과는 위 사진과 다를 수 있습니다. 
 
   일단, 붉은색으로 박스 친 부분을 잘 살펴보기 바랍니다. pa 가 가리키는 변수의 주소값은 (즉, pa 의 값이지요) 31FBCC 였습니다. 물론, 여러분이 실행했을 때 에는 결과가 다르게 나올 것입니다. (거의 99% 확률로 다르게 나옵니다) pb 가 가리키는 변수의 주소값은 31FBC0 이였습니다. 그런데 말이죠. pswap 함수를 호출하고 나니, pa 가 가리키는 변수의 주소값은 31FBC0 이 되고, pb 가 가리키는 변수의 주소값은 31FBCC 가 되었습니다. 즉, 두 포인터가 가리키는 변수가 서로 뒤바뀐 것이지요. 
@@ -95,21 +74,10 @@ int pswap(int **ppa, int **ppb)
 
 ```cpp
 int pswap(int **ppa, int **ppb)
-
 {
-
-    int *temp = *ppa;
-
-    printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-
-    printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
-
-    *ppa = *ppb;
-
-    *ppb = temp;
-
-    return 0;
-
+    int *temp = *ppa;    printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
+    printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);    *ppa = *ppb;
+    *ppb = temp;    return 0;
 }
 ```
 
@@ -117,13 +85,13 @@ int pswap(int **ppa, int **ppb)
 
 ```cpp
     printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-
     printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
 ```
 
   그렇다면 우리는 위 두개의 printf 문장에서 어떤 결과가 출력될 지 예측 가능합니다. 위 예제에서 ppa 가 pa 를 가리키고 있으므로 ppa 의 값을 출력하면 pa 의 주소값이 나오고, ppb 도 마찬가지로 나오겠죠. 위 출력결과에서 실제로 같다는 것을 확인할 수 있습니다. 어때요. pswap 함수가 이해가 되나요? 
 
   위 과정을 그림으로 표현하면 아래와 같습니다.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F146B111F4B2CB12B40F6C1)
 
@@ -132,81 +100,41 @@ int pswap(int **ppa, int **ppb)
 
 ```cpp
 /* 2 차원 배열의 각 원소를 1 씩 증가시키는 함수 */
-
 #include <stdio.h>
-
 /* 열의 개수가 2 개인 이차원 배열과, 총 행의 수를 인자로 받는다. */
-
 int add1_element(int (*arr)[2], int row);
-
 int main()
-
 {
-
     int arr[3][2];
-
-    int i,j;
-
-    for(i=0;i<3;i++)
-
+    int i,j;    for(i=0;i<3;i++)
     {
-
         for(j=0;j<2;j++)
-
         {
-
             scanf("%d", &arr[i][j]);
-
         }
-
-    }
-
-    add1_element(arr, 3);
-
-    for(i=0;i<3;i++)
-
+    }    add1_element(arr, 3);    for(i=0;i<3;i++)
     {
-
         for(j=0;j<2;j++)
-
         {
-
             printf("arr[%d][%d] : %d \n", i,j,arr[i][j]);
-
         }
-
     }
-
-    return 0;
-
-}
-
+    return 0;}
 int add1_element(int (*arr)[2], int row)
-
 {
-
     int i,j;
-
     for(i=0;i<row;i++)
-
     {
-
         for(j=0;j<2;j++)
-
         {
-
             arr[i][j]++;
-
         }
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
   성공적으로 컴파일 하였다면 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1739B8224B2CB4F71E3A75)
 
@@ -215,27 +143,15 @@ int add1_element(int (*arr)[2], int row)
 
 ```cpp
 int add1_element(int (*arr)[2], int row)
-
 {
-
     int i,j;
-
     for(i=0;i<row;i++)
-
     {
-
         for(j=0;j<2;j++)
-
         {
-
             arr[i][j]++;
-
         }
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
@@ -243,19 +159,12 @@ int add1_element(int (*arr)[2], int row)
 
 ```cpp
     for(i=0;i<row;i++)
-
     {
-
         for(j=0;j<2;j++)
-
         {
-
             arr[i][j]++;
-
         }
-
     }
-
 ```
 
  우리는 row 를 통해 이 이차원배열의 행의 개수를 알 수 있고, 열의 개수는 이미 알고 있으므로 (배열 포인터에서) 각 원소를 1 씩 증가시키는 작업을 시행할 수 있게됩니다. 위와 같이 말이죠. 우리는 포인터를 잘 배워서 헷깔릴 문제는 없지만 많은 사람들에게 다음과 같이 인자를 받는것이 어렵게 느껴집니다. 
@@ -281,55 +190,35 @@ int add1_element(int arr[][2], int row)
   덧붙여서 응용력을 살짝 이용하면 다차원 배열의 인자도 정의할 수 있습니다. 예를 들어서
 
 ```cpp
-int multi(int (*arr)[3][2][5])
-{
-    arr[1][1][1][1] = 1;
-    return 0;
-}
+int multi(int (*arr)[3][2][5]){    arr[1][1][1][1] = 1;    return 0;}
 ```
 
   혹은
 
 ```cpp
-int multi(int arr[][3][2][5])
-{
-    arr[1][1][1][1] = 1;
-    return 0;
-}
+int multi(int arr[][3][2][5]){    arr[1][1][1][1] = 1;    return 0;}
 ```
 
   로 하면 됩니다. 
 
+
+
 ###  상수인 인자
-### 
+
+
 ```cpp
 /* 상수를 인자로 받아들이기 */
-#include <stdio.h>
 
-int read_val(const int val);
-
+#include <stdio.h>int read_val(const int val);
 int main()
-
 {
-
     int a;
-
-    scanf("%d", &a);
-
-    read_val(a);
-
+    scanf("%d", &a);    read_val(a);
     return 0;
-
 }
-
 int read_val(const int val)
-
 {
-
-    val = 5; // 허용되지 않는다.
-
-    return 0;
-
+    val = 5; // 허용되지 않는다.    return 0;
 }
 ```
 
@@ -343,8 +232,13 @@ int read_val(const int val)
 
   상수로 인자를 받아들이는 경우 대부분은 함수를 호출 해도 그 인자의 값이 바뀌지 않는 경우에 자주 사용합니다만, 자세한 내용은 나중에 좀더 다루도록 하겠습니다. 
 
+
+
 ###  함수 포인터
-### 
+
+
+
+
   아마, '함수 포인터' 라는 말을 들었을 때는 조금 의아하는 감이 있지 않을까 합니다. 함수 포인터라니, 함수를 가리킨다는 것인가? 그럼, 함수가 메모리 상에 있다는 거야? 네. 맞습니다. 사실, 프로그램의 코드 자체가 메모리 상에 존재합니다. 우리는 이전에 컴파일러가 하는 작업이 바로 우리가 '인간에 친숙한 언어' 로 쓰여진 프로그램 코드를 '컴퓨터에 친숙한 언어, 즉 수 데이터들' 로 바꿔주어 실행 파일을 생성한다고 배웠습니다. 이렇게, 바뀐 실행 파일을 실행하게 되면 프로그램의 수 코드가 메모리 상에 올라가게 됩니다. 다시말해, 메모리 상에 함수의 코드가 들어간다는 것입니다. 이 때, 변수를 가리키는 포인터 처럼 함수 포인터는 메모리 상에 올라간 함수의 시작 주소를 가리키는 역할을 하게 됩니다. 
 
 
@@ -352,49 +246,26 @@ int read_val(const int val)
 
 ```cpp
 /* 함수 포인터 */
-
-#include <stdio.h>
-
-int max(int a, int b);
-
+#include <stdio.h>int max(int a, int b);
 int main()
-
 {
-
     int a, b;
-
     int (*pmax)(int, int);
-
-    pmax = max; 
-
-    scanf("%d %d", &a, &b);
-
+    pmax = max;     scanf("%d %d", &a, &b);
     printf("max(a,b) : %d \n", max(a,b));
-
-    printf("pmax(a,b) : %d \n", pmax(a,b));
-
-    return 0;
-
+    printf("pmax(a,b) : %d \n", pmax(a,b));    return 0;
 }
-
 int max(int a, int b)
-
 {
-
     if(a>b)
-
         return a;
-
     else
-
-        return b;
-
-    return 0;
-
+        return b;    return 0;
 }
 ```
 
   성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F177417244B3072794C0316)
 
@@ -409,7 +280,6 @@ int max(int a, int b)
 
 ```info
 (함수의 리턴형) (*포인터 이름)(첫번째 인자 타입, 두번째 인자 타입,....) 
-
 // 만일 인자가 없다면 그냥 괄호 안을 비워두면 된다. 즉, int (*a)() 와 같이 하면 된다
 ```
 
@@ -423,20 +293,14 @@ int max(int a, int b)
 
 ```cpp
     printf("max(a,b) : %d \n", max(a,b));
-
     printf("pmax(a,b) : %d \n", pmax(a,b));
-
 ```
 
   pmax 는 이제 max 함수를 가리키므로 pmax 를 통해 max 함수가 할 수 있었던 모든 작업들을 할 수 있게 됩니다. 이때도 역시 그냥 pmax 를 max 처럼 이용하면 됩니다. 이는 배열에서 
 
 ```cpp
     int arr[3];
-
-    int *p = arr;
-
-    arr[2]; // p[2] 와 정확히 일치
-
+    int *p = arr;    arr[2]; // p[2] 와 정확히 일치
     p[2]; 
 ```
 
@@ -444,65 +308,33 @@ int max(int a, int b)
 
 ```cpp
 /* 함수 포인터 */
-
-#include <stdio.h>
-
-int max(int a, int b);
-
+#include <stdio.h>int max(int a, int b);
 int donothing(int c, int k);
-
 int main()
-
 {
-
     int a, b;
-
     int (*pfunc)(int, int);
-
-    pfunc = max; 
-
-    scanf("%d %d", &a, &b);
-
+    pfunc = max;     scanf("%d %d", &a, &b);
     printf("max(a,b) : %d \n", max(a,b));
-
-    printf("pfunc(a,b) : %d \n", pfunc(a,b));
-
-    pfunc = donothing;
-
-    printf("donothing(1,1) : %d \n", donothing(1,1));
-
+    printf("pfunc(a,b) : %d \n", pfunc(a,b));    pfunc = donothing;    printf("donothing(1,1) : %d \n", donothing(1,1));
     printf("pfunc(1,1) : %d \n", pfunc(1,1));
-
     return 0;
-
 }
-
 int max(int a, int b)
-
 {
-
     if(a>b)
-
         return a;
-
     else
-
-        return b;
-
-    return 0;
-
+        return b;    return 0;
 }
-
 int donothing(int c, int k)
-
 {
-
     return 1;
-
 }
 ```
 
   성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1427D7224B3075AA319947)
 
@@ -517,18 +349,9 @@ int donothing(int c, int k)
   이는 '리턴형이 int 이고 두 개의 인자 각각의 포인터 형이 int 인 함수를 가리킵니다. 그런데, donothing 함수와 max 함수 모두 이 조건을 만족하고 있습니다. 즉, 이들은 인자의 변수들도 다루고 하는 일도 다르지만 리턴값이 int 로 같고 두 개의 인자 모두 int 이므로 pfunc 이 이 두개의 함수를 가리킬 수 있는 것입니다.  
 
 ```cpp
-    pfunc = max; 
-
-    scanf("%d %d", &a, &b);
-
+    pfunc = max;     scanf("%d %d", &a, &b);
     printf("max(a,b) : %d \n", max(a,b));
-
-    printf("pfunc(a,b) : %d \n", pfunc(a,b));
-
-    pfunc = donothing;
-
-    printf("donothing(1,1) : %d \n", donothing(1,1));
-
+    printf("pfunc(a,b) : %d \n", pfunc(a,b));    pfunc = donothing;    printf("donothing(1,1) : %d \n", donothing(1,1));
     printf("pfunc(1,1) : %d \n", pfunc(1,1));
 ```
 
@@ -569,14 +392,16 @@ int increase(int (*arr)[3], int row)
 7. 1000 자리의 수들의 덧셈, 뺄셈, 곱셈, 나눗셈을 수행하는 프로그램을 만들어보세요. 나눗셈의 경우 소수 부분을 잘라버리세요. 물론, 소수 부도 1000 자리로 구현해도 됩니다. 1000 자리 수들의 연산 수행 시간은 1 초 미만이여야 합니다. (난이도 : 上)  
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <13 - 3. 마술 상자 함수 3 (function)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <13 - 3. 마술 상자 함수 3 (function)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
-공감2sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>(32)
+
+
+
+공감2sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>(32)
 2009.12.29씹어먹는 C 언어 - <13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)>(33)
 2009.12.27씹어먹는 C 언어 - <13 - 3. 마술 상자 함수 3 (function)>(114)
 2009.12.22씹어먹는 C 언어 - <13 - 2. 마술 상자 함수 2 (function)>(79)

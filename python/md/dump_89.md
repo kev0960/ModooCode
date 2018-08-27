@@ -1,7 +1,20 @@
+----------------
+title : 씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>
+--------------
 
 
 이번 강좌에서는
-* void 형의 함수, void 형의 포인터에 대한 이해main 함수의 인자에 대한 이해 (argc, argv)포인터 배열
+
+* void 형의 함수, void 형의 포인터에 대한 이해
+
+* main 함수의 인자에 대한 이해 (argc, argv)
+
+* 포인터 배열
+
+
+
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F187F92344C5671235D324D)
 
 
@@ -10,17 +23,12 @@
 만일 여러분이 다른 곳에서 C 를 배웠더라면 다음과 같은 것을 보셨을 수 도 있습니다. 
 
 ```cpp
-/* 특별한 hello world */
-#include <stdio.h>
-
-void main()
-{
-    printf("Hello, World! \n");
-}
+/* 특별한 hello world */#include <stdio.h>void main(){    printf("Hello, World! \n");}
 ```
 
 
 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F1747A5304C4FE429165D46)
 
@@ -38,18 +46,7 @@ void main()
 이렇게 void 형 함수는 아무것도 리턴하지 않으므로 다음과 같은 문장은 모두 틀린 셈입니다.
 
 ```cpp
-void a();
-int main()
-{
-    int i;
-    i=a();
-
-    return 0;
-}
-
-void a()
-{
-}
+void a();int main(){    int i;    i=a();    return 0;}void a(){}
 ```
 
 
@@ -58,49 +55,28 @@ void a()
 void 형 변수는 많은 곳에서 사용 됩니다. 주로, '리턴을 할 필요가 없는 함수' 들의 경우가 대부분이죠. 예를 들어서 두 변수의 값을 교환하는 함수를 생각해봅시다. 아마 여러분은 여태까지 다음과 같이 함수를 만들었을 것입니다.
 
 ```cpp
-int swap(int *a, int *b)
-{
-    int temp;
-
-    temp = *a;
-    *a = *b;
-    *b = temp;
-
-    return 0;
-}
-
+int swap(int *a, int *b){    int temp;    temp = *a;    *a = *b;    *b = temp;    return 0;}
 ```
 
 하지만 swap 함수는 리턴할 필요가 전혀 없죠. 단순히 두 수의 값만 바꾸면 끝인데 뭐하러 귀찮게 리턴을 하냐 말이죠. 오히려 불필요한 return 0; 를 수행할 시간 동안 다른 작업을 하는 것이 훨씬 효율적이라 생각됩니다. 이렇게 return 문이 불필요한 경우 void 함수를 사용하면
 
 ```cpp
-void swap(int *a, int *b)
-{
-    int temp;
-
-    temp = *a;
-    *a = *b;
-    *b = temp;
-}
+void swap(int *a, int *b){    int temp;    temp = *a;    *a = *b;    *b = temp;}
 ```
 
 
 로 깔끔하게 만들 수 있습니다. 
 이렇게 굳이 리턴을 할 필요가 없는 곳에서 void 함수를 이용하는 것이 효율적이라 볼 수 있습니다. 
 
+
+
 ###  void 형 변수
-### 
+
+
+
+
 ```cpp
-/* void 형 변수?? */
-#include <stdio.h>
-int main()
-{
-    void a;
-
-    a = 3;
-
-    return 0;
-}
+/* void 형 변수?? */#include <stdio.h>int main(){    void a;    a = 3;    return 0;}
 ```
 
 
@@ -130,14 +106,7 @@ error C2182: 'a' : 'void' 형식을 잘못 사용했습니다.
 그렇다면 이것은 가능할까요?
 
 ```cpp
-/* void 형을 가리키는 포인터 */
-#include <stdio.h>
-int main()
-{
-    void* a;
-
-    return 0;
-}
+/* void 형을 가리키는 포인터 */#include <stdio.h>int main(){    void* a;    return 0;}
 ```
 
 
@@ -146,28 +115,13 @@ int main()
 그렇다면 void* a 포인터는 void 형의 변수의 메모리 주소를 가지게 될까요? 물론, 논리를 따지고 보면 맞지만 void 형 변수라는 것은 존재할 수 없기 때문에 void 형 포인터의 존재는 쓸모가 없어 보입니다. 하지만 사실 void 는 타입이 없기 때문에 거꾸로 생각해 보면 어떠한 형태의 포인터의 값이라도 담을 수 있게 됩니다. 예를 들면
 
 ```cpp
-    void *a;
-    double b = 123.3;
-
-    a=&b;
-
+    void *a;    double b = 123.3;    a=&b;
 ```
 
 와 같이 말이죠. 다시 말해 a 는 순전히 오직 '주소값의 보관' 역할만 하게 되는 셈입니다. 
 
 ```cpp
-/* b 의 값을 보려면 */
-#include <stdio.h>
-int main()
-{
-    void *a;
-    double b = 123.3;
-
-    a=&b;
-
-    printf("%lf", *a);
-    return 0;
-}
+/* b 의 값을 보려면 */#include <stdio.h>int main(){    void *a;    double b = 123.3;    a=&b;    printf("%lf", *a);    return 0;}
 ```
 
 
@@ -181,21 +135,11 @@ error C2100: 간접 참조가 잘못되었습니다.
 와 같은 오류를 보게 됩니다. 이 오류가 발생하는 이유 역시 쉽게 알 수 있습니다. 왜냐하면 컴파일러는 *a 가 무엇을 말하는지 알 수 없거든요. 여태까지 *a 를 해석할 때 컴파일러는 a 가 가리키는 것의 타입을 보고 메모리 상에서 a 부터 얼마 만큼 읽어들어야 할 지 결정했는데 void a; 의 경우 메모리 상에서 얼마만큼 읽어들여야 할 지 모르기 때문입니다. 따라서 이는 다음과 같이 수정되어야 합니다.
 
 ```cpp
-#include <stdio.h>
-int main()
-{
-    void *a;
-    double b = 123.3;
-
-    a=&b;
-
-    printf("%lf", *(double *)a)
-    return 0;
-}
-
+#include <stdio.h>int main(){    void *a;    double b = 123.3;    a=&b;    printf("%lf", *(double *)a)    return 0;}
 ```
 
 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F13654C1A4C500DBD6D8F6F)
 
@@ -217,31 +161,12 @@ void 형 포인터는 단순히 어떤 타입의 포인터의 주소 값도 편�
 따라서 우리는 순전히 주소값 만을 받기 위해서는 void 형 포인터를 사용하는 것이 바람직하다고 볼 수 있습니다. 물론 포인터 간의 형변환을 통해서 처리할 수 있지만 어떠한 형태의 포인터 주소값도 가능하다라는 의미를 살리기 위해서는 void 형 포인터를 이용하는 것이 바람직합니다. 
 
 ```cpp
-/* 임의의 주소값 p 로 부터 byte 만큼 읽은 함수*/
-#include <stdio.h>
-int read_char(void *p, int byte);
-int main ()
-{
-    int arr[1]={0x12345678};
-
-    printf("%x \n", arr[0]);
-    read_char(arr, 4);
-}
-int read_char(void *p, int byte)
-{
-    do
-    {
-        printf("%x \n", *(char *)p);
-        byte--;
-
-    }while( ((char *)p) ++ && byte);
-
-    return 0;
-}
+/* 임의의 주소값 p 로 부터 byte 만큼 읽은 함수*/#include <stdio.h>int read_char(void *p, int byte);int main (){    int arr[1]={0x12345678};    printf("%x \n", arr[0]);    read_char(arr, 4);}int read_char(void *p, int byte){    do    {        printf("%x \n", *(char *)p);        byte--;    }while( ((char *)p) ++ && byte);    return 0;}
 ```
 
 
 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F1328E9274C5656B5A01A3C)
 
@@ -249,14 +174,9 @@ read_char 함수를 살펴봅시다. 무언가 여태까지 해온 것 보다 �
 
 ```cpp
     do
-
     {
-
         printf("%x \n", *(char *)p);
-
         byte--;
-
-
     }while( ((char *)p) ++ && byte);
 ```
 
@@ -271,23 +191,19 @@ read_char 함수를 살펴봅시다. 무언가 여태까지 해온 것 보다 �
 
 는 p 가 가리키는 주소값에 위치한 데이터 1 바이트 씩 16 진수로 출력하게 됩니다. 따라서 read_char 함수를 호출함을 통해 int 형 배열인 arr 의 원소를 1 바이트씩 읽게 되는 것이죠. 어떤 사람들은 그 결과가 12 34 56 78 순으로 출력해야 한다고 물을 수 있는데, 이는 '엔디안' 에 대한 개념이 없는 것이기 때문에 http://itguru.tistory.com/71 를 잠시 보고 오시기 바랍니다. 간단히 말하자면 우리가 쓰는 대부분의 프로세서는 리틀 엔디안 방식으로 저장하기 때문에 낮은 자리수가 낮은 주소값을 가지게 됩니다. 즉, 낮은 자리수인 78 이 낮은 주소값인 앞쪽에 저장되게 되죠. 따라서  12 34 56 78 순이 아닌 78 , 56, 34, 12 순으로 저장되는 것이 맞습니다. ( 그렇게 따지면 87, 65, 43, 21 순으로 나타나야 되지 않냐고 물을 수 있는데 저장의 단위가 바이트 이므로 한 바이트 내에서는 우리가 생각하는 순서대로 저장됩니다. ) 
 
+
+
 ###  메인 함수의 인자
-### 
+
+
+
+
 ```cpp
-/* main 함수의 인자라고?? */
-#include <stdio.h>
-int main (int argc, char **argv)
-{
-    printf("받은 인자의 개수 : %d \n", argc);
-    printf("이 프로그램의 경로 : %s \n", argv[0]);
-
-    return 0;
-
-}
-
+/* main 함수의 인자라고?? */#include <stdio.h>int main (int argc, char **argv){    printf("받은 인자의 개수 : %d \n", argc);    printf("이 프로그램의 경로 : %s \n", argv[0]);    return 0;}
 ```
 
 성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F19601A1D4C566103A4699E)
 
@@ -303,25 +219,12 @@ int main (int argc, char **argv)
 일단 argc 는 main 함수가 받은 인자의 수 입니다. 그리고 argv 는 main 함수가 받은 각각의 인자들을 나타내죠. 프로그램을 실행하면 기본적으로 아무런 인자들을 넣지 않더라도 위와 같은 정보는 들어가게 됩니다. 즉, main 함수는 자신의 실행 경로를 인자로 받게 되죠. 그렇다면 다른 인자들도 넣을 수 있을까요? 한 번 해봅시다.
 
 ```cpp
-/* 인자를 가지는 메인 함수 */
-#include <stdio.h>
-int main (int argc, char **argv)
-{
-    int i;
-    printf("받은 인자의 개수 : %d \n", argc);
-
-    for(i=0; i < argc; i++)
-    {
-        printf("이 프로그램이 받은 인자 : %s \n", argv[i]);
-    }
-
-    return 0;
-
-}
+/* 인자를 가지는 메인 함수 */#include <stdio.h>int main (int argc, char **argv){    int i;    printf("받은 인자의 개수 : %d \n", argc);    for(i=0; i < argc; i++)    {        printf("이 프로그램이 받은 인자 : %s \n", argv[i]);    }    return 0;}
 ```
 
 
 성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F19601A1D4C566103A4699E)
 
@@ -337,13 +240,16 @@ int main (int argc, char **argv)
 
 그렇다면 아래와 같은 모습을 보실 수 있습니다.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F160928314C56633710E391)
 
 이것은 '명령 프롬포트' 라고 부르는 것인데 기존의 MS-DOS 와 유사합니다. (그러나 본질적으로 다릅니다 ) 우리는 여기서 윈도우즈 처럼 파일을 클릭하여 실행하는 것과는 달리 직접 명령어를 침으로써 파일을 실행시켜야 합니다. 그러기 위해선 우리가 원하는 파일이 어디있는지 알아야겠죠.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F172AA82F4C5663AE0CF8A7)
 
 먼저 위와 같이 화면에 cd C:\\ 을 씁니다. 이 명령어의 의미는 'C:\' 라는 경로로 들어가라 입니다. 즉 'cd' 의 의미는 지정하는 경로로 들어가게 해주죠. 참고로 여기서도 역시 \ 하나만 치면 다른 의미로 해석되기 때문에 \ 하나를 나타내기 위해서는 \ 를 두번 써야 합니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F110A721C4C56644C8E26B5)
 
@@ -351,31 +257,38 @@ int main (int argc, char **argv)
 
 위와 같은 방식으로 우리의 파일을 찾는 일만 남았습니다. 
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F155D211D4C566685DB208B)
 
 우리가 원하는 파일은 아마 'C:\Users\Lee\Documents\Visual Studio 2008' 에 있습니다. 이를 cd 명령어로 다 치면 됩니다. 이 때, 중간에 띄어쓰기가 있으므로 큰 따옴표로 묶어주어야 합니다. 즉 cd "C:\\Users\\Lee\Documents\\Visual Studio 2008" 처럼 말이죠. 그렇지 않고  cd C:\\Users\\Lee\Documents\\Visual Studio 2008 로 쓴다면 컴퓨터는 cd C:\\Users\\Lee\Documents\\Visual 로 인식합니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1667FD1D4C566686838374)
 
 이제 Project 폴더로 들어가보겠습니다. 단순히 cd Projects 라고 치면 됩니다. 
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F1104D31A4C5666FFAD95D0)
 
 오. 저의 프로젝트인 'teach' 가 보이네요. 여러분과 저와의 프로젝트 이름이 다를 수 있으니 각기 맞는 프로젝트로 들어가시면 됩니다. 여기서도 물론 폴더 이름에 띄어쓰기가 있다면 큰따옴표로 묶어주는 것을 잊지 마세요. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1678121B4C5667816BA805)
 
 이제, 파일들을 쭉 보면 Debug 라는 폴더와 teach 라는 폴더가 있는데, teach 폴더에는 우리의 소스 코드가, Debug 폴더에는 만들어진 실행 파일이 있습니다. 그렇다면 우리는 어디로 가야 할까요? 네, Debug 로 갑시다.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F1949391B4C5667D801C548)
 
 우와 그렇다면 위와 같이 teach.exe 를 보실 수 있습니다. 이제 teach.exe 를 침으로써 위 프로그램을 실행할 수 있습니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1639E21B4C566825263E53)
 
 우왕. 잘 실행되는 군요. 일단 신기한 점은 이 프로그램이 받은 인자가 더이상 그 프로그램의 경로가 들어가지 않고 teach.exe 가 들어갔습니다. 맞습니다. 우리가 teach.exe 를 침으로써 실행한 순간 이 프로그램의 첫번째 인자는 teach.exe 가 됩니다. 만일 우리가 이 프로그램을 "C:\\Users\\Lee\\Documents\\Visual Studio 2008\\Projects\\teach\\Debug\\teach.exe" 라고 쳐서 실행하였다면 인자가 C:\\Users\\Lee\\Documents\\Visual Studio 2008\\Projects\\teach\\Debug\\teach.exe 가 되겠지요. 
 
 그렇다면 다른 인자들을 넣어봅시다. 이는 간단합니다. 프로그램 이름 뒤에 다른 것들을 써주면 되죠. 예를 들어
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1621C0324C566A1F1C450F)
 
@@ -388,6 +301,7 @@ main 함수의 두번째 인자 말이에요, char ** 인데 제 기억에 이�
 그 이유는 간단합니다. char** 은 (char *) 형 배열을 가리키는 포인터 이지요. 즉, 포인터의 배열 입니다. (배열 포인터가 절대로 아닙니다) int arr[4] 라는 배열을 가리키는 포인터가 int * 형인 것 (여기서는 arr 이겠네요) 처럼 char *arr[5]; 를 가리키는 포인터의 형은 char** 이 되겠지요.
 
 즉, 다음과 같은 꼴이 되겠지요.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F162720344C566E5670E92B)
 즉 argv 는 포인터들의 배열을 가리키고 있고, 그 포인터 배열에서의 각각의 원소, 즉 포인터들은 인자로 전달된 문자열들을 가리키고 있습니다. 이 때, 이 문자열들은 메모리의 다른 공간에 보관되어 있겠죠. 
@@ -409,17 +323,20 @@ calc.exe 5 + 10
 이 때, 5, +, 10 은 모두 다른 인자로 봐야하겠죠. 기초적인 단계 이므로 연산자는 하나만 써도 된다고 합시다. 참고로 인자는 모두 문자열 형태로 오기 때문에 문자열로 된 수를 int 형으로 바꾸는 작업이 필요할 것입니다. 
 
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
-공감2sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <20 - 2. 메모리 동적할당 + 메모리 갖고 놀기>(38)
+
+
+
+공감2sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <20 - 2. 메모리 동적할당 + 메모리 갖고 놀기>(38)
 2010.09.13씹어먹는 C 언어 - <20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)>(35)
 2010.08.03씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>(32)
 2010.08.02씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>(13)

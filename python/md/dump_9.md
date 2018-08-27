@@ -1,7 +1,18 @@
+----------------
+title : 씹어먹는 C 언어 - <5. 문자 입력 받기>
+--------------
 
 
 이번 강좌에서는...
-* 문자를 저장하는 변수scanf 의 사용섭씨 → 화씨 환산 프로그램등을 배우게 됩니다. 
+
+* 문자를 저장하는 변수
+
+* scanf 의 사용
+
+* 섭씨 → 화씨 환산 프로그램
+
+등을 배우게 됩니다. 
+
 
 ![신나는 씹어먹는 C 언어!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1251180949F5D6B690C37D)
 
@@ -17,17 +28,7 @@
   보시는 것과 같이 char 은 맨 위에 위치해 있으며 크기는 1 바이트 입니다. 또한, 이를 통해 나타낼 수 있는 숫자의 범위를 알려주고 있는데, 이는 -128 부터 127 까지, 256 가지 입니다. 
 
 ```cpp
-/* 문자를 저장하는 변수  */
-#include <stdio.h>
-int main()
-{
-    char a; 
-    a = 'a'; 
-
-printf("a 의 값과 들어 있는 문자는? 값 : %d , 문자 : %c \n",a,a);
-    return 0;
-}
-
+/* 문자를 저장하는 변수  */#include <stdio.h>int main(){    char a;     a = 'a'; printf("a 의 값과 들어 있는 문자는? 값 : %d , 문자 : %c \n",a,a);    return 0;}
 ```
 
 위 소스를 성공적으로 컴파일 했다면
@@ -78,33 +79,22 @@ a = a;
 
   하지만 2 바이트나 차지하는 유니코드는 다루기가 조금 복잡하여 이번 강좌에는 영어 공부도 할 겸 영문으로만 다루기로 하겠습니다. 
 
+
+
 ###  scanf 의 도입
 
+
+
+
 ```cpp
-/* 섭씨온도를 화씨로 바꾸기  */
-#include <stdio.h>
-int main()
-{
-    double celsius; // 섭씨 온도 
-
-    printf("섭씨 온도를 화씨 온도로 바꿔주는 프로그램 입니다. \n");
-    printf("섭씨 온도를 입력해 주세요 : ");
-    scanf("%lf",&celsius); // 섭씨 온도를 입력 받는다.
-
-    printf("섭씨 %f 도는 화씨로 %f 도 입니다 \n", celsius, 9 * celsius / 5 + 32);
-
-    return 0;
-
-}
+/* 섭씨온도를 화씨로 바꾸기  */#include <stdio.h>int main(){    double celsius; // 섭씨 온도     printf("섭씨 온도를 화씨 온도로 바꿔주는 프로그램 입니다. \n");    printf("섭씨 온도를 입력해 주세요 : ");    scanf("%lf",&celsius); // 섭씨 온도를 입력 받는다.    printf("섭씨 %f 도는 화씨로 %f 도 입니다 \n", celsius, 9 * celsius / 5 + 32);    return 0;}
 ```
 
 위 소스를 성공적으로 컴파일 했다면 아래와 같이 나옵니다. 참고로 경고가 1 개 정도 나올 수 있는데, 이는 scanf 의 보안 문제 때문입니다. scanf 를 scanf_s 로 바꾸면 되지만 지금 이 수준에서 보안문제에 크게 신경 쓸 것은 없으므로 그냥 scanf 로 하셔도 됩니다. 
 
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F20064E1D49F5AD9E3974E5)
 
 이 때, 원하는 숫자를 쓴 후 엔터를 누른다면 (예 : 100) 
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1950C20949F5AE667BA795)
 
@@ -112,7 +102,6 @@ int main()
 
 ```cpp
     double celsius; // 섭씨 온도 
-
 ```
 
   일단, celsius 라는 double 형 변수를 선언하였습니다. 변수의 이름을 종전의 a , b 에서 celsius 라고 한 이유는 좀 더 이해하기 편하기 때문이죠. 좋은 소스 코드의 조건은 다른 사람이 이해하기 쉬운 소스 코드 이고, 다른 사람이 이해하기 쉬운 소스코드는 기본적으로 변수 이름을 보고도 변수를 한 눈에 파악하기 쉽게 만드는 것입니다. 
@@ -133,56 +122,21 @@ int main()
 
   마지막으로 위 프로그램의 중요한 부분을 살펴보자. 바로 이 부분에서 섭씨와 화씨의 환산 작업이 이루어 진다. 참고로, 화씨와 섭씨의 변환 공식은 아래와 같습니다.
 
-°C  * 9/5 + 32 = °F
 
+°C  * 9/5 + 32 = °F
  따라서, 이 공식을 그대로 C 언어 수식을 바꾼 것이  9 * celsius / 5 + 32 인 것입니다. 곱셈과 나눗셈의 우선순위가 높으므로 9 * celsius / 5 가 먼저 계산 된 후 32 가 더해지므로 위의 식과  일치합니다. 따라서, 결국 printf 의 두번째 %f 부분에는 위 계산된 화씨의 값이 들어가게 되는 것입니다. 
 
 ```cpp
-/* scanf 총 정리  */
-#include <stdio.h>
-int main()
-{
-    char ch; // 문자 
-
-    short sh; // 정수
-    int i;
-    long lo;
-
-    float fl; // 실수
-    double du;
-
-    printf("char 형 변수 입력 : ");
-    scanf("%c", &ch);
-
-    printf("short 형 변수 입력 : ");
-    scanf("%hd", &sh);
-    printf("int 형 변수 입력 : ");
-    scanf("%d", &i);
-    printf("long 형 변수 입력 : ");
-    scanf("%ld", &lo);
-
-    printf("float 형 변수 입력 : ");
-    scanf("%f", &fl);
-    printf("double 형 변수 입력 : ");
-    scanf("%lf", &du);
-
-
-    printf("char : %c , short : %d , int : %d ", ch, sh, i);
-    printf("long : %d , float : %f, double : %f \n",lo,fl,du);
-    return 0;
-}
+/* scanf 총 정리  */#include <stdio.h>int main(){    char ch; // 문자     short sh; // 정수    int i;    long lo;    float fl; // 실수    double du;    printf("char 형 변수 입력 : ");    scanf("%c", &ch);    printf("short 형 변수 입력 : ");    scanf("%hd", &sh);    printf("int 형 변수 입력 : ");    scanf("%d", &i);    printf("long 형 변수 입력 : ");    scanf("%ld", &lo);    printf("float 형 변수 입력 : ");    scanf("%f", &fl);    printf("double 형 변수 입력 : ");    scanf("%lf", &du);    printf("char : %c , short : %d , int : %d ", ch, sh, i);    printf("long : %d , float : %f, double : %f \n",lo,fl,du);    return 0;}
 ```
 
 성공적으로 컴파일 후 (경고가 6 개 정도 나올 수 있는데 무시하세요^^) 
 
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1806421D49F5BFD8C959E0)
 
 
-
 ```cpp
-    printf("char 형 변수 입력 : ");
-    scanf("%c", &ch);
+    printf("char 형 변수 입력 : ");    scanf("%c", &ch);
 ```
 
   일단, 제일 먼저 문자를 입력 받는 부분을 봅시다. 예전에도 이야기 했지만 한글은 2 바이트를 차지하기 때문에 최대 1 바이트를 차지하는 char 형 변수인 ch 에 한글을 치면 오류가 납니다. 이와 같이 허용된 메모리 이상에 데이터를 집어넣어 발생하는 오류를 버퍼 오버플로우(Buffer Overflow) 라고 하며 보안 상 매우 취약합니다. 뿐만 아니라 근처의 데이터가 손상됨에 따라 큰 문제가 발생하게 될 수 도 있습니다.  따라서, 여러분들은 버퍼 오버플로우가 일어나지 않게 허용된 데이타 이상을 집어넣는지 안집어 넣는지 검사할 필요성이 있습니다. 
@@ -190,23 +144,14 @@ int main()
   또한 앞으로 우리가 char 형 변수를 선언할 때 에는 '이 사람이 문자를 보관하는 변수를 선언하는 구나' 라고 생각하도록 합시다. 왜냐하면 보통 수 데이타를 보관하는 변수로는 int 를 쓰지 char 을 잘 쓰지 않을 뿐더러 char 이름도 character 에서 따왔을 만큼 문자와 무언가 관련이 있기 때문이죠. 
 
 ```cpp
-  printf("short 형 변수 입력 : ");
-    scanf("%hd", &sh);
-    printf("int 형 변수 입력 : ");
-    scanf("%d", &i);
-    printf("long 형 변수 입력 : ");
-    scanf("%ld", &lo);
+  printf("short 형 변수 입력 : ");    scanf("%hd", &sh);    printf("int 형 변수 입력 : ");    scanf("%d", &i);    printf("long 형 변수 입력 : ");    scanf("%ld", &lo);
 ```
 
 
   이 부분은 여러분들이 무난하게 이해하실 수 있으리라 봅니다. 단지 포맷에 %hd, %d, %ld 로 다른 것 뿐이지요. 참고로 short 형이나 long 형은 아직 다루지는 않았지만 int 와 똑같은 계열의 정수형 변수라고 생각하시면 됩니다. 
 
 ```cpp
-    printf("float 형 변수 입력 : ");
-    scanf("%f", &fl);
-    printf("double 형 변수 입력 : ");
-    scanf("%lf", &du);
-
+    printf("float 형 변수 입력 : ");    scanf("%f", &fl);    printf("double 형 변수 입력 : ");    scanf("%lf", &du);
 ```
 
   마찬가지로 float 형에서는 %f 로, double 형에서는 %lf 로 사용한다는 것을 기억하시기 바랍니다. 
@@ -215,16 +160,16 @@ int main()
 
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <5. 문자 입력 받기>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <5. 문자 입력 받기>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
-공감sns신고'C' 카테고리의 다른 글씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >(546)
+
+
+공감sns신고
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >(546)
 2009.08.06씹어먹는 C 언어 - <6. 만약에...(if 문)>(182)
 2009.04.28씹어먹는 C 언어 - <5. 문자 입력 받기>(182)
 2009.04.27씹어먹는 C 언어 - <4. 계산하리 >(239)

@@ -1,7 +1,14 @@
+----------------
+title : 씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>
+--------------
+
 
 
 
 이번 강좌에서는* Excel 만들기 프로젝트의 1번째 문제를 해결할 것입니다.
+
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F23028D4E578CB8DE297D47)
 
@@ -17,8 +24,14 @@
 이 Excel 프로그램에서 사용할 자료구조는 크게 Vector 와 Stack 입니다. 참고로 이들은 수식을 분석하기 위해, 즉 ExprCell 객체의 to_numeric 함수 내에서 사용될 예정입니다. 
 
 
-각 자료구조들은 다음과 같은 특징을 가지고 있습니다.* 벡터 (Vector) : 수학의 그 벡터와는 살짝 다른 느낌인데, 그냥 배열의 크기를 맘대로 조절할 수 있는 가변길이 배열이라 보시면 됩니다. 즉, 배열 처럼 [] 연산자로 임의의 위치에 있는 원소에 마음대로 접근할 수 있고 또 임의의 위치에 원소를 추가하거나 뺄 수 있습니다. 벡터를 만드는 방법은 이전에 문자열 클래스를 만들 때와 거의 비슷합니다. 문자열 역시 char 데이터를 담는 가변 길이 배열과 마찬가지 이기 때문이지요.* 스택 (Stack) : 벡터와는 다르게 임의의 위치에 있는 원소에 접근할 수 없고 항상 최 상단에 있는 데이터에만 접근할 수 있습니다. 그리고 새로운 데이터를 추가하면 최상단에 오게 됩니다. 쉽게 말해서 설거지 용으로 쌓아 놓는 접시들이라 보면 됩니다. 새로운 설거지 거리가 오면 쌓여 있는 접시 맨 위에 오게 되고(push). 설거지를 위해서 접시를 뺄 때 맨 위의 접시 부터 빼겠지요(pop). 
+각 자료구조들은 다음과 같은 특징을 가지고 있습니다.* 벡터 (Vector) : 수학의 그 벡터와는 살짝 다른 느낌인데, 그냥 배열의 크기를 맘대로 조절할 수 있는 가변길이 배열이라 보시면 됩니다. 즉, 배열 처럼 [] 연산자로 임의의 위치에 있는 원소에 마음대로 접근할 수 있고 또 임의의 위치에 원소를 추가하거나 뺄 수 있습니다. 벡터를 만드는 방법은 이전에 문자열 클래스를 만들 때와 거의 비슷합니다. 문자열 역시 char 데이터를 담는 가변 길이 배열과 마찬가지 이기 때문이지요.
+* 스택 (Stack) : 벡터와는 다르게 임의의 위치에 있는 원소에 접근할 수 없고 항상 최 상단에 있는 데이터에만 접근할 수 있습니다. 그리고 새로운 데이터를 추가하면 최상단에 오게 됩니다. 쉽게 말해서 설거지 용으로 쌓아 놓는 접시들이라 보면 됩니다. 새로운 설거지 거리가 오면 쌓여 있는 접시 맨 위에 오게 되고(push). 설거지를 위해서 접시를 뺄 때 맨 위의 접시 부터 빼겠지요(pop). 
+
+
+
 물론 스택은 그냥 벡터를 활용해서 만들 수 있습니다. 하지만 이는 마치 소 잡는 칼을 닭 잡는 데 쓰는 것이라고나 할까요. 보통 스택의 경우 링크드 리스트(Linked List - http://itguru.tistory.com/100 의 Node 부분을 살펴보세요) 를 이용해서 구현을 합니다. 스택은 임의의 위치에 데이터에 접근할 필요가 없습니다. 단순히 최상위에 뭐가 있을 지 궁금하고 또 거기에 새로운 것을 추가하던지 빼기만 하면 되겠지요. 아래 스택을 간단히 어떻게 구현 할 지 그림으로 보여드리겠습니다.
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F2151894E5788A29118E8AB)
 
@@ -27,13 +40,10 @@
 
 
 
- 벡터 클래스 (Vector)
-
-
+###  벡터 클래스 (Vector)
 
 
 먼저 문자열을 보관하기 위한 벡터 부터 만들겠습니다. 우리의 벡터 클래스는 다음과 같이 구성되어 있습니다.
-
 ```cpp
 
 class Vector {
@@ -41,27 +51,21 @@ string* data;
 int capacity;
 int length;
 
-
 public:
 // 생성자 
 Vector(int n = 1);
 
-
 // 맨 뒤에 새로운 원소를 추가한다.
 void push_back(string s);
-
 
 // 임의의 위치의 원소에 접근한다.
 string operator[] (int i);
 
-
 // x 번째 위치한 원소를 제거한다.
 void remove(int x);
 
-
 // 현재 벡터의 크기를 구한다.
 int size();
-
 
 ~Vector();
 };
@@ -106,7 +110,6 @@ Vector a(1)
 
 Vector::Vector(int n) : data(new string[n]), capacity(n), length(0) {
 
-
 }
 ```
 
@@ -127,16 +130,13 @@ data = temp;
 capacity *= 2;
 }
 
-
 data[length] = s;
 length++;
 }
 
-
 string Vector::operator[] (int i) {
 return data[i];
 }
-
 
 void Vector::remove(int x) {
 for (int i = x + 1; i < length; i++) {
@@ -145,11 +145,9 @@ data[i - 1] = data[i];
 length--;
 }
 
-
 int Vector::size() {
 return length;
 }
-
 
 Vector::~Vector() {
 if (data) {
@@ -175,7 +173,6 @@ data = temp;
 capacity *= 2;
 }
 
-
 data[length] = s;
 length++;
 }
@@ -187,20 +184,20 @@ length++;
 
 
 
- 스택 클래스
+###  스택 클래스
+
+
 
 
 
 
 이번에는 스택 클래스 입니다.  스택의 경우 위에서 말한 것 처럼 링크드 리스트를 사용하기 때문에 데이터를 보관하기 위해서 배열을 사용하는 것이 아니라 하나의 노드를 만들어서 노드들을 체인 처럼 엮을 것입니다. 이를 위해 아래와 같이 Stack 클래스 안에 Node 라는 구조체를 정의하였습니다. 
 
-
 ```cpp
 
 struct Node {
 Node* prev;
 string s;
-
 
 Node(Node *prev, string s) : prev(prev), s(s) { }
 };
@@ -219,34 +216,26 @@ struct Node {
 Node* prev;
 string s;
 
-
 Node(Node *prev, string s) : prev(prev), s(s) { }
 };
-
 
 Node* current;
 Node start;
 
-
 public:
 Stack();
-
 
 // 최상단에 새로운 원소를 추가한다.
 void push(string s);
 
-
 // 최상단의 원소를 제거하고 반환한다.
 string pop();
-
 
 // 최상단의 원소를 반환한다. (제거 안함)
 string peek();
 
-
 // 스택이 비어있는지의 유무를 반환한다. 
 bool is_empty();
-
 
 ~Stack();
 };
@@ -268,11 +257,9 @@ current = n;
 string Stack::pop() {
 if (current == &start) return "";
 
-
 string s = current->s;
 Node *prev = current;
 current = current->prev;
-
 
 // Delete popped node
 delete prev;
@@ -302,6 +289,7 @@ delete prev;
 스택의 경우 위와 같이 문자열을 받는 것 말고도, 숫자 데이터를 보관하는 스택인 NumStack 클래스 또한 string 만 int 로 바꿔서 동일하게 만들었습니다. 
 
 
+
 최종적으로 아래는 우리가 만든 벡터와 스택 클래스의 헤더 파일인 utils.h 의 전체 내용입니다. 
 
 ```cpp
@@ -310,71 +298,55 @@ delete prev;
 #include <string>
 using namespace std;
 
-
 class Vector {
 string* data;
 int capacity;
 int length;
 
-
 public:
 // 생성자 
 Vector(int n = 1);
 
-
 // 맨 뒤에 새로운 원소를 추가한다.
 void push_back(string s);
-
 
 // 임의의 위치의 원소에 접근한다.
 string operator[] (int i);
 
-
 // x 번째 위치한 원소를 제거한다.
 void remove(int x);
-
 
 // 현재 벡터의 크기를 구한다.
 int size();
 
-
 ~Vector();
 };
-
 
 class Stack {
 struct Node {
 Node* prev;
 string s;
 
-
 Node(Node *prev, string s) : prev(prev), s(s) { }
 };
-
 
 Node* current;
 Node start;
 
-
 public:
 Stack();
-
 
 // 최상단에 새로운 원소를 추가한다.
 void push(string s);
 
-
 // 최상단의 원소를 제거하고 반환한다.
 string pop();
-
 
 // 최상단의 원소를 반환한다. (제거 안함)
 string peek();
 
-
 // 스택이 비어있는지의 유무를 반환한다. 
 bool is_empty();
-
 
 ~Stack();
 };
@@ -383,14 +355,11 @@ struct Node {
 Node* prev;
 double s;
 
-
 Node(Node *prev, double s) : prev(prev), s(s) { }
 };
 
-
 Node* current;
 Node start;
-
 
 public:
 NumStack();
@@ -398,7 +367,6 @@ void push(double s);
 double pop();
 double peek();
 bool is_empty();
-
 
 ~NumStack();
 };
@@ -440,7 +408,6 @@ bool is_empty();
 #include "utils.h"
 using namespace std;
 
-
 // default argument must go only once
 Vector::Vector(int n) : data(new string[n]), capacity(n), length(0) {
 }
@@ -454,7 +421,6 @@ delete[] data;
 data = temp;
 capacity *= 2;
 }
-
 
 data[length] = s;
 length++;
@@ -477,7 +443,6 @@ delete[] data;
 }
 }
 
-
 Stack::Stack() : start(NULL, "") {
 current = &start;
 }
@@ -488,11 +453,9 @@ current = n;
 string Stack::pop() {
 if (current == &start) return "";
 
-
 string s = current->s;
 Node *prev = current;
 current = current->prev;
-
 
 // Delete popped node
 delete prev;
@@ -522,11 +485,9 @@ current = n;
 double NumStack::pop() {
 if (current == &start) return 0;
 
-
 double s = current->s;
 Node *prev = current;
 current = current->prev;
-
 
 // Delete popped node
 delete prev;
@@ -553,7 +514,8 @@ delete prev;
 
 
 
- 본격적인 Cell 과 Table 클래스
+###  본격적인 Cell 과 Table 클래스
+
 
 
 
@@ -567,12 +529,10 @@ protected:
 int x, y;
 Table* table;
 
-
 string data;
 public:
 virtual string stringify();
 virtual int to_numeric();
-
 
 Cell(string data, int x, int y, Table* table);
 };
@@ -591,7 +551,6 @@ Cell 클래스는 큰 테이블에서 한 칸을 의미하는 객체로, 해당 
 ```cpp
 
 Cell::Cell(string data, int x, int y, Table* table) : data(data), x(x), y(y), table(table) { }
-
 
 string Cell::stringify() {
 return data;
@@ -613,36 +572,28 @@ protected:
 // 행 및 열의 최대 크기
 int max_row_size, max_col_size;
 
-
 // 데이터를 보관하는 테이블
 // Cell* 을 보관하는 2차원 배열이라 생각하면 편하다
 Cell*** data_table;
 
-
 public:
 Table(int max_row_size, int max_col_size);
 
-
 ~Table();
-
 
 // 새로운 셀을 row 행 col 열에 등록한다. 
 void reg_cell(Cell* c, int row, int col);
-
 
 // 해당 셀의 정수값을 반환한다. 
 // s : 셀 이름 (Ex. A3, B6 과 같이)
 int to_numeric(const string& s);
 
-
 // 행 및 열 번호로 셀을 호출한다.
 int to_numeric(int row, int col);
-
 
 // 해당 셀의 문자열을 반환한다. 
 string stringify(const string& s);
 string stringify(int row, int col);
-
 
 virtual string print_table() = 0;
 };
@@ -703,7 +654,6 @@ Table 소멸자도 이와 비슷합니다. 일단, 동적으로 생성된 Cell �
 void Table::reg_cell(Cell* c, int row, int col) {
 if (!(row < max_row_size && col < max_col_size)) return;
 
-
 if (data_table[row][col]) {
 delete data_table[row][col];
 }
@@ -722,7 +672,6 @@ int Table::to_numeric(const string& s) {
 int row = s[0] - 'A';
 int col = atoi(s.c_str() + 1) - 1;
 
-
 if (row < max_row_size && col < max_col_size) {
 if (data_table[row][col]) {
 return data_table[row][col]->to_numeric();
@@ -740,7 +689,6 @@ string Table::stringify(const string& s) {
 // Cell 이름으로 받는다. 
 int col = s[0] - 'A';
 int row = atoi(s.c_str() + 1) - 1;
-
 
 if (row < max_row_size && col < max_col_size) {
 if (data_table[row][col]) {
@@ -769,6 +717,7 @@ return o;
 또한 맨 마지막에 ostream 클래스의 << 연산자를 오버로딩하는 함수를 하나 만들어서 파일이나 표준 스트림(cout) 입출력에 쉽게 사용할 수 있도록 하였습니다. 
 
 
+
 하지만 이 Table 클래스의 객체는 생성할 수 없습니다. 왜냐하면 아래와 같은 순수 가상 함수가 포함되어 있기 때문이지요.
 
 ```cpp
@@ -786,13 +735,11 @@ class TxtTable : public Table
 {
 string repeat_char(int n, char c);
 
-
 // 숫자로 된 열 번호를 A, B, .... Z, AA, AB, ...  이런 순으로 매겨준다.
 string col_num_to_str(int n);
 
 public:
 TxtTable(int row, int col);
-
 
 // 텍스트로 표를 깨끗하게 출력해준다. 
 string print_table();
@@ -807,12 +754,10 @@ string print_table();
 
 TxtTable::TxtTable(int row, int col) : Table(row, col) {}
 
-
 // 텍스트로 표를 깨끗하게 출력해준다. 
 string TxtTable::print_table()
 {
 string total_table;
-
 
 int* col_max_wide = new int[max_col_size];
 for (int i = 0; i < max_col_size; i++) {
@@ -833,11 +778,9 @@ int max_len = max(2, col_max_wide[i]);
 total_table += " | " + col_num_to_str(i);
 total_table += repeat_char(max_len - col_num_to_str(i).length(), ' ');
 
-
 total_wide += (max_len + 3);
 }
 }
-
 
 total_table += "\n";
 // 일단 기본적으로 최대 9999 번째 행 까지 지원한다고 생각한다. 
@@ -846,11 +789,9 @@ total_table += repeat_char(total_wide, '-');
 total_table += "\n" + to_string(i + 1);
 total_table += repeat_char(4 - to_string(i + 1).length(), ' ');
 
-
 for (int j = 0; j < max_col_size; j++) {
 if (col_max_wide[j]) {
 int max_len = max(2, col_max_wide[j]);
-
 
 string s = "";
 if (data_table[i][j]) {
@@ -863,17 +804,14 @@ total_table += repeat_char(max_len - s.length(), ' ');
 total_table += "\n";
 }
 
-
 return total_table;
 }
-
 
 string TxtTable::repeat_char(int n, char c)
 {
 string s = "";
 for (int i = 0; i < n; i++)
 s.push_back(c);
-
 
 return s;
 }
@@ -886,11 +824,9 @@ else {
 char first = 'A' + n / 26 - 1;
 char second = 'A' + n % 26;
 
-
 s.push_back(first);
 s.push_back(second);
 }
-
 
 return s;
 }
@@ -911,9 +847,9 @@ int main()
 TxtTable table(5, 5);
 ofstream out("test.txt");
 
-
 table.reg_cell(new Cell("Hello~", 0, 0, &table), 0, 0);
 table.reg_cell(new Cell("C++", 0, 1, &table), 0, 1);
+
 table.reg_cell(new Cell("Programming", 1, 1, &table), 1, 1);
 cout << endl << table;
 out << table;
@@ -953,21 +889,16 @@ class HtmlTable : public Table
 public:
 HtmlTable(int row, int col);
 
-
 string print_table();
 };
-
 
 class CSVTable : public Table
 {
 public:
 CSVTable(int row, int col);
 
-
 string print_table();
 };
-
-
 
 
 ```
@@ -984,16 +915,14 @@ int main()
 CSVTable table(5, 5);
 ofstream out("test.csv");
 
-
 table.reg_cell(new Cell("Hello~", 0, 0, &table), 0, 0);
 table.reg_cell(new Cell("C++", 0, 1, &table), 0, 1);
+
 table.reg_cell(new Cell("Programming", 1, 1, &table), 1, 1);
 out << table;
 
-
 HtmlTable table2(5, 5);
 ofstream out2("test.html");
-
 
 table2.reg_cell(new Cell("Hello~", 0, 0, &table), 0, 0);
 table2.reg_cell(new Cell("C++", 0, 1, &table), 0, 1);
@@ -1012,7 +941,6 @@ out2 << table2;
 
 HtmlTable::HtmlTable(int row, int col) : Table(row, col) {}
 
-
 string HtmlTable::print_table()
 {
 string s = "<table border='1' cellpadding='10'>";
@@ -1029,9 +957,7 @@ s += "</table>";
 return s;
 }
 
-
 CSVTable::CSVTable(int row, int col) : Table(row, col) {}
-
 
 string CSVTable::print_table()
 {
@@ -1043,12 +969,10 @@ if (j >= 1) s += ",";
 string temp;
 if (data_table[i][j]) temp = data_table[i][j]->stringify();
 
-
 for (int k = 0; k < temp.length(); k++) {
 if (temp[k] == '"') {
 // k 의 위치에 " 를 한 개 더 집어넣는다.
 temp.insert(k, 1, '"');
-
 
 // 이미 추가된 " 를 다시 확인하는 일이 없게 하기 위해
 // k 를 한 칸 더 이동시킨다. 
@@ -1086,16 +1010,18 @@ HTML 파일로 변환한 경우 위와 같이 브라우저 상에서 잘 표현�
 
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
-공감8sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)
+
+
+
+공감8sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>(10)
 2017.04.07씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>(6)
 2016.07.19씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>(0)
 2016.07.18씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>(13)

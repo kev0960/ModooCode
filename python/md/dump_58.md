@@ -1,15 +1,29 @@
+----------------
+title : C 언어 레퍼런스 - fopen 함수
+--------------
+
+
+
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 
 fopen
+
+
+
+
+
 ```info
-#include <stdio.h> // C++ 에서는 <cstdio>FILE * fopen ( const char * filename, const char * mode );
+
+#include <stdio.h> // C++ 에서는 <cstdio>
+FILE * fopen ( const char * filename, const char * mode );
 ```
+
 
 
 
@@ -20,7 +34,10 @@ filename 인자에서 지정한 파일을 열고, 이에 해당하는 스트림�
 
 fopen 함수는 동시에 최소 FOPEN_MAX 개의 파일들을 열 수 있게 보장하고 있으며 (이 이상 열 수도 있지만 성공적으로 열 수 있을지에 대해선 보장할 수 없다) 이 값은 실행 환경에 따라 다를 수 있다. 참고로 FOPEN_MAX 는 <stdio.h> (C++ 에서는 <cstdio> ) 에 정의되어 있는 매크로 상수 이다. 
 
-###  인자### 
+
+
+###  인자
+
 
 
 filename
@@ -55,70 +72,81 @@ C 문자열로 파일 접근 모드를 설정한다. 이 모드는 다음이 될
 
 읽기/쓰기를 동시에 하는 모드 ("r+", "w+", "a+") 의 경우, 읽기 작업을 한 후, 쓰기 작업을 하거나, 쓰기 작업을 한 후 읽기작업을 하는 경우 중간에 반드시 스트림을 비우거나 (fflush), 위치가 조정 되어야 한다. 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 만일 파일이 성공적으로 열렸다면 fopen 함수는 FILE 객체에 대한 포인터를 리턴할 것이다. 이 포인터는 나중에 스트림 관련 작업시에 스트림을 구분하기 위해 자주 사용된다. 그렇지 않을 경우 널 포인터가 리턴된다. 
+
+
 ###  실행 예제
-### 
+
+
+
+
 ```cpp
-/* 
-
-example.txt 파일을 생성한 뒤, 쓰기 형식으로 오픈하여 "안녕하세요 여러분 \n Psi 입니다 \n" 를 파일 내용에 집어 넣는다. 그리고, example.txt 를 덧붙이기 형식으로 오픈한 뒤 뒤에 "어 그래 안녕" 을 덧붙인다.
-
-*/
-
+/* example.txt 파일을 생성한 뒤, 쓰기 형식으로 오픈하여 "안녕하세요 여러분 \n Psi 입니다 \n" 를 파일 내용에 집어 넣는다. 그리고, example.txt 를 덧붙이기 형식으로 오픈한 뒤 뒤에 "어 그래 안녕" 을 덧붙인다.*/
 #include <stdio.h>
-
 int main()
-
 {
-
     FILE *fp, *fp2;
-
-
     if((fp = fopen("example.txt", "w")) == NULL)
-
     {
-
         printf("파일 읽기 오류! \n");
-
         return 0;
-
     }
-
-
     fputs("안녕하세요 여러분 \n Psi 입니다 \n", fp);
-
-
     if((fp2 = fopen("example.txt", "a")) == NULL)
-
     {
-
         printf("파일 읽기 오류! \n");
-
         return 0;
-
     }
-
-
     fputs("어 그래 안녕?", fp2);
-
     return 0;
-
 }
 ```
 
 
 example.txt 에 쓰여진 모습
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1345071D4B73C8EA199FA6)
 
 
+
+
 ###  연관된 함수
-### 
-* fclose    :  파일을 닫는다.setbuf    :  스트림 버퍼를 설정한다.setvbuf  :  스트림 버퍼의 모드를 설정한다.tmpfile   :  임시 파일을 연다.
-tmpnam  : 임시 파일 이름을 생성한다.
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - setbuf 함수(0)
+
+
+
+* fclose
+    :  파일을 닫는다.
+
+* setbuf
+    :  스트림 버퍼를 설정한다.
+
+* setvbuf
+  :  스트림 버퍼의 모드를 설정한다.
+
+* tmpfile   :  임시 파일을 연다.
+
+
+
+
+* tmpnam  : 임시 파일 이름을 생성한다.
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - setbuf 함수(0)
 2010.02.16C 언어 레퍼런스 - freopen 함수(0)
 2010.02.13C 언어 레퍼런스 - fopen 함수(0)
 2010.02.11C 언어 레퍼런스 - fflush 함수(4)

@@ -70,6 +70,11 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
 
 string FormatCodeUsingChroma(const string& code, const string& lang,
                              const string& schema) {
+  if (lang == "warning") {
+    return StrCat("<pre class='warning'>", code, "</pre>");
+  } else if (lang == "info") {
+    return StrCat("<pre class='info'>", code, "</pre>");
+  }
   auto code_ = cstring_from_string(code);
   auto lang_ = cstring_from_string(lang);
   auto schema_ = cstring_from_string(schema);

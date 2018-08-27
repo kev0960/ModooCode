@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios::exceptions
+--------------
+
 
 
 ```warning
@@ -14,9 +18,11 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 ios::exceptions
 
 
+
+
+
 ```cpp
-iostate exceptions ( ) const;
-void exceptions ( iostate except );
+iostate exceptions ( ) const;void exceptions ( iostate except );
 ```
 
 
@@ -44,74 +50,78 @@ goodbit
 
   한 개 이상의 상태 플래그를 OR 연산자로 조합하여 하나의 비트 마스크(bit mask)를 만들 수 있게 된다. 기본값로 스트림 객체는 goodbit 예외 마스크를 가지고 있는데, 이 말은 어떠한 상태 플래그가 설정 되어도 예외를 던지지 않는다는 의미 이다. 
 
- 인자
+
+
+###  인자
+
+
+
 
 except
 
   ios_base::iostate 형의 비트 마스크 값으로 오류 상태 플래그 비트들(badbit, eofbit, failbit) 의 조합에 의해 설정된다. 
 
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
   ios_base::iostate 타입의 비트 마스크로 이 함수를 호출하기 직전의 예외 마스크를 리턴한다. 
 
- 실행 예제
+
+
+###  실행 예제
+
 
 ```cpp
-/*
 
-사용자가 file 의 exception 에 failbit 와 badbit 를 등록하였으므로 이들 비트가 설정
-될 때 예외를 throw 하게 된다. 나의 경우 test.txt 파일에 내용이 존재하지 않았으므로
-failbit 가 설정되어서 예외가 throw 된 것이다.
-
-*/
-#include <iostream>
-#include <fstream>
-using namespace std;
-
-int main ()
-{
-    ifstream file;
-    file.exceptions ( ifstream::failbit | ifstream::badbit );
-
-    try 
-    {
-        file.open ("test.txt");
-        file.get();
-    }
-
-    catch (ifstream::failure e) 
-    {
-        cout << "Exception opening/reading file";
-    }
-
-    file.close();
-
-    return 0;
-}
+/*사용자가 file 의 exception 에 failbit 와 badbit 를 등록하였으므로 이들 비트가 설정될 때 예외를 throw 하게 된다. 나의 경우 test.txt 파일에 내용이 존재하지 않았으므로failbit 가 설정되어서 예외가 throw 된 것이다.*/#include <iostream>#include <fstream>using namespace std;int main (){    ifstream file;    file.exceptions ( ifstream::failbit | ifstream::badbit );    try     {        file.open ("test.txt");        file.get();    }    catch (ifstream::failure e)     {        cout << "Exception opening/reading file";    }    file.close();    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F145ED6344E4BEA8A334FD9)
 
 
- 템플릿 멤버 정의
+
+
+###  템플릿 멤버 정의
+
+
+
 
 ```cpp
-// ( basic_ios<charT,traits> )
-iostate exceptions () const;
-iostate exceptions ( iostate except );
+// ( basic_ios<charT,traits> )iostate exceptions () const;iostate exceptions ( iostate except );
 ```
 
 
 
- 연관된 함수
 
-* ios::rdstate  :  오류 상태 플래그를 얻는다. 
 
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::width(0)
+###  연관된 함수
+
+
+
+
+
+* ios::rdstate
+  :  오류 상태 플래그를 얻는다. 
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::width(0)
 2011.08.18C++ 레퍼런스 - ifstream 클래스(0)
 2011.08.18C++ 레퍼런스 - ios::exceptions(0)
 2011.08.18C++ 레퍼런스 - istream::getline 함수(0)

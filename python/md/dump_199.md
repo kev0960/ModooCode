@@ -1,12 +1,15 @@
+----------------
+title : 모든 컴퓨터 과학자가 알아야 할 부동 소수점의 모든 것(What Every Computer Scientists Should Know About Floating Point Arithmetic)
+--------------
+
+
 
 
 ```warning
 
 오픈북 프로젝트는 인터넷 상의 양질의 컴퓨터 문서를 번역하여 우리 말로 공급하는 프로젝트 입니다. 번역된 문서들은 인터넷 상으로 어떠한 제한 조건 없이 배포되고 있으며, 다만 원 번역자의 허락 없는 무단 수정을 금합니다. 
 
-
 현재 까지 번역된 문서들의 리스트는 여기에서 확인하시면 됩니다.
-
 ```
 
 
@@ -32,15 +35,19 @@
 
 파일 다운로드는 아래 pdf 파일을 받으시면 됩니다. 전체 페이지 수는 60 페이지 가량 됩니다. 
 
-
 ![](http://)
  모든 컴퓨터 과학자가 알아야 할 부동 소수점의 모든것.pdf
-
 
 ```
 
 
-공감1sns신고저작자표시'Open Book Project' 카테고리의 다른 글C++ 11 자주 질문되는 것들 모음 (C++ 11 FAQs - Bjarne Stroustup)(4)
+
+
+
+공감1sns신고
+저작자표시
+
+'Open Book Project' 카테고리의 다른 글C++ 11 자주 질문되는 것들 모음 (C++ 11 FAQs - Bjarne Stroustup)(4)
 2013.10.02모든 컴퓨터 과학자가 알아야 할 부동 소수점의 모든 것(What Every Computer Scientists Should Know About Floating Point Arithmetic)(12)
 2013.08.04오픈북 프로젝트 - 양질의 컴퓨터 문서 공급 프로젝트(25)
 2013.08.04

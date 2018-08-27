@@ -1,22 +1,15 @@
-<p>이번 강좌에서는</p><ul><li><p> 지역 변수(local variable), 전역 변수(global variable), 정적 변수(static variable) 에 대해 알아본다.데이터 세그먼트의 구조에 대해 알아본다. !</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F133D9D124C1E375CA3E64B' alt=''></li></ul><p>  안녕하세요 여러분.. 드디어 17 번째 강좌 입니다. 총 20 ~ 25 강 까지로 예상하고 있는데 이제 앞으로 얼마 남지 않았군요. 구조체까지 완전히 배웠으니 이제 여러분은 정말로 만들어 볼 것이 많을 것 같네요. 이번 강좌는 단순한 내용이므로 딱히 아주 길지는 않을 것 입니다. 아마도 여태까지 배운 개념들을 환기시키는 정도로 사용될 것 같네요. </p><h3><p>  지역 변수</p></h3><h3><p> 아래의 간단한 소스를 살펴 봅시다.     </p></h3><pre class="chroma"><span class="cm">/* 오류 */</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="nf">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<p>이번 강좌에서는</p><ul><li><p> 지역 변수(local variable), 전역 변수(global variable), 정적 변수(static variable) 에 대해 알아본다.</p></li><li><p> 데이터 세그먼트의 구조에 대해 알아본다. </p></li></ul><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F133D9D124C1E375CA3E64B' alt=''><p>  안녕하세요 여러분.. 드디어 17 번째 강좌 입니다. 총 20 ~ 25 강 까지로 예상하고 있는데 이제 앞으로 얼마 남지 않았군요. 구조체까지 완전히 배웠으니 이제 여러분은 정말로 만들어 볼 것이 많을 것 같네요. 이번 강좌는 단순한 내용이므로 딱히 아주 길지는 않을 것 입니다. 아마도 여태까지 배운 개념들을 환기시키는 정도로 사용될 것 같네요. </p><h3><p>  지역 변수</p></h3><p>아래의 간단한 소스를 살펴 봅시다.     </p><pre class="chroma"><span class="cm">/* 오류 */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int function() {</span><span class="cp">
+</span><span class="cp"></span>  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
   <span class="n">function</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>  컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1145B3014C1E1E1454D7DA' alt='""'><p>와 같은 상콤한 오류를 만나게 됩니다.     </p><p>이러한 오류는 왜 발생하였을 까요? 아마 제 강좌를 열심히 들었던 분들은 이미 다 알고 계시겠지만,,     </p><p>그 이유는 바로 function 함수의 변수 a 와 main 함수의 변수 a 는 다르기 때문 입니다. 이렇게 각 함수의 내부에서 정의된 변수들을 지역 변수 (local variable) 이라고 하는데 이 변수들은 메모리 상의 '스택' 에 저장되어 있습니다. 이에 대한 설명은 나중에 하겠습니다. 아무튼 이러한 지역 변수들은 같은 함수 내에서 선언 된 것 끼리 말고는 서로에 접근할 수 없습니다. 물론 C 에서는 이를 해결하기 위해 포인터라는 훌륭한 것이 있지만 아무튼 다른 함수에 선언된 지역 변수 끼리는 서로의 값에 접근을 할 수 없습니다.     </p><p>또한 이 지역 변수들은 자신이 속한 함수가 종료 될 때 (즉 return 을 수행할 때) 파괴 됩니다. 다시말해 메모리 상에서 사라지게 되는 것입니다. 따라서, main 함수에서 function 을 실행 했다면 처음에 메모리에 3 이란 값을 볼 수 있겠지만 function 이 종료된 직후 메모리 에서는 3 이 사라지게 됩니다. 즉 function 의 지역변수 a 가 사라지게 되는 것이죠.     </p><p>마찬가지로 main 함수의 지역 변수 a 역시 main 함수가 종료하면 파괴 됩니다.     </p><p>지역 변수를 쉽게 비유하자면 '하나의 국가(함수) 에 사는 국민(지역 변수)' 라고 생각하면 됩니다. 즉 같은 국가 내에서는 서로 같은 언어로 자유롭게 대화할 수 있지만 우리가 외국인만 만나면 한없이 작아지는 것 처럼 다른 국가 사람들과는 이야기 하기가 힘들다는 것과 비슷합니다.     </p><p>참고로 배열은 지역 변수 일까요? 맞습니다. 배열은 '지역 변수의 모음' 이라면 보면 적당합니다. 아무튼 배열 역시 지역 변수고 스택에 저장됩니다. </p><h3><p>  전역 변수</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/* 전역 변수 */</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="n">global</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>  컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1145B3014C1E1E1454D7DA' alt='""'><p>와 같은 상콤한 오류를 만나게 됩니다.     </p><p>이러한 오류는 왜 발생하였을 까요? 아마 제 강좌를 열심히 들었던 분들은 이미 다 알고 계시겠지만,,     </p><p>그 이유는 바로 function 함수의 변수 a 와 main 함수의 변수 a 는 다르기 때문 입니다. 이렇게 각 함수의 내부에서 정의된 변수들을 지역 변수 (local variable) 이라고 하는데 이 변수들은 메모리 상의 '스택' 에 저장되어 있습니다. 이에 대한 설명은 나중에 하겠습니다. 아무튼 이러한 지역 변수들은 같은 함수 내에서 선언 된 것 끼리 말고는 서로에 접근할 수 없습니다. 물론 C 에서는 이를 해결하기 위해 포인터라는 훌륭한 것이 있지만 아무튼 다른 함수에 선언된 지역 변수 끼리는 서로의 값에 접근을 할 수 없습니다.     </p><p>또한 이 지역 변수들은 자신이 속한 함수가 종료 될 때 (즉 return 을 수행할 때) 파괴 됩니다. 다시말해 메모리 상에서 사라지게 되는 것입니다. 따라서, main 함수에서 function 을 실행 했다면 처음에 메모리에 3 이란 값을 볼 수 있겠지만 function 이 종료된 직후 메모리 에서는 3 이 사라지게 됩니다. 즉 function 의 지역변수 a 가 사라지게 되는 것이죠.     </p><p>마찬가지로 main 함수의 지역 변수 a 역시 main 함수가 종료하면 파괴 됩니다.     </p><p>지역 변수를 쉽게 비유하자면 '하나의 국가(함수) 에 사는 국민(지역 변수)' 라고 생각하면 됩니다. 즉 같은 국가 내에서는 서로 같은 언어로 자유롭게 대화할 수 있지만 우리가 외국인만 만나면 한없이 작아지는 것 처럼 다른 국가 사람들과는 이야기 하기가 힘들다는 것과 비슷합니다.     </p><p>참고로 배열은 지역 변수 일까요? 맞습니다. 배열은 '지역 변수의 모음' 이라면 보면 적당합니다. 아무튼 배열 역시 지역 변수고 스택에 저장됩니다. </p><h3><p>  전역 변수</p></h3><pre class="chroma"><span class="cm">/* 전역 변수 */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int global = 0;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">global</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -28,11 +21,8 @@
 <span class="p">}</span>
 </pre><p>  성공적으로 컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F12224E0D4C1E20C882FA32' alt='""'><p>이번에는 어느 함수에도 속하지 않는 변수가 등장하였습니다. 이와 같이 함수 '외부' 에 선언되어 있는 변수를 바로 전역 변수(global variable) 이라 합니다. 얘는 정말 이름대로 글로벌 한 녀석인데 아까 지역 변수가 자신이 정의되어 있는 함수 내부에서는 접근할 수 있었더라면 이 변수의 경우 모든 함수에서 접근할 수 있습니다. 마치 몇 개 국어를 자유롭게 구사하는 사람 처럼 말이죠.     </p><p>먼저 main 에서 </p><pre class="chroma"><span class="n">global</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="n">function</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-</pre><p>global 의 값을 10 으로 한 후 function 을 호출했습니다. function 에서는 global 의 값을 1 더하는데 따라서 다시 main 에서 global 의 값을 출력 했을 때 에는 11 이 됩니다.     </p><p>지역 변수의 경우 함수가 종료 될 때 파괴 되었는데, 전역 변수의 경우 프로그램이 시작 할 때 만들어 졌다가 프로그램이 종료 될 때 파괴 됩니다. 전역 변수는 지역 변수와는 달리 메모리의 '데이터(Data)' 영역에 할당 됩니다.     </p><p>한 가지 재미있는 것은 모든 전역 변수들은 정의 시 자동으로 0 으로 초기화 된다는 것입니다.     </p><pre class="chroma"><span class="cm">/* 전역 변수의 초기화 ? */</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="n">global</span><span class="p">;</span>
-<span class="kt">int</span> <span class="nf">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>global 의 값을 10 으로 한 후 function 을 호출했습니다. function 에서는 global 의 값을 1 더하는데 따라서 다시 main 에서 global 의 값을 출력 했을 때 에는 11 이 됩니다.     </p><p>지역 변수의 경우 함수가 종료 될 때 파괴 되었는데, 전역 변수의 경우 프로그램이 시작 할 때 만들어 졌다가 프로그램이 종료 될 때 파괴 됩니다. 전역 변수는 지역 변수와는 달리 메모리의 '데이터(Data)' 영역에 할당 됩니다.     </p><p>한 가지 재미있는 것은 모든 전역 변수들은 정의 시 자동으로 0 으로 초기화 된다는 것입니다.     </p><pre class="chroma"><span class="cm">/* 전역 변수의 초기화 ? */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int global;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">global</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
@@ -41,14 +31,11 @@
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">global</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>  성공적으로 컴파일 했다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1351B40F4C1E22A6662374' alt='""'><p>위와 같이 1 이 출력됨을 알 수 있습니다. 만일 global 이 지역 변수 같았더라면 일단 컴파일 시에 "global 변수가 초기화 되지 않고 사용되었습니다" 라는 경고를 보았을 테고, 설사 실행했다고 해도 맨 위에서 보았던 상콤한 오류 창을 보았을 텐데요. 전역 변수는 모든 함수에서 사용할 수 있는 만큼 신중을 기해야 하기 때문에 컴파일러는 전역 변수의 정의와 동시에 0 으로 초기화 해버립니다.     </p><p>따라서 위와 같이 1 이 출력되었죠.     </p><pre class="chroma"><span class="cm">/* 함수 호출 횟수 세기*/</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="n">How_Many_Times_This_Function_Called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre><p>  성공적으로 컴파일 했다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1351B40F4C1E22A6662374' alt='""'><p>위와 같이 1 이 출력됨을 알 수 있습니다. 만일 global 이 지역 변수 같았더라면 일단 컴파일 시에 "global 변수가 초기화 되지 않고 사용되었습니다" 라는 경고를 보았을 테고, 설사 실행했다고 해도 맨 위에서 보았던 상콤한 오류 창을 보았을 텐데요. 전역 변수는 모든 함수에서 사용할 수 있는 만큼 신중을 기해야 하기 때문에 컴파일러는 전역 변수의 정의와 동시에 0 으로 초기화 해버립니다.     </p><p>따라서 위와 같이 1 이 출력되었죠.     </p><pre class="chroma"><span class="cm">/* 함수 호출 횟수 세기*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int</span><span class="cp">
+</span><span class="cp"></span>    <span class="n">How_Many_Times_This_Function_Called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">int</span> <span class="nf">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">How_Many_Times_This_Function_Called</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">called : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">How_Many_Times_This_Function_Called</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
@@ -58,21 +45,17 @@
   <span class="n">function</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>  성공적으로 컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1602720E4C1E243678DB27' alt='""'><p>위 프로그램에서는 function 이라는 변수가 몇 번 호출 되는지 알려줍니다. How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called 라는 변수는 function 함수를 몇 번 이나 호출했는데 카운트 해줍니다. 만일 How</span>Many<span class='font-italic'>Times</span>This<span class='font-italic'>Function</span>Called 를 function 함수의 지역 변수로 만들었다면 함수 종료 후 파괴 되므로 정보를 보관할 수 없었겠죠.     </p><pre class="chroma"><span class="cm">/* 전역 변수의 문제점 */</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="n">How_Many_Times_This_Function_Called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre><p>  성공적으로 컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1602720E4C1E243678DB27' alt='""'><p>위 프로그램에서는 function 이라는 변수가 몇 번 호출 되는지 알려줍니다. How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called 라는 변수는 function 함수를 몇 번 이나 호출했는데 카운트 해줍니다. 만일 How</span>Many<span class='font-italic'>Times</span>This<span class='font-italic'>Function</span>Called 를 function 함수의 지역 변수로 만들었다면 함수 종료 후 파괴 되므로 정보를 보관할 수 없었겠죠.     </p><pre class="chroma"><span class="cm">/* 전역 변수의 문제점 */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int</span><span class="cp">
+</span><span class="cp"></span>    <span class="n">How_Many_Times_This_Function_Called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">How_Many_Times_This_Function_Called2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="kt">int</span> <span class="nf">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">How_Many_Times_This_Function_Called</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">function called : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">How_Many_Times_This_Function_Called</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">int</span> <span class="nf">function2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">How_Many_Times_This_Function_Called2</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">function 2 called : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">How_Many_Times_This_Function_Called2</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
@@ -87,28 +70,21 @@
   <span class="n">function2</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F16595B1B4C1E24EE998ECD' alt='""'><p>이번에는 또 다른 함수 function2 의 호출 회수도 세는 변수를 지정하였습니다. 전역 변수는 모든 함수에서 접근할 수 있기 때문에 이를 위해 다른 변수 How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called2 를 도입하게 되었습니다. 그렇다면 이렇게 10 개의 함수에 대해 각각 호출 회수를 세기 위해서는 아마도 10 개의 전역 변수가 필요하게 됩니다.     </p><p>이는 심각한 문제가 아닐 수 있습니다. 전역 변수는 모든 함수에서 접근할 수 있기 때문에 전역 변수에 조금 이라도 문제가 생기면 전체 함수에 영향을 미치게 됩니다. 따라서 전역 변수는 매우 조심 스럽게 사용해야 하는데 이렇게 '위험한' 전역 변수를 수십개 선언 하다 보면 필연적으로 문제가 생기게 마련입니다.     </p><pre class="chroma">참고로 대부분의 프로그래머들은 많은 수의 전역 변수를 선언하지 않는 것을
+</pre><p>성공적으로 컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F16595B1B4C1E24EE998ECD' alt='""'><p>이번에는 또 다른 함수 function2 의 호출 회수도 세는 변수를 지정하였습니다. 전역 변수는 모든 함수에서 접근할 수 있기 때문에 이를 위해 다른 변수 How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called2 를 도입하게 되었습니다. 그렇다면 이렇게 10 개의 함수에 대해 각각 호출 회수를 세기 위해서는 아마도 10 개의 전역 변수가 필요하게 됩니다.     </p><p>이는 심각한 문제가 아닐 수 있습니다. 전역 변수는 모든 함수에서 접근할 수 있기 때문에 전역 변수에 조금 이라도 문제가 생기면 전체 함수에 영향을 미치게 됩니다. 따라서 전역 변수는 매우 조심 스럽게 사용해야 하는데 이렇게 '위험한' 전역 변수를 수십개 선언 하다 보면 필연적으로 문제가 생기게 마련입니다.     </p><pre class='warning'>참고로 대부분의 프로그래머들은 많은 수의 전역 변수를 선언하지 않는 것을
     권고합니다.
-</pre><p>아마도 여러분은 이쯤 부터 "그럼, 함수가 종료되어도 값이 변경되지 않는 지역변수 는 없을까?" 라는 생각을 하게 됩니다. 다행이도 있습니다. 물론 지역 변수는 아니지요. 이를 정적 변수 (static variable) 이라 합니다.     </p><h3><p>  정적 변수</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/* 정적 변수의 활용 */</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">static</span> <span class="kt">int</span> <span class="n">How_Many_Times_This_Function_Called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
+</pre><p>아마도 여러분은 이쯤 부터 "그럼, 함수가 종료되어도 값이 변경되지 않는 지역변수 는 없을까?" 라는 생각을 하게 됩니다. 다행이도 있습니다. 물론 지역 변수는 아니지요. 이를 정적 변수 (static variable) 이라 합니다.     </p><h3><p>  정적 변수</p></h3><pre class="chroma"><span class="cm">/* 정적 변수의 활용 */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int function() {</span><span class="cp">
+</span><span class="cp"></span>  <span class="k">static</span> <span class="kt">int</span> <span class="n">How_Many_Times_This_Function_Called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="n">How_Many_Times_This_Function_Called</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">function called : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">How_Many_Times_This_Function_Called</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kt">int</span> <span class="nf">function2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">function2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">static</span> <span class="kt">int</span> <span class="n">How_Many_Times_This_Function_Called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
   <span class="n">How_Many_Times_This_Function_Called</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">function 2 called : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">How_Many_Times_This_Function_Called</span><span class="p">)</span><span class="p">;</span>
-
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">function</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="n">function2</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="n">function</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
@@ -120,109 +96,66 @@
   <span class="n">function2</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>성공적으로 컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F16595B1B4C1E24EE998ECD' alt='""'><p>와 같이 동일하게 작동함을 알 수 있습니다. 정적 변수는 보통 아래와 같이 정의합니다.</p><pre class="chroma">
+</pre><p>성공적으로 컴파일 하였다면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F16595B1B4C1E24EE998ECD' alt='""'><p>와 같이 동일하게 작동함을 알 수 있습니다. 정적 변수는 보통 아래와 같이 정의합니다.</p><pre class='info'>
 static(변수의 타입)(변수의 이름);
 </pre><p>예를 들면</p><pre class="chroma">
 <span class="k">static</span> <span class="k">struct</span> <span class="n">HUMAN</span> <span class="n">adam</span><span class="p">;</span>
 <span class="k">static</span> <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
 </pre><p>와 같이 말이죠. </p><pre class="chroma"><span class="k">static</span> <span class="kt">int</span> <span class="n">How_Many_Times_This_Function_Called</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </pre><p>먼저 function 함수 부터 살펴 봅시다. 위와 같이 정적 변수 How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called 를 정의하였습니다. 이는 지역 변수와 하는 짓이 비슷해서 다른 어떠한 함수에서도 How</span>Many<span class='font-italic'>Times</span>This<span class='font-italic'>Function</span>Called 에 접근할 수 없습니다. 당연하게도 function2 에 정의된 How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called 와 이름은 같지만 메모리 상에 다른 곳에 존재하는 완전히 다른 것입니다.     </p><p>정적 변수의 경우 함수가 처음 실행 될 때 정의 됩니다. 즉, 위 문장을 함수를 실행할 때 매번 적용되서 언제나 How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called 의 값이 0 이 되는 것이 아닙니다.     </p><p>정적 변수의 특징은 앞에서도 말했듯이 함수가 종료 되어도 그 값을 계속 유지하고 있다는 점입니다. 따라서     </p><pre class="chroma"><span class="n">How_Many_Times_This_Function_Called</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
-</pre><p>를 통해 함수의 호출 횟수를 셀 수 있습니다. 그렇다면 main 함수 에서 How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called 의 값을 볼 수 있는 방법이 있을까요? 답은 '없습니다' 입니다. 맨 위의 예제에서 지역 변수 a 값을 참조 할 수 없었던 것 처럼 How</span>Many<span class='font-italic'>Times</span>This<span class='font-italic'>Function</span>Called 는 '함수가 종료 될 때 파괴되지 않는다' 라는 점 빼고는 지역 변수와 하는 짓이 동일합니다.     다만 정적 변수의 경우 전역 변수 처럼 '데이터 영역' 에 저장되고 프로그램이 종료될 때 파괴됩니다. 또한 전역 변수 처럼 정적 변수도 정의시 특별한 값을 지정해 주지 않는 한 0 으로 자동 초기화 됩니다.  </p><h3><p>  데이터 세그먼트의 구조</p></h3><h3><p> </p></h3><p>프로그램이 실행 될 때 프로그램은 RAM 에 적재 됩니다. 다시 말해 프로그램의 모든 내용이 RAM 위로 올라오게 된다는 것이지요. 여기서 '프로그램의 모든 내용' 이라 하면 프로그램의 코드와 프로그램의 데이터를 모두 의미 하는 것입니다. 이렇게 RAM 위로 올라오는 프로그램의 내용을 크게 나누어서 코드 세그먼트(Code Segment) 와 데이터 세그먼트(Data Segment) 로 분류할 수 있습니다.     </p><p>우리가 중점 적으로 살펴볼 것은 데이터 세그먼트입니다. 일단 아래의 그림을 보면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F140309404D2EF2B93B6CF4' alt=''><p>위와 같이 메모리에 배치 되어 있는 것을 알 수 있습니다.     </p><p>일단 가장 먼저 주목할 부분은 Read-Only Data 부분 입니다. 이전에 상수와 리터럴에 대해서 이야기 할 때 등장하였는데 이 부분에 저장되는 데이터들은 값이 절대로 변경될 수 없습니다. 다시 말해 궁극적으로 보호 받는 부분 이죠. 그 다음으로 그 위에 전역 변수와 정적 변수가 거처하는 데이터 영역이 있습니다. 그 위에 바로 힙(Heap) 이라는 영역이 있는데 이 부분에 대해서는 나중에 설명하도록 합시다. 힙 맨 위를 보면 스택(Stack) 이 있습니다. 스택은 지역 변수가 거처하는 곳입니다. 스택의 특징으로는 지역 변수가 늘어나면 크기가 아래로 증가하다가 지역변수가 파괴되면 다시 스택의 크기는 위로 줄어들게 됩니다. 즉, 스택이 늘어나는 방향은 메모리 주소가 낮아지는 방향(아래 방향) 이라 보시면 됩니다.</p><pre class="chroma">
-<span class="cm">/* 메모리의 배치 모습 */</span>
+</pre><p>를 통해 함수의 호출 횟수를 셀 수 있습니다. 그렇다면 main 함수 에서 How<span class='font-italic'>Many</span>Times<span class='font-italic'>This</span>Function<span class='font-italic'>Called 의 값을 볼 수 있는 방법이 있을까요? 답은 '없습니다' 입니다. 맨 위의 예제에서 지역 변수 a 값을 참조 할 수 없었던 것 처럼 How</span>Many<span class='font-italic'>Times</span>This<span class='font-italic'>Function</span>Called 는 '함수가 종료 될 때 파괴되지 않는다' 라는 점 빼고는 지역 변수와 하는 짓이 동일합니다.     다만 정적 변수의 경우 전역 변수 처럼 '데이터 영역' 에 저장되고 프로그램이 종료될 때 파괴됩니다. 또한 전역 변수 처럼 정적 변수도 정의시 특별한 값을 지정해 주지 않는 한 0 으로 자동 초기화 됩니다.  </p><h3><p>  데이터 세그먼트의 구조</p></h3><p>프로그램이 실행 될 때 프로그램은 RAM 에 적재 됩니다. 다시 말해 프로그램의 모든 내용이 RAM 위로 올라오게 된다는 것이지요. 여기서 '프로그램의 모든 내용' 이라 하면 프로그램의 코드와 프로그램의 데이터를 모두 의미 하는 것입니다. 이렇게 RAM 위로 올라오는 프로그램의 내용을 크게 나누어서 코드 세그먼트(Code Segment) 와 데이터 세그먼트(Data Segment) 로 분류할 수 있습니다.     </p><p>우리가 중점 적으로 살펴볼 것은 데이터 세그먼트입니다. 일단 아래의 그림을 보면     </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F140309404D2EF2B93B6CF4' alt=''><p>위와 같이 메모리에 배치 되어 있는 것을 알 수 있습니다.     </p><p>일단 가장 먼저 주목할 부분은 Read-Only Data 부분 입니다. 이전에 상수와 리터럴에 대해서 이야기 할 때 등장하였는데 이 부분에 저장되는 데이터들은 값이 절대로 변경될 수 없습니다. 다시 말해 궁극적으로 보호 받는 부분 이죠. 그 다음으로 그 위에 전역 변수와 정적 변수가 거처하는 데이터 영역이 있습니다. 그 위에 바로 힙(Heap) 이라는 영역이 있는데 이 부분에 대해서는 나중에 설명하도록 합시다. 힙 맨 위를 보면 스택(Stack) 이 있습니다. 스택은 지역 변수가 거처하는 곳입니다. 스택의 특징으로는 지역 변수가 늘어나면 크기가 아래로 증가하다가 지역변수가 파괴되면 다시 스택의 크기는 위로 줄어들게 됩니다. 즉, 스택이 늘어나는 방향은 메모리 주소가 낮아지는 방향(아래 방향) 이라 보시면 됩니다.```cpp</p><p>/<span class='font-italic'> 메모리의 배치 모습 </span>/    #include <stdio.h>    int global = 3;     int main()     {         int i;         char <span class='font-italic'>str="Hello, Baby";         char arr[20]="WHATTHEHECK";         printf("global : %x \n", &global);         printf("i : %x \n", &i);         printf("str : %x \n", str);         printf("arr : %x \n", arr);    }     </p><pre class="chroma">
 
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="n">global</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Hello, Baby</span><span class="s">&#34;</span><span class="p">;</span>
-  <span class="kt">char</span> <span class="n">arr</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">WHATTHEHECK</span><span class="s">&#34;</span><span class="p">;</span>
+성공적으로 컴파일 했다면
 
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">global : %x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">global</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">i : %x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">str : %x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">arr : %x </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-</pre><p>성공적으로 컴파일 했다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F181FA3194C1E30486DBF36' alt='""'><p>각 변수들의 주소값을 살펴 보면서 과연 메모리에 정말로 그렇게 배치 되었는지 살펴 봅시다. 일단 저의 결과는 여러분 컴퓨터의 결과와 당연히 차이가 나게 됩니다. 왜냐하면 프로그램 실행 시 그 프로그램이 RAM 어디에 위치하게 될 지는 아무도 모르기 때문이죠. 하지만 그 주소값들만 비교 해보도록 합시다.</p><p>가장 먼저 Read Only 데이터인 str 을 봅시다. str 에는 “Hello, Baby” 라는 리터럴의 주소값이 들어가 있습니다. 따라서, str 의 값을 출력했다면 Read Only 데이터의 위치를 대략 알 수 있겠지요. 여기서는 0x1175a28 로 나옵니다. 예상 대로 출력된 주소값들 중 가장 작게 나옵니다. 왜냐하면 RO data 는 데이터 세그먼트 맨 아래에 위치해 있기 때문이죠.</p><p>두 번째로 전역 변수인 global 의 주소값을 살펴보면 str 보다는 살짝 크지만 다른 것들 보다는 많이 작다는 것을 알 수 있습니다. 이는 global 이 전역 변수로 데이터 영역에 위치해 있기 때문이죠. 세 번째로 i 를 보자면 지역 변수 이기 때문에 stack 에 존재하고 있습니다. stack 의 경우 지역 변수를 추가할 수록 메모리 주소가 작아지는 방향으로 추가가 되므로 i 보다 나중에 추가 된 arr 의 주소값이 더 작습니다. 이들이 데이터 세그먼트에 배치된 모습을 그림으로 그려 본다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F114F551E4C1E3404A1F0AD' alt=''><p>와 같이 됨을 알 수 있습니다. 어때요? 간단 하지요? </p><p>생각해보기</p><p>1) CPU 의 레지스터에 대해 알아보자. EAX, EBX 는 무엇인가? 또한 CS, DS 에 대해 알아보고 ESP, EBP 에 대해 알아본다. </p><p>http://d3s.mff.cuni.cz/~ceres/sch/osy/text/ch03s02s02.phphttp://www.drpaulcarter.com/pcasm/</p><p>특히 위의 두번째 링크에 들어가 PC Assembly Language 한국어 판을 읽어보기를 추천합니다. ㅎ</p><p>2) 스택에 대한 폭넓은 이해를 위해 아래 글을 보는 것을 추천합니다. (동적 할당 부분 전까지만)http://blog.naver.com/speciallive?Redirect=Log&logNo=98372211</p><pre class="chroma">강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기
-            바랍니다
-                .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
-                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
 
-        현재 여러분이 보신 강좌는
-        &lt;&lt; 씹어먹는 C 언어 - &lt;17. 변수의 생존 조건 및 데이터 세그먼트의 구조&gt;&gt;&gt;
-    입니다.이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어
-        보시기 전까지 다음 강좌로 넘어가지 말아주세요
+![&#34;&#34;](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F181FA3194C1E30486DBF36)
 
-            다음 강좌 보러가기
-</pre><p>공감1sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>(13)2010.07.20씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >(24)2010.07.16씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>(14)2010.06.19씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>(20)2010.06.13씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>(41)2010.04.11씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>(26)2010.02.14</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+
+
+각 변수들의 주소값을 살펴 보면서 과연 메모리에 정말로 그렇게 배치 되었는지 살펴 봅시다. 일단 저의 결과는 여러분 컴퓨터의 결과와 당연히 차이가 나게 됩니다. 왜냐하면 프로그램 실행 시 그 프로그램이 RAM 어디에 위치하게 될 지는 아무도 모르기 때문이죠. 하지만 그 주소값들만 비교 해보도록 합시다.
+
+
+가장 먼저 Read Only 데이터인 str 을 봅시다. str 에는 “Hello, Baby” 라는 리터럴의 주소값이 들어가 있습니다. 따라서, str 의 값을 출력했다면 Read Only 데이터의 위치를 대략 알 수 있겠지요. 여기서는 0x1175a28 로 나옵니다. 예상 대로 출력된 주소값들 중 가장 작게 나옵니다. 왜냐하면 RO data 는 데이터 세그먼트 맨 아래에 위치해 있기 때문이죠.
+
+
+
+두 번째로 전역 변수인 global 의 주소값을 살펴보면 str 보다는 살짝 크지만 다른 것들 보다는 많이 작다는 것을 알 수 있습니다. 이는 global 이 전역 변수로 데이터 영역에 위치해 있기 때문이죠. 세 번째로 i 를 보자면 지역 변수 이기 때문에 stack 에 존재하고 있습니다. stack 의 경우 지역 변수를 추가할 수록 메모리 주소가 작아지는 방향으로 추가가 되므로 i 보다 나중에 추가 된 arr 의 주소값이 더 작습니다. 이들이 데이터 세그먼트에 배치된 모습을 그림으로 그려 본다면
+
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F114F551E4C1E3404A1F0AD)
+
+
+
+
+와 같이 됨을 알 수 있습니다. 어때요? 간단 하지요? 
+
+
+생각해보기
+
+1) CPU 의 레지스터에 대해 알아보자. EAX, EBX 는 무엇인가? 또한 CS, DS 에 대해 알아보고 ESP, EBP 에 대해 알아본다. 
+
+http://d3s.mff.cuni.cz/~ceres/sch/osy/text/ch03s02s02.php
+http://www.drpaulcarter.com/pcasm/
+
+특히 위의 두번째 링크에 들어가 PC Assembly Language 한국어 판을 읽어보기를 추천합니다. ㅎ
+
+
+2) 스택에 대한 폭넓은 이해를 위해 아래 글을 보는 것을 추천합니다. (동적 할당 부분 전까지만)
+http://blog.naver.com/speciallive?Redirect=Log&amp;logNo=98372211
+</pre><p>warning</p><p>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기</p><p>```
+
+
+
+
+
+공감1sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>(13)
+2010.07.20씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >(24)
+2010.07.16씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>(14)
+2010.06.19씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>(20)
+2010.06.13씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>(41)
+2010.04.11씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>(26)
+2010.02.14
+</p>

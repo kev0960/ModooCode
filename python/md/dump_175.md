@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - STL 컨테이너 - vector
+--------------
+
 
 
 ```warning
@@ -11,6 +15,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 vector
 
+
+
+
 벡터(vector) 는 헤더파일 <vector> 에 정의되어 있는 는 순차 컨테이너의 한 종류로, 각각의 원소들이 선형으로 배열되어 있다.
 
   벡터 컨테이너는 동적 배열로 구현되는데, 보통의 배열 처럼 벡터 컨테이너들도 각각의 원소들이 메모리 상에서 연속적으로 존재하게 된다. 이 때문에 벡터 컨테이너의 원소를 참조할 때 반복자(iterator) 을 이용해서 순차적으로 참조할 수 있고, 처음 원소의 부터의 상대적인 거리를 이용하여 접근할 수 도 있다. 
@@ -19,7 +26,19 @@ vector
 
   벡터 컨테이너는 아래와 같은 장점을 가지고 있다. 
 
-*  각각의 원소를 원소의 인덱스(index) 값으로 바로 참조 가능하다 (상수 시간이 소요) 원소들을 임의의 순서로 접근할 수 있다. (선형 시간 소요) 벡터 끝에 새로운 원소를 추가하거나 제거하기 (상수 시간 소요 - constant amortized time[각주:1])
+
+*  각각의 원소를 원소의 인덱스(index) 값으로 바로 참조 가능하다 (상수 시간이 소요)
+
+*  원소들을 임의의 순서로 접근할 수 있다. (선형 시간 소요)
+
+*  벡터 끝에 새로운 원소를 추가하거나 제거하기 (상수 시간 소요 - constant amortized time
+[각주:
+1
+]
+)
+
+
+
 
 
 
@@ -38,49 +57,162 @@ template < class T, class Allocator = allocator<T> > class vector;
 
 
   이 때 각각의 템플릿 인자는 다음을 의미한다.
-* T : (보관하려는) 원소의 타입Allocator : 어떠한 방식으로 메모리를 할당할지에 관련한 할당자(allocator) 타입을 나타낸다. 기본값으로 T 의 할당자 클래스 템플릿을 사용하며, Heap 에 할당하게 된다. 많은 경우 인자를 생략한다. 
 
- 벡터의 멤버 함수
+* T : (보관하려는) 원소의 타입
 
-* 생성자 : 벡터를 생성한다.소멸자 : 벡터를 소멸한다. operator= : 벡터의 내용을 복사한다. 
+* Allocator : 어떠한 방식으로 메모리를 할당할지에 관련한 할당자(allocator) 타입을 나타낸다. 기본값으로 T 의 할당자 클래스 템플릿을 사용하며, Heap 에 할당하게 된다. 많은 경우 인자를 생략한다. 
+
+
+
+
+
+###  벡터의 멤버 함수
+
+
+
+* 생성자
+ : 벡터를 생성한다.
+
+* 소멸자 : 벡터를 소멸한다. 
+
+* operator= : 벡터의 내용을 복사한다. 
+
+
+
 
 반복자 (Iterators)
 
+
 * begin : 시작 부분 (벡터의 첫번째 원소) 을 가리키는 반복자를 리턴한다. 
-end : 끝 부분 (벡터의 마지막 원소 바로 다음) 을 가리키는 반복자를 리턴한다. rbegin : 역순으로 첫번째 (즉, 벡터의 마지막 원소) 를 가리키는 반복자를 리턴한다. rend : 역순으로 끝 부분 (즉, 벡터의 첫번째 원소 바로 이전) 을 가리키는 반복자를 리턴한다. 
+
+
+
+* end : 끝 부분 (벡터의 마지막 원소 바로 다음) 을 가리키는 반복자를 리턴한다. 
+
+* rbegin : 역순으로 첫번째 (즉, 벡터의 마지막 원소) 를 가리키는 반복자를 리턴한다. 
+
+* rend : 역순으로 끝 부분 (즉, 벡터의 첫번째 원소 바로 이전) 을 가리키는 반복자를 리턴한다. 
+
+
+
 
 할당 관련
 
-* size : 벡터의 size 를 리턴한다 (현재 원소의 개수)max_size : 벡터 최대 크기를 리턴한다.resize : 벡터가 size 개의 원소를 포함하도록 변경한다.capacity : 벡터에 할당된 전체 크기를 리턴한다. empty : 벡터가 비었는지 체크한다. reserve : 벡터에 할당된 크기를 변경한다.
+
+* size : 벡터의 size 를 리턴한다 (현재 원소의 개수)
+
+* max_size : 벡터 최대 크기를 리턴한다.
+
+* resize : 벡터가 size 개의 원소를 포함하도록 변경한다.
+
+* capacity : 벡터에 할당된 전체 크기를 리턴한다. 
+
+* empty : 벡터가 비었는지 체크한다. 
+
+* reserve : 벡터에 할당된 크기를 변경한다.
+
+
+
 
 원소 접근 관련
 
-* operator[] : 원소에 접근한다.at : 원소에 접근한다. front : 첫번째 원소에 접근한다.back : 마지막 원소에 접근한다. 
+
+* operator[] : 원소에 접근한다.
+
+* at : 원소에 접근한다. 
+
+* front : 첫번째 원소에 접근한다.
+
+* back : 마지막 원소에 접근한다. 
+
+
+
 
 수정자 (Modifier)
 
-* assign : 벡터의 원소를 집어넣는다. push_back : 벡터 끝에 원소를 집어 넣는다.pop_back : 마지막 원소를 제거한다. insert : 벡터 중간에 원소를 추가한다. erase : 원소를 제거한다.swap : 다른 벡터와 원소를 바꿔치기 한다. 
-clear : 원소를 모두 제거한다. 
+
+* assign
+ : 벡터의 원소를 집어넣는다. 
+
+* push_back
+ : 벡터 끝에 원소를 집어 넣는다.
+
+* pop_back : 마지막 원소를 제거한다. 
+
+* insert
+ : 벡터 중간에 원소를 추가한다. 
+
+* erase : 원소를 제거한다.
+
+* swap : 다른 벡터와 원소를 바꿔치기 한다. 
+
+
+
+* clear : 원소를 모두 제거한다. 
+
+
+
 
 할당자
+
 
 * get_allocator : 할당자(allocator) 을 얻는다.
 
 
- 멤버 변수들
 
-* reference : Allocator::reference* const_reference :  Allocator::const_reference* iterator :  임의 접근 반복자(random access iterator)
+
+
+###  멤버 변수들
+
+
+
+
+
+* reference : Allocator::reference
+
+
+* const_reference :  Allocator::const_reference
+
+
+* iterator :  임의 접근 반복자(random access iterator)
+
+
 
 * const_iterator : 상수 임의 접근 반복자 (즉, 접근하는 원소의 내용을 수정 못함)
 
+
+
 * size_type : 벡터 size 를 나타내는 타입 (많은 경우 size_t 와 타입이 같으며 부호없는 정수이다)
+
+
 
 * difference_type : 벡터 내의 두 원소 사이의 거리를 나타내는 타입 (많은 경우 ptfdiff_t 와 타입이 같으며 부호있는 정수) 
 
 
-* value_type : 원소 타입 (T)allocator_type : 할당자pointer : 포인터 (Allocator::pointer)const_pointer : 상수 포인터 (Allocator::const_pointer)reverse_iterator :  역 반복자 (끝에서 부터 참조해나간다) reverse_iterator<iterator>const_reverse_iterator :  상수 역 반복자 (reverse_iterator<const_iterator>)
 
- 템플릿 특수화 (template specialization)
+
+
+* value_type : 원소 타입 (T)
+
+* allocator_type : 할당자
+
+* pointer : 포인터 (Allocator::pointer)
+
+* const_pointer : 상수 포인터 (Allocator::const_pointer)
+
+* reverse_iterator :  역 반복자 (끝에서 부터 참조해나간다) reverse_iterator<iterator>
+
+* const_reverse_iterator :  상수 역 반복자 (reverse_iterator<const_iterator>)
+
+
+
+
+
+
+###  템플릿 특수화 (template specialization)
+
+
+
 
 
   벡터 템플릿 클래스는 특별히 bool 타입에 대한 템플릿 특수화(specialization)를 가지고 있다.
@@ -89,23 +221,25 @@ clear : 원소를 모두 제거한다.
 
 
 ```cpp
-class vector<bool>::reference {
-  friend class vector;
-  reference();                                 // public 생성자가 아니다
-public:
-  ~reference();
-  operator bool () const;                      // bool 로 캐스팅 한다. 
-  reference& operator= ( const bool x );       // bool 을 대입
-  reference& operator= ( const reference& x );  // 비트로 대입
-  void flip();                                 // 비트값 반전 (0 -> 1, 1 -> 0)
-}
+class vector<bool>::reference {  friend class vector;  reference();                                 // public 생성자가 아니다public:  ~reference();  operator bool () const;                      // bool 로 캐스팅 한다.   reference& operator= ( const bool x );       // bool 을 대입  reference& operator= ( const reference& x );  // 비트로 대입  void flip();                                 // 비트값 반전 (0 -> 1, 1 -> 0)}
 ```
 
 
    이와 비슷한 컨테이너로 bitset 이 있다.
 
 
-1. 동적 배열 끝에 새로운 원소를 추가하는 경우를 생각해보자. 만일 이미 공간 자체가 할당되어 있으면 새로운 원소를 추가하는 일은 O(1) 일 것이다. 하지만, 공간이 할당되어 있지 않다면, 보통 2 배의 공간으로 다시 할당하게 되는데 이 때 시간이 O(n) 정도 들어가게 된다. 따라서 전체 평균적으로 볼 때 O(1) 정도의 상수 시간이 걸린다고 볼 수 있고 이러한 형태의 소요 시간을 constant amortized time 이라고 부른다.  [본문으로]공감sns신고저작자표시'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)
+
+
+1. 동적 배열 끝에 새로운 원소를 추가하는 경우를 생각해보자. 만일 이미 공간 자체가 할당되어 있으면 새로운 원소를 추가하는 일은 O(1) 일 것이다. 하지만, 공간이 할당되어 있지 않다면, 보통 2 배의 공간으로 다시 할당하게 되는데 이 때 시간이 O(n) 정도 들어가게 된다. 따라서 전체 평균적으로 볼 때 O(1) 정도의 상수 시간이 걸린다고 볼 수 있고 이러한 형태의 소요 시간을 constant amortized time 이라고 부른다.  
+[본문으로]
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)
 2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)
 2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)
 2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)

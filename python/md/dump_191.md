@@ -1,3 +1,8 @@
+----------------
+title : C++ 레퍼런스 - istream::get 함수
+--------------
+
+
 
 
 
@@ -19,6 +24,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 
 istream::get
+
+
+
 
 
 
@@ -67,74 +75,39 @@ istream& get (streambuf& sb, char delim );
 
 
 
- 인자
 
 
+###  인자
 
 
 c
-
-
 추출한 문자를 저장할 char 변수
-
-
 s
-
-
 추출한 문자열을 C 형식 문자열로 저장하기 위한 포인터
-
-
 n
-
-
 입력 받을 최대 문자의 수 (널 종료 문자열을 포함해서) 이는 또한 streamsize 타입의 정수값이다. 
-
-
 delim
-
-
 제한 문자. 이 문자를 읽어들이기게 되면 입력 작업이 종료된다. 만일 이 문자를 사용자가 지정하지 않았다면 디폴트로 '\n' 이 설정된다. 
-
-
 sb
-
-
 출력 스트림 버퍼 (streambuf 의 객체 혹은 이 스트림을 상속하고 있는 클래스들의 객체)
 
 
+###  리턴값
 
-
- 리턴값
 
 
 
 맨 첫 번째 오버로딩의 경우 이 함수는 읽어들인 문자의 수를 리턴한다. 나머지 것들의 경우 *this 를 리턴한다. 
-
-
 스트림 상의 오류는 다음과 같은 내부 상태 플래그들로 설정된다. 
-
-
-
-
-플래그
-오류
-eofbit
-작업 중 문자들의 끝에 도달하였을 때
-failbit
-끝에 바로 도달해버려서 어떠한 문자도 추출해 낼 수 없을 경우. (streambuf 를 사용하는 경우 sb 에 문자 출력 불가시에도 설정될 수 있다) 또한 eofbit 이 설정되는 경우 failbit 또한 같이 설정될 수 있다
-
-badbit
-위 같은 일들 외의 다른 오류가 발생시
-
-
+플래그오류eofbit작업 중 문자들의 끝에 도달하였을 때failbit끝에 바로 도달해버려서 어떠한 문자도 추출해 낼 수 없을 경우. (streambuf 를 사용하는 경우 sb 에 문자 출력 불가시에도 설정될 수 있다) 또한 eofbit 이 설정되는 경우 failbit 또한 같이 설정될 수 있다
+badbit위 같은 일들 외의 다른 오류가 발생시
 
 
 위와 같은 플래그들이 ios::exceptions함수로 설정되었다면, ios_base::failure 가 throw 된다. 
 
 
+###  실행 예제
 
-
- 실행 예제
 
 
 
@@ -142,29 +115,23 @@ badbit
 
 /*
 
-
 이 예제는
 http://www.cplusplus.com/reference/iostream/istream/get/
 에서 가져왔습니다.
-
 
 */
 #include <iostream>
 #include <fstream>
 using namespace std;
 
-
 int main () {
 char c, str[256];
 ifstream is;
 
-
 cout << "Enter the name of an existing text file: ";
 cin.get (str,256);
 
-
 is.open (str);        // open file
-
 
 while (is.good())     // loop while extraction from file is possible
 {
@@ -173,9 +140,7 @@ if (is.good())
 cout << c;
 }
 
-
 is.close();           // close file
-
 
 return 0;
 }
@@ -195,13 +160,15 @@ return 0;
 
 
 
- 템플릿 멤버 정의
+
+###  템플릿 멤버 정의
+
+
 
 
 ```cpp
 
 ( basic_istream<charT,traits> )
-
 
 typedef charT char_type;
 int_type get();
@@ -216,12 +183,24 @@ basic_istream& get (basic_streambuf<char_type,traits>& sb, char_type delim );
 
 
 
- 연관된 함수
+
+
+###  연관된 함수
+
+
+* istream::getline
+ : 스트림에서 한 줄을 입력받는다. 
+* istream::ignore
+ : 문자를 스트림에서 입력받고 버린다. 
+* istream::gcount
+ : 마지막 서식화되지 않는 입력 작업에서 입력 받은 문자의 수를 얻는다. 
 
 
 
-* istream::getline : 스트림에서 한 줄을 입력받는다. istream::ignore : 문자를 스트림에서 입력받고 버린다. istream::gcount : 마지막 서식화되지 않는 입력 작업에서 입력 받은 문자의 수를 얻는다. 
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::ignore 함수(1)
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::ignore 함수(1)
 2012.11.07C++ 레퍼런스 - istream::gcount 함수(0)
 2012.11.07C++ 레퍼런스 - istream::get 함수(0)
 2012.11.07C++ 레퍼런스 - ios::tie 함수(0)

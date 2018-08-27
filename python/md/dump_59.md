@@ -1,10 +1,14 @@
+----------------
+title : C 언어 레퍼런스 - freopen 함수
+--------------
 
 
 freopen
-```info
-#include <stdio.h> // C++ 에서는 <cstdio>
 
-FILE * freopen ( const char * filename, const char * mode, FILE * stream );
+
+
+```info
+#include <stdio.h> // C++ 에서는 <cstdio>FILE * freopen ( const char * filename, const char * mode, FILE * stream );
 ```
 
 
@@ -12,8 +16,13 @@ FILE * freopen ( const char * filename, const char * mode, FILE * stream );
 freopen 함수는 먼저 세번째 인자로 전달된 스트림에 해당하는 파일을 닫아버립니다(close). 그 후, 그 파일이 성공적으로 닫혔든 안닫혔든 간에, freopen 함수는 첫번째 인자로 전달된 파일 이름에 해당하는 파일을 두번째 인자로 전달된 방식(mode)에 맞게 엽니다. 
 이 함수는 특히 이미 정의된 스트림들, 예를 들면 표준 입력(stdin) 이나 표준 출력(stdout), 표준 오류(stderr) 와 같은 스트림들을 특정한 파일에 해당하는 스트림으로 변경할 수 있습니다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 filename
 
 열을 파일의 이름을 포함하는 C 문자열. 특히, freopen 함수가 실행되는 환경에 따라 파일에 경로에 대한 정보도 포함할 수 있다. 
@@ -54,75 +63,77 @@ stream
 
 작업을 수행할 스트림의 FILE 객체에 대한 포인터
 
+
+
 ###  리턴값
-### 
+
+
+
+
 만일 파일이 성공적으로 열렸다면 이 함수는 세번째 인자로 전달되었던 스트림 포인터를 리턴하게 된다.
 그렇지 않을 겨우 널 포인터가 리턴된다. 
 
-###  실행 예제### 
+
+
+###  실행 예제
+
 
 ```cpp
-/* 
-
-a.txt 를 쓰기 형식으로 열어서 Hello, Psi 를 쓴 뒤, 다시 읽기 형식으로 열어서 그 내용을 읽어 출력한다. 
-
-*/
-#include <stdio.h>
-int main()
-{
-    FILE *fp;
-    char str[100];
-
-    fp = fopen("C:\\a.txt", "w");
-    fputs("Hello, Psi!!", fp);
-
-    fp = freopen("C:\\a.txt", "r", fp);
-    fgets(str, 99, fp);
-
-    printf("%s", str);
-    return 0;
-}
+/* a.txt 를 쓰기 형식으로 열어서 Hello, Psi 를 쓴 뒤, 다시 읽기 형식으로 열어서 그 내용을 읽어 출력한다. */#include <stdio.h>int main(){    FILE *fp;    char str[100];    fp = fopen("C:\\a.txt", "w");    fputs("Hello, Psi!!", fp);    fp = freopen("C:\\a.txt", "r", fp);    fgets(str, 99, fp);    printf("%s", str);    return 0;}
 ```
 
 
 실행 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F171C77104B76B24B4F80E7)
 
 
 ```cpp
-/* 
-
-표준 출력(stdout) 을 myfile.txt 의 스트림으로 변경한다. 
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/freopen/
-에서 가져왔습니다. 
-
- */
-#include <stdio.h>
-int main ()
-{
-    freopen ("myfile.txt","w",stdout);
-    printf ("This sentence is redirected to a file.");
-    fclose (stdout);
-    return 0;
-}
-
+/* 표준 출력(stdout) 을 myfile.txt 의 스트림으로 변경한다. 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/freopen/에서 가져왔습니다.  */#include <stdio.h>int main (){    freopen ("myfile.txt","w",stdout);    printf ("This sentence is redirected to a file.");    fclose (stdout);    return 0;}
 ```
 
 실행 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F13251E104B76B24CB820E6)
 
 파일에 쓰여진 모습
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F120B55104B76B24DB79354)
 
 
 
-###  연관된 함수### 
 
-* fopen  :  파일을 연다fclose :  파일을 닫는다.
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - setvbuf 함수(0)
+
+###  연관된 함수
+
+
+
+
+
+* 
+
+fopen
+  :  파일을 연다
+
+
+* 
+
+fclose
+ :  파일을 닫는다.
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - setvbuf 함수(0)
 2010.02.18C 언어 레퍼런스 - setbuf 함수(0)
 2010.02.16C 언어 레퍼런스 - freopen 함수(0)
 2010.02.13C 언어 레퍼런스 - fopen 함수(0)

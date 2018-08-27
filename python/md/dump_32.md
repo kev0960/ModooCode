@@ -1,7 +1,18 @@
+----------------
+title : 씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>
+--------------
 
 
 이번 강좌에서는
-* 버퍼(stdin)에 대한 이해고질적인 scanf 문제에 대한 해결 및 이해
+
+* 버퍼(stdin)에 대한 이해
+
+* 고질적인 scanf 문제에 대한 해결 및 이해
+
+
+
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F2027C6204B5C6D664A0126)
 
 
@@ -9,35 +20,22 @@
 
 ```cpp
 /* 이상한 scanf */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int num;
-
     char c;
-
-
     printf("숫자를 입력하세요 : ");
-
     scanf("%d", &num);
-
-
     printf("문자를 입력하세요 : ");
-
     scanf("%c", &c);
-
     return 0;
-
 } 
-
 ```
 
 
   성공적으로 컴파일 하였다면 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F140352134B5440620BC727)
 
@@ -47,12 +45,8 @@ int main()
 ```cpp
 
     printf("숫자를 입력하세요 : ");
-
     scanf("%d", &num);
-
-
     printf("문자를 입력하세요 : ");
-
     scanf("%c", &c);
 ```
 
@@ -77,6 +71,7 @@ int main()
 
   다시말해 컴퓨터는 개행 문자, 즉 \n[각주:1] 을 '입력을 종료하였으니 버퍼에 들어 있는 내용을 가지고 놀아라' 라는 뜻으로 받아 들입니다. 그런데, 말이죠. 컴퓨터는 공교롭게도 \n 까지 버퍼에 저장하게 됩니다. 즉, 우리가 1 을 쓰고 엔터를 딱 치면 버퍼에 다음과 같은 모습으로 들어간다는 말이죠. 
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F130AA41A4B59433D75F8F5)
 
 
@@ -91,6 +86,7 @@ int main()
 
 
   참고적으로 %d 계열의 것들, 즉 수를 입력받는 형식은 수가 아닌 데이터가 와도 입력을 종료해 버립니다. 즉, a 를 입력했다면 num 에는 아무런 값이 들어가지 않아 치명적인 결과를 야기할 수 있습니다. 뿐만 아니라 수 데이터를 입력받는 형식의 경우 처음 부터 공백문자가 나타나면 수가 나타날 때 까지 입력을 계속 받게 됩니다. (다시 말해, 수를 입력 받는데 엔터를 아무리 쳐도 숫자를 치기 전까지 넘어가지 않는다) 암튼 scanf 함수는 공백 문자(' ', '\n', '\t') 를 만나기 전까지 stdin 에서 데이터를 가져간 후 버퍼에서 삭제해 버립니다. 다시말해, 위 scanf 함수가 num 에 1 을 저장한 후 버퍼의 모습은 아래와 같습니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F18672D274B594AE6470168)
 
@@ -109,34 +105,21 @@ int main()
 
 ```cpp
 /* 그렇다면 %s 는 ? */
-
 #include <stdio.h>
-
 int main()
-
 {
-
-
     char str[30];
-
     int i;
-
-
     scanf("%d", &i);
-
     scanf("%s", str);
-
-
     printf("str : %s", str);
-
-
     return 0;
-
 } 
 ```
 
 
   성공적으로 컴파일 한다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F145FB9234B59DDEE44C052)
 
@@ -153,7 +136,6 @@ int main()
 ```cpp
 
       scanf("%s", str);
-
 ```
 
 
@@ -164,37 +146,23 @@ int main()
 
 ```cpp
 /* 마지막 stdin 예제 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     char str1[10], str2[10];
-
-
     printf("문자열을 입력하세요 : ");
-
     scanf("%s", str1);
-
     printf("입력한 문자열 : %s \n", str1);
-
-
     printf("문자열을 입력하세요 : ");
-
     scanf("%s", str2);
-
     printf("입력한 문자열 : %s \n", str2);
-
-
     return 0;
-
 } 
 ```
 
 
   성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F195676114B543EF05F68A3)
 
@@ -204,10 +172,12 @@ int main()
 
   그렇다면 다음과 같이 입력 해보도록 하겠습니다.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1432D61B4B59E220047477)
 
 
   헉.. 이번에는 우리의 두번째 scanf 를 완전히 무시하고 지나갔습니다. 하지만 똑똑한 여러분이라면 왜 두번째 scanf 에서 사용자로 부터 입력을 받지 않았고, str1 에는 hello, str2 에는 baby 가 제대로 들어갔는지도 알 수 있을 것입니다. 우리가 "hello baby" 를 입력하였을 때 stdin 의 상태를 살펴봅시다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F127C1E1D4B59E46F05B6EA)
 
@@ -224,6 +194,7 @@ int main()
 
   첫번째 scanf 함수를 지나게 되면 stdin 의 모습은 아래와 같습니다.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F207CC11D4B59E5270372BB)
   이제 두번째 scanf 를 지나갈 차례입니다. 
 
@@ -234,63 +205,46 @@ int main()
 
   scanf 함수는 stdin 에 아무 것도 없거나, 공백 문자들 밖에 없다면 사용자가 무언가 의미 있는 문자를 입력해줄 때 까지 기다리겠지만 위 경우는 상황이 다릅니다. 일단, 처음에 공백 문자인 띄어쓰기는 살포시 무시합니다. 왜냐하면 아직 의미 있는 문자를 받지 않았기 때문이죠. 그 다음에 b 를 보고 str2 에 입력을 쭉 받기 시작합니다. 그러다가 마지막에 공백 문자인 \n 을 보고 입력을 중지합니다. 따라서 메모리에는 다음과 같이 \n 만이 덩그러니 남아있게 됩니다. 
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F163DC31C4B59E62A0DE398)
 
 
   아무튼. scanf 는 상당히 이해하기 복잡한 것임은 틀림이 없습니다. 가뜩이나 머리 아픈데 %c 를 이용하면 고려해야 될 것이 더욱 많아지니 정말 짜증이 나는 것 같습니다. 하지만 다행스럽게도 이러한 문제를 해결할 수 있는 방법이 있을 뿐더러 실질 적으로 %c 는 많이 쓰이지 않으니 다행인 것 같습니다. 
 
+
+
 ###  도대체 이 문제를 어떻게 해결하냐
-### 
+
+
+
+
 
   하지만, 아무리 %c 를 사용하지 않는다고 해도 필연적으로 사용할 일이 생기게 됩니다. 그렇다면 그 때 마다 이처럼 버퍼에 \n 이 남아 있는 것을 고려해야 할까요? 정말 번거로운 일이 아닐 수 없습니다. 하지만 걱정 마십시오. 이를 해결할 수 있는 방법이 여러 가지가 있습니다. 
 
 ```cpp
 /* 
-
-
 버퍼 비우기 
-
-
 주의하실 점은 반드시 MS 계열의 컴파일러로 컴파일 해주세요. 즉, Visual Studio 계열의 컴파일러로 말이죠.
-
 이 말이 무슨 말인지 모르면 그냥 늘 하던대로 하면 됩니다.
-
-
 gcc 에서는 정상적으로 작동되지 않는 위험한 코드 입니다.
-
-
 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int num;
-
     char c;
-
-
     printf("숫자를 입력하세요 : ");
-
     scanf("%d", &num);
-
-
     fflush(stdin);
-
-
     printf("문자를 입력하세요 : ");
-
     scanf("%c", &c);
-
     return 0;
-
 } 
 ```
 
 
   성공적으로 컴파일 했다면 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F1130C20E4B5B07C295272E)
 
@@ -299,7 +253,6 @@ int main()
 
 ```cpp
     printf("숫자를 입력하세요 : ");
-
     scanf("%d", &num);
 ```
 
@@ -323,34 +276,18 @@ int main()
 
 ```cpp
 /* getchar 함수 이용 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int num;
-
-    char c;
-
-    printf("숫자를 입력하세요 : ");
-
-    scanf("%d", &num);
-
-    getchar();
-
-    printf("문자를 입력하세요 : ");
-
-    scanf("%c", &c);
-
-    return 0;
-
+    char c;    printf("숫자를 입력하세요 : ");
+    scanf("%d", &num);    getchar();    printf("문자를 입력하세요 : ");
+    scanf("%c", &c);    return 0;
 } 
-
 ```
 
   성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F135951184B5C64FD8C3628)
 
@@ -359,7 +296,6 @@ int main()
 
 ```cpp
     printf("숫자를 입력하세요 : ");
-
     scanf("%d", &num);
 ```
 
@@ -375,9 +311,7 @@ int main()
 
 ```cpp
   ch = getchar();
-
   prinf("%c", ch);
-
 ```
 
  을 해서 getchar 함수가 리턴한 값을 출력해보았다면 화면상에 한 칸 엔터(== \n)가 쳐진 것이 출력될 것입니다. (여러분이 한 번 해보세요~) 이제, 버퍼가 비워진 상태에서 scanf 함수를 호출하게 되면 성공적으로 사용자의 입력을 받게 되는 것입니다. 상당히 단순하지요? 
@@ -386,36 +320,19 @@ int main()
 
 ```cpp
 /* c 에 무엇이 들어가는지 살짝 보아야 하므로 코드를 약간 수정했습니다 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int num,i;
-
-    char c;
-
-    printf("숫자를 입력하세요 : ");
-
-    scanf("%d", &num);
-
-    getchar();
-
-    printf("문자를 입력하세요 : ");
-
-    scanf("%c", &c);
-
-    printf("입력한 문자 : %c", c);
-
+    char c;    printf("숫자를 입력하세요 : ");
+    scanf("%d", &num);    getchar();    printf("문자를 입력하세요 : ");
+    scanf("%c", &c);    printf("입력한 문자 : %c", c);
     return 0;
-
 } 
-
 ```
 
   성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1841A9184B5C684CBB6CE9)
 
@@ -424,16 +341,17 @@ int main()
 
 ```cpp
     printf("숫자를 입력하세요 : ");
-
     scanf("%d", &num);
 ```
 
   일단 위 코드가 실행되어서 사용자로 부터 입력을 기다립니다. 사악한 Psi 는 123abc 를 쳤습니다. 그렇다면 버퍼에 다음과 같이 들어가겠지요.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1416F5184B5C68F604F2AF)
 
 
   이제, scanf 함수가 stdin 에서 차례 차례 데이타를 읽어옵니다. 그 때도 말했들이 데이타를 읽어올 때 공백문자(' ' 나 '\n' 이나 '\t') 나 숫자가 아닌 것들을 만나게 되면 stdin 에서 부터 그만 읽어온다고 했죠? 이 때 a 가 숫자가 아니기 때문에 123 까지 읽은 후 stdin 에서 부터 그만 읽어 옵니다. 따라서 stdin 은 다음과 같은 모습이 되겠군요.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F196982264B5C697793720F)
 그렇다면 아래의 문장이 실행됩니다. 
@@ -444,14 +362,14 @@ int main()
 
 이는 이전의 문제점을 말끔히 해결해 주었죠. stdin 으로 부터 한 문자를 얻어오는 방법으로 말이지요. 여기서도 getchar 은 똑같은 역할을 수행합니다. 즉 stdin 으로 부터 한 문자, 위 경우 a 를 읽어옵니다. 
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F116E46254B5C69DB816B7D)
 
 
   아 이런. 버퍼가 깔끔하게 비워지지 않았습니다. 이러한 우려 속에서 아래의 코드가 실행됩니다.
 
 ```cpp
-    printf("문자를 입력하세요 : ");
-    scanf("%c", &c);
+    printf("문자를 입력하세요 : ");    scanf("%c", &c);
 ```
 
   음.. scanf 의 입장에서 버퍼에 읽어올 것들이 잔뜩 있으니 행복할 것 같습니다. 버퍼에서 한 문자를 읽어 옵니다. 그것이 바로 b 가 됩니다. 따라서 c 에는 우리가 원하지 않던 b 가 들어가게 됩니다. 그리고 물론 b 는 stdin 에서 사라지게 되죠. 다음에 또 scnaf("%c", &c"); 를 하게 되면 이번에는 c 가, 한 번 더하면 \n 이 읽어지겠죠?
@@ -460,7 +378,6 @@ int main()
 
 ```warning
 결론 : 문자 대신 문자열을 입력 받도록 하자!
-
 ```
 
 생각해보기
@@ -473,14 +390,21 @@ int main()
 
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
-1. 잘 알고 있겠지만 n 은 하나의 문자입니다. '' 와 'n' 으로 이루어진 문자열이 절대로 아닙니다~~~~~~~~ 즉, 'n' 입니다.  [본문으로]공감1sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트>(31)
+
+
+1. 잘 알고 있겠지만 n 은 하나의 문자입니다. '' 와 'n' 으로 이루어진 문자열이 절대로 아닙니다~~~~~~~~ 즉, 'n' 입니다.  
+[본문으로]
+
+
+
+
+공감1sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트>(31)
 2010.02.08씹어먹는 C 언어 - <15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴>(120)
 2010.02.01씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>(62)
 2010.01.25씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>(42)

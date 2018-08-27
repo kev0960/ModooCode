@@ -1,3 +1,8 @@
+----------------
+title : C++ 레퍼런스 - istream::peak 함수
+--------------
+
+
 
 
 
@@ -19,6 +24,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 istream::peek
 
+
+
+
 ```info
 
 int peek ( );
@@ -32,7 +40,10 @@ int peek ( );
 
 
 
- 인자
+
+
+###  인자
+
 
 
 
@@ -40,69 +51,43 @@ int peek ( );
 
 
 
+###  리턴값
 
-
- 리턴값### 
 
 
 
 그 다음 문자의 값을 리턴한다. 오류가 발생 시에 이 함수는 EOF 를 리턴하며, 내부 상태 플래그를 다음과 같은 상황에 맞게 변경하게 된다. 
 
-
-
-
-
-
-플래그
-오류
-eofbit
-작업 중 문자들의 끝에 도달하였을 때
-failbit
--
-
-badbit
-위 같은 일들 외의 다른 오류가 발생시
-
-
-
-
-
+플래그오류eofbit작업 중 문자들의 끝에 도달하였을 때failbit-
+badbit위 같은 일들 외의 다른 오류가 발생시
 
 
 위와 같은 플래그들이 ios::exceptions 함수들로 설정되었다면, ios_base::failure 가 throw 된다. 
 
 
 
-
-
- 실행 예제
-
+###  실행 예제
 
 
 ```cpp
 
 /*
 
-
 이 예제는
 http://www.cplusplus.com/reference/iostream/istream/peek/
 에서 가져왔습니다.
 
-
 */
 #include <iostream>
 using namespace std;
-
 
 int main () {
 char c;
 int n;
 char str[256];
 
-
 cout << "Enter a number or a word: ";
 c=cin.peek();
-
 
 if ( (c >= '0') && (c <= '9') )
 {
@@ -115,10 +100,10 @@ cin >> str;
 cout << " You have entered word " << str << endl;
 }
 
-
 return 0;
 }
 ```
+
 
 
 
@@ -133,7 +118,11 @@ return 0;
 
 
 
- 템플릿 멤버 정의
+
+
+###  템플릿 멤버 정의
+
+
 
 
 ```cpp
@@ -148,10 +137,19 @@ int_type peek ( );
 
 
 
- 연관된 함수
+###  연관된 함수
 
-* istream::get : 스트림에서 서식화 되지 않은 데이터를 가져온다. istream::operator>>: 스트림에서 서식화 된 데이터를 가져온다. 
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::peak 함수(0)
+* istream::get
+ : 스트림에서 서식화 되지 않은 데이터를 가져온다. 
+* istream::operator>>
+: 스트림에서 서식화 된 데이터를 가져온다. 
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::peak 함수(0)
 2012.11.09C++ 레퍼런스 - istream::ignore 함수(1)
 2012.11.07C++ 레퍼런스 - istream::gcount 함수(0)
 2012.11.07C++ 레퍼런스 - istream::get 함수(0)

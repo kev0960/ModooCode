@@ -1,6 +1,14 @@
+----------------
+title : 씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>
+--------------
 
 
-* switch 문에 대한 이해, 내부적 처리에 대한 간단한 설명![신나는 씹어먹는 C 언어!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F113895284A869F413348B6)
+
+* switch 문에 대한 이해, 내부적 처리에 대한 간단한 설명
+
+
+
+![신나는 씹어먹는 C 언어!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F113895284A869F413348B6)
 
   안녕하세요 여러분. 그 동안 잘 지내셨는지요? 제가 그 동안 바뻐서 글을 많이 못 올렸으나 일이 잘 해결되어서 이제 더이상 이전처럼 바쁘지 않겠네요. 아무튼, 지금까지 제 강좌를 보시느라 오랫동안 기다려 주신 분들께 정말 감사하다고 생각되고 아직까지도 C 언어를 배우고자 하는 열정이 사그라들지 않은 여러분들은 최고의 C 언어 프로그래머가 될 것이라 믿습니다. 
 
@@ -9,65 +17,35 @@
 
 ```cpp
 /* 마이펫 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
-    int input;
-
-    printf("마이펫 \n");
-
+    int input;    printf("마이펫 \n");
     printf("무엇을 하실 것인지 입력하세요 \n");
-
     printf("1. 밥주기 \n");
-
     printf("2. 씻기기 \n");
-
-    printf("3. 재우기 \n");
-
-    scanf("%d", &input);
-
-    if(input == 1)
-
+    printf("3. 재우기 \n");    scanf("%d", &input);    if(input == 1)
     {
-
         printf("아이 맛있어 \n");
-
     }
-
     else if(input == 2)
-
     {
-
         printf("아이 시원해 \n");
-
     }
-
     else if(input == 3)
-
     {
-
         printf("zzz \n");
-
     }
-
     else 
-
     {
-
         printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
-
     }
-
     return 0;
-
 }
 ```
 
 성공적으로 컴파일 하였다면 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F166415244A8684E746F97D)
 
@@ -78,83 +56,44 @@ int main()
 
 ```info
    if (...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
-
     else if(...)
-
     {
-
         ...
-
     }
 ```
 
@@ -164,97 +103,45 @@ int main()
 
 ```cpp
 /* 업그레이드 버전 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
-    int input;
-
-    printf("마이펫 업그레이드\n");
-
+    int input;    printf("마이펫 업그레이드\n");
     printf("무엇을 하실 것인지 입력하세요 \n");
-
     printf("1. 밥주기 \n");
-
     printf("2. 씻기기 \n");
-
-    printf("3. 재우기 \n");
-
-    scanf("%d", &input);
-
-    switch(input)
-
+    printf("3. 재우기 \n");    scanf("%d", &input);    switch(input)
     {
-
     case 1:
-
         printf("아이 맛있어 \n");
-
-        break;
-
-    case 2:
-
+        break;    case 2:
         printf("아이 시원해 \n");
-
-        break;
-
-    case 3:
-
+        break;    case 3:
         printf("zzz \n");
-
-        break;
-
-    default :
-
+        break;    default :
         printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
-
         break;
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
-
 ```
 
   아마 컴파일 된 결과는 위와 동일하게 나올 것 입니다. 이제, 위 소스 코드에서 가장 중요한 부분인 switch 문 부분을 살펴보도록 합시다. 
 
 ```cpp
  switch(input)
-
     {
-
     case 1:
-
         printf("아이 맛있어 \n");
-
         break;
-
-
     case 2:
-
         printf("아이 시원해 \n");
-
         break;
-
-
     case 3:
-
         printf("zzz \n");
-
         break;
-
-
     default :
-
         printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
-
         break;
-
     }
 ```
 
@@ -262,25 +149,15 @@ int main()
 
 ```info
     switch(변수)
-
     {
-
     case 값1:
-
         명령들;
-
         break;
-
     case 값2:
-
         명령들;
-
         break;
-
         .. (생략) ..
-
     }
-
 ```
 
   이 때, 변수 부분에는 값1, 값2, ... 들과 비교할 변수가 들어가게 됩니다. 위 예제의 경우 input 을 1 과 2 와 3 과 비교해야 했으므로 변수 부분에는 input 이 들어가게 됩니다. 이 때 switch 문에 사용될 변수로는 반드시 정수 데이터를 보관하는 변수여야 합니다. 다시말해 '변수' 부분에 들어가는 변수들의 타입은 char, short, int, long 중의 하나여야 합니다. 만약 input 이 float 이나 double 이라면 컴파일시 오류가 발생되게 됩니다. 
@@ -297,64 +174,34 @@ int main()
 
 ```cpp
 /* 실패작 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int input;
-
-
     printf("마이펫 업그레이드\n");
-
     printf("무엇을 하실 것인지 입력하세요 \n");
-
     printf("1. 밥주기 \n");
-
     printf("2. 씻기기 \n");
-
     printf("3. 재우기 \n");
-
-
     scanf("%d", &input);
-
-
     switch(input)
-
     {
-
     case 1:
-
         printf("아이 맛있어 \n");
-
-
     case 2:
-
         printf("아이 시원해 \n");
 
-
-
     case 3:
-
         printf("zzz \n");
-
-
     default :
-
         printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
-
-
     }
-
-
     return 0;
-
 }
 ```
 
 성공적으로 컴파일 한다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F13554E114A8689A11652B4)
 
@@ -363,57 +210,26 @@ int main()
 
 ```cpp
 /* 영어 말하기 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
-    char input;
-
-    printf("(소문자) 알파벳 읽기\n");
-
-    printf("알파벳 : ");
-
-    scanf("%c", &input);
-
-    switch(input)
-
+    char input;    printf("(소문자) 알파벳 읽기\n");
+    printf("알파벳 : ");    scanf("%c", &input);    switch(input)
     {
-
     case 'a':
-
         printf("에이 \n");
-
-        break;
-
-    case 'b':
-
+        break;    case 'b':
         printf("비 \n");
-
-        break;
-
-    case 'c':
-
+        break;    case 'c':
         printf("씨 \n");
-
-        break;
-
-    default :
-
+        break;    default :
         printf("죄송해요.. 머리가 나빠서 못 읽어요  \n");
-
-        break;
-
-    }
-
-    return 0;
-
+        break;    }    return 0;
 }
 ```
 
   성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F197F17254A868D363ED3F5)
 
@@ -430,6 +246,7 @@ int main()
 (참고로 if 문과 switch 문의 차이에 대한 설명을 자세하게 잘 다루는 곳 : http://blog.naver.com/kki2406?Redirect=Log&logNo=80041410085 ) 
 
  위에 링크 걸은 사이트에 들어가 내용을 모조리 이해한다면 더할 나위 없이 좋겠으나 아마 C 언어를 처음 배우는 사람들의 경우 거의 이해를 못할 것이니 제가 간단하게 설명 드리겠습니다. (만약 아래의 내용을 이해하지 못하더라고 그냥 넘어가세요. 사실 어셈블리어를 배우지 않은 이상 이해하기 힘듭니다) 
+
 
 ![switch 문을 이용하여 case 1, case 2 등 쭉 코드를 짠 것입니다. ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1812271B4A8699234673BF)
 
@@ -457,14 +274,16 @@ if 문
   앞서, switch 문이 내부적으로 처리 되는 부분에서 case 1: ~ case 10: 일 때 만 생각하였는데, 만약 case 1:, case 3:, case 4:, case 10: 과 같이 불규칙 적으로 switch 문이 적용된다면 컴퓨터는 jump table 를 어떻게 작성할까요 (난이도 : 最上) ?
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
-공감sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <2 - 2. 주석(Comment)에 대한 이해>(102)
+
+
+
+공감sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <2 - 2. 주석(Comment)에 대한 이해>(102)
 2009.09.24씹어 먹는 C 언어 - <10. 연예인 캐스팅(?) (C 언어에서의 형 변환)>(181)
 2009.08.15씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>(87)
 2009.08.15씹어 먹는 C 언어 - <8. 우분투 리눅스에서 C 프로그래밍 하기>(43)

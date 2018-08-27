@@ -1,10 +1,23 @@
+----------------
+title : 씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>
+--------------
 
 
 
 이번 강좌에서는
+
 * 기초적인 함수의 사용
-C++ 레퍼런스(reference, 참조자) 의 도입
-레퍼런스 배열과 배열의 레퍼런스
+
+
+
+* C++ 레퍼런스(reference, 참조자) 의 도입
+
+
+
+* 레퍼런스 배열과 배열의 레퍼런스
+
+
+
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F23506947578CC6871CB730)
@@ -18,44 +31,30 @@ C++ 레퍼런스(reference, 참조자) 의 도입
 
 
 
- 함수 사용하기
+
+
+###  함수 사용하기
+
+
+
 
 
 ```cpp
 
 #include <iostream>
-
 using namespace std;
-
-
 void print_square(int arg);
-
 int main()
-
 {
-
     int i;
-
-
     cout << "제곱할 수 ? : ";
-
     cin >> i;
-
-
     print_square(i);
-
-
     return 0;
-
 }
-
-
 void print_square(int arg)
-
 {
-
     cout << "전달된 인자 : " << arg*arg << endl;
-
 }
 ```
 
@@ -73,7 +72,6 @@ void print_square(int arg)
 ```cpp
 
 void print_square(int arg);
-
 ```
 
 
@@ -82,13 +80,9 @@ void print_square(int arg);
 ```cpp
 
 void print_square(int arg)
-
 {
-
     cout << "전달된 인자 : " << arg*arg << endl;
-
 }
-
 ```
 
 
@@ -97,29 +91,46 @@ void print_square(int arg)
 ```cpp
 
     print_square(i);
-
 ```
 
 
 따라서 arg 에 i 의 값이 들어가서 i * i 인, 우리의 실행 결과의 경우 12 를 전달해서 144 가 출력되게 되는 것이지요. 매우 간단합니다. 사실 C 하고 전혀 다를 바가 없어요! 
 
- 레퍼런스의 도입
+
+
+###  레퍼런스의 도입
+
+
 ```cpp
+
 
 #include <iostream>
 
+
 using namespace std;
+
 int change_val(int *p)
-{*p = 3;
+
+{
+*p = 3;
+
 return 0;
-}
-int main()
-{int number = 5;
-cout << number << endl;change_val(&number);cout << number << endl;
+
 }
 
+int main()
+
+{
+int number = 5;
+
+cout << number << endl;
+change_val(&number);
+cout << number << endl;
+
+}
 
 ```
+
 
 
 성공적으로 컴파일 하였다면
@@ -131,18 +142,32 @@ cout << number << endl;change_val(&number);cout << number << endl;
 
 위 소스 코드 역시 저의 C 언어 강좌를 잘 따라오신 분이라면 무리없이 이해하실 수 있는 코드 입니다. 즉 change_val 함수의 인자 p 에 number 의 주소값을 전달하여, *p 를 통해 number 를 참조하여 number 의 값을 3 으로 바꾸었습니다. 그런데, 말이죠. 여러분 모두 & 키를 입력 하시는데에 진물이 나셨을 것입니다. 이런 분들 위해서 C++ 에서 새롭게 생겨난 개념이 있습니다. 바로 '레퍼런스' 죠.
 
+
 ```cpp
+
 
 #include <iostream>
 
+
 using namespace std;
+
 int change_val(int &p)
-{p = 3;
+
+{
+p = 3;
+
 return 0;
+
 }
+
 int main()
-{int number = 5;
-cout << number << endl;change_val(number);cout << number << endl;
+
+{
+int number = 5;
+
+cout << number << endl;
+change_val(number);
+cout << number << endl;
 } 
 
 ```
@@ -162,7 +187,10 @@ cout << number << endl;change_val(number);cout << number << endl;
 
 ```info
 
-MENTIONING SB/STH | [C , U] ~ (to sb/sth) (… 에 대해) 말하기, 언급; 언급 대상, 언급한 것LOOKING FOR INFORMATION | [U] (정보를 얻기 위해)찾아봄, 참고, 참조
+
+
+MENTIONING SB/STH | [C , U] ~ (to sb/sth) (… 에 대해) 말하기, 언급; 언급 대상, 언급한 것
+LOOKING FOR INFORMATION | [U] (정보를 얻기 위해)찾아봄, 참고, 참조
 ```
 
 
@@ -199,11 +227,20 @@ int &ref;
 
   참고로 말하자면 레퍼런스는 한 번 초기화 되면 다른 변수의 별명이 될 수 없습니다. 예를 들어서
 
+
+
+
+
 ```cpp
 
-       int a = 10;int &ref = a;int b = 3;ref = b;
+
+       int a = 10;
+int &ref = a;
+int b = 3;
+ref = b;
 
 ```
+
 
 
 를 하면 ref = b; 에서 ref 가 b 를 가리키는 것이 아니라, a = b; , 즉 a 에 3 이 대입되는 것입니다. 물론
@@ -229,12 +266,19 @@ int &ref;
 
   일부 C 언어를 배운 사람의 경우 레퍼런스와 포인터가 헷갈릴 수 있습니다. 예를 들어 아래와 같은 코드를 보세요.
 
+
 ```cpp
 
-int number  = 10;int& ref = number;int *p = &number;
-ref++;p++;
+
+int number  = 10;
+int& ref = number;
+int *p = &number;
+
+ref++;
+p++;
 
 ```
+
 
 
 
@@ -252,15 +296,21 @@ change_val(number); 
 
 
   위와 같이 change_val 함수를 호출하였고 인자로 number 을 전달하였습니다. 따라서 
+
 ```cpp
 
+
 int change_val(int &p)
-{p = 3;
+
+{
+p = 3;
+
 return 0;
+
 }
 
-
 ```
+
 
 
   위 문장에서 int &p = number; 로 p 가 number 의 별명이 됩니다. 따라서 p = 3; 이라 하는 것은 main 의 number = 3; 을 하는 것과 정확히 동일한 작업입니다.  
@@ -269,17 +319,30 @@ return 0;
 // 참조자 이해하기
 
 #include <iostream>
+
 using namespace std;
 
+
 int main()
-{int x;int& y = x;int& z = y;
-x = 1;cout << "x : " << x << " y : " << y << " z : " << z << endl;
-y = 2;cout << "x : " << x << " y : " << y << " z : " << z << endl;
-z = 3;cout << "x : " << x << " y : " << y << " z : " << z << endl;
+
+{
+int x;
+int& y = x;
+int& z = y;
+
+x = 1;
+cout << "x : " << x << " y : " << y << " z : " << z << endl;
+
+y = 2;
+cout << "x : " << x << " y : " << y << " z : " << z << endl;
+
+z = 3;
+cout << "x : " << x << " y : " << y << " z : " << z << endl;
+
 }
 
-
 ```
+
 
 
   성공적으로 컴파일 하였다면
@@ -289,45 +352,71 @@ z = 3;cout << "x : " << x << " y : " << y << " z : " << z << endl;
 
   사실 위 소스를 타이핑 하면서 고개를 갸우뚱 하시는 분들이 있을 지도 모릅니다. 왜냐하면 여러분들은 그간 C 언어의 '악마의 포인터 세계' 에서 사셨기 때문이지요. 하지만 여기서 강조하지만, 포인터와 레퍼런스는 비슷하면서도 다른 녀석들입니다. 먼저 다음과 같은 부분은 쉽게 이해하셨겠지요.
 
+
 ```cpp
 
-int x;int& y = x;
 
+int x;
+int& y = x;
 
 ```
+
 
 
  "음. x 에 대한 레퍼런스로 y 를 정의하였구나. 즉 y 는 x 의 또다른 별명이 되겠지." 라고 다들 생각하셨겠지요. 그러면서 여러분은 아마 제가 앞서 말한 "어떤 특정 타입 T 에 대해 참조자를 만들고 싶다면 T& 와 같이 정의하면 됩니다." 를 머리속에 떠올리면서 다음 소스를 보고 의문을 가졌을 것입니다. 
+
 ```cpp
 
-int& y = x;int& z = y;
+
+int& y = x;
+int& z = y;
 
 ```
+
 
 
 
  "y 가 int& 이므로 z 는 int&& 가 되야 하는데 왜 int& 이지?". 좋은 질문입니다. 물론 이 이야기가 포인터였다면 정확히 들어맞을 터 입니다. 포인터였다면
 
+
+
+
+
+
 ```cpp
 
-int x;int* y = &x;int** z = &y;
+
+int x;
+int* y = &x;
+int** z = &y;
 
 ```
+
 
 
 
   와 같이 소스를 작성했어야 맞겠죠. 하지만 포인터와 레퍼런스는 다릅니다. 앞선 소스를 다시 살펴봅시다. 
+
 ```cpp
 
-int& y = x;int& z = y;
 
+int& y = x;
+int& z = y;
 
 ```
 
 
+
   y 는 x 의 레퍼런스 입니다. 즉 우리가 코드 상에서 'y' 라고 표시한 것은 y 를 그대로 'x' 로 바꾸어도 의미가 변하지 않는 다는 것이지요. 다시 말해 
 
+
+
+
+
+
+
 ```cpp
+
 
        int& z = x;int& z = y; 
 
@@ -337,10 +426,16 @@ int& y = x;int& z = y;
 
   위 두 문장은 정확히 같은 문장이라는 것입니다. 따라서 앞선 논의에 따라서 역시 int& 가 되어야 합니다. 여러분은 레퍼런스를 포인터의 개념으로 생각하시면 안됩니다. 그냥 어떤 변수의 다른 이름이라고 생각하시면 편할 것입니다. 따라서 위 세 문장의 정의식은 결국 x 의 다른 이름인 y 와 z 를 만들어준 것 뿐입니다.
 
+
 ```cpp
 
-x = 1;cout << "x : " << x << " y : " << y << " z : " << z << endl;
-y = 2;cout << "x : " << x << " y : " << y << " z : " << z << endl;
+
+x = 1;
+cout << "x : " << x << " y : " << y << " z : " << z << endl;
+
+y = 2;
+cout << "x : " << x << " y : " << y << " z : " << z << endl;
+
 z = 3;cout << "x : " << x << " y : " << y << " z : " << z << endl; 
 
 ```
@@ -372,19 +467,33 @@ scanf("%d", &user_input);
 
   와 같이 항상 주소값을 전달해 주었는데 말이죠. 왜냐하면 어떤 변수의 값을 다른 함수에서 바꾸기 위해서는 항상 포인터로 전달하였기 때문이니까요. 하지만 여기서는 'cin' 이라는 것에 그냥 user_input 을 전달했는데 잘 작동합니다. 왜그럴까요? 바로 레퍼런스 형태로 전달하였기 때문이지요. 귀찮은 & 를 user_input 앞에 붙일 필요가 없게 되는 것입니다. 레퍼런스의 편리함은 이쯤에서 맛보기로 끝내도록 하고 계속 강좌를 진행해봅시다. 
 
- 상수에 대한 참조자
+
+
+###  상수에 대한 참조자
+
+
+
+
 
 ```cpp
 
+
 #include <iostream>
+
 using namespace std;
 
+
 int main()
-{int &ref = 4;
+
+{
+int &ref = 4;
+
 cout << ref << endl;
+
 }
 
 ```
+
 
 
 
@@ -425,16 +534,25 @@ int a = ref;
 
   는 a = 4; 와는 문장과 동일합니다. 마찬가지 이유로 상수를 참조하기 위해서는 상수 레퍼런스를 선언하시면 됩니다. 
 
- 레퍼런스의 배열과 배열의 레퍼런스
+
+
+###  레퍼런스의 배열과 배열의 레퍼런스
+
+
+
 
 
   아마도 예전 C 강좌에서 포인터 가지고 한 이야기를 레퍼런스를 가지고 다시 한 번 재탕하는 기분입니다. 하지만 이 주제는 많은 C++ 초보자들의 머리를 아프게하는 문제이기도 하지요. 일단은, 레퍼런스의 배열이 과연 가능한 것인지에 대해 부터 생각해봅시다. 앞서 말했듯이 레퍼런스는 반드시 정의와 함께 초기화를 해주어야 한다고 했습니다. 따라서 여러분의 머리속에는 다음과 같이 레퍼런스의 배열을 정의하는 것을 떠올렸을 것입니다.
 
+
 ```cpp
 
-int a, b;int& arr[2] = {a, b};
+
+int a, b;
+int& arr[2] = {a, b};
 
 ```
+
 
 
 
@@ -452,7 +570,6 @@ int a, b;int& arr[2] = {a, b};
 ```info
 
 There shall be no references to references, no arrays of references, and no pointers to references
-
 레퍼런스의 레퍼런스, 레퍼런스의 배열, 레퍼런스의 포인터는 존재할 수 없다.  
 ```
 
@@ -471,14 +588,28 @@ There shall be no references to references, no arrays of references, and no poi
   그런데 말이죠. arr 은 무엇을 의미하는 것일까요. 바로 arr 배열의 첫 번째 레퍼런스를 가리키는 '포인터' 가 되는 것입니다. 이는 바로 앞에서 말한 내용에 정확히 모순이 되는 것입니다. 따라서 마찬가지로 레퍼런스의 배열도 존재할 수 없게 됩니다.  
   하지만 배열의 레퍼런스는 어떨까요?
 
+
 ```cpp
 
-#include <iostream>using namespace std;
-int main(){int arr[3] = {1,2,3};int (&ref)[3] = arr;
-ref[0] = 2;ref[1] = 3;ref[2] = 1;
-cout << arr[0] << arr[1] << arr[2] << endl;return 0;}
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+int arr[3] = {1,2,3};
+int (&ref)[3] = arr;
+
+ref[0] = 2;
+ref[1] = 3;
+ref[2] = 1;
+
+cout << arr[0] << arr[1] << arr[2] << endl;
+return 0;
+}
 
 ```
+
 
 
   성공적으로 컴파일 하였다면 
@@ -487,43 +618,52 @@ cout << arr[0] << arr[1] << arr[2] << endl;return 0;}
 
   먼저 가장 중요한 첫 두줄을 살펴봅시다.
 
+
 ```cpp
 
-int arr[3] = {1,2,3};int (&ref)[3] = arr;
+
+int arr[3] = {1,2,3};
+int (&ref)[3] = arr;
 
 ```
+
 
 
   위와 같이 ref 가 arr 을 가리키도록 하였습니다. 위와 같이 하면 ref[0] 부터 ref[2] 가 각각 arr[0] 부터 arr[2] 의 레퍼런스가 됩니다. 사실 배열의 레퍼런스는 잘 사용되지 않습니다. 왜냐하면 위와 같이 배열의 크기를 명확히 명시해 주어야 합니다. int (&ref)[3] 이라면 반드시 크기가 3 인 int 배열을 가리켜야 하고 int (&ref)[5] 라면 크기가 5 인 int 배열을 가리켜야 하겠지요.
   하지만 포인터를 사용하면 굳이 그럴 필요 없이 단순히 int *P 하나로 모든 1 차원 배열들을 가리킬 수 있으니, 배열을 가리킬 필요가 있을 경우 레퍼런스 보다는 포인터를 사용하는 것을 훨씬 더 권장합니다. 참고로 그 이상 차원의 배열들도 마찬가지로 아래와 같이 레퍼런스를 사용하여 정의할 수 있습니다.
 
+
 ```cpp
 
-int arr[3][2] = {1,2,3,4,5,6};int (&ref)[3][2] = arr;
+
+int arr[3][2] = {1,2,3,4,5,6};
+int (&ref)[3][2] = arr;
 
 ```
+
 
 
   역시 일차원 배열을 했을 때와 동일합니다. 
 
 
 
-### 레퍼런스를 리턴하는 함수
+
+
+### 
+레퍼런스를 리턴하는 함수
+
+
 
 
 C++ 를 처음 배우신 분들이 가장 많이 헷갈려 하는 부분이 바로 레퍼런스를 반환하는 함수 입니다. 아래의 코드를 살펴볼까요.
-
-
 ```cpp
 
 #include <iostream>
 using namespace std;
 
-
 int fn1(int &a) {
 return a;
 }
-
 
 int main()
 {
@@ -534,15 +674,39 @@ cout << fn1(x)++ << endl;
 ```
 
 
+
+
+
 당연히도 위 코드는 컴파일 되지 않습니다. 왜냐하면 fn1(x) 를 했을 때, "아 이제, a 를 x 의 별명으로 해야지~" 라고 한 후에, 이를 리턴하면서 그냥 평범한 int 로 리턴하였기 때문에 임시로 복사된 x 의 '값' 이 반환되는 것입니다 (이를 우측값이라 하는데, 나중에 자세히 다루도록 하겠습니다). 당연히도 이 값은 임시로 생성된 것이므로, 읽기만 가능하지 수정은 불가능 합니다. 
 
+
+
+
 ```cpp
-#include <iostream>using namespace std;
-int fn1(int &a) {return a;}
-int& fn2(int &a) {return a;}int main(){int x = 1;cout << fn2(x)++ << endl;cout << "x :: " << x << endl;}
+
+#include <iostream>
+using namespace std;
+
+int fn1(int &a) {
+return a;
+}
+
+int& fn2(int &a) {
+return a;
+}
+int main()
+{
+int x = 1;
+cout << fn2(x)++ << endl;
+cout << "x :: " << x << endl;
+}
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F222F1A4C58E54E22199A13)
 
@@ -550,16 +714,28 @@ int& fn2(int &a) {return a;}int main(){int x = 1;cout << fn2(x)++ << endl;cout <
 놀라운 점은, x 의 값이 바뀌었다는 점입니다. 그 이유는 fn2 을 살펴보면 알 수 있습니다. 
 
 ```cpp
-int& fn2(int &a) {return a;}
+
+int& fn2(int &a) {
+return a;
+}
 ```
 
+
+
 fn2 를 보면 인자로 레퍼런스를 받아서, 다시 그것을 그대로 리턴합니다. 쉽게말해, 
+
 ```cpp
+
 fn2(x)
 ```
 
+
+
 를 했을 때, fn2 내부에서 "아 이제 a 는 x 의 별명 (레퍼런스) 이다!" , 이렇게 된 것이고, 다시 함수를 리턴할 때 "나 x 의 별명을 리턴함!" 이렇게 되는 것이지요. 따라서, fn2(x) ++ 은 마치 x++ 을 한 문장과 동일하게 된 것입니다. 
+
+
 만약에 C 언어 였다면, x 의 포인터를 리턴하고, 그걸 받아서 다시 역참조 해서 (*) ++ 을 해줬어야 하겠지요. 하지만 레퍼런스의 도입 덕분에 정말 편리해졌습니다. 
+
 
 
 생각해보기
@@ -567,17 +743,20 @@ fn2(x)
 1. 레퍼런스가 메모리 상에 반드시 존재해야 하는 경우는 어떤 경우가 있을까요? 그리고 메모리 상에 존재할 필요가 없는 경우는 또 어떤 경우가 있을 까요? (난이도 : 上)
 
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
-공감3sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>(50)
+
+
+
+공감3sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>(50)
 2012.02.29씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>(41)
 2012.01.01씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>(27)
 2012.01.01씹어먹는 C++ - <2 - 1. C++ 은 C 친구 - C 와 공통점>(30)

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <streambuf>
 #include <string>
+#include "json.h"
 #include "parser.h"
 #include "util.h"
 
@@ -23,6 +24,7 @@ int main(int argc, char** argv) {
       filenames.push_back(p.path());
     }
   }
+  std::map<string, std::map<string, string>> file_info;
   for (const auto& filename : filenames) {
     std::cerr << "Reading File : " << filename << std::endl;
     std::cerr << "Output File  : " << GetOutputFile(filename) << std::endl;
@@ -37,11 +39,13 @@ int main(int argc, char** argv) {
 
     md_parser::MDParser parser(content);
     parser.Parser();
-    /*
-    std::cout << parser.ConvertToHtml();
-    */
     std::ofstream output_file(GetOutputFile(filename));
+    string file_index(filename.begin() + filename.find_last_of("_") + 1,
+                      filename.begin() + filename.find_last_of("."));
+    file_info[file_index] = parser.GetHeaderInfo();
     output_file << parser.ConvertToHtml();
-    output_file << "<style>" << parser.GetCss() << "</style>";
   }
+
+  md_parser::Json file_info_json("../file_headers.json");
+  file_info_json.DumpJson(file_info_json.JsonSerialize(file_info));
 }

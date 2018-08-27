@@ -1,10 +1,21 @@
+----------------
+title : 씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>
+--------------
 
 
 이번 강좌에서는
-* 구조체에 대한 소개구조체 포인터 및 -> 라는 새로운 연산자 도입![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F2020AA124B780AA6B73A2B)
+
+* 구조체에 대한 소개
+
+* 구조체 포인터 및 -> 라는 새로운 연산자 도입
+
+
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F2020AA124B780AA6B73A2B)
 
 
   안녕하세요 여러분. 잘 지내셨는지요? 제가 요즘에 강좌를 올리는 틈틈히 C 레퍼런스를 정리하고 있습니다. 레퍼런스라 하면, 일종의 백과사전 같은 것으로 여러분들이 궁금한 함수들이 있다면 찾아볼 수 있게 해놓았습니다. 아직 일부 함수들 밖에 올리지는 못했지만 그래도 그 양이 꽤 되니 읽어 보시는 것이 좋을 듯 합니다. 특히, 화면에서 입력을 받는 함수는 아직 scanf 와 getchar 밖에 보지 못했지만 fgets, gets 등이 있고, 화면에 출력하는 함수는 fputs, puts, putchar 등등 매우 많습니다. 뿐만 아니라 우리가 scanf 함수나 printf 함수를 여태까지 써오면서 사용하지 못했던 기능이 수없이 많은데 이들 모두 레퍼런스에 잘 정리되어 있으니 참조하시기 바랍니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F111277144B780AC91786E6)
 
@@ -20,9 +31,7 @@
 
 ```cpp
 int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30],
-
              int *borrowed, int *num_total_book);
-
 ```
 
 
@@ -48,51 +57,31 @@ int func(int *arr);
 
 ```cpp
 /* 구조체의 도입*/
-
 #include <stdio.h>
-
 struct Human
-
 {
-
     int age; /* 나이 */
-
     int height; /* 키 */
-
     int weight; /* 몸무게 */
-
 }; /* ; 붙이는 것 주의하세요 */
-
 int main()
-
 {
-
     struct Human Psi;
-
-
     Psi.age = 99;
-
     Psi.height = 185;
-
     Psi.weight = 80;
-
-
     printf("Psi 에 대한 정보 \n");
-
     printf("나이   : %d \n", Psi.age);
-
     printf("키     : %d \n", Psi.height);
-
     printf("몸무게 : %d \n", Psi.weight);
-
     return 0;
-
 }
 ```
 
 
 
 성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F117079184B703C597BB598)
 
@@ -102,15 +91,10 @@ int main()
 ```cpp
 
 struct Human
-
 {
-
     int age; /* 나이 */
-
     int height; /* 키 */
-
     int weight; /* 몸무게 */
-
 }; /* ; 붙이는 것 주의하세요 */
 ```
 
@@ -123,17 +107,11 @@ struct Human
 
 ```cpp
 struct 구조체이름
-
 {
-
     멤버들.. 예를 들면
-
     char str[10];
-
     int i;
-
 }; /* 마지막에 꼭 ; 를 붙인다. */
-
 ```
 
 
@@ -152,11 +130,8 @@ struct 구조체이름
 
 ```cpp
     Psi.age = 99;
-
     Psi.height = 185;
-
     Psi.weight = 80;
-
 ```
 
 
@@ -167,89 +142,48 @@ struct 구조체이름
 
 ```cpp
 /* 구조체 예제 2 */
-
 #include <stdio.h>
-
 char copy_str(char *dest, char *src);
-
 struct Books
-
 {
-
     /* 책 이름 */
-
     char name[30];
-
     /* 저자 이름 */
-
     char auth[30];
-
     /* 출판사 이름 */
-
     char publ[30];
-
     /* 빌려 졌나요? */
-
     int borrowed;
-
 };
-
 int main()
-
 {
-
     struct Books Harry_Potter;
-
-
     copy_str(Harry_Potter.name, "Harry Potter");
-
     copy_str(Harry_Potter.auth, "J.K. Rolling");
-
     copy_str(Harry_Potter.publ, "Scholastic");
-
     Harry_Potter.borrowed = 0;
-
-
     printf("책 이름 : %s \n", Harry_Potter.name);
-
     printf("저자 이름 : %s \n", Harry_Potter.auth);
-
     printf("출판사 이름 : %s \n", Harry_Potter.publ);
-
-
-
     return 0;
-
 }
-
 char copy_str(char *dest, char *src)
-
 {
-
     while (*src)
-
     {
-
         *dest = *src;
-
         src ++;
-
         dest ++;
-
     }
-
-
     *dest = '\0';
-
-
     return 1;
-
 }
 ```
 
 
 
   성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F181952154B757D69B2D89C)
 
@@ -261,25 +195,15 @@ char copy_str(char *dest, char *src)
 
 ```cpp
 struct Books
-
 {
-
     /* 책 이름 */
-
     char name[30];
-
     /* 저자 이름 */
-
     char auth[30];
-
     /* 출판사 이름 */
-
     char publ[30];
-
     /* 빌려 졌나요? */
-
     int borrowed;
-
 };
 ```
 
@@ -289,14 +213,9 @@ struct Books
 
 ```cpp
     struct Books Harry_Potter;
-
-
     copy_str(Harry_Potter.name, "Harry Potter");
-
     copy_str(Harry_Potter.auth, "J.K. Rolling");
-
     copy_str(Harry_Potter.publ, "Scholastic");
-
     Harry_Potter.borrowed = 0;
 ```
 
@@ -310,25 +229,15 @@ struct Books
 
 ```cpp
 struct Books
-
 {
-
     /* 책 이름 */
-
     char name[30];
-
     /* 저자 이름 */
-
     char auth[30];
-
     /* 출판사 이름 */
-
     char publ[30];
-
     /* 빌려 졌나요? */
-
     int borrowed = 0;
-
 };
 ```
 
@@ -340,31 +249,18 @@ struct Books
 
 ```warning
 error C2143: 구문 오류 : ';'이(가) '=' 앞에 없습니다.
-
 error C2059: 구문 오류 : '='
-
 error C2059: 구문 오류 : '}'
-
 error C2079: 'Harry_Potter'은(는) 정의되지 않은 struct 'Books'을(를) 사용합니다.
-
 error C2224: '.name' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
-
 error C2198: 'copy_str' : 호출에 매개 변수가 너무 적습니다.
-
 error C2224: '.auth' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
-
 error C2198: 'copy_str' : 호출에 매개 변수가 너무 적습니다.
-
 error C2224: '.publ' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
-
 error C2198: 'copy_str' : 호출에 매개 변수가 너무 적습니다.
-
 error C2224: '.borrowed' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
-
 error C2224: '.name' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
-
 error C2224: '.auth' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
-
 error C2224: '.publ' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
 ```
 
@@ -376,92 +272,51 @@ error C2224: '.publ' 왼쪽에는 구조체/공용 구조체 형식이 있어야
 
 ```cpp
 /* 구조체 예제*/
-
 #include <stdio.h>
-
 struct Books
-
 {
-
     /* 책 이름 */
-
     char name[30];
-
     /* 저자 이름 */
-
     char auth[30];
-
     /* 출판사 이름 */
-
     char publ[30];
-
     /* 빌려 졌나요? */
-
     int borrowed;
-
 };
-
 int main()
-
 {
-
     struct Books book_list[3];
-
     int i;
-
-
     for(i=0;i<3;i++)
-
     {
-
         printf("책 %d 정보 입력 : ", i);
-
         scanf("%s%s%s", book_list[i].name, book_list[i].auth, book_list[i].publ);
-
         book_list[i].borrowed = 0;
-
     }
-
-
     for(i=0;i<3;i++)
-
     {
-
         printf("------------------------------- \n");
-
         printf("책 %s 의 정보\n", book_list[i].name);
-
         printf("저자 : %s \n", book_list[i].auth);
-
         printf("출판사 : %s \n", book_list[i].publ);
-
-
         if(book_list[i].borrowed == 0)
-
         {
-
             printf("안 빌려짐\n");
-
         }
-
         else
-
         {
-
             printf("빌려짐 \n");
-
         }
-
     }
-
     return 0;
-
 }
 ```
 
 
 
   성공적으로 컴파일 되었다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1953ED1F4B77FE083B4039)
 
@@ -478,16 +333,11 @@ int main()
 
 ```cpp
     for(i=0;i<3;i++)
-
     {
-
         printf("책 %d 정보 입력 : ", i);
-
         scanf("%s%s%s", book_list[i].name, book_list[i].auth, 
 book_list[i].publ);
-
         book_list[i].borrowed = 0;
-
     }
 ```
 
@@ -496,34 +346,19 @@ book_list[i].publ);
   이제, for 문을 살펴봅시다. scanf 함수로 book_list 의 i 원소의 name, auth, publ 멤버에 문자열을 입력받고 있는 모습을 볼 수 있습니다 또한 borrowed 의 값도 0 으로 초기화 해주고 있습니다. 
 ```cpp
  for(i=0;i<3;i++)
-
     {
-
         printf("------------------------------- \n");
-
         printf("책 %s 의 정보\n", book_list[i].name);
-
         printf("저자 : %s \n", book_list[i].auth);
-
         printf("출판사 : %s \n", book_list[i].publ);
-
-
         if(book_list[i].borrowed == 0)
-
         {
-
             printf("안 빌려짐\n");
-
         }
-
         else
-
         {
-
             printf("빌려짐 \n");
-
         }
-
     }
 ```
 
@@ -531,54 +366,40 @@ book_list[i].publ);
 
   입력을 다 받고 나면 for 문에서 book_list 의 각 원소의 멤버들을 출력해줍니다. 특히 borrowed 값이 0 이면 "안빌려짐", 0 이 아니면 "빌려짐" 이 출력되는데 위의 경우 0 으로 값을 설정해 놓고 값을 바꾸는 부분이 없으므로 언제나 안 빌려짐이 출력됩니다. 어때요? 간단하죠? 
 
+
+
 ###  구조체 포인터
-### 
+
+
+
+
 
   으음... 위 파란색 제목만 보고도 눈살을 찌부리는 분들이 있을 지도 모릅니다. 한동안 포인터에게서 벗어난 줄 알았는데 또 등장하는거냐! 하지만 구조체 포인터, 말그대로 구조체를 가리키는 포인터 역시 잘만 이해하면 정말로 아무 것도 아닌 것이 됩니다. 오히려 나중엔 "내가 왜 여기서 겁먹었지?" 라는 생각이 들 정도로요. 
 
 ```cpp
 /* 구조체 포인터 */
-
 #include <stdio.h>
-
 struct test
-
 {
-
     int a,b;
-
 };
-
 int main()
-
 {
-
     struct test st;
-
     struct test *ptr;
-
-
     ptr = &st;
-
-
     (*ptr).a = 1;
-
     (*ptr).b = 2;
-
-
     printf("st 의 a 멤버 : %d \n", st.a);
-
     printf("st 의 b 멤버 : %d \n", st.b);
-
-
     return 0;
-
 }
 ```
 
 
 
   성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F126D58234B7802D8028612)
 
@@ -587,7 +408,6 @@ int main()
 
 ```cpp
     struct test st;
-
     struct test *ptr;
 ```
 
@@ -612,9 +432,7 @@ int main()
 
 ```cpp
     (*ptr).a = 1;
-
     (*ptr).b = 2;
-
 ```
 
 
@@ -625,7 +443,6 @@ int main()
 
 ```info
     (*ptr).a = 1; 을
-
     *ptr.a = 1; 로 바꿔서 컴파일 해봅시다. 
 ```
 
@@ -634,9 +451,7 @@ int main()
 
 ```warning
 error C2231: '.a' : 왼쪽 피연산자가 'struct'을(를) 가리킵니다. '->'를 사용하십시오.
-
 error C2100: 간접 참조가 잘못되었습니다.
-
 ```
 
 
@@ -644,8 +459,8 @@ error C2100: 간접 참조가 잘못되었습니다.
 
 이에 대해 답하기 전에 연산자 우선 순위 표를 먼저 살펴봅시다.
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F183F47204B7806317A2E79)
 
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F183F47204B7806317A2E79)
 http://www.winapi.co.kr/ 에서 가져왔습니다.
 
 가장 맨 위를 보면 . 이라고 되있는 것을 볼 수 있습니다... 찾았나요? 여기서 . 은 구조체의 멤버를 지칭할 때 사용하는 . 을 의미하는 것입니다. 즉 (*ptr).a 에서 사용된 . 을 말하지요. 그 바로 아래 행을 보면 *(포인터) 라고 써있는 것이 있습니다. 즉 (*ptr).a 에서의 * 를 말하는 것이지요. 여기서 주목해야 할 점은 . 이 * 보다 우선순위가 높다는 것입니다. 
@@ -657,48 +472,29 @@ http://www.winapi.co.kr/ 에서 가져왔습니다.
 결과적으로 구조체 포인터를 사용해서 멤버에 접근하려면 (*ptr).a 와 같이 언제나 괄호로 감싸 주어야 됩니다. 상당히 귀찮은 일이 아닐 수 없습니다. 하지만 똑똑한 C 프로그래머들은 이 문제를 해결하기 위해 다음과 같이 아름다운 기호를 등장시켰습니다. 
 
 ```cpp
+
 /* 구조체 포인터 */
-
 #include <stdio.h>
-
 struct test
-
 {
-
     int a,b;
-
 };
-
 int main()
-
 {
-
     struct test st;
-
     struct test *ptr;
-
-
     ptr = &st;
-
-
     ptr->a = 1;
-
     ptr->b = 2;
-
-
     printf("st 의 a 멤버 : %d \n", st.a);
-
     printf("st 의 b 멤버 : %d \n", st.b);
-
-
     return 0;
-
 }
-
 ```
 
 
   성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F124CD7204B7808081A8128)
 
@@ -707,7 +503,6 @@ int main()
 
 ```cpp
     ptr->a = 1;
-
     ptr->b = 2;
 ```
 
@@ -723,16 +518,19 @@ int main()
 
 2. 구조체를 인자로 가지는 함수를 생각해보세요. (난이도 : 中)
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
-공감1sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>(20)
+
+
+
+공감1sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>(20)
 2010.06.13씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>(41)
 2010.04.11씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>(26)
 2010.02.14씹어먹는 C 언어 - <15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트>(31)

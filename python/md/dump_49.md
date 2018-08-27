@@ -1,16 +1,20 @@
+----------------
+title : C 언어 레퍼런스 - ungetc 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 
 ungetc
+
+
+
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
-
-
 int ungetc ( int character, FILE * stream );
 ```
 
@@ -25,15 +29,10 @@ int ungetc ( int character, FILE * stream );
 
 ```cpp
 FILE *fp = fopen("a.txt", "r");
-
 char ch;
-
 getc(fp);
-
 getc(fp);
-
 ungetc ('a', fp);
-
 ch = getc(fp);
 ```
 
@@ -44,12 +43,8 @@ unget 함수를 여러번 호출하게 되면 나중 읽기작업에서 호출�
 
 ```cpp
 ungetc('a', fp);
-
 ungetc('b', fp);
-
-
 ch = getc(fp); // ch 에는 b 가 들어간다.
-
 ch = getc(fp);  //  ch 에는 a 가 들어간다. 
 ```
 
@@ -57,18 +52,11 @@ ch = getc(fp);  //  ch 에는 a 가 들어간다.
 
 ```cpp
 fp = fopen("test.txt", "r");
-
 getc(fp); // 이 함수 호출 이후 위치 표시자의 값은 1
-
 ungetc('a', fp); // 이 함수 호출 이후 값은 0
-
 ungetc('b', fp); // 따라서 버퍼에 b 가 들어갈 수 없다. 
-
-
 ch = getc(fp); // ch 에는 a 가 들어간다. 
-
 printf("%c" ,ch);
-
 ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다. 
 ```
 
@@ -78,8 +66,13 @@ fseek 나 fsetpos 나 rewind 함수를 호출하면 이전에 unget 함수에 �
 
 만일 unget 함수의 character 인자로 전달된 값이 EOF 라면 입력 스트림에는 아무런 변화가 없게된다.
 
+
+
 ###  인자
-### 
+
+
+
+
 character
 
 스트림에 집어 넣을 문자. 이 때, 문자는 int 로 형변환 되어 전달된다.
@@ -88,80 +81,59 @@ stream
 
 문자를 넣을 입력 스트림의 FILE 객체를 가리키는 포인터. 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 성공적으로 문자가 들어간다면 들어갔던 문자가 리턴된다. 
 
 실패한다면 EOF 가 리턴되고 스트림에는 아무런 변화가 없게 된다. 
 
+
+
 ###  실행 예제
-### 
+
+
+
+
 ```cpp
-/* 
 
-myfile.txt 로 부터 각 문장을 입력 받되  # 로 시작하는 문장은 @ 로 대체해서 입력받는다. 
-
+/* myfile.txt 로 부터 각 문장을 입력 받되  # 로 시작하는 문장은 @ 로 대체해서 입력받는다. 
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/ungetc/
-
-에서 가져왔습니다.
-
- */
-
+에서 가져왔습니다. */
 #include <stdio.h>
-
 int main ()
-
 {
-
     FILE * pFile;
-
     int c;
-
     char buffer [256];
-
-    pFile = fopen ("myfile.txt","rt");
-
-    if (pFile==NULL) perror ("Error opening file");
-
-    else 
-
+    pFile = fopen ("myfile.txt","rt");    if (pFile==NULL) perror ("Error opening file");    else 
     {
-
         while (!feof (pFile))
-
         {
-
             c=getc (pFile);
-
             if (c == '#')
-
                 ungetc ('@',pFile);
-
             else
-
-                ungetc (c,pFile);
-
-            fgets (buffer,255,pFile);
-
+                ungetc (c,pFile);            fgets (buffer,255,pFile);
             fputs (buffer,stdout);
-
         }
-
-    }
-
-    return 0; 
-
+    }    return 0; 
 }
-
 ```
 
 
 myfile.txt 의 내용
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F2040C2284B6ACA04A4744E)
 
 
 실행 화면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1205D2284B6ACA02032FD1)
 
@@ -170,13 +142,9 @@ myfile.txt 의 내용
 
 ```cpp
 c=getc (pFile);
-
             if (c == '#')
-
                 ungetc ('@',pFile);
-
             else
-
                 ungetc (c,pFile);
 ```
 
@@ -184,7 +152,6 @@ c=getc (pFile);
 
 ```cpp
             fgets (buffer,255,pFile);
-
             fputs (buffer,stdout);
 ```
 
@@ -192,11 +159,34 @@ c=getc (pFile);
 
 이 때 주목할 점은 myfile.txt 의 내용은 전혀 바뀌지 않았다는 것이다. ungetc 함수는 단지 버퍼의 내용만을 조작하는 함수 이므로 myfile.txt 의 # 들은 결코 @ 로 바뀌지 않는다.
 
+
+
 ###  연관된 함수
-### 
-* getc  :  스트림에서 문자를 받는다. 
-fgetc :  스트림에서 문자를 받는다.putc  :  스트림에 문자를 쓴다. 
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - feof 함수(1)
+
+
+
+
+
+* getc 
+ :  스트림에서 문자를 받는다. 
+
+
+
+* fgetc
+ :  스트림에서 문자를 받는다.
+
+* putc
+  :  스트림에 문자를 쓴다. 
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - feof 함수(1)
 2010.02.05C 언어 레퍼런스 - clearerr 함수(0)
 2010.02.05C 언어 레퍼런스 - ungetc 함수(0)
 2010.02.04C 언어 레퍼런스 - puts 함수(0)

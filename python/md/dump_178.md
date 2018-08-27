@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - STL 컨테이너 - vector 생성자
+--------------
+
 
 
 ```warning
@@ -13,15 +17,14 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 vector::vector
 
+
+
+
 ```info
 explicit vector ( const Allocator& = Allocator() );
-
 explicit vector ( size_type n, const T& value= T(), const Allocator& = Allocator() );
-
 template <class InputIterator>
-
          vector ( InputIterator first, InputIterator last, const Allocator& = Allocator() );
-
 vector ( const vector<T,Allocator>& x );
 ```
 
@@ -58,7 +61,12 @@ vector ( const vector<T,Allocator>& x );
 ▶ 복사 생성자. 벡터 x 와 동일한 원소 (복사본) 를 가지는 벡터를 생성한다. 
 
 
- 인자
+
+
+###  인자
+
+
+
 
 n
 
@@ -78,70 +86,50 @@ x
 
 같은 클래스 템플릿 인자 (T, Allocator) 을 가지는 벡터 객체로, 이 객체가 복사되어 생성된다.
 
- 실행 예제
+
+
+###  실행 예제
+
 
 
 ```cpp
+
 /*
-
-
 이 예제는
-
 http://www.cplusplus.com/reference/stl/vector/vector/
+에서 가져왔습니다.*/
 
-에서 가져왔습니다.
-
-*/
 
 #include <iostream>
-
 #include <vector>
-
-using namespace std;
-
-int main ()
-
+using namespace std;int main ()
 {
-
-    unsigned int i;
-
-    // 위에서 설명한 생성자들을 차례대로 오버로딩함
-
+    unsigned int i;    // 위에서 설명한 생성자들을 차례대로 오버로딩함
     vector<int> first;                                // int 를 보관할 빈 벡터 생성
-
     vector<int> second (4,100);                       // 값이 100 인 int 원소 4 개 보관
-
     vector<int> third (second.begin(),second.end());  // second 의 처음 ~ 끝으로 생성
-
-    vector<int> fourth (third);                       // 세 번째 벡터 복사본
-
-    // 배열을 통해서도 생성 가능하다. 
-
+    vector<int> fourth (third);                       // 세 번째 벡터 복사본    // 배열을 통해서도 생성 가능하다. 
     int myints[] = {16,2,77,29};
-
-    vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
-
-    cout << "The contents of fifth are:";
-
+    vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );    cout << "The contents of fifth are:";
     for (i=0; i < fifth.size(); i++)
-
-        cout << " " << fifth[i];
-
-    cout << endl;
-
-    return 0;
-
+        cout << " " << fifth[i];    cout << endl;    return 0;
 }
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F181EE0434F6DEDE33C9FD7)
 
 
 
- 시간 복잡도
+
+
+###  시간 복잡도
+
+
+
 
 
 디폴트 생성자의 경우 상수 시간
@@ -152,13 +140,30 @@ int main ()
 복사 생성자의 경우 x 의 크기에 비례한다.
 
 
- 연관된 함수
-
-* vector::assign : 벡터 내용을 대입한다.
 
 
+###  연관된 함수
 
-공감sns신고저작자표시'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::push_back(0)
+
+
+
+
+* vector::assign
+ : 벡터 내용을 대입한다.
+
+
+
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::push_back(0)
 2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)
 2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)
 2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)

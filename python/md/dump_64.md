@@ -1,21 +1,24 @@
+----------------
+title : C 언어 레퍼런스 - fprintf 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 
 fprintf
+
+
+
 ```info
 #include 
 <stdio.h> // C++ 에서는 
-<cstdio>
-
-int 
+<cstdio>int 
 fprintf ( FILE * stream, const char *
  format, ... );
-
 ```
 
 데이터를 형식에 맞추어 스트림에 쓴다. 
@@ -23,8 +26,13 @@ fprintf ( FILE * stream, const char *
 특정한 스트림에 일련의 데이터를 특정한 형식에 맞추어 쓰게 된다. 이 때, 그 형식은 형식 문자열에 지정되어 있으며, 출력할 
 데이터는 형식 문자열 다음에 오는 인자들에 써주면 된다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 stream
 
 작업을 수행할 
@@ -86,59 +94,38 @@ B800:0000n아무것도
 문자를 이용한 다양한 출력 형태는 아래와 같다.
 ```cpp
 
-#include <stdio.h>
-int main()
-{
-    FILE 
-*fp = fopen("output.txt", "w");
-    int 
-integer = 123;
-    char 
-character = 'c';
-    char 
-string[] = "hello, world";
-    int* 
-pointer = &integer;
-    double
- pi = 3.141592;
-
-    
+#include <stdio.h>int main(){    FILE 
+*fp = fopen("output.txt", "w");    int 
+integer = 123;    char 
+character = 'c';    char 
+string[] = "hello, world";    int* 
+pointer = &integer;    double
+ pi = 3.141592;    
 fprintf(fp, "integer : (decimal) %d 
-(octal) %o \n", integer, integer);
-
-    
+(octal) %o \n", integer, integer);    
 fprintf(fp, "character : %c \n", 
-character);
-
-    
+character);    
 fprintf(fp, "string : %s \n", 
-string);
-
-    
+string);    
 fprintf(fp, "pointer addr : %p \n", 
-pointer);
-
-    
+pointer);    
 fprintf(fp, "floating point : %e // 
-%f \n", pi, pi);
-
-    
+%f \n", pi, pi);    
 fprintf(fp, "percent symbol : %% 
-\n");
-
-    return
- 0;
-} 
+\n");    return
+ 0;} 
 ```
 
 
 출력 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F2043C0134B7C11CA50B5DB)
 
 
 
 파일의 모습
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F12480A134B7C11CA40B3C2)
 
@@ -185,61 +172,36 @@ g 와 G 서식 문자들과 사용되면 e 와 E 일때와 동일한 작업을 �
 뒤에 오는 인자들에 넣어서 받는다. 이 때, 이는 정수 값이여야 하며 폭을 지정하는 변수 뒤에 출력할 데이터가 위치하면 된다. 
 
 ```cpp
-/* 사용 예 */
-#include 
+/* 사용 예 */#include 
 <stdio.h>
-
 int main()
-
 {
-
     FILE *fp = fopen("output.txt", "w");
-
     int i = 123;
-
     int j = -123;
-
     double f = 3.141592;
-
-
     fprintf(fp, "폭 맞추기 \n");
-
     fprintf(fp, "i : %6d \n", i);
-
     fprintf(fp, "i : %7d \n", i);
-
     fprintf(fp, "i : %2d \n\n", i);
-
-
     fprintf(fp, "왼쪽 정렬 \n");
-
     fprintf(fp, "i : %5d끝 \n", i);
-
     fprintf(fp, "오른쪽 정렬 \n");
-
     fprintf(fp, "i : %-5d끝 \n\n", i);
-
-
     fprintf(fp, "# 문자의 사용 \n");
-
     fprintf(fp, "i : %#x \n", i);
-
     fprintf(fp, "i : %#X \n\n", i);
-
-
     fprintf(fp, "부호 붙이기 \n");
-
     fprintf(fp, "%+d, %+d \n", i,j);
-
     return 0;
-
 }
-
 ```
 
-출력결과![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F2043C0134B7C11CA50B5DB)
+출력결과
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F2043C0134B7C11CA50B5DB)
 
-파일에 출력된 모습![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F143AC8134B7C128D4E3B18)
+파일에 출력된 모습
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F143AC8134B7C128D4E3B18)
 
 
 이전의 예제와 같이 output.txt 에 우리가 지정한 방식대로 잘 출력되었음을 볼 수 있다. 
@@ -286,31 +248,20 @@ long double 로 생각한다. (오직 부동 소수점 서식
  문자인 e,E,f,g, G 에만 적용된다)
 ```cpp
 /* 사용 예 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     double f = 3.141592;
-
     int i = 12345;
-
-
     fprintf(stdout, "f : %.3f \n", f);
-
     fprintf(stdout, "i : %.10d \n", i);
-
-
     return 0;
-
 } 
-
 ```
 
 출
 력 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F135054234B5DB76133E080)
 
@@ -325,61 +276,43 @@ int main()
 문자열에 들어 있는 형식 태그의 수와 뒤따라 붙는 인자들의 수는 같아야 한다. (물론 .* 이나 * 과 같은 예외적인 상황은 
 제외한다)
 
+
+
 ###  리턴값
-### 
+
+
 
 
 출력 성공시, 화면에 출력된 총 문자의 개수를 반환한다.
 
 실패했다면 음수가 반환된다.
 
+
+
 ###  실행 예제
-### 
+
+
 ```cpp
 /* 
-
-
 사용자로 부터 이름을 입력받아 이를 깔끔하게 myfile.txt 에 기록한다.
-
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fprintf/
-
 에서 가져왔습니다. 
-
-
  */
-
 #include <stdio.h>
-
 int main ()
-
 {
-
     FILE * pFile;
-
     int n;
-
     char name [100];
-
-
     pFile = fopen ("myfile.txt","w");
-
     for (n=0 ; n<3 ; n++)
-
     {
-
         puts ("please, enter a name: ");
-
         gets (name);
-
         fprintf (pFile, "Name %d [%-10.10s]\n",n,name);
-
     }
-
     fclose (pFile);
-
-
     return 0;
-
 }
 ```
 
@@ -387,10 +320,12 @@ int main ()
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F115248014B7D726B2BDC4A)
 
 
 파일에 출력된 모습
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F18235C014B7D726B5F7BA8)
 
@@ -406,11 +341,35 @@ fprintf 에서 사용한 형식 문자열에 대해 설명을 하자면
 맞춘다. Psi 다음에 쭉 위치한 공백이 그것이다. 그리고 .10 은 최대 10 문자를 출력하라는 뜻으로 10 문자가 넘으면 
 잘리게 된다. 위에 Genious Psi 가 잘려서 Genious Ps 까지 출력된 것을 볼 수 있다. 
 
+
+
 ###  연관된 함수
-### 
-* printf  :  특정한 형식에 맞추어 데이터를 stdout 에 
-출력한다.fscanf  :  특정한 형식에 맞추어 스트림에서 데이터를 
-읽어온다.fwrite  :  스트림에 데이터 블록을 쓴다.fputs  :  스트림에 문자열을 쓴다.공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sprintf 함수(3)
+
+
+
+
+
+* printf
+  :  특정한 형식에 맞추어 데이터를 stdout 에 
+출력한다.
+
+* fscanf
+  :  특정한 형식에 맞추어 스트림에서 데이터를 
+읽어온다.
+
+* fwrite
+  :  스트림에 데이터 블록을 쓴다.
+
+* fputs
+  :  스트림에 문자열을 쓴다.
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - sprintf 함수(3)
 2010.02.22C 언어 레퍼런스 - fscanf 함수(2)
 2010.02.22C 언어 레퍼런스 - fprintf 함수(1)
 2010.02.19C 언어 레퍼런스 - setvbuf 함수(0)

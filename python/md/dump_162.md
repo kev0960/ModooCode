@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios_base::xalloc 함수
+--------------
+
 
 
 ```warning
@@ -13,6 +17,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 ios_base::xalloc  (static member function)
 
+
+
+
 ```info
 int xalloc ( );
 ```
@@ -25,14 +32,35 @@ int xalloc ( );
 
 이 함수는 정적 함수 이다.
 
- 리턴값
-### 
+
+
+###  리턴값
+
+
   새로운 인덱스를 리턴하며, 이 인덱스는 iword 나 pword 멤버 함수들을 통해 참조될 수 있다.
 
- 연관된 함수
 
-* ios_base::iword  :  내부 확장 가능 배열의 정수 원소의 레퍼런스를 얻는다.ios_base::pword :  내부 확장 가능 배열을 가리키는 포인터의 레퍼런스를 얻는다.
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::pword 함수(0)
+
+###  연관된 함수
+
+
+
+
+
+* ios_base::iword
+  :  내부 확장 가능 배열의 정수 원소의 레퍼런스를 얻는다.
+
+* ios_base::pword
+ :  내부 확장 가능 배열을 가리키는 포인터의 레퍼런스를 얻는다.
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::pword 함수(0)
 2011.10.22C++ 레퍼런스 - ios_base::iword(0)
 2011.10.22C++ 레퍼런스 - ios_base::xalloc 함수(0)
 2011.10.22C++ 레퍼런스 - ios_base::getloc 함수(1)

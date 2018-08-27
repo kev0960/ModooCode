@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios_base::imbue
+--------------
+
 
 
 ```warning
@@ -13,6 +17,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 ios_base::imbue
 
+
+
+
 ```cpp
 locale imbue ( const locale& loc );
 ```
@@ -25,58 +32,70 @@ imbue 함수 종료 직전에 imbue_event 가 발생되며 register_callback 함
 
 
 
- 인자
+
+
+###  인자
+
+
+
 
 loc
 
   스트림의 새롭게 설정될 로케일 객체이다.
 
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
   함수 호출 이전 상태의 로케일 객체
 
- 실행 예제
+
+
+###  실행 예제
+
+
+
 
 ```cpp
-/*
-
-이 예제는
-http://www.cplusplus.com/reference/iostream/ios_base/imbue/
-에서 가져왔습니다.
-
-*/
-#include <iostream>
-
+/*이 예제는http://www.cplusplus.com/reference/iostream/ios_base/imbue/에서 가져왔습니다.*/#include <iostream>
 #include <locale>
-
 using namespace std;
-
-
 int main()
-
 {
-
     locale mylocale("french");      // 로케일 객체를 '프랑스' 로 설정한다.
-
     cout.imbue( mylocale );   // 이를 cout 로케일로 설정한다.
-
     cout << (double) 3.14159 << endl; //프랑스에서는 . 대신 , 를 사용하므로 3,14159 로 표시된다. 
-
     return 0;
-
 }
 ```
 
 실행 결과
 
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F13095D574E4E10412DED75)
 
- 연관된 것들
-* 
-ios_base::getloc : 현재 로케일을 알아온다.
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::xalloc 함수(0)
+
+
+###  연관된 것들
+
+
+
+
+* ios_base::getloc
+ : 현재 로케일을 알아온다.
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::xalloc 함수(0)
 2011.10.22C++ 레퍼런스 - ios_base::getloc 함수(1)
 2011.08.20C++ 레퍼런스 - ios_base::imbue(0)
 2011.08.20C++ 레퍼런스 - ios_base::register_callback 함수(0)

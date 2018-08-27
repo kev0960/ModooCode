@@ -1,7 +1,18 @@
+----------------
+title : 씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한 내용들>
+--------------
 
 
 
-이번 강좌에서는* virtual 소멸자 (가상 소멸자) 가상 함수 테이블 (virtual function table)다중 상속가상 상속에 대해서 배웁니다.
+
+이번 강좌에서는* virtual 소멸자 (가상 소멸자) 
+* 가상 함수 테이블 (virtual function table)
+* 다중 상속
+* 가상 상속
+
+에 대해서 배웁니다.
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F262D2C3953DD4BCE03E427)
 
 
@@ -32,16 +43,18 @@ c->f();
 를 했을 때 모두 Parent 의 f() 가 호출되어야 하겠지만, 실제로는 f 가 가상함수므로, '실제로 p 와 c 가 가리키는 객체의' f, 즉 p->f() 는 Parent 의 f 를, c->f() 는 Child 의 f 가 호출됩니다. 이와 같은 일이 가능한 이유는 f 를 가상함수로 만들었기 때문입니다. 
 
 
- virtual 소멸자
+
+
+###  virtual 소멸자
+
+
 
 
 사실 클래스의 상속을 사용함으로써 중요하게 처리해야 되는 부분이 있습니다. 바로, 소멸자를 가상함수로 만들어야 된다는 점입니다.
-
 ```cpp
 
 #include <iostream>
 using namespace std;
-
 
 class Parent
 {
@@ -131,7 +144,6 @@ delete p 를 하더라도, p 가 가리키는 것은 Parent 객체가 아닌 Chi
 #include <iostream>
 using namespace std;
 
-
 class Parent
 {
 public :
@@ -170,7 +182,11 @@ delete p;
 }
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2267FE4553D916BC0B6C3C)
 
@@ -185,17 +201,17 @@ delete p;
 이와 같은 연유로, 상속될 여지가 있는 Base 클래스들은 (위 경우 Parent), 반드시 소멸자를 virtual 로 만들어주어야 나중에 문제가 발생할 여지가 없게 됩니다. 
 
 
- 레퍼런스도 된다
+
+###  레퍼런스도 된다
+
 
 
 
 여태 까지 부모 클래스에서 자식 클래스의 함수에 접근할 때 항상 부모 클래스의 포인터를 통해서 접근하였습니다. 하지만, 사실 부모 클래스의 레퍼런스여도 문제 없이 작동합니다. 아래 간단한 예제를 통해 살펴보겠습니다. 
-
 ```cpp
 
 #include <iostream>
 using namespace std;
-
 
 class A {
 public :
@@ -210,19 +226,16 @@ cout << "Child!" << endl;
 }
 };
 
-
 void test(A& a) {
 a.show();
 }
 int main()
 {
 
-
 A a;
 B b;
 test(a);
 test(b);
-
 
 return 0;
 }
@@ -266,28 +279,17 @@ test(b);
 
 
 
- 가상 함수의 구현 원리
+###  가상 함수의 구현 원리
+
 
 
 
 여태 까지 virtual 키워드의 능력을 본 바로는 이러한 의문이 들 수 도 있을 것입니다.
-
-
 그냥 그럼 모든 함수들을 virtual 로 만들어버리면 안되나?
-
-
 사실 이는 매우 좋은 질문입니다. 왜냐하면 모든 함수들을 virtual 로 만들어버린다고 해서 문제될 것이 전혀 없기 때문입니다. 간혹 '가상' 이라는 이름 때문에 혼동하시는 분이 계시는데, virtual 키워드를 붙여서 가상 함수로 만들었다 해도 실제로 존재하는 함수이고 정상적으로 호출도 할 수 있습니다. 또한 모든 함수들을 디폴트로 가상 함수로 만듬으로써, 언제나 동적 바인딩이 제대로 동작하게 만들 수 있습니다.
-
-
 실제로 자바의 경우 모든 함수들이 디폴트로 virtual 함수로 선언됩니다. 
-
-
-
 그렇다면 왜 C++ 에서는 virtual 키워드를 이용해 사용자가 직접 virtual 로 선언하도록 하였을까요? 그 이유는 가상 함수를 사용하게 되면 약간의 오버헤드 (overhead) 가 존재하기 때문입니다. 즉, 보통의 함수를 호출하는 것 보다 가상 함수를 호출하는 데 걸리는 시간이 (아주아주 조금) 더 오래 걸립니다. 이를 이해하기 위해 가상 함수라는 것이 어떻게 구현되는지, 다시 말해 마술과 같은 동적 바인딩이 어떻게 구현되는지 살펴보도록 합시다. 
-
-
 예를 들어서 다음과 같은 간단한 두 개의 클래스를 생각해봅시다.
-
 ```cpp
 
 class Parent
@@ -304,7 +306,11 @@ virtual void func1();
 };
 ```
 
+
+
 C++ 컴파일러는 가상 함수가 하나라도 존재하는 클래스에 대해서, 가상 함수 테이블(virtual function table; vtable)을 만들게 됩니다. 가상 함수 테이블은 전화 번호부라고 생각하시면 됩니다. 함수의 이름(전화번호부의 가게명) 과 실제로 어떤 함수 (그 가게의 전화번호) 가 대응되는지 테이블로 저장하고 있는 것입니다. 
+
+
 위 경우 Parent 와 Child 모두 가상 함수를 포함하고 있기 때문에 두 개 다 가상 함수 테이블을 생성하게 되지요. 그 결과;
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F2113164253DB01CF09ACCF)
 
@@ -324,6 +330,7 @@ p->func1();
 
 1. p 가 Parent 를 가리키는 포인터 이니까, func1() 의 정의를 Parent 클래스에서 찾아봐야겠다.
 2. func1() 이 가상함수네?  그렇다면 func1() 을 직접 실행하는게 아니라, 가상 함수 테이블에서 func1() 에 해당하는 함수를 실행해야겠다.
+
 
 
 그리고 실제로 프로그램 실행시에, 가상 함수 테이블에서 func1() 에 해당하는 함수(Parent::func1()) 을 호출하게 됩니다. 
@@ -348,79 +355,163 @@ c->func1();
 
 
 
- 순수 가상 함수(pure virtual function)와 추상 클래스(abstract class)
+
+###  순수 가상 함수(pure virtual function)와 추상 클래스(abstract class)
+
+
 
 
 ```cpp
-#include <iostream>using namespace std;
-class Animal{public:Animal() {}virtual ~Animal() {}virtual void speak() = 0;};
-class Dog : public Animal{public:Dog() : Animal() {}void speak() {cout << "왈왈" << endl;}};
-class Cat : public Animal{public:Cat() : Animal() {}void speak() {cout << "야옹야옹" << endl;}};
-int main(){Animal* dog = new Dog();Animal* cat = new Cat();
-dog->speak();cat->speak();}
+
+#include <iostream>
+using namespace std;
+
+class Animal
+{
+public:
+Animal() {}
+virtual ~Animal() {}
+virtual void speak() = 0;
+};
+
+class Dog : public Animal
+{
+public:
+Dog() : Animal() {}
+void speak() {
+cout << "왈왈" << endl;
+}
+};
+
+class Cat : public Animal
+{
+public:
+Cat() : Animal() {}
+void speak() {
+cout << "야옹야옹" << endl;
+}
+};
+
+int main()
+{
+Animal* dog = new Dog();
+Animal* cat = new Cat();
+
+dog->speak();
+cat->speak();
+}
 ```
+
+
 
 성공적으로 컴파일 하였다면
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F226A0B4253DB346C046970)
 
-
-
 위 코드를 보면서 한 가지 특이한 점을 눈치 채셨을 것입니다.
-
 ```cpp
-class Animal{public:Animal() {}virtual ~Animal() {}virtual void speak() = 0;};
+
+class Animal
+{
+public:
+Animal() {}
+virtual ~Animal() {}
+virtual void speak() = 0;
+};
 ```
+
+
 
 Animal 클래스의 speak 함수를 살펴봅시다. 다른 함수들과는 달리, 함수의 몸통이 정의되어 있지 않고 단순히 = 0; 으로 처리되어 있는 가상 함수 입니다. 그렇다면 이 함수는 무엇을 하는 함수 일까요? 그 답은, "무엇을 하는지 정의되어 있지 않는 함수" 입니다. 다시 말해 이 함수는 "반드시 오버라이딩 되어야만 하는 함수" 이지요. 이렇게, 가상 함수에 = 0; 을 붙여서, 반드시 오버라이딩 되도록 만든 함수를 완전한 가상 함수라 해서, 순수 가상 함수(pure virtual function)라고 부릅니다. 
+
+
 당연하게도, 순수 가상 함수는 본체가 없기 때문에, 이 함수를 호출하는 것은 불가능합니다. 그렇기 때문에, Animal 객체를 생성하는것 또한 불가능입니다. 왜냐하면, 
+
 ```cpp
-Animal a;a.speak();
+
+Animal a;
+a.speak();
 ```
+
+
 
 하면 안되기 때문이지요. 물론, speak() 함수를 호출하는 것을 컴파일러 상에서 금지하면 되지 않냐고 물을 수 있는데, C++ 개발자들은 이러한 방법 대신에 아예 Animal 의 객체 생성을 금지시키는 것으로 택하였습니다. (쉽게 말해 Animal 의 인스턴스를 생성할 수 없지요) 
+
+
 만일 Animal 의 객체를 생성하려고 한다면 다음과 같은 컴파일 오류를 만날 수 있습니다.
+
+
 ```warning
-error C2259: 'Animal' : cannot instantiate abstract class1>          due to following members:1>          'void Animal::speak(void)' : is abstract
+
+error C2259: 'Animal' : cannot instantiate abstract class
+1>          due to following members:
+1>          'void Animal::speak(void)' : is abstract
 ```
+
+
 
 따라서 Animal 처럼, 순수 가상 함수를 최소 한 개 이상 포함하고 있는 클래스는 객체를 생성할 수 없으며, 인스턴스화 시키기 위해서는 이 클래스를 상속 받는 클래스를 만들어서 모든 순수 가상 함수를 오버라이딩 해주어야만 합니다. 이렇게 순수 가상 함수를 최소 한개 포함하고 있는 - 반드시 상속 되어야 하는 클래스를 가리켜 추상 클래스 (abstract class) 라고 부릅니다. (참고로, 이러한 이유 때문에 순수 가상 함수는 반드시 public 이나 protected 가 되어야 합니다. private 으로 정의될 경우 오버라이드 될 수 가 없기 때문이지요. )
+
+
 따라서;
+
+
 ```cpp
-class Dog : public Animal{public:Dog() : Animal() {}void speak() {cout << "왈왈" << endl;}};
+
+class Dog : public Animal
+{
+public:
+Dog() : Animal() {}
+void speak() {
+cout << "왈왈" << endl;
+}
+};
 ```
+
+
 
 위 처럼 speak () 를 오버라이딩 함으로써 (- 정확히 말하면 Animal 의 모든 순수 가상 함수를 오버라이딩 함으로써) Dog 클래스의 객체를 생성할 수 있게 됩니다. Cat 클래스도 마찬가지 이지요. 
+
+
 그렇다면 추상 클래스를 도대체 왜 사용하는 것일까요? 추상 클래스 자체로는 인스턴스화 시킬 수 도 없고 (추상 클래스의 객체를 만들 수 없다) 사용하기 위해서는 반드시 다른 누구가 상속 해줘야만 하기 때문이지요. 하지만, 추상 클래스를 '설계도' 라고 생각하면 좋습니다. 즉, 이 클래스를 상속받아서 사용하는 사람에게 "이 기능은 일반적인 상황에서 만들기 힘드니 너가 직접 특수화 되는 클래스에 맞추어서 만들어서 써라." 라고 말해주는 것이지요. 
-
-
 예를 들어서 위에서 예를 든 Animal 클래스의 경우
-
 ```cpp
-class Animal{public:Animal() {}virtual ~Animal() {}virtual void speak() = 0;};
+
+class Animal
+{
+public:
+Animal() {}
+virtual ~Animal() {}
+virtual void speak() = 0;
+};
 ```
+
+
 
 동물들이 소리를 내는 것은 맞으므로 Animal 클래스에 speak 함수가 필요합니다. 하지만 어떤 소리를 내는지는 동물 마다 다르기 때문에 speak 함수를 가상 함수로 만들기는 불가능 합니다. 따라서 speak 함수를 순수 가상 함수로 만들게 되면 모든 Animal 들은 speak() 한다라는 의미 전달과 함께, 사용자가 Animal 클래스를 상속 받아서  (위 경우 Dog 와 Cat) speak() 를 상황에 맞게 구현하면 됩니다. 
 
 추상 클래스의 또 한가지 특징은 비록 객체는 생성할 수 없지만, 추상 클래스를 가리키는 포인터는 문제 없이 만들 수 있다는 점입니다. 위 예에서도 살펴보았듯이, 아무런 문제 없이 Animal* 의 변수를 생성하였습니다.
-
 ```cpp
-Animal* dog = new Dog();Animal* cat = new Cat();
-dog->speak();cat->speak();
+
+Animal* dog = new Dog();
+Animal* cat = new Cat();
+
+dog->speak();
+cat->speak();
 ```
+
+
 
 그리고 dog 와 cat 의 speak 함수를 호출하였는데, 앞에서도 배웠듯이, 비록 dog 와 cat 이 Animal* 타입 이지만, Animal 의 speak 함수가 오버라이드 되어서, Dog 와 Cat 클래스의 speak 함수로 대체되서 실행이 됩니다. 
 
 
+###  다중 상속(multiple inheritance)
 
-
-
- 다중 상속(multiple inheritance)
 
 
 
 마지막으로 C++ 에서의 상속의 또 다른 특징인 다중 상속에 대해 알아보도록 합시다. C++ 에서는 한 클래스가 다른 여러 개의 클래스들을 상속 받는 것을 허용합니다. 이를 가리켜서 다중 상속 (multiple inheritance) 라고 부릅니다.
-
 ```cpp
 
 class A
@@ -430,13 +521,11 @@ public:
 int a;
 };
 
-
 class B
 {
 public:
 int b;
 };
-
 
 class C : public A, public B
 {
@@ -470,32 +559,26 @@ c.c = 4;
 #include <iostream>
 using namespace std;
 
-
 class A
 {
 public:
 int a;
 
-
 A() { cout << "A 생성자 호출" << endl;}
 };
-
 
 class B
 {
 public:
 int b;
 
-
 B() { cout << "B 생성자 호출" << endl; }
 };
-
 
 class C : public A, public B
 {
 public:
 int c;
-
 
 C() : A(), B() { cout << "C 생성자 호출" << endl;}
 };
@@ -552,13 +635,11 @@ public:
 int a;
 };
 
-
 class B
 {
 public:
 int a;
 };
-
 
 class C : public B, public A
 {
@@ -657,25 +738,29 @@ class Me : public HandsomeHuman, public SmartHuman
 앞에서도 이야기 하였지만 반드시 필요한 경우가 아니라면 다중 상속을 피하는 것이 좋습니다. 왜냐하면 다중 상속을 사용하게 되면 프로그램의 구조가 매우 복잡해질 뿐더러 예상치 못한 오류를 발생할 가능성이 매우 높기 때문이지요. 실제로 다중 상속을 이용해서 해결해야 될 것 같은 문제도 알고보면 단일 상속을 통해 해결할 수 있는 경우가 매우 많습니다 (어떤 사람들은 100% 라고 주장하기도 하지요) 다중 상속에 좀 더 자세히 알고 싶은 분들은 이 글을 읽는 것이 많은 도움이 될 것입니다. http://www.drdobbs.com/cpp/multiple-inheritance-considered-useful/184402074
 
 
+
 아무래도 이번 강좌는 상속에 대한 중요한 요소들을 간단 하게 짚고 넘어가는 것이라 실질적인 프로그램은 만들지 않았습니다. 하지만, 가상 함수와 상속이 어떻게 돌아가는지 완벽히 이해하는 것이 좋습니다. 저의 경우, C++ 처음 배울 때, 이 부분에서 많이 헷갈려서 고생을 한 기억이 있습니다. 여러분들도 가상 함수를 포함하는 간단한 프로그램을 작성해서 어떻게 함수들이 호출되는지 살펴보시기 바랍니다. 
 
 
 
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한 내용들>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한 내용들>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
 
 
 
-공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>(13)
+
+
+
+공감sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>(13)
 2016.07.14씹어먹는 C++ - <7 - 1. C++ 에서의 입출력 (istream, ostream)>(35)
 2015.05.04씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한 내용들>(14)
 2014.04.13씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>(35)

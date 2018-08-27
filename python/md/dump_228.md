@@ -1,8 +1,23 @@
+----------------
+title : 씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>
+--------------
 
 
 
 
-이번 강좌에서는* move 문법 (move semantics)완벽한 전달 (perfect forwarding)레퍼런스 겹침 (reference collapsing)등에 대해 다룹니다.
+
+
+
+이번 강좌에서는
+* move 문법 (move semantics)
+
+* 완벽한 전달 (perfect forwarding)
+
+* 레퍼런스 겹침 (reference collapsing)
+
+
+등에 대해 다룹니다.
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F999F4B3D5ABA1979118454)
 
 
@@ -32,44 +47,34 @@ b = tmp;
 #include <iostream>
 using namespace std;
 
-
 class MyString
 {
 char *string_content; // 문자열 데이터를 가리키는 포인터
 int string_length; // 문자열 길이
 
-
 int memory_capacity; // 현재 할당된 용량
-
 
 public:
 MyString();
 
-
 // 문자열로 부터 생성
 MyString(const char* str);
-
 
 // 복사 생성자
 MyString(const MyString &str);
 
-
 // 이동 생성자
 MyString(MyString&& str);
-
 
 void reserve(int size);
 MyString operator+ (const MyString &s);
 MyString& operator= (const MyString &s);
 ~MyString();
 
-
 int length() const;
-
 
 void println();
 };
-
 
 MyString::MyString()
 {
@@ -79,14 +84,12 @@ memory_capacity = 0;
 string_content = NULL;
 }
 
-
 MyString::MyString(const char* str)
 {
 cout << "생성자 호출 ! " << endl;
 string_length = strlen(str);
 memory_capacity = string_length;
 string_content = new char[string_length];
-
 
 for (int i = 0; i != string_length; i++)
 string_content[i] = str[i];
@@ -97,7 +100,6 @@ cout << "복사 생성자 호출 ! " << endl;
 string_length = str.string_length;
 string_content = new char[string_length];
 
-
 for (int i = 0; i != string_length; i++)
 string_content[i] = str.string_content[i];
 }
@@ -107,7 +109,6 @@ cout << "이동 생성자 호출 !" << endl;
 string_length = str.string_length;
 string_content = str.string_content;
 memory_capacity = str.memory_capacity;
-
 
 // 임시 객체 소멸 시에 메모리를 해제하지
 // 못하게 한다. 
@@ -123,14 +124,11 @@ void MyString::reserve(int size)
 if (size > memory_capacity) {
 char *prev_string_content = string_content;
 
-
 string_content = new char[size];
 memory_capacity = size;
 
-
 for (int i = 0; i != string_length; i++)
 string_content[i] = prev_string_content[i];
-
 
 if (prev_string_content != NULL)
 delete[] prev_string_content;
@@ -160,7 +158,6 @@ for (int i = 0; i != string_length; i++) {
 string_content[i] = s.string_content[i];
 }
 
-
 return *this;
 }
 int MyString::length() const
@@ -172,7 +169,6 @@ void MyString::println()
 for (int i = 0; i != string_length; i++)
 cout << string_content[i];
 
-
 cout << endl;
 }
 template <typename T>
@@ -183,7 +179,6 @@ a = b;
 b = tmp;
 }
 
-
 int main()
 {
 MyString str1("abc");
@@ -192,7 +187,6 @@ cout << "Swap 전 -----" << endl;
 str1.println();
 str2.println();
 
-
 cout << "Swap 후 -----" << endl;
 my_swap(str1, str2);
 str1.println();
@@ -200,7 +194,11 @@ str2.println();
 }
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F99115F3E5AB8FD86061B59)
 
@@ -291,7 +289,8 @@ T tmp(a);
 
 
 
- move 문법 (move semantics)
+###  move 문법 (move semantics)
+
 
 
 
@@ -300,44 +299,34 @@ T tmp(a);
 #include <iostream>
 using namespace std;
 
-
 class MyString
 {
 char *string_content; // 문자열 데이터를 가리키는 포인터
 int string_length; // 문자열 길이
 
-
 int memory_capacity; // 현재 할당된 용량
-
 
 public:
 MyString();
 
-
 // 문자열로 부터 생성
 MyString(const char* str);
-
 
 // 복사 생성자
 MyString(const MyString &str);
 
-
 // 이동 생성자
 MyString(MyString&& str);
-
 
 void reserve(int size);
 MyString operator+ (const MyString &s);
 MyString& operator= (const MyString &s);
 ~MyString();
 
-
 int length() const;
-
 
 void println();
 };
-
 
 MyString::MyString()
 {
@@ -347,14 +336,12 @@ memory_capacity = 0;
 string_content = NULL;
 }
 
-
 MyString::MyString(const char* str)
 {
 cout << "생성자 호출 ! " << endl;
 string_length = strlen(str);
 memory_capacity = string_length;
 string_content = new char[string_length];
-
 
 for (int i = 0; i != string_length; i++)
 string_content[i] = str[i];
@@ -365,7 +352,6 @@ cout << "복사 생성자 호출 ! " << endl;
 string_length = str.string_length;
 string_content = new char[string_length];
 
-
 for (int i = 0; i != string_length; i++)
 string_content[i] = str.string_content[i];
 }
@@ -375,7 +361,6 @@ cout << "이동 생성자 호출 !" << endl;
 string_length = str.string_length;
 string_content = str.string_content;
 memory_capacity = str.memory_capacity;
-
 
 // 임시 객체 소멸 시에 메모리를 해제하지
 // 못하게 한다. 
@@ -393,14 +378,11 @@ void MyString::reserve(int size)
 if (size > memory_capacity) {
 char *prev_string_content = string_content;
 
-
 string_content = new char[size];
 memory_capacity = size;
 
-
 for (int i = 0; i != string_length; i++)
 string_content[i] = prev_string_content[i];
-
 
 if (prev_string_content != NULL)
 delete[] prev_string_content;
@@ -426,10 +408,8 @@ void MyString::println()
 for (int i = 0; i != string_length; i++)
 cout << string_content[i];
 
-
 cout << endl;
 }
-
 
 int main()
 {
@@ -437,7 +417,6 @@ MyString str1("abc");
 cout << "이동 전 -----" << endl;
 cout << "str1 : ";
 str1.println();
-
 
 cout << "이동 후 -----" << endl;
 MyString str2(move(str1));
@@ -448,7 +427,11 @@ str2.println();
 }
 ```
 
+
+
 성공적으로 컴파일 하였다면
+
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F99BE55345AB99D231E151B)
 
@@ -486,44 +469,34 @@ str2.println();
 #include <iostream>
 using namespace std;
 
-
 class MyString
 {
 char *string_content; // 문자열 데이터를 가리키는 포인터
 int string_length; // 문자열 길이
 
-
 int memory_capacity; // 현재 할당된 용량
-
 
 public:
 MyString();
 
-
 // 문자열로 부터 생성
 MyString(const char* str);
-
 
 // 복사 생성자
 MyString(const MyString &str);
 
-
 // 이동 생성자
 MyString(MyString&& str);
-
 
 void reserve(int size);
 MyString operator+ (const MyString &s);
 MyString& operator= (const MyString &s);
 ~MyString();
 
-
 int length() const;
-
 
 void println();
 };
-
 
 MyString::MyString()
 {
@@ -533,14 +506,12 @@ memory_capacity = 0;
 string_content = NULL;
 }
 
-
 MyString::MyString(const char* str)
 {
 cout << "생성자 호출 ! " << endl;
 string_length = strlen(str);
 memory_capacity = string_length;
 string_content = new char[string_length];
-
 
 for (int i = 0; i != string_length; i++)
 string_content[i] = str[i];
@@ -551,7 +522,6 @@ cout << "복사 생성자 호출 ! " << endl;
 string_length = str.string_length;
 string_content = new char[string_length];
 
-
 for (int i = 0; i != string_length; i++)
 string_content[i] = str.string_content[i];
 }
@@ -561,7 +531,6 @@ cout << "이동 생성자 호출 !" << endl;
 string_length = str.string_length;
 string_content = str.string_content;
 memory_capacity = str.memory_capacity;
-
 
 // 임시 객체 소멸 시에 메모리를 해제하지
 // 못하게 한다. 
@@ -579,14 +548,11 @@ void MyString::reserve(int size)
 if (size > memory_capacity) {
 char *prev_string_content = string_content;
 
-
 string_content = new char[size];
 memory_capacity = size;
 
-
 for (int i = 0; i != string_length; i++)
 string_content[i] = prev_string_content[i];
-
 
 if (prev_string_content != NULL)
 delete[] prev_string_content;
@@ -616,7 +582,6 @@ for (int i = 0; i != string_length; i++) {
 string_content[i] = s.string_content[i];
 }
 
-
 return *this;
 }
 int MyString::length() const
@@ -628,10 +593,8 @@ void MyString::println()
 for (int i = 0; i != string_length; i++)
 cout << string_content[i];
 
-
 cout << endl;
 }
-
 
 template <typename T>
 void my_swap(T &a, T &b)
@@ -647,7 +610,6 @@ MyString str2("def");
 cout << "Swap 전 -----" << endl;
 cout << "str1 : "; str1.println();
 cout << "str2 : "; str2.println();
-
 
 cout << "Swap 후 -----" << endl;
 my_swap(str1, str2);
@@ -698,7 +660,6 @@ string_content = s.string_content;
 memory_capacity = s.memory_capacity;
 string_length = s.string_length;
 
-
 s.string_content = nullptr;
 s.memory_capacity = 0;
 s.string_length = 0;
@@ -723,12 +684,13 @@ return *this;
 
 
 
- 완벽한 전달###  (perfect forwarding)
+###  완벽한 전달
+ (perfect forwarding)
+
 
 
 
 C++ 11 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 wrapper 함수를 생각해봅시다.
-
 ```cpp
 
 template <typename T>
@@ -772,16 +734,13 @@ emplace_back 함수는 인자를 직접 전달받아서, 내부에서 A 의 생�
 #include <vector>
 using namespace std;
 
-
 template <typename T>
 void wrapper(T u)
 {
 g(u);
 }
 
-
 class A {};
-
 
 void g(A& a) {
 cout << "좌측값 레퍼런스 호출" << endl;
@@ -793,18 +752,15 @@ void g(A&& a) {
 cout << "우측값 레퍼런스 호출" << endl;
 }
 
-
 int main()
 {
 A a;
 const A ca;
 
-
 cout << "원본 --------" << endl;
 g(a);
 g(ca);
 g(A());
-
 
 cout << "Wrapper -----" << endl;
 wrapper(a);
@@ -860,6 +816,8 @@ g(u);
 }
 ```
 
+
+
 그렇다면 위 경우는 어떨까요? 
 
 ```warning
@@ -876,10 +834,12 @@ error: cannot bind non-const lvalue reference of type 'A&' to an rvalue of type 
 
 g(A());
 
+
 에서 발생합니다. (참고로 이 오류는 gcc 와 clang 컴파일러에서 모두 발생하는데, 비주얼 스튜디오에서는 발생하지 않습니다. 하지만 원칙적으로 위와 같은 오류를 발생시켜야 하는 것이 맞습니다). 
 
 
 왜 위와 같은 오류가 발생하는지 생각해보자면 다음과 같습니다. 일단, A() 자체는 const 속성이 없으므로 템플릿 인자 추론에서 T 가 class A 로 추론됩니다. 하지만 A& 는 우측값의 레퍼런스가 될 수 없기 때문에 컴파일 오류가 발생하는 것입니다. 
+
 
 
 그렇다면 아예 우측값을 레퍼런스로 받을 수 있도록 const A& 와 A& 따로 만들어주는 방법이 있습니다. 아래와 같이 말이지요. 
@@ -890,14 +850,12 @@ g(A());
 #include <vector>
 using namespace std;
 
-
 template <typename T>
 void wrapper(T& u)
 {
 cout << "T& 로 추론됨" << endl;
 g(u);
 }
-
 
 template <typename T>
 void wrapper(const T& u)
@@ -907,10 +865,7 @@ g(u);
 }
 
 
-
-
 class A {};
-
 
 void g(A& a) {
 cout << "좌측값 레퍼런스 호출" << endl;
@@ -922,18 +877,15 @@ void g(A&& a) {
 cout << "우측값 레퍼런스 호출" << endl;
 }
 
-
 int main()
 {
 A a;
 const A ca;
 
-
 cout << "원본 --------" << endl;
 g(a);
 g(ca);
 g(A());
-
 
 cout << "Wrapper -----" << endl;
 wrapper(a);
@@ -973,7 +925,6 @@ void wrapper(const T& u, T &v)
 g(u, v);
 }
 
-
 template <typename T>
 void wrapper(T& u, const T &v)
 {
@@ -998,16 +949,13 @@ g(u, v);
 #include <iostream>
 using namespace std;
 
-
 template <typename T>
 void wrapper(T&& u)
 {
 g(forward<T>(u));
 }
 
-
 class A {};
-
 
 void g(A& a) {
 cout << "좌측값 레퍼런스 호출" << endl;
@@ -1019,18 +967,15 @@ void g(A&& a) {
 cout << "우측값 레퍼런스 호출" << endl;
 }
 
-
 int main()
 {
 A a;
 const A ca;
 
-
 cout << "원본 --------" << endl;
 g(a);
 g(ca);
 g(A());
-
 
 cout << "Wrapper -----" << endl;
 wrapper(a);
@@ -1070,7 +1015,6 @@ typedef int& T;
 T& r1; // int& &; r1 은 int&
 T&& r2; // int & &&;  r2 는 int&
 
-
 typedef int&& U
 U& r3; // int && &; r3 는 int&
 U&& r4; // int && &&; r4 는 int&&
@@ -1095,38 +1039,88 @@ wrapper(ca);
 wrapper(A());
 ```
 
+
+
 의 경우에는 T 가 단순히 A&& 로 추론되겠지요. 
+
+
 그런데 문제는 이제 직접 g 에 이 인자를 전달하는 방법입니다. 왜 그냥
+
 ```cpp
+
 g(u)
 ```
 
+
+
 로 하지 않았는지 생각해봅시다. 앞서도 말했듯이 여기서 u 는 좌측값 입니다. u 가 우측값 레퍼런스임에도 불구하고, const int& 를 오버로딩하는 g 가 호출되게 됩니다. 물론 우리는 좌측값을 어떻게 하면 우측값으로 캐스팅 시킬지 알고 있습니다. 바로 move 를 이용하는 것입니다.
+
+
 하지만 위 경우 아무때나 move 를 하면 안됩니다. 인자로 받은 u 가 우측값 레퍼런스 일 때 에만 move 를 해줘야만 하는 것입니다. 만일 좌측값 레퍼런스일 때 move 를 해버린다면 좌측값에 오버로딩 되는 g 가 아닌 우측값에 오버로딩 되는 g 가 호출되겠지요. 
+
+
 ```cpp
 
 g(forward<T>(u));
 ```
 
+
+
 이 문제를 해결해주는 것이 forward 함수 입니다. 이 함수는 u 가 우측값 레퍼런스 일 때 에만 마치 move 를 적용한 것 처럼 작동합니다. 실제로 forward 가 어떻게 생겼나면,
+
+
 ```cpp
-template<class S>S&& forward(typename remove_reference<S>::type& a) noexcept{  return static_cast<S&&>(a);}
+
+template<class S>
+S&& forward(typename remove_reference<S>::type& a) noexcept
+{
+  return static_cast<S&&>(a);
+}
 ```
+
+
 
 와 같이 생겼는데, S 가 A& 라면 (참고로 remove_reference 는 타입의 레퍼런스를 지워주는 템플릿 메타 함수 입니다)
+
+
+
 ```cpp
-A& && forward(typename remove_reference<A&>::type& a) noexcept{  return static_cast<A& &&>(a);}
+
+A& && forward(typename remove_reference<A&>::type& a) noexcept
+{
+  return static_cast<A& &&>(a);
+}
 ```
+
+
 
 가 되어 레퍼런스 겹침 규칙에 따라
+
+
+
 ```cpp
-A& forward(A& a) noexcept{  return static_cast<A&>(a);}
+
+A& forward(A& a) noexcept
+{
+  return static_cast<A&>(a);
+}
 ```
 
+
+
 가 되버리고, S 가 그냥 A 라면, (퀴즈! 여기서 왜 forward 의 인자가 A&& 가 아니라 A& 일까요?)
+
+
+
 ```cpp
-A&& forward(A& a) noexcept{  return static_cast<A&&>(a);}
+
+A&& forward(A& a) noexcept
+{
+  return static_cast<A&&>(a);
+}
 ```
+
+
 
 가 되어 성공적으로 우측값으로 캐스팅해줍니다. 따라서 결과적으로 위 그림 처럼 원본과 Wrapper 을 사용했을 때 모두 호출되는 함수가 동일함을 알 수 있습니다. 성공적으로 인자를 전달한 것이지요!
 
@@ -1136,28 +1130,33 @@ A&& forward(A& a) noexcept{  return static_cast<A&&>(a);}
 
 
 
- 생각 해보기
+
+###  생각 해보기
+
 1. 실제로 move 와 forward 가 어떠한 방식으로 구현되어 있는지 궁금하신 분들은 여기를 참고하시면 됩니다. 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중)
 
 
 
-
-
-
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
+
 
 
 
 1. http://en.cppreference.com/w/cpp/language/template_argument_deduction
 
-                에서 Deduction from a function call 의 첫번째 항목을 읽어보세요. [본문으로]공감2sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한
+                에서 Deduction from a function call 의 첫번째 항목을 읽어보세요. 
+[본문으로]
+
+
+
+
+공감2sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한
                         전달 (perfect forwarding)>(7)
                     2018.03.27
                 씹어먹는 C++ - <11 - 1. 우측값 레퍼런스와 이동

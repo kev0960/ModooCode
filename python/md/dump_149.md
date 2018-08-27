@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - istream::getline 함수
+--------------
+
 
 
 ```warning
@@ -13,9 +17,11 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 istream::getline
 
+
+
+
 ```info
 istream& getline (char* s, streamsize n );
-
 istream& getline (char* s, streamsize n, char delim );
 ```
 
@@ -32,7 +38,12 @@ istream& getline (char* s, streamsize n, char delim );
 
   동일한 이름을 가진 전역 함수가 <string> 에 존재한다. 이 전역 함수는 비슷한 작업을 하지만 C 형식 문자열 대신에 표준 C++ 문자열 객체를 사용한다. getline (string) 함수를 참조
 
- 인자
+
+
+###  인자
+
+
+
 
 s
 
@@ -46,80 +57,79 @@ delim
 
   제한자(delimiter) 로 이 문자에 도달시 추출이 중단된다. 이 때, 이 문자는 s 에 기록되지는 않지만 스트림에서 사라지게 된다. 이 인자는 꼭 사용하지 않아도 되고, 명시하지 않았을 경우 '\n' 으로 제한자를 주었다고 생각한다. 
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
 이 함수는 *this 를 리턴한다. 
 
 
 만일 입력시 발생된 오류들은 내부 상태 플래그를 통해 알아낼 수 있다.
 
-
-플래그
-오류
-eofbit
-작업 중 문자들의 끝에 도달하였을 때
-failbit끝에 바로 도달해버려서 어떠한 문자도 추출해 낼 수 없을 경우. 혹은 n - 1 개의 문자들을 모두 추출하여서 입력 작업이 중단되었을 경우에도 설정된다. 또한 일부 eofbit 를 설정하는 오류들이 failbit 도 설정할 수 있다.
-
-badbit
-위 같은 일들 외의 다른 오류가 발생시
+플래그오류eofbit작업 중 문자들의 끝에 도달하였을 때failbit끝에 바로 도달해버려서 어떠한 문자도 추출해 낼 수 없을 경우. 혹은 n - 1 개의 문자들을 모두 추출하여서 입력 작업이 중단되었을 경우에도 설정된다. 또한 일부 eofbit 를 설정하는 오류들이 failbit 도 설정할 수 있다.
+badbit위 같은 일들 외의 다른 오류가 발생시
 
   
 ios::exceptions 를 통해 적절한 플래그가 설정되어 있을 경우 위와 같은 상황이 발생시 ios_base::failure 이 throw 된다. 
 
- 실행 예제
+
+
+###  실행 예제
+
 
 ```cpp
-/*
-
-getline 함수를 통해 사용자로 부터 문자열을 입력 받는다.
-이 예제는
-http://www.cplusplus.com/reference/iostream/istream/getline
-에서 가져왔습니다.
-
-*/
-#include <iostream>
-using namespace std;
-
-int main () 
-{
-    char name[256], title[256];
-
-    cout << "Enter your name: ";
-    cin.getline (name,256);
-
-    cout << "Enter your favourite movie: ";
-    cin.getline (title,256);
-
-    cout << name << "'s favourite movie is " << title;
-
-    return 0;
-}
+/*getline 함수를 통해 사용자로 부터 문자열을 입력 받는다.이 예제는http://www.cplusplus.com/reference/iostream/istream/getline에서 가져왔습니다.*/#include <iostream>using namespace std;int main () {    char name[256], title[256];    cout << "Enter your name: ";    cin.getline (name,256);    cout << "Enter your favourite movie: ";    cin.getline (title,256);    cout << name << "'s favourite movie is " << title;    return 0;}
 ```
 
 
 실행 결과
 
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F171C67424E4BDFE4051BA6)
 
 
 
- 템플릿 멤버 선언
+
+
+###  템플릿 멤버 선언
+
+
+
 
 ```cpp
-// ( basic_istream<charT,traits> )
-typedef charT char_type;
-
+// ( basic_istream<charT,traits> )typedef charT char_type;
 basic_istream& getline (char_type* s, streamsize n );
-
 basic_istream& getline (char_type* s, streamsize n, char_type delim );
 ```
 
 
- 연관된 함수
-* istream::get  :  서식화 되지 않은 데이터를 스트림에서 가져온다. 
-istream::ignore  :  문자를 추출하고 버린다. istream::gcount : 이전의 서식화 되지 않았던 입력 작업서 추출하였던 문자의 개수를 얻어온다.
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ifstream 클래스(0)
+
+
+###  연관된 함수
+
+
+* 
+istream::get
+  :  서식화 되지 않은 데이터를 스트림에서 가져온다. 
+
+
+
+* istream::ignore
+  :  문자를 추출하고 버린다. 
+
+* istream::gcount
+ : 이전의 서식화 되지 않았던 입력 작업서 추출하였던 문자의 개수를 얻어온다.
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ifstream 클래스(0)
 2011.08.18C++ 레퍼런스 - ios::exceptions(0)
 2011.08.18C++ 레퍼런스 - istream::getline 함수(0)
 2011.08.18C++ 레퍼런스 - istream::operator>> (추출 연산자)(0)

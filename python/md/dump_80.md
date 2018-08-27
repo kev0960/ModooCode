@@ -1,16 +1,19 @@
+----------------
+title : C 언어 레퍼런스 - strncpy 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 strncpy
+
+
+
 ```info
-#include <string.h> // C++ 에서는 <cstring>
-
-char * strncpy ( char * destination, const char * source, size_t num );
-
+#include <string.h> // C++ 에서는 <cstring>char * strncpy ( char * destination, const char * source, size_t num );
 ```
 
 문자열에서 일부 문자들 만을 복사한다.
@@ -19,8 +22,13 @@ source 에서 destination 으로 source 의 처음 num 개의 문자들 만을 �
 
 strncpy 함수는 복사시 destination 끝에 반드시 NULL 문자를 붙이는 것이 아니므로 사용에 주의를 해야 한다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 destination
 
 destination 배열을 가리키는 포인터로 문자열이 복사될 곳이다. 
@@ -33,72 +41,86 @@ num
 
 source 에서 복사 할 문자의 개수 이다. 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 destination 을 리턴한다. 
 
+
+
 ###  실행 예제
-### 
+
+
+
+
 ```cpp
-/* 
-
-str2 에  str1 의 첫 5 문자, 즉 "To be" 를 복사해 넣는다. 이 때, str2 에는 자동으로 끝에 NULL 문자가 붙는 것이 아니므로 인위적으로 넣어주어야 한다.
-이 예제는
-http://www.cplusplus.com/reference/clibrary/cstring/strncpy/
-에서 가져왔습니다.
-
- */
-#include <stdio.h>
-#include <string.h>
-
-int main ()
-{
-    char str1[]= "To be or not to be";
-    char str2[6];
-    strncpy (str2,str1,5);
-    str2[5]='\0';
-    puts (str2);
-    return 0;
-}
+/* str2 에  str1 의 첫 5 문자, 즉 "To be" 를 복사해 넣는다. 이 때, str2 에는 자동으로 끝에 NULL 문자가 붙는 것이 아니므로 인위적으로 넣어주어야 한다.이 예제는http://www.cplusplus.com/reference/clibrary/cstring/strncpy/에서 가져왔습니다. */#include <stdio.h>#include <string.h>int main (){    char str1[]= "To be or not to be";    char str2[6];    strncpy (str2,str1,5);    str2[5]='\0';    puts (str2);    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F135F511C4BF5F68C075CFF)
 
+
+
 ###  함수 구현 예
-### 
+
+
+
+
 ```cpp
-/* 
-
-다음 소스는 
-http://www.jbox.dk/sanos/source/lib/string.c.html
-에서 가져온 것입니다. 
-
-*/
-char *strncpy(char *dest, const char *source, size_t count)
-{
-    char *start = dest;
-
-    while (count && (*dest++ = *source++)) count--;
-    if (count) while (--count) *dest++ = '\0';
-    return start;
-}
-
+/* 다음 소스는 http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져온 것입니다. */char *strncpy(char *dest, const char *source, size_t count){    char *start = dest;    while (count && (*dest++ = *source++)) count--;    if (count) while (--count) *dest++ = '\0';    return start;}
 ```
 
 
+
+
 ###  연관된 함수
-### 
-* strcpy : 문자열을 복사한다. 
-memcpy  :  메모리 블록을 복사한다.memmove :  메모리 블록을 옮긴다. 
-memchr 
+
+
+
+
+* strcpy
+ : 문자열을 복사한다. 
+
+
+
+* memcpy
+  :  메모리 블록을 복사한다.
+
+* memmove
+ :  메모리 블록을 옮긴다. 
+
+
+
+* memchr 
  :  메모리 블록에 문자를 위치시킨다. 
-memcmp 
+
+
+
+* memcmp
+ 
  :  두 개의 메모리 블록을 비교한다. 
-memset 
- :  메모리 블록을 채운다. 공감sns신고저작자표시'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strncat 함수(0)
+
+
+
+* memset
+ 
+ :  메모리 블록을 채운다. 
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strncat 함수(0)
 2010.05.23C 언어 레퍼런스 - strcat 함수(0)
 2010.05.21C 언어 레퍼런스 - strncpy 함수(5)
 2010.05.09C 언어 레퍼런스 - strcpy 함수(8)

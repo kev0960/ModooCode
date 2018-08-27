@@ -1,17 +1,20 @@
+----------------
+title : C 언어 레퍼런스 - setvbuf 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 setvbuf
+
+
+
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
-
-
 int setvbuf ( FILE * stream, char * buffer, int mode, size_t size );
-
 ```
 
 스트림 버퍼링 방식을 변경한다.
@@ -33,8 +36,13 @@ unbuffered 스트림의 경우 데이터는 버퍼와 같은 중간 경유지를
 
 모든 열려진 파일들은 기본적으로 할당된 버퍼를 가지고 있다. 이 함수는 그렇게 할당된 버퍼의 크기를 재조정 하거나, 사용자가 특별히 할당한 버퍼로 버퍼를 바꾸거나, 파일의 버퍼링 방식을 변경할 수 있게 해준다. 표준 출력(stdout) 이나 표준 오류(stderr) 같은 시스템 표준 스트림은 리다이렉트(redirect) 되지 않는 한 기본적으로 unbuffered 로 설정되어 있다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 stream
 
 
@@ -61,43 +69,56 @@ size
 지정할 버퍼의 크기로 단위는 바이트 이다. 이 때, 버퍼로 지정한 배열의 크기 보다 반드시 작거나 같아야 한다. 
 만일 이 인자가 NULL 이라면 컴퓨터가 스스로 버퍼가 취할 수 있는 최소의 크기를 결정하게 된다. 
 
+
+
 ###  리턴값
-### 
+
+
+
+
 만일 버퍼가 성공적으로 지정 되었다면 0 이 리턴된다.
 그렇지 않을 경우 0 이 아닌 값이 리턴되는데 보통 적당하지 않은 size 값을 인자로 넘겼거나, size 에 NULL 을 넘겼지만 컴퓨터가 메모리를 할당하는 과정 중 오류가 발생하는 경우이다. 
 
+
+
 ###  실행 예제
-### 
+
+
+
+
 ```cpp
-/* 
-
-파일을 _IOFBF 형식으로 열며, 버퍼는 크기가 1024 바이트로 컴퓨터가 자동으로 할당하게 한다. 
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/setvbuf/
-에서 가져왔습니다. 
-
- */
-#include <stdio.h>
-int main ()
-{
-    FILE *pFile;
-    pFile=fopen ("myfile.txt","w");
-    setvbuf ( pFile , NULL , _IOFBF , 1024 );
-
-    /* 여러 파일 입출력 작업들 */
-
-    fclose (pFile);
-
-    return 0;
-}
+/* 파일을 _IOFBF 형식으로 열며, 버퍼는 크기가 1024 바이트로 컴퓨터가 자동으로 할당하게 한다. 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/setvbuf/에서 가져왔습니다.  */#include <stdio.h>int main (){    FILE *pFile;    pFile=fopen ("myfile.txt","w");    setvbuf ( pFile , NULL , _IOFBF , 1024 );    /* 여러 파일 입출력 작업들 */    fclose (pFile);    return 0;}
 ```
 
 
 스트림 버퍼 형식이 _IOFBF, 즉 fully buffered 스트림이기 때문에 버퍼가 다 차지 않는 이상 쓰기 작업을 하지 않게 된다. 즉, 버퍼에 1024 바이트 이상 쓰이지 않는 이상 myfile.txt 에 쓰이지 않는다. 
 
+
+
 ###  연관된 함수
-### * setbuf  :  스트림 버퍼를 설정한다.
-fopen   :  파일을 연다.fflush   :  스트림을 비운다. 
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fscanf 함수(2)
+
+
+* setbuf
+  :  스트림 버퍼를 설정한다.
+
+
+
+
+* fopen
+   :  파일을 연다.
+
+* fflush
+   :  스트림을 비운다. 
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fscanf 함수(2)
 2010.02.22C 언어 레퍼런스 - fprintf 함수(1)
 2010.02.19C 언어 레퍼런스 - setvbuf 함수(0)
 2010.02.18C 언어 레퍼런스 - setbuf 함수(0)

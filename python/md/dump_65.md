@@ -1,16 +1,20 @@
+----------------
+title : C 언어 레퍼런스 - fscanf 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 
 fscanf
-```info
-#include <stdio.h> // C++ 에서는 <cstdio>
 
-int fscanf ( FILE * stream, const char * format, ... );
+
+
+```info
+#include <stdio.h> // C++ 에서는 <cstdio>int fscanf ( FILE * stream, const char * format, ... );
 ```
 
 
@@ -18,8 +22,13 @@ int fscanf ( FILE * stream, const char * format, ... );
 
 스트림에서 형식 문자열에서 지정한 방식대로 데이터를 읽어온 후, 형식 문자열의 각각의 형식 지정자에 대응하는 인자가 가리키는 메모리 공간에 그 데이터를 집어 넣는다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 stream
 
 데이터를 읽어올 스트림의 FILE 객체를 가리키는 포인터
@@ -27,7 +36,17 @@ stream
 format
 
 C 형식 문자열로 다음의 것들을 포함하고 있다
-* 공백 문자 (Whitespace character 이라 부르며, 개행 문자(\n), 탭 문자, 띄어쓰기(' ') 이다)  : fscanf 함수는 비-공백 문자를 읽어들이기 전까지 읽혀지는 모든 공백 문자들을 무시한다. 비-공백 문자 (Non whitespcae character), 단 % 를 제외한다 : 공백 문자가 아니거나 형식 지정자에 포함되지 않는 것들은 함수로 하여금 다음 문자를 스트림에서 읽어 들이고 이와 이 비-공백 문자와 비교하여 같다면 버리고 다음 문자와 형식으로 진행한다. 만일 다르다면 함수가 종료되고, 스트림에서 읽혀지지 않은 다른 문자들은 모두 남아있게 된다.형식 지정자 : 이는 % 로 지정되는 것들로 스트림에서 어떠한 형식으로 데이터를 읽어오고, 또 각각의 형식 지정자에 대응되는 인자에 어떠한 형식으로 저장할 지에 대해 결정한다. 형식 지정자는 아래와 같은 꼴로 생겼다.
+
+* 공백 문자
+ (Whitespace character 이라 부르며, 개행 문자(\n), 탭 문자, 띄어쓰기(' ') 이다)  : fscanf 함수는 비-공백 문자를 읽어들이기 전까지 읽혀지는 모든 공백 문자들을 무시한다. 
+
+* 비-공백 문자
+ (Non whitespcae character), 단 % 를 제외한다 : 공백 문자가 아니거나 형식 지정자에 포함되지 않는 것들은 함수로 하여금 다음 문자를 스트림에서 읽어 들이고 이와 이 비-공백 문자와 비교하여 같다면 버리고 다음 문자와 형식으로 진행한다. 만일 다르다면 함수가 종료되고, 스트림에서 읽혀지지 않은 다른 문자들은 모두 남아있게 된다.
+
+* 형식 지정자
+ : 이는 % 로 지정되는 것들로 스트림에서 어떠한 형식으로 데이터를 읽어오고, 또 각각의 형식 지정자에 대응되는 인자에 어떠한 형식으로 저장할 지에 대해 결정한다. 형식 지정자는 아래와 같은 꼴로 생겼다.
+
+
 ```info
 
 %[*][폭(width)][한정자(modifiers)]타입(type)
@@ -46,9 +65,17 @@ C 형식 문자열로 다음의 것들을 포함하고 있다
  주의할 점은 str 에는 NULL 문자가 들어갈 수 있는 충분한 공간이 남아 있어야 한다. 
 한정자입력받는 데이터의 크기를 지정한다. int (d, i, n), 
 unsigned int (o, u, x) float (e, f, g) 형에 대해 입력받는 데이터의 크기를 설정할 수 있다. 
+
 * h : short int (d, i, n 의 경우) 혹은 
-unsigned short int (o, u, x 일 경우)l : long int (d, i, n 의 경우) 혹은 
-unsigned long int (o, u, x 일 경우), 혹은 double (e,f, g 일 경우)L : long double (e, f, g 일 경우)
+unsigned short int (o, u, x 일 경우)
+
+* l : long int (d, i, n 의 경우) 혹은 
+unsigned long int (o, u, x 일 경우), 혹은 double (e,f, g 일 경우)
+
+* L : long double (e, f, g 일 경우)
+
+
+
 타입
 데이터를 어떠한 형식으로 혹은 어떠한 값만을 읽어들어야 할 지에 
 대해 지정해준다. 아래 표를 참고.
@@ -83,53 +110,68 @@ int
     int i;
     fscanf(fp, "%d", &i); /* 꼭 주소값을 전달해야 된다는 점에 유의! */
 
+
+
 ###  리턴값
-### 
+
+
+
+
 성공할 경우, fscanf 함수는 읽어들인 데이터의 수를 리턴한다. 만일 어떠한 데이터도 형식 지정자와 일치하는 것이 없다면 0 이 될 수 도 있다.
 만일 어떠한 데이터도 성공적으로 읽어들이기 전에 입력이 실패한다면 EOF 가 리턴된다. 
 
+
+
 ###  실행 예제
-### 
+
+
+
+
 ```cpp
-/*
-
-myfile.txt 에 3.1416 과 PI 를 쓴 뒤, 이를 다시 myfile.txt 에서 읽어들인다. 이 때, myfile.txt 를 w+ 형식으로 열었으므로 출력 뒤에 입력을 하기 위해서는 fflush 나 rewind 와 같은 파일 위치 지정자 조정 함수를 호출해야 하는데 이 경우 rewind 함수를 호출하여 위치 표시자를 맨 앞으로 돌렸다. 
-
- */
-#include <stdio.h>
-int main ()
-{
-    char str [80];
-    float f;
-    FILE * pFile;
-
-    pFile = fopen ("myfile.txt","w+");
-    fprintf (pFile, "%f %s", 3.1416, "PI");
-    rewind (pFile);
-    fscanf (pFile, "%f", &f);
-    fscanf (pFile, "%s", str);
-    fclose (pFile);
-    printf ("I have read: %f and %s \n",f,str);
-    return 0;
-}
+/*myfile.txt 에 3.1416 과 PI 를 쓴 뒤, 이를 다시 myfile.txt 에서 읽어들인다. 이 때, myfile.txt 를 w+ 형식으로 열었으므로 출력 뒤에 입력을 하기 위해서는 fflush 나 rewind 와 같은 파일 위치 지정자 조정 함수를 호출해야 하는데 이 경우 rewind 함수를 호출하여 위치 표시자를 맨 앞으로 돌렸다.  */#include <stdio.h>int main (){    char str [80];    float f;    FILE * pFile;    pFile = fopen ("myfile.txt","w+");    fprintf (pFile, "%f %s", 3.1416, "PI");    rewind (pFile);    fscanf (pFile, "%f", &f);    fscanf (pFile, "%s", str);    fclose (pFile);    printf ("I have read: %f and %s \n",f,str);    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F110817274B8166BB8D0682)
 
 파일에 쓰여진 모습
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F201841274B8166BC620379)
 
 
 
-###  연관된 함수
-### 
-* scanf  :  표준 입력(stdin) 에서 데이터를 특정한 형식으로 읽어온다.fprintf  :  스트림에 특정한 형식으로 데이터를 쓴다.fread  :  스트림에서 데이터 블록을 읽어온다.fgets  :  스트림에서 문자열을 읽어온다.  
 
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fread 함수(2)
+
+###  연관된 함수
+
+
+
+
+
+* scanf
+  :  표준 입력(stdin) 에서 데이터를 특정한 형식으로 읽어온다.
+
+* fprintf  :  스트림에 특정한 형식으로 데이터를 쓴다.
+
+* fread  :  스트림에서 데이터 블록을 읽어온다.
+
+* fgets
+  :  스트림에서 문자열을 읽어온다.  
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fread 함수(2)
 2010.03.21C 언어 레퍼런스 - sprintf 함수(3)
 2010.02.22C 언어 레퍼런스 - fscanf 함수(2)
 2010.02.22C 언어 레퍼런스 - fprintf 함수(1)

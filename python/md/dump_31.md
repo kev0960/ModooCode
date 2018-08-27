@@ -1,9 +1,20 @@
+----------------
+title : 씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>
+--------------
 
 
 이번 강좌에서는
-* 버그란 말의 유래디버깅![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1341EE034B38D23B6FC4AA)
+
+* 버그란 말의 유래
+
+* 디버깅
+
+
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1341EE034B38D23B6FC4AA)
 
   우리는 흔히 컴퓨터에 오류가 생기면 '버그(bug)' 가 생겼다고 합니다. 그런데 왜 하필이면 버그 일까요? 곤충? 곤충이 뭐 어째서 말이지요. 사실 이 말이 나온 계기는 먼 옛날 1940 년대로 돌아갑니다. 유명한 여자 컴퓨터 과학자였던 그레이스 호퍼(Grace Hopper) 는 하버드 대학교의 Mark II 컴퓨터를 작동시키던 중 연산에 문제가 생기는 바람에 원인을 분석하다가 컴퓨터에 나방이 들어가 일으켰다는 사실을 알게되었습니다. (당시 컴퓨터는 지금의 쬐그만한 컴퓨터가 아니라 거의 학교 교실 만한 수 톤짜리 덩치였습니다. 현대의 개인용 컴퓨터에 나방이 들어가는 것은 이상한 일이지만 옛날에는 충분히 있을만한 일이였지요). 호퍼는 이 나방을 꺼내고는 곤충을 잡았다 해서 디버그(Debug) 했다고 기록했습니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F134C76244B3635E6888448)
 
@@ -20,29 +31,20 @@
 ```cpp
 
 #include <stdio.h>
-
 int main()
-
 {
-
     char a, b, c;
-
     a = 100;
-
     b = 300;
-
     c = a + b;
-
-
     printf("%d + %d = %d \n", a, b, c);
-
     return 0;
-
 }
 ```
 
 
   성공적으로 컴파일 하면 아래의 화면을 볼 수 있습니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F19046A164B38B0AE70BEF1)
 
@@ -51,16 +53,19 @@ int main()
 
   일단, Visual Express 에서 F10 을 눌러 봅시다. 
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F1430E2184B38B1E2233760)
 
 
 
 오오. 무언가 새로운 창이 떳습니다. 일단, 메뉴바 쪽에 알 수 없는 내용들은 무시하고 중점적으로 살펴볼 것은 아래와같습니다. 붉은색 박스로 친 노란색의 화살표와,
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2079BD164B38B242927092)
 
 
 맨 아래쪽의 '조사식' 부분을 살펴봅시다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F18515E194B38B2DF75F781)
 
@@ -76,6 +81,7 @@ int main()
 
   아래 조사식은 내가 값을 보고 싶은 식을 써 넣으면 됩니다. 예를 들어서 내가 변수 a 의 값을 보고 싶다면 a 를 치고, a + b 의 값을 보고싶다면 a  +  b 의 값을 치면 됩니다. 이 디버깅 과정에서 문제가 생기는 것은 b, c 이므로, 일단 변수 a,b,c 의 값들이 어떻게 변화하는지 살펴보도록 합시다.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F182098054B38B52F6973F6)
 
 
@@ -83,10 +89,12 @@ int main()
 
   그 다음 문장을 실행하기 위해서는 F10 을 누르면 됩니다.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F122E961D4B38B95F6E366E)
 
   
 어랏. 분명히 그 다음 문장을 실행한다고 그랬는데 두 줄이나 내려왔습니다. 이는 사실, 컴퓨터에서 사용자의 편의를 위해 변수를 정의하는 부분은 일일이 귀찮게 F10 을 누르지 않도록 자동으로 실행해 준 것입니다. 아무튼. 크게 중요한 부분은 아닙니다. 다음 문장을 실행하기 전에, 조사식이 어떻게 되었는지 봅시다.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F153B801D4B38B9D35B3A0B)
 
@@ -95,18 +103,22 @@ int main()
 
 이제, F10 을 또 한번 눌러봅시다. 화살표가 b=300; 을 가리켰으므로, 그 위의 문장, 즉 a = 100; 이란 문장을 실행했다는 것입니다. 따라서, 조사식을 보면,
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F181CE91A4B38BA8E868174)
 위와 같이 a 의 값이 100 이라고 나옵니다. 이 때 옆의 'd' 는 100 에 해당하는 아스키 문자(기억 하시죠? 모르면 5강 참조) 을 나타낸 것으로, 사용자의 편의를 위해 컴퓨터가 나타내주었습니다.
 
 마찬가지로 F10 을 눌러서 b 의 값도 정의해줍시다.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F124508114B38BC1256E611)
 
 
  허걱. 분명히 b = 300 을 했는데 b 에는 44 가 들어갔습니다. 무언가 문제가 있어 보입니다. 사실, 이쯤 되면 무엇이 문제인지 짐작할 수 있겠지만, 아래에서 설명하도록 하죠. 마찬가지로 F10 을 또 한번 눌러서 c = a + b; 를 실행해 보면 아래와 같습니다.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1619871A4B38BB035A1B9A)
 조사식을 살펴 보면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F15181D1A4B38BB1F8B7D88)
 
@@ -118,41 +130,27 @@ int main()
 예를 들어 아래의 코드를 봅시다(사실 아래 것도 그리 복잡한 것은 아니지만 적절한 예제가 없어서.. 여러분이 직접 프로그래밍 하시다 보면 알게 될것입니다) .
 
 ```cpp
-/* 샘플 코드 */
-#include <stdio.h>
-
-int main()
-{
-    int arr[10];
-    int i;
-
-    for(i=0;i<10;i++)
-    {
-        scanf("%d", &arr[i]);
-    }
-    for(i=0;i<=10;i++)
-    {
-        printf("%d \n", arr[i]);
-    }
-    return 0;
-} 
+/* 샘플 코드 */#include <stdio.h>int main(){    int arr[10];    int i;    for(i=0;i<10;i++)    {        scanf("%d", &arr[i]);    }    for(i=0;i<=10;i++)    {        printf("%d \n", arr[i]);    }    return 0;} 
 ```
 
   성공적으로 컴파일 해보면 아래와 같이 맨 아래에 이상한 값이 출력됨을 볼 수 있습니다.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F1861B60B4B38C4D96C91B5)
 
   도대체 -858993460 은 어디서 나온 것일까요? 한 번 여러분이 디버깅을 통해 코드의 어느 부분이 잘못되었는지 찾아서 수정해보세요 :)
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
-공감sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>(62)
+
+
+
+공감sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>(62)
 2010.01.25씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>(42)
 2009.12.29씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>(32)
 2009.12.29씹어먹는 C 언어 - <13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)>(33)

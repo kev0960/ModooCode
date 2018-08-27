@@ -1,6 +1,18 @@
+----------------
+title : 씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >
+--------------
 
 
-이번 강좌에서는...* for 문 (for statement) 에 대해 이해한다while 문과 do - while 문에 대해 이해한다반복문과 if 문을 적당히 잘 이용한다![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F20063D1C4A7ACB09B31940)
+이번 강좌에서는...
+* for 문 (for statement) 에 대해 이해한다
+
+* while 문과 do - while 문에 대해 이해한다
+
+* 반복문과 if 문을 적당히 잘 이용한다
+
+
+
+![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F20063D1C4A7ACB09B31940)
 
 
   안녕하세요, 여러분. C 언어 공부는 잘 되가고 있나요? 제 사이트의 강좌 만을 보고도 충분히 C 언에 대한 깊은 학습이 이루어 질 수 있다고 생각하지만 사이트의 강좌 업데이트 속도가 느리니 답답하신 분들도 많을 것 입니다. 그러한 분들은 특별히 C 언어 관련 책을 서점에서 구매하여 읽어보는 것을 추천합니다. 물론 학원을 다녀도 되지만, 시중에 C 언어에 관련한 훌륭한 학습서 (흔히 가장 많이 추천하는 것으로는 열혈강의 C 프로그래밍, A Book On C, Teach Yourself C, 등등) 들이 많이 있으므로 굳이 학원을 다닐 필요가 없을 것이라 생각합니다. 또한 인터넷을 통해서도 C 언어에 관해 많은 정보를 알 수 있으니 이점 유의하시기 바랍니다. 
@@ -9,22 +21,20 @@
 
 ```cpp
 #include <stdio.h>
-
 int main()
-
 {
-
     printf("%d",1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20 + 21 + 22 + 23 + 24 + 25 + 26 + 27 + 28 + 29 + 30 + 31 + 32 + 33 + 34 + 35 + 36 + 37 + 38 + 39 + 40 + 41 + 42 + 43 + 44 + 45 + 46 + 47 + 48 + 49 + 50 + 51 + 52 + 53 + 54 + 55 + 56 + 57 + 58 + 59 + 60 + 61 + 62 + 63 + 64 + 65 + 66 + 67 + 68 + 69 + 70 + 71 + 72 + 73 + 74 + 75 + 76 + 77 + 78 + 79 + 80 + 81 + 82 + 83 + 84 + 85 + 86 + 87 + 88 + 89 + 90 + 91 + 92 + 93 + 94 + 95 + 96 + 97 + 98 + 99 + 100 );
-
     return 0;
-
 }
 ```
 
 
 
   그리고, 무사히 계산 결과인 5050을 구해서 친구에게 알려주었습니다. 그런데, 이게 웬일입니까? 그 친구가 갑자기 1 부터 10000까지의 숫자의 합을 계산해 달라고 요청하는 것 아니겠습니까? 위 1 부터 100 까지 쓰는 것도 힘들어 죽겠는데 10000 까지 라니. Psi 는 눈 앞이 캄캄하였습니다. 적어도, 이 강좌를 보기 전 까지는 말이죠. 
+
+
 ###  for 문 (for statement) 
+
 
   여러분은 컴퓨터가 왜 생겨났는지 아십니까? 물론 여러가지 이유가 있겠지만 그 중 제일 중요한 이유는 바로 계산 입니다.최초의 컴퓨터라고 알려진 ENIAC (물론 이에 대해 의견이 분분 하지만 가장 일반적으로 최초의 컴퓨터는 ENIAC 이나 영국의콜로서스 둘 중 하나이네요) 은 탄도의 발사표를 계산하는 역할을 하였습니다. 그렇다면 두 번째로 중요한 컴퓨터의 존재 이유는 무엇일까요? 바로, 노가다 - 즉 반복 연산 입니다. 
 
@@ -34,28 +44,19 @@ int main()
 
 ```cpp
  #include <stdio.h>
-
 int main()
-
 {
-
     int i;
-
     for(i=0;i<20;i++)
-
     {
-
         printf("숫자 : %d \n", i);
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
 
 위 소스를 성공적으로 컴파일 하였다면, 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1266D6234A33D95B9F2C54)
 
@@ -65,15 +66,10 @@ for 문은 다음과 같은 기본 구조를 가지고 있습니다.
 
 ```info
 for(초기식;조건식;증감식)
-
 {
-
 명령1;
-
 명령2;
-
 ....
-
 }
 ```
 
@@ -89,13 +85,9 @@ for(초기식;조건식;증감식)
 그렇다면 위의 소스 코드는 어떨까요? 
 
 ```cpp
-
     for(i=0;i<20;i++)
-
     {
-
         printf("숫자 : %d \n", i);
-
     }
 ```
 
@@ -135,31 +127,20 @@ for 문에 i < 20 으로 되어 있으므로 (조건식)
 
 ```cpp
 /* 1 부터 19 까지의 합*/
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int i,sum = 0;
-
     for(i=0;i<20;++i)
-
     {
-
         sum = sum + i;
-
     }
-
-    printf("1 부터 19 까지의 합 : %d",sum);
-
-    return 0;
-
+    printf("1 부터 19 까지의 합 : %d",sum);    return 0;
 }
 ```
 
 위 소스를 성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F161BE8274A3527D570F4EE)
 
@@ -172,11 +153,8 @@ int main()
 
 ```cpp
     for(i=0;i<20;++i)
-
     {
-
         sum = sum + i;
-
     }
 ```
 
@@ -192,17 +170,11 @@ for 문을 살펴보자면, 위 for 문은 총 20 회 실행되며 i 는 0 부�
 
 ```info
 sum = 0; // 초기 조건
-
 sum = sum + 0;
-
 sum = sum + 1; // sum = 1;
-
 sum = sum + 2; // sum = 3;
-
 sum = sum + 3; // sum = 6;
-
 ....
-
 sum = sum + 19; // sum = 190;
 ```
 
@@ -211,29 +183,19 @@ sum = sum + 19; // sum = 190;
 
 ```cpp
 #include <stdio.h>
-
 int main()
-
 {
-
     int i,sum = 0;
-
     for(i=0;i<=10000;++i)
-
     {
-
         sum = sum + i;
-
     }
-
-    printf("1 부터 10000 까지의 합 : %d \n",sum);
-
-    return 0;
-
+    printf("1 부터 10000 까지의 합 : %d \n",sum);    return 0;
 }
 ```
 
 그 결과는 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F14694D204A352F3FBBB98A)
 
@@ -242,46 +204,25 @@ int main()
 
 ```cpp
 /* for 문 응용 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int i;
-
     int subject, score;
-
-    double sum_score = 0;
-
-    printf("몇 개의 과목 점수를 입력 받을 것인가요?");
-
-    scanf("%d", &subject);
-
-    printf("\n 각 과목의 점수를 입력해 주세요 \n");
-
+    double sum_score = 0;    printf("몇 개의 과목 점수를 입력 받을 것인가요?");
+    scanf("%d", &subject);    printf("\n 각 과목의 점수를 입력해 주세요 \n");
     for(i = 1; i <= subject; i++)
-
     {
-
         printf("과목 %d : ", i);
-
         scanf("%d", &score);
-
         sum_score = sum_score + score;
-
     }
-
-
-    printf("전체 과목의 평균은 : %.2f \n", sum_score / subject);
-
-    return 0;
-
+    printf("전체 과목의 평균은 : %.2f \n", sum_score / subject);    return 0;
 }
 ```
 
 위 소스를 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2044D40D4A44EF7DC1A1DE)
 
@@ -290,17 +231,11 @@ int main()
 
 ```cpp
     for(i = 1; i <= subject; i++)
-
     {
-
         printf("과목 %d : ", i);
-
         scanf("%d", &score);
-
         sum_score = sum_score + score;
-
     }
-
 ```
 
   for 문을 살펴보면 i 의 값이 1 에서 subject 까지 1 씩 증가하면서 돌아가네요. 이 말은 즉슨,  for 문 안의 내용이 subject 번 실행된다는 뜻입니다. (즉, subject 가 3 이라면, i 의 값이 1 부터 3 까지 1 씩 증가하면서 돌아가므로 1,2,3. 즉 3 번 for 문 속 내용이 실행됩니다) 
@@ -309,7 +244,6 @@ int main()
 
 ```cpp
         printf("과목 %d : ", i);
-
         scanf("%d", &score);
 ```
 
@@ -327,53 +261,36 @@ int main()
 평균은 총점을 과목 수로 나눈 것이므로 sum_score / subject 가 우리가 구하고 싶은 전체 과목 평균이 되겠군요. 
 
 
+
+
 ###  break 문
-### 
+
+
+
+
 ```cpp
 /* break! */
-
 #include <stdio.h>
-
 int main()
-
 {
-
-    int usranswer;
-
-    printf("컴퓨터가 생각한 숫자를 맞추어 보세요! \n");
-
-    for(;;)
-
+    int usranswer;    printf("컴퓨터가 생각한 숫자를 맞추어 보세요! \n");    for(;;)
     {
-
         scanf("%d", &usranswer);
-
         if(usranswer == 3)
-
         {
-
             printf("맞추셨군요! \n");
-
             break;
-
         }
-
         else
-
         {
-
             printf("틀렸어요! \n");
-
         }
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
 성공적으로 실행했다면 아래와 같이 나오게 됩니다.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F182522284A4C86A47FDAE5)
 
@@ -382,29 +299,17 @@ int main()
 
 ```cpp
     for(;;)
-
     {
-
         scanf("%d", &usranswer);
-
         if(usranswer == 3)
-
         {
-
             printf("맞추셨군요! \n");
-
             break;
-
         }
-
         else
-
         {
-
             printf("틀렸어요! \n");
-
         }
-
     }
 ```
 
@@ -412,25 +317,18 @@ int main()
 
 ```cpp
 #include <stdio.h>
-
 int main()
-
 {
-
     for(;;)
-
     {
-
         printf("a");
-
     }
-
     return 0;
-
 }
 ```
 
 와 같은 프로그램을 만든다면, for 문이 무한번 실행되므로 (프로그램 자체가 강제적으로 종료되기 전 까지)
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F142F65274A4C878BBBF8A1)
 
@@ -439,23 +337,14 @@ int main()
 
 ```cpp
         scanf("%d", &usranswer);
-
         if(usranswer == 3)
-
         {
-
             printf("맞추셨군요! \n");
-
             break;
-
         }
-
         else
-
         {
-
             printf("틀렸어요! \n");
-
         }
 ```
 
@@ -465,23 +354,14 @@ int main()
 
 ```cpp
 #include <stdio.h>
-
 int main()
-
 {
-
     for(;;)
-
     {
-
         break;
-
         printf("a");
-
     }
-
     return 0;
-
 }
 ```
 
@@ -490,25 +370,15 @@ int main()
 ```cpp
 
 #include <stdio.h>
-
 int main()
-
 {
-
     for(;;)
-
     {
-
         printf("a");
-
         break;
-
     }
-
     return 0;
-
 }
-
 ```
 
 위와 같이 break 앞에 printf("a"); 가 있다면 a 가 출력이 되고 for 문을 빠져나가 종료가 되는 것이지요. 
@@ -517,151 +387,105 @@ int main()
 
 ```info
     for(;;)
-
     {
-
         게임;
-
         if(유저 사망)
-
         {
-
             if(게임 다시 안할래요)
-
                 break;
-
         }
-
-
         게임 재시작;
-
     }
-
 ```
 
 와 같이 쓰일 수 있습니다. 
 
 
+
+
 ###  continue 문
-### 
+
+
+
+
   continue 문은 break 문과 비슷하지만서도 하는 일은 완전히 다릅니다. continue 는 break 와는 달리 for 문을 빠져 나가지 않고, 그냥 패스 해주는 것입니다. 아래 예제를 봅시다. 
 
 ```cpp
-/* 5 의 배수를 제외한 숫자 출력 */
-#include <stdio.h>
-
+/* 5 의 배수를 제외한 숫자 출력 */#include <stdio.h>
 int main()
-
 {
-
-    int i;
-
-    for(i=0; i<100; i++)
-
+    int i;    for(i=0; i<100; i++)
     {
-
         if(i % 5 == 0)
-
-            continue;
-
-        printf("%d ", i);
-
-    }
-
-    return 0;
-
+            continue;        printf("%d ", i);
+    }    return 0;
 }
 ```
 
 성공적으로 실행하면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1622651C4A5DF04541B283)
 
 
    와 같이 나오게 됩니다. 보시다 싶이, 5 의 배수를 제외한 0 이상, 100 미만의 모든 수들이 출력 되었습니다. 
 
+
 ```cpp
 
     for(i=0; i<100; i++)
-
     {
-
         if(i % 5 == 0)
-
-            continue;
-
-        printf("%d ", i);
-
+            continue;        printf("%d ", i);
     }
 ```
 
   일단, for 문을 살펴보면 i 가 0 부터 100 미만의 값을 가지게 됩니다. 이 때, if 문을 살펴 보면 i 를 5로 나눈 나머지 (i % 5) 가 0 일 때 (== 0) continue 를 실행함을 볼 수 있습니다. continue 는 break 문 처럼 아래 모든 내용을 무시한다는 점에서 동일하지만, break 문은 루프를 빠져나가는데 반면 continue 는 다시 조건 점검부로 점프하게 됩니다. continue 는 마치 카드 게임에서 스킵과 같은 역할을 하게 됩니다. (break 문이 카드게임에서 퇴출 되는 것이라면...) 
 
   따라서, i 의 값이 5 의 배수인 경우에만 printf("%d", i) 가 실행이 되지 않게 되는 것이지요. 
+
 문득 for 문을 배우면서 이러한 생각은 들지 않았나요? if 문 안에 if 문을 넣을 수 있는 것 처럼 for 문 안에도 for 문을 넣을 수 있을까? 네, 물론 넣을 수 있습니다. 아래 예제를 참조하세요.
 
 ```cpp
 /* 구구단 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
-    int i , j;
-
-    for(i=1; i<10; i++)
-
+    int i , j;    for(i=1; i<10; i++)
     {
-
         for(j=1; j<10; j++)
-
         {
-
             printf(" %d x %d = %d \n", i, j, i*j);
-
         }
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
 성공적으로 컴파일 하였다면
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F16564C154A63CF5D290175)
+
+
 
 와 같이 근사한 구구단 표가 출력됩니다. 
 
 ```cpp
     for(i=1; i<10; i++)
-
     {
-
         for(j=1; j<10; j++)
-
         {
-
             printf(" %d x %d = %d \n", i, j, i*j);
-
         }
-
     }
-
 ```
 
 위 코드에서 구구단 표를 출력하는 부분은 바로 위 부분입니다. for 문이 2 개나 사용되어 있는 꼴이지요. 그런데 사실 돌아가는 원리는 간단합니다. 일단, 처음에 i 에 1 이 들어 가게 되죠. 그런 다음에
 
 ```cpp
         for(j=1; j<10; j++)
-
         {
-
             printf(" %d x %d = %d \n", i, j, i*j);
-
         }
 ```
 
@@ -676,11 +500,8 @@ int main()
 
 ```cpp
         for(j=1; j<10; j++)
-
         {
-
             printf(" %d x %d = %d \n", i, j, i*j);
-
         }
 ```
 
@@ -688,35 +509,21 @@ int main()
 
 ```cpp
 /* 다음 소스만 보고 무슨 숫자가 출력될 지 맞추어 보세요~~ */
-
 #include <stdio.h>
-
 int main()
-
 {
-
-    int i , j;
-
-    for(i=1; i<10; i++)
-
+    int i , j;    for(i=1; i<10; i++)
     {
-
         for(j=1; j<i; j++)
-
         {
-
             printf("%d ", j);
-
         }
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1333971A4A63D9053A7C73)
 
@@ -725,19 +532,12 @@ int main()
 
 ```cpp
     for(i=1; i<10; i++)
-
     {
-
         for(j=1; j<i; j++)
-
         {
-
             printf("%d ", j);
-
         }
-
     }
-
 ```
 
 이 부분에서 i 가 1 이면, j 가 출력되지 않고, i 가 2 가 되면 j 가 1 부터 1 까지, i 가 3 이 되면 j 는 1 부터 2 까지 순차적으로 출력되어 i 가 9 일 때, j 는 1 부터 8 까지 출력되어 위와 같은 모습을 보이게 됩니다. 어때요? 간단하지요? 
@@ -745,33 +545,19 @@ int main()
   아마 이 쯤 하셨다면 for 문에 대해 질렸을 것 같으니 for 문과 비스므리하면서도 다른 반복문인 while 문에 대해 살펴 보도록 해봅시다. 
 
 ```cpp
-/* while 문 */
-#include <stdio.h>
-
+/* while 문 */#include <stdio.h>
 int main()
-
 {
-
-    int i = 1, sum = 0;
-
-    while(i <= 100)
-
+    int i = 1, sum = 0;    while(i <= 100)
     {
-
-        sum += i;
-        i++;
-
-    }
-
-    printf("1 부터 100 까지의 합 : %d \n", sum);
-
-
+        sum += i;        i++;
+    }    printf("1 부터 100 까지의 합 : %d \n", sum);
     return 0;
-
 }
 ```
 
 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F172DC70E4A7ABE672D72D0)
 
@@ -780,52 +566,27 @@ int main()
   while 문은 위의 예제에서도 알 수 있듯이 for 문과는 달리 구조가 사뭇 단순합니다. while 문의 기본 구조는 아래와 같습니다.
 
 ```info
-    while (조건식)
-    {
-        명령1;
-        명령2;
-        ...
-    }
+    while (조건식)    {        명령1;        명령2;        ...    }
 ```
 
   for 문 처럼 '조건식' 에는 이 while 문을 계속 돌게 할 조건이 들어갑니다. 예를 들어서 조건식에 i <= 100 이 들어간다면 i 가 100 이하 일 때 만 조건이 성립하므로 i 가 100 이하일 때 까지 while 문이 계속 돌아가게 됩니다. 
 
 ```cpp
     while(i <= 100)
-
     {
-
-        sum += i;
-        i++;
-
+        sum += i;        i++;
     }
-
 ```
 
   위 경우, i 의 값이 100 이하 인 지 검사한 다음에 (i <= 100 ), sum 에 i 를 더하고 (sum += i ), i 의 값을 증가한 뒤 (i++ ), 다시 처음으로 돌아가게 됩니다. 이 때, while 문의 특징이 바로 시작 부터 조건식을 검사한다는 것입니다. (이는 for 문과 동일합니다.) 
 따라서, 만약 i < 1 이 조건식이라면 while 문 내부의 내용은 하나도 실행되지 않고 종료되게 됩니다. 
 
 ```cpp
-#include <stdio.h>
-int main()
-{
-    int i = 1, sum = 0;
-
-    do
-    {
-        sum += i;
-
-        i++;
-    }
-    while (i < 1);
-
-    printf(" sum : %d \n", sum);
-    return 0;
-}
-
+#include <stdio.h>int main(){    int i = 1, sum = 0;    do    {        sum += i;        i++;    }    while (i < 1);    printf(" sum : %d \n", sum);    return 0;}
 ```
 
 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F193ED11B4A7AC0CB6CCA3C)
 
@@ -835,35 +596,22 @@ int main()
 
 ```cpp
     do
-
     {
-
         명령1;
-
         명령2;
-
         ...
-
     }
-
     while (조건식);
-
 ```
 
   do - while 문은 사실 whlie 문과 같습니다. 그런데, 한 가지 차이게 있는데, 앞서 말했듯이 while 문은 명령을 실행하기 전에 조건식이 참 인지 먼저 검사 합니다. 따라서, 조건식이 처음부터 참이 아니라면 whlie 문 안의 내용은 결코 실행 될 수 없겠지요. 그런데, do - while 은 먼저 명령을 실행 한 뒤에 조건식을 검사합니다. 따라서, 처음부터 조건식이 참이 아니라도 명령을 먼저 실행한 다음 조건식을 검사하기 때문에 최소한 한 번은 실행되게 됩니다. 
 
 ```cpp
     do
-
     {
-
         sum += i;
-
-
         i++;
-
     }
-
     while (i < 1);
 ```
 
@@ -923,14 +671,15 @@ N = 18
 
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
-공감1sns신고'C' 카테고리의 다른 글씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>(87)
+
+
+
+공감1sns신고
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>(87)
 2009.08.15씹어 먹는 C 언어 - <8. 우분투 리눅스에서 C 프로그래밍 하기>(43)
 2009.08.06씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >(546)
 2009.08.06씹어먹는 C 언어 - <6. 만약에...(if 문)>(182)

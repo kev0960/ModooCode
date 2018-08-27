@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios_base::register_callback 함수
+--------------
+
 
 
 ```warning
@@ -12,6 +16,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 
 ios_base::register_callback
+
+
+
 
 ```cpp
 void register_callback ( event_callback fn, int index );
@@ -36,7 +43,12 @@ copyfmt_event ios::copyfmt 를 호출하였을 때 (정확히 말하면, 서식 
 
   모든 등록된 함수들은 위의 상황 발생 시 호출된다. 이 때 함수 자체에서 어떠한 이벤트가 발생하였는지는 ev 인자를 통해 알아낼 수 있다 
 
- 인자
+
+
+###  인자
+
+
+
 
 fn
 
@@ -51,59 +63,55 @@ index
 
   콜백 함수 호출시 인자로 전달되는 정수값이다. 이는 콜백 함수에서 사용될 인자들의 값들을 지정하는데 사용할 수 있다.
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
 없다.
 
- 실행 예제
+
+
+###  실행 예제
+
+
+
 
 ```cpp
-/*
-
-testfn 이 imbue 함수 호출시와 ostream 객체 소멸시 두 번 호출된다
-이 예제는
-http://www.cplusplus.com/reference/iostream/ios_base/register_callback/
-에서 가져왔습니다.
-
-*/
-#include <iostream>
-#include <fstream>
-using namespace std;
-
-void testfn (ios_base::event ev, ios_base& iosobj, int index)
-{
-    switch (ev)
-    {
-    case ios_base::copyfmt_event:
-        cout << "copyfmt_event\n"; break;
-    case ios_base::imbue_event:
-        cout << "imbue_event\n"; break;
-    case ios_base::erase_event:
-        cout << "erase_event\n"; break;
-    }
-    cout << "인자로 전달된 인덱스" << index << endl;
-}
-
-int main () 
-{
-    ofstream filestr;
-    filestr.register_callback (testfn,0);
-    filestr.imbue (cout.getloc());
-    return 0;
-}
+/*testfn 이 imbue 함수 호출시와 ostream 객체 소멸시 두 번 호출된다이 예제는http://www.cplusplus.com/reference/iostream/ios_base/register_callback/에서 가져왔습니다.*/#include <iostream>#include <fstream>using namespace std;void testfn (ios_base::event ev, ios_base& iosobj, int index){    switch (ev)    {    case ios_base::copyfmt_event:        cout << "copyfmt_event\n"; break;    case ios_base::imbue_event:        cout << "imbue_event\n"; break;    case ios_base::erase_event:        cout << "erase_event\n"; break;    }    cout << "인자로 전달된 인덱스" << index << endl;}int main () {    ofstream filestr;    filestr.register_callback (testfn,0);    filestr.imbue (cout.getloc());    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F150F314E4E4E7FA61FBD71)
 
 
 
- 연관된 것들
 
-* ios_base::imbue :  로케일(locale) 을 설정한다.ios::copyfmt  :  서식 정보를 복사한다.  ios_base::event  :  이벤트를 나타내기 위한 타입
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::getloc 함수(1)
+
+###  연관된 것들
+
+
+
+* ios_base::imbue
+ :  로케일(locale) 을 설정한다.
+
+* ios::copyfmt  :  서식 정보를 복사한다.  
+
+* ios_base::event  :  이벤트를 나타내기 위한 타입
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios_base::getloc 함수(1)
 2011.08.20C++ 레퍼런스 - ios_base::imbue(0)
 2011.08.20C++ 레퍼런스 - ios_base::register_callback 함수(0)
 2011.08.20C++ 레퍼런스 - ios_base::precision 함수(0)

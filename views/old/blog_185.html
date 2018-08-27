@@ -1,23 +1,21 @@
-<pre class="chroma">이 레퍼런스의 모든 내용은 http
+<pre class='warning'>이 레퍼런스의 모든 내용은 http
     :  // www.cplusplus.com/reference/iostream/
        의 내용을 기초로 하여,
        Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책
-               &lt;&lt; The C++ Programming Language &gt;&gt;
+               << The C++ Programming Language >>
            를 참고로 하여 만들어졌습니다
                .이는 또한 저의 개인적인
-                   C++ 능력 향상과 &#39;저의 모토인 지식 전파&#39; 를 위해 모든 이들에게
+                   C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게
                        공개하도록 하겠습니다.
-</pre><pre class="chroma">아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
-</pre><p>vector::push<span class='font-italic'>back</p><pre class="chroma">
-void push_back(const T&amp; x);
-</pre><p>벡터 끝에 원소를 추가한다. 현재의 마지막 원소 뒤에 새로운 원소를 추가하며, 그 원소의 값은 x 의 복사본으로 초기화 된다.</p><p>이 함수는 효과적으로 벡터의 크기를 1 늘리는데, 만일 capacity 와 벡터 size 가 같다면 내부적으로 재할당이 일어나게 된다. 이 때 이전에 사용되었던 반복자(iterator) , 레퍼런스, 포인터들은 사용할 수 없게 된다. </p><p> 인자</p><p>x</p><p>새로 추가 될 원소에 복사 될 원소T 는 벡터에 저장되어있는 원소들의 타입이다.</p><p> 리턴값</p><p>없음만일 재할당이 발생한다면 이는 Allocator::allocate() 를 이용해서 수행되는데, 예외를 던질(throw) 수 있다. (디폴트 할당자의 경우 만일 요청한 할당이 성공하지 않을 경우 bad<span class='font-italic'>alloc 이 던져진다)</p><p> 실행 예제</p><pre class="chroma">
+</pre><pre class='info'>아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
+</pre><p>vector::push<span class='font-italic'>back</p><pre class='info'>
+void push_back(const T& x);
+</pre><p>벡터 끝에 원소를 추가한다. 현재의 마지막 원소 뒤에 새로운 원소를 추가하며, 그 원소의 값은 x 의 복사본으로 초기화 된다.</p><p>이 함수는 효과적으로 벡터의 크기를 1 늘리는데, 만일 capacity 와 벡터 size 가 같다면 내부적으로 재할당이 일어나게 된다. 이 때 이전에 사용되었던 반복자(iterator) , 레퍼런스, 포인터들은 사용할 수 없게 된다. </p><h3><p>  인자</p></h3><p>x새로 추가 될 원소에 복사 될 원소T 는 벡터에 저장되어있는 원소들의 타입이다.</p><h3><p>  리턴값</p></h3><p>없음</p><p>만일 재할당이 발생한다면 이는 Allocator::allocate() 를 이용해서 수행되는데, 예외를 던질(throw) 수 있다. (디폴트 할당자의 경우 만일 요청한 할당이 성공하지 않을 경우 bad<span class='font-italic'>alloc 이 던져진다)</p><h3><p>  실행 예제</p></h3><pre class="chroma">
 <span class="cm">/*
-</span><span class="cm">
 </span><span class="cm">
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/stl/vector/push_back/
 </span><span class="cm">에서 가져왔습니다
-</span><span class="cm">
 </span><span class="cm">
 </span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
@@ -39,76 +37,4 @@ void push_back(const T&amp; x);
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1519CE4C501DD721070E78' alt=''><p> 시간 복잡도</p><p>상수 (다만 재할당이 일어 날 수 있음)</p><p> 연관된 함수</p><ul><li><p> vector::pop<span class='font-italic'>back : 마지막 원소를 삭제한다.vector::insert : 원소를 추가한다. </p></li></ul><p>공감sns신고저작자표시'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)2012.08.05C++ 레퍼런스 - vector::push<span class='font-italic'>back(0)2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)2012.03.24</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1519CE4C501DD721070E78' alt=''><h3><p>  시간 복잡도</p></h3><p>상수 (다만 재할당이 일어 날 수 있음)</p><h3><p>  연관된 함수</p></h3><ul><li><p> vector::pop<span class='font-italic'>back : 마지막 원소를 삭제한다.</p></li><li><p> vector::insert : 원소를 추가한다. </p></li></ul><p>공감sns신고저작자표시</p><p>'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)2012.08.05C++ 레퍼런스 - vector::push<span class='font-italic'>back(0)2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)2012.03.24</p>

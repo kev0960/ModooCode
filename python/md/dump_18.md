@@ -1,10 +1,22 @@
+----------------
+title : 씹어먹는 C 언어 - <11 - 1. C 언어의 아파트 (배열), 상수>
+--------------
 
 
 이번 장에서 배울 내용은
+
 * 배열(Array) 이란 무엇인가? , 배열에 대한 기초적 이해
-상수는 무엇인가? 
+
+
+
+* 상수는 무엇인가? 
+
+
+
 
 ﻿입니다,
+
+
 
 ![신나는 씹어먹는 C 언어!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F143027264ABA4173C54E08)
 
@@ -26,30 +38,25 @@
 
    따라서, C 언어에 '배열(Array)' 이라는 것이 등장하게 되었습니다. 배열은, 간단히 말하자면 변수들의 집합이라고 말할 수 있습니다. 예를 들어서 int 형 배열의 경우, int 형 변수들이 메모리 상에 여러개 할당 되어 있는 것이지요. 
 
+
+
 ###  배열의 기초
+
 
 ```cpp
 /* 배열 기초 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int arr[10] = {1,2,3,4,5,6,7,8,9,10};
-
-
     printf("Array 3 번째 원소 : %d \n ", arr[2]);
-
     return 0;
-
 }
-
 ```
 
 
   성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F173F961F4ABA00345AFD9B)
 
@@ -69,6 +76,8 @@ int main()
 
 
   과 같이 정의했는데 배열은 그와 비슷하게도  
+
+
 
 ```info
 (배열의 형) (배열의 이름)[원소 개수]; 
@@ -100,13 +109,20 @@ int main()
 
  만일 arr[10] 을 출력하려 한다면 무엇을 출력하게 될 까요? 한 번 해보세요. 아마도 아래와 같은 달콤한 애러 메세지를 볼 수 있게 될 것입니다.
 
+
 ![무지막지한 애러가 뜹니다!!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1456860E4ABA0273294E93)
 
 
   이는 배열의 존재하지도 않는 10 번째 원소를 참조하였기에 메모리 오류가 발생했다는 것 입니다. 사실, "배열의 10 번째 원소는 존재하지도 않으니, 우리가 참조한다면 0 과 같은 값들을 나타내면 되는데, 왜 위와 같이 껄렁한 오류 메세지를 출력하는 것인가?' 라고 생각할 것입니다. 그러기 위해선, 컴퓨터 상에 배열이라는 것이 어떻게 나타나게 되는이 알아야 합니다. 
 
+
+
 ###  메모리 상에서의 배열
-### 
+
+
+
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F167AEA0F4ABA04DB7B5741)
 
 
@@ -114,47 +130,41 @@ int main()
 
 
   그런데, 메모리에 위 배열 하나만이 저장되어 있는 것일까요? 물론 아닙니다. 이 프로그램을 실행하는데 조차 수천개의 변수들의 메모리 상에 적재되어 이리저리 사라지고 저장되고 있습니다. 따라서 위 그림을 좀더 사실적으로 그리자면 아래와 같습니다.
+
 ![직사각형 방 안에 1 과 10 이 연속적으로 쭉 각 방에 들어가 있습니다.](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F1321760F4ABA074B56A3A4)
 
 
   즉, arr[0] 의 앞과 arr[9] 뒤에는 아무것도 없는 것이 아니라 다른 변수의 값들이 저장되고 있다는 사실 입니다. (물론 중간의 … … 에서는 arr[1] 부터 arr[8] 까지 '연속적' 으로 놓여있습니다.)  따라서, 훌륭한 운영체제라면 초짜 프로그래머가 다른 변수의 값들을 침범하는 것을 막기 위해 허락되지 않는 접근이 감지된다면 위와 같이 Run-Time 오류를 발생시키는 것이 정석입니다. 생각해 보세요. 당신이 스타를 하는데 미네랄이 갑자기 1000 에서 4 로 줄어든다면 기분이 어떻겠습니까?
+
+
 ###  배열 가지고 놀기
-### 
+
+
 
   이제 본격적으로 배열을 가지고 놀아 보기로 합시다. 
 
+
+
 ```cpp
 
+
 /* 배열 출력하기 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int arr[10] = {2,10,30,21,34,23,53,21,9,1};
-
     int i;
-
-
     for(i=0;i<10;i++)
-
     {
-
         printf("배열의 %d 번째 원소 : %d \n", i+1, arr[i]);
-
     }
-
-
     return 0;
-
 }
-
 ```
 
 
 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F166860204ABA0BDD38FEDD)
 
@@ -169,13 +179,9 @@ int main()
 
 ```cpp
     for(i=0;i<10;i++)
-
     {
-
         printf("배열의 %d 번째 원소 : %d \n", i+1, arr[i]);
-
     }
-
 ```
 
 
@@ -185,36 +191,7 @@ int main()
 
 ```cpp
 /* 더러운 코드 */
-
-#include <stdio.h>
-int main()
-{
-    int a,b,c,d,e,f,g,h,i,j;
-    a=2;
-    b=10;
-    c=30;
-    d=21;
-    e=34;
-    f=23;
-    g=53;
-    h=21;
-    i=9;
-    j=1;
-
-    printf("1 째 값 : %d \n", a);
-    printf("2 째 값 : %d \n", b);
-    printf("3 째 값 : %d \n", c);
-    printf("4 째 값 : %d \n", d);
-    printf("5 째 값 : %d \n", e);
-    printf("6 째 값 : %d \n", f);
-    printf("7 째 값 : %d \n", g);
-    printf("8 째 값 : %d \n", h);
-    printf("9 째 값 : %d \n", i);
-    printf("10 째 값 : %d \n", j);
-
-    return 0;
-}
-
+#include <stdio.h>int main(){    int a,b,c,d,e,f,g,h,i,j;    a=2;    b=10;    c=30;    d=21;    e=34;    f=23;    g=53;    h=21;    i=9;    j=1;    printf("1 째 값 : %d \n", a);    printf("2 째 값 : %d \n", b);    printf("3 째 값 : %d \n", c);    printf("4 째 값 : %d \n", d);    printf("5 째 값 : %d \n", e);    printf("6 째 값 : %d \n", f);    printf("7 째 값 : %d \n", g);    printf("8 째 값 : %d \n", h);    printf("9 째 값 : %d \n", i);    printf("10 째 값 : %d \n", j);    return 0;}
 ```
 
   만일 여기에서 10 개의 변수의 값을 각각 입력받는 부분이라도 추가하라면 마우스라도 움켜 쥐고 울 것입니다. 
@@ -222,44 +199,25 @@ int main()
 
 ```cpp
 /* 평균 구하기*/
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int arr[5]; // 성적을 저장하는 배열
-
-    int i, ave = 0;
-
-    for(i=0;i<5;i++) // 학생들의 성적을 입력받는 부분
-
+    int i, ave = 0;    for(i=0;i<5;i++) // 학생들의 성적을 입력받는 부분
     {
-
         printf("%d 번째 학생의 성적은? ", i+1);
-
         scanf("%d", &arr[i]);
-
     }
-
     for(i=0;i<5;i++) // 전체 학생 성적의 합을 구하는 부분
-
     {
-
         ave = ave + arr[i];
-
     }
-
-
-    printf("전체 학생의 평균은 : %d \n", ave/5); // 평균이므로 5 로 나누어 준다. 
-
-    return 0;
-
+    printf("전체 학생의 평균은 : %d \n", ave/5); // 평균이므로 5 로 나누어 준다.     return 0;
 }
 ```
 
 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F152576134ABA28307657D6)
 
@@ -268,13 +226,9 @@ int main()
 
 ```cpp
     for(i=0;i<5;i++) // 학생들의 성적을 입력받는 부분
-
     {
-
         printf("%d 번째 학생의 성적은? ", i+1);
-
         scanf("%d", &arr[i]);
-
     }
 ```
 
@@ -282,13 +236,9 @@ int main()
 
 ```cpp
     for(i=0;i<5;i++) // 전체 학생 성적의 합을 구하는 부분
-
     {
-
         ave = ave + arr[i];
-
     }
-
 ```
 
  이제 ave 에 배열의 각 원소들의 합을 구하는 부분 입니다. 배열도 변수의 모음이기에, 각 원소들은 모두 변수처럼 사용 가능합니다. 물론 배열의 각 원소들끼리의 연산도 가능합니다. 예를 들어서
@@ -310,64 +260,36 @@ int main()
 
 ```cpp
 
-소스 보기/* 친구의 부탁 */
-
+소스 보기
+/* 친구의 부탁 */
 #include <stdio.h>
-
 int main()
-
 {
-
     int arr[10];;
-
-    int i, ave = 0;
-
-    for(i=0;i<10;i++)
-
+    int i, ave = 0;    for(i=0;i<10;i++)
     {
-
         printf("%d 번째 학생의 성적은? ", i+1);
-
         scanf("%d", &arr[i]);
-
     }
-
     for(i=0;i<10;i++)
-
     {
-
         ave = ave + arr[i];
-
     }
-
-
     ave = ave/10;
-
     printf("전체 학생의 평균은 : %d \n", ave);
-
-
     for(i=0;i<10;i++)
-
     {
-
         printf("학생 %d : ", i + 1);
-
         if(arr[i] >= ave)
-
             printf("합격 \n");
-
         else
-
             printf("불합격 \n");
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
 성공적으로 컴파일 하였다면 아래와 같은 화면을 볼 수 있을 것입니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F130B131B4ABA2CB0625A29)
 
@@ -375,26 +297,24 @@ int main()
 
 ```cpp
     for(i=0;i<10;i++)
-
     {
-
         printf("학생 %d : ", i + 1);
-
         if(arr[i] >= ave)
-
             printf("합격 \n");
-
         else
-
             printf("불합격 \n");
-
     }
 ```
 
   사실, 위 소스는 앞에서 보았던 우리의 평균 구하는 소스에 약간 더해서 만든 것 이므로 위 부분만 살펴 보면 되겠습니다. i 가 0 부터 9 까지 가면서 배열의 각 원소들을 ave 와 비교하고 있습니다. 만약, ave 이상이라면 합격, 그렇지 않다면 불합격을 출려갛게 말이지요. 솔직히 이 정도 수준의 프로그램 소스는 이제 더이상 설명해 줄 필요가 없어진 것 같습니다. (저만 그런가요? 만약 그렇지 않다면 이전의 강의들을 다시 한 번 정독하기를 강력하게 권합니다) 
 
+
+
 ###  소수 찾는 프로그램
-### 
+
+
+
+
 
   이번에는 배열을 활용한 프로그램을 하나 더 살펴 보겠습니다. 이번 프로그램은 '배열' 을 활용한 소수 찾는 프로그램 입니다. 일단 소수(prime number)은 여러분이 잘 알듯이 1 과 자신을 제외한 약수가 하나도 없는 수를 일컫습니다. 즉, 2 와 3 은 소수 이지만 4 는 2 가 약수 이므로 소수가 아니지요. 또한 1 도 소수가 아닙니다. 아무튼, 소수를 찾는데 배열을 활용한다는 것은 이전에 찾은 소수들을 배열에 저장하여, 어떠한 수가 소수인지 판별하기 위해 그 수 이하의 소수들로 나누어 본다는 뜻이지요. 만일, 그 수 이하의 모든 소수들로 나누었는데 나누어 떨어지는 것이 없다면 그 수는 소수가 됩니다[각주:1]. 또한, 짝수 소수는 2 가 유일하므로 홀수들에 대해서만 계산하도록 합니다. 
 
@@ -402,103 +322,63 @@ int main()
   이러한 아이디어를 바탕으로 프로그램을 짜 보겠습니다. 여러분은 아래 제가 구현한 코드를 보지 말고 한 번 스스로 해보시기 바랍니다. 참고로 저의 프로그램은 소수를 1000 개 만 찾습니다[각주:2].
 
 ```cpp
+
+
 /* 소수 프로그램 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     /* 우리가 소수인지 판별하고 있는 수 */
-
     int guess = 5; 
-
     /* 소수의 배열 */
-
     int prime[1000]; 
-
     /* 
-
     현재까지 찾은 (소수의 개수 - 1) 
-
     아래 두 개의 소수를 미리 찾았으므로 
-
     초기값은 1 이 된다. 
-
     */
-
     int index = 1; 
-
     /* for 문 변수 */
-
     int i; 
-
     /* 소수인지 판별위해 쓰이는 변수*/
-
     int ok;
-
-
     /* 처음 두 소수는 특별한 경우로 친다 */
-
     prime[0] = 2; 
-
     prime[1] = 3;
-
     for(;;)
-
     {
-
         ok = 0;
-
         for(i=0;i<=index;i++)
-
         {
-
             if(guess % prime[i] != 0)
-
             {
-
                 ok++;
-
             }
-
             else
-
             {
 
-                break;
 
+                break;
             }
-
         }
-
         if(ok == (index + 1))
-
         {
-
             index++;
-
             prime[index] = guess;
-
             printf("소수 : %d \n", prime[index]);
-
             if(index == 999)
-
                 break;
-
         }
-
         guess+= 2;
-
     }
-
     return 0;
-
 }
 ```
 
+
+
 성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F1123480E4AFE16256DBA49)
 
@@ -507,29 +387,19 @@ int main()
 
 ```cpp
         for(i=0;i<=index;i++)
-
         {
-
             if(guess % prime[i] != 0)
-
             {
-
                 ok++;
-
             }
-
             else
-
             {
 
 
 
 
-
                 break;
-
             }
-
         }
 ```
 
@@ -537,26 +407,24 @@ int main()
 
 ```cpp
         if(ok == (index + 1))
-
         {
-
             index++;
-
             prime[index] = guess;
-
             printf("소수 : %d \n", prime[index]);
-
             if(index == 999)
-
                 break;
-
         }
 ```
 
  
 따라서, 위와 같이 index 를 하나 더 증가시킨 후 prime[index] 에 guess 를 추가 시켜 줍니다. 만일 index 가 999 가 된다면 배열이 꽉 찼단 뜻이 되므로 break 를 해서 for(;;) 를 빠져 나가게 됩니다. 어때요? 배열을 이용하여 정말 많은 일을 할 수 있지요? 
 
-###  배열에 중요한 특징### 
+
+
+###  배열에 중요한 특징
+
+
+
 
 
   만약 똑똑한 사람이라면 다음과 같이 생각할 수 있을 것 입니다. 
@@ -567,69 +435,37 @@ int main()
 
 ```cpp
 /* 과연 될까? */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int total;
-
     printf("전체 학생수 : ");
-
     scanf("%d", &total);
-
     int arr[total];
-
-    int i, ave = 0;
-
-    for(i=0;i<total;i++)
-
+    int i, ave = 0;    for(i=0;i<total;i++)
     {
-
         printf("%d 번째 학생의 성적은? ", i+1);
-
         scanf("%d", &arr[i]);
-
     }
-
     for(i=0;i<total;i++)
-
     {
-
         ave = ave + arr[i];
-
     }
-
-
     ave = ave/total;
-
     printf("전체 학생의 평균은 : %d \n", ave);
-
-
     for(i=0;i<total;i++)
-
     {
-
         printf("학생 %d : ", i + 1);
-
         if(arr[i] >= ave)
-
             printf("합격 \n");
-
         else
-
             printf("불합격 \n");
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
   만약 컴파일 한다면 아래에 수많은 오류가 쏟아져 나오는 것을 볼 수 있습니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F12553F0C4ABA2FE43E64ED)
 
@@ -640,65 +476,35 @@ int main()
 
 ```cpp
 /* 설마 이것도? */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int total = 3;
-
     int arr[total];
-
-    int i, ave = 0;
-
-    for(i=0;i<total;i++)
-
+    int i, ave = 0;    for(i=0;i<total;i++)
     {
-
         printf("%d 번째 학생의 성적은? ", i+1);
-
         scanf("%d", &arr[i]);
-
     }
-
     for(i=0;i<total;i++)
-
     {
-
         ave = ave + arr[i];
-
     }
-
-
     ave = ave/total;
-
     printf("전체 학생의 평균은 : %d \n", ave);
-
-
     for(i=0;i<total;i++)
-
     {
-
         printf("학생 %d : ", i + 1);
-
         if(arr[i] >= ave)
-
             printf("합격 \n");
-
         else
-
             printf("불합격 \n");
-
-    }
-
-    return 0;
-
+    }    return 0;
 }
 ```
 
   과연 성공할까요? 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F207CED0C4ABA314D017E44)
 
@@ -708,30 +514,28 @@ int main()
 
   이는 C 언어에 처음에 배열의 크기를 변수를 통해 정의할 수 없게 규정하고 있기 때문입니다. (사실, '동적 할당' 이라는 방법으로 억지로 해서 정의할 수 있으나 이 부분에 대한 이야기는 나중에 다루도록 합시다.) 왜냐하면 처음에 컴파일러가 배열을 처리할 대 메모리 상에 공간을 잡아야 하는데 이 때, 잡아야 되는 공간의 크기가 반드시 상수로 주어져야 하기 때문입니다. 지금 수준에서 깊게 설명하는 것은 너무 무리인 것 같으니 그냥 '배열의 크기는 변수로 지정할 수 없다' 정도로 넘어가도록 합시다. 
 
+
+
 ###  상수 (Constant)
+
+
+
 
   이 부분을 여기서 꺼내기는 생뚱맞기는 하지만 그래도 이번이 아니면 다룰 기회가 없으므로 여기서 다루도록 하겠습니다. 이실직고 하자면, 원래 3 강에서 다루어야 했을 부분이지만 제가 깜빡하고 지나친 부분 입니다(ㅠㅠ). 사실, C 프로그램에서 그렇게 중요하게 다루는 부분은 아니지만 종종 쓰이기에 알아 놓아야 할 필요는 있습니다. 바로 '상수' 이죠. 상수는 변수의 정반대로 처음 정의시 그 값이 바로 주어지게 됩니다. 
 
 ```cpp
 /* 상수 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
-    const int a = 3;
-
-    printf("%d", a);
-
+    const int a = 3;    printf("%d", a);
     return 0;
-
 }
 ```
 
 
   만약 성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F185FBD154ABA3C4C611986)
 
@@ -752,21 +556,15 @@ int main()
 
 ```cpp
 #include <stdio.h>
-
 int main()
-
 {
-
-    const int a;
-
-    printf("%d", a);
-
+    const int a;    printf("%d", a);
     return 0;
-
 }
 ```
 
 와 같이 컴파일시 아래와 같이 나타나게 됩니다.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F18365B194ABA3CF133CD49)
 
@@ -775,24 +573,16 @@ int main()
 
 ```cpp
 #include <stdio.h>
-
 int main()
-
 {
-
-    const int a = 2;
-
-    a = a + 3;
-
+    const int a = 2;    a = a + 3;
     printf("%d", a);
-
     return 0;
-
 }
-
 ```
 
   를 한다면,
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F11435E174ABA3D786ED89C)
 
@@ -801,47 +591,35 @@ int main()
 
 ```cpp
 #include <stdio.h>
-
 int main()
-
 {
-
     int b = 3;
-
     const int a = b;
-
     char c[a];
-
     return 0;
-
 }
-
 ```
 
   즉, 이는 상수 a 로 배열의 크기가 할당이 가능하게 된다면 다시 말해 변수 b 의 크기로 배열의 크기를 지정할 수 있다는 말이 되기 때문에 이전에 '변수로 배열의 크기를 지정할 수 없다' 라는 사실에 모순 됩니다. 
 
  혹, 그렇다면 변수는 C 언어에서 정말로 쓸모 없는 값일까요? 사실 그렇지 않습니다. 컴퓨터 프로그래밍을 하다 보면 중요한 '상수' 로 지정해야 하는 값들이 생기기 마련 입니다. 예를 들어서 계산기 프로그램을 만들 때 에는 Pi 의 값을 상수로 지정해 놓게 된다면 변수로 지정할 때 보다 훨씬 안전해지게 됩니다. 왜냐하면 변수로 Pi 의 값을 지정했을 때, 프로그래머가 코딩상의 실수로 그 값을 바꾼다면 찾아낼 도리가 없지만, 상수로 지정시에 그 값을 실수로 바꾸도록 코딩을 해도 애초에 컴파일러가 오류를 뿜기 때문에 오류를 미연에 방지할 수 있습니다. 
 
+
+
 ###  초기화 되지 않은 값
 
+### 
   우리가 변수의 값을 초기화 하지 않는다면 그 변수는 무슨 값을 가질 까? 라는 생각을 한 분들이 많을 것 같습니다. 0 을
 가질까요? 아닙니다. 0 도 값 이지 않습니까? 0 을 가진다면 0 이라는 값을 가진다는 것 이지요? 그렇다면 한 번 해보지요.
 값이 대입되지 않은 변수의 값을 출력해보는 프로그램을 짜보면 아래와 같습니다.
 
 ```cpp
 #include <stdio.h>
-
 int main()
-
 {
-
     int arr;
-
-
     printf("니 값은 모니 : %d", arr);
-
     return 0;
-
 }
 ```
 
@@ -853,6 +631,7 @@ warning C4700: 초기화되지 않은 'arr' 지역 변수를 사용했습니다.
 
 아마, 심상치 않지만 그래도 오류가 없으니 실행은 해볼 수 있겠군요. 아마  실행해 보면 아래와 같은 모습을 보실 수 있을 것 입니다.
 
+
 ![무지막지한 오류가!!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F207CCB194AF44121121269)
 
   
@@ -863,24 +642,14 @@ warning C4700: 초기화되지 않은 'arr' 지역 변수를 사용했습니다.
 
 ```cpp
 /* 초기화 되지 않은 값 */
-
 #include <stdio.h>
-
 int main()
-
 {
-
     int arr[3];
-
     arr[0] = 1;
-
     printf("니 값은 모니 : %d", arr[1]); // arr[0] 이 아닌 arr[1] 을 출력
-
-
     return 0;
-
 }
-
 ```
 
 
@@ -892,6 +661,7 @@ warning C4700: 초기화되지 않은 'arr' 지역 변수를 사용했습니다.
 
 와 같은 경고가 발생합니다. 심지어 앞 예제에서 발생했던 경고와 번호(C7400)와 동일하군요. 불안감에 사로잡혀 실행해보면.. 아니나 다를까 아래와 같은 오류 메세지 창을 보게 됩니다. 
 
+
 ![또 오류!!!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1636490D4AF444254CDCC5)
 
 
@@ -899,26 +669,19 @@ warning C4700: 초기화되지 않은 'arr' 지역 변수를 사용했습니다.
 
 ```cpp
 /* 초기화 되지 않은 값 */
-
  #include <stdio.h>
-
 int main()
-
 {
-
     int arr[3] = {1};
-
     printf("니 값은 모니 : %d", arr[1]);
-
-
     return 0;
-
 }
 ```
 
 
 
 이번에는 마지막으로 거의 자포자기 한 심정으로 위 소스를 컴파일 해 봅시다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1108570F4AF4455E71AD75)
 
@@ -927,15 +690,13 @@ int main()
 도 있습니다. 배열의 원소는 3 개나 있는데 값은 오직 1 개 밖에 없기 때문이죠. 하지만 여러분들은 위 문장이 다음과 같은 역할을 한다는 것은 직감적으로 알 수 있습니다.
 
 ```info
-int arr[3];
-arr[0] = 1;
+int arr[3];arr[0] = 1;
 ```
 
  물론 맞는 말 입니다. printf 부분을 arr[0] 출력으로 바꾸어 보면 여러분이 생각했던 대로 1 이 출력됩니다. 하지만, arr[1] 이 도대체 왜 오류가 나지 않는 것일까요? 아까전에  int arr[3]; arr[0] = 1; 방법으로 해서 끔찍한 오류가 발생되는 것을 여러분이 두 눈으로 톡톡히 보셨지 않습니까? 그 이유는 
 
 ```cpp
     int arr[3] = {1};
-
 ```
 
 와 같이 정의한다면 컴파일러가 내부적으로 아래와 같이 생각하기 때문입니다.
@@ -970,14 +731,24 @@ int arr2[5] = {1,2,3,0,0}
 문제 2 (난이도 : 中)
   입력받은 학생들의 성적을 막대 그래프로 나타내는 프로그램을 만들어 보세요. 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <11 - 1. C 언어의 아파트 (배열), 상수>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <11 - 1. C 언어의 아파트 (배열), 상수>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
-1. [본문으로][본문으로]공감sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <12 - 3. 포인터는 영희이다! (포인터)>(119)
+
+
+1. 
+[본문으로]
+
+1. 
+[본문으로]
+
+
+
+
+공감sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <12 - 3. 포인터는 영희이다! (포인터)>(119)
 2009.11.26씹어먹는 C 언어 - <12 - 2. 포인터는 영희이다! (포인터)>(78)
 2009.11.14씹어먹는 C 언어 - <11 - 1. C 언어의 아파트 (배열), 상수>(224)
 2009.11.14씹어먹는 C 언어 - <12 - 1. 포인터는 영희이다! (포인터)>(119)

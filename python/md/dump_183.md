@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수
+--------------
+
 
 
 ```warning
@@ -12,11 +16,11 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 
 vector::assign
 
-```info
-template <class InputIterator>
-  void assign ( InputIterator first, InputIterator last );
-void assign ( size_type n, const T& u );
 
+
+
+```info
+template <class InputIterator>  void assign ( InputIterator first, InputIterator last );void assign ( size_type n, const T& u );
 ```
 
 벡터에 새로운 내용을 집어 넣는다.
@@ -26,7 +30,12 @@ void assign ( size_type n, const T& u );
 
 두번째 형태는 원래 내용을 다 지우고 원소 u 를 n 개 가지는 벡터로 만든다. 
 
- 인자
+
+
+###  인자
+
+
+
 
 
 first, last
@@ -41,61 +50,53 @@ u
 
 반복될 원소로 T 타입이다. 
 
- 리턴값
+
+
+###  리턴값
+
+
+
 
 
 없다
 
- 실행 예제
+
+
+###  실행 예제
+
 
 
 ```cpp
-/*
-
-이 예제는
-http://www.cplusplus.com/reference/stl/vector/assign/
-에서 가져왔습니다
-
-*/
-#include <iostream>
-#include <vector>
-using namespace std;
-
-int main ()
-{
-    vector<int> first;
-    vector<int> second;
-    vector<int> third;
-
-    first.assign (7,100);             // 100 을 7 번 반복해서 집어 넣는다. 
-
-    vector<int>::iterator it;
-    it=first.begin()+1;
-
-    second.assign (it,first.end()-1); // first 의 처음과 끝을 제외한 원소들
-
-    int myints[] = {1776,7,4};
-    third.assign (myints,myints+3);   // 배열로 부터 받는다. 
-
-    cout << "Size of first: " << int (first.size()) << endl;
-    cout << "Size of second: " << int (second.size()) << endl;
-    cout << "Size of third: " << int (third.size()) << endl;
-    return 0;
-}
+/*이 예제는http://www.cplusplus.com/reference/stl/vector/assign/에서 가져왔습니다*/#include <iostream>#include <vector>using namespace std;int main (){    vector<int> first;    vector<int> second;    vector<int> third;    first.assign (7,100);             // 100 을 7 번 반복해서 집어 넣는다.     vector<int>::iterator it;    it=first.begin()+1;    second.assign (it,first.end()-1); // first 의 처음과 끝을 제외한 원소들    int myints[] = {1776,7,4};    third.assign (myints,myints+3);   // 배열로 부터 받는다.     cout << "Size of first: " << int (first.size()) << endl;    cout << "Size of second: " << int (second.size()) << endl;    cout << "Size of third: " << int (third.size()) << endl;    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F19102C4E4F6E967A10EEAF)
 
 
- 연관된 함수
+
+
+###  연관된 함수
+
+
+
+
 
 
 * vector::operator= : 벡터 내용을 복사한다.
 
-공감sns신고저작자표시'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)
 2012.08.05C++ 레퍼런스 - vector::push_back(0)
 2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)
 2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)

@@ -1,7 +1,20 @@
+----------------
+title : 씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>
+--------------
 
 
 이번 강좌에서는
-* 널 종료 문자열(Null terminated string)문자열 활용문자열 입력
+
+* 널 종료 문자열(Null terminated string)
+
+* 문자열 활용
+
+* 문자열 입력
+
+
+
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2029C60E4B4FC18EBC8EA5)
 
 
@@ -11,15 +24,22 @@
 
   그렇다면, 컴퓨터는 문자열을 어떻게 저장할까요. 앞서, 제가 쭈르륵 나열 되어 있다는 사실을 강조했다는 부분을 생각해보면, 문자열을 문자들의 배열, 즉 char 배열에 저장함을 알 수 있습니다. 
 
+
+
 ###  널 - 종료 문자열 (Null-terminated string)
+
 
   위 소제목이 무슨 뜻인지 모른다고 해서 겁을 먹으신 분들이 있을텐데, 조금 있다가 알게 될 것입니다. 앞서, 컴퓨터에서는 문자열을 char 배열에 저장한다고 하였습니다. 다시말해, 아래 그림과 같이요.
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2076890C4B38DF862E1961)
+
+
 
   근데, 말이죠. 위와 같이 문자열 s 를 정의하였을 때, 무언가가 불편할 것 같지 않나요? 만일, 우리가 char 배열 s 에 저장된 문자들을 화면에 출력한다고 해봅시다. 이상적인 상황으로는 컴퓨터에게 "s 의 문자열을 출력해" 라고 말하면 알아서 출력해주는 것입니다. 그러나, 위와 같이 배열 s 에 문자를 저장하면 "s 의 문자열을 출력해. 근데, 그 문자가 아마 3 문자일거야" 라고 말해주어야 하는 불편함이 생긴다는 말입니다.
 
   문자열은 말그대로 문자들이 하나로 뭉쳐서 다니는 것이기 때문에 (만일 우리가 s 의 문자열을 이용한다고 하면 첫글자 P 만 이용할 것입니까? 아니죠. 상식적으로 Psi 전체를 하나로 이용하는 것이죠), 문자열을 이용할 때 마다 문자열의 길이를 알아야 한다면 정말로 불편한 일이 아닐 수 없습니다. 그래서, C 개발자들은 아래와 같이 멋진 대안을 내놓았습니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F157C99014B39BF690F65F6)
 
@@ -29,35 +49,18 @@
  널 문자가 들어갈 공간이 있어야 하기 때문에 3 글자라고 해도, 배열은 4 칸이 필요하게 됩니다. 위와 같이 s[4] 처럼요. 그럼, 위와 같이 널 종료 문자가 편리한 이유는 컴퓨터가 문자열의 끝을 쉽게 구할 수 있기 때문입니다. 우리가 굳이 '이 s 문자열은 3 문자인데, 출력해죠' 라고 말할 필요 없이, 's 문자열을 출력해' 란 말만 해주어도 컴퓨터가 알아서 '음, 널이 나올때 까지 출력해야지' 라고 출력한다는 것입니다.
 
 ```cpp
-/* 널 뽀개기 */
-#include <stdio.h>
-
-int main()
-{
-    char null_1 = '\0'; // 이 3 개는 모두 동일하다
-    char null_2 = 0;
-    char null_3 = NULL; // 모두 대문자로 써야 한다
-
-    char not_null = '0';
-
-    printf("NULL 의 정수(아스키)값 : %d, %d, %d \n", null_1, null_2, null_3);
-    printf("'0' 의 정수(아스키)값 : %d \n", not_null);
-
-    return 0;
-} 
-
+/* 널 뽀개기 */#include <stdio.h>int main(){    char null_1 = '\0'; // 이 3 개는 모두 동일하다    char null_2 = 0;    char null_3 = NULL; // 모두 대문자로 써야 한다    char not_null = '0';    printf("NULL 의 정수(아스키)값 : %d, %d, %d \n", null_1, null_2, null_3);    printf("'0' 의 정수(아스키)값 : %d \n", not_null);    return 0;} 
 ```
 
   성공적으로 컴파일 한다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F14383A0C4B39C28A05E150)
 
   와우. NULL 의 정수값은 모두 0 이 출력되었고, 문자 '0' 의 정수값은 42 가 출력되었습니다. 
 
 ```cpp
-   char null_1 = '\0'; // 이 3 개는 모두 동일하다
-    char null_2 = 0;
-    char null_3 = NULL;
+   char null_1 = '\0'; // 이 3 개는 모두 동일하다    char null_2 = 0;    char null_3 = NULL;
 ```
 
   위 세개의 문장의 각 char 변수에는 모두 동일한 값, 즉 0 이 들어가게 됩니다. null_1 의 경우 '\0' 의 값, 즉 '\0' 의 아스키 값이 들어가는데 \0 의 아스키 값은 0 입니다. 왜 '0' 이라 안쓰고 '\0' 이라 쓰는지는 알겠죠? '0' (문자 0) 의 아스키값은 42 이기 때문입니다. (위에서 확인할 수 있듯이) 마찬가지로 null_2 에는 0 이 들어가고, null_3 에는 NULL 의 값이 들어가는데, NULL 은 0 이라고 정의되어 있는 상수 입니다. 따라서, null_3 에도 0 이 들어갑니다. 
@@ -77,25 +80,11 @@ warning C4047: '초기화 중' : 'char'의 간접 참조 수준이 'void *'과(�
 아래 예제를 통해 확실히 알아보죠. 
 
 ```cpp
-/* 문자열의 시작 */
-#include <stdio.h>
-int main()
-{
-    char sentence_1[4] = {'P', 's', 'i', '\0'}; 
-    char sentence_2[4] = {'P', 's', 'i', 0}; 
-    char sentence_3[4] = {'P', 's', 'i', NULL}; 
-    char sentence_4[4] = {"Psi"}; 
-
-    printf("sentence_1 : %s \n", sentence_1); // %s 를 통해서 문자열을 출력한다.
-    printf("sentence_2 : %s \n", sentence_2);
-    printf("sentence_3 : %s \n", sentence_3);
-    printf("sentence_4 : %s \n", sentence_4);
-
-    return 0;
-} 
+/* 문자열의 시작 */#include <stdio.h>int main(){    char sentence_1[4] = {'P', 's', 'i', '\0'};     char sentence_2[4] = {'P', 's', 'i', 0};     char sentence_3[4] = {'P', 's', 'i', NULL};     char sentence_4[4] = {"Psi"};     printf("sentence_1 : %s \n", sentence_1); // %s 를 통해서 문자열을 출력한다.    printf("sentence_2 : %s \n", sentence_2);    printf("sentence_3 : %s \n", sentence_3);    printf("sentence_4 : %s \n", sentence_4);    return 0;} 
 ```
 
   성공적으로 컴파일 했다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1131DF044B39C11B2AF364)
 
@@ -135,21 +124,11 @@ int main()
 무언가 깔끔하게 정리된 느낌이 드나요? 사실, 아직 들기는 힘듧니다. 다만, 이 강좌의 끝부분을 읽고 있을 때 쯤이면 그 차이가 완전히 머리속에서 정리 되기를 바랍니다. 
 
 ```cpp
-/* 포인터 간단 복습 */
-#include <stdio.h>
-int main()
-{
-    char word[30]={"long sentence"};
-    char *str = word;
-
-    printf("%s \n", str);
-
-    return 0;
-} 
-
+/* 포인터 간단 복습 */#include <stdio.h>int main(){    char word[30]={"long sentence"};    char *str = word;    printf("%s \n", str);    return 0;} 
 ```
 
   성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F13600D054B4C0BC713146E)
 
@@ -162,26 +141,11 @@ int main()
   에서 str 이 가리키는 것을 문자열로 출력 (즉, 널이 나올때 까지 출력) 해 위와 같이 long sentence 가 나오게 된 것입니다.
 
 ```cpp
-/* 문자열 바꾸기 */
-#include <stdio.h>
-int main()
-{
-    char word[]={"long sentence"};
-
-    printf("조작 이전 : %s \n", word);
-
-    word[0] = 'a';
-    word[1] = 'b';
-    word[2] = 'c';
-    word[3] = 'd';
-
-    printf("조작 이후 : %s \n", word);
-
-    return 0;
-} 
+/* 문자열 바꾸기 */#include <stdio.h>int main(){    char word[]={"long sentence"};    printf("조작 이전 : %s \n", word);    word[0] = 'a';    word[1] = 'b';    word[2] = 'c';    word[3] = 'd';    printf("조작 이후 : %s \n", word);    return 0;} 
 ```
 
   성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F12290F044B4C0C9F013CBC)
 
@@ -194,94 +158,59 @@ int main()
   오잉? 원소의 개수를 지정하는 부분에 아무런 숫자도 써있지 않습니다. 하지만, 여태까지 강좌를 열심히 보아왔던 분들에게는 별 이상하게 느껴지지 않을 것 입니다. 왜냐하면 [ ] 안을 빈칸으로 두었다는 뜻은 컴파일러가 알아서 원소의 수를 세어서 빈칸을 채워 넣으라는 뜻이지요. 따라서, 우리는 귀찮게 한글자 한글자 세어서 값을 써줄 필요 없이 단순히 빈칸으로 남겨 놓으기만 하면 됩니다. (물론 배열의 정확한 크기를 알아야 할 상황이 온다면 특별히 값을 명시해 주어야 겠지만) 
 
 ```cpp
-    word[0] = 'a';
-    word[1] = 'b';
-    word[2] = 'c';
-    word[3] = 'd';
+    word[0] = 'a';    word[1] = 'b';    word[2] = 'c';    word[3] = 'd';
 ```
 
   위와 같이 word 배열의 첫 4 개의 원소를 각각 a,b,c,d 로 변경하였습니다. 따라서 아래 printf 문에서 long 부분이 abcd 로 변경된 모습을 볼 수 있게 됩니다. 
 
+
+
 ###  문자의 개수를 세자
-### 
+
+
+
+
   나중에 프로그래밍을 하다 보면 특정한 문자열에 들어 있는 문자의 개수를 세는 일이 많을 것 입니다. 이를 수행하는 함수를 만들어 봅시다. 먼저, 여러분들께서 아래의 코드를 보지 말고 한 번 직접 작성해 보세요.
 
-
-code```cpp
-#include <stdio.h>
-int str_length(char *str);
-int main()
-{
-    char str[]={"What is your name?"};
-
-    printf("이 문자열의 길이 : %d \n", str_length(str));
-
-    return 0;
-}
-int str_length(char *str)
-{
-    int i = 0;
-    while(str[i])
-    {
-        i++;
-    }
-
-    return i;
-}
+code
+```cpp
+#include <stdio.h>int str_length(char *str);int main(){    char str[]={"What is your name?"};    printf("이 문자열의 길이 : %d \n", str_length(str));    return 0;}int str_length(char *str){    int i = 0;    while(str[i])    {        i++;    }    return i;}
 ```
 
 
   성공적으로 컴파일 하였다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F191B931F4B4FBBAF4C3629)
 
   소스 코드가 머리에 잘 다가오면 좋겠지만 일단 중요한 부분만 설명하고자 합니다.
 
 ```cpp
-int str_length(char *str)
-{
-    int i = 0;
-    while(str[i])
-    {
-        i++;
-    }
-
-    return i;
-}
+int str_length(char *str){    int i = 0;    while(str[i])    {        i++;    }    return i;}
 ```
 
   일단 우리가 만들게 될 함수 이름은 str_length 함수 입니다. 인자는 char 형을 가리키는 포인터 형태 이므로, char 배열을 취할 수 있음을 알 수 있습니다. 이전에 함수 강좌에서도 이야기 했지만 일차원 배열을 가리키는 포인터는 (그 배열의 형)* 이라고 했죠? 아무튼, str 을 통해 문자열 배열을 가리킬 수 있습니다. 
 
 ```cpp
-    while(str[i])
-    {
-        i++;
-    }
+    while(str[i])    {        i++;    }
 ```
 
   일단 while 문의 조건 부분에는 str[i] 가 들어 있습니다. 이 말은 즉슨, str[i] 가 0 이 될 때 까지 i 의 값을 계속 증가 시키겠다죠? 그런데 문자열에서 str[i] 가 0 이 되는 순간은 언제일까요. 바로 NULL 문자 일 때, 즉 문자열의 끝 부분에 도달하였을 때 0 이 되는 것입니다. 다시말해 while 문에서 str[i] 가 문자열의 끝 부분이 될 때 i 값의 증가를 멈춘다는 것이지요. 
 
   따라서 i 에는 맨 마지막의 NULL 문자를 제외한 나머지 문자들의 총 개수가 되는 것입니다. 
 
+
+
 ###  문자열 입력받기
-### 
+
+
+
+
 ```cpp
 /* 문자열 입력 */
-
-#include <stdio.h>
-int main()
-{
-    char words[30];
-
-    printf("30 자 이내의 문자열을 입력해주세요! : ");
-    scanf("%s", words);
-
-    printf("문자열 : %s \n", words);
-
-    return 0;
-} 
-
+#include <stdio.h>int main(){    char words[30];    printf("30 자 이내의 문자열을 입력해주세요! : ");    scanf("%s", words);    printf("문자열 : %s \n", words);    return 0;} 
 ```
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F14678F224B4C128F0D82A6)
 
@@ -295,21 +224,19 @@ int main()
   일단 최대 29 글자 까지 저장할 수 있는 문자 배열 words 를 생성하였습니다. 왜 30 글자가 아니라 29 글자인지는 잘 알겠지요? 끝에 널이 들어가기 때문이죠.
 
 ```cpp
-    printf("30 자 이내의 문자열을 입력해주세요! : ");
-    scanf("%s", words);
-
+    printf("30 자 이내의 문자열을 입력해주세요! : ");    scanf("%s", words);
 ```
 
   이제, scanf 를 통해서 문자열을 입력받습니다. 일단, 입력 받는 형식이 %s 입니다. 기존의 하나의 문자는 %c 였는데 , 문자열의 경우 %s 를 이용합니다. 또한, 두번째 인자에 words 를 써주었는데, 약간 이상합니다. 이전에 입력 받을 때 에는
 
 ```cpp
-    char c;
-    scanf("%c", &c);
+    char c;    scanf("%c", &c);
 ```
 
   와 같이 & 를 이용해서 주소값을 전달하였는데 여기서는 & 를 붙이지 않았습니다. 하지만, 여태까지의 강좌를 잘 읽어보셨고 특히 함수에 대해 잘 공부하신 분이라면 별 이상한 점을 못느꼇을 것입니다. 왜냐하면 words 라는 배열의 이름 자체가 배열을 가리키고 있는 포인터 이기 때문에 words 의 값을 전달함으로써 배열의 (시작) 주소값을 잘 전달할 수 있습니다. 
 
   scanf 함수는 잘 아시다싶이 엔터가 나올 때 까지 입력을 받습니다. 그런데 말이죠. 우리가 문자열을 적는데 띄어쓰기를 한다면 아래와 같이 이상한 일이 발생한다는 사실을 알 수 있습니다. 
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F126D81194B4FBDA13E777C)
 
@@ -340,14 +267,16 @@ if(str_a == str_b)
 
 
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
-공감2sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴>(120)
+
+
+
+공감2sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴>(120)
 2010.02.01씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>(62)
 2010.01.25씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>(42)
 2009.12.29씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>(32)

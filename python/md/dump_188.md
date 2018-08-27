@@ -1,7 +1,13 @@
+----------------
+title : 씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>
+--------------
 
 
 
-이번 강좌에서는* 복사 생성자 (copy constructor) - 깊은 복사와 얕은 복사소멸자 (destructor)
+
+이번 강좌에서는* 복사 생성자 (copy constructor) - 깊은 복사와 얕은 복사
+* 소멸자 (destructor)
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1421C13E50EAEC9A022DBD)
 
 
@@ -12,36 +18,22 @@
 
 
 
- 스타크래프트 만들기
-
-
-
+###  스타크래프트 만들기
 
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2615CA3E50E902B432E7CF)
 
-
-
-
 사실 제가 오늘 이 강좌에서 진행하고 싶었던 것은 바로 '스타크래프트 만들기' 이었습니다. 아니, 스타크래프트를 만들겠다니요. 그게 말이 됩니까? 넵. 말이 됩니다. 저는 앞으로 C++ 강좌를 진행해나가면서 '스타크래프트' 의 뼈대를 차근 차근 만들어 나가보고자 합니다. 그럼, 여러분 모두 준비 되셨나요?
-
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2331D74750E831DC17BE68)
 
-
-
 스타크래프트라는 거대한 프로젝트를 진행하기에 앞서서 일단, 유닛 하나 부터 만들어 보도록 할 것입니다. 위에 조그만 사진에 있는 총들고 서 잇는 사람은 스타크래프트의 마린 이라는 유닛 입니다. (테란 유저로써 제가 가장 사랑하는 유닛 중 하나라고 볼 수 있죠) 위 유닛은 스타크래프트 유닛 중에서 가장 단순하고 기본이 되는 유닛이라고 할 수 있습니다. 그렇다면 한 번, 이 마린을 코드 상에서 구현해보도록 합시다. 
-
-
 
 ```cpp
 
 #include <iostream>
 using namespace std;
-
 
 class Marine
 {
@@ -50,16 +42,13 @@ int coord_x, coord_y; // 마린 위치
 int damage; // 공격력 
 bool is_dead;
 
-
 public:
 Marine(); // 기본 생성자
 Marine(int x, int y); // x, y 좌표에 마린 생성
 
-
 int attack(); // 데미지를 리턴한다.
 void be_attacked(int damage_earn); // 입는 데미지
 void move(int x, int y); // 새로운 위치
-
 
 void show_status(); // 상태를 보여준다.
 };
@@ -100,20 +89,16 @@ cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
 cout << " HP : " << hp << endl;
 }
 
-
 int main()
 {
 Marine marine1 (2, 3);
 Marine marine2 (3, 5);
 
-
 marine1.show_status();
 marine2.show_status();
 
-
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 marine2.be_attacked(marine1.attack());
-
 
 marine1.show_status();
 marine2.show_status();
@@ -144,16 +129,13 @@ int coord_x, coord_y; // 마린 위치
 int damage; // 공격력 
 bool is_dead;
 
-
 public:
 Marine(); // 기본 생성자
 Marine(int x, int y); // x, y 좌표에 마린 생성
 
-
 int attack(); // 데미지를 리턴한다.
 void be_attacked(int damage_earn); // 입는 데미지
 void move(int x, int y); // 새로운 위치
-
 
 void show_status(); // 상태를 보여준다.
 };
@@ -208,23 +190,18 @@ int main()
 {
 Marine* marines[100];
 
-
 marines[0] = new Marine (2, 3);
 marines[1] = new Marine (3, 5);
-
 
 marines[0]->show_status();
 marines[1]->show_status();
 
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 
-
 marines[0]->be_attacked(marines[1]->attack());
-
 
 marines[0]->show_status();
 marines[1]->show_status();
-
 
 
 delete marines[0];
@@ -288,7 +265,9 @@ delete marines[1];
 
 
 
- 소멸자 (Destructor)
+
+
+###  소멸자 (Destructor)
 
 
 
@@ -296,10 +275,7 @@ delete marines[1];
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F26610A3850EAED8E11FFC5)
 
-
-
 알고 보니 각각의 마린에도 이름을 지정할 수 있었습니다. 그래서, 우리는 만들어놓은 Marine 클래스에 name 이라는 이름을 저장할 수 있는 또다른 인스턴스 변수를 추가하도록 합시다.
-
 ```cpp
 
 // 마린의 이름 만들기
@@ -307,7 +283,6 @@ delete marines[1];
 #include <iostream>
 #include <string.h>
 using namespace std;
-
 
 class Marine
 {
@@ -317,17 +292,14 @@ int damage; // 공격력 
 bool is_dead;
 char *name; // 마린 이름
 
-
 public:
 Marine(); // 기본 생성자
 Marine(int x, int y, const char* marine_name); // 이름까지 지정
 Marine(int x, int y); // x, y 좌표에 마린 생성
 
-
 int attack(); // 데미지를 리턴한다.
 void be_attacked(int damage_earn); // 입는 데미지
 void move(int x, int y); // 새로운 위치
-
 
 void show_status(); // 상태를 보여준다.
 };
@@ -343,7 +315,6 @@ Marine::Marine(int x, int y, const char* marine_name)
 {
 name = new char [strlen(marine_name) + 1];
 strcpy(name, marine_name);
-
 
 coord_x = x;
 coord_y = y;
@@ -382,28 +353,22 @@ cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
 cout << " HP : " << hp << endl;
 }
 
-
 int main()
 {
 Marine* marines[100];
 
-
 marines[0] = new Marine (2, 3, "Marine 2");
 marines[1] = new Marine (1, 5, "Marine 1");
-
 
 marines[0]->show_status();
 marines[1]->show_status();
 
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 
-
 marines[0]->be_attacked(marines[1]->attack());
-
 
 marines[0]->show_status();
 marines[1]->show_status();
-
 
 delete marines[0];
 delete marines[1];
@@ -439,7 +404,6 @@ Marine::Marine(int x, int y, const char* marine_name)
 name = new char [strlen(marine_name) + 1];
 strcpy(name, marine_name);
 
-
 coord_x = x;
 coord_y = y;
 hp = 50;
@@ -458,6 +422,7 @@ is_dead = false;
 안타깝게도, 우리가 명확히 delete 를 지정하지 않는 한 자동으로 delete 가 되는 경우는 없습니다. 다시 말해서 우리가 동적으로 할당했던 저 name 은 영원히 메모리 공간 속에서 둥둥 떠다닌다는 말이지요. 사실 몇 바이트 정도 밖에 되지 않을 것이지만 위와 같은 name 들이 쌓이고 쌓이게 되면 메모리 누수 (Memory Leak) 이라는 문제점이 발생하게 됩니다 (가끔 몇몇 프로그램들이 비정상적으로 많은 메모리를 점유하는 것 보이시지 않나요?) 
 
 
+
 그렇다면, 만일 main 함수 끝에서 Marine 이 delete 될 때, 즉 우리가 생성했던 객체가 소멸 될 때 자동으로 호출되는 함수 - 마치 객체가 생성될 때 자동으로 호출 되었던 생성자 처럼 소멸 될 때 자동으로 호출되는 함수가 있다면 얼마나 좋을까요? 놀랍게도 이미 C++ 에서는 이 기능을 지원하고 있습니다. 바로 '소멸자(Destructor)' 이죠. 
 
 
@@ -467,7 +432,6 @@ is_dead = false;
 #include <string.h>
 using namespace std;
 
-
 class Marine
 {
 int hp; // 마린 체력
@@ -476,18 +440,15 @@ int damage; // 공격력 
 bool is_dead;
 char *name; // 마린 이름
 
-
 public:
 Marine(); // 기본 생성자
 Marine(int x, int y, const char* marine_name); // 이름까지 지정
 Marine(int x, int y); // x, y 좌표에 마린 생성
 ~Marine();
 
-
 int attack(); // 데미지를 리턴한다.
 void be_attacked(int damage_earn); // 입는 데미지
 void move(int x, int y); // 새로운 위치
-
 
 void show_status(); // 상태를 보여준다.
 };
@@ -503,7 +464,6 @@ Marine::Marine(int x, int y, const char* marine_name)
 {
 name = new char [strlen(marine_name) + 1];
 strcpy(name, marine_name);
-
 
 coord_x = x;
 coord_y = y;
@@ -553,23 +513,18 @@ int main()
 {
 Marine* marines[100];
 
-
 marines[0] = new Marine (2, 3, "Marine 2");
 marines[1] = new Marine (1, 5, "Marine 1");
-
 
 marines[0]->show_status();
 marines[1]->show_status();
 
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 
-
 marines[0]->be_attacked(marines[1]->attack());
-
 
 marines[0]->show_status();
 marines[1]->show_status();
-
 
 delete marines[0];
 delete marines[1];
@@ -653,11 +608,9 @@ delete marines[1];
 #include <string.h>
 using namespace std;
 
-
 class Test
 {
 char c;
-
 
 public:
 Test(char _c) 
@@ -702,7 +655,6 @@ simple_function();
 class Test
 {
 char c;
-
 
 public:
 Test(char _c) 
@@ -771,6 +723,7 @@ simple_function 호출 후, 이제 main 함수가 종료될 때 마찬가지로 
 소멸자가 뭐 별거 있어? 라고 생각하시는 분들도 있겠지만, 사실은 소멸자의 역할은 상당히 중요합니다. 이 세상에 태어나는 일이 중요한 일이지만, 그 보다 더 중요한 일은 이 세상을 떠날 때 얼마나 깔끔하게 떠나는 지가 더욱 중요한 일이 듯이, 객체가 다른 부분에 영향을 끼치지 않도록 깔끔하게 소멸되는 일은 매우 중요한 일입니다. 
 
 
+
 소멸자가 하는 가장 흔한 역할은 위에서도 나타나 있지만, 객체가 동적으로 할당받은 메모리를 해제하는 일이라고 볼 수 있습니다. 그 외에도 (아직 배우진 않았지만) 쓰레드 사이에서 lock 된 것을 푸는 역할이라던지 등의 역할을 수행하게 됩니다. 
 
 
@@ -780,22 +733,18 @@ simple_function 호출 후, 이제 main 함수가 종료될 때 마찬가지로 
 
 
 
- 복사 생성자### 
+
+
+###  복사 생성자
+
 
 
 
 사실 스타 유즈맵을 조금이나마 해본 사람이라면 아래 그림과 같은 '포토캐논 겹치기' 정도는 한 번 접해보셨을 것입니다.
 
-
-
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1943D23F50E8DCF635139F)
 
-
-
 사실 위에 나타나 있는 포토캐논의 모습은 한 개가 아니라 수십 개의 포토캐논이 서로 겹친 모습입니다. 다시 말해 같은 포토캐논들이 수 백개 '복사' 되었다고 볼 수 있지요. 위와 같이 동일한 포토캐논을 만들어 내는 방법은 각각의 포토캐논을 일일히 생성자로 생성 할 수 도 있지만, 1 개만 생성해 놓고, 그 한 개를 가지고 나머지 포토캐논들은 '복사 생성' 할 수 도 있는 것입니다. 
-
-
 
 ```cpp
 
@@ -805,13 +754,11 @@ simple_function 호출 후, 이제 main 함수가 종료될 때 마찬가지로 
 #include <string.h>
 using namespace std;
 
-
 class Photon_Cannon
 {
 int hp, shield;
 int coord_x, coord_y;
 int damage;
-
 
 public:
 Photon_Cannon(int x, int y);
@@ -836,7 +783,6 @@ coord_x = x;
 coord_y = y;
 damage = 20;
 
-
 }
 void Photon_Cannon::show_status()
 {
@@ -849,7 +795,6 @@ int main()
 Photon_Cannon pc1(3, 3);
 Photon_Cannon pc2 (pc1);
 Photon_Cannon pc3 = pc2;
-
 
 pc1.show_status();
 pc2.show_status();
@@ -1025,12 +970,13 @@ damage = pc.damage;
 
 
 
- 디폴트 복사 생성자의 한계### 
+
+###  디폴트 복사 생성자의 한계
+
 
 
 
 이번에도 위의 마린 처럼 포토 캐논의 이름을 지어줄 수 있다는 사실을 알고 클래스 Photon_Cannon 에 char *name 을 추가 해주었습니다. 그리고, 복사 생성자는 그냥 위에서 처럼 디폴트 복사 생성자를 사용하기로 했죠. 그 코드는 아래와 같습니다. 
-
 ```cpp
 
 // 디폴트 복사 생성자의 한계
@@ -1038,16 +984,13 @@ damage = pc.damage;
 #include <string.h>
 using namespace std;
 
-
 class Photon_Cannon
 {
 int hp, shield;
 int coord_x, coord_y;
 int damage;
 
-
 char *name;
-
 
 public:
 Photon_Cannon(int x, int y);
@@ -1057,14 +1000,12 @@ Photon_Cannon(int x, int y, char *cannon_name);
 void show_status();
 };
 
-
 Photon_Cannon::Photon_Cannon(int x, int y)
 {
 hp = shield = 100;
 coord_x = x;
 coord_y = y;
 damage = 20;
-
 
 name = NULL;
 }
@@ -1074,7 +1015,6 @@ hp = shield = 100;
 coord_x = x;
 coord_y = y;
 damage = 20;
-
 
 name = new char [strlen(cannon_name) + 1];
 strcpy(name, cannon_name);
@@ -1151,6 +1091,7 @@ damage = pc.damage;
 물론 이 상태에서는 별 문제가 안됩니다. 뭐, 같은 메모리를 두 개의 서로 다른 포인터가 가리켜도 되기 때문이죠. 하지만 진짜 문제는 소멸자에서 일어납니다.
 
 
+
 main 함수가 종료되기 직전에 생성되었던 객체들은 파괴되면서 소멸자를 호출하게 되죠. 만일 먼저 pc1 이 파괴되었다고 해봅시다.
 
 
@@ -1194,16 +1135,13 @@ pc2 에서 일단 name 은 NULL 이 아니므로 (0x125ADD3 이라는 주소값�
 #include <string.h>
 using namespace std;
 
-
 class Photon_Cannon
 {
 int hp, shield;
 int coord_x, coord_y;
 int damage;
 
-
 char *name;
-
 
 public:
 Photon_Cannon(int x, int y);
@@ -1220,7 +1158,6 @@ coord_x = x;
 coord_y = y;
 damage = 20;
 
-
 name = NULL;
 }
 Photon_Cannon::Photon_Cannon(const Photon_Cannon &pc)
@@ -1232,7 +1169,6 @@ coord_x = pc.coord_x;
 coord_y = pc.coord_y;
 damage = pc.damage;
 
-
 name = new char [strlen(pc.name) + 1];
 strcpy(name, pc.name);
 }
@@ -1242,7 +1178,6 @@ hp = shield = 100;
 coord_x = x;
 coord_y = y;
 damage = 20;
-
 
 name = new char [strlen(cannon_name) + 1];
 strcpy(name, cannon_name);
@@ -1288,15 +1223,14 @@ pc2.show_status();
 
 
 
- 생각해보기### 
+
+###  생각해보기
 
 
 
 
 
 1. 아래와 같은 문자열 클래스를 완성해보세요 (난이도 : 中)
-
-
 ```cpp
 
 class string
@@ -1304,13 +1238,11 @@ class string
 char *str;
 int len;
 
-
 public:
 string (char c, int n); // 문자 c 가 n 개 있는 문자열로 정의
 string (char * s);
 string (const string & s); 
 ~string();
-
 
 void add_string (const string &s); // str 뒤에 s 를 붙인다.
 void copy_string (const string &s); // str 에 s 를 복사한다.
@@ -1322,13 +1254,11 @@ int strlen(); // 문자열 길이 리턴
 
 
 
+
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
@@ -1337,7 +1267,14 @@ int strlen(); // 문자열 길이 리턴
 
 
 
-공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>(17)
 2013.05.26씹어먹는 C++ 토막글 ② - 람다(lambda) 함수(12)
 2013.01.08씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>(41)
 2013.01.06씹어먹는 C++ 토막글 ① - Rvalue(우측값) 레퍼런스에 관해(6)

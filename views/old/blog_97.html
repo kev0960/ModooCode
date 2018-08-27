@@ -1,136 +1,27 @@
-<pre class="chroma">아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>strspn</p><pre class="chroma">#include &lt;string.h&gt;  // C++ 에서는 &lt;cstring&gt;
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
+</pre><p>strspn</p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>size_t strspn ( const char * str1, const char * str2 );
+</pre><p>str2 의 문자들만을 포함하고 있는 str1 의 처음 부분의 길이를 구한다. 다시 말하면 str2 에 "12346" 이 들어있고 str1 에는 "321ab" 가 들어 있다면 str1 의 맨 처음 부터 문자들을 비교하는데, str2 에들어 있는 문자들 만을 포함한 곳 까지의 길이, 즉 이 경우에는 3,2,1 이 해당하므로 3 이 리턴된다. 이 때 중요한 점은 str1 의 맨 처음 부터 비교한다는 점인데 만일 str1 에 "ab321" 이였다면 리턴값이 0 이 된다. </p><h3><p>  인자</p></h3><p>str1</p><p>검색을 수행되는 C 문자열</p><p>str2</p><p>검색할 문자들을 포함하고 있는 문자열</p><h3><p>  리턴값</p></h3><p>str1 에서 오직 str2 에 포함되어 있는 문자들만이 있는 부분의 길이로, str1 의 맨 처음 부분 부터 잰다. 따라서 만일 str1 에 있는 모든 문자들이 str2 에 포함되어 있다면 리턴값은 str1 의 길이와 동일하겠지만, 만일 str1 에 있는 첫 번째 문자가 str2 에 없다면 리턴값은 0 이 된다. </p><h3><p>  구현 예</p></h3><pre class="chroma"><span class="cm">/*이 소스는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다.*/</span>
 
-size_t strspn(const char* str1, const char* str2);
-</pre><p>str2 의 문자들만을 포함하고 있는 str1 의 처음 부분의 길이를 구한다. 다시 말하면 str2 에 "12346" 이 들어있고 str1 에는 "321ab" 가 들어 있다면 str1 의 맨 처음 부터 문자들을 비교하는데, str2 에들어 있는 문자들 만을 포함한 곳 까지의 길이, 즉 이 경우에는 3,2,1 이 해당하므로 3 이 리턴된다. 이 때 중요한 점은 str1 의 맨 처음 부터 비교한다는 점인데 만일 str1 에 "ab321" 이였다면 리턴값이 0 이 된다. </p><h3><p>  인자</p></h3><h3><p> str1</p></h3><p>검색을 수행되는 C 문자열</p><p>str2</p><p>검색할 문자들을 포함하고 있는 문자열</p><h3><p>  리턴값</p></h3><h3><p> str1 에서 오직 str2 에 포함되어 있는 문자들만이 있는 부분의 길이로, str1 의 맨 처음 부분 부터 잰다. 따라서 만일 str1 에 있는 모든 문자들이 str2 에 포함되어 있다면 리턴값은 str1 의 길이와 동일하겠지만, 만일 str1 에 있는 첫 번째 문자가 str2 에 없다면 리턴값은 0 이 된다. </p></h3><h3><p>  구현 예</p></h3><h3><p> </p></h3><pre class="chroma"><span class="cm">/*
-</span><span class="cm">
-</span><span class="cm">이 소스는
-</span><span class="cm">http://www.jbox.dk/sanos/source/lib/string.c.html
-</span><span class="cm">에서 가져왔습니다.
-</span><span class="cm">
-</span><span class="cm">*/</span>
 <span class="n">size_t</span> <span class="nf">strspn</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">control</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="n">string</span><span class="p">;</span>
   <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ctrl</span> <span class="o">=</span> <span class="n">control</span><span class="p">;</span>
-
   <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">map</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
-
-  <span class="c1">// Clear out bit map
-</span><span class="c1"></span>  <span class="k">for</span> <span class="p">(</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">;</span> <span class="n">count</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="n">map</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-  <span class="c1">// Set bits in control map
-</span><span class="c1"></span>  <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">ctrl</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">map</span><span class="p">[</span><span class="o">*</span><span class="n">ctrl</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">3</span><span class="p">]</span> <span class="o">|</span><span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">ctrl</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="n">ctrl</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// 1st char NOT in control map stops search
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="o">*</span><span class="n">str</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="mi">3</span><span class="p">]</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">str</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">count</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
-      <span class="n">str</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre><p>위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 strspn 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 http://itguru.tistory.com/94 를 참조하면 된다. </p><h3><p>  실행 예제</p></h3><h3><p> !</p><img src='http://' alt=''></h3><pre class="chroma"><span class="cm">/*
-</span><span class="cm">
-</span><span class="cm">
+  <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>  <span class="c1">// Clear out bit map for (count = 0; count &lt; 32; count++)
+</span><span class="c1"></span>              <span class="c1">// map[count] = 0; // Set bits in control map while (*ctrl) {
+</span><span class="c1"></span>              <span class="c1">// map[*ctrl &gt;&gt; 3] |= (1 &lt;&lt; (*ctrl &amp; 7));  ctrl++; } // 1st char
+</span><span class="c1"></span>              <span class="c1">// NOT in control map stops search if (*str) {  count = 0;  while
+</span><span class="c1"></span>              <span class="c1">// (map[*str &gt;&gt; 3] &amp; (1 &lt;&lt; (*str &amp; 7)))  {   count++;   str++;  }
+</span><span class="c1"></span>              <span class="c1">// return count; } return 0;}
+</span><span class="c1"></span></pre><p>위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 strspn 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 http://itguru.tistory.com/94 를 참조하면 된다. </p><h3><p>  실행 예제</p></h3><img src='http://' alt=''><pre class="chroma"><span class="cm">/* 
 </span><span class="cm">이 예제는
-</span><span class="cm">
 </span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strstr/
-</span><span class="cm">
-</span><span class="cm">에서 가져왔습니다.
-</span><span class="cm">
-</span><span class="cm">
-</span><span class="cm">*/</span>
-<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span><span class="cp"></span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span><span class="cm">에서 가져왔습니다. 
+</span><span class="cm">*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; #include &lt;string.h&gt; int main() {</span><span class="cp">
+</span><span class="cp"></span>  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">strtext</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">129th</span><span class="s">&#34;</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">cset</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">1234567890</span><span class="s">&#34;</span><span class="p">;</span>
-
   <span class="n">i</span> <span class="o">=</span> <span class="n">strspn</span><span class="p">(</span><span class="n">strtext</span><span class="p">,</span> <span class="n">cset</span><span class="p">)</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The length of initial number is %d.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F207075134CE88952A5D63C' alt=''><h3><p>  연관된 함수</p></h3><h3><p> </p></h3><ul><li><p> strcspn: 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴strstr  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴strncmp  :   두 문자열의 일부분을 비교한다. </p></li></ul><p>공감sns신고저작자표시'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21C 언어 레퍼런스 - strrchr 함수(0)2010.08.02C 언어 레퍼런스 - strpbrk 함수(0)2010.08.02C 언어 레퍼런스 - strcspn 함수(4)2010.08.02</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F207075134CE88952A5D63C' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> strcspn: 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴</p></li><li><p> strstr  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴</p></li><li><p> strncmp  :   두 문자열의 일부분을 비교한다. </p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21C 언어 레퍼런스 - strrchr 함수(0)2010.08.02C 언어 레퍼런스 - strpbrk 함수(0)2010.08.02C 언어 레퍼런스 - strcspn 함수(4)2010.08.02</p>

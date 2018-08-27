@@ -1,15 +1,19 @@
+----------------
+title : C 언어 레퍼런스 - getchar 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 getchar
-```info
-#include <stdio.h> // C++ 의 경우 <cstdio>
 
-int getchar ( void );
+
+```info
+
+#include <stdio.h> // C++ 의 경우 <cstdio>int getchar ( void );
 ```
 
 
@@ -18,34 +22,42 @@ stdin 에서 한 문자를 가져온다.
 표준 입력에서 다음 문자를 리턴한다. 
 이는 인자가 stdin 인 getc 함수와 동일하다. 
 
+
+
 ###  인자
-### 
+
+
+
+
 없음
 
+
+
 ###  리턴값
-### 
+
+
+
+
 읽어들인 문자를 int 값으로 리턴한다. 
 만일 파일 끝에 도달하거나, 읽기 오류가 발생한다면 함수는 EOF 를 
 리턴하고 이에 대응하는 오류 혹은 EOF 표시자가 설정된다. 여러분은 ferror 이나 feof 함수를 통해 각각 어떤 오류가 
 발생했는지, 파일 끝에 도달하였는지 알 수 있다. 
 
+
+
 ###  실행 예제
-### 
+
+
+
+
 ```cpp
 /* 한 문자를 읽는다.*/
-
-#include <stdio.h>
-int main ()
-{
-    char ch = getchar();
-    printf("문자 : %c \n", ch);
-
-    return 0;
-}
+#include <stdio.h>int main (){    char ch = getchar();    printf("문자 : %c \n", ch);    return 0;}
 ```
 
 
 실행 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1465C7154B685E0307EE2B)
 
@@ -53,23 +65,11 @@ getchar 함수는 아래와 같이 버퍼를 비우는데에도 종종 사용될
 
 ```cpp
 /* 버퍼 비우기 */
-
-#include <stdio.h>
-int main ()
-{
-    int i;
-    char c;
-
-    scanf("%d", &i);
-    getchar();
-    scanf("%c", &c);
-
-    printf("입력한 문자 : %c \n", c);
-return 0;
-}
+#include <stdio.h>int main (){    int i;    char c;    scanf("%d", &i);    getchar();    scanf("%c", &c);    printf("입력한 문자 : %c \n", c);return 0;}
 ```
 
 실행 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190939164B685E7E02CEC7)
 
@@ -78,38 +78,41 @@ return 0;
 물론 getchar 함수를 호출하지 않고도 scanf 함수 만으로 문제를 해결할 수 있다. 자세한 내용은 여기를 클릭하세요. 
 
 ```cpp
-/* 
-
-타이프기 처럼 한 문장을 입력하면 아래 써진다.
-. 이 입력되면 입력이 종료된다.
-다음 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/getchar/
-에서 가져왔습니다. 
-
-*/
-#include <stdio.h>
-int main ()
-{
-    char c;
-    puts ("Enter text. Include a dot ('.') in a sentence to exit:");
-    do {
-        c=getchar();
-        putchar (c);
-    } while (c != '.');
-
-    return 0;
-}
+/* 타이프기 처럼 한 문장을 입력하면 아래 써진다.. 이 입력되면 입력이 종료된다.다음 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/getchar/에서 가져왔습니다. */#include <stdio.h>int main (){    char c;    puts ("Enter text. Include a dot ('.') in a sentence to exit:");    do {        c=getchar();        putchar (c);    } while (c != '.');    return 0;}
 ```
 
 실행 결과
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F173C481F4B685F6E015E38)
 
 
 
+
+
 ###  연관된 함수
-### 
-* getc  : 스트림에서 한 문자를 가져온다.putchar  : stdout 에 한 문자를 쓴다.scanf  :  형식 문자열에 정의된 방법에 따라 데이터를 stdin 에서 읽는다. 
-공감sns신고저작자표시'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - putc 함수(0)
+
+
+
+
+
+* getc
+  : 스트림에서 한 문자를 가져온다.
+
+* putchar  : stdout 에 한 문자를 쓴다.
+
+* scanf
+  :  형식 문자열에 정의된 방법에 따라 데이터를 stdin 에서 읽는다. 
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - putc 함수(0)
 2010.02.04C 언어 레퍼런스 - gets 함수(3)
 2010.02.03C 언어 레퍼런스 - getchar 함수(7)
 2010.02.03C 언어 레퍼런스 - scanf 함수(2)

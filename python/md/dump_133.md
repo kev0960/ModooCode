@@ -1,3 +1,7 @@
+----------------
+title : 티스토리용 통계 프로그램 (댓글, 포스트, 방문자 등등) - tistory_stat (v.0.1)
+--------------
+
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F205D883D4D4D02442A6149)
@@ -51,18 +55,22 @@
 
   아래는 그 파일 입니다. tistory_statistics.exe 를 누르시면 다운 받으실 수 있습니다.
 
+
 ![](http://)
  tistory_stastics.exe
   사용하는 방법은, 프로그림이 위치한 곳에 분석을 원하는 파일을 놔둔 후, 프로그램을 실행 시킨 뒤 파일 이름을 쓰고 데이터를 가져오기 원하는 시간 범위를 써주시면 됩니다. 아래 그림을 보시면 이해가 쉽습니다
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F135CCC434D4D01220FC847)
 
 
 위 그림처럼 같은 위치에 원하는 xml 파일을 둔 뒤,
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F15420A434D4D012230D529)
 
 위와 같이 파일 이름을 입력하고, 원하는 데이터 범위 yyyymmdd 형식으로 넣으시면 됩니다. 예를 들어서 2009 년 1 월 1 일 부터 2011 년 2 월 5 일 까지의 데이터 범위를 얻고 싶다면 20090101 을 쓰고 엔터를 누른 뒤 20110205 를 쓰고 다시 한 번 엔터를 누르면 됩니다. 그렇다면 아래 그림 처럼 out.txt 와 csv_out.csv 파일이 만들어져 있을 것입니다.
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1357713E4D4D019D113A85)
 
@@ -75,6 +83,12 @@ csv_out.csv 는 csv 형식 파일로 엑셀에서 바로 열어보실 수 있고
 
 
 
-공감sns신고저작자표시'My Program' 카테고리의 다른 글티스토리용 통계 프로그램 (댓글, 포스트, 방문자 등등) - tistory_stat (v.0.1)(9)
+
+
+
+공감sns신고
+저작자표시
+
+'My Program' 카테고리의 다른 글티스토리용 통계 프로그램 (댓글, 포스트, 방문자 등등) - tistory_stat (v.0.1)(9)
 2011.02.05
 

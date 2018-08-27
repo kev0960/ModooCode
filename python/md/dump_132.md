@@ -1,18 +1,22 @@
+----------------
+title : C 언어 레퍼런스 - atol 함수
+--------------
+
 
 
 ```warning
 아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요?
-
 ```
 
 
 atol
 
 
+
+
+
 ```info
 #include <stdlib.h> // C++ 에서는 <cstdlib>
-
-
 long int atol ( const char * str ); // long atol (const char *str) 인 경우도 있음
 ```
 
@@ -34,57 +38,69 @@ a123
 
 의 경우 123 이 있지만 첫번째 비-공백 문자가 a 이기 때문에 변환이 이루어지지 않는다. 변환이 이루어 지지 않는 경우 0 이 리턴된다. 
 
+
+
 ###  인자
-### 
+
+
 str
 
 
 정수를 포함하고 있는 C 형식 문자열
 
+
+
 ###  리턴값
-### 
+
+
+
+
 성공적으로 변환하였다면 변환된 long 형 정수를 리턴한다.
 만일 변환이 실패하였다면 0 이 리턴된다.
 변환된 수가 long 형으로 표현 가능한 범위를 넘어갔다면 LONG_MAX 혹은 LONG_MIN 이 리턴된다. 
 
+
+
 ###  실행 예제
-### 
+
+
 ```cpp
-/* 
-
-문자열로 데이터를 입력 받아서 long int 형으로 변환한다.
-이 예제는
-http://www.cplusplus.com/reference/clibrary/cstdlib/atol/
-에서 가져왔습니다. 
-
-
-*/
-#include <stdio.h>
-#include <stdlib.h>
-
-int main ()
-{
-    long int li;
-    char szInput [256];
-    printf ("Enter a long number: ");
-    gets ( szInput );
-    li = atol (szInput);
-    printf ("The value entered is %d. The double is %d.\n",li,li*2);
-    return 0;
-}
+/* 문자열로 데이터를 입력 받아서 long int 형으로 변환한다.이 예제는http://www.cplusplus.com/reference/clibrary/cstdlib/atol/에서 가져왔습니다. */#include <stdio.h>#include <stdlib.h>int main (){    long int li;    char szInput [256];    printf ("Enter a long number: ");    gets ( szInput );    li = atol (szInput);    printf ("The value entered is %d. The double is %d.\n",li,li*2);    return 0;}
 ```
 
 
 실행 결과
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1130654A4D414D3E29BE90)
 
 
 
-###  연관된 함수
-### * atoi  :  문자열을 정수로 변환한다.atof  :  문자열을 double 형으로 변환한다. strtol  :  문자열을 long 형으로 변환한다.
 
-공감sns신고저작자표시'C Reference > stdlib.h (cstdlib)' 카테고리의 다른 글C 언어 레퍼런스 - srand 함수(0)
+
+###  연관된 함수
+
+
+
+
+* atoi
+  :  문자열을 정수로 변환한다.
+
+* atof
+  :  문자열을 double 형으로 변환한다. 
+
+* strtol  :  문자열을 long 형으로 변환한다.
+
+
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C Reference > stdlib.h (cstdlib)' 카테고리의 다른 글C 언어 레퍼런스 - srand 함수(0)
 2011.05.05C 언어 레퍼런스 - rand 함수(2)
 2011.05.05C 언어 레퍼런스 - atol 함수(4)
 2011.01.27C 언어 레퍼런스 - atoi 함수(0)

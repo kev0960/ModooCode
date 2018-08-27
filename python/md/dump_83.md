@@ -1,8 +1,19 @@
+----------------
+title : 씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>
+--------------
 
 
 
 이번 강좌에서는
-* 지역 변수(local variable), 전역 변수(global variable), 정적 변수(static variable) 에 대해 알아본다.데이터 세그먼트의 구조에 대해 알아본다. 
+
+* 지역 변수(local variable), 전역 변수(global variable), 정적 변수(static variable) 에 대해 알아본다.
+
+* 데이터 세그먼트의 구조에 대해 알아본다. 
+
+
+
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F133D9D124C1E375CA3E64B)
 
 
@@ -10,30 +21,22 @@
 
 
 
+
+
 ###  지역 변수
-### 
+
+
+
+
 아래의 간단한 소스를 살펴 봅시다.     
 
 ```cpp
-/* 오류 */     
-#include <stdio.h>     
-int function()     
-{     
-    int a = 3;     
-    return 0;     
-}     
-int main()     
-{     
-    int a;     
-    function();     
-    printf("%d", a);     
-
-    return 0;     
-}     
+/* 오류 */     #include <stdio.h>     int function()     {         int a = 3;         return 0;     }     int main()     {         int a;         function();         printf("%d", a);         return 0;     }     
 ```
 
 
   컴파일 하였다면     
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1145B3014C1E1E1454D7DA)
 
@@ -51,41 +54,25 @@ int main()
 
 참고로 배열은 지역 변수 일까요? 맞습니다. 배열은 '지역 변수의 모음' 이라면 보면 적당합니다. 아무튼 배열 역시 지역 변수고 스택에 저장됩니다. 
 
+
 ###  전역 변수
-### 
+
+
 
 ```cpp
-/* 전역 변수 */     
-#include <stdio.h>     
-
-int global = 0;     
-
-int function()     
-{     
-    global++;     
-    return 0;     
-}     
-int main()     
-{     
-    global = 10;     
-    function();     
-    printf("%d \n", global);     
-    return 0;     
-}     
-
+/* 전역 변수 */     #include <stdio.h>     int global = 0;     int function()     {         global++;         return 0;     }     int main()     {         global = 10;         function();         printf("%d \n", global);         return 0;     }     
 ```
 
   성공적으로 컴파일 하였다면     
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F12224E0D4C1E20C882FA32)
 
 이번에는 어느 함수에도 속하지 않는 변수가 등장하였습니다. 이와 같이 함수 '외부' 에 선언되어 있는 변수를 바로 전역 변수(global variable) 이라 합니다. 얘는 정말 이름대로 글로벌 한 녀석인데 아까 지역 변수가 자신이 정의되어 있는 함수 내부에서는 접근할 수 있었더라면 이 변수의 경우 모든 함수에서 접근할 수 있습니다. 마치 몇 개 국어를 자유롭게 구사하는 사람 처럼 말이죠.     
 
 먼저 main 에서 
-
 ```cpp
-    global = 10;     
-    function();     
+    global = 10;         function();     
 ```
 
 
@@ -96,25 +83,12 @@ global 의 값을 10 으로 한 후 function 을 호출했습니다. function �
 한 가지 재미있는 것은 모든 전역 변수들은 정의 시 자동으로 0 으로 초기화 된다는 것입니다.     
 
 ```cpp
-/* 전역 변수의 초기화 ? */     
-#include <stdio.h>     
-
-int global;     
-int function()     
-{     
-    global++;     
-    return 0;     
-}     
-int main()     
-{     
-    function();     
-    printf("%d \n", global);     
-    return 0;     
-}     
+/* 전역 변수의 초기화 ? */     #include <stdio.h>     int global;     int function()     {         global++;         return 0;     }     int main()     {         function();         printf("%d \n", global);         return 0;     }     
 ```
 
 
   성공적으로 컴파일 했다면     
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1351B40F4C1E22A6662374)
 
@@ -123,71 +97,23 @@ int main()
 따라서 위와 같이 1 이 출력되었죠.     
 
 ```cpp
-/* 함수 호출 횟수 세기*/     
-#include <stdio.h>     
-
-int How_Many_Times_This_Function_Called = 0;     
-int function()     
-{     
-    How_Many_Times_This_Function_Called++;     
-    printf("called : %d \n", How_Many_Times_This_Function_Called);     
-
-    return 0;     
-}     
-int main()     
-{     
-    function();     
-    function();     
-    function();     
-    function();     
-    return 0;     
-}     
-
+/* 함수 호출 횟수 세기*/     #include <stdio.h>     int How_Many_Times_This_Function_Called = 0;     int function()     {         How_Many_Times_This_Function_Called++;         printf("called : %d \n", How_Many_Times_This_Function_Called);         return 0;     }     int main()     {         function();         function();         function();         function();         return 0;     }     
 ```
 
   성공적으로 컴파일 하였다면     
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1602720E4C1E243678DB27)
 
 위 프로그램에서는 function 이라는 변수가 몇 번 호출 되는지 알려줍니다. How_Many_Times_This_Function_Called 라는 변수는 function 함수를 몇 번 이나 호출했는데 카운트 해줍니다. 만일 How_Many_Times_This_Function_Called 를 function 함수의 지역 변수로 만들었다면 함수 종료 후 파괴 되므로 정보를 보관할 수 없었겠죠.     
 
 ```cpp
-/* 전역 변수의 문제점 */     
-#include <stdio.h>     
-
-int How_Many_Times_This_Function_Called = 0;     
-int How_Many_Times_This_Function_Called2 = 0;     
-int function()     
-{     
-    How_Many_Times_This_Function_Called++;     
-    printf("function called : %d \n", How_Many_Times_This_Function_Called);     
-
-    return 0;     
-}     
-int function2()     
-{     
-    How_Many_Times_This_Function_Called2++;     
-    printf("function 2 called : %d \n", How_Many_Times_This_Function_Called2);     
-
-    return 0;     
-}     
-int main()     
-{     
-    function();     
-    function2();     
-    function();     
-    function2();     
-    function2();     
-    function2();     
-    function();     
-    function();     
-    function2();     
-    return 0;     
-}     
+/* 전역 변수의 문제점 */     #include <stdio.h>     int How_Many_Times_This_Function_Called = 0;     int How_Many_Times_This_Function_Called2 = 0;     int function()     {         How_Many_Times_This_Function_Called++;         printf("function called : %d \n", How_Many_Times_This_Function_Called);         return 0;     }     int function2()     {         How_Many_Times_This_Function_Called2++;         printf("function 2 called : %d \n", How_Many_Times_This_Function_Called2);         return 0;     }     int main()     {         function();         function2();         function();         function2();         function2();         function2();         function();         function();         function2();         return 0;     }     
 ```
 
 
 성공적으로 컴파일 하였다면     
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F16595B1B4C1E24EE998ECD)
 
@@ -202,65 +128,32 @@ int main()
 
 아마도 여러분은 이쯤 부터 "그럼, 함수가 종료되어도 값이 변경되지 않는 지역변수 는 없을까?" 라는 생각을 하게 됩니다. 다행이도 있습니다. 물론 지역 변수는 아니지요. 이를 정적 변수 (static variable) 이라 합니다.     
 
+
+
 ###  정적 변수
-### 
+
+
+
+
 
 ```cpp
-/* 정적 변수의 활용 */     
-#include <stdio.h>     
-
-int function()     
-{     
-    static int How_Many_Times_This_Function_Called = 0;     
-
-    How_Many_Times_This_Function_Called++;     
-    printf("function called : %d \n", How_Many_Times_This_Function_Called);     
-
-    return 0;     
-}     
-int function2()     
-{     
-    static int How_Many_Times_This_Function_Called = 0;     
-
-    How_Many_Times_This_Function_Called++;     
-    printf("function 2 called : %d \n", How_Many_Times_This_Function_Called);     
-
-    return 0;     
-}     
-int main()     
-{     
-    function();     
-    function2();     
-    function();     
-    function2();     
-    function2();     
-    function2();     
-    function();     
-    function();     
-    function2();     
-    return 0;     
-}     
+/* 정적 변수의 활용 */     #include <stdio.h>     int function()     {         static int How_Many_Times_This_Function_Called = 0;         How_Many_Times_This_Function_Called++;         printf("function called : %d \n", How_Many_Times_This_Function_Called);         return 0;     }     int function2()     {         static int How_Many_Times_This_Function_Called = 0;         How_Many_Times_This_Function_Called++;         printf("function 2 called : %d \n", How_Many_Times_This_Function_Called);         return 0;     }     int main()     {         function();         function2();         function();         function2();         function2();         function2();         function();         function();         function2();         return 0;     }     
 ```
 
 
 성공적으로 컴파일 하였다면     
 
+
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F16595B1B4C1E24EE998ECD)
 
 와 같이 동일하게 작동함을 알 수 있습니다. 정적 변수는 보통 아래와 같이 정의합니다.
-
 
 ```info
 
 static (변수의 타입) (변수의 이름);
 ```
 
-
-
-
 예를 들면
-
-
 ```cpp
 
 static struct HUMAN adam;
@@ -289,43 +182,33 @@ How_Many_Times_This_Function_Called++;
 를 통해 함수의 호출 횟수를 셀 수 있습니다. 그렇다면 main 함수 에서 How_Many_Times_This_Function_Called 의 값을 볼 수 있는 방법이 있을까요? 답은 '없습니다' 입니다. 맨 위의 예제에서 지역 변수 a 값을 참조 할 수 없었던 것 처럼 How_Many_Times_This_Function_Called 는 '함수가 종료 될 때 파괴되지 않는다' 라는 점 빼고는 지역 변수와 하는 짓이 동일합니다.     
 다만 정적 변수의 경우 전역 변수 처럼 '데이터 영역' 에 저장되고 프로그램이 종료될 때 파괴됩니다. 또한 전역 변수 처럼 정적 변수도 정의시 특별한 값을 지정해 주지 않는 한 0 으로 자동 초기화 됩니다.  
 
+
+
 ###  데이터 세그먼트의 구조
-### 
+
+
+
+
 
 프로그램이 실행 될 때 프로그램은 RAM 에 적재 됩니다. 다시 말해 프로그램의 모든 내용이 RAM 위로 올라오게 된다는 것이지요. 여기서 '프로그램의 모든 내용' 이라 하면 프로그램의 코드와 프로그램의 데이터를 모두 의미 하는 것입니다. 이렇게 RAM 위로 올라오는 프로그램의 내용을 크게 나누어서 코드 세그먼트(Code Segment) 와 데이터 세그먼트(Data Segment) 로 분류할 수 있습니다.     
 
 우리가 중점 적으로 살펴볼 것은 데이터 세그먼트입니다. 일단 아래의 그림을 보면     
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F140309404D2EF2B93B6CF4)
 
 위와 같이 메모리에 배치 되어 있는 것을 알 수 있습니다.     
 
-
-
-일단 가장 먼저 주목할 부분은 Read-Only Data 부분 입니다. 이전에 상수와 리터럴에 대해서 이야기 할 때 등장하였는데 이 부분에 저장되는 데이터들은 값이 절대로 변경될 수 없습니다. 다시 말해 궁극적으로 보호 받는 부분 이죠. 그 다음으로 그 위에 전역 변수와 정적 변수가 거처하는 데이터 영역이 있습니다. 그 위에 바로 힙(Heap) 이라는 영역이 있는데 이 부분에 대해서는 나중에 설명하도록 합시다. 힙 맨 위를 보면 스택(Stack) 이 있습니다. 스택은 지역 변수가 거처하는 곳입니다. 스택의 특징으로는 지역 변수가 늘어나면 크기가 아래로 증가하다가 지역변수가 파괴되면 다시 스택의 크기는 위로 줄어들게 됩니다. 즉, 스택이 늘어나는 방향은 메모리 주소가 낮아지는 방향(아래 방향) 이라 보시면 됩니다.
-
-```cpp
+일단 가장 먼저 주목할 부분은 Read-Only Data 부분 입니다. 이전에 상수와 리터럴에 대해서 이야기 할 때 등장하였는데 이 부분에 저장되는 데이터들은 값이 절대로 변경될 수 없습니다. 다시 말해 궁극적으로 보호 받는 부분 이죠. 그 다음으로 그 위에 전역 변수와 정적 변수가 거처하는 데이터 영역이 있습니다. 그 위에 바로 힙(Heap) 이라는 영역이 있는데 이 부분에 대해서는 나중에 설명하도록 합시다. 힙 맨 위를 보면 스택(Stack) 이 있습니다. 스택은 지역 변수가 거처하는 곳입니다. 스택의 특징으로는 지역 변수가 늘어나면 크기가 아래로 증가하다가 지역변수가 파괴되면 다시 스택의 크기는 위로 줄어들게 됩니다. 즉, 스택이 늘어나는 방향은 메모리 주소가 낮아지는 방향(아래 방향) 이라 보시면 됩니다.```cpp
 
 /* 메모리의 배치 모습 */    
-
-#include <stdio.h>    
-int global = 3;     
-int main()     
-{     
-    int i;     
-    char *str="Hello, Baby";     
-    char arr[20]="WHATTHEHECK";     
-
-    printf("global : %x \n", &global);     
-    printf("i : %x \n", &i);     
-    printf("str : %x \n", str);     
-    printf("arr : %x \n", arr);    
-}     
+#include <stdio.h>    int global = 3;     int main()     {         int i;         char *str="Hello, Baby";         char arr[20]="WHATTHEHECK";         printf("global : %x \n", &global);         printf("i : %x \n", &i);         printf("str : %x \n", str);         printf("arr : %x \n", arr);    }     
 ```
 
 
 
 성공적으로 컴파일 했다면
+
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F181FA3194C1E30486DBF36)
 
@@ -337,7 +220,9 @@ int main()
 가장 먼저 Read Only 데이터인 str 을 봅시다. str 에는 “Hello, Baby” 라는 리터럴의 주소값이 들어가 있습니다. 따라서, str 의 값을 출력했다면 Read Only 데이터의 위치를 대략 알 수 있겠지요. 여기서는 0x1175a28 로 나옵니다. 예상 대로 출력된 주소값들 중 가장 작게 나옵니다. 왜냐하면 RO data 는 데이터 세그먼트 맨 아래에 위치해 있기 때문이죠.
 
 
+
 두 번째로 전역 변수인 global 의 주소값을 살펴보면 str 보다는 살짝 크지만 다른 것들 보다는 많이 작다는 것을 알 수 있습니다. 이는 global 이 전역 변수로 데이터 영역에 위치해 있기 때문이죠. 세 번째로 i 를 보자면 지역 변수 이기 때문에 stack 에 존재하고 있습니다. stack 의 경우 지역 변수를 추가할 수록 메모리 주소가 작아지는 방향으로 추가가 되므로 i 보다 나중에 추가 된 arr 의 주소값이 더 작습니다. 이들이 데이터 세그먼트에 배치된 모습을 그림으로 그려 본다면
+
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F114F551E4C1E3404A1F0AD)
 
@@ -361,17 +246,20 @@ http://www.drpaulcarter.com/pcasm/
 http://blog.naver.com/speciallive?Redirect=Log&logNo=98372211
 
 
+
 ```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
-
+강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 
 다음 강좌 보러가기
-
 ```
 
 
-공감1sns신고저작자표시'C' 카테고리의 다른 글씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>(13)
+
+
+
+공감1sns신고
+저작자표시
+
+'C' 카테고리의 다른 글씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>(13)
 2010.07.20씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >(24)
 2010.07.16씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>(14)
 2010.06.19씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>(20)

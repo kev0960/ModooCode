@@ -1,6 +1,6 @@
-<p>이번 강좌에서는<span class='font-italic'> 함수의 오버로딩 (function overloading)생성자 (constructor)디폴트 생성자 (default constructor)에 대해 배웁니다!</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F167FF448501D32CC2C9AE3' alt=''><p>  안녕하세요 여러분. 이제 본격적으로 객체 지향 프로그래밍을 시작 하도록 하겠습니다. 아마도 지난번 생각해보기를 열심히 하셨던 분들이라면, Date 클래스에서 add<span class='font-italic'>day 함수는 조금 어렵더라도, add</span>month 나 add<span class='font-italic'>year 정도는 가뿐하게 만드셨을 것이라고 생각합니다. 사실, add</span>day 도 add<span class='font-italic'>month 함수를 응용해서 만들면 쉬웠을 것입니다. 이번 강좌에서는 저와 함께 다시 새로운 방법으로 Date 클래스를 만들어가면서 객체 지향 프로그래밍에 조금 더 친숙해져 보도록 하겠습니다. </p><p> 함수의 오버로딩 (Overloading)### </p><p>  본격적으로 객체 지향 프로그래밍을 시작하기에 앞서 C++ 에 C 와는 다른 새로운 기능을 잠시 살펴 보도록 하겠습니다. 바로 '함수의 오버로딩' 이라고 하는 것인데요, 사실 오버로드를 사전에서 찾아보면 다음과 같은 뜻이 나옵니다.</p><pre class="chroma">1.과적하다2. ~sb(with sth) 너무 많이 주다[부과하다] 3.(컴퓨터・전기 시스템 등에)
+<p>이번 강좌에서는<span class='font-italic'> 함수의 오버로딩 (function overloading)</p><ul><li><p> 생성자 (constructor)</p></li><li><p> 디폴트 생성자 (default constructor)</p></li></ul><p>에 대해 배웁니다</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F167FF448501D32CC2C9AE3' alt=''><p>  안녕하세요 여러분. 이제 본격적으로 객체 지향 프로그래밍을 시작 하도록 하겠습니다. 아마도 지난번 생각해보기를 열심히 하셨던 분들이라면, Date 클래스에서 add<span class='font-italic'>day 함수는 조금 어렵더라도, add</span>month 나 add<span class='font-italic'>year 정도는 가뿐하게 만드셨을 것이라고 생각합니다. 사실, add</span>day 도 add<span class='font-italic'>month 함수를 응용해서 만들면 쉬웠을 것입니다. 이번 강좌에서는 저와 함께 다시 새로운 방법으로 Date 클래스를 만들어가면서 객체 지향 프로그래밍에 조금 더 친숙해져 보도록 하겠습니다. </p><h3><p>  함수의 오버로딩 (Overloading)</p></h3><p>  본격적으로 객체 지향 프로그래밍을 시작하기에 앞서 C++ 에 C 와는 다른 새로운 기능을 잠시 살펴 보도록 하겠습니다. 바로 '함수의 오버로딩' 이라고 하는 것인데요, 사실 오버로드를 사전에서 찾아보면 다음과 같은 뜻이 나옵니다.</p><pre class='info'>1.과적하다2. ~sb(with sth) 너무 많이 주다[부과하다] 3.(컴퓨터・전기 시스템 등에)
     과부하가 걸리게 하다
-</pre><p>  음.. 그렇다면 함수의 오버로딩이라는 것은 '함수에 과부하를 주는 것' 인가 라는 생각도 드실 텐데요, 사실 맞는 말씀입니다. 사실 C 언어 에서는 하나의 이름을 가지는 함수는 딱 1 개만 존재할 수 밖에 없기에 과부하라는 말 자체가 성립이 안됬지요. printf 는 C 라이브러리에 단 한 개 존재하고, scanf 도 C 라이브러리에 단 1 개 만 존재하지요. 하지만 C++ 에서는 같은 이름을 가진 함수가 여러개 존재해도 됩니다. 즉, 함수의 이름에 '과부하' 가 걸려도 상관이 없다는 것이지요!</p><p>  그렇다면 도대체 C++ 에서는 같은 이름의 함수를 호출했을 때 구분을 어떻게 하는 것일까요. 물론 단순합니다. 함수를 호출 하였을 때 사용하는 인자를 보고 결정하게 됩니다. </p><pre class="chroma">
+</pre><p>  음.. 그렇다면 함수의 오버로딩이라는 것은 '함수에 과부하를 주는 것' 인가 라는 생각도 드실 텐데요, 사실 맞는 말씀입니다. 사실 C 언어 에서는 하나의 이름을 가지는 함수는 딱 1 개만 존재할 수 밖에 없기에 과부하라는 말 자체가 성립이 안됬지요. printf 는 C 라이브러리에 단 한 개 존재하고, scanf 도 C 라이브러리에 단 1 개 만 존재하지요. 하지만 C++ 에서는 같은 이름을 가진 함수가 여러개 존재해도 됩니다. 즉, 함수의 이름에 '과부하' 가 걸려도 상관이 없다는 것이지요!  그렇다면 도대체 C++ 에서는 같은 이름의 함수를 호출했을 때 구분을 어떻게 하는 것일까요. 물론 단순합니다. 함수를 호출 하였을 때 사용하는 인자를 보고 결정하게 됩니다. </p><pre class="chroma">
 <span class="c1">// 함수의 오버로딩
 </span><span class="c1"></span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
@@ -56,7 +56,7 @@
 <span class="p">}</span>
 </pre><p>성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F197D1342501C882703189B' alt=''><p>이번에는 조금 특이한 경우 입니다. 일단 함수는 </p><pre class="chroma">
 <span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span>
-</pre><p>int 타입의 인자나 double 타입의 인자를 하나 받는 함수 하나 밖에 없습니다. 하지만 main 에서 각기 다른 타입의 인자들 (int, char, double) 로 print 함수를 호출하게 됩니다. 물론 a 나 c 의 경우 각자 자기를 인자로 하는 정확한 함수들이 있어서 성공적으로 호출 될 수 있겠지만, char 의 경우 자기와 정확히 일치하는 인자를 가지는 함수가 없기 때문에 '자신과 최대로 근접한 함수' 를 찾게 됩니다.</p><p>C++ 컴파일러에서 함수를 오버로딩하는 과정은 다음과 같습니다.</p><p>1 단계 : 자신과 타입이 정확히 일치하는 함수를 찾는다.</p><p>2 단계 : 정확히 일치하는 타입이 없는 경우 아래와 같은 형변환을 통해서 일치하는 함수를 찾아본다.</p><ul><li><p> <span class='font-italic'> Char, unsigned char, short 는 int 로 변환된다.Unsigned short 는 int 의 크기에 따라 int 혹은 unsigned int 로 변환된다.Float 은 double 로 변환된다.Enum 은 int 로 변환된다.</p></li></ul><p>3 단계 : 위와 같이 변환해도 일치하는 것이 없다면 아래의 좀더 포괄적인 형변환을 통해 일치하는 함수를 찾는다.</p><ul><li><p> <span class='font-italic'> 임의의 숫자(numeric) 타입은 다른 숫자 타입으로 변환된다. (예를 들어 float -> int)Enum 도 임의의 숫자 타입으로 변환된다 (예를 들어 Enum -> double)0 은 포인터 타입이나 숫자 타입으로 변환된다포인터는 void 포인터로 변환된다.</p></li></ul><p>4 단계 : 유저 정의된 타입 변환으로 일치하는 것을 찾는다 (이 부분에 대해선 나중에 설명!)(출처 : http://www.learncpp.com/cpp-tutorial/76-function-overloading/)</p><p>만약에 컴파일러가 위 과정을 통하더라도 일치하는 함수를 찾을 수 없거나 같은 단계에서 두 개 이상이 일치하는 경우에 '모호하다 (ambiguous)' 라고 판단해서 오류를 발생하게 됩니다. </p><p>그렇다면 우리의 소스 코드에서 </p><pre class="chroma">
+</pre><p>int 타입의 인자나 double 타입의 인자를 하나 받는 함수 하나 밖에 없습니다. 하지만 main 에서 각기 다른 타입의 인자들 (int, char, double) 로 print 함수를 호출하게 됩니다. 물론 a 나 c 의 경우 각자 자기를 인자로 하는 정확한 함수들이 있어서 성공적으로 호출 될 수 있겠지만, char 의 경우 자기와 정확히 일치하는 인자를 가지는 함수가 없기 때문에 '자신과 최대로 근접한 함수' 를 찾게 됩니다.</p><p>C++ 컴파일러에서 함수를 오버로딩하는 과정은 다음과 같습니다.</p><p>1 단계 : 자신과 타입이 정확히 일치하는 함수를 찾는다.</p><p>2 단계 : 정확히 일치하는 타입이 없는 경우 아래와 같은 형변환을 통해서 일치하는 함수를 찾아본다.</p><ul><li><p> Char, unsigned char, short 는 int 로 변환된다.</p></li><li><p> Unsigned short 는 int 의 크기에 따라 int 혹은 unsigned int 로 변환된다.</p></li><li><p> Float 은 double 로 변환된다.</p></li><li><p> Enum 은 int 로 변환된다.</p></li></ul><p>3 단계 : 위와 같이 변환해도 일치하는 것이 없다면 아래의 좀더 포괄적인 형변환을 통해 일치하는 함수를 찾는다.</p><ul><li><p> 임의의 숫자(numeric) 타입은 다른 숫자 타입으로 변환된다. (예를 들어 float -> int)</p></li><li><p> Enum 도 임의의 숫자 타입으로 변환된다 (예를 들어 Enum -> double)</p></li><li><p> 0 은 포인터 타입이나 숫자 타입으로 변환된다</p></li><li><p> 포인터는 void 포인터로 변환된다.</p></li></ul><p>4 단계 : 유저 정의된 타입 변환으로 일치하는 것을 찾는다 (이 부분에 대해선 나중에 설명!)(출처 : http://www.learncpp.com/cpp-tutorial/76-function-overloading/)</p><p>만약에 컴파일러가 위 과정을 통하더라도 일치하는 함수를 찾을 수 없거나 같은 단계에서 두 개 이상이 일치하는 경우에 '모호하다 (ambiguous)' 라고 판단해서 오류를 발생하게 됩니다. </p><p>그렇다면 우리의 소스 코드에서 </p><pre class="chroma">
 <span class="n">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="p">;</span>
 </pre><p>는 어떻게 될까요. 1 단계에서는 명백하게도 char 타입의 인자를 가진 print 가 없기에 2 단계로 넘어오게 됩니다. 그런데 2 단계에서는 char 이 int 로 변환된다면 print (int x) 를 호출할 수 있기 때문에 결국 print (int x) 가 호출되게 되는 것이지요. </p><pre class="chroma">
 <span class="c1">// 모호한 오버로딩
@@ -78,47 +78,32 @@
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>  위 소스를 컴파일 하였다면 오류가 발생함을 알 수 있습니다. 오류를 살짝 보자면</p><pre class="chroma">
+</pre><p>  위 소스를 컴파일 하였다면 오류가 발생함을 알 수 있습니다. 오류를 살짝 보자면</p><pre class='warning'>
 error C2668
-    : &#39;print&#39;
-      : ambiguous call to overloaded function could be &#39;void print(char)&#39; or
-        &#39;void print(int)&#39; while trying to match the argument list &#39;(double)&#39;
-</pre><p>와 같이 나오는데요, 왜 오류가 발생하였는지 살펴보도록 합시다. 일단 위 소스에서는 함수가 print (int x) 와 print (char x) 밖에 없으므로 관건은 print(c); 를 했을 때 어떠한 함수가 호출되어야 하는지 결정하는 것인데요, print(c) 를 했을 때 1 단계에서는 명백하게 일치하는 것이 없습니다. 2 단계에서는 마찬가지로 double 의 캐스팅에 관련한 내용이 없기에 일치하는 것이 없고 비로소 3 단계로 넘어오게 됩니다. 3 단계에서는 '임의의 숫자 타입이 임의의 숫자 타입' 으로 변환되서 생각되기 때문에 double 은 char 도, int 도 변환 될 수 있게 되는 것입니다. </p><p>따라서 같은 단계에 두 개 이상의 가능한 일치가 존재하므로 오류가 발생하게 되는 것이지요. </p><p>위와 같은 C++ 오버로딩 규칙을 머리속에 숙지 하는 일은 매우 중요한 일입니다. 왜냐하면 나중에 복잡한 함수를 오버로딩할 때 여러가개 중복되서 나온다면 눈물없이 볼 수 없는 오류의 향연을 만날 수 있을 것입니다!</p><p> Date 클래스</p><pre class="chroma">
+    : 'print'
+      : ambiguous call to overloaded function could be 'void print(char)' or
+        'void print(int)' while trying to match the argument list '(double)'
+</pre><p>와 같이 나오는데요, 왜 오류가 발생하였는지 살펴보도록 합시다. 일단 위 소스에서는 함수가 print (int x) 와 print (char x) 밖에 없으므로 관건은 print(c); 를 했을 때 어떠한 함수가 호출되어야 하는지 결정하는 것인데요, print(c) 를 했을 때 1 단계에서는 명백하게 일치하는 것이 없습니다. 2 단계에서는 마찬가지로 double 의 캐스팅에 관련한 내용이 없기에 일치하는 것이 없고 비로소 3 단계로 넘어오게 됩니다. 3 단계에서는 '임의의 숫자 타입이 임의의 숫자 타입' 으로 변환되서 생각되기 때문에 double 은 char 도, int 도 변환 될 수 있게 되는 것입니다. </p><p>따라서 같은 단계에 두 개 이상의 가능한 일치가 존재하므로 오류가 발생하게 되는 것이지요. </p><p>위와 같은 C++ 오버로딩 규칙을 머리속에 숙지 하는 일은 매우 중요한 일입니다. 왜냐하면 나중에 복잡한 함수를 오버로딩할 때 여러가개 중복되서 나온다면 눈물없이 볼 수 없는 오류의 향연을 만날 수 있을 것입니다!</p><h3><p>  Date 클래스</p></h3><pre class="chroma">
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span>
 <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="k">class</span><span class="err"> </span><span class="nc">Date</span>
-
-<span class="p">{</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">Date</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">year</span><span class="p">;</span>
-
   <span class="kt">int</span> <span class="n">month</span><span class="p">;</span>
-
   <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
 
  <span class="k">public</span><span class="o">:</span>
   <span class="kt">void</span> <span class="n">set_date</span><span class="p">(</span><span class="kt">int</span> <span class="n">_year</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_month</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_date</span><span class="p">)</span><span class="p">;</span>
-
   <span class="kt">void</span> <span class="nf">add_day</span><span class="p">(</span><span class="kt">int</span> <span class="n">inc</span><span class="p">)</span><span class="p">;</span>
-
   <span class="kt">void</span> <span class="nf">add_month</span><span class="p">(</span><span class="kt">int</span> <span class="n">inc</span><span class="p">)</span><span class="p">;</span>
-
   <span class="kt">void</span> <span class="nf">add_year</span><span class="p">(</span><span class="kt">int</span> <span class="n">inc</span><span class="p">)</span><span class="p">;</span>
-
   <span class="kt">void</span> <span class="nf">show_date</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">;</span>
-
-<span class="kt">void</span> <span class="n">Date</span><span class="o">:</span><span class="o">:</span><span class="n">set_date</span><span class="p">(</span><span class="kt">int</span> <span class="n">_year</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_month</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_day</span><span class="p">)</span>
-
-<span class="p">{</span>
+<span class="kt">void</span> <span class="n">Date</span><span class="o">:</span><span class="o">:</span><span class="n">set_date</span><span class="p">(</span><span class="kt">int</span> <span class="n">_year</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_month</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_day</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">year</span> <span class="o">=</span> <span class="n">_year</span><span class="p">;</span>
-
   <span class="n">month</span> <span class="o">=</span> <span class="n">_month</span><span class="p">;</span>
-
   <span class="n">day</span> <span class="o">=</span> <span class="n">_day</span><span class="p">;</span>
 <span class="p">}</span>
-
 <span class="kt">void</span> <span class="n">Date</span><span class="o">:</span><span class="o">:</span><span class="n">add_day</span><span class="p">(</span><span class="kt">int</span> <span class="n">inc</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">month_day</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">31</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">}</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">month</span><span class="p">;</span>
@@ -178,25 +163,17 @@ error C2668
 </pre><p> 성공적으로 컴파일 하였다면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1252FE404F4F07F611AF58' alt=''><p>위의 코드는 간단한 것들 (add<span class='font-italic'>year, set</span>date, show<span class='font-italic'>date) 만 만들어 놓은 상태입니다. 그런데, 이상한 것이 있죠? class 내부에는 아래 코드와 같이 </p><pre class="chroma">
 <span class="k">public</span><span class="o">:</span>
 <span class="kt">void</span> <span class="n">set_date</span><span class="p">(</span><span class="kt">int</span> <span class="n">_year</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_month</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_date</span><span class="p">)</span><span class="p">;</span>
-
 <span class="kt">void</span> <span class="nf">add_day</span><span class="p">(</span><span class="kt">int</span> <span class="n">inc</span><span class="p">)</span><span class="p">;</span>
-
 <span class="kt">void</span> <span class="nf">add_month</span><span class="p">(</span><span class="kt">int</span> <span class="n">inc</span><span class="p">)</span><span class="p">;</span>
-
 <span class="kt">void</span> <span class="nf">add_year</span><span class="p">(</span><span class="kt">int</span> <span class="n">inc</span><span class="p">)</span><span class="p">;</span>
-
 <span class="kt">void</span> <span class="nf">show_date</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 </pre><p>함수의 정의만 나와 있고, 함수 전체 몸통은 </p><pre class="chroma">
-<span class="kt">void</span> <span class="n">Date</span><span class="o">:</span><span class="o">:</span><span class="n">set_date</span><span class="p">(</span><span class="kt">int</span> <span class="n">_year</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_month</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_day</span><span class="p">)</span>
-
-<span class="p">{</span>
+<span class="kt">void</span> <span class="n">Date</span><span class="o">:</span><span class="o">:</span><span class="n">set_date</span><span class="p">(</span><span class="kt">int</span> <span class="n">_year</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_month</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_day</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">year</span> <span class="o">=</span> <span class="n">_year</span><span class="p">;</span>
-
   <span class="n">month</span> <span class="o">=</span> <span class="n">_month</span><span class="p">;</span>
-
   <span class="n">day</span> <span class="o">=</span> <span class="n">_day</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>처럼 밖에 나와 있습니다. Date:: 을 함수 이름 앞에 붙여주게 되면 이 함수가 "Date 클래스의 정의된 함수" 라는 의미를 부여하게 됩니다. 만일 그냥```cpp</p><p>void set<span class='font-italic'>date(int </span>year, int <span class='font-italic'>month, int </span>day)</p><p>{</p><p>// 생략</p><pre class="chroma">
+</pre><p>처럼 밖에 나와 있습니다. Date:: 을 함수 이름 앞에 붙여주게 되면 이 함수가 "Date 클래스의 정의된 함수" 라는 의미를 부여하게 됩니다. 만일 그냥```cpp</p><p>void set<span class='font-italic'>date(int </span>year, int <span class='font-italic'>month, int </span>day){// 생략</p><pre class="chroma">
 
 했다면 이 함수는 아예 다른 함수가 되는 것이지요
     .보통 간단한 함수를 제외하면 대부분의 함수들은 클래스 바깥에서 위와 같이
@@ -204,7 +181,7 @@ error C2668
     .왜냐하면 클래스 내부에 쓸 경우 클래스 크기가 너무 길어져서 보기 좋지 않기
         때문이죠.특히 나중에 클래스 자체만 따로 헤더파일로 뺄 수 도 있는데,
     이 때 클래스 코드 길이가 너무 길면 불편하겠지요.
-</pre><p>cpp</p><p>    Date day;</p><p>    day.set<span class='font-italic'>date(2011,3,1);</p><p>    day.show<span class='font-italic'>date();</p><p>    day.add<span class='font-italic'>year(10);</p><p>    day.show<span class='font-italic'>date();</p><pre class="chroma">
+</pre><p>cpp</p><p>    Date day;    day.set<span class='font-italic'>date(2011,3,1);    day.show</span>date();    day.add<span class='font-italic'>year(10);    day.show</span>date();</p><pre class="chroma">
 
 그럼 이제 main 함수를 살펴 봅시다.위 처럼 day 인스턴스를 생성해서 set_date 로
     초기화 한 다음에 show_date 로 내용을 한 번 보여주고,
@@ -228,8 +205,8 @@ error C2668
         다행이도 C++ 에서는 이를 언어 차원에서 도와주는 장치가 있는데 바로
         &#34;생성자(constructor)&#34; 입니다.
 
-        생성자(Constructor)
-</pre><p>cpp</p><p>#include <iostream></p><p>using namespace std;</p><p>class Date</p><p>{</p><p>    int year;</p><p>    int month;</p><p>    int day;</p><p>public:</p><p>    void set<span class='font-italic'>date(int </span>year, int <span class='font-italic'>month, int </span>date);</p><p>    void add<span class='font-italic'>day(int inc);</p><p>    void add<span class='font-italic'>month(int inc);</p><p>    void add<span class='font-italic'>year (int inc);</p><p>    void show<span class='font-italic'>date();</p><p>    Date(int <span class='font-italic'>year, int </span>month, int <span class='font-italic'>day)    {        year = </span>year;        month = <span class='font-italic'>month;        day = </span>day;    }</p><p>};</p><p>// 생략</p><p>int main()</p><p>{Date day(2011, 3, 1);</p><p>    day.show<span class='font-italic'>date();</p><p>    day.add<span class='font-italic'>year(10);</p><p>    day.show<span class='font-italic'>date();</p><p>    return 0;</p><p>}</p><pre class="chroma">
+        ## #생성자(Constructor)
+</pre><p>cpp</p><p>#include <iostream>using namespace std;class Date{    int year;    int month;    int day;public:    void set<span class='font-italic'>date(int </span>year, int <span class='font-italic'>month, int </span>date);    void add<span class='font-italic'>day(int inc);    void add</span>month(int inc);    void add<span class='font-italic'>year (int inc);    void show</span>date();    Date(int <span class='font-italic'>year, int </span>month, int <span class='font-italic'>day)    {        year = </span>year;        month = <span class='font-italic'>month;        day = </span>day;    }};// 생략int main(){ Date day(2011, 3, 1);    day.show<span class='font-italic'>date();    day.add</span>year(10);    day.show<span class='font-italic'>date();    return 0;}</p><pre class="chroma">
 
 성공적으로 컴파일 하였다면
 
@@ -273,8 +250,7 @@ error C2668
         암시적 방법으로 축약해서 쓸 수 있으므로 이를 선호하는 편입니다
             .
 
-    디폴트
-    생성자(Default constructor)
+    ## #디폴트 생성자(Default constructor)
 
         그런데 한 가지 궁금증이 생겼습니다
             .맨 처음에 단순히 set_date 함수를 이용해서 객체를 초기화 하였을 때
@@ -302,6 +278,7 @@ error C2668
 성공적으로 컴파일 하였다면
 
 
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1233FC35501D1C6A0CA47B)
 
 
@@ -324,14 +301,19 @@ error C2668
         .이는 암시적 표현으로 객체를 선언할 때 반드시 염두해 두어야 할
             사항입니다.
 
-    생성자 오버로딩
+    ## #생성자 오버로딩
 
         앞서 함수의 오버로딩에 대해 설명을 하였는데요,
     생성자 역시 같은 함수이기에 오버로딩이 가능합니다.
 </pre><p>cpp</p><p>#include <iostream>using namespace std;class Date{    int year;    int month;    int day;</p><p>public:    void set<span class='font-italic'>date(int </span>year, int <span class='font-italic'>month, int </span>date);    void add<span class='font-italic'>day(int inc);    void add</span>month(int inc);    void add<span class='font-italic'>year (int inc);    void show</span>date();</p><p>    Date()    {   cout << "기본 생성자 호출!" << endl;   year = 2012;   month = 7;   day = 12;    }    Date(int <span class='font-italic'>year, int </span>month, int <span class='font-italic'>day)    {   cout << "인자 3 개인 생성자 호출!" << endl;   year = </span>year;   month = <span class='font-italic'>month;   day = </span>day;    }};</p><p>// 생략void Date::show<span class='font-italic'>date(){    cout << "오늘은 " << year<< " 년 "         << month << " 월 "        << day << " 일 입니다 " << endl;}int main(){    Date day = Date();    Date day2(2012, 10, 31);</p><p>    day.show<span class='font-italic'>date();    day2.show</span>date();    return 0;}</p><pre class="chroma">
+
 성공적으로 컴파일 하였다면
 
+
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F20654C3F501D25D315F080)
+
+
 
 
 
@@ -368,89 +350,23 @@ error C2668
 
 2. 수학 관련 소프트웨어를 만드는 회사에서 의뢰가 들어왔습니다. 중학생용 기하학 소프트웨워를 만드는 것인데요, 클래스는 총 두 개로 하나는 Point 로 점에 관한 정보를 담는 것이고 다른 하나는 Geometry 로 점들을 가지고 연산을 하는 클래스 입니다. 즉 아래와 같은 두 클래스의 함수들을 모두 정의하세요 (난이도 : 上)
 </pre><p>cpp</p><p>class Point{int x, y;</p><p>public:Point(int pos<span class='font-italic'>x, int pos</span>y);};class Geometry{Point <span class='font-italic'>point</span>array;// 현재 공간에 대한 점들의 정보를 담고 있는 배열// 물론 배열의 크기는 생성자에서 초기화 하고 충분히// 크게 잡도록 합시다 (점 100 개 정도?)</p><p>public:Geometry(Point <span class='font-italic'>point</span>list); Geometry();</p><p>void Add<span class='font-italic'>Point(Point &point);</p><p>// 모든 점들 간의 거리를 출력하는 함수 입니다.void Print<span class='font-italic'>Distance();</p><p>// 모든 점들을 잇는 직선들 간의 교점의 수를 출력해주는 함수 입니다.// 참고적으로 임의의 두 점을 잇는 직선의 방정식을 f(x,y) = ax+by+c = 0// 이라고 할 때 임의의 다른 두 점 (x1, y1) 과 (x2, y2) 가 f(x,y)=0 을 기준으로// 서로 다른 부분에 있을 조건은 f(x1, y1) <span class='font-italic'> f(x2, y2) <= 0 이면 됩니다. void Print</span>Num<span class='font-italic'>Meets();};</p><pre class="chroma">
-</pre><p>warning</p><p>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. </p><p>현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자) >>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 </p><p>다음 강좌 보러가기</p><p>```
+</pre><p>warning</p><p>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면 꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. 현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자) >>> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요 다음 강좌 보러가기</p><p>```
 
 
 
 
 
-공감sns신고저작자표시'C++' 카테고리의 다른 글씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>(41)
+
+
+
+공감sns신고
+저작자표시
+
+'C++' 카테고리의 다른 글씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>(41)
 2013.01.06씹어먹는 C++ 토막글 ① - Rvalue(우측값) 레퍼런스에 관해(6)
 2012.11.03씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자) >(42)
 2012.08.04씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>(50)
 2012.02.29씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>(41)
 2012.01.01씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>(27)
 2012.01.01
-</p><style>/* Background */ .chroma { background-color: #ffffff }
-/* Error */ .chroma .err { color: #a61717; background-color: #e3d2d2 }
-/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
-/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
-/* LineHighlight */ .chroma .hl { display: block; width: 100%; }
-/* LineNumbersTable */ .chroma .lnt { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* LineNumbers */ .chroma .ln { margin-right: 0.4em; padding: 0 0.4em 0 0.4em; }
-/* Keyword */ .chroma .k { color: #000000; font-weight: bold }
-/* KeywordConstant */ .chroma .kc { color: #000000; font-weight: bold }
-/* KeywordDeclaration */ .chroma .kd { color: #000000; font-weight: bold }
-/* KeywordNamespace */ .chroma .kn { color: #000000; font-weight: bold }
-/* KeywordPseudo */ .chroma .kp { color: #000000; font-weight: bold }
-/* KeywordReserved */ .chroma .kr { color: #000000; font-weight: bold }
-/* KeywordType */ .chroma .kt { color: #445588; font-weight: bold }
-/* NameAttribute */ .chroma .na { color: #008080 }
-/* NameBuiltin */ .chroma .nb { color: #0086b3 }
-/* NameBuiltinPseudo */ .chroma .bp { color: #999999 }
-/* NameClass */ .chroma .nc { color: #445588; font-weight: bold }
-/* NameConstant */ .chroma .no { color: #008080 }
-/* NameDecorator */ .chroma .nd { color: #3c5d5d; font-weight: bold }
-/* NameEntity */ .chroma .ni { color: #800080 }
-/* NameException */ .chroma .ne { color: #990000; font-weight: bold }
-/* NameFunction */ .chroma .nf { color: #990000; font-weight: bold }
-/* NameLabel */ .chroma .nl { color: #990000; font-weight: bold }
-/* NameNamespace */ .chroma .nn { color: #555555 }
-/* NameTag */ .chroma .nt { color: #000080 }
-/* NameVariable */ .chroma .nv { color: #008080 }
-/* NameVariableClass */ .chroma .vc { color: #008080 }
-/* NameVariableGlobal */ .chroma .vg { color: #008080 }
-/* NameVariableInstance */ .chroma .vi { color: #008080 }
-/* LiteralString */ .chroma .s { color: #dd1144 }
-/* LiteralStringAffix */ .chroma .sa { color: #dd1144 }
-/* LiteralStringBacktick */ .chroma .sb { color: #dd1144 }
-/* LiteralStringChar */ .chroma .sc { color: #dd1144 }
-/* LiteralStringDelimiter */ .chroma .dl { color: #dd1144 }
-/* LiteralStringDoc */ .chroma .sd { color: #dd1144 }
-/* LiteralStringDouble */ .chroma .s2 { color: #dd1144 }
-/* LiteralStringEscape */ .chroma .se { color: #dd1144 }
-/* LiteralStringHeredoc */ .chroma .sh { color: #dd1144 }
-/* LiteralStringInterpol */ .chroma .si { color: #dd1144 }
-/* LiteralStringOther */ .chroma .sx { color: #dd1144 }
-/* LiteralStringRegex */ .chroma .sr { color: #009926 }
-/* LiteralStringSingle */ .chroma .s1 { color: #dd1144 }
-/* LiteralStringSymbol */ .chroma .ss { color: #990073 }
-/* LiteralNumber */ .chroma .m { color: #009999 }
-/* LiteralNumberBin */ .chroma .mb { color: #009999 }
-/* LiteralNumberFloat */ .chroma .mf { color: #009999 }
-/* LiteralNumberHex */ .chroma .mh { color: #009999 }
-/* LiteralNumberInteger */ .chroma .mi { color: #009999 }
-/* LiteralNumberIntegerLong */ .chroma .il { color: #009999 }
-/* LiteralNumberOct */ .chroma .mo { color: #009999 }
-/* Operator */ .chroma .o { color: #000000; font-weight: bold }
-/* OperatorWord */ .chroma .ow { color: #000000; font-weight: bold }
-/* Comment */ .chroma .c { color: #999988; font-style: italic }
-/* CommentHashbang */ .chroma .ch { color: #999988; font-style: italic }
-/* CommentMultiline */ .chroma .cm { color: #999988; font-style: italic }
-/* CommentSingle */ .chroma .c1 { color: #999988; font-style: italic }
-/* CommentSpecial */ .chroma .cs { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreproc */ .chroma .cp { color: #999999; font-weight: bold; font-style: italic }
-/* CommentPreprocFile */ .chroma .cpf { color: #999999; font-weight: bold; font-style: italic }
-/* GenericDeleted */ .chroma .gd { color: #000000; background-color: #ffdddd }
-/* GenericEmph */ .chroma .ge { color: #000000; font-style: italic }
-/* GenericError */ .chroma .gr { color: #aa0000 }
-/* GenericHeading */ .chroma .gh { color: #999999 }
-/* GenericInserted */ .chroma .gi { color: #000000; background-color: #ddffdd }
-/* GenericOutput */ .chroma .go { color: #888888 }
-/* GenericPrompt */ .chroma .gp { color: #555555 }
-/* GenericStrong */ .chroma .gs { font-weight: bold }
-/* GenericSubheading */ .chroma .gu { color: #aaaaaa }
-/* GenericTraceback */ .chroma .gt { color: #aa0000 }
-/* GenericUnderline */ .chroma .gl { text-decoration: underline }
-/* TextWhitespace */ .chroma .w { color: #bbbbbb }
-</style>
+</p>

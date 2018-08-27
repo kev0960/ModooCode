@@ -1,3 +1,7 @@
+----------------
+title : C++ 레퍼런스 - ios::setstate 함수
+--------------
+
 
 
 ```warning
@@ -10,7 +14,9 @@ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한
 아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요?
 ```
 
-ios::setstate```info
+ios::setstate
+
+```info
 void setstate (iostate state);
 ```
 
@@ -27,7 +33,12 @@ clear ( rdstate() | state );
 
 를 하는 것과 동일하다고 볼 수 있다.
 
- 인자
+
+
+###  인자
+
+
+
 
 
 state
@@ -35,43 +46,76 @@ state
 ios_base::iostate 타입의 객체로 다음과 같은 멤버 상수들의 조합(비트 OR 연산) 으로 구성되어 있다.
 
 
+플래그 값의미eofbit스트림으로부터 추출 작업(extracting operation) 을 수행 중 End – Of –
+  File 에 도달하는 경우failbit마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을
+  경우 badbit스트림 버퍼의 입출력 작업이 실패하여 발생한 오류goodbit오류가 없다. 
 
-플래그 값
-의미
-eofbit
-스트림으로부터 추출 작업(extracting operation) 을 수행 중 End – Of –
-  File 에 도달하는 경우
-failbit
-마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을
-  경우 
-badbit
-스트림 버퍼의 입출력 작업이 실패하여 발생한 오류
-goodbit
-오류가 없다. 
 
- 리턴값
+
+###  리턴값
+
 
 
 없다
 
- 템플릿 멤버 정의
+
+
+###  템플릿 멤버 정의
+
+
+
 
 
 ```cpp
-( basic_ios<charT,traits> )
-void setstate ( iostate state );
+
+
+( basic_ios<charT,traits> )void setstate ( iostate state );
 ```
 
 
- 연관된 함수
 
 
-* ios::fail  :  failbit 이나 badbit 이 설정되어 있는지 확인한다. 
-ios::bad  :  badbit 이 설정되어 있는지 확인한다.  
-ios::good :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.ios::eof  :  eofbit 이 설정되어 있는지 확인한다. 
-ios::rdstate  :  오류 상태 플래그를 얻는다. 
-ios::clear  :  오류 상태 플래그를 설정한다.
-공감sns신고저작자표시'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::fill 함수(0)
+###  연관된 함수
+
+
+
+
+
+
+* ios::fail
+  :  failbit 이나 badbit 이 설정되어 있는지 확인한다. 
+
+
+
+* ios::bad
+  :  badbit 이 설정되어 있는지 확인한다.  
+
+
+
+* ios::good
+ :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+
+* ios::eof
+  :  eofbit 이 설정되어 있는지 확인한다. 
+
+
+
+* ios::rdstate
+  :  오류 상태 플래그를 얻는다. 
+
+
+
+* ios::clear
+  :  오류 상태 플래그를 설정한다.
+
+
+
+
+
+공감sns신고
+저작자표시
+
+'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios::fill 함수(0)
 2012.03.25C++ 레퍼런스 - ios::clear(0)
 2012.03.25C++ 레퍼런스 - ios::setstate 함수(0)
 2012.03.25C++ 레퍼런스 - ios::rdstate 함수(0)
