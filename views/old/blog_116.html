@@ -1,13 +1,25 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>asctime</p><pre class='info'>#include <time.h>  // C++ 에서는 <ctime>char * asctime ( const struct tm * timeptr );
-</pre><p>tm 구조체를 문자열로 바꾼다.</p><p>timeptr 이 가리키는 tm 구조체를 읽어들여서 아래와 같은 형식으로 문자열을 만들어서 출력한다. </p><p>Www Mmm dd hh:mm:ss yyyy</p><p>이 때 Www 는 요일 이름, Mmm 은 월 이름, dd 는 몇 일인지, 그리고 hh:mm:ss 는 현재 시간, yyyy 는 년도를 말한다. 예를 들면</p><p>Sun Dec 25 09:00:12 2010</p><p>과 같은 형식의 출력이 가능하다. 이 때, 리턴되는 문자열은 자동으로 끝에 \n 과 널 종료 문자열이 포함되어 있다. </p><h3><p>  인자</p></h3><p>timeptr</p><p>tm 구조체를 가리키는 포인터 이다. 이 구조체에 들어있는 값을 토대로 문자열이 생성된다.</p><h3><p>  리턴값</p></h3><p>timeptr 을 읽어서 위에서 말한 형식으로 만은 C 형식 문자열을 리턴한다. 이 때, 이 문자열은 정적으로 할당된 메모리 공간을 차지하고 있는데 ctime 과 asctime 함수가 같이 사용하고 있다. 따라서 이들 함수를 호출할 때 마다 이 문자열에 있는 내용이 덮어쓰기 되므로, 리턴된 문자열을 보관하기 위해서는 사용자가 직접 메모리 공간을 할당하여서 그 내용을 복사해 넣어야만 한다. </p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/* 이 예제는http://www.cplusplus.com/reference/clibrary/ctime/asctime/에서 가져왔습니다.*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt; int</span><span class="cp">
-</span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>asctime</code></p><pre class='info'>#include <time.h>  // C++ 에서는 <ctime>
+
+char* asctime(const struct tm* timeptr);
+</pre><p><code class='inline-code'>tm</code> 구조체를 문자열로 바꾼다.<code class='inline-code'>timeptr</code> 이 가리키는 <code class='inline-code'>tm</code> 구조체를 읽어들여서 아래와 같은 형식으로 문자열을 만들어서 출력한다.</p><p><code class='inline-code'>Www Mmm dd</code> hh:mm:ss <code class='inline-code'>yyyy</code></p><p>이 때 <code class='inline-code'>Www</code> 는 요일 이름, <code class='inline-code'>Mmm</code> 은 월 이름, <code class='inline-code'>dd</code> 는 몇 일인지, 그리고 hh:mm:ss 는 현재 시간, <code class='inline-code'>yyyy</code> 는 년도를 말한다. 예를 들면</p><p><code class='inline-code'>Sun Dec 25</code> 09:00:12 2010</p><p>과 같은 형식의 출력이 가능하다. 이 때, 리턴되는 문자열은 자동으로 끝에 \n 과 널 종료 문자열이 포함되어 있다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>timeptr</code></p><p><code class='inline-code'>tm</code> 구조체를 가리키는 포인터 이다. 이 구조체에 들어있는 값을 토대로 문자열이 생성된다.</p><h3><p>  리턴값</p></h3><p><code class='inline-code'>timeptr</code> 을 읽어서 위에서 말한 형식으로 만은 C 형식 문자열을 리턴한다. 이 때, 이 문자열은 정적으로 할당된 메모리 공간을 차지하고 있는데 <code class='inline-code'>ctime</code> 과 <code class='inline-code'>asctime</code> 함수가 같이 사용하고 있다. 따라서 이들 함수를 호출할 때 마다 이 문자열에 있는 내용이 덮어쓰기 되므로, 리턴된 문자열을 보관하기 위해서는 사용자가 직접 메모리 공간을 할당하여서 그 내용을 복사해 넣어야만 한다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/ctime/asctime/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">time_t</span> <span class="n">rawtime</span><span class="p">;</span>
   <span class="k">struct</span> <span class="n">tm</span><span class="o">*</span> <span class="n">timeinfo</span><span class="p">;</span>
+
   <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rawtime</span><span class="p">)</span><span class="p">;</span>
   <span class="n">timeinfo</span> <span class="o">=</span> <span class="n">localtime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rawtime</span><span class="p">)</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The current date/time is: %s</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">asctime</span><span class="p">(</span><span class="n">timeinfo</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F131466354D168E052284C6' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> ctime  :  time<span class='font-italic'>t 를 가지고 asctime 과 동일한 작업을 한다.</p></li><li><p> gmtime  :  time<span class='font-italic'>t 변수를 UTC 시간의 tm 구조체로 바꾼다.</p></li><li><p> localtime  :  time<span class='font-italic'>t 변수를 지역 시간의 tm 구조체로 바꾼다. </p></li><li><p> time  :  현재 시간을 구한다.</p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - gmtime 함수(0)2010.12.29C 언어 레퍼런스 - ctime 함수(0)2010.12.29C 언어 레퍼런스 - asctime 함수(0)2010.12.26C 언어 레퍼런스 - time 함수(2)2010.12.26C 언어 레퍼런스 - mktime 함수(0)2010.12.26C 언어 레퍼런스 - time<span class='font-italic'>t 형(1)2010.12.25</p>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F131466354D168E052284C6' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/118'>ctime</a>  :  <code class='inline-code'>time_t</code> 를 가지고 <code class='inline-code'>asctime</code> 과 동일한 작업을 한다.</p></li><li><p>  <a href='http://itguru.tistory.com/119'>gmtime</a>  :  <code class='inline-code'>time_t</code> 변수를 <code class='inline-code'>UTC</code> 시간의 <code class='inline-code'>tm</code> 구조체로 바꾼다.</p></li><li><p>  <a href='http://itguru.tistory.com/120'>localtime</a>  :  <code class='inline-code'>time_t</code> 변수를 지역 시간의 <code class='inline-code'>tm</code> 구조체로 바꾼다.</p></li><li><p>  <a href='http://itguru.tistory.com/114'>time</a>  :  현재 시간을 구한다.</p></li></ul>

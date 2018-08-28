@@ -1,17 +1,30 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>putchar</p><pre class='info'>#include <stdio.h>  // C++ 에서는 <cstdio>int putchar ( int character );
-</pre><p>표준 출력(stdout) 에 문자를 쓴다.표준 출력에서 현재 위치 표시자가 가리키는 곳에 문자를 쓴 뒤, 위치 표시자를 다음 위치로 전진시킨다.putchar 함수는 putc(character, stdout) 과 동일하다. </p><h3><p>  인자</p></h3><p>character</p><p>표준 출력에 쓸 문자. 이 때 문자는 int 형태로 형변환되어 전달된다.</p><h3><p>  리턴값</p></h3><p>오류가 하나도 없다면 표준 출력에 쓰여진 문자가 반환된다.만일 오류가 발생한다면 EOF 가 반환되고 오류 표시자가 설정된다. </p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/* 화면에 &#39;p&#39; 를 출력한다 */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int main() {</span><span class="cp">
-</span><span class="cp"></span>  <span class="kt">char</span> <span class="n">ch</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">p</span><span class="sc">&#39;</span><span class="p">;</span>
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>putchar</code></p><pre class='info'>#include <stdio.h>  // C++ 에서는 <cstdio>
+
+int putchar(int character);
+</pre><p>표준 출력(stdout) 에 문자를 쓴다.표준 출력에서 현재 위치 표시자가 가리키는 곳에 문자를 쓴 뒤, 위치 표시자를 다음 위치로 전진시킨다.<code class='inline-code'>putchar</code> 함수는 <a href='http://itguru.tistory.com/46'>putc</a>(character, stdout) 과 동일하다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>character</code></p><p>표준 출력에 쓸 문자. 이 때 문자는 <code class='inline-code'>int</code> 형태로 형변환되어 전달된다.</p><h3><p>  리턴값</p></h3><p>오류가 하나도 없다면 표준 출력에 쓰여진 문자가 반환된다.만일 오류가 발생한다면 <code class='inline-code'>EOF</code> 가 반환되고 오류 표시자가 설정된다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/* 화면에 &#39;p&#39; 를 출력한다 */</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">ch</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">p</span><span class="sc">&#39;</span><span class="p">;</span>
+
   <span class="n">putchar</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span><span class="p">;</span>
+
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F16415F144B6AB65213766E' alt=''><pre class="chroma"><span class="cm">/* 화면에 알파벳 A 부터 Z 까지 출력한다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/putchar/에서 가져왔습니다. */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="kt">int</span>
-<span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F16415F144B6AB65213766E' alt=''><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">화면에 알파벳 A 부터 Z 까지 출력한다.
+</span><span class="cm">이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/putchar/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">A</span><span class="sc">&#39;</span><span class="p">;</span> <span class="n">c</span> <span class="o">&lt;</span><span class="o">=</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">Z</span><span class="sc">&#39;</span><span class="p">;</span> <span class="n">c</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">putchar</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1304D4134B6AB693652E08' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> putc  :  스트림에 문자를 쓴다.</p></li><li><p> fputc:  스트림에 문자를 쓴다.</p></li><li><p> getchar  :  표준 입력(stdin) 에서 문자를 받는다.</p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - ungetc 함수(0)2010.02.04C 언어 레퍼런스 - puts 함수(0)2010.02.04C 언어 레퍼런스 - putchar 함수(0)2010.02.04C 언어 레퍼런스 - putc 함수(0)2010.02.04C 언어 레퍼런스 - gets 함수(3)2010.02.03C 언어 레퍼런스 - getchar 함수(7)2010.02.03</p>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1304D4134B6AB693652E08' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/46'>putc</a>  :  스트림에 문자를 쓴다.</p></li><li><p>  <a href='http://itguru.tistory.com/39'>fputc</a><span class='font-weight-bold'> :  스트림에 문자를 쓴다.</p></li><li><p>  <a href='http://itguru.tistory.com/44'>getchar</a>  :  표준 입력(stdin) 에서 문자를 받는다.</p></li></ul>

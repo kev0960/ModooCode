@@ -1,7 +1,16 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>strrchr</p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>const char * strrchr ( const char * str, int character ); char * strrchr ( char * str, int character );
-</pre><p>문자열에서 문자를 검색하되 가장 마지막으로 나타나는 위치를 찾는다. 그리고 이를 가리키는 포인터를 리턴한다. 이 때 문자열의 널 종료 문자 역시 C 문자열의 일부분이라 생각한다. 따라서 이 함수는 문자열의 널 종료 문자를 가리키는데 사용될 수 도 있다. </p><p>C++ 에서는 함수 오버로딩이 가능하므로 위와 같이 두 개의 원형을 가져도 되지만 C 에서는 불가능 하므로 아래와 같은 하나의 원형만을 가진다.</p><pre class='info'>char *strrchr(const char *, int);
-</pre><h3><p>  인자</p></h3><p>str</p><p>C 문자열</p><p>character</p><p>str 에서 찾을 문자로 int 로 전달되지만 함수 내부적으로는 다시 char 로 변환되어 처리된다. </p><h3><p>  리턴값</p></h3><p>str 에서 찾은 문자의 위치를 리턴한다. 만일 찾지 못한다면 널을 리턴한다. </p><h3><p>  함수의 구현</p></h3><pre class="chroma"><span class="cm">/*이 소스는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다.*/</span>
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>strrchr</code></p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>
+
+const char* strrchr(const char* str, int character);
+char* strrchr(char* str, int character);
+</pre><p>문자열에서 문자를 검색하되 가장 마지막으로 나타나는 위치를 찾는다.<span class='font-weight-bold'> 그리고 이를 가리키는 포인터를 리턴한다.이 때 문자열의 널 종료 문자 역시 C 문자열의 일부분이라 생각한다. 따라서 이 함수는 문자열의 널 종료 문자를 가리키는데 사용될 수 도 있다.</p><p><code class='inline-code'>C++</code> 에서는 함수 오버로딩이 가능하므로 위와 같이 두 개의 원형을 가져도 되지만 C 에서는 불가능 하므로 아래와 같은 하나의 원형만을 가진다 C++ 에서는 함수 오버로딩이 가능하므로 위와 같이 두 개의 원형을 가져도 되지만 C 에서는 불가능 하므로 아래와 같은 하나의 원형만을 가진다.</p><pre class='info'>char *strrchr(const char *, int);
+</pre><h3><p>  인자</p></h3><p><code class='inline-code'>str</code></p><p><code class='inline-code'>C</code> 문자 C 문자열</p><p><code class='inline-code'>character</code></p><p><code class='inline-code'>str</code> 에서 찾을 문자로 <code class='inline-code'>int</code> 로 전달되지만 함수 내부적으로는 다시 <code class='inline-code'>char</code> 로 변환되어 처리된다.</p><h3><p>  리턴값</p></h3><p><code class='inline-code'>str</code> 에서 찾은 문자의 위치를 리턴한다. 만일 찾지 못한다면 널을 리턴한다.</p><h3><p>  함수의 구현</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">이 소스는
+</span><span class="cm">http://www.jbox.dk/sanos/source/lib/string.c.html
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
 
 <span class="kt">char</span> <span class="o">*</span><span class="nf">strrchr</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ch</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">start</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">s</span><span class="p">;</span>
@@ -12,13 +21,22 @@
   <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">s</span> <span class="o">=</span><span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">ch</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">s</span><span class="p">;</span>
   <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*strrchr 함수를 통해 str 에서 s 가 포함된 가장 오른쪽 위치를 찾는다.이 예제는http://www.cplusplus.com/reference/clibrary/cstring/strrchr/에서 가져왔습니다.*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt; int</span><span class="cp">
-</span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</pre><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">strrchr 함수를 통해 str 에서 s 가 포함된 가장 오른쪽 위치를 찾는다.
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strrchr/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">This is a sample string</span><span class="s">&#34;</span><span class="p">;</span>
   <span class="kt">char</span><span class="o">*</span> <span class="n">pch</span><span class="p">;</span>
   <span class="n">pch</span> <span class="o">=</span> <span class="n">strrchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">s</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Last occurence of &#39;s&#39; found at %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1132541D4C5629879BDA45' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> strchr  :   특정한 문자가 포함되어 있는 가장 왼쪽 위치를 찾는다. </p></li><li><p> memchr  :  메모리에서 특정한 문자를 찾는다. </p></li><li><p> strpbrk  :  다른 문자들의 문자를 검색어로 삼아 특정한 문자열의 문자들을 찾는다. </p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21C 언어 레퍼런스 - strrchr 함수(0)2010.08.02C 언어 레퍼런스 - strpbrk 함수(0)2010.08.02C 언어 레퍼런스 - strcspn 함수(4)2010.08.02C 언어 레퍼런스 - strchr 함수(0)2010.08.02</p>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1132541D4C5629879BDA45' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/93'>strchr</a>  :   특정한 문자가 포함되어 있는 가장 왼쪽 위치를 찾는다.</p></li><li><p>  <a href='http://itguru.tistory.com/92'>memchr</a>  :  메모리에서 특정한 문자를 찾는다.</p></li><li><p>  <a href='http://itguru.tistory.com/95'>strpbrk</a>  :  다른 문자들의 문자를 검색어로 삼아 특정한 문자열의 문자들을 찾는다.</p></li></ul>

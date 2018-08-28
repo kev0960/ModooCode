@@ -1,20 +1,22 @@
-<pre class='warning'>이 레퍼런스의 모든 내용은 http
-    :  // www.cplusplus.com/reference/iostream/
-       의 내용을 기초로 하여,
-       Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책
-               << The C++ Programming Language >>
-           를 참고로 하여 만들어졌습니다
-               .이는 또한 저의 개인적인
-                   C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게
-                       공개하도록 하겠습니다.
-</pre><pre class='info'>아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
+<pre class='warning'>이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
+</pre><pre class='info'>아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 </pre><p>ios<span class='font-italic'>base::unsetf</p><pre class="chroma"><span class="kt">void</span> <span class="nf">unsetf</span><span class="p">(</span><span class="n">fmtflags</span> <span class="n">mask</span><span class="p">)</span><span class="p">;</span>
-</pre><p>특정 서식 플래그를 끈다(clear) 인자로 전달되는 mask 에 켜져 있는 서식 플래그가 꺼지게 된다.</p><p>인자를 가지는 조작자인 resetiosflags 역시 동일한 작업을 수행한다.</p><h3><p>  인자</p></h3><p>mask</p><p>  어떤 서식 플래그를 끌지 나타내는 비트마스크. 이 비트마스크는 fmtflags 타입의 상수들의 조합(OR 연산) 으로 나타낼 수 있다. 아래 실행 예제를 참고하여라.</p><h3><p>  리턴값</p></h3><p>없다</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*이 예제는http://www.cplusplus.com/reference/iostream/ios_base/unsetf/에서 가져왔습니다.*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">iostream</span><span class="o">&gt;</span> <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+</pre><p>특정 서식 플래그를 끈다(clear)인자로 전달되는 <code class='inline-code'>mask</code> 에 켜져 있는 서식 플래그가 꺼지게 된다.</p><p>인자를 가지는 조작자인 <code class='inline-code'>resetiosflags</code> 역시 동일한 작업을 수행한다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>mask</code></p><p>  어떤 서식 플래그를 끌지 나타내는 비트마스크. 이 비트마스크는 <code class='inline-code'>fmtflags</code> 타입의 상수들의 조합(OR 연산) 으로 나타낼 수 있다. 아래 실행 예제를 참고하여라.</p><h3><p>  리턴값</p></h3><p>없다</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/iostream/ios_base/unsetf/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">ios</span><span class="o">:</span><span class="o">:</span><span class="n">hex</span><span class="p">,</span> <span class="n">ios</span><span class="o">:</span><span class="o">:</span><span class="n">basefield</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// hex 를 설정한다.  cout.setf (
-</span><span class="c1"></span>                                        <span class="c1">// ios::showbase ); // showbase 를 설정
-</span><span class="c1"></span>                                        <span class="c1">// cout &lt;&lt; 100 &lt;&lt; endl; cout.unsetf(
-</span><span class="c1"></span>                                        <span class="c1">// ios::showbase ); // showbase 를 끝다.
-</span><span class="c1"></span>                                        <span class="c1">// cout &lt;&lt; 100 &lt;&lt; endl; return 0;}
-</span><span class="c1"></span></pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F12714A584E4DE70D317643' alt=''><h3><p>  연관된 것들</p></h3><ul><li><p> ios<span class='font-italic'>base::flags  :  서식 플래그를 설정하거나 얻는다. </p></li><li><p> ios<span class='font-italic'>base::setf  :  특정 서식 플래그를 설정한다. </p></li><li><p> ios<span class='font-italic'>base::fmtflags  :  스트림 서식 플래그의 타입</p></li><li><p> resetiosflags :  서식 플래그를 끈다. </p></li></ul><p>공감sns신고저작자표시</p><p>'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - ios<span class='font-italic'>base::register</span>callback 함수(0)2011.08.20C++ 레퍼런스 - ios<span class='font-italic'>base::precision 함수(0)2011.08.19C++ 레퍼런스 - ios</span>base::usetf 함수(0)2011.08.19C++ 레퍼런스 - ios<span class='font-italic'>base::setf 함수(0)2011.08.19C++ 레퍼런스 - ios</span>base::fmtflags 타입(0)2011.08.19C++ 레퍼런스 - ios<span class='font-italic'>base::flags 함수(0)2011.08.19</p>
+  <span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">ios</span><span class="o">:</span><span class="o">:</span><span class="n">hex</span><span class="p">,</span> <span class="n">ios</span><span class="o">:</span><span class="o">:</span><span class="n">basefield</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// hex 를 설정한다.
+</span><span class="c1"></span>  <span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">ios</span><span class="o">:</span><span class="o">:</span><span class="n">showbase</span><span class="p">)</span><span class="p">;</span>             <span class="c1">// showbase 를 설정
+</span><span class="c1"></span>  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">100</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="n">cout</span><span class="p">.</span><span class="n">unsetf</span><span class="p">(</span><span class="n">ios</span><span class="o">:</span><span class="o">:</span><span class="n">showbase</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// showbase 를 끝다.
+</span><span class="c1"></span>  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="mi">100</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F12714A584E4DE70D317643' alt=''><h3><p>  연관된 것들</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/153'>ios_base::flags</a>  :  서식 플래그를 설정하거나 얻는다.</p></li><li><p>  <a href='http://itguru.tistory.com/155'>ios_base::setf</a>  :  특정 서식 플래그를 설정한다.</p></li><li><p>  <a href='http://itguru.tistory.com/154'>ios_base::fmtflags</a>  :  스트림 서식 플래그의 타입</p></li><li><p> <code class='inline-code'>resetiosflags</code> :  서식 플래그를 끈다.</p></li></ul>

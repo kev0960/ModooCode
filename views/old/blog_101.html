@@ -1,8 +1,11 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>strstr</p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>const char * strstr ( const char * str1, const char * str2 ); char * strstr ( char * str1, const char * str2 );
-</pre><p>문자열을 검색한다str1 에서 str2 를 검색하여 가장 먼저 나타나는 곳의 위치를 리턴한다. 이 때 일치하는 문자열이 없다면 널 포인터를 리턴하게 된다. 검색에서 마지막 널 문자는 포함하지 않는다. </p><h3><p>  인자</p></h3><p>str1</p><p>검색이 수행되는 C 형식 문자열</p><p>str2</p><p>찾을 C 형식 문자열 </p><h3><p>  리턴값</p></h3><p>str1 에서 str2 를 찾았다면 가장 먼저 나오는 곳의 위치를 리턴한다. 만일 str2 가 str1 에 존재하지 않는다면 널을 리턴한다. </p><h3><p>  구현 예</p></h3><pre class="chroma">
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>strstr</code></p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>
 
-<span class="cm">/* 이 소스는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다*/</span> <span class="kt">char</span> <span class="o">*</span>
+const char* strstr(const char* str1, const char* str2);
+char* strstr(char* str1, const char* str2);
+</pre><p>문자열을 검색한다<code class='inline-code'>str1</code> 에서 <code class='inline-code'>str2</code> 를 검색하여 가장 먼저 나타나는 곳의 위치를 리턴한다. 이 때 일치하는 문자열이 없다면 널 포인터를 리턴하게 된다. 검색에서 마지막 널 문자는 포함하지 않는다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>str1</code></p><p>검색이 수행되는 C 형식 문자열</p><p><code class='inline-code'>str2</code></p><p>찾을 C 형식 문자열</p><h3><p>  리턴값</p></h3><p><code class='inline-code'>str1</code> 에서 <code class='inline-code'>str2</code> 를 찾았다면 가장 먼저 나오는 곳의 위치를 리턴한다. 만일 <code class='inline-code'>str2</code> 가 <code class='inline-code'>str1</code> 에 존재하지 않는다면 널을 리턴한다.</p><h3><p>  구현 예</p></h3><pre class="chroma">
+
+<span class="cm">/*이 소스는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다*/</span> <span class="kt">char</span> <span class="o">*</span>
 <span class="nf">strstr</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str2</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">str1</span><span class="p">;</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">s1</span><span class="p">,</span> <span class="o">*</span><span class="n">s2</span><span class="p">;</span>
@@ -16,70 +19,108 @@
   <span class="p">}</span>
   <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><h3><p>  문자열 검색에 관련된 알고리즘</p></h3><p>  통상적으로 구현된 strstr 함수는 위에서 사용된 코드 처럼 단순하게도 각 문자열을 일일히 검색하는 방식을 취하고 있다. 이는 짧은 문자열을 검색하는데에는 요긴하게 사용될 수 있지만 문자열의 길이가 길어진다면, 예를 들어 수십장 짜리 문서에서 특정 단어를 찾을 때 에는 적합하지 않은 방식이라 할 수 있다. 이를 위해 여러가지 문자열 검색 알고리즘이 있는데 대표적으로 사용되는 것이 보이어 무어(Boyer - Moore) 알고리즘 이다. (이는 현재 대부분의 워드 프로세서에서 '찾기' 기능에 사용되고 있다) 그 외에도 카프 - 라빈(Karp - Rabin) 검색 알고리즘, 크누스 - 모리스 - 프랫(Knuth - Morris - Pratt, KMP) 알고리즘 등이 있지만 여기서는 보이어 무어 알고리즘만 소개한다. </p><p>  보이어 무어(Boyer - Moore) 알고리즘은 크게 두 가지 종류의 이동으로 구성되어 있는데 하나는 '착한 접미부 이동(Good Suffix Shift)' 와 다른 하나는 '나쁜 문자 이동(Bad Character Shift)' 이다. 가장 먼저 착한 접미부 이동이 무엇인지 보자</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F1733B5304CF0C6110482E0' alt=''><p>위와 같이 y 라는 문자열에서 x 라는 문자열을 찾는다고 하자. 보이어 무어 알고리즘의 특징은, 문자열의 이동 자체는  왼쪽에서 오른쪽으로 쭉 가면서 찾지만 정작 문자열의 비교는 오른쪽에서 왼쪽으로 한다. 따라서 만일 특정 위치에서 x 와 y 를 비교하는데, 오른쪽의 u 만큼의 부분이 일치되었다고 하자 (위 그림에서 u 라고 표시된 부분, 이 부분을 가리켜 '착한 접미부(Good Suffix)' 라고 부른다) 그리고 왼쪽의 'b' 와 'a' 가 일치하지 않은 부분이라고 하자. 이렇게 된다면 보이어 무어 알고리즘에서는 x 를 문자열 x 의 또다른 착한 접미부가 나오는 곳과 기존의 착한 접미부가 있던 곳으로 오게 오른쪽으로 쉬프트를 하게 된다. 위 그림에서 보듯이 기존에 u 가 위치했던 곳에 x 의 또다른 u 가 일치되었음을 볼 수 있다. 예를 들어 아래의 그림을 보면 단박에 이해가 된다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F142E0E034CF0CA1F31835B' alt=''><p>  위와 같이 또다른 접미부에 도달하게 문자열을 이동시키는 것이다. 그리고는 다시 이동 시킨 문자열의 맨 오른쪽으로 부터 검사를 수행한다. 그런데, 만일 문자열에 또다른 착한 접미부가 없다면 어떻게 될까. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F206642334CF0CD0C22CED4' alt=''><p>그렇게 된다면 일치하는 착한 접미부에서 x 에 들어있는 가장 긴 접미부를 찾게 된다. 위 그림에서는 v 가 착한 접미부 u 중 x 에 들어있는 가장 긴 접미부가 된다. 그리고 v 가 일치되게 오른쪽으로 쉬프트를 하게 된다. 이 과정을 예를 들어 보면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F164CEE334CF0CD0C5BB5A3' alt=''><p>와 같이 나타난다. </p><p>그런데 만일 착한 접미부가 나타나지 않는다면 어떻게 될까. 예를 들면 아래와 같은 상황이다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1345DF044CF0CFB9517DC5' alt=''><p>이렇게 처음 부터 불일치 되는 문자를 '나쁜 문자' 라 부르며 여기서 검색하는 문자열의 문자가 해당된다. 즉, 위 경우 나쁜 문자는 'b' 가 된다. 이렇게 나쁜 문자가 오는 경우는 검색하는 문자열에서 가장 오른쪽에 나타나는 나쁜 문자를 찾아서 그 위치로 이동 시켜 주면 된다. 즉, 아래 처럼 된다. </p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1348DC054CF0D04946E324' alt=''><p>만일 나쁜 문자가 포함되어 있지 않는다면 그 문자열 전체 길이 만큼 오른쪽으로 쉬프트 해주면 된다. </p><p>위와 같이 보이어 무어 알고리즘은 두 개의 쉬프트로 구성되어 있는데, 각 쉬프트를 빠르게 처리하기 위해 테이블을 만든다. 테이블을 만드는 과정은 간단하므로 생략하도록 한다. (테이블을 만드는 방법을 보시려면 http://xenostudy.tistory.com/72 로 들어가보시기 바랍니다)</p><p>이를 바탕으로 코드를 짜보면 아래와 같이 된다.</p><pre class="chroma"><span class="cm">/* 참고로 다음 코드는 http://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string_search_algorithm에서 가져왔습니다. 테이블을 생성하는 함수는 나쁜 문자 이동의 경우 static void prepare_badcharacter_heuristic, 착한 접미부 이동의 경우 void prepare_goodsuffix_heuristic 이다. */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">limits</span>
-        <span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string</span><span class="cp">
-</span><span class="cp"></span>                          <span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">define ALPHABET_SIZE(1</span><span class="cp">
-</span><span class="cp"></span>                                                    <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">CHAR_BIT</span><span class="p">)</span> <span class="k">static</span> <span class="kt">void</span> <span class="n">compute_prefix</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span>
-                                                                                                <span class="o">*</span><span class="n">str</span><span class="p">,</span>
-                                                                                            <span class="n">size_t</span>
-                                                                                                <span class="n">size</span><span class="p">,</span>
-                                                                                            <span class="kt">int</span> <span class="n">result</span>
-                                                                                                <span class="p">[</span><span class="n">size</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>
+</pre><h3><p>  문자열 검색에 관련된 알고리즘</p></h3><p>  통상적으로 구현된 <code class='inline-code'>strstr</code> 함수는 위에서 사용된 코드 처럼 단순하게도 각 문자열을 일일히 검색하는 방식을 취하고 있다. 이는 짧은 문자열을 검색하는데에는 요긴하게 사용될 수 있지만 문자열의 길이가 길어진다면, 예를 들어 수십장 짜리 문서에서 특정 단어를 찾을 때 에는 적합하지 않은 방식이라 할 수 있다. 이를 위해 여러가지 문자열 검색 알고리즘이 있는데 대표적으로 사용되는 것이 보이어 무어(Boyer <code class='inline-code'>- Moore)</code> 알고리즘 이다. (이는 현재 대부분의 워드 프로세서에서 '찾기' 기능에 사용되고 있다) 그 외에도 카프 <code class='inline-code'>-</code> 라빈(Karp <code class='inline-code'>- Rabin)</code> 검색 알고리즘, 크누스 <code class='inline-code'>-</code> 모리스 <code class='inline-code'>-</code> 프랫(Knuth <code class='inline-code'>- Morris - Pratt, KMP)</code> 알고리즘 등이 있지만 여기서는 보이어 무어 알고리즘만 소개한다.</p><p>  보이어 무어(Boyer <code class='inline-code'>- Moore)</code> 알고리즘은 크게 두 가지 종류의 이동으로 구성되어 있는데 하나는 '착한 접미부 이동(Good Suffix Shift)' 와 다른 하나는 '나쁜 문자 이동(Bad Character Shift)' 이다. 가장 먼저 착한 접미부 이동이 무엇인지 보자</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F1733B5304CF0C6110482E0' alt=''><p>위와 같이 <code class='inline-code'>y</code> 라는 문자열에서 <code class='inline-code'>x</code> 라는 문자열을 찾는다고 하자. 보이어 무어 알고리즘의 특징은, 문자열의 이동 자체는  왼쪽에서 오른쪽으로 쭉 가면서 찾지만 정작 문자열의 비교는 오른쪽에서 왼쪽으로 한다. 따라서 만일 특정 위치에서 <code class='inline-code'>x</code> 와 <code class='inline-code'>y</code> 를 비교하는데, 오른쪽의 <code class='inline-code'>u</code> 만큼의 부분이 일치되었다고 하자 (위 그림에서 <code class='inline-code'>u</code> 라고 표시된 부분, 이 부분을 가리켜 '착한 접미부(Good Suffix)' 라고 부른다) 그리고 왼쪽의 'b' 와 'a' 가 일치하지 않은 부분이라고 하자. 이렇게 된다면 보이어 무어 알고리즘에서는 <code class='inline-code'>x</code> 를 문자열 <code class='inline-code'>x</code> 의 또다른 착한 접미부가 나오는 곳과 기존의 착한 접미부가 있던 곳으로 오게 오른쪽으로 쉬프트를 하게 된다. 위 그림에서 보듯이 기존에 <code class='inline-code'>u</code> 가 위치했던 곳에 <code class='inline-code'>x</code> 의 또다른 <code class='inline-code'>u</code> 가 일치되었음을 볼 수 있다. 예를 들어 아래의 그림을 보면 단박에 이해가 된다.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F142E0E034CF0CA1F31835B' alt=''><p>  위와 같이 또다른 접미부에 도달하게 문자열을 이동시키는 것이다. 그리고는 다시 이동 시킨 문자열의 맨 오른쪽으로 부터 검사를 수행한다. 그런데, 만일 문자열에 또다른 착한 접미부가 없다면 어떻게 될까.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F206642334CF0CD0C22CED4' alt=''><p>그렇게 된다면 일치하는 착한 접미부에서 <code class='inline-code'>x</code> 에 들어있는 가장 긴 접미부를 찾게 된다. 위 그림에서는 <code class='inline-code'>v</code> 가 착한 접미부 <code class='inline-code'>u</code> 중 <code class='inline-code'>x</code> 에 들어있는 가장 긴 접미부가 된다. 그리고 <code class='inline-code'>v</code> 가 일치되게 오른쪽으로 쉬프트를 하게 된다. 이 과정을 예를 들어 보면</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F164CEE334CF0CD0C5BB5A3' alt=''><p>와 같이 나타난다.</p><p>그런데 만일 착한 접미부가 나타나지 않는다면 어떻게 될까. 예를 들면 아래와 같은 상황이다.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1345DF044CF0CFB9517DC5' alt=''><p>이렇게 처음 부터 불일치 되는 문자를 '나쁜 문자' 라 부르며 여기서 검색하는 문자열의 문자가 해당된다. 즉, 위 경우 나쁜 문자는 'b' 가 된다. 이렇게 나쁜 문자가 오는 경우는 검색하는 문자열에서 가장 오른쪽에 나타나는 나쁜 문자를 찾아서 그 위치로 이동 시켜 주면 된다. 즉, 아래 처럼 된다.</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1348DC054CF0D04946E324' alt=''><p>만일 나쁜 문자가 포함되어 있지 않는다면 그 문자열 전체 길이 만큼 오른쪽으로 쉬프트 해주면 된다.</p><p>위와 같이 보이어 무어 알고리즘은 두 개의 쉬프트로 구성되어 있는데, 각 쉬프트를 빠르게 처리하기 위해 테이블을 만든다. 테이블을 만드는 과정은 간단하므로 생략하도록 한다. (테이블을 만드는 방법을 보시려면 <a href='http://xenostudy.tistory.com/72'>http://xenostudy.tistory.com/72</a><span class='font-weight-bold'> 로 들어가보시기 바랍니다)</p><p>이를 바탕으로 코드를 짜보면 아래와 같이 된다.</p><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">참고로 다음 코드는
+</span><span class="cm">http://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string_search_algorithm
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">테이블을 생성하는 함수는
+</span><span class="cm">나쁜 문자 이동의 경우 static void prepare_badcharacter_heuristic,
+</span><span class="cm">착한 접미부 이동의 경우 void prepare_goodsuffix_heuristic 이다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;limits.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="cp">#</span><span class="cp">define ALPHABET_SIZE (1 &lt;&lt; CHAR_BIT)</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">compute_prefix</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">result</span><span class="p">[</span><span class="n">size</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">size_t</span> <span class="n">q</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
   <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
   <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="k">for</span> <span class="p">(</span><span class="n">q</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">q</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">q</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">!</span><span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="p">)</span> <span class="n">k</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="p">;</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="n">str</span><span class="p">[</span><span class="n">q</span><span class="p">]</span><span class="p">)</span> <span class="n">k</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>
     <span class="n">result</span><span class="p">[</span><span class="n">q</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
-<span class="k">static</span> <span class="kt">void</span> <span class="n">prepare_badcharacter_heuristic</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">prepare_badcharacter_heuristic</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span>
                                            <span class="kt">int</span> <span class="n">result</span><span class="p">[</span><span class="n">ALPHABET_SIZE</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">size_t</span> <span class="n">i</span><span class="p">;</span>
+
   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">ALPHABET_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="n">result</span><span class="p">[</span><span class="p">(</span><span class="n">size_t</span><span class="p">)</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kt">void</span> <span class="n">prepare_goodsuffix_heuristic</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">normal</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span>
+
+<span class="kt">void</span> <span class="nf">prepare_goodsuffix_heuristic</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">normal</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span>
                                   <span class="kt">int</span> <span class="n">result</span><span class="p">[</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">normal</span><span class="p">;</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">right</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="n">size</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">reversed</span><span class="p">[</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">;</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">reversed</span> <span class="o">+</span> <span class="n">size</span><span class="p">;</span>
-  <span class="n">size_t</span> <span class="n">i</span><span class="p">;</span> <span class="cm">/* reverse string */</span>
+  <span class="n">size_t</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="cm">/* reverse string */</span>
   <span class="o">*</span><span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">)</span> <span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="o">-</span><span class="n">tmp</span><span class="p">)</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="o">+</span><span class="p">)</span><span class="p">;</span>
+
   <span class="kt">int</span> <span class="n">prefix_normal</span><span class="p">[</span><span class="n">size</span><span class="p">]</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">prefix_reversed</span><span class="p">[</span><span class="n">size</span><span class="p">]</span><span class="p">;</span>
+
   <span class="n">compute_prefix</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">prefix_normal</span><span class="p">)</span><span class="p">;</span>
   <span class="n">compute_prefix</span><span class="p">(</span><span class="n">reversed</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">prefix_reversed</span><span class="p">)</span><span class="p">;</span>
+
   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span><span class="o">=</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">prefix_normal</span><span class="p">[</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="p">;</span>
   <span class="p">}</span>
+
   <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">const</span> <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">prefix_reversed</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">;</span>
     <span class="k">const</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">prefix_reversed</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">)</span> <span class="n">result</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">}</span> <span class="cm">/** Boyer-Moore search algorithm*/</span>
-<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">boyermoore_search</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">haystack</span><span class="p">,</span>
-                              <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">needle</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* * Calc string sizes */</span>
+<span class="p">}</span>
+<span class="cm">/*
+</span><span class="cm">* Boyer-Moore search algorithm
+</span><span class="cm">*/</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="nf">boyermoore_search</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">haystack</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">needle</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/*
+</span><span class="cm">  * Calc string sizes
+</span><span class="cm">  */</span>
   <span class="n">size_t</span> <span class="n">needle_len</span><span class="p">,</span> <span class="n">haystack_len</span><span class="p">;</span>
   <span class="n">needle_len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">needle</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">haystack_len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">haystack</span><span class="p">)</span><span class="p">;</span> <span class="cm">/* * Simple checks */</span>
+  <span class="n">haystack_len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">haystack</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="cm">/*
+</span><span class="cm">  * Simple checks
+</span><span class="cm">  */</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">haystack_len</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">needle_len</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">haystack</span><span class="p">;</span> <span class="cm">/* * Initialize heuristics */</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">needle_len</span> <span class="o">=</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">haystack</span><span class="p">;</span>
+
+  <span class="cm">/*
+</span><span class="cm">  * Initialize heuristics
+</span><span class="cm">  */</span>
   <span class="kt">int</span> <span class="n">badcharacter</span><span class="p">[</span><span class="n">ALPHABET_SIZE</span><span class="p">]</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">goodsuffix</span><span class="p">[</span><span class="n">needle_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="p">;</span>
+
   <span class="n">prepare_badcharacter_heuristic</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">needle_len</span><span class="p">,</span> <span class="n">badcharacter</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">prepare_goodsuffix_heuristic</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">needle_len</span><span class="p">,</span>
-                               <span class="n">goodsuffix</span><span class="p">)</span><span class="p">;</span> <span class="cm">/* * Boyer-Moore search */</span>
+  <span class="n">prepare_goodsuffix_heuristic</span><span class="p">(</span><span class="n">needle</span><span class="p">,</span> <span class="n">needle_len</span><span class="p">,</span> <span class="n">goodsuffix</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="cm">/*
+</span><span class="cm">  * Boyer-Moore search
+</span><span class="cm">  */</span>
   <span class="n">size_t</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="k">while</span> <span class="p">(</span><span class="n">s</span> <span class="o">&lt;</span><span class="o">=</span> <span class="p">(</span><span class="n">haystack_len</span> <span class="o">-</span> <span class="n">needle_len</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">size_t</span> <span class="n">j</span> <span class="o">=</span> <span class="n">needle_len</span><span class="p">;</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;</span><span class="o">&amp;</span> <span class="n">needle</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span><span class="o">=</span> <span class="n">haystack</span><span class="p">[</span><span class="n">s</span> <span class="o">+</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="p">)</span> <span class="n">j</span><span class="o">-</span><span class="o">-</span><span class="p">;</span>
+
     <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
       <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">badcharacter</span><span class="p">[</span><span class="p">(</span><span class="n">size_t</span><span class="p">)</span><span class="n">haystack</span><span class="p">[</span><span class="n">s</span> <span class="o">+</span> <span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="p">]</span><span class="p">;</span>
       <span class="kt">int</span> <span class="n">m</span><span class="p">;</span>
@@ -90,12 +131,22 @@
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">haystack</span> <span class="o">+</span> <span class="n">s</span><span class="p">;</span>
     <span class="p">}</span>
-  <span class="p">}</span> <span class="cm">/* not found */</span>
+  <span class="p">}</span>
+
+  <span class="cm">/* not found */</span>
   <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/* 이 예제는 http://www.cplusplus.com/reference/clibrary/cstring/strstr/에서 가져왔습니다. */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt; int</span><span class="cp">
-</span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+</pre><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strstr/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">This is a simple string</span><span class="s">&#34;</span><span class="p">;</span>
   <span class="kt">char</span><span class="o">*</span> <span class="n">pch</span><span class="p">;</span>
   <span class="n">pch</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">simple</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
@@ -103,4 +154,4 @@
   <span class="n">puts</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F187E1D1A4CF0D1AF0A3D05' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> </p></li></ul><p>strspn  :  특정한 문자열이 포함된 정도를 구한다. </p><ul><li><p> strpbrk: 어떠한 문자열들의 문자들을 키로 하여 특정 문자열에서 그 키들을 검색한다. </p></li><li><p> strchr  : 특정 문자열에서 특정 문자가 첫번째로 나타나는 곳의 위치를 구한다.</p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - memset 함수(5)2010.11.28C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21C 언어 레퍼런스 - strrchr 함수(0)2010.08.02C 언어 레퍼런스 - strpbrk 함수(0)2010.08.02</p>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F187E1D1A4CF0D1AF0A3D05' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> </p></li></ul><p><a href='http://itguru.tistory.com/97'>strspn</a>  :  특정한 문자열이 포함된 정도를 구한다.</p><ul><li><p>  <a href='http://itguru.tistory.com/95'>strpbrk</a><span class='font-weight-bold'> : 어떠한 문자열들의 문자들을 키로 하여 특정 문자열에서 그 키들을 검색한다.</p></li><li><p>  <a href='http://itguru.tistory.com/93'>strchr</a>  : 특정 문자열에서 특정 문자가 첫번째로 나타나는 곳의 위치를 구한다.</p></li></ul>

@@ -1,33 +1,48 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>mktime</p><pre class='info'>#include <time.h>  // C++ 에서는 <ctime>time_t mktime ( struct tm * timeptr );
-</pre><p>tm 구조체를 time<span class='font-italic'>t 형식으로 변환한다.</p><p>timeptr 이 가리키는 tm 구조체를 읽어 들여서 time<span class='font-italic'>t 형식으로 리턴한다. 이 때, 이 함수가 tm 구조체에서 참조하는 값은 현재 시각과 날짜 뿐이다. 나머지 정보인 tm</span>wday 와 tm<span class='font-italic'>yday 는 무시한다. 참고로 이 함수는 timeptr 이 가리키는 tm 구조체의 내용을 수정하는데, tm 구조체에 들어있는 시각과 날짜 정보를 가지고 tm</span>wday 와 tm<span class='font-italic'>yday 를 설정한다. 따라서 이를 통해 역으로 mktime 함수를 호출 하여서 특정한 날짜가 무슨 요일이고, 몇 번째 날인지 추적할 수 도 있다. </p><h3><p>  인자</p></h3><p>timeptr</p><p>tm 구조체를 가리키는 포인터로 반드시 날짜와 시간에 관한 정보가 들어 있어야 한다. </p><h3><p>  리턴값</p></h3><p>현재 timeptr 로 전달된 날짜와 시각에 맞추어서 이에 대한 time<span class='font-italic'>t 값이 리턴된다. 오류 발생시에는 -1 이 리턴된다. </p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/* 특정한 날짜가 무슨 요일인지 알아온다.이
-</span><span class="cm"> * 예제는http://www.cplusplus.com/reference/clibrary/ctime/mktime/에서
-</span><span class="cm"> * 가져왔습니다.*/</span>
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>mktime</code></p><pre class='info'>#include <time.h>  // C++ 에서는 <ctime>
+
+time_t mktime(struct tm* timeptr);
+</pre><p><code class='inline-code'>tm</code> 구조체를 <code class='inline-code'>time_t</code> 형식으로 변환한다.<code class='inline-code'>timeptr</code> 이 가리키는 <a href='http://itguru.tistory.com/109'> tm 구조체</a>를 읽어 들여서 <a href='http://itguru.tistory.com/113'>time_t</a><span class='font-weight-bold'> 형식으로 리턴한다. 이 때, 이 함수가 <code class='inline-code'>tm</code> 구조체에서 참조하는 값은 현재 시각과 날짜 뿐이다. 나머지 정보인 <code class='inline-code'>tm_wday</code> 와 <code class='inline-code'>tm_yday</code> 는 무시한다. 참고로 이 함수는 <code class='inline-code'>timeptr</code> 이 가리키는 <code class='inline-code'>tm</code> 구조체의 내용을 수정하는데, <code class='inline-code'>tm</code> 구조체에 들어있는 시각과 날짜 정보를 가지고 <code class='inline-code'>tm_wday</code> 와 <code class='inline-code'>tm_yday</code> 를 설정한다. 따라서 이를 통해 역으로 <code class='inline-code'>mktime</code> 함수를 호출 하여서 특정한 날짜가 무슨 요일이고, 몇 번째 날인지 추적할 수 도 있다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>timeptr</code></p><p><a href='http://itguru.tistory.com/109'>tm 구조체</a>를 가리키는 포인터로 반드시 날짜와 시간에 관한 정보가 들어 있어야 한다.</p><h3><p>  리턴값</p></h3><p>현재 <code class='inline-code'>timeptr</code> 로 전달된 날짜와 시각에 맞추어서 이에 대한 <a href='http://itguru.tistory.com/113'>time_t</a><span class='font-weight-bold'> 값이 리턴된다. 오류 발생시에는 -1 이 리턴된다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">특정한 날짜가 무슨 요일인지 알아온다.
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/ctime/mktime/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;int main ()</span><span class="cp">
-</span><span class="cp"></span><span class="p">{</span>
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;time.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">time_t</span> <span class="n">rawtime</span><span class="p">;</span>
   <span class="k">struct</span> <span class="n">tm</span><span class="o">*</span> <span class="n">timeinfo</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">;</span>
-  <span class="kt">char</span><span class="o">*</span> <span class="n">weekday</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-      <span class="sa"></span><span class="s">&#34;</span><span class="s">Sunday</span><span class="s">&#34;</span><span class="p">,</span>   <span class="sa"></span><span class="s">&#34;</span><span class="s">Monday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Tuesday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Wednesday</span><span class="s">&#34;</span><span class="p">,</span>
-      <span class="sa"></span><span class="s">&#34;</span><span class="s">Thursday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Friday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Saturday</span><span class="s">&#34;</span><span class="p">}</span><span class="p">;</span> <span class="cm">/* 사용자로 부터 날짜를 입력 받는다. */</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">weekday</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Sunday</span><span class="s">&#34;</span><span class="p">,</span>   <span class="sa"></span><span class="s">&#34;</span><span class="s">Monday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Tuesday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Wednesday</span><span class="s">&#34;</span><span class="p">,</span>
+                     <span class="sa"></span><span class="s">&#34;</span><span class="s">Thursday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Friday</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Saturday</span><span class="s">&#34;</span><span class="p">}</span><span class="p">;</span>
+
+  <span class="cm">/* 사용자로 부터 날짜를 입력 받는다. */</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter year: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
   <span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">year</span><span class="p">)</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter month: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
   <span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">month</span><span class="p">)</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Enter day: </span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">day</span><span class="p">)</span><span class="p">;</span> <span class="cm">/* rawtime 에 time 함수로 현재 시간 정보로 세팅한 뒤,
-</span><span class="cm">사용자로 부터 입력받은 데이터로 년/월/일 정보를 수정한다. */</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">%d</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">day</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="cm">/* rawtime 에 time 함수로 현재 시간 정보로 세팅한 뒤,
+</span><span class="cm">  사용자로 부터 입력받은 데이터로 년/월/일 정보를 수정한다. */</span>
   <span class="n">time</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rawtime</span><span class="p">)</span><span class="p">;</span>
   <span class="n">timeinfo</span> <span class="o">=</span> <span class="n">localtime</span><span class="p">(</span><span class="o">&amp;</span><span class="n">rawtime</span><span class="p">)</span><span class="p">;</span>
   <span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_year</span> <span class="o">=</span> <span class="n">year</span> <span class="o">-</span> <span class="mi">1900</span><span class="p">;</span>
   <span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_mon</span> <span class="o">=</span> <span class="n">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_mday</span> <span class="o">=</span> <span class="n">day</span><span class="p">;</span> <span class="cm">/* mktime 함수를 호출하면 년/월/일 데이터에 따라
+  <span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_mday</span> <span class="o">=</span> <span class="n">day</span><span class="p">;</span>
+
+  <span class="cm">/* mktime 함수를 호출하면 년/월/일 데이터에 따라
 </span><span class="cm">  tm_wday 와 tm_yday 를 설정한다. 이 때 리턴되는 time_t 데이터는 사용하지
 </span><span class="cm">  않는다.*/</span>
   <span class="n">mktime</span><span class="p">(</span><span class="n">timeinfo</span><span class="p">)</span><span class="p">;</span>
+
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">That day is a %s.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">weekday</span><span class="p">[</span><span class="n">timeinfo</span><span class="o">-</span><span class="o">&gt;</span><span class="n">tm_wday</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2053CC544D1607BD2BED84' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> asctime: tm 구조체를 문자열로 변환한다.  </p></li><li><p> gmtime  :  time<span class='font-italic'>t 값을 UTC 시간에 따라 tm 구조체로 변환한다. </p></li><li><p> localtime : time<span class='font-italic'>t 값을 지역 시간에 따라 tm 구조체로 변환한다. </p></li><li><p> time  :  현재 시각을 알아온다. </p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > time.h (ctime)' 카테고리의 다른 글C 언어 레퍼런스 - asctime 함수(0)2010.12.26C 언어 레퍼런스 - time 함수(2)2010.12.26C 언어 레퍼런스 - mktime 함수(0)2010.12.26C 언어 레퍼런스 - time<span class='font-italic'>t 형(1)2010.12.25C 언어 레퍼런스 - difftime 함수(0)2010.12.25C 언어 레퍼런스 - clock 함수(2)2010.12.25</p>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2053CC544D1607BD2BED84' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> <a href='http://itguru.tistory.com/116'>asctime</a><span class='font-weight-bold'> : <code class='inline-code'>tm</code> 구조체를 문자열로 변환한다.</p></li><li><p>  <a href='http://itguru.tistory.com/119'>gmtime</a>  :  <code class='inline-code'>time_t</code> 값을 <code class='inline-code'>UTC</code> 시간에 따라 <code class='inline-code'>tm</code> 구조체로 변환한다.</p></li><li><p>  <a href='http://itguru.tistory.com/120'>localtime</a><span class='font-weight-bold'> :<code class='inline-code'>time_t</code> 값을 지역 시간에 따라 <code class='inline-code'>tm</code> 구조체로 변환한다.</p></li><li><p>  <a href='http://itguru.tistory.com/114'>time</a>  :  현재 시각을 알아온다.</p></li></ul>

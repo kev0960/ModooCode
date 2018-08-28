@@ -8,12 +8,15 @@ class BlogDumpHtmlParser(HTMLParser):
     def __init__(self, filename):
         super().__init__()
         self.in_box = False
+        self.in_box_with_div = False
         self.in_list = False
         self.list_type = None
         self.in_script = False
         self.in_title = False
         self.ignore_p = False
         self.encounter_title = False
+        self.in_link = False
+        self.link_url = None
         self.filename = filename
         self.div_cnt = 0
         self.current_div_cnt = 0
@@ -26,16 +29,21 @@ class BlogDumpHtmlParser(HTMLParser):
         output_file_name = '/'.join(output_file_name)
 
         self.output_file = open(output_file_name, 'w')
+        self.output_html = ""
 
     def print_line(self, line):
-        self.output_file.write(line)
+        self.output_html += line
+        # self.output_file.write(line)
 
     def print(self, line):
-        self.output_file.write(line + '\n')
+        self.output_html += (line + '\n')
+        # self.output_file.write(line + '\n')
 
     def parse(self):
         with open(self.filename, 'r') as f:
             self.feed(f.read())
+        self.output_html = self.output_html[:self.output_html.rfind("공감")]
+        self.output_file.write(self.output_html)
 
     def handle_starttag(self, tag, attrs):
         def check_attr(attrs, attr_name):
@@ -50,6 +58,9 @@ class BlogDumpHtmlParser(HTMLParser):
             self.print("![{0}]({1})".format(BlogDumpParser.replace_bracket(check_attr(attrs, 'alt')),
                                             BlogDumpParser.srcset_to_src(
                                                 BlogDumpParser.replace_bracket(check_attr(attrs, 'srcset')))))
+        elif tag == 'a':
+            self.in_link = True
+            self.link_url = check_attr(attrs, 'href')
         elif tag == 'ul':
             self.in_list = True
             self.list_type = tag
@@ -62,8 +73,9 @@ class BlogDumpHtmlParser(HTMLParser):
                     self.print_line("* ")
                 else:
                     self.print_line("1. ")
-        elif tag == 'br' and not self.in_box:
-            self.print("")  # New line.
+        elif tag == 'br':
+            if not self.in_box or not self.in_box_with_div:
+                self.print("")  # New line.
         elif tag == 'script':
             self.in_script = True
         elif tag == 'p' and (not self.ignore_p or self.in_box):
@@ -92,6 +104,8 @@ class BlogDumpHtmlParser(HTMLParser):
         elif tag == 'div':
             self.div_cnt += 1
             self.print("")
+            if self.in_box:
+                self.in_box_with_div = True
 
     def handle_endtag(self, tag):
         if tag == 'ul' or tag == 'ol':
@@ -102,25 +116,92 @@ class BlogDumpHtmlParser(HTMLParser):
             self.div_cnt -= 1
         elif tag == 'div' and self.in_box and self.div_cnt == self.current_div_cnt:
             self.in_box = False
+            self.in_box_with_div = False
             self.print("\n```")
 
     def handle_data(self, data):
+        def check_char(c):
+            if 'a' <= c <= 'z' or 'A' <= c <= 'Z' or '0' <= c <= '9':
+                return True
+            elif c in {'(', ')', '{', '}', ',', '.', '!', '+', '-', '*', '/', '=', '[', ']', '<', '>', '~', '_', '&',
+                       '%', '|', '?'}:
+                return True
+            return False
+
+        def is_code_chunk(s):
+            for c in s:
+                if not check_char(c):
+                    return False
+            return True
+
+        def annotate_plain_text(s):
+            inline_code_start = False
+
+            # Figure out some possible "Code chunk" and wrap it with inline code notation.
+            words = s.split(' ')
+            i = 0
+            while i < len(words):
+                w = words[i]
+                if not is_code_chunk(w):
+                    if inline_code_start:
+                        # Put end tag
+                        words[i - 1] = words[i - 1] + '`'
+                    inline_code_start = False
+
+                if is_code_chunk(w):
+                    if w.startswith('('):
+                        # escape until it finds ')'
+                        while i < len(words):
+                            if ')' in words[i]:
+                                break
+                            i += 1
+                    elif not inline_code_start:
+                        inline_code_start = True
+                        words[i] = '`' + w
+                i += 1
+
+            if inline_code_start:
+                words[-1] = words[-1] + '`'
+            annotated =  ' '.join(words)
+
+            # Filter out some benign ones.
+            i = 0
+            while i < len(annotated):
+                if annotated[i] == '`':
+                    end = annotated.find('`', i + 1)
+                    w = annotated[i + 1:end]
+                    if w in {'C', 'C++', 'Psi', 'C++ 11', 'forwarding)', '.', ')'}:
+                        annotated = annotated[:i - 1] + ' ' + w + annotated[end + 1:]
+                    elif w.isdigit() or (w.startswith('-') and w[1:].isdigit()):
+                        annotated = annotated[:i - 1] + ' ' + w + annotated[end + 1:]
+                i += 1
+
+            return annotated
+
         if self.in_script:
             return
         stripped = BlogDumpParser.remove_whitespace(data)
         if self.in_title:
             self.in_title = False
             self.encounter_title = True
+        elif self.in_link:
+            self.in_link = False
+            if not BlogDumpParser.is_only_whitespace(stripped):
+                self.print_line(" [{0}]({1})".format(stripped, self.link_url))
+                return
         elif not BlogDumpParser.is_only_whitespace(stripped):
             self.encounter_title = False
 
         if not BlogDumpParser.is_only_whitespace(stripped):
-            self.print_line(data)
+            if not self.in_box:
+                stripped = annotate_plain_text(stripped)
+            self.print_line(stripped)
             if self.encounter_title:
                 self.print("")
 
         if self.in_list:
             self.print("")
+
 
 class BlogDumpParser:
     def __init__(self, filename):
@@ -261,6 +342,7 @@ class BlogDumpParser:
 
 
 if __name__ == "__main__":
+    #'''
     with tqdm(os.listdir('./blog')) as t:
         for filename in t:
             t.set_description("Dump : " + filename)

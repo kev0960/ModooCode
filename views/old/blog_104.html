@@ -1,14 +1,21 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>memset</p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>void * memset ( void * ptr, int value, size_t num );
-</pre><p>메모리 블록을 채운다.</p><p>ptr 로 시작하는 메모리 주소 부터 num 개의 바이트를 value 값으로 채운다. 이 때, value 는 unsigned char 로 형변환 된다. </p><h3><p>  인자</p></h3><p>ptr</p><p>값을 채울 메모리의 시작 주소</p><p>value</p><p>채울 값. 인자로는 int 로 전달되지만 함수 내부적으로는 unsigned char 로 형변환 되어서 사용된다.</p><p>num</p><p>value 로 채울 바이트 수</p><h3><p>  리턴값</p></h3><p>ptr 이 리턴된다. </p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/* 이 예제는http://www.cplusplus.com/reference/clibrary/cstring/memset/에서
-</span><span class="cm"> * 가져왔습니다.
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>memset</code></p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>
+
+void* memset(void* ptr, int value, size_t num);
+</pre><p>메모리 블록을 채운다.<code class='inline-code'>ptr</code> 로 시작하는 메모리 주소 부터 <code class='inline-code'>num</code> 개의 바이트를 <code class='inline-code'>value</code> 값으로 채운다. 이 때, <code class='inline-code'>value</code> 는 <code class='inline-code'>unsigned char</code> 로 형변환 된다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>ptr</code></p><p>값을 채울 메모리의 시작 주소</p><p><code class='inline-code'>value</code></p><p>채울 값. 인자로는 <code class='inline-code'>int</code> 로 전달되지만 함수 내부적으로는 <code class='inline-code'>unsigned char</code> 로 형변환 되어서 사용된다.</p><p><code class='inline-code'>num</code></p><p><code class='inline-code'>value</code> 로 채울 바이트 수</p><h3><p>  리턴값</p></h3><p><code class='inline-code'>ptr</code> 이 리턴된다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/memset/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
 </span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;int main ()</span><span class="cp">
-</span><span class="cp"></span><span class="p">{</span>
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">almost every programmer should know memset!</span><span class="s">&#34;</span><span class="p">;</span>
   <span class="n">memset</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">-</span><span class="sc">&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="p">;</span>
   <span class="n">puts</span><span class="p">(</span><span class="n">str</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F19727B194CF1A1D02D9726' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> </p></li></ul><p>memcpy  :   메모리 블록을 복사한다. </p><ul><li><p> strncpy  :  문자열의 일부분을 복사한다.  </p></li><li><p> memcmp :  두 개의 메모리 블록을 비교한다.</p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strlen 함수(0)2010.12.12C 언어 레퍼런스 - strerror 함수(0)2010.12.12C 언어 레퍼런스 - memset 함수(5)2010.11.28C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21</p>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F19727B194CF1A1D02D9726' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> </p></li></ul><p><a href='http://itguru.tistory.com/77'>memcpy</a>  :   메모리 블록을 복사한다.</p><ul><li><p> <a href='http://itguru.tistory.com/80'>strncpy</a>  :  문자열의 일부분을 복사한다.</p></li><li><p>  <a href='http://itguru.tistory.com/84'>memcmp</a><span class='font-weight-bold'> :  두 개의 메모리 블록을 비교한다.</p></li></ul>

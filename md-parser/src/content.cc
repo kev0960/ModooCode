@@ -41,6 +41,17 @@ void RemoveNbsp(string* s) {
     }
   }
 }
+
+void EscapeHtmlString(string* s) {
+  for (size_t i = 0; i < s->length(); i++) {
+    if (s->at(i) == '<') {
+      s->replace(i, 1, "&lt;");
+    } else if (s->at(i) == '>') {
+      s->replace(i, 1, "&gt;");
+    }
+  }
+}
+
 // Return how many matches.
 int FindOneOrTwoConsecutiveChar(const string& s, size_t start, char c) {
   if (s[start] == c) {
@@ -172,7 +183,8 @@ string Content::OutputHtml() {
     // Inline code escapes everything except `.
     if (code_start != -1) {
       if (content_[i] == '`') {
-        fragments.push_back(HtmlFragments(HtmlFragments::Types::INLINE_CODE, code_start, i - 1));
+        fragments.push_back(HtmlFragments(HtmlFragments::Types::INLINE_CODE,
+                                          code_start, i - 1));
         code_start = -1;
       }
       continue;
@@ -281,8 +293,9 @@ string Content::OutputHtml() {
                                            fragments[i].code_style, "github"),
                      "<p>");
     } else if (fragments[i].type == HtmlFragments::Types::INLINE_CODE) {
-      html += StrCat("<span class='inline-code'>",
-                     GetHtmlFragmentText(content_, fragments[i]), "</span>");
+      string inline_code = GetHtmlFragmentText(content_, fragments[i]);
+      EscapeHtmlString(&inline_code);
+      html += StrCat("<code class='inline-code'>", inline_code, "</code>");
     } else {
       html += GetHtmlFragmentText(content_, fragments[i]);
     }

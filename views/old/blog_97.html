@@ -1,6 +1,14 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>strspn</p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>size_t strspn ( const char * str1, const char * str2 );
-</pre><p>str2 의 문자들만을 포함하고 있는 str1 의 처음 부분의 길이를 구한다. 다시 말하면 str2 에 "12346" 이 들어있고 str1 에는 "321ab" 가 들어 있다면 str1 의 맨 처음 부터 문자들을 비교하는데, str2 에들어 있는 문자들 만을 포함한 곳 까지의 길이, 즉 이 경우에는 3,2,1 이 해당하므로 3 이 리턴된다. 이 때 중요한 점은 str1 의 맨 처음 부터 비교한다는 점인데 만일 str1 에 "ab321" 이였다면 리턴값이 0 이 된다. </p><h3><p>  인자</p></h3><p>str1</p><p>검색을 수행되는 C 문자열</p><p>str2</p><p>검색할 문자들을 포함하고 있는 문자열</p><h3><p>  리턴값</p></h3><p>str1 에서 오직 str2 에 포함되어 있는 문자들만이 있는 부분의 길이로, str1 의 맨 처음 부분 부터 잰다. 따라서 만일 str1 에 있는 모든 문자들이 str2 에 포함되어 있다면 리턴값은 str1 의 길이와 동일하겠지만, 만일 str1 에 있는 첫 번째 문자가 str2 에 없다면 리턴값은 0 이 된다. </p><h3><p>  구현 예</p></h3><pre class="chroma"><span class="cm">/*이 소스는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다.*/</span>
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>strspn</code></p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>
+
+size_t strspn(const char* str1, const char* str2);
+</pre><p><code class='inline-code'>str2</code> 의 문자들만을 포함하고 있는 <code class='inline-code'>str1</code> 의 처음 부분의 길이를 구한다.다시 말하면 <code class='inline-code'>str2</code> 에 "12346" 이 들어있고 <code class='inline-code'>str1</code> 에는 "321ab" 가 들어 있다면 <code class='inline-code'>str1</code> 의 맨 처음 부터 문자들을 비교하는데, <code class='inline-code'>str2</code> 에 들어 있는 문자들 만을 포함한 곳 까지의 길이, 즉 이 경우에는 <code class='inline-code'>3,2,1</code> 이 해당하므로 3 이 리턴된다. 이 때 중요한 점은 <code class='inline-code'>str1</code> 의 맨 처음 부터 비교한다는 점인데 만일 <code class='inline-code'>str1</code> 에 "ab321" 이였다면 리턴값이 0 이 된다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>str1</code></p><p>검색을 수행되는 C 문자열</p><p><code class='inline-code'>str2</code></p><p>검색할 문자들을 포함하고 있는 문자열</p><h3><p>  리턴값</p></h3><p><code class='inline-code'>str1</code> 에서 오직 <code class='inline-code'>str2</code> 에 포함되어 있는 문자들만이 있는 부분의 길이로, <code class='inline-code'>str1</code> 의 맨 처음 부분 부터 잰다. 따라서 만일 <code class='inline-code'>str1</code> 에 있는 모든 문자들이 <code class='inline-code'>str2</code> 에 포함되어 있다면 리턴값은 <code class='inline-code'>str1</code> 의 길이와 동일하겠지만, 만일 <code class='inline-code'>str1</code> 에 있는 첫 번째 문자가 <code class='inline-code'>str2</code> 에 없다면 리턴값은 0 이 된다.</p><h3><p>  구현 예</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">이 소스는
+</span><span class="cm">http://www.jbox.dk/sanos/source/lib/string.c.html
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
 
 <span class="n">size_t</span> <span class="nf">strspn</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">string</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">control</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="n">string</span><span class="p">;</span>
@@ -12,16 +20,23 @@
 </span><span class="c1"></span>              <span class="c1">// NOT in control map stops search if (*str) {  count = 0;  while
 </span><span class="c1"></span>              <span class="c1">// (map[*str &gt;&gt; 3] &amp; (1 &lt;&lt; (*str &amp; 7)))  {   count++;   str++;  }
 </span><span class="c1"></span>              <span class="c1">// return count; } return 0;}
-</span><span class="c1"></span></pre><p>위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 strspn 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 http://itguru.tistory.com/94 를 참조하면 된다. </p><h3><p>  실행 예제</p></h3><img src='http://' alt=''><pre class="chroma"><span class="cm">/* 
+</span><span class="c1"></span></pre><p>위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 <code class='inline-code'>strspn</code> 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 <a href='http://itguru.tistory.com/94'>http://itguru.tistory.com/94</a><span class='font-weight-bold'> 를 참조하면 된다.</p><h3><p>  실행 예제</p></h3><img src='http://' alt=''><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strstr/
-</span><span class="cm">에서 가져왔습니다. 
-</span><span class="cm">*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; #include &lt;string.h&gt; int main() {</span><span class="cp">
-</span><span class="cp"></span>  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">strtext</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">129th</span><span class="s">&#34;</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">cset</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">1234567890</span><span class="s">&#34;</span><span class="p">;</span>
+
   <span class="n">i</span> <span class="o">=</span> <span class="n">strspn</span><span class="p">(</span><span class="n">strtext</span><span class="p">,</span> <span class="n">cset</span><span class="p">)</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The length of initial number is %d.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F207075134CE88952A5D63C' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> strcspn: 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴</p></li><li><p> strstr  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴</p></li><li><p> strncmp  :   두 문자열의 일부분을 비교한다. </p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strtok 함수(0)2010.11.27C 언어 레퍼런스 - strstr 함수(3)2010.11.27C 언어 레퍼런스 - strspn 함수(0)2010.11.21C 언어 레퍼런스 - strrchr 함수(0)2010.08.02C 언어 레퍼런스 - strpbrk 함수(0)2010.08.02C 언어 레퍼런스 - strcspn 함수(4)2010.08.02</p>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F207075134CE88952A5D63C' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/94'>strcspn</a>: 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴</p></li><li><p>  <a href='http://itguru.tistory.com/101'>strstr</a>  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴</p></li><li><p>  <a href='http://itguru.tistory.com/90'>strncmp</a>  :   두 문자열의 일부분을 비교한다.</p></li></ul>

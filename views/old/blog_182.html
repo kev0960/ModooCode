@@ -1,29 +1,23 @@
-<pre class='warning'>이 레퍼런스의 모든 내용은 http
-    :  // www.cplusplus.com/reference/iostream/
-       의 내용을 기초로 하여,
-       Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책
-               << The C++ Programming Language >>
-           를 참고로 하여 만들어졌습니다
-               .이는 또한 저의 개인적인
-                   C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게
-                       공개하도록 하겠습니다.
-</pre><pre class='info'>아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요 ?
+<pre class='warning'>이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
+</pre><pre class='info'>아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 </pre><p>ios::rdbuf</p><pre class='info'>streambuf* rdbuf() const;
 streambuf* rdbuf(streambuf* sb);
-</pre><p>연관된 스트림 버퍼를 설정하거나 얻는다.첫번째 형태의 함수는 연관된 스트림 버퍼를 리턴한다.두 번째 형태의 경우 현재 스트림을 sb 와 연관 시키고 이전에 연관되어 있었던 스트림 버퍼를 리턴한다. 이 때 상태 플래그는 goodbit 로 설정된다. </p><h3><p>  인자</p></h3><p>sb</p><p>연관시킬 스트림 버퍼를 가리키는 포인터</p><h3><p>  리턴값</p></h3><p>이전에 연관되어 있었던 스트림 버퍼</p><h3><p>  실행 결과</p></h3><pre class="chroma">
+</pre><p>연관된 스트림 버퍼를 설정하거나 얻는다.첫번째 형태의 함수는 연관된 스트림 버퍼를 리턴한다.두 번째 형태의 경우 현재 스트림을 <code class='inline-code'>sb</code> 와 연관 시키고 이전에 연관되어 있었던 스트림 버퍼를 리턴한다. 이 때 상태 플래그는 <code class='inline-code'>goodbit</code> 로 설정된다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>sb</code></p><p>연관시킬 스트림 버퍼를 가리키는 포인터</p><h3><p>  리턴값</p></h3><p>이전에 연관되어 있었던 스트림 버퍼</p><h3><p>  실행 결과</p></h3><pre class="chroma">
 <span class="cm">/*이 예제는http://www.cplusplus.com/reference/iostream/ios/rdbuf/에서 가져왔습니다.*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
 </span><span class="cp"></span>    <span class="n">iostream</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;fstream&gt; using namespace std;</span><span class="cp">
 </span><span class="cp"></span><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">streambuf</span> <span class="o">*</span><span class="n">psbuf</span><span class="p">,</span> <span class="o">*</span><span class="n">backup</span><span class="p">;</span>
   <span class="n">ofstream</span> <span class="n">filestr</span><span class="p">;</span>
   <span class="n">filestr</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">test.txt</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
-  <span class="n">backup</span> <span class="o">=</span> <span class="n">cout</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 현재 cout 의 스트림 버퍼를 백업한다.  psbuf =
+  <span class="n">backup</span> <span class="o">=</span> <span class="n">cout</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 현재 cout 의 스트림 버퍼를 백업한다. psbuf =
 </span><span class="c1"></span>                          <span class="c1">// filestr.rdbuf(); // 파일 스트림 버퍼를 얻는다
 </span><span class="c1"></span>                          <span class="c1">// cout.rdbuf(psbuf); // 파일 스트림 버퍼를 cout 에
-</span><span class="c1"></span>                          <span class="c1">// 연관시킨다  cout &lt;&lt; &#34;This is written to the file&#34;;
+</span><span class="c1"></span>                          <span class="c1">// 연관시킨다 cout &lt;&lt; &#34;This is written to the file&#34;;
 </span><span class="c1"></span>                          <span class="c1">// // 따라서 이것은 파일에 쓰여진다.
 </span><span class="c1"></span>                          <span class="c1">// cout.rdbuf(backup); // 원래 cout 의 스트림 버퍼로
-</span><span class="c1"></span>                          <span class="c1">// 돌아간다.  filestr.close(); return 0;}
-</span><span class="c1"></span></pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F19116F414F6E86F8080AC6' alt=''><p>파일에 잘 출력된 것을 알 수 있다. </p><h3><p>  템플릿 멤버 정의</p></h3><pre class="chroma"><span class="p">(</span><span class="n">basic_ios</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span><span class="p">)</span><span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span><span class="o">*</span> <span class="n">rdbuf</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</span><span class="c1"></span>                          <span class="c1">// 돌아간다. filestr.close(); return 0;}
+</span><span class="c1"></span></pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F19116F414F6E86F8080AC6' alt=''><p>파일에 잘 출력된 것을 알 수 있다.</p><h3><p>  템플릿 멤버 정의</p></h3><pre class="chroma"><span class="p">(</span><span class="n">basic_ios</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span><span class="p">)</span>
+
+    <span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span><span class="o">*</span> <span class="n">rdbuf</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
 <span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span><span class="o">*</span> <span class="n">rdbuf</span><span class="p">(</span><span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="n">charT</span><span class="p">,</span> <span class="n">traits</span><span class="o">&gt;</span> <span class="n">sb</span><span class="p">)</span><span class="p">;</span>
-</pre><h3><p>  연관된 자료</p></h3><ul><li><p> streambuf:  스트림의 부모(base) 버퍼 클래스 </p></li></ul><p>공감sns신고저작자표시</p><p>'C++ Reference > IOstream' 카테고리의 다른 글C++ 레퍼런스 - istream::get 함수(0)2012.11.07C++ 레퍼런스 - ios::tie 함수(0)2012.11.07C++ 레퍼런스 - ios::rdbuf 함수(0)2012.03.25C++ 레퍼런스 - ios::fill 함수(0)2012.03.25C++ 레퍼런스 - ios::clear(0)2012.03.25C++ 레퍼런스 - ios::setstate 함수(0)2012.03.25</p>
+</pre><h3><p>  연관된 자료</p></h3><ul><li><p> <code class='inline-code'>streambuf</code><span class='font-weight-bold'> :  스트림의 부모(base) 버퍼 클래스</p></li></ul>

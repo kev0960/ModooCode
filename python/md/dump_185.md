@@ -1,6 +1,3 @@
-----------------
-title : C++ 레퍼런스 - vector::push_back
---------------
 
 
 
@@ -9,13 +6,11 @@ title : C++ 레퍼런스 - vector::push_back
 
 
 ```warning
-이 레퍼런스의 모든 내용은 http://www.cplusplus.com/reference/iostream/
- 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ 
-Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 '저의 모토인 지식 전파' 를 위해 모든 이들에게 공개하도록 하겠습니다.
+이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
 
 ```info
-아직 C++ 에 친숙하지 않다면 씹어먹는 C++ 강좌는 어때요?
+아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
 
@@ -30,15 +25,16 @@ vector::push_back
 ```info
 
 void push_back ( const T& x );
+
 ```
 
 
 
-벡터 끝에 원소를 추가한다. 
-현재의 마지막 원소 뒤에 새로운 원소를 추가하며, 그 원소의 값은 x 의 복사본으로 초기화 된다.
+벡터 끝에 원소를 추가한다.
+현재의 마지막 원소 뒤에 새로운 원소를 추가하며, 그 원소의 값은 `x` 의 복사본으로 초기화 된다.
 
 
-이 함수는 효과적으로 벡터의 크기를 1 늘리는데, 만일 capacity 와 벡터 size 가 같다면 내부적으로 재할당이 일어나게 된다. 이 때 이전에 사용되었던 반복자(iterator) , 레퍼런스, 포인터들은 사용할 수 없게 된다. 
+이 함수는 효과적으로 벡터의 크기를 1 늘리는데, 만일 `capacity` 와 벡터 `size` 가 같다면 내부적으로 재할당이 일어나게 된다. 이 때 이전에 사용되었던 반복자(iterator) `,` 레퍼런스, 포인터들은 사용할 수 없게 된다.
 
 
 
@@ -46,8 +42,8 @@ void push_back ( const T& x );
 ###  인자
 
 
-x
-새로 추가 될 원소에 복사 될 원소T 는 벡터에 저장되어있는 원소들의 타입이다.
+`x`
+새로 추가 될 원소에 복사 될 원소`T` 는 벡터에 저장되어있는 원소들의 타입이다.
 
 
 
@@ -59,7 +55,7 @@ x
 없음
 
 
-만일 재할당이 발생한다면 이는 Allocator::allocate() 를 이용해서 수행되는데, 예외를 던질(throw) 수 있다. (디폴트 할당자의 경우 만일 요청한 할당이 성공하지 않을 경우 bad_alloc 이 던져진다)
+만일 재할당이 발생한다면 이는 Allocator::allocate() 를 이용해서 수행되는데, 예외를 던질(throw) 수 있다. (디폴트 할당자의 경우 만일 요청한 할당이 성공하지 않을 경우 `bad_alloc` 이 던져진다)
 
 
 
@@ -73,29 +69,36 @@ x
 
 /*
 
+
 이 예제는
-http://www.cplusplus.com/reference/stl/vector/push_back/
+ [http://www.cplusplus.com/reference/stl/vector/push_back/](http://www.cplusplus.com/reference/stl/vector/push_back/)
 에서 가져왔습니다
+
 
 */
 #include <iostream>
 #include <vector>
 using namespace std;
 
+
 int main ()
 {
 vector<int> myvector;
 int myint;
 
+
 cout << "Please enter some integers (enter 0 to end):\n";
 
-do 
+
+do
 {
 cin >> myint;
 myvector.push_back (myint);
 } while (myint);
 
+
 cout << "myvector stores " << (int) myvector.size() << " numbers.\n";
+
 
 return 0;
 }
@@ -126,22 +129,10 @@ return 0;
 
 
 * vector::pop_back : 마지막 원소를 삭제한다.
-* vector::insert 
-: 원소를 추가한다. 
+*  [vector::insert](http://itguru.tistory.com/186): 원소를 추가한다.
 
 
 
 
 
-
-공감sns신고
-저작자표시
-
-'C++ Reference > STL Container' 카테고리의 다른 글C++ 레퍼런스 - vector::insert(0)
-2012.08.05C++ 레퍼런스 - vector::push_back(0)
-2012.08.05C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수(0)
-2012.03.25C++ 레퍼런스 - STL 컨테이너 - vector 생성자(0)
-2012.03.25C++ 레퍼런스 - STL 컨테이너 - list(0)
-2012.03.24C++ 레퍼런스 - STL 컨테이너 - deque(0)
-2012.03.24
 

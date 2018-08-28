@@ -1,17 +1,32 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>strchr</p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>const char * strchr ( const char * str, int character ); char * strchr ( char * str, int character );
-</pre><p>문자열에서 특정한 문자가 가장 먼저 나타나는 곳의 위치를 찾는다.이 때, 그 위치를 가리키는 포인터를 리턴한다. 이 때 마지막 NULL 문자도 C 문자열의 일부로 간주하기 때문에 이 함수는 문자열의 맨 끝 부분을 가리키는 포인터를 얻기 위해 사용할 수 도 있다. </p><p>이 때, C 의 경우 함수 오버로딩을 할 수 없으므로 아래와 같은 하나의 원형만 존재한다.</p><pre class='info'>char *strchr(const char *, int);
-</pre><p>참고로 맨 위에 나타난 원형은 C++ 에서만 유효하다. </p><h3><p>  인자</p></h3><p>str</p><p>C 형식 문자열</p><p>character</p><p>검색할 문자로, int 형태로 형변환 되어서 전달되지만 함수 내부적으로는 다시 char 형태로 처리된다. </p><h3><p>  리턴값</p></h3><p>str 에서 검색한 문자가 가장 먼저 나타나는 곳을 가리키는 포인터를 리턴한다. 만일 문자가 없다면 NULL 포인터를 리턴하게 된다. </p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*str 에서 &#39;s&#39; 라는 문자를 계속 찾는다.이 예제는http://www.cplusplus.com/reference/clibrary/cstring/strchr/에서 가져왔습니다. */</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt; int</span><span class="cp">
-</span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>strchr</code></p><pre class='info'>#include <string.h>  // C++ 에서는 <cstring>
+
+const char* strchr(const char* str, int character);
+char* strchr(char* str, int character);
+</pre><p>문자열에서 특정한 문자가 가장 먼저 나타나는 곳의 위치를 찾는다.이 때, 그 위치를 가리키는 포인터를 리턴한다. 이 때 마지막 <code class='inline-code'>NULL</code> 문자도 C 문자열의 일부로 간주하기 때문에 이 함수는 문자열의 맨 끝 부분을 가리키는 포인터를 얻기 위해 사용할 수 도 있다.</p><p>이 때, C 의 경우 함수 오버로딩을 할 수 없으므로 아래와 같은 하나의 원형만 존재한다.</p><pre class='info'>char *strchr(const char *, int);
+</pre><p>참고로 맨 위에 나타난 원형은 C++ 에서만 유효하다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>str</code></p><p><code class='inline-code'>C</code> 형식 문자 C 형식 문자열</p><p><code class='inline-code'>character</code></p><p>검색할 문자로, <code class='inline-code'>int</code> 형태로 형변환 되어서 전달되지만 함수 내부적으로는 다시 <code class='inline-code'>char</code> 형태로 처리된다.</p><h3><p>  리턴값</p></h3><p><code class='inline-code'>str</code> 에서 검색한 문자가 가장 먼저 나타나는 곳을 가리키는 포인터를 리턴한다. 만일 문자가 없다면 <code class='inline-code'>NULL</code> 포인터를 리턴하게 된다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">str 에서 &#39;s&#39; 라는 문자를 계속 찾는다.
+</span><span class="cm">이 예제는
+</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strchr/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">This is a sample string</span><span class="s">&#34;</span><span class="p">;</span>
   <span class="kt">char</span><span class="o">*</span> <span class="n">pch</span><span class="p">;</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Looking for the &#39;s&#39; character in </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s">...</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">)</span><span class="p">;</span>
+
   <span class="n">pch</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">s</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
+
   <span class="k">while</span> <span class="p">(</span><span class="n">pch</span> <span class="o">!</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">found at %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
     <span class="n">pch</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">pch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">s</span><span class="sc">&#39;</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
+
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F177446244C558BD59B51A7' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> </p></li></ul><p>strrchr  :  문자열에서 특정한 문자를 검색하되, 가장 마지막으로 나타나는 위치를 구한다. </p><ul><li><p> memchr :  메모리 블록에서 특정한 문자를 검색한다.  </p></li><li><p> strpbrk  :  문자열에서 다른 문자열에 포함된 문자들 중 일치하는 문자를 검색한다.  </p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > string.h (cstring)' 카테고리의 다른 글C 언어 레퍼런스 - strpbrk 함수(0)2010.08.02C 언어 레퍼런스 - strcspn 함수(4)2010.08.02C 언어 레퍼런스 - strchr 함수(0)2010.08.02C 언어 레퍼런스 - memchr 함수(0)2010.08.01C 언어 레퍼런스 - strxfrm 함수(0)2010.08.01C 언어 레퍼런스 - strncmp 함수(0)2010.08.01</p>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F177446244C558BD59B51A7' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> </p></li></ul><p><a href='http://itguru.tistory.com/96'>strrchr</a>  :  문자열에서 특정한 문자를 검색하되, 가장 마지막으로 나타나는 위치를 구한다.</p><ul><li><p>  <a href='http://itguru.tistory.com/92'>memchr</a><span class='font-weight-bold'> :  메모리 블록에서 특정한 문자를 검색한다.</p></li><li><p>  <a href='http://itguru.tistory.com/95'>strpbrk</a>  :  문자열에서 다른 문자열에 포함된 문자들 중 일치하는 문자를 검색한다.</p></li></ul>

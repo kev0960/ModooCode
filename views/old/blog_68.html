@@ -1,22 +1,53 @@
-<pre class='warning'>아직 C 언어와 친숙하지 않다면, 씹어먹는 C 언어 강좌를 보는 것이 어떻까요 ?
-</pre><p>fread</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;  // C++ 에서는 &lt;cstdio&gt;size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );</span><span class="cp">
-</span><span class="cp"></span></pre><p>스트림에서 데이터 블록을 읽어온다.</p><p>스트림에서 count 개의 원소를 가지는 배열을 읽어온다. 이 때, 각 원소의 크기는 size 바이트 이고 ptr 이 가리키는 배열에 넣게 된다. (이 때, count 와 size 와 ptr 은 모두 fread 의 각각의 인자들을 의미한다) </p><p>스트림의 위치 표시자는 읽어들인 바이트 수 만큼 증가하게 된다.</p><p>전체 읽어들인 바이트 수는 만일 성공적일 경우, (size <span class='font-italic'> count) 가 된다. </p><h3><p>  인자</p></h3><p>ptr</p><p>size <span class='font-italic'> count 의 크기를 가지는 배열을 가리키는 포인터 </p><p>size</p><p>읽어들일 원소의 크기로 단위는 바이트 이다. 예를 들어 size 가 4 이면 하나의 원소의 크기는 4 바이트 임을 일컫는다. </p><p>count</p><p>읽어들일 원소들의 개수로 각 원소의 크기는 size 바이트 이다. </p><p>stream</p><p>데이터를 입력받을 스트림의 FILE 객체를 가리키는 포인터 </p><h3><p>  리턴값</p></h3><p>만일 성공적으로 지정한 원소의 개수 만큼 읽어들였다면 읽어들인 원소의 개수가 size<span class='font-italic'>t 형으로 리턴된다. 참고로 size</span>t 형은 정수 타입이다. 만일 읽어들인 개수가 count 인자에서 지정한 것과 다르거나, End OF File 에 도달하였다면 오류가 발생한다. 이 때, 여러분은 ferror 함수나 feof 함수를 이용하여 어떠한 오류인지를 파악할 수 있다. </p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*myfile.bin 의 내용을 읽어 들여와 동적으로 할당한 buffer 에 저장한다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fread/에서 가져왔습니다.*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt; int</span><span class="cp">
-</span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<pre class='warning'>아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
+</pre><p><code class='inline-code'>fread</code></p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;  // C++ 에서는 &lt;cstdio&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="n">size_t</span> <span class="nf">fread</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">count</span><span class="p">,</span> <span class="n">FILE</span><span class="o">*</span> <span class="n">stream</span><span class="p">)</span><span class="p">;</span>
+</pre><p>스트림에서 데이터 블록을 읽어온다.스트림에서 <code class='inline-code'>count</code> 개의 원소를 가지는 배열을 읽어온다. 이 때, 각 원소의 크기는 <code class='inline-code'>size</code> 바이트 이고 <code class='inline-code'>ptr</code> 이 가리키는 배열에 넣게 된다. (이 때, <code class='inline-code'>count</code> 와 <code class='inline-code'>size</code> 와 <code class='inline-code'>ptr</code> 은 모두 <code class='inline-code'>fread</code> 의 각각의 인자들을 의미한다)스트림의 위치 표시자는 읽어들인 바이트 수 만큼 증가하게 된다.전체 읽어들인 바이트 수는 만일 성공적일 경우, (size <span class='font-italic'> count) 가 된다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>ptr</code></p><p><code class='inline-code'>size * count</code> 의 크기를 가지는 배열을 가리키는 포인터</p><p><code class='inline-code'>size</code>읽어들일 원소의 크기로 단위는 바이트 이다. 예를 들어 <code class='inline-code'>size</code> 가 4 이면 하나의 원소의 크기는 4 바이트 임을 일컫는다.</p><p><code class='inline-code'>count</code>읽어들일 원소들의 개수로 각 원소의 크기는 <code class='inline-code'>size</code> 바이트 이다.</p><p><code class='inline-code'>stream</code>데이터를 입력받을 스트림의 <code class='inline-code'>FILE</code> 객체를 가리키는 포인터</p><h3><p>  리턴값</p></h3><p>만일 성공적으로 지정한 원소의 개수 만큼 읽어들였다면 읽어들인 원소의 개수가 <code class='inline-code'>size_t</code> 형으로 리턴된다. 참고로 <code class='inline-code'>size_t</code> 형은 정수 타입이다. 만일 읽어들인 개수가 <code class='inline-code'>count</code> 인자에서 지정한 것과 다르거나, <code class='inline-code'>End OF File</code> 에 도달하였다면 오류가 발생한다. 이 때, 여러분은 <a href='http://itguru.tistory.com/52'>ferror</a>함수나 <a href='http://itguru.tistory.com/51'>feof</a><span class='font-weight-bold'> 함수를 이용하여 어떠한 오류인지를 파악할 수 있다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
+</span><span class="cm">
+</span><span class="cm">myfile.bin 의 내용을 읽어 들여와 동적으로 할당한 buffer 에 저장한다.
+</span><span class="cm">이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fread/
+</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">
+</span><span class="cm">*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">FILE</span><span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
   <span class="kt">long</span> <span class="n">lSize</span><span class="p">;</span>
   <span class="kt">char</span><span class="o">*</span> <span class="n">buffer</span><span class="p">;</span>
   <span class="n">size_t</span> <span class="n">result</span><span class="p">;</span>
+
   <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">myfile.bin</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">rb</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">pFile</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">fputs</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">File error</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span><span class="p">;</span>
     <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>  <span class="c1">// 파일의 크기를 ISize 에 저장한다.  fseek (pFile , 0 , SEEK_END); lSize =
-</span><span class="c1"></span>     <span class="c1">// ftell (pFile); rewind (pFile); // 전체 파일의 내용을 받을 수 있을 정도의
-</span><span class="c1"></span>     <span class="c1">// 크기로 메모리를 할당한다.  buffer = (char*) malloc (sizeof(char)*lSize);
-</span><span class="c1"></span>     <span class="c1">// if (buffer == NULL) {  fputs (&#34;Memory error&#34;,stderr);  exit (2); } // 그
-</span><span class="c1"></span>     <span class="c1">// 파일의 내용을 버퍼에 저장한다.  result = fread (buffer,1,lSize,pFile);
-</span><span class="c1"></span>     <span class="c1">// if (result != lSize)  {  fputs (&#34;Reading error&#34;,stderr);  exit (3); } /*
-</span><span class="c1"></span>     <span class="c1">// 이제 파일의 모든 내용은 버퍼에 들어가게 된다. */ // 종료 fclose (pFile);
-</span><span class="c1"></span>     <span class="c1">// free (buffer); return 0;}
-</span><span class="c1"></span></pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F154D38104BA61B89A274D0' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> fwrite : 스트림에 데이터 블록을 쓴다. </p></li><li><p> fgetc: 스트림에서 한 문자를 가져온다. </p></li><li><p> fscanf: 스트림에서 형식에 맞추러 데이터를 읽어온다.</p></li></ul><p>공감sns신고저작자표시</p><p>'C Reference > stdio.h (cstdio)' 카테고리의 다른 글C 언어 레퍼런스 - fgetpos 함수(0)2010.04.18C 언어 레퍼런스 - fwrite 함수(1)2010.04.11C 언어 레퍼런스 - fread 함수(2)2010.03.21C 언어 레퍼런스 - sprintf 함수(3)2010.02.22C 언어 레퍼런스 - fscanf 함수(2)2010.02.22C 언어 레퍼런스 - fprintf 함수(1)2010.02.19</p>
+  <span class="p">}</span>
+
+  <span class="c1">// 파일의 크기를 ISize 에 저장한다.
+</span><span class="c1"></span>  <span class="n">fseek</span><span class="p">(</span><span class="n">pFile</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">lSize</span> <span class="o">=</span> <span class="n">ftell</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">rewind</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="c1">// 전체 파일의 내용을 받을 수 있을 정도의 크기로 메모리를 할당한다.
+</span><span class="c1"></span>  <span class="n">buffer</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="n">lSize</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">buffer</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fputs</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Memory error</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// 그 파일의 내용을 버퍼에 저장한다.
+</span><span class="c1"></span>  <span class="n">result</span> <span class="o">=</span> <span class="n">fread</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">lSize</span><span class="p">,</span> <span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!</span><span class="o">=</span> <span class="n">lSize</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fputs</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Reading error</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">stderr</span><span class="p">)</span><span class="p">;</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/* 이제 파일의 모든 내용은 버퍼에 들어가게 된다. */</span>
+
+  <span class="c1">// 종료
+</span><span class="c1"></span>  <span class="n">fclose</span><span class="p">(</span><span class="n">pFile</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F154D38104BA61B89A274D0' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> <code class='inline-code'>fwrite</code> : 스트림에 데이터 블록을 쓴다.</p></li><li><p>  <a href='http://itguru.tistory.com/37'>fgetc</a><span class='font-weight-bold'> : 스트림에서 한 문자를 가져온다.</p></li><li><p>  <a href='http://itguru.tistory.com/65'>fscanf</a><span class='font-weight-bold'> : 스트림에서 형식에 맞추러 데이터를 읽어온다.</p></li></ul>
