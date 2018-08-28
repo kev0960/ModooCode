@@ -9,7 +9,7 @@ using std::string;
 namespace md_parser {
 
 struct HtmlFragments {
-  enum Types { BOLD, ITALIC, TEXT, LINK, IMAGE, CODE } type;
+  enum Types { BOLD, ITALIC, TEXT, LINK, IMAGE, CODE, INLINE_CODE } type;
 
   // Start and end are inclusive.
   int str_start;

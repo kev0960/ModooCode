@@ -12,6 +12,10 @@ string CreateItalicHtml(const string& s) {
   return StrCat("<span class='font-italic'>", s, "</span>");
 }
 
+string CreateInlineCode(const string& s) {
+  return StrCat("<span class='inline-code'>", s, "</span>");
+}
+
 string CreateLinkHtml(const string& link_name, const string& link) {
   return StrCat("<a href='", link, "'>", link_name, "</a>");
 }
@@ -125,5 +129,16 @@ TEST(ContentTest, Code) {
   EXPECT_EQ(
       StrCat(SurroundP("something "), kFormattedCode, SurroundP(" and else")),
       code_in_middle.OutputHtml());
+}
+
+TEST(ContentTest, InlineCode) {
+  Content inline_code("this is `print` command");
+  EXPECT_EQ(SurroundP(StrCat("this is ", CreateInlineCode("print"), " command")),
+            inline_code.OutputHtml());
+
+
+  Content ignore_other_stuff("this is `a * some_var__x` command");
+  EXPECT_EQ(SurroundP(StrCat("this is ", CreateInlineCode("a * some_var__x"), " command")),
+            ignore_other_stuff.OutputHtml());
 }
 }  // namespace md_parser

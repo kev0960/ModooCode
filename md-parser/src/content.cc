@@ -8,6 +8,9 @@
 #include "chroma.h"
 #include "util.h"
 
+static char kClangFormatName[] = "clang-format";
+static char kClangFormatConfig[] = "-style=google";
+
 namespace md_parser {
 
 namespace {
@@ -133,7 +136,7 @@ void DoClangFormat(const string& code, string* formatted_code) {
     close(pipe_p2c[0]);
     close(pipe_c2p[0]);
 
-    char* clang_format_argv[] = {"clang-format", "-style=google", NULL};
+    char* clang_format_argv[] = {kClangFormatName, kClangFormatConfig, NULL};
     char* env[] = {NULL};
     int ret = execve("/usr/bin/clang-format", clang_format_argv, env);
     LOG << "CLANG FORMAT ERROR : " << ret;
@@ -155,6 +158,7 @@ string Content::OutputHtml() {
   const int int_max = std::numeric_limits<int>::max();
   int bold_start = int_max;
   int italic_start = int_max;
+  int code_start = -1;
 
   int text_start = -1;
   std::vector<HtmlFragments> fragments;
@@ -165,6 +169,14 @@ string Content::OutputHtml() {
                   &Content::HandleCodes};
   // Any unescaped * or _ are considered as a format token.
   for (size_t i = 0; i < content_.size(); i++) {
+    // Inline code escapes everything except `.
+    if (code_start != -1) {
+      if (content_[i] == '`') {
+        fragments.push_back(HtmlFragments(HtmlFragments::Types::INLINE_CODE, code_start, i - 1));
+        code_start = -1;
+      }
+      continue;
+    }
     bool handled = false;
     for (const auto& handler : handlers) {
       size_t result = handler(this, i, &fragments, &text_start);
@@ -179,7 +191,9 @@ string Content::OutputHtml() {
     // Handles Bold, Italic, Strikethroughs here.
     int matches = Max(FindOneOrTwoConsecutiveChar(content_, i, '*'),
                       FindOneOrTwoConsecutiveChar(content_, i, '_'),
-                      FindOneOrTwoConsecutiveChar(content_, i, '~'));
+                      FindOneOrTwoConsecutiveChar(content_, i, '~'),
+                      FindOneOrTwoConsecutiveChar(content_, i, '`'));
+
     if (matches == 0) {
       if (text_start == -1) {
         text_start = i;
@@ -187,6 +201,19 @@ string Content::OutputHtml() {
     } else {
       // Since tilde (~) is ignored.
       if (matches == 1 && content_[i] == '~') continue;
+      if (matches == 1 && content_[i] == '`') {
+        if (text_start != -1) {
+          fragments.push_back(
+              HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
+          text_start = -1;
+        }
+        if (code_start == -1) {
+          code_start = i + 1;
+        } else {
+          LOG << "Inline Code Error :: code start is " << code_start;
+        }
+        continue;
+      }
       // Mark the end of the text segment.
       if (text_start != -1) {
         fragments.push_back(
@@ -253,6 +280,9 @@ string Content::OutputHtml() {
                      FormatCodeUsingChroma(fragments[i].formatted_code,
                                            fragments[i].code_style, "github"),
                      "<p>");
+    } else if (fragments[i].type == HtmlFragments::Types::INLINE_CODE) {
+      html += StrCat("<span class='inline-code'>",
+                     GetHtmlFragmentText(content_, fragments[i]), "</span>");
     } else {
       html += GetHtmlFragmentText(content_, fragments[i]);
     }
