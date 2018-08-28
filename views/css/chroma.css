@@ -1,24 +1,32 @@
 /* Warning */
 .warning {
-    font-family: "Lucida Console", Monaco, monospace;
-    background-color: #ff564d;
-    padding:10px;
-    font-size:13px;
+    font-family: 'Source Code Pro', monospace;
+    background-color: rgba(252, 222, 199, 1);
+    border: 1px solid rgb(254, 137, 67);
+    padding: 10px;
+    font-size: 0.75em;
 }
 
 .info {
-    font-family: "Lucida Console", Monaco, monospace;
-    background-color: #91ff80;
-    padding:10px;
-    font-size:13px;
+    font-family: 'Source Code Pro', monospace;
+    background-color: rgb(231, 253, 181);
+    border: 1px solid rgb(159, 211, 49);
+    padding: 10px;
+    font-size: 0.75em;
 }
 
 /* Background */
 .chroma {
     background-color: #ffffff;
-    border:1px solid black;
+    border: 1px solid black;
     font-family: 'Source Code Pro', monospace;
-    font-size:0.75em;
+    font-size: 0.75em;
+}
+
+.content-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* LineTableTD */

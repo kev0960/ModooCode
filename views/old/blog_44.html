@@ -9,7 +9,7 @@
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1465C7154B685E0307EE2B' alt=''><p><code class='inline-code'>getchar</code> 함수는 아래와 같이 버퍼를 비우는데에도 종종 사용될 수 있다.</p><pre class="chroma"><span class="cm">/* 버퍼 비우기 */</span>
+</pre><p>실행 결과</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1465C7154B685E0307EE2B' alt=''><p><code class='inline-code'>getchar</code> 함수는 아래와 같이 버퍼를 비우는데에도 종종 사용될 수 있다.</p><pre class="chroma"><span class="cm">/* 버퍼 비우기 */</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
@@ -22,7 +22,7 @@
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">입력한 문자 : %c </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190939164B685E7E02CEC7' alt=''><p>만일 위 프로그래램에서 <code class='inline-code'>getchar()</code> 부분을 지워버린다면 <code class='inline-code'>scanf</code> 는 문자 <code class='inline-code'>c</code> 를 사용자로 부터 입력받지 않고 지나갈 것이다. 왜냐하면 이전에 호출한 <code class='inline-code'>scanf</code> 에 의해 버퍼에 이미 \n 이 남아 있었기 때문이다. 하지만 <code class='inline-code'>getchar</code> 함수를 호출함으로 통해 버퍼에 남아 있던 \n 을 날려버릴 수 있었다. 자세한 내용을 알고 싶다면 <a href='http://itguru.tistory.com/32'>여기를 클릭하세요</a></p><p>물론 <code class='inline-code'>getchar</code> 함수를 호출하지 않고도 <code class='inline-code'>scanf</code> 함수 만으로 문제를 해결할 수 있다. <a href='http://itguru.tistory.com/36'>자세한 내용은 여기를 클릭하세요</a></p><pre class="chroma"><span class="cm">/*
+</pre><p>실행 결과</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190939164B685E7E02CEC7' alt=''><p>만일 위 프로그래램에서 <code class='inline-code'>getchar()</code> 부분을 지워버린다면 <code class='inline-code'>scanf</code> 는 문자 <code class='inline-code'>c</code> 를 사용자로 부터 입력받지 않고 지나갈 것이다. 왜냐하면 이전에 호출한 <code class='inline-code'>scanf</code> 에 의해 버퍼에 이미 \n 이 남아 있었기 때문이다. 하지만 <code class='inline-code'>getchar</code> 함수를 호출함으로 통해 버퍼에 남아 있던 \n 을 날려버릴 수 있었다. 자세한 내용을 알고 싶다면 <a href='http://itguru.tistory.com/32'>여기를 클릭하세요</a></p><p>물론 <code class='inline-code'>getchar</code> 함수를 호출하지 않고도 <code class='inline-code'>scanf</code> 함수 만으로 문제를 해결할 수 있다. <a href='http://itguru.tistory.com/36'>자세한 내용은 여기를 클릭하세요</a></p><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">타이프기 처럼 한 문장을 입력하면 아래 써진다.
 </span><span class="cm">. 이 입력되면 입력이 종료된다.
@@ -41,4 +41,4 @@
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F173C481F4B685F6E015E38' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/41'>getc</a>  : 스트림에서 한 문자를 가져온다.</p></li><li><p> putchar  : <code class='inline-code'>stdout</code> 에 한 문자를 쓴다.</p></li><li><p>  <a href='http://itguru.tistory.com/36'>scanf</a>  :  형식 문자열에 정의된 방법에 따라 데이터를 <code class='inline-code'>stdin</code> 에서 읽는다.</p></li></ul>
+</pre><p>실행 결과</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F173C481F4B685F6E015E38' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/41'>getc</a>  : 스트림에서 한 문자를 가져온다.</p></li><li><p> putchar  : <code class='inline-code'>stdout</code> 에 한 문자를 쓴다.</p></li><li><p>  <a href='http://itguru.tistory.com/36'>scanf</a>  :  형식 문자열에 정의된 방법에 따라 데이터를 <code class='inline-code'>stdin</code> 에서 읽는다.</p></li></ul>

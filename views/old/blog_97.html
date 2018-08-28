@@ -20,7 +20,7 @@ size_t strspn(const char* str1, const char* str2);
 </span><span class="c1"></span>              <span class="c1">// NOT in control map stops search if (*str) {  count = 0;  while
 </span><span class="c1"></span>              <span class="c1">// (map[*str &gt;&gt; 3] &amp; (1 &lt;&lt; (*str &amp; 7)))  {   count++;   str++;  }
 </span><span class="c1"></span>              <span class="c1">// return count; } return 0;}
-</span><span class="c1"></span></pre><p>위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 <code class='inline-code'>strspn</code> 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 <a href='http://itguru.tistory.com/94'>http://itguru.tistory.com/94</a><span class='font-weight-bold'> 를 참조하면 된다.</p><h3><p>  실행 예제</p></h3><img src='http://' alt=''><pre class="chroma"><span class="cm">/*
+</span><span class="c1"></span></pre><p>위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 <code class='inline-code'>strspn</code> 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 <a href='http://itguru.tistory.com/94'>http://itguru.tistory.com/94</a><span class='font-weight-bold'> 를 참조하면 된다.</p><h3><p>  실행 예제</p></h3><img class='content-img' src='http://' alt=''><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strstr/
@@ -39,4 +39,4 @@ size_t strspn(const char* str1, const char* str2);
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">The length of initial number is %d.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F207075134CE88952A5D63C' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/94'>strcspn</a>: 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴</p></li><li><p>  <a href='http://itguru.tistory.com/101'>strstr</a>  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴</p></li><li><p>  <a href='http://itguru.tistory.com/90'>strncmp</a>  :   두 문자열의 일부분을 비교한다.</p></li></ul>
+</pre><p>실행 결과</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F207075134CE88952A5D63C' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p>  <a href='http://itguru.tistory.com/94'>strcspn</a>: 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴</p></li><li><p>  <a href='http://itguru.tistory.com/101'>strstr</a>  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴</p></li><li><p>  <a href='http://itguru.tistory.com/90'>strncmp</a>  :   두 문자열의 일부분을 비교한다.</p></li></ul>

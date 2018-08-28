@@ -284,9 +284,10 @@ string Content::OutputHtml() {
                      GetHtmlFragmentText(content_, fragments[i], false), "'>",
                      GetHtmlFragmentText(content_, fragments[i]), "</a>");
     } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
-      html += StrCat(
-          "</p><img src='", GetHtmlFragmentText(content_, fragments[i], false),
-          "' alt='", GetHtmlFragmentText(content_, fragments[i]), "'><p>");
+      html +=
+          StrCat("</p><img class='content-img' src='",
+                 GetHtmlFragmentText(content_, fragments[i], false), "' alt='",
+                 GetHtmlFragmentText(content_, fragments[i]), "'><p>");
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
       html += StrCat("</p>",
                      FormatCodeUsingChroma(fragments[i].formatted_code,
