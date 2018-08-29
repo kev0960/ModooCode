@@ -19,7 +19,8 @@
   </div>
 
   <div class="container content">
-    <%- include(content_url) %>
+
+      <%- include(content_url) %>
   </div>
 </div>
 
@@ -37,10 +38,10 @@
       if(!checkbox.checked ||
           sidebar.contains(target) ||
           (target === checkbox || target === toggle)) return;
-
       checkbox.checked = false;
     }, false);
   })(document);
 </script>
+<script src="/js/page.js"></script>
 </body>
 </html>
