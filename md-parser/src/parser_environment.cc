@@ -1,4 +1,5 @@
 #include "parser_environment.h"
+
 #include "content.h"
 #include "content_list.h"
 #include "util.h"
@@ -20,7 +21,7 @@ bool IsList(TokenTypes list_type) {
   }
   return false;
 }
-}
+}  // namespace
 
 EnumListManager::EnumListManager() {}
 
@@ -127,7 +128,7 @@ bool ParserEnvironment::ShouldStartNewListTag() {
           return false;
         }
         if (current == 0) return true;
-        current --;
+        current--;
         continue;
       } else {
         return true;
@@ -190,4 +191,4 @@ bool ParserEnvironment::AdvanceToNextContent() {
   current_content_++;
   return current_content_ < content_list_.size();
 }
-} // namespace md_parser
+}  // namespace md_parser

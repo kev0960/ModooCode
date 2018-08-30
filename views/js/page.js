@@ -1,4 +1,5 @@
 var saved_htmls = {};
+var editors = {}
 
 function count_line(code) {
   var cnt = 0;
@@ -36,11 +37,20 @@ $(function () {
       var new_div = $("<div id='div-" + index + "' class='monaco-container'></div>")
         .height(19 * previous_height);
       $(current_code_box).append(new_div);
-      monaco.editor.create(document.getElementById('div-' + index), {
+      editors[index] = monaco.editor.create(document.getElementById('div-' + index), {
         value: code,
         language: 'cpp'
       });
-      //$('#' + index + ' .monaco-editor').height(previous_height);
     });
   });
+  $('.run').click(function() {
+    var id = parseInt($(this).attr('id').split('-')[1]);
+    $.ajax({
+      type: 'POST',
+      url: '/run',
+      data: {
+        code : editors[id].getValue()
+      }
+    })
+  })
 });

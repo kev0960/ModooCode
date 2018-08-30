@@ -4,6 +4,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+
 #include "token_types.h"
 
 using std::string;
@@ -53,4 +54,4 @@ class ParserEnvironment {
 
   size_t current_content_;
 };
-}
+}  // namespace md_parser

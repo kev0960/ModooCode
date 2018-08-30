@@ -1,6 +1,8 @@
 #include "content_header.h"
+
 #include <limits>
 #include <vector>
+
 #include "util.h"
 
 namespace md_parser {

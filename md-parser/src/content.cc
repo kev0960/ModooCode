@@ -1,10 +1,13 @@
 #include "content.h"
+
 #include <unistd.h>
+
 #include <cstdlib>
 #include <functional>
 #include <limits>
 #include <memory>
 #include <thread>
+
 #include "chroma.h"
 #include "util.h"
 

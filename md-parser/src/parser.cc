@@ -1,7 +1,9 @@
 #include "parser.h"
+
 #include <algorithm>
 #include <experimental/optional>
 #include <utility>
+
 #include "chroma.h"
 #include "content_header.h"
 #include "content_list.h"
@@ -35,8 +37,7 @@ std::unique_ptr<char[]> cstring_from_string(const string& s) {
 }  // namespace
 
 MDParser::MDParser(std::string content)
-    : content_(content), newline_started_(true), in_code_(false) {
-}
+    : content_(content), newline_started_(true), in_code_(false) {}
 
 TokenTypes MDParser::GetTokenInfo(const string& token) {
   if (token.empty()) return NEWLINE;

@@ -1,6 +1,10 @@
 const express = require('express');
 const body_parser = require('body-parser');
 const fs = require('fs');
+const zmq = require('zmq');
+
+const send_sock = zmq.socket('pub');
+const recv_sock = zmq.socket('sub');
 
 const app = express();
 
@@ -31,5 +35,48 @@ fs.readFile('file_headers.json', 'utf8', function (err, data) {
     if (page_id <= 228) {
       res.render("page.ejs", {content_url: "./old/blog_" + page_id + ".html", file_info: file_infos[page_id]});
     }
+  });
+});
+
+send_sock.bindSync('tcp://127.0.0.1:3001');
+recv_sock.connect('tcp://127.0.0.1:3002');
+recv_sock.subscribe('');
+
+class ZmqManager {
+  constructor() {
+    this.requested_codes = new Map();
+    this.cnt = 0;
+
+    recv_sock.on('message', function (message) {
+      console.log("Buffer size", message.toString())
+      message = message.toString();
+      let delimiter = message.indexOf(':');
+      let id = parseInt(message.substr(0, delimiter));
+      let msg = message.substr(delimiter + 1);
+
+      let cb = this.requested_codes.get(id);
+      if (cb) {
+        cb(msg);
+      }
+    }.bind(this));
+  }
+
+  updateCnt() {
+    this.cnt = (this.cnt + 1) % 10000;
+  }
+
+  sendCodeToRun(code, cb) {
+    this.updateCnt();
+    this.requested_codes.set(this.cnt, cb);
+    send_sock.send([this.cnt + ':' + code]);
+  }
+}
+
+zmq_manager = new ZmqManager();
+app.post('/run', function (req, res) {
+  let code = req.body.code;
+  zmq_manager.sendCodeToRun(code, function (result) {
+    console.log("Execution result : ", result);
+    res.send(result);
   });
 });

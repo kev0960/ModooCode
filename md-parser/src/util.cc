@@ -43,7 +43,7 @@ std::pair<int, int> TrimRight(string* str) {
   int space_cnt = 0;
   int tab_cnt = 0;
   int i = str->size() - 1;
-  for (; i >= 0; i --) {
+  for (; i >= 0; i--) {
     if (str->at(i) == ' ') {
       space_cnt++;
     } else if (str->at(i) == '\t') {
@@ -70,7 +70,7 @@ string::const_iterator FindFirstOfAny(const string& str, const size_t start_pos,
                                       const string& matching_chars) {
   for (auto itr = str.begin() + start_pos; itr != str.end(); itr++) {
     if (std::any_of(matching_chars.begin(), matching_chars.end(),
-                    [&](const char c) {  return c == *itr; })) {
+                    [&](const char c) { return c == *itr; })) {
       return itr;
     }
   }

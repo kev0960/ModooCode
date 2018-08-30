@@ -1,16 +1,16 @@
 #pragma once
 
-#include "content.h"
-#include "content_header.h"
-#include "content_list.h"
-#include "parser_environment.h"
-
+#include <map>
 #include <memory>
 #include <stack>
 #include <string>
 #include <utility>
 #include <vector>
-#include <map>
+
+#include "content.h"
+#include "content_header.h"
+#include "content_list.h"
+#include "parser_environment.h"
 
 /*
 
@@ -98,6 +98,7 @@ class MDParser {
   bool newline_started_;
   bool in_code_;
   ParserEnvironment parser_env_;
+
  protected:
   const std::vector<std::unique_ptr<Content>>& GetContentList() const;
 };
