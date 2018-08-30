@@ -47,8 +47,8 @@ class RemoteExecuter {
 };
 
 string RemoteExecuter::SyncExecute(const string& code) {
-  int pipe_p2c[2];
-  if (pipe(pipe_p2c) != 0) {
+  int pipe_p2c[2], pipe_c2p[2];
+  if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
     return "Pipe is broken :(";
   }
 
@@ -62,6 +62,7 @@ string RemoteExecuter::SyncExecute(const string& code) {
     // Close write end and link STDIN through the pipe.
     close(pipe_p2c[1]);
     dup2(pipe_p2c[0], STDIN_FILENO);
+    dup2(pipe_c2p[1], STDERR_FILENO);
     close(pipe_p2c[0]);
 
     // Restrict the amount of CPU time for the compilation.
@@ -86,16 +87,31 @@ string RemoteExecuter::SyncExecute(const string& code) {
   } else {
     // We are in the parent process.
     close(pipe_p2c[0]);
+    close(pipe_c2p[1]);
     // Send the code through the pipe.
     write(pipe_p2c[1], code.c_str(), code.size());
     close(pipe_p2c[1]);
 
+    char buf[1024];
+    int read_cnt;
+    string compiler_output;
+    while ((read_cnt = read(pipe_c2p[0], buf, 1024)) > 0) {
+      auto current_size = compiler_output.size();
+      compiler_output.reserve(current_size + read_cnt + 1);
+      for (int i = 0; i < read_cnt; i++) {
+        compiler_output.push_back(buf[i]);
+      }
+    }
+    close(pipe_c2p[0]);
+
     int status;
-    waitpid(pid, &status, 0); // Wait for the compile to end.
+    waitpid(pid, &status, 0);  // Wait for the compile to end.
     if (!WIFEXITED(status)) {
       return "Compilation went wrong.. :(";
     }
   }
+
+  // Now we have the compiled executable.
 }
 
 void RemoteExecuter::CodeExecutionThread() {
