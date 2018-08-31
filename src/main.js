@@ -50,8 +50,6 @@ class ZmqManager {
     recv_sock.on('message', function (message) {
       message = message.toString();
       let delimiter = message.indexOf(':');
-      console.log(message)
-      console.log(delimiter, message.substr(0, delimiter))
       let id = parseInt(message.substr(0, delimiter));
       let msg = message.substr(delimiter + 1);
 

@@ -14,6 +14,7 @@ static char kGppLanguage[] = "c++";
 static char kDash[] = "-";
 static char kGppOutputFlag[] = "-o";
 static char kGppOutputFile[] = "./tmp/";
+static char kPath[] = "PATH=/usr/bin";
 
 // Instructions
 //
@@ -72,15 +73,13 @@ string RemoteExecuter::SyncCompile(const string& code, int index) {
     // Build argv and env for execve.
     char* gpp_argv[] = {kGppName,       kGppReadFromStdin, kGppLanguage, kDash,
                         kGppOutputFlag, output_file_name,  NULL};
-    char* env[] = {NULL};
+    char* env[] = {kPath, NULL};
 
     // Apply weak process limits.
     WeakProcessLimit();
 
     // Execute the g++.
-    for (int i = 0; i < 6; i++) printf("arg : %s \n", gpp_argv[i]);
-    int ret = execve("/usr/bin/g++", gpp_argv, env);
-    std::cout << "sth is wrong " << ret;
+    int ret = execve(gpp_argv[0], gpp_argv, env);
     return std::to_string(ret);  // Should not be reached if success.
   } else {
     // We are in the parent process.
