@@ -1,5 +1,9 @@
 #include "remote_execute.h"
 
+#include <fcntl.h>
+#include <linux/seccomp.h>
+#include <seccomp.h>
+#include <sys/prctl.h>
 #include <sys/resource.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -15,6 +19,9 @@ static char kDash[] = "-";
 static char kGppOutputFlag[] = "-o";
 static char kGppOutputFile[] = "./tmp/";
 static char kPath[] = "PATH=/usr/bin";
+
+// Max program output : 256 kb.
+static const size_t kMaxProgramOutput = 256 * 1024;
 
 // Instructions
 //
@@ -36,6 +43,24 @@ void WeakProcessLimit() {
 
   // Restrict the output file size.
   const struct rlimit fs_limit = {2 * kOneMb, 2 * kOneMb};
+  setrlimit(RLIMIT_FSIZE, &fs_limit);
+}
+
+void StrictProcessLimit() {
+  // Restrict the amount of CPU time for the compilation.
+  const struct rlimit cpu_limit = {5, 5};
+  setrlimit(RLIMIT_CPU, &cpu_limit);
+
+  // Restrict the virtual memory size.
+  const struct rlimit mem_limit = {128 * kOneMb, 128 * kOneMb};
+  setrlimit(RLIMIT_AS, &mem_limit);
+
+  // Restrict the data segment size.
+  const struct rlimit data_seg_limit = {64 * kOneMb, 64 * kOneMb};
+  setrlimit(RLIMIT_AS, &data_seg_limit);
+
+  // Restrict the output file size.
+  const struct rlimit fs_limit = {0 * kOneMb, 0 * kOneMb};
   setrlimit(RLIMIT_FSIZE, &fs_limit);
 }
 
@@ -113,6 +138,98 @@ string RemoteExecuter::SyncCompile(const string& code, int index) {
 
 string RemoteExecuter::SyncExecute(const string& std_input, int index) {
   // Now we have the compiled executable.
+  int pipe_p2c[2], pipe_c2p[2];
+  if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
+    return "Pipe is broken (during Execution) :(";
+  }
+  auto pid = fork();
+  if (pid < 0) {
+    // Fork error :(
+    return "Something went wrong :(";
+  } else if (pid == 0) {
+    // We are in the child process.
+
+    // Close write end and link STDIN through the pipe.
+    close(pipe_p2c[1]);
+    dup2(pipe_p2c[0], STDIN_FILENO);
+    dup2(pipe_c2p[1], STDOUT_FILENO);
+    close(pipe_p2c[0]);
+
+    // Build a output file name.
+    char file_to_exec[100];
+    snprintf(file_to_exec, 100, "%s%d", kGppOutputFile, index);
+
+    // Build argv and env for execve.
+    char* gpp_argv[] = {file_to_exec, NULL};
+
+    // Apply strict process limits to prevent abnormal activities.
+    StrictProcessLimit();
+
+    // Restrict the possible syscalls (only allow read, write, exit).
+    // Also we have to allow execve on itself for once.
+    scmp_filter_ctx ctx;
+
+    // Kill the process immediately upon violation.
+    ctx = seccomp_init(SCMP_ACT_KILL);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(rt_sigreturn), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(exit), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(read), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(write), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(brk), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mmap), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(munmap), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(mprotect), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(rt_sigprocmask), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(exit_group), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(close), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(fstat), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(arch_prctl), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(access), 0);
+
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(execve), 1,
+                     SCMP_A0(SCMP_CMP_EQ, (scmp_datum_t)(file_to_exec)));
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(open), 1,
+                     SCMP_CMP(1, SCMP_CMP_MASKED_EQ, O_RDONLY, O_RDONLY));
+    seccomp_load(ctx);
+
+    int ret = execvp(file_to_exec, gpp_argv);
+    return std::to_string(ret);  // Should not be reached if success.
+  } else {
+    // We are in the parent process.
+    close(pipe_p2c[0]);
+    close(pipe_c2p[1]);
+
+    // Send the input (stdin) through the pipe.
+    write(pipe_p2c[1], std_input.c_str(), std_input.size());
+    close(pipe_p2c[1]);
+
+    char buf[1024];
+    int read_cnt;
+    string program_output;
+    while ((read_cnt = read(pipe_c2p[0], buf, 1024)) > 0) {
+      auto current_size = program_output.size();
+      program_output.reserve(current_size + read_cnt + 1);
+      for (int i = 0; i < read_cnt; i++) {
+        program_output.push_back(buf[i]);
+      }
+      if (program_output.length() > kMaxProgramOutput) {
+        // If the program output exceeds max size, then just kill the process.
+        kill(pid, SIGKILL);
+
+        program_output.append("... (too long; omitted) ...");
+        break;
+      }
+    }
+    close(pipe_c2p[0]);
+
+    int status;
+    waitpid(pid, &status, 0);  // Wait for the compile to end.
+    if (!WIFEXITED(status)) {
+      return "Program has terminated in an abnormal way.. :(";
+    }
+    return program_output;
+  }
+  return "";
 }
 
 void RemoteExecuter::CodeExecutionThread(int thread_index) {
@@ -132,9 +249,12 @@ void RemoteExecuter::CodeExecutionThread(int thread_index) {
 
     // Execute the code and save it to the result queue.
     string result = SyncCompile(index_and_code.second, thread_index);
-    std::cout << "Send : "
-              << std::to_string(index_and_code.first) + ":" + result;
-    result = std::to_string(index_and_code.first) + ":" + result;
+
+    // If compilation is succeeded, then we execute the program.
+    string program_output = SyncExecute("", thread_index);
+
+    result = std::to_string(index_and_code.first) + ":" + result + ":" +
+             program_output;
     zmq_sock_mutex_.lock();
     publisher_->send(str_to_zmq_msg(result));
     zmq_sock_mutex_.unlock();
