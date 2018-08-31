@@ -1,19 +1,14 @@
+#include "remote_execute.h"
+
 #include <sys/resource.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-#include <condition_variable>
-#include <mutex>
-#include <queue>
-#include <string>
-#include <thread>
-#include <utility>
-#include <vector>
+#include <iostream>
 
-using std::string;
 constexpr int kOneMb = 1024 * 1024;
-static char kGppName[] = "g++";
+static char kGppName[] = "/usr/bin/g++";
 static char kGppReadFromStdin[] = "-x";
 static char kGppLanguage[] = "c++";
 static char kDash[] = "-";
@@ -27,26 +22,31 @@ static char kGppOutputFile[] = "./tmp/";
 //
 //
 namespace remo_code {
-class RemoteExecuter {
- private:
-  string SyncExecute(const string& code);
+namespace {
 
-  std::mutex code_q_lock;
-  std::condition_variable cond_code_q;
+void WeakProcessLimit() {
+  // Restrict the amount of CPU time for the compilation.
+  const struct rlimit cpu_limit = {10, 10};
+  setrlimit(RLIMIT_CPU, &cpu_limit);
 
-  std::queue<std::pair<int, string>> codes;
-  std::vector<std::thread> threads;
+  // Restrict the virtual memory size.
+  const struct rlimit mem_limit = {128 * kOneMb, 128 * kOneMb};
+  setrlimit(RLIMIT_AS, &mem_limit);
 
-  std::mutex result_q_lock;
-  std::condition_variable cond_result_q;
-  std::queue<std::pair<int, string>> results;
+  // Restrict the output file size.
+  const struct rlimit fs_limit = {2 * kOneMb, 2 * kOneMb};
+  setrlimit(RLIMIT_FSIZE, &fs_limit);
+}
 
- public:
-  RemoteExecuter();
-  void CodeExecutionThread();
-};
+zmq::message_t str_to_zmq_msg(const string& s) {
+  zmq::message_t msg(s.size());
+  memcpy(msg.data(), s.c_str(), s.size());
+  return msg;
+}
 
-string RemoteExecuter::SyncExecute(const string& code) {
+}  // namespace
+
+string RemoteExecuter::SyncCompile(const string& code, int index) {
   int pipe_p2c[2], pipe_c2p[2];
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
     return "Pipe is broken :(";
@@ -65,25 +65,23 @@ string RemoteExecuter::SyncExecute(const string& code) {
     dup2(pipe_c2p[1], STDERR_FILENO);
     close(pipe_p2c[0]);
 
-    // Restrict the amount of CPU time for the compilation.
-    const struct rlimit cpu_limit = {10, 10};
-    setrlimit(RLIMIT_CPU, &cpu_limit);
+    // Build a output file name.
+    char output_file_name[100];
+    snprintf(output_file_name, 100, "%s%d", kGppOutputFile, index);
 
-    // Restrict the virtual memory size.
-    const struct rlimit mem_limit = {128 * kOneMb, 128 * kOneMb};
-    setrlimit(RLIMIT_AS, &mem_limit);
-
-    // Restrict the output file size.
-    const struct rlimit fs_limit = {2 * kOneMb, 2 * kOneMb};
-    setrlimit(RLIMIT_FSIZE, &fs_limit);
-
-    // Since we are just running a compiler, those restrictions above are good
-    // enough.
-    char* gpp_argv[] = {kGppName, kGppReadFromStdin, kGppLanguage,
-                        kDash,    kGppOutputFlag,    kGppOutputFile};
+    // Build argv and env for execve.
+    char* gpp_argv[] = {kGppName,       kGppReadFromStdin, kGppLanguage, kDash,
+                        kGppOutputFlag, output_file_name,  NULL};
     char* env[] = {NULL};
+
+    // Apply weak process limits.
+    WeakProcessLimit();
+
+    // Execute the g++.
+    for (int i = 0; i < 6; i++) printf("arg : %s \n", gpp_argv[i]);
     int ret = execve("/usr/bin/g++", gpp_argv, env);
-    return std::to_string(ret);
+    std::cout << "sth is wrong " << ret;
+    return std::to_string(ret);  // Should not be reached if success.
   } else {
     // We are in the parent process.
     close(pipe_p2c[0]);
@@ -109,41 +107,56 @@ string RemoteExecuter::SyncExecute(const string& code) {
     if (!WIFEXITED(status)) {
       return "Compilation went wrong.. :(";
     }
+    return compiler_output;
   }
+  return "";
+}
 
+string RemoteExecuter::SyncExecute(const string& std_input, int index) {
   // Now we have the compiled executable.
 }
 
-void RemoteExecuter::CodeExecutionThread() {
+void RemoteExecuter::CodeExecutionThread(int thread_index) {
   while (true) {
     // Wait for the codes.
-    std::unique_lock<std::mutex> lock(code_q_lock);
-    cond_code_q.wait(lock, [this]() { return codes.size() > 0; });
+    std::unique_lock<std::mutex> lock(code_q_lock_);
+    cond_code_q_.wait(lock, [this]() { return codes_.size() > 0; });
 
     // Fetch the first code to execute.
-    auto index_and_code = codes.front();
-    codes.pop();
+    auto index_and_code = codes_.front();
+    codes_.pop();
     lock.unlock();
 
-    // Notify other threads to wake up since there might be other coes in the
+    // Notify other threads to wake up since there might be other codes in the
     // queue.
-    cond_code_q.notify_all();
+    cond_code_q_.notify_all();
 
     // Execute the code and save it to the result queue.
-    auto result = SyncExecute(index_and_code.second);
-    result_q_lock.lock();
-    results.push(std::make_pair(index_and_code.first, result));
-    result_q_lock.unlock();
-
-    // Notify Main thread that the result is added.
-    cond_result_q.notify_one();
+    string result = SyncCompile(index_and_code.second, thread_index);
+    std::cout << "Send : "
+              << std::to_string(index_and_code.first) + ":" + result;
+    result = std::to_string(index_and_code.first) + ":" + result;
+    zmq_sock_mutex_.lock();
+    publisher_->send(str_to_zmq_msg(result));
+    zmq_sock_mutex_.unlock();
   }
 }
 
-RemoteExecuter::RemoteExecuter() {
+void RemoteExecuter::AddCodeToExecute(const string& code, int index) {
+  std::unique_lock<std::mutex> lock(code_q_lock_);
+  codes_.push(std::make_pair(index, code));
+  lock.unlock();
+
+  // Nofity one of the thread.
+  cond_code_q_.notify_one();
+}
+
+RemoteExecuter::RemoteExecuter(zmq::socket_t* publisher)
+    : publisher_(publisher) {
+  // Build a thread pool.
   for (int i = 0; i < 3; i++) {
-    threads.emplace_back(
-        std::thread(&RemoteExecuter::CodeExecutionThread, this));
+    threads_.emplace_back(
+        std::thread(&RemoteExecuter::CodeExecutionThread, this, i + 1));
   }
 }
 }  // namespace remo_code

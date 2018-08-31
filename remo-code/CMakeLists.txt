@@ -9,7 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 file(GLOB SOURCES src/*.cc src/*.h)
 
 add_executable(remo-code ${SOURCES})
-target_link_libraries(remo-code zmq)
+target_link_libraries(remo-code zmq pthread)
 
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .

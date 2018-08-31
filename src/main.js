@@ -48,12 +48,14 @@ class ZmqManager {
     this.cnt = 0;
 
     recv_sock.on('message', function (message) {
-      console.log("Buffer size", message.toString())
       message = message.toString();
       let delimiter = message.indexOf(':');
+      console.log(message)
+      console.log(delimiter, message.substr(0, delimiter))
       let id = parseInt(message.substr(0, delimiter));
       let msg = message.substr(delimiter + 1);
 
+      console.log(id, msg);
       let cb = this.requested_codes.get(id);
       if (cb) {
         cb(msg);
