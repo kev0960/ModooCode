@@ -20,7 +20,7 @@ app.use(body_parser.urlencoded({
   extended: true
 }));
 
-app.listen(3000, () => console.log('The server has started.'));
+app.listen(80, () => console.log('The server has started.'));
 
 app.get('/', (req, res) => res.send('Hello World!'));
 

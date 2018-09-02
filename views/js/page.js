@@ -14,8 +14,7 @@ function count_line(code) {
 $(function () {
   require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
   require(['vs/editor/editor.main'], function () {
-  });
-  $('pre.chroma').each(function (index) {
+    $('pre.chroma').each(function (index) {
     var code = $(this).text();
 
     // Check whether the code starts with #include. If it is, then it is probably executable.
@@ -53,4 +52,6 @@ $(function () {
       }
     })
   })
+
+  });
 });
