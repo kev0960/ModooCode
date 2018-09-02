@@ -33,7 +33,10 @@ fs.readFile('file_headers.json', 'utf8', function (err, data) {
   app.get("/:id", function (req, res) {
     let page_id = parseInt(req.params.id);
     if (page_id <= 228) {
-      res.render("page.ejs", {content_url: "./old/blog_" + page_id + ".html", file_info: file_infos[page_id]});
+      res.render("page.ejs", {
+        content_url: "./old/blog_" + page_id + ".html",
+        file_info: file_infos[page_id]
+      });
     }
   });
 });
@@ -50,13 +53,25 @@ class ZmqManager {
     recv_sock.on('message', function (message) {
       message = message.toString();
       let delimiter = message.indexOf(':');
-      let id = parseInt(message.substr(0, delimiter));
-      let msg = message.substr(delimiter + 1);
+      let next_delimiter = message.indexOf(':', delimiter + 1);
 
-      console.log(id, msg);
+      let compile_error = '', exec_result = '';
+      // There was no compile error.
+      if (next_delimiter === delimiter + 1) {
+        exec_result = message.substr(next_delimiter + 1);
+      } else {
+        compile_error = message.substr(delimiter + 1);
+      }
+
+      let id = parseInt(message.substr(0, delimiter));
+
+      console.log(id, message.substr(0, delimiter), {
+        exec_result,
+        compile_error
+      });
       let cb = this.requested_codes.get(id);
       if (cb) {
-        cb(msg);
+        cb({exec_result, compile_error});
       }
     }.bind(this));
   }
@@ -76,7 +91,11 @@ zmq_manager = new ZmqManager();
 app.post('/run', function (req, res) {
   let code = req.body.code;
   zmq_manager.sendCodeToRun(code, function (result) {
-    console.log("Execution result : ", result);
+    if (result.exec_result.length > 0) {
+      console.log("Execution result : \n", result.exec_result);
+    } else {
+      console.log("Compile error : \n", result.compile_error)
+    }
     res.send(result);
   });
 });

@@ -5,6 +5,7 @@
 #include <seccomp.h>
 #include <sys/prctl.h>
 #include <sys/resource.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -16,8 +17,12 @@ static char kGppName[] = "/usr/bin/g++";
 static char kGppReadFromStdin[] = "-x";
 static char kGppLanguage[] = "c++";
 static char kDash[] = "-";
+static char kGppWarningAll[] = "-Wall";
+static char kGppWarningExtra[] = "-Wextra";
+static char kGppFortify[] = "-D_FORTIFY_SOURCE=2";
 static char kGppOutputFlag[] = "-o";
 static char kGppOutputFile[] = "./tmp/";
+static char kOutputFile[] = "/";
 static char kPath[] = "PATH=/usr/bin";
 
 // Max program output : 256 kb.
@@ -62,6 +67,10 @@ void StrictProcessLimit() {
   // Restrict the output file size.
   const struct rlimit fs_limit = {0 * kOneMb, 0 * kOneMb};
   setrlimit(RLIMIT_FSIZE, &fs_limit);
+
+  // Restrict the output file size.
+  const struct rlimit fd_limit = {4, 4};
+  setrlimit(RLIMIT_NOFILE, &fd_limit);
 }
 
 zmq::message_t str_to_zmq_msg(const string& s) {
@@ -96,8 +105,10 @@ string RemoteExecuter::SyncCompile(const string& code, int index) {
     snprintf(output_file_name, 100, "%s%d", kGppOutputFile, index);
 
     // Build argv and env for execve.
-    char* gpp_argv[] = {kGppName,       kGppReadFromStdin, kGppLanguage, kDash,
-                        kGppOutputFlag, output_file_name,  NULL};
+    char* gpp_argv[] = {kGppName,    kGppReadFromStdin, kGppLanguage,
+                        kDash,       kGppWarningAll,    kGppWarningExtra,
+                        kGppFortify, kGppOutputFlag,    output_file_name,
+                        NULL};
     char* env[] = {kPath, NULL};
 
     // Apply weak process limits.
@@ -131,6 +142,10 @@ string RemoteExecuter::SyncCompile(const string& code, int index) {
     if (!WIFEXITED(status)) {
       return "Compilation went wrong.. :(";
     }
+    // Mark the output file as read only.
+    char output_file_name[100];
+    snprintf(output_file_name, 100, "%s%d", kGppOutputFile, index);
+    chmod(output_file_name, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP);
     return compiler_output;
   }
   return "";
@@ -143,11 +158,29 @@ string RemoteExecuter::SyncExecute(const string& std_input, int index) {
     return "Pipe is broken (during Execution) :(";
   }
   auto pid = fork();
+
   if (pid < 0) {
     // Fork error :(
     return "Something went wrong :(";
   } else if (pid == 0) {
     // We are in the child process.
+
+    // Build chroot jail. For this, our process must run with root privilige.
+    chdir("./tmp");
+    if (chroot(".") != 0) {
+      std::cout << "Chroot is failed!" << std::endl;
+      return "Something went wrong :(";
+    }
+
+    // Drop its privlieges.
+    if (getuid() == 0) {
+      if (setgid(1000) != 0) {
+        return "Something went wrong :(";
+      }
+      if (setuid(1000) != 0) {
+        return "Something went wrong :(";
+      }
+    }
 
     // Close write end and link STDIN through the pipe.
     close(pipe_p2c[1]);
@@ -157,10 +190,10 @@ string RemoteExecuter::SyncExecute(const string& std_input, int index) {
 
     // Build a output file name.
     char file_to_exec[100];
-    snprintf(file_to_exec, 100, "%s%d", kGppOutputFile, index);
+    snprintf(file_to_exec, 100, "%s%d", kOutputFile, index);
 
     // Build argv and env for execve.
-    char* gpp_argv[] = {file_to_exec, NULL};
+    char* file_argv[] = {file_to_exec, NULL};
 
     // Apply strict process limits to prevent abnormal activities.
     StrictProcessLimit();
@@ -185,15 +218,17 @@ string RemoteExecuter::SyncExecute(const string& std_input, int index) {
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(fstat), 0);
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(arch_prctl), 0);
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(access), 0);
-    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(openat), 0);
 
+    // Somewhat dangerous syscalls; Only allowed in certain criteria.
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(openat), 1,
+                     SCMP_CMP(2, SCMP_CMP_MASKED_EQ, O_RDONLY, O_RDONLY));
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(execve), 1,
                      SCMP_A0(SCMP_CMP_EQ, (scmp_datum_t)(file_to_exec)));
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(open), 1,
                      SCMP_CMP(1, SCMP_CMP_MASKED_EQ, O_RDONLY, O_RDONLY));
     seccomp_load(ctx);
 
-    int ret = execvp(file_to_exec, gpp_argv);
+    int ret = execvp(file_to_exec, file_argv);
     return std::to_string(ret);  // Should not be reached if success.
   } else {
     // We are in the parent process.
@@ -226,7 +261,7 @@ string RemoteExecuter::SyncExecute(const string& std_input, int index) {
     int status;
     waitpid(pid, &status, 0);  // Wait for the compile to end.
     if (!WIFEXITED(status)) {
-      return "Program has terminated in an abnormal way.. :(";
+      return program_output + " Program has terminated in an abnormal way.. :(";
     }
     return program_output;
   }
@@ -249,13 +284,15 @@ void RemoteExecuter::CodeExecutionThread(int thread_index) {
     cond_code_q_.notify_all();
 
     // Execute the code and save it to the result queue.
-    string result = SyncCompile(index_and_code.second, thread_index);
+    string compile_result = SyncCompile(index_and_code.second, thread_index);
+    string result = std::to_string(index_and_code.first) + ":" + compile_result;
 
     // If compilation is succeeded, then we execute the program.
-    string program_output = SyncExecute("", thread_index);
+    if (compile_result.empty()) {
+      string program_output = SyncExecute("", thread_index);
+      result = result + ":" + program_output;
+    }
 
-    result = std::to_string(index_and_code.first) + ":" + result + ":" +
-             program_output;
     zmq_sock_mutex_.lock();
     publisher_->send(str_to_zmq_msg(result));
     zmq_sock_mutex_.unlock();
