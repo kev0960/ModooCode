@@ -42,8 +42,9 @@ int main() {
         std::string(static_cast<char*>(code_to_run.data()), code_to_run.size());
     auto id = RetrieveIdFromInputCode(&code);
     std::cout << "Received! " << id << std::endl;
+    std::cout << "Received! c " << code << std::endl;
 
     // Handle.
-    executor.AddCodeToExecute(code, atoi(id.c_str()));
+    executor.AddCodeToExecute(&code, id);
   }
 }

@@ -10,6 +10,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#include <experimental/optional>
 #include <iostream>
 
 constexpr int kOneMb = 1024 * 1024;
@@ -85,9 +86,21 @@ zmq::message_t str_to_zmq_msg(const string& s) {
   return msg;
 }
 
+std::experimental::optional<string> StdinFromCode(string* code,
+                                                  const string& id) {
+  size_t stdin_end = code->find(id);
+  if (stdin_end == string::npos) {
+    // Something is wrong.
+    return std::experimental::nullopt;
+  }
+  string std_input = code->substr(0, stdin_end);
+  code->erase(0, stdin_end + id.size());
+  return std_input;
+}
+
 }  // namespace
 
-string RemoteExecuter::SyncCompile(const string& code, int index) {
+string RemoteExecuter::SyncCompile(const string& code, int thread_index) {
   int pipe_p2c[2], pipe_c2p[2];
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
     return "Pipe is broken :(";
@@ -108,7 +121,7 @@ string RemoteExecuter::SyncCompile(const string& code, int index) {
 
     // Build a output file name.
     char output_file_name[100];
-    snprintf(output_file_name, 100, "%s%d", kGppOutputFile, index);
+    snprintf(output_file_name, 100, "%s%d", kGppOutputFile, thread_index);
 
     // Build argv and env for execve.
     char* gpp_argv[] = {kGppName,    kGppReadFromStdin, kGppLanguage,
@@ -150,14 +163,14 @@ string RemoteExecuter::SyncCompile(const string& code, int index) {
     }
     // Mark the output file as read only.
     char output_file_name[100];
-    snprintf(output_file_name, 100, "%s%d", kGppOutputFile, index);
+    snprintf(output_file_name, 100, "%s%d", kGppOutputFile, thread_index);
     chmod(output_file_name, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP);
     return compiler_output;
   }
   return "";
 }
 
-string RemoteExecuter::SyncExecute(const string& std_input, int index) {
+string RemoteExecuter::SyncExecute(const string& std_input, int thread_index) {
   // Now we have the compiled executable.
   int pipe_p2c[2], pipe_c2p[2];
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
@@ -196,7 +209,7 @@ string RemoteExecuter::SyncExecute(const string& std_input, int index) {
 
     // Build a output file name.
     char file_to_exec[100];
-    snprintf(file_to_exec, 100, "%s%d", kOutputFile, index);
+    snprintf(file_to_exec, 100, "%s%d", kOutputFile, thread_index);
 
     // Build argv and env for execve.
     char* file_argv[] = {file_to_exec, NULL};
@@ -281,7 +294,7 @@ void RemoteExecuter::CodeExecutionThread(int thread_index) {
     cond_code_q_.wait(lock, [this]() { return codes_.size() > 0; });
 
     // Fetch the first code to execute.
-    auto index_and_code = codes_.front();
+    auto code_info = codes_.front();
     codes_.pop();
     lock.unlock();
 
@@ -290,12 +303,12 @@ void RemoteExecuter::CodeExecutionThread(int thread_index) {
     cond_code_q_.notify_all();
 
     // Execute the code and save it to the result queue.
-    string compile_result = SyncCompile(index_and_code.second, thread_index);
-    string result = std::to_string(index_and_code.first) + ":" + compile_result;
+    string compile_result = SyncCompile(code_info.code, thread_index);
+    string result = code_info.id + ":" + compile_result;
 
     // If compilation is succeeded, then we execute the program.
     if (compile_result.empty()) {
-      string program_output = SyncExecute("", thread_index);
+      string program_output = SyncExecute(code_info.std_input, thread_index);
       result = result + ":" + program_output;
     }
 
@@ -305,9 +318,14 @@ void RemoteExecuter::CodeExecutionThread(int thread_index) {
   }
 }
 
-void RemoteExecuter::AddCodeToExecute(const string& code, int index) {
+void RemoteExecuter::AddCodeToExecute(string* code, const string& id) {
+  // Get the stdin from the code.
+  auto std_input_or_not = StdinFromCode(code, id);
+  if (!std_input_or_not) {
+    return;
+  }
   std::unique_lock<std::mutex> lock(code_q_lock_);
-  codes_.push(std::make_pair(index, code));
+  codes_.push(CodeInfo(id, std_input_or_not.value(), *code));
   lock.unlock();
 
   // Nofity one of the thread.
