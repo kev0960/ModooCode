@@ -30,6 +30,11 @@ int main() {
   // Build Remote Executer.
   remo_code::RemoteExecuter executor(&publisher);
 
+  std::cout << "---------------------------------" << std::endl;
+  std::cout << "*       Server Has Started      *" << std::endl;
+  std::cout << "*  Listening on localhost:3001  *" << std::endl;
+  std::cout << "---------------------------------" << std::endl;
+
   while (true) {
     zmq::message_t code_to_run;
     receiver.recv(&code_to_run);
@@ -40,14 +45,5 @@ int main() {
 
     // Handle.
     executor.AddCodeToExecute(code, atoi(id.c_str()));
-
-    /*
-    std::string s = id + ":Compiled.. seems good";
-    zmq::message_t msg(s.size());
-    memcpy(msg.data(), s.c_str(), s.size());
-    // zmq_send(&publisher, s.c_str(), s.size(), 0);
-    publisher.send(msg);
-    std::cout << "Sent!" << std::endl;
-    ;*/
   }
 }

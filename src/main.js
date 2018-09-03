@@ -77,7 +77,7 @@ class ZmqManager {
   }
 
   updateCnt() {
-    this.cnt = (this.cnt + 1) % 10000;
+    this.cnt = (this.cnt + 1) % 100;
   }
 
   sendCodeToRun(code, cb) {

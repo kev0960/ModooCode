@@ -33,6 +33,12 @@ static const size_t kMaxProgramOutput = 256 * 1024;
 // 1) Mount tmp directory as tmpfs;
 // sudo mount -t tmpfs -o size=16m tmpfs ./tmp
 //
+// 2) Make sure to mark all the directories as rx permission.
+//
+// 3) Need to bring some libc/libstdc++ libraries to the tmp directory as the
+// processes are run under chroot jail. We have to make sure that they can find
+// required shared libraries from the chroot jail. We also have to set the those
+// libraries with rx permission to prevent possible sabotage.
 //
 namespace remo_code {
 namespace {
@@ -261,7 +267,7 @@ string RemoteExecuter::SyncExecute(const string& std_input, int index) {
     int status;
     waitpid(pid, &status, 0);  // Wait for the compile to end.
     if (!WIFEXITED(status)) {
-      return program_output + " Program has terminated in an abnormal way.. :(";
+      return program_output + " 프로그램이 비정상적으로 종료됨 :(";
     }
     return program_output;
   }
