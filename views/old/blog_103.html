@@ -36,19 +36,12 @@
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>위 코드는 이전에 구조체 단원에서 만들었던 루저-위너 구별 프로그램 입니다. 그런데 위 코드에서 한 가지 귀찮은 점이 있습니다. 바로, 구조체를 사용할 때 마다 앞에 <code class='inline-code'>struct</code> 키워드를 붙여야 한다는 점입니다. 이게 상당히 짜증나는 일인데, 간혹 <code class='inline-code'>struct</code> 키워드를 붙이지 않는 날에는</p><pre class='warning'>error C2146
-    : 구문 오류
-      : ')'이(가)'human' 식별자 앞에 없습니다
-            .error C2061
-        : 구문 오류
-          : 식별자 'human' error C2059
-            : 구문 오류
-              : ';' error C2059
-                : 구문 오류
-                  : ')' error C2449
-                    : 파일 범위에
-                      '{'가 있습니다.함수 헤더가 없는 것 같습니다.error C2059
-                      : 구문 오류 : '}'
+</pre><p>위 코드는 이전에 구조체 단원에서 만들었던 루저-위너 구별 프로그램 입니다. 그런데 위 코드에서 한 가지 귀찮은 점이 있습니다. 바로, 구조체를 사용할 때 마다 앞에 <code class='inline-code'>struct</code> 키워드를 붙여야 한다는 점입니다. 이게 상당히 짜증나는 일인데, 간혹 <code class='inline-code'>struct</code> 키워드를 붙이지 않는 날에는</p><pre class='warning'>error C2146 : 구문 오류 : ')'이(가)'human' 식별자 앞에 없습니다
+                              .error C2061 : 구문 오류
+    : 식별자 'human' error C2059 : 구문 오류 : ';' error C2059 : 구문 오류
+    : ')' error C2449 : 파일 범위에
+                        '{'가 있습니다.함수 헤더가 없는 것 같습니다.error C2059
+    : 구문 오류 : '}'
 </pre><p>위와 같은 오류 테러를 맞보게 됩니다. (위 오류는 <code class='inline-code'>int Print_Status(struct HUMAN human)</code> 대신에 <code class='inline-code'>int Print_Status(HUMAN human)</code> 이라 썼을 때 나타나는 오류들 입니다) 상당히 짜증나는 일지요. 그렇다면 귀찮게 'struct HUMAN' 이라 길게 쓰는 대신에 짧에 쓰는 방법이 없을까요?</p><p>물론 있습니다.</p><pre class="chroma"><span class="cm">/* typedef 의 이용 */</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">struct</span> <span class="n">HUMAN</span> <span class="p">{</span>

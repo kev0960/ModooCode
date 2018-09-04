@@ -5,10 +5,9 @@ long int ftell(FILE* stream);
 </pre><p>스트림의 위치 지정자의 현재 위치를 구한다.이진(binary) 스트림의 경우, 리턴된 값이 파일의 시작 부분에서 부터 현재 위치까지의 바이트 수를 말한다.텍스트 스트림의 경우 위의 경우와는 조금 다르게,파일의 시작 부분으로 부터 현재 위치 까지의 바이트 수라고 단정짓기 힘들다.(이진 스트림과 텍스트 스트림에 대해 자세히 알고 싶다면 <a href='http://itguru.tistory.com/34'>stdio.h</a><span class='font-weight-bold'> 를 참조) 하지만, 이 리턴된 값을 가지고 <a href='http://itguru.tistory.com/72'>fseek</a></span> 함수를 이용하면 현재의 위치로 파일 위치 포인터를 설정할 수 있다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>stream</code></p><p>작업을 수행할 스트림의 <code class='inline-code'>FILE</code> 객체를 가리키는 포인터</p><h3><p>  리턴값</p></h3><p>성공적으로 수행하였다면 현재의 위치 포인터가 가진 값이 리턴된다.만일 오류가 발생하였다면 <code class='inline-code'>NULL</code> 이 리턴되고, 전역 변수 <code class='inline-code'>errno</code> 의 값은 양수로 설정된다. <a href='http://itguru.tistory.com/53'>perror</a>함수를 통해 <code class='inline-code'>errno</code> 의 값을 해석할 수 있다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">파일 전체의 크기를 읽어온다. pFile 을 파일 끝으로 선택한 뒤, ftell 함수를 통해서
-</span><span class="cm">파일 처음 부터 pFile 까지, 즉 파일 처음 부터 끝 까지의 바이트 수를 계산한다.
-</span><span class="cm">이 예제는
-</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstdio/ftell/
-</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">파일 처음 부터 pFile 까지, 즉 파일 처음 부터 끝 까지의 바이트 수를 계산한다. 이
+</span><span class="cm">예제는 http://www.cplusplus.com/reference/clibrary/cstdio/ftell/ 에서
+</span><span class="cm">가져왔습니다.
 </span><span class="cm">
 </span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">

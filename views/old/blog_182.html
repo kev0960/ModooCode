@@ -3,9 +3,10 @@
 </pre><p>ios::rdbuf</p><pre class='info'>streambuf* rdbuf() const;
 streambuf* rdbuf(streambuf* sb);
 </pre><p>연관된 스트림 버퍼를 설정하거나 얻는다.첫번째 형태의 함수는 연관된 스트림 버퍼를 리턴한다.두 번째 형태의 경우 현재 스트림을 <code class='inline-code'>sb</code> 와 연관 시키고 이전에 연관되어 있었던 스트림 버퍼를 리턴한다. 이 때 상태 플래그는 <code class='inline-code'>goodbit</code> 로 설정된다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>sb</code></p><p>연관시킬 스트림 버퍼를 가리키는 포인터</p><h3><p>  리턴값</p></h3><p>이전에 연관되어 있었던 스트림 버퍼</p><h3><p>  실행 결과</p></h3><pre class="chroma">
-<span class="cm">/*이 예제는http://www.cplusplus.com/reference/iostream/ios/rdbuf/에서 가져왔습니다.*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">iostream</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;fstream&gt; using namespace std;</span><span class="cp">
-</span><span class="cp"></span><span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/*이 예제는http://www.cplusplus.com/reference/iostream/ios/rdbuf/에서
+</span><span class="cm"> * 가져왔습니다.*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt; #include &lt;fstream&gt; using namespace std;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">streambuf</span> <span class="o">*</span><span class="n">psbuf</span><span class="p">,</span> <span class="o">*</span><span class="n">backup</span><span class="p">;</span>
   <span class="n">ofstream</span> <span class="n">filestr</span><span class="p">;</span>
   <span class="n">filestr</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">test.txt</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>

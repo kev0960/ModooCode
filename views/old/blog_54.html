@@ -3,9 +3,11 @@
 
 int fclose(FILE* stream);
 </pre><p>파일을 닫는다.인자로 지정한 스트림에 해당하는 파일을 닫는다.이 때, 그 스트림의 모든 버퍼들은 비워(flush)진다. 아직 파일에 쓰이지 않고 남아있던 버퍼의 내용물은 모두 파일에 쓰이고, 아직 읽히지 않고 남아있떤 버퍼의 내용물은 모두 사라진다.<code class='inline-code'>fclose</code> 함수의 호출이 실패하더라도 인자로 전달된 스트림과 이에 해당하는 파일의 관계는 끊어지게 된다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>stream</code></p><p>파일을 닫을 스트림의 <code class='inline-code'>FILE</code> 객체를 가리키는 포인터.</p><h3><p>  리턴값</p></h3><p>많일 스트림이 성공적으로 닫힌다면 0 이 리턴된다.실패할 경우 <code class='inline-code'>EOF</code> 가 리턴된다.</p><h3><p>  실행 예제</p></h3><pre class="chroma">
-<span class="cm">/*myfile.txt 를 오픈하여 &#34;fclose example&#34; 을 쓴 후 파일을 닫는다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fclose/에서 가져왔습니다.*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="kt">int</span>
-<span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/*myfile.txt 를 오픈하여 &#34;fclose example&#34; 을 쓴 후 파일을 닫는다.이 예제는
+</span><span class="cm"> * http://www.cplusplus.com/reference/clibrary/cstdio/fclose/에서
+</span><span class="cm"> * 가져왔습니다.*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int</span><span class="cp">
+</span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">FILE</span><span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
   <span class="n">pFile</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">myfile.txt</span><span class="s">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">wt</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
   <span class="n">fprintf</span><span class="p">(</span><span class="n">pFile</span><span class="p">,</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">fclose example</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>

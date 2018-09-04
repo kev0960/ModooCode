@@ -11,10 +11,17 @@
 </pre><p>라 던지,</p><pre class='warning'>error C2001
     : 상수에 줄 바꿈 문자가
           있습니다.error C2143 : 구문 오류 : ')'이(가)'return' 앞에 없습니다.
-</pre><p>와 같은 오류를 보게 되는 사람들이 있습니다.<span class='font-weight-bold'>  첫 번째의 경우, printf("Hello, <code class='inline-code'>World!</code> \n") 다음에</span> 세미 콜론<code class='inline-code'> (</code>;<code class='inline-code'>)</code> 을 쓰지 않아서 나타나는 경우이고, 두 번째의 오류는 <code class='inline-code'>printf</code> 안에 큰 따옴표로 제대로 닫지 않았을 경우이다. 즉, 오류가 나왔는데 위에서 언급한 경우가 아니라도 십중 팔구 위의 소스 코드를 잘못 쳤기 때문 이므로 다시 한 번 신중히 쳐보거나, 그래도 안되면 복사해 보시기 바랍니다.</p><p>  이제, 드디어 이렇게 완성된 프로그램을 실행할 시간이 다가왔습니다. <code class='inline-code'>Ctrl + F5</code> 를 눌러서 프로그램을 실행해 봅시다.</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1371751449E85179051D6E' alt='Hello, World! 가 출력되었습니다. '><p><span class='font-weight-bold'> 만세! 현재 저는 영문판 <code class='inline-code'>XP</code> 를 쓰고 있어서 <code class='inline-code'>Hello, World!</code> 밑에 'Press <code class='inline-code'>any key to</code> continue' 가 나오겠지만(참고로 이 강좌는 2008년에 제작되었습니다)</span> 한글판 사용자 분들은 '아무 키나 누르세요' 가 나올 것입니다. 어쨋든, 위의 <code class='inline-code'>Hello, World!</code> 가 출력되었으면대 성 공 입니다.</p><p>  여러분은 지금, 여러분 최초의프로그램을 만들게 된 것입니다!</p><p>  다음 강좌에서는, 위 프로그램이 도대체 어떻게 동작하는 것인지에 대해 알아보도록 합시다.</p><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
+</pre><p>와 같은 오류를 보게 되는 사람들이 있습니다.<span class='font-weight-bold'>  첫 번째의 경우, printf("Hello, <code class='inline-code'>World!</code> \n") 다음에</span> 세미 콜론<code class='inline-code'> (</code>;<code class='inline-code'>)</code> 을 쓰지 않아서 나타나는 경우이고, 두 번째의 오류는 <code class='inline-code'>printf</code> 안에 큰 따옴표로 제대로 닫지 않았을 경우이다. 즉, 오류가 나왔는데 위에서 언급한 경우가 아니라도 십중 팔구 위의 소스 코드를 잘못 쳤기 때문 이므로 다시 한 번 신중히 쳐보거나, 그래도 안되면 복사해 보시기 바랍니다.</p><p>  이제, 드디어 이렇게 완성된 프로그램을 실행할 시간이 다가왔습니다. <code class='inline-code'>Ctrl + F5</code> 를 눌러서 프로그램을 실행해 봅시다.</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1371751449E85179051D6E' alt='Hello, World! 가 출력되었습니다. '><p><span class='font-weight-bold'> 만세! 현재 저는 영문판 <code class='inline-code'>XP</code> 를 쓰고 있어서 <code class='inline-code'>Hello, World!</code> 밑에 'Press <code class='inline-code'>any key to</code> continue' 가 나오겠지만(참고로 이 강좌는 2008년에 제작되었습니다)</span> 한글판 사용자 분들은 '아무 키나 누르세요' 가 나올 것입니다. 어쨋든, 위의 <code class='inline-code'>Hello, World!</code> 가 출력되었으면대 성 공 입니다.</p><p>  여러분은 지금, 여러분 최초의프로그램을 만들게 된 것입니다!</p><p>  다음 강좌에서는, 위 프로그램이 도대체 어떻게 동작하는 것인지에 대해 알아보도록 합시다.</p><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기
+            바랍니다
+                .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
 
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <1. C 언어가 뭐야?>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
+        현재 여러분이 보신 강좌는
+        << 씹어먹는 C 언어 -
+    < 1. C 언어가 뭐야
+    ? >>> 입니다.이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를
+              읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
 
-
-[다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
+                  [다음 강좌 보러가기](http
+                                       :  // itguru.tistory.com/notice/15)
 </pre><ol><li><p> <code class='inline-code'>0</code> 과 1은 <code class='inline-code'>on</code> 과 <code class='inline-code'>off</code> 에 대응된다. 이 때, <code class='inline-code'>IBM PC</code> 의 경우 <code class='inline-code'>on</code> 은 <code class='inline-code'>5 V, off</code> 는 <code class='inline-code'>0V</code> 의 전압과 같다 0 과 1은 <code class='inline-code'>on</code> 과 <code class='inline-code'>off</code> 에 대응된다. 이 때, <code class='inline-code'>IBM PC</code> 의 경우 <code class='inline-code'>on</code> 은 <code class='inline-code'>5 V, off</code> 는 <code class='inline-code'>0V</code> 의 전압과 같다.[[본문으로]](#footnote<span class='font-italic'>link</span>5<span class='font-italic'>1)</p></li><li><p> 물론 C 언어를 어디서 배운 사람이라면 '사기치지 마' 라고 말할 수 있습니다. 맞습니다. 사실 컴파일은 소스 코드를 어셈블리 코드로 바꿔주는 것이죠. 그 후, 어셈블러(Assembler) 가 다시 이를 목적 코드(Object <code class='inline-code'>Code)</code> 로 바꾼 후, 링커(Linker) 가 링킹(Linking) 을 통해 완전한 <code class='inline-code'>Exe</code> 파일을 만드는 것이죠. 하지만 솔직히, 어셈블리어가 기계어에 1 대 1 대응 되어 있으므로, 거의 기계어라 봐도 무방합니다.[[본문으로]](#footnote<span class='font-italic'>link</span>5<span class='font-italic'>2)</p></li></ol>

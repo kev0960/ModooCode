@@ -51,13 +51,16 @@ $(function () {
       // probably executable.
       if (code[0] != '#' && code[0] != '/') {
         return;
+      } else if (code.indexOf('main') == -1) {
+        return;
       }
+
       $(this).attr('id', index);
       $(this).addClass('plain-code')
 
       $("<div class='button-group'><label class='stdin-label' for='stdin-"
         + index + "'>입력</label><input type='text' class='stdin' " +
-        "id='#stdin-" + index + "' name='#stdin-'" + index + "' placeholder='" +
+        "id='stdin-" + index + "' name='stdin-" + index + "' placeholder='" +
         "프로그램 입력값을 여기에 입력하세요.'>" +
         "<button class='edit' id='edit-" + index +
         "'><i class='fas fa-edit'></i>&nbsp;&nbsp;코드 수정</button>" +
@@ -107,7 +110,8 @@ $(function () {
                  type: 'POST',
                  url: '/run',
                  data: {
-                   code: code
+                   code: code,
+                   stdin: $('#stdin-' + id).val()
                  },
                  success: function (result) {
                    var is_editor = !$('#' + id).hasClass('plain-code');
@@ -150,7 +154,7 @@ $(function () {
                    else {
                      $('#result-' + index).text(result.exec_result);
                      $('#result-' + index).prev().html(
-                       "실행 결과<span class='run-success-title'>성공</span>")
+                       "실행 결과<span class='run-success-title'>실행 성공</span>")
                    }
                    $('#result-' + index).parent().show();
                  }

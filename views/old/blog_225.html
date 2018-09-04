@@ -417,7 +417,7 @@ ad, ck, co, cu, cw, cx, dh
 </pre><p>성공적으로 컴파일 하였다면</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F2577DF3359703AE92B620A' alt=''><p>와 같이 나옵니다.</p><p>람다 함수를 정의한 부분부터 살펴보도록 합시다.</p><pre class="chroma">
 <span class="p">[</span><span class="p">]</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
 </pre><p>람다 함수는 위와 같은 꼴로 정의됩니다. 일반적인 꼴을 살펴보자면</p><pre class='info'>
-[capture list](받는 인자)->리턴 타입 { 함수 본체 }
+[capture list](받는 인자) -> 리턴 타입 { 함수 본체 }
 </pre><p>와 같은 형태 입니다. <code class='inline-code'>capture_list</code> 가 뭔지는 아래에서 설명하도록 하고, 위 함수 꼴을 살펴보자면 인자로 <code class='inline-code'>int i</code> 를 받고, <code class='inline-code'>bool</code> 을 리턴하는 람다 함수를 정의한 것입니다. 리턴 타입을 생략한다면 컴파일러가 알아서 함수 본체에서 <code class='inline-code'>return</code> 문을 보고 리턴 타입을 추측해줍니다. (만약에 <code class='inline-code'>return</code> 경로가 여러군데여서 추측할 수 없다면 컴파일 오류가 발생하지요)</p><p>리턴 타입을 생략할 경우</p><pre class='info'>
 [capture list](받는 인자) { 함수 본체 }
 </pre><p>이런 식으로 더 간단히 쓸 수 있습니다. 위 예제의 경우</p><pre class="chroma">

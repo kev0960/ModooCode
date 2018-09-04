@@ -110,8 +110,8 @@
 <span class="p">}</span>
 </pre><p>컴파일 한다면 다음과 같은 오류 메세지를 볼 수 있습니다.</p><pre class='warning'>
 error C2440 : 'initializing'
-              : cannot convert from 'Parent *' to 'Child *' Parent* 에서
-                    Child* 로 변환할 수 없습니다.
+    : cannot convert from 'Parent *' to 'Child *' Parent* 에서 Child* 로 변환할
+          수 없습니다.
 </pre><p>사실 위와 같은 오류가 발생한 이유는 간단합니다.</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F2611D54D53387E4E2FFBBC' alt=''><p>만일 <code class='inline-code'>Child*</code> 포인터가 <code class='inline-code'>Parent</code> 객체를 가리킨다고 해봅시다. 그렇다면 <code class='inline-code'>p_p-&gt;what()</code> 하게 된다면 <code class='inline-code'>Child</code> 의 <code class='inline-code'>what</code> 함수가 호출되어야만 하는데, 이는 불가능 합니다. (왜냐하면 <code class='inline-code'>p_p</code> 가 가리키는 객체는 <code class='inline-code'>Parent</code> 객체 이므로 <code class='inline-code'>Child</code> 에 대한 정보가 없습니다). 따라서, 이와 같은 문제를 막기 위해서 컴파일러 상에서 함부로 다운 캐스팅 하는 것을 금지하고 있습니다.</p><p>하지만 다음과 같은 상황은 어떨까요.</p><pre class="chroma">
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
@@ -202,7 +202,7 @@ error C2440 : 'initializing' : cannot convert from 'Parent *' to 'Child *'
     <span class="n">employee_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="o">&gt;</span><span class="n">print_info</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
     <span class="n">total_pay</span> <span class="o">+</span><span class="o">=</span> <span class="n">employee_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="o">&gt;</span><span class="n">calculate_pay</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">.</span><span class="p">.</span><span class="p">.</span>
+  <span class="p">.</span><span class="p">.</span><span class="p">.</span>
 </pre><p>바로 여기서, <code class='inline-code'>employee_list[i]-&gt;print_info()</code> 를 하게 되면 무조건 <code class='inline-code'>Employee</code> 클래스의 <code class='inline-code'>print_info</code> 함수가 호출된다는 것입니다. 왜냐하면 위에서도 이야기 하였듯이, <code class='inline-code'>employee_list[i]</code> 는 <code class='inline-code'>Employee</code> 객체를 가리키는 포인터 이기 때문에 자신이 가리키는 객체가 <code class='inline-code'>Employee</code> 객체라고 생각합니다.</p><p>하지만 우리는 <code class='inline-code'>Manager</code> 객체와 <code class='inline-code'>Employee</code> 객체 모두 <code class='inline-code'>Employee*</code> 가 가리키도록 하였으므로, 만일 <code class='inline-code'>employee_list[i]</code> 가 가리키는 것이 <code class='inline-code'>Manager</code> 객체 일 때, Manager 의 <code class='inline-code'>print_info</code> 함수가 아니라 <code class='inline-code'>Employee</code> 의 <code class='inline-code'>print_info</code> 함수가 호출되서 다른 결과를 냅니다. 마찬가지로 <code class='inline-code'>calculate_pay</code> 함수도 <code class='inline-code'>Manager</code> 의 <code class='inline-code'>calculate_pay</code> 가 호출 되어야 하는데 <code class='inline-code'>Employee</code> 의 <code class='inline-code'>calculate_pay</code> 가 호출되어서 (월급이 더 적게나오는 ㅠㅠ<code class='inline-code'>)</code> 틀린 결과가 나옵니다. 나쁜 회사였으면 환영할 일이였겠지만 착한 우리의 입장에선 이 문제를 꼭 해결해야 합니다.</p><p>실제로,</p><pre class="chroma">
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">

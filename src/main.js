@@ -2,6 +2,7 @@ const express = require('express');
 const body_parser = require('body-parser');
 const fs = require('fs');
 const zmq = require('zmq');
+const uuidv4 = require('uuid/v4');
 
 const send_sock = zmq.socket('pub');
 const recv_sock = zmq.socket('sub');
@@ -33,6 +34,7 @@ fs.readFile('file_headers.json', 'utf8', function (err, data) {
   app.get("/:id", function (req, res) {
     let page_id = parseInt(req.params.id);
     if (page_id <= 228) {
+      console.log(file_infos);
       res.render("page.ejs", {
         content_url: "./old/blog_" + page_id + ".html",
         file_info: file_infos[page_id]
@@ -48,7 +50,6 @@ recv_sock.subscribe('');
 class ZmqManager {
   constructor() {
     this.requested_codes = new Map();
-    this.cnt = 0;
 
     recv_sock.on('message', function (message) {
       message = message.toString();
@@ -63,7 +64,7 @@ class ZmqManager {
         compile_error = message.substr(delimiter + 1);
       }
 
-      let id = parseInt(message.substr(0, delimiter));
+      let id = message.substr(0, delimiter);
 
       console.log(id, message.substr(0, delimiter), {
         exec_result,
@@ -76,21 +77,27 @@ class ZmqManager {
     }.bind(this));
   }
 
-  updateCnt() {
-    this.cnt = (this.cnt + 1) % 100;
+  getNewId() {
+    return uuidv4();
   }
 
-  sendCodeToRun(code, cb) {
-    this.updateCnt();
-    this.requested_codes.set(this.cnt, cb);
-    send_sock.send([this.cnt + ':' + code]);
+  sendCodeToRun(code, stdin, cb) {
+    let id = this.getNewId();
+    this.requested_codes.set(id, cb);
+    send_sock.send([id + ':' + stdin + id + code]);
   }
 }
 
 zmq_manager = new ZmqManager();
 app.post('/run', function (req, res) {
   let code = req.body.code;
-  zmq_manager.sendCodeToRun(code, function (result) {
+  let stdin = req.body.stdin;
+
+  if (!stdin) {
+    stdin = "";
+  }
+
+  zmq_manager.sendCodeToRun(code, stdin, function (result) {
     if (result.exec_result.length > 0) {
       console.log("Execution result : \n", result.exec_result);
     } else {

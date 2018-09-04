@@ -579,10 +579,9 @@
   <span class="kt">void</span> <span class="n">what</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">child_string</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span><span class="p">;</span>
 </pre><p>만일 컴파일 하였다면 아래와 같은 컴파일 애러를 볼 수 있습니다.</p><pre class='warning'>
-error C2248
-    : 'Parent::parent_string'
-      : cannot access private member declared
-            in class 'Parent'(Parent 의 private 멤버에 접근할 수 없습니다)
+error C2248 : 'Parent::parent_string'
+    : cannot access private member declared
+          in class 'Parent'(Parent 의 private 멤버에 접근할 수 없습니다)
 </pre><p>아니 이게 도대체 무슨 말인가요! 기껏 상속 받았더니, 접근할 수 없다니요. 하지만 사실 <code class='inline-code'>private</code> 멤버 변수들은 그 어떠한 경우에서도 자기 클래스 말고는 접근할 수 없습니다. 하지만, 종종 파생 클래스(상속 받는 클래스 - 위 경우 <code class='inline-code'>Child</code> 클래스)에서 원래 부모의 클래스 (즉 여기서 <code class='inline-code'>Parent)</code> 의 데이터에 직접 접근할 필요성이 있습니다. 예를 들어서 우리의 예시의 경우 <code class='inline-code'>Employee</code> 클래스를 부모 클래스로 해서 <code class='inline-code'>Manager</code> 클래스가 상속 받았을 때, <code class='inline-code'>name</code> 이나 <code class='inline-code'>age</code> 에 접근할 필요성이 있겠지요.하지만 이들은 private 으로 되어 있기 때문에 접근이 불가합니다.</p><p>다행이도 C++ 에서는 <code class='inline-code'>protected</code> 라는 <code class='inline-code'>public</code> 과 <code class='inline-code'>private</code> 에 중간 위치에 있는 접근 지시자를 지원합니다. 이 키워드는, '상속받는 클래스에서는 접근 가능하고 그 외의 기타 정보는 접근 불가능' 이라고 보시면 됩니다. 실제 부모와 자식 사이로 쉽게 비유하자면</p><ul><li><p> <code class='inline-code'>private</code> : (자식들한테 안가르쳐 주는) 부모님 자신 주민번호</p></li><li><p> <code class='inline-code'>protected</code> : 집 현관문 비밀번호 (자식들과 부모들만 알지만 그 외의 사람들은 접근불가)</p></li><li><p> <code class='inline-code'>public</code> : 집 주소 (부모 자식 뿐만이 아니라 다른 사람들도 알 수 있다)</p></li></ul><p>이렇게 3 단계로 멤버의 접근 허용 범위를 지정할 수 있습니다. 그렇다면 실제로 <code class='inline-code'>private</code> 을 <code class='inline-code'>protected</code> 로 바꾼다면 잘 실행됨을 알 수 있습니다.</p><pre class="chroma">
 <span class="k">class</span><span class="err"> </span><span class="nc">Parent</span> <span class="p">{</span>
  <span class="k">protected</span><span class="o">:</span>

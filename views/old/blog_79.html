@@ -3,8 +3,8 @@
 
 char* strcpy(char* destination, const char* source);
 </pre><p>문자열을 복사한다.<code class='inline-code'>source</code> 가 가리키는 C 형식의 문자열 (널null 종료 문자열) 을 <code class='inline-code'>destination</code> 이 가리키는 곳에 복사한다. 이 때, 널도 포함해서 복사한다.오버플로우를 방지하기 위해서, <code class='inline-code'>destination</code> 이 가리키는 배열의 크기는 반드시 <code class='inline-code'>source</code> 문자열의 크기와 같거나 이보다 커야 한다. 또한, 복사하는 영역이 <code class='inline-code'>source</code> 와 겹치면 안된다.</p><p>참고로 위와 같은 오버플로우 문제를 방지하기 위해 <code class='inline-code'>ISO/IEC TR 24731</code> 에서 제안된 <code class='inline-code'>strcpy_s</code> 함수를 이용하면 된다. 이 함수는 마이크로소프트 C 런타임 라이브러리와 일부 C 라이브러리에서 사용 가능하다. 하지만 <code class='inline-code'>GLibc</code> 와 같은 라이브러리 에서는 지원되지 않는다. 일각에서는 마이크로소프트 컴파일러가 <code class='inline-code'>strcpy</code> 나 <code class='inline-code'>strncpy</code> 함수를 사용시 경고 메세지를 뜨게 하는 이유가, 자사의 플랫폼에만 묶어두기 위한 계획이라고도 한다. 이 <code class='inline-code'>strcpy_s</code> 함수는 만일 <code class='inline-code'>source</code> 의 크기가 <code class='inline-code'>destination</code> 보다 크다면 복사를 수행하지 않고 0 이 아닌 값을 리턴하며, (호출자가 리턴값을 무시하였을 때를 대비하여) 버퍼를 비워버린다.</p><h3><p>  간단한 <code class='inline-code'>strcpy</code> 함수의 구현</p></h3><p>별다른 변수들을 사용하지 않고도 다음과 같이 간단하게 구현할 수 있다.</p><pre class="chroma">
-<span class="cm">/* 이 소스는 http://www.jbox.dk/sanos/source/lib/string.c.html#:38 에서 가져옴*/</span> <span class="kt">char</span> <span class="o">*</span>
-<span class="nf">strcpy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/* 이 소스는 http://www.jbox.dk/sanos/source/lib/string.c.html#:38 에서 가져옴*/</span>
+<span class="kt">char</span> <span class="o">*</span><span class="nf">strcpy</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span> <span class="o">=</span> <span class="n">dst</span><span class="p">;</span>
   <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">cp</span><span class="o">+</span><span class="o">+</span> <span class="o">=</span> <span class="o">*</span><span class="n">src</span><span class="o">+</span><span class="o">+</span><span class="p">)</span>
     <span class="p">;</span>
@@ -13,8 +13,7 @@ char* strcpy(char* destination, const char* source);
 </pre><h3><p>  인자</p></h3><p><code class='inline-code'>destination</code></p><p>문자열이 복사될 곳을 가리키는 포인터</p><p><code class='inline-code'>source</code></p><p>복사할 문자열을 보관하고 있는 포인터</p><h3><p>  리턴값</p></h3><p><code class='inline-code'>destination</code> 이 리턴된다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">str2 에 str1 의 내용, 즉 &#34;Sample string&#34; 을 복사하고, str3 에는 &#34;copy
-</span><span class="cm">successful&#34; 을 복사한다.
-</span><span class="cm">이 예제는
+</span><span class="cm">successful&#34; 을 복사한다. 이 예제는
 </span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strcpy/
 </span><span class="cm">에서 가져왔습니다.
 </span><span class="cm">
