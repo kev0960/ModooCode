@@ -6,6 +6,7 @@
 
 #include "json.h"
 #include "parser.h"
+#include "path.h"
 #include "util.h"
 
 string GetOutputFile(const string& s) {
@@ -49,4 +50,13 @@ int main(int argc, char** argv) {
 
   md_parser::Json file_info_json("../file_headers.json");
   file_info_json.DumpJson(file_info_json.JsonSerialize(file_info));
+
+  // Build a page path for the old blog files.
+  md_parser::PathReader reader;
+  auto page_path_json_or_not =
+      reader.ReadAndBuildPagePath("./data/old_category.txt");
+  if (page_path_json_or_not) {
+    std::ofstream output_json("../page_path.json");
+    output_json << page_path_json_or_not.value();
+  }
 }
