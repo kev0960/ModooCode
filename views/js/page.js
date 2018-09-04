@@ -21,7 +21,7 @@ function IsNumeric(value) {
 }
 
 function FormatCompileError(msg, marked_lines) {
-  var eol = 0;
+  var eol = 0, formatted = '';
   while (eol !== -1) {
     var begin = (eol === 0 ? -1 : eol);
     eol = msg.indexOf('\n', begin + 1);
@@ -37,8 +37,16 @@ function FormatCompileError(msg, marked_lines) {
     var line_number = line.substr(1, line_number_end - 1);
     if (IsNumeric(line_number)) {
       marked_lines.add(parseInt(line_number));
+      line = line.slice(1);
+      line = "줄 " + line;
+    } else {
+      if (line[0] == ':') {
+        line = line.slice(1);
+      }
     }
+    formatted += (line + "\n");
   }
+  return formatted;
 }
 
 $(function () {
@@ -126,9 +134,9 @@ $(function () {
 
                    if (result.compile_error.length > 0) {
                      var marked_lines = new Set();
-                     FormatCompileError(result.compile_error, marked_lines);
+                     formatted = FormatCompileError(result.compile_error, marked_lines);
                      console.log(marked_lines)
-                     $('#result-' + index).text(result.compile_error);
+                     $('#result-' + index).text(formatted);
 
                      if (is_editor) {
                        marked_lines.forEach(
