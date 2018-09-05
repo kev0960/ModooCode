@@ -49,6 +49,24 @@ function FormatCompileError(msg, marked_lines) {
   return formatted;
 }
 
+function SetCategory() {
+  $('.inner-menu1').each(function() {
+    var current = $(this).prev().html();
+    $(this).prev().html("<i class=\"fas fa-caret-down\"></i>&nbsp;&nbsp;" + current);
+  });
+  $('.inner-menu2').each(function() {
+    var current = $(this).prev().html();
+    $(this).prev().html("<i class=\"fas fa-caret-down\"></i>&nbsp;&nbsp;" + current);
+  });
+  $('.sidebar-nav a').each(function() {
+    var html = $(this).html();
+    if (html.indexOf('fa-caret-down') === -1) {
+      html = "<i class='fas fa-plus-square' style='font-size:0.75em;'></i>&nbsp;&nbsp" + html;
+      $(this).html(html);
+    }
+  });
+}
+
 $(function () {
   require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
   require(['vs/editor/editor.main'], function () {
@@ -170,7 +188,6 @@ $(function () {
       });
     })
     ;
-  })
-  ;
-})
-;
+  });
+  SetCategory();
+});

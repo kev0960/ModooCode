@@ -1,4 +1,5 @@
 #include "../src/content.h"
+
 #include "../src/util.h"
 #include "gtest/gtest.h"
 
@@ -13,7 +14,7 @@ string CreateItalicHtml(const string& s) {
 }
 
 string CreateInlineCode(const string& s) {
-  return StrCat("<span class='inline-code'>", s, "</span>");
+  return StrCat("<code class='inline-code'>", s, "</code>");
 }
 
 string CreateLinkHtml(const string& link_name, const string& link) {
@@ -21,7 +22,8 @@ string CreateLinkHtml(const string& link_name, const string& link) {
 }
 
 string CreateImageHtml(const string& img_name, const string& img) {
-  return StrCat("<img src='", img, "' alt='", img_name, "'>");
+  return StrCat("<img class='content-img' src='", img, "' alt='", img_name,
+                "'>");
 }
 
 string SurroundP(const string& s) { return StrCat("<p>", s, "</p>"); }
@@ -133,12 +135,13 @@ TEST(ContentTest, Code) {
 
 TEST(ContentTest, InlineCode) {
   Content inline_code("this is `print` command");
-  EXPECT_EQ(SurroundP(StrCat("this is ", CreateInlineCode("print"), " command")),
-            inline_code.OutputHtml());
-
+  EXPECT_EQ(
+      SurroundP(StrCat("this is ", CreateInlineCode("print"), " command")),
+      inline_code.OutputHtml());
 
   Content ignore_other_stuff("this is `a * some_var__x` command");
-  EXPECT_EQ(SurroundP(StrCat("this is ", CreateInlineCode("a * some_var__x"), " command")),
+  EXPECT_EQ(SurroundP(StrCat("this is ", CreateInlineCode("a * some_var__x"),
+                             " command")),
             ignore_other_stuff.OutputHtml());
 }
 }  // namespace md_parser
