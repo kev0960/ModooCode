@@ -22,7 +22,9 @@ char* strcat(char* destination, const char* source);
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>실행 결과</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F135F1E174BF5FA1D265DDE' alt=''><h3><p>  함수 구현 예</p></h3><pre class="chroma">
-<span class="cm">/*아래 코드는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다.*/</span> <span class="kt">char</span> <span class="o">*</span>
+<span class="cm">/*아래 코드는http://www.jbox.dk/sanos/source/lib/string.c.html에서
+</span><span class="cm"> * 가져왔습니다.*/</span>
+<span class="kt">char</span> <span class="o">*</span>
 <span class="nf">strcat</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span> <span class="o">=</span> <span class="n">dst</span><span class="p">;</span>
   <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">cp</span><span class="p">)</span> <span class="n">cp</span><span class="o">+</span><span class="o">+</span><span class="p">;</span>

@@ -58,8 +58,8 @@
 </pre><p>  성공적으로 컴파일 하였다면</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F1669824B4EFEA22010493C' alt=''><p>앞선 결과와 동일하게 나오는 것을 알 수 있습니다. 위 소스코드를 찬찬히  살펴보자면 일단 <code class='inline-code'>change_val</code> 함수에서 <code class='inline-code'>number</code> 앞에 <code class='inline-code'>&</code> 를 붙이지 않았습니다. 그리고, <code class='inline-code'>change_val</code> 함수에서도 <code class='inline-code'>*p =</code> 3; 대신에 <code class='inline-code'>p =</code> 3; 으로 바뀌었습니다. 그 대신에 <code class='inline-code'>change_val</code> 에서 인자로 <code class='inline-code'>int &p</code> 를 받고 있습니다. 이게 무엇이냐. 바로 레퍼런스 입니다.</p><p>  레퍼런스(reference) 가 무엇인지 알기 위해 일단 사전에 그 의미를 검색해보았습니다.</p><pre class='info'>
 
 MENTIONING SB / STH | [ C, U ] ~(to sb / sth)(… 에 대해)말하기, 언급;
-언급 대상, 언급한 것 LOOKING FOR INFORMATION | [U](정보를 얻기 위해) 찾아봄,
-    참고, 참조
+언급 대상,
+    언급한 것 LOOKING FOR INFORMATION | [U](정보를 얻기 위해) 찾아봄, 참고, 참조
 </pre><p>  그랬더니 두번째 뜻으로 '참고' 라는 말이 나오네요. 맞습니다. 레퍼런스란, 어떤 다른 변수의 '참고', 즉 '다른 이름' 이란 의미를 가지고 있습니다. 그래서 흔히 C++ 에서 레퍼런스를 참조자 라고도 하지요. 위 경우 <code class='inline-code'>p</code> 가 <code class='inline-code'>number</code> 변수의 '다른 이름' 이 되는 것입니다. 따라서 <code class='inline-code'>p =</code> 3; 이란 명령은 <code class='inline-code'>number =</code> 3; 과 정확히 일치하는 명령이 되겠지요.</p><p>  레퍼런스를 정의하는 방법은 아래와 같습니다.</p><pre class="chroma">
 <span class="kt">int</span><span class="o">&amp;</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">number</span><span class="p">;</span>
 </pre><p> 즉, <code class='inline-code'>int</code> 타입의 변수의 레퍼런스를 만들기 위해서는 <code class='inline-code'>int&</code> 로 하면 되고, 그 오른쪽에 참고하고 싶은 것을 써주면 되지요. 어떤 특정 타입 <code class='inline-code'>T</code> 에 대해 참조자를 만들고 싶다면 <code class='inline-code'>T&</code> 와 같이 정의하면 됩니다. 아무튼, 이렇게 한다면 여러분은 <code class='inline-code'>number</code> 에 다른 이름인 'ref' 를 부여한 것이나 마찬가지 입니다. 즉 별명을 지어준 것이라 생각하세요.참조자의 가장 중요한 특성으로 반드시 정의 시 초기화<span class='font-weight-bold'> 되어야 한다 입니다. 다시 말해, 아래와 같은 문장은 존재할 수 없다는 것이지요.</p><pre class='warning'>
@@ -226,10 +226,17 @@ There shall be no references to references, no arrays of references,
 <span class="kt">int</span><span class="o">&amp;</span> <span class="n">fn2</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
 </pre><p><code class='inline-code'>fn2</code> 를 보면 인자로 레퍼런스를 받아서, 다시 그것을 그대로 리턴합니다. 쉽게말해,</p><pre class="chroma">
 <span class="n">fn2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre><p>를 했을 때, <code class='inline-code'>fn2</code> 내부에서 "아 이제 <code class='inline-code'>a</code> 는 <code class='inline-code'>x</code> 의 별명 (레퍼런스) 이다!" <code class='inline-code'>,</code> 이렇게 된 것이고, 다시 함수를 리턴할 때 "나 <code class='inline-code'>x</code> 의 별명을 리턴함!" 이렇게 되는 것이지요. 따라서, <code class='inline-code'>fn2(x) ++</code> 은 마치 <code class='inline-code'>x++</code> 을 한 문장과 동일하게 된 것입니다.</p><p>만약에 C 언어 였다면, <code class='inline-code'>x</code> 의 포인터를 리턴하고, 그걸 받아서 다시 역참조 해서 (<span class='font-italic'>) <code class='inline-code'>++</code> 을 해줬어야 하겠지요. 하지만 레퍼런스의 도입 덕분에 정말 편리해졌습니다.</p><p>생각해보기</p><p><code class='inline-code'>1.</code> 레퍼런스가 메모리 상에 반드시 존재해야 하는 경우는 어떤 경우가 있을까요? 그리고 메모리 상에 존재할 필요가 없는 경우는 또 어떤 경우가 있을 까요? (난이도 : 上)</p><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
+</pre><p>를 했을 때, <code class='inline-code'>fn2</code> 내부에서 "아 이제 <code class='inline-code'>a</code> 는 <code class='inline-code'>x</code> 의 별명 (레퍼런스) 이다!" <code class='inline-code'>,</code> 이렇게 된 것이고, 다시 함수를 리턴할 때 "나 <code class='inline-code'>x</code> 의 별명을 리턴함!" 이렇게 되는 것이지요. 따라서, <code class='inline-code'>fn2(x) ++</code> 은 마치 <code class='inline-code'>x++</code> 을 한 문장과 동일하게 된 것입니다.</p><p>만약에 C 언어 였다면, <code class='inline-code'>x</code> 의 포인터를 리턴하고, 그걸 받아서 다시 역참조 해서 (<span class='font-italic'>) <code class='inline-code'>++</code> 을 해줬어야 하겠지요. 하지만 레퍼런스의 도입 덕분에 정말 편리해졌습니다.</p><p>생각해보기</p><p><code class='inline-code'>1.</code> 레퍼런스가 메모리 상에 반드시 존재해야 하는 경우는 어떤 경우가 있을까요? 그리고 메모리 상에 존재할 필요가 없는 경우는 또 어떤 경우가 있을 까요? (난이도 : 上)</p><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기
+            바랍니다
+                .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
 
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
+        현재 여러분이 보신 강좌는
+        << 씹어먹는 C++ -
+    < 2 - 2. C++ 은 C 친구일까
+    ? >>> 입니다.이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를
+              읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
 
-
-[다음 강좌 보러가기](http://itguru.tistory.com/135)
+                  [다음 강좌 보러가기](http
+                                       :  // itguru.tistory.com/135)
 </pre>

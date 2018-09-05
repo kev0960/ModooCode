@@ -18,15 +18,20 @@ namespace md_parser {
 
 namespace {
 
-// Remove empty p tags. (e.g <p></p>).
+// Remove empty p tags. (e.g <p>  </p>).
 void RemoveEmptyPTag(string* s) {
   for (size_t i = 0; i < s->size(); i++) {
     if (s->at(i) == '<') {
       if (i + 2 < s->size() && s->substr(i, 3) == "<p>") {
         size_t p_tag_start = i;
         i += 3;
+
+        // Ignore whitespaces (tab and space).
+        while (s->at(i) == ' ' || s->at(i) == '\t') {
+          i ++;
+        }
         if (i + 3 < s->size() && s->substr(i, 4) == "</p>") {
-          s->erase(p_tag_start, 7);
+          s->erase(p_tag_start, (i + 4) - p_tag_start);
           i = p_tag_start - 1;
         }
       }

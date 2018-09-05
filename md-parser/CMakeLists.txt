@@ -73,3 +73,10 @@ add_executable(parser_test
                src/parser_environment.cc)
 target_link_libraries(parser_test gmock_main chroma)
 add_test(NAME parser_test COMMAND parser_test)
+
+add_executable(path_test
+               test/path_test.cc
+               src/util.cc
+               src/path.cc)
+target_link_libraries(path_test gmock_main)
+add_test(NAME path_test COMMAND path_test)

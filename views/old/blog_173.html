@@ -75,10 +75,9 @@
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre><p>  위 소스를 컴파일 하였다면 오류가 발생함을 알 수 있습니다. 오류를 살짝 보자면</p><pre class='warning'>
-error C2668
-    : 'print'
-      : ambiguous call to overloaded function could be 'void print(char)' or
-        'void print(int)' while trying to match the argument list '(double)'
+error C2668 : 'print'
+    : ambiguous call to overloaded function could be 'void print(char)' or
+      'void print(int)' while trying to match the argument list '(double)'
 </pre><p>와 같이 나오는데요, 왜 오류가 발생하였는지 살펴보도록 합시다. 일단 위 소스에서는 함수가 <code class='inline-code'>print (int x)</code> 와 <code class='inline-code'>print (char x)</code> 밖에 없으므로 관건은 print(c); 를 했을 때 어떠한 함수가 호출되어야 하는지 결정하는 것인데요, <code class='inline-code'>print(c)</code> 를 했을 때 1 단계에서는 명백하게 일치하는 것이 없습니다. 2 단계에서는 마찬가지로 <code class='inline-code'>double</code> 의 캐스팅에 관련한 내용이 없기에 일치하는 것이 없고 비로소 3 단계로 넘어오게 됩니다. 3 단계에서는 '임의의 숫자 타입이 임의의 숫자 타입' 으로 변환되서 생각되기 때문에 <code class='inline-code'>double</code> 은 <code class='inline-code'>char</code> 도, <code class='inline-code'>int</code> 도 변환 될 수 있게 되는 것입니다.</p><p>따라서 같은 단계에 두 개 이상의 가능한 일치가 존재하므로 오류가 발생하게 되는 것이지요.</p><p>위와 같은 C++ 오버로딩 규칙을 머리속에 숙지 하는 일은 매우 중요한 일입니다. 왜냐하면 나중에 복잡한 함수를 오버로딩할 때 여러가개 중복되서 나온다면 눈물없이 볼 수 없는 오류의 향연을 만날 수 있을 것입니다!</p><h3><p>  Date 클래스</p></h3><pre class="chroma">
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="cp"></span>

@@ -85,19 +85,27 @@
 </span><span class="cm">  변수의 이름에는 띄어쓰기하면 안됩니다. 그 대신 _ 로 대체하는 것이 읽기
 </span><span class="cm">  좋습니다.*/</span>
   <span class="kt">int</span> <span class="n">space_bar</span><span class="p">;</span>  <span class="c1">// 이것은 괜찮습니다.
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="k">enum</span><span class="p">,</span> <span class="kt">long</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="k">break</span>
+</span><span class="c1"></span>  <span class="kt">int</span> <span class="k">enum</span><span class="p">,</span> <span class="kt">long</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span>
+      <span class="k">break</span>
       <span class="cm">/* (오류)
 </span><span class="cm">       지금 나열한 이름들은 모두 &#39;예약어&#39; 로 C 언어에서 이미 쓰이고 있는
-</span><span class="cm">       것들입니다.
-</span><span class="cm">       따라서 이러한 것들은 쓰면 안됩니다. 이를 구분하는 방법은 예약어들을 모두
+</span><span class="cm">       것들입니다. 따라서 이러한 것들은 쓰면 안됩니다. 이를 구분하는 방법은
+</span><span class="cm">       예약어들을 모두
 </span><span class="cm">       외우거나 &#39;파란색&#39; 으로 표시된 것들은 모두 예약어라 볼 수 있습니다 */</span>
 
       <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>  이 안에 모든 내용이 들어 있습니다. 변수의 이름은 반드시</p><ul><li><p> 숫자가 앞에 위치하면 안됩니다. 그러나 중간이나 뒤는 괜찮습니다.</p></li><li><p> 변수명은 오직 영어, 숫자, <code class='inline-code'>_</code> 로 만 구성되어 있어야 합니다.</p></li><li><p> 변수의 이름에 띄어쓰기가 있으면 안됩니다.</p></li><li><p> 변수의 이름이 C 언어 예약어 이면 안됩니다. 보통 예약어를 쓰면 파란색 글자체로 표시되어 예약어를 썼는지 안썼는지 알 수 있습니다.</p></li></ul><p> 또한<code class='inline-code'>C</code> 언어는 대소문자를 구분합니 C 언어는 대소문자를 구분합니다<code class='inline-code'>. (Case sensitive)</code> 따라서, <code class='inline-code'>VARiable</code> 과 <code class='inline-code'>Variable</code> 은 다른 변수 입니다. 왠지, 조건이 많아 변수명을 지을 때, 까다로울 것 같지만 그냥 평범하게 짓다보면 예약어와 겹칠일 도 없고, 숫자가 앞에 오는 경우도 별로 없습니다.</p><p>  자, 이제 우리는 C 언어에서 중요한 부분인 변수에 대해서 알아보았습니다. 현재 우리는 수를 다루는 변수들만 다루었지만, 다음 강좌에서는 변수에 대한 산술 연산과, 문자를 다루는 변수에 대해 알아보도록 하겠습니다.</p><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
+</pre><p>  이 안에 모든 내용이 들어 있습니다. 변수의 이름은 반드시</p><ul><li><p> 숫자가 앞에 위치하면 안됩니다. 그러나 중간이나 뒤는 괜찮습니다.</p></li><li><p> 변수명은 오직 영어, 숫자, <code class='inline-code'>_</code> 로 만 구성되어 있어야 합니다.</p></li><li><p> 변수의 이름에 띄어쓰기가 있으면 안됩니다.</p></li><li><p> 변수의 이름이 C 언어 예약어 이면 안됩니다. 보통 예약어를 쓰면 파란색 글자체로 표시되어 예약어를 썼는지 안썼는지 알 수 있습니다.</p></li></ul><p> 또한<code class='inline-code'>C</code> 언어는 대소문자를 구분합니 C 언어는 대소문자를 구분합니다<code class='inline-code'>. (Case sensitive)</code> 따라서, <code class='inline-code'>VARiable</code> 과 <code class='inline-code'>Variable</code> 은 다른 변수 입니다. 왠지, 조건이 많아 변수명을 지을 때, 까다로울 것 같지만 그냥 평범하게 짓다보면 예약어와 겹칠일 도 없고, 숫자가 앞에 오는 경우도 별로 없습니다.</p><p>  자, 이제 우리는 C 언어에서 중요한 부분인 변수에 대해서 알아보았습니다. 현재 우리는 수를 다루는 변수들만 다루었지만, 다음 강좌에서는 변수에 대한 산술 연산과, 문자를 다루는 변수에 대해 알아보도록 하겠습니다.</p><pre class='warning'>강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기
+            바랍니다
+                .그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관
+                    없습니다.생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
 
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <3. 변수가 뭐지? >>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
+        현재 여러분이 보신 강좌는
+        << 씹어먹는 C 언어 -
+    < 3. 변수가 뭐지
+    ? >>> 입니다.이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를
+              읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
 
-
-[다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
+                  [다음 강좌 보러가기](http
+                                       :  // itguru.tistory.com/notice/15)
 </pre>

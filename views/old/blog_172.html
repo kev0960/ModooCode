@@ -103,7 +103,7 @@
 </pre><p>  위와 같은 오류가 3 개 정도 등장하게 됩니다. 다시 말해, <code class='inline-code'>Animal</code> 의 <code class='inline-code'>private</code> 멤버 함수에 접근할 수 없다는 의미겠지요. 결과적으로 외부에서 접근을 할 수 없는 객체는 그냥 아무짝에도 쓸모 없는 덩어리로 남게 됩니다.</p><p>  참고로 키워드 명시를 하지 않았다면 기본적으로 <code class='inline-code'>private</code> 로 설정됩니다. 즉, 맨 위의 <code class='inline-code'>private</code> 키워드를 지워도 상관이 없다는 것이지요. 그냥 <code class='inline-code'>private</code> 없이</p><pre class="chroma"><span class="k">class</span><span class="err"> </span><span class="nc">Animal</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">food</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>
-<span class="c1">// ... 생략
+  <span class="c1">// ... 생략
 </span><span class="c1"></span></pre><p>  이렇게 해도 <code class='inline-code'>food</code> 와 <code class='inline-code'>weight</code> 는 알아서 <code class='inline-code'>private</code> 로 설정 됩니다.</p><p>  만일 멤버 변수들도 <code class='inline-code'>public</code> 으로 공개해버리면 어떨까요. 그러면 <code class='inline-code'>main</code> 함수에서 마치 예전에 구조체를 사용했던 것 처럼</p><pre class="chroma"><span class="n">animal</span><span class="p">.</span><span class="n">food</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
 </pre><p>로 손쉽게 접근할 수 있게 됩니다. 이제 멤버 변수에 대해 조금 더 자세히 살펴 보도록 합시다.</p><pre class="chroma"><span class="kt">void</span> <span class="nf">set_animal</span><span class="p">(</span><span class="kt">int</span> <span class="n">_food</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_weight</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">food</span> <span class="o">=</span> <span class="n">_food</span><span class="p">;</span>

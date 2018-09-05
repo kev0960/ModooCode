@@ -31,8 +31,11 @@ char* strtok(char* str, const char* delimiters);
 <span class="p">}</span>
 </pre><h3><p>  실행 예제</p></h3><pre class="chroma">
 
-<span class="cm">/*&#39; &#39;, &#39;,&#39;, &#39;-&#39;, &#39;.&#39; 들을 구분 문자로 이용하여 - This, a sample string. 이라는 문자열을 토큰들로 분리한다.이 예제는http://www.cplusplus.com/reference/clibrary/cstring/strtok/에서 가져왔습니다*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string.h&gt; int</span><span class="cp">
+<span class="cm">/*&#39; &#39;, &#39;,&#39;, &#39;-&#39;, &#39;.&#39; 들을 구분 문자로 이용하여 - This, a sample string. 이라는
+</span><span class="cm"> * 문자열을 토큰들로 분리한다.이
+</span><span class="cm"> * 예제는http://www.cplusplus.com/reference/clibrary/cstring/strtok/에서
+</span><span class="cm"> * 가져왔습니다*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; #include &lt;string.h&gt; int</span><span class="cp">
 </span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="p">]</span> <span class="o">=</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">- This, a sample string.</span><span class="s">&#34;</span><span class="p">;</span>
   <span class="kt">char</span><span class="o">*</span> <span class="n">pch</span><span class="p">;</span>
@@ -44,4 +47,4 @@ char* strtok(char* str, const char* delimiters);
   <span class="p">}</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>실행 결과</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F1415910C4CF0E82149948F' alt=''><h3><p>  연관된 함수</p></h3><ul><li><p> </p></li></ul><p><a href='http://itguru.tistory.com/94'>strcspn</a>  :  특정한 문자를 찾을 때 까지의 길이를 구한다.</p><ul><li><p> <a href='http://itguru.tistory.com/95'>strpbrk</a>  :  문자열에서 특정한 문자를 찾는다.</p></li></ul>
+</pre><p>실행 결과</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F1415910C4CF0E82149948F' alt=''><h3><p>  연관된 함수</p></h3><ul><li></li></ul><p><a href='http://itguru.tistory.com/94'>strcspn</a>  :  특정한 문자를 찾을 때 까지의 길이를 구한다.</p><ul><li><p> <a href='http://itguru.tistory.com/95'>strpbrk</a>  :  문자열에서 특정한 문자를 찾는다.</p></li></ul>

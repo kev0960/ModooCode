@@ -5,10 +5,9 @@ char* strncpy(char* destination, const char* source, size_t num);
 </pre><p>문자열에서 일부 문자들 만을 복사한다.<code class='inline-code'>source</code> 에서 <code class='inline-code'>destination</code> 으로 <code class='inline-code'>source</code> 의 처음 <code class='inline-code'>num</code> 개의 문자들 만을 복사(NULL 도 포함해서) 한다. <code class='inline-code'>num</code> 보다 <code class='inline-code'>source</code> 의 문자 수가 더 적다면은 모자란 부분은 0 으로 생각되어서 <code class='inline-code'>destination</code> 에 복사가 된다. 다시 말해 <code class='inline-code'>source</code> 가 "abc" 인다, <code class='inline-code'>num</code> 이 5 라면 <code class='inline-code'>destination</code> 에는 "abc\0\0" 가 들어가게 된다.</p><p><code class='inline-code'>strncpy</code> 함수는 복사시 <code class='inline-code'>destination</code> 끝에 반드시 <code class='inline-code'>NULL</code> 문자를 붙이는 것이 아니므로 사용에 주의를 해야 한다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>destination</code></p><p><code class='inline-code'>destination</code> 배열을 가리키는 포인터로 문자열이 복사될 곳이다.</p><p><code class='inline-code'>source</code></p><p>복사 될 C 문자열이다.</p><p><code class='inline-code'>num</code></p><p><code class='inline-code'>source</code> 에서 복사 할 문자의 개수 이다.</p><h3><p>  리턴값</p></h3><p><code class='inline-code'>destination</code> 을 리턴한다.</p><h3><p>  실행 예제</p></h3><pre class="chroma"><span class="cm">/*
 </span><span class="cm">
 </span><span class="cm">str2 에 str1 의 첫 5 문자, 즉 &#34;To be&#34; 를 복사해 넣는다. 이 때, str2 에는
-</span><span class="cm">자동으로 끝에 NULL 문자가 붙는 것이 아니므로 인위적으로 넣어주어야 한다.
-</span><span class="cm">이 예제는
-</span><span class="cm">http://www.cplusplus.com/reference/clibrary/cstring/strncpy/
-</span><span class="cm">에서 가져왔습니다.
+</span><span class="cm">자동으로 끝에 NULL 문자가 붙는 것이 아니므로 인위적으로 넣어주어야 한다. 이
+</span><span class="cm">예제는 http://www.cplusplus.com/reference/clibrary/cstring/strncpy/ 에서
+</span><span class="cm">가져왔습니다.
 </span><span class="cm">
 </span><span class="cm">*/</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">

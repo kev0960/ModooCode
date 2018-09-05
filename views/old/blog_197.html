@@ -617,9 +617,8 @@ ref = c;   // [http://itguru.tistory.com/141](http://itguru.tistory.com/141) 를
 // e = 2;
 // a.show_x();
 </pre><p>그럼 주석 처리된 위 예를 살펴봅시다. 주석을 풀면 컴파일이 안되므로 주석 처리 해 놓은 것인데, 실제로 주석을 풀고 컴파일을 해보면</p><pre class='warning'>
-error C2440
-    : 'initializing'
-      : cannot convert from 'int' to 'int &'(int 를 int& 로 바꿀 수 없습니다)
+error C2440 : 'initializing'
+    : cannot convert from 'int' to 'int &'(int 를 int& 로 바꿀 수 없습니다)
 </pre><p>아래와 같은 오류가 발생합니다. 그 이유는 레퍼런스가 아닌 타입을 리턴하는 경우는 '값' 의 복사가 이루어지기 때문에 임시 객체가 생성되는데, 임시객체의 레퍼런스를 가질 수 없기 때문입니다. (임시객체는 문장이 끝나게 되면 소멸됩니다) 이 과정을 그림으로 그려보면 아래와 같습니다.</p><img class='content-img' src='http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F272F193851A18E5A29B569' alt=''><p><code class='inline-code'>get_x</code> 의 리턴으로 인해 임시로 '복사생성' 된 <code class='inline-code'>int</code> 는 <code class='inline-code'>a.get_x()</code> 부분을 대체하며 위 그림의 경우</p><pre class="chroma">
 <span class="kt">int</span> <span class="o">&amp;</span><span class="n">e</span> <span class="o">=</span> <span class="n">x</span><span class="err">&#39;</span>
 </pre><p>과 같이 되는데, x' 은 문장이 끝날 때 자동으로 소멸되는 임시 객체 이기 때문에 레퍼런스를 만들 수 없습니다. 설사 레퍼런스를 만들었다고 해도 '이미 존재하지 않는 것에 대한 별명' 이 되므로 이 레퍼런스에 접근하는 것은 오류이겠지요. 아무튼 이러한 이유로 <code class='inline-code'>int</code> 를 리턴하는 <code class='inline-code'>a.get_x</code> 에 대해서는 레퍼런스를 만들 수 없습니다. (정확한 설명을 하자면 <code class='inline-code'>int&</code> 는 좌측값에 대한 레퍼런스 이고, <code class='inline-code'>a.get_x()</code> 는 우측값 이기 때문에 레퍼런스를 만들 수 없습니다. 좌측값, 우측값 내용은 나중에 더 자세히 다루겠지만 <a href='http://itguru.tistory.com/189'>궁금하신 분들은 이 글을 읽어보세요</a><code class='inline-code'>!)</code></p><pre class="chroma">

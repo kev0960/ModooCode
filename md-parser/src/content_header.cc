@@ -36,9 +36,12 @@ HeaderContent::HeaderContent(const string& content, TokenTypes token_type)
 }
 
 string HeaderContent::OutputHtml() {
+  auto output_html = Content::OutputHtml();
+  if (output_html.empty()) {
+    return "";
+  }
   const string start_header = StrCat("<h", std::to_string(header_cnt_), ">");
   const string end_header = StrCat("</h", std::to_string(header_cnt_), ">");
-
   return StrCat(start_header, Content::OutputHtml(), end_header);
 }
 

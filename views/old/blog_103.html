@@ -36,19 +36,12 @@
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>위 코드는 이전에 구조체 단원에서 만들었던 루저-위너 구별 프로그램 입니다. 그런데 위 코드에서 한 가지 귀찮은 점이 있습니다. 바로, 구조체를 사용할 때 마다 앞에 <code class='inline-code'>struct</code> 키워드를 붙여야 한다는 점입니다. 이게 상당히 짜증나는 일인데, 간혹 <code class='inline-code'>struct</code> 키워드를 붙이지 않는 날에는</p><pre class='warning'>error C2146
-    : 구문 오류
-      : ')'이(가)'human' 식별자 앞에 없습니다
-            .error C2061
-        : 구문 오류
-          : 식별자 'human' error C2059
-            : 구문 오류
-              : ';' error C2059
-                : 구문 오류
-                  : ')' error C2449
-                    : 파일 범위에
-                      '{'가 있습니다.함수 헤더가 없는 것 같습니다.error C2059
-                      : 구문 오류 : '}'
+</pre><p>위 코드는 이전에 구조체 단원에서 만들었던 루저-위너 구별 프로그램 입니다. 그런데 위 코드에서 한 가지 귀찮은 점이 있습니다. 바로, 구조체를 사용할 때 마다 앞에 <code class='inline-code'>struct</code> 키워드를 붙여야 한다는 점입니다. 이게 상당히 짜증나는 일인데, 간혹 <code class='inline-code'>struct</code> 키워드를 붙이지 않는 날에는</p><pre class='warning'>error C2146 : 구문 오류 : ')'이(가)'human' 식별자 앞에 없습니다
+                              .error C2061 : 구문 오류
+    : 식별자 'human' error C2059 : 구문 오류 : ';' error C2059 : 구문 오류
+    : ')' error C2449 : 파일 범위에
+                        '{'가 있습니다.함수 헤더가 없는 것 같습니다.error C2059
+    : 구문 오류 : '}'
 </pre><p>위와 같은 오류 테러를 맞보게 됩니다. (위 오류는 <code class='inline-code'>int Print_Status(struct HUMAN human)</code> 대신에 <code class='inline-code'>int Print_Status(HUMAN human)</code> 이라 썼을 때 나타나는 오류들 입니다) 상당히 짜증나는 일지요. 그렇다면 귀찮게 'struct HUMAN' 이라 길게 쓰는 대신에 짧에 쓰는 방법이 없을까요?</p><p>물론 있습니다.</p><pre class="chroma"><span class="cm">/* typedef 의 이용 */</span>
 <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
 </span><span class="cp"></span><span class="k">struct</span> <span class="n">HUMAN</span> <span class="p">{</span>
@@ -204,7 +197,7 @@
   <span class="p">}</span>
   <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Data : %d </span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">sensor</span><span class="o">-</span><span class="o">&gt;</span><span class="n">data</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</pre><p>  이렇게 해준 순간 컴파일러는 <code class='inline-code'>sensor</code> 에 대해 최적화를 수행하지 않게 됩니다. <code class='inline-code'>volatile</code> 의 의미는 ‘변덕스러운’ 이라는 의미를 가지고 있는데, <code class='inline-code'>sensor</code> 에 <code class='inline-code'>volatile</code> 키워드를 붙여준 순간 <code class='inline-code'>sensor-&gt;sensor_flag</code> 의 값이 ‘변덕스럽게 변할 수 있기 때문’ 에 이에 대한 최적화 작업들을 수행하지 말라 라는 의미가 됩니다. 따라서 컴파일러는 위 소스를 의미 그대로 컴파일 하게 되어 우리가 원하던 결과를 얻을 수 있게 됩니다.</p><h3><p> #pragma 키워드</p></h3><h3><p> </p></h3><p>  #pragma 는 ‘컴파일러에게 말하는 전처리기 명령’ 이라고 보시면 됩니다. 즉, #include 나 #define 처럼 전처리기에 의해 컴파일 이전에 처리되지만, 그 명령은 컴파일러에게 전달되기 때문이죠. 사실 <code class='inline-code'>pragma</code> 는 C 언어의 기본 키워드라고 하기 보다는, 컴파일러에 종속적인 키워드라고 하는 것이 맞습니다. <code class='inline-code'>pragma</code> 를 사용하는 문법은 컴파일러 마다 다르고 딱히 통일 된 것이 없기 때문입니다. 이 강좌에서는 <code class='inline-code'>pragma</code> 를 사용하는 몇 가지 예제들을 보고 어떤 경우에 편리하게 <code class='inline-code'>pragma</code> 를 사용할 수 있는지 살펴봅시다.<code class='inline-code'>1.</code> #pragma <code class='inline-code'>pack</code><span class='font-weight-bold'></p><p>#include <stdio.h>struct Weird{    char arr[2];    int i;};int main(){    struct Weird a;    printf("size of a : %d \n", sizeof(a));    return 0;}</p><pre class="chroma">
+</pre><p>  이렇게 해준 순간 컴파일러는 <code class='inline-code'>sensor</code> 에 대해 최적화를 수행하지 않게 됩니다. <code class='inline-code'>volatile</code> 의 의미는 ‘변덕스러운’ 이라는 의미를 가지고 있는데, <code class='inline-code'>sensor</code> 에 <code class='inline-code'>volatile</code> 키워드를 붙여준 순간 <code class='inline-code'>sensor-&gt;sensor_flag</code> 의 값이 ‘변덕스럽게 변할 수 있기 때문’ 에 이에 대한 최적화 작업들을 수행하지 말라 라는 의미가 됩니다. 따라서 컴파일러는 위 소스를 의미 그대로 컴파일 하게 되어 우리가 원하던 결과를 얻을 수 있게 됩니다.</p><h3><p> #pragma 키워드</p></h3><p>  #pragma 는 ‘컴파일러에게 말하는 전처리기 명령’ 이라고 보시면 됩니다. 즉, #include 나 #define 처럼 전처리기에 의해 컴파일 이전에 처리되지만, 그 명령은 컴파일러에게 전달되기 때문이죠. 사실 <code class='inline-code'>pragma</code> 는 C 언어의 기본 키워드라고 하기 보다는, 컴파일러에 종속적인 키워드라고 하는 것이 맞습니다. <code class='inline-code'>pragma</code> 를 사용하는 문법은 컴파일러 마다 다르고 딱히 통일 된 것이 없기 때문입니다. 이 강좌에서는 <code class='inline-code'>pragma</code> 를 사용하는 몇 가지 예제들을 보고 어떤 경우에 편리하게 <code class='inline-code'>pragma</code> 를 사용할 수 있는지 살펴봅시다.<code class='inline-code'>1.</code> #pragma <code class='inline-code'>pack</code><span class='font-weight-bold'></p><p>#include <stdio.h>struct Weird{    char arr[2];    int i;};int main(){    struct Weird a;    printf("size of a : %d \n", sizeof(a));    return 0;}</p><pre class="chroma">
 
 성공적으로 컴파일 했다면
 

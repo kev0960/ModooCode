@@ -143,9 +143,9 @@
 <span class="n">Animal</span> <span class="n">a</span><span class="p">;</span>
 <span class="n">a</span><span class="p">.</span><span class="n">speak</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 </pre><p>하면 안되기 때문이지요. 물론, <code class='inline-code'>speak()</code> 함수를 호출하는 것을 컴파일러 상에서 금지하면 되지 않냐고 물을 수 있는데, C++ 개발자들은 이러한 방법 대신에 아예 <code class='inline-code'>Animal</code> 의 객체 생성을 금지시키는 것으로 택하였습니다. (쉽게 말해 <code class='inline-code'>Animal</code> 의 인스턴스를 생성할 수 없지요)</p><p>만일 <code class='inline-code'>Animal</code> 의 객체를 생성하려고 한다면 다음과 같은 컴파일 오류를 만날 수 있습니다.</p><pre class='warning'>
-error C2259 : 'Animal' : cannot instantiate abstract class 1 >
-                         due to following members : 1 >
-                         'void Animal::speak(void)' : is abstract
+error C2259 : 'Animal'
+    : cannot instantiate abstract class 1 > due to following members : 1 >
+      'void Animal::speak(void)' : is abstract
 </pre><p>따라서 <code class='inline-code'>Animal</code> 처럼,순수 가상 함수를 최소 한 개 이상 포함하고 있는 클래스는 객체를 생성할 수 없으며<code class='inline-code'>,</code> 인스턴스화 시키기 위해서는 이 클래스를 상속 받는 클래스를 만들어서 모든 순수 가상 함수를 오버라이딩 해주어야만 합니다. 이렇게순수 가상 함수를 최소 한개 포함하고 있는<span class='font-weight-bold'> - 반드시 상속 되어야 하는 클래스를 가리켜추상 클래스 (abstract class)</span> 라고 부릅니다. (참고로, 이러한 이유 때문에 순수 가상 함수는 반드시 <code class='inline-code'>public</code> 이나 <code class='inline-code'>protected</code> 가 되어야 합니다. <code class='inline-code'>private</code> 으로 정의될 경우 오버라이드 될 수 가 없기 때문이지요. <code class='inline-code'>)</code></p><p>따라서;</p><pre class="chroma">
 <span class="k">class</span><span class="err"> </span><span class="nc">Dog</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Animal</span> <span class="p">{</span>
  <span class="k">public</span><span class="o">:</span>

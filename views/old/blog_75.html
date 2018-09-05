@@ -5,9 +5,13 @@ void rewind(FILE* stream);
 </pre><p>스트림의 위치 지정자를 맨 처음으로 설정한다.참고로 위 함수의 작업은</p><pre class="chroma"><span class="n">fseek</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_SET</span><span class="p">)</span><span class="p">;</span>
 </pre><p>과 정확히 동일하다.단, <a href='http://itguru.tistory.com/72'>fseek</a><span class='font-weight-bold'> 함수와는 달리 <code class='inline-code'>rewind</code> 함수는 오류 지정자를 초기화 한다.따라서, 스트림이 읽기 및 쓰기 형식으로 열려있을 경우, <code class='inline-code'>rewind</code> 함수를 호출함으로써 읽기에서 쓰기 모드로, 쓰기에서 읽기 모드로 변경할 수 있다.</p><h3><p>  인자</p></h3><p><code class='inline-code'>stream</code></p><p>스트림의 <code class='inline-code'>FILE</code> 객체를 가리키는 포인터</p><h3><p>  리턴값</p></h3><p>없음</p><h3><p>  실행 예제</p></h3><pre class="chroma">
 
-<span class="cm">/*myfile.txt 에 A 부터 Z 까지 출력한 뒤, 다시 pFile 을 파일의 처음으로 옮긴 후 파일의 내용을 읽어들인다. 즉, buffer 에는 A 부터 Z 까지 들어가게 된다. 따라서 화면에는 ABCDEFGHIZKLMNOPQRSTUVWXYZ 가 출력된다.이 예제는http://www.cplusplus.com/reference/clibrary/cstdio/rewind/에서 가져왔습니다.*/</span> <span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;</span><span class="cp">
-</span><span class="cp"></span>    <span class="n">stdio</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span> <span class="kt">int</span>
-<span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="cm">/*myfile.txt 에 A 부터 Z 까지 출력한 뒤, 다시 pFile 을 파일의 처음으로 옮긴 후
+</span><span class="cm"> * 파일의 내용을 읽어들인다. 즉, buffer 에는 A 부터 Z 까지 들어가게 된다. 따라서
+</span><span class="cm"> * 화면에는 ABCDEFGHIZKLMNOPQRSTUVWXYZ 가 출력된다.이
+</span><span class="cm"> * 예제는http://www.cplusplus.com/reference/clibrary/cstdio/rewind/에서
+</span><span class="cm"> * 가져왔습니다.*/</span>
+<span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdio.h&gt; int</span><span class="cp">
+</span><span class="cp"></span><span class="n">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
   <span class="n">FILE</span><span class="o">*</span> <span class="n">pFile</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">27</span><span class="p">]</span><span class="p">;</span>

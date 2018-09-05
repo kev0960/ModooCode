@@ -1,8 +1,8 @@
-<pre class='warning'>이 글은 http:  // thbecker.net/articles/rvalue_references/section_01.html 에서
-               // 가져왔고 한국말로 번역되었습니다. 또한 저의 개인적인 C++ 능력
-               // 향상과 ' [저의 모토인 지식
-               // 전파](http://itguru.tistory.com/notice/107)'를 위해 모든
-               // 이들에게 공개하도록 하겠습니다.
+<pre class='warning'>이 글은 http
+    :  // thbecker.net/articles/rvalue_references/section_01.html 에서 가져왔고
+       // 한국말로 번역되었습니다. 또한 저의 개인적인 C++ 능력 향상과 ' [저의
+       // 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든
+       // 이들에게 공개하도록 하겠습니다.
 </pre><pre class='info'>이 글을 이해하기 위해서는 초보 이상의 C++ 지식이 필요합니다.
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 </pre><p>안녕하세요? 이 글은 씹어먹는 C++ 과 이어지는 강좌는 아니고, 이번 새로나온 C++ 표준안 (C++11) 에 새로 포함되어 있는 <code class='inline-code'>R-value</code> 레퍼런스, 흔히 말해 우측값 참조라는 새로운 기능에 대해 잘 정리 되어 있는 글을 번역한 내용 입니다. 원문은 <a href='http://thbecker.net/articles/rvalue_references/section_01.htmlhttp://thbecker.net/articles/rvalue_references/section_01.html'>http://thbecker.net/articles/rvalue_references/section_01.html</a> 에서 확인하실 수 있습니다.</p><h3><p>  서론</p></h3><p>우측값 참조(R <code class='inline-code'>value reference)</code> 는 <code class='inline-code'>C++11</code> 표준안에 새롭게 추가된 C++ 의 새 기능 인데 상당히 이해하기 까다롭습니다. 저는 C++ 커뮤니티에서 많은 사람들이 다음과 같이 말하는 것을 매우 자주 보았습니다.</p><pre class='warning'>
@@ -83,7 +83,7 @@
 <span class="n">X</span> <span class="n">x</span><span class="p">;</span>
 <span class="n">X</span> <span class="nf">foobar</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 
-<span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">;</span>         <span class="c1">// 인자에 좌측값이 들어 갔으므로 좌측값 참조 함수가 오버로딩
+<span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 인자에 좌측값이 들어 갔으므로 좌측값 참조 함수가 오버로딩
 </span><span class="c1"></span><span class="n">foo</span><span class="p">(</span><span class="n">foobar</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>  <span class="c1">//인자에 우측값이 들어 갔으므로 우측값 참조 함수가 오버로딩
 </span><span class="c1"></span></pre><p>내용을 요약해보자면</p><p>우측값 참조는 컴파일러로 하여금 컴파일 시에 자신의 인자로 좌측값이 오는지, 우측값이 오는지에 따라 오버로딩을 할 수 있도록 도와주는 것이라고 볼 수 있습니다.</p><p>어떠한 함수라도 인자로 우측값을 받도록 할 수 있지만, 대다수의 경우 <code class='inline-code'>move</code> 연산을 위해서는 우측값 참조로 인자를 받는 경우는 복사 생성자나 대입 연산자들 밖에 없습니다.</p><pre class="chroma">
 <span class="n">X</span><span class="o">&amp;</span> <span class="n">X</span><span class="o">:</span><span class="o">:</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">X</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 기존의 구현 방법
