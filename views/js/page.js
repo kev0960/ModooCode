@@ -49,20 +49,88 @@ function FormatCompileError(msg, marked_lines) {
   return formatted;
 }
 
+var page_infos, file_info;
+
 function SetCategory() {
-  $('.inner-menu1').each(function() {
+  $('.inner-menu1').each(function () {
     var current = $(this).prev().html();
-    $(this).prev().html("<i class=\"fas fa-caret-down\"></i>&nbsp;&nbsp;" + current);
+    $(this).prev()
+           .html("<i class=\"fas fa-caret-down\"></i>&nbsp;&nbsp;" + current);
   });
-  $('.inner-menu2').each(function() {
+  $('.inner-menu2').each(function () {
     var current = $(this).prev().html();
-    $(this).prev().html("<i class=\"fas fa-caret-down\"></i>&nbsp;&nbsp;" + current);
+    $(this).prev()
+           .html("<i class=\"fas fa-caret-down\"></i>&nbsp;&nbsp;" + current);
   });
-  $('.sidebar-nav a').each(function() {
+  $('.sidebar-nav a').each(function () {
     var html = $(this).html();
     if (html.indexOf('fa-caret-down') === -1) {
-      html = "<i class='fas fa-plus-square' style='font-size:0.75em;'></i>&nbsp;&nbsp" + html;
+      html =
+        "<i class='fas fa-plus-square' style='font-size:0.75em;'></i>&nbsp;&nbsp" +
+        html;
       $(this).html(html);
+    }
+  });
+}
+
+function InitCategory() {
+  function GetPagePathFromNavId(elem) {
+    var path = [elem.text()];
+    while (elem.parent().attr('class').indexOf('inner-menu') !== -1) {
+      elem = elem.parent().prev();
+      path.unshift(elem.text());
+    }
+    return path;
+  }
+
+  function GetFilesFromPath(path) {
+    var current_dir = page_infos[""];
+    for (var i = 0; i < path.length; i++) {
+      current_dir = current_dir[path[i]];
+    }
+    return current_dir;
+  }
+
+  page_infos = JSON.parse($('#page-infos').html());
+  file_infos = JSON.parse($('#file-infos').html());
+
+  $(document).on('click', '.sidebar-nav-item.dir', function() {
+    var path = GetPagePathFromNavId($(this));
+    if ($(this).hasClass('open-cat')) {
+      // Clicked the opened category; Need to collapse.
+      $(this).removeClass('open-cat');
+      // Remove all the child categories.
+      $(this).next().remove();
+    } else {
+      // Clicked the collapsed category; Need to open it.
+      $(this).addClass('open-cat');
+      // Get the directory.
+      var current_dir = GetFilesFromPath(path);
+      // Add directories.
+      var folders = Object.keys(current_dir);
+      var div = $("<div>", {'class': 'inner-menu' + path.length});
+      for (var i = 0; i < folders.length; i++) {
+        if (folders[i] !== 'files') {
+          div.append($("<a>", {
+            'class': 'sidebar-nav-item dir',
+            'text': folders[i]
+          }));
+        }
+      }
+      // Add files.
+      for (var i = 0; i < current_dir.files.length; i++) {
+        var file_id = current_dir.files[i];
+        var cat_title = file_infos[file_id].title;
+        if (file_infos[file_id].cat_title) {
+          cat_title = file_infos[file_id].cat_title;
+        }
+        div.append($("<a>", {
+          'class': 'sidebar-nav-item file',
+          'text': cat_title,
+          'href' : file_id
+        }));
+      }
+      div.insertAfter($(this));
     }
   });
 }
@@ -145,14 +213,15 @@ $(function () {
                    if (is_editor) {
                      var deco = editors[id].getModel().getAllDecorations();
                      for (var i = 0; i < deco.length; i++) {
-                       deco[i].options = {linesDecorationsClassName : ''};
+                       deco[i].options = {linesDecorationsClassName: ''};
                      }
                      editor_deco[id] = editors[id].deltaDecorations([], deco);
                    }
 
                    if (result.compile_error.length > 0) {
                      var marked_lines = new Set();
-                     formatted = FormatCompileError(result.compile_error, marked_lines);
+                     formatted =
+                       FormatCompileError(result.compile_error, marked_lines);
                      console.log(marked_lines)
                      $('#result-' + index).text(formatted);
 
@@ -189,5 +258,6 @@ $(function () {
     })
     ;
   });
-  SetCategory();
+  InitCategory();
+  //SetCategory();
 });

@@ -12,19 +12,13 @@
   </div>
 
   <nav class="sidebar-nav">
-    <a class="sidebar-nav-item" href="">C++</a>
-    <div class="inner-menu1">
-      <a class="sidebar-nav-item" href="">포인터</a>
-      <a class="sidebar-nav-item" href="/">소멸자</a>
-      <div class="inner-menu2">
-        <a class="sidebar-nav-item" href="">reference</a>
-        <a class="sidebar-nav-item" href="">refere</a>
-      </div>
-    </div>
-    <a class="sidebar-nav-item" href="{{ node.url }}">{{ node.title }}</a>
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
-    <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
+    <% let root = page_infos[""]; %>
+    <% let root_folders = Object.keys(root); %>
+    <% for (let i = 0; i < root_folders.length; i ++) { %>
+      <% if (root_folders[i] !== "files") { %>
+      <a class="sidebar-nav-item dir"><%= root_folders[i] %></a>
+      <% } %>
+    <% } %>
   </nav>
 
   <div class="sidebar-item">
@@ -33,3 +27,5 @@
     </p>
   </div>
 </div>
+<div id="page-infos" style="display:none"><%= JSON.stringify(page_infos) %></div>
+<div id="file-infos" style="display:none"><%=  JSON.stringify(file_infos) %></div>

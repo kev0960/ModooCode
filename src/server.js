@@ -70,7 +70,8 @@ module.exports = class Server {
         res.render("page.ejs", {
           content_url: "./old/blog_" + page_id + ".html",
           file_info: this.file_infos[page_id],
-          page_infos: this.page_infos
+          page_infos: this.page_infos,
+          file_infos: this.file_infos
         });
       }
     }.bind(this));
