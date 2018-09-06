@@ -75,10 +75,10 @@ function SetCategory() {
 
 function InitCategory() {
   function GetPagePathFromNavId(elem) {
-    var path = [elem.text()];
+    var path = [elem.attr('name')];
     while (elem.parent().attr('class').indexOf('inner-menu') !== -1) {
       elem = elem.parent().prev();
-      path.unshift(elem.text());
+      path.unshift(elem.attr('name'));
     }
     return path;
   }
@@ -101,9 +101,20 @@ function InitCategory() {
       $(this).removeClass('open-cat');
       // Remove all the child categories.
       $(this).next().remove();
+
+      var html = $(this).html();
+      html = html.replace("<i class=\"fas fa-caret-down\"></i>",
+                          "<i class=\"fas fa-plus-square\" style=\"font-size:0.75em;\"></i>");
+      $(this).html(html);
+
     } else {
       // Clicked the collapsed category; Need to open it.
       $(this).addClass('open-cat');
+      var html = $(this).html();
+      html = html.replace("<i class=\"fas fa-plus-square\" style=\"font-size:0.75em;\"></i>",
+                   "<i class='fas fa-caret-down'></i>");
+      $(this).html(html);
+
       // Get the directory.
       var current_dir = GetFilesFromPath(path);
       // Add directories.
@@ -111,9 +122,16 @@ function InitCategory() {
       var div = $("<div>", {'class': 'inner-menu' + path.length});
       for (var i = 0; i < folders.length; i++) {
         if (folders[i] !== 'files') {
+          var dir_folders = Object.keys(current_dir[folders[i]]);
+          var folder_html = folders[i];
+          if (dir_folders.length >= 2 || current_dir[folders[i]]["files"].length > 0) {
+            folder_html = "<i class=\"fas fa-plus-square\" " +
+                          "style=\"font-size:0.75em;\"></i>&nbsp;&nbsp;" + folder_html;
+          }
           div.append($("<a>", {
             'class': 'sidebar-nav-item dir',
-            'text': folders[i]
+            'html': folder_html,
+            'name': folders[i],
           }));
         }
       }
@@ -127,7 +145,8 @@ function InitCategory() {
         div.append($("<a>", {
           'class': 'sidebar-nav-item file',
           'text': cat_title,
-          'href' : file_id
+          'href' : file_id,
+          'name': cat_title
         }));
       }
       div.insertAfter($(this));

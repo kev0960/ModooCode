@@ -4,28 +4,33 @@
 
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
-  <i class="fas fa-arrow-alt-circle-left"
-     style="float:right;margin-top:20px;margin-right:20px;
+    <i class="fas fa-arrow-alt-circle-left"
+       style="float:right;margin-top:15px;margin-right:15px;
             font-size:25px;cursor:pointer;"></i>
-  <div class="sidebar-item center">
-    <p>모두의 코드</p>
-  </div>
+    <div class="sidebar-item center">
+        <h2 style="color:white">모두의 코드</h2>
+    </div>
 
-  <nav class="sidebar-nav">
-    <% let root = page_infos[""]; %>
-    <% let root_folders = Object.keys(root); %>
-    <% for (let i = 0; i < root_folders.length; i ++) { %>
-      <% if (root_folders[i] !== "files") { %>
-      <a class="sidebar-nav-item dir"><%= root_folders[i] %></a>
-      <% } %>
-    <% } %>
-  </nav>
+    <nav class="sidebar-nav">
+        <% let root = page_infos[""]; %>
+        <% let root_folders = Object.keys(root); %>
+        <% for (let i = 0; i < root_folders.length; i++) { %>
+        <% if (root_folders[i] !== "files") { %>
+        <a class="sidebar-nav-item dir" name="<%= root_folders[i] %>">
+            <% if (root[root_folders[i]].files.length > 0 || Object.keys(root[root_folders[i]]).length >= 2) { %>
+            <i class='fas fa-plus-square' style='font-size:0.75em;'></i>&nbsp;&nbsp;
+            <% } %>
+            <%= root_folders[i] %>
+        </a>
+        <% } %>
+        <% } %>
+    </nav>
 
-  <div class="sidebar-item">
-    <p>
-      &copy; {{ site.time | date: '%Y' }}. All rights reserved.
-    </p>
-  </div>
+    <div class="sidebar-item">
+        <p>
+            &copy; {{ site.time | date: '%Y' }}. All rights reserved.
+        </p>
+    </div>
 </div>
 <div id="page-infos" style="display:none"><%= JSON.stringify(page_infos) %></div>
-<div id="file-infos" style="display:none"><%=  JSON.stringify(file_infos) %></div>
+<div id="file-infos" style="display:none"><%= JSON.stringify(file_infos) %></div>
