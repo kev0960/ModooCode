@@ -1,0 +1,21 @@
+{
+    "name": "WSL",
+    "intelliSenseMode": "clang-x64",
+    "compilerPath": "/usr/bin/gcc",
+    "includePath": [
+        "${workspaceFolder}",
+        "/mnt/c/libraries/lib1/include",
+        "C:/libraries/lib2/include"
+    ],
+    "defines": [],
+    "browse": {
+        "path": [
+            "${workspaceFolder}",
+            "/mnt/c/libraries"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+    },
+    "cStandard": "c11",
+    "cppStandard": "c++17"
+}
