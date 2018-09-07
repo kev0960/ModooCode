@@ -65,7 +65,6 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
   for (size_t i = 0; i < filenames.size(); i++) {
     const auto& header_info = parsers_[i]->GetHeaderInfo();
     if (header_info.find("path") != header_info.end()) {
-      LOG << "id : " << GetFileId(filenames[i]) << filenames[i];
       path_defined_files[GetFileId(filenames[i])] = header_info.at("path");
     }
     file_info[GetFileId(filenames[i])] = header_info;
@@ -78,11 +77,14 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
 
   if (!config_.no_dump_page_path) {
     PathReader reader(path_defined_files);
-    auto page_path_json_or_not =
+    bool page_path_json_or_not =
         reader.ReadAndBuildPagePath("./data/old_category.txt");
     if (page_path_json_or_not) {
       std::ofstream output_json("../page_path.json");
-      output_json << page_path_json_or_not.value();
+      output_json << reader.DumpPagePath();
+
+      std::ofstream output_sitemap("../sitemap.xml");
+      output_sitemap << reader.GenerateSiteMap();
     }
   }
 }

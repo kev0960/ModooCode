@@ -15,6 +15,7 @@ class PageStructure {
   bool ParsePathAndAdd(const string& page_path);
   string GetDirName() const;
   string DumpJson() const;
+  std::vector<string> FlattenIntoVector() const;
 
  private:
   const bool is_root_page_;
@@ -33,6 +34,7 @@ class PagePath {
   bool AddPagePath(const string& page_path);
 
   string DumpPageStructureToJson();
+  string GenerateSiteMap();
 
  private:
   std::unique_ptr<PageStructure> root_page_;
@@ -42,9 +44,13 @@ class PathReader {
  public:
   PathReader();
   PathReader(const std::unordered_map<string, string>& excluded_files);
-  optional<string> ReadAndBuildPagePath(const string& filename);
+  bool ReadAndBuildPagePath(const string& filename);
+  string DumpPagePath();
+  string GenerateSiteMap();
+
  private:
   std::unordered_map<string, string> excluded_files_;
+  PagePath path_;
 };
 
 }  // namespace md_parser

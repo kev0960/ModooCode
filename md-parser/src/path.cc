@@ -84,6 +84,20 @@ string PageStructure::DumpJson() const {
   return json;
 }
 
+std::vector<string> PageStructure::FlattenIntoVector() const {
+  std::vector<string> flatten;
+  flatten.reserve(pages_.size());
+  for (const auto& page : pages_) {
+    flatten.push_back(page);
+  }
+  for (const auto& child : child_dirs_) {
+    const auto& child_flat = child->FlattenIntoVector();
+    flatten.reserve(flatten.size() + child_flat.size());
+    flatten.insert(flatten.end(), child_flat.begin(), child_flat.end());
+  }
+  return flatten;
+}
+
 PagePath::PagePath() : root_page_(std::make_unique<PageStructure>(true, "")) {}
 
 bool PagePath::AddPagePath(const string& page_path) {
@@ -94,17 +108,35 @@ string PagePath::DumpPageStructureToJson() {
   return StrCat("{\n", root_page_->DumpJson(), "\n}");
 }
 
+string PagePath::GenerateSiteMap() {
+  string sitemap;
+  const string sitemap_header = R"(<?xml version="1.0" encoding="UTF-8"?>)";
+  const string urlset_open =
+      R"(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">)";
+  const string url_close = R"(</urlset>)";
+  const string root_address = R"(https://www.modoocode.com/)";
+
+  sitemap = StrCat(sitemap_header, "\n", urlset_open, "\n");
+  // Iterate through the page structure.
+  const auto pages = root_page_->FlattenIntoVector();
+  for (const string& page : pages) {
+    string url = root_address + page;
+    sitemap += StrCat("<url>\n", "<loc>", url, "</loc>\n</url>\n");
+  }
+  sitemap += url_close;
+  return sitemap;
+}
+
 PathReader::PathReader() {}
 PathReader::PathReader(const std::unordered_map<string, string>& excluded_files)
     : excluded_files_(excluded_files) {}
 
-optional<string> PathReader::ReadAndBuildPagePath(const string& filename) {
+bool PathReader::ReadAndBuildPagePath(const string& filename) {
   std::ifstream in(filename);
   if (!in.good()) {
-    return std::experimental::nullopt;
+    return false;
   }
 
-  PagePath path;
   for (string line; std::getline(in, line);) {
     // Parse the line.
     auto path_name_end = line.find(",");
@@ -147,15 +179,18 @@ optional<string> PathReader::ReadAndBuildPagePath(const string& filename) {
                      page_ids.end());
 
       for (const auto& s : page_ids) {
-        path.AddPagePath(path_name + "/" + s);
+        path_.AddPagePath(path_name + "/" + s);
       }
       next = next_comma;
     }
   }
   // Finally add all the files that were excluded.
   for (const auto& kv : excluded_files_) {
-    path.AddPagePath(kv.second + "/" + kv.first);
+    path_.AddPagePath(kv.second + "/" + kv.first);
   }
-  return path.DumpPageStructureToJson();
+  return true;
 }
+
+string PathReader::DumpPagePath() { return path_.DumpPageStructureToJson(); }
+string PathReader::GenerateSiteMap() { return path_.GenerateSiteMap(); }
 }  // namespace md_parser
