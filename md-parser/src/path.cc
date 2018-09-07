@@ -1,5 +1,6 @@
 #include "path.h"
 
+#include <algorithm>
 #include <fstream>
 
 #include "util.h"
@@ -94,6 +95,8 @@ string PagePath::DumpPageStructureToJson() {
 }
 
 PathReader::PathReader() {}
+PathReader::PathReader(const std::unordered_map<string, string>& excluded_files)
+    : excluded_files_(excluded_files) {}
 
 optional<string> PathReader::ReadAndBuildPagePath(const string& filename) {
   std::ifstream in(filename);
@@ -134,11 +137,24 @@ optional<string> PathReader::ReadAndBuildPagePath(const string& filename) {
           page_ids.push_back(std::to_string(i));
         }
       }
+      // Now exclude files that are already inserted.
+      page_ids.erase(std::remove_if(page_ids.begin(), page_ids.end(),
+                                    [&](const string& page_id) {
+                                      // Remove if file is in the exclued set.
+                                      return excluded_files_.find(page_id) !=
+                                             excluded_files_.end();
+                                    }),
+                     page_ids.end());
+
       for (const auto& s : page_ids) {
         path.AddPagePath(path_name + "/" + s);
       }
       next = next_comma;
     }
+  }
+  // Finally add all the files that were excluded.
+  for (const auto& kv : excluded_files_) {
+    path.AddPagePath(kv.second + "/" + kv.first);
   }
   return path.DumpPageStructureToJson();
 }

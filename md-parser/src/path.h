@@ -1,8 +1,9 @@
+#include <experimental/optional>
 #include <memory>
 #include <set>
 #include <string>
+#include <unordered_map>
 #include <vector>
-#include <experimental/optional>
 
 using std::string;
 using std::experimental::optional;
@@ -38,9 +39,12 @@ class PagePath {
 };
 
 class PathReader {
-  public:
-    PathReader();
-    optional<string> ReadAndBuildPagePath(const string& filename);
+ public:
+  PathReader();
+  PathReader(const std::unordered_map<string, string>& excluded_files);
+  optional<string> ReadAndBuildPagePath(const string& filename);
+ private:
+  std::unordered_map<string, string> excluded_files_;
 };
 
 }  // namespace md_parser
