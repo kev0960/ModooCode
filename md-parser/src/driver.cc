@@ -1,5 +1,6 @@
 #include "driver.h"
 
+#include <experimental/filesystem>
 #include <fstream>
 #include <unordered_map>
 
@@ -47,6 +48,9 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
 
   if (!config_.no_output_parsed) {
     int parser_index = 0;
+    // Create an output directory (if not exist)
+    std::experimental::filesystem::create_directories("../views/old");
+
     for (const auto& filename : filenames) {
       std::cerr << "Output [" << parser_index + 1 << "/" << filenames.size()
                 << "] " << GetOutputFile(filename) << std::endl;
@@ -83,7 +87,7 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
       std::ofstream output_json("../page_path.json");
       output_json << reader.DumpPagePath();
 
-      std::ofstream output_sitemap("../sitemap.xml");
+      std::ofstream output_sitemap("../views/sitemap.xml");
       output_sitemap << reader.GenerateSiteMap();
     }
   }

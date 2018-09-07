@@ -14,7 +14,9 @@ bool Contains(std::set<string>& st, const string& s) {
 int main(int argc, char** argv) {
   std::vector<string> filenames;
   if (argc > 1) {
-    filenames.push_back(argv[1]);
+    if (argv[1][0] != '-') {
+      filenames.push_back(argv[1]);
+    }
   } else {
     for (auto& p :
          std::experimental::filesystem::directory_iterator("../python/md")) {
@@ -27,13 +29,13 @@ int main(int argc, char** argv) {
     args.insert(string(argv[i]));
   }
   md_parser::DriverConfig config;
-  if (Contains(args, "no_output_parsed")) {
+  if (Contains(args, "-no_output_parsed")) {
     config.no_output_parsed = false;
   }
-  if (Contains(args, "no_dump_file_info")) {
+  if (Contains(args, "-no_dump_file_info")) {
     config.no_dump_file_info = false;
   }
-  if (Contains(args, "no_dump_page_path")) {
+  if (Contains(args, "-no_dump_page_path")) {
     config.no_dump_page_path = false;
   }
 
