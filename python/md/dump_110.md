@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - clock 함수
 
 ```
 
-`clock`
-
-
+#@ clock
 
 ```info
 #include <time.h> // C++ 에서는 <ctime>
@@ -97,16 +95,5 @@ int main ()
 
 ###  연관된 함수
 
-
 *  [time](http://itguru.tistory.com/114)  :  현재 시각을 알아온다.
-
-
-
 *  [difftime](http://itguru.tistory.com/111)  :  두 개 시각의 차이를 구한다.
-
-
-
-
-
-
-

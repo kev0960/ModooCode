@@ -2,15 +2,12 @@
 title : C 언어 레퍼런스 - fgets 함수
 --------------
 
-
-
-
 ```warning
 아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
 
 ```
 
-`fgets`
+#@ fgets
 
 
 ```info

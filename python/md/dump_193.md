@@ -2,13 +2,6 @@
 title : C++ 레퍼런스 - istream::ignore 함수
 --------------
 
-
-
-
-
-
-
-
 ```warning
 이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
@@ -17,36 +10,19 @@ title : C++ 레퍼런스 - istream::ignore 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-
-
-
-istream::ignore
-
-
-
-
+#@ istream::ignore
 
 ```info
 
 istream&  ignore ( streamsize n = 1, int delim = EOF );
 ```
 
-
-
 문자를 스트림에서 입력 받고 버린다.
 
 
 문자를 스트림에서 입력 받는 작업은 `n` 개의 문자를 읽어들이고 버렸거나, 제한 문자 `delim` 을 만났을 때 중단된다. 참고로, 후자의 경우 제한 문자 `delim` 역시 스트림에서 추출된다.
 
-
-
-
-
-
 ###  인자
-
-
-
 
 `n`
 추출할 최대 문자의 개수. 이는 `streamsize` 타입이다.
@@ -111,22 +87,9 @@ return 0;
 }
 ```
 
-
-
-
 실행 결과
 
-
-
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F01016F33509A678D2D4CCE)
-
-
-
-
-
-
-
 
 
 ###  템플릿 멤버 정의
@@ -139,19 +102,7 @@ typedef traits::int_type int_type;
 basic_istream& ignore (streamsize n = 1, int_type delim = traits::eof() );
 ```
 
-
-
-
-
-
-
-
-
-
-
-
 ###  연관된 함수
-
 
 *  [istream::peek](http://itguru.tistory.com/194)`` : 그 다음 문자를 추출하지는 않고 읽기만 한다.
 *  [istream::get](http://itguru.tistory.com/191)`` : 스트림에서 서식화 되지 않는 데이터를 얻는다.

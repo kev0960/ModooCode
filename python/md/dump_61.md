@@ -9,7 +9,7 @@ title : C 언어 레퍼런스 - setbuf 함수
 
 ```
 
-`setbuf`
+#@ setbuf
 
 
 
@@ -95,12 +95,7 @@ void setbuf ( FILE * stream, char * buffer );
 
 
 *  [fopen](http://itguru.tistory.com/58)  :  파일을 연다.
-
-
-
-
 *  [fflush](http://itguru.tistory.com/57)`` :  스트림을 비운다.
-
 *  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼링 방식을 설정한다.
 
 

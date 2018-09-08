@@ -2,13 +2,6 @@
 title : C++ 레퍼런스 - istream::peak 함수
 --------------
 
-
-
-
-
-
-
-
 ```warning
 이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
@@ -17,13 +10,7 @@ title : C++ 레퍼런스 - istream::peak 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-
-
-
-istream::peek
-
-
-
+#@ istream::peek
 
 ```info
 
@@ -35,15 +22,7 @@ int peek ( );
 그 다음 문자를 살짝 훔쳐본다`` (즉, 스트림에서 빼오지는 않고 읽기만 한다)
 따라서 [get](http://itguru.tistory.com/191)처럼 스트림에서 문자를 빼내는 것이 아니라, 그 문자는 그냥 스트림에 남아있게 된다.
 
-
-
-
-
-
 ###  인자
-
-
-
 
 없음
 

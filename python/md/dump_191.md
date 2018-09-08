@@ -2,12 +2,6 @@
 title : C++ 레퍼런스 - istream::get 함수
 --------------
 
-
-
-
-
-
-
 ```warning
 이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
@@ -16,17 +10,7 @@ title : C++ 레퍼런스 - istream::get 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-
-
-
-
-
-istream::get
-
-
-
-
-
+#@ istream::get
 
 ```info
 
@@ -185,12 +169,6 @@ basic_istream& get (char_type* s, streamsize n, char_type delim );
 basic_istream& get (basic_streambuf<char_type,traits>& sb);
 basic_istream& get (basic_streambuf<char_type,traits>& sb, char_type delim );
 ```
-
-
-
-
-
-
 
 ###  연관된 함수
 

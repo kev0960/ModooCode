@@ -12,7 +12,7 @@ title : C++ 레퍼런스 - ios_base::setf 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios_base::setf
+#@ ios_base::setf
 
 
 
@@ -105,22 +105,8 @@ int main ()
 
 ###  연관된 것들
 
-
-
-
-
-
 *  [ios_base::flags](http://itguru.tistory.com/153)  :  서식 플래그를 설정하거나 얻는다.
-
 *  [ios_base::unsetf](http://itguru.tistory.com/156)  :  서식 플래그를 초기화한다.
-
 *  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그 타입
-
 * `setiosflags` :  서식 플래그를 설정한다.
-
 * resetiosflags  :  서식  플래그를 재설정 한다.
-
-
-
-
-

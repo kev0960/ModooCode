@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - strncmp 함수
 
 ```
 
-`strncmp`
-
-
+#@ strncmp
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -98,20 +96,9 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
-*  [strcmp](http://itguru.tistory.com/85)`` :  두 문자열을 비교한다.
-
-
-
+*  [strcmp](http://itguru.tistory.com/85) :  두 문자열을 비교한다.
 *  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
-
-
-
 *  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 지정한 문자의 마지막 위치를 얻는다.
-
 *  [strspn](http://itguru.tistory.com/97)  :  문자열의 일치된 정도를 얻는다. (자세한 내용은 레퍼런스 참조)
 
 

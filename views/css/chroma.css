@@ -131,6 +131,36 @@
 .monaco-container {
     margin-top:20px;
 }
+
+thead > tr {
+    white-space: nowrap;
+    text-align: center;
+    font-weight: bold;
+    background-color:#cccccc;
+}
+
+table p {
+    margin-bottom:0;
+}
+
+h2.ref-header {
+    font-family: "Source Code Pro", monospace;
+    font-size: 1.8rem;
+    border-bottom: 5px solid rgb(232, 232, 232);
+    padding-bottom: 4px;
+    position:relative;
+}
+
+h2.ref-header::before {
+    position: absolute;
+    background: black;
+    height: 5px;
+    content: '';
+    width: 20%;
+    bottom: -5px;
+    left: 0;
+}
+
 /* Background */
 .chroma {
     background-color: #ffffff;

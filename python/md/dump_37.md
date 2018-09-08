@@ -8,10 +8,7 @@ title : C 언어 레퍼런스 - fgetc 함수
 
 ```
 
-
-
-
-`fgetc`
+#@ fgetc
 
 ```info
 

@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - strchr 함수
 
 ```
 
-`strchr`
-
-
-
+#@ strchr
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -37,8 +34,6 @@ char * strchr ( const char *, int );
 
 
 ###  인자
-
-
 
 
 `str`
@@ -102,19 +97,11 @@ int main ()
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F177446244C558BD59B51A7)
 
 
-
-
-
 ###  연관된 함수
 
 
-* 
-
- [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자를 검색하되, 가장 마지막으로 나타나는 위치를 구한다.
-
-
-*  [memchr](http://itguru.tistory.com/92)`` :  메모리 블록에서 특정한 문자를 검색한다.
-
+* [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자를 검색하되, 가장 마지막으로 나타나는 위치를 구한다.
+*  [memchr](http://itguru.tistory.com/92) :  메모리 블록에서 특정한 문자를 검색한다.
 *  [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 다른 문자열에 포함된 문자들 중 일치하는 문자를 검색한다.
 
 

@@ -2,9 +2,6 @@
 title : 씹어먹는 C++ 토막글 ② - 람다(lambda) 함수
 --------------
 
-
-
-
 ```warning
 이 글은 http://ciere.com/cppnow12/lambda.pdf 에서 가져왔고 한국말로 번역되었습니다. 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```

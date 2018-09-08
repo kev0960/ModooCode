@@ -144,4 +144,5 @@ TEST(ContentTest, InlineCode) {
                              " command")),
             ignore_other_stuff.OutputHtml());
 }
+
 }  // namespace md_parser

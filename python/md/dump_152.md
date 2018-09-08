@@ -12,11 +12,7 @@ title : C++ 레퍼런스 - ios_base::width
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios_base::width
-
-
-
-
+#@ ios_base::width
 
 ```cpp
 streamsize width ( ) const;
@@ -97,16 +93,6 @@ int main ()
 
 
 * setw  :  필드 너비를 조절한다.
-
 *  [ios_base::flags](http://itguru.tistory.com/153)`` :  서식 플래그를 수정하거나 얻는다.
-
 *  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 수정한다.
-
 *  [ios::fill](http://itguru.tistory.com/181)`` :  채우기 문자를 얻거나 수정한다.
-
-
-
-
-
-
-

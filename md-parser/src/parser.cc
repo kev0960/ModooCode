@@ -7,6 +7,7 @@
 #include "chroma.h"
 #include "content_header.h"
 #include "content_list.h"
+#include "content_table.h"
 #include "parser_environment.h"
 #include "util.h"
 
@@ -83,6 +84,9 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
   if (token.length() >= 3 && token.find("```") == 0) {
     return CODE;
   }
+  if (token[0] == '|') {
+    return TABLE;
+  }
 
   // TEXT does not mean it is not used as a keyword.
   return TEXT;
@@ -130,6 +134,8 @@ void MDParser::AnalyzeLine(const std::string& line,
         return;
       }
     }
+  } else if (first_token_info == TABLE) {
+    parser_env_.AppendOrCreateContent(new TableContent(line), line);
   } else {
     newline_started_ = false;
     switch (first_token_info) {

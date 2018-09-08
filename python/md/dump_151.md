@@ -12,12 +12,7 @@ title : C++ 레퍼런스 - ifstream 클래스
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-`ifstream`
-
-
-
-
-
+#@ ifstream
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F11562C3C509A4623156640)
 

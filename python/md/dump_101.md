@@ -9,7 +9,7 @@ title : C 언어 레퍼런스 - strstr 함수
 
 ```
 
-`strstr`
+#@ strstr
 
 
 
@@ -292,20 +292,6 @@ int main ()
 ###  연관된 함수
 
 
-* 
-
- [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 포함된 정도를 구한다.
-
-
-
-
+*  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 포함된 정도를 구한다.
 *  [strpbrk](http://itguru.tistory.com/95)`` : 어떠한 문자열들의 문자들을 키로 하여 특정 문자열에서 그 키들을 검색한다.
-
 *  [strchr](http://itguru.tistory.com/93)  : 특정 문자열에서 특정 문자가 첫번째로 나타나는 곳의 위치를 구한다.
-
-
-
-
-
-
-

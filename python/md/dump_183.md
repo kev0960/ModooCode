@@ -12,10 +12,7 @@ title : C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-vector::assign
-
-
-
+#@ vector::assign
 
 ```info
 template <class InputIterator>
@@ -113,15 +110,4 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
-
 * vector::operator= : 벡터 내용을 복사한다.
-
-
-
-
-
-

@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - strlen 함수
 
 ```
 
-`strlen`
-
-
+#@ strlen
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -116,16 +114,5 @@ int main ()
 
 
 *  [strcmp](http://itguru.tistory.com/85)  :  두 개의 문자열을 비교한다.
-
-
-
 *  [strchr](http://itguru.tistory.com/93)  :  문자열에서 특정한 문자의 첫번째로 나타나는 위치를 찾는다.
-
 *  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자의 마지막으로 나타나는 위치를 찾는다.
-
-
-
-
-
-
-

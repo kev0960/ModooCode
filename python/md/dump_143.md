@@ -22,9 +22,6 @@ title : C++ IOstream (입출력) 라이브러리
 
 
 ### `iostream` 라이브러리는 무엇으로 구성되어 있나?
-### 
-
-
 
 
 기초적인 클래스 템플릿들 (Basic class templates)

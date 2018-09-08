@@ -3,9 +3,7 @@ title : C 언어 레퍼런스 - atoi 함수
 --------------
 
 
-`atoi`
-
-
+#@ atoi
 
 ```info
 #include <stdlib.h> // C++ 에서는 <cstdlib>
@@ -128,15 +126,5 @@ int main ()
 
 
 * atol  :  문자열을 `long` 형 정수로 변환한다.
-
-
 *  [atof](http://itguru.tistory.com/124)  :  문자열을 `double` 형으로 변환한다.
-
-
 * strtol  :  문자열을 `long` 형 정수로 변환한다.
-
-
-
-
-
-

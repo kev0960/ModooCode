@@ -3,9 +3,7 @@ title : C 언어 레퍼런스 - sscanf 함수
 --------------
 
 
-`sscanf`
-
-
+#@ sscanf
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>

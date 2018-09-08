@@ -9,11 +9,7 @@ title : C 언어 레퍼런스 - atol 함수
 
 ```
 
-`atol`
-
-
-
-
+#@ atol
 
 ```info
 #include <stdlib.h> // C++ 에서는 <cstdlib>
@@ -98,13 +94,8 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
 *  [atoi](http://itguru.tistory.com/131)  :  문자열을 정수로 변환한다.
-
 *  [atof](http://itguru.tistory.com/124)  :  문자열을 `double` 형으로 변환한다.
-
 * strtol  :  문자열을 `long` 형으로 변환한다.
 
 

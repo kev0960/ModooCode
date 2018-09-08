@@ -19,11 +19,7 @@ title : C++ 레퍼런스 - vector::insert
 
 
 
-vector::insert
-
-
-
-
+#@ vector::insert
 
 
 ```info
@@ -154,10 +150,8 @@ return 0;
 ###  연관된 함수
 
 
-*  [vector::push_back](http://itguru.tistory.com/185)`` : 벡터 끝
-에 원소를 추가한다.
-* vector::erase :
-원소를 삭제한다.
+*  [vector::push_back](http://itguru.tistory.com/185)`` : 벡터 끝에 원소를 추가한다.
+* vector::erase : 원소를 삭제한다.
 
 
 

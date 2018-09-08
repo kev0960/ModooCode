@@ -9,7 +9,7 @@ title : C 언어 레퍼런스 - fread 함수
 
 ```
 
-`fread`
+#@ fread
 
 
 
@@ -119,25 +119,10 @@ int main () {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F154D38104BA61B89A274D0)
 
-
-
-
-
-
 ###  연관된 함수
 
-
-
-
-
 * `fwrite` : 스트림에 데이터 블록을 쓴다.
-
-
-
 *  [fgetc](http://itguru.tistory.com/37)`` : 스트림에서 한 문자를 가져온다.
-
-
-
 *  [fscanf](http://itguru.tistory.com/65)`` : 스트림에서 형식에 맞추러 데이터를 읽어온다.
 
 

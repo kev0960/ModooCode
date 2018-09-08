@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - strcpy 함수
 
 ```
 
-`strcpy`
-
-
+#@ strcpy
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -106,27 +104,11 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-*  [strncpy](http://itguru.tistory.com/80)`` : 문자열에서 일부 문자들을 복사한다.
-
-
-
+*  [strncpy](http://itguru.tistory.com/80) : 문자열에서 일부 문자들을 복사한다.
 *  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.
-
-*  [memmove](http://itguru.tistory.com/78)`` :  메모리 블록을 옮긴다.
-
-
-
+*  [memmove](http://itguru.tistory.com/78) :  메모리 블록을 옮긴다.
 *  [memchr](http://itguru.tistory.com/92)  :  메모리 블록에 문자를 위치시킨다.
-
-
-
 *  [memcmp](http://itguru.tistory.com/84)  :  두 개의 메모리 블록을 비교한다.
-
-
-
 * memset  :  메모리 블록을 채운다.
 
 

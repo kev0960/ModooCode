@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - fgetpos 함수
 
 ```
 
-`fgetpos`
-
-
-
+#@ fgetpos
 
 ```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
@@ -52,9 +49,6 @@ int fgetpos ( FILE * stream, fpos_t * position );
 
 
 ###  실행 예제
-
-
-
 
 ```cpp
 /*
@@ -107,23 +101,9 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
-* 
-
- [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
-
-
-* 
-
- [ftell](http://itguru.tistory.com/74)  :  스트림 위치 지정자의 현재 위치를 구한다.
-
-
-* 
-
- [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자의 위치를 변경한다.
+* [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
+* [ftell](http://itguru.tistory.com/74)  :  스트림 위치 지정자의 현재 위치를 구한다.
+* [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자의 위치를 변경한다.
 
 
 

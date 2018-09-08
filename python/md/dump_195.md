@@ -2,28 +2,15 @@
 title : 비주얼 스튜디오 2010 에서 C 및 C++ 프로그래밍 하기
 --------------
 
-
-
-
-
-
-
 ```warning
 아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
 
 ```
 
 
-
-
-
-
 ```info
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
-
-
-
 
 
 안녕하세요 여러분! 제가 [첫 씹어먹는 C 언어 강좌](http://itguru.tistory.com/5)를 올렷을 때가 벌써 2009년 초 일때, 그러니까 한창 마이크로소프트에서 `Visual Studio 2008 Express` 버전을 공개해서 시끌시끌 했을 때 였습니다. 그 후로 시간이 무려 4년 이나 흘렀네요. 이제는 `Visual Studio 2008` 이 아니라, `Visual Studio 2012` 를 바라볼 시간이 되었습니다.

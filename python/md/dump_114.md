@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - time 함수
 
 ```
 
-`time`
-
-
-#
+#@ time
 
 ```info
 #include <time.h> // C++ 에서는 <ctime>

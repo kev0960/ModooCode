@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - memmove 함수
 
 ```
 
-`memmove`
-
-
+#@ memmove
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -28,9 +26,6 @@ void * memmove ( void * destination, const void * source, size_t num );
 
 
 ###  인자
-
-
-
 
 `destination`
 
@@ -93,28 +88,8 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
 *  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.
-
-
-
 *  [memchr](http://itguru.tistory.com/92)  :  메모리 블록에 문자를 위치시킨다.
-
-
-
 *  [memcmp](http://itguru.tistory.com/84)  :  두 개의 메모리 블록을 비교한다.
-
-
-
 *  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.
-
 *  [strncpy](http://itguru.tistory.com/80)  :  문자열에서 문자들을 복사한다.
-
-
-
-
-
-

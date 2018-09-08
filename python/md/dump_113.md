@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - time_t 형
 
 ```
 
-`time_t`
-
-
-
+#@ time_t
 
   `time_t` 형은 `ISO C` 라이브러리에서 정의된 데이터 타입이다. 이 타입은 `time()` 과 같은 라이브러리 함수에서 리턴되는 타입인데, `<time.h>` 헤더에서 (C++ 의 경우 <ctime> ) `typedef` 를 통해 정의되어 있다. `ISO C` 에 따르면 `time_t` 는 산술 연산이 가능한 타입이지만 특정한 크기가 값의 범위 등을 명시하고 있지는 않다. 더군다나, 어떠한 산술 연산이 적용 가능해야하는지 조차 불분명 하게 정의되어 있다.
 
@@ -21,10 +18,6 @@ title : C 언어 레퍼런스 - time_t 형
 
 
 ### 실행 예제
-### 
-
-
-
 
 ```cpp
 #include <stdio.h>
@@ -47,10 +40,3 @@ int main ()
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F143FF65A4D16845F19903F)
-
-
-
-
-
-
-

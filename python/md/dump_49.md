@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - ungetc 함수
 
 ```
 
-`ungetc`
-
-
+#@ ungetc
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>

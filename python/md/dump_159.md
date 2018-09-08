@@ -12,10 +12,7 @@ title : C++ 레퍼런스 - ios_base::register_callback 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios_base::register_callback
-
-
-
+#@ ios_base::register_callback
 
 ```cpp
 void register_callback ( event_callback fn, int index );
@@ -124,15 +121,6 @@ int main ()
 
 ###  연관된 것들
 
-
-
 *  [ios_base::imbue](http://itguru.tistory.com/158)`` :  로케일(locale) 을 설정한다.
-
 * ios::copyfmt  :  서식 정보를 복사한다.
-
 * ios_base::event  :  이벤트를 나타내기 위한 타입
-
-
-
-
-

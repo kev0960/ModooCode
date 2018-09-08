@@ -9,11 +9,9 @@ title : C 언어 레퍼런스 - gets 함수
 
 ```
 
-`gets`
+#@ gets
 
-
-
-﻿﻿﻿﻿```info
+```info
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 char * gets ( char * str );

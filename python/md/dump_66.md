@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - sprintf 함수
 
 ```
 
-`sprintf`
-
-
+#@ sprintf
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
@@ -26,9 +24,6 @@ int sprintf ( char * str, const char * format, ... );
 
 
 ###  인자
-
-
-
 
 `str`
 
@@ -285,16 +280,5 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
 *  [printf](http://itguru.tistory.com/35)  :  표준 출력(stdout) 에 데이터를 형식에 맞추어 출력한다.
-
 *  [sscanf](http://itguru.tistory.com/67)`` :  문자열에서 데이터를 형식에 맞추어 읽는다.
-
-
-
-
-
-

@@ -9,16 +9,13 @@ title : C 언어 레퍼런스 - perror 함수
 
 ```
 
-`perror`
-
-
+#@ perror
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 void perror ( const char * str );
 ```
-
 
 오류 메세지를 출력한다.
 전역 변수 `errno` 의 값을 해석하여 이에 해당하는 시스템 오류 메세지를 표준 오류 출력 스트림(standard `error output stream,``stderr``)`에 출력한다. 보통 `stderr` 은 화면이다. 또한 추가적으로 전달하고자 하는 사용자 정의 메세지를 `str` 인자에 담아 출력할 수 도 있다.
@@ -29,9 +26,6 @@ void perror ( const char * str );
 
 
 ###  인자
-
-
-
 
 `str`
 
@@ -64,19 +58,7 @@ void perror ( const char * str );
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F121F7E144B6EEFA0172711)
 
-
-
-
 ###  연관된 함수
 
-
-
 *  [clearerr](http://itguru.tistory.com/50)  :  오류 표시자들을 초기화한다.
-
 *  [ferror](http://itguru.tistory.com/52)  :  오류 표시자를 검사한다.
-
-
-
-
-
-

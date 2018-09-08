@@ -9,16 +9,13 @@ title : C 언어 레퍼런스 - fflush 함수
 
 ```
 
-`fflush`
-
-
+#@ fflush
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fflush ( FILE * stream );
 ```
-
 
 스트림을 비운다(flush)
 만일 함수의 인자로 전달된 스트림이 쓰기 가능하고, 마지막 입출력 작업이 출력 작업이였다면 출력 버퍼에 쓰이지 않고 남아 있던 데이터들은 모두 파일에 쓰이게 된다.
@@ -31,25 +28,14 @@ int fflush ( FILE * stream );
 
 ###  인자
 
-
-
-
 `stream`
 
 작업을 수행할 `buffered` (스트림의 상태 중 하나로 `fully buffered` 와 `line buffered` 를 일컫는다. 자세한 내용은 [stdio.h](http://itguru.tistory.com/34)`` 를 참조) 스트림의 파일 객체를 가리키는 포인터.
 
-
-
 ###  리턴값
-
-
-
 
 `0` 이 리턴되면 성공적으로 작동되었음을 의미한다 0 이 리턴되면 성공적으로 작동되었음을 의미한다.
 오류가 발생하면 `EOF` 가 리턴되고 오류 표시자가 설정된다 ( [feof](http://itguru.tistory.com/51)`` 참조)
-
-
-
 
 ###  실행 예제
 
@@ -81,20 +67,7 @@ int fflush ( FILE * stream );
 
 ###  연관된 함수
 
-
 *  [fclose](http://itguru.tistory.com/54)  :  파일을 닫는다.
-
 *  [fopen](http://itguru.tistory.com/58)   : 파일을 연다.
-
-
-
-
 *  [setbuf](http://itguru.tistory.com/61)  : 스트림 버퍼를 지정한다.
-
 *  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼링 모드를 설정한다.
-
-
-
-
-
-

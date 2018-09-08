@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - gmtime 함수
 
 ```
 
-`gmtime`
-
-
-
+#@ gmtime
 
 ```info
 #include <time.h> // C++ 에서는 <ctime>
@@ -95,34 +92,8 @@ int main ()
 ###  연관된 함수
 
 
-* 
-
- [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
-
-
-* 
-
- [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.
-
-
-* 
-
- [localtime](http://itguru.tistory.com/120)  :  `time_t` 값을 토대로 `tm` 구조체를 지역 시간으로 설정한다.
-
-
-* 
-
- [mktime](http://itguru.tistory.com/112)  :  `tm` 구조체 내용을 토대로 `time_t` 형 값을 계산한다.
-
-
-* 
-
- [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.
-
-
-
-
-
-
-
-
+*  [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
+*  [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.
+*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 값을 토대로 `tm` 구조체를 지역 시간으로 설정한다.
+* [mktime](http://itguru.tistory.com/112)  :  `tm` 구조체 내용을 토대로 `time_t` 형 값을 계산한다.
+*  [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.

@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - fsetpos 함수
 
 ```
 
-`fsetpos`
-
-
+#@ fsetpos
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
@@ -28,9 +26,6 @@ int fsetpos ( FILE * stream, const fpos_t * pos );
 
 
 ###  인자
-
-
-
 
 `stream`
 

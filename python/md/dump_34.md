@@ -9,7 +9,7 @@ title : C 언어 레퍼런스 - stdio.h (cstdio) 헤더파일
 아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
 ```
 
-`Stdio.h (cstdio)`
+#@ Stdio.h (cstdio)
 
   C 언어에서 입출력 연산은 표준 입출력 라이브러리 (Standard Input and Output Library) 를 이용해서 수행될 수 있다. (C++ 에서는 cstdio 라는 이름으로 사용된다). 이 라이브러리는 스트림(stream) 을 이용해서 키보드나 프린터, 터미널과 같은 장비들이나 시스템이 지원하는 특정한 형태의 파일들과 작업할 수 있다. 모든 스트림들은 작업하고자 하는 장비들과 관계 없이 공통된 특징들을 가지고 있기 때문이 매우 편리하다.
 

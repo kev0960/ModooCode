@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - setvbuf 함수
 
 ```
 
-`setvbuf`
-
-
+#@ setvbuf
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
@@ -109,14 +107,8 @@ int main ()
 
 ###  연관된 함수
 
-
 *  [setbuf](http://itguru.tistory.com/61)  :  스트림 버퍼를 설정한다.
-
-
-
-
 *  [fopen](http://itguru.tistory.com/58)   :  파일을 연다.
-
 *  [fflush](http://itguru.tistory.com/57)   :  스트림을 비운다.
 
 

@@ -3,9 +3,7 @@ title : C 언어 레퍼런스 - freopen 함수
 --------------
 
 
-`freopen`
-
-
+#@ freopen
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
@@ -21,9 +19,6 @@ FILE * freopen ( const char * filename, const char * mode, FILE * stream );
 
 
 ###  인자
-
-
-
 
 `filename`
 
@@ -54,16 +49,10 @@ FILE * freopen ( const char * filename, const char * mode, FILE * stream );
 
 ###  리턴값
 
-
-
-
 만일 파일이 성공적으로 열렸다면 이 함수는 세번째 인자로 전달되었던 스트림 포인터를 리턴하게 된다.
 그렇지 않을 겨우 널 포인터가 리턴된다.
 
-
-
 ###  실행 예제
-
 
 ```cpp
 /*
@@ -130,18 +119,8 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
-* 
-
- [fopen](http://itguru.tistory.com/58)  :  파일을 연다
-
-
-* 
-
- [fclose](http://itguru.tistory.com/54)`` :  파일을 닫는다.
+* [fopen](http://itguru.tistory.com/58)  :  파일을 연다
+* [fclose](http://itguru.tistory.com/54)`` :  파일을 닫는다.
 
 
 

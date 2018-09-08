@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - mktime 함수
 
 ```
 
-`mktime`
-
-
+#@ mktime
 
 ```info
 #include <time.h> // C++ 에서는 <ctime>
@@ -107,23 +105,7 @@ int main ()
 ###  연관된 함수
 
 
-* 
- [asctime](http://itguru.tistory.com/116)`` : `tm` 구조체를 문자열로 변환한다.
-
-
-
+*  [asctime](http://itguru.tistory.com/116) : `tm` 구조체를 문자열로 변환한다.
 *  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 값을 `UTC` 시간에 따라 `tm` 구조체로 변환한다.
-
-
-
-*  [localtime](http://itguru.tistory.com/120)`` :
-`time_t` 값을 지역 시간에 따라 `tm` 구조체로 변환한다.
-
+*  [localtime](http://itguru.tistory.com/120) : `time_t` 값을 지역 시간에 따라 `tm` 구조체로 변환한다.
 *  [time](http://itguru.tistory.com/114)  :  현재 시각을 알아온다.
-
-
-
-
-
-
-

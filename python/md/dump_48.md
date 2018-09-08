@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - puts 함수
 
 ```
 
-`puts`
-
-
+#@ puts
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>

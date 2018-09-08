@@ -9,7 +9,7 @@ title : C 언어 레퍼런스 - strtok 함수
 
 ```
 
-`strtok`
+#@ strtok
 
 
 
@@ -91,19 +91,5 @@ char * __cdecl strtok(char *s1, const char *delimit){    static char *lastTok
 
 
 ###  연관된 함수
-
-
-* 
-
- [strcspn](http://itguru.tistory.com/94)  :  특정한 문자를 찾을 때 까지의 길이를 구한다.
-
-
-* 
- [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 특정한 문자를 찾는다.
-
-
-
-
-
-
-
+* [strcspn](http://itguru.tistory.com/94)  :  특정한 문자를 찾을 때 까지의 길이를 구한다.
+* [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 특정한 문자를 찾는다.

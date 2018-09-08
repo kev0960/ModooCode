@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - strspn 함수
 
 ```
 
-`strspn`
-
-
+#@ strspn
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -65,7 +63,7 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 size_t strspn(const char *string, const char *control){    const unsigned char *str = string;    const unsigned char *ctrl = control;    unsigned char map[32];    int count;    // Clear out bit map    for (count = 0; count < 32; count++) map[count] = 0;    // Set bits in control map    while (*ctrl)    {        map[*ctrl >> 3] |= (1 << (*ctrl & 7));        ctrl++;    }    // 1st char NOT in control map stops search    if (*str)    {        count = 0;        while (map[*str >> 3] & (1 << (*str & 7)))        {            count++;            str++;        }        return count;    }    return 0;}
 ```
 
-위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 `strspn` 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 [http://itguru.tistory.com/94](http://itguru.tistory.com/94)`` 를 참조하면 된다.
+위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 `strspn` 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 [http://itguru.tistory.com/94](http://itguru.tistory.com/94) 를 참조하면 된다.
 
 
 
@@ -106,19 +104,6 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
 *  [strcspn](http://itguru.tistory.com/94): 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴
-
 *  [strstr](http://itguru.tistory.com/101)  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴
-
 *  [strncmp](http://itguru.tistory.com/90)  :   두 문자열의 일부분을 비교한다.
-
-
-
-
-
-
-

@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - ftell 함수
 
 ```
 
-`ftell`
-
-
-
+#@ ftell
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
@@ -98,16 +95,8 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
 *  [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자를 다시 조정한다.
-
-
-
 *  [fgetpos](http://itguru.tistory.com/70)`` :  스트림의 위치 지정자의 현재 위치를 구한다.
-
 *  [rewind](http://itguru.tistory.com/75)  :  스트림 위치 지정자를 맨 처음으로 설정한다.
 
 

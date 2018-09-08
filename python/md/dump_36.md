@@ -10,13 +10,7 @@ title : C 언어 레퍼런스 - scanf 함수
 
 ```
 
-`scanf`
-
-
-
-
-
-
+#@ scanf
 
 ```info
 

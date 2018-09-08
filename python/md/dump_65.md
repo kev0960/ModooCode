@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - fscanf 함수
 
 ```
 
-`fscanf`
-
-
+#@ fscanf
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
@@ -26,9 +24,6 @@ int fscanf ( FILE * stream, const char * format, ... );
 
 
 ###  인자
-
-
-
 
 `stream`
 
@@ -144,27 +139,9 @@ int main ()
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F201841274B8166BC620379)
 
-
-
-
-
 ###  연관된 함수
 
-
-
-
-
 *  [scanf](http://itguru.tistory.com/36)  :  표준 입력(stdin) 에서 데이터를 특정한 형식으로 읽어온다.
-
 * fprintf  :  스트림에 특정한 형식으로 데이터를 쓴다.
-
 * fread  :  스트림에서 데이터 블록을 읽어온다.
-
 *  [fgets](http://itguru.tistory.com/38)  :  스트림에서 문자열을 읽어온다.
-
-
-
-
-
-
-

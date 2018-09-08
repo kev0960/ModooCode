@@ -12,11 +12,7 @@ title : C++ 레퍼런스 - ios_base::usetf 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios_base::unsetf
-
-
-
-
+#@ ios_base::unsetf
 
 ```cpp
 void unsetf ( fmtflags mask );
@@ -89,19 +85,7 @@ int main ()
 
 ###  연관된 것들
 
-
-
-
 *  [ios_base::flags](http://itguru.tistory.com/153)  :  서식 플래그를 설정하거나 얻는다.
-
 *  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 설정한다.
-
 *  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그의 타입
-
 * `resetiosflags` :  서식 플래그를 끈다.
-
-
-
-
-
-

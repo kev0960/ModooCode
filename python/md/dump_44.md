@@ -9,7 +9,7 @@ title : C 언어 레퍼런스 - getchar 함수
 
 ```
 
-`getchar`
+#@ getchar
 
 
 ```info

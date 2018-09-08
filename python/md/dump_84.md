@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - memcmp 함수
 
 ```
 
-`memcmp`
-
-
-
+#@ memcmp
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -27,9 +24,6 @@ int memcmp ( const void * ptr1, const void * ptr2, size_t num );
 
 
 ###  인자
-
-
-
 
 `ptr1`
 
@@ -121,28 +115,7 @@ int main ()
 
 ###  연관된 함수
 
-
-
-
-
-* 
- [memchr](http://itguru.tistory.com/92)  :  메모리 블록에서 특정한 문자를 찾는다.
-
-
-
+* [memchr](http://itguru.tistory.com/92)  :  메모리 블록에서 특정한 문자를 찾는다.
 *  [memcpy](http://itguru.tistory.com/77)`` :  메모리 블록을 복사한다.
-
-
-
 *  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.
-
 *  [strncmp](http://itguru.tistory.com/90)  :  두 개의 문자열의 일부분을 비교한다.
-
-*  [strlen](http://itguru.tistory.com/106)`` : 문자열의 길이를 리턴한다.
-
-
-
-
-
-
-

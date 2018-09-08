@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - srand 함수
 
 ```
 
-`srand`
-
-
-#
+#@ srand
 
 ```info
 #include <stdlib.h> // C++ 에서는 <cstdlib>
@@ -90,9 +87,6 @@ int main ()
 
 
 ###  연관된 함수
-
-
-
 
 *  [rand](http://itguru.tistory.com/139)  :  난수를 생성한다.
 

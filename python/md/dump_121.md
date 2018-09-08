@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 ```
 
-`stdlib.h (cstdlib)`
-
-
-
+#@ stdlib.h (cstdlib)
 
 `C` 표준 유틸리티 함수들을 모아놓은 헤더파 C 표준 유틸리티 함수들을 모아놓은 헤더파일
 이 헤더파일에는 프로그래밍시에 범용적으로 사용되는 여러가지 함수들을 모아 놓고 있는데, 예를 들면 동적 할당 관련 함수, 난수 생성 함수, 정수의 연산 함수, 검색 및 정렬 함수 등 이다.
@@ -38,13 +35,13 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 
 
-* strtod  :  문자열을 `double` 형으로 변환한다.
+* `strtod`  :  문자열을 `double` 형으로 변환한다.
 
-* strtol  :  문자열을 `long` 형 정수로 변환한다.
+* `strtol`  :  문자열을 `long` 형 정수로 변환한다.
 
 
 
-* strtoul  :  문자열을 `unsigned long` 형 정수로 변환하다.
+* `strtoul`  :  문자열을 `unsigned long` 형 정수로 변환하다.
 
 
 
@@ -75,7 +72,7 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 동적 할당 관련 함수들이다. [다음 강좌](http://itguru.tistory.com/98)를 보면 동적 할당 함수를 사용하는 방법을 볼 수 있다.
 
 
-* calloc  :  메모리에 배열을 위한 공간을 할당한다.
+* `calloc`  :  메모리에 배열을 위한 공간을 할당한다.
 
 
 
@@ -83,11 +80,11 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 
 
-* malloc  :  메모리에서 공간을 할당한다.
+* `malloc`  :  메모리에서 공간을 할당한다.
 
 
 
-* realloc  :  메모리에서 공간을 재할당 한다.
+* `realloc`  :  메모리에서 공간을 재할당 한다.
 
 
 
@@ -96,19 +93,19 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 
 
-* abort  :  현재 프로세스를 종료한다.
+* `abort`  :  현재 프로세스를 종료한다.
 
 
 
-* atexit  :  특정 함수를 종료시 실행되게 설정한다.
+* `atexit`  :  특정 함수를 종료시 실행되게 설정한다.
 
-* exit  :  호출한 프로세스를 종료한다.
+* `exit`  :  호출한 프로세스를 종료한다.
 
 
 
-* getenv  :  환경 문자열을 얻는다.
+* `getenv`  :  환경 문자열을 얻는다.
 
-* system  :  시스템 명령어를 수행한다.
+* `system`  :  시스템 명령어를 수행한다.
 
 
 
@@ -120,9 +117,9 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 
 
-* bsearch  :  배열에서 이진 탐색을 수행한다.
+* `bsearch`  :  배열에서 이진 탐색을 수행한다.
 
-* qsort  :  배열의 원소들을 정렬한다.
+* `qsort`  :  배열의 원소들을 정렬한다.
 
 
 
@@ -133,15 +130,15 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 
 
-* abs  :  절대값을 구한다.
+* `abs`  :  절대값을 구한다.
 
-* div  :  정수 나눗셈을 수행한다.
+* `div`  :  정수 나눗셈을 수행한다.
 
 
 
 * `labs` :  절대값을 구한다.
 
-* ldiv  :  정수 나눗셈을 수행한다.
+* `ldiv`  :  정수 나눗셈을 수행한다.
 
 
 
@@ -155,13 +152,13 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 다중 바이트 문자열이란, 한 문자의 크기가 1 바이트 이상인 문자열을 의미한다. 예를 들면 유니코드가 있는데, 유니코드의 경우 한 글자를 2 바이트로 나타낸다.
 
 
-* mblen  :  멀티바이트 문자의 크기를 구한다.
+* `mblen`  :  멀티바이트 문자의 크기를 구한다.
 
-* mbtowc  :  멀티바이트 문자를 `wchar_t` 형 문자로 변환한다.
+* `mbtowc`  :  멀티바이트 문자를 `wchar_t` 형 문자로 변환한다.
 
 
 
-* wctomb  :  `wchar_t` 형 문자를 멀티바이트 문자로 변환한다.
+* `wctomb`  :  `wchar_t` 형 문자를 멀티바이트 문자로 변환한다.
 
 
 
@@ -172,9 +169,9 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 
 
-* mbstowcs  :  멀티바이트 문자열을 `wchar_t` 형 문자열로 변환한다.
+* `mbstowcs`  :  멀티바이트 문자열을 `wchar_t` 형 문자열로 변환한다.
 
-* wcstombs  :  `wchar_t` 형 문자열을 멀티바이트 문자열로 변환한다.
+* `wcstombs`  :  `wchar_t` 형 문자열을 멀티바이트 문자열로 변환한다.
 
 
 
@@ -185,19 +182,19 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 
 
-* EXIT_FAILURE  :  비정상 종료 코드
+* `EXIT_FAILURE`  :  비정상 종료 코드
 
 
 
-* EXIT_SUCCESS  :  정상 종료 코드
+* `EXIT_SUCCESS`  :  정상 종료 코드
 
 
 
-* MB_CUR_MAX  :  멀티바이트 문자의 최대 크기
+* `MB_CUR_MAX`  :  멀티바이트 문자의 최대 크기
 
-* NULL  :  널 포인터
+* `NULL`  :  널 포인터
 
-* RAND_MAX  :  `rand` 함수가 리턴하는 난수의 최대 크기
+* `RAND_MAX`  :  `rand` 함수가 리턴하는 난수의 최대 크기
 
 
 
@@ -208,11 +205,11 @@ title : C 언어 레퍼런스 - stdlib.h (cstlib)
 
 
 
-* div_t  :  `div` 가 리턴하는 구조체
+* `div_t`  :  `div` 가 리턴하는 구조체
 
-* ldiv_t  :  `div` 와 `ldiv` 가 리턴하는 구조체
+* `ldiv_t`  :  `div` 와 `ldiv` 가 리턴하는 구조체
 
-* size_t  :  부호 없는 정수 타입
+* `size_t`  :  부호 없는 정수 타입
 
 
 

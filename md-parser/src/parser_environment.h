@@ -34,6 +34,7 @@ class ParserEnvironment {
                   const std::pair<int, int>& space_and_tab, const string& line);
   void AddNewContent(Content* content);
   bool AppendToLastContent(const string& content);
+  void AppendOrCreateContent(Content* content, const string& line);
   void AddNextList(const TokenTypes type,
                    const std::pair<int, int>& space_and_tab);
   std::pair<int, int> GetCurrentEnum(const TokenTypes list_type) const;

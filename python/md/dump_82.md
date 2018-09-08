@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - strncat 함수
 
 ```
 
-`strncat`
-
-
-
+#@ strncat
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -108,17 +105,6 @@ char *strncat(char *s1, const char *s2, size_t count){    char *start = s1; 
 ###  연관된 함수
 
 
-* 
- [strcat](http://itguru.tistory.com/81)  :  문자열을 합친다.
-
-
-
+*  [strcat](http://itguru.tistory.com/81)  :  문자열을 합친다.
 *  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
-
 *  [memcpy](http://itguru.tistory.com/77)`` :  메모리의 일부분을 복사한다.
-
-
-
-
-
-

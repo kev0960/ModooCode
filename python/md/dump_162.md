@@ -12,10 +12,7 @@ title : C++ 레퍼런스 - ios_base::xalloc 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios_base::xalloc  (static member function)
-
-
-
+#@ ios_base::xalloc  (static member function)
 
 ```info
 int xalloc ( );
@@ -40,15 +37,5 @@ int xalloc ( );
 
 ###  연관된 함수
 
-
-
-
-
 *  [ios_base::iword](http://itguru.tistory.com/161)  :  내부 확장 가능 배열의 정수 원소의 레퍼런스를 얻는다.
-
 *  [ios_base::pword](http://itguru.tistory.com/163)`` :  내부 확장 가능 배열을 가리키는 포인터의 레퍼런스를 얻는다.
-
-
-
-
-

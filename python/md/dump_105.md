@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - strerror 함수
 
 ```
 
-`strerror`
-
-
+#@ strerror
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -92,11 +90,4 @@ int main ()
 
 ###  연관된 함수
 
-
-
 *  [perror](http://itguru.tistory.com/53)`` :  오류 메세지를 출력한다.
-
-
-
-
-

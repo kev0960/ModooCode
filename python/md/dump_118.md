@@ -9,11 +9,7 @@ title : C 언어 레퍼런스 - ctime 함수
 
 ```
 
-`ctime`
-
-
-
-
+#@ ctime
 
 ```info
 #include <time.h> // C++ 에서는 <ctime>
@@ -91,17 +87,6 @@ int main ()
 
 
 *  [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
-
-
-
 *  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 값을 `tm` 구조체로 변환하되, `UTC` 시간으로 한다.
-
 *  [localtime](http://itguru.tistory.com/120)  :  `time_t` 값을 `tm` 구조체로 변환하되 지역 시간으로 한다.
-
 *  [time](http://itguru.tistory.com/114)  :  현재 시간을 알아온다.
-
-
-
-
-
-

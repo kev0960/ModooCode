@@ -8,10 +8,7 @@ title : C 언어 레퍼런스 -  fputc 함수
 
 ```
 
-
-
-
-`fputc`
+#@ fputc
 
 ```info
 

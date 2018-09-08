@@ -11,12 +11,7 @@ title : C++ 레퍼런스 - istream 클래스
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-`istream`
-
-
-
-
-
+#@ istream
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F195A313C509A45B20CA82E)
 
@@ -27,10 +22,6 @@ title : C++ 레퍼런스 - istream 클래스
 
     이 함수들은 문자들의 나열에서 데이터를 추출하고, 특정 타입에 맞게 데이터를 해석하고 서식화 한다. 이러한 형식의 작업은 추출 연산자 (extraction operator) 인
  [istream::operator>>](http://itguru.tistory.com/147)`` 을 오버로드 하는 멤버 및 전역 함수들에 의해 처리된다.
-
-
-
-
 
 * 서식화 되지 않은 입력 (Unformatted input)
 

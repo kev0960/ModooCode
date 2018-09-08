@@ -12,10 +12,7 @@ title : C++ 레퍼런스 - ios_base 클래스
 
 ```
 
-`ios_base`
-
-
-
+#@ ios_base
 
 
 표준 스트림 클래스의 타입과 무관한 멤버들을 포함하고 있는 기초 클래스(base `class)` 이다.

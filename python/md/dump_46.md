@@ -9,13 +9,9 @@ title : C 언어 레퍼런스 - putc 함수
 
 ```
 
-`putc`
+#@ putc
 
-
-
-
-
-﻿﻿﻿﻿```info
+```info
 
 
 #include <stdio.h> // C++ 에서는 <cstdio>int putc ( int character, FILE * stream );

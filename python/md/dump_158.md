@@ -12,10 +12,7 @@ title : C++ 레퍼런스 - ios_base::imbue
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios_base::imbue
-
-
-
+#@ ios_base::imbue
 
 ```cpp
 locale imbue ( const locale& loc );
@@ -86,13 +83,4 @@ int main()
 
 ###  연관된 것들
 
-
-
-
 *  [ios_base::getloc](http://itguru.tistory.com/160)`` : 현재 로케일을 알아온다.
-
-
-
-
-
-

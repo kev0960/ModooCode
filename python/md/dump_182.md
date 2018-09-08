@@ -12,9 +12,7 @@ title : C++ 레퍼런스 - ios::rdbuf 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios::rdbuf
-
-
+#@ ios::rdbuf
 
 ```info
 streambuf* rdbuf ( ) const;
@@ -86,12 +84,7 @@ basic_streambuf<charT,traits> * rdbuf ( basic_streambuf<charT,traits> sb);
 
 ###  연관된 자료
 
-
-
-
-
-* `streambuf`
-`` :  스트림의 부모(base) 버퍼 클래스
+* `streambuf` :  스트림의 부모(base) 버퍼 클래스
 
 
 

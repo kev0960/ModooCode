@@ -9,10 +9,7 @@ title : C 언어 레퍼런스- strcoll 함수
 
 ```
 
-`strcoll`
-
-
-
+#@ strcoll
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -52,20 +49,6 @@ int strcoll ( const char * str1, const char * str2 );
 
 ###  연관된 함수
 
-
-
-
 *  [strcmp](http://itguru.tistory.com/85)  :  두 문자열을 비교한다.
-
-
-
 * strncmp  :  두 문자열의 일부분을 비교한다.
-
 *  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
-
-
-
-
-
-
-

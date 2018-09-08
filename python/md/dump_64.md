@@ -9,7 +9,7 @@ title : C 언어 레퍼런스 - fprintf 함수
 
 ```
 
-`fprintf`
+#@ fprintf
 
 
 

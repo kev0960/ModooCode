@@ -12,10 +12,7 @@ title : C++ 레퍼런스 - ios_base::precision 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios_base::precision
-
-
-
+#@ ios_base::precision
 
 ```cpp
 streamsize precision ( ) const;
@@ -100,14 +97,5 @@ int main ()
 
 
 * setprecision  :  정밀도를 설정한다.
-
 *  [ios_base::width](http://itguru.tistory.com/152)`` :  필드 너비(field `width)` 를 설정한다.
-
-
 *  [ios_base::setf](http://itguru.tistory.com/155)`` :  특정 서식 플래그를 설정한다.
-
-
-
-
-
-

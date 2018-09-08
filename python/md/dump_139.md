@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - rand 함수
 
 ```
 
-`rand`
-
-
-#
+#@ rand
 
 ```info
 #include <stdlib.h> // C++ 에서는 <cstdlib>
@@ -94,10 +91,6 @@ int main ()
 
 
 ###  연관된 함수
-
-
-
-
 
 *  [srand](http://itguru.tistory.com/140)  :  난순열의 초기값을 설정한다.
 

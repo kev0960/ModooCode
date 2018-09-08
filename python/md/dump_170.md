@@ -12,9 +12,7 @@ title : C++ 레퍼런스 - ios::operator void*
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios::operator `void*`
-
-
+#@ ios::operator `void*`
 
 ```info
 operator void * ( ) const;
@@ -98,15 +96,5 @@ operator void * () const;
 
 ###  연관된 것들
 
-
-
-
-
 *  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 나 `badbit` 이 설정되었는지 확인한다.
-
 *  [ios::operator!](http://itguru.tistory.com/168)`` :  스트림 객체를 확인한다.
-
-
-
-
-

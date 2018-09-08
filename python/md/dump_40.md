@@ -8,9 +8,7 @@ title : C 언어 레퍼런스 - fputs 함수
 
 ```
 
-`fputs`
-
-
+#@ fputs
 
 ```info
 

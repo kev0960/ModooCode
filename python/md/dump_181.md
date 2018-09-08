@@ -12,10 +12,7 @@ title : C++ 레퍼런스 - ios::fill 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios::fill
-
-
-
+#@ ios::fill
 
 ```info
 char fill ( ) const;
@@ -123,8 +120,7 @@ char_type fill ( char_type fillch );
 
 
 * `setfill` : 채우기 문자를 설정한다. (조작자)
-
-* ios_base::width : 필드 폭을 설정하거나 그 값을 얻어온다.
+* `ios_base::width` : 필드 폭을 설정하거나 그 값을 얻어온다.
 
 
 

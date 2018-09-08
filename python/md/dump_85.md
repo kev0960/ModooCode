@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - strcmp 함수
 
 ```
 
-`strcmp`
-
-
-
+#@ strcmp
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -28,9 +25,6 @@ int strcmp ( const char * str1, const char * str2 );
 
 
 ###  인자
-
-
-
 
 `str1`
 
@@ -117,19 +111,11 @@ int main ()
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F193B1B1E4C24BABDAC1454)
 
-
-
-
 ###  연관된 함수
 
-
-
 *  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부 문자를 비교한다.
-
 *  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
-
 *  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자가 마지막으로 나타나는 위치를 찾는다.
-
 *  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 다른 문자열에서 차지하는 길이를 계산한다.
 
 

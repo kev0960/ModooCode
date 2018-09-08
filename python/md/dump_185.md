@@ -16,14 +16,7 @@ title : C++ 레퍼런스 - vector::push_back
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-
-
-
-vector::push_back
-
-
-
-
+#@ vector::push_back
 
 ```info
 
@@ -131,7 +124,7 @@ return 0;
 
 
 
-* vector::pop_back : 마지막 원소를 삭제한다.
+* `vector::pop_back` : 마지막 원소를 삭제한다.
 *  [vector::insert](http://itguru.tistory.com/186): 원소를 추가한다.
 
 

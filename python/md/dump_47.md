@@ -9,16 +9,13 @@ title : C 언어 레퍼런스 - putchar 함수
 
 ```
 
-`putchar`
-
-
+#@ putchar
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int putchar ( int character );
 ```
-
 
 표준 출력(stdout) 에 문자를 쓴다.
 표준 출력에서 현재 위치 표시자가 가리키는 곳에 문자를 쓴 뒤, 위치 표시자를 다음 위치로 전진시킨다.
@@ -28,9 +25,6 @@ int putchar ( int character );
 
 ###  인자
 
-
-
-
 `character`
 
 표준 출력에 쓸 문자. 이 때 문자는 `int` 형태로 형변환되어 전달된다.
@@ -39,18 +33,10 @@ int putchar ( int character );
 
 ###  리턴값
 
-
-
-
 오류가 하나도 없다면 표준 출력에 쓰여진 문자가 반환된다.
 만일 오류가 발생한다면 `EOF` 가 반환되고 오류 표시자가 설정된다.
 
-
-
 ###  실행 예제
-
-
-
 
 ```cpp
 /* 화면에 'p' 를 출력한다 */

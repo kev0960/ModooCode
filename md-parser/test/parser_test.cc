@@ -1,4 +1,5 @@
 #include "../src/parser.h"
+
 #include "../src/util.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
@@ -37,7 +38,36 @@ ListOrElem MakeOrderedList(std::vector<ListOrElem> list) {
   output += "</ol>";
   return ListOrElem(output, true);
 }
+
+string MakeTable(const std::vector<std::vector<string>>& table,
+                 const std::vector<string>& column_class) {
+  string html = "<table>";
+  if (table.size() == 0) {
+  }
+  for (size_t i = 0; i < table.size(); i++) {
+    if (i == 0) {
+      html += "<thead>";
+    }
+    html += "<tr>";
+    for (size_t j = 0; j < table[i].size(); j++) {
+      if (j < column_class.size() && !column_class[j].empty()) {
+        html += StrCat(R"(<td class=")", column_class[j], R"("><p>)", table[i][j],
+                       "</p></td>");
+      } else {
+        html += StrCat("<td><p>", table[i][j], "</p></td>");
+      }
+    }
+    html += "</tr>";
+    if (i == 0) {
+      html += "</thead>";
+      html += "<tbody>";
+    }
+  }
+  html += "</tbody></table>";
+  return html;
 }
+
+}  // namespace
 
 class MockMDParser : public MDParser {
  public:
@@ -119,6 +149,21 @@ TEST(ParserTest, SimpleOrderedListParser) {
                 .content);
 }
 
+TEST(ParserTest, Table) {
+  string table_str = R"(
+  | col 1 | col 2 | col 3 |
+  |:-----:|:------|------:|
+  |row a1 | row a2| row a3|
+  |row b1 | row b2| row b3|
+  )";
+  MockMDParser parser_table(table_str);
+  EXPECT_EQ(MakeTable({{"col 1", "col 2", "col 3"},
+                       {"row a1", "row a2", "row a3"},
+                       {"row b1", "row b2", "row b3"}},
+                      {"td-align-center", "", "td-align-right"}),
+            parser_table.ConvertToHtml());
+}
+
 TEST(ParserTest, Header) {
   string header = R"(
   ------------
@@ -138,10 +183,9 @@ TEST(ParserTest, Header) {
   k e y               :             v
   ------------
   )";
-  std::map<string, string> parsed_header2{{"date", ""},
-                                         {"k e y", "v"}};
+  std::map<string, string> parsed_header2{{"date", ""}, {"k e y", "v"}};
   MockMDParser header_parser2(header2);
   EXPECT_THAT(header_parser2.GetHeaderInfo(),
               ::testing::ContainerEq(parsed_header2));
 }
-}
+}  // namespace md_parser

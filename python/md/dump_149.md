@@ -12,10 +12,7 @@ title : C++ 레퍼런스 - istream::getline 함수
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-istream::getline
-
-
-
+#@ istream::getline
 
 ```info
 istream& getline (char* s, streamsize n );
@@ -129,13 +126,8 @@ basic_istream& getline (char_type* s, streamsize n, char_type delim );
 ###  연관된 함수
 
 
-* 
- [istream::get](http://itguru.tistory.com/191)  :  서식화 되지 않은 데이터를 스트림에서 가져온다.
-
-
-
+*  [istream::get](http://itguru.tistory.com/191)  :  서식화 되지 않은 데이터를 스트림에서 가져온다.
 *  [istream::ignore](http://itguru.tistory.com/193)  :  문자를 추출하고 버린다.
-
 *  [istream::gcount](http://itguru.tistory.com/192)`` : 이전의 서식화 되지 않았던 입력 작업서 추출하였던 문자의 개수를 얻어온다.
 
 

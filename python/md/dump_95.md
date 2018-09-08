@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - strpbrk 함수
 
 ```
 
-`strpbrk`
-
-
-
+#@ strpbrk
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>
@@ -128,18 +125,8 @@ int main ()
 * 
 
  [strcspn](http://itguru.tistory.com/94)  :  이 함수와 동일한 검색을 수행하되, 찾은 문자까지 거리를 구한다.
-
-
-
-
 *  [strchr](http://itguru.tistory.com/93)`` :  특정한 문자를 검색하는데 가장 먼저 나타나는 위치를 찾는다.
-
-
-
 * strrchr  :  특정한 문자를 검색하는데 가장 마지막으로 나타나는 위치를 찾는다.
-
-
-
 *  [memchr](http://itguru.tistory.com/92)  :  메모리에서 특정한 문자를 찾는다.
 
 

@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - strcspn 함수
 
 ```
 
-`strcspn`
-
-
-
+#@ strcspn
 
 ```info
 #include <string.h> // C++ 에서는 <cstring>

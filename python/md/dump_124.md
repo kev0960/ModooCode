@@ -9,11 +9,7 @@ title : C 언어 레퍼런스 - atof 함수
 
 ```
 
-`atof`
-
-
-
-
+#@ atof
 
 ```info
 #include <stdlib.h> // C++ 에서는 <cstdlib>
@@ -111,12 +107,8 @@ int main ()
 
 
 
-* strtod  :  문자열을 `double` 형 값으로 바꾼다.
-
-
-
+* `strtod`  :  문자열을 `double` 형 값으로 바꾼다.
 *  [atoi](http://itguru.tistory.com/131)  :  문자열을 `int` 형 값으로 바꾼다.
-
 *  [atol](http://itguru.tistory.com/132)  :  문자열을 `long` 형 값으로 바꾼다.
 
 

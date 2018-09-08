@@ -12,11 +12,7 @@ title : C++ 레퍼런스 - ios::exceptions
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios::exceptions
-
-
-
-
+#@ ios::exceptions
 
 ```cpp
 iostate exceptions ( ) const;
@@ -102,10 +98,6 @@ iostate exceptions ( iostate except );
 
 
 ###  연관된 함수
-
-
-
-
 
 *  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.
 

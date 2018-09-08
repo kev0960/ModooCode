@@ -12,9 +12,7 @@ title : C++ 레퍼런스 - ios::operator!
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-ios::operator!
-
-
+#@ ios::operator!
 
 ```info
 bool operator ! ( ) const;
@@ -90,27 +88,7 @@ int main () {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1265704E4EA3679D21067B)
 
-
-
-
-
-
-
-
 ###  연관된 함수
 
-
-
-
-
-
-
-
 *  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
-
 *  [ios::good](http://itguru.tistory.com/164)`` :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
-
-
-
-
-

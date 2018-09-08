@@ -12,20 +12,13 @@ title : C 언어 레퍼런스 - fopen 함수
 
 ```
 
-`fopen`
-
-
-
-
+#@ fopen
 
 ```info
 
 #include <stdio.h> // C++ 에서는 <cstdio>
 FILE * fopen ( const char * filename, const char * mode );
 ```
-
-
-
 
 파일을 연다
 
@@ -120,13 +113,8 @@ int main()
 *  [setbuf](http://itguru.tistory.com/61)``    :  스트림 버퍼를 설정한다.
 
 *  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼의 모드를 설정한다.
-
 * `tmpfile`   :  임시 파일을 연다.
-
-
-
-
-* tmpnam  : 임시 파일 이름을 생성한다.
+* `tmpnam`  : 임시 파일 이름을 생성한다.
 
 
 

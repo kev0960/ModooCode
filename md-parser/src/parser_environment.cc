@@ -95,6 +95,20 @@ bool ParserEnvironment::AppendToLastContent(const string& content) {
   return true;
 }
 
+// Add to the previous content if the content type matches. If so, then it
+// destrorys the passed "content". Otherwise it creates a new content based on
+// the passed argument.
+void ParserEnvironment::AppendOrCreateContent(Content* content,
+                                              const string& line) {
+  if (!content_list_.empty() &&
+      content_list_.back()->GetContentType() == content->GetContentType()) {
+    content_list_.back()->AddContent(line);
+    delete content;
+  } else {
+    content_list_.emplace_back(content);
+  }
+}
+
 const std::vector<std::unique_ptr<Content>>& ParserEnvironment::GetContentList()
     const {
   return content_list_;

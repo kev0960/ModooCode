@@ -11,11 +11,7 @@ title : C++ 레퍼런스 - ios 클래스
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-`ios`
-
-
-
-
+#@ ios
 
 표준 스트림 클래스의 타입 의존적인 멤버(type-dependent) 들을 포함하는 기초 클래스
 
@@ -122,13 +118,7 @@ title : C++ 레퍼런스 - ios 클래스
 
 
 *  [unsetf](http://itguru.tistory.com/156)  :  특정 서식 플래그를 초기화 한다.
-
-
-
 *  [precision](http://itguru.tistory.com/157)  :  부동 소수점 정밀도를 수정하거나 얻어온다.
-
-
-
 *  [width](http://itguru.tistory.com/152)  :  필드의 너비를 수정하거나 얻어온다
 
 *  [imbue](http://itguru.tistory.com/158)  :  로케일을 채운다.

@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - rewind 함수
 
 ```
 
-`rewind`
-
-
-
+#@ rewind
 
 ```info
 #include <stdio.h> // C++ 에서는 <cstdio>
@@ -78,17 +75,8 @@ fseek (stream, 0, SEEK_SET);
 
 ###  연관된 함수
 
-
-
-
-
-* 
- [fseek](http://itguru.tistory.com/72)`` :  스트림 위치 지정자를 설정한다.
-
-
-
+*  [fseek](http://itguru.tistory.com/72)`` :  스트림 위치 지정자를 설정한다.
 *  [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
-
 *  [fflush](http://itguru.tistory.com/57)  :  스트림을 비운다.
 
 

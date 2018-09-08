@@ -9,10 +9,7 @@ title : C 언어 레퍼런스 - struct tm ( tm 구조체 )
 
 ```
 
-`struct tm`
-
-
-
+#@ struct tm
 
 ```info
 #include <time.h> // C++ 에서는 <ctime>

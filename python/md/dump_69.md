@@ -9,9 +9,7 @@ title : C 언어 레퍼런스 - fwrite 함수
 
 ```
 
-`fwrite`
-
-
+#@ fwrite
 
 ```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
