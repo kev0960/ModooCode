@@ -46,21 +46,12 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
   if (token[0] == '#') {
     size_t num_sharps = 0;
     for (; num_sharps < token.length(); num_sharps++) {
-      if (token[num_sharps] != '#') {
+      if (token[num_sharps] != '#' && token[num_sharps] != '@') {
         // Header should be separate sequence of #s.
         return TEXT;
       }
     }
-    switch (num_sharps) {
-      case 1:
-        return HEADER1;
-      case 2:
-        return HEADER2;
-      case 3:
-        return HEADER3;
-      default:
-        return HEADER4;
-    }
+    return HEADER;
   }
   if (token.length() == 1) {
     if (token[0] == '*') {
@@ -123,7 +114,7 @@ void MDParser::AnalyzeLine(const std::string& line,
     return;
   } else if (in_code_) {
     if (!parser_env_.AppendToLastContent(StrCat("\n", line))) {
-      LOG << "(ERROR) Code parinsg error!";
+      LOG << "(ERROR) Code parsing error!";
     }
   } else if (first_token_info == NEWLINE) {
     newline_started_ = true;
@@ -142,14 +133,9 @@ void MDParser::AnalyzeLine(const std::string& line,
   } else {
     newline_started_ = false;
     switch (first_token_info) {
-      case HEADER1:
-      case HEADER2:
-      case HEADER3:
-      case HEADER4:
-      case HEADER5:
-      case HEADER6:
+      case HEADER:
         parser_env_.AddNewContent(
-            new HeaderContent(line_except_first_token, first_token_info));
+            new HeaderContent(line_except_first_token, first_token));
         break;
       case LIST_ENUM: {
         parser_env_.AddNextList(LIST_ENUM, space_and_tab);

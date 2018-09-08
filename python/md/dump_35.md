@@ -2,10 +2,6 @@
 title : C 언어 레퍼런스 - printf 함수
 --------------
 
-
-
-
-
 ```warning
 아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
 * 참고적으로 이 레퍼런스는 printf 함수에 대한 기초적인 이해가 있는 사람들을 위한 것이므로 printf 함수를 처음 보는 사람은 [http://itguru.tistory.com/7](http://itguru.tistory.com/7)를 보시는 것을 추천합니다.
@@ -13,10 +9,7 @@ title : C 언어 레퍼런스 - printf 함수
 ```
 
 
-
-
-
-`printf`
+#@ printf
 
 
 
@@ -48,9 +41,9 @@ int printf ( const char * format, ... );
 
 서식문자출력 형태
 예
-`c`문자
-`a``d`` or``i`부호 있는 십진법으로 나타난 정수`392 392`e`지수 표기법(Scientific `notation)` 으로 출력하되, `e` 문자를 이용한다.
-`3.9265e+2``E`지수 표기법(Scientific `notation)` 으로 출력하되, `E` 문자를 이용한다.`3.9265E+2``f`십진법으로 나타낸 부동 소수점 수
+ `c`문자
+ `a``d`` or``i`부호 있는 십진법으로 나타난 정수`392 392`e`지수 표기법(Scientific `notation)` 으로 출력하되, `e` 문자를 이용한다.
+ `3.9265e+2``E`지수 표기법(Scientific `notation)` 으로 출력하되, `E` 문자를 이용한다.`3.9265E+2``f`십진법으로 나타낸 부동 소수점 수
 `392.65``g`%e나 `%f` 보다 간략하게 출력`392.65``G`%E나 `%f` 보다 간략하게 출력`392.65``o`부호 있는 팔진수
 `610 610`s`문자열
 `sample``u`부호없는 십진법으로 나타낸 정수

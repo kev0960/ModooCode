@@ -3,6 +3,7 @@
 #include <unistd.h>
 
 #include <cstdlib>
+#include <fstream>
 #include <functional>
 #include <limits>
 #include <memory>
@@ -28,7 +29,7 @@ void RemoveEmptyPTag(string* s) {
 
         // Ignore whitespaces (tab and space).
         while (s->at(i) == ' ' || s->at(i) == '\t') {
-          i ++;
+          i++;
         }
         if (i + 3 < s->size() && s->substr(i, 4) == "</p>") {
           s->erase(p_tag_start, (i + 4) - p_tag_start);
@@ -94,7 +95,7 @@ string FormatCodeUsingChroma(const string& code, const string& lang,
                              const string& schema) {
   if (lang == "warning") {
     return StrCat("<pre class='warning'>", code, "</pre>");
-  } else if (lang == "info") {
+  } else if (lang == "info" || lang == "info_format") {
     return StrCat("<pre class='info'>", code, "</pre>");
   }
   auto code_ = cstring_from_string(code);
@@ -161,6 +162,12 @@ void DoClangFormat(const string& code, string* formatted_code) {
     LOG << "CLANG FORMAT ERROR : " << ret;
   }
 }
+
+bool IsFileExist(const string& filename) {
+  std::ifstream f(filename);
+  return f.good();
+}
+
 }  // namespace
 
 Content::Content(const string& content) : content_(content) { return; }
@@ -292,10 +299,43 @@ string Content::OutputHtml() {
                      GetHtmlFragmentText(content_, fragments[i], false), "'>",
                      GetHtmlFragmentText(content_, fragments[i]), "</a>");
     } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
-      html +=
-          StrCat("</p><img class='content-img' src='",
-                 GetHtmlFragmentText(content_, fragments[i], false), "' alt='",
-                 GetHtmlFragmentText(content_, fragments[i]), "'><p>");
+      string img_src = GetHtmlFragmentText(content_, fragments[i], false);
+      // If this image is from old tistory dump, then we have to switch to the
+      // local iamge.
+      if (img_src.find("http://img1.daumcdn.net") != string::npos) {
+        auto id_start = img_src.find("image%2F");
+        if (id_start == string::npos) {
+          LOG << "Daum Image URL is weird";
+        } else {
+          id_start += 8;
+          const string image_name = img_src.substr(id_start);
+          std::vector<string> file_ext_candidate = {".png", ".jpg", ".jpeg",
+                                                    ".gif"};
+          for (const auto& ext : file_ext_candidate) {
+            if (IsFileExist(StrCat("../views/img/", image_name, ext))) {
+              img_src = StrCat("/img/", image_name, ext);
+              break;
+            }
+          }
+        }
+      }
+      // Check webp version exist. If exists, then we use picture tag instead.
+      auto image_name_end = img_src.find_last_of(".");
+      if (image_name_end != string::npos) {
+        const string webp_image_name =
+            img_src.substr(0, image_name_end) + ".webp";
+        if (IsFileExist("../views" + webp_image_name)) {
+          html += StrCat(R"(</p><picture><source type="image/webp" srcset=")",
+                         webp_image_name, R"("><img class="content-img" src=")",
+                         img_src, R"(" alt=")",
+                         GetHtmlFragmentText(content_, fragments[i]),
+                         R"("></picture><p>)");
+          continue;
+        }
+      }
+      html += StrCat("</p><img class='content-img' src='", img_src, "' alt='",
+                     GetHtmlFragmentText(content_, fragments[i]), "'><p>");
+
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
       html += StrCat("</p>",
                      FormatCodeUsingChroma(fragments[i].formatted_code,
@@ -394,11 +434,16 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
     if (fragment.type == HtmlFragments::Types::CODE) {
       string unformatted_code = content_.substr(
           fragment.str_start, fragment.str_end - fragment.str_start + 1);
-      // Sometimes the code contains NBSP character. This hinders the code to be
-      // correctly formatted by the clang-format.
-      RemoveNbsp(&unformatted_code);
-      format_ops.push_back(std::thread(DoClangFormat, unformatted_code,
-                                       &fragment.formatted_code));
+      if (fragment.code_style != "cpp" &&
+          fragment.code_style != "info_format") {
+        fragment.formatted_code = unformatted_code;
+      } else {
+        // Sometimes the code contains NBSP character. This hinders the code to
+        // be correctly formatted by the clang-format.
+        RemoveNbsp(&unformatted_code);
+        format_ops.push_back(std::thread(DoClangFormat, unformatted_code,
+                                         &fragment.formatted_code));
+      }
     }
   }
   for (auto& t : format_ops) {
