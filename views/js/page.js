@@ -135,6 +135,51 @@ function InitCategory() {
   });
 }
 
+function CloseSidebar() {
+  // Close
+  $('#sidebar').hide();
+  $('#open-sidebar').show();
+
+  localStorage.setItem('sidebar', 'closed');
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    $('.wrap').css({'margin-left': '0', 'width': '100%'});
+  } else if (window.matchMedia(
+    '(min-width: 768px) and (max-width: 992px)').matches) {
+    $('.wrap')
+      .css({'margin-left': '5%', 'margin-right': '5%', 'width': '90%'});
+  } else if (window.matchMedia(
+    '(min-width: 993px) and (max-width: 1200px)').matches) {
+    $('.wrap')
+      .css({'margin-left': '10%', 'margin-right': '10%', 'width': '80%'});
+  } else if (window.matchMedia(
+    '(min-width: 1200px)').matches) {
+    $('.wrap')
+      .css({'margin-left': '15%', 'margin-right': '15%', 'width': '70%'});
+  }
+}
+
+function OpenSidebar() {
+  $('#sidebar').show();
+  $('#open-sidebar').hide();
+
+  localStorage.setItem('sidebar', 'opened');
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    $('.wrap').css({'margin-left': '30%', 'width': '70%'});
+  } else if (window.matchMedia(
+    '(min-width: 768px) and (max-width: 992px)').matches) {
+    $('.wrap')
+      .css({'margin-left': '25%', 'width': '75%'});
+  } else if (window.matchMedia(
+    '(min-width: 993px) and (max-width: 1200px)').matches) {
+    $('.wrap')
+      .css({'margin-left': '20%', 'width': '80%'});
+  } else if (window.matchMedia(
+    '(min-width: 1200px)').matches) {
+    $('.wrap')
+      .css({'margin-left': '30%', 'width': '70%'});
+  }
+}
+
 $(function () {
   require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
   require(['vs/editor/editor.main'], function () {
@@ -260,31 +305,34 @@ $(function () {
   });
   InitCategory();
 
+  var sidebar_status = localStorage.getItem('sidebar');
+  if (!sidebar_status) {
+    localStorage.setItem('sidebar', 'opened');
+  }
+
+  console.log(sidebar_status)
+  if (sidebar_status == 'closed') {
+    $('#sidebar').hide();
+    $('#open-sidebar').show();
+    CloseSidebar();
+  } else {
+    $('#sidebar').show();
+    $('#open-sidebar').hide();
+    OpenSidebar();
+  }
+
   $('#hide-sidebar').click(function () {
-    var status = $('#sidebar-checkbox').prop('checked')
-    if (status) {
-      // Reopen
+    var status = localStorage.getItem('sidebar');
+    if (status == 'opened') {
+      CloseSidebar();
     }
-    else {
-      // Close
-      $('#sidebar').hide();
-    }
-    status = !status;
-    $('#sidebar-checkbox').prop('checked', status);
-    if (window.matchMedia('(max-width: 767px)').matches) {
-      $('.wrap').css({'margin-left': '0', 'width': '100%'});
-    } else if (window.matchMedia(
-      '(min-width: 768px) and (max-width: 992px)').matches) {
-      $('.wrap')
-        .css({'margin-left': '5%', 'margin-right': '5%', 'width': '90%'});
-    } else if (window.matchMedia(
-      '(min-width: 993px) and (max-width: 1200px)').matches) {
-      $('.wrap')
-        .css({'margin-left': '10%', 'margin-right': '10%', 'width': '80%'});
-    } else if (window.matchMedia(
-      '(min-width: 1200px)').matches) {
-      $('.wrap')
-        .css({'margin-left': '15%', 'margin-right': '15%', 'width': '70%'});
+  });
+
+  $('#open-sidebar-btn').click(function() {
+    var status = localStorage.getItem('sidebar');
+    if (status == 'closed') {
+      // show
+      OpenSidebar();
     }
   });
 });

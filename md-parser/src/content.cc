@@ -295,8 +295,11 @@ string Content::OutputHtml() {
         html += "</span>";
       italic = !italic;
     } else if (fragments[i].type == HtmlFragments::Types::LINK) {
-      html += StrCat("<a href='",
-                     GetHtmlFragmentText(content_, fragments[i], false), "'>",
+      string url = GetHtmlFragmentText(content_, fragments[i], false);
+      if (url.find("http://itguru.tistory.com") != string::npos) {
+        url.erase(0, string("http://itguru.tistory.com").size());
+      }
+      html += StrCat("<a href='", url, "'>",
                      GetHtmlFragmentText(content_, fragments[i]), "</a>");
     } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
       string img_src = GetHtmlFragmentText(content_, fragments[i], false);

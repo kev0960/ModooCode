@@ -6,6 +6,14 @@
     margin-bottom:0;
 }
 
+.font-italic {
+    font-style: italic;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
 .wrap h3 {
     margin-bottom:1rem;
     border-left:10px solid #005ecb;
@@ -130,6 +138,31 @@
 
 .monaco-container {
     margin-top:20px;
+}
+
+@media (max-width: 48em) {
+    #open-sidebar {
+        position:absolute;
+        top:10px;
+        left:10px;
+        font-size:1.5em;
+        display:none;
+        z-index: 100;
+    }
+}
+@media (min-width: 49em) {
+    #open-sidebar {
+        position:absolute;
+        top:35px;
+        left:20px;
+        font-size:1.5em;
+        display:none;
+        z-index: 100;
+    }
+}
+
+#open-sidebar-btn {
+    cursor:pointer;
 }
 
 thead > tr {
