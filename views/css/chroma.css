@@ -199,7 +199,7 @@ h2.ref-header::before {
     background-color: #ffffff;
     border: 1px solid black;
     font-family: 'Source Code Pro', monospace;
-    font-size: 0.75em;
+    font-size: 0.85em;
     overflow-y: hidden;
 }
 
