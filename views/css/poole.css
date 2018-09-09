@@ -107,6 +107,7 @@ h4, h5, h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  font-family: "Noto Sans KR";
 }
 
 strong {
@@ -388,7 +389,7 @@ tbody tr:nth-child(even) th {
   overflow: hidden; /* clearfix */
   margin-left: -1rem;
   margin-right: -1rem;
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans KR", Helvetica, Arial, sans-serif;
   color: #ccc;
   text-align: center;
 }

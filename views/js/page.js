@@ -72,7 +72,7 @@ function InitCategory() {
   page_infos = JSON.parse($('#page-infos').html());
   file_infos = JSON.parse($('#file-infos').html());
 
-  $(document).on('click', '.sidebar-nav-item.dir', function() {
+  $(document).on('click', '.sidebar-nav-item.dir', function () {
     var path = GetPagePathFromNavId($(this));
     if ($(this).hasClass('open-cat')) {
       // Clicked the opened category; Need to collapse.
@@ -89,8 +89,9 @@ function InitCategory() {
       // Clicked the collapsed category; Need to open it.
       $(this).addClass('open-cat');
       var html = $(this).html();
-      html = html.replace("<i class=\"fas fa-plus-square\" style=\"font-size:0.75em;\"></i>",
-                   "<i class='fas fa-caret-down'></i>");
+      html = html.replace(
+        "<i class=\"fas fa-plus-square\" style=\"font-size:0.75em;\"></i>",
+        "<i class='fas fa-caret-down'></i>");
       $(this).html(html);
 
       // Get the directory.
@@ -102,9 +103,11 @@ function InitCategory() {
         if (folders[i] !== 'files') {
           var dir_folders = Object.keys(current_dir[folders[i]]);
           var folder_html = folders[i];
-          if (dir_folders.length >= 2 || current_dir[folders[i]]["files"].length > 0) {
+          if (dir_folders.length >= 2 ||
+              current_dir[folders[i]]["files"].length > 0) {
             folder_html = "<i class=\"fas fa-plus-square\" " +
-                          "style=\"font-size:0.75em;\"></i>&nbsp;&nbsp;" + folder_html;
+                          "style=\"font-size:0.75em;\"></i>&nbsp;&nbsp;" +
+                          folder_html;
           }
           div.append($("<a>", {
             'class': 'sidebar-nav-item dir',
@@ -123,7 +126,7 @@ function InitCategory() {
         div.append($("<a>", {
           'class': 'sidebar-nav-item file',
           'text': cat_title,
-          'href' : file_id,
+          'href': file_id,
           'name': cat_title
         }));
       }
@@ -256,5 +259,32 @@ $(function () {
     ;
   });
   InitCategory();
-  //SetCategory();
+
+  $('#hide-sidebar').click(function () {
+    var status = $('#sidebar-checkbox').prop('checked')
+    if (status) {
+      // Reopen
+    }
+    else {
+      // Close
+      $('#sidebar').hide();
+    }
+    status = !status;
+    $('#sidebar-checkbox').prop('checked', status);
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      $('.wrap').css({'margin-left': '0', 'width': '100%'});
+    } else if (window.matchMedia(
+      '(min-width: 768px) and (max-width: 992px)').matches) {
+      $('.wrap')
+        .css({'margin-left': '5%', 'margin-right': '5%', 'width': '90%'});
+    } else if (window.matchMedia(
+      '(min-width: 993px) and (max-width: 1200px)').matches) {
+      $('.wrap')
+        .css({'margin-left': '10%', 'margin-right': '10%', 'width': '80%'});
+    } else if (window.matchMedia(
+      '(min-width: 1200px)').matches) {
+      $('.wrap')
+        .css({'margin-left': '15%', 'margin-right': '15%', 'width': '70%'});
+    }
+  });
 });

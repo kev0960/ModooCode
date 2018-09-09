@@ -14,6 +14,12 @@
 
 namespace md_parser {
 namespace {
+void StripMarkdown(string* html) {
+  html->erase(std::remove_if(html->begin(), html->end(),
+                             [](char c) { return c == '`'; }),
+              html->end());
+}
+
 void StripTags(string* html) {
   std::unordered_set<string> disallowed_tags = {"code", "p", "span"};
   string stripped_string = "";
@@ -73,10 +79,8 @@ string HeaderContent::OutputHtml() {
     start_header = R"(<h2 class="ref-header">)";
     end_header = R"(</h2>)";
   }
-  string inner_html = Content::OutputHtml();
-  // Remove not allowed tags in html.
-  StripTags(&inner_html);
-  return StrCat(start_header, inner_html, end_header);
+  StripMarkdown(&content_);
+  return StrCat(start_header, content_, end_header);
 }
 
 void HeaderContent::AddContent(const string& content) { content_ += content; }
