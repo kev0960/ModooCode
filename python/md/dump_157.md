@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - ios_base::precision 함수
+cat_title :  ios_base::precision
 --------------
 
 

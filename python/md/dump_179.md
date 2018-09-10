@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - ios::setstate 함수
+cat_title :  ios::setstate
 --------------
 
 

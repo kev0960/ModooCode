@@ -8,10 +8,12 @@
 }
 ,
 	"101" : {
+	"cat_title" : "strstr",
 	"title" : "C 언어 레퍼런스 - strstr 함수"
 }
 ,
 	"102" : {
+	"cat_title" : "strtok",
 	"title" : "C 언어 레퍼런스 - strtok 함수"
 }
 ,
@@ -20,42 +22,52 @@
 }
 ,
 	"104" : {
+	"cat_title" : "memset",
 	"title" : "C 언어 레퍼런스 - memset 함수"
 }
 ,
 	"105" : {
+	"cat_title" : "strerror",
 	"title" : "C 언어 레퍼런스 - strerror 함수"
 }
 ,
 	"106" : {
+	"cat_title" : "strlen",
 	"title" : "C 언어 레퍼런스 - strlen 함수"
 }
 ,
 	"108" : {
+	"cat_title" : "time.h",
 	"title" : "C 언어 레퍼런스 - time.h 헤더파일"
 }
 ,
 	"109" : {
+	"cat_title" : "time.h",
 	"title" : "C 언어 레퍼런스 - struct tm ( tm 구조체 )"
 }
 ,
 	"110" : {
+	"cat_title" : "clock",
 	"title" : "C 언어 레퍼런스 - clock 함수"
 }
 ,
 	"111" : {
+	"cat_title" : "difftime",
 	"title" : "C 언어 레퍼런스 - difftime 함수"
 }
 ,
 	"112" : {
+	"cat_title" : "mktime",
 	"title" : "C 언어 레퍼런스 - mktime 함수"
 }
 ,
 	"113" : {
+	"cat_title" : "mktime",
 	"title" : "C 언어 레퍼런스 - time_t 형"
 }
 ,
 	"114" : {
+	"cat_title" : "time",
 	"title" : "C 언어 레퍼런스 - time 함수"
 }
 ,
@@ -64,6 +76,7 @@
 }
 ,
 	"116" : {
+	"cat_title" : "asctime",
 	"title" : "C 언어 레퍼런스 - asctime 함수"
 }
 ,
@@ -72,10 +85,12 @@
 }
 ,
 	"118" : {
+	"cat_title" : "ctime",
 	"title" : "C 언어 레퍼런스 - ctime 함수"
 }
 ,
 	"119" : {
+	"cat_title" : "gmtime",
 	"title" : "C 언어 레퍼런스 - gmtime 함수"
 }
 ,
@@ -84,14 +99,17 @@
 }
 ,
 	"120" : {
+	"cat_title" : "localtime",
 	"title" : "C 언어 레퍼런스 - localtime 함수"
 }
 ,
 	"121" : {
+	"cat_title" : "localtime",
 	"title" : "C 언어 레퍼런스 - stdlib.h (cstlib)"
 }
 ,
 	"122" : {
+	"cat_title" : "strftime",
 	"title" : "C 언어 레퍼런스 - strftime 함수"
 }
 ,
@@ -100,6 +118,7 @@
 }
 ,
 	"124" : {
+	"cat_title" : "atof",
 	"title" : "C 언어 레퍼런스 - atof 함수"
 }
 ,
@@ -116,10 +135,12 @@
 }
 ,
 	"131" : {
+	"cat_title" : "atoi",
 	"title" : "C 언어 레퍼런스 - atoi 함수"
 }
 ,
 	"132" : {
+	"cat_title" : "atol",
 	"title" : "C 언어 레퍼런스 - atol 함수"
 }
 ,
@@ -144,6 +165,7 @@
 }
 ,
 	"139" : {
+	"cat_title" : "rand",
 	"title" : "C 언어 레퍼런스 - rand 함수"
 }
 ,
@@ -152,6 +174,7 @@
 }
 ,
 	"140" : {
+	"cat_title" : "srand",
 	"title" : "C 언어 레퍼런스 - srand 함수"
 }
 ,
@@ -168,62 +191,77 @@
 }
 ,
 	"144" : {
+	"cat_title" : "ios_base 클래스",
 	"title" : "C++ 레퍼런스 - ios_base 클래스"
 }
 ,
 	"145" : {
+	"cat_title" : "ios 클래스",
 	"title" : "C++ 레퍼런스 - ios 클래스"
 }
 ,
 	"146" : {
+	"cat_title" : "istream 클래스",
 	"title" : "C++ 레퍼런스 - istream 클래스"
 }
 ,
 	"147" : {
+	"cat_title" : "istream::operator>> (추출 연산자)",
 	"title" : "C++ 레퍼런스 - istream::operator>> (추출 연산자)"
 }
 ,
 	"149" : {
+	"cat_title" : "istream::getline",
 	"title" : "C++ 레퍼런스 - istream::getline 함수"
 }
 ,
 	"150" : {
+	"cat_title" : "ios::exceptions",
 	"title" : "C++ 레퍼런스 - ios::exceptions"
 }
 ,
 	"151" : {
+	"cat_title" : "ifstream 클래스",
 	"title" : "C++ 레퍼런스 - ifstream 클래스"
 }
 ,
 	"152" : {
+	"cat_title" : "ios_base::width",
 	"title" : "C++ 레퍼런스 - ios_base::width"
 }
 ,
 	"153" : {
+	"cat_title" : "ios_base::flags",
 	"title" : "C++ 레퍼런스 - ios_base::flags 함수"
 }
 ,
 	"154" : {
+	"cat_title" : "ios_base::fmtflags 타입",
 	"title" : "C++ 레퍼런스 - ios_base::fmtflags 타입"
 }
 ,
 	"155" : {
+	"cat_title" : "ios_base::setf",
 	"title" : "C++ 레퍼런스 - ios_base::setf 함수"
 }
 ,
 	"156" : {
+	"cat_title" : "ios_base::usetf",
 	"title" : "C++ 레퍼런스 - ios_base::usetf 함수"
 }
 ,
 	"157" : {
+	"cat_title" : "ios_base::precision",
 	"title" : "C++ 레퍼런스 - ios_base::precision 함수"
 }
 ,
 	"158" : {
+	"cat_title" : "ios_base::imbue",
 	"title" : "C++ 레퍼런스 - ios_base::imbue"
 }
 ,
 	"159" : {
+	"cat_title" : "ios_base::register_callback",
 	"title" : "C++ 레퍼런스 - ios_base::register_callback 함수"
 }
 ,
@@ -232,38 +270,47 @@
 }
 ,
 	"160" : {
+	"cat_title" : "ios_base::getloc",
 	"title" : "C++ 레퍼런스 - ios_base::getloc 함수"
 }
 ,
 	"161" : {
+	"cat_title" : "ios_base::iword",
 	"title" : "C++ 레퍼런스 - ios_base::iword"
 }
 ,
 	"162" : {
+	"cat_title" : "ios_base::xalloc",
 	"title" : "C++ 레퍼런스 - ios_base::xalloc 함수"
 }
 ,
 	"163" : {
+	"cat_title" : "ios_base::pword",
 	"title" : "C++ 레퍼런스 - ios_base::pword 함수"
 }
 ,
 	"164" : {
+	"cat_title" : "ios::good",
 	"title" : "C++ 레퍼런스 - ios::good 함수"
 }
 ,
 	"165" : {
+	"cat_title" : "ios::fail",
 	"title" : "C++ 레퍼런스 - ios::fail 함수"
 }
 ,
 	"166" : {
+	"cat_title" : "ios::bad",
 	"title" : "C++ 레퍼런스 - ios::bad 함수"
 }
 ,
 	"167" : {
+	"cat_title" : "ios::eof",
 	"title" : "C++ 레퍼런스 - ios::eof 함수"
 }
 ,
 	"168" : {
+	"cat_title" : "ios::operator!",
 	"title" : "C++ 레퍼런스 - ios::operator!"
 }
 ,
@@ -276,10 +323,12 @@
 }
 ,
 	"170" : {
+	"cat_title" : "ios::operator void*",
 	"title" : "C++ 레퍼런스 - ios::operator void*"
 }
 ,
 	"171" : {
+	"cat_title" : "ios::rdstate",
 	"title" : "C++ 레퍼런스 - ios::rdstate 함수"
 }
 ,
@@ -292,26 +341,32 @@
 }
 ,
 	"174" : {
+	"cat_title" : "STL 컨테이너 (STL Container)",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 (STL Container)"
 }
 ,
 	"175" : {
+	"cat_title" : "vector",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - vector"
 }
 ,
 	"176" : {
+	"cat_title" : "deque",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - deque"
 }
 ,
 	"177" : {
+	"cat_title" : "list",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - list"
 }
 ,
 	"178" : {
+	"cat_title" : "vector 생성자",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - vector 생성자"
 }
 ,
 	"179" : {
+	"cat_title" : "ios::setstate",
 	"title" : "C++ 레퍼런스 - ios::setstate 함수"
 }
 ,
@@ -320,18 +375,22 @@
 }
 ,
 	"180" : {
+	"cat_title" : "ios::clear",
 	"title" : "C++ 레퍼런스 - ios::clear"
 }
 ,
 	"181" : {
+	"cat_title" : "ios::fill",
 	"title" : "C++ 레퍼런스 - ios::fill 함수"
 }
 ,
 	"182" : {
+	"cat_title" : "ios::rdbuf",
 	"title" : "C++ 레퍼런스 - ios::rdbuf 함수"
 }
 ,
 	"183" : {
+	"cat_title" : "vector::assign",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수"
 }
 ,
@@ -340,10 +399,12 @@
 }
 ,
 	"185" : {
+	"cat_title" : "vector::push_back",
 	"title" : "C++ 레퍼런스 - vector::push_back"
 }
 ,
 	"186" : {
+	"cat_title" : "vector::insert",
 	"title" : "C++ 레퍼런스 - vector::insert"
 }
 ,
@@ -364,22 +425,27 @@
 }
 ,
 	"190" : {
+	"cat_title" : "ios::tie",
 	"title" : "C++ 레퍼런스 - ios::tie 함수"
 }
 ,
 	"191" : {
+	"cat_title" : "istream::get",
 	"title" : "C++ 레퍼런스 - istream::get 함수"
 }
 ,
 	"192" : {
+	"cat_title" : "istream::gcount",
 	"title" : "C++ 레퍼런스 - istream::gcount 함수"
 }
 ,
 	"193" : {
+	"cat_title" : "istream::ignore",
 	"title" : "C++ 레퍼런스 - istream::ignore 함수"
 }
 ,
 	"194" : {
+	"cat_title" : "istream::peak",
 	"title" : "C++ 레퍼런스 - istream::peak 함수"
 }
 ,
@@ -544,34 +610,42 @@
 }
 ,
 	"34" : {
+	"cat_title" : "stdio.h (cstdio)",
 	"title" : "C 언어 레퍼런스 - stdio.h (cstdio) 헤더파일"
 }
 ,
 	"35" : {
+	"cat_title" : "printf",
 	"title" : "C 언어 레퍼런스 - printf 함수"
 }
 ,
 	"36" : {
+	"cat_title" : "scanf",
 	"title" : "C 언어 레퍼런스 - scanf 함수"
 }
 ,
 	"37" : {
+	"cat_title" : "fgetc",
 	"title" : "C 언어 레퍼런스 - fgetc 함수"
 }
 ,
 	"38" : {
+	"cat_title" : "fgets",
 	"title" : "C 언어 레퍼런스 - fgets 함수"
 }
 ,
 	"39" : {
+	"cat_title" : "fputc",
 	"title" : "C 언어 레퍼런스 -  fputc 함수"
 }
 ,
 	"40" : {
+	"cat_title" : "fputs",
 	"title" : "C 언어 레퍼런스 - fputs 함수"
 }
 ,
 	"41" : {
+	"cat_title" : "getc",
 	"title" : "C 언어 레퍼런스 - getc 함수"
 }
 ,
@@ -580,26 +654,32 @@
 }
 ,
 	"44" : {
+	"cat_title" : "getchar",
 	"title" : "C 언어 레퍼런스 - getchar 함수"
 }
 ,
 	"45" : {
+	"cat_title" : "gets",
 	"title" : "C 언어 레퍼런스 - gets 함수"
 }
 ,
 	"46" : {
+	"cat_title" : "putc",
 	"title" : "C 언어 레퍼런스 - putc 함수"
 }
 ,
 	"47" : {
+	"cat_title" : "putchar",
 	"title" : "C 언어 레퍼런스 - putchar 함수"
 }
 ,
 	"48" : {
+	"cat_title" : "puts",
 	"title" : "C 언어 레퍼런스 - puts 함수"
 }
 ,
 	"49" : {
+	"cat_title" : "ungetc",
 	"title" : "C 언어 레퍼런스 - ungetc 함수"
 }
 ,
@@ -610,22 +690,27 @@
 }
 ,
 	"50" : {
+	"cat_title" : "clearerr",
 	"title" : "C 언어 레퍼런스 - clearerr 함수"
 }
 ,
 	"51" : {
+	"cat_title" : "feof",
 	"title" : "C 언어 레퍼런스 - feof 함수"
 }
 ,
 	"52" : {
+	"cat_title" : "ferror",
 	"title" : "C 언어 레퍼런스 - ferror 함수"
 }
 ,
 	"53" : {
+	"cat_title" : "perror",
 	"title" : "C 언어 레퍼런스 - perror 함수"
 }
 ,
 	"54" : {
+	"cat_title" : "fclose",
 	"title" : "C 언어 레퍼런스 - fclose 함수"
 }
 ,
@@ -634,14 +719,17 @@
 }
 ,
 	"57" : {
+	"cat_title" : "fflush",
 	"title" : "C 언어 레퍼런스 - fflush 함수"
 }
 ,
 	"58" : {
+	"cat_title" : "fopen",
 	"title" : "C 언어 레퍼런스 - fopen 함수"
 }
 ,
 	"59" : {
+	"cat_title" : "freopen",
 	"title" : "C 언어 레퍼런스 - freopen 함수"
 }
 ,
@@ -654,34 +742,42 @@
 }
 ,
 	"61" : {
+	"cat_title" : "setbuf",
 	"title" : "C 언어 레퍼런스 - setbuf 함수"
 }
 ,
 	"62" : {
+	"cat_title" : "setvbuf",
 	"title" : "C 언어 레퍼런스 - setvbuf 함수"
 }
 ,
 	"64" : {
+	"cat_title" : "fprintf",
 	"title" : "C 언어 레퍼런스 - fprintf 함수"
 }
 ,
 	"65" : {
+	"cat_title" : "fscanf",
 	"title" : "C 언어 레퍼런스 - fscanf 함수"
 }
 ,
 	"66" : {
+	"cat_title" : "sprintf",
 	"title" : "C 언어 레퍼런스 - sprintf 함수"
 }
 ,
 	"67" : {
+	"cat_title" : "sscanf",
 	"title" : "C 언어 레퍼런스 - sscanf 함수"
 }
 ,
 	"68" : {
+	"cat_title" : "fread",
 	"title" : "C 언어 레퍼런스 - fread 함수"
 }
 ,
 	"69" : {
+	"cat_title" : "fwrite",
 	"title" : "C 언어 레퍼런스 - fwrite 함수"
 }
 ,
@@ -690,6 +786,7 @@
 }
 ,
 	"70" : {
+	"cat_title" : "fgetpos",
 	"title" : "C 언어 레퍼런스 - fgetpos 함수"
 }
 ,
@@ -698,34 +795,42 @@
 }
 ,
 	"72" : {
+	"cat_title" : "fseek",
 	"title" : "C 언어 레퍼런스 - fseek 함수"
 }
 ,
 	"73" : {
+	"cat_title" : "fsetpos",
 	"title" : "C 언어 레퍼런스 - fsetpos 함수"
 }
 ,
 	"74" : {
+	"cat_title" : "ftell",
 	"title" : "C 언어 레퍼런스 - ftell 함수"
 }
 ,
 	"75" : {
+	"cat_title" : "rewind",
 	"title" : "C 언어 레퍼런스 - rewind 함수"
 }
 ,
 	"76" : {
+	"cat_title" : "string.h (cstring)",
 	"title" : "C 언어 레퍼런스 - string.h (cstring) 헤더파일"
 }
 ,
 	"77" : {
+	"cat_title" : "memcpy",
 	"title" : "C 언어 레퍼런스 - memcpy 함수"
 }
 ,
 	"78" : {
+	"cat_title" : "memmove",
 	"title" : "C 언어 레퍼런스 - memmove 함수"
 }
 ,
 	"79" : {
+	"cat_title" : "strcpy",
 	"title" : "C 언어 레퍼런스 - strcpy 함수"
 }
 ,
@@ -734,14 +839,17 @@
 }
 ,
 	"80" : {
+	"cat_title" : "strncpy",
 	"title" : "C 언어 레퍼런스 - strncpy 함수"
 }
 ,
 	"81" : {
+	"cat_title" : "strcat",
 	"title" : "C 언어 레퍼런스 - strcat 함수"
 }
 ,
 	"82" : {
+	"cat_title" : "strncat",
 	"title" : "C 언어 레퍼런스 - strncat 함수"
 }
 ,
@@ -750,14 +858,17 @@
 }
 ,
 	"84" : {
+	"cat_title" : "memcmp",
 	"title" : "C 언어 레퍼런스 - memcmp 함수"
 }
 ,
 	"85" : {
+	"cat_title" : "strcmp",
 	"title" : "C 언어 레퍼런스 - strcmp 함수"
 }
 ,
 	"86" : {
+	"cat_title" : "strcoll",
 	"title" : "C 언어 레퍼런스- strcoll 함수"
 }
 ,
@@ -778,34 +889,42 @@
 }
 ,
 	"90" : {
+	"cat_title" : "strncmp",
 	"title" : "C 언어 레퍼런스 - strncmp 함수"
 }
 ,
 	"91" : {
+	"cat_title" : "strxfrm",
 	"title" : "C 언어 레퍼런스 - strxfrm 함수"
 }
 ,
 	"92" : {
+	"cat_title" : "memchr",
 	"title" : "C 언어 레퍼런스 - memchr 함수"
 }
 ,
 	"93" : {
+	"cat_title" : "strchr",
 	"title" : "C 언어 레퍼런스 - strchr 함수"
 }
 ,
 	"94" : {
+	"cat_title" : "strcspn",
 	"title" : "C 언어 레퍼런스 - strcspn 함수"
 }
 ,
 	"95" : {
+	"cat_title" : "strpbrk",
 	"title" : "C 언어 레퍼런스 - strpbrk 함수"
 }
 ,
 	"96" : {
+	"cat_title" : "strrchr",
 	"title" : "C 언어 레퍼런스 - strrchr 함수"
 }
 ,
 	"97" : {
+	"cat_title" : "strspn",
 	"title" : "C 언어 레퍼런스 - strspn 함수"
 }
 ,

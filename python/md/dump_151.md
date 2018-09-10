@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - ifstream 클래스
+cat_title :  ifstream 클래스
 --------------
 
 

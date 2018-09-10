@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - ios_base::fmtflags 타입
+cat_title :  ios_base::fmtflags 타입
 --------------
 
 

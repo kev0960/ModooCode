@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - istream::operator>> (추출 연산자)
+cat_title :  istream::operator>> (추출 연산자)
 --------------
 
 
@@ -11,11 +12,7 @@ title : C++ 레퍼런스 - istream::operator>> (추출 연산자)
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-istream::operator>>
-
-
-
-
+#@ istream::operator>>
 
 ```info
 istream& operator>> (bool& val );
@@ -54,7 +51,7 @@ istream& operator>> (istream& is, unsigned char* str );
   참고적으로 3 가지 종류의 멤버 함수들과, 한 가지 종류의 전역 함수들이 [istream](http://itguru.tistory.com/146)`` 객체에 적용되는 추출 연산자에서 오버로드 된다.
 
 
-* 첫번재 종류의 멤버 함수는 산술 추출자(arithmetic `extractor)` 이다. 이들은 입력 데이터로 부터 문자들을 받아서 이 추출자의 인자의 특정 타입의 형태로 값을 해석하게 된다. 그 결과값은 인자로 전달된 변수에 저장되게 된다. (위 소스에서 상단 부분)
+* 첫번재 종류의 멤버 함수는 산술 추출자(arithmetic extractor) 이다. 이들은 입력 데이터로 부터 문자들을 받아서 이 추출자의 인자의 특정 타입의 형태로 값을 해석하게 된다. 그 결과값은 인자로 전달된 변수에 저장되게 된다. (위 소스에서 상단 부분)
 
 
 
@@ -77,7 +74,7 @@ istream& operator>> (istream& is, unsigned char* str );
 strm >> variable;
 ```
 
- 와 같이 사용하면 된다. 이 때 `strm` 은 [istream](http://itguru.tistory.com/146)`` 객체의 이름이고, `variable` 은 우변으로 전달되는 인자이다. 물론 이 연산자를 아래처럼 쭉 이어나가서 사용해도 된다.
+ 와 같이 사용하면 된다. 이 때 `strm` 은 [istream](http://itguru.tistory.com/146) 객체의 이름이고, `variable` 은 우변으로 전달되는 인자이다. 물론 이 연산자를 아래처럼 쭉 이어나가서 사용해도 된다.
 
 ```cpp
 strm >> variable1 >> variable2 >> variable3; //...
@@ -154,7 +151,7 @@ strm >> variable1 >> variable2 >> variable3; //...
 
   문자를 추출하여 C 형식 문자열로 저장한다. (즉 `str` 이 문자열의 시작 부분을 가리키고, `null` 문자로 문자열이 끝난다) 추출은 다음 문자가 공백 문자(whitespace) 이거나 널 문자 혹은 `End of file` 에 도달하였을 때 종료된다. 입력 받은 문자열 끝에는 자동적으로 널 문자가 붙게 된다.
 
-  이 때 만일 필드의 너비가 0 보다 크게 설정되었다면 (이는 [ios_base::width](http://itguru.tistory.com/152)`` 혹은 `setw` 로 설정할 수 있다)  입력 받을 문자의 수를 제한할 수 도 있다(버퍼 오버플로우 문제를 막기 위해). 이 경우 입력 받은 문자의 수가 필드 너비 값에 도달하기 하나 전에, 입력을 중단하고 나머지 한 문자를 널 종료 문자(null `terminating character)` 로 채운다. 그리고 자동으로 필드 너비 값이 0 으로 재설정 되버린다.
+  이 때 만일 필드의 너비가 0 보다 크게 설정되었다면 (이는 [ios_base::width](http://itguru.tistory.com/152)`` 혹은 `setw` 로 설정할 수 있다)  입력 받을 문자의 수를 제한할 수 도 있다(버퍼 오버플로우 문제를 막기 위해). 이 경우 입력 받은 문자의 수가 필드 너비 값에 도달하기 하나 전에, 입력을 중단하고 나머지 한 문자를 널 종료 문자(null terminating character) 로 채운다. 그리고 자동으로 필드 너비 값이 0 으로 재설정 되버린다.
 
 `is`
 
@@ -173,9 +170,9 @@ strm >> variable1 >> variable2 >> variable3; //...
 발생된 오류는 내부 플래그를 변화시키게 된다.
 
 플래그오류`eofbit`작업 중 문자들의 끝에 도달하였을 때`failbit`입력받은 데이터가 올바른 타입으로 해석이 되지 않을 `` 경우
-(참고로` eofbit`시` failbit`도 참이 된다`)``badbit`위 같은 일들 외의 다른 오류가 발생시(ios_base::iostate를 참조`)`
+(참고로` eofbit`시` failbit`도 참이 된다) `badbit`위 같은 일들 외의 다른 오류가 발생시(`ios_base::iostate` 를 참조`)`
 
-  추가적으로 [ios::exceptions](http://itguru.tistory.com/150)`` 의 멤버 함수를 통해 적절하게 플래그가 설정되어있다면, 위와 같은 상황 발생 시 ios_base::failure 예외가 `throw` 된다.
+  추가적으로 [ios::exceptions](http://itguru.tistory.com/150) 의 멤버 함수를 통해 적절하게 플래그가 설정되어있다면, 위와 같은 상황 발생 시 `ios_base::failure` 예외가 `throw` 된다.
 
 
 
@@ -223,20 +220,6 @@ int main ()
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F144DE2524E4B71D4023599)
 
 
-
-###  템플릿 멤버 정의
-
-
-```cpp
-
-// basic_istream<charT,traits>// 맨 위에 나와 있는 예는 charT 에 char 을 전달한 것들.< [여기](http://itguru.tistory.com/143)> 참조basic_istream& operator>> (bool& val );basic_istream& operator>> (short& val );basic_istream& operator>> (unsigned short& val );basic_istream& operator>> (int& val );basic_istream& operator>> (unsigned int& val );basic_istream& operator>> (long& val );basic_istream& operator>> (unsigned long& val );basic_istream& operator>> (float& val );basic_istream& operator>> (double& val );basic_istream& operator>> (long double& val );basic_istream& operator>> (void*& val );basic_istream& operator>> (basic_streambuf<charT,traits>* sb );basic_istream& operator>> (basic_istream& ( *pf )(istream&));basic_istream& operator>> (basic_ios<charT,traits>& ( *pf )(basic_ios<charT,traits>&));basic_istream& operator>> (ios_base& ( *pf )(ios_base&));
-```
-
-
-
-
-
-
 ###  템플릿 전역 함수들
 
 
@@ -264,16 +247,11 @@ template <class charT, class traits>
 ```
 
 
-
-
 ###  연관된 함수
 
 
-
-
-
 * 
- [istream::get](http://itguru.tistory.com/191)`` :  서식화 되지 않는 데이터를 스트림에서 가져온다.
+ [istream::get](http://itguru.tistory.com/191) :  서식화 되지 않는 데이터를 스트림에서 가져온다.
 
 *  [istream::getline](http://itguru.tistory.com/149)  :  스트림에서 한 줄을 입력 받는다.
 

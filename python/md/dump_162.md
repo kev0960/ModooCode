@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - ios_base::xalloc 함수
+cat_title :  ios_base::xalloc
 --------------
 
 
@@ -19,8 +20,8 @@ int xalloc ( );
 ```
 
 
-내부 확장 가능 배열(internal `extensible array)` 의 새로운 인덱스를 리턴한다.
-이 인덱스(index) 를 통해서 다른 멤버 함수들(pword, [iword](http://itguru.tistory.com/161)`)` 들의 작업에 사용될 수 있다. 이 인덱스는 매 호출 마다 1 씩 증가하게 된다.
+내부 확장 가능 배열(internal extensible array) 의 새로운 인덱스를 리턴한다.
+이 인덱스(index) 를 통해서 다른 멤버 함수들(pword, [iword](http://itguru.tistory.com/161)) 들의 작업에 사용될 수 있다. 이 인덱스는 매 호출 마다 1 씩 증가하게 된다.
 
 내부 확장 가능 배열은 `word` 들을 원소를 가지는 배열이다.
 

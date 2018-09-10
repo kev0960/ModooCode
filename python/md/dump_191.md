@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - istream::get 함수
+cat_title :  istream::get
 --------------
 
 ```warning

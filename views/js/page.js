@@ -70,8 +70,7 @@ function InitCategory() {
   }
 
   page_infos = JSON.parse($('#page-infos').html());
-  file_infos = JSON.parse($('#file-infos').html());
-
+  file_infos = JSON.parse($('#file-infos').text());
   $(document).on('click', '.sidebar-nav-item.dir', function () {
     var path = GetPagePathFromNavId($(this));
     if ($(this).hasClass('open-cat')) {
@@ -123,6 +122,7 @@ function InitCategory() {
         if (file_infos[file_id].cat_title) {
           cat_title = file_infos[file_id].cat_title;
         }
+        console.log(file_infos[file_id])
         div.append($("<a>", {
           'class': 'sidebar-nav-item file',
           'text': cat_title,

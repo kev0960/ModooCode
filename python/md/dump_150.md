@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - ios::exceptions
+cat_title :  ios::exceptions
 --------------
 
 
@@ -26,13 +27,13 @@ void exceptions ( iostate except );
 
 두번째 형태의 함수는 새로운 예외 마스크를 설정하고 `clear(rdstate())` 를 호출한다.
 
-  예외 마스크는 모든 스트림 객체가 각각 가지고 있는 데이터로,예외마스크에 해당하는 상태 플래그가 설정 되었을 시 반드시 예외를 `throw``` 해야만 한다. 이 마스크는 ios_base::iostate 타입의 객체로, 아래와 같은 멤버 상수들의 조합으로 값이 결정된다.
+  예외 마스크는 모든 스트림 객체가 각각 가지고 있는 데이터로,예외마스크에 해당하는 상태 플래그가 설정 되었을 시 반드시 예외를 `throw` 해야만 한다. 이 마스크는 `ios_base::iostate` 타입의 객체로, 아래와 같은 멤버 상수들의 조합으로 값이 결정된다.
 
 
 플래그 값
 의미
 `eofbit`
-스트림으로부터 추출 작업(extracting operation)을 수행 중` End` – `Of` – ` File`에 도달하는 경우
+스트림으로부터 추출 작업(extracting operation)을 수행 중 `End–Of–File`에 도달하는 경우
 `failbit`
 마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 `` 경우
 `badbit`
@@ -51,26 +52,22 @@ void exceptions ( iostate except );
 
 `except`
 
-  ios_base::iostate 형의 비트 마스크 값으로 오류 상태 플래그 비트들(badbit, `eofbit, failbit)` 의 조합에 의해 설정된다.
-
-
+`ios_base::iostate` 형의 비트 마스크 값으로 오류 상태 플래그 비트들(`badbit, eofbit, failbit)` 의 조합에 의해 설정된다.
 
 
 ###  리턴값
 
-
-
-
-  ios_base::iostate 타입의 비트 마스크로 이 함수를 호출하기 직전의 예외 마스크를 리턴한다.
-
-
+`ios_base::iostate` 타입의 비트 마스크로 이 함수를 호출하기 직전의 예외 마스크를 리턴한다.
 
 ###  실행 예제
 
 
 ```cpp
 
-/*사용자가 file 의 exception 에 failbit 와 badbit 를 등록하였으므로 이들 비트가 설정될 때 예외를 throw 하게 된다. 나의 경우 test.txt 파일에 내용이 존재하지 않았으므로failbit 가 설정되어서 예외가 throw 된 것이다.*/#include <iostream>#include <fstream>using namespace std;int main (){    ifstream file;    file.exceptions ( ifstream::failbit | ifstream::badbit );    try    {        file.open ("test.txt");        file.get();    }    catch (ifstream::failure e)    {        cout << "Exception opening/reading file";    }    file.close();    return 0;}
+/*사용자가 file 의 exception 에 failbit 와 badbit 를 등록하였으므로 이들 비트가 설정될 때 예외를 throw 하게 된다. 나의 경우 test.txt 파일에 내용이 존재하지 않았으므로 failbit 가 설정되어서 예외가 throw 된 것이다.*/
+#include <iostream>
+#include <fstream>
+using namespace std;int main (){    ifstream file;    file.exceptions ( ifstream::failbit | ifstream::badbit );    try    {        file.open ("test.txt");        file.get();    }    catch (ifstream::failure e)    {        cout << "Exception opening/reading file";    }    file.close();    return 0;}
 ```
 
 

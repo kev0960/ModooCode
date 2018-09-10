@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - ios::clear
+cat_title :  ios::clear
 --------------
 
 

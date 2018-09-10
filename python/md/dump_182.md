@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - ios::rdbuf 함수
+cat_title :  ios::rdbuf
 --------------
 
 

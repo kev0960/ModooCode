@@ -1,5 +1,6 @@
 ----------------
 title : C++ 레퍼런스 - istream::ignore 함수
+cat_title :  istream::ignore
 --------------
 
 ```warning

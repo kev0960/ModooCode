@@ -1,5 +1,6 @@
 ----------------
 title : C 언어 레퍼런스 - sprintf 함수
+cat_title :  sprintf
 --------------
 
 
