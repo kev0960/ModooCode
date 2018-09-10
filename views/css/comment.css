@@ -31,6 +31,10 @@
     resize: none;
 }
 
+#posted-comment:focus {
+    outline-width: 0;
+}
+
 #comment-box {
     padding: 1em;
     margin-bottom: 25px;
@@ -112,4 +116,53 @@
     padding-left:15px;
     padding-right:15px;
     cursor:pointer;
+}
+
+#post-comment:hover {
+    background: black;
+}
+
+#comment-list-section {
+    margin-top: 15px;
+}
+
+#comment-list li.comment {
+    list-style-type: none;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.comment-profile {
+    flex:0 0 10%;
+}
+
+.comment-profile img {
+    width: 80%;
+}
+
+.comment-info {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.comment-author {
+    font-weight: bold;
+}
+
+.comment-date {
+    color: grey;
+    font-size:0.8em;
+    margin-left: 5px;
+}
+
+.comment-action span {
+    font-size:0.7em;
+    cursor: pointer;
+}
+
+.comment-action span:hover {
+    color: black;
+}
+.comment-action span:not(:first-of-type):before {
+    content: '| ';
 }

@@ -25,8 +25,8 @@
       <%- include(content_url) %>
   </div>
   <div id="comment-box">
-    <button id="open-comment">Show Comments</button>
-    <section id="comment-list">
+    <button id="open-comment"></button>
+    <section id="comment-post-section">
       <div id="post-box">
         <div class="profile-pic">
           <img src="/img/unknown_person.png">
@@ -41,25 +41,70 @@
           </div>
         </div>
       </div>
+      <div class="login-box">
+        <div class="social-login">
+          <div class="small-comment">다음으로 로그인 </div>
+          <div>
+            <i class="xi-facebook-official"></i>
+            <i class="xi-google-plus"></i>
+            <i class="xi-naver-square"></i>
+          </div>
+        </div>
+        <div class="manual">
+          <div class="small-comment">
+            또는 직접 입력하세요 (댓글 수정시 비밀번호가 필요합니다)
+          </div>
+          <input name="name" id="name" placeholder="이름">
+          <input name="password" id="password" type="password" placeholder="비밀번호">
+        </div>
+        <button id="post-comment">댓글 달기</button>
+      </div>
     </section>
-    <div class="login-box">
-      <div class="social-login">
-        <div class="small-comment">다음으로 로그인 </div>
-        <div>
-          <i class="xi-facebook-official"></i>
-          <i class="xi-google-plus"></i>
-          <i class="xi-naver-square"></i>
-        </div>
-      </div>
-      <div class="manual">
-        <div class="small-comment">
-          또는 직접 입력하세요 (댓글 수정시 비밀번호가 필요합니다)
-        </div>
-        <input name="name" id="name" placeholder="이름">
-        <input name="password" id="password" type="password" placeholder="비밀번호">
-      </div>
-      <button id="post-comment">댓글 달기</button>
-    </div>
+    <section id="comment-list-section">
+      <ul id="comment-list">
+        <li class="comment">
+          <div class="comment-profile">
+            <img src="/img/unknown_person.png">
+          </div>
+          <div class="comment-info">
+            <div class="comment-header">
+              <span class="comment-author">Psi</span>
+              <span class="comment-date">2018.09.20</span>
+            </div>
+            <div class="comment-content">
+              some comment here!
+            </div>
+            <div class="comment-action">
+              <span class="comment-upvote">추천</span>
+              <span class="comment-reply">답글 달기</span>
+              <span class="comment-upvote">답글 수정</span>
+            </div>
+          </div>
+        </li>
+        <ul id="comment-list">
+          <li class="comment">
+            <div class="comment-profile">
+              <img src="/img/unknown_person.png">
+            </div>
+            <div class="comment-info">
+              <div class="comment-header">
+                <span class="comment-author">Psi</span>
+                <span class="comment-date">2018.09.20</span>
+              </div>
+              <div class="comment-content">
+                아 ~ 열혈강의에서 while 의 중첩에서 갑자기 막히네요ㅠ while중첩 쉽게
+                설명해주시는 강의없나요? ㅎ
+              </div>
+              <div class="comment-action">
+                <span class="comment-upvote">추천</span>
+                <span class="comment-reply">답글 달기</span>
+                <span class="comment-upvote">답글 수정</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </ul>
+    </section>
   </div>
 </div>
 
