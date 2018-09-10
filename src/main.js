@@ -2,6 +2,9 @@ const express = require('express');
 const body_parser = require('body-parser');
 const compression = require('compression');
 const init = require('./init.js')();
+require('dotenv').config();
+const { Client } = require('pg');
+const client = new Client();
 
 const app = express();
 
@@ -22,8 +25,10 @@ app.use(body_parser.urlencoded({
 
 
 const Server = require('./server.js');
-init.init().then(function(static_data) {
-  const server = new Server(app, static_data);
+init.init().then(async function(static_data) {
+  client.connect();
+  const server = new Server(app, static_data, client);
+
   app.listen(80, function () {
     server.setRoutes();
 

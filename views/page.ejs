@@ -24,6 +24,43 @@
   <div class="container content">
       <%- include(content_url) %>
   </div>
+  <div id="comment-box">
+    <button id="open-comment">Show Comments</button>
+    <section id="comment-list">
+      <div id="post-box">
+        <div class="profile-pic">
+          <img src="/img/unknown_person.png">
+        </div>
+        <div class="text-area-wrapper">
+          <textarea id="posted-comment"></textarea>
+          <div id="comment-helper">
+            댓글에 마크 다운을 사용하실 수 있습니다 <i class="em em-smile"></i>
+            <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
+              마크 다운 문법 참고
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="login-box">
+      <div class="social-login">
+        <div class="small-comment">다음으로 로그인 </div>
+        <div>
+          <i class="xi-facebook-official"></i>
+          <i class="xi-google-plus"></i>
+          <i class="xi-naver-square"></i>
+        </div>
+      </div>
+      <div class="manual">
+        <div class="small-comment">
+          또는 직접 입력하세요 (댓글 수정시 비밀번호가 필요합니다)
+        </div>
+        <input name="name" id="name" placeholder="이름">
+        <input name="password" id="password" type="password" placeholder="비밀번호">
+      </div>
+      <button id="post-comment">댓글 달기</button>
+    </div>
+  </div>
 </div>
 
 <label for="sidebar-checkbox" class="sidebar-toggle"></label>

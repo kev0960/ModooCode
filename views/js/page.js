@@ -300,8 +300,7 @@ $(function () {
                  }
                });
       });
-    })
-    ;
+    });
   });
   InitCategory();
 
@@ -328,11 +327,26 @@ $(function () {
     }
   });
 
-  $('#open-sidebar-btn').click(function() {
+  $('#open-sidebar-btn').click(function () {
     var status = localStorage.getItem('sidebar');
     if (status == 'closed') {
       // show
       OpenSidebar();
     }
+  });
+
+  $('#open-comment').click(function () {
+    var url = window.location.pathname;
+    var article_id = url.substr(url.lastIndexOf('/') + 1);
+    $.ajax({
+             type: 'post',
+             url: '/get-comment',
+             data: {
+               id: article_id
+             },
+             success: function (res) {
+               console.log(res);
+             }
+           });
   });
 });

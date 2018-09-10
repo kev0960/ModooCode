@@ -1,0 +1,115 @@
+#post-box {
+    display: flex;
+}
+
+#comment-box {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.profile-pic {
+    flex: 0 0 15%;
+    max-width: 85px;
+}
+
+.profile-pic img {
+    max-width: 80%;
+    margin-top: 5px;
+}
+
+.text-area-wrapper {
+    flex: 1;
+}
+
+#posted-comment {
+    margin-top:3px;
+    height: 80%;
+    width: 100%;
+    border: 2px solid #dedede;
+    border-radius: 3px;
+    padding: 8px 0 5px 10px;
+    resize: none;
+}
+
+#comment-box {
+    padding: 1em;
+    margin-bottom: 25px;
+}
+
+#comment-helper {
+    border: 2px solid #dedede;
+    position: relative;
+    top:-9px;
+    background:#f6f8f9;
+    border-radius: 3px;
+    padding: 5px 5px 5px 15px;
+}
+
+.login-box i {
+    font-size:35px;
+}
+
+.xi-facebook-official {
+    color: #3B5998;
+}
+
+.xi-google-plus {
+    color: #dd4b39;
+}
+
+.xi-naver-square {
+    color: #1ec800;
+}
+
+@media (max-width: 587px) {
+    .login-box {
+        margin-left: 12%;
+        margin-top: 50px;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 588px) {
+    .login-box {
+        margin-left: 12%;
+        margin-top: 35px;
+    }
+}
+
+.login-box {
+    display: flex;
+}
+
+.social-login {
+    flex: 0 0 25%;
+    max-width: 150px;
+}
+
+.manual {
+    flex: 1;
+}
+
+.small-comment {
+    font-size: 0.7em;
+}
+
+.manual input {
+    width: 30%;
+    height: 55%;
+    min-height: 25px;
+    border: 2px solid #dedede;
+    border-radius: 3px;
+    padding-left: 10px;
+}
+
+#post-comment {
+    max-height: 40px;
+    margin-top: 3px;
+    background: grey;
+    border: none;
+    border-radius:3px;
+    color:white;
+    padding-left:15px;
+    padding-right:15px;
+    cursor:pointer;
+}

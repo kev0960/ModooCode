@@ -49,7 +49,7 @@ class ZmqManager {
 }
 
 module.exports = class Server {
-  constructor(app, static_data) {
+  constructor(app, static_data, client) {
     this.file_infos = static_data.file_infos;
     this.page_infos = static_data.page_infos;
 
@@ -59,6 +59,7 @@ module.exports = class Server {
     this.zmq_manager = new ZmqManager(this.send_sock, this.recv_sock);
 
     this.app = app;
+    this.client = client;
   }
 
   setRoutes() {
@@ -91,6 +92,17 @@ module.exports = class Server {
         }
         res.send(result);
       });
+    }.bind(this));
+
+    this.app.post('/get-comment', async function (req, res) {
+      let id = req.body.id;
+      console.log("id : ", id)
+      const result = await this.client.query(
+        'SELECT author_name, comment_date, modified_date, comment_id, content,' +
+        'image_link, reply_ids, vote_up, vote_down, is_md FROM' +
+        ' comment WHERE article_url = $1::text',
+        [id]);
+      res.send(result.rows);
     }.bind(this));
   }
 };
