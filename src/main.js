@@ -3,7 +3,9 @@ const body_parser = require('body-parser');
 const compression = require('compression');
 const init = require('./init.js')();
 require('dotenv').config();
-const { Client } = require('pg');
+const {
+  Client
+} = require('pg');
 const client = new Client();
 
 const app = express();
@@ -19,13 +21,19 @@ app.use(express.static(__dirname + '/../views'));
 app.set('views', __dirname + '/../views');
 
 // Set body parser.
+app.use(require('cookie-parser')());
 app.use(body_parser.urlencoded({
-                                 extended: true
-                               }));
+  extended: true
+}));
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
 
 
 const Server = require('./server.js');
-init.init().then(async function(static_data) {
+init.init().then(async function (static_data) {
   client.connect();
   const server = new Server(app, static_data, client);
 
@@ -38,5 +46,3 @@ init.init().then(async function(static_data) {
     console.log('-------------------------');
   });
 });
-
-

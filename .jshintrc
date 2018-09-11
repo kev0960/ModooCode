@@ -2,7 +2,7 @@
   "node": true,
   "browser": true,
   "bitwise": true,
-  "camelcase": true,
+  "camelcase": false,
   "curly": true,
   "eqeqeq": true,
   "immed": true,
@@ -15,5 +15,5 @@
   "globals": {
     "require": false
   },
-  "esversion": 6
+  "esversion": 2017
 }

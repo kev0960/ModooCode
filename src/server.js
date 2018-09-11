@@ -1,6 +1,11 @@
 const zmq = require('zmq');
 const uuidv4 = require('uuid/v4');
 
+const facebook_strategy = require('passport-facebook').Strategy;
+const naver_strategy = require('passport-naver').Strategy;
+const google_strategy = require('passport-google-oauth2').Strategy;
+const passport = require('passport');
+
 class ZmqManager {
   constructor(send_sock, recv_sock) {
     this.requested_codes = new Map();
@@ -11,7 +16,7 @@ class ZmqManager {
     this.recv_sock.connect('tcp://127.0.0.1:3002');
     this.recv_sock.subscribe('');
 
-    this.recv_sock.on('message', function (message) {
+    this.recv_sock.on('message', function(message) {
       message = message.toString();
       let delimiter = message.indexOf(':');
       let next_delimiter = message.indexOf(':', delimiter + 1);
@@ -28,7 +33,7 @@ class ZmqManager {
 
       console.log(id, message.substr(0, delimiter), {
         exec_result,
-        compile_error
+        compile_error,
       });
       let cb = this.requested_codes.get(id);
       if (cb) {
@@ -60,49 +65,180 @@ module.exports = class Server {
 
     this.app = app;
     this.client = client;
+
+    this.app.use(passport.initialize());
+    this.app.use(passport.session());
+
+    passport.use(new facebook_strategy(
+        {
+          clientID: process.env.FB_APP_ID,
+          clientSecret: process.env.FB_APP_SECRET,
+          callbackURL: 'http://localhost/auth/fb/callback',
+          profileFields: ['id', 'displayName', 'photos', 'email']
+        },
+        async function(access_token, refresh_token, profile, cb) {
+          let user = await this.findOrCreateUser('fb', profile);
+          cb(null, user);
+        }.bind(this)));
+
+    passport.use(new google_strategy(
+        {
+          clientID: process.env.GOOG_CLIENT_ID,
+          clientSecret: process.env.GOOG_CLIENT_SEC,
+          callbackURL: 'http://localhost/auth/goog/callback',
+        },
+        async function(access_token, refresh_token, profile, cb) {
+          console.log('Goog ', profile);
+          let user = await this.findOrCreateUser('goog', profile);
+          cb(null, user);
+        }.bind(this)));
+
+    passport.serializeUser(function(user, done) {
+      console.log(user);
+      done(null, user.user_id);
+    });
+
+    passport.deserializeUser(function(user_id, done) {
+      this.findUser(user_id).then(function(user) {
+        return done(null, user);
+      });
+    }.bind(this));
+  }
+
+  async findOrCreateUser(auth_type, profile) {
+    let id = profile.id;
+    let result = await this.client.query(
+        'SELECT * FROM users WHERE auth_type = $1::text AND auth_id = $2::text',
+        [auth_type, id]);
+    if (result.rows.length == 0) {
+      // We need to create new profile.
+      result = await this.client.query(
+          'INSERT INTO users(auth_id, name, image, email, auth_type)' +
+              ' VALUES ($1::text, $2::text, $3::text, $4::text, $5::text) RETURNING *',
+          [
+            profile.id, profile.displayName, profile.photos[0].value,
+            profile.email, auth_type
+          ]);
+      /*
+  result = await this.client.query(
+      'SELECT * FROM users WHERE auth_type = $1::text AND auth_id = $2::text',
+      [auth_type, id]);*/
+    }
+    return result.rows[0];
+  }
+
+  async findUser(auth_id) {
+    let result = await this.client.query(
+        'SELECT * FROM users WHERE user_id = $1', [auth_id]);
+    return result.rows[0];
+  }
+
+  async addComment(parent_id, article_url, user, content, password) {
+    let result = await this.client.query(
+        'INSERT INTO comment(article_url, reply_ids, vote_up, vote_down,' +
+            'comment_date, modified_date, author_name, author_email, image_link,' +
+            'content, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,' +
+            '$11) RETURNING *',
+        [
+          article_url, [], 0, 0, Date.now(), Date.now(), user.name, user.email,
+          user.image, content, password
+        ]);
+    let new_comment = result.rows[0];
+    let new_comment_id = new_comment.comment_id;
+
+    if (parent_id !== -1) {
+      await this.client.query(
+          'UPDATE comment SET reply_ids = array_append(reply_ids, $1 WHERE' +
+              ' comment_id = $2',
+          [new_comment_id, parent_id]);
+    }
   }
 
   setRoutes() {
     // Set up all the routes.
     this.app.get('/', (req, res) => res.send('Hello World!'));
-    this.app.get("/:id", function (req, res) {
+    this.app.get('/profile', function(req, res) {
+      if (req.user) {
+        return res.send('name' + req.user.name);
+      }
+      res.send('name');
+    });
+
+    this.app.get('/:id', function(req, res) {
       let page_id = parseInt(req.params.id);
+      let user = req.user;
       if (page_id <= 228) {
-        res.render("page.ejs", {
-          content_url: "./old/blog_" + page_id + ".html",
+        res.render('page.ejs', {
+          content_url: './old/blog_' + page_id + '.html',
           file_info: this.file_infos[page_id],
           page_infos: this.page_infos,
-          file_infos: this.file_infos
+          file_infos: this.file_infos,
+          user
         });
       }
     }.bind(this));
 
-    this.app.post('/run', function (req, res) {
+    this.app.post('/run', function(req, res) {
       let code = req.body.code;
       let stdin = req.body.stdin;
 
       if (!stdin) {
-        stdin = "";
+        stdin = '';
       }
-      this.zmq_manager.sendCodeToRun(code, stdin, function (result) {
+      this.zmq_manager.sendCodeToRun(code, stdin, function(result) {
         if (result.exec_result.length > 0) {
-          console.log("Execution result : \n", result.exec_result);
+          console.log('Execution result : \n', result.exec_result);
         } else {
-          console.log("Compile error : \n", result.compile_error)
+          console.log('Compile error : \n', result.compile_error);
         }
         res.send(result);
       });
     }.bind(this));
 
-    this.app.post('/get-comment', async function (req, res) {
+    this.app.post('/get-comment', async function(req, res) {
       let id = req.body.id;
-      console.log("id : ", id)
       const result = await this.client.query(
-        'SELECT author_name, comment_date, modified_date, comment_id, content,' +
-        'image_link, reply_ids, vote_up, vote_down, is_md FROM' +
-        ' comment WHERE article_url = $1::text',
-        [id]);
+          'SELECT author_name, comment_date, modified_date, comment_id, content,' +
+              'image_link, reply_ids, vote_up, vote_down, is_md FROM' +
+              ' comment WHERE article_url = $1::text ORDER BY comment_id ASC',
+          [id]);
+
       res.send(result.rows);
     }.bind(this));
+
+    this.app.post('/write-comment', async function(req, res) {
+      let parent_id = req.body.parent_id;
+      let content = req.body.content;
+      let password = req.body.password;
+      let article_url = req.body.article_url;
+      let name = req.body.name;
+      let user = req.user;
+      if (!user) {
+        user = {name, image: '', email: ''};
+      }
+      if (!parent_id || !content || !password || !name) {
+        return res.send({status: 'Failed', reason: 'Missing params'});
+      }
+      this.addComment(parent_id, article_url, user, content, password);
+      return res.send({status: 'Success'});
+    });
+
+    // Install login modules.
+    this.app.get('/auth/fb', passport.authenticate('facebook'));
+    this.app.get(
+        '/auth/goog',
+        passport.authenticate('google', {scope: ['profile', 'email']}));
+    this.app.get(
+        '/auth/fb/callback',
+        passport.authenticate('facebook', {failureRedirect: '/'}),
+        function(req, res) {
+          res.send('Login success f' + req.user.name);
+        });
+    this.app.get(
+        '/auth/goog/callback',
+        passport.authenticate('google', {failureRedirect: '/'}),
+        function(req, res) {
+          res.send('Login success g' + req.user.name);
+        });
   }
 };
