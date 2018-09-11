@@ -109,17 +109,28 @@
 #post-comment {
     max-height: 40px;
     margin-top: 3px;
-    background: grey;
-    border: none;
-    border-radius:3px;
-    color:white;
-    padding-left:15px;
-    padding-right:15px;
+    color: #FFF;
+    background-color: #0095ff;
+    border-color: #07c;
+    box-shadow: inset 0 1px 0 #66bfff;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    outline: none;
+    touch-action: manipulation;
+    transition: color .1s ease-in,background-color .1s ease-in,border-color .1s ease-in,box-shadow .1s ease-in;
+    padding: .61538462em 1em;
+    vertical-align: middle;
+    min-height: 2.46153846em;
     cursor:pointer;
+    margin-left:auto;
+    font-weight: bold;
 }
 
 #post-comment:hover {
-    background: black;
+    color: rgba(255,255,255,0.9);
+    background-color: #07c;
+    border-color: #005999;
+    box-shadow: inset 0 1px 0 #3af;
 }
 
 #comment-list-section {
@@ -186,4 +197,10 @@
 
 #button-box {
     text-align: center;
+}
+
+#open-comment {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 0.7em;
 }

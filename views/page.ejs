@@ -28,7 +28,14 @@
     <section id="comment-post-section">
       <div id="post-box">
         <div class="profile-pic">
+          <% if (user) { %>
+            <div id="username" class="small-comment font-bold">
+              <%= user.name %>
+            </div>
+            <img src="<%= user.image %>">
+          <% } else { %>
           <img src="/img/unknown_person.png">
+          <% } %>
         </div>
         <div class="text-area-wrapper">
           <textarea id="posted-comment"></textarea>
@@ -41,6 +48,7 @@
         </div>
       </div>
       <div class="login-box">
+        <% if (!user) { %>
         <div class="social-login">
           <div class="small-comment">다음으로 로그인 </div>
           <div>
@@ -56,6 +64,7 @@
           <input name="name" id="name" placeholder="이름">
           <input name="password" id="password" type="password" placeholder="비밀번호">
         </div>
+        <% } %>
         <button id="post-comment">댓글 달기</button>
       </div>
     </section>

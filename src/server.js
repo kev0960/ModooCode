@@ -112,16 +112,17 @@ module.exports = class Server {
         [auth_type, id]);
     if (result.rows.length == 0) {
       // We need to create new profile.
-      await this.client.query(
+      result = await this.client.query(
           'INSERT INTO users(auth_id, name, image, email, auth_type)' +
-              ' VALUES ($1::text, $2::text, $3::text, $4::text, $5::text)',
+              ' VALUES ($1::text, $2::text, $3::text, $4::text, $5::text) RETURNING *',
           [
             profile.id, profile.displayName, profile.photos[0].value,
             profile.email, auth_type
           ]);
-      result = await this.client.query(
-          'SELECT * FROM users WHERE auth_type = $1::text AND auth_id = $2::text',
-          [auth_type, id]);
+      /*
+  result = await this.client.query(
+      'SELECT * FROM users WHERE auth_type = $1::text AND auth_id = $2::text',
+      [auth_type, id]);*/
     }
     return result.rows[0];
   }
@@ -130,6 +131,27 @@ module.exports = class Server {
     let result = await this.client.query(
         'SELECT * FROM users WHERE user_id = $1', [auth_id]);
     return result.rows[0];
+  }
+
+  async addComment(parent_id, article_url, user, content, password) {
+    let result = await this.client.query(
+        'INSERT INTO comment(article_url, reply_ids, vote_up, vote_down,' +
+            'comment_date, modified_date, author_name, author_email, image_link,' +
+            'content, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,' +
+            '$11) RETURNING *',
+        [
+          article_url, [], 0, 0, Date.now(), Date.now(), user.name, user.email,
+          user.image, content, password
+        ]);
+    let new_comment = result.rows[0];
+    let new_comment_id = new_comment.comment_id;
+
+    if (parent_id !== -1) {
+      await this.client.query(
+          'UPDATE comment SET reply_ids = array_append(reply_ids, $1 WHERE' +
+              ' comment_id = $2',
+          [new_comment_id, parent_id]);
+    }
   }
 
   setRoutes() {
@@ -144,12 +166,14 @@ module.exports = class Server {
 
     this.app.get('/:id', function(req, res) {
       let page_id = parseInt(req.params.id);
+      let user = req.user;
       if (page_id <= 228) {
         res.render('page.ejs', {
           content_url: './old/blog_' + page_id + '.html',
           file_info: this.file_infos[page_id],
           page_infos: this.page_infos,
           file_infos: this.file_infos,
+          user
         });
       }
     }.bind(this));
@@ -183,7 +207,20 @@ module.exports = class Server {
     }.bind(this));
 
     this.app.post('/write-comment', async function(req, res) {
-      let id = req.body.id;
+      let parent_id = req.body.parent_id;
+      let content = req.body.content;
+      let password = req.body.password;
+      let article_url = req.body.article_url;
+      let name = req.body.name;
+      let user = req.user;
+      if (!user) {
+        user = {name, image: '', email: ''};
+      }
+      if (!parent_id || !content || !password || !name) {
+        return res.send({status: 'Failed', reason: 'Missing params'});
+      }
+      this.addComment(parent_id, article_url, user, content, password);
+      return res.send({status: 'Success'});
     });
 
     // Install login modules.
