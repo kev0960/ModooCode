@@ -1,6 +1,10 @@
 var saved_htmls = {};
 var editors = {};
 var editor_deco = {};
+var current_comment_index = 0;
+
+var total_comment_list = null;
+var parent_comment_list = [];
 
 function CountLine(code) {
   var cnt = 0;
@@ -180,6 +184,85 @@ function OpenSidebar() {
   }
 }
 
+function ProcessComment(comment_list) {
+  var children_set = new Set();
+  total_comment_list = new Map();
+  for (var i = 0; i < comment_list.length; i++) {
+    for (var j = 0; j < comment_list[i].reply_ids.length; j++) {
+      children_set.add(comment_list[i].reply_ids[j]);
+    }
+    total_comment_list.set(comment_list[i].comment_id, comment_list[i]);
+  }
+
+  for (var i = 0; i < comment_list.length; i++) {
+    if (!children_set.has(comment_list[i].comment_id)) {
+      parent_comment_list.push(comment_list[i].comment_id);
+    }
+  }
+  parent_comment_list = parent_comment_list.reverse();
+}
+
+function RecursiveCommentAdder(ul, comment_id) {
+  // Add current comment.
+  var current_comment = total_comment_list.get(comment_id);
+
+  var li = $('<li>', {'class': 'comment'});
+  var div_profile = $('<div>', {'class': 'comment-profile'});
+  var img_src = '/img/unknown_person.png';
+  if (current_comment.image_link.length) {
+    img_src = current_comment.image_link;
+  }
+  div_profile.append($('<img>', {'src': img_src}));
+  li.append(div_profile);
+
+  var div_comment_info = $('<div>', {'class': 'comment-info'});
+  var div_comment_header = $('<div>', {'class': 'comment-header'});
+  div_comment_header.append(
+    $('<span>', {'class': 'comment-author'}).text(current_comment.author_name));
+  div_comment_header.append(
+    $('<span>', {'class': 'comment-date'}).text(current_comment.comment_date));
+  div_comment_info.append(div_comment_header);
+
+  div_comment_info.append(
+    $('<div>', {'class': 'comment-content'}).text(current_comment.content));
+
+  var div_comment_action = $('<div>', {
+    'class': 'comment-action',
+    'id': 'comment-id-' + comment_id
+  });
+  div_comment_action.append(
+    $('<span>', {'class': 'comment-upvote'}).text('추천'));
+  div_comment_action.append(
+    $('<span>', {'class': 'comment-reply'}).text('답글 달기'));
+  div_comment_action.append(
+    $('<span>', {'class': 'comment-edit'}).text('답글 수정'));
+  div_comment_info.append(div_comment_action);
+  li.append(div_comment_info);
+
+  ul.append(li);
+
+  var reply_ids = current_comment.reply_ids;
+  if (reply_ids.length > 0) {
+    var child_ul = $('<ul>', {'class': 'comment-list'});
+    for (var i = 0; i < reply_ids.length; i++) {
+      RecursiveCommentAdder(child_ul, reply_ids[i]);
+    }
+    ul.append(child_ul);
+  }
+}
+
+function AddComment() {
+  var ul = $('#root-comment-list');
+  for (var i = current_comment_index;
+       i < Min(current_comment_index + 50, parent_comment_list.length); i++) {
+    RecursiveCommentAdder(ul, parent_comment_list[i]);
+  }
+  current_comment_index += 50;
+  if (current_comment_index > total_comment_list.size) {
+    $('#button-box').hide();
+  }
+}
+
 $(function () {
   require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
   require(['vs/editor/editor.main'], function () {
@@ -338,15 +421,21 @@ $(function () {
   $('#open-comment').click(function () {
     var url = window.location.pathname;
     var article_id = url.substr(url.lastIndexOf('/') + 1);
-    $.ajax({
-             type: 'post',
-             url: '/get-comment',
-             data: {
-               id: article_id
-             },
-             success: function (res) {
-               console.log(res);
-             }
-           });
+    if (total_comment_list == null) {
+      $.ajax({
+               type: 'post',
+               url: '/get-comment',
+               data: {
+                 id: article_id,
+                 index_start: current_comment_index
+               },
+               success: function (res) {
+                 ProcessComment(res);
+                 AddComment();
+               }
+             });
+    } else {
+      AddComment();
+    }
   });
 });

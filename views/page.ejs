@@ -25,7 +25,6 @@
       <%- include(content_url) %>
   </div>
   <div id="comment-box">
-    <button id="open-comment"></button>
     <section id="comment-post-section">
       <div id="post-box">
         <div class="profile-pic">
@@ -61,50 +60,12 @@
       </div>
     </section>
     <section id="comment-list-section">
-      <ul id="comment-list">
-        <li class="comment">
-          <div class="comment-profile">
-            <img src="/img/unknown_person.png">
-          </div>
-          <div class="comment-info">
-            <div class="comment-header">
-              <span class="comment-author">Psi</span>
-              <span class="comment-date">2018.09.20</span>
-            </div>
-            <div class="comment-content">
-              some comment here!
-            </div>
-            <div class="comment-action">
-              <span class="comment-upvote">추천</span>
-              <span class="comment-reply">답글 달기</span>
-              <span class="comment-upvote">답글 수정</span>
-            </div>
-          </div>
-        </li>
-        <ul id="comment-list">
-          <li class="comment">
-            <div class="comment-profile">
-              <img src="/img/unknown_person.png">
-            </div>
-            <div class="comment-info">
-              <div class="comment-header">
-                <span class="comment-author">Psi</span>
-                <span class="comment-date">2018.09.20</span>
-              </div>
-              <div class="comment-content">
-                아 ~ 열혈강의에서 while 의 중첩에서 갑자기 막히네요ㅠ while중첩 쉽게
-                설명해주시는 강의없나요? ㅎ
-              </div>
-              <div class="comment-action">
-                <span class="comment-upvote">추천</span>
-                <span class="comment-reply">답글 달기</span>
-                <span class="comment-upvote">답글 수정</span>
-              </div>
-            </div>
-          </li>
-        </ul>
+      <ul id="root-comment-list" class="comment-list">
       </ul>
     </section>
+    <div id="button-box">
+      <button id="open-comment">댓글 더 보기</button>
+    </div>
   </div>
 </div>
 

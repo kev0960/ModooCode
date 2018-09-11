@@ -126,7 +126,7 @@
     margin-top: 15px;
 }
 
-#comment-list li.comment {
+.comment-list li.comment {
     list-style-type: none;
     display: flex;
     margin-bottom: 10px;
@@ -165,4 +165,25 @@
 }
 .comment-action span:not(:first-of-type):before {
     content: '| ';
+}
+
+.comment-upvote {
+    padding-right: 3px;
+}
+
+.comment-reply {
+    padding-right: 3px;
+}
+
+.comment-content {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+#open-comment {
+    width: 90%;
+}
+
+#button-box {
+    text-align: center;
 }

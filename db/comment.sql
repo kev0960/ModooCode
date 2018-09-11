@@ -12,3 +12,4 @@ CREATE TABLE Comment (
   content text NOT NULL,
   password varchar(256) NOT NULL
 );
+CREATE INDEX article_url_index ON Comment (article_url);

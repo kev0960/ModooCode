@@ -96,12 +96,12 @@ module.exports = class Server {
 
     this.app.post('/get-comment', async function (req, res) {
       let id = req.body.id;
-      console.log("id : ", id)
       const result = await this.client.query(
         'SELECT author_name, comment_date, modified_date, comment_id, content,' +
         'image_link, reply_ids, vote_up, vote_down, is_md FROM' +
-        ' comment WHERE article_url = $1::text',
+        ' comment WHERE article_url = $1::text ORDER BY comment_id ASC',
         [id]);
+
       res.send(result.rows);
     }.bind(this));
   }
