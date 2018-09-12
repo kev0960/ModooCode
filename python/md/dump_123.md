@@ -29,11 +29,9 @@ title : 씹어먹는 C 언어 - <23 - 2. 파일 하고 이야기 하기 (파일 
 
 ### 파일 위치 지시자(File `Position Indicator)`
 
+  지난번에 파일 위치 지시자에 관해서 대충 설명하고 나갔는데요, 지난번의 설명이 무언가 부족하다는 느낌이 강하게 들어서 여기서 다시 한번 짚고 넘어가도록 하겠습니다.  스트림의 기본 모토는 바로 ‘순차적으로 입력을 받는다’ 입니다. 즉 스트림에서 데이터를 입력 받을 때 에는 질서 정연하게 앞에 있는 데이터 먼저 순서대로 읽어들이게 되죠. 뒤에서 부터 거꾸로 읽는다나 데이터들을 뛰어 넘으며 읽어 들인다는 듯한 비정상적인 짓들을 하지 않습니다. 이렇게 순차적으로 읽어들이는 것을 가능하게 해주는 것이 바로 ‘파일 위치 지시자’ 때문입니다.
 
-
-
-  지난번에 파일 위치 지시자에 관해서 대충 설명하고 나갔는데요, 지난번의 설명이 무언가 부족하다는 느낌이 강하게 들어서 여기서 다시 한번 짚고 넘어가도록 하겠습니다.  스트림의 기본 모토는 바로 ‘순차적으로 입력을 받는다’ 입니다. 즉 스트림에서 데이터를 입력 받을 때 에는 질서 정연하게 앞에 있는 데이터 먼저 순서대로 읽어들이게 되죠. 뒤에서 부터 거꾸로 읽는다나 데이터들을 뛰어 넘으며 읽어 들인다는 듯한 비정상적인 짓들을 하지 않습니다. 이렇게 순차적으로 읽어들이는 것을 가능하게 해주는 것이 바로 ‘파일 위치 지시자’ 때문입니다.```cpp
-
+```cpp
 /* 파일에서 문자를 하나씩 입력 받는다 */
 #include <stdio.h>
 
@@ -91,10 +89,7 @@ int fseek ( FILE * stream, long int offset, int origin );
 
   여기서 `stream` 에는 우리가 파일 위치 지시자를 옮기고 싶은 스트림의 포인터를, `origin` 에는 어디서 부터 옮길지, 그리고 `offset` 에는 얼마만큼 옮길지에 대한 정보가 들어가게 됩니다. 참고로 `origin` 에는 `SEEK_SET, SEEK_CUR, SEEK_END` 들이 있는데 각각 파일의 시작, 현재 파일 위치 지정자의 위치, 파일의 끝을 의미합니다. 그리고 `offset` 에는 `origin` 으로 부터 얼마나 옮길 것인지 숫자를 써주면 됩니다. 재미있는 점은 `+` 값을 쓰면 오른쪽으로 (위의 사진을 기준으로), `-` 값을 쓰면 왼쪽으로 파일 위치 지정자가 움직입니다.
 
-
-
 ```cpp
-
 /* fseek 함수 예제 */
 #include <stdio.h>
 int main()
@@ -470,11 +465,19 @@ int main()
 
 ```cpp
 /* fopen 의 'append' 기능 사용*/
-
-
-#include <stdio.h>int main(){    FILE *fp = fopen("some_data.txt", "a");    char c;    if(fp == NULL)    {        printf("파일 열기를 실패하였습니다! \n");        return 0;    }    /* 아래 내용이 파일 뒤에 덧붙여진다.*/    fputs("IS ADDED HAHAHAHA", fp);    fclose(fp);}
+#include <stdio.h>
+int main() {
+    FILE *fp = fopen("some_data.txt", "a");
+    char c;
+    if(fp == NULL)    {
+        printf("파일 열기를 실패하였습니다! \n");
+        return 0;
+    }
+    /* 아래 내용이 파일 뒤에 덧붙여진다.*/
+    fputs("IS ADDED HAHAHAHA", fp);
+    fclose(fp);
+}
 ```
-
 
 성공적으로 컴파일 하였다면아래와 같았던 파일 내용이
 
@@ -600,19 +603,25 @@ int main()
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F1128033A4D2AC9630CFAC8)
 
-아래 처럼 `this` 들이 모두 `that` 으로 바뀐 것을 보실 수 있습니다. 사실 그 원리는 아주 간단합니다.```cpp
+아래 처럼 `this` 들이 모두 `that` 으로 바뀐 것을 보실 수 있습니다. 사실 그 원리는 아주 간단합니다.
+
+```cpp
      while (fscanf(fp,"%s", data) != EOF)
     {
         if(strcmp(data, "this") == 0)
 
 ```
 
-이전 예제에서와 같은 방식으로 `fscanf` 들을 통해 파일에서 단어들을 입력받는데, 각각의 단어들을 `strcmp` 함수를 이용하여 `this` 와 같은지 비교를 하지요. 만일 같다면 이제 `this` 를 `that` 으로 덮어 씌우기만 하면 됩니다.```cpp
+이전 예제에서와 같은 방식으로 `fscanf` 들을 통해 파일에서 단어들을 입력받는데, 각각의 단어들을 `strcmp` 함수를 이용하여 `this` 와 같은지 비교를 하지요. 만일 같다면 이제 `this` 를 `that` 으로 덮어 씌우기만 하면 됩니다.
+
+```cpp
              fseek(fp, -(long)strlen("this"), SEEK_CUR);
             fputs("that", fp);
 ```
 
-`fscanf` 에서 “this” 를 입력 받은 시점에서 파일 위치 지정자는 `this` 바로 다음 문자를 가리키고 있으므로 “this” 의 길이만큼 왼쪽으로 이동시킨다면 파일 위치 지정자는 `t` 를 가리키게 되지요. 이제 이 상태에서 `fputs` 로 “that” 을 쓴다면 “this” 가 들어가 있던 자리에 “that” 이 정확히 자리를 대체하게 됩니다. 그리고 마지막으로```cpp
+`fscanf` 에서 “this” 를 입력 받은 시점에서 파일 위치 지정자는 `this` 바로 다음 문자를 가리키고 있으므로 “this” 의 길이만큼 왼쪽으로 이동시킨다면 파일 위치 지정자는 `t` 를 가리키게 되지요. 이제 이 상태에서 `fputs` 로 “that” 을 쓴다면 “this” 가 들어가 있던 자리에 “that” 이 정확히 자리를 대체하게 됩니다. 그리고 마지막으로
+
+```cpp
              fflush(fp);
 ```
 
@@ -633,7 +642,36 @@ int main()
 ```cpp
 
 /*
-지난번에 만들었었던 도서 관리 프로그램으로 우리가 여태까지 배운 최신 C 언어 기술들(!!) 을 이용하여 새롭게 만들었습니다.어떻게 보면 http://itguru.tistory.com/60 의 생각해 볼 문제의 두번째 문제의 해답이 되기도 하겠군요*/#include <stdio.h>#include <stdlib.h>struct BOOK{    char book_name[30];    char auth_name[30];    char publ_name[30];    int borrowed;};typedef struct BOOK BOOK;char compare(char *str1, char *str2);int register_book(BOOK *book_list, int *nth);int search_book(BOOK *book_list, int total_num_book);int borrow_book(BOOK *book_list);int return_book(BOOK *book_list);int main (){    int user_choice; /* 유저가 선택한 메뉴 */    int num_total_book = 0; /* 현재 책의 수 */    BOOK *book_list;    printf("도서관의 최대 보관 장서 수를 설정해주세요 : ");    scanf("%d", &user_choice);    book_list = (BOOK *)malloc(sizeof(BOOK)*user_choice);    while (1)    {        printf("도서 관리 프로그램 \n");        printf("메뉴를 선택하세요 \n");        printf("1. 책을 새로 추가하기 \n");        printf("2. 책을 검색하기 \n");        printf("3. 책을 빌리기 \n");        printf("4. 책을 반납하기 \n");        printf("5. 프로그램 종료 \n");        printf("당신의 선택은 : ");        scanf("%d", &user_choice);        if(user_choice == 1)        {            /* 책을 새로 추가하는 함수 호출 */            register_book(book_list, &num_total_book);        }        else if(user_choice == 2)        {            /* 책을 검색하는 함수 호출 */            search_book(book_list, num_total_book);        }        else if(user_choice == 3)        {            /* 책을 빌리는 함수 호출 */            borrow_book(book_list);        }        else if(user_choice == 4)        {            /* 책을 반납하는 함수 호출 */            return_book(book_list);        }        else if(user_choice == 5)        {            /* 프로그램을 종료한다. */            break;        }    }    free(book_list);    return 0;}/* 책을 추가하는 함수*/int register_book(BOOK *book_list, int *nth){    printf("책의 이름 : ");    scanf("%s", book_list[*nth].book_name);    printf("책의 저자 : ");    scanf("%s", book_list[*nth].auth_name);    printf("책의 출판사 : ");    scanf("%s", book_list[*nth].publ_name);    book_list[*nth].borrowed = 0;    (*nth)++;    return 0;}/* 책을 검색하는 함수 */int search_book(BOOK *book_list, int total_num_book){    int user_input; /* 사용자의 입력을 받는다. */    int i;    char user_search[30];    printf("어느 것으로 검색 할 것인가요? \n");    printf("1. 책 제목 검색 \n");    printf("2. 지은이 검색 \n");    printf("3. 출판사 검색 \n");    scanf("%d", &user_input);    printf("검색할 단어를 입력해주세요 : ");    scanf("%s", user_search);    printf("검색 결과 \n");    if(user_input == 1)    {        /*        i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을        사용자가 입력한 검색어와 비교하고 있다.        */        for(i = 0;i < total_num_book; i++)        {            if(compare(book_list[i].book_name, user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);            }        }    }    else if(user_input == 2)    {        /*        i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을        사용자가 입력한 검색어와 비교하고 있다.        */        for(i = 0;i < total_num_book; i++)        {            if(compare(book_list[i].auth_name, user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);            }        }    }    else if(user_input == 3)    {        /*        i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를        사용자가 입력한 검색어와 비교하고 있다.        */        for(i = 0;i < total_num_book; i++)        {            if(compare(book_list[i].publ_name, user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);            }        }    }    return 0;}char compare(char *str1, char *str2){    while (*str1)    {        if(*str1 != *str2)        {            return 0;        }        str1++;        str2++;    }    if(*str2 == '\0')        return 1;    return 0;}int borrow_book(BOOK *book_list){    /* 사용자로 부터 책번호를 받을 변수*/    int book_num;    printf("빌릴 책의 번호를 말해주세요 \n");    printf("책 번호 : ");    scanf("%d", &book_num);    if(book_list[book_num].borrowed == 1)    {        printf("이미 대출된 책입니다! \n");    }    else    {        printf("책이 성공적으로 대출되었습니다. \n");        book_list[book_num].borrowed = 1;    }    return 0;}int return_book(BOOK *book_list){    /* 반납할 책의 번호 */    int num_book;    printf("반납할 책의 번호를 써주세요 \n");    printf("책 번호 : ");    scanf("%d", &num_book);    if(book_list[num_book].borrowed == 0)    {        printf("이미 반납되어 있는 상태입니다\n");    }    else    {        book_list[num_book].borrowed = 0;        printf("성공적으로 반납되었습니다\n");    }    return 0;}
+지난번에 만들었었던 도서 관리 프로그램으로 우리가 여태까지 배운 최신 C 언어 기술들(!!) 을 이용하여 새롭게 만들었습니다.어떻게 보면 http://itguru.tistory.com/60 의 생각해 볼 문제의 두번째 문제의 해답이 되기도 하겠군요*/
+#include <stdio.h>
+#include <stdlib.h>
+struct BOOK{
+    char book_name[30];
+    char auth_name[30];
+    char publ_name[30];
+    int borrowed;
+};
+typedef struct BOOK BOOK;
+char compare(char *str1, char *str2);
+int register_book(BOOK *book_list, int *nth);
+int search_book(BOOK *book_list, int total_num_book);
+int borrow_book(BOOK *book_list);
+int return_book(BOOK *book_list);
+int main () {
+    int user_choice; /* 유저가 선택한 메뉴 */
+    int num_total_book = 0; /* 현재 책의 수 */
+    BOOK *book_list;
+    printf("도서관의 최대 보관 장서 수를 설정해주세요 : ");
+    scanf("%d", &user_choice);
+    book_list = (BOOK *)malloc(sizeof(BOOK)*user_choice);
+    while (1)    {
+        printf("도서 관리 프로그램 \n");
+        printf("메뉴를 선택하세요 \n"); 
+        printf("1. 책을 새로 추가하기 \n");
+        printf("2. 책을 검색하기 \n");
+        printf("3. 책을 빌리기 \n");
+        printf("4. 책을 반납하기 \n");
+        printf("5. 프로그램 종료 \n");        printf("당신의 선택은 : ");        scanf("%d", &user_choice);        if(user_choice == 1)        {            /* 책을 새로 추가하는 함수 호출 */            register_book(book_list, &num_total_book);        }        else if(user_choice == 2)        {            /* 책을 검색하는 함수 호출 */            search_book(book_list, num_total_book);        }        else if(user_choice == 3)        {            /* 책을 빌리는 함수 호출 */            borrow_book(book_list);        }        else if(user_choice == 4)        {            /* 책을 반납하는 함수 호출 */            return_book(book_list);        }        else if(user_choice == 5)        {            /* 프로그램을 종료한다. */            break;        }    }    free(book_list);    return 0;}/* 책을 추가하는 함수*/int register_book(BOOK *book_list, int *nth){    printf("책의 이름 : ");    scanf("%s", book_list[*nth].book_name);    printf("책의 저자 : ");    scanf("%s", book_list[*nth].auth_name);    printf("책의 출판사 : ");    scanf("%s", book_list[*nth].publ_name);    book_list[*nth].borrowed = 0;    (*nth)++;    return 0;}/* 책을 검색하는 함수 */int search_book(BOOK *book_list, int total_num_book){    int user_input; /* 사용자의 입력을 받는다. */    int i;    char user_search[30];    printf("어느 것으로 검색 할 것인가요? \n");    printf("1. 책 제목 검색 \n");    printf("2. 지은이 검색 \n");    printf("3. 출판사 검색 \n");    scanf("%d", &user_input);    printf("검색할 단어를 입력해주세요 : ");    scanf("%s", user_search);    printf("검색 결과 \n");    if(user_input == 1)    {        /*        i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을        사용자가 입력한 검색어와 비교하고 있다.        */        for(i = 0;i < total_num_book; i++)        {            if(compare(book_list[i].book_name, user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);            }        }    }    else if(user_input == 2)    {        /*        i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을        사용자가 입력한 검색어와 비교하고 있다.        */        for(i = 0;i < total_num_book; i++)        {            if(compare(book_list[i].auth_name, user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);            }        }    }    else if(user_input == 3)    {        /*        i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를        사용자가 입력한 검색어와 비교하고 있다.        */        for(i = 0;i < total_num_book; i++)        {            if(compare(book_list[i].publ_name, user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);            }        }    }    return 0;}char compare(char *str1, char *str2){    while (*str1)    {        if(*str1 != *str2)        {            return 0;        }        str1++;        str2++;    }    if(*str2 == '\0')        return 1;    return 0;}int borrow_book(BOOK *book_list){    /* 사용자로 부터 책번호를 받을 변수*/    int book_num;    printf("빌릴 책의 번호를 말해주세요 \n");    printf("책 번호 : ");    scanf("%d", &book_num);    if(book_list[book_num].borrowed == 1)    {        printf("이미 대출된 책입니다! \n");    }    else    {        printf("책이 성공적으로 대출되었습니다. \n");        book_list[book_num].borrowed = 1;    }    return 0;}int return_book(BOOK *book_list){    /* 반납할 책의 번호 */    int num_book;    printf("반납할 책의 번호를 써주세요 \n");    printf("책 번호 : ");    scanf("%d", &num_book);    if(book_list[num_book].borrowed == 0)    {        printf("이미 반납되어 있는 상태입니다\n");    }    else    {        book_list[num_book].borrowed = 0;        printf("성공적으로 반납되었습니다\n");    }    return 0;}
 ```
 
 
@@ -838,36 +876,46 @@ printf("Hello, World! \n");
 
 생각해보기
 
-`1.` 위의 도서관리 프로그램에서 출력한 도서 목록을 입력 받아서 배열에 집어 넣는 작업을 만들어보세요. 참고로 도서 목록 출력 파일의 형식은 아래와 같다고 합시다.
+1. 위의 도서관리 프로그램에서 출력한 도서 목록을 입력 받아서 배열에 집어 넣는 작업을 만들어보세요. 참고로 도서 목록 출력 파일의 형식은 아래와 같다고 합시다.
 
 전체 책의 개수
+
 책 이름
+
 저자 이름
+
 출판사 이름
+
 대출 유무
+
 책 이름
+
 저자 이름
+
 출판사 이름
+
 대출 유무
-…
 
 예를 들면
 
-`2 2
-C_언어
-`Psi Psi
-`itguru`
-`Dive_into_Python`
-`Mr.Py`
-`AAA`
+2 2
+
+C언어
+
+Psi Psi
+
+itguru
+
+offset
+
+AAA
 
 와 같은 형식 이지요. 물론 파일에 도서 목록을 출력하는 작업도 수정해야 되겠지요. (난이도 : 中)
 
-`2.` 파일에서 특정한 단어를 검색하여 몇 번째 줄에 나오는지 모두 출력하는 프로그램을 만드세요. (난이도 : 上)
-
+2. 파일에서 특정한 단어를 검색하여 몇 번째 줄에 나오는지 모두 출력하는 프로그램을 만드세요. (난이도 : 上)
 (참고로 1 줄의 기준은 \n 의 유무로 합시다. 따라서 `fscanf` 를 사용하면 안되겠지요?)
 
-`3.` 파일에서 특정한 문자를 검색하여 몇 개나 나오는지 출력하는 프로그램을 만드세요. (난이도 : 下)
+3. 파일에서 특정한 문자를 검색하여 몇 개나 나오는지 출력하는 프로그램을 만드세요. (난이도 : 下)
 
 
 

@@ -151,7 +151,7 @@ abbr[title] {
 /* Code */
 code,
 pre {
-  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-family: "Source Code Pro", Menlo, Monaco, "Courier New", monospace;
 }
 code {
   padding: .25em .2em;
@@ -286,7 +286,7 @@ tbody tr:nth-child(even) th {
  */
 
 .container {
-  max-width: 42rem;
+  max-width: 44rem;
   padding-left:  1rem;
   padding-right: 1rem;
   margin-left:  auto;
