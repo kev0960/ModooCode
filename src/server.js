@@ -134,21 +134,27 @@ module.exports = class Server {
   }
 
   async addComment(parent_id, article_url, user, content, password) {
+    let current_time = new Date();
+    // (Note) Fixing comment_comment_id_seq sync error;
+    // SELECT setval('comment_comment_id_seq', max(comment_id)) FROM comment;
+    // (Note) Removing specific reply (5829 : reply comment)
+    // update comment set reply_ids = array_remove(reply_ids, 5829) where
+    // comment_id = 4108;
     let result = await this.client.query(
         'INSERT INTO comment(article_url, reply_ids, vote_up, vote_down,' +
             'comment_date, modified_date, author_name, author_email, image_link,' +
-            'content, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,' +
-            '$11) RETURNING *',
+            'content, password, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7,' +
+            ' $8, $9, $10, $11, $12) RETURNING *',
         [
-          article_url, [], 0, 0, Date.now(), Date.now(), user.name, user.email,
-          user.image, content, password
+          article_url, [], 0, 0, current_time, current_time, user.name,
+          user.email, user.image, content, password, user.user_id
         ]);
     let new_comment = result.rows[0];
     let new_comment_id = new_comment.comment_id;
 
     if (parent_id !== -1) {
       await this.client.query(
-          'UPDATE comment SET reply_ids = array_append(reply_ids, $1 WHERE' +
+          'UPDATE comment SET reply_ids = array_append(reply_ids, $1) WHERE' +
               ' comment_id = $2',
           [new_comment_id, parent_id]);
     }
@@ -202,26 +208,36 @@ module.exports = class Server {
               'image_link, reply_ids, vote_up, vote_down, is_md FROM' +
               ' comment WHERE article_url = $1::text ORDER BY comment_id ASC',
           [id]);
-
       res.send(result.rows);
     }.bind(this));
 
     this.app.post('/write-comment', async function(req, res) {
-      let parent_id = req.body.parent_id;
+      let parent_id = parseInt(req.body.parent_id);
       let content = req.body.content;
       let password = req.body.password;
       let article_url = req.body.article_url;
       let name = req.body.name;
       let user = req.user;
       if (!user) {
-        user = {name, image: '', email: ''};
+        user = {name, image: '', email: '', user_id: -1};
+        console.log(user);
+        if (!name) {
+          return res.send({status: 'Failed', reason: 'Missing name'});
+        }
+        if (!password) {
+          return res.send({status: 'Failed', reason: 'Missing password'});
+        }
+      } else {
+        // If the user is signed in, then make the password field empty.
+        password = '';
       }
-      if (!parent_id || !content || !password || !name) {
+      console.log(parent_id, article_url, content, password, user);
+      if (!parent_id || !content) {
         return res.send({status: 'Failed', reason: 'Missing params'});
       }
-      this.addComment(parent_id, article_url, user, content, password);
+      await this.addComment(parent_id, article_url, user, content, password);
       return res.send({status: 'Success'});
-    });
+    }.bind(this));
 
     // Install login modules.
     this.app.get('/auth/fb', passport.authenticate('facebook'));
@@ -232,13 +248,19 @@ module.exports = class Server {
         '/auth/fb/callback',
         passport.authenticate('facebook', {failureRedirect: '/'}),
         function(req, res) {
-          res.send('Login success f' + req.user.name);
+          res.send(
+              '<script>window.location.href=' +
+              'JSON.parse(window.localStorage.getItem(\'redirect-info\'))' +
+              '.current_url;</script>');
         });
     this.app.get(
         '/auth/goog/callback',
         passport.authenticate('google', {failureRedirect: '/'}),
         function(req, res) {
-          res.send('Login success g' + req.user.name);
+          res.send(
+              '<script>window.location.href=' +
+              'JSON.parse(window.localStorage.getItem(\'redirect-info\'))' +
+              '.current_url;</script>');
         });
   }
 };

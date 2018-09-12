@@ -1,4 +1,4 @@
-#post-box {
+.post-box {
     display: flex;
 }
 
@@ -21,7 +21,7 @@
     flex: 1;
 }
 
-#posted-comment {
+.comment-textarea {
     margin-top:3px;
     height: 80%;
     width: 100%;
@@ -31,7 +31,7 @@
     resize: none;
 }
 
-#posted-comment:focus {
+.comment-textarea:focus {
     outline-width: 0;
 }
 
@@ -40,7 +40,11 @@
     margin-bottom: 25px;
 }
 
-#comment-helper {
+#comment-reply-section {
+    margin-left:40px;
+}
+
+.comment-helper {
     border: 2px solid #dedede;
     position: relative;
     top:-9px;
@@ -106,7 +110,7 @@
     padding-left: 10px;
 }
 
-#post-comment {
+.comment-btn {
     max-height: 40px;
     margin-top: 3px;
     color: #FFF;
@@ -126,7 +130,7 @@
     font-weight: bold;
 }
 
-#post-comment:hover {
+.comment-btn:hover {
     color: rgba(255,255,255,0.9);
     background-color: #07c;
     border-color: #005999;

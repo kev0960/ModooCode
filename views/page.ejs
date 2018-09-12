@@ -26,7 +26,7 @@
   </div>
   <div id="comment-box">
     <section id="comment-post-section">
-      <div id="post-box">
+      <div class="post-box">
         <div class="profile-pic">
           <% if (user) { %>
             <div id="username" class="small-comment font-bold">
@@ -38,8 +38,8 @@
           <% } %>
         </div>
         <div class="text-area-wrapper">
-          <textarea id="posted-comment"></textarea>
-          <div id="comment-helper">
+          <textarea id="posted-comment" class="comment-textarea"></textarea>
+          <div class="comment-helper">
             댓글에 마크 다운을 사용하실 수 있습니다 <i class="em em-smile"></i>
             <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">
               마크 다운 문법 참고
@@ -52,8 +52,8 @@
         <div class="social-login">
           <div class="small-comment">다음으로 로그인 </div>
           <div>
-            <i class="xi-facebook-official"></i>
-            <i class="xi-google-plus"></i>
+            <i class="xi-facebook-official fb-login"></i>
+            <i class="xi-google-plus goog-login"></i>
             <i class="xi-naver-square"></i>
           </div>
         </div>
@@ -65,7 +65,7 @@
           <input name="password" id="password" type="password" placeholder="비밀번호">
         </div>
         <% } %>
-        <button id="post-comment">댓글 달기</button>
+        <button id="post-comment" class="comment-btn">댓글 달기</button>
       </div>
     </section>
     <section id="comment-list-section">

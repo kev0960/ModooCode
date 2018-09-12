@@ -11,6 +11,7 @@ CREATE TABLE Comment (
   image_link varchar(256),
   content text NOT NULL,
   password varchar(256) NOT NULL,
+  author_id integer,
   is_md boolean NOT NULL DEFAULT FALSE
 );
 CREATE INDEX article_url_index ON Comment (article_url);
