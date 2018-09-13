@@ -1,6 +1,6 @@
 ----------------
 title : 씹어먹는 C 언어 - <22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)>
-next_file : 117
+next_page : 117
 --------------
 
 

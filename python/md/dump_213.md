@@ -1,6 +1,6 @@
 ----------------
 title : 씹어먹는 C++ - <7 - 1. C++ 에서의 입출력 (istream, ostream)>
-next_file : 215
+next_page : 215
 --------------
 
 

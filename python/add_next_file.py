@@ -28,12 +28,12 @@ if __name__ == '__main__':
           if i < len(c_lecture_order) - 1 and str(
               file_id) == c_lecture_order[i]:
             next_val = c_lecture_order[i + 1]
-            content.insert(2, 'next_file : {0}'.format(next_val))
+            content.insert(2, 'next_page : {0}'.format(next_val))
             print("added")
             break
           elif i < len(cpp_lecture_order) - 1 and str(
               file_id) == cpp_lecture_order[i]:
             next_val = cpp_lecture_order[i + 1]
-            content.insert(2, 'next_file : {0}'.format(next_val))
+            content.insert(2, 'next_page : {0}'.format(next_val))
             break
         f.write('\n'.join(content))

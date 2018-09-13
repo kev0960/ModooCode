@@ -1,6 +1,6 @@
 ----------------
 title : 씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>
-next_file : 217
+next_page : 217
 --------------
 
 

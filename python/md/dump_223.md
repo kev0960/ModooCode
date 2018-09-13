@@ -1,6 +1,6 @@
 ----------------
 title : 씹어먹는 C++ - <10 - 1. C++ STL - 벡터(vector), 리스트(list), 데크(deque)>
-next_file : 224
+next_page : 224
 --------------
 
 

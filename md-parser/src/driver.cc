@@ -65,13 +65,23 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
 
   // Generate the page related info.
   std::map<string, std::map<string, string>> file_info;
+  std::map<string, string> next_page_map;
   std::unordered_map<string, string> path_defined_files;
   for (size_t i = 0; i < filenames.size(); i++) {
     const auto& header_info = parsers_[i]->GetHeaderInfo();
     if (header_info.find("path") != header_info.end()) {
       path_defined_files[GetFileId(filenames[i])] = header_info.at("path");
     }
+    if (header_info.find("next_page") != header_info.end()) {
+      next_page_map[GetFileId(filenames[i])] =
+          header_info.at("next_page");
+    }
     file_info[GetFileId(filenames[i])] = header_info;
+  }
+
+  // Add prev_page from the next_page info.
+  for (const auto& kv : next_page_map) {
+    file_info[kv.second]["prev_page"] = kv.first;
   }
 
   if (!config_.no_dump_file_info) {

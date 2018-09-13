@@ -165,6 +165,56 @@
     cursor:pointer;
 }
 
+.page-nav-btns {
+    display: flex;
+}
+
+.page-nav-btns p {
+    text-align: center;
+    margin-top:0;
+}
+
+.page-nav-btns p:first-of-type {
+    margin-bottom: 5px;
+}
+
+p.nav-page-title {
+    font-size: 0.7em;
+    font-weight: lighter;
+    margin-bottom: 0;
+    color: #515151;
+}
+.page-btn-common {
+    font-size:1em;
+    padding: 15px 25px;
+    background-color: white;
+    border: 1px solid #dddddd;
+    font-weight: bold;
+    cursor: pointer;
+    color:black;
+}
+
+.page-btn-common:hover {
+    color:white;
+    background-color:#0085a1;
+    border: 1px solid #0085a1;
+    text-decoration: none;
+}
+
+.page-btn-common:hover p {
+    color: white;
+}
+
+.prev-page-btn {
+    margin-left:5%;
+    margin-right:5%;
+}
+
+.next-page-btn {
+    margin-left:auto;
+    margin-right: 5%;
+}
+
 thead > tr {
     white-space: nowrap;
     text-align: center;
