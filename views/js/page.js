@@ -565,3 +565,11 @@ $(() => {
     window.location.href = '/auth/goog';
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  elems = document.querySelectorAll('p.math-latex');
+  for (let i = 0; i < elems.length; i++) {
+    console.log(elems[i], renderMathInElement)
+    renderMathInElement(elems[i]);
+  }
+});
