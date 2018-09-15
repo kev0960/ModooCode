@@ -17,6 +17,7 @@ enum TokenTypes {
   HORIZONTAL_LINE,
   CODE,
   NEWLINE,
-  TABLE
+  TABLE,
+  MATH
 };
 }

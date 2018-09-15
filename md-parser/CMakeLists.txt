@@ -5,6 +5,7 @@ project(${PROJECT_NAME})
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "-O3 -Wall")
 set(CMAKE_CXX_EXTENSIONS OFF)
 file(GLOB SOURCES src/*.cc src/*.h)
 
@@ -72,6 +73,7 @@ add_executable(parser_test
                src/content_header.cc
                src/content_table.cc
                src/content_list.cc
+               src/content_math.cc
                src/parser_environment.cc)
 target_link_libraries(parser_test gmock_main chroma)
 add_test(NAME parser_test COMMAND parser_test)

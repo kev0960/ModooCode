@@ -8,6 +8,7 @@
 #include "content_header.h"
 #include "content_list.h"
 #include "content_table.h"
+#include "content_math.h"
 #include "parser_environment.h"
 #include "util.h"
 
@@ -42,7 +43,6 @@ MDParser::MDParser(std::string content)
 
 TokenTypes MDParser::GetTokenInfo(const string& token) {
   if (token.empty()) return NEWLINE;
-
   // Check Header.
   if (token[0] == '#') {
     size_t num_sharps = 0;
@@ -66,6 +66,9 @@ TokenTypes MDParser::GetTokenInfo(const string& token) {
       return HORIZONTAL_LINE;
     else if (token == "```")
       return CODE;
+  }
+  if (token.length() >= 2 && token.substr(0, 2) == "$$") {
+    return MATH;
   }
   if (token[token.length() - 1] == '.') {
     size_t num_digits = 0;
@@ -142,6 +145,9 @@ void MDParser::AnalyzeLine(const std::string& line,
       case HEADER:
         parser_env_.AddNewContent(
             new HeaderContent(line_except_first_token, first_token));
+        break;
+      case MATH:
+        parser_env_.AddNewContent(new MathContent(line.substr(2)));
         break;
       case LIST_ENUM: {
         parser_env_.AddNextList(LIST_ENUM, space_and_tab);
