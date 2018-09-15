@@ -30,7 +30,7 @@ init.init().then(async function(static_data) {
   client.connect();
   const server = new Server(app, static_data, client);
 
-  app.listen(80, function() {
+  app.listen(3000, function() {
     server.setRoutes();
 
     console.log('-------------------------');
