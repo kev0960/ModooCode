@@ -254,5 +254,6 @@ h2.ref-header::before {
     font-family: 'Source Code Pro', monospace;
     font-size: 0.85em;
     overflow-y: hidden;
+    border: 1px solid black;
 }
 
