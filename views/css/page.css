@@ -167,6 +167,9 @@
 
 .page-nav-btns {
     display: flex;
+    max-width: 46rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .page-nav-btns p {
@@ -185,6 +188,7 @@ p.nav-page-title {
     color: #515151;
 }
 .page-btn-common {
+    flex: 1;
     font-size:1em;
     padding: 15px 25px;
     background-color: white;
