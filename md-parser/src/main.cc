@@ -6,6 +6,7 @@
 #include <string>
 
 #include "driver.h"
+#include "chroma.h"
 
 bool Contains(std::set<string>& st, const string& s) {
   return st.find(s) != st.end();
@@ -29,6 +30,10 @@ int main(int argc, char** argv) {
     args.insert(string(argv[i]));
   }
   md_parser::DriverConfig config;
+  if (Contains(args, "-print-chroma-css")) {
+    std::cout << GetChromaCss(argv[2]);
+    return 0;
+  }
   if (Contains(args, "-no_output_parsed")) {
     config.no_output_parsed = false;
   }

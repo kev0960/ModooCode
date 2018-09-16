@@ -1,0 +1,15 @@
+#pragma once
+#include "content.h"
+
+namespace md_parser {
+
+class MathContent : public Content {
+ public:
+  MathContent(const string& content);
+  string OutputHtml() override;
+
+  void AddContent(const string& content) override;
+  TokenTypes GetContentType() const override { return TokenTypes::MATH; }
+};
+
+} // namespace md_parser

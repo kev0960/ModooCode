@@ -164,6 +164,24 @@ TEST(ParserTest, Table) {
             parser_table.ConvertToHtml());
 }
 
+TEST(ParserTest, Math) {
+  string math_str = R"(
+    $$1 + 1 = 2$$
+  )";
+  MockMDParser parser_math(math_str);
+  EXPECT_EQ(R"(<p class='math-latex'>$$1 + 1 = 2$$</p>)",
+            parser_math.ConvertToHtml());
+
+  string long_math_str = R"(
+    $$1 + 1 =
+      2 + 2 =
+      3 $$
+  )";
+  MockMDParser parser_math_2(long_math_str);
+  EXPECT_EQ(R"(<p class='math-latex'>$$1 + 1 =2 + 2 =3 $$</p>)",
+            parser_math_2.ConvertToHtml());
+}
+
 TEST(ParserTest, Header) {
   string header = R"(
   ------------
