@@ -289,7 +289,11 @@ int main()
 ```cpp
 
 
-/* 소수 프로그램 */#include <stdio.h>int main(){    /* 우리가 소수인지 판별하고 있는 수 */    int guess = 5;    /* 소수의 배열 */    int prime[1000];    /*    현재까지 찾은 (소수의 개수 - 1)    아래 두 개의 소수를 미리 찾았으므로    초기값은 1 이 된다.    */    int index = 1;    /* for 문 변수 */    int i;    /* 소수인지 판별위해 쓰이는 변수*/    int ok;    /* 처음 두 소수는 특별한 경우로 친다 */    prime[0] = 2;    prime[1] = 3;    for(;;)    {        ok = 0;        for(i=0;i<=index;i++)        {            if(guess % prime[i] != 0)            {                ok++;            }            else            {
+/* 소수 프로그램 */
+#include <stdio.h>
+int main() {
+    /* 우리가 소수인지 판별하고 있는 수 */    
+    int guess = 5;    /* 소수의 배열 */    int prime[1000];    /*    현재까지 찾은 (소수의 개수 - 1)    아래 두 개의 소수를 미리 찾았으므로    초기값은 1 이 된다.    */    int index = 1;    /* for 문 변수 */    int i;    /* 소수인지 판별위해 쓰이는 변수*/    int ok;    /* 처음 두 소수는 특별한 경우로 친다 */    prime[0] = 2;    prime[1] = 3;    for(;;)    {        ok = 0;        for(i=0;i<=index;i++)        {            if(guess % prime[i] != 0)            {                ok++;            }            else            {
 
                 break;            }        }        if(ok == (index + 1))        {            index++;            prime[index] = guess;            printf("소수 : %d \n", prime[index]);            if(index == 999)                break;        }        guess+= 2;    }    return 0;}
 ```
@@ -334,10 +338,7 @@ int main()
 
 
 
-###  배열에 중요한 특징
-
-
-
+###  배열의 중요한 특징
 
   만약 똑똑한 사람이라면 다음과 같이 생각할 수 있을 것 입니다.
 
@@ -387,7 +388,7 @@ int main()
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F12553F0C4ABA2FE43E64ED)
 
- 왜 오류가 나올까? 라고 고민한다면 [3강](http://itguru.tistory.com/entry/%EC%94%B9%EC%96%B4%EB%A8%B9%EB%8A%94-C-%EC%96%B8%EC%96%B4-3-%EB%B3%80%EC%88%98%EA%B0%80-%EB%AD%90%EC%A7%80)`` 맨 아래 부분을 다시 보시길 바랍니다. 왜냐하면 변수는 무조건 최상단에 선언되야 되기 때문입니다! 위와 같이 배열 `arr` 과 변수 `i, ave` 가 변수 선언문이 아닌 다른 문장 다음에 나타났으므로 C 컴파일러는 무조건 오류로 처리하게 됩니다. (물론 C++ 에서는 가능합니다)
+ 왜 오류가 나올까? 라고 고민한다면 [3강](http://itguru.tistory.com/entry/%EC%94%B9%EC%96%B4%EB%A8%B9%EB%8A%94-C-%EC%96%B8%EC%96%B4-3-%EB%B3%80%EC%88%98%EA%B0%80-%EB%AD%90%EC%A7%80) 맨 아래 부분을 다시 보시길 바랍니다. 왜냐하면 변수는 무조건 최상단에 선언되야 되기 때문입니다! 위와 같이 배열 `arr` 과 변수 `i, ave` 가 변수 선언문이 아닌 다른 문장 다음에 나타났으므로 C 컴파일러는 무조건 오류로 처리하게 됩니다. (물론 C++ 에서는 가능합니다)
 
   아아. 애초에 사람이 입력하는 대로 배열의 크기를 임의로 정할 수 는 없는 것이였군요. 그렇다면, 그냥 변수 크기 지정시 특정한 값이 들어있는 변수가 가능한지 살펴 봅시다.
 

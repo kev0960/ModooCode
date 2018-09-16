@@ -192,6 +192,8 @@ p.nav-page-title {
     font-weight: bold;
     cursor: pointer;
     color:black;
+    flex: 1;
+    max-width:40%;
 }
 
 .page-btn-common:hover {
