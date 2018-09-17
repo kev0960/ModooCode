@@ -56,6 +56,8 @@ HeaderType GetHeaderType(const string& header_token) {
     return NORMAL_HEADER;
   } else if (header_token == "#@") {
     return FANCY_HEADER_FOR_REF;
+  } else if (header_token == "###@") {
+    return LECTURE_HEADER;
   }
   return NORMAL_HEADER;
 }
@@ -78,6 +80,10 @@ string HeaderContent::OutputHtml() {
   } else if (header_type == FANCY_HEADER_FOR_REF) {
     start_header = R"(<h2 class="ref-header">)";
     end_header = R"(</h2>)";
+  } else if (header_type == LECTURE_HEADER) {
+    start_header = R"(<h3 class="lecture-header">)";
+    end_header = R"(</h3>)";
+    return StrCat(start_header, Content::OutputHtml(), end_header);
   }
   StripMarkdown(&content_);
   return StrCat(start_header, content_, end_header);

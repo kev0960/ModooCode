@@ -248,6 +248,17 @@ h2.ref-header::before {
     left: 0;
 }
 
+h3.lecture-header {
+    border: none;
+    font-size:1.2em;
+    padding: 0;
+    margin-bottom: 3px;
+    color: #ea5e5e;
+}
+
+h3.lecture-header + p {
+    margin-left:10px;
+}
 .content-img {
     display: block;
     margin-left: auto;

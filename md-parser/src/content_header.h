@@ -9,7 +9,8 @@ namespace md_parser {
 
 enum HeaderType {
   NORMAL_HEADER,  // Typical header #, ##, ###, .. etc.
-  FANCY_HEADER_FOR_REF // ##@ form.
+  FANCY_HEADER_FOR_REF, // #@ form.
+  LECTURE_HEADER // ###@ form
 };
 
 class HeaderContent : public Content {

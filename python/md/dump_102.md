@@ -79,7 +79,10 @@ char * __cdecl strtok(char *s1, const char *delimit){    static char *lastTok
 ```cpp
 
 
-/*' ', ',', '-', '.' 들을 구분 문자로 이용하여 - This, a sample string. 이라는 문자열을 토큰들로 분리한다.이 예제는http://www.cplusplus.com/reference/clibrary/cstring/strtok/에서 가져왔습니다 */#include <stdio.h>#include <string.h>int main (){    char str[] ="- This, a sample string.";    char * pch;    printf ("Splitting string \"%s\" into tokens:\n",str);    pch = strtok (str," ,.-");    while (pch != NULL)    {        printf ("%s\n",pch);        pch = strtok (NULL, " ,.-");    }    return 0;}
+/*' ', ',', '-', '.' 들을 구분 문자로 이용하여 - This, a sample string. 이라는 문자열을 토큰들로 분리한다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstring/strtok/ 에서 가져왔습니다 */
+#include <stdio.h>
+#include <string.h>
+int main () {   char str[] ="- This, a sample string.";    char * pch;    printf ("Splitting string \"%s\" into tokens:\n",str);    pch = strtok (str," ,.-");    while (pch != NULL)    {        printf ("%s\n",pch);        pch = strtok (NULL, " ,.-");    }    return 0;}
 ```
 
 
