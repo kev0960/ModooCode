@@ -47,14 +47,20 @@ def handle(data):
       words[-1] = words[-1] + '`'
 
     annotated = ' '.join(words)
+    annotated = annotated.replace("``", "")
+
+    i = 0
     while i < len(annotated):
       if annotated[i] == '`':
         end = annotated.find('`', i + 1)
         w = annotated[i + 1:end]
         if w in {'C', 'C++', 'Psi', 'C++ 11'}:
-          annotated = annotated[:i - 1] + ' ' + w + annotated[end + 1:]
+          annotated = annotated[:i] + w + annotated[end + 1:]
+          continue
         elif w.isdigit() or (w.startswith('-') and w[1:].isdigit()):
-          annotated = annotated[:i - 1] + ' ' + w + annotated[end + 1:]
+          annotated = annotated[:i] + w + annotated[end + 1:]
+          continue
+
       i += 1
 
     return annotated
@@ -63,11 +69,23 @@ def handle(data):
 
   fixed_lines = []
   in_code = False
-
+  in_header = False
   cnt = 0
   for line in lines:
-    print(cnt, "line : ", line)
     cnt += 1
+    if line[:5] == '-----':
+      in_header = not in_header
+      fixed_lines.append(line)
+      continue
+
+    if line[:3] == '###':
+      fixed_lines.append(line)
+      continue
+
+    if in_header:
+      fixed_lines.append(line)
+      continue
+
     if line[:3] == '```':
       in_code = not in_code
       fixed_lines.append(line)
