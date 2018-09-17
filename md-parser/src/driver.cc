@@ -12,10 +12,22 @@ namespace md_parser {
 namespace {
 
 string GetOutputFile(const string& s) {
+  bool is_old_file = false;
+  if (s.find("python") != string::npos) {
+    is_old_file = true;
+  }
+
   string filename = s.substr(s.find_last_of("/") + 1);
   string filename_without_ext = filename.substr(0, filename.find_last_of("."));
-  filename_without_ext.replace(0, 4, "blog");
-  return StrCat("../views/old/", filename_without_ext, ".html");
+
+  string output_dir_name;
+  if (is_old_file) {
+    filename_without_ext.replace(0, 4, "blog");
+    output_dir_name = "../views/old/";
+  } else {
+    output_dir_name = "../views/new/";
+  }
+  return StrCat(output_dir_name, filename_without_ext, ".html");
 }
 
 string GetFileId(const string& filename) {
@@ -25,7 +37,8 @@ string GetFileId(const string& filename) {
                   filename.begin() + filename.find_last_of('.'));
   }
   // Otherwise, name of the file itself is the file index.
-  return filename.substr(filename.find_last_of("/") + 1);
+  return string(filename.begin() + filename.find_last_of("/") + 1,
+                filename.begin() + filename.find_last_of("."));
 }
 
 }  // namespace
@@ -49,14 +62,17 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
   if (!config_.no_output_parsed) {
     int parser_index = 0;
     // Create an output directory (if not exist)
+    string output_dir_name = "";
     std::experimental::filesystem::create_directories("../views/old");
+    std::experimental::filesystem::create_directories("../views/new");
 
     for (const auto& filename : filenames) {
       std::cerr << "Output [" << parser_index + 1 << "/" << filenames.size()
                 << "] " << GetOutputFile(filename) << std::endl;
       std::ofstream output_file(GetOutputFile(filename));
+      /*
       string file_index(filename.begin() + filename.find_last_of("_") + 1,
-                        filename.begin() + filename.find_last_of("."));
+                        filename.begin() + filename.find_last_of("."));*/
       // file_info[file_index] = parsers_[parser_index]->GetHeaderInfo();
       output_file << parsers_[parser_index]->ConvertToHtml();
       parser_index++;
@@ -73,8 +89,7 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
       path_defined_files[GetFileId(filenames[i])] = header_info.at("path");
     }
     if (header_info.find("next_page") != header_info.end()) {
-      next_page_map[GetFileId(filenames[i])] =
-          header_info.at("next_page");
+      next_page_map[GetFileId(filenames[i])] = header_info.at("next_page");
     }
     file_info[GetFileId(filenames[i])] = header_info;
   }
@@ -101,6 +116,7 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
       output_sitemap << reader.GenerateSiteMap();
     }
   }
+  return true;
 }
 
 }  // namespace md_parser

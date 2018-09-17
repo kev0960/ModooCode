@@ -181,6 +181,14 @@ module.exports = class Server {
           file_infos: this.file_infos,
           user
         });
+      } else {
+        res.render('page.ejs', {
+          content_url: './new/' + page_id + '.html',
+          file_info: this.file_infos[page_id],
+          page_infos: this.page_infos,
+          file_infos: this.file_infos,
+          user
+        });
       }
     }.bind(this));
 

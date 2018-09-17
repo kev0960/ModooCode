@@ -5,26 +5,14 @@
 #include <streambuf>
 #include <string>
 
-#include "driver.h"
 #include "chroma.h"
+#include "driver.h"
 
 bool Contains(std::set<string>& st, const string& s) {
   return st.find(s) != st.end();
 }
 
 int main(int argc, char** argv) {
-  std::vector<string> filenames;
-  if (argc > 1) {
-    if (argv[1][0] != '-') {
-      filenames.push_back(argv[1]);
-    }
-  } else {
-    for (auto& p :
-         std::experimental::filesystem::directory_iterator("../python/md")) {
-      filenames.push_back(p.path());
-    }
-  }
-
   std::set<string> args;
   for (int i = 1; i < argc; i++) {
     args.insert(string(argv[i]));
@@ -42,6 +30,27 @@ int main(int argc, char** argv) {
   }
   if (Contains(args, "-no_dump_page_path")) {
     config.no_dump_page_path = false;
+  }
+
+  std::vector<string> filenames;
+  std::vector<string> md_paths = {"../python/md"};
+
+  if (Contains(args, "-md")) {
+    md_paths.push_back("../md");
+  }
+
+  for (const auto& arg : args) {
+    if (arg[0] != '-') {
+      filenames.push_back(arg);
+    }
+  }
+  if (filenames.empty()) {
+    for (const auto& md_path : md_paths) {
+      for (auto& p :
+           std::experimental::filesystem::directory_iterator(md_path)) {
+        filenames.push_back(p.path());
+      }
+    }
   }
 
   md_parser::Driver driver(config);

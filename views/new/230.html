@@ -1,0 +1,360 @@
+<p>안녕하세요 여러분! 오래 간만에 인사 드립니다. 이번 강좌에서는 C++ 에서 예외 처리를 어떠한 방식으로 하는지에 대해 알아보도록 하겠습니다.</p><h3> 예외란?</h3><p>우리가 이상적인 세상에서 살고 있다면, 그 어떤 예외적인 상황도 없을 것입니다. 프로그램 혹은 라이브러리 사용자들은 언제나 올바른 값을 입력값으로 줄 것이고, 컴퓨터 역시 무한한 자원을 사용할 수 있어서 어떠한 상황에서도 데이터들을 정상적으로 처리할 수 있을 것입니다.</p><p>하지만, 안타깝게도 이 세상은 그리 녹록하지 않습니다. 사람들은 실수를 하기 마련이고, 컴퓨터 역시 언제나 프로그램에 필요한 자원을 제공할 수 있는 것이 아닙니다. 예를 들어서 아래와 같은 <code class='inline-code'>vector</code> 의 사용 예시를 살펴봅시다.</p><pre class="chroma"><span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 크기가 3 인 벡터 만듦
+</span><span class="c1"></span><span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">v</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="p">;</span>   <span class="c1">// ??
+</span><span class="c1"></span></pre><p>위 경우, 크기가 3 인 <code class='inline-code'>vector</code> 를 만들었지만 4 번째 원소를 요청하고 있습니다. 위와 같은 코드는 문법 상 아무 문제가 없는 코드이지만, 막상 실행하게 되면 오류가 발생하게 됩니다.</p><p>다른 예로 아래와 같이 큰 메모리를 할당하는 경우를 생각해봅시다.</p><pre class="chroma"><span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">1000000000</span><span class="p">)</span><span class="p">;</span>
+<span class="c1">// ?
+</span><span class="c1"></span></pre><p>여러분이 사용하는 대부분의 시스템의 경우 위와 같이 큰 메모리를 할당할 수 없습니다. 따라서, 위 코드 역시 문법 상 틀린 것이 없는 코드 이지만, 실제로 실행해보면 오류가 발생하게 됩니다. </p><p>이렇게 정상적인 상황에서 벗어난 모든 예외적인 상황들을 <span class='font-weight-bold'>예외(exception)</span> 이라고 부릅니다. </p><h3> 기존의 예외 처리 방식</h3><p>C 언어에서는 언어 차원에서 제공하는 예외 처리 방식이라는 것이 딱히 따로 존재하지 않았습니다. 따라서 아래와 같이, 어떤 작업을 실행한 뒤에 그 결과값을 확인하는 방식으로 처리하였습니다. 예를 들어서 아래 <code class='inline-code'>malloc</code> 으로 메모리를 동적으로 할당하는 경우를 생각해봅시다.</p><pre class="chroma"><span class="kt">char</span> <span class="o">*</span><span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">1000000000</span><span class="p">)</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">메모리 할당 오류!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p><code class='inline-code'>malloc</code> 의 경우 메모리 할당 실패시에 <code class='inline-code'>NULL</code> 을 리턴하므로, 위와 같이 <code class='inline-code'>c</code> 가 <code class='inline-code'>NULL</code> 인지 확인함으로써 예외적인 상황을 처리할 수 있었습니다.</p><p>하지만 이러한 방식으로 예외를 처리한다면, 함수가 깊어지면 깊어질 수 록 꽤나 귀찮게 됩니다. 예를 들어서 아래와 같은 예시를 살펴보세요.</p><pre class="chroma"><span class="kt">bool</span> <span class="nf">func1</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">addr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">func2</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do something
+</span><span class="c1"></span>  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">bool</span> <span class="nf">func2</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">addr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">func3</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do something
+</span><span class="c1"></span>  <span class="p">}</span>
+  <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">bool</span> <span class="nf">func3</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">addr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">100000000</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">addr</span> <span class="o">=</span><span class="o">=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="o">*</span><span class="n">addr</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">func1</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 잘 처리됨
+</span><span class="c1"></span>  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 오류 발생
+</span><span class="c1"></span>  <span class="p">}</span>
+<span class="p">}</span>
+</pre><p>위 코드의 경우 <code class='inline-code'>func3</code> 에서 '예외가 발생할 수 있는 작업' 을 수행하는데, 만약에 예외가 발생하게 된다면 <code class='inline-code'>false</code> 를 리턴하게 되고, 잘 처리 되었다면 <code class='inline-code'>true</code> 를 리턴합니다. </p><p>여기까지는 좋은데, 문제는 이 <code class='inline-code'>func3</code> 가 <code class='inline-code'>func2</code> 에서 호출되고, 다시 <code class='inline-code'>func2</code> 는 <code class='inline-code'>func1</code> 에서 호출되고, <code class='inline-code'>func1</code> 은 <code class='inline-code'>main</code> 에서 호출된다는 점입니다. 만약에 <code class='inline-code'>main</code> 의 입장에서 <code class='inline-code'>func3</code> 에서 문제가 발생했을 때 이를 캐치하기 위해서는, 각각의 함수들에서 처리 결과를 모두 리턴해야 할 것입니다.</p><p>위 코드는 예외가 <code class='inline-code'>func3</code> 에서만 발생해서 간단하였지만, 만약에 <code class='inline-code'>func2</code> 도 어떤 다른 작업을 해서 예외를 발생시킬 수 있다면 어떻게 해야 할까요? 상당히 골치 아픈 일입니다.</p><p>하지만 다행이도 C++ 에서는 위와 같은 불편한 예외 처리 방식을 획기적으로 해결시켰습니다.</p><h3> 예외 발생시키기 - throw</h3><p>C 언어에서는 예외가 발생했을 때, 다른 값을 리턴하는 것으로 예외를 처리하였지만, C++ 에서는 예외가 발생하였다는 사실을 명시적으로 나타낼 수 있습니다. 바로 <code class='inline-code'>throw</code> 문을 사용하면 됩니다.</p><p>예를 들어서 아래와 같이 매우 간단한 <code class='inline-code'>vector</code> 클래스를 생각해봅시다.</p><pre class="chroma"><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">Vector</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">Vector</span><span class="p">(</span><span class="n">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="o">:</span> <span class="n">size_</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">data_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">size_</span><span class="p">]</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">data_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">at</span><span class="p">(</span><span class="n">size_t</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">size_</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="n">out_of_range</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">vector 의 index 가 범위를 초과하였습니다.</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="o">~</span><span class="n">Vector</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span><span class="p">[</span><span class="p">]</span> <span class="n">data_</span><span class="p">;</span> <span class="p">}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="n">T</span><span class="o">*</span> <span class="n">data_</span><span class="p">;</span>
+  <span class="n">size_t</span> <span class="n">size_</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+</pre><p>만들어진 <code class='inline-code'>vector</code> 의 요청한 위치에 있는 원소를 리턴하는 함수인 <code class='inline-code'>at</code> 함수를 생각해봅시다 (operator[] 와 유사하지만, 이는 at 의 경우 const 를 리턴합니다.) 인자로 전달된 <code class='inline-code'>index</code> 가 범위 이내라면, 간단하게 <code class='inline-code'>data[index]</code> 를 리턴하면 되겠지만, 범위 밖이라면 어떻게 해야 할까요?</p><p>문제는 <code class='inline-code'>at</code> 함수가 <code class='inline-code'>const T&</code> 를 리턴하기 때문에, 따로 '오류 메세지' 를 리턴할 수 없다는 점입니다. 하지만 C++ 에서는 다음과 같이 예외가 발생하였음을 명시적으로 알릴 수 있습니다.</p><pre class="chroma"><span class="c1">// 생략 ...
+</span><span class="c1"></span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">at</span><span class="p">(</span><span class="n">size_t</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 예외를 발생시킨다!
+</span><span class="c1"></span>    <span class="k">throw</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">out_of_range</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">vector 의 index 가 범위를 초과하였습니다.</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 생략 ...
+</span><span class="c1"></span><span class="p">}</span>
+<span class="p">;</span>
+</pre><p>먼저, 예외를 발생시키는 부분을 자세히 살펴보겠습니다. </p><pre class="chroma">throw std::out_of_range(&#34;vector 의 index 가 범위를 초과하였습니다.&#34;);
+</pre><p>C++ 에는 예외를 던지고 싶다면, <span class='font-weight-bold'><code class='inline-code'>throw</code> 로 예외로 전달하고 싶은 객체를 써주면 됩니다.</span> 예외로 아무 객체나 던져도 상관 없지만, C++ 표준 라이브러리에는 이미 여러가지 종류의 예외들이 정의되어 있어서 이를 활용하는 것도 좋습니다. 예를 들어서, 위 경우 <code class='inline-code'>out_of_range</code> 객체를 <code class='inline-code'>throw</code> 합니다. C++ 표준에는 <code class='inline-code'>out_of_range</code> 외에도 <code class='inline-code'>overflow_error, length_error, runtime_error</code> 등등 여러가지가 정의되어 있고 표준 라이브러리에서 활용되고 있습니다.</p><p>이렇게 예외를 <code class='inline-code'>throw</code> 하게 되면, <code class='inline-code'>throw</code> 한 위치에서 즉시 함수가 종료되고, 예외 처리하는 부분까지 점프하게 됩니다. 따라서 <code class='inline-code'>throw</code> 밑에 있는 모든 문장은 실행되지 않습니다. 한 가지 중요한 점은 이렇게 함수에서 예외 처리하는 부분에 도달하기 까지 함수를 빠져나가면서, <span class='font-weight-bold'><code class='inline-code'>stack</code> 에 생성되었던 객체들을 빠짐없이 소멸</span>시켜 준다는 점 입니다. 따라서 예외가 발생하여도 사용하고 있는 자원들을 제대로 소멸시킬 수 있습니다! (소멸자만 제대로 작성하였다면)</p><h3> 예외 처리 하기 - try 와 catch</h3><p>그렇다면 이렇게 발생한 에외를 어떻게 처리할까요?</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span><span class="err"> </span><span class="nc">Vector</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">Vector</span><span class="p">(</span><span class="n">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="o">:</span> <span class="n">size_</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">data_</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">size_</span><span class="p">]</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size_</span><span class="p">;</span> <span class="n">i</span><span class="o">+</span><span class="o">+</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">data_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">at</span><span class="p">(</span><span class="n">size_t</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">size_</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="n">out_of_range</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">vector 의 index 가 범위를 초과하였습니다.</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">data_</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="o">~</span><span class="n">Vector</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span><span class="p">[</span><span class="p">]</span> <span class="n">data_</span><span class="p">;</span> <span class="p">}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="n">T</span><span class="o">*</span> <span class="n">data_</span><span class="p">;</span>
+  <span class="n">size_t</span> <span class="n">size_</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">index</span><span class="p">;</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">out_of_range</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">예외 발생 ! </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// 예외가 발생하지 않았다면 3을 이 출력되고, 예외가 발생하였다면 원래 data 에
+</span><span class="c1"></span>  <span class="c1">// 들어가 있던 0 이 출력된다.
+</span><span class="c1"></span>  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">읽은 데이터 : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">data</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><picture><source type="image/webp" srcset="/img/12.1.1.webp"><img class="content-img" src="/img/12.1.1.png" alt="1 입력 시에 읽은 데이터로 3 이 나오고, 4 입력 시에 예외가 발생하며 읽은 데이터로 0 이 나온다."></picture><p>와 같이 나옵니다. </p><p>위에서도 볼 수 있듯이, 범위에 벗어난 값 (위 경우 3 이상) 을 입력하게 되었다면, 범위를 초과하였다는 메세지를 볼 수 있습니다. 그렇다면, 예외가 어떤 식으로 처리되었는지 살펴봅시다. </p><pre class="chroma"><span class="k">try</span> <span class="p">{</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="n">vec</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>먼저 <code class='inline-code'>try</code> 부분 입니다. <code class='inline-code'>try</code> 안에서 무언가 예외가 발생할만한 코드가 실행 됩니다. 만약에 예외가 발생하지 않았다면 마지 <code class='inline-code'>try .. catch</code> 부분이 없는 것과 동일하게 실행 됩니다. <code class='inline-code'>data</code> 에는 <code class='inline-code'>vec</code> 의 <code class='inline-code'>index</code> 번째 값이 들어가고 밑에 있는 <code class='inline-code'>catch</code> 문은 무시 됩니다. </p><p>반면에 예외가 발생할 경우 이야기가 달라집니다. 예외가 발생하게되면, 그 즉시 <code class='inline-code'>stack</code> 에 생성된 모든 객체들의 소멸자들이 호출되고, 가장 가까운 <code class='inline-code'>catch</code> 문으로 점프합니다. 따라서, 위 경우 </p><pre class="chroma"><span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span><span class="o">=</span> <span class="n">size_</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">throw</span> <span class="n">out_of_range</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">vector 의 index 가 범위를 초과하였습니다.</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>의 <code class='inline-code'>throw</code> 다음으로 실행되는 문장이 바로 </p><pre class="chroma"><span class="k">catch</span> <span class="p">(</span><span class="n">out_of_range</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">예외 발생 ! </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">(</span><span class="p">)</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>이 <code class='inline-code'>catch</code> 부분이 됩니다. 여기서 <code class='inline-code'>catch</code> 문은 <code class='inline-code'>throw</code> 된 예외를 받는 부분인데, 어떤 예외를 받냐면, <code class='inline-code'>catch</code> 문 안에 정의된 예외의 꼴에 맞는 객체를 받게 됩니다. 우리의 <code class='inline-code'>Vector</code> 의 경우 <code class='inline-code'>out_of_range</code> 를 <code class='inline-code'>throw</code> 하였는데, 위 <code class='inline-code'>catch</code> 문이 <code class='inline-code'>out_of_range</code> 를 받으므로, 잘 받을 수 있습니다. </p><p><code class='inline-code'>out_of_range</code> 클래스는 아주 간단한데, 그냥 내부에 발생엔 예외에 관한 내용을 저장하는 문자열 필드가 달랑 하나 있고 이 역시 <code class='inline-code'>what()</code> 함수로 그 값을 들여다 볼 수 있습니다. 위 경우 우리가 전달한 문장인 'vector의 index가 범위를 초과하였습니다' 가 나오게 됩니다. </p><h3> 스택 풀기 (stack unwinding)</h3><p>앞서 <code class='inline-code'>throw</code> 를 하게 된다면, 가장 가까운 <code class='inline-code'>catch</code> 로 점프한다고 하였습니다. 이 말의 뜻이 무엇인지 아래 예제로 살펴봅시다.</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">Resource</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">Resource</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="o">:</span> <span class="n">id_</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+  <span class="o">~</span><span class="n">Resource</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">리소스 해제 : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">id_</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="kt">int</span> <span class="n">id_</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">func3</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Resource</span> <span class="n">r</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">throw</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">runtime_error</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Exception from 3!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">func2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Resource</span> <span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">func3</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">실행 안됨!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">func1</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Resource</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">func2</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">실행 안됨!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">func1</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Exception : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 실행하였으면</p><picture><source type="image/webp" srcset="/img/12.1.2.webp"><img class="content-img" src="/img/12.1.2.png" alt="리소스 잘 해제됨"></picture><p>와 같이 나옵니다. </p><p>먼저 살펴보아야할 부분으로, </p><pre class="chroma"><span class="kt">int</span> <span class="nf">func3</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Resource</span> <span class="n">r</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">throw</span> <span class="n">std</span><span class="o">:</span><span class="o">:</span><span class="n">runtime_error</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">Exception from 3!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>에서 보시다싶이, <code class='inline-code'>func3</code> 함수에서 예외를 발생시키고 있습니다. 그런데, 이 <code class='inline-code'>func3</code> 은 <code class='inline-code'>func2</code> 가 호출하고, <code class='inline-code'>func2</code> 는 <code class='inline-code'>func1</code> 이 호출하고, 마지막으로 <code class='inline-code'>func1</code> 은 <code class='inline-code'>main</code> 에서 호출됩니다.</p><p>앞에서 말했듯이 예외가 발생하게 되면 가장 가까운 <code class='inline-code'>catch</code> 에서 예외를 받는다고 하였습니다. 그런데, <code class='inline-code'>func1, 2</code> 모두 예외를 받는 <code class='inline-code'>catch</code> 구문이 없습니다. 따라서, 가장 가까운 <code class='inline-code'>catch</code> 부분은, <code class='inline-code'>main</code> 함수에 있는 <code class='inline-code'>catch</code> 구문이 되고, 실제로도 예외가 <code class='inline-code'>main</code> 함수에까지 잘 전달되어서 출력되었습니다.</p><p>또 한 가지 중요한 점은, 예외가 전파되면서 각 함수들에 정의되어 있던 객체들이 잘 소멸되었다는 점입니다. </p><p>먄약에 예외가 발생하지 않았을 경우 어떻게 나오게 되냐면</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">Resource</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">Resource</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">)</span> <span class="o">:</span> <span class="n">id_</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+  <span class="o">~</span><span class="n">Resource</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">리소스 해제 : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">id_</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="kt">int</span> <span class="n">id_</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">func3</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Resource</span> <span class="n">r</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">func2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Resource</span> <span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">func3</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">실행!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">func1</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Resource</span> <span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">func2</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">실행!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">func1</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">exception</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Exception : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><picture><source type="image/webp" srcset="/img/12.1.3.webp"><img class="content-img" src="/img/12.1.3.png" alt="리소스 잘 해제되고 실행도 잘 됨"></picture><p>와 같이 나옵니다.</p><p>위와 비교해보면, 정상적인 상황에서는 객체의 소멸자들은 함수가 종료될 때 호출되므로 "실행!" 이 먼저 출력되고, 그 뒤에 리소스 해제 되었다는 문장이 출력됩니다. </p><p>반면에 예외가 전파되는 과정에서는 바로 <code class='inline-code'>catch</code> 부분으로 점프 하면서, 각 함수들에 있던 객체들만 해제하기 때문에 리소스 해제 되었다는 것은 정상적으로 출력되지만, 그 "실행 안됨!" 부분은 실행되지 않습니다. </p><p>이와 같이 <code class='inline-code'>catch</code> 로 점프 하면서 스택 상에서 정의된 객체들을 소멸시키는 과정을 <span class='font-weight-bold'>스택 풀기(stack <code class='inline-code'>unwinding)**</code> 이라고 부릅니다. </p><h3> 여러 종류의 예외 받기</h3><p>앞서 <code class='inline-code'>catch</code> 는 여러 종류의 예외들을 받을 수 있다고 하였습니다. 이를 위해선, 한 개의 <code class='inline-code'>try</code> 안에 받고자 하는 모든 종류의 예외를 <code class='inline-code'>catch</code> 문으로 주렁 주렁 달면 됩니다. 아래 예제를 보실까요.</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="n">string</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">hi!</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="sa"></span><span class="sc">&#39;</span><span class="sc">a</span><span class="sc">&#39;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">hello!</span><span class="s">&#34;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+  <span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">func</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="kt">char</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Char : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Int : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">String : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">s</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">String Literal : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">s</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면 </p><picture><source type="image/webp" srcset="/img/12.1.4.webp"><img class="content-img" src="/img/12.1.4.png" alt="리소스 잘 해제되고 실행도 잘 됨"></picture><p>와 같이 나옵니다.</p><p>마치 <code class='inline-code'>switch</code> 문 처럼 <code class='inline-code'>catch</code> 역시 여러 종류의 <code class='inline-code'>throw</code> 된 객체를 모두 받을 수 있습니다. 위 경우, </p><pre class="chroma"><span class="k">catch</span> <span class="p">(</span><span class="kt">char</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Char : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Int : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">String : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">s</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">String Literal : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">s</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre><p>첫번째 <code class='inline-code'>catch</code> 문에서는 <code class='inline-code'>char</code> 형 값을, 두 번째에서는 <code class='inline-code'>int</code> 형 값을, 세 번째 에서는 <code class='inline-code'>string</code> 객체를, 마지막에서는 <code class='inline-code'>const char*</code> 형 값을 받게 됩니다. 실제로도 각기 다른 값들을 <code class='inline-code'>throw</code> 하였을 때, 작동하는 <code class='inline-code'>catch</code> 가 달라지는 것을 확인할 수 있습니다.</p><p>또한 한 가지 흥미로운 점은, 부모 클래스와 자식 클래스의 경우 처리하는 방식입니다. </p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">Parent</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">who</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Parent!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">Child</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Parent</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">who</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Child!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="n">Parent</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="n">Child</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+  <span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">func</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Parent</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Parent Catch!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">who</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Child</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Child Catch!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">c</span><span class="p">.</span><span class="n">who</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><picture><source type="image/webp" srcset="/img/12.1.5.webp"><img class="content-img" src="/img/12.1.5.png" alt="Child 도 Parent 에서 catch 됨"></picture><p>와 같이 나옵니다. </p><p>이번에는 경우에 따라서 <code class='inline-code'>Parent</code> 나 <code class='inline-code'>Child</code> 클래스 객체를 리턴합니다. <code class='inline-code'>Parent</code> 클래스 객체를 <code class='inline-code'>throw</code> 하엿을 때에는 예상했던데로 <code class='inline-code'>Parent</code> 를 받는 <code class='inline-code'>catch</code> 문이 실행되어서 "Parent Catch!" 가 출력되었습니다.</p><p>반면에 <code class='inline-code'>Child</code> 객체를 <code class='inline-code'>throw</code> 하였을 때에는 예상과는 다르게, <code class='inline-code'>Child</code> 를 받는 <code class='inline-code'>catch</code> 문이 아닌, <code class='inline-code'>Parent</code> 를 받는 <code class='inline-code'>catch</code> 문이 실행되어서 이 역시 "Parent Catch!" 가 출력되었습니다.</p><p>이와 같은 일이 발생한 이유는, <code class='inline-code'>catch</code> 문의 경우 가장 먼저 대입될 수 있는 객체를 받는데;</p><pre class="chroma"><span class="n">Parent</span><span class="o">&amp;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Child</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</pre><p>는 가능하기 때문에 <code class='inline-code'>Parent catch</code> 가 먼저 받아버리는 것입니다. 따라서, 위와 같은 문제를 방지하기 위해서는 언제나 <code class='inline-code'>Parent catch</code> 를 <code class='inline-code'>Child catch</code> 보다 뒤에 써주는 것이 좋습니다. 왜냐하면 이를 통해서 <code class='inline-code'>Child</code> 객체가 <code class='inline-code'>Parent catch</code> 에 들어가는 것을 막을 수 있고,</p><pre class="chroma"><span class="n">Child</span> <span class="o">&amp;</span><span class="n">c</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>  <span class="c1">// 오류
+</span><span class="c1"></span></pre><p>위는 성립되지 않기 때문에 <code class='inline-code'>Child catch</code> 에 <code class='inline-code'>Parent</code> 객체가 들어가지도 않습니다. 실제로 예를 보면;</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">Parent</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">who</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Parent!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="k">class</span><span class="err"> </span><span class="nc">Child</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Parent</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">who</span><span class="p">(</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Child!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="n">Parent</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="n">Child</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+  <span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">func</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Child</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Child Catch!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">c</span><span class="p">.</span><span class="n">who</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Parent</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Parent Catch!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">who</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><picture><source type="image/webp" srcset="/img/12.1.6.webp"><img class="content-img" src="/img/12.1.6.png" alt="Child 가 제대로 처리됨"></picture><p>와 같이 잘 처리됨을 알 수 있습니다.</p><h3> 모든 예외 받기</h3><p>만약에 어떤 예외를 <code class='inline-code'>throw</code> 하였는데, 이를 받는 <code class='inline-code'>catch</code> 가 없다면 어떻게 될까요?</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">func</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="n">runtime_error</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">error</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">func</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Catch int : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><picture><source type="image/webp" srcset="/img/12.1.8.webp"><img class="content-img" src="/img/12.1.8.png" alt="프로그램 비정상적으로 종료!"></picture><p>와 같이 <code class='inline-code'>runtime_error</code> 예외를 발생시키며 프로그램이 비정상적으로 종료되었다고 뜨게 됩니다. 따라서, 언제나 예외를 던지는 코드가 있다면 적절하게 받아내는 것이 중요합니다. 하지만, 때로는 예외 객체 하나 하나 처리할 필요 없이 "그냥 나머지 전부다!" 라고 쓰고 싶을 때가 있습니다. 마치 <code class='inline-code'>switch</code> 문의 <code class='inline-code'>default</code> 이나 <code class='inline-code'>if-else</code> 문에서 마지막 <code class='inline-code'>else</code> 와 같이 말입니다.</p><p>재미있게도 <code class='inline-code'>try .. catch</code> 문에서도 이를 잘 지원합니다.</p><pre class="chroma"><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="cp">#</span><span class="cp">include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">hi</span><span class="s">&#34;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span><span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="n">runtime_error</span><span class="p">(</span><span class="sa"></span><span class="s">&#34;</span><span class="s">error</span><span class="s">&#34;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+  <span class="n">cin</span> <span class="o">&gt;</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">;</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">func</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="kt">int</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Catch int : </span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">e</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="p">.</span><span class="p">.</span><span class="p">.</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="sa"></span><span class="s">&#34;</span><span class="s">Default Catch!</span><span class="s">&#34;</span> <span class="o">&lt;</span><span class="o">&lt;</span> <span class="n">endl</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre><p>성공적으로 컴파일 하였다면</p><picture><source type="image/webp" srcset="/img/12.1.7.webp"><img class="content-img" src="/img/12.1.7.png" alt="예외가 제대로 처리됨"></picture><p>와 같이 나옵니다.</p><p>마지막 <code class='inline-code'>catch(...)</code> 에서 <code class='inline-code'>try</code> 안에서 발생한 모든 예외들을 받게 됩니다. 당연히도, 어떠한 에외도 다 받을 수 있기 때문에 특정한 타입을 찝어서 객체에 대입 시킬 수 는 없겠지요.</p><p>자 그럼 이것으로 C++ 에서의 예외 처리에 관한 강좌를 마치도록 하겠습니다. C++ 스타일 예외 처리를 통해 좀 더 안정적인 프로그램을 만들 수 있습니다!</p><h3> 생각 해보기</h3><h4> 문제 1</h4><p>C++ 표준 라이브러리에 자주 사용할만한 예외 객체들이 정의가 되어있습니다. <a href='http://www.cplusplus.com/reference/stdexcept/'>여기</a> 를 참고해서 읽어보세요!</p>

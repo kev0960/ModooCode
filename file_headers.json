@@ -646,6 +646,7 @@
 }
 ,
 	"228" : {
+	"next_page" : "230",
 	"prev_page" : "227",
 	"title" : "씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>"
 }
@@ -654,6 +655,15 @@
 	"next_page" : "24",
 	"prev_page" : "20",
 	"title" : "씹어먹는 C 언어 - <12 - 1. 포인터는 영희이다! (포인터)>"
+}
+,
+	"230" : {
+	"cat_title" : "12. C++ 에서 예외 처리",
+	"path" : "/C++",
+	"prev_page" : "228",
+	"published" : "false",
+	"title" : "씹어먹는 C ++ - <12. C++ 에서 예외 처리>>",
+	"updated_date" : "09/17/2018"
 }
 ,
 	"24" : {
