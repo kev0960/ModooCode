@@ -119,4 +119,6 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
   return true;
 }
 
+void Driver::BuildFileHistory() {
+}
 }  // namespace md_parser

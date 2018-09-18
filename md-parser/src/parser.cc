@@ -169,8 +169,12 @@ void MDParser::AnalyzeLine(const std::string& line,
   }
 }
 
-void MDParser::Parser() {
+void MDParser::Parser(ParserConfig parse_config) {
   size_t start_pos = ParseHeaderContent();
+  if (parse_config.only_parse_header) {
+    return;
+  }
+
   size_t end_of_line = ReadUntilEndOfLine(content_, start_pos);
   while (end_of_line <= content_.size()) {
     string line = content_.substr(start_pos, end_of_line - start_pos);

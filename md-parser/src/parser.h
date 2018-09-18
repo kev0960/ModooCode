@@ -72,6 +72,12 @@ Line Breaks
 namespace md_parser {
 enum ParserStateInfo { IDLE, BOLD_START, ITALIC_START, ENUM_START, LIST_START };
 
+struct ParserConfig {
+  bool only_parse_header;
+  ParserConfig(bool only_parse_header = false)
+      : only_parse_header(only_parse_header) {}
+};
+
 struct ParserState {
   ParserStateInfo state;
 
@@ -82,7 +88,7 @@ struct ParserState {
 class MDParser {
  public:
   MDParser(std::string content);
-  void Parser();
+  void Parser(ParserConfig parse_config);
   void AnalyzeLine(const std::string& line, std::pair<int, int> space_and_tab);
   TokenTypes GetTokenInfo(const std::string& token);
   string ConvertToHtml();

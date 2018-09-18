@@ -19,6 +19,7 @@ class Driver {
   bool ProcessFiles(const std::vector<string>& filenames);
 
  private:
+  void BuildFileHistory(const std::vector<string>& filenames);
   std::vector<std::unique_ptr<MDParser>> parsers_;
   const DriverConfig config_;
 };
