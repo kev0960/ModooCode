@@ -43,6 +43,16 @@ T Max(const T& a, Ts... args) {
   return a > b ? a : b;
 }
 
+template <template <typename...> class Container, typename K, typename V>
+bool Contains(const Container<K, V>& container, const K& key) {
+  return container.find(key) != container.end();
+}
+
+template <template <typename...> class Container, typename V>
+bool Contains(const Container<V>& container, const V& value) {
+  return container.find(value) != container.end();
+}
+
 // Class for a convenient logging. This is a singleton class.
 class Log {
  public:

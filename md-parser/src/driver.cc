@@ -1,5 +1,6 @@
 #include "driver.h"
 
+#include <algorithm>
 #include <experimental/filesystem>
 #include <fstream>
 #include <unordered_map>
@@ -41,9 +42,78 @@ string GetFileId(const string& filename) {
                 filename.begin() + filename.find_last_of("."));
 }
 
+void ReadFileInfo(
+    std::unordered_map<string, struct timespec>* file_id_to_stat_map) {
+  std::ifstream in("../file_info_db");
+  string line;
+  while (std::getline(in, line)) {
+    auto delimiter = line.find(":");
+    string file_id = line.substr(0, delimiter);
+    string timespec_part = line.substr(delimiter + 1);
+
+    time_t tv_sec = std::stoi(timespec_part.substr(0, timespec_part.find(",")));
+    time_t tv_nsec =
+        std::stoi(timespec_part.substr(timespec_part.find(",") + 1));
+    struct timespec spec {
+      tv_sec, tv_nsec
+    };
+    (*file_id_to_stat_map)[file_id] = spec;
+  }
+}
+
+bool TimeSpecEquals(const timespec& a, const timespec b) {
+  if (a.tv_nsec != b.tv_nsec || a.tv_sec != b.tv_sec) {
+    return false;
+  }
+  return true;
+}
+
+// Remove unmodified files.
+std::set<string> GetUnModifiedFiles(
+    const std::vector<string>& filenames,
+    std::unordered_map<string, struct timespec>* file_id_to_stat_map) {
+  struct stat file_info;
+  std::set<string> unmodified_files;
+
+  for (const auto& filename : filenames) {
+    // Error has happened!
+    if (stat(filename.c_str(), &file_info) == -1) {
+      LOG << "Something wrong with file : " << filename;
+      continue;
+    }
+    const string file_id = GetFileId(filename);
+    if (Contains(*file_id_to_stat_map, file_id) &&
+        TimeSpecEquals(file_id_to_stat_map->at(file_id), file_info.st_mtim)) {
+      unmodified_files.insert(file_id);
+    } else {
+      std::cerr << "Diff : " << filename << std::endl;
+      (*file_id_to_stat_map)[file_id] = file_info.st_mtim;
+    }
+  }
+  return unmodified_files;
+}
+
+void WriteFileToStatMap(
+    const std::unordered_map<string, struct timespec>& file_id_to_stat_map) {
+  std::ofstream out("../file_info_db");
+  for (const auto& kv : file_id_to_stat_map) {
+    out << kv.first << ":" << kv.second.tv_sec << "," << kv.second.tv_nsec
+        << std::endl;
+  }
+}
+
 }  // namespace
 
+Driver::Driver(const DriverConfig& config) : config_(config) {
+  ReadFileInfo(&file_id_to_stat_map_);
+}
+
 bool Driver::ProcessFiles(const std::vector<string>& filenames) {
+  std::set<string> files_not_to_process;
+  if (!config_.force_parse_all) {
+    files_not_to_process = GetUnModifiedFiles(filenames, &file_id_to_stat_map_);
+  }
+
   for (const auto& filename : filenames) {
     // Read the file.
     std::ifstream read_file(filename);
@@ -56,7 +126,11 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
                    std::istreambuf_iterator<char>());
 
     parsers_.emplace_back(new MDParser(content));
-    parsers_.back()->Parser();
+    if (Contains(files_not_to_process, GetFileId(filename))) {
+      parsers_.back()->Parser(ParserConfig{true /* Only parse header */});
+    } else {
+      parsers_.back()->Parser(ParserConfig{});
+    }
   }
 
   if (!config_.no_output_parsed) {
@@ -67,6 +141,10 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     std::experimental::filesystem::create_directories("../views/new");
 
     for (const auto& filename : filenames) {
+      if (Contains(files_not_to_process, GetFileId(filename))) {
+        parser_index++;
+        continue;
+      }
       std::cerr << "Output [" << parser_index + 1 << "/" << filenames.size()
                 << "] " << GetOutputFile(filename) << std::endl;
       std::ofstream output_file(GetOutputFile(filename));
@@ -85,10 +163,10 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
   std::unordered_map<string, string> path_defined_files;
   for (size_t i = 0; i < filenames.size(); i++) {
     const auto& header_info = parsers_[i]->GetHeaderInfo();
-    if (header_info.find("path") != header_info.end()) {
+    if (Contains(header_info, string("path"))) {
       path_defined_files[GetFileId(filenames[i])] = header_info.at("path");
     }
-    if (header_info.find("next_page") != header_info.end()) {
+    if (Contains(header_info, string("next_page"))) {
       next_page_map[GetFileId(filenames[i])] = header_info.at("next_page");
     }
     file_info[GetFileId(filenames[i])] = header_info;
@@ -116,9 +194,8 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
       output_sitemap << reader.GenerateSiteMap();
     }
   }
+  WriteFileToStatMap(file_id_to_stat_map_);
   return true;
 }
 
-void Driver::BuildFileHistory() {
-}
 }  // namespace md_parser

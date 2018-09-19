@@ -142,6 +142,7 @@ void DoClangFormat(const string& code, string* formatted_code) {
       }
     }
     close(pipe_c2p[0]);
+    *formatted_code = FormatCodeUsingChroma(*formatted_code, "cpp", "github");
   } else {
     // In child process, call execve into the clang format.
 
@@ -340,10 +341,7 @@ string Content::OutputHtml() {
                      GetHtmlFragmentText(content_, fragments[i]), "'><p>");
 
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
-      html += StrCat("</p>",
-                     FormatCodeUsingChroma(fragments[i].formatted_code,
-                                           fragments[i].code_style, "github"),
-                     "<p>");
+      html += StrCat("</p>", fragments[i].formatted_code, "<p>");
     } else if (fragments[i].type == HtmlFragments::Types::INLINE_CODE) {
       string inline_code = GetHtmlFragmentText(content_, fragments[i]);
       EscapeHtmlString(&inline_code);

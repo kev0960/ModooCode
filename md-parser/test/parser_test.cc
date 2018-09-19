@@ -51,8 +51,8 @@ string MakeTable(const std::vector<std::vector<string>>& table,
     html += "<tr>";
     for (size_t j = 0; j < table[i].size(); j++) {
       if (j < column_class.size() && !column_class[j].empty()) {
-        html += StrCat(R"(<td class=")", column_class[j], R"("><p>)", table[i][j],
-                       "</p></td>");
+        html += StrCat(R"(<td class=")", column_class[j], R"("><p>)",
+                       table[i][j], "</p></td>");
       } else {
         html += StrCat("<td><p>", table[i][j], "</p></td>");
       }
@@ -75,7 +75,9 @@ class MockMDParser : public MDParser {
     return MDParser::GetContentList();
   }
 
-  MockMDParser(const string& content) : MDParser(content) { Parser(); }
+  MockMDParser(const string& content) : MDParser(content) {
+    Parser(ParserConfig{});
+  }
 };
 
 TEST(ParserTest, SimpleParser) {
