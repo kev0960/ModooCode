@@ -93,11 +93,6 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
 
 string FormatCodeUsingChroma(const string& code, const string& lang,
                              const string& schema) {
-  if (lang == "warning") {
-    return StrCat("<pre class='warning'>", code, "</pre>");
-  } else if (lang == "info" || lang == "info_format") {
-    return StrCat("<pre class='info'>", code, "</pre>");
-  }
   auto code_ = cstring_from_string(code);
   auto lang_ = cstring_from_string(lang);
   auto schema_ = cstring_from_string(schema);
@@ -435,8 +430,14 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
     if (fragment.type == HtmlFragments::Types::CODE) {
       string unformatted_code = content_.substr(
           fragment.str_start, fragment.str_end - fragment.str_start + 1);
-      if (fragment.code_style != "cpp" &&
-          fragment.code_style != "info_format") {
+      if (fragment.code_style == "warning") {
+        fragment.formatted_code =
+            StrCat("<pre class='warning'>", unformatted_code, "</pre>");
+      } else if (fragment.code_style == "info") {
+        fragment.formatted_code =
+            StrCat("<pre class='info'>", unformatted_code, "</pre>");
+      } else if (fragment.code_style != "cpp" &&
+                 fragment.code_style != "info_format") {
         fragment.formatted_code = unformatted_code;
       } else {
         // Sometimes the code contains NBSP character. This hinders the code to
