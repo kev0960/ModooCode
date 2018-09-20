@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+
 #include "parser_environment.h"
 #include "token_types.h"
 
@@ -20,12 +21,15 @@ struct HtmlFragments {
   string formatted_code;
   string code_style;
 
-  HtmlFragments(Types t) : type(t) {}
-  HtmlFragments(Types t, int start, int end)
-      : type(t), str_start(start), str_end(end) {}
   HtmlFragments(Types t, int start, int end, const string& style)
-      : type(t), str_start(start), str_end(end), code_style(style) {}
-  HtmlFragments(Types t, int start, int end, int link_start, int link_end)
+      : type(t),
+        str_start(start),
+        str_end(end),
+        link_start(0),
+        link_end(0),
+        code_style(style) {}
+  HtmlFragments(Types t, int start = 0, int end = 0, int link_start = 0,
+                int link_end = 0)
       : type(t),
         str_start(start),
         str_end(end),
