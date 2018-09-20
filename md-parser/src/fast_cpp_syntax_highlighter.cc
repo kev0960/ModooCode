@@ -117,6 +117,7 @@ bool FastCppSyntaxHighlighter::ParseCode() {
     if (c == '#') {
       AppendCurrentToken(current_token, token_start, i - 1);
       i = HandleMacro(i);
+      i --;
       continue;
     }
     if (c == '/' && i < code_.length() - 1) {
