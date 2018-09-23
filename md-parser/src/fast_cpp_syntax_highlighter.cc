@@ -105,6 +105,27 @@ bool IsOperator(char c) {
   return false;
 }
 
+bool IsPunctuation(char c) {
+  if (c == ',' || c == ';') {
+    return true;
+  }
+  return false;
+}
+
+bool IsBracket(char c) {
+  if (c == '[' || c == ']') {
+    return true;
+  }
+  return false;
+}
+
+bool IsBrace(char c) {
+  if (c == '{' || c == '}') {
+    return true;
+  }
+  return false;
+}
+
 }  // namespace
 
 // Linear scan the entire code to generate parse the code into tokens.
@@ -115,12 +136,15 @@ bool FastCppSyntaxHighlighter::ParseCode() {
   for (size_t i = 0; i < code_.length(); i++) {
     char c = code_[i];
     if (c == '#') {
-      AppendCurrentToken(current_token, token_start, i - 1);
+      AppendCurrentToken(current_token, token_start, i);
       i = HandleMacro(i);
-      i --;
+      token_start = i;
+      i--;
+      current_token = NONE;
       continue;
     }
     if (c == '/' && i < code_.length() - 1) {
+      current_token = NONE;
       if (code_[i + 1] == '*') {
         size_t comment_end = code_.find("*/", i + 2);
         if (comment_end == string::npos) {
@@ -147,7 +171,7 @@ bool FastCppSyntaxHighlighter::ParseCode() {
         continue;
       }
       if (current_token != OPERATOR) {
-        AppendCurrentToken(current_token, token_start, i - 1);
+        AppendCurrentToken(current_token, token_start, i);
         current_token = OPERATOR;
         token_start = i;
       }
@@ -159,7 +183,7 @@ bool FastCppSyntaxHighlighter::ParseCode() {
     // keyword.
     if (IsIdenfierAllowedChar(c)) {
       if (current_token != IDENTIFIER) {
-        AppendCurrentToken(current_token, token_start, i - 1);
+        AppendCurrentToken(current_token, token_start, i);
         current_token = IDENTIFIER;
         token_start = i;
       }
@@ -167,7 +191,7 @@ bool FastCppSyntaxHighlighter::ParseCode() {
     }
     if (IsWhiteSpace(c)) {
       if (current_token != WHITESPACE) {
-        AppendCurrentToken(current_token, token_start, i - 1);
+        AppendCurrentToken(current_token, token_start, i);
         current_token = WHITESPACE;
         token_start = i;
       }
@@ -175,18 +199,70 @@ bool FastCppSyntaxHighlighter::ParseCode() {
     }
     if (IsParentheses(c)) {
       if (current_token != PARENTHESES) {
-        AppendCurrentToken(current_token, token_start, i - 1);
+        AppendCurrentToken(current_token, token_start, i);
         current_token = PARENTHESES;
         token_start = i;
       }
       continue;
     }
     if (IsStringLiteralStart(c)) {
-      if (c == '\'') {
-
+      AppendCurrentToken(current_token, token_start, i);
+      token_start = HandleStringLiteral(i);
+      i = token_start - 1;
+      current_token = NONE;
+      continue;
+    }
+    if (IsBracket(c)) {
+      if (current_token != BRACKET) {
+        AppendCurrentToken(current_token, token_start, i);
+        current_token = BRACKET;
+        token_start = i;
+      }
+      continue;
+    }
+    if (IsBrace(c)) {
+      if (current_token != BRACE) {
+        AppendCurrentToken(current_token, token_start, i);
+        current_token = BRACE;
+        token_start = i;
+      }
+    }
+    if (IsPunctuation(c)) {
+      if (current_token != PUNCTUATION) {
+        AppendCurrentToken(current_token, token_start, i);
+        current_token = PUNCTUATION;
+        token_start = i;
       }
     }
   }
+  AppendCurrentToken(current_token, token_start, code_.length());
+  return true;
+}
+
+size_t FastCppSyntaxHighlighter::HandleStringLiteral(
+    size_t string_literal_start) {
+  if (string_literal_start >= 1 && code_[string_literal_start - 1] == 'R') {
+    // Handle raw string.
+    // First find the delimiter.
+    string delimiter = code_.substr(
+        string_literal_start + 1,
+        code_.find('(', string_literal_start + 1) - (string_literal_start + 1));
+    string end_delimiter = StrCat(")", delimiter, "\"");
+    size_t literal_end = code_.find(end_delimiter, string_literal_start + 1);
+    AppendCurrentToken(STRING_LITERAL, string_literal_start,
+                       literal_end + end_delimiter.length());
+    return literal_end + end_delimiter.length();
+  }
+  char start_quote = code_[string_literal_start];
+  for (size_t i = string_literal_start + 1; i < code_.length(); i++) {
+    if (code_[i] == start_quote) {
+      if (i >= 1 && code_[i - 1] != '\\') {
+        AppendCurrentToken(STRING_LITERAL, string_literal_start, i + 1);
+        return i + 1;
+      }
+    }
+  }
+  return code_.length();
 }
 
 size_t FastCppSyntaxHighlighter::HandleMacro(size_t macro_start) {
@@ -201,11 +277,21 @@ size_t FastCppSyntaxHighlighter::HandleMacro(size_t macro_start) {
   if (delimiter_pos == string::npos) {
     return code_.length();
   }
+  size_t body_start = delimiter_pos + 1;
+  if (code_[delimiter_pos] == ' ') {
+    size_t whitespace_start = delimiter_pos;
+    while (code_[delimiter_pos] == ' ') {
+      delimiter_pos++;
+    }
+    token_list_.push_back(
+        SyntaxToken(WHITESPACE, whitespace_start, delimiter_pos));
+    body_start = delimiter_pos;
+  }
 
   delimiter_pos = code_.find("\n", delimiter_pos);
 
   // Now we have to check the body. We have to consider line continuation!
-  while (code_[delimiter_pos - 1] != '\\') {
+  while (code_[delimiter_pos - 1] == '\\') {
     delimiter_pos = code_.find("\n", delimiter_pos + 1);
     if (delimiter_pos == string::npos) {
       break;
@@ -217,7 +303,7 @@ size_t FastCppSyntaxHighlighter::HandleMacro(size_t macro_start) {
   }
 
   token_list_.push_back(
-      SyntaxToken(MACRO_BODY, header_token_end, delimiter_pos));
+      SyntaxToken(MACRO_BODY, body_start, delimiter_pos));
   return delimiter_pos;
 }
 

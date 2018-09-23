@@ -13,16 +13,16 @@ enum SyntaxTokenType {
   IDENTIFIER,
   NUMERIC_LITERAL,
   STRING_LITERAL,
-  BRAKET,
+  BRACKET,
   PARENTHESES,
-  BRACES,
+  BRACE,
   PUNCTUATION,  // ',', ';'
   OPERATOR,
   COMMENT,
   MACRO_HEAD,  // "#include"
   MACRO_BODY,  // "<iostream>"
   WHITESPACE,
-  NONE // Not matched to any token.
+  NONE  // Not matched to any token.
 };
 
 struct SyntaxToken {
@@ -34,6 +34,11 @@ struct SyntaxToken {
       : token_types(token_types),
         token_start(token_start),
         token_end(token_end) {}
+
+  bool operator==(const SyntaxToken& token) const {
+    return token_types == token.token_types &&
+           token_start == token.token_start && token_end == token.token_end;
+  }
 };
 
 class FastSyntaxHighlighter {
@@ -43,7 +48,7 @@ class FastSyntaxHighlighter {
   string GenerateHighlightedHTML() const;
 
  protected:
-  const string& code_;
+  string code_;
   std::vector<SyntaxToken> token_list_;
 };
 

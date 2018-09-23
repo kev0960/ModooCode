@@ -78,9 +78,18 @@ add_executable(parser_test
 target_link_libraries(parser_test gmock_main chroma)
 add_test(NAME parser_test COMMAND parser_test)
 
+add_executable(syntax_highlight_test
+               test/syntax_highlight_test.cc
+               src/util.cc
+               src/fast_syntax_highlighter.cc
+               src/fast_cpp_syntax_highlighter.cc)
+target_link_libraries(syntax_highlight_test gmock_main)
+add_test(NAME syntax_highlight_test COMMAND syntax_highlight_test)
+
 add_executable(path_test
                test/path_test.cc
                src/util.cc
                src/path.cc)
 target_link_libraries(path_test gmock_main)
 add_test(NAME path_test COMMAND path_test)
+
