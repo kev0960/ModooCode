@@ -43,13 +43,24 @@ struct SyntaxToken {
 
 class FastSyntaxHighlighter {
  public:
-  FastSyntaxHighlighter(const string& code) : code_(code) {}
+  FastSyntaxHighlighter(const string& code) : code_(code) {
+    class_to_style_map_.insert({"k", {{"color", "#0000ff"}}});
+    class_to_style_map_.insert({"s", {{"color", "#a31515"}}});
+    class_to_style_map_.insert({"m", {{"color", "#0000ff"}}});
+    class_to_style_map_.insert({"mb", {{"color", "#0000ff"}}});
+  }
+
   virtual bool ParseCode() = 0;
+
+  // Merge syntax tokens with same colors.
+  void ColorMerge();
   string GenerateHighlightedHTML() const;
 
  protected:
   string code_;
   std::vector<SyntaxToken> token_list_;
+  std::unordered_map<string, std::unordered_map<string, string>>
+      class_to_style_map_;
 };
 
 }  // namespace md_parser

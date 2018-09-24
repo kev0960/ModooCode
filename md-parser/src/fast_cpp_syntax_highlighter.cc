@@ -153,6 +153,7 @@ bool FastCppSyntaxHighlighter::ParseCode() {
           comment_end += 2;
         }
         token_list_.push_back(SyntaxToken(COMMENT, i, comment_end));
+        i = comment_end - 1;
         continue;
       } else if (code_[i + 1] == '/') {
         size_t comment_end = code_.find("\n", i + 2);
@@ -160,12 +161,13 @@ bool FastCppSyntaxHighlighter::ParseCode() {
           comment_end = code_.length();
         }
         token_list_.push_back(SyntaxToken(COMMENT, i, comment_end));
+        i = comment_end - 1;
         continue;
       }
     }
     if (IsOperator(c)) {
-      // '-' can be located in the middle of floating point number.
-      if (c == '-' && current_token == IDENTIFIER &&
+      // '-' or '.' can be located in the middle of floating point number.
+      if ((c == '-' || c == '.') && current_token == IDENTIFIER &&
           IsNumericLiteral(code_.substr(token_start, i - token_start)) &&
           i + 1 < code_.length() && IsNumber(code_[i + 1])) {
         continue;
@@ -175,59 +177,47 @@ bool FastCppSyntaxHighlighter::ParseCode() {
         current_token = OPERATOR;
         token_start = i;
       }
-      continue;
     }
     // During tokenizing step, we do not distinguish between identifier versus
     // keyword. After the identifier token has determined, we check whether it
     // matches to one of our keyword set. If it does, then we mark it as a
     // keyword.
-    if (IsIdenfierAllowedChar(c)) {
+    else if (IsIdenfierAllowedChar(c)) {
       if (current_token != IDENTIFIER) {
         AppendCurrentToken(current_token, token_start, i);
         current_token = IDENTIFIER;
         token_start = i;
       }
-      continue;
-    }
-    if (IsWhiteSpace(c)) {
+    } else if (IsWhiteSpace(c)) {
       if (current_token != WHITESPACE) {
         AppendCurrentToken(current_token, token_start, i);
         current_token = WHITESPACE;
         token_start = i;
       }
-      continue;
-    }
-    if (IsParentheses(c)) {
+    } else if (IsParentheses(c)) {
       if (current_token != PARENTHESES) {
         AppendCurrentToken(current_token, token_start, i);
         current_token = PARENTHESES;
         token_start = i;
       }
-      continue;
-    }
-    if (IsStringLiteralStart(c)) {
+    } else if (IsStringLiteralStart(c)) {
       AppendCurrentToken(current_token, token_start, i);
       token_start = HandleStringLiteral(i);
       i = token_start - 1;
       current_token = NONE;
-      continue;
-    }
-    if (IsBracket(c)) {
+    } else if (IsBracket(c)) {
       if (current_token != BRACKET) {
         AppendCurrentToken(current_token, token_start, i);
         current_token = BRACKET;
         token_start = i;
       }
-      continue;
-    }
-    if (IsBrace(c)) {
+    } else if (IsBrace(c)) {
       if (current_token != BRACE) {
         AppendCurrentToken(current_token, token_start, i);
         current_token = BRACE;
         token_start = i;
       }
-    }
-    if (IsPunctuation(c)) {
+    } else if (IsPunctuation(c)) {
       if (current_token != PUNCTUATION) {
         AppendCurrentToken(current_token, token_start, i);
         current_token = PUNCTUATION;
@@ -302,8 +292,7 @@ size_t FastCppSyntaxHighlighter::HandleMacro(size_t macro_start) {
     delimiter_pos = code_.length();
   }
 
-  token_list_.push_back(
-      SyntaxToken(MACRO_BODY, body_start, delimiter_pos));
+  token_list_.push_back(SyntaxToken(MACRO_BODY, body_start, delimiter_pos));
   return delimiter_pos;
 }
 
@@ -317,6 +306,16 @@ void FastCppSyntaxHighlighter::AppendCurrentToken(SyntaxTokenType current_token,
       current_token = KEYWORD;
     } else if (IsNumericLiteral(token)) {
       current_token = NUMERIC_LITERAL;
+      // It is possible that the numeric literal starts with .
+      // (e.g .1E4f) In this case, the preceding '.' would be interpreted as an
+      // operator.
+      if (!token_list_.empty() &&
+          code_.substr(token_list_.back().token_start,
+                       token_list_.back().token_end -
+                           token_list_.back().token_start) == ".") {
+        token_list_.pop_back();
+        token_start--;
+      }
     }
     token_list_.push_back(SyntaxToken(current_token, token_start, token_end));
   } else if (current_token != NONE) {

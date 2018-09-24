@@ -30,6 +30,10 @@ string TokenTypeToClassName(const SyntaxTokenType token_type) {
       return "mb";
     case WHITESPACE:
       return "w";
+    case BRACE:
+      return "r";
+    case NONE:
+      return "";
   }
   return "";
 }
@@ -38,7 +42,10 @@ string FastSyntaxHighlighter::GenerateHighlightedHTML() const {
   string html;
   for (const auto& token : token_list_) {
     string class_name = TokenTypeToClassName(token.token_types);
-    html += StrCat("<span class='", class_name, "'>");
+    html += StrCat(
+        "<span class='", class_name, "'>",
+        code_.substr(token.token_start, token.token_end - token.token_start),
+        "</span>");
   }
   return html;
 }
