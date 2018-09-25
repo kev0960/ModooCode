@@ -1,18 +1,18 @@
-.chroma .k {
-  color: #0000ff;
-}
-.chroma .s {
-  color: #a31515;
-}
-.chroma .m {
-  color: #0000ff;
+.chroma .t {
+  color:#2b91af;
 }
 .chroma .mb {
-  color: #0000ff;
-}
-.chroma .t {
-  color: #2b91af;
+  color:#0000ff;
 }
 .chroma .c {
-  color: #008000;
+  color:#008000;
+}
+.chroma .m {
+  color:#0000ff;
+}
+.chroma .k {
+  color:#0000ff;
+}
+.chroma .s {
+  color:#a31515;
 }

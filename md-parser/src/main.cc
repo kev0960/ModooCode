@@ -7,6 +7,7 @@
 
 #include "chroma.h"
 #include "driver.h"
+#include "fast_syntax_highlighter.h"
 
 bool Contains(std::set<string>& st, const string& s) {
   return st.find(s) != st.end();
@@ -52,6 +53,8 @@ int main(int argc, char** argv) {
       }
     }
   }
+  md_parser::FastSyntaxHighlighter synh("");
+  synh.OutputColorCss("../views/css/vs-fast.css");
 
   md_parser::Driver driver(config);
   driver.ProcessFiles(filenames);

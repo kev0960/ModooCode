@@ -53,11 +53,12 @@ class FastSyntaxHighlighter {
     class_to_style_map_.insert({"c", {{"color", "#008000"}}});
   }
 
-  virtual bool ParseCode() = 0;
+  virtual bool ParseCode() { return false; };
 
   // Merge syntax tokens with same colors.
   void ColorMerge();
   string GenerateHighlightedHTML() const;
+  void OutputColorCss(string filename) const;
 
  protected:
   string code_;

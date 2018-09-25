@@ -1,6 +1,7 @@
 #include "fast_syntax_highlighter.h"
 
 #include <algorithm>
+#include <fstream>
 
 #include "util.h"
 
@@ -88,9 +89,38 @@ string FastSyntaxHighlighter::GenerateHighlightedHTML() const {
   return html;
 }
 
+void FastSyntaxHighlighter::OutputColorCss(string filename) const {
+  std::ofstream out(filename);
+  for (const auto& kv : class_to_style_map_) {
+    const string& class_name = kv.first;
+    const auto& css = kv.second;
+    out << ".chroma ." << class_name << " {\n";
+    for (const auto& style_and_value : css) {
+      out << "  " << style_and_value.first << ":" << style_and_value.second
+          << ";\n";
+    }
+    out << "}\n";
+  }
+}
+
 // Merge the syntax tokens that belongs to same style. This will help to reduce
 // the number of DOM elements.
 void FastSyntaxHighlighter::ColorMerge() {
+  // Ignore first newlines.
+  size_t i = 0;
+  while (i < token_list_.size() && token_list_[i].token_types == WHITESPACE) {
+    string tok =
+        code_.substr(token_list_[i].token_start,
+                     token_list_[i].token_end - token_list_[i].token_start);
+    for (char c : tok) {
+      if (c != '\n') {
+        goto newline_remove_done;
+      }
+    }
+    token_list_.erase(token_list_.begin() + i);
+    i++;
+  }
+newline_remove_done:
   // First build a set that tells what Token Types belongs to same style.
   int current_id = 0;
   std::unordered_map<SyntaxTokenType, int> token_type_to_cluster_id;
@@ -111,7 +141,7 @@ void FastSyntaxHighlighter::ColorMerge() {
     }
   }
   // Now iterate through the token list and merge the tokens with same style.
-  size_t i = 0;
+  i = 0;
   while (i < token_list_.size() - 1) {
     const auto current_token = token_list_[i].token_types;
     size_t pivot = i;
