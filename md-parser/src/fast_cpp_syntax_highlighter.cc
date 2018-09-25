@@ -19,11 +19,11 @@ std::unordered_set<string> kCppKeywords = {
     "asm", "auto", "break", "case", "const", "continue", "default", "do",
     "else", "enum", "extern", "for", "goto", "if", "register", "restricted",
     "return", "sizeof", "static", "struct", "switch", "typedef", "union",
-    "volatile", "while",
-    /* Type names */
-    "bool", "int", "long", "float", "short", "double", "char", "unsigned",
-    "signed", "void", "int8", "int16", "int32", "int64", "wchar_t"};
+    "volatile", "while"};
 
+std::unordered_set<string> kCppTypeKeywords = {
+    "bool",   "int",  "long", "float", "short", "double", "char",    "unsigned",
+    "signed", "void", "int8", "int16", "int32", "int64",  "wchar_t", "string"};
 namespace {
 
 // Check whether the character is allowed in the identifier.
@@ -144,8 +144,9 @@ bool FastCppSyntaxHighlighter::ParseCode() {
       continue;
     }
     if (c == '/' && i < code_.length() - 1) {
-      current_token = NONE;
       if (code_[i + 1] == '*') {
+        AppendCurrentToken(current_token, token_start, i);
+        current_token = NONE;
         size_t comment_end = code_.find("*/", i + 2);
         if (comment_end == string::npos) {
           comment_end = code_.length();
@@ -156,6 +157,8 @@ bool FastCppSyntaxHighlighter::ParseCode() {
         i = comment_end - 1;
         continue;
       } else if (code_[i + 1] == '/') {
+        AppendCurrentToken(current_token, token_start, i);
+        current_token = NONE;
         size_t comment_end = code_.find("\n", i + 2);
         if (comment_end == string::npos) {
           comment_end = code_.length();
@@ -302,7 +305,9 @@ void FastCppSyntaxHighlighter::AppendCurrentToken(SyntaxTokenType current_token,
   if (current_token == IDENTIFIER) {
     // Check whether it matches one of our keyword set.
     string token = code_.substr(token_start, token_end - token_start);
-    if (Contains(kCppKeywords, token)) {
+    if (Contains(kCppTypeKeywords, token)) {
+      current_token = TYPE_KEYWORD;
+    } else if (Contains(kCppKeywords, token)) {
       current_token = KEYWORD;
     } else if (IsNumericLiteral(token)) {
       current_token = NUMERIC_LITERAL;

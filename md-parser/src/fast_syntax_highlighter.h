@@ -10,6 +10,7 @@ namespace md_parser {
 
 enum SyntaxTokenType {
   KEYWORD,
+  TYPE_KEYWORD,
   IDENTIFIER,
   NUMERIC_LITERAL,
   STRING_LITERAL,

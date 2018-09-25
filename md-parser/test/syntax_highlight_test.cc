@@ -8,6 +8,8 @@ string TokenTypeToString(SyntaxTokenType type) {
   switch (type) {
     case KEYWORD:
       return "KEYWORD";
+    case TYPE_KEYWORD:
+      return "TYPE_KEYWORD";
     case IDENTIFIER:
       return "IDENTIFIER";
     case NUMERIC_LITERAL:
@@ -90,7 +92,7 @@ TEST(SyntaxHighlightTest, StringLiterals) {
 
   MockSyntaxHighlighter syn2(R"(string s = "hi \"asdf";)");
   syn2.ParseCode();
-  syn2.CheckSyntaxTokens({{IDENTIFIER, 0, 6},
+  syn2.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 6},
                           {WHITESPACE, 6, 7},
                           {IDENTIFIER, 7, 8},
                           {WHITESPACE, 8, 9},
@@ -101,7 +103,7 @@ TEST(SyntaxHighlightTest, StringLiterals) {
 
   MockSyntaxHighlighter syn3(R"test(string s = R"(some"") \ \ a)";)test");
   syn3.ParseCode();
-  syn3.CheckSyntaxTokens({{IDENTIFIER, 0, 6},
+  syn3.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 6},
                           {WHITESPACE, 6, 7},
                           {IDENTIFIER, 7, 8},
                           {WHITESPACE, 8, 9},
@@ -114,7 +116,7 @@ TEST(SyntaxHighlightTest, StringLiterals) {
   MockSyntaxHighlighter syn4(
       R"test(string s = R"abc(some")")" \ \ a)abc";)test");
   syn4.ParseCode();
-  syn4.CheckSyntaxTokens({{IDENTIFIER, 0, 6},
+  syn4.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 6},
                           {WHITESPACE, 6, 7},
                           {IDENTIFIER, 7, 8},
                           {WHITESPACE, 8, 9},
@@ -128,7 +130,7 @@ TEST(SyntaxHighlightTest, StringLiterals) {
 TEST(SyntaxHighlightTest, CppNumerals) {
   MockSyntaxHighlighter syn("int a = -123;");
   syn.ParseCode();
-  syn.CheckSyntaxTokens({{KEYWORD, 0, 3},
+  syn.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 3},
                          {WHITESPACE, 3, 4},
                          {IDENTIFIER, 4, 5},
                          {WHITESPACE, 5, 6},
@@ -140,7 +142,7 @@ TEST(SyntaxHighlightTest, CppNumerals) {
 
   MockSyntaxHighlighter syn2("float a = 1.2f;");
   syn2.ParseCode();
-  syn2.CheckSyntaxTokens({{KEYWORD, 0, 5},
+  syn2.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 5},
                           {WHITESPACE, 5, 6},
                           {IDENTIFIER, 6, 7},
                           {WHITESPACE, 7, 8},
@@ -151,7 +153,7 @@ TEST(SyntaxHighlightTest, CppNumerals) {
 
   MockSyntaxHighlighter syn3("float a = .1E4f;");
   syn3.ParseCode();
-  syn3.CheckSyntaxTokens({{KEYWORD, 0, 5},
+  syn3.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 5},
                           {WHITESPACE, 5, 6},
                           {IDENTIFIER, 6, 7},
                           {WHITESPACE, 7, 8},
@@ -162,7 +164,7 @@ TEST(SyntaxHighlightTest, CppNumerals) {
 
   MockSyntaxHighlighter syn4("float a = 0x10.1p0;");
   syn4.ParseCode();
-  syn4.CheckSyntaxTokens({{KEYWORD, 0, 5},
+  syn4.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 5},
                           {WHITESPACE, 5, 6},
                           {IDENTIFIER, 6, 7},
                           {WHITESPACE, 7, 8},
@@ -173,7 +175,7 @@ TEST(SyntaxHighlightTest, CppNumerals) {
 
   MockSyntaxHighlighter syn5("float a = 123.456e-67;");
   syn5.ParseCode();
-  syn5.CheckSyntaxTokens({{KEYWORD, 0, 5},
+  syn5.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 5},
                           {WHITESPACE, 5, 6},
                           {IDENTIFIER, 6, 7},
                           {WHITESPACE, 7, 8},
@@ -186,7 +188,7 @@ TEST(SyntaxHighlightTest, CppNumerals) {
 TEST(SyntaxHighlightTest, CppStatements) {
   MockSyntaxHighlighter syn(R"(int a;if(a+1>3){a++;})");
   syn.ParseCode();
-  syn.CheckSyntaxTokens({{KEYWORD, 0, 3},
+  syn.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 3},
                          {WHITESPACE, 3, 4},
                          {IDENTIFIER, 4, 5},
                          {PUNCTUATION, 5, 6},
@@ -210,6 +212,7 @@ TEST(SyntaxHighlightTest, CppComments) {
   syn.ParseCode();
   syn.CheckSyntaxTokens({{IDENTIFIER, 0, 3},
                          {PUNCTUATION, 3, 4},
+                         {WHITESPACE, 4, 5},
                          {COMMENT, 5, 20},
                          {WHITESPACE, 20, 21},
                          {IDENTIFIER, 21, 24},
@@ -219,6 +222,7 @@ TEST(SyntaxHighlightTest, CppComments) {
   syn2.ParseCode();
   syn2.CheckSyntaxTokens({{IDENTIFIER, 0, 3},
                          {PUNCTUATION, 3, 4},
+                         {WHITESPACE, 4, 5},
                          {COMMENT, 5, 31},
                          {WHITESPACE, 31, 32},
                          {IDENTIFIER, 32, 36},
