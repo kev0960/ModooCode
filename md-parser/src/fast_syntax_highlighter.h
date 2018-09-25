@@ -49,6 +49,8 @@ class FastSyntaxHighlighter {
     class_to_style_map_.insert({"s", {{"color", "#a31515"}}});
     class_to_style_map_.insert({"m", {{"color", "#0000ff"}}});
     class_to_style_map_.insert({"mb", {{"color", "#0000ff"}}});
+    class_to_style_map_.insert({"t", {{"color", "#2b91af"}}});
+    class_to_style_map_.insert({"c", {{"color", "#008000"}}});
   }
 
   virtual bool ParseCode() = 0;

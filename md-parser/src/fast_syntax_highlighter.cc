@@ -1,5 +1,7 @@
 #include "fast_syntax_highlighter.h"
 
+#include <algorithm>
+
 #include "util.h"
 
 namespace md_parser {
@@ -40,6 +42,21 @@ string TokenTypeToClassName(const SyntaxTokenType token_type) {
   return "";
 }
 
+void EscapeHTML(string* s) {
+  for (size_t i = 0; i < s->length(); i++) {
+    if (s->at(i) == '<') {
+      s->replace(i, 1, "&lt;");
+      i += 3;
+    } else if (s->at(i) == '>') {
+      s->replace(i, 1, "&gt;");
+      i += 3;
+    } else if (s->at(i) == '&') {
+      s->replace(i, 1, "&amp;");
+      i += 3;
+    }
+  }
+}
+
 template <typename K, typename V>
 bool IsUnorderedMapIdentical(const std::unordered_map<K, V>& m1,
                              const std::unordered_map<K, V>& m2) {
@@ -59,14 +76,15 @@ bool IsUnorderedMapIdentical(const std::unordered_map<K, V>& m1,
 
 }  // namespace
 string FastSyntaxHighlighter::GenerateHighlightedHTML() const {
-  string html;
+  string html = "<pre class='chroma'>";
   for (const auto& token : token_list_) {
     string class_name = TokenTypeToClassName(token.token_types);
-    html += StrCat(
-        "<span class='", class_name, "'>",
-        code_.substr(token.token_start, token.token_end - token.token_start),
-        "</span>");
+    string token_str =
+        code_.substr(token.token_start, token.token_end - token.token_start);
+    EscapeHTML(&token_str);
+    html += StrCat("<span class='", class_name, "'>", token_str, "</span>");
   }
+  html += "</pre>";
   return html;
 }
 
@@ -102,12 +120,20 @@ void FastSyntaxHighlighter::ColorMerge() {
       if (token_type_to_cluster_id[current_token] ==
           token_type_to_cluster_id[next_token]) {
         token_list_[pivot].token_end = token_list_[i + 1].token_end;
-        i ++;
+        token_list_[i + 1].token_start = token_list_[i + 1].token_end;
+        i++;
       } else {
         break;
       }
     }
-    i ++;
+    i++;
   }
+  // Now remove all the '0' size tokens.
+  token_list_.erase(std::remove_if(token_list_.begin(), token_list_.end(),
+                                   [](const SyntaxToken& token) {
+                                     return token.token_start ==
+                                            token.token_end;
+                                   }),
+                    token_list_.end());
 }
 }  // namespace md_parser

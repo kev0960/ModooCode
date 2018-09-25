@@ -61,6 +61,8 @@ add_executable(content_test
                src/content_header.cc
                src/content_list.cc
                src/content_table.cc
+               src/fast_syntax_highlighter.cc
+               src/fast_cpp_syntax_highlighter.cc
                src/parser_environment.cc)
 target_link_libraries(content_test gtest_main chroma)
 add_test(NAME content_test COMMAND content_test)
@@ -74,6 +76,8 @@ add_executable(parser_test
                src/content_table.cc
                src/content_list.cc
                src/content_math.cc
+               src/fast_syntax_highlighter.cc
+               src/fast_cpp_syntax_highlighter.cc
                src/parser_environment.cc)
 target_link_libraries(parser_test gmock_main chroma)
 add_test(NAME parser_test COMMAND parser_test)

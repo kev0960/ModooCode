@@ -10,6 +10,7 @@
 #include <thread>
 
 #include "chroma.h"
+#include "fast_cpp_syntax_highlighter.h"
 #include "util.h"
 
 static char kClangFormatName[] = "clang-format";
@@ -105,6 +106,13 @@ string FormatCodeUsingChroma(const string& code, const string& lang,
   return formatted_code;
 }
 
+string FormatCodeUsingFSH(const string& content) {
+  FastCppSyntaxHighlighter highlighter(content);
+  highlighter.ParseCode();
+  highlighter.ColorMerge();
+  return highlighter.GenerateHighlightedHTML();
+}
+
 void DoClangFormat(const string& code, string* formatted_code) {
   int pipe_p2c[2], pipe_c2p[2];
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
@@ -123,7 +131,10 @@ void DoClangFormat(const string& code, string* formatted_code) {
     close(pipe_c2p[1]);
 
     // Write the code we are trying to format.
-    write(pipe_p2c[1], code.c_str(), code.size());
+    int result = write(pipe_p2c[1], code.c_str(), code.size());
+    if (result == -1 || static_cast<size_t>(result) != code.size()) {
+      LOG << "Error; STDOUT to clang format has not completed succesfully";
+    }
     close(pipe_p2c[1]);
 
     // Retrieve the formatted code from the child process.
@@ -137,7 +148,9 @@ void DoClangFormat(const string& code, string* formatted_code) {
       }
     }
     close(pipe_c2p[0]);
-    *formatted_code = FormatCodeUsingChroma(*formatted_code, "cpp", "github");
+    // *formatted_code = FormatCodeUsingChroma(*formatted_code, "cpp",
+    // "github");
+    *formatted_code = FormatCodeUsingFSH(*formatted_code);
   } else {
     // In child process, call execve into the clang format.
 
