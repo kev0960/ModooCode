@@ -29,9 +29,8 @@ string CreateImageHtml(const string& img_name, const string& img) {
 string SurroundP(const string& s) { return StrCat("<p>", s, "</p>"); }
 
 static char kFormattedCode[] =
-    "<pre class=\"chroma\"><span class=\"n\">print</span> <span "
-    "class=\"err\">&#39;</span><span class=\"n\">hi</span><span "
-    "class=\"err\">&#39;</span>\n</pre>";
+    "<pre class='chroma'><span class='i'>print </span><span "
+    "class='s'>'hi'</span></pre>";
 
 TEST(ContentTest, BasicContent) {
   Content plain_content("abcd");
@@ -145,4 +144,11 @@ TEST(ContentTest, InlineCode) {
             ignore_other_stuff.OutputHtml());
 }
 
+TEST(ContentTest, Sidenote) {
+  Content sidenote(R"(some \sidenote{this is a sidenote} thing)");
+  EXPECT_EQ(
+      StrCat(SurroundP("some "), "<p class='sidenote'>this is a sidenote</p>",
+             SurroundP(" thing")),
+      sidenote.OutputHtml());
+}
 }  // namespace md_parser

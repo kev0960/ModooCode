@@ -10,7 +10,16 @@ using std::string;
 namespace md_parser {
 
 struct HtmlFragments {
-  enum Types { BOLD, ITALIC, TEXT, LINK, IMAGE, CODE, INLINE_CODE } type;
+  enum Types {
+    BOLD,
+    ITALIC,
+    TEXT,
+    LINK,
+    IMAGE,
+    CODE,
+    INLINE_CODE,
+    SIDENOTE
+  } type;
 
   // Start and end are inclusive.
   int str_start;
@@ -60,6 +69,9 @@ class Content {
                       std::vector<HtmlFragments>* fragments, int* text_start);
   size_t HandleCodes(const size_t start_pos,
                      std::vector<HtmlFragments>* fragments, int* text_start);
+  size_t HandleSpecialCommands(const size_t start_pos,
+                               std::vector<HtmlFragments>* fragments,
+                               int* text_start);
   void ClangFormatEntireCode(std::vector<HtmlFragments>* fragments);
 };
 

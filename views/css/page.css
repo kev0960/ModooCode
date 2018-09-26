@@ -168,7 +168,6 @@
 .page-nav-btns {
     display: flex;
     max-width: 46rem;
-    margin-left: auto;
     margin-right: auto;
 }
 
@@ -267,8 +266,34 @@ h3.lecture-header + p {
 
 .chroma {
     font-family: 'Source Code Pro', monospace;
-    font-size: 0.85em;
+    font-size: 13px;
+    line-height: 20px;
     overflow-y: hidden;
     border: 1px solid black;
+    background:none;
 }
 
+@media (max-width: 1453px) {
+    .sidenote {
+        font-size:smaller;
+        border-top:1px solid #e6e6e6;
+        border-bottom:1px solid #e6e6e6;
+        padding-top:10px;
+        padding-bottom: 10px;
+        color:#5e6973;
+    }
+}
+
+@media (min-width: 1454px) {
+    .sidenote {
+        position: absolute;
+        left:755px;
+        width:288px;
+        font-size:smaller;
+        border-top:1px solid #e6e6e6;
+        border-bottom:1px solid #e6e6e6;
+        padding-top:10px;
+        padding-bottom: 10px;
+        color:#5e6973;
+    }
+}

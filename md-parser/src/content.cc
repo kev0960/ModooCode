@@ -8,6 +8,7 @@
 #include <limits>
 #include <memory>
 #include <thread>
+#include <unordered_set>
 
 #include "chroma.h"
 #include "fast_cpp_syntax_highlighter.h"
@@ -15,6 +16,7 @@
 
 static char kClangFormatName[] = "clang-format";
 static char kClangFormatConfig[] = "-style=google";
+static const std::unordered_set<string> kSpecialCommands = {"sidenote"};
 
 namespace md_parser {
 
@@ -113,7 +115,8 @@ string FormatCodeUsingFSH(const string& content) {
   return highlighter.GenerateHighlightedHTML();
 }
 
-void DoClangFormat(const string& code, string* formatted_code) {
+[[maybe_unused]] void DoClangFormat(const string& code,
+                                    string* formatted_code) {
   int pipe_p2c[2], pipe_c2p[2];
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
     LOG << "Pipe error!";
@@ -201,7 +204,7 @@ string Content::OutputHtml() {
   std::vector<std::function<size_t(Content*, const size_t,
                                    std::vector<HtmlFragments>*, int*)>>
       handlers = {&Content::HandleLinks, &Content::HandleImages,
-                  &Content::HandleCodes};
+                  &Content::HandleCodes, &Content::HandleSpecialCommands};
   // Any unescaped * or _ are considered as a format token.
   for (size_t i = 0; i < content_.size(); i++) {
     // Inline code escapes everything except `.
@@ -303,6 +306,9 @@ string Content::OutputHtml() {
       else
         html += "</span>";
       italic = !italic;
+    } else if (fragments[i].type == HtmlFragments::Types::SIDENOTE) {
+      html += StrCat("</p><p class='sidenote'>",
+                     GetHtmlFragmentText(content_, fragments[i]), "</p><p>");
     } else if (fragments[i].type == HtmlFragments::Types::LINK) {
       string url = GetHtmlFragmentText(content_, fragments[i], false);
       if (url.find("http://itguru.tistory.com") != string::npos) {
@@ -388,6 +394,38 @@ size_t Content::HandleLinks(const size_t start_pos,
                                      end_bracket - 1, link_start + 1,
                                      link_end - 1));
   return link_end;
+}
+
+size_t Content::HandleSpecialCommands(const size_t start_pos,
+                                      std::vector<HtmlFragments>* fragments,
+                                      int* text_start) {
+  if (content_[start_pos] != '\\') {
+    return start_pos;
+  }
+  const auto delimiter_pos = content_.find("{", start_pos + 1);
+  if (delimiter_pos == string::npos) {
+    return start_pos;
+  }
+  const auto body_end = content_.find("}", delimiter_pos + 1);
+  if (body_end == string::npos) {
+    return start_pos;
+  }
+  const auto delimiter =
+      content_.substr(start_pos + 1, delimiter_pos - (start_pos + 1));
+  if (!Contains(kSpecialCommands, delimiter)) {
+    return start_pos;
+  }
+  if (*text_start != -1) {
+    fragments->push_back(
+        HtmlFragments(HtmlFragments::Types::TEXT, *text_start, start_pos - 1));
+    *text_start = -1;
+  }
+  if (delimiter == "sidenote") {
+    fragments->push_back(HtmlFragments(HtmlFragments::Types::SIDENOTE,
+                                       delimiter_pos + 1, body_end - 1));
+    return body_end;
+  }
+  return start_pos;
 }
 
 size_t Content::HandleImages(const size_t start_pos,
