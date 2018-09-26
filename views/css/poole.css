@@ -59,7 +59,7 @@ html {
 }
 
 body {
-  color: #515151;
+  color: #3c3c3c;
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
@@ -156,7 +156,7 @@ pre {
 }
 code {
   padding: .25em .2em;
-  font-size: 85%;
+  font-size: 95%;
   color: #bf616a;
   border-radius: 3px;
 }

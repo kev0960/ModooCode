@@ -20,7 +20,7 @@ void StripMarkdown(string* html) {
               html->end());
 }
 
-void StripTags(string* html) {
+[[maybe_unused]] void StripTags(string* html) {
   std::unordered_set<string> disallowed_tags = {"code", "p", "span"};
   string stripped_string = "";
   for (size_t i = 0; i < html->size(); i++) {
@@ -64,8 +64,11 @@ HeaderType GetHeaderType(const string& header_token) {
 
 }  // namespace
 
-HeaderContent::HeaderContent(const string& content, const string& header_token)
-    : Content(content), header_token_(header_token) {}
+HeaderContent::HeaderContent(const string& content, const string& header_token,
+                             int header_index)
+    : Content(content),
+      header_token_(header_token),
+      header_index_(header_index) {}
 
 string HeaderContent::OutputHtml() {
   auto output_html = Content::OutputHtml();
@@ -75,13 +78,17 @@ string HeaderContent::OutputHtml() {
   string start_header, end_header;
   auto header_type = GetHeaderType(header_token_);
   if (header_type == NORMAL_HEADER) {
-    start_header = StrCat("<h", std::to_string(header_token_.size()), ">");
+    start_header =
+        StrCat("<h", std::to_string(header_token_.size()), " id='page-heading-",
+               std::to_string(header_index_), "'>");
     end_header = StrCat("</h", std::to_string(header_token_.size()), ">");
   } else if (header_type == FANCY_HEADER_FOR_REF) {
-    start_header = R"(<h2 class="ref-header">)";
+    start_header = StrCat(R"(<h2 class="ref-header" )", "id='page-heading-",
+                          std::to_string(header_index_), "'>");
     end_header = R"(</h2>)";
   } else if (header_type == LECTURE_HEADER) {
-    start_header = R"(<h3 class="lecture-header">)";
+    start_header = StrCat(R"(<h3 class="lecture-header" )", "id='page-heading-",
+                          std::to_string(header_index_), "'>");
     end_header = R"(</h3>)";
     return StrCat(start_header, Content::OutputHtml(), end_header);
   }

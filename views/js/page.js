@@ -88,16 +88,16 @@ function initCategory() {
 
       html = $(this).html();
       html = html.replace(
-          '<i class="fas fa-caret-down"></i>',
-          '<i class="fas fa-plus-square" style="font-size:0.75em;"></i>');
+          '<i class="xi-caret-down-min"></i>',
+          '<i class="xi-plus-square" style="font-size:0.75em;"></i>');
       $(this).html(html);
     } else {
       // Clicked the collapsed category; Need to open it.
       $(this).addClass('open-cat');
       html = $(this).html();
       html = html.replace(
-          '<i class="fas fa-plus-square" style="font-size:0.75em;"></i>',
-          '<i class=\'fas fa-caret-down\'></i>');
+          '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
+          '<i class=\'xi-caret-down-min\'></i>');
       $(this).html(html);
 
       // Get the directory.
@@ -112,7 +112,7 @@ function initCategory() {
           if (dir_folders.length >= 2 ||
               current_dir[folders[i]].files.length > 0) {
             folder_html = `${
-                          '<i class="fas fa-plus-square" ' +
+                          '<i class="xi-plus-square" ' +
                 'style="font-size:0.75em;"></i>&nbsp;&nbsp;'}${folder_html}`;
           }
           div.append($('<a>', {
@@ -361,6 +361,7 @@ function createReply() {
 }
 
 $(() => {
+  BuildTOC();
   require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
   require(['vs/editor/editor.main'], function() {
     $('pre.chroma').each(function(index) {
@@ -383,13 +384,14 @@ $(() => {
         '\' placeholder=\'' +
         '프로그램 입력값을 여기에 입력하세요.\'>' +
         '<button class=\'edit\' id=\'edit-' + index +
-        '\'><i class=\'fas fa-edit\'></i>&nbsp;&nbsp;코드 수정</button>' +
+        '\'><i class=\'xi-pen\'></i>&nbsp;&nbsp;코드 수정</button>' +
         '<button class=\'run\' id=\'run-' + index +
-        '\'><i class=\'fas fa-cogs\'>' +
+        '\'><i class=\'xi-refresh\'>' +
         '</i>&nbsp;&nbsp;실행</button></div>')
           .insertAfter($(this));
       if ($(this).height() > 500) {
-        $('<div><button id=\'shrink-' + index + '\'>Shrink</button></div>')
+        $('<div><button class="shrink-btn" id=\'shrink-' + index +
+          '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button></div>')
             .insertBefore($(this));
       }
       $('<div style="display:none;"><p class="exec-result-title">실행 결과</p>' +
@@ -573,3 +575,25 @@ document.addEventListener('DOMContentLoaded', function() {
     renderMathInElement(elems[i]);
   }
 });
+
+function BuildTOC() {
+  let toc_infos = [];
+  $(':header').each(function() {
+    let id = $(this).attr('id');
+    let tag = $(this).prop('nodeName');
+    let content = $(this).text();
+    if (!id) {
+      return;
+    }
+    toc_infos.push({id, tag, content});
+  });
+  for (let i = 0; i < toc_infos.length; i++) {
+    let elem =
+        $('<li></ul><a href="#' + toc_infos[i].id + '" class="toc-' +
+          toc_infos[i].tag + '">' + toc_infos[i].content + '</a></li>');
+    console.log(
+        '<a href="#' + toc_infos[i].id + '">' + toc_infos[i].content + '</a>')
+    $('#toc').append(elem);
+  }
+  console.log(toc_infos)
+}

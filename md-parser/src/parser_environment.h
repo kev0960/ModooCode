@@ -45,6 +45,7 @@ class ParserEnvironment {
 
   // Return How many end tags should it return.
   int ShouldEndListTag();
+  int GetHeaderIndex() { return ++header_index_; }
 
  private:
   EnumListManager enum_list_manager_;
@@ -54,5 +55,6 @@ class ParserEnvironment {
   std::vector<std::unique_ptr<Content>> content_list_;
 
   size_t current_content_;
+  int header_index_;
 };
 }  // namespace md_parser

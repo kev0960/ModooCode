@@ -50,7 +50,8 @@ std::pair<int, int> EnumListManager::GetCurrentEnum() const {
   return state_.top();
 }
 
-ParserEnvironment::ParserEnvironment() : current_content_(0) {}
+ParserEnvironment::ParserEnvironment()
+    : current_content_(0), header_index_(0) {}
 
 std::pair<int, int> ParserEnvironment::GetCurrentListInfo(
     const TokenTypes type) const {

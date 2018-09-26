@@ -1,6 +1,6 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
-    <i id="hide-sidebar" class="fas fa-arrow-alt-circle-left"
+    <i id="hide-sidebar" class="xi-arrow-left"
        style="float:right;margin-top:15px;margin-right:15px;
             font-size:25px;cursor:pointer;"></i>
     <div class="sidebar-item center">
@@ -14,7 +14,7 @@
         <% if (root_folders[i] !== "files") { %>
         <a class="sidebar-nav-item dir" name="<%= root_folders[i] %>">
             <% if (root[root_folders[i]].files.length > 0 || Object.keys(root[root_folders[i]]).length >= 2) { %>
-            <i class='fas fa-plus-square' style='font-size:0.75em;'></i>&nbsp;&nbsp;
+            <i class='xi-plus-square'></i>&nbsp;&nbsp;
             <% } %>
             <%= root_folders[i] %>
         </a>
@@ -24,8 +24,13 @@
 
     <div class="sidebar-item">
         <p>
-            &copy; {{ site.time | date: '%Y' }}. All rights reserved.
+            Copyright &copy; 2018. Jaebum Lee. All rights reserved.
         </p>
+    </div>
+    <div>
+        <p class="toc-header">목차</p>
+        <ul id="toc" class="toc-sidebar">
+        </ul>
     </div>
 </div>
 <div id="page-infos" style="display:none"><%= JSON.stringify(page_infos) %></div>

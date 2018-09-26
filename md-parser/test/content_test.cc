@@ -146,9 +146,9 @@ TEST(ContentTest, InlineCode) {
 
 TEST(ContentTest, Sidenote) {
   Content sidenote(R"(some \sidenote{this is a sidenote} thing)");
-  EXPECT_EQ(
-      StrCat(SurroundP("some "), "<p class='sidenote'>this is a sidenote</p>",
-             SurroundP(" thing")),
-      sidenote.OutputHtml());
+  EXPECT_EQ(StrCat(SurroundP("some "),
+                   "<aside class='sidenote'>this is a sidenote</aside>",
+                   SurroundP(" thing")),
+            sidenote.OutputHtml());
 }
 }  // namespace md_parser

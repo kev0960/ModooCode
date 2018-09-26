@@ -2390,12 +2390,18 @@ void sort( RandomIt first, RandomIt last,Compare comp );
 
 ###  생각 해보기
 
+#### 문제 1
 
+`template` 을 사용해서 이전에 만들어 놓았던 `Excel` 프로젝트 코드를 깔끔하게 만들어보세요. 아마 10 배는 깔끔해질 것입니다 :) (난이도 : 下)
 
+#### 문제 2
 
-`1. template` 을 사용해서 이전에 만들어 놓았던 `Excel` 프로젝트 코드를 깔끔하게 만들어보세요. 아마 10 배는 깔끔해질 것입니다 :) (난이도 : 下)
-`2.` 위 `Vector` 로 2차원, 3차원 배열 등을 똑같이 만들어낼 수 있을까요? (난이도 : 下)
-`3.` 위에서 컴파일러가 마법 처럼 템플릿 인자에 타입을 정해준다고 하지만 사실은 어떤 타입으로 추측할지 결정하는 일련의 규칙들이 있습니다. [자세한 내용은 여기](http://en.cppreference.com/w/cpp/language/template_argument_deduction) [를 참고해주세요](http://en.cppreference.com/w/cpp/language/template_argument_deduction)`!`
+위 `Vector` 로 2차원, 3차원 배열 등을 똑같이 만들어낼 수 있을까요? (난이도 : 下)
+
+#### 문제 3
+
+위에서 컴파일러가 마법 처럼 템플릿 인자에 타입을 정해준다고 하지만 사실은 어떤 타입으로 추측할지 결정하는 일련의 규칙들이 있습니다. [자세한 내용은 여기](http://en.cppreference.com/w/cpp/language/template_argument_deduction) [를 참고해주세요](http://en.cppreference.com/w/cpp/language/template_argument_deduction)`!`
+
 ```warning
 강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
 

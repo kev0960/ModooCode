@@ -3,11 +3,6 @@ title : 씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set,
 next_page : 225
 --------------
 
-
-
-
-
-
 이번 강좌에서는* `set, map, multiset, multimap`
 * `unordered_set, unordered_map`
 * 커스텀 클래스 객체를 `set/map` 혹은 `unordered_set/map` 에 추가하기
@@ -1658,22 +1653,22 @@ return false;
 
 아래와 같이 간단히 생각하시면 됩니다.
 
-* 데이터의 존재 유무 만 궁금할 경우 → `set.` 중복 데이터를 허락할 경우 →
- multiset
+* 데이터의 존재 유무 만 궁금할 경우 → `set`
+* 중복 데이터를 허락할 경우 → `multiset`
 
-(insert, erase, find 모두 O(log N). 최악의 경우에도 `O(log N))`
-* 데이터에 대응되는 데이터를 저장하고 싶은 경우 → map. 중복 키를 허락할 경우 →
- multimap
+(`insert, erase, find` 모두 O(log N). 최악의 경우에도 O(log N))
 
-(insert, erase, find 모두 O(log N). 최악의 경우에도 `O(log N))`
-* 속도가 매우매우 중요해서 최적화를 해야하는 경우 →
- unordered_set, `unordered_map`
+* 데이터에 대응되는 데이터를 저장하고 싶은 경우 → `map`
+* 중복 키를 허락할 경우 → `multimap`
 
-(insert, erase, find 모두 O(1). 최악의 경우엔 `O(N).`
-그러므로 해시함수와 상자 개수를 잘 설정해야 한다!
-`)`
+(`insert, erase, find` 모두 O(log N). 최악의 경우에도 O(log N))
+
+* 속도가 매우매우 중요해서 최적화를 해야하는 경우 → `unordered_set, unordered_map`
+
+(insert, erase, find 모두 O(1). 최악의 경우엔 `O(N).` 그러므로 해시함수와 상자 개수를 잘 설정해야 한다!)
 
 그렇다면 이번 강좌는 여기에서 마치도록 하겠습니다. 다음 강좌에서는 `STL` 알고리즘을 이용한 여러가지 작업들에 대해 알아보도록 하겠습니다!
+
 ```warning
 강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
 

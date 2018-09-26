@@ -7,7 +7,7 @@ next_page : 227
 
 
 이번 강좌에서는
-* 람다 함수(lambda `function)`
+* 람다 함수(lambda function)
 
 * 정렬 알고리즘
 

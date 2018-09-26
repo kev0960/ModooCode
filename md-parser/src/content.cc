@@ -93,9 +93,9 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
   return content.substr(fragment.link_start,
                         fragment.link_end - fragment.link_start + 1);
 }
-
-string FormatCodeUsingChroma(const string& code, const string& lang,
-                             const string& schema) {
+[[maybe_unused]] string FormatCodeUsingChroma(const string& code,
+                                              const string& lang,
+                                              const string& schema) {
   auto code_ = cstring_from_string(code);
   auto lang_ = cstring_from_string(lang);
   auto schema_ = cstring_from_string(schema);
@@ -115,8 +115,7 @@ string FormatCodeUsingFSH(const string& content) {
   return highlighter.GenerateHighlightedHTML();
 }
 
-[[maybe_unused]] void DoClangFormat(const string& code,
-                                    string* formatted_code) {
+void DoClangFormat(const string& code, string* formatted_code) {
   int pipe_p2c[2], pipe_c2p[2];
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
     LOG << "Pipe error!";
@@ -307,8 +306,9 @@ string Content::OutputHtml() {
         html += "</span>";
       italic = !italic;
     } else if (fragments[i].type == HtmlFragments::Types::SIDENOTE) {
-      html += StrCat("</p><p class='sidenote'>",
-                     GetHtmlFragmentText(content_, fragments[i]), "</p><p>");
+      html +=
+          StrCat("</p><aside class='sidenote'>",
+                 GetHtmlFragmentText(content_, fragments[i]), "</aside><p>");
     } else if (fragments[i].type == HtmlFragments::Types::LINK) {
       string url = GetHtmlFragmentText(content_, fragments[i], false);
       if (url.find("http://itguru.tistory.com") != string::npos) {

@@ -7,8 +7,8 @@
 #include "chroma.h"
 #include "content_header.h"
 #include "content_list.h"
-#include "content_table.h"
 #include "content_math.h"
+#include "content_table.h"
 #include "parser_environment.h"
 #include "util.h"
 
@@ -144,7 +144,8 @@ void MDParser::AnalyzeLine(const std::string& line,
     switch (first_token_info) {
       case HEADER:
         parser_env_.AddNewContent(
-            new HeaderContent(line_except_first_token, first_token));
+            new HeaderContent(line_except_first_token, first_token,
+                              parser_env_.GetHeaderIndex()));
         break;
       case MATH:
         parser_env_.AddNewContent(new MathContent(line.substr(2)));

@@ -16,13 +16,14 @@ enum HeaderType {
 class HeaderContent : public Content {
  public:
   // Content does not include the ###s.
-  HeaderContent(const string& content, const string& header_token);
+  HeaderContent(const string& content, const string& header_token, int header_index);
   string OutputHtml() override;
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::HEADER; }
 
  private:
   const string header_token_;
+  int header_index_;
 };
 
 }  // namespace md_parser
