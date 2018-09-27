@@ -229,6 +229,23 @@ bool FastCppSyntaxHighlighter::ParseCode() {
     }
   }
   AppendCurrentToken(current_token, token_start, code_.length());
+
+  // If any identifier is preceded by '(', then we think that the identifier is
+  // a function.
+  for (size_t i = 0; i < token_list_.size(); i++) {
+    if (token_list_[i].token_types == IDENTIFIER &&
+        i < token_list_.size() - 1) {
+      // Ignore Whitespaces.
+      size_t next_parenth = i + 1;
+      while (token_list_[next_parenth].token_types == WHITESPACE) {
+        next_parenth++;
+      }
+      if (token_list_[next_parenth].token_types == PARENTHESES &&
+          code_[token_list_[next_parenth].token_start] == '(') {
+        token_list_[i].token_types = FUNCTION;
+      }
+    }
+  }
   return true;
 }
 

@@ -1,18 +1,27 @@
-.chroma .t {
-  color:#2b91af;
+.chroma .f {
+  color:#a9dc76;
 }
-.chroma .mb {
-  color:#0000ff;
-}
-.chroma .c {
-  color:#008000;
-}
-.chroma .m {
-  color:#0000ff;
-}
-.chroma .k {
-  color:#0000ff;
+.chroma .n {
+  color:#ab9df2;
 }
 .chroma .s {
-  color:#a31515;
+  color:#ffd866;
+}
+.chroma .k {
+  color:#ff6188;
+}
+.chroma .o {
+  color:#ff6188;
+}
+.chroma .m {
+  color:#ff6188;
+}
+.chroma .c {
+  color:#727072;
+}
+.chroma .mb {
+  color:#ffd866;
+}
+.chroma .t {
+  color:#78dce8;
 }

@@ -192,6 +192,20 @@ module.exports = class Server {
       }
     }.bind(this));
 
+    this.app.get('/notice/:id', function(req, res) {
+      let page_id = parseInt(req.params.id);
+      let user = req.user;
+      if (page_id == 15) {
+        res.render('page.ejs', {
+          content_url: './new/231.html',
+          file_info: this.file_infos[231],
+          page_infos: this.page_infos,
+          file_infos: this.file_infos,
+          user
+        });
+      }
+    }.bind(this));
+
     this.app.post('/run', function(req, res) {
       let code = req.body.code;
       let stdin = req.body.stdin;

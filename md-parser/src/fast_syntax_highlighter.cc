@@ -37,6 +37,8 @@ string TokenTypeToClassName(const SyntaxTokenType token_type) {
       return "w";
     case BRACE:
       return "r";
+    case FUNCTION:
+      return "f";
     case NONE:
       return "";
   }

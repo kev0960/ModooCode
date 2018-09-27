@@ -270,7 +270,8 @@ h3.lecture-header + p {
     line-height: 20px;
     overflow-y: hidden;
     border: 1px solid black;
-    background:none;
+    background: #2d2a2e;
+    color: white;
 }
 
 @media (max-width: 1453px) {
@@ -281,6 +282,7 @@ h3.lecture-header + p {
         padding-top:10px;
         padding-bottom: 10px;
         color:#5e6973;
+        margin-bottom: 10px;
     }
 }
 

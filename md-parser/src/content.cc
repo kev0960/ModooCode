@@ -115,6 +115,15 @@ string FormatCodeUsingFSH(const string& content) {
   return highlighter.GenerateHighlightedHTML();
 }
 
+void StripItguruFromLink(string* link) {
+  const string itguru = "http://itguru.tistory.com";
+  size_t itguru_pos = link->find(itguru);
+  if (itguru_pos == string::npos) {
+    return;
+  }
+  link->replace(itguru_pos, itguru.length(), "");
+}
+
 void DoClangFormat(const string& code, string* formatted_code) {
   int pipe_p2c[2], pipe_c2p[2];
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
@@ -311,9 +320,7 @@ string Content::OutputHtml() {
                  GetHtmlFragmentText(content_, fragments[i]), "</aside><p>");
     } else if (fragments[i].type == HtmlFragments::Types::LINK) {
       string url = GetHtmlFragmentText(content_, fragments[i], false);
-      if (url.find("http://itguru.tistory.com") != string::npos) {
-        url.erase(0, string("http://itguru.tistory.com").size());
-      }
+      StripItguruFromLink(&url);
       html += StrCat("<a href='", url, "'>",
                      GetHtmlFragmentText(content_, fragments[i]), "</a>");
     } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
@@ -413,10 +420,13 @@ string Content::OutputLinksInBox(const size_t start_pos, const size_t end_pos) {
       if (link_end == string::npos || link_end > end_pos) {
         goto handle_normal_char;
       }
-      const string link =
+      string link =
           content_.substr(link_start + 1, link_end - (link_start + 1));
+      StripItguruFromLink(&link);
       const string text = content_.substr(i + 1, end_bracket - (i + 1));
       output_html += StrCat(R"(<a href=")", link, R"(">)", text, "</a>");
+      i = link_end;
+      continue;
     }
   handle_normal_char:
     output_html.push_back(content_[i]);

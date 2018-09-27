@@ -34,6 +34,8 @@ string TokenTypeToString(SyntaxTokenType type) {
       return "MACRO_BODY";
     case WHITESPACE:
       return "WHITESPACE";
+    case FUNCTION:
+      return "FUNCTION";
     case NONE:
       return "NONE";
   }
@@ -221,11 +223,41 @@ TEST(SyntaxHighlightTest, CppComments) {
   MockSyntaxHighlighter syn2("abc; /* this is some comment */ asdf;");
   syn2.ParseCode();
   syn2.CheckSyntaxTokens({{IDENTIFIER, 0, 3},
-                         {PUNCTUATION, 3, 4},
-                         {WHITESPACE, 4, 5},
-                         {COMMENT, 5, 31},
-                         {WHITESPACE, 31, 32},
-                         {IDENTIFIER, 32, 36},
-                         {PUNCTUATION, 36, 37}});
+                          {PUNCTUATION, 3, 4},
+                          {WHITESPACE, 4, 5},
+                          {COMMENT, 5, 31},
+                          {WHITESPACE, 31, 32},
+                          {IDENTIFIER, 32, 36},
+                          {PUNCTUATION, 36, 37}});
+}
+
+TEST(SyntaxHighlightTest, FunctionTest) {
+  MockSyntaxHighlighter syn("int x = str.length()");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 3},
+                         {WHITESPACE, 3, 4},
+                         {IDENTIFIER, 4, 5},
+                         {WHITESPACE, 5, 6},
+                         {OPERATOR, 6, 7},
+                         {WHITESPACE, 7, 8},
+                         {IDENTIFIER, 8, 11},
+                         {OPERATOR, 11, 12},
+                         {FUNCTION, 12, 18},
+                         {PARENTHESES, 18, 20}});
+
+  MockSyntaxHighlighter syn2("int x ( a ) {}");
+  syn2.ParseCode();
+  syn2.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 3},
+                         {WHITESPACE, 3, 4},
+                         {FUNCTION, 4, 5},
+                         {WHITESPACE, 5, 6},
+                         {PARENTHESES, 6, 7},
+                         {WHITESPACE, 7, 8},
+                         {IDENTIFIER, 8, 9},
+                         {WHITESPACE, 9, 10},
+                         {PARENTHESES, 10, 11},
+                         {WHITESPACE, 11, 12},
+                         {BRACE, 12, 14},
+                         });
 }
 }  // namespace md_parser

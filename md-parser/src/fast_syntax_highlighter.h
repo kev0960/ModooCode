@@ -23,6 +23,7 @@ enum SyntaxTokenType {
   MACRO_HEAD,  // "#include"
   MACRO_BODY,  // "<iostream>"
   WHITESPACE,
+  FUNCTION,
   NONE  // Not matched to any token.
 };
 
@@ -45,12 +46,25 @@ struct SyntaxToken {
 class FastSyntaxHighlighter {
  public:
   FastSyntaxHighlighter(const string& code) : code_(code) {
+    /* VS style
     class_to_style_map_.insert({"k", {{"color", "#0000ff"}}});
     class_to_style_map_.insert({"s", {{"color", "#a31515"}}});
     class_to_style_map_.insert({"m", {{"color", "#0000ff"}}});
     class_to_style_map_.insert({"mb", {{"color", "#0000ff"}}});
     class_to_style_map_.insert({"t", {{"color", "#2b91af"}}});
     class_to_style_map_.insert({"c", {{"color", "#008000"}}});
+    */
+
+    class_to_style_map_.insert({"k", {{"color", "#ff6188"}}});
+    class_to_style_map_.insert({"s", {{"color", "#ffd866"}}});
+    class_to_style_map_.insert({"m", {{"color", "#ff6188"}}});
+    class_to_style_map_.insert({"mb", {{"color", "#ffd866"}}});
+    class_to_style_map_.insert({"t", {{"color", "#78dce8"}}});
+    class_to_style_map_.insert({"c", {{"color", "#727072"}}});
+    class_to_style_map_.insert({"o", {{"color", "#ff6188"}}});
+    class_to_style_map_.insert({"n", {{"color", "#ab9df2"}}});
+    class_to_style_map_.insert({"f", {{"color", "#a9dc76"}}});
+    // Background 2d2a2e
   }
 
   virtual bool ParseCode() { return false; };
