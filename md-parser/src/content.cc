@@ -396,6 +396,34 @@ size_t Content::HandleLinks(const size_t start_pos,
   return link_end;
 }
 
+string Content::OutputLinksInBox(const size_t start_pos, const size_t end_pos) {
+  string output_html;
+  output_html.reserve(end_pos - start_pos);
+  for (size_t i = start_pos; i <= end_pos; i++) {
+    if (content_[i] == '[') {
+      size_t end_bracket = content_.find(']', i + 1);
+      if (end_bracket == string::npos || end_bracket > end_pos) {
+        goto handle_normal_char;
+      }
+      size_t link_start = end_bracket + 1;
+      if (content_[link_start] != '(') {
+        goto handle_normal_char;
+      }
+      size_t link_end = content_.find(')', link_start + 1);
+      if (link_end == string::npos || link_end > end_pos) {
+        goto handle_normal_char;
+      }
+      const string link =
+          content_.substr(link_start + 1, link_end - (link_start + 1));
+      const string text = content_.substr(i + 1, end_bracket - (i + 1));
+      output_html += StrCat(R"(<a href=")", link, R"(">)", text, "</a>");
+    }
+  handle_normal_char:
+    output_html.push_back(content_[i]);
+  }
+  return output_html;
+}
+
 size_t Content::HandleSpecialCommands(const size_t start_pos,
                                       std::vector<HtmlFragments>* fragments,
                                       int* text_start) {
@@ -479,20 +507,26 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
   for (size_t i = 0; i < fragments->size(); i++) {
     auto& fragment = fragments->at(i);
     if (fragment.type == HtmlFragments::Types::CODE) {
-      string unformatted_code = content_.substr(
-          fragment.str_start, fragment.str_end - fragment.str_start + 1);
       if (fragment.code_style == "warning") {
         fragment.formatted_code =
-            StrCat("<pre class='warning'>", unformatted_code, "</pre>");
+            StrCat("<pre class='warning'>",
+                   OutputLinksInBox(fragment.str_start, fragment.str_end - 1),
+                   "</pre>");
       } else if (fragment.code_style == "info") {
         fragment.formatted_code =
-            StrCat("<pre class='info'>", unformatted_code, "</pre>");
+            StrCat("<pre class='info'>",
+                   OutputLinksInBox(fragment.str_start, fragment.str_end - 1),
+                   "</pre>");
       } else if (fragment.code_style != "cpp" &&
                  fragment.code_style != "info_format") {
+        string unformatted_code = content_.substr(
+            fragment.str_start, fragment.str_end - fragment.str_start + 1);
         fragment.formatted_code = unformatted_code;
       } else {
         // Sometimes the code contains NBSP character. This hinders the code to
         // be correctly formatted by the clang-format.
+        string unformatted_code = content_.substr(
+            fragment.str_start, fragment.str_end - fragment.str_start + 1);
         RemoveNbsp(&unformatted_code);
         format_ops.push_back(std::thread(DoClangFormat, unformatted_code,
                                          &fragment.formatted_code));

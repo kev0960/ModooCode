@@ -65,6 +65,7 @@ class Content {
   // Returns start_pos again if nothing is handled.
   size_t HandleLinks(const size_t start_pos,
                      std::vector<HtmlFragments>* fragments, int* text_start);
+  string OutputLinksInBox(const size_t start_pos, const size_t end_pos);
   size_t HandleImages(const size_t start_pos,
                       std::vector<HtmlFragments>* fragments, int* text_start);
   size_t HandleCodes(const size_t start_pos,
