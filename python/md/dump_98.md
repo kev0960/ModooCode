@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C 언어 - <20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)>
+cat_title : 20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)
 next_page : 100
 --------------
 

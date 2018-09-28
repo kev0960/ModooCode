@@ -1,5 +1,6 @@
 ----------------
 title : 씹어 먹는 C 언어 - <8. 우분투 리눅스에서 C 프로그래밍 하기>
+cat_title: 8. 우분투 리눅스에서 C 프로그래밍 하기
 next_page : 16
 --------------
 
@@ -58,7 +59,7 @@ apt-get install gcc
 
   만약 `Y/N` 을 요구한다면 `Y` 를 눌러주시면 되고 저처럼 물어보지 않는다면 그냥 기다리세요. 조금만 기다리다가 위 처럼 다시 명령어 입력을 기다리는 상태가 되었다면 설치가 완료 된 것입니다. 이제, `gcc` 를 쳐보세요. 그렇다면 'gcc: `no input` files' 가 출력되게 되죠.
 
-  이제, 한번 `gcc` 를 통해 C 프로그램을 컴파일 해봅시다. 일단 가장 쉬운 `Hello, World` 를 출력하는 프로그램으로 하기로 하죠. 일단 'vim helloworld.c' 를 입력하여 `helloworld.c` 라는 파일을 만듭니다. (간혹 가다 `vim` 이 설치되지 않은 경우가 종종 있는데 이는 위에서 `gcc` 를 설치했던 방법처럼 `apt-get install vim` 이라 쳐서 `vim` 을 설치하시면 됩니다. `)`
+  이제, 한번 `gcc` 를 통해 C 프로그램을 컴파일 해봅시다. 일단 가장 쉬운 `Hello, World` 를 출력하는 프로그램으로 하기로 하죠. 일단 'vim helloworld.c' 를 입력하여 `helloworld.c` 라는 파일을 만듭니다. (간혹 가다 `vim` 이 설치되지 않은 경우가 종종 있는데 이는 위에서 `gcc` 를 설치했던 방법처럼 `apt-get install vim` 이라 쳐서 `vim` 을 설치하시면 됩니다.)
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F121ED6174A43AA8D3490A6)

@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>
+cat_title : 19. main 함수의 인자, 텅 빈 void 형
 next_page : 98
 --------------
 
@@ -364,7 +365,7 @@ int main (int argc, char **argv)
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F160928314C56633710E391)
 
-이것은 '명령 프롬포트' 라고 부르는 것인데 기존의 `MS-DOS` 와 유사합니다. (그러나 본질적으로 다릅니다 `)` 우리는 여기서 윈도우즈 처럼 파일을 클릭하여 실행하는 것과는 달리 직접 명령어를 침으로써 파일을 실행시켜야 합니다. 그러기 위해선 우리가 원하는 파일이 어디있는지 알아야겠죠.
+이것은 '명령 프롬포트' 라고 부르는 것인데 기존의 `MS-DOS` 와 유사합니다. (그러나 본질적으로 다릅니다) 우리는 여기서 윈도우즈 처럼 파일을 클릭하여 실행하는 것과는 달리 직접 명령어를 침으로써 파일을 실행시켜야 합니다. 그러기 위해선 우리가 원하는 파일이 어디있는지 알아야겠죠.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F172AA82F4C5663AE0CF8A7)

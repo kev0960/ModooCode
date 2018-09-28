@@ -36,12 +36,9 @@ next_page : 188
 그렇다면 도대체 C++ 에서는 같은 이름의 함수를 호출했을 때 구분을 어떻게 하는 것일까요. 물론 단순합니다. 함수를 호출 하였을 때 사용하는 인자를 보고 결정하게 됩니다.
 
 ```cpp
-
-// 함수의 오버로딩
-
+/* 함수의 오버로딩 */
 #include <iostream>
 using namespace std;
-
 
 void print (int x)
 {
@@ -112,10 +109,7 @@ print(c);
 `C` 언어였을 경우 `int, char, double` 타입에 따라 함수의 이름을 제각각 다르게 만들어서 호출해 주어야 했던 반면에 C++ 에서는 컴파일러가 알아서 '적합한 인자를 가지는 함수' 를 찾아서 호출해 주게 됩니다 C 언어였을 경우 `int, char, double` 타입에 따라 함수의 이름을 제각각 다르게 만들어서 호출해 주어야 했던 반면에 C++ 에서는 컴파일러가 알아서 '적합한 인자를 가지는 함수' 를 찾아서 호출해 주게 됩니다.
 
 ```cpp
-
-// 함수의 오버로딩
-
-
+/* 함수의 오버로딩 */
 #include <iostream>
 using namespace std;
 
@@ -182,7 +176,7 @@ void print (double x)
 * 포인터는 `void` 포인터로 변환된다.
 
 4 단계 : 유저 정의된 타입 변환으로 일치하는 것을 찾는다 (이 부분에 대해선 나중에 설명!)
-(출처 : [http://www.learncpp.com/cpp-tutorial/76-function-overloading/](http://www.learncpp.com/cpp-tutorial/76-function-overloading/)`)`
+(출처 : [http://www.learncpp.com/cpp-tutorial/76-function-overloading/](http://www.learncpp.com/cpp-tutorial/76-function-overloading/))
 
 
 만약에 컴파일러가 위 과정을 통하더라도 일치하는 함수를 찾을 수 없거나 같은 단계에서 두 개 이상이 일치하는 경우에 '모호하다 (ambiguous)' 라고 판단해서 오류를 발생하게 됩니다.
@@ -505,7 +499,6 @@ int main()
 예를 들어서 위 경우 저는 아래와 같이 `Date` 의 생성자를 정의하였습니다.
 
 ```cpp
-
 Date(int _year, int _month, int _day)
 ```
 

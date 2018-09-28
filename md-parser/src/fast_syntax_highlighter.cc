@@ -160,7 +160,7 @@ newline_remove_done:
     }
     i++;
   }
-  // Now remove all the '0' size tokens.
+  // Now remove all the empty string tokens.
   token_list_.erase(std::remove_if(token_list_.begin(), token_list_.end(),
                                    [](const SyntaxToken& token) {
                                      return token.token_start ==

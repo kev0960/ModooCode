@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >
+cat_title : 7. 뱅글 뱅글 (for, while)
 next_page : 14
 --------------
 

@@ -89,7 +89,7 @@ template < class T, class Allocator = allocator<T> > class deque;
 
 
 
-할당 관련 ( [벡터](http://itguru.tistory.com/175)와는 다르게 `capacity` 와 `reserve` 가 없다! `)`
+할당 관련 ( [벡터](http://itguru.tistory.com/175)와는 다르게 `capacity` 와 `reserve` 가 없다!)
 
 
 * `size` : 데크의 `size` 를 리턴한다 (현재 원소의 개수)

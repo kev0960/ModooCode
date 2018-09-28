@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >
+cat_title : 18 - 1. 파일 뽀개기 (헤더파일과 #include)
 next_page : 88
 --------------
 
@@ -9,7 +10,6 @@ next_page : 88
 * 모듈화 프로그래밍 (파일 나누기)
 
 * #include 전처리기에 대한 이해
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F194C3F154C4076333A0245)
@@ -86,11 +86,6 @@ char compare(char *str1, char *str2)
 
 ###  파일 나누기
 
-
-
-
-
-
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190193344C4053CBBD99BB)
 먼저 위의 그림과 같이 오른쪽 파일 목록이 나와 있는 부분에서 '소스 파일' 폴더를 클릭한 후 마우스 오른쪽 클릭을 한 후, '새 항목' 을 위와 같이 누릅니다.
 
@@ -106,7 +101,7 @@ char compare(char *str1, char *str2)
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F112028344C4053CC733B8F)
 
-이제, `test.c` (저의 기존 소스를 보관했던 파일 명 입니다. 여러분의 경우 다를 수 있습니다. `)` 에 쓰여 있던 기존의 `compare` 함수 소스를 잘라옵니다. 즉, `test.c` 에 있던 `compare` 함수 소스는 사라지고 `str.c` 에 `compare` 함수 소스를 넣는 것입니다.
+이제, `test.c` (저의 기존 소스를 보관했던 파일 명 입니다. 여러분의 경우 다를 수 있습니다.) 에 쓰여 있던 기존의 `compare` 함수 소스를 잘라옵니다. 즉, `test.c` 에 있던 `compare` 함수 소스는 사라지고 `str.c` 에 `compare` 함수 소스를 넣는 것입니다.
 
 위 작업이 끝나게 된다면 각 파일에는 다음과 같이 소스가 들어가 있을 것입니다.
 
@@ -200,12 +195,6 @@ char compare(char *str1, char *str2);
 
 ###  헤더 파일
 
-
-
-
-
-
-
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F160941104C4069157ABB63)
 먼저 기존에 `str.c` 파일을 추가했을 때 했던 것 처럼 하되 이번에는 헤더파일 폴더에 파일을 추가해보도록 합시다.
 
@@ -297,9 +286,9 @@ char compare(char *str1, char *str2);
 
 ```
 
-#include 와 같은 명령들은 '전처리기(Preprocessor)' 명령이라고 부르는데 이러한 명령들의 특징은 컴파일 이전에 실행된다는 점 입니다.이 명령은 우리가 지칭하는 파일의 내용을 정확히 `100%` 복사해서 붙여 넣는다는 점입니다. 따라서 #include "str.h" 라는 명령은 `str.h` 에 있었던 내용, 즉 `char compare(char *str1, char` *str2); 로 컴파일이 시작하기 전에 바뀌어 버립니다.
+`#include` 와 같은 명령들은 '전처리기(Preprocessor)' 명령이라고 부르는데 이러한 명령들의 특징은 컴파일 이전에 실행된다는 점 입니다.이 명령은 우리가 지칭하는 파일의 내용을 정확히 `100%` 복사해서 붙여 넣는다는 점입니다. 따라서 `#include "str.h"` 라는 명령은 `str.h` 에 있었던 내용, 즉 `char compare(char *str1, char *str2);` 로 컴파일이 시작하기 전에 바뀌어 버립니다.
 
-그렇다면 #include `<stdio.h>` 는 어떨까요? 이 역시 똑같습니다. `stdio.h` 에 써있는 내용들이 정확히 복사되어 컴파일 이전에 코드에 붙어버립니다. 그런데 한 가지 이상한 점은 `stdio.h` 는 `<>` 로 감쌌는데, `str.h` 는 왜 " " 로 감쌌을까요? 그 이유는 단순한데, `< >` 로 감싸는 헤더파일은 컴파일러에서 기본으로 지원하는 헤더파일의 경우이고 " " 로 감싸는 헤더파일은 사용자가 직접 제작한 헤더파일의 경우 입니다.
+그렇다면 `#include <stdio.h>` 는 어떨까요? 이 역시 똑같습니다. `stdio.h` 에 써있는 내용들이 정확히 복사되어 컴파일 이전에 코드에 붙어버립니다. 그런데 한 가지 이상한 점은 `stdio.h` 는 `<>` 로 감쌌는데, `str.h` 는 왜 " " 로 감쌌을까요? 그 이유는 단순한데, `< >` 로 감싸는 헤더파일은 컴파일러에서 기본으로 지원하는 헤더파일의 경우이고 " " 로 감싸는 헤더파일은 사용자가 직접 제작한 헤더파일의 경우 입니다.
 
 여러분은 `stdio.h` 에 무엇이 써져 있는지 궁금하지 않으세요? 한 번 제가 그 내용을 올려드리겠습니다. 참고로 [여기](https://code.woboq.org/userspace/glibc/libio/stdio.h.html)에서 전체 코드를 보실 수 있습니다.
 
@@ -466,9 +455,6 @@ int B()
     return 1;
 }
 ```
-
-
-
 
 
 ```info
