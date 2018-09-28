@@ -13,154 +13,154 @@ title : 씹어먹는 C 언어 - 찾아보기
 
 ㄱ
 관계 연산자
- [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/10](/10)
 
 
 
 공백 문자
- [http://itguru.tistory.com/32](http://itguru.tistory.com/32)
+ [/32](/32)
 
 
 
 공용체
- [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
+ [/71](/71)
 
 
 
 구조체
- [http://itguru.tistory.com/55](http://itguru.tistory.com/55)
+ [/55](/55)
 
 
 
 구조체 대입
- [http://itguru.tistory.com/60](http://itguru.tistory.com/60)
+ [/60](/60)
 
 
 
 구조체 동적 할당
- [http://itguru.tistory.com/100](http://itguru.tistory.com/100)
+ [/100](/100)
 
 
 
 구조체 리턴
- [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
+ [/71](/71)
 
 
 
 구조체 변수
- [http://itguru.tistory.com/55](http://itguru.tistory.com/55)
+ [/55](/55)
 
 
 
 구조체 인자
- [http://itguru.tistory.com/60](http://itguru.tistory.com/60)
+ [/60](/60)
 
 
 
 구조체 포인터
- [http://itguru.tistory.com/55](http://itguru.tistory.com/55)
+ [/55](/55)
 
 
 
 기수법
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 ㄴ
 
 널
- [http://itguru.tistory.com/29](http://itguru.tistory.com/29)
+ [/29](/29)
 
 
 
 널 종료 문자열
- [http://itguru.tistory.com/29](http://itguru.tistory.com/29)
+ [/29](/29)
 
 
 
 노드
- [http://itguru.tistory.com/100](http://itguru.tistory.com/100)
+ [/100](/100)
 
 
 
 논리 연산자
- [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/10](/10)
 
 
 
 니블
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 ㄷ
 
 단항 연산자
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23)
+ [/23](/23)
 
 
 
 대입 연산자
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 더블 워드
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 더블 포인터
- [http://itguru.tistory.com/25](http://itguru.tistory.com/25)
+ [/25](/25)
 
 
 
 더블 포인터 인자
- [http://itguru.tistory.com/28](http://itguru.tistory.com/28)
+ [/28](/28)
 
 
 
 동적 할당
- [http://itguru.tistory.com/98](http://itguru.tistory.com/98)
+ [/98](/98)
 
 
 
 디버그
- [http://itguru.tistory.com/31](http://itguru.tistory.com/31)
+ [/31](/31)
 
 ㄹ
 라이브러리
- [http://itguru.tistory.com/88](http://itguru.tistory.com/88)
+ [/88](/88)
 
 
 
 램 (RAM)
- [http://itguru.tistory.com/7](http://itguru.tistory.com/7) [http://itguru.tistory.com/83](http://itguru.tistory.com/83) [http://itguru.tistory.com/23](http://itguru.tistory.com/23) [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
+ [/7](/7) [/83](/83) [/23](/23) [/18](/18)
 
 
 
 롬(ROM)
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 리터럴
- [http://itguru.tistory.com/33](http://itguru.tistory.com/33)
+ [/33](/33)
 
 
 
 리턴값
- [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
+ [/26](/26)
 
 
 
 링킹
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 ㅁ
 
 매크로
- [http://itguru.tistory.com/88](http://itguru.tistory.com/88)
+ [/88](/88)
 
 
 
 매크로 함수
- [http://itguru.tistory.com/99](http://itguru.tistory.com/99)
+ [/99](/99)
 
 
 
@@ -170,34 +170,34 @@ title : 씹어먹는 C 언어 - 찾아보기
 
 
 메인 함수
- [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
+ [/26](/26)
 
 
 
 메인 함수 인자
- [http://itguru.tistory.com/89](http://itguru.tistory.com/89)
+ [/89](/89)
 
 
 
 모듈화
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 
 
 문자
- [http://itguru.tistory.com/9](http://itguru.tistory.com/9)
+ [/9](/9)
 
 
 
 문자열
- [http://itguru.tistory.com/29](http://itguru.tistory.com/29)
+ [/29](/29)
 
 
 
 문자열 조작
-  복사 [http://itguru.tistory.com/33](http://itguru.tistory.com/33)
-  합치기 [http://itguru.tistory.com/33](http://itguru.tistory.com/33)
-  비교 [http://itguru.tistory.com/33](http://itguru.tistory.com/33)
+  복사 [/33](/33)
+  합치기 [/33](/33)
+  비교 [/33](/33)
 
 
 
@@ -207,180 +207,180 @@ title : 씹어먹는 C 언어 - 찾아보기
 ㅂ
 
 바이트
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 반복문
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 반전 연산자
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 배열
- [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
+ [/18](/18)
 
 
 
 배열의 배열
- [http://itguru.tistory.com/20](http://itguru.tistory.com/20)
+ [/20](/20)
 
 
 
 배열을 인자
- [http://itguru.tistory.com/27](http://itguru.tistory.com/27)
+ [/27](/27)
 
 
 
 배열과 포인터
- [http://itguru.tistory.com/24](http://itguru.tistory.com/24)
+ [/24](/24)
 
 
 
 배열을 가리키는 포인터
- [http://itguru.tistory.com/25](http://itguru.tistory.com/25)
+ [/25](/25)
 
 
 
 버그
- [http://itguru.tistory.com/31](http://itguru.tistory.com/31)
+ [/31](/31)
 
 
 
 버블 정렬
- [http://itguru.tistory.com/30](http://itguru.tistory.com/30)
+ [/30](/30)
 
 
 
 버퍼
- [http://itguru.tistory.com/32](http://itguru.tistory.com/32)
+ [/32](/32)
 
 
 
 변수
- [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
+ [/7](/7)
 
 
 
 버퍼 오버플로우
- [http://itguru.tistory.com/9](http://itguru.tistory.com/9)
+ [/9](/9)
 
 
 
 부동 소수점 표현
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 비트
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 비트 연산자
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 ㅅ
 
 산술 변환
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 산술 연산자
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 상수
- [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
+ [/18](/18)
 
 
 
 상수 포인터
- [http://itguru.tistory.com/24](http://itguru.tistory.com/24)
+ [/24](/24)
 
 
 
 선언
 
-  공용체 [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
-  구조체 [http://itguru.tistory.com/55](http://itguru.tistory.com/55) [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
-  다차원 배열 [http://itguru.tistory.com/20](http://itguru.tistory.com/20)
-  배열 [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
-  변수 [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
-  상수 [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
-  열거형 [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
-  함수 [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
+  공용체 [/71](/71)
+  구조체 [/55](/55) [/71](/71)
+  다차원 배열 [/20](/20)
+  배열 [/18](/18)
+  변수 [/7](/7)
+  상수 [/18](/18)
+  열거형 [/71](/71)
+  함수 [/26](/26)
 
 
 
 실수
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 실수형 변수
- [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
+ [/7](/7)
 
 
 
 
 쉬프트 연산자
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 스택 (Stack)
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 
 스트림
- [http://itguru.tistory.com/32](http://itguru.tistory.com/32) [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/32](/32) [/117](/117)
 
 ㅇ
 에라토스테네스의 체
- [http://itguru.tistory.com/30](http://itguru.tistory.com/30)
+ [/30](/30)
 
 
 
 연산자 우선순위
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 열거형
- [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
+ [/71](/71)
 
 
 
 유클리드 호제법
- [http://itguru.tistory.com/30](http://itguru.tistory.com/30)
+ [/30](/30)
 
 
 
 워드
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 원형
-  함수 [http://itguru.tistory.com/27](http://itguru.tistory.com/27)
+  함수 [/27](/27)
 
 
 
 인덱스
- [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
+ [/18](/18)
 
 
 
 인라인 함수
- [http://itguru.tistory.com/99](http://itguru.tistory.com/99)
+ [/99](/99)
 
 
 
@@ -390,38 +390,38 @@ title : 씹어먹는 C 언어 - 찾아보기
 
 
 입력 스트림
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 ㅈ
 
 작명 (Naming)
 
-  변수 [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
+  변수 [/7](/7)
 
 
 
 재귀 호출
- [http://itguru.tistory.com/30](http://itguru.tistory.com/30)
+ [/30](/30)
 
 
 
 전역 변수 (Global variable)
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 
 전위형
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 전처리기
- [http://itguru.tistory.com/88](http://itguru.tistory.com/88)
+ [/88](/88)
 
 
 
 정수형 변수
- [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
+ [/7](/7)
 
 
 
@@ -431,141 +431,141 @@ title : 씹어먹는 C 언어 - 찾아보기
 
 
 정적 변수(Static `variable)`
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 
 조건문
- [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/10](/10)
 
 
 
 조건식
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 주소
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23)
+ [/23](/23)
 
 
 
 주석
- [http://itguru.tistory.com/19](http://itguru.tistory.com/19)
+ [/19](/19)
 
 
 
 증감식
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 증감 연산자
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 지역 변수 (Local variable)
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 
 ㅊ
 
 초기식
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 최적화
- [http://itguru.tistory.com/129](http://itguru.tistory.com/129)
+ [/129](/129)
 
 
 
 출력 스트림
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 ㅋ
 
 컴파일
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 
 
 캐스팅
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 코드 영역 (코드 세그먼트)
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 ㅌ
 
 타입 범위
- [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
+ [/7](/7)
 
 
 
 ㅍ
 
 파일 입출력
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 파일 위치 지정자
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117) [http://itguru.tistory.com/123](http://itguru.tistory.com/123)
+ [/117](/117) [/123](/123)
 
 
 
 파일 포인터
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 포인터
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23)
+ [/23](/23)
 
 
 
 포인터 배열
- [http://itguru.tistory.com/25](http://itguru.tistory.com/25)
+ [/25](/25)
 
 
 
 포인터 연산
- [http://itguru.tistory.com/24](http://itguru.tistory.com/24)
+ [/24](/24)
 
 
 
 포인터 인자
- [http://itguru.tistory.com/27](http://itguru.tistory.com/27)
+ [/27](/27)
 
 
 
 포인터 타입
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23) [http://itguru.tistory.com/25](http://itguru.tistory.com/25)
+ [/23](/23) [/25](/25)
 
 
 
 포인터의 포인터
- [http://itguru.tistory.com/25](http://itguru.tistory.com/25)
+ [/25](/25)
 
 
 
 프로그램을 어떻게 만들까
- [http://itguru.tistory.com/43](http://itguru.tistory.com/43)
+ [/43](/43)
 
 ㅎ
 
 함수
- [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
+ [/26](/26)
 
 
 
 함수의 인자
- [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
+ [/26](/26)
 
 
 
@@ -575,184 +575,184 @@ title : 씹어먹는 C 언어 - 찾아보기
 
 
 헤더 파일
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 
 
 형변환
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 후위형
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 힙(Heap)
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83) [http://itguru.tistory.com/98](http://itguru.tistory.com/98)
+ [/83](/83) [/98](/98)
 
 `A`
 
 `Address`
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23)
+ [/23](/23)
 
 
 
 `And operator`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8) [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/8](/8) [/10](/10)
 
 
 
 `Arithmetic operator`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 `argc`
- [http://itguru.tistory.com/89](http://itguru.tistory.com/89)
+ [/89](/89)
 
 
 
 `Argument`
- [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
+ [/26](/26)
 
 
 
 `Array`
- [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
+ [/18](/18)
 
 
 
 `argv`
- [http://itguru.tistory.com/89](http://itguru.tistory.com/89)
+ [/89](/89)
 
 
 
 `ASCII Table`
- [http://itguru.tistory.com/9](http://itguru.tistory.com/9)
+ [/9](/9)
 
 
 
 `Assignment operator`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 `B`
 
 `Base`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 `Bias`
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 `Big endian`
- [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
+ [/71](/71)
 
 
 
 `Bit`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 `Bit operator`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 `Binary`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 `break`
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 `Bubble sorting`
- [http://itguru.tistory.com/30](http://itguru.tistory.com/30)
+ [/30](/30)
 
 
 
 `Buffer`
- [http://itguru.tistory.com/32](http://itguru.tistory.com/32)
+ [/32](/32)
 
 
 
 `Buffer Overflow`
- [http://itguru.tistory.com/9](http://itguru.tistory.com/9)
+ [/9](/9)
 
 
 
 `Bug`
- [http://itguru.tistory.com/31](http://itguru.tistory.com/31)
+ [/31](/31)
 
 
 
 `Byte`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 `C C
 
 `case`
- [http://itguru.tistory.com/16](http://itguru.tistory.com/16)
+ [/16](/16)
 
 
 
 `Casting`
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 `char`
- [http://itguru.tistory.com/9](http://itguru.tistory.com/9)
+ [/9](/9)
 
 
 
 `Code segment`
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 
 `continue`
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 `Constant`
- [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
+ [/18](/18)
 
 
 
 `Comment`
- [http://itguru.tistory.com/19](http://itguru.tistory.com/19)
+ [/19](/19)
 
 
 
 `Compile`
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 `D`
 
 `Debug`
- [http://itguru.tistory.com/31](http://itguru.tistory.com/31)
+ [/31](/31)
 
 
 
 `Declaration`
 
-  `Array` [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
-  `Constant` [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
-  `enum` [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
-  `Function` [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
-  `struct` [http://itguru.tistory.com/55](http://itguru.tistory.com/55)
-  `union` [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
-  `Variable` [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
+  `Array` [/18](/18)
+  `Constant` [/18](/18)
+  `enum` [/71](/71)
+  `Function` [/26](/26)
+  `struct` [/55](/55)
+  `union` [/71](/71)
+  `Variable` [/7](/7)
 
 
 
@@ -763,500 +763,500 @@ title : 씹어먹는 C 언어 - 찾아보기
 
 
 `double`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 `Double word`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 `do` – `while`
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 `Dynamic memory allocation`
- [http://itguru.tistory.com/98](http://itguru.tistory.com/98)
+ [/98](/98)
 
 `E`﻿
 
 `else statement`
- [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/10](/10)
 
 
 
 `else if statement`
- [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/10](/10)
 
 
 
 `ENIAC`
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 `enum`
- [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
+ [/71](/71)
 
 
 
 `Exponent`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 `F`
 
 `fclose`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 `fflush`
- [http://itguru.tistory.com/32](http://itguru.tistory.com/32) [http://itguru.tistory.com/123](http://itguru.tistory.com/123)
+ [/32](/32) [/123](/123)
 
 
 
 `fgetchar`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 `fgets`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 `float`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 `Floating point`
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 `Function`
- [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
+ [/26](/26)
 
 
 
 `Function pointer`
- [http://itguru.tistory.com/28](http://itguru.tistory.com/28)
+ [/28](/28)
 
 
 
 `fopen`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117) [http://itguru.tistory.com/123](http://itguru.tistory.com/123)
+ [/117](/117) [/123](/123)
 
 
 
 `for statement`
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 `fputs`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 `free`
- [http://itguru.tistory.com/98](http://itguru.tistory.com/98)
+ [/98](/98)
 
 
 
 `fseek`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117) [http://itguru.tistory.com/123](http://itguru.tistory.com/123)
+ [/117](/117) [/123](/123)
 
 `G`
 
 `GCC`
- [http://itguru.tistory.com/14](http://itguru.tistory.com/14)
+ [/14](/14)
 
 
 
 `getchar`
- [http://itguru.tistory.com/32](http://itguru.tistory.com/32)
+ [/32](/32)
 
 
 
 `Global variable`
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 `H`
 
 `Header file`
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 
 
 `Heap`
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83) [http://itguru.tistory.com/98](http://itguru.tistory.com/98)
+ [/83](/83) [/98](/98)
 
 `I`
 
 
 `include`
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 
 
 `Index`
- [http://itguru.tistory.com/18](http://itguru.tistory.com/18)
+ [/18](/18)
 
 
 
 `Inline function`
- [http://itguru.tistory.com/99](http://itguru.tistory.com/99)
+ [/99](/99)
 
 
 
 `IEEE 754`
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 `if statement`
- [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/10](/10)
 
 
 `inline`﻿` function`
- [http://itguru.tistory.com/99](http://itguru.tistory.com/99)
+ [/99](/99)
 
 
 
 `int`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 `J`
 
 `Jump table`
- [http://itguru.tistory.com/16](http://itguru.tistory.com/16)
+ [/16](/16)
 
 `K`
 `L`
 
 `Library`
- [http://itguru.tistory.com/88](http://itguru.tistory.com/88)
+ [/88](/88)
 
 
 
 `Linking`
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 
 
 `Literal`
- [http://itguru.tistory.com/33](http://itguru.tistory.com/33)
+ [/33](/33)
 
 
 
 `Little endian`
- [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
+ [/71](/71)
 
 
 
 `Local variable`
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 `M`
 
 `Macro`
- [http://itguru.tistory.com/88](http://itguru.tistory.com/88)
+ [/88](/88)
 
 
 
 `Macro function`
- [http://itguru.tistory.com/99](http://itguru.tistory.com/99)
+ [/99](/99)
 
 
 
 `Main function`
- [http://itguru.tistory.com/26](http://itguru.tistory.com/26)
+ [/26](/26)
 
 
 
 `malloc`
- [http://itguru.tistory.com/98](http://itguru.tistory.com/98)
+ [/98](/98)
 
 
 
 `Mantissa`
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 `memcmp`
- [http://itguru.tistory.com/100](http://itguru.tistory.com/100)
+ [/100](/100)
 
 
 
 `memcpy`
- [http://itguru.tistory.com/100](http://itguru.tistory.com/100)
+ [/100](/100)
 
 
 
 `memmove`
- [http://itguru.tistory.com/100](http://itguru.tistory.com/100)
+ [/100](/100)
 
 
 
 `memset`
- [http://itguru.tistory.com/100](http://itguru.tistory.com/100)
+ [/100](/100)
 
 
 
 `Modular programming`
- [http://itguru.tistory.com/87](http://itguru.tistory.com/87)
+ [/87](/87)
 
 `N`
 `Naming`
 
-  `Variable` [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
+  `Variable` [/7](/7)
 
 
 
 `Numeral system`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 `Null`
- [http://itguru.tistory.com/29](http://itguru.tistory.com/29)
+ [/29](/29)
 
 
 
 `Null terminating string`
- [http://itguru.tistory.com/29](http://itguru.tistory.com/29)
+ [/29](/29)
 
 
 
 `Node`
- [http://itguru.tistory.com/100](http://itguru.tistory.com/100)
+ [/100](/100)
 
 
 
 `Not operator`
- [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/10](/10)
 
 `O`
 
 `Optimization`
- [http://itguru.tistory.com/129](http://itguru.tistory.com/129)
+ [/129](/129)
 
 
 
 `OR operator`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8) [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/8](/8) [/10](/10)
 
 `P`
 
 #pragma
- [http://itguru.tistory.com/103](http://itguru.tistory.com/103)
+ [/103](/103)
 
 
 
 #pragma `pack`
- [http://itguru.tistory.com/103](http://itguru.tistory.com/103)
+ [/103](/103)
 
 
 
 #pragma `once`
- [http://itguru.tistory.com/103](http://itguru.tistory.com/103)
+ [/103](/103)
 
 
 
 `prefix`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 `printf`
- [http://itguru.tistory.com/6](http://itguru.tistory.com/6) [http://itguru.tistory.com/35](http://itguru.tistory.com/35)
+ [/6](/6) [/35](/35)
 
 
 
 `Pointer`
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23)
+ [/23](/23)
 
 
 
 `Pointer Arithmetics`
- [http://itguru.tistory.com/24](http://itguru.tistory.com/24)
+ [/24](/24)
 
 
 
 `Position indicator`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 `postfix`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 `Prototype`
- [http://itguru.tistory.com/27](http://itguru.tistory.com/27)
+ [/27](/27)
 
 `Q`
 `R`
 `RAM (Random Access Memory)`
- [http://itguru.tistory.com/7](http://itguru.tistory.com/7) [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/7](/7) [/83](/83)
 
 
 
 `Read Only data`
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 
 `Recursive function`
- [http://itguru.tistory.com/30](http://itguru.tistory.com/30)
+ [/30](/30)
 
 
 
 `ROM (Read Only Memory)`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 `S`
 `scanf`
- [http://itguru.tistory.com/9](http://itguru.tistory.com/9) [http://itguru.tistory.com/29](http://itguru.tistory.com/29) [http://itguru.tistory.com/32](http://itguru.tistory.com/32)
+ [/9](/9) [/29](/29) [/32](/32)
 
 
 
 `scanf_s`
- [http://itguru.tistory.com/9](http://itguru.tistory.com/9)
+ [/9](/9)
 
 
 
 `SEEK_CUR`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 `SEEK_END`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 `SEEK_SET`
- [http://itguru.tistory.com/117](http://itguru.tistory.com/117)
+ [/117](/117)
 
 
 
 `shift operator`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 `short`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 
 
 `stdin`
- [http://itguru.tistory.com/32](http://itguru.tistory.com/32)
+ [/32](/32)
 
 
 
 `stack`
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 
 `static variable`
- [http://itguru.tistory.com/83](http://itguru.tistory.com/83)
+ [/83](/83)
 
 
 
 `String`
- [http://itguru.tistory.com/29](http://itguru.tistory.com/29)
+ [/29](/29)
 
 
 
 `struct`
- [http://itguru.tistory.com/55](http://itguru.tistory.com/55)
+ [/55](/55)
 
 
 
 `Swap`
- [http://itguru.tistory.com/27](http://itguru.tistory.com/27)
+ [/27](/27)
 
 
 
 `switch statement`
- [http://itguru.tistory.com/16](http://itguru.tistory.com/16)
+ [/16](/16)
 
 `T`
 `Type conversion`
- [http://itguru.tistory.com/17](http://itguru.tistory.com/17)
+ [/17](/17)
 
 
 
 `typedef`
- [http://itguru.tistory.com/103](http://itguru.tistory.com/103)
+ [/103](/103)
 
 `U`
 
 `Ubuntu Linux`
- [http://itguru.tistory.com/14](http://itguru.tistory.com/14)
+ [/14](/14)
 
 
 
 `Unary operator`
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23)
+ [/23](/23)
 
 
 
 `Unicode`
- [http://itguru.tistory.com/9](http://itguru.tistory.com/9)
+ [/9](/9)
 
 
 
 `union`
- [http://itguru.tistory.com/71](http://itguru.tistory.com/71)
+ [/71](/71)
 
 `V`
 `variable`
- [http://itguru.tistory.com/7](http://itguru.tistory.com/7)
+ [/7](/7)
 
 
 
 `VIM`
- [http://itguru.tistory.com/14](http://itguru.tistory.com/14)
+ [/14](/14)
 
 
 
 `void`
- [http://itguru.tistory.com/89](http://itguru.tistory.com/89)
+ [/89](/89)
 
 
 
 `volatile`
- [http://itguru.tistory.com/103](http://itguru.tistory.com/103)
+ [/103](/103)
 
 `W`
 
 `while statement`
- [http://itguru.tistory.com/12](http://itguru.tistory.com/12)
+ [/12](/12)
 
 
 
 `Whitespace character`
- [http://itguru.tistory.com/32](http://itguru.tistory.com/32)
+ [/32](/32)
 
 
 
 `Word`
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 `X`
 
 `XOR operator`
- [http://itguru.tistory.com/8](http://itguru.tistory.com/8)
+ [/8](/8)
 
 `Y`
 `Z`
@@ -1264,46 +1264,46 @@ title : 씹어먹는 C 언어 - 찾아보기
 1,2,….
 
 1.#INF00
- [http://itguru.tistory.com/10](http://itguru.tistory.com/10)
+ [/10](/10)
 
 
 
 `2` 차원 배 2 차원 배열
- [http://itguru.tistory.com/20](http://itguru.tistory.com/20)
+ [/20](/20)
 
 
 
 8진법
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 16진법
- [http://itguru.tistory.com/21](http://itguru.tistory.com/21)
+ [/21](/21)
 
 
 
 `[]` 연산자
- [http://itguru.tistory.com/24](http://itguru.tistory.com/24)
+ [/24](/24)
 
 
 
 &연산자
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23)
+ [/23](/23)
 
 
 
 `*` 연산자
- [http://itguru.tistory.com/23](http://itguru.tistory.com/23)
+ [/23](/23)
 
 
 
 `->` 연산자
- [http://itguru.tistory.com/55](http://itguru.tistory.com/55)
+ [/55](/55)
 
 
 
 #define, #ifdef, #ifndef, #endif
- [http://itguru.tistory.com/88](http://itguru.tistory.com/88)
+ [/88](/88)
 
 
 

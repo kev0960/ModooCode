@@ -28,11 +28,16 @@
 .warning {
     font-family: 'Source Code Pro', monospace;
     background-color: rgba(252, 222, 199, 1);
-    border: 1px solid rgb(254, 137, 67);
+    border: 1px solid rgb(254, 104, 67);
     padding: 10px;
     font-size: 0.75em;
 }
 
+.warning a {
+    color: rgb(247, 22, 22);
+    font-weight: bold;
+    font-size:110%;
+}
 .info {
     font-family: 'Source Code Pro', monospace;
     background-color: rgb(231, 253, 181);

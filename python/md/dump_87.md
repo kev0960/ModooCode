@@ -14,7 +14,7 @@ next_page : 88
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F194C3F154C4076333A0245)
 
-안녕하세요 여러분. 저도 강좌를 쓰는 것이 참으로 오래간만 입니다. 현재 저는 강좌를 모두 모두 모아 하나의 `pdf` 파일로 만드려고 노력중입니다. 이를 위해 `Latex` 를 사용하고 있는데 한국 `Latex` 커뮤니티 (KTUG) 분들께서 훌륭하게 만들어주신 `kotex` 덕분에 수월하게 파일 제작이 가능합니다. 아무튼 감사하다는 말씀을 드리며 강좌를 시작해 나가보도록 하겠습니다.
+안녕하세요 여러분. 저도 강좌를 쓰는 것이 참으로 오래간만 입니다. 현재 저는 강좌를 모두 모두 모아 하나의 pdf 파일로 만드려고 노력중입니다. 이를 위해 `Latex` 를 사용하고 있는데 한국 `Latex` 커뮤니티 (KTUG) 분들께서 훌륭하게 만들어주신 `kotex` 덕분에 수월하게 파일 제작이 가능합니다. 아무튼 감사하다는 말씀을 드리며 강좌를 시작해 나가보도록 하겠습니다.
 
 현재까지 여러분은 모든 소스 코드를 하나의 소스 파일에서 작성하였습니다. 사실 이는 큰 문제가 아니였습니다. 왜냐하면 우리가 여태 까지 만들었던 프로그램의 총 소스 길이는 그다지 길지 않았고 또 나 혼자 만들기 때문에 하나의 파일에 모조리 작성해도 상관이 없었습니다. 하지만 여러분이 프로그래머가 되어서 회사에서 프로그래밍을 한다면 소스의 길이도 수천~ 수만줄에 이르고, 여러 사람들이 만들기 때문에 파일을 여러개로 나누어야 할 필요성이 있습니다. 물론 파일을 나눌 때 에는 비슷한 작업을 하는 것 끼리 나누는 것이 좋겠죠.
 
@@ -78,7 +78,7 @@ char compare(char *str1, char *str2)
 ```
 
 
-이 부분에서 살짝 갸우뚱 하시는 분들이 있으실 텐데 우리가 만든 `compare` 함수는 두 문자열이 같으면 `1,` 다르면 0 을 리턴합니다. 그런데 `if` 문의 경우 괄호 안의 값이 0 이면 '거짓' 으로, 0 이 아니면 '참' 으로 판단하기 때문에 (이는 이전 강좌에서 이야기 했던 바 입니다. 기억이 안나면 [http://itguru.tistory.com/10](http://itguru.tistory.com/10)`` 를 보세요) 우리가 원하는 결과를 얻을 수 있었던 것이지요.
+이 부분에서 살짝 갸우뚱 하시는 분들이 있으실 텐데 우리가 만든 `compare` 함수는 두 문자열이 같으면 `1,` 다르면 0 을 리턴합니다. 그런데 `if` 문의 경우 괄호 안의 값이 0 이면 '거짓' 으로, 0 이 아니면 '참' 으로 판단하기 때문에 (이는 이전 강좌에서 이야기 했던 바 입니다. 기억이 안나면 [http://itguru.tistory.com/10](http://itguru.tistory.com/10) 를 보세요) 우리가 원하는 결과를 얻을 수 있었던 것이지요.
 
 그렇다면 이번에는 이 강좌의 주제에 맞게 파일을 분할해봅시다. `compare` 함수는 상당히 다른 일을 하고 있기 때문에 굳이 `main` 함수와 같은 파일에 둘 필요가 없습니다. 따라서 다른 파일에 만들어 보겠습니다.
 
@@ -172,9 +172,11 @@ char compare(char *str1, char *str2)
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F13697A0E4C406E8688A9DF)
 
 
-아마 예전에 배워서 까먹었을 가능성이 있는데 우리가 실행 파일을 만들기 위해서는 먼저 C 코드를 컴퓨터가 이해할 수 있는 언어로 바꿔주는 컴파일(compile) 이라는 과정이 진행됩니다. 이는 단일 소스 코드 전체를 어셈블리어 (기계어와 1 : 1 대응이 되어 있음) 로 변환해 줍니다 (이 때, 목적코드라 불리는 확장자가 `.o` 인 파일이 생성됩니다) . 이 과정이 끝나게 되면 링킹(linking) 이라는 과정이 진행되는데 말그대로 각기 다른 파일에 위치한 소스 코드들을 한데 엮어서 하나의 실행 파일로 만들어지는 과정이라 생각하시면 됩니다.
+아마 예전에 배워서 까먹었을 가능성이 있는데 우리가 실행 파일을 만들기 위해서는 먼저 C 코드를 컴퓨터가 이해할 수 있는 언어로 바꿔주는 **컴파일(compile)** 이라는 과정이 진행됩니다. 이는 단일 소스 코드 전체를 어셈블리어 (기계어와 1 : 1 대응이 되어 있음) 로 변환해 줍니다 (이 때, 목적코드라 불리는 확장자가 `.o` 인 파일이 생성됩니다). 이 과정이 끝나게 되면 **링킹(linking)** 이라는 과정이 진행되는데 말그대로 각기 다른 파일에 위치한 소스 코드들을 한데 엮어서 하나의 실행 파일로 만들어지는 과정이라 생각하시면 됩니다.
 
-링킹 과정에서 특정한 소스 파일에 있는 함수들이 어디어디에 있는지 찾는 과정을 거치게 되는데 예를 들어서 `test.c` 의 경우 `compare` 함수가 어디있는지 찾게 됩니다. (눈치가 빠른 독자라면 `printf` 함수 역시 찾아야 함을 알 수 있는데 이에 대한 설명은 나중에 하겠습니다) 우리의 예제의 경우 `compare` 함수는 `str.c` 에 있기 때문에 링커(링킹을 해주는 것, 컴파일을 해주는 것이 컴파일러인 것과 일맥 상통하다) 는 'test.c 에서 `compare` 함수를 호출하는 경우 `str.c` 에서 찾아라' 정도로 처리해 주게 됩니다. 덕분에 우리는 `test.c` 에서 `compare` 함수를 호출하더라도 `str.c` 의 `compare` 함수를 이용할 수 있게 되는 것이지요.
+링킹 과정에서 특정한 소스 파일에 있는 함수들이 어디어디에 있는지 찾는 과정을 거치게 되는데 예를 들어서 `test.c` 의 경우 `compare` 함수가 어디있는지 찾게 됩니다. (눈치가 빠른 독자라면 `printf` 함수 역시 찾아야 함을 알 수 있는데 이에 대한 설명은 나중에 하겠습니다)
+
+우리의 예제의 경우 `compare` 함수는 `str.c` 에 있기 때문에 **링커**(링킹을 해주는 프로그램) 는 'test.c 에서 `compare` 함수를 호출하는 경우 `str.c` 에서 찾아라' 정도로 처리해 주게 됩니다. 덕분에 우리는 `test.c` 에서 `compare` 함수를 호출하더라도 `str.c` 의 `compare` 함수를 이용할 수 있게 되는 것이지요.
 
 만일 `test.c` 에서
 
@@ -189,7 +191,7 @@ char compare(char *str1, char *str2);
 
 하지만 `compare` 라는 함수 말고도 `copy` 라는 함수가 `str.c` 에 추가되었습니다. 이 함수는 두 문자열을 복사해주는 역할을 합니다. `copy` 라는 함수를 `test.c` 에서 이용하기 위해선 역시 `copy` 함수의 원형을 써주어야 합니다. 이는 상당히 귀찮은 일이지요. 뿐만 아니라 다른 파일에서도 `compare` 함수와 `copy` 함수를 이용할 수 있는데 이 파일 역시 이 두 함수의 원형을 써주어야 합니다.
 
-이렇게 귀찮은 작업을 막기 위해 C 에서는 아주 놀라운 해결책을 제시하였는데 바로 헤더파일 (header file) 을 이용하는 것입니다. 헤더파일은 다음과 같은 방법으로 만들 수 있습니다.
+이렇게 귀찮은 작업을 막기 위해 C 에서는 아주 놀라운 해결책을 제시하였는데 바로 **헤더파일 (header file)** 을 이용하는 것입니다. 헤더파일은 다음과 같은 방법으로 만들 수 있습니다.
 
 
 
@@ -286,7 +288,7 @@ char compare(char *str1, char *str2);
 
 ```
 
-`#include` 와 같은 명령들은 '전처리기(Preprocessor)' 명령이라고 부르는데 이러한 명령들의 특징은 컴파일 이전에 실행된다는 점 입니다.이 명령은 우리가 지칭하는 파일의 내용을 정확히 `100%` 복사해서 붙여 넣는다는 점입니다. 따라서 `#include "str.h"` 라는 명령은 `str.h` 에 있었던 내용, 즉 `char compare(char *str1, char *str2);` 로 컴파일이 시작하기 전에 바뀌어 버립니다.
+`#include` 와 같은 명령들은 **전처리기(Preprocessor)** 명령이라고 부르는데 이러한 명령들의 특징은 컴파일 이전에 실행된다는 점 입니다.이 명령은 우리가 지칭하는 파일의 내용을 정확히 `100%` 복사해서 붙여 넣는다는 점입니다. 따라서 `#include "str.h"` 라는 명령은 `str.h` 에 있었던 내용, 즉 `char compare(char *str1, char *str2);` 로 컴파일이 시작하기 전에 바뀌어 버립니다.
 
 그렇다면 `#include <stdio.h>` 는 어떨까요? 이 역시 똑같습니다. `stdio.h` 에 써있는 내용들이 정확히 복사되어 컴파일 이전에 코드에 붙어버립니다. 그런데 한 가지 이상한 점은 `stdio.h` 는 `<>` 로 감쌌는데, `str.h` 는 왜 " " 로 감쌌을까요? 그 이유는 단순한데, `< >` 로 감싸는 헤더파일은 컴파일러에서 기본으로 지원하는 헤더파일의 경우이고 " " 로 감싸는 헤더파일은 사용자가 직접 제작한 헤더파일의 경우 입니다.
 
@@ -740,25 +742,38 @@ int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30]
     scanf("%s", auth_name[*num_total_book]);
 
     printf("추가할 책의 출판사 : ");    scanf("%s", publ_name[*num_total_book]);
-    borrowed[*num_total_book] = 0; /* 빌려지지 않음*/    printf("추가 완료! \n");    (*num_total_book)++;
-    return 0;}/* 책을 검색하는 함수 */int search_book(char (*book_name)[30], char (*auth_name)[30],                char (*publ_name)[30], int num_total_book){    int user_input; /* 사용자의 입력을 받는다. */    int i;    char user_search[30];
+    borrowed[*num_total_book] = 0; /* 빌려지지 않음*/
+    printf("추가 완료! \n");    (*num_total_book)++;
+    return 0;}/* 책을 검색하는 함수 */int search_book(char (*book_name)[30], char (*auth_name)[30],                char (*publ_name)[30], int num_total_book){
+      int user_input; /* 사용자의 입력을 받는다. */
+      int i;
+      char user_search[30];
     printf("어느 것으로 검색 할 것인가요? \n");    printf("1. 책 제목 검색 \n");    printf("2. 지은이 검색 \n");    printf("3. 출판사 검색 \n");    scanf("%d", &user_input);
     printf("검색할 단어를 입력해주세요 : ");    scanf("%s", user_search);
     printf("검색 결과 \n");
-    if(user_input == 1)    {        /*
+    if(user_input == 1)    {
+          /*
         i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을        사용자가 입력한 검색어와 비교하고 있다.
         */        for(i = 0;i < num_total_book; i++)        {            if(compare(book_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }
-    }    else if(user_input == 2)    {        /*
+    }    else if(user_input == 2)    { 
+         /*
         i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을        사용자가 입력한 검색어와 비교하고 있다.
-        */        for(i = 0;i < num_total_book; i++)        {            if(compare(auth_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }
+        */
+        for(i = 0;i < num_total_book; i++)        {            if(compare(auth_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }
 
-    }    else if(user_input == 3)    {        /*
+    }    else if(user_input == 3)    {
+          /*
         i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를        사용자가 입력한 검색어와 비교하고 있다.
-        */        for(i = 0;i < num_total_book; i++)        {            if(compare(publ_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }    }
-    return 0;}int borrow_book(int *borrowed){    /* 사용자로 부터 책번호를 받을 변수*/    int book_num;
+        */
+        for(i = 0;i < num_total_book; i++)        {            if(compare(publ_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }    }
+    return 0;}int borrow_book(int *borrowed){
+      /* 사용자로 부터 책번호를 받을 변수*/
+      int book_num;
     printf("빌릴 책의 번호를 말해주세요 \n");    printf("책 번호 : ");    scanf("%d", &book_num);
     if(borrowed[book_num] == 1)    {        printf("이미 대출된 책입니다! \n");    }    else    {        printf("책이 성공적으로 대출되었습니다. \n");        borrowed[book_num] = 1;    }
-    return 0;}int return_book(int *borrowed){    /* 반납할 책의 번호 */    int num_book;
+    return 0;}int return_book(int *borrowed){
+      /* 반납할 책의 번호 */
+      int num_book;
     printf("반납할 책의 번호를 써주세요 \n");    printf("책 번호 : ");    scanf("%d", &num_book);
     if(borrowed[num_book] == 0)    {        printf("이미 반납되어 있는 상태입니다\n");    }    else    {        borrowed[num_book] = 0;        printf("성공적으로 반납되었습니다\n");    }
     return 0;}
@@ -782,24 +797,35 @@ int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30]
 
     printf("추가할 책의 저자 : ");    scanf("%s", auth_name[*num_total_book]);
     printf("추가할 책의 출판사 : ");    scanf("%s", publ_name[*num_total_book]);
-    borrowed[*num_total_book] = 0; /* 빌려지지 않음*/    printf("추가 완료! \n");    (*num_total_book)++;
+    borrowed[*num_total_book] = 0; /* 빌려지지 않음*/
+    printf("추가 완료! \n");    (*num_total_book)++;
     return 0;}/* 책을 검색하는 함수 */int search_book(char (*book_name)[30], char (*auth_name)[30],                char (*publ_name)[30], int num_total_book){    int user_input; /* 사용자의 입력을 받는다. */    int i;    char user_search[30];
     printf("어느 것으로 검색 할 것인가요? \n");    printf("1. 책 제목 검색 \n");    printf("2. 지은이 검색 \n");    printf("3. 출판사 검색 \n");    scanf("%d", &user_input);
     printf("검색할 단어를 입력해주세요 : ");    scanf("%s", user_search);
     printf("검색 결과 \n");
-    if(user_input == 1)    {        /*
+    if(user_input == 1)    {
+          /*
         i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을        사용자가 입력한 검색어와 비교하고 있다.
-        */        for(i = 0;i < num_total_book; i++)        {            if(compare(book_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }
-    }    else if(user_input == 2)    {        /*
+        */
+        for(i = 0;i < num_total_book; i++)        {            if(compare(book_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }
+    }    else if(user_input == 2)    {
+          /*
         i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을        사용자가 입력한 검색어와 비교하고 있다.
-        */        for(i = 0;i < num_total_book; i++)        {            if(compare(auth_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }
-    }    else if(user_input == 3)    {        /*
+        */
+        for(i = 0;i < num_total_book; i++)        {            if(compare(auth_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }
+    }    else if(user_input == 3)    {
+          /*
         i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를        사용자가 입력한 검색어와 비교하고 있다.
-        */        for(i = 0;i < num_total_book; i++)        {            if(compare(publ_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }    }
-    return 0;}int borrow_book(int *borrowed){    /* 사용자로 부터 책번호를 받을 변수*/    int book_num;
+        */
+        for(i = 0;i < num_total_book; i++)        {            if(compare(publ_name[i], user_search))            {                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",                    i, book_name[i], auth_name[i], publ_name[i] );            }        }    }
+    return 0;}int borrow_book(int *borrowed){
+      /* 사용자로 부터 책번호를 받을 변수*/
+      int book_num;
     printf("빌릴 책의 번호를 말해주세요 \n");    printf("책 번호 : ");    scanf("%d", &book_num);
     if(borrowed[book_num] == 1)    {        printf("이미 대출된 책입니다! \n");    }    else    {        printf("책이 성공적으로 대출되었습니다. \n");        borrowed[book_num] = 1;    }
-    return 0;}int return_book(int *borrowed){    /* 반납할 책의 번호 */    int num_book;
+    return 0;}int return_book(int *borrowed){
+      /* 반납할 책의 번호 */
+      int num_book;
     printf("반납할 책의 번호를 써주세요 \n");    printf("책 번호 : ");    scanf("%d", &num_book);
     if(borrowed[num_book] == 0)    {        printf("이미 반납되어 있는 상태입니다\n");    }    else    {        borrowed[num_book] = 0;        printf("성공적으로 반납되었습니다\n");    }
     return 0;}
@@ -884,10 +910,11 @@ int main ()
 
 우리는 여태까지 헤더 파일에는 함수의 선언 밖에 쓰지 않았지만 사실 헤더파일에도 많은 것들이 올 수 있습니다. 이에 대해서는 다음 시간에 알아보도록 합시다.
 
-생각해 볼 문제
+### 생각해 볼 문제
 
+#### 문제 1
 
-`1.` 위 도서 관리 프로그램을 구조체를 이용하여 만든 것이 있을 것입니다. ( [http://itguru.tistory.com/60](http://itguru.tistory.com/60)`` 생각해 볼 문제 참조) 이 역시 위와 같이 파일로 쪼개 보세요.
+위 도서 관리 프로그램을 구조체를 이용하여 만든 것이 있을 것입니다. ( [http://itguru.tistory.com/60](http://itguru.tistory.com/60) 생각해 볼 문제 참조) 이 역시 위와 같이 파일로 쪼개 보세요.
 
 
 
