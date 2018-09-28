@@ -129,7 +129,6 @@ function initCategory() {
         if (file_infos[file_id].cat_title) {
           cat_title = file_infos[file_id].cat_title;
         }
-        console.log(file_infos[file_id]);
         div.append($('<a>', {
           class: 'sidebar-nav-item file',
           text: cat_title,

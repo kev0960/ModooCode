@@ -59,9 +59,16 @@ string PageStructure::DumpJson() const {
 
   // Files key is "files".
   json += ToJsonString("files") + ": [";
-  for (const auto& s : pages_) {
-    json += StrCat(ToJsonString(s), ",");
+  if (sorted_pages_.empty()) {
+    for (const auto& s : pages_) {
+      json += StrCat(ToJsonString(s), ",");
+    }
+  } else {
+    for (const auto& s : sorted_pages_) {
+      json += StrCat(ToJsonString(s), ",");
+    }
   }
+
   if (json.back() == ',') {
     json.pop_back();
   }
@@ -87,15 +94,58 @@ string PageStructure::DumpJson() const {
 std::vector<string> PageStructure::FlattenIntoVector() const {
   std::vector<string> flatten;
   flatten.reserve(pages_.size());
-  for (const auto& page : pages_) {
-    flatten.push_back(page);
+  if (sorted_pages_.empty()) {
+    for (const auto& page : pages_) {
+      flatten.push_back(page);
+    }
+  } else {
+    flatten = sorted_pages_;
   }
+
   for (const auto& child : child_dirs_) {
     const auto& child_flat = child->FlattenIntoVector();
     flatten.reserve(flatten.size() + child_flat.size());
     flatten.insert(flatten.end(), child_flat.begin(), child_flat.end());
   }
   return flatten;
+}
+
+void PageStructure::SortCurrentFiles(
+    const std::map<string, std::map<string, string>>& file_info) {
+  // Anchors are the pages that does not have previous page.
+  std::vector<std::vector<string>> anchors_and_expansions;
+  for (const auto& page : pages_) {
+    if (!Contains(file_info, page)) {
+      continue;
+    }
+    const auto& page_info = file_info.at(page);
+    if (!Contains(page_info, string("prev_page"))) {
+      anchors_and_expansions.push_back(std::vector<string>{page});
+    }
+  }
+  for (auto& anchor : anchors_and_expansions) {
+    while (true) {
+      const string& page = anchor.back();
+      if (!Contains(file_info, page)) {
+        break;
+      }
+      const auto& info = file_info.at(page);
+      if (!Contains(info, string("next_page"))) {
+        break;
+      }
+      anchor.push_back(info.at("next_page"));
+    }
+  }
+  // Now append anchors and its expansion to the sorted pages.
+  sorted_pages_.reserve(pages_.size());
+  for (const auto& anchor_and_expansion : anchors_and_expansions) {
+    for (const auto& page : anchor_and_expansion) {
+      sorted_pages_.push_back(page);
+    }
+  }
+  for (const auto& child : child_dirs_) {
+    child->SortCurrentFiles(file_info);
+  }
 }
 
 PagePath::PagePath() : root_page_(std::make_unique<PageStructure>(true, "")) {}
@@ -106,6 +156,11 @@ bool PagePath::AddPagePath(const string& page_path) {
 
 string PagePath::DumpPageStructureToJson() {
   return StrCat("{\n", root_page_->DumpJson(), "\n}");
+}
+
+void PagePath::SortPathFiles(
+    const std::map<string, std::map<string, string>>& file_info) {
+  root_page_->SortCurrentFiles(file_info);
 }
 
 string PagePath::GenerateSiteMap() {
@@ -189,6 +244,11 @@ bool PathReader::ReadAndBuildPagePath(const string& filename) {
     path_.AddPagePath(kv.second + "/" + kv.first);
   }
   return true;
+}
+
+void PathReader::SortPathFiles(
+    const std::map<string, std::map<string, string>>& file_info) {
+  path_.SortPathFiles(file_info);
 }
 
 string PathReader::DumpPagePath() { return path_.DumpPageStructureToJson(); }

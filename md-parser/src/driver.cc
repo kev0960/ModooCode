@@ -186,6 +186,7 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     PathReader reader(path_defined_files);
     bool page_path_json_or_not =
         reader.ReadAndBuildPagePath("./data/old_category.txt");
+    reader.SortPathFiles(file_info);
     if (page_path_json_or_not) {
       std::ofstream output_json("../page_path.json");
       output_json << reader.DumpPagePath();
