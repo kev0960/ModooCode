@@ -22,7 +22,7 @@ int fsetpos ( FILE * stream, const fpos_t * pos );
 스트림의 파일 위치 지정자(position indicator)를 설정한다.
 스트림의 위치 지정자를 새로운 위치로 변경한다. 위 함수에서 인자로 전달되는 `pos` 는 `fpos_t` 객체를 가리키는 포인터로 반드시 이전의 [fgetpos](http://itguru.tistory.com/70)함수의 호출을 통해 값을 가지고 있어야 한다.
 파일 끝 지정자는 이 함수의 호출 뒤에 초기화 되며, 만일 이전에 [ungetc](http://itguru.tistory.com/49)함수를 호출하였더라면 이 함수의 호출로 인한 모든 영향도 사라지게 된다.
-또한, 스트림의 읽기 및 쓰기 형식으로 열려있을 경우, 이 함수를 호출함을 통해서 읽기 `-` 쓰기 모드를 변경할 수 있다. (자세한 내용은 [fopen](http://itguru.tistory.com/58)함수를 참조)
+또한, 스트림의 읽기 및 쓰기 형식으로 열려있을 경우, 이 함수를 호출함을 통해서 읽기 - 쓰기 모드를 변경할 수 있다. (자세한 내용은 [fopen](http://itguru.tistory.com/58)함수를 참조)
 
 
 

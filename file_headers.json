@@ -174,6 +174,7 @@
 }
 ,
 	"134" : {
+	"cat_title" : "1. 자~ C++ 의 세계로",
 	"next_page" : "136",
 	"title" : "씹어먹는 C++ - <1. 자~ C++ 의 세계로>"
 }
@@ -183,12 +184,14 @@
 }
 ,
 	"136" : {
+	"cat_title" : "1 - 2. 첫 C++ 프로그램 분석하기",
 	"next_page" : "138",
 	"prev_page" : "134",
 	"title" : "씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>"
 }
 ,
 	"138" : {
+	"cat_title" : "2 - 1. C++ 은 C 친구 - C 와 공통점",
 	"next_page" : "141",
 	"prev_page" : "136",
 	"title" : "씹어먹는 C++ - <2 - 1. C++ 은 C 친구 - C 와 공통점>"
@@ -212,6 +215,7 @@
 }
 ,
 	"141" : {
+	"cat_title" : "2 - 2. C++ 은 C 친구일까?",
 	"next_page" : "169",
 	"prev_page" : "138",
 	"title" : "씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>"
@@ -353,6 +357,7 @@
 }
 ,
 	"169" : {
+	"cat_title" : "3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)",
 	"next_page" : "172",
 	"prev_page" : "141",
 	"title" : "씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>"
@@ -376,6 +381,7 @@
 }
 ,
 	"172" : {
+	"cat_title" : "4 - 1. 이 세상은 객체로 이루어져 있다",
 	"next_page" : "173",
 	"prev_page" : "169",
 	"title" : "씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>"
@@ -463,6 +469,7 @@
 }
 ,
 	"188" : {
+	"cat_title" : "4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)",
 	"next_page" : "197",
 	"prev_page" : "173",
 	"title" : "씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>"
@@ -513,12 +520,14 @@
 }
 ,
 	"197" : {
+	"cat_title" : "4 - 4. 스타크래프트를 만들자 ② (const, static)",
 	"next_page" : "198",
 	"prev_page" : "188",
 	"title" : "씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>"
 }
 ,
 	"198" : {
+	"cat_title" : "4 - 5. 내가 만드는 String 클래스",
 	"next_page" : "202",
 	"prev_page" : "197",
 	"title" : "씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>"
@@ -540,18 +549,21 @@
 }
 ,
 	"202" : {
+	"cat_title" : "5 - 1. 내가 만든 연산자 - 연산자 오버로딩",
 	"next_page" : "203",
 	"prev_page" : "198",
 	"title" : "씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>"
 }
 ,
 	"203" : {
+	"cat_title" : "5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩",
 	"next_page" : "204",
 	"prev_page" : "202",
 	"title" : "씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>"
 }
 ,
 	"204" : {
+	"cat_title" : "5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열",
 	"next_page" : "209",
 	"prev_page" : "203",
 	"title" : "씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>"
@@ -562,6 +574,7 @@
 }
 ,
 	"209" : {
+	"cat_title" : "6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속",
 	"next_page" : "210",
 	"prev_page" : "204",
 	"title" : "씹어먹는 C++ - <6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속>"
@@ -575,18 +588,21 @@
 }
 ,
 	"210" : {
+	"cat_title" : "6 - 2.  가상(virtual) 함수와 다형성",
 	"next_page" : "211",
 	"prev_page" : "209",
 	"title" : "씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>"
 }
 ,
 	"211" : {
+	"cat_title" : "6 - 3. 가상함수와 상속에 관련한 잡다한 내용들",
 	"next_page" : "213",
 	"prev_page" : "210",
 	"title" : "씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한 내용들>"
 }
 ,
 	"213" : {
+	"cat_title" : "7 - 1. C++ 에서의 입출력 (istream, ostream)",
 	"next_page" : "215",
 	"prev_page" : "211",
 	"title" : "씹어먹는 C++ - <7 - 1. C++ 에서의 입출력 (istream, ostream)>"
@@ -597,24 +613,28 @@
 }
 ,
 	"215" : {
+	"cat_title" : "7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream",
 	"next_page" : "217",
 	"prev_page" : "213",
 	"title" : "씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>"
 }
 ,
 	"217" : {
+	"cat_title" : "8 - 1. Excel 만들기 프로젝트 1부",
 	"next_page" : "218",
 	"prev_page" : "215",
 	"title" : "씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>"
 }
 ,
 	"218" : {
+	"cat_title" : "8 - 2. Excel 만들기 프로젝트 2부",
 	"next_page" : "219",
 	"prev_page" : "217",
 	"title" : "씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>"
 }
 ,
 	"219" : {
+	"cat_title" : "9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)",
 	"next_page" : "221",
 	"prev_page" : "218",
 	"title" : "씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>"
@@ -625,42 +645,49 @@
 }
 ,
 	"221" : {
+	"cat_title" : "9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)",
 	"next_page" : "222",
 	"prev_page" : "219",
 	"title" : "씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>"
 }
 ,
 	"222" : {
+	"cat_title" : "9 - 3. 템플릿 메타 프로그래밍 2",
 	"next_page" : "223",
 	"prev_page" : "221",
 	"title" : "씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>"
 }
 ,
 	"223" : {
+	"cat_title" : "10 - 1. C++ STL - 벡터(vector), 리스트(list), 데크(deque)",
 	"next_page" : "224",
 	"prev_page" : "222",
 	"title" : "씹어먹는 C++ - <10 - 1. C++ STL - 벡터(vector), 리스트(list), 데크(deque)>"
 }
 ,
 	"224" : {
+	"cat_title" : "10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map",
 	"next_page" : "225",
 	"prev_page" : "223",
 	"title" : "씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map>"
 }
 ,
 	"225" : {
+	"cat_title" : "10 - 3. C++ STL - 알고리즘(algorithm)",
 	"next_page" : "227",
 	"prev_page" : "224",
 	"title" : "씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>"
 }
 ,
 	"227" : {
+	"cat_title" : "11 - 1. 우측값 레퍼런스와 이동 생성자",
 	"next_page" : "228",
 	"prev_page" : "225",
 	"title" : "씹어먹는 C++ - <11 - 1. 우측값 레퍼런스와 이동 생성자>"
 }
 ,
 	"228" : {
+	"cat_title" : "11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)",
 	"next_page" : "230",
 	"prev_page" : "227",
 	"title" : "씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>"
@@ -686,7 +713,7 @@
 	"path" : "/C++",
 	"prev_page" : "228",
 	"published" : "false",
-	"title" : "씹어먹는 C ++ - <12. C++ 에서 예외 처리>>",
+	"title" : "씹어먹는 C ++ - <12. C++ 에서 예외 처리>",
 	"updated_date" : "09/17/2018"
 }
 ,

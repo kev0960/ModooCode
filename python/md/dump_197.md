@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>
+cat_title: 4 - 4. 스타크래프트를 만들자 ② (const, static)
 next_page : 198
 --------------
 
@@ -1445,7 +1446,7 @@ int main()
 
 
 
-(난이도 : 上 `-`사실 이 글을 잘 읽었더라면 틀리게 답하는 것이 맞습니다`.` 컴파일러는 불필요한 복사를 막기 위해 `copy elision` 이라는 기술을 사용하고 있는데, 이에 관해서는 추후에 이야기 하도록 하겠습니다. 정 궁금하신 분들 . 컴파일러는 불필요한 복사를 막기 위해 `copy elision` 이라는 기술을 사용하고 있는데, 이에 관해서는 추후에 이야기 하도록 하겠습니다. 정 궁금하신 분들은 [http://en.wikipedia.org/wiki/Copy_elision](http://en.wikipedia.org/wiki/Copy_elision) 를 읽어보시기 바랍니다.)
+(난이도 : 上 -사실 이 글을 잘 읽었더라면 틀리게 답하는 것이 맞습니다`.` 컴파일러는 불필요한 복사를 막기 위해 `copy elision` 이라는 기술을 사용하고 있는데, 이에 관해서는 추후에 이야기 하도록 하겠습니다. 정 궁금하신 분들 . 컴파일러는 불필요한 복사를 막기 위해 `copy elision` 이라는 기술을 사용하고 있는데, 이에 관해서는 추후에 이야기 하도록 하겠습니다. 정 궁금하신 분들은 [http://en.wikipedia.org/wiki/Copy_elision](http://en.wikipedia.org/wiki/Copy_elision) 를 읽어보시기 바랍니다.)
 
 
 

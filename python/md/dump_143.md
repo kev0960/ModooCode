@@ -168,7 +168,7 @@ title : C++ IOstream (입출력) 라이브러리
 
 
 
-조작자(Manipulator) `-` 모두 함수이다.
+조작자(Manipulator) - 모두 함수이다.
 
 
 * boolalpha  :  `bool` 값을 문자열로(true, `false)`

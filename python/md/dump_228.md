@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>
+cat_title: 11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)
 next_page: 230
 --------------
 
@@ -1214,7 +1215,9 @@ A&& forward(A& a) noexcept
 
 ###  생각 해보기
 
-`1.` 실제로 `move` 와 `forward` 가 어떠한 방식으로 구현되어 있는지 궁금하신 분들은 [여기를 참고하시면 됩니다](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-api-4.5/a00936_source.html)`.` 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중 . 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중)
+#### 문제 1
+
+실제로 `move` 와 `forward` 가 어떠한 방식으로 구현되어 있는지 궁금하신 분들은 [여기를 참고하시면 됩니다](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-api-4.5/a00936_source.html)`.` 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중 . 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중)
 
 
 
@@ -1226,12 +1229,3 @@ A&& forward(A& a) noexcept
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-1. http://en.cppreference.com/w/cpp/language/template_argument_deduction `              ` 에서 `Deduction from a function call` 의 첫번째 항목을 읽어보세요.
- [[본문으로]](#footnote_link_228_1)
-
-
-

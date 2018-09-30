@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C++ - <7 - 1. C++ 에서의 입출력 (istream, ostream)>
+cat_title: 7 - 1. C++ 에서의 입출력 (istream, ostream)
 next_page : 215
 --------------
 
@@ -42,14 +43,15 @@ C++ 의 입출력 라이브러리는 다음과 같은 클래스 들로 구성되
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F2361DC4954A0CB38040ED8)
 
 C++ 의 모든 입출력 클래스는 `ios_base` 를 부모 클래스로 하게 됩니다. `ios_base` 클래스는 많은 일은 하지 않고, 스트림의 입출력 형식 관련 데이터를 처리 합니다. 예를 들어서 실수 형을 출력할 때 정밀도를 어떤 식으로 할 것인지에 대해, 혹은 정수형을 출력 시에 10진수로 할지 16진수로 할지 등을 이 클래스에서 처리 합니다 C++ 의 모든 입출력 클래스는 `ios_base` 를 부모 클래스로 하게 됩니다. `ios_base` 클래스는 많은 일은 하지 않고, 스트림의 입출력 형식 관련 데이터를 처리 합니다. 예를 들어서 실수 형을 출력할 때 정밀도를 어떤 식으로 할 것인지에 대해, 혹은 정수형을 출력 시에 10진수로 할지 16진수로 할지 등을 이 클래스에서 처리 합니다.
+
 그 다음으로 `ios` 클래스가 있습니다. 이 클래스에서는 실제로 스트림 버퍼를 초기화 합니다. 스트림 버퍼란, 데이터를 내보내거나 받아들이기 전에 임시로 저장하는 곳이라 볼 수 있습니다. 쉽게 설명하자면, 예를 들어서 우리가 하드디스크에서 파일을 하나 읽는다고 해봅시다. 만일 사용자가, 1 바이트 씩 읽는 다고 했을 때, 실제로 프로그램은 `1 byte` 씩 읽는 것이 아닙니다.
 
 실제로는 한 뭉터기 (예를 들어서 512 바이트) 를 한꺼번에 읽어서 스트림 버퍼에 잠시 저장해 놓은 뒤에 사용자가 요청할 때 마다 1 바이트 씩 꺼내는 것이지요. 만일 버퍼를 다 읽는다면 다시 하드에서 512 바이트를 읽게 되는 것입니다. 이렇게 수행하는 이유는, 하드디스크에서 읽어오는 작업이 매우 느리기 때문에, 한 번 읽을 때 1 바이트 읽으면 엄청난 딜레이가 발생하게 됩니다. 이는 쓰는 작업에서도 마찬가지 입니다. 쓸 때도 우리가 1 문자를 출력 하게 되면, 하드에 바로 쓰는 것이 아니라 일단 버퍼에 보관한 후, 어느 정도 모인 뒤에 출력하게 됩니다.
+
 `ios` 클래스에선 그 외에도, 현재 입출력 작업의 상태를 처리 합니다. 예를 들어, 파일을 읽다가 끝에 도달했는지 안했는지 확인하려면, `eof()` 함수를 호출하면 됩니다. 또, 현재 입출력 작업을 잘 수행할 수 있는지 확인하려면 `good()` 함수를 호출하면 됩니다.
 
 
 ###  istream 클래스
-
 
 
 
@@ -64,7 +66,6 @@ cin >> a;
 와 같은 작업을 할 수 있었던 것이지요. 우리가, 어떤 타입에 대해서도 `cin` 을 사용할 수 있었던 이유는 (a 가 char 이냐 int 이냐에 상관없이) 바로 `opeartor>>` 가 그런 모든 기본 타입들에 대해서는 정의가 되어있기 때문입니다.
 
 ```cpp
-
 istream& operator>> (bool& val);
 
 istream& operator>> (short& val);
@@ -128,7 +129,10 @@ istream& operator>>(istream& in, string& s)
 `operator>>` 의 또 다른 특징으로는, 모든 공백문자 (띄어쓰기나 엔터, 탭 등)을 입력시에 무시해버린다는 점입니다. 그렇기 때문에, 만일 `cin` 을 통해서 문장을 입력 받는 다면, 첫 단어 만 입력 받고 나머지를 읽을 수 없습니다. 예제로 간단히 살펴보자면
 
 ```cpp
-#include <iostream>#include <string>usingnamespace std;int main(){    string s;while (true) {        cin >> s;        cout <<"word : " << s << endl;    }}
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){    string s;while (true) {        cin >> s;        cout <<"word : " << s << endl;    }}
 ```
 
 
@@ -199,7 +203,11 @@ if(t == 0)break;
 
 ```cpp
 
-// 해결 방안#include <iostream>#include <string>usingnamespace std;int main(){int t;while (cin >> t) {        cout <<"입력 :: " << t << endl;if(t == 0)break;    }}
+// 해결 방안
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){int t;while (cin >> t) {        cout <<"입력 :: " << t << endl;if(t == 0)break;    }}
 ```
 
 
@@ -231,13 +239,20 @@ operator void*() const;
 
 
 
-이 함수는 `ios` 객체를 void* 로 변환해줍니다. 이 때, `NULL` 포인터가 아닌 값을 리턴하는 조건이, `failbit` 와 `badbit` 가 모두 `off` 일 때 입니다. 즉, 스트림에 정상적으로 입출력 작업을 수행 할 수 있을 때 말입니다. 그럼 다시 `while` 문을 살펴보자면, 만일 우리가 's' 를 입력한다면 `operator>>` 는 `cin` 객체의 `failbit` 를 켜게 됩니다. 그리고, `cin >> t` 후에 `cin` 이 리턴되는데 (operator>> 는 호출한 자신을 리턴!) , `while` 문의 조건식으로 들어가기 때문에 컴파일러는 적절한 타입 변환을 찾게 되고, 결국 `ios` 객체 `-> void* -> bool` 로 가는 2단 변환을 통해서`while` 문을 잘 빠져나오게 됩니다. (※ `NULL` 포인터는 `bool` 상 `false` 입니다)
+이 함수는 `ios` 객체를 void* 로 변환해줍니다. 이 때, `NULL` 포인터가 아닌 값을 리턴하는 조건이, `failbit` 와 `badbit` 가 모두 `off` 일 때 입니다. 즉, 스트림에 정상적으로 입출력 작업을 수행 할 수 있을 때 말입니다.
+
+그럼 다시 `while` 문을 살펴보자면, 만일 우리가 's' 를 입력한다면 `operator>>` 는 `cin` 객체의 `failbit` 를 켜게 됩니다. 그리고, `cin >> t` 후에 `cin` 이 리턴되는데 (`operator>>` 는 호출한 자신을 리턴!) , `while` 문의 조건식으로 들어가기 때문에 컴파일러는 적절한 타입 변환을 찾게 되고, 결국 `ios` 객체 -> `void*` -> `bool` 로 가는 2단 변환을 통해서`while` 문을 잘 빠져나오게 됩니다. (※ `NULL` 포인터는 `bool` 상 `false` 입니다)
 
 
 위와 같이 문제를 해결할 수 있었지만, 입력을 계속 진행 할 수는 없습니다. 왜냐하면 현재 `cin` 에 `fail` 비트가 켜진 상태이므로, 플래그를 초기화해버리지 않는 한 `cin` 을 이용하여 입력 받을 수 없게 됩니다.
 
 ```cpp
-#include <iostream>#include <string>usingnamespace std;int main(){int t;    cin >> t;// 고의적으로 문자를 입력하면 failbit 가 켜진다    cout <<"fail 비트가 켜진 상태이므로, 입력받지 않는다" << endl;    string s;    cin >> s;}
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+  int t;    cin >> t;// 고의적으로 문자를 입력하면 failbit 가 켜진다
+  cout <<"fail 비트가 켜진 상태이므로, 입력받지 않는다" << endl;    string s;    cin >> s;}
 ```
 
 
@@ -253,7 +268,20 @@ operator void*() const;
 
 ```cpp
 
-#include <iostream>#include <string>usingnamespace std;int main(){int t;while (true) {        cin >> t;        cout <<"입력 :: " << t << endl;if(cin.fail()) {            cout <<"제대로 입력해주세요" << endl;            cin.clear();// 플래그들을 초기화 하고            cin.ignore(100,'\n');// 개행문자가 나올 때 까지 무시한다        }if(t == 0)break;    }}
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+  int t;
+  while (true) {
+            cin >> t;
+            cout <<"입력 :: " << t << endl;
+            if(cin.fail()) {
+              cout <<"제대로 입력해주세요" << endl;
+              cin.clear();// 플래그들을 초기화 하고
+              cin.ignore(100,'\n');// 개행문자가 나올 때 까지 무시한다
+            }
+        if(t == 0)break;    }}
 ```
 
 
@@ -315,7 +343,14 @@ this is a very bad input\n
 
 앞서 `ios_base` 클래스에서, 스트림의 입출력 형식을 바꿀 수 있다고 하였습니다. 예를들어서, 여태까지 수를 입력하면 10진수로 처리되었지만, 이번에는 16진수로 처리할 수 있는 법입니다. 이를 어떻게 가능하게 하는지 아래의 예제로 보여드리겠습니다.
 ```cpp
-#include <string>usingnamespace std;int main(){int t;while (true) {        cin.setf(ios_base::hex, ios_base::basefield);        cin >> t;        cout <<"입력 :: " << t << endl;if(cin.fail()) {            cout <<"제대로 입력해주세요" << endl;            cin.clear();// 플래그들을 초기화 하고            cin.ignore(100,'n');//개행문자가 나올 때까지 무시한다        }if(t == 0)break;    }}
+#include <string>
+using namespace std;
+int main(){int t;while (true) {
+          cin.setf(ios_base::hex, ios_base::basefield);       
+           cin >> t;        cout <<"입력 :: " << t << endl;if(cin.fail()) {
+                        cout <<"제대로 입력해주세요" << endl;
+                                    cin.clear();// 플래그들을 초기화 하고            cin.ignore(100,'n');//개행문자가 나올 때까지 무시한다
+                        }if(t == 0)break;    }}
 ```
 
 성공적으로 컴파일 하였다면
@@ -380,7 +415,9 @@ cin >> hex >> t;
 
 
 
-바로 위에서 `hex` 가 `cin` 에서 수를 받는 방식을 바꿔버렸기 때문입니다. 이 때문에 `hex` 와 같이, 스트림을 조작하여 입력 혹은 출력 방식을 바꿔주는 함수를 조작자라고 부릅니다 (그렇습니다! `hex` 는 함수 입니다).참고로, 위에서 사용하였던 형식 플래그 `hex` 와 이 `hex` 는 이름만 같지 아예 다른 것입니다. (그렇기에, 위에서는 ios_base::hex 로 사용하였죠) 위의 형식 플래그 `hex` 는 `ios_base` 에 선언되어 있는 단순한 상수 '값' 입니다. 반면에 조작자 `hex` 의 경우 `ios` 에 정의되어 있는 '함수' 입니다. 이 조작자 hex 의 정의를 살펴보자면, 아래와 같이 `ios_base` 객체를 레퍼런스로 받고, 다시 그 객체를 리턴하도록 정의 되어 있습니다.
+바로 위에서 `hex` 가 `cin` 에서 수를 받는 방식을 바꿔버렸기 때문입니다. 이 때문에 `hex` 와 같이, 스트림을 조작하여 입력 혹은 출력 방식을 바꿔주는 함수를 조작자라고 부릅니다 (그렇습니다! `hex` 는 함수 입니다).참고로, 위에서 사용하였던 형식 플래그 `hex` 와 이 `hex` 는 이름만 같지 아예 다른 것입니다. (그렇기에, 위에서는 ios_base::hex 로 사용하였죠)
+
+위의 형식 플래그 `hex` 는 `ios_base` 에 선언되어 있는 단순한 상수 '값' 입니다. 반면에 조작자 `hex` 의 경우 `ios` 에 정의되어 있는 '함수' 입니다. 이 조작자 hex 의 정의를 살펴보자면, 아래와 같이 `ios_base` 객체를 레퍼런스로 받고, 다시 그 객체를 리턴하도록 정의 되어 있습니다.
 
 ```cpp
 
@@ -430,12 +467,16 @@ str.setf(std::ios_base::hex, std::ios_base::basefield)
 
 
 모든 입출력 객체들은 이에 대응되는 스트림 객체를 가지고 있게 됩니다. 따라서 C++ 의 입출력 라이브러리에는 이에 대응되는 스트림 버퍼 클래스도 있는데, 이름이 `streambuf` 클래스 입니다. 사실, 스트림이라 하면 그냥 쉽게 말해서 문자들의 순차적인 나열이라 보시면 됩니다. 그냥 문자들이 순차적으로 쭈르륵 들어오는 것이 (마치 냇가에서 물이 졸졸 흐르듯이 `- stream` 단어의 사전적 의미는 시냇물입니다) 스트림이라 생각하시면 됩니다.
-예를 들어서, 우리가 화면에 입력하는 문자도 스트림을 통해서 프로그램에 전달되는 것이고, 하드디스크에서 파일을 읽는 것도, 다른 컴퓨터와 `TCP/IP` 통신하는 것도 (결국 문자들을 쭈루륵 주고받는 것이니까), 모두 스트림을 통해 이루어진다는 것입니다. 심지어 C++ 에서는 `stringstream` 을 통해서평범한문자열을 마치 스트림인 것 처럼이용할 수 도 있게 해줍니다.
+
+예를 들어서, 우리가 화면에 입력하는 문자도 스트림을 통해서 프로그램에 전달되는 것이고, 하드디스크에서 파일을 읽는 것도, 다른 컴퓨터와 `TCP/IP` 통신하는 것도 (결국 문자들을 쭈루륵 주고받는 것이니까), 모두 스트림을 통해 이루어진다는 것입니다. 심지어 C++ 에서는 `stringstream` 을 통해서평범한문자열을 마치 스트림인 것 처럼 이용할 수 도 있게 해줍니다.
+
 `streambuf` 클래스는 스트림에 대한 가장 기본적인 제어를 담당하고 있습니다.
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F2659F647554622FA21A515)
 
-위 사진은 `streambuf` 클래스에서 스트림을 어떤 식으로 추상화하고 있는지 보여주는 그림입니다. `streambuf` 는 그림과 같이 맨 아래에 나타나있는 스트림에서 입력을 받던지, 출력을 하던지, 혹은 입력과 출력을 동시에 (파일 입출력에서"rw" 옵션을 생각해보세요) 수행할 수 도 있습니다.
+위 사진은 `streambuf` 클래스에서 스트림을 어떤 식으로 추상화하고 있는지 보여주는 그림입니다. `streambuf` 는 그림과 같이 맨 아래에 나타나있는 스트림에서 입력을 받던지, 출력을 하던지, 혹은 입력과 출력을 동시에 (파일 입출력에서 "rw" 옵션을 생각해보세요) 수행할 수 도 있습니다.
+
 `streambuf` 클래스는 스트림의 상태를 나타내기 위해서 세 개의 포인터를 정의하고 있습니다. 먼저 버퍼의 시작 부분을 가리키는 시작 포인터와, 다음으로 읽을 문자를 가리키고 있는 포인터 (우리가 흔히 말하는 스트림 위치 지정자), 그리고 버퍼의 끝 부분을 가리키고 있는 끝 포인터가 있습니다. `streambuf` 클래스는 입력 버퍼와 출력 버퍼를 구분해서 각각 `get area` 와 `put area` 라 부르는데, 이에 따라 각각을 가리키는 포인터도 `g` 와 `p` 를 붙여서 표현하게 됩니다.
+
 아래 예제를 통해 `streambuf` 를 어떻게 하면 간단히 조작할 수 있는지 보여드리도록 하겠습니다.
 ```cpp
 
