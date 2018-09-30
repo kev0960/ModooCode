@@ -27,7 +27,7 @@ cat_title :  string.h (cstring)
 
 *  [strcpy](http://itguru.tistory.com/79)  :  문자열을 복사한다.
 
-*  [strncpy](http://itguru.tistory.com/80)`` :  문자열에서 지정한 부분 만큼 복사한다.
+*  [strncpy](http://itguru.tistory.com/80):  문자열에서 지정한 부분 만큼 복사한다.
 
 
 
@@ -55,7 +55,7 @@ cat_title :  string.h (cstring)
 
 *  [strncmp](http://itguru.tistory.com/90)  :  두 개의 문자열의 일부분을 비교한다.
 
-*  [strxfrm](http://itguru.tistory.com/91)`` :  `locale` 을 이용하여 문자열을 변환한다.
+*  [strxfrm](http://itguru.tistory.com/91):  `locale` 을 이용하여 문자열을 변환한다.
 
 
 
@@ -63,7 +63,7 @@ cat_title :  string.h (cstring)
 문자열 검색함수 [[각주:](#footnote_76_1)`1 1`]`
 
 
-*  [memchr](http://itguru.tistory.com/92)`` :  메모리 블록에서 특정한 문자를 찾는다.
+*  [memchr](http://itguru.tistory.com/92):  메모리 블록에서 특정한 문자를 찾는다.
 
 
 
@@ -75,7 +75,7 @@ cat_title :  string.h (cstring)
 
 
 
-*  [strpbrk](http://itguru.tistory.com/95)`` :  특정한 문자열에 포함된 문자들을 다른 문자열에서 찾아 일치되는 것을 가리킨다.
+*  [strpbrk](http://itguru.tistory.com/95):  특정한 문자열에 포함된 문자들을 다른 문자열에서 찾아 일치되는 것을 가리킨다.
 
 
 

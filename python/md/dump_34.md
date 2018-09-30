@@ -16,7 +16,7 @@ cat_title :  stdio.h (cstdio)
 
   `FILE` 객체에 대한 포인터는 각각의 스트림들을 구분하기 때문에 스트림을 이용한 작업시 인자로 전달된다.
 
-  또한 `stdio.h` 라이브러리를 사용하는 프로그램에서 자동으로 생성되고 열리는(open) 표준 스트림들이 있는데 이는`stdin, stdout, stderr``` 이다.
+  또한 `stdio.h` 라이브러리를 사용하는 프로그램에서 자동으로 생성되고 열리는(open) 표준 스트림들이 있는데 이는`stdin, stdout, stderr`이다.
 
 
 
@@ -48,15 +48,15 @@ cat_title :  stdio.h (cstdio)
 
 오류 표시자 (Error indicator)
 
-이 표시자는 스트림 관련한 연산에서 오류가 발생하였을 때 설정(set) 된다. 이 표시자의 상태는 `ferror` 함수를 통해 확인할 수 있으며 `clearerr` 함수나 [rewind](http://itguru.tistory.com/75)`,` [fseek](http://itguru.tistory.com/72)`,` [fsetpos](http://itguru.tistory.com/73)`` 함수들을 통해 표시자의 상태를 초기화 할 수 있다.
+이 표시자는 스트림 관련한 연산에서 오류가 발생하였을 때 설정(set) 된다. 이 표시자의 상태는 `ferror` 함수를 통해 확인할 수 있으며 `clearerr` 함수나 [rewind](http://itguru.tistory.com/75), [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수들을 통해 표시자의 상태를 초기화 할 수 있다.
 
 파일 끝 표시자 (End-Of-File indicator)
 
-이 표시자가 설정되면 스트림의 읽기 혹은 쓰기 연산이 파일의 끝 부분에 도달하였다는 뜻을 나타낸다. 이는 [feof](http://itguru.tistory.com/51)`` 함수를 통해 확인할 수 있으며 `clearerr` 함수나 [rewind](http://itguru.tistory.com/75)`,` [fseek](http://itguru.tistory.com/72)`,` [fsetpos](http://itguru.tistory.com/73)`` 함수를 통해 초기화 할 수 있다.
+이 표시자가 설정되면 스트림의 읽기 혹은 쓰기 연산이 파일의 끝 부분에 도달하였다는 뜻을 나타낸다. 이는 [feof](http://itguru.tistory.com/51)함수를 통해 확인할 수 있으며 `clearerr` 함수나 [rewind](http://itguru.tistory.com/75), [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수를 통해 초기화 할 수 있다.
 
 위치 표시자 (Position Indicator)
 
-이는 포인터로 스트림이 입출력 연산에서 다음으로 읽거나 쓸 문자를 가리킨다. 이 표시자가 가리키는 값은 [ftell](http://itguru.tistory.com/74)`` 이나 `fgetpos` 함수를 통해 알아낼 수 있으며 역시 [rewind](http://itguru.tistory.com/75)`,` [fseek](http://itguru.tistory.com/72)`,` [fsetpos](http://itguru.tistory.com/73)`` 함수를 이용해서 표시자의 값을 바꿀 수 있다.
+이는 포인터로 스트림이 입출력 연산에서 다음으로 읽거나 쓸 문자를 가리킨다. 이 표시자가 가리키는 값은 [ftell](http://itguru.tistory.com/74)이나 `fgetpos` 함수를 통해 알아낼 수 있으며 역시 [rewind](http://itguru.tistory.com/75), [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수를 이용해서 표시자의 값을 바꿀 수 있다.
 
 
 
@@ -81,33 +81,33 @@ cat_title :  stdio.h (cstdio)
 파일 접근 관련:
 
 
-*  [fclose](http://itguru.tistory.com/54)`` : 파일을 닫는다
+*  [fclose](http://itguru.tistory.com/54): 파일을 닫는다
 
-*  [fflush](http://itguru.tistory.com/57)`` : 스트림을 비운다 (flush)
+*  [fflush](http://itguru.tistory.com/57): 스트림을 비운다 (flush)
 
-*  [fopen](http://itguru.tistory.com/58)`` : 파일을 연다
+*  [fopen](http://itguru.tistory.com/58): 파일을 연다
 
-*  [freopen](http://itguru.tistory.com/59)`` : 다른 파일이나 모드로 스트림을 다시 연다.
+*  [freopen](http://itguru.tistory.com/59): 다른 파일이나 모드로 스트림을 다시 연다.
 
-*  [setbuf](http://itguru.tistory.com/61)`` : 스트림 버퍼를 설정한다.
+*  [setbuf](http://itguru.tistory.com/61): 스트림 버퍼를 설정한다.
 
-*  [setvbuf](http://itguru.tistory.com/62)`` : 스트림의 버퍼 및 모드(fully `buffered, line buffered, unbuffered)` 까지 설정한다.
+*  [setvbuf](http://itguru.tistory.com/62): 스트림의 버퍼 및 모드(fully `buffered, line buffered, unbuffered)` 까지 설정한다.
 
 
 형식 있는(formatted) 입출력:
 
 
-*  [fprintf](http://itguru.tistory.com/64)`` : 형식 있는 데이터를 스트림에 쓴다.
+*  [fprintf](http://itguru.tistory.com/64): 형식 있는 데이터를 스트림에 쓴다.
 
-*  [fscanf](http://itguru.tistory.com/65)`` : 형식 있는 데이터를 스트림에서 읽는다.
+*  [fscanf](http://itguru.tistory.com/65): 형식 있는 데이터를 스트림에서 읽는다.
 
-*  [printf](http://itguru.tistory.com/35)`` : `stdout` 에 형식 있는 데이터를 출력한다.
+*  [printf](http://itguru.tistory.com/35): `stdout` 에 형식 있는 데이터를 출력한다.
 
-*  [scanf](http://itguru.tistory.com/36)`` : 형식 있는 데이터를 `stdin` 에서 읽는다.
+*  [scanf](http://itguru.tistory.com/36): 형식 있는 데이터를 `stdin` 에서 읽는다.
 
-*  [sprintf](http://itguru.tistory.com/66)`` : 문자열에 형식 있는 데이터를 쓴다.
+*  [sprintf](http://itguru.tistory.com/66): 문자열에 형식 있는 데이터를 쓴다.
 
-*  [sscanf](http://itguru.tistory.com/67)`` : 문자열에서 형식 있는 데이터를 읽는다.
+*  [sscanf](http://itguru.tistory.com/67): 문자열에서 형식 있는 데이터를 읽는다.
 
 * `vfprintf` : 스트림에 형식 있는 가변 인자 목록(variable `argument` list)을 쓴다.
 
@@ -119,73 +119,73 @@ cat_title :  stdio.h (cstdio)
 문자(character) 입출력:
 
 
-*  [fgetc](http://itguru.tistory.com/37)`` : 스트림에서 문자를 받는다.
+*  [fgetc](http://itguru.tistory.com/37): 스트림에서 문자를 받는다.
 
 
 
-*  [fgets](http://itguru.tistory.com/38)`` : 스트림에서 문자열을 받는다.
+*  [fgets](http://itguru.tistory.com/38): 스트림에서 문자열을 받는다.
 
 
 
-*  [fputc](http://itguru.tistory.com/39)`` : 스트림에 문자를 쓴다.
+*  [fputc](http://itguru.tistory.com/39): 스트림에 문자를 쓴다.
 
-*  [fputs](http://itguru.tistory.com/40)`` : 스트림에 문자열을 쓴다.
+*  [fputs](http://itguru.tistory.com/40): 스트림에 문자열을 쓴다.
 
-*  [getc](http://itguru.tistory.com/41)`` : 스트림에서 문자를 받는다.
-
-
-
-*  [getchar](http://itguru.tistory.com/44)`` : `stdin` 에서 문자를 받는다.
-
-*  [gets](http://itguru.tistory.com/45)`` :  `stdin` 에서 문자열을 받는다.
+*  [getc](http://itguru.tistory.com/41): 스트림에서 문자를 받는다.
 
 
 
-*  [putc](http://itguru.tistory.com/46)`` : 스트림에 문자를 쓴다.
+*  [getchar](http://itguru.tistory.com/44): `stdin` 에서 문자를 받는다.
 
-*  [putchar](http://itguru.tistory.com/47)`` : 문자를 `stdout` 에 쓴다.
+*  [gets](http://itguru.tistory.com/45):  `stdin` 에서 문자열을 받는다.
 
 
 
-*  [puts](http://itguru.tistory.com/48)`` : 문자열을 `stdout` 에 쓴다.
+*  [putc](http://itguru.tistory.com/46): 스트림에 문자를 쓴다.
 
-*  [ungetc](http://itguru.tistory.com/49)`` : 스트림으로부터 문자를 `unget` 한다. (마지막으로 읽어들인 위치로 되돌림)
+*  [putchar](http://itguru.tistory.com/47): 문자를 `stdout` 에 쓴다.
+
+
+
+*  [puts](http://itguru.tistory.com/48): 문자열을 `stdout` 에 쓴다.
+
+*  [ungetc](http://itguru.tistory.com/49): 스트림으로부터 문자를 `unget` 한다. (마지막으로 읽어들인 위치로 되돌림)
 
 
 직접적인 입출력:
 
 
-*  [fread](http://itguru.tistory.com/68)`` : 스트림으로 부터 데이터 블록을 읽는다.
+*  [fread](http://itguru.tistory.com/68): 스트림으로 부터 데이터 블록을 읽는다.
 
-*  [fwrite](http://itguru.tistory.com/69)`` : 스트림에 데이터 블록을 쓴다.
+*  [fwrite](http://itguru.tistory.com/69): 스트림에 데이터 블록을 쓴다.
 
 
 파일 위치 지정:
 
 
-*  [fgetpos](http://itguru.tistory.com/70)`` : 현재 스트림의 (읽어들이는) 위치를 얻는다.
+*  [fgetpos](http://itguru.tistory.com/70): 현재 스트림의 (읽어들이는) 위치를 얻는다.
 
-*  [fseek](http://itguru.tistory.com/72)`` : 스트림 위치 표시자의 위치를 재조정한다.
+*  [fseek](http://itguru.tistory.com/72): 스트림 위치 표시자의 위치를 재조정한다.
 
-*  [fsetpos](http://itguru.tistory.com/73)`` : 스트림의 위치 표시자를 설정한다.
+*  [fsetpos](http://itguru.tistory.com/73): 스트림의 위치 표시자를 설정한다.
 
-*  [ftell](http://itguru.tistory.com/74)`` : 스트림의 현재 위치를 얻는다.
+*  [ftell](http://itguru.tistory.com/74): 스트림의 현재 위치를 얻는다.
 
-*  [rewind](http://itguru.tistory.com/75)`` : 위치 표시자의 위치를 맨 앞으로 조정한다.
+*  [rewind](http://itguru.tistory.com/75): 위치 표시자의 위치를 맨 앞으로 조정한다.
 
 
 오류 처리:
 
 
-*  [clearerr](http://itguru.tistory.com/50)`` : 오류 표시자를 초기화한다.
+*  [clearerr](http://itguru.tistory.com/50): 오류 표시자를 초기화한다.
 
 
 
-*  [feof](http://itguru.tistory.com/51)`` : 파일 끝 표시자 (End of file indicator) 을 확인한다.
+*  [feof](http://itguru.tistory.com/51): 파일 끝 표시자 (End of file indicator) 을 확인한다.
 
-*  [ferror](http://itguru.tistory.com/52)`` : 오류 표시자를 확인한다.
+*  [ferror](http://itguru.tistory.com/52): 오류 표시자를 확인한다.
 
-*  [perror](http://itguru.tistory.com/53)`` : 오류 메세지를 출력한다.
+*  [perror](http://itguru.tistory.com/53): 오류 메세지를 출력한다.
 
 
 

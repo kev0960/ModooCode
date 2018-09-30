@@ -61,7 +61,7 @@ int main () {
 ###  연관된 함수
 
 *  [feof](http://itguru.tistory.com/51)   :  파일 끝 표시자(EOF) 를 검사한다.
-*  [ferror](http://itguru.tistory.com/52)`` :  오류 표시자를 검사한다.
+*  [ferror](http://itguru.tistory.com/52):  오류 표시자를 검사한다.
 * rewind  :  위치 표시자를 처음으로 되돌린다.
 
 

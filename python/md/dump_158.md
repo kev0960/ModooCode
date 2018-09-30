@@ -23,7 +23,7 @@ locale imbue ( const locale& loc );
 로케일을 설정(imbue) 한다.
 `loc` 를 스트림의 새로운 로케일(locale) 객체로 사용하여, 로케일과 관련있는 작업에 이를 사용한다.
 
-`imbue` 함수 종료 직전에 `imbue_event` 가 발생되며 [register_callback](http://itguru.tistory.com/159)`` 함수를 통해 등록되었던 함수들이 모두 호출되게 된다.
+`imbue` 함수 종료 직전에 `imbue_event` 가 발생되며 [register_callback](http://itguru.tistory.com/159)함수를 통해 등록되었던 함수들이 모두 호출되게 된다.
 
 
 
@@ -84,4 +84,4 @@ int main()
 
 ###  연관된 것들
 
-*  [ios_base::getloc](http://itguru.tistory.com/160)`` : 현재 로케일을 알아온다.
+*  [ios_base::getloc](http://itguru.tistory.com/160): 현재 로케일을 알아온다.

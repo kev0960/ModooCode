@@ -48,7 +48,7 @@ char * strerror ( int errnum );
 
 
 
-이 함수는 C 표준 함수 중에서`` 이름에 `r` 이 가장 많이 포함되어 있는 함수`` 이다. 무려 `r` 이 4 개나 있다.
+이 함수는 C 표준 함수 중에서이름에 `r` 이 가장 많이 포함되어 있는 함수이다. 무려 `r` 이 4 개나 있다.
 
 
 
@@ -91,4 +91,4 @@ int main ()
 
 ###  연관된 함수
 
-*  [perror](http://itguru.tistory.com/53)`` :  오류 메세지를 출력한다.
+*  [perror](http://itguru.tistory.com/53):  오류 메세지를 출력한다.

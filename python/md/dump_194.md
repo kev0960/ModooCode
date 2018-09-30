@@ -20,7 +20,7 @@ int peek ( );
 
 
 
-그 다음 문자를 살짝 훔쳐본다`` (즉, 스트림에서 빼오지는 않고 읽기만 한다)
+그 다음 문자를 살짝 훔쳐본다(즉, 스트림에서 빼오지는 않고 읽기만 한다)
 따라서 [get](http://itguru.tistory.com/191)처럼 스트림에서 문자를 빼내는 것이 아니라, 그 문자는 그냥 스트림에 남아있게 된다.
 
 ###  인자
@@ -36,11 +36,14 @@ int peek ( );
 
 그 다음 문자의 값을 리턴한다. 오류가 발생 시에 이 함수는 `EOF` 를 리턴하며, 내부 상태 플래그를 다음과 같은 상황에 맞게 변경하게 된다.
 
-플래그오류`eofbit`작업 중 문자들의 끝에 도달하였을 때`failbit``-`
-`badbit`위 같은 일들 외의 다른 오류가 발생시
+|플래그|오류|
+|----|----|
+|`eofbit`|작업 중 문자들의 끝에 도달하였을 때|
+|`failbit`|-|
+|`badbit`|위 같은 일들 외의 다른 오류가 발생시|
 
 
-위와 같은 플래그들이 [ios::exceptions](http://itguru.tistory.com/150)`` 함수들로 설정되었다면, ios_base::failure 가 `throw` 된다.
+위와 같은 플래그들이 [ios::exceptions](http://itguru.tistory.com/150)함수들로 설정되었다면, ios_base::failure 가 `throw` 된다.
 
 
 
@@ -123,7 +126,7 @@ int_type peek ( );
 
 ###  연관된 함수
 
-*  [istream::get](http://itguru.tistory.com/191)`` : 스트림에서 서식화 되지 않은 데이터를 가져온다.
+*  [istream::get](http://itguru.tistory.com/191): 스트림에서 서식화 되지 않은 데이터를 가져온다.
 *  [istream::operator>>](http://itguru.tistory.com/147): 스트림에서 서식화 된 데이터를 가져온다.
 
 

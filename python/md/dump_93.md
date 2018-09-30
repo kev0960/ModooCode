@@ -39,7 +39,7 @@ char * strchr ( const char *, int );
 
 `str`
 
-`C` 형식 문자 C 형식 문자열
+C 형식 문자 C 형식 문자열
 
 `character`
 

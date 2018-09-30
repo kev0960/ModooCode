@@ -20,7 +20,7 @@ time_t mktime ( struct tm * timeptr );
 ```
 
 `tm` 구조체를 `time_t` 형식으로 변환한다.
-`timeptr` 이 가리키는 [ tm 구조체](http://itguru.tistory.com/109)를 읽어 들여서 [time_t](http://itguru.tistory.com/113)`` 형식으로 리턴한다. 이 때, 이 함수가 `tm` 구조체에서 참조하는 값은 현재 시각과 날짜 뿐이다. 나머지 정보인 `tm_wday` 와 `tm_yday` 는 무시한다. 참고로 이 함수는 `timeptr` 이 가리키는 `tm` 구조체의 내용을 수정하는데, `tm` 구조체에 들어있는 시각과 날짜 정보를 가지고 `tm_wday` 와 `tm_yday` 를 설정한다. 따라서 이를 통해 역으로 `mktime` 함수를 호출 하여서 특정한 날짜가 무슨 요일이고, 몇 번째 날인지 추적할 수 도 있다.
+`timeptr` 이 가리키는 [ tm 구조체](http://itguru.tistory.com/109)를 읽어 들여서 [time_t](http://itguru.tistory.com/113)형식으로 리턴한다. 이 때, 이 함수가 `tm` 구조체에서 참조하는 값은 현재 시각과 날짜 뿐이다. 나머지 정보인 `tm_wday` 와 `tm_yday` 는 무시한다. 참고로 이 함수는 `timeptr` 이 가리키는 `tm` 구조체의 내용을 수정하는데, `tm` 구조체에 들어있는 시각과 날짜 정보를 가지고 `tm_wday` 와 `tm_yday` 를 설정한다. 따라서 이를 통해 역으로 `mktime` 함수를 호출 하여서 특정한 날짜가 무슨 요일이고, 몇 번째 날인지 추적할 수 도 있다.
 
 
 
@@ -41,7 +41,7 @@ time_t mktime ( struct tm * timeptr );
 
 
 
-현재 `timeptr` 로 전달된 날짜와 시각에 맞추어서 이에 대한 [time_t](http://itguru.tistory.com/113)`` 값이 리턴된다. 오류 발생시에는 -1 이 리턴된다.
+현재 `timeptr` 로 전달된 날짜와 시각에 맞추어서 이에 대한 [time_t](http://itguru.tistory.com/113)값이 리턴된다. 오류 발생시에는 -1 이 리턴된다.
 
 
 

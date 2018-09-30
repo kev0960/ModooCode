@@ -16,8 +16,6 @@ cat_title :  vector 생성자
 #@ vector::vector
 
 
-
-
 ```info
 explicit vector ( const Allocator& = Allocator() );
 explicit vector ( size_type n, const T& value= T(), const Allocator& = Allocator() );
@@ -76,11 +74,11 @@ vector ( const vector<T,Allocator>& x );
 
 `first, last`
 
-복사할 범위의 시작과 끝을 나타내는 반복자이다. 이 때 `first` 가 가리키는 원소 부터, `last` 가 가리키는 원소바로 직전까지`` 복사가 된다 (즉, 원소 전체를 복사하기 위해서는 `last` 에 `end` 를 전달하면 된다)
+복사할 범위의 시작과 끝을 나타내는 반복자이다. 이 때 `first` 가 가리키는 원소 부터, `last` 가 가리키는 원소바로 직전까지 복사가 된다 (즉, 원소 전체를 복사하기 위해서는 `last` 에 `end` 를 전달하면 된다)
 
 `x`
 
-같은 클래스 템플릿 인자 (T, Allocator) 을 가지는 벡터 객체로, 이 객체가 복사되어 생성된다.
+같은 클래스 템플릿 인자 (`T, Allocator`) 을 가지는 벡터 객체로, 이 객체가 복사되어 생성된다.
 
 
 
@@ -92,7 +90,13 @@ vector ( const vector<T,Allocator>& x );
 
 /*이 예제는http://www.cplusplus.com/reference/stl/vector/vector/에서 가져왔습니다.*/
 
-#include <iostream>#include <vector>using namespace std;int main (){    unsigned int i;    // 위에서 설명한 생성자들을 차례대로 오버로딩함    vector<int> first;                                // int 를 보관할 빈 벡터 생성    vector<int> second (4,100);                       // 값이 100 인 int 원소 4 개 보관    vector<int> third (second.begin(),second.end());  // second 의 처음 ~ 끝으로 생성    vector<int> fourth (third);                       // 세 번째 벡터 복사본    // 배열을 통해서도 생성 가능하다.    int myints[] = {16,2,77,29};    vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );    cout << "The contents of fifth are:";    for (i=0; i < fifth.size(); i++)        cout << " " << fifth[i];    cout << endl;    return 0;}
+#include <iostream>
+#include <vector>
+using namespace std;
+int main () {    unsigned int i;    // 위에서 설명한 생성자들을 차례대로 오버로딩함    vector<int> first;                                // int 를 보관할 빈 벡터 생성    vector<int> second (4,100);                       // 값이 100 인 int 원소 4 개 보관    vector<int> third (second.begin(),second.end());  // second 의 처음 ~ 끝으로 생성    vector<int> fourth (third);                       // 세 번째 벡터 복사본   
+ // 배열을 통해서도 생성 가능하다. 
+ 
+  int myints[] = {16,2,77,29};    vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );    cout << "The contents of fifth are:";    for (i=0; i < fifth.size(); i++)        cout << " " << fifth[i];    cout << endl;    return 0;}
 ```
 
 
@@ -122,11 +126,7 @@ vector ( const vector<T,Allocator>& x );
 ###  연관된 함수
 
 
-
-
-
-* vector::assign
-`` : 벡터 내용을 대입한다.
+* vector::assign : 벡터 내용을 대입한다.
 
 
 

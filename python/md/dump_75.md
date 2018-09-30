@@ -26,7 +26,7 @@ void rewind ( FILE * stream );
 fseek (stream, 0, SEEK_SET);
 ```
 
-과 정확히 동일하다.단, [fseek](http://itguru.tistory.com/72)`` 함수와는 달리 `rewind` 함수는 오류 지정자를 초기화 한다.
+과 정확히 동일하다.단, [fseek](http://itguru.tistory.com/72)함수와는 달리 `rewind` 함수는 오류 지정자를 초기화 한다.
 따라서, 스트림이 읽기 및 쓰기 형식으로 열려있을 경우, `rewind` 함수를 호출함으로써 읽기에서 쓰기 모드로, 쓰기에서 읽기 모드로 변경할 수 있다.
 
 
@@ -76,7 +76,7 @@ fseek (stream, 0, SEEK_SET);
 
 ###  연관된 함수
 
-*  [fseek](http://itguru.tistory.com/72)`` :  스트림 위치 지정자를 설정한다.
+*  [fseek](http://itguru.tistory.com/72):  스트림 위치 지정자를 설정한다.
 *  [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
 *  [fflush](http://itguru.tistory.com/57)  :  스트림을 비운다.
 

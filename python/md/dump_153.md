@@ -25,9 +25,9 @@ fmtflags flags ( fmtflags fmtfl );
 첫번째 형태의 경우, 현재 스트림의 서식 플래그가 어떻게 설정되어 있는지 불러온다.
 두번째 형태의 경우 스트림의 서식 플래그를 새롭게 설정하고, 원래 설정되어있던 것을 리턴한다.
 
-서식 플래그는 입출력시 데이터가 어떻게 해석되고, 또 어떻게 출력되는지 결정해준다. `fmtfl` 로 무슨 값이 올 수 있는지 알려면 [ios_base::fmtflags](http://itguru.tistory.com/154)`` 를 참조하여라
+서식 플래그는 입출력시 데이터가 어떻게 해석되고, 또 어떻게 출력되는지 결정해준다. `fmtfl` 로 무슨 값이 올 수 있는지 알려면 [ios_base::fmtflags](http://itguru.tistory.com/154)를 참조하여라
 
-`fmtfl` 에 서식 플래그를 전달할 때, 기존의 스트림의 서식 플래그의 내용은 모두 지워지고, 전달된 `fmtfl` 의 내용으로 덮어 씌워지게 된다. 다른 서식 플래그를 바꾸지 않고, 한 개의 서식 플래그 만 바꾸기 위해서는 [setf](http://itguru.tistory.com/155)`` 함수나 [unsetf](http://itguru.tistory.com/156)`` 함수를 이용하면 된다.
+`fmtfl` 에 서식 플래그를 전달할 때, 기존의 스트림의 서식 플래그의 내용은 모두 지워지고, 전달된 `fmtfl` 의 내용으로 덮어 씌워지게 된다. 다른 서식 플래그를 바꾸지 않고, 한 개의 서식 플래그 만 바꾸기 위해서는 [setf](http://itguru.tistory.com/155)함수나 [unsetf](http://itguru.tistory.com/156)함수를 이용하면 된다.
 
 
 

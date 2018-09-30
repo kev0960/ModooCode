@@ -41,7 +41,7 @@ int fputc ( int character, FILE * stream );
 ### 
 
 오류가 없다면 쓰여진 문자가 그대로 반환된다.
-만일 오류가 발생하였다면 `EOF` 가 리턴되고, 오류 표시자가 설정된다. ( [ferror](http://itguru.tistory.com/52)`` 참조)
+만일 오류가 발생하였다면 `EOF` 가 리턴되고, 오류 표시자가 설정된다. ( [ferror](http://itguru.tistory.com/52)참조)
 
 
 
@@ -116,13 +116,13 @@ int main ()
 
 
 
-*  [putc](http://itguru.tistory.com/46)`` : 스트림에 문자를 쓴다.
+*  [putc](http://itguru.tistory.com/46): 스트림에 문자를 쓴다.
 
-*  [fgetc](http://itguru.tistory.com/37)`` : 스트림에서 문자를 가져온다.
+*  [fgetc](http://itguru.tistory.com/37): 스트림에서 문자를 가져온다.
 
 * `fwrite` : 스트림에 데이터 블록을 쓴다.
 
-*  [fopen](http://itguru.tistory.com/58)`` : 파일을 연다.
+*  [fopen](http://itguru.tistory.com/58): 파일을 연다.
 
 
 

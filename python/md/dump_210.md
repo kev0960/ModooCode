@@ -233,7 +233,7 @@ Parent* p_c = &c;
 
 
 
-어떤 분들은 이와 같은 대입이 가능하냐고 물을 수 있습니다. `Parent` 와 `Child` 는 다른 클래스 이니까요. 하지만, 그 분들이 간과하고 있는 점은 `Child` 가 `Parent` 를 상속 받고 있다는 점입니다.`` 상속 받는다면 뭐죠? `==> Child is a Parent`
+어떤 분들은 이와 같은 대입이 가능하냐고 물을 수 있습니다. `Parent` 와 `Child` 는 다른 클래스 이니까요. 하지만, 그 분들이 간과하고 있는 점은 `Child` 가 `Parent` 를 상속 받고 있다는 점입니다.상속 받는다면 뭐죠? `==> Child is a Parent`
 
 
 즉 (말이 조금 이상하지만) `Child` 객체 `c` 도 어떻게 보면 `Parent` 객체이기 때문에 `Parent` 객체를 가리키는 포인터가 `c` 를 가리켜도 무방하다는 것입니다. 이를 그림으로 표현한다면 아래와 같습니다.
@@ -474,7 +474,7 @@ return 0;
 와 같은 런타임 오류가 발생하게 됩니다.
 
 
-이러한 강제적으로 다운 캐스팅을 하는 경우, 컴파일 타임에서 오류를 찾아내기 매우 힘들기 때문에 다운 캐스팅은 작동이 보장되지 않는 한매우매우 추천하지 않는 바`` 입니다.
+이러한 강제적으로 다운 캐스팅을 하는 경우, 컴파일 타임에서 오류를 찾아내기 매우 힘들기 때문에 다운 캐스팅은 작동이 보장되지 않는 한매우매우 추천하지 않는 바입니다.
 
 
 
@@ -528,7 +528,7 @@ total_pay += employee_list[i]->calculate_pay();
 바로 여기서, `employee_list[i]->print_info()` 를 하게 되면 무조건 `Employee` 클래스의 `print_info` 함수가 호출된다는 것입니다. 왜냐하면 위에서도 이야기 하였듯이, `employee_list[i]` 는 `Employee` 객체를 가리키는 포인터 이기 때문에 자신이 가리키는 객체가 `Employee` 객체라고 생각합니다.
 
 
-하지만 우리는 `Manager` 객체와 `Employee` 객체 모두 `Employee*` 가 가리키도록 하였으므로, 만일 `employee_list[i]` 가 가리키는 것이 `Manager` 객체 일 때, Manager 의 `print_info` 함수가 아니라 `Employee` 의 `print_info` 함수가 호출되서 다른 결과를 냅니다. 마찬가지로 `calculate_pay` 함수도 `Manager` 의 `calculate_pay` 가 호출 되어야 하는데 `Employee` 의 `calculate_pay` 가 호출되어서 (월급이 더 적게나오는 ㅠㅠ`)` 틀린 결과가 나옵니다. 나쁜 회사였으면 환영할 일이였겠지만 착한 우리의 입장에선 이 문제를 꼭 해결해야 합니다.
+하지만 우리는 `Manager` 객체와 `Employee` 객체 모두 `Employee*` 가 가리키도록 하였으므로, 만일 `employee_list[i]` 가 가리키는 것이 `Manager` 객체 일 때, Manager 의 `print_info` 함수가 아니라 `Employee` 의 `print_info` 함수가 호출되서 다른 결과를 냅니다. 마찬가지로 `calculate_pay` 함수도 `Manager` 의 `calculate_pay` 가 호출 되어야 하는데 `Employee` 의 `calculate_pay` 가 호출되어서 (월급이 더 적게나오는 ㅠㅠ) 틀린 결과가 나옵니다. 나쁜 회사였으면 환영할 일이였겠지만 착한 우리의 입장에선 이 문제를 꼭 해결해야 합니다.
 
 
 실제로,

@@ -19,8 +19,8 @@ struct tm * localtime ( const time_t * timer );
 ```
 
 
- [time_t](http://itguru.tistory.com/113)`` 값을 이용하여 지역 시간을 기준으로 [ tm 구조체](http://itguru.tistory.com/109)를 초기화한다.
-`timer` 가 가리키는 [time_t](http://itguru.tistory.com/113)`` 형 변수의 값을 이용하여 [tm 구조체](http://itguru.tistory.com/109)의 멤버들을 초기화 한 뒤 이를 가리키는 포인터를 리턴한다.
+ [time_t](http://itguru.tistory.com/113)값을 이용하여 지역 시간을 기준으로 [ tm 구조체](http://itguru.tistory.com/109)를 초기화한다.
+`timer` 가 가리키는 [time_t](http://itguru.tistory.com/113)형 변수의 값을 이용하여 [tm 구조체](http://itguru.tistory.com/109)의 멤버들을 초기화 한 뒤 이를 가리키는 포인터를 리턴한다.
 참고적으로 현재 시간을 구해와야 하는 경우 십중 팔구 이 함수를 사용하게 된다.
 
 
@@ -46,7 +46,7 @@ time_t rawtime;struct tm * timeinfo;time ( &rawtime );timeinfo = localtime ( &ra
 
 `timer`
 
- [time_t](http://itguru.tistory.com/113)`` 형 변수를 가리키는 포인터
+ [time_t](http://itguru.tistory.com/113)형 변수를 가리키는 포인터
 
 
 
@@ -104,6 +104,6 @@ int main ()
 
 * [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
 * [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.
-*  [gmtime](http://itguru.tistory.com/119)`` : `time_t` 값을 토대로 `UTC` 시간에 맞추어 `tm` 구조체를 초기화한다.
+*  [gmtime](http://itguru.tistory.com/119): `time_t` 값을 토대로 `UTC` 시간에 맞추어 `tm` 구조체를 초기화한다.
 *  [mktime](http://itguru.tistory.com/112)  :  `tm` 구조체 내용을 토대로 `time_t` 형 값을 계산한다.
 *  [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.

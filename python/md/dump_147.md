@@ -48,7 +48,7 @@ istream& operator>> (istream& is, unsigned char* str );
 
   이 연산자(>>) 은 입력 스트림에서 사용되는데, '추출 연산자(extraction operator)' 이라 불리기도 한다. 이는 오른쪽 쉬프트 연산자와 다른 것이다. 이 연산자는 스트림에서 데이터의 해석을 필요로 하는 입력 작업을 수행하게 된다. 예를 들어, 입력 받은 숫자 데이터 (문자 형태로 입력될 것이다) 를 사용자가 지정한 수치 형태로 변환한다든지 등 말이다.
 
-  참고적으로 3 가지 종류의 멤버 함수들과, 한 가지 종류의 전역 함수들이 [istream](http://itguru.tistory.com/146)`` 객체에 적용되는 추출 연산자에서 오버로드 된다.
+  참고적으로 3 가지 종류의 멤버 함수들과, 한 가지 종류의 전역 함수들이 [istream](http://itguru.tistory.com/146)객체에 적용되는 추출 연산자에서 오버로드 된다.
 
 
 * 첫번재 종류의 멤버 함수는 산술 추출자(arithmetic extractor) 이다. 이들은 입력 데이터로 부터 문자들을 받아서 이 추출자의 인자의 특정 타입의 형태로 값을 해석하게 된다. 그 결과값은 인자로 전달된 변수에 저장되게 된다. (위 소스에서 상단 부분)
@@ -82,7 +82,7 @@ strm >> variable1 >> variable2 >> variable3; //...
 
 이는 `strm` 객체에 추출 연산을 계속 진행하는 것과 다름 없다.
 
-  표준 [istream](http://itguru.tistory.com/146)`` 객체에 사용시 효과가 있는 조작자들은
+  표준 [istream](http://itguru.tistory.com/146)객체에 사용시 효과가 있는 조작자들은
 
 
 * boolalpha  :  `bool` 값을 문자열로(true, `false)`
@@ -109,7 +109,7 @@ strm >> variable1 >> variable2 >> variable3; //...
 * ws  :  공백문자를 추출한다.
 
 
-  다른 조작자들도 [istream](http://itguru.tistory.com/146)`` 객체에 사용 가능하지만 효과는 없다.
+  다른 조작자들도 [istream](http://itguru.tistory.com/146)객체에 사용 가능하지만 효과는 없다.
 
   아래의 인자를 가지는 조작자들은 `istream` 객체에 영향이 있다. 이들은 `<iomanip>` 헤더파일에 정의되어 있으며 명시적으로 `include` 를 시켜 주어야만 한다.
 
@@ -151,7 +151,7 @@ strm >> variable1 >> variable2 >> variable3; //...
 
   문자를 추출하여 C 형식 문자열로 저장한다. (즉 `str` 이 문자열의 시작 부분을 가리키고, `null` 문자로 문자열이 끝난다) 추출은 다음 문자가 공백 문자(whitespace) 이거나 널 문자 혹은 `End of file` 에 도달하였을 때 종료된다. 입력 받은 문자열 끝에는 자동적으로 널 문자가 붙게 된다.
 
-  이 때 만일 필드의 너비가 0 보다 크게 설정되었다면 (이는 [ios_base::width](http://itguru.tistory.com/152)`` 혹은 `setw` 로 설정할 수 있다)  입력 받을 문자의 수를 제한할 수 도 있다(버퍼 오버플로우 문제를 막기 위해). 이 경우 입력 받은 문자의 수가 필드 너비 값에 도달하기 하나 전에, 입력을 중단하고 나머지 한 문자를 널 종료 문자(null terminating character) 로 채운다. 그리고 자동으로 필드 너비 값이 0 으로 재설정 되버린다.
+  이 때 만일 필드의 너비가 0 보다 크게 설정되었다면 (이는 [ios_base::width](http://itguru.tistory.com/152)혹은 `setw` 로 설정할 수 있다)  입력 받을 문자의 수를 제한할 수 도 있다(버퍼 오버플로우 문제를 막기 위해). 이 경우 입력 받은 문자의 수가 필드 너비 값에 도달하기 하나 전에, 입력을 중단하고 나머지 한 문자를 널 종료 문자(null terminating character) 로 채운다. 그리고 자동으로 필드 너비 값이 0 으로 재설정 되버린다.
 
 `is`
 
@@ -169,8 +169,8 @@ strm >> variable1 >> variable2 >> variable3; //...
 
 발생된 오류는 내부 플래그를 변화시키게 된다.
 
-플래그오류`eofbit`작업 중 문자들의 끝에 도달하였을 때`failbit`입력받은 데이터가 올바른 타입으로 해석이 되지 않을 `` 경우
-(참고로` eofbit`시` failbit`도 참이 된다) `badbit`위 같은 일들 외의 다른 오류가 발생시(`ios_base::iostate` 를 참조`)`
+플래그오류`eofbit`작업 중 문자들의 끝에 도달하였을 때`failbit`입력받은 데이터가 올바른 타입으로 해석이 되지 않을 경우
+(참고로` eofbit`시` failbit`도 참이 된다) `badbit`위 같은 일들 외의 다른 오류가 발생시(`ios_base::iostate` 를 참조)
 
   추가적으로 [ios::exceptions](http://itguru.tistory.com/150) 의 멤버 함수를 통해 적절하게 플래그가 설정되어있다면, 위와 같은 상황 발생 시 `ios_base::failure` 예외가 `throw` 된다.
 

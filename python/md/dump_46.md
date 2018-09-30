@@ -22,7 +22,7 @@ cat_title :  putc
 스트림에 문자를 쓴다.
 스트림에 한 문자를 쓴 뒤 위치 표시자 (Position indicator) 를 한 칸 전진시킨다.
 문자가 스트림에 어떤 부분에 쓰일지는 위치 표시자에 의해 정해진다.
-`putc` 는 [fputc](http://itguru.tistory.com/39)`` 와 동일하며 [fputc](http://itguru.tistory.com/39)`` 와 마찬가지로 스트림을 인자로 받지만 `putc` 는 매크로의 형태로 구현되어 있기 때문에 인자를 전달할 때, 복잡한 식을 사용하지 않는 것이 좋다.
+`putc` 는 [fputc](http://itguru.tistory.com/39)와 동일하며 [fputc](http://itguru.tistory.com/39)와 마찬가지로 스트림을 인자로 받지만 `putc` 는 매크로의 형태로 구현되어 있기 때문에 인자를 전달할 때, 복잡한 식을 사용하지 않는 것이 좋다.
 `putchar` 함수는 `putc` 와 비슷한 작업을 하지만 `stream` 인자를 받지 않고 무조건 `stdout` 에 쓴다.
 
 

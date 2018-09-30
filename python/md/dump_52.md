@@ -66,7 +66,7 @@ int main ()
 ###  연관된 함수
 
 *  [feof](http://itguru.tistory.com/51)  :  파일 끝 표시자를 검사한다.
-*  [clearerr](http://itguru.tistory.com/50)`` :  오류 표시자들을 클리어(clear) 한다.
+*  [clearerr](http://itguru.tistory.com/50):  오류 표시자들을 클리어(clear) 한다.
 *  [perror](http://itguru.tistory.com/53)  :  오류 메세지를 표시한다.
 
 

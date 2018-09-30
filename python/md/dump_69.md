@@ -109,9 +109,9 @@ int main ()
 
 
 
-*  [fprintf](http://itguru.tistory.com/64)`` : 스트림에 형식에 맞추어 출력한다.
+*  [fprintf](http://itguru.tistory.com/64): 스트림에 형식에 맞추어 출력한다.
 
-*  [putc](http://itguru.tistory.com/46)`` :  스트릠에 문자를 쓴다.
+*  [putc](http://itguru.tistory.com/46):  스트릠에 문자를 쓴다.
 
 *  [fputc](http://itguru.tistory.com/39)  : 스트림에 문자를 쓴다.
 

@@ -23,7 +23,7 @@ streamsize  gcount ( ) const;
 마지막 서식화 되지 않은 (unformatted) 입력 작업에서 읽어들인 문자의 개수를 리턴한다.
 
 
-서식화 되지 않는 작업을 하는 함수들은 [get](http://itguru.tistory.com/191)`,` [getline](http://itguru.tistory.com/149)`, ignore,` [peek](http://itguru.tistory.com/194)`, read, readsome, putback, unget` 을 들 수 있는데, [peek](http://itguru.tistory.com/194)`, putback, unget` 의 경우 문자를 추출하는 함수가 아니기 때문에 `gcount` 의 리턴값은 항상 0 이 되게 된다.
+서식화 되지 않는 작업을 하는 함수들은 [get](http://itguru.tistory.com/191), [getline](http://itguru.tistory.com/149), `ignore`, [peek](http://itguru.tistory.com/194), `read, readsome, putback, unget` 을 들 수 있는데, [peek](http://itguru.tistory.com/194), `putback, unget` 의 경우 문자를 추출하는 함수가 아니기 때문에 `gcount` 의 리턴값은 항상 0 이 되게 된다.
 
 ###  인자
 
@@ -86,9 +86,9 @@ streamsize gcount () const;
 
 ###  연관된 함수
 
-*  [istream::get](http://itguru.tistory.com/191)`` : 스트림에서 서식화 되지 않은 데이터를 입력 받는다.
-*  [istream::getline](http://itguru.tistory.com/149)`` : 스트림에서 한 줄 입력받는다.
-*  [istream::ignore](http://itguru.tistory.com/193)`` : 스트림에서 문자를 받고 버린다.
+*  [istream::get](http://itguru.tistory.com/191): 스트림에서 서식화 되지 않은 데이터를 입력 받는다.
+*  [istream::getline](http://itguru.tistory.com/149): 스트림에서 한 줄 입력받는다.
+*  [istream::ignore](http://itguru.tistory.com/193): 스트림에서 문자를 받고 버린다.
 * istream::read : 한 데이터 블록을 읽는다.
 * istream::readsome : 버퍼에 가능한 데이터 블록을 읽는다.
 

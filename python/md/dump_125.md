@@ -559,7 +559,7 @@ book_list[i]->book_name == (  *( *(book_list + i))).book_name;
 
 #### 문제 1
 
-책들의 목록을 `html` 형식에 맞게 출력하여 표로 깔끔하게 보여질 수 있게 해보세요. `html` 문법은 [http://www.w3schools.com/html/default.asp](http://www.w3schools.com/html/default.asp)`` 에서 배우실 수 있습니다. (난이도 : 上)
+책들의 목록을 `html` 형식에 맞게 출력하여 표로 깔끔하게 보여질 수 있게 해보세요. `html` 문법은 [http://www.w3schools.com/html/default.asp](http://www.w3schools.com/html/default.asp)에서 배우실 수 있습니다. (난이도 : 上)
 
 
 ```warning

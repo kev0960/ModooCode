@@ -20,8 +20,8 @@ int fgetpos ( FILE * stream, fpos_t * position );
 
 
 스트림의 위치 지정자(position indicator)가 가리키는 위치를 `position` 에 저장한다.
-따라서 인자로 전달되는 `position` 은 `fpos_t` 의 형을 가리키는 포인터 형태로 사용되어야 하며, 거의 대부분 [fsetpos](http://itguru.tistory.com/73)`` 의 인자로만 사용하게 된다.
-만일 파일 위치 지정자의 값을 정수형 데이터로 얻고 싶다면 [ftell](http://itguru.tistory.com/74)`` 함수를 호출하면 된다.
+따라서 인자로 전달되는 `position` 은 `fpos_t` 의 형을 가리키는 포인터 형태로 사용되어야 하며, 거의 대부분 [fsetpos](http://itguru.tistory.com/73)의 인자로만 사용하게 된다.
+만일 파일 위치 지정자의 값을 정수형 데이터로 얻고 싶다면 [ftell](http://itguru.tistory.com/74)함수를 호출하면 된다.
 
 
 
@@ -96,7 +96,7 @@ int main ()
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F156A741F4BCA43C8528424)
 
 
-위 예제에서 일단 `myfile.txt` 에서 문자 하나를 입력받는다. 그 이후, `pos` 에 현재의 파일 위치 지정자의 위치를 저장한다. 문자 하나를 입력 받았으므로 파일 위치 지정자는 두 번째 문자 (b) 를 가리킬 것이다. 그 후, `for` 문에서 [fsetpos](http://itguru.tistory.com/73)`` 함수를 이용하여 파일 위치 지정자의 위치를 계속 `pos` 로 바꾼다. 즉, 문자를 입력 받더라도 파일 위치 지정자가 그 다음 문자를 가리키는 것이 아니라 [fsetpos](http://itguru.tistory.com/73)`` 함수에 의해 계속 두 번째 문자만 가리키게 되는 것이다. 따라서 `c d` 가 출력되지 않고 계속 `b b` 만 출력되게 된다.
+위 예제에서 일단 `myfile.txt` 에서 문자 하나를 입력받는다. 그 이후, `pos` 에 현재의 파일 위치 지정자의 위치를 저장한다. 문자 하나를 입력 받았으므로 파일 위치 지정자는 두 번째 문자 (b) 를 가리킬 것이다. 그 후, `for` 문에서 [fsetpos](http://itguru.tistory.com/73)함수를 이용하여 파일 위치 지정자의 위치를 계속 `pos` 로 바꾼다. 즉, 문자를 입력 받더라도 파일 위치 지정자가 그 다음 문자를 가리키는 것이 아니라 [fsetpos](http://itguru.tistory.com/73)함수에 의해 계속 두 번째 문자만 가리키게 되는 것이다. 따라서 `c d` 가 출력되지 않고 계속 `b b` 만 출력되게 된다.
 
 
 

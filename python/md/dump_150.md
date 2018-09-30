@@ -35,7 +35,7 @@ void exceptions ( iostate except );
 `eofbit`
 스트림으로부터 추출 작업(extracting operation)을 수행 중 `End–Of–File`에 도달하는 경우
 `failbit`
-마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 `` 경우
+마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 경우
 `badbit`
 스트림 버퍼의 입출력 작업이 실패하여 발생한 오류
 `goodbit`

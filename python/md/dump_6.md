@@ -7,10 +7,7 @@ next_page : 19
 
 이번 강좌에서는 아래와 같은 내용을 배우게 됩니다.
 
-* `Hello, World!`
-빠삭하게
-`` 분석
-
+* `Hello, World!` 빠삭하게 분석
 * 주석(Comment)의 사용
 
 

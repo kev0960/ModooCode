@@ -95,6 +95,6 @@ int main ()
 
 ###  연관된 함수
 
-*  [strcpy](http://itguru.tistory.com/79)`` : 문자열을 복사한다.
+*  [strcpy](http://itguru.tistory.com/79): 문자열을 복사한다.
 *  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.
 *  [strncat](http://itguru.tistory.com/82): 문자열에서 일부 문자들만 덧붙인다.

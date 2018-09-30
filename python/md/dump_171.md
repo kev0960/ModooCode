@@ -44,12 +44,12 @@ iostate rdstate ( ) const;
 ios_base::iostate 타입의 객체로, 아래 상태 플래그 상수들의 조합(OR 연산) 으로 구성된다.
 
 
-플래그 값의미`eofbit`스트림으로부터 추출 작업(extracting operation)을 수행 중` End` – `Of` – ` File`에 도달하는 경우`failbit`마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 `` 경우`badbit`스트림 버퍼의 입출력 작업이 실패하여 발생한 오류`goodbit`오류가 없다`. .
+플래그 값의미`eofbit`스트림으로부터 추출 작업(extracting operation)을 수행 중` End` – `Of` – ` File`에 도달하는 경우`failbit`마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 경우`badbit`스트림 버퍼의 입출력 작업이 실패하여 발생한 오류`goodbit`오류가 없다`. .
 이 값들은 `ios_base` 에 정적 상수 멤버로 정의되어 있다.
 
 `goodbit` 을 제외한 다른 오류 플래그가 설정되어 있는지 확인하려면, 그 오류 플래그와 `AND` 연산을 취해보면 된다. 즉, `failbit` 가 설정되어 있는지 확인하려면 `rdstate` 가 리턴한 객체와 비트 `AND` 연산을 취해서 값이 1 이면 설정된 것이고 0 이면 `failbit` 가 설정되지 않은 것이다.
 
-위 방법이 귀찮다면 그냥 [eof](http://itguru.tistory.com/167)`,` [fail](http://itguru.tistory.com/165)`,` [bad](http://itguru.tistory.com/166)`,` [good](http://itguru.tistory.com/164)함수들을 이용해서 각각의 비트가 설정되었는지 아닌지 확인할 수 도 있다.
+위 방법이 귀찮다면 그냥 [eof](http://itguru.tistory.com/167), [fail](http://itguru.tistory.com/165), [bad](http://itguru.tistory.com/166), [good](http://itguru.tistory.com/164)함수들을 이용해서 각각의 비트가 설정되었는지 아닌지 확인할 수 도 있다.
 
 
 
@@ -111,6 +111,6 @@ iostate rdstate () const;
 
 *  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
 *  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::good](http://itguru.tistory.com/164)`` :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
 *  [ios::eof](http://itguru.tistory.com/167)  :  `eofbit` 이 설정되어 있는지 확인한다.
 *  [ios::clear](http://itguru.tistory.com/180)  :  오류 상태 플래그를 설정한다.

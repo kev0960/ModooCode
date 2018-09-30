@@ -124,9 +124,9 @@ int main ()
 
 *  [fputc](http://itguru.tistory.com/39)  : 스트림에 한 문자를 쓴다.
 
-*  [fprintf](http://itguru.tistory.com/64)`` : 특정한 형식으로 스트림에 쓴다.
+*  [fprintf](http://itguru.tistory.com/64): 특정한 형식으로 스트림에 쓴다.
 
-*  [fwrite](http://itguru.tistory.com/69)`` : 스트림에 데이터 블록을 쓴다.
+*  [fwrite](http://itguru.tistory.com/69): 스트림에 데이터 블록을 쓴다.
 
 
 

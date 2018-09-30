@@ -19,8 +19,8 @@ struct tm * gmtime ( const time_t * timer );
 ```
 
 
- [time_t](http://itguru.tistory.com/113)`` 형 값을 입력 받아서 `UTC` 형식 시간에 따른 `tm` 구조체를 만들어서 리턴한다.
-`timer` 가 가리키는 [time_t](http://itguru.tistory.com/113)`` 형 변수의 값을 받아 그 값을 토대로 [ tm 구조체](http://itguru.tistory.com/109)의 멤버들을 초기화 한다.
+ [time_t](http://itguru.tistory.com/113) 형 값을 입력 받아서 `UTC` 형식 시간에 따른 `tm` 구조체를 만들어서 리턴한다.
+`timer` 가 가리키는 [time_t](http://itguru.tistory.com/113) 형 변수의 값을 받아 그 값을 토대로 [tm 구조체](http://itguru.tistory.com/109)의 멤버들을 초기화 한다.
 
 
 
@@ -35,10 +35,9 @@ struct tm * gmtime ( const time_t * timer );
 
 ###  리턴값
 
+인자로 받은 [time_t](http://itguru.tistory.com/113) 형 변수의 값을 토대로 멤버가 초기화 된 [tm 구조체](http://itguru.tistory.com/109) 변수를 가리키는 포인터가 리턴된다.
 
-
-
-  인자로 받은 [time_t](http://itguru.tistory.com/113)`` 형 변수의 값을 토대로 멤버가 초기화 된 [tm 구조체](http://itguru.tistory.com/109)`` 변수를 가리키는 포인터가 리턴된다. 이 때, 이 구조체 변수는 정적으로 할당된 변수로 `gmtime` 함수와 `localtime` 함수 모두 공통으로 사용한다. 따라서 이들 함수를 호출하게 되면 구조체 변수의 내용이 덮어 씌워지기 때문에 리턴된 구조체 변수를 이용하기 위해서는 동일한 `tm` 구조체 변수에 복사해 넣는 것이 중요하다.
+이 때, 이 구조체 변수는 정적으로 할당된 변수로 `gmtime` 함수와 `localtime` 함수 모두 공통으로 사용한다. 따라서 이들 함수를 호출하게 되면 구조체 변수의 내용이 덮어 씌워지기 때문에 리턴된 구조체 변수를 이용하기 위해서는 동일한 `tm` 구조체 변수에 복사해 넣는 것이 중요하다.
 
 
 

@@ -98,4 +98,4 @@ operator void * () const;
 ###  연관된 것들
 
 *  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 나 `badbit` 이 설정되었는지 확인한다.
-*  [ios::operator!](http://itguru.tistory.com/168)`` :  스트림 객체를 확인한다.
+*  [ios::operator!](http://itguru.tistory.com/168):  스트림 객체를 확인한다.

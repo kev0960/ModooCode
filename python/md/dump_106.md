@@ -40,7 +40,7 @@ char mystr[100]="test string";
 
 `string`
 
-`C` 형식 문자 C 형식 문자열
+C 형식 문자 C 형식 문자열
 
 
 

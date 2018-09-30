@@ -41,7 +41,7 @@ next_page : 16
 sudo su
 ```
 
-그리고 비밀번호를 요구하면, 자신이 처음에 설정한 `root` 의 비밀번호를 입력합니다. 만약 자신이 설정한 `root` 의 비밀번호가 무엇인지 모른다면 현재 사용자의 비밀번호를 입력해 보세요. 대부분 현재 사용자의 비밀번호와 `root` 의 비밀번호가 일치 할 것입니다. 만약 입력했다면`` 아래와 같이
+그리고 비밀번호를 요구하면, 자신이 처음에 설정한 `root` 의 비밀번호를 입력합니다. 만약 자신이 설정한 `root` 의 비밀번호가 무엇인지 모른다면 현재 사용자의 비밀번호를 입력해 보세요. 대부분 현재 사용자의 비밀번호와 `root` 의 비밀번호가 일치 할 것입니다. 만약 입력했다면 아래와 같이
 
 
 ![sudo su 를 입력합니다. ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1761FA254A43A7F2BEA041)
@@ -74,7 +74,7 @@ apt-get install gcc
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F151CAF164A43AC108A523C)
 
-이제, 드디어 글을 입력할 수 있습니다.  그냥 보통 편집기 처럼 프로그램을 작성하면 됩니다. 한가지 유의해야 할 점은 `Visual Stdio` 처럼 자동으로 `indentation` 을 해주는 것이 아닙니다. (물론 `vim` 설정파일에서 `autoindent` 로 설정하면 가능하지만 여기서는 짧은 프로그램이므로 손으로 직접 해도 상관 없습니다. 자세한 내용은 다음 사이트를 참조하세요 : [http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C](http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C%20)`)`
+이제, 드디어 글을 입력할 수 있습니다.  그냥 보통 편집기 처럼 프로그램을 작성하면 됩니다. 한가지 유의해야 할 점은 `Visual Stdio` 처럼 자동으로 `indentation` 을 해주는 것이 아닙니다. (물론 `vim` 설정파일에서 `autoindent` 로 설정하면 가능하지만 여기서는 짧은 프로그램이므로 손으로 직접 해도 상관 없습니다. 자세한 내용은 다음 사이트를 참조하세요 : [http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C](http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C%20))
 
 다 입력한다면 아래와 같은 모습이 됩니다.
 
@@ -94,7 +94,7 @@ gcc -o helloworld helloworld.c
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F183F86194A43AE1E757BAE)
 
-위 명령어를 입력 한 후 `,` 아무 내용이 뜨지 않는다면 애러없이 성공적으로 컴파일 된 것입니다.  이제,
+위 명령어를 입력 한 후 , 아무 내용이 뜨지 않는다면 애러없이 성공적으로 컴파일 된 것입니다.  이제,
 
 ```cpp
 ./helloworld

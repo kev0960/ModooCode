@@ -23,7 +23,7 @@ bool operator ! ( ) const;
 스트림 객체의 오류 상태 플래그를 확인한다.
 만일 스트림의 오류 상태 플래그인 `failbit` 와 `badbit` 중 어느 하나라도 설정되어 있다면 `true` 를 리턴하고 아니면 `false` 를 리턴한다.
 
-이 연산자는 [fail()](http://itguru.tistory.com/165)`` 함수의 동일한 작업을 한다.
+이 연산자는 [fail()](http://itguru.tistory.com/165)함수의 동일한 작업을 한다.
 
 
 
@@ -92,4 +92,4 @@ int main () {
 ###  연관된 함수
 
 *  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::good](http://itguru.tistory.com/164)`` :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.

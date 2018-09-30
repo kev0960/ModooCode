@@ -41,7 +41,7 @@ cat_title :  getchar
 
 
 읽어들인 문자를 `int` 값으로 리턴한다.
-만일 파일 끝에 도달하거나, 읽기 오류가 발생한다면 함수는 `EOF` 를 리턴하고 이에 대응하는 오류혹은 `EOF` 표시자가 설정된다. 여러분은 [ferror](http://itguru.tistory.com/52)`` 이나 [feof](http://itguru.tistory.com/51)`` 함수를 통해 각각 어떤 오류가 발생했는지, 파일 끝에 도달하였는지 알 수 있다.
+만일 파일 끝에 도달하거나, 읽기 오류가 발생한다면 함수는 `EOF` 를 리턴하고 이에 대응하는 오류혹은 `EOF` 표시자가 설정된다. 여러분은 [ferror](http://itguru.tistory.com/52)이나 [feof](http://itguru.tistory.com/51)함수를 통해 각각 어떤 오류가 발생했는지, 파일 끝에 도달하였는지 알 수 있다.
 
 
 

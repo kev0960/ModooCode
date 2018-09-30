@@ -28,13 +28,13 @@ title : C++ IOstream (입출력) 라이브러리
 
   입출력 라이브러리는 클래스 템플릿들의 상속 관계로 이루어져 있다. 이러한 클래스 템플릿들은 라이브러리를 타입에 영향을 받지 않게 독립적(type-independent)으로 만들어주게 된다. 이들은 클래스 템플릿의 집합으로, 각각은 2 개의 템플릿 인자를 가지고 있다. 하나는 `char` 로(charT) 입출력될 데이터들을 어떠한 문자로 조작(manipulate) 할 지 결정하고 (예컨대 `char, wchar_t` 등등), 다른 하나는 `trait` 인자로, 입출력될 데이터 처리시 부가적인 성질을 부여하게 된다.
 
-  이 클래스 템플릿들로 부터 `char` 형으로 특수화 된 클래스들 (즉 `char_traits` 에 `char` 이 전달된 경우) 은 템플릿 이름 앞에 붙은 `basic_` 을 뺀 이름을 가지고 있다. 예컨대 `istream` 은 `basic_istream` 으로 부터 `char` 형으로 특수화 된 클래스 이다. 또한 `fstream` 은 `basic_fstream` 으로 부터 특수화 된 것이다. 유일한 예외는 [ios_base](http://itguru.tistory.com/144)`` 인데, 이는 그 자체로 타입에 무관하기 대문에 템플릿을 기반으로 하지 않지만 어쨋든 클래스 이다.
+  이 클래스 템플릿들로 부터 `char` 형으로 특수화 된 클래스들 (즉 `char_traits` 에 `char` 이 전달된 경우) 은 템플릿 이름 앞에 붙은 `basic_` 을 뺀 이름을 가지고 있다. 예컨대 `istream` 은 `basic_istream` 으로 부터 `char` 형으로 특수화 된 클래스 이다. 또한 `fstream` 은 `basic_fstream` 으로 부터 특수화 된 것이다. 유일한 예외는 [ios_base](http://itguru.tistory.com/144)인데, 이는 그 자체로 타입에 무관하기 대문에 템플릿을 기반으로 하지 않지만 어쨋든 클래스 이다.
 
 클래스 템플릿 특수화
 
   이 라이브러리에는 기본적으로 `iostream` 클래스 템플릿에서 두 가지 형태로 특수화 된 클래스 들이 존재한다. 하나는 위에서도 말했지만 `char` 형태로 데이터들을 조작하는 것이고 다른 하나는 `wchar_t` 형태로 데이터를 조작하는 클래스들이다.
 
-  이 `char` 형으로 특수화 된 클래스들이 위 사진에서도 잘 나와있듯이 `iostream` 라이브러리에서는 더 잘 알려진 형태이다. 이들을 보통 `narrow-oriented` 되었다고 부르는데, [ios](http://itguru.tistory.com/145)`,` [ istream](http://itguru.tistory.com/146)`, ofstream` 과 같은 경우이다. 반대로 `wchar_t` 형태로 특수화 된 경우(wide-oriented 되었다고 부른다), 클래스 이름 앞에 `w` 가 붙게 되는데, 예컨대 `wios, wistream, wofstream` 등이 있다.
+  이 `char` 형으로 특수화 된 클래스들이 위 사진에서도 잘 나와있듯이 `iostream` 라이브러리에서는 더 잘 알려진 형태이다. 이들을 보통 `narrow-oriented` 되었다고 부르는데, [ios](http://itguru.tistory.com/145), [ istream](http://itguru.tistory.com/146)`, ofstream` 과 같은 경우이다. 반대로 `wchar_t` 형태로 특수화 된 경우(wide-oriented 되었다고 부른다), 클래스 이름 앞에 `w` 가 붙게 되는데, 예컨대 `wios, wistream, wofstream` 등이 있다.
 
 표준 객체(standard `object)`
 
@@ -46,7 +46,7 @@ title : C++ IOstream (입출력) 라이브러리
 
 조작자(Manipulator)
 
-  조작자들은 전역 함수들로, `iostream` 스트림 객체에 삽입(insertion, `<<)` 과 추출(extraction, [>>](http://itguru.tistory.com/147)`)` 작업과 함께 사용되는 것들이다. 이들은 스트림의 성질이나, 설정된 서식등을 바꾼다. 예를 들어 `endl, hex, scientific` 등을 들 수 있다.
+  조작자들은 전역 함수들로, `iostream` 스트림 객체에 삽입(insertion, `<<)` 과 추출(extraction, [>>](http://itguru.tistory.com/147)) 작업과 함께 사용되는 것들이다. 이들은 스트림의 성질이나, 설정된 서식등을 바꾼다. 예를 들어 `endl, hex, scientific` 등을 들 수 있다.
 
 
 
@@ -97,7 +97,7 @@ title : C++ IOstream (입출력) 라이브러리
 
 *  [ios_base](http://itguru.tistory.com/144)  :  기초 클래스(base)로 표준 입출력 라이브러리와 타입과 무관한(type-independent) 멤버들만 가지고 있다.
 
-*  [ios](http://itguru.tistory.com/145)`` :  기초 클래스로 표준 입출력 라이브러리의 타입 의존적 멤버들을 가지고 있다.
+*  [ios](http://itguru.tistory.com/145):  기초 클래스로 표준 입출력 라이브러리의 타입 의존적 멤버들을 가지고 있다.
 
 *  [istream](http://itguru.tistory.com/146)  :  입력(Input) 클래스
 

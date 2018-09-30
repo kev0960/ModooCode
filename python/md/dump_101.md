@@ -111,7 +111,7 @@ char *strstr(const char *str1, const char *str2){
 
 만일 나쁜 문자가 포함되어 있지 않는다면 그 문자열 전체 길이 만큼 오른쪽으로 쉬프트 해주면 된다.
 
-위와 같이 보이어 무어 알고리즘은 두 개의 쉬프트로 구성되어 있는데, 각 쉬프트를 빠르게 처리하기 위해 테이블을 만든다. 테이블을 만드는 과정은 간단하므로 생략하도록 한다. (테이블을 만드는 방법을 보시려면 [http://xenostudy.tistory.com/72](http://xenostudy.tistory.com/72)`` 로 들어가보시기 바랍니다)
+위와 같이 보이어 무어 알고리즘은 두 개의 쉬프트로 구성되어 있는데, 각 쉬프트를 빠르게 처리하기 위해 테이블을 만든다. 테이블을 만드는 과정은 간단하므로 생략하도록 한다. (테이블을 만드는 방법을 보시려면 [http://xenostudy.tistory.com/72](http://xenostudy.tistory.com/72)로 들어가보시기 바랍니다)
 
 이를 바탕으로 코드를 짜보면 아래와 같이 된다.
 
@@ -298,5 +298,5 @@ int main ()
 
 
 *  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 포함된 정도를 구한다.
-*  [strpbrk](http://itguru.tistory.com/95)`` : 어떠한 문자열들의 문자들을 키로 하여 특정 문자열에서 그 키들을 검색한다.
+*  [strpbrk](http://itguru.tistory.com/95): 어떠한 문자열들의 문자들을 키로 하여 특정 문자열에서 그 키들을 검색한다.
 *  [strchr](http://itguru.tistory.com/93)  : 특정 문자열에서 특정 문자가 첫번째로 나타나는 곳의 위치를 구한다.

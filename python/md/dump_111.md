@@ -69,7 +69,7 @@ double difftime ( time_t time2, time_t time1 );
 ###  연관된 함수
 
 
-*  [asctime](http://itguru.tistory.com/116)`` :  `tm` 구조체를 문자열로 변환한다.
+*  [asctime](http://itguru.tistory.com/116):  `tm` 구조체를 문자열로 변환한다.
 *  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 를 `tm` 으로 바꾸되 `UTC` 형식 시간으로 바꾼다.
 *  [localtime](http://itguru.tistory.com/120)  :  `time_t` 를 `tm` 으로 바꾸되 지역 시간으로 바꾼다.
 *  [time](http://itguru.tistory.com/114)  :  현재 시각을 구한다.

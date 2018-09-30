@@ -17,7 +17,7 @@ cat_title :  getc
 스트림에서 한 문자를 읽어온다.
 
 문자를 읽어온 스트림의 내부 파일 위치 표시자가 현재 가리키는 문자를 리턴한다. 그리고 내부 파일 표시자는 그 다음 문자를 가리키게 된다.
-`getc` 는 [ fgetc](http://itguru.tistory.com/37)`` 와 동일하며 역시 스트림을 인자로 취하고 있지만 매크로의 형태로 만들어져 있기 때문에 인자는 만일을 위해 식이 아닌 형태여야 한다.
+`getc` 는 [ fgetc](http://itguru.tistory.com/37)와 동일하며 역시 스트림을 인자로 취하고 있지만 매크로의 형태로 만들어져 있기 때문에 인자는 만일을 위해 식이 아닌 형태여야 한다.
 `getchar` 함수는 `getc` 와 비슷하지만 스트림을 인자로 받지 않는다.
 
 
@@ -39,7 +39,7 @@ cat_title :  getc
 
 
 읽어들인 문자는 `int` 값으로 리턴된다.
-만일 파일 끝에 도달하거나, 읽기 오류가 발생한다면 함수는 `EOF` 를 리턴하고 이에 대응하는 오류 혹은 `EOF` 표시자가 설정된다. 여러분은 [ferror](http://itguru.tistory.com/52)이나 [feof](http://itguru.tistory.com/51)`` 함수를 통해 각각 어떤 오류가 발생했는지, 파일 끝에 도달하였는지 알 수 있다.
+만일 파일 끝에 도달하거나, 읽기 오류가 발생한다면 함수는 `EOF` 를 리턴하고 이에 대응하는 오류 혹은 `EOF` 표시자가 설정된다. 여러분은 [ferror](http://itguru.tistory.com/52)이나 [feof](http://itguru.tistory.com/51)함수를 통해 각각 어떤 오류가 발생했는지, 파일 끝에 도달하였는지 알 수 있다.
 
 
 
@@ -134,7 +134,7 @@ int main ()
 
 
 
-*  [fwrite](http://itguru.tistory.com/69)`` : 스트림에 데이터 블록을 쓴다.
+*  [fwrite](http://itguru.tistory.com/69): 스트림에 데이터 블록을 쓴다.
 
 
 

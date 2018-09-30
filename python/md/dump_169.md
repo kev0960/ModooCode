@@ -8,9 +8,7 @@ next_page : 172
 
 * `new` 와 `delete` 의 사용
 
-* `Welcome to Object Oriented Programming World!`
-
-
+* **Welcome to Object Oriented Programming World!**
 
 
 
@@ -225,7 +223,7 @@ int main(){
 아마도 예전에 저의 C 언어 강좌를 보신 분들이라면 `switch` 문을 배우면서 간단하게 만들어보았던 마이펫을 기억하실 것입니다. 이번에는 그 때 기억을 살려서 동물 관리 프로그램을 간단하게 만들어보았습니다. 소스를 보기 전에 여러분들도 간단히 만들어보시는 것도 좋을 것 같습니다. 일단 조건은 다음과 같습니다.
 
 
-* 동물(struct Animal) 이라는 구조체를 정의해서 이름(`char name[30]`), 나이(`int age`),체력(`int health`), 배부른 정도(`int food`), 깨끗한 정도의(`int clean`) 값을 가진다.
+* 동물(`struct Animal`) 이라는 구조체를 정의해서 이름(`char name[30]`), 나이(`int age`),체력(`int health`), 배부른 정도(`int food`), 깨끗한 정도의(`int clean`) 값을 가진다.
 * 처음에 동물 구조체의 포인터 배열(`struct Animal* list[30]`)을 만들어서 사용자가 동물을 추가할 때 마다 하나씩 생성한다.
 * `play` 라는 함수를 만들어서 동물의 상태를 변경하고 `show_stat` 함수를 만들어서 지정하는 동물의 상태를 출력한다.
 * 1 턴이 지날 때 마다 동물의 상태를 변경한다 1 턴이 지날 때 마다 동물의 상태를 변경한다.

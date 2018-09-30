@@ -21,27 +21,26 @@ void clear ( iostate state = goodbit );
 
 
 오류 상태 플래그를 설정한다.
-오류 상태 플래그를 새로운 값으로 설정한다. 참고로 이와 유사한 동작을 하는 [ios::setstate](http://itguru.tistory.com/179)`` 의 경우, 이전의 오류 상태 플래그를 보존하면서 설정하지만, ios::clear 의 경우 이전의 오류 상태 플래그 값을 보존하지 않는다.
+오류 상태 플래그를 새로운 값으로 설정한다. 참고로 이와 유사한 동작을 하는 [ios::setstate](http://itguru.tistory.com/179)의 경우, 이전의 오류 상태 플래그를 보존하면서 설정하지만, ios::clear 의 경우 이전의 오류 상태 플래그 값을 보존하지 않는다.
 
 만일 인자를 넣어주지 않는다면 (혹은 인자로 `goodbit` 을 전달하면) 모든 오류 상태 플래그는 초기화된다.
 
-현재의 오류 상태 플래그는 [ios::rdstate](http://itguru.tistory.com/171)`` 함수로 얻을 수 있다.
+현재의 오류 상태 플래그는 [ios::rdstate](http://itguru.tistory.com/171)함수로 얻을 수 있다.
 
 
 
 ###  인자
 
-
-
-
-
 `state`
 
-새롭게 바꿀 ios_base::iostate 타입의 객체로 아래의 오류 상태 멤버 상수들의 조합 (비트 `OR` 연산) 으로 구성된다.
+새롭게 바꿀 `ios_base::iostate` 타입의 객체로 아래의 오류 상태 멤버 상수들의 조합 (비트 OR 연산) 으로 구성된다.
 
-
-
-플래그 값의미`eofbit`스트림으로부터 추출 작업(extracting operation)을 수행 중` End` – `Of` – ` File`에 도달하는 경우`failbit`마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 `` 경우`badbit`스트림 버퍼의 입출력 작업이 실패하여 발생한 오류`goodbit`오류가 없다`. .
+|플래그 값|의미|
+|-------|----|
+|`eofbit`|스트림으로부터 추출 작업(extracting operation)을 수행 중 End Of File 에 도달하는 경우|
+|`failbit`|마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 경우|
+|`badbit`|스트림 버퍼의 입출력 작업이 실패하여 발생한 오류|
+|`goodbit`|오류가 없다|
 
 만일 인자로 아무 것도 전달하지 않는다면 디폴트 인자로 `goodbit` 가 전달된다.
 
@@ -125,6 +124,6 @@ void clear ( iostate state = goodbit );
 
 *  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
 *  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::good](http://itguru.tistory.com/164)`` :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+*  [ios::good](http://itguru.tistory.com/164) :  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
 *  [ios::eof](http://itguru.tistory.com/167)  :  `eofbit` 이 설정되어 있는지 확인한다.
 *  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.

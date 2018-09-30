@@ -93,7 +93,7 @@ int main ()
 
 *  [putc](http://itguru.tistory.com/46)  :  스트림에 문자를 쓴다.
 
-*  [fputc](http://itguru.tistory.com/39)`` :  스트림에 문자를 쓴다.
+*  [fputc](http://itguru.tistory.com/39):  스트림에 문자를 쓴다.
 
 *  [getchar](http://itguru.tistory.com/44)  :  표준 입력(stdin) 에서 문자를 받는다.
 

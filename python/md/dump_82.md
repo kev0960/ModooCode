@@ -108,4 +108,4 @@ char *strncat(char *s1, const char *s2, size_t count){    char *start = s1; 
 
 *  [strcat](http://itguru.tistory.com/81)  :  문자열을 합친다.
 *  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
-*  [memcpy](http://itguru.tistory.com/77)`` :  메모리의 일부분을 복사한다.
+*  [memcpy](http://itguru.tistory.com/77):  메모리의 일부분을 복사한다.

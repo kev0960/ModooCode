@@ -25,21 +25,22 @@ fmtflags setf ( fmtflags fmtfl, fmtflags mask );
 
 
 특정 서식 플래그를 설정한다.
-  첫번째 형태의 함수의 경우 스트림의 서식 플래그(format `flag)` 의 비트들 중, `fmtfl` 에 해당하는 것만 설정(set)하고 나머지는 그대로 놔둔다. 이는 마치 `fmtfl | flags()` 를 한 것과 동일하다. ( [flags](http://itguru.tistory.com/153)`` 함수는 현재 자신의 서식 플래그를 리턴하므로, 이와 `OR` 연산하는 것과 동일하다)
 
-  두번째 형태의 함수의 경우 서식 플래그 중 `fmtfl` 과 `mask` 둘 다 설정되니 비트들을 설정하고, 마스크 에는 설정되어 있지만 `fmftl` 에 설정되어 있지 않은 비트는 초기화(clear) 해버린다. 참고로 마스크에 대한 설명은 아래를 참조.두 형태의 함수 모두 함수 호출 이전 상태의 서식 플래그를 리턴한다.
+첫번째 형태의 함수의 경우 스트림의 서식 플래그(format flag) 의 비트들 중, `fmtfl` 에 해당하는 것만 설정(set)하고 나머지는 그대로 놔둔다. 이는 마치 `fmtfl | flags()` 를 한 것과 동일하다. ( [flags](http://itguru.tistory.com/153) 함수는 현재 자신의 서식 플래그를 리턴하므로, 이와 `OR` 연산하는 것과 동일하다)
 
-서식 플래그는 스트림에서 데이터를 어떻게 해석하고, 또 어떻게 출력하는지 결정하는데 중요한 역할을 한다. [ios_base::fmtflags](http://itguru.tistory.com/154)`` 를 보면 함수의 인자로 어떠한 값들이 가능한지 알 수 잇다.
+두번째 형태의 함수의 경우 서식 플래그 중 `fmtfl` 과 `mask` 둘 다 설정되니 비트들을 설정하고, 마스크 에는 설정되어 있지만 `fmftl` 에 설정되어 있지 않은 비트는 초기화(clear) 해버린다. 참고로 마스크에 대한 설명은 아래를 참조.두 형태의 함수 모두 함수 호출 이전 상태의 서식 플래그를 리턴한다.
+
+서식 플래그는 스트림에서 데이터를 어떻게 해석하고, 또 어떻게 출력하는지 결정하는데 중요한 역할을 한다. [ios_base::fmtflags](http://itguru.tistory.com/154)를 보면 함수의 인자로 어떠한 값들이 가능한지 알 수 잇다.
 
 보통 첫번째 형태의 `setf` 함수의 경우, 단항 서식 플래그(독립적으로 기능을 수행하는 것)들, `boolalpha, showbase, showpoint, showpos, skipws, unitbuf, uppercase` 를 설정하기 위해 사용되고, 이들 역시 `unsetf` 에서도 사용된다. 반면에 선택적인 플래그들(반드시 하나만 켜져 있어야 한다) 을 조작하기 위해서는 아래와 같은 비트 마스크와 플래그 값들을 이용한다.
 
-`fmtfl`
-서식 플래그 값
-`mask`
-필드 비트마스크
-`left``,``right``,``internal``adjustfield``dec``,``oct``,``hex``basefield``scientific``,``fixed``floatfield`
+|`fmtfl` 서식 플래그 값|`mask` 필드 비트마스크|
+|:-----------------:|:-----------------:|
+|`left, right, internal`|`adjustfield`|
+|`dec, oct, hex`|`basefield`|
+|`scientific, fixed`|`floatfield`|
 
-  각각이 무엇인지 자세한 설명은 [ios_base::fmtflags](http://itguru.tistory.com/154)`` 를 참조하면 된다.
+각각이 무엇인지 자세한 설명은 [ios_base::fmtflags](http://itguru.tistory.com/154) 를 참조하면 된다.
 
 또한 인자를 가지는 조작자인 `setiosflags` 역시 비슷한 작업을 한다.
 
@@ -48,16 +49,13 @@ fmtflags setf ( fmtflags fmtfl, fmtflags mask );
 ###  인자
 
 
-
-
 `fmtfl`
 
-  설정될 서식 플래그. 만일 두번재 형태의 함수가 사용된다면 스트림 서식 플래그에서 `fmtfl` 과 `mask` 에서 모두 설정된 비트만 켜지게 된다. 또한 `mask` 에서 켜졌지만 `fmtfl` 에서 설정 안된 비트는 꺼진다.
+설정될 서식 플래그. 만일 두번재 형태의 함수가 사용된다면 스트림 서식 플래그에서 `fmtfl` 과 `mask` 에서 모두 설정된 비트만 켜지게 된다. 또한 `mask` 에서 켜졌지만 `fmtfl` 에서 설정 안된 비트는 꺼진다.
 
 `mask`
-    수정할 플래그를 포함하고 있는 비트마스크
 
-
+수정할 플래그를 포함하고 있는 비트마스크
 
 
 ###  리턴값

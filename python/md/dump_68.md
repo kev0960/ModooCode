@@ -53,7 +53,7 @@ size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
 
 
 
-만일 성공적으로 지정한 원소의 개수 만큼 읽어들였다면 읽어들인 원소의 개수가 `size_t` 형으로 리턴된다. 참고로 `size_t` 형은 정수 타입이다. 만일 읽어들인 개수가 `count` 인자에서 지정한 것과 다르거나, `End OF File` 에 도달하였다면 오류가 발생한다. 이 때, 여러분은 [ferror](http://itguru.tistory.com/52)함수나 [feof](http://itguru.tistory.com/51)`` 함수를 이용하여 어떠한 오류인지를 파악할 수 있다.
+만일 성공적으로 지정한 원소의 개수 만큼 읽어들였다면 읽어들인 원소의 개수가 `size_t` 형으로 리턴된다. 참고로 `size_t` 형은 정수 타입이다. 만일 읽어들인 개수가 `count` 인자에서 지정한 것과 다르거나, `End OF File` 에 도달하였다면 오류가 발생한다. 이 때, 여러분은 [ferror](http://itguru.tistory.com/52)함수나 [feof](http://itguru.tistory.com/51)함수를 이용하여 어떠한 오류인지를 파악할 수 있다.
 
 
 
@@ -123,8 +123,8 @@ int main () {
 ###  연관된 함수
 
 * `fwrite` : 스트림에 데이터 블록을 쓴다.
-*  [fgetc](http://itguru.tistory.com/37)`` : 스트림에서 한 문자를 가져온다.
-*  [fscanf](http://itguru.tistory.com/65)`` : 스트림에서 형식에 맞추러 데이터를 읽어온다.
+*  [fgetc](http://itguru.tistory.com/37): 스트림에서 한 문자를 가져온다.
+*  [fscanf](http://itguru.tistory.com/65): 스트림에서 형식에 맞추러 데이터를 읽어온다.
 
 
 

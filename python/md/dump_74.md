@@ -22,7 +22,7 @@ long int ftell ( FILE * stream );
 스트림의 위치 지정자의 현재 위치를 구한다.
 이진(binary) 스트림의 경우, 리턴된 값이 파일의 시작 부분에서 부터 현재 위치까지의 바이트 수를 말한다.
 텍스트 스트림의 경우 위의 경우와는 조금 다르게,파일의 시작 부분으로 부터 현재 위치 까지의 바이트 수라고 단정짓기 힘들다.
-(이진 스트림과 텍스트 스트림에 대해 자세히 알고 싶다면 [stdio.h](http://itguru.tistory.com/34)`` 를 참조) 하지만, 이 리턴된 값을 가지고 [fseek](http://itguru.tistory.com/72)`` 함수를 이용하면 현재의 위치로 파일 위치 포인터를 설정할 수 있다.
+(이진 스트림과 텍스트 스트림에 대해 자세히 알고 싶다면 [stdio.h](http://itguru.tistory.com/34)를 참조) 하지만, 이 리턴된 값을 가지고 [fseek](http://itguru.tistory.com/72)함수를 이용하면 현재의 위치로 파일 위치 포인터를 설정할 수 있다.
 
 
 
@@ -97,7 +97,7 @@ int main ()
 ###  연관된 함수
 
 *  [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자를 다시 조정한다.
-*  [fgetpos](http://itguru.tistory.com/70)`` :  스트림의 위치 지정자의 현재 위치를 구한다.
+*  [fgetpos](http://itguru.tistory.com/70):  스트림의 위치 지정자의 현재 위치를 구한다.
 *  [rewind](http://itguru.tistory.com/75)  :  스트림 위치 지정자를 맨 처음으로 설정한다.
 
 

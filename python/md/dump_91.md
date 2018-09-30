@@ -87,7 +87,7 @@ int main ()
 
 *  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
 *  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부분을 비교한다.
-*  [strcoll](http://itguru.tistory.com/86)`` :  `locale` 을 사용하여 두 문자열을 비교한다.
+*  [strcoll](http://itguru.tistory.com/86):  `locale` 을 사용하여 두 문자열을 비교한다.
 
 
 

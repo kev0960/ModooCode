@@ -62,11 +62,13 @@ istream& getline (char* s, streamsize n, char delim );
 
 만일 입력시 발생된 오류들은 내부 상태 플래그를 통해 알아낼 수 있다.
 
-플래그오류`eofbit`작업 중 문자들의 끝에 도달하였을 때`failbit`끝에 바로 도달해버려서 어떠한 문자도 추출해 낼 수 없을 경우. 혹은 `n - 1` 개의 문자들을 모두 추출하여서 입력 작업이 중단되었을 경우에도 설정된다. 또한 일부 `eofbit` 를 설정하는 오류들이 `failbit` 도 설정할 수 있다.
-`badbit`위 같은 일들 외의 다른 오류가 발생시
+|플래그|오류|
+|-----|----|
+|`eofbit`|작업 중 문자들의 끝에 도달하였을 때|
+|`failbit`|끝에 바로 도달해버려서 어떠한 문자도 추출해 낼 수 없을 경우. 혹은 `n - 1` 개의 문자들을 모두 추출하여서 입력 작업이 중단되었을 경우에도 설정된다. 또한 일부 `eofbit` 를 설정하는 오류들이 `failbit` 도 설정할 수 있다.|
+|`badbit`|위 같은 일들 외의 다른 오류가 발생시|
 
-  ios::exceptions 를 통해 적절한 플래그가 설정되어 있을 경우 위와 같은 상황이 발생시 ios_base::failure 이 `throw` 된다.
-
+`ios::exceptions` 를 통해 적절한 플래그가 설정되어 있을 경우 위와 같은 상황이 발생시 `ios_base::failure` 이 `throw` 된다.
 
 
 ###  실행 예제
@@ -129,7 +131,7 @@ basic_istream& getline (char_type* s, streamsize n, char_type delim );
 
 *  [istream::get](http://itguru.tistory.com/191)  :  서식화 되지 않은 데이터를 스트림에서 가져온다.
 *  [istream::ignore](http://itguru.tistory.com/193)  :  문자를 추출하고 버린다.
-*  [istream::gcount](http://itguru.tistory.com/192)`` : 이전의 서식화 되지 않았던 입력 작업서 추출하였던 문자의 개수를 얻어온다.
+*  [istream::gcount](http://itguru.tistory.com/192): 이전의 서식화 되지 않았던 입력 작업서 추출하였던 문자의 개수를 얻어온다.
 
 
 
