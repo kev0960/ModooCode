@@ -7,17 +7,15 @@ next_page : 89
 
 이번 강좌에서는
 
-* #include, #define, #ifdef, #endif, #else 와 같은 전처리기 구문에 대한 이해
+* `#include, #define, #ifdef, #endif, #else` 와 같은 전처리기 구문에 대한 이해
 
 * 헤더파일에 대한 설명
 
 * 라이브러리 (string.h) 사용하기
 
 
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F193C5C364C4E87A113BEDF)
 
 안녕하세요 여러분~ 잘 지내셨는지요. 그럼 군말 없이 바로 강의에 들어가겠습니다. 참고로 이게 32 번째 강의인데 이렇게 보니까 참 많이도 썻다고 생각되네요. 30 강 까지 모두 pdf 로 만들었는데 사진을 모두 빼고도 페이지가 380 페이지에 달하내요. 사진을 모두 넣게 되면 적어도 500 페이지 정도는 될 텐데 보기 조금 힘들 것 같네요. 제 블로그에 우수한 성적으로 (?) 방문해 주신 분들께 선물로 나눠드릴라 그랬는데 제본비만 만원이 넘을 것 같아서 그건 좀 힘들겠네요.
 

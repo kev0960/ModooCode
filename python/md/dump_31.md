@@ -12,8 +12,7 @@ next_page : 29
 * 디버깅
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1341EE034B38D23B6FC4AA)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 우리는 흔히 컴퓨터에 오류가 생기면 **버그(bug)** 가 생겼다고 합니다. 그런데 왜 하필이면 버그 일까요? 
 

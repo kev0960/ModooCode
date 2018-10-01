@@ -11,14 +11,13 @@ next_page : 130
 * C 언어 코드의 최적화 기법에 대해 살펴본다 C 언어 코드의 최적화 기법에 대해 살펴본다.
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F16723B4C4D34460C133159)
-
-  안녕하세요 여러분~ 이제 저의 마지막 강의(총 41 강)가 되겠네요 ㅎㅎ그럼, 오늘도 강의를 시작해 볼까요?혹시 1 강 부터 시작해서 여기까지 도달하신 분이라면 [http://itguru.tistory.com/notice/126#/](http://itguru.tistory.com/notice/126#/)에 가셔서 자유 게시판에 꼭 글을 남겨주시기 바랍니다~
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 
+안녕하세요 여러분~ 이제 저의 마지막 강의(총 41 강)가 되겠네요. 그럼, 오늘도 강의를 시작해 볼까요?
 
-  우리의 컴퓨터는 무한정 빠르지 않습니다. 따라서 동일한 작업을 시키더라도 어떠한 방식으로 시키냐에 따라서 그 속도가 엄청나게 차이가 나게 됩니다. 우리는 언제나 코드를 만들 때 '과연 어떻게 해야지 이 작업을 가장 빠르게 할 수 있도록 코드를 만들 수 있을까?' 를 고민 해야 합니다. 이렇게 똑같은 일이라도 더 빠르게 수행할 수 있도록 코드를 짜는 행위를 '코드 최적화' 라고 부릅니다.
+
+우리의 컴퓨터는 무한정 빠르지 않습니다. 따라서 동일한 작업을 시키더라도 어떠한 방식으로 시키냐에 따라서 그 속도가 엄청나게 차이가 나게 됩니다. 우리는 언제나 코드를 만들 때 '과연 어떻게 해야지 이 작업을 가장 빠르게 할 수 있도록 코드를 만들 수 있을까?' 를 고민 해야 합니다. 이렇게 똑같은 일이라도 더 빠르게 수행할 수 있도록 코드를 짜는 행위를 '코드 최적화' 라고 부릅니다.
 
   참고적으로 아래의 내용은 대부분 [http://www.codeproject.com/KB/cpp/C___Code_Optimization.aspx](http://www.codeproject.com/KB/cpp/C___Code_Optimization.aspx)에서 가져왔으며, 특히 한국어로 번역된 자료는 [http://www.joinc.co.kr/modules/moniwiki/wiki.php/Site/C/Documents/COptimization](http://www.joinc.co.kr/modules/moniwiki/wiki.php/Site/C/Documents/COptimization)에서 보실 수 있습니다. 저는 여러분들께 여기에서 가장 중요하다고 생각되는 몇 가지 부분만을 쉽게 이야기 하고자 합니다.
 

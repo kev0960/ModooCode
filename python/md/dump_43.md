@@ -10,8 +10,7 @@ next_page : 55
 * 도서 관리 프로그램을 만든다.
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F15077B1D4B6EE67712BF27)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 안녕하세요 여러분. 지난번 강좌의 마지막 생각하기 문제를 기억하시나요? 일단 이 강의는 여러분이 그 문제에 대해 충분한 시간 노력해서 생각해 보았다는 것을 가정한 하에 진행하도록 하겠습니다.
 

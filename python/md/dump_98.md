@@ -14,9 +14,8 @@ next_page : 100
 
 * 2 차원 배열 (정확히 말하면 우리가 아는 2 차원 배열과 틀리지만) 메모리 동적 할당
 
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F165D28354C57BA87AF012C)
 
 안녕하세요. 여러분. 정말 멀리 달려 온 것 같네요. 벌써 제 20 장을 지나가고 있습니다. 물론 강의 수로 따지면 더 많죠.
 

@@ -9,9 +9,7 @@ next_page : 21
 
 * 주석에 대한 확실한 이해
 
-
-
-![신나는 씹어먹는 C 언어!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F114BFB114ABB3A4E151E40)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 사실, [ 2 - 1](http://itguru.tistory.com/6)강에서도 다룬 내용이지만 댓글을 통해 질문이 들어 왔기에 정확히 주석이란 놈이 무엇인지 알아 보도록 하겠습니다.
 

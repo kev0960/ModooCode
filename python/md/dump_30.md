@@ -11,7 +11,8 @@ next_page : 31
 
 * 여러가지 주요 알고리즘. (버블 정렬, 유클리드 호제법, 에라토스테네스의 체)
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F150EAA134B362F6B447187)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
+
 
 안녕하세요 여러분. [이전 강좌의 예제](http://itguru.tistory.com/28)가 중요한 만큼, 예제에 좀더 쉽게 접근할 수 있는 아이디어에 관해서 짧은 힌트 형식으로 강좌를 작성하도록 하겠습니다. 물론, 언제까지나 힌트일 뿐 완전한 코드는 여러분이 완성시켜야 합니다.
 

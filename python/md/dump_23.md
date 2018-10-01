@@ -12,7 +12,7 @@ next_page : 24
 * `*, &` 단항 연산자의 의미
 
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F175DE3124AF98BFC076A0A)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 우왕~ 안녕하세요 여러분. 아마 C 언어를 배웠거나 배우고 있는 사람들은 포인터에 대해 익히 들어 보셨을 것 입니다. 이해하기 힘들기로 악명 높은 그 포인터를 말이죠. 하지만, 저와 함께 한다면 큰 무리 없이 배우 실 수 있을 것이라 생각됩니다.
 

@@ -11,9 +11,7 @@ next_page : 33
 
 * 고질적인 `scanf` 문제에 대한 해결 및 이해
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F2027C6204B5C6D664A0126)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 안녕하세요 여러분. 요즘에 제가 많이 바빠서 글을 자주 못올리고 있지만 여러분은 너그러운 마음으로 이해해 주시라 믿고 있습니다. 그렇다면, 지난번의 강좌를 계속 이어 나가도록 하겠습니다.
 

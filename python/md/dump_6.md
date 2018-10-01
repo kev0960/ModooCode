@@ -11,9 +11,9 @@ next_page : 19
 * 주석(Comment)의 사용
 
 
-![신나는 씹어먹는 C 언어!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F155F761749EE18AB1B569B)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
-  안녕하세요 여러분. [저번 강의](http://itguru.tistory.com/entry/%EC%94%B9%EC%96%B4%EB%A8%B9%EB%8A%94-C-%EC%96%B8%EC%96%B4-1-C-%EC%96%B8%EC%96%B4%EA%B0%80-%EB%AD%90%EC%95%BC)에서의 희열을 아직도 느끼시나요? 방금 자신의 손으로 최초의 프로그램 - `Hello, World!` 를 만들었다는 사실을 말이죠. 하지만 자신이 프로그램을 만들었다는 사실을 친구들에게 자랑하기 전에, 그 프로그램이 어떻게 동작하는지 살펴보도록 합시다.
+안녕하세요 여러분. [저번 강의](http://itguru.tistory.com/entry/%EC%94%B9%EC%96%B4%EB%A8%B9%EB%8A%94-C-%EC%96%B8%EC%96%B4-1-C-%EC%96%B8%EC%96%B4%EA%B0%80-%EB%AD%90%EC%95%BC)에서의 희열을 아직도 느끼시나요? 방금 자신의 손으로 최초의 프로그램 - `Hello, World!` 를 만들었다는 사실을 말이죠. 하지만 자신이 프로그램을 만들었다는 사실을 친구들에게 자랑하기 전에, 그 프로그램이 어떻게 동작하는지 살펴보도록 합시다.
 
 ### 도대체 뭔일이 있던거지? 
 

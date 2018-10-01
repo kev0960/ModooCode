@@ -14,8 +14,7 @@ updated_date : 09/12/2018
 * 개발 툴 (Visual Studio 2008 Express Edition) 설치
 * 내 생애 최초의 프로그램
 
-![신나는 씹어먹는 C 언어 배우기!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1271680E49E75801509943)
-
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 안녕하세요 여러분! 씹어먹는 C 언어 강좌에 오신 것을 환영합니다.
 

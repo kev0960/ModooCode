@@ -9,10 +9,10 @@ next_page : 88
 
 * 모듈화 프로그래밍 (파일 나누기)
 
-* #include 전처리기에 대한 이해
+* `#include` 전처리기에 대한 이해
 
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F194C3F154C4076333A0245)
 
 안녕하세요 여러분. 저도 강좌를 쓰는 것이 참으로 오래간만 입니다. 현재 저는 강좌를 모두 모두 모아 하나의 pdf 파일로 만드려고 노력중입니다. 이를 위해 `Latex` 를 사용하고 있는데 한국 `Latex` 커뮤니티 (KTUG) 분들께서 훌륭하게 만들어주신 `kotex` 덕분에 수월하게 파일 제작이 가능합니다. 아무튼 감사하다는 말씀을 드리며 강좌를 시작해 나가보도록 하겠습니다.
 

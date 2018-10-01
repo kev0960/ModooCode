@@ -24,7 +24,8 @@ next_page : 9
 등을 배우게 됩니다.
 
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F174F980E49F540DF99EEA2)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
+
 
 안녕하세요 여러분. 지난 강의에서 모두들 변수에 대해 감이 잡혔을 것이라 믿고 강의를 진행하도록 하겠습니다.
 

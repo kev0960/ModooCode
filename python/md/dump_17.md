@@ -12,11 +12,7 @@ next_page : 18
 
 * 비트, 바이트에 대해 알아본다.
 
-
-
-
-
-![신나는 씹어먹는 C 언어!](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F2027ED0E4B67FFE80210D7)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 안녕하세요, 여러분~~ 이제 드디어 10 번째 강좌에 도달하였습니다. 아마 여태까지 느릿 느릿 진행되는 강좌를 꾸준히 기다리며 읽어와준 여러분들께 감사의 말을 전하고 싶습니다.
 

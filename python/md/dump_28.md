@@ -16,8 +16,7 @@ next_page : 30
 
 에 대해서 배웁니다.
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1335B00C4B3086EA02598B)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 와.. 드디어, 함수만 세번째 강의입니다. 아마 이전 강좌에서 배운 내용들 중 어려운 것은 없으리라 생각됩니다. 물론, 이번 강좌의 내용도 이전까지의 내용을 잘 숙지 하셨더라면 무난하게 넘어갈 수 있으리라 생각됩니다.
 

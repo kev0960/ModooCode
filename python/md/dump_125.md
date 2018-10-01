@@ -11,9 +11,8 @@ next_page : 129
 
 
 
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F141419474D331BC506AB6C)
 
 안녕하세요 여러분! 이제 슬슬 파일 입출력도 마무리를 해가며 저의 C 언어 강좌도 끝을 향해 달려갑니다. 이번 강좌에서는 파일 입출력을 이용한 여러 가지 프로그램을 만들어보면서 파일 입출력에 대해 조금 더 친해지도록 하지요 :)
 

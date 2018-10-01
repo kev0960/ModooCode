@@ -13,8 +13,7 @@ next_page : 117
 
 * `#pragma` 에 대해 알고, 특히 `#pragma pack` 과 `#pragma once` 키워드에 대해 이해한다.
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F192655544D14A5CD216690)
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
 안녕하세요 여러분. 저의 C 언어 강의도 이제 막바지에 다다랐습니다. 정말로 첫번째 강의부터 여기 까지 달려오셨다면 정말 대단하다고 말씀 드리고 싶네요. 마라톤에 비유하자면, `42.195km` 에서 한 `40km` 정도 까지 열심히 뛰어 왔다고 보시면 됩니다. 그럼, 나머지 `2.195km` 도 더 뛸 의향이 있겠죠?
 

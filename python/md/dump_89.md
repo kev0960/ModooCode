@@ -13,8 +13,8 @@ next_page : 98
 
 * 포인터 배열
 
+![씹어먹는 C 언어](/img/ChewingClogo.png)
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F187F92344C5671235D324D)
 
 안녕하세요 여러분. 그동안 잘 지내셨는지요? 책 만드는 것도 어느 정도 진척이 되었고 `Latex` 도 어느정도 능숙하게 다룰 줄 알아서 꽤 괜찮게 만들 수 는 있었는데 표지가 문제네요. 혹시 '씹어먹는 C 언어' 를 위한 멋진 표지를 만드실 분을 찾고 있으니 혹시 좋은 아이디어가 있으신 분들은 kev0960@gmail.com 으로 꼭 메일을 보내주시기 바랍니다.
 
