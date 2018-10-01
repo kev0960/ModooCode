@@ -206,7 +206,7 @@ function RecursiveCommentAdder(ul, comment_id) {
   if (current_comment.image_link.length) {
     img_src = current_comment.image_link;
   }
-  div_profile.append($('<img>', {src: img_src}));
+  div_profile.append($('<img>', {src: img_src, alt: '프로필 사진없음'}));
   li.append(div_profile);
 
   const div_comment_info = $('<div>', {class: 'comment-info'});

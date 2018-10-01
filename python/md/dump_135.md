@@ -25,8 +25,6 @@ title : 씹어먹는 C++ 강좌 계획
 ###  강좌 수칙
 
 
-
-
 제 강좌를 들으시면서 지켜야 할 수칙들은 다음과 같습니다.
 
 1. 강좌는 적어도 한 번 꼭 정독해보기
@@ -38,8 +36,8 @@ title : 씹어먹는 C++ 강좌 계획
 입니다. 위 수칙 중에서 무엇보다도 중요한 것은 바로 모르는 내용은 꼭 답글을 다는 것입니다 :)
 세상에서 어리석은 질문은 없습니다. 여러분들이 궁금하거나 이상한 내용, 마음에 와닿지 않는 내용들을 질문하지 않고 다음강좌로 넘어가는 한 여러분의 실력은 결코 향상될 수 없을 것입니다.
 꼭 궁금한 것들은 댓글로 남겨주시고, 공개적으로 남기기 꺼리면 비밀글로 남기거나 정 그렇다면 `mail` 로 보내주시면 감사하겠습니다. 그러면 제가 확인하는대로 최대한 빨리 답글로 보내드릴께요 ㅎ
-```warning
 
+```warning
  [참고로 이 강좌는 Visual Studio 2017 커뮤니티 버전을 사용하고 있습니다. 여기를 클릭해서 사용법을 미리 숙지하는게 좋겠습니다.](http://itguru.tistory.com/220)
 ```
 
@@ -75,15 +73,15 @@ title : 씹어먹는 C++ 강좌 계획
 
 ###@  [4 - 2. 클래스의 세계로 오신 것을 환영합니다 (함수의 오버로딩, 생성자)](http://itguru.tistory.com/173)
 
-함수의 오버로딩(function `overloading),` 생성자(constructor), 디폴트 생성자(default `constructor)`
+함수의 오버로딩(function overloading), 생성자(constructor), 디폴트 생성자(default `constructor)`
 
 ###@ [4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)](http://itguru.tistory.com/188)
 
-복사 생성자(copy `constructor),` 얕은 복사, 깊은 복사, 소멸자(destructor)
+복사 생성자(copy constructor), 얕은 복사, 깊은 복사, 소멸자(destructor)
 
 ###@ [4 - 4. 스타크래프트를 만들자 ② (const, static)](http://itguru.tistory.com/197)
 
-생성자 초기화 리스트(initializer `list), const, static` 멤버 변수, 레퍼런스를 리턴하는 함수, `this` 포인터, `const` 멤버함수
+생성자 초기화 리스트(initializer list), `const, static` 멤버 변수, 레퍼런스를 리턴하는 함수, `this` 포인터, `const` 멤버함수
 
 ###@ [4 - 5. 내가 만드는 String 클래스](http://itguru.tistory.com/198)
 
@@ -99,15 +97,15 @@ title : 씹어먹는 C++ 강좌 계획
  
 ###@ [5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열](http://itguru.tistory.com/204)
 
-C++ 스타일의 캐스팅, 디폴트 인자(default `argument),` 반복자(iterator), 그리고 `N` 차원 배열 제작에 대해 알아본다 C++ 스타일의 캐스팅, 디폴트 인자(default `argument),` 반복자(iterator), 그리고 `N` 차원 배열 제작에 대해 알아본다.
+C++ 스타일의 캐스팅, 디폴트 인자(default argument), 반복자(iterator), 그리고 `N` 차원 배열 제작에 대해 알아본다 C++ 스타일의 캐스팅, 디폴트 인자(default argument), 반복자(iterator), 그리고 `N` 차원 배열 제작에 대해 알아본다.
 
 ###@ [6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속](http://itguru.tistory.com/209)
 
-C++ 표준 문자열, 상속 (inheritance), `protected` 키워드에 대해 알아본다 C++ 표준 문자열, 상속 (inheritance), `protected` 키워드에 대해 알아본다.
+C++ 표준 문자열, 상속 (inheritance), `protected` 키워드에 대해 알아본다.
 
 ###@ [6 - 2. 가상(virtual) 함수와 다형성](http://itguru.tistory.com/210)
 
-`is-a` 와 `has-a` 관계. 오버라이딩, `virtual` 키워드, 가상(virtual) 함수, 다형성(polymorphism)
+*is-a* 와 *has-a* 관계. 오버라이딩, `virtual` 키워드, 가상(virtual) 함수, 다형성(polymorphism)
 
 ###@ [6 - 3. 가상함수와 상속에 관련한 잡다한 내용들](http://itguru.tistory.com/211)
 
@@ -139,7 +137,7 @@ C++ 에서의 파일 입출력, `stringstream` 과 그 활용에 대해 알아�
 
 ###@ [9 - 3. 템플릿 메타 프로그래밍 2 (Template Meta Programming)](http://itguru.tistory.com/222)
 
-`TMP` 마무리, 의존 타입(dependent `type), auto` 키워드
+`TMP` 마무리, 의존 타입(dependent type), `auto` 키워드
 
 ###@ [10 - 1. C++ 의 표준 템플릿 라이브러리 (STL) - 시퀀스 컨테이너](http://itguru.tistory.com/223)
 
@@ -151,7 +149,7 @@ C++ 에서의 파일 입출력, `stringstream` 과 그 활용에 대해 알아�
 
 ###@ [10 - 3. C++ STL - 알고리즘(algorithm)](http://itguru.tistory.com/225)
 
-`STL` 알고리즘 라이브러리, 람다 함수, `sort, partial_sort, stable_sort, find, erase, erase_if, any_of, all_of`
+STL 알고리즘 라이브러리, 람다 함수, `sort, partial_sort, stable_sort, find, erase, erase_if, any_of, all_of`
 
 ###@ 10 - 4. STL 알고리즘들
 
@@ -161,7 +159,7 @@ C++ 에서의 파일 입출력, `stringstream` 과 그 활용에 대해 알아�
 
 ###@ [11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)](http://itguru.tistory.com/228)
 
-`move semantics,` 완벽한 전달 (perfect forwarding), 레퍼런스 접힘 규칙 (reference collapsing rule)
+move semantics, 완벽한 전달 (perfect forwarding), 레퍼런스 접힘 규칙 (reference collapsing rule)
 
 ###@ [12. C++ 에서의 예외 처리](/230)
 

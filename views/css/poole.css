@@ -157,9 +157,12 @@ pre {
   font-family: "Source Code Pro", Menlo, Monaco, "Courier New", monospace;
 }
 code {
-  padding: .25em .2em;
+  margin: .25em .2em;
+  padding-left: 5px;
+  padding-right: 5px;
   font-size: 95%;
-  color: #bf616a;
+  background-color: #eff0f1;
+  
   border-radius: 3px;
 }
 pre {
