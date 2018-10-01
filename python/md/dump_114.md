@@ -20,6 +20,7 @@ time_t time ( time_t * timer );
 
 
 현재 시간을 구한다.
+
 현재 시간을 [time_t 형](http://itguru.tistory.com/113)으로 구한다. (즉, 1970년 1 월 1 일 0 시 (UTC) 부터 현재 까지 흐른 초 수를 구한다고 보면 된다)
 
 이 때 이 함수는 구한 [time_t](http://itguru.tistory.com/113) 형 값을 리턴하기도 하고, 인자로 받은 `timer` 가 가리키는 변수를 구한 `time_t` 형 값으로 설정한다.

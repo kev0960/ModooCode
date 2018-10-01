@@ -162,7 +162,10 @@ module.exports = class Server {
 
   setRoutes() {
     // Set up all the routes.
-    this.app.get('/', (req, res) => res.send('Hello World!'));
+    this.app.get('/', function(req, res) {
+      res.render('./index.ejs');
+    }.bind(this));
+
     this.app.get('/profile', function(req, res) {
       if (req.user) {
         return res.send('name' + req.user.name);
@@ -173,6 +176,11 @@ module.exports = class Server {
     this.app.get('/:id', function(req, res) {
       let page_id = parseInt(req.params.id);
       let user = req.user;
+      if (!page_id) {
+        res.render('index.ejs');
+        return;
+      }
+
       if (page_id <= 228) {
         res.render('page.ejs', {
           content_url: './old/blog_' + page_id + '.html',
@@ -182,13 +190,17 @@ module.exports = class Server {
           user
         });
       } else {
-        res.render('page.ejs', {
-          content_url: './new/' + page_id + '.html',
-          file_info: this.file_infos[page_id],
-          page_infos: this.page_infos,
-          file_infos: this.file_infos,
-          user
-        });
+        try {
+          res.render('page.ejs', {
+            content_url: './new/' + page_id + '.html',
+            file_info: this.file_infos[page_id],
+            page_infos: this.page_infos,
+            file_infos: this.file_infos,
+            user
+          });
+        } catch (e) {
+          res.render('./index.ejs');
+        }
       }
     }.bind(this));
 

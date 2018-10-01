@@ -51,7 +51,7 @@
 }
 ,
 	"109" : {
-	"cat_title" : "time.h",
+	"cat_title" : "struct tm",
 	"title" : "C 언어 레퍼런스 - struct tm ( tm 구조체 )"
 }
 ,

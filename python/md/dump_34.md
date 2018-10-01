@@ -12,58 +12,57 @@ cat_title :  stdio.h (cstdio)
 
 #@ Stdio.h (cstdio)
 
-  C 언어에서 입출력 연산은 표준 입출력 라이브러리 (Standard Input and Output Library) 를 이용해서 수행될 수 있다. (C++ 에서는 cstdio 라는 이름으로 사용된다). 이 라이브러리는 스트림(stream) 을 이용해서 키보드나 프린터, 터미널과 같은 장비들이나 시스템이 지원하는 특정한 형태의 파일들과 작업할 수 있다. 모든 스트림들은 작업하고자 하는 장비들과 관계 없이 공통된 특징들을 가지고 있기 때문이 매우 편리하다.
+C 언어에서 입출력 작업은 **표준 입출력 라이브러리 (Standard Input and Output Library)** 를 이용해서 수행될 수 있다. (C++ 에서는 cstdio 라는 이름으로 사용된다). 이 라이브러리는 스트림(stream) 을 이용해서 키보드나 프린터, 터미널과 같은 장비들이나 시스템이 지원하는 특정한 형태의 파일들과 작업할 수 있다. 모든 스트림들은 작업하고자 하는 장비들과 관계 없이 공통된 특징들을 가지고 있기 때문이 매우 편리하다.
 
-  `FILE` 객체에 대한 포인터는 각각의 스트림들을 구분하기 때문에 스트림을 이용한 작업시 인자로 전달된다.
+`FILE` 객체에 대한 포인터는 각각의 스트림들을 구분하기 때문에 스트림을 이용한 작업시 인자로 전달된다.
 
-  또한 `stdio.h` 라이브러리를 사용하는 프로그램에서 자동으로 생성되고 열리는(open) 표준 스트림들이 있는데 이는`stdin, stdout, stderr`이다.
+또한 `stdio.h` 라이브러리를 사용하는 프로그램에서 자동으로 생성되고 열리는(open) 표준 스트림들이 있는데 이는`stdin, stdout, stderr`이다.
 
 
 
 ###  스트림의 특징
 
+스트림의 속성 중에는 "어떠한 함수들 만이 스트림을 사용할 수 있다" 와 "이 스트림이 어떠한 방식으로 데이터를 입출력 하느냐" 가 있다. 이러한 속성들은 `fopen` 함수를 통해 스트림이 파일과 어떠한 방식으로 연관되어 있는지에 따라 달라지게 된다.
 
-
-
-  스트림의 속성 중에는 "어떠한 함수들 만이 스트림을 사용할 수 있다" 와 "이 스트림이 어떠한 방식으로 데이터를 입출력 하느냐" 가 있다. 이러한 속성들은 `fopen` 함수를 통해 스트림이 파일과 어떠한 방식으로 연관되어 있는지에 따라 달라지게 된다.
-
-읽기 쓰기 권한 (Read/Write Access)
+#### 읽기 쓰기 권한 (Read/Write Access)
 
 이 스트림이 연관된 물리 장비로 부터 읽거나 쓸 수 있는지 (또는 둘 다)에 대한 정보를 알려준다.
 
-텍스트 `/` 바이너리 (Text/Binary)
+#### 텍스트 / 바이너리 (Text/Binary)
 
-텍스트 스트림들은 말그대로 문장을 중심으로 작동하며 각 문장은 개행 문자로 끝나게 된다. 텍스트 스트림은 받아들인 각 문자를 번역을 하게 되는데 프로그램이 작동되는 환경에 따라 일부 문자들을 다른 방식으로 번역할 수 도 있다. 실제 예로, 애플의 매킨 토시 컴퓨터들은 개행 문자(new-line character)로 `CR` (캐리지 리턴, `carriage return)` 한 문자를 사용한다. 하지만 리눅스와 같은 유닉스 기반 컴퓨터들은 개행문자로 `LF` (라인 피드, `line feed)` 한 문자를 사용한다. 그러나 `DOS` 나 윈도우즈, `OS/2` 계열의 운영체제들은 `CR + LF` 를 사용해서 두 문자로 개행 문자임을 표시한다. [[각주:](#footnote_34_1)`1 1`]`이렇게, 운영체제 마다 똑같은 개행 문자를 다른 방식으로 번역하기 때문에 텍스트 스트림에 경우 각 프로그램의 작동 환경에 영향을 받을 수 밖에 없다. 그러나 바이너리 스트림 (이진 스트림) 의 경우 단순히 장비로 부터 순차적으로 이진 데이터를 입력 받는 것이기 때문에 번역 과정이 필요 없을 뿐더러 각 환경에 영향을 받지도 않는다.
+텍스트 스트림들은 말그대로 문장을 중심으로 작동하며 각 문장은 개행 문자로 끝나게 된다. 텍스트 스트림은 받아들인 각 문자를 번역을 하게 되는데 프로그램이 작동되는 환경에 따라 일부 문자들을 다른 방식으로 번역할 수 도 있다.
 
-버퍼(Buffer)
+실제 예시로, MacOS 에서는 개행 문자(new-line character)로 `CR` (캐리지 리턴, carriage return) 한 문자를 사용한다. 하지만 리눅스와 같은 유닉스 기반 컴퓨터들은 개행문자로 `LF` (라인 피드, line feed) 한 문자를 사용한다. 그러나 DOS 나 윈도우즈, OS/2 계열의 운영체제들은 `CR + LF` 를 사용해서 두 문자로 개행 문자임을 표시한다.
 
-버퍼는 메모리의 일부분으로 장치나 파일로 부터 읽거나 쓰기 전에 저장되는 곳이다. 스트림은`fully buffered, line buffered, unbuffered`중 하나가 될 수 있다. `fully buffered` 스트림의 경우, 데이터는 버퍼가 꽉 찰 경우 데이터가 읽어/쓰여 지고, `line buffered` 스트림의 경우 개행 문자가 버퍼에 들어왔을 때, `unbuffered` 스트림의 경우 어떠한 상태에서도 바로 데이터가 읽어/쓰여지는 스트림이다. 기본적으로 `stdin` 은 `fully bufferd, stderr` 은 `unbuffered, stdout` 은 터미널일 경우 `line buffered,` 아니면 `fully buffered` 상태로 설정되어 있다. [[각주:](#footnote_34_2)`2 2`]`
+이렇게, 운영체제 마다 똑같은 개행 문자를 다른 방식으로 번역하기 때문에 텍스트 스트림에 경우 각 프로그램의 작동 환경에 영향을 받을 수 밖에 없다. 그러나 바이너리 스트림 (이진 스트림) 의 경우 단순히 장비로 부터 순차적으로 이진 데이터를 입력 받는 것이기 때문에 번역 과정이 필요 없을 뿐더러 각 환경에 영향을 받지도 않는다.
+
+#### 버퍼(Buffer)
+
+버퍼는 메모리의 일부분으로 장치나 파일로 부터 읽거나 쓰기 전에 저장되는 곳이다. 스트림은 *fully buffered, line buffered, unbuffered* 중 하나가 될 수 있다.
+
+fully buffered 스트림의 경우, 데이터는 버퍼가 꽉 찰 경우 데이터가 읽어/쓰여 지고, line buffered 스트림의 경우 개행 문자가 버퍼에 들어왔을 때, unbuffered 스트림의 경우 어떠한 상태에서도 바로 데이터가 읽어/쓰여지는 스트림이다.
+
+기본적으로 `stdin` 은 fully bufferd, stderr 은 unbuffered, stdout 은 터미널일 경우 line buffered, 아니면 fully buffered 상태로 설정되어 있다.
 
 
 ###  스트림 상태 표시자(indicator)
 
+스트림은 현재의 상태를 나타내기 위해 특정한 표시자가 있으며, 이는 스트림의 입출력 형태에 영향을 줄 수 있다.
 
-
-   스트림은 현재의 상태를 나타내기 위해 특정한 표시자가 있으며, 이는 스트림의 입출력 형태에 영향을 줄 수 있다.
-
-오류 표시자 (Error indicator)
+#### 오류 표시자 (Error indicator)
 
 이 표시자는 스트림 관련한 연산에서 오류가 발생하였을 때 설정(set) 된다. 이 표시자의 상태는 `ferror` 함수를 통해 확인할 수 있으며 `clearerr` 함수나 [rewind](http://itguru.tistory.com/75), [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수들을 통해 표시자의 상태를 초기화 할 수 있다.
 
-파일 끝 표시자 (End-Of-File indicator)
+#### 파일 끝 표시자 (End-Of-File indicator)
 
 이 표시자가 설정되면 스트림의 읽기 혹은 쓰기 연산이 파일의 끝 부분에 도달하였다는 뜻을 나타낸다. 이는 [feof](http://itguru.tistory.com/51)함수를 통해 확인할 수 있으며 `clearerr` 함수나 [rewind](http://itguru.tistory.com/75), [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수를 통해 초기화 할 수 있다.
 
-위치 표시자 (Position Indicator)
+#### 위치 표시자 (Position Indicator)
 
 이는 포인터로 스트림이 입출력 연산에서 다음으로 읽거나 쓸 문자를 가리킨다. 이 표시자가 가리키는 값은 [ftell](http://itguru.tistory.com/74)이나 `fgetpos` 함수를 통해 알아낼 수 있으며 역시 [rewind](http://itguru.tistory.com/75), [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수를 이용해서 표시자의 값을 바꿀 수 있다.
 
 
-
-
 ###  stdio.h 에 정의된 함수들
-
-
 
 
 파일 작업 관련:
@@ -192,14 +191,7 @@ cat_title :  stdio.h (cstdio)
 
 ###  매크로
 
-
-
-
-
-
 * `EOF` : 파일 끝(end `of file)`
-
-
 
 * `FILENAME_MAX` : 파일 이름의 최대 길이
 
@@ -227,14 +219,4 @@ cat_title :  stdio.h (cstdio)
 
 * `size_t` : 부호 없는 정수
 
-
-`*` 위 글의 모든 자료들은 다음 사이트에서 번역한 내용입니다. [http://www.cplusplus.com/](http://www.cplusplus.com/)
-
-
-1. http://www.felgall.com/cplus4.htm
- [[본문으로]](#footnote_link_34_1)
-1. http://www.pixelbeat.org/programming/stdio_buffering/
- [[본문으로]](#footnote_link_34_2)
-
-
-
+위 글의 모든 자료들은 다음 사이트에서 번역한 내용입니다. [http://www.cplusplus.com/](http://www.cplusplus.com/)

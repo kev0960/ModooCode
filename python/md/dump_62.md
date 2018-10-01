@@ -55,9 +55,10 @@ int setvbuf ( FILE * stream, char * buffer, int mode, size_t size );
 `mode`
 
 파일 버퍼링의 형식을 지정한다.
-`_IOFBF`, 완전한 버퍼링(Full Buffering): 앞에서 설명한 fully buffered 스트림을 일컫는다.
-`_IOLBF`, 행 버퍼링(Line Buffering): 출력시, 버퍼가 채워지거나 스트림에 개행 문자가 입력되었다면 데이터가 버퍼에서 출력된다. 입력 시에는 버퍼가 개행 문자를 만날 때 까지 버퍼를 채우게 된다.
-`_IONBF`, 버퍼링 사용 안함(No Buffering): 버퍼를 사용하지 않는다. 각각의 입출력 작업은 버퍼를 지나지 않고 요청 즉시 진행되며 이 겨우 `buffer` 인자와 `size` 인자는 모두 무시된다.
+
+* `_IOFBF` 완전한 버퍼링(Full Buffering): 앞에서 설명한 fully buffered 스트림을 일컫는다.
+* `_IOLBF` 행 버퍼링(Line Buffering): 출력시, 버퍼가 채워지거나 스트림에 개행 문자가 입력되었다면 데이터가 버퍼에서 출력된다. 입력 시에는 버퍼가 개행 문자를 만날 때 까지 버퍼를 채우게 된다.
+* `_IONBF` 버퍼링 사용 안함(No Buffering): 버퍼를 사용하지 않는다. 각각의 입출력 작업은 버퍼를 지나지 않고 요청 즉시 진행되며 이 겨우 `buffer` 인자와 `size` 인자는 모두 무시된다.
 
 `size`
 
