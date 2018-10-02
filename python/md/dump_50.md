@@ -63,13 +63,3 @@ int main () {
 *  [feof](http://itguru.tistory.com/51)   :  파일 끝 표시자(EOF) 를 검사한다.
 *  [ferror](http://itguru.tistory.com/52):  오류 표시자를 검사한다.
 * rewind  :  위치 표시자를 처음으로 되돌린다.
-
-
-
-
-
-1. 적합한 한국어 단어가 없는 것 같네요.. 비우다, 깨끗이 하다, 초기화 하다 등의 뜻으로 생각해 주면 되겠어요.
- [[본문으로]](#footnote_link_50_1)
-
-
-

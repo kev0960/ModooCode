@@ -132,7 +132,7 @@ function initCategory() {
         div.append($('<a>', {
           class: 'sidebar-nav-item file',
           text: cat_title,
-          href: file_id,
+          href: '/' + file_id,
           name: cat_title,
         }));
       }
@@ -200,6 +200,11 @@ function RecursiveCommentAdder(ul, comment_id) {
   // Add current comment.
   const current_comment = total_comment_list.get(comment_id);
 
+  // Do not display deleted comment only if it does not have any replies.
+  if (current_comment.is_deleted && current_comment.reply_ids.length == 0) {
+    return;
+  }
+
   const li = $('<li>', {class: 'comment'});
   const div_profile = $('<div>', {class: 'comment-profile'});
   let img_src = '/img/unknown_person.png';
@@ -229,7 +234,7 @@ function RecursiveCommentAdder(ul, comment_id) {
   div_comment_action.append(
       $('<span>', {class: 'comment-reply'}).text('답글 달기'));
   div_comment_action.append(
-      $('<span>', {class: 'comment-edit'}).text('답글 수정'));
+      $('<span>', {class: 'comment-delete'}).text('답글 삭제'));
   div_comment_info.append(div_comment_action);
   li.append(div_comment_info);
 
@@ -527,9 +532,55 @@ $(() => {
     createReply.bind(this)();
   });
 
+  function deleteComment(comment_id, password) {
+    console.log(comment_id, password);
+    $.ajax({
+      type: 'POST',
+      url: '/delete-comment',
+      data: {comment_id, password},
+      success: function(data) {
+        console.log(data);
+      }
+    });
+  }
+
+  $(document).on('click', '.comment-delete', function() {
+    selected_comment_id = $(this).parent().attr('id');
+    selected_comment_id = parseInt(
+        selected_comment_id.substr(selected_comment_id.lastIndexOf('-') + 1));
+
+    // If the user has not logged in, open the dialog to let them enter the
+    // password.
+    if ($('#username').text().length == 0) {
+      if (!$('#delete-btn-' + selected_comment_id).length) {
+        $('<button id="delete-btn-' + selected_comment_id +
+          '" class="delete-btn">확인</button>')
+            .insertAfter(this);
+        $('<input type="password" id="delete-password-' + selected_comment_id +
+          '" class="delete-password">')
+            .insertAfter(this);
+        $('<label for="delete-password-' + selected_comment_id +
+          '" class="delete-password-label">댓글 비밀번호 :</label>')
+            .insertAfter(this);
+      }
+    } else {
+      deleteComment(selected_comment_id, '');
+    }
+  });
+
+  $(document).on('click', '.delete-btn', function() {
+    selected_comment_id = $(this).attr('id');
+    selected_comment_id = parseInt(
+        selected_comment_id.substr(selected_comment_id.lastIndexOf('-') + 1));
+    deleteComment(
+        selected_comment_id,
+        $('#delete-password-' + selected_comment_id).val());
+  });
+
   $(document).on('click', '#post-reply', function() {
     postReply(selected_comment_id);
   });
+
 
   $('#post-comment').click(function() {
     postComment();
@@ -590,9 +641,6 @@ function BuildTOC() {
     let elem =
         $('<li></ul><a href="#' + toc_infos[i].id + '" class="toc-' +
           toc_infos[i].tag + '">' + toc_infos[i].content + '</a></li>');
-    console.log(
-        '<a href="#' + toc_infos[i].id + '">' + toc_infos[i].content + '</a>')
     $('#toc').append(elem);
   }
-  console.log(toc_infos)
 }

@@ -5,7 +5,7 @@ namespace md_parser {
 
 class QuoteContent : public Content {
  public:
-  QuoteContent(const string& content, TokenTypes header_type);
+  QuoteContent(const string& content);
   string OutputHtml() override;
 
   void AddContent(const string& content) override;

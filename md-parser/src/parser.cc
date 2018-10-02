@@ -8,6 +8,7 @@
 #include "content_header.h"
 #include "content_list.h"
 #include "content_math.h"
+#include "content_quote.h"
 #include "content_table.h"
 #include "parser_environment.h"
 #include "util.h"
@@ -139,6 +140,9 @@ void MDParser::AnalyzeLine(const std::string& line,
     }
   } else if (first_token_info == TABLE) {
     parser_env_.AppendOrCreateContent(new TableContent(line), line);
+  } else if (first_token_info == QUOTE) {
+    parser_env_.AppendOrCreateContent(new QuoteContent(line_except_first_token),
+                                      line_except_first_token);
   } else {
     newline_started_ = false;
     switch (first_token_info) {

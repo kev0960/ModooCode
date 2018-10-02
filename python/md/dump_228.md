@@ -1217,7 +1217,7 @@ A&& forward(A& a) noexcept
 
 #### 문제 1
 
-실제로 `move` 와 `forward` 가 어떠한 방식으로 구현되어 있는지 궁금하신 분들은 [여기를 참고하시면 됩니다](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-api-4.5/a00936_source.html)`.` 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중 . 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중)
+실제로 `move` 와 `forward` 가 어떠한 방식으로 구현되어 있는지 궁금하신 분들은 [여기를 참고하시면 됩니다](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-api-4.5/a00936_source.html) 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중)
 
 
 

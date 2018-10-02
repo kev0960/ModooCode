@@ -61,6 +61,7 @@ add_executable(content_test
                src/content_header.cc
                src/content_list.cc
                src/content_table.cc
+               src/content_quote.cc
                src/fast_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc
                src/parser_environment.cc)
@@ -76,6 +77,7 @@ add_executable(parser_test
                src/content_table.cc
                src/content_list.cc
                src/content_math.cc
+               src/content_quote.cc
                src/fast_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc
                src/parser_environment.cc)

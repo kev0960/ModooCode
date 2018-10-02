@@ -65,15 +65,8 @@ cat_title :  string.h (cstring)
 *  [strcspn](http://itguru.tistory.com/94)  :  특정한 문자열에 포함된 문자들을 다른 문자열에서 찾아 가장 먼저 나오는 것을 구한다.
 *  [strpbrk](http://itguru.tistory.com/95):  특정한 문자열에 포함된 문자들을 다른 문자열에서 찾아 일치되는 것을 가리킨다.
 *  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자를 찾되, 뒤에서 부터 찾는다.
-
-
-
 *  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열에서 다른 문자열에 포함되어 있는 부분을 찾되, 처음 부터 연속된 부분으로 구한다.
-
 *  [strstr](http://itguru.tistory.com/101)  :  특정한 문자열을 다른 문자열에서 검색한다.
-
-
-
 *  [strtok](http://itguru.tistory.com/102)  :  문자열을 토큰으로 분리한다.
 
 

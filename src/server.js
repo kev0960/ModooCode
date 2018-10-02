@@ -2,9 +2,11 @@ const zmq = require('zmq');
 const uuidv4 = require('uuid/v4');
 
 const facebook_strategy = require('passport-facebook').Strategy;
-const naver_strategy = require('passport-naver').Strategy;
 const google_strategy = require('passport-google-oauth2').Strategy;
 const passport = require('passport');
+const bcrypt = require('bcrypt');
+
+const HASH_ROUNDS = parseInt(process.env.HASH_ROUNDS);
 
 class ZmqManager {
   constructor(send_sock, recv_sock) {
@@ -94,7 +96,7 @@ module.exports = class Server {
         }.bind(this)));
 
     passport.serializeUser(function(user, done) {
-      console.log(user);
+      console.log('serial user : ', user);
       done(null, user.user_id);
     });
 
@@ -143,11 +145,11 @@ module.exports = class Server {
     let result = await this.client.query(
         'INSERT INTO comment(article_url, reply_ids, vote_up, vote_down,' +
             'comment_date, modified_date, author_name, author_email, image_link,' +
-            'content, password, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7,' +
-            ' $8, $9, $10, $11, $12) RETURNING *',
+            'content, password, author_id, is_md) VALUES ($1, $2, $3, $4, $5, $6, $7,' +
+            ' $8, $9, $10, $11, $12, $13) RETURNING *',
         [
           article_url, [], 0, 0, current_time, current_time, user.name,
-          user.email, user.image, content, password, user.user_id
+          user.email, user.image, content, password, user.user_id, true
         ]);
     let new_comment = result.rows[0];
     let new_comment_id = new_comment.comment_id;
@@ -158,6 +160,31 @@ module.exports = class Server {
               ' comment_id = $2',
           [new_comment_id, parent_id]);
     }
+  }
+
+  async deleteComment(comment_id, user, password) {
+    let comment = await this.client.query(
+        'SELECT comment_id, author_id, password' +
+            ' FROM comment WHERE comment_id = $1',
+        [comment_id]);
+    if (comment.rows.length == 0) {
+      return {status: false, msg: 'Fatal error'};
+    }
+    comment = comment.rows[0];
+    console.log('Comment rows', password, comment)
+    if (comment.author_id != user.user_id) {
+      // Then check whether email and the password matches.
+      const match = await bcrypt.compare(password, comment.password);
+      if (!match) {
+        return {status: false, msg: 'Password does not match'};
+      }
+    }
+
+    await this.client.query(
+        'UPDATE comment SET is_deleted = TRUE, '
+        + 'content = \'삭제된 댓글입니다\' WHERE comment_id = $1',
+        [comment_id]);
+    return {status: true};
   }
 
   setRoutes() {
@@ -239,10 +266,24 @@ module.exports = class Server {
       let id = req.body.id;
       const result = await this.client.query(
           'SELECT author_name, comment_date, modified_date, comment_id, content,' +
-              'image_link, reply_ids, vote_up, vote_down, is_md FROM' +
+              'image_link, reply_ids, vote_up, vote_down, is_md, is_deleted FROM' +
               ' comment WHERE article_url = $1::text ORDER BY comment_id ASC',
           [id]);
       res.send(result.rows);
+    }.bind(this));
+
+    this.app.post('/delete-comment', async function(req, res) {
+      let password = req.body.password;
+      let comment_id = req.body.comment_id;
+      let user = req.user;
+      if (user) {
+        password = '';
+      } else {
+        user = {user_id: -1};
+      }
+      console.log(user, comment_id, password);
+      let result = await this.deleteComment(comment_id, user, password);
+      return res.send(result);
     }.bind(this));
 
     this.app.post('/write-comment', async function(req, res) {
@@ -260,6 +301,8 @@ module.exports = class Server {
         }
         if (!password) {
           return res.send({status: 'Failed', reason: 'Missing password'});
+        } else {
+          password = await bcrypt.hash(password, HASH_ROUNDS);
         }
       } else {
         // If the user is signed in, then make the password field empty.

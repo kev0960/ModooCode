@@ -207,3 +207,32 @@
     padding-bottom: 10px;
     font-size: 0.7em;
 }
+
+.delete-password-label {
+    font-size: 0.7em;
+    margin-left: 20px;
+}
+
+.delete-password {
+    width: 30%;
+    height: 55%;
+    min-height: 25px;
+    border: 2px solid #dedede;
+    border-radius: 3px;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.delete-btn {
+    margin-left: 15px;
+    background: none;
+    border: 1px solid #dedede;
+    color: #3c3c3c;
+    font-size: 0.75em;
+}
+
+.delete-btn:hover {
+    background: grey;
+    color: white;
+    cursor: pointer;
+}
