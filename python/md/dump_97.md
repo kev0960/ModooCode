@@ -85,8 +85,6 @@ size_t strspn(const char *string, const char *control) {
 
 ###  실행 예제
 
-
-![](http://)
 ```cpp
 /*
 

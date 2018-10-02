@@ -40,7 +40,6 @@ title : 티스토리용 통계 프로그램 (댓글, 포스트, 방문자 등등
   아래는 그 파일 입니다. `tistory_statistics.exe` 를 누르시면 다운 받으실 수 있습니다.
 
 
-![](http://)
  [ tistory_stastics.exe](http://itguru.tistory.com/attachment/cfile29.uf@153EAB414D4D00671D82F7.exe)
   사용하는 방법은, 프로그림이 위치한 곳에 분석을 원하는 파일을 놔둔 후, 프로그램을 실행 시킨 뒤 파일 이름을 쓰고 데이터를 가져오기 원하는 시간 범위를 써주시면 됩니다. 아래 그림을 보시면 이해가 쉽습니다
 

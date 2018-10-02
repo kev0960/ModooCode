@@ -14,7 +14,9 @@ char * strcat ( char * destination, const char * source );
 ```
 
 문자열을 덧붙인다.
-`destination` 끝에 `source` 를 더하게 된다. 이 때, `destination` 의 맨 마지막 널 문자는 `source` 의 첫번째 문자가 덮어 씌우게 된다. 그리고, `source` 의 마지막 널 문자가 `destination` 끝에 붙어서 새로운 문자열을 형성하게 된다. 다시말해, `destination =` "ab" 이고, source="c" 였다면 `strcat` 후, `destination` 은 "abc" 가 된다.
+`destination` 끝에 `source` 를 더하게 된다. 이 때, `destination` 의 맨 마지막 널 문자는 `source` 의 첫번째 문자가 덮어 씌우게 된다. 그리고, `source` 의 마지막 널 문자가 `destination` 끝에 붙어서 새로운 문자열을 형성하게 된다.
+
+다시말해, `destination = "ab"` 이고, `source="c"` 였다면 `strcat` 후, `destination` 은 "abc" 가 된다.
 
 
 

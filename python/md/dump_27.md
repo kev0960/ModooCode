@@ -140,8 +140,7 @@ int change_val(int *pi)
 ![main 함수에 변수 i 가 있다. change_val 에 i 의 주소값을 전달한다. change_val 은 포인터 pi 에 전달 받은 i 의 주소값이 들어가 있다. 이제, pi 가 가리키는 것의 값을 3 으로 바꾸면, pi 가 가리키는 것이 main 의 변수 i 였으므로 실제로 return 후 확인해 보면 main 의 변수 i 의 값이 바뀐다.](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1836411A4B279039965794)
 
 ```cpp
- /* 두 변수의 값을 교환하는 함수 */
-![](http://)
+/* 두 변수의 값을 교환하는 함수 */
 #include <stdio.h>
 int swap(int a, int b)
 {
