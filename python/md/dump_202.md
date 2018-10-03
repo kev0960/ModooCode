@@ -7,7 +7,9 @@ next_page : 203
 
 
 
-이번 강좌에서는* 산술 연산자 오버로딩
+이번 강좌에서는
+
+* 산술 연산자 오버로딩
 * 비교 연산자 오버로딩
 * 대입 연산자 오버로딩
 
@@ -15,8 +17,7 @@ next_page : 203
 
 
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F24253D3C52177993100B09)
-
+![](/img/ChewingCpplogo.png)
 
 
 안녕하세요 여러분! 지난 강좌에서 만들었던 `MyString` 을 손 좀 봐주었나요? 아마도 `MyString` 을 이용하여 여러가지 작업을 하면서 다음과 같은 생각을 하셨을 수도 있었을 것입니다.

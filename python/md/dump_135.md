@@ -2,13 +2,7 @@
 title : 씹어먹는 C++ 강좌 계획
 --------------
 
-
-
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F244D624E51A1FE1210DC30)
-
-
+![](/img/ChewingCpplogo.png)
 
 안녕하세요 여러분~ 이제 C 언어에 이어서 C++ 강좌를 연재하게 된 Psi 입니다. 저의 C++ 강좌는 여러분이 C 언어를 충분히 이해하고 사용하고 있다는 것을 가정으로 진도를 나갈 것입니다.
 

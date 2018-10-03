@@ -15,9 +15,8 @@ next_page : 173
 
 * 접근 지시자 (public, private)
 
+![](/img/ChewingCpplogo.png)
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1342EB504F4DAD7604F48F)
 
 안녕하세요 여러분~ 그간 침묵을 깨고 오래간만에 C++ 강좌를 이어 나가고자 합니다. 앞선 3 강을 읽으셨던 분들은 다 느껴셨겠지만 기존의 C 언어를 통해서 대형 프로젝트를 개발하기 위해서는 많은 어려움들이 있기 마련입니다. (그래도 아직도 많은 수의 프로그램이 C 로 쓰여지고 있습니다)
 

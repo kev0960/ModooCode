@@ -13,9 +13,7 @@ next_page : 188
 
 에 대해 배웁니다
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F167FF448501D32CC2C9AE3)
-
+![](/img/ChewingCpplogo.png)
 
 
 안녕하세요 여러분. 이제 본격적으로 객체 지향 프로그래밍을 시작 하도록 하겠습니다. 아마도 지난번 생각해보기를 열심히 하셨던 분들이라면, `Date` 클래스에서 `add_day` 함수는 조금 어렵더라도, `add_month` 나 `add_year` 정도는 가뿐하게 만드셨을 것이라고 생각합니다. 사실, `add_day` 도 `add_month` 함수를 응용해서 만들면 쉬웠을 것입니다. 이번 강좌에서는 저와 함께 다시 새로운 방법으로 `Date` 클래스를 만들어가면서 객체 지향 프로그래밍에 조금 더 친숙해져 보도록 하겠습니다.

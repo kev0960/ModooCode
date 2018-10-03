@@ -26,7 +26,7 @@
 
 /* Warning */
 .warning {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: rgba(252, 222, 199, 1);
     border: 1px solid rgb(254, 137, 67);
     padding: 10px;
@@ -34,7 +34,7 @@
 }
 
 .info {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: rgb(231, 253, 181);
     border: 1px solid rgb(159, 211, 49);
     padding: 10px;

@@ -26,7 +26,7 @@
 
 /* Warning */
 .warning {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: rgba(252, 222, 199, 1);
     border: 1px solid rgb(254, 104, 67);
     padding: 10px;
@@ -39,7 +39,7 @@
     font-size:110%;
 }
 .info {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: rgb(231, 253, 181);
     border: 1px solid rgb(159, 211, 49);
     padding: 10px;
@@ -235,7 +235,7 @@ table p {
 }
 
 h2.ref-header {
-    font-family: "Source Code Pro", monospace;
+    font-family: "Source Code Pro", 'Noto Sans KR', monospace;
     font-size: 1.8rem;
     border-bottom: 5px solid rgb(232, 232, 232);
     padding-bottom: 4px;
@@ -270,7 +270,7 @@ h3.lecture-header + p {
 }
 
 .chroma {
-    font-family: 'Source Code Pro', monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     font-size: 13px;
     line-height: 20px;
     overflow-y: hidden;

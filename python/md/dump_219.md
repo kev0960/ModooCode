@@ -12,7 +12,9 @@ next_page : 221
 * 함수 객체 (Functor)
 
 에 대해서 배웁니다.
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F2143F24558E6C84424FCCA)
+
+
+![](/img/ChewingCpplogo.png)
 
 안녕하세요 여러분! 지난번 강좌 생각해보기는 잘 해결 하셨나요? 뭐 해결 하지 못하고 넘어왔더라도 괜찮습니다. 이번 강좌에서는 여태까지 배워 왔던 것과 전혀 다른 새로운 세계를 탐험해 볼 것입니다.
 

@@ -10,10 +10,8 @@ next_page : 172
 * `new` 와 `delete` 의 사용
 
 * **Welcome to Object Oriented Programming World!**
-
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1662203F4F0046EC152C51)
+  
+![](/img/ChewingCpplogo.png)
 
 안녕하세요~ 여러분. 오랜 공백기간을 뚫고 찾아온 Psi 입니다. 그동안 많이 기다리셨죠? 이제 부터 본격적으로 이전의 C 에서 탈피하여 C++ 의 세계로 인도해드릴 것입니다.
 

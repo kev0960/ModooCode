@@ -16,10 +16,7 @@ next_page : 169
 * 레퍼런스 배열과 배열의 레퍼런스
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F23506947578CC6871CB730)
-
-
+![](/img/ChewingCpplogo.png)
 
 안녕하세요 여러분! 오랜만에 찾아온 Psi 입니다. 사실 이전 강좌에서 부터 강조해왔지만 C 언어에서 되던 것이 C++ 에서는 거의 100% 된다고 보셔도 무방합니다.
 
