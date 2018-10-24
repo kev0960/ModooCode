@@ -1,4 +1,5 @@
 import os
+import re
 
 
 def handle(data):
@@ -10,7 +11,7 @@ def handle(data):
         return True
       elif c in {
           '(', ')', '{', '}', ',', '.', '!', '+', '-', '*', '/', '=', '[', ']',
-          '<', '>', '~', '_', '&', '%', '|', '?'
+          '<', '>', '~', '_', '&', '%', '|', '?', ':'
       }:
         return True
       return False
@@ -21,6 +22,8 @@ def handle(data):
           return False
       return True
 
+    if line[0] == '|':
+      words = line.split('|')
     words = line.split(' ')
 
     i = 0
@@ -54,7 +57,7 @@ def handle(data):
       if annotated[i] == '`':
         end = annotated.find('`', i + 1)
         w = annotated[i + 1:end]
-        if w in {'C', 'C++', 'Psi', 'C++ 11'}:
+        if w in {'C', 'C++', 'Psi', 'C++ 11', 'C++ 17'}:
           annotated = annotated[:i] + w + annotated[end + 1:]
           continue
         elif w.isdigit() or (w.startswith('-') and w[1:].isdigit()):

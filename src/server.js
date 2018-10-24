@@ -79,7 +79,8 @@ module.exports = class Server {
           profileFields: ['id', 'displayName', 'photos', 'email']
         },
         async function(access_token, refresh_token, profile, cb) {
-          let user = await this.findOrCreateUser('fb', profile);
+          let user = await this.findOrCreateUser(
+              'fb', profile, profile.photos[0].value);
           cb(null, user);
         }.bind(this)));
 
@@ -91,7 +92,8 @@ module.exports = class Server {
         },
         async function(access_token, refresh_token, profile, cb) {
           console.log('Goog ', profile);
-          let user = await this.findOrCreateUser('goog', profile);
+          let user = await this.findOrCreateUser(
+              'goog', profile, profile.photos[0].value);
           cb(null, user);
         }.bind(this)));
 
@@ -107,7 +109,7 @@ module.exports = class Server {
     }.bind(this));
   }
 
-  async findOrCreateUser(auth_type, profile) {
+  async findOrCreateUser(auth_type, profile, image_url) {
     let id = profile.id;
     let result = await this.client.query(
         'SELECT * FROM users WHERE auth_type = $1::text AND auth_id = $2::text',
@@ -118,13 +120,12 @@ module.exports = class Server {
           'INSERT INTO users(auth_id, name, image, email, auth_type)' +
               ' VALUES ($1::text, $2::text, $3::text, $4::text, $5::text) RETURNING *',
           [
-            profile.id, profile.displayName, profile.photos[0].value,
-            profile.email, auth_type
+            profile.id, profile.displayName, image_url, profile.email, auth_type
           ]);
-      /*
-  result = await this.client.query(
-      'SELECT * FROM users WHERE auth_type = $1::text AND auth_id = $2::text',
-      [auth_type, id]);*/
+    } else if (result.rows[0].image != image_url) {
+      result = await this.client.query(
+          'UPDATE users SET image = $1::text WHERE auth_id = $2 RETURNING *',
+          [image_url, id]);
     }
     return result.rows[0];
   }
@@ -171,7 +172,6 @@ module.exports = class Server {
       return {status: false, msg: 'Fatal error'};
     }
     comment = comment.rows[0];
-    console.log('Comment rows', password, comment)
     if (comment.author_id != user.user_id) {
       // Then check whether email and the password matches.
       const match = await bcrypt.compare(password, comment.password);
@@ -181,16 +181,38 @@ module.exports = class Server {
     }
 
     await this.client.query(
-        'UPDATE comment SET is_deleted = TRUE, '
-        + 'content = \'삭제된 댓글입니다\' WHERE comment_id = $1',
+        'UPDATE comment SET is_deleted = TRUE, ' +
+            'content = \'삭제된 댓글입니다\' WHERE comment_id = $1',
         [comment_id]);
     return {status: true};
+  }
+
+  async getLatestComments(num_comment) {
+    let latest_comments = await this.client.query(
+        'SELECT content, comment_date, article_url, author_name FROM ' +
+            'comment ORDER BY comment_date DESC LIMIT $1',
+        [num_comment]);
+    for (let i = 0; i < latest_comments.rows.length; i++) {
+      let d = new Date(latest_comments.rows[i].comment_date);
+      let month = '' + (d.getMonth() + 1);
+      let day = '' + d.getDate();
+      if (month.length < 2) {
+        month = '0' + month;
+      }
+      if (day.length < 2) {
+        day = '0' + day;
+      }
+      latest_comments.rows[i].comment_date = month + '.' + day;
+    }
+    return latest_comments.rows;
   }
 
   setRoutes() {
     // Set up all the routes.
     this.app.get('/', function(req, res) {
-      res.render('./index.ejs');
+      this.getLatestComments(10).then(function(comments) {
+        res.render('./index.ejs', {comments});
+      });
     }.bind(this));
 
     this.app.get('/profile', function(req, res) {
@@ -204,30 +226,52 @@ module.exports = class Server {
       let page_id = parseInt(req.params.id);
       let user = req.user;
       if (!page_id) {
-        res.render('index.ejs');
+        this.getLatestComments(10).then(function(comments) {
+          res.render('./index.ejs', {comments});
+        });
         return;
       }
 
       if (page_id <= 228) {
-        res.render('page.ejs', {
-          content_url: './old/blog_' + page_id + '.html',
-          file_info: this.file_infos[page_id],
-          page_infos: this.page_infos,
-          file_infos: this.file_infos,
-          user
-        });
+        res.render(
+            'page.ejs', {
+              content_url: './old/blog_' + page_id + '.html',
+              file_info: this.file_infos[page_id],
+              page_infos: this.page_infos,
+              file_infos: this.file_infos,
+              user
+            },
+            function(err, html) {
+              if (err) {
+                console.log('err : ', err);
+                this.getLatestComments(10).then(function(comments) {
+                  console.log('Comments ', comments);
+                  res.render('./index.ejs', {comments});
+                });
+              } else {
+                res.send(html);
+              }
+            }.bind(this));
       } else {
-        try {
-          res.render('page.ejs', {
-            content_url: './new/' + page_id + '.html',
-            file_info: this.file_infos[page_id],
-            page_infos: this.page_infos,
-            file_infos: this.file_infos,
-            user
-          });
-        } catch (e) {
-          res.render('./index.ejs');
-        }
+        res.render(
+            'page.ejs', {
+              content_url: './new/' + page_id + '.html',
+              file_info: this.file_infos[page_id],
+              page_infos: this.page_infos,
+              file_infos: this.file_infos,
+              user
+            },
+            function(err, html) {
+              if (err) {
+                console.log('err : ', err);
+                this.getLatestComments(10).then(function(comments) {
+                  console.log('Comments ', comments);
+                  res.render('./index.ejs', {comments});
+                });
+              } else {
+                res.send(html);
+              }
+            }.bind(this));
       }
     }.bind(this));
 
@@ -295,7 +339,6 @@ module.exports = class Server {
       let user = req.user;
       if (!user) {
         user = {name, image: '', email: '', user_id: -1};
-        console.log(user);
         if (!name) {
           return res.send({status: 'Failed', reason: 'Missing name'});
         }

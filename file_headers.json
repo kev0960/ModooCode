@@ -721,6 +721,15 @@
 	"231" : {
 }
 ,
+	"232" : {
+}
+,
+	"233" : {
+	"cat_title" : "<string>",
+	"path" : "/C++ Reference/string",
+	"title" : "C++ 레퍼런스 - string 라이브러리"
+}
+,
 	"24" : {
 	"cat_title" : "12 - 2. 포인터는 영희이다! (포인터)",
 	"next_page" : "25",

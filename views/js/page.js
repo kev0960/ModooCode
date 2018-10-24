@@ -607,6 +607,10 @@ $(() => {
   $(document).on('click', '.goog-login', function() {
     let current_url = window.location.href;
     let content_new_comment = $('#posted-comment').val();
+    let content_new_reply = undefined;
+    if ($('#posted-reply').length) {
+      content_new_reply = $('#posted-reply').val();
+    }
     window.localStorage.setItem('redirect-info', JSON.stringify({
       current_url,
       current_comment_index,

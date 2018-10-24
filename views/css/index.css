@@ -149,3 +149,40 @@ main {
 .ref-col a:hover {
   border: 1px solid #ddd;
 }
+
+.comment-box .comment-content {
+  float: left;
+  width: 55%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: grey;
+
+}
+
+.item-text-header.comment {
+  padding-bottom: 4px;
+}
+
+.comment-box .comment-author {
+  display: inline-block;
+  position: relative;
+  width: 45%;
+  text-align: right;
+  font-size: small;
+}
+
+.comment-box .comment-author::before {
+  content: "by";
+  font-style: italic;
+  margin-right: 3px;
+}
+
+.comment-box .comment-date {
+  color: #268bd2;
+  margin-left: 5px;
+}
+
+.comment-box a {
+  text-decoration: none;
+}

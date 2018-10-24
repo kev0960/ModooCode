@@ -145,6 +145,34 @@
           </div>
         </div>
       </div>
+      <div class="row-content">
+        <div class="item">
+          <div class="item-text">
+            <div class="item-text-header comment">
+            최근 댓글
+            </div>
+            <div class="item-text-content">
+              <% for (let i = 0; i < comments.length; i ++) { %> 
+                <div class="comment-box">
+                  <div class="comment-content">       
+                    <a class="comment-link" href="<%= '/' + comments[i].article_url %>"><%= comments[i].content %></a>
+                  </div>
+                  <div class="comment-author">
+                    <%= comments[i].author_name %>
+                    <span class="comment-date"><%= comments[i].comment_date %></span>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="item" style="visibility:hidden">
+          <div class="item-text">
+            <div class="item-text-header">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 </body>
