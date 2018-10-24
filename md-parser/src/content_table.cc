@@ -61,7 +61,8 @@ void ParseColumnStyle(const std::vector<string>& column_style_row,
 }
 
 string GenerateTableRow(std::vector<Content>* row,
-                        const std::vector<ColumnStyle>& column_styles) {
+                        const std::vector<ColumnStyle>& column_styles,
+                        ParserEnvironment* parser_env) {
   string html = "";
   html += "<tr>";
   size_t column_index = 0;
@@ -72,9 +73,9 @@ string GenerateTableRow(std::vector<Content>* row,
     }
     if (!column_class.empty()) {
       html += StrCat(R"(<td class=")", column_class,
-                     R"(">)", content.OutputHtml(), "</td>");
+                     R"(">)", content.OutputHtml(parser_env), "</td>");
     } else {
-      html += StrCat("<td>", content.OutputHtml(), "</td>");
+      html += StrCat("<td>", content.OutputHtml(parser_env), "</td>");
     }
     column_index++;
   }
@@ -83,17 +84,18 @@ string GenerateTableRow(std::vector<Content>* row,
 }
 
 string GenerateTable(std::vector<std::vector<Content>>* table,
-                     const std::vector<ColumnStyle>& column_styles) {
+                     const std::vector<ColumnStyle>& column_styles,
+                     ParserEnvironment* parser_env) {
   string html = "<table>";
   if (column_styles.empty()) {
-    html += GenerateTableRow(&table->at(0), column_styles);
+    html += GenerateTableRow(&table->at(0), column_styles, parser_env);
   } else {
     int row_index = 0;
     for (auto& contents : *table) {
       if (row_index == 0) {
         html += "<thead>";
       }
-      html += GenerateTableRow(&contents, column_styles);
+      html += GenerateTableRow(&contents, column_styles, parser_env);
       if (row_index == 0) {
         html += "</thead><tbody>";
       }
@@ -114,7 +116,7 @@ void TableContent::AddContent(const string& line) {
   table_rows_.push_back(line);
 }
 
-string TableContent::OutputHtml() {
+string TableContent::OutputHtml(ParserEnvironment* parser_env) {
   std::vector<std::vector<Content>> table;
   table.reserve(table_rows_.size());
 
@@ -123,7 +125,7 @@ string TableContent::OutputHtml() {
   ParseTableRow(table_rows_[0], &table.back());
 
   if (table_rows_.size() < 2) {
-    return GenerateTable(&table, column_styles_);
+    return GenerateTable(&table, column_styles_, parser_env);
   }
   std::vector<string> column_style_row;
   ParseTableRow(table_rows_[1], &column_style_row);
@@ -134,7 +136,7 @@ string TableContent::OutputHtml() {
     ParseTableRow(table_rows_[i], &table.back());
   }
 
-  return GenerateTable(&table, column_styles_);
+  return GenerateTable(&table, column_styles_, parser_env);
 }
 
 }  // namespace md_parser

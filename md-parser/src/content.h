@@ -56,7 +56,6 @@ class Content {
   virtual ~Content(){};
   virtual TokenTypes GetContentType() const { return TokenTypes::TEXT; }
   virtual string OutputHtml(ParserEnvironment* parser_env);
-  virtual string OutputHtml();
 
  protected:
   string content_;

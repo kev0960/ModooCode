@@ -20,6 +20,10 @@ class PageStructure {
   void SortCurrentFiles(
       const std::map<string, std::map<string, string>>& file_info);
 
+  // Returns true if the file exists in current or any directory underneath it.
+  bool CheckFileExists(const string& file_name) const;
+  const PageStructure* GetDirectoryByName(const string& dir_name) const;
+
  private:
   const bool is_root_page_;
   const string current_page_dir_;
@@ -44,6 +48,11 @@ class PagePath {
   void SortPathFiles(
       const std::map<string, std::map<string, string>>& file_info);
 
+  // This recursively searches for every file in every directory under dir_name.
+  // dir_name must be a root directory.
+  bool CheckFileInDirectory(const string& dir_name,
+                            const string& file_name) const;
+
  private:
   std::unique_ptr<PageStructure> root_page_;
 };
@@ -57,6 +66,9 @@ class PathReader {
   string GenerateSiteMap();
   void SortPathFiles(
       const std::map<string, std::map<string, string>>& file_info);
+
+  // Return true if the file_id is a reference.
+  bool IsThisFileReference(const string& file_id) const;
 
  private:
   std::unordered_map<string, string> excluded_files_;

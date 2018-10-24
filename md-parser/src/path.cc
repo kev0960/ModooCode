@@ -52,6 +52,26 @@ bool PageStructure::ParsePathAndAdd(const string& page_path) {
       current_path.substr(path_name_end));
 }
 
+bool PageStructure::CheckFileExists(const string& file_name) const {
+  if (pages_.find(file_name) != pages_.end()) return true;
+  for (size_t i = 0; i < child_dirs_.size(); i++) {
+    if (child_dirs_[i]->CheckFileExists(file_name)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+const PageStructure* PageStructure::GetDirectoryByName(
+    const string& dir_name) const {
+  for (size_t i = 0; i < child_dirs_.size(); i++) {
+    if (child_dirs_[i]->GetDirName() == dir_name) {
+      return child_dirs_[i].get();
+    }
+  }
+  return nullptr;
+}
+
 string PageStructure::DumpJson() const {
   string json = "";
 
@@ -180,6 +200,20 @@ string PagePath::GenerateSiteMap() {
   }
   sitemap += url_close;
   return sitemap;
+}
+
+bool PagePath::CheckFileInDirectory(const string& dir_name,
+                                    const string& file_name) const {
+  const PageStructure* pg = root_page_->GetDirectoryByName(dir_name);
+  if (pg != nullptr) {
+    return pg->CheckFileExists(file_name);
+  }
+  return false;
+}
+
+bool PathReader::IsThisFileReference(const string& file_id) const {
+  return path_.CheckFileInDirectory("C++ Reference", file_id) ||
+         path_.CheckFileInDirectory("C Reference", file_id);
 }
 
 PathReader::PathReader() {}

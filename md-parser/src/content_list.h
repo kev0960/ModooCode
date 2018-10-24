@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+
 #include "content.h"
 
 using std::string;
@@ -21,7 +22,6 @@ class EnumListContent : public ListContent {
   EnumListContent(const string& content, int enum_depth)
       : ListContent(content, enum_depth) {}
 
-  string OutputHtml() override;
   string OutputHtml(ParserEnvironment* parser_env) override;
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::LIST_ENUM; }
@@ -31,7 +31,7 @@ class UnorderedListContent : public ListContent {
  public:
   UnorderedListContent(const string& content, int list_depth)
       : ListContent(content, list_depth) {}
-  string OutputHtml() override;
+
   string OutputHtml(ParserEnvironment* parser_env) override;
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override {

@@ -102,6 +102,20 @@ void WriteFileToStatMap(
   }
 }
 
+void ReferenceToUrls(
+    const std::map<string, std::map<string, string>>& file_info,
+    std::unordered_map<string, string>* ref_to_url,
+    const PathReader& path_reader) {
+  for (const auto& kv : file_info) {
+    const auto cat_title = kv.second.find("cat_title");
+    if (cat_title != kv.second.end()) {
+      if(path_reader.IsThisFileReference(kv.first)) {
+        std::cout << kv.first << " --> " << cat_title->second << std::endl;
+        (*ref_to_url)[cat_title->second] = kv.first;
+      }
+    }
+  }
+}
 }  // namespace
 
 Driver::Driver(const DriverConfig& config) : config_(config) {
@@ -133,30 +147,6 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     }
   }
 
-  if (!config_.no_output_parsed) {
-    int parser_index = 0;
-    // Create an output directory (if not exist)
-    string output_dir_name = "";
-    std::experimental::filesystem::create_directories("../views/old");
-    std::experimental::filesystem::create_directories("../views/new");
-
-    for (const auto& filename : filenames) {
-      if (Contains(files_not_to_process, GetFileId(filename))) {
-        parser_index++;
-        continue;
-      }
-      std::cerr << "Output [" << parser_index + 1 << "/" << filenames.size()
-                << "] " << GetOutputFile(filename) << std::endl;
-      std::ofstream output_file(GetOutputFile(filename));
-      /*
-      string file_index(filename.begin() + filename.find_last_of("_") + 1,
-                        filename.begin() + filename.find_last_of("."));*/
-      // file_info[file_index] = parsers_[parser_index]->GetHeaderInfo();
-      output_file << parsers_[parser_index]->ConvertToHtml();
-      parser_index++;
-    }
-  }
-
   // Generate the page related info.
   std::map<string, std::map<string, string>> file_info;
   std::map<string, string> next_page_map;
@@ -182,19 +172,46 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     file_info_json.DumpJson(file_info_json.JsonSerialize(file_info));
   }
 
-  if (!config_.no_dump_page_path) {
-    PathReader reader(path_defined_files);
-    bool page_path_json_or_not =
-        reader.ReadAndBuildPagePath("./data/old_category.txt");
-    reader.SortPathFiles(file_info);
-    if (page_path_json_or_not) {
-      std::ofstream output_json("../page_path.json");
-      output_json << reader.DumpPagePath();
+  PathReader reader(path_defined_files);
+  bool page_path_json_or_not =
+      reader.ReadAndBuildPagePath("./data/old_category.txt");
+  reader.SortPathFiles(file_info);
+  if (page_path_json_or_not) {
+    std::ofstream output_json("../page_path.json");
+    output_json << reader.DumpPagePath();
 
-      std::ofstream output_sitemap("../views/sitemap.xml");
-      output_sitemap << reader.GenerateSiteMap();
+    std::ofstream output_sitemap("../views/sitemap.xml");
+    output_sitemap << reader.GenerateSiteMap();
+  }
+
+  // Build a reference to url table.
+  std::unordered_map<string, string> ref_to_url;
+  ReferenceToUrls(file_info, &ref_to_url, reader);
+
+  if (!config_.no_output_parsed) {
+    int parser_index = 0;
+    // Create an output directory (if not exist)
+    string output_dir_name = "";
+    std::experimental::filesystem::create_directories("../views/old");
+    std::experimental::filesystem::create_directories("../views/new");
+
+    for (const auto& filename : filenames) {
+      if (Contains(files_not_to_process, GetFileId(filename))) {
+        parser_index++;
+        continue;
+      }
+      std::cerr << "Output [" << parser_index + 1 << "/" << filenames.size()
+                << "] " << GetOutputFile(filename) << std::endl;
+      std::ofstream output_file(GetOutputFile(filename));
+      /*
+      string file_index(filename.begin() + filename.find_last_of("_") + 1,
+                        filename.begin() + filename.find_last_of("."));*/
+      // file_info[file_index] = parsers_[parser_index]->GetHeaderInfo();
+      output_file << parsers_[parser_index]->ConvertToHtml(&ref_to_url);
+      parser_index++;
     }
   }
+
   WriteFileToStatMap(file_id_to_stat_map_);
   return true;
 }

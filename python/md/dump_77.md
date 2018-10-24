@@ -18,7 +18,6 @@ cat_title :  memcpy
 #include <string.h> // C++ 에서는 <cstring>
 
 void * memcpy ( void * destination, const void * source, size_t num );
-
 ```
 
 메모리의 일부분을 복사한다.
@@ -32,9 +31,6 @@ void * memcpy ( void * destination, const void * source, size_t num );
 
 
 ###  인자
-
-
-
 
 `destination`
 

@@ -35,8 +35,8 @@ HeaderContent::HeaderContent(const string& content, const string& header_token,
       header_token_(header_token),
       header_index_(header_index) {}
 
-string HeaderContent::OutputHtml() {
-  auto output_html = Content::OutputHtml();
+string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
+  auto output_html = Content::OutputHtml(parser_env);
   if (output_html.empty()) {
     return "";
   }
@@ -55,7 +55,7 @@ string HeaderContent::OutputHtml() {
     start_header = StrCat(R"(<h3 class="lecture-header" )", "id='page-heading-",
                           std::to_string(header_index_), "'>");
     end_header = R"(</h3>)";
-    return StrCat(start_header, Content::OutputHtml(), end_header);
+    return StrCat(start_header, Content::OutputHtml(parser_env), end_header);
   }
   StripMarkdown(&content_);
   return StrCat(start_header, content_, end_header);

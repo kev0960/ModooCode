@@ -6,7 +6,7 @@ namespace md_parser {
 class QuoteContent : public Content {
  public:
   QuoteContent(const string& content);
-  string OutputHtml() override;
+  string OutputHtml(ParserEnvironment* parser_env) override;
 
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::QUOTE; }

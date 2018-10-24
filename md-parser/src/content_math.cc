@@ -10,7 +10,7 @@ void MathContent::AddContent(const string& content) {
   content_ += content;
 }
 
-string MathContent::OutputHtml() {
+string MathContent::OutputHtml(ParserEnvironment* parser_env) {
   return StrCat("<p class='math-latex'>$$", content_, "</p>");
 }
 

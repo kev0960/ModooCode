@@ -6,7 +6,7 @@ namespace md_parser {
 class MathContent : public Content {
  public:
   MathContent(const string& content);
-  string OutputHtml() override;
+  string OutputHtml(ParserEnvironment* parser_env) override;
 
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::MATH; }

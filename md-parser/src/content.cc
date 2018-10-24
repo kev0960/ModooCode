@@ -194,7 +194,7 @@ Content::Content(const string& content) : content_(content) { return; }
 
 void Content::AddContent(const string& s) { content_ += s; }
 
-string Content::OutputHtml() {
+string Content::OutputHtml(ParserEnvironment* parser_env) {
   // When both not defined :
   //  Neither of bold_start < italic_start nor bold_start > italic_start
   // When only one of them are defined :
@@ -321,8 +321,18 @@ string Content::OutputHtml() {
     } else if (fragments[i].type == HtmlFragments::Types::LINK) {
       string url = GetHtmlFragmentText(content_, fragments[i], false);
       StripItguruFromLink(&url);
-      html += StrCat("<a href='", url, "'>",
-                     GetHtmlFragmentText(content_, fragments[i]), "</a>");
+      // If the link does not contain "http://", then this is a link that goes
+      // back to our website.
+      const string link_text = GetHtmlFragmentText(content_, fragments[i]);
+      if (url.find("http") == string::npos) {
+        string url = parser_env->GetUrlOfReference(link_text);
+        if (!url.empty()) {
+          html += StrCat("<a href='", url, "' class='link-code'>", link_text,
+                         "</a>");
+          continue;
+        }
+      }
+      html += StrCat("<a href='", url, "'>", link_text, "</a>");
     } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
       string img_src = GetHtmlFragmentText(content_, fragments[i], false);
       // If this image is from old tistory dump, then we have to switch to the
@@ -365,8 +375,14 @@ string Content::OutputHtml() {
       html += StrCat("</p>", fragments[i].formatted_code, "<p>");
     } else if (fragments[i].type == HtmlFragments::Types::INLINE_CODE) {
       string inline_code = GetHtmlFragmentText(content_, fragments[i]);
-      EscapeHtmlString(&inline_code);
-      html += StrCat("<code class='inline-code'>", inline_code, "</code>");
+      string ref_url = parser_env->GetUrlOfReference(inline_code);
+      if (!ref_url.empty()) {
+        html += StrCat("<a href='", ref_url, "' class='link-code'>",
+                       inline_code, "</a>");
+      } else {
+        EscapeHtmlString(&inline_code);
+        html += StrCat("<code class='inline-code'>", inline_code, "</code>");
+      }
     } else {
       html += GetHtmlFragmentText(content_, fragments[i]);
     }
@@ -547,6 +563,5 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
     t.join();
   }
 }
-string Content::OutputHtml(ParserEnvironment*) { return OutputHtml(); }
 
 }  // namespace md_parser

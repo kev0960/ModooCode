@@ -358,3 +358,9 @@ p.quote {
     color: #6a737d;
     border-left: 0.25em solid #dfe2e5;
 }
+
+a.link-code {
+    font-family: "Source Code Pro";
+    color: #0645ad;
+    font-size: 95%;
+}

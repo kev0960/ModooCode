@@ -46,8 +46,8 @@ QuoteContent::QuoteContent(const string& content) : Content(content) {}
 
 void QuoteContent::AddContent(const string& content) { content_ += content; }
 
-string QuoteContent::OutputHtml() {
-  string html = Content::OutputHtml();
+string QuoteContent::OutputHtml(ParserEnvironment* parser_env) {
+  string html = Content::OutputHtml(parser_env);
   StripTags(&html);
   return StrCat("<blockquote class='quote'>", html, "</blockquote>");
 }

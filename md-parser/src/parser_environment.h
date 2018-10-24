@@ -2,6 +2,7 @@
 #include <memory>
 #include <stack>
 #include <string>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
@@ -46,6 +47,22 @@ class ParserEnvironment {
   // Return How many end tags should it return.
   int ShouldEndListTag();
   int GetHeaderIndex() { return ++header_index_; }
+  void SetRefToUrl(std::unordered_map<string, string>* ref_to_url) {
+    ref_to_url_ = ref_to_url;
+  }
+
+  // Return the url string if the ref_name is a entry of the reference.
+  // Otherwise, return an empty string.
+  string GetUrlOfReference(const string& ref_name) {
+    if (ref_to_url_ == nullptr) {
+      return "";
+    }
+    auto result = ref_to_url_->find(ref_name);
+    if (result == ref_to_url_->end()) {
+      return "";
+    }
+    return result->second;
+  }
 
  private:
   EnumListManager enum_list_manager_;
@@ -56,5 +73,6 @@ class ParserEnvironment {
 
   size_t current_content_;
   int header_index_;
+  std::unordered_map<string, string>* ref_to_url_;
 };
 }  // namespace md_parser

@@ -24,7 +24,7 @@ struct ColumnStyle {
 class TableContent : public Content {
  public:
   TableContent(const string& line);
-  string OutputHtml() override;
+  string OutputHtml(ParserEnvironment* parser_env) override;
 
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::TABLE; }
