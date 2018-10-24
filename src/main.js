@@ -30,12 +30,12 @@ init.init().then(async function(static_data) {
   client.connect();
   const server = new Server(app, static_data, client);
 
-  app.listen(80, function() {
+  app.listen(8080, function() {
     server.setRoutes();
 
     console.log('-------------------------');
     console.log('| ** SERVER IS READY **  |');
-    console.log('|  Listening on port 80  |');
+    console.log('| Listening on port 8080 |');
     console.log('-------------------------');
   });
 });

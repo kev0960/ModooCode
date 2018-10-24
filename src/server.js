@@ -190,7 +190,7 @@ module.exports = class Server {
   async getLatestComments(num_comment) {
     let latest_comments = await this.client.query(
         'SELECT content, comment_date, article_url, author_name FROM ' +
-            'comment ORDER BY comment_date DESC LIMIT $1',
+            'comment WHERE is_deleted = FALSE ORDER BY comment_date DESC LIMIT $1',
         [num_comment]);
     for (let i = 0; i < latest_comments.rows.length; i++) {
       let d = new Date(latest_comments.rows[i].comment_date);
