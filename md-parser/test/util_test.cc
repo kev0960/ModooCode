@@ -1,4 +1,5 @@
 #include "../src/util.h"
+
 #include "gtest/gtest.h"
 
 namespace md_parser {
@@ -53,6 +54,9 @@ TEST(UtilTest, FindFirstOfAny) {
 
 TEST(UtilTest, StrCat) { EXPECT_EQ("con cat", StrCat("c", "on", " ", "cat")); }
 
+TEST(UtilTest, Split) {
+  EXPECT_EQ(std::vector<string>({"aa", "bb", "c"}), Split("aa,bb,c", ','));
+}
 TEST(UtilTest, Max) {
   EXPECT_EQ(5, Max(1, 2, 5, 4, 3));
   EXPECT_EQ(5, Max(3, 5, 2, 3, 4));

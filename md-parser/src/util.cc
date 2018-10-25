@@ -100,4 +100,18 @@ string::const_iterator FindFirstWhitespace(const string& str,
 
 string StrCat(const string& s) { return s; }
 
+std::vector<string> Split(const string& s, char delimiter) {
+  auto pos = s.find(delimiter);
+  size_t prev_pos = 0;
+
+  std::vector<string> splitted_strs;
+  while (pos != string::npos) {
+    splitted_strs.push_back(s.substr(prev_pos, pos - prev_pos));
+    prev_pos = pos + 1;
+    pos = s.find(delimiter, pos + 1);
+  }
+  splitted_strs.push_back(s.substr(prev_pos));
+  return splitted_strs;
+}
+
 }  // namespace md_parser

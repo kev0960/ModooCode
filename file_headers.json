@@ -52,6 +52,7 @@
 ,
 	"109" : {
 	"cat_title" : "struct tm",
+	"ref_title" : "tm 구조체",
 	"title" : "C 언어 레퍼런스 - struct tm ( tm 구조체 )"
 }
 ,
@@ -71,7 +72,8 @@
 }
 ,
 	"113" : {
-	"cat_title" : "mktime",
+	"cat_title" : "time_t 형",
+	"ref_title" : "time_t",
 	"title" : "C 언어 레퍼런스 - time_t 형"
 }
 ,
@@ -231,26 +233,31 @@
 ,
 	"144" : {
 	"cat_title" : "ios_base 클래스",
+	"ref_title" : "ios_base",
 	"title" : "C++ 레퍼런스 - ios_base 클래스"
 }
 ,
 	"145" : {
 	"cat_title" : "ios 클래스",
+	"ref_title" : "ios",
 	"title" : "C++ 레퍼런스 - ios 클래스"
 }
 ,
 	"146" : {
 	"cat_title" : "istream 클래스",
+	"ref_title" : "istream",
 	"title" : "C++ 레퍼런스 - istream 클래스"
 }
 ,
 	"147" : {
 	"cat_title" : "istream::operator>> (추출 연산자)",
+	"ref_title" : "istream::operator>>",
 	"title" : "C++ 레퍼런스 - istream::operator>> (추출 연산자)"
 }
 ,
 	"149" : {
 	"cat_title" : "istream::getline",
+	"ref_title" : "getline",
 	"title" : "C++ 레퍼런스 - istream::getline 함수"
 }
 ,
@@ -271,22 +278,26 @@
 ,
 	"153" : {
 	"cat_title" : "ios_base::flags",
+	"ref_title" : "flags",
 	"title" : "C++ 레퍼런스 - ios_base::flags 함수"
 }
 ,
 	"154" : {
 	"cat_title" : "ios_base::fmtflags 타입",
+	"ref_title" : "ios_base::fmtflags, fmtflags",
 	"title" : "C++ 레퍼런스 - ios_base::fmtflags 타입"
 }
 ,
 	"155" : {
 	"cat_title" : "ios_base::setf",
+	"ref_title" : "setf",
 	"title" : "C++ 레퍼런스 - ios_base::setf 함수"
 }
 ,
 	"156" : {
-	"cat_title" : "ios_base::usetf",
-	"title" : "C++ 레퍼런스 - ios_base::usetf 함수"
+	"cat_title" : "ios_base::unsetf",
+	"ref_title" : "unsetf",
+	"title" : "C++ 레퍼런스 - ios_base::unsetf 함수"
 }
 ,
 	"157" : {
@@ -333,21 +344,25 @@
 ,
 	"164" : {
 	"cat_title" : "ios::good",
+	"ref_title" : "good",
 	"title" : "C++ 레퍼런스 - ios::good 함수"
 }
 ,
 	"165" : {
 	"cat_title" : "ios::fail",
+	"ref_title" : "fail",
 	"title" : "C++ 레퍼런스 - ios::fail 함수"
 }
 ,
 	"166" : {
 	"cat_title" : "ios::bad",
+	"ref_title" : "bad",
 	"title" : "C++ 레퍼런스 - ios::bad 함수"
 }
 ,
 	"167" : {
 	"cat_title" : "ios::eof",
+	"ref_title" : "eof",
 	"title" : "C++ 레퍼런스 - ios::eof 함수"
 }
 ,
@@ -377,6 +392,7 @@
 ,
 	"171" : {
 	"cat_title" : "ios::rdstate",
+	"ref_title" : "rdstate",
 	"title" : "C++ 레퍼런스 - ios::rdstate 함수"
 }
 ,
@@ -421,6 +437,7 @@
 ,
 	"179" : {
 	"cat_title" : "ios::setstate",
+	"ref_title" : "setstate",
 	"title" : "C++ 레퍼런스 - ios::setstate 함수"
 }
 ,
@@ -494,21 +511,25 @@
 ,
 	"191" : {
 	"cat_title" : "istream::get",
+	"ref_title" : "get",
 	"title" : "C++ 레퍼런스 - istream::get 함수"
 }
 ,
 	"192" : {
 	"cat_title" : "istream::gcount",
+	"ref_title" : "gcount",
 	"title" : "C++ 레퍼런스 - istream::gcount 함수"
 }
 ,
 	"193" : {
 	"cat_title" : "istream::ignore",
+	"ref_title" : "ignore",
 	"title" : "C++ 레퍼런스 - istream::ignore 함수"
 }
 ,
 	"194" : {
 	"cat_title" : "istream::peak",
+	"ref_title" : "peak",
 	"title" : "C++ 레퍼런스 - istream::peak 함수"
 }
 ,

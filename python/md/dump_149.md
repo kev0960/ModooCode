@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - istream::getline 함수
 cat_title :  istream::getline
+ref_title : getline
 --------------
 
 

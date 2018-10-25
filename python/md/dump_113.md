@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - time_t 형
-cat_title :  mktime
+cat_title : time_t 형
+ref_title : time_t
 --------------
 
 

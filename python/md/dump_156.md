@@ -1,6 +1,7 @@
 ----------------
-title : C++ 레퍼런스 - ios_base::usetf 함수
-cat_title :  ios_base::usetf
+title : C++ 레퍼런스 - ios_base::unsetf 함수
+cat_title :  ios_base::unsetf
+ref_title : unsetf
 --------------
 
 

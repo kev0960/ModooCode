@@ -114,6 +114,14 @@ void ReferenceToUrls(
         (*ref_to_url)[cat_title->second] = kv.first;
       }
     }
+    const auto ref_title = kv.second.find("ref_title");
+    if (ref_title != kv.second.end()) {
+      const auto ref_titles = Split(ref_title->second, ',');
+      for (auto ref : ref_titles) {
+        Trim(&ref);
+        (*ref_to_url)[ref] = kv.first;
+      }
+    }
   }
 }
 }  // namespace

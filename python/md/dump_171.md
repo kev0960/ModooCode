@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::rdstate 함수
 cat_title :  ios::rdstate
+ref_title : rdstate
 --------------
 
 
@@ -20,7 +21,8 @@ iostate rdstate ( ) const;
 
 ```
 
-오류 상태 플래그(error `state` flag)를 얻어온다
+**오류 상태 플래그(error state flag)**를 얻어온다.
+
 현재 스트림의 오류 상태 플래그를 리턴한다.
 
 오류 상태 플래그는 입출력 함수를 호출할 때 발생하는 오류에 따라 자동으로 설정되는 플래그이다.
@@ -29,9 +31,6 @@ iostate rdstate ( ) const;
 
 ###  인자
 
-
-
-
 없다
 
 
@@ -39,13 +38,14 @@ iostate rdstate ( ) const;
 ###  리턴값
 
 
+`ios_base::iostate` 타입의 객체로, 아래 상태 플래그 상수들의 조합(OR 연산) 으로 구성된다.
 
-
-ios_base::iostate 타입의 객체로, 아래 상태 플래그 상수들의 조합(OR 연산) 으로 구성된다.
-
-
-플래그 값의미`eofbit`스트림으로부터 추출 작업(extracting operation)을 수행 중` End` – `Of` – ` File`에 도달하는 경우`failbit`마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 경우`badbit`스트림 버퍼의 입출력 작업이 실패하여 발생한 오류`goodbit`오류가 없다`. .
-이 값들은 `ios_base` 에 정적 상수 멤버로 정의되어 있다.
+|플래그 값|의미|
+|-------|----|
+|`eofbit`|스트림으로부터 추출 작업(extracting operation)을 수행 중 End Of File 에 도달하는 경우|
+|`failbit`|마지막 입력 작업이 자체의 내부 오류 때문에 실패하였을 경우|
+|`badbit`|스트림 버퍼의 입출력 작업이 실패하여 발생한 오류|
+|`goodbit`|오류가 없다|
 
 `goodbit` 을 제외한 다른 오류 플래그가 설정되어 있는지 확인하려면, 그 오류 플래그와 `AND` 연산을 취해보면 된다. 즉, `failbit` 가 설정되어 있는지 확인하려면 `rdstate` 가 리턴한 객체와 비트 `AND` 연산을 취해서 값이 1 이면 설정된 것이고 0 이면 `failbit` 가 설정되지 않은 것이다.
 

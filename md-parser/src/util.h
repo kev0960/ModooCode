@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <vector>
 #define LOG \
   Log::GetInstance().SetCurrentDebugInfo(__FILE__, __LINE__).PrintDebugInfo()
 
@@ -26,6 +27,8 @@ string::const_iterator FindFirstWhitespace(const string& str,
                                            const size_t start_pos);
 // Concatenates strings into one.
 string StrCat(const string& s);
+
+std::vector<string> Split(const string& s, char delimiter);
 
 template <typename... Ts>
 string StrCat(const string& s, Ts... args) {

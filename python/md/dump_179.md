@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::setstate 함수
 cat_title :  ios::setstate
+ref_title : setstate
 --------------
 
 
@@ -42,7 +43,7 @@ clear ( rdstate() | state );
 
 `state`
 
-ios_base::iostate 타입의 객체로 다음과 같은 멤버 상수들의 조합(비트 `OR` 연산) 으로 구성되어 있다.
+`ios_base::iostate` 타입의 객체로 다음과 같은 멤버 상수들의 조합(비트 `OR` 연산) 으로 구성되어 있다.
 
 |플래그 값|의미|
 |-------|----|

@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios 클래스
 cat_title :  ios 클래스
+ref_title : ios
 --------------
 
 
@@ -39,8 +40,6 @@ cat_title :  ios 클래스
 
 
 ###  멤버 함수
-
-
 
 
 

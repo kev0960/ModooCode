@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - istream::peak 함수
 cat_title :  istream::peak
+ref_title : peak
 --------------
 
 ```warning

@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios_base 클래스
 cat_title :  ios_base 클래스
+ref_title : ios_base
 --------------
 
 
@@ -53,7 +54,7 @@ cat_title :  ios_base 클래스
 
 
 * 오류 상태(error state) : 내부 지시자가 현재 스트림의 오류 상태를 나타내고 있다. 객체는
- [ios::rdstat](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, ios::clear 와
+ [ios::rdstat](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, `ios::clear` 와
  [ios::setstate](http://itguru.tistory.com/179) 함수를 호출함을 통해 수정될 수 있다. 각각의 값은
  [ios::good](http://itguru.tistory.com/164), 
  [ios::eof](http://itguru.tistory.com/167), 
@@ -146,13 +147,13 @@ cat_title :  ios_base 클래스
 
 * event  :  이벤트를 표시하기 위한 타입
 
-* event_callback  :  이벤트 콜백 함수 타입
+* `event_callback`  :  이벤트 콜백 함수 타입
 
 *  [fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그를 위한 타입
 
 * iostate  :  스트림 상태 플래그를 위한 타입
 
-* openmode  :  스트림 열기 모드 플래그(opening `mode` flag)를 위한 타입
+* openmode  :  스트림 열기 모드 플래그(opening mode flag)를 위한 타입
 
 * seekdir  :  방향 찾기 플래그를 위한 타입
 

@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - istream::operator>> (추출 연산자)
 cat_title :  istream::operator>> (추출 연산자)
+ref_title : istream::operator>>
 --------------
 
 

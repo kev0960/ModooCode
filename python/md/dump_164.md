@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::good 함수
 cat_title :  ios::good
+ref_title : good
 --------------
 
 
@@ -21,9 +22,10 @@ bool good ( ) const;
 
 
 스트림이 입출력 작업이 가능한 상태인지 확인한다.
-이 함수는 스트림의 오류 상태 플래그(eofbit, `failbit, badbit)` 이 모두 설정되지 않을 때 `true` 를 리턴한다.
 
-한 가지 주의할 점은 이 함수는 `bad()` 함수와 정 반대가 아니라는 사실이다. `bad` 함수는 `badbit` 플래그가 설정되어 있는지의 여부만 확인하는 함수이다.
+이 함수는 스트림의 오류 상태 플래그(`eofbit, failbit, badbit`) 이 모두 설정되지 않을 때 `true` 를 리턴한다.
+
+한 가지 주의할 점은 이 함수는 `bad` 함수와 정 반대가 아니라는 사실이다. `bad` 함수는 `badbit` 플래그가 설정되어 있는지의 여부만 확인하는 함수이다.
 
 오류 상태 플래그들은 `eof, fail, bad` 함수들을  이용해서 독립적으로 체크할 수  있다.
 
@@ -48,27 +50,15 @@ bool good ( ) const;
 ###  리턴값
 
 
-
-
-  만일 스트림의 어떠한 오류 상태 플래그(eofbit, `failbit, badbit)` 이 설정되어 있지 않다면 `true` 를 리턴한다. 그렇지 않으면 `false` 를 리턴한다.
-
+만일 스트림의 어떠한 오류 상태 플래그(`eofbit, failbit, badbit`) 이 설정되어 있지 않다면 `true` 를 리턴한다. 그렇지 않으면 `false` 를 리턴한다.
 
 
 ###  템플릿 멤버 선언
 
 
-
-
-
 ```cpp
-
-
-
 ( basic_ios<charT,traits> )bool good () const;
 ```
-
-
-
 
 ###  연관된 함수
 
