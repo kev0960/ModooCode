@@ -274,6 +274,7 @@ function isAllowedToComment() {
 }
 
 function postComment() {
+  $('#adding-comment').show();
   postGenericComment(
       -1, $('#posted-comment').val(), $('#password').val(), $('#name').val());
 }
@@ -287,19 +288,29 @@ function postReply(parent_id) {
 function postGenericComment(parent_id, content, password, name) {
   const url = window.location.href;
   const article_url = url.substr(url.lastIndexOf('/') + 1);
-  $.ajax({
-    url: '/write-comment',
-    type: 'POST',
-    data: {
-      parent_id,
-      content,
-      password,
-      name,
-      article_url,
-    },
-    success(result) {
-      console.log('Result : ', result);
-    },
+  grecaptcha.ready(function() {
+    grecaptcha
+        .execute(
+            '6LeE_nYUAAAAAGm9qTa71IwvvayWV9Q7flqNkto2', {action: 'Comment'})
+        .then(function(token) {
+          $.ajax({
+            url: '/write-comment',
+            type: 'POST',
+            data: {
+              parent_id,
+              content,
+              password,
+              name,
+              article_url,
+              token,
+            },
+            success(result) {
+              console.log('Result : ', result);
+              $('#adding-comment').hide();
+              location.reload();
+            },
+          });
+        });
   });
 }
 
@@ -540,6 +551,7 @@ $(() => {
       data: {comment_id, password},
       success: function(data) {
         console.log(data);
+        location.reload();
       }
     });
   }

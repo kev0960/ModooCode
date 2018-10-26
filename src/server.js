@@ -5,6 +5,7 @@ const facebook_strategy = require('passport-facebook').Strategy;
 const google_strategy = require('passport-google-oauth2').Strategy;
 const passport = require('passport');
 const bcrypt = require('bcrypt');
+const request = require('request-promise-native');
 
 const HASH_ROUNDS = parseInt(process.env.HASH_ROUNDS);
 
@@ -331,6 +332,18 @@ module.exports = class Server {
     }.bind(this));
 
     this.app.post('/write-comment', async function(req, res) {
+      const response = await request.post({
+        url: 'https://www.google.com/recaptcha/api/siteverify',
+        resolveWithFullResponse: true,
+        form: {
+          secret: '6LeE_nYUAAAAABelPPovV9f9DOAJSzqpTQTA4bt7',
+          response : req.body.token
+        }
+      });
+      if (!JSON.parse(response.body).success) {
+        return res.send({status : 'Failed', reason : 'Failed CaptCha'});
+      }
+      
       let parent_id = parseInt(req.body.parent_id);
       let content = req.body.content;
       let password = req.body.password;
