@@ -366,11 +366,17 @@ a.link-code {
 }
 
 .adsense-content-top {
-    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media (max-width: 159px) {
     .adsense-sidebar {
         display: none !important;
     }
+}
+
+.adsense-sidebar {
+    margin-left: auto;
+    margin-right: auto;
 }
