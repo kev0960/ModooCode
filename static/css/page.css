@@ -364,3 +364,13 @@ a.link-code {
     color: #0645ad;
     font-size: 95%;
 }
+
+.adsense-content-top {
+    align-content: center;
+}
+
+@media (max-width: 159px) {
+    .adsense-sidebar {
+        display: none !important;
+    }
+}
