@@ -347,7 +347,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
           std::vector<string> file_ext_candidate = {".png", ".jpg", ".jpeg",
                                                     ".gif"};
           for (const auto& ext : file_ext_candidate) {
-            if (IsFileExist(StrCat("../views/img/", image_name, ext))) {
+            if (IsFileExist(StrCat("../static/img/", image_name, ext))) {
               img_src = StrCat("/img/", image_name, ext);
               break;
             }
@@ -359,7 +359,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       if (image_name_end != string::npos) {
         const string webp_image_name =
             img_src.substr(0, image_name_end) + ".webp";
-        if (IsFileExist("../views" + webp_image_name)) {
+        if (IsFileExist("../static" + webp_image_name)) {
           html += StrCat(R"(</p><picture><source type="image/webp" srcset=")",
                          webp_image_name, R"("><img class="content-img" src=")",
                          img_src, R"(" alt=")",
