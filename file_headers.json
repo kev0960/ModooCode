@@ -717,11 +717,6 @@
 }
 ,
 	"229" : {
-	"cat_title" : "13-1. 스마트 포인터 - unique_ptr",
-	"path" : "/C++",
-	"published" : "false",
-	"title" : "씹어먹는 C ++ - <13-1. 스마트 포인터 - unique_ptr >>",
-	"updated_date" : "09/18/2018"
 }
 ,
 	"23" : {
@@ -749,6 +744,7 @@
 	"233" : {
 	"cat_title" : "<string>",
 	"path" : "/C++ Reference/string",
+	"ref_title" : "string",
 	"title" : "C++ 레퍼런스 - string 라이브러리"
 }
 ,

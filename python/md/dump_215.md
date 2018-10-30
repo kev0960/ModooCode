@@ -27,8 +27,8 @@ next_page : 217
 
 
 파일 스트림은 기본적인 `istream` 이나 `ostream` 클래스 보다 더 지원하는 기능이 더 많기 때문에 이를 상속 받아서 작성되었으며, 각각을 상속 받은 것이 `ifstream` 과 `ofstream` 입니다. 이들 클래스를 모두 포함하는 라이브러리로 `fstream` 을 사용하면 됩니다.
-```cpp
 
+```cpp
 // 파일에서의 입출력
 #include <iostream>
 #include <string>
@@ -106,7 +106,6 @@ ifstream in("test.txt");
 위와 같이 생성자에 파일 경로를 지정하면, 해당하는 파일을 찾고 열게 됩니다. 만일 파일이 존재하지 않는다면 파일을 열 수 없습니다. 따라서 파일이 열렸는지의 유무는 다음과 같이 확인할 수 있습니다.
 
 ```cpp
-
 if (in.is_open()) {
 ```
 
@@ -115,7 +114,6 @@ if (in.is_open()) {
 `is_open` 은 기존의 `istream` 에는 없고 `ifstream` 에서 상속 받으면서 추가된 함수 입니다. 파일이 열렸는지의 유무를 리턴합니다. 만일 해당 경로에 있는 파일이 존재하지 않는다면 `false` 를 리턴하겠지요.
 
 ```cpp
-
 in >> s;
 ```
 
@@ -130,7 +128,6 @@ in >> s;
 다만 `close` 를 직접 해야 되는 경우도 있습니다.
 
 ```cpp
-
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -194,7 +191,6 @@ in.open("other.txt");
 위 처럼 새로운 파일에서 같은 객체가 입력을 받기 위해서는 기존 파일 스트림과의 연결을 종료하고, 새로운 파일과 연결을 시켜주면 됩니다. 기존 파일과의 스트림 종료는 `close` 함수가, 새로운 파일과의 연결은 `open` 함수가 수행하고 있습니다. `open` 함수가 있기에 굳이 `ifstream` 객체 생성자에서 파일 경로를 바로 지정해줄 필요는 없고, 나중에 `open` 으로 원하는 파일을 열어도 상관 없습니다.
 
 ```cpp
-
 // 이진수로 읽기
 #include <iostream>
 #include <string>
@@ -253,7 +249,6 @@ return 0;
 라고 생각하시는 분들은 엔디안을 간과한 것인데, 우리가 쓰는 `CPU` 의 경우 리틀 엔디안이라 해서, 높은 주소값에 높은 자리수가 온다고 생각하면 됩니다, 따라서 각각의 바이트가 `EF / BB / BF / EC` 가 거꾸로 `EC / BF / BB / EF` 이렇게 `int` 변수에 기록이 된 것입니다. (이에 대한 내용은 C 강좌에서도 다루었습니다)
 
 ```cpp
-
 ifstream in("test.txt", ios::binary);
 ```
 
@@ -273,7 +268,6 @@ in.read((char*)(&x), 4);
 `read` 함수는 말 그대로, 4 바이트의 내용을 읽으라는 의미로, 첫 번째 인자에 해당하는 버퍼를 전달해주어야 합니다. 우리의 경우 `int` 변수를 마치 4 바이트 짜리 `char` 배열이라 생각하게 해서이를 전달하였습니다. 두 번째 인자로 반드시 몇 바이트를 읽을 지 전달해야 합니다.
 
 ```cpp
-
     char x[10];
 in.read(x, 10);
 ```
@@ -285,7 +279,6 @@ in.read(x, 10);
 
 
 ```cpp
-
 cout << hex << x << endl;
 ```
 
@@ -302,7 +295,6 @@ cout << hex << x << endl;
 
 
 ```cpp
-
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -360,7 +352,6 @@ return 0;
 
 
 ```cpp
-
 // 위치 지정자를 파일 끝으로 옮긴다.
 in.seekg(0, ios::end);
 ```
@@ -370,7 +361,6 @@ in.seekg(0, ios::end);
 C 언어에서 `fseek` 과 같은 함수로, 파일 위치 지정자를 사용자의 입맛에 맞게 이리저리 움직일 수 있습니다. 두 번째 인자는, 파일 내 위치를 의미하고, 첫 번째 인자는 그 위치로 부터 얼마나 만큼 떨어져 있느냐를 의미합니다. 우리의 경우 위치 지정자를 파일의 끝에서 0 만큼 떨어진 것, 즉 파일의 끝으로 이동시켰습니다.
 
 ```cpp
-
 // 그리고 그 위치를 읽는다. (파일의 크기)
 int size = in.tellg();
 ```
@@ -382,7 +372,6 @@ int size = in.tellg();
 
 
 ```cpp
-
 // 위치 지정자를 다시 파일 맨 앞으로 옮긴다.
 in.seekg(0, ios::beg);
 ```
@@ -391,7 +380,6 @@ in.seekg(0, ios::beg);
 이제 파일을 읽어야할 텐데, 파일 위치 지정자를 끝으로 옮겨 놓았기 때문에 읽기 위해서는 다시 처음으로 옮겨주어야 합니다. 옮기지 않을 경우 위치 지정자가 파일 끝에 있으므로 아무것도 읽지 못할 것입니다.
 
 ```cpp
-
 // 파일 전체 내용을 읽어서 문자열에 저장한다.
 in.read(&s[0], size);
 ```
@@ -470,7 +458,6 @@ in.getline(buf, 100, '.');
 
 
 ```cpp
-
 // string 에 정의된 getline 사용
 #include <iostream>
 #include <string>
@@ -527,8 +514,6 @@ return 0;
 
 
 ```cpp
-
-
 #include <iostream>
 
 #include <string>
@@ -567,7 +552,6 @@ return 0;
 만일 `test.txt` 가 존재하지 않을 경우, `test.txt` 를 생성한 뒤에, 생성이 성공하였다면 출력하게 됩니다. `ofstream` 은 열려는 파일이 존재하지 않으면 해당 파일을 생성하고 열게 됩니다. 만일, 해당 파일이 이미 존재한다면, 특별한 설정을 하지 않는다면 해당 파일 내용이 다 지워지고 새로운 내용으로 덮어 씌어지게 됩니다.
 
 ```cpp
-
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -619,9 +603,7 @@ return 0;
 그렇다고 해서 `ate` 를 이용해서 기존에 있는 파일 데이터 한 가운데에 무언가를 끼워 넣을 수 있는 것은 아닙니다.
 
 ```cpp
-
 // ate 와 app
-
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -674,9 +656,7 @@ return 0;
 
 
 ```cpp
-
 #include <iostream>
-
 #include <string>
 #include <fstream>
 using namespace std;
@@ -736,7 +716,6 @@ return 0;
 
 
 ```cpp
-
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -768,7 +747,6 @@ return 0;
 `sstream` 에는 `stringstream` 이 정의되어 있는데 이는 마치 문자열을 하나의 스트림이라 생각하게 해주는 가상화 장치라고 보시면 됩니다.
 
 ```cpp
-
 istringstream ss("123");
 ```
 
@@ -777,7 +755,6 @@ istringstream ss("123");
 예를 들어서 우리는 위를 통해서 문자열 "123" 이 기록되어 있는 입력 스트림을 생성하였습니다. 마치 파일에 123 이라 기록해놓고 거기서 입력 받는 것과 동일하다고 생각하면 됩니다.
 
 ```cpp
-
 int x;
 ss >> x;
 ```
@@ -790,7 +767,6 @@ ss >> x;
 이를 활용하면 `atoi` 와 같은 함수를 사용할 필요 없이 간편하게 문자열에서 숫자로 변환하는 함수를 만들 수 있습니다.
 
 ```cpp
-
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -826,7 +802,6 @@ return 0;
 위와 같이 간편하게 문자열을 숫자로 변환할 수 있습니다.
 
 ```cpp
-
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -874,7 +849,6 @@ ss << x;
 위와 같이 `int` 변수 `x` 의 값을 문자열 스트림에 출력하였습니다. 이 과정에서 자동으로 숫자에서 문자열로의 변환이 있겠지요.
 
 ```cpp
-
 return ss.str();
 ```
 
@@ -900,7 +874,6 @@ return ss.str();
 제가 아래 대충 프로그램의 골격을 잡아 놓았으니 여러분들은 이를 채우기만 하면 됩니다.
 
 ```cpp
-
 class Table;
 class Cell어
 

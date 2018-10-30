@@ -124,6 +124,36 @@ void StripItguruFromLink(string* link) {
   link->replace(itguru_pos, itguru.length(), "");
 }
 
+string OutputLinksInBox(const string& box_str) {
+  string output_html;
+  output_html.reserve(box_str.size());
+  for (size_t i = 0; i < box_str.size(); i++) {
+    if (box_str[i] == '[') {
+      size_t end_bracket = box_str.find(']', i + 1);
+      if (end_bracket == string::npos) {
+        goto handle_normal_char;
+      }
+      size_t link_start = end_bracket + 1;
+      if (box_str[link_start] != '(') {
+        goto handle_normal_char;
+      }
+      size_t link_end = box_str.find(')', link_start + 1);
+      if (link_end == string::npos) {
+        goto handle_normal_char;
+      }
+      string link = box_str.substr(link_start + 1, link_end - (link_start + 1));
+      StripItguruFromLink(&link);
+      const string text = box_str.substr(i + 1, end_bracket - (i + 1));
+      output_html += StrCat(R"(<a href=")", link, R"(">)", text, "</a>");
+      i = link_end;
+      continue;
+    }
+  handle_normal_char:
+    output_html.push_back(box_str[i]);
+  }
+  return output_html;
+}
+
 void DoClangFormat(const string& code, string* formatted_code) {
   int pipe_p2c[2], pipe_c2p[2];
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
@@ -419,37 +449,6 @@ size_t Content::HandleLinks(const size_t start_pos,
   return link_end;
 }
 
-string Content::OutputLinksInBox(const size_t start_pos, const size_t end_pos) {
-  string output_html;
-  output_html.reserve(end_pos - start_pos);
-  for (size_t i = start_pos; i <= end_pos; i++) {
-    if (content_[i] == '[') {
-      size_t end_bracket = content_.find(']', i + 1);
-      if (end_bracket == string::npos || end_bracket > end_pos) {
-        goto handle_normal_char;
-      }
-      size_t link_start = end_bracket + 1;
-      if (content_[link_start] != '(') {
-        goto handle_normal_char;
-      }
-      size_t link_end = content_.find(')', link_start + 1);
-      if (link_end == string::npos || link_end > end_pos) {
-        goto handle_normal_char;
-      }
-      string link =
-          content_.substr(link_start + 1, link_end - (link_start + 1));
-      StripItguruFromLink(&link);
-      const string text = content_.substr(i + 1, end_bracket - (i + 1));
-      output_html += StrCat(R"(<a href=")", link, R"(">)", text, "</a>");
-      i = link_end;
-      continue;
-    }
-  handle_normal_char:
-    output_html.push_back(content_[i]);
-  }
-  return output_html;
-}
-
 size_t Content::HandleSpecialCommands(const size_t start_pos,
                                       std::vector<HtmlFragments>* fragments,
                                       int* text_start) {
@@ -534,15 +533,17 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
     auto& fragment = fragments->at(i);
     if (fragment.type == HtmlFragments::Types::CODE) {
       if (fragment.code_style == "warning") {
-        fragment.formatted_code =
-            StrCat("<pre class='warning'>",
-                   OutputLinksInBox(fragment.str_start, fragment.str_end - 1),
-                   "</pre>");
+        string warning_str = content_.substr(
+            fragment.str_start, fragment.str_end - fragment.str_start);
+        EscapeHtmlString(&warning_str);
+        fragment.formatted_code = StrCat(
+            "<pre class='warning'>", OutputLinksInBox(warning_str), "</pre>");
       } else if (fragment.code_style == "info") {
+        string info_str = content_.substr(
+            fragment.str_start, fragment.str_end - fragment.str_start);
+        EscapeHtmlString(&info_str);
         fragment.formatted_code =
-            StrCat("<pre class='info'>",
-                   OutputLinksInBox(fragment.str_start, fragment.str_end - 1),
-                   "</pre>");
+            StrCat("<pre class='info'>", OutputLinksInBox(info_str), "</pre>");
       } else if (fragment.code_style != "cpp" &&
                  fragment.code_style != "info_format") {
         string unformatted_code = content_.substr(
