@@ -33,11 +33,6 @@ class ZmqManager {
       }
 
       let id = message.substr(0, delimiter);
-
-      console.log(id, message.substr(0, delimiter), {
-        exec_result,
-        compile_error,
-      });
       let cb = this.requested_codes.get(id);
       if (cb) {
         cb({exec_result, compile_error});
@@ -234,7 +229,7 @@ module.exports = class Server {
       }
 
       if (page_id <= 228) {
-        console.log("Page id : ", page_id);
+        console.log('Page id : ', page_id);
         res.render(
             'page.ejs', {
               content_url: './old/blog_' + page_id + '.html',
@@ -262,13 +257,13 @@ module.exports = class Server {
               user
             },
             function(err, html) {
-              console.log("Called!")
               if (err) {
                 this.getLatestComments(10).then(function(comments) {
                   res.render('./index.ejs', {comments});
                 });
                 return;
-              } else {
+              }
+              else {
                 res.send(html);
               }
             }.bind(this));
@@ -290,6 +285,11 @@ module.exports = class Server {
     }.bind(this));
 
     this.app.post('/run', function(req, res) {
+      function truncateString(str, length) {
+        let dots = str.length > length ? '...' : '';
+        return str.substring(0, length) + dots;
+      };
+
       let code = req.body.code;
       let stdin = req.body.stdin;
 
@@ -298,7 +298,9 @@ module.exports = class Server {
       }
       this.zmq_manager.sendCodeToRun(code, stdin, function(result) {
         if (result.exec_result.length > 0) {
-          console.log('Execution result : \n', result.exec_result);
+          console.log(
+              'Execution result : \n',
+              truncateString(result.exec_result, 1024));
         } else {
           console.log('Compile error : \n', result.compile_error);
         }
@@ -336,13 +338,13 @@ module.exports = class Server {
         resolveWithFullResponse: true,
         form: {
           secret: '6LeE_nYUAAAAABelPPovV9f9DOAJSzqpTQTA4bt7',
-          response : req.body.token
+          response: req.body.token
         }
       });
       if (!JSON.parse(response.body).success) {
-        return res.send({status : 'Failed', reason : 'Failed CaptCha'});
+        return res.send({status: 'Failed', reason: 'Failed CaptCha'});
       }
-      
+
       let parent_id = parseInt(req.body.parent_id);
       let content = req.body.content;
       let password = req.body.password;
