@@ -33,6 +33,7 @@ class InlineCoder:
 
       if len(line) >= 3 and line[:3] == '---':
         if self.is_header < 2:
+          result.append(line)
           self.is_header += 1
           i += 1
           continue

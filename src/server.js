@@ -234,6 +234,7 @@ module.exports = class Server {
       }
 
       if (page_id <= 228) {
+        console.log("Page id : ", page_id);
         res.render(
             'page.ejs', {
               content_url: './old/blog_' + page_id + '.html',
@@ -244,9 +245,7 @@ module.exports = class Server {
             },
             function(err, html) {
               if (err) {
-                console.log('err : ', err);
                 this.getLatestComments(10).then(function(comments) {
-                  console.log('Comments ', comments);
                   res.render('./index.ejs', {comments});
                 });
               } else {
@@ -263,12 +262,12 @@ module.exports = class Server {
               user
             },
             function(err, html) {
+              console.log("Called!")
               if (err) {
-                console.log('err : ', err);
                 this.getLatestComments(10).then(function(comments) {
-                  console.log('Comments ', comments);
                   res.render('./index.ejs', {comments});
                 });
+                return;
               } else {
                 res.send(html);
               }

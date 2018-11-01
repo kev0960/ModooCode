@@ -717,6 +717,12 @@
 }
 ,
 	"229" : {
+	"cat_title" : "13 - 1. 객체의 유일한 소유권 - unique_ptr",
+	"path" : "/C++",
+	"prev_page" : "230",
+	"published" : "false",
+	"title" : "씹어먹는 C ++ - <13 - 1. 객체의 유일한 소유권 - unique_ptr >>",
+	"updated_date" : "09/18/2018"
 }
 ,
 	"23" : {
@@ -728,6 +734,7 @@
 ,
 	"230" : {
 	"cat_title" : "12. C++ 에서 예외 처리",
+	"next_page" : "229",
 	"path" : "/C++",
 	"prev_page" : "228",
 	"published" : "false",
