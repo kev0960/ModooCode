@@ -84,7 +84,7 @@ module.exports = class Server {
         {
           clientID: process.env.GOOG_CLIENT_ID,
           clientSecret: process.env.GOOG_CLIENT_SEC,
-          callbackURL: 'http://modoocode.com/auth/goog/callback',
+          callbackURL: 'https://modoocode.com/auth/goog/callback',
         },
         async function(access_token, refresh_token, profile, cb) {
           console.log('Goog ', profile);
