@@ -71,7 +71,7 @@ module.exports = class Server {
         {
           clientID: process.env.FB_APP_ID,
           clientSecret: process.env.FB_APP_SECRET,
-          callbackURL: 'http://localhost/auth/fb/callback',
+          callbackURL: 'https://modoocode.com/auth/fb/callback',
           profileFields: ['id', 'displayName', 'photos', 'email']
         },
         async function(access_token, refresh_token, profile, cb) {
@@ -84,7 +84,7 @@ module.exports = class Server {
         {
           clientID: process.env.GOOG_CLIENT_ID,
           clientSecret: process.env.GOOG_CLIENT_SEC,
-          callbackURL: 'http://localhost/auth/goog/callback',
+          callbackURL: 'http://modoocode.com/auth/goog/callback',
         },
         async function(access_token, refresh_token, profile, cb) {
           console.log('Goog ', profile);

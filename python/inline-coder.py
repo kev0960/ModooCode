@@ -123,14 +123,14 @@ class InlineCoder:
         while i < len(chunk) and chunk[i] != '`':
           i += 1
 
-      if i == len(chunk):
+      if i >= len(chunk):
         break
 
       if chunk[i] == '(':
         while i < len(chunk) and chunk[i] != ')':
           i += 1
         i += 1
-        if i == len(chunk):
+        if i >= len(chunk):
           break
 
       if chunk[i] == '*' or chunk[i] == '_':
@@ -162,7 +162,9 @@ class InlineCoder:
 
         # Remove trailing spaces.
         inline_code_end = i
-        while chunk[inline_code_end - 1] == ' ':
+        while chunk[inline_code_end - 1] == ' ' \
+          or chunk[inline_code_end - 1] == ':' \
+          or chunk[inline_code_end - 1] == '(':
           inline_code_end -= 1
 
         inline_code = chunk[inline_code_begin:inline_code_end]
