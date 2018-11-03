@@ -47,6 +47,7 @@
 ,
 	"108" : {
 	"cat_title" : "time.h",
+	"ref_title" : "<time.h>",
 	"title" : "C 언어 레퍼런스 - time.h 헤더파일"
 }
 ,
@@ -121,8 +122,10 @@
 }
 ,
 	"121" : {
-	"cat_title" : "localtime",
-	"title" : "C 언어 레퍼런스 - stdlib.h (cstlib)"
+	"cat_title" : "stdlib.h (cstdlib)",
+	"path" : "/C Reference/stdlib.h",
+	"ref_title" : "<stdlib.h>, cstdlib",
+	"title" : "C 언어 레퍼런스 - stdlib.h (cstdlib)"
 }
 ,
 	"122" : {
@@ -139,6 +142,7 @@
 ,
 	"124" : {
 	"cat_title" : "atof",
+	"path" : "/C Reference/stdlib.h",
 	"title" : "C 언어 레퍼런스 - atof 함수"
 }
 ,
@@ -163,11 +167,13 @@
 ,
 	"131" : {
 	"cat_title" : "atoi",
+	"path" : "/C Reference/stdlib.h",
 	"title" : "C 언어 레퍼런스 - atoi 함수"
 }
 ,
 	"132" : {
 	"cat_title" : "atol",
+	"path" : "/C Reference/stdlib.h",
 	"title" : "C 언어 레퍼런스 - atol 함수"
 }
 ,
@@ -201,6 +207,7 @@
 ,
 	"139" : {
 	"cat_title" : "rand",
+	"path" : "/C Reference/stdlib.h",
 	"title" : "C 언어 레퍼런스 - rand 함수"
 }
 ,
@@ -213,6 +220,7 @@
 ,
 	"140" : {
 	"cat_title" : "srand",
+	"path" : "/C Reference/stdlib.h",
 	"title" : "C 언어 레퍼런스 - srand 함수"
 }
 ,
@@ -432,7 +440,6 @@
 }
 ,
 	"178" : {
-	"cat_title" : "vector 생성자",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - vector 생성자"
 }
 ,

@@ -1,6 +1,8 @@
 ----------------
-title : C 언어 레퍼런스 - stdlib.h (cstlib)
-cat_title :  localtime
+title : C 언어 레퍼런스 - stdlib.h (cstdlib)
+path : /C Reference/stdlib.h
+cat_title :  stdlib.h (cstdlib)
+ref_title : <stdlib.h>, cstdlib
 --------------
 
 
@@ -12,7 +14,8 @@ cat_title :  localtime
 
 #@ stdlib.h (cstdlib)
 
-C 표준 유틸리티 함수들을 모아놓은 헤더파 C 표준 유틸리티 함수들을 모아놓은 헤더파일
+C 표준 유틸리티 함수들을 모아놓은 헤더파일.
+
 이 헤더파일에는 프로그래밍시에 범용적으로 사용되는 여러가지 함수들을 모아 놓고 있는데, 예를 들면 동적 할당 관련 함수, 난수 생성 함수, 정수의 연산 함수, 검색 및 정렬 함수 등 이다.
 
 
@@ -211,10 +214,3 @@ C 표준 유틸리티 함수들을 모아놓은 헤더파 C 표준 유틸리티 
 * `ldiv_t`  :  `div` 와 `ldiv` 가 리턴하는 구조체
 
 * `size_t`  :  부호 없는 정수 타입
-
-
-
-
-
-
-

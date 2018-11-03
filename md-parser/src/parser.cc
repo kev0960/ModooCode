@@ -195,8 +195,10 @@ const std::vector<std::unique_ptr<Content>>& MDParser::GetContentList() const {
   return parser_env_.GetContentList();
 }
 
-string MDParser::ConvertToHtml(std::unordered_map<string, string>* ref_to_url) {
-  parser_env_.SetRefToUrl(ref_to_url);
+string MDParser::ConvertToHtml(
+    std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
+    const std::vector<string>& path_vector) {
+  parser_env_.SetRefToUrl(ref_to_url, path_vector);
   string output_html;
   do {
     output_html += parser_env_.ParseCurrentContent();

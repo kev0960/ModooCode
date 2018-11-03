@@ -201,6 +201,45 @@ int ParserEnvironment::ShouldEndListTag() {
   }
   return closing_tag_count;
 }
+// Return the url string if the ref_name is a entry of the reference.
+// Otherwise, return an empty string.
+string ParserEnvironment::GetUrlOfReference(const string& ref_name) {
+  if (ref_to_url_ == nullptr) {
+    return "";
+  }
+  auto result = ref_to_url_->find(ref_name);
+  if (result == ref_to_url_->end()) {
+    return "";
+  }
+
+  // Now have to find the best fit.
+  const auto& reference_infos = result->second;
+  for (const string& current_path : path_vector_) {
+    for (const ReferenceInfo& info : reference_infos) {
+      const auto& paths = info.paths;
+      for (const string& path : paths) {
+        if (current_path == path) {
+          return info.url;
+        }
+      }
+    }
+  }
+
+  // This part will not likely to be reached due to the root directory.
+  // But just in case something happens.
+  LOG << "ERROR :: Root directory not found? " << ref_name
+      << path_vector_.size();
+  for (const string& current_path : path_vector_) {
+    LOG << "Path vector : " << current_path;
+  }
+  for (const ReferenceInfo& info : reference_infos) {
+    const auto& paths = info.paths;
+    for (const string& path : paths) {
+      LOG << "Ref path : " << path;
+    }
+  }
+  return reference_infos[0].url;
+}
 
 bool ParserEnvironment::AdvanceToNextContent() {
   current_content_++;

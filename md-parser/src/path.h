@@ -23,6 +23,7 @@ class PageStructure {
   // Returns true if the file exists in current or any directory underneath it.
   bool CheckFileExists(const string& file_name) const;
   const PageStructure* GetDirectoryByName(const string& dir_name) const;
+  std::vector<string> GetVectorFilePath(const string& file_id) const;
 
  private:
   const bool is_root_page_;
@@ -52,6 +53,7 @@ class PagePath {
   // dir_name must be a root directory.
   bool CheckFileInDirectory(const string& dir_name,
                             const string& file_name) const;
+  std::vector<string> GetVectorFilePath(const string& file_id) const;
 
  private:
   std::unique_ptr<PageStructure> root_page_;
@@ -69,6 +71,7 @@ class PathReader {
 
   // Return true if the file_id is a reference.
   bool IsThisFileReference(const string& file_id) const;
+  std::vector<string> GetVectorFilePath(const string& file_id) const;
 
  private:
   std::unordered_map<string, string> excluded_files_;

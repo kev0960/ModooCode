@@ -379,9 +379,10 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       StripItguruFromLink(&url);
       // If the link does not contain "http://", then this is a link that goes
       // back to our website.
-      const string link_text = GetHtmlFragmentText(content_, fragments[i]);
+      string link_text = GetHtmlFragmentText(content_, fragments[i]);
       if (url.find("http") == string::npos) {
         string url = parser_env->GetUrlOfReference(link_text);
+        EscapeHtmlString(&link_text);
         if (!url.empty()) {
           html += StrCat("<a href='", url, "' class='link-code'>", link_text,
                          "</a>");

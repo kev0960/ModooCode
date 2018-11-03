@@ -15,6 +15,16 @@ void StripMarkdown(string* html) {
               html->end());
 }
 
+void EscapeHtmlString(string* s) {
+  for (size_t i = 0; i < s->length(); i++) {
+    if (s->at(i) == '<') {
+      s->replace(i, 1, "&lt;");
+    } else if (s->at(i) == '>') {
+      s->replace(i, 1, "&gt;");
+    }
+  }
+}
+
 HeaderType GetHeaderType(const string& header_token) {
   if (std::all_of(header_token.begin(), header_token.end(),
                   [](const char c) { return c == '#'; })) {
@@ -58,6 +68,7 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
     return StrCat(start_header, Content::OutputHtml(parser_env), end_header);
   }
   StripMarkdown(&content_);
+  EscapeHtmlString(&content_);
   return StrCat(start_header, content_, end_header);
 }
 

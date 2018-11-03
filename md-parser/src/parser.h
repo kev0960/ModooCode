@@ -91,7 +91,9 @@ class MDParser {
   void Parser(ParserConfig parse_config);
   void AnalyzeLine(const std::string& line, std::pair<int, int> space_and_tab);
   TokenTypes GetTokenInfo(const std::string& token);
-  string ConvertToHtml(std::unordered_map<string, string>* ref_to_url);
+  string ConvertToHtml(
+      std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
+      const std::vector<string>& path_vector);
   string GetCss();
   const std::map<string, string>& GetHeaderInfo() { return header_; }
 

@@ -6,7 +6,8 @@
 
 namespace md_parser {
 
-static std::unordered_map<string, string> ref_to_url = {};
+static std::unordered_map<string, std::vector<ReferenceInfo>> ref_to_url = {};
+static std::vector<string> path_vec = {};
 
 namespace {
 bool CheckParsedContentOrders(
@@ -132,7 +133,7 @@ TEST(ParserTest, SimpleOrderedListParser) {
   const auto list_elem_a = ListOrElem("<p> a</p>");
   const auto list_elem_b = ListOrElem("<p> b</p>");
   const auto list_elem_c = ListOrElem("<p> c</p>");
-  EXPECT_EQ(parser_enum_list.ConvertToHtml(&ref_to_url),
+  EXPECT_EQ(parser_enum_list.ConvertToHtml(&ref_to_url, path_vec),
             MakeOrderedList({list_elem_a, list_elem_a,
                              MakeOrderedList({list_elem_b, list_elem_b,
                                               MakeOrderedList({list_elem_c})}),
@@ -146,7 +147,7 @@ TEST(ParserTest, SimpleOrderedListParser) {
         1. c
   )";
   MockMDParser parser_enum_list2(enum_list2);
-  EXPECT_EQ(parser_enum_list2.ConvertToHtml(&ref_to_url),
+  EXPECT_EQ(parser_enum_list2.ConvertToHtml(&ref_to_url, path_vec),
             MakeOrderedList({list_elem_a, MakeOrderedList({list_elem_c}),
                              MakeOrderedList({list_elem_b,
                                               MakeOrderedList({list_elem_c})})})
@@ -165,7 +166,7 @@ TEST(ParserTest, Table) {
                        {"row a1", "row a2", "row a3"},
                        {"row b1", "row b2", "row b3"}},
                       {"td-align-center", "", "td-align-right"}),
-            parser_table.ConvertToHtml(&ref_to_url));
+            parser_table.ConvertToHtml(&ref_to_url, path_vec));
 }
 
 TEST(ParserTest, Math) {
@@ -174,7 +175,7 @@ TEST(ParserTest, Math) {
   )";
   MockMDParser parser_math(math_str);
   EXPECT_EQ(R"(<p class='math-latex'>$$1 + 1 = 2$$</p>)",
-            parser_math.ConvertToHtml(&ref_to_url));
+            parser_math.ConvertToHtml(&ref_to_url, path_vec));
 
   string long_math_str = R"(
     $$1 + 1 =
@@ -183,7 +184,7 @@ TEST(ParserTest, Math) {
   )";
   MockMDParser parser_math_2(long_math_str);
   EXPECT_EQ(R"(<p class='math-latex'>$$1 + 1 =2 + 2 =3 $$</p>)",
-            parser_math_2.ConvertToHtml(&ref_to_url));
+            parser_math_2.ConvertToHtml(&ref_to_url, path_vec));
 }
 
 TEST(ParserTest, Header) {

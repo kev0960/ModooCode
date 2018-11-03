@@ -182,7 +182,7 @@ ref_title : istream
 
 *  [operator void*](http://itguru.tistory.com/170) :  포인터로 변환한다.
 
-*  [rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그(error `state` flag)를 얻어온다.
+*  [rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그(error state flag)를 얻어온다.
 
 *  [setstate](http://itguru.tistory.com/179)  :  오류 상태 플래그를 설정한다.
 
@@ -190,7 +190,7 @@ ref_title : istream
 
 * copyfmt  :  서식 정보를 복사한다.
 
-*  [fill](http://itguru.tistory.com/181) :  채우기 문자(fill `character)` 을 얻거나 설정한다.
+*  [fill](http://itguru.tistory.com/181) :  채우기 문자(fill character) 을 얻거나 설정한다.
 
 *  [exceptions](http://itguru.tistory.com/150) :  예외 마스크를 얻거나 설정한다.
 

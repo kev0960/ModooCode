@@ -145,8 +145,6 @@ C++ 에서의 파일 입출력, `stringstream` 과 그 활용에 대해 알아�
 
 STL 알고리즘 라이브러리, 람다 함수, `sort, partial_sort, stable_sort, find, erase, erase_if, any_of, all_of`
 
-###@ 10 - 4. STL 알고리즘들
-
 ###@ [11 - 1. 우측값 레퍼런스와 이동 생성자](http://itguru.tistory.com/227)
 
 복사 생략 (copy elision), C++ 11 에 추가된 우측값 레퍼런스 (rvalue reference)와 이동 생성자 (move constructor)

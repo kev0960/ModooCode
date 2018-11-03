@@ -104,14 +104,18 @@ void WriteFileToStatMap(
 
 void ReferenceToUrls(
     const std::map<string, std::map<string, string>>& file_info,
-    std::unordered_map<string, string>* ref_to_url,
+    std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
+    std::unordered_map<string, std::vector<string>>* file_id_to_path_vec,
     const PathReader& path_reader) {
   for (const auto& kv : file_info) {
     const auto cat_title = kv.second.find("cat_title");
+    const auto path_vector = path_reader.GetVectorFilePath(kv.first);
+    (*file_id_to_path_vec)[kv.first] = path_vector;
+
     if (cat_title != kv.second.end()) {
-      if(path_reader.IsThisFileReference(kv.first)) {
+      if (path_reader.IsThisFileReference(kv.first)) {
         std::cout << kv.first << " --> " << cat_title->second << std::endl;
-        (*ref_to_url)[cat_title->second] = kv.first;
+        (*ref_to_url)[cat_title->second].push_back({path_vector, kv.first});
       }
     }
     const auto ref_title = kv.second.find("ref_title");
@@ -119,7 +123,7 @@ void ReferenceToUrls(
       const auto ref_titles = Split(ref_title->second, ',');
       for (auto ref : ref_titles) {
         Trim(&ref);
-        (*ref_to_url)[ref] = kv.first;
+        (*ref_to_url)[ref].push_back({path_vector, kv.first});
       }
     }
   }
@@ -193,9 +197,10 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
   }
 
   // Build a reference to url table.
-  std::unordered_map<string, string> ref_to_url;
-  ReferenceToUrls(file_info, &ref_to_url, reader);
+  std::unordered_map<string, std::vector<ReferenceInfo>> ref_to_url;
+  std::unordered_map<string, std::vector<string>> file_id_to_path_vec;
 
+  ReferenceToUrls(file_info, &ref_to_url, &file_id_to_path_vec, reader);
   if (!config_.no_output_parsed) {
     int parser_index = 0;
     // Create an output directory (if not exist)
@@ -215,7 +220,15 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
       string file_index(filename.begin() + filename.find_last_of("_") + 1,
                         filename.begin() + filename.find_last_of("."));*/
       // file_info[file_index] = parsers_[parser_index]->GetHeaderInfo();
-      output_file << parsers_[parser_index]->ConvertToHtml(&ref_to_url);
+      std::cerr << "Filename : " << GetFileId(filename) << " :: ";
+      auto& vec = file_id_to_path_vec[GetFileId(filename)];
+      for (const string& s : vec) {
+        std::cerr << s << " ";
+      }
+      std::cerr << std::endl;
+
+      output_file << parsers_[parser_index]->ConvertToHtml(
+          &ref_to_url, file_id_to_path_vec[GetFileId(filename)]);
       parser_index++;
     }
   }

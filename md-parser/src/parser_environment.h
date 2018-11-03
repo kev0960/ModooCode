@@ -26,6 +26,11 @@ class EnumListManager {
   std::stack<std::pair</* depth */ int, /* enum */ int>> state_;
 };
 
+struct ReferenceInfo {
+  std::vector<string> paths;
+  string url;
+};
+
 class ParserEnvironment {
  public:
   ParserEnvironment();
@@ -47,22 +52,14 @@ class ParserEnvironment {
   // Return How many end tags should it return.
   int ShouldEndListTag();
   int GetHeaderIndex() { return ++header_index_; }
-  void SetRefToUrl(std::unordered_map<string, string>* ref_to_url) {
+  void SetRefToUrl(
+      std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
+      const std::vector<string>& path_vector) {
     ref_to_url_ = ref_to_url;
+    path_vector_ = path_vector;
   }
 
-  // Return the url string if the ref_name is a entry of the reference.
-  // Otherwise, return an empty string.
-  string GetUrlOfReference(const string& ref_name) {
-    if (ref_to_url_ == nullptr) {
-      return "";
-    }
-    auto result = ref_to_url_->find(ref_name);
-    if (result == ref_to_url_->end()) {
-      return "";
-    }
-    return result->second;
-  }
+  string GetUrlOfReference(const string& ref_name);
 
  private:
   EnumListManager enum_list_manager_;
@@ -73,6 +70,7 @@ class ParserEnvironment {
 
   size_t current_content_;
   int header_index_;
-  std::unordered_map<string, string>* ref_to_url_;
+  std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url_;
+  std::vector<string> path_vector_;
 };
 }  // namespace md_parser

@@ -62,6 +62,25 @@ bool PageStructure::CheckFileExists(const string& file_name) const {
   return false;
 }
 
+std::vector<string> PageStructure::GetVectorFilePath(
+    const string& file_id) const {
+  if (pages_.find(file_id) != pages_.end()) {
+    std::vector<string> path;
+    path.push_back(current_page_dir_);
+    return path;
+  }
+
+  for (size_t i = 0; i < child_dirs_.size(); i ++) {
+    auto path = child_dirs_[i]->GetVectorFilePath(file_id);
+    if (!path.empty()) {
+      path.push_back(current_page_dir_);
+      return path;
+    }
+  }
+
+  return std::vector<string>{};
+}
+
 const PageStructure* PageStructure::GetDirectoryByName(
     const string& dir_name) const {
   for (size_t i = 0; i < child_dirs_.size(); i++) {
@@ -211,9 +230,18 @@ bool PagePath::CheckFileInDirectory(const string& dir_name,
   return false;
 }
 
+std::vector<string> PagePath::GetVectorFilePath(
+    const string& file_id) const {
+  return root_page_->GetVectorFilePath(file_id);
+}
+
 bool PathReader::IsThisFileReference(const string& file_id) const {
   return path_.CheckFileInDirectory("C++ Reference", file_id) ||
          path_.CheckFileInDirectory("C Reference", file_id);
+}
+
+std::vector<string> PathReader::GetVectorFilePath(const string& file_id) const {
+  return path_.GetVectorFilePath(file_id);
 }
 
 PathReader::PathReader() {}
