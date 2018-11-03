@@ -635,10 +635,14 @@ $(() => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  elems = document.querySelectorAll('p.math-latex');
+  elems = document.querySelectorAll('.math-latex');
   for (let i = 0; i < elems.length; i++) {
-    console.log(elems[i], renderMathInElement)
-    renderMathInElement(elems[i]);
+    renderMathInElement(elems[i], {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });
   }
 });
 
