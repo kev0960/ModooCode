@@ -235,6 +235,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
   int bold_start = int_max;
   int italic_start = int_max;
   int code_start = -1;
+  int math_start = -1;
 
   int text_start = -1;
   std::vector<HtmlFragments> fragments;
@@ -254,6 +255,16 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       }
       continue;
     }
+    if (math_start != -1) {
+      if (content_[i] == '$' && i + 1 < content_.size() &&
+          content_[i + 1] == '$') {
+        fragments.push_back(HtmlFragments(HtmlFragments::Types::INLINE_MATH,
+                                          math_start, i));
+        math_start = -1;
+        i += 1;
+      }
+      continue;
+    }
     bool handled = false;
     for (const auto& handler : handlers) {
       size_t result = handler(this, i, &fragments, &text_start);
@@ -269,7 +280,8 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     int matches = Max(FindOneOrTwoConsecutiveChar(content_, i, '*'),
                       FindOneOrTwoConsecutiveChar(content_, i, '_'),
                       FindOneOrTwoConsecutiveChar(content_, i, '~'),
-                      FindOneOrTwoConsecutiveChar(content_, i, '`'));
+                      FindOneOrTwoConsecutiveChar(content_, i, '`'),
+                      FindOneOrTwoConsecutiveChar(content_, i, '$'));
 
     if (matches == 0) {
       if (text_start == -1) {
@@ -288,6 +300,20 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
           code_start = i + 1;
         } else {
           LOG << "Inline Code Error :: code start is " << code_start;
+        }
+        continue;
+      }
+      // Inline math.
+      if (matches == 2 && content_[i] == '$') {
+        if (text_start != -1) {
+          fragments.push_back(
+              HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
+          text_start = -1;
+        }
+        if (math_start == -1) {
+          math_start = i + 1;
+        } else {
+          LOG << "Inline Math Error :: math start is " << math_start;
         }
         continue;
       }
@@ -413,6 +439,9 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
         EscapeHtmlString(&inline_code);
         html += StrCat("<code class='inline-code'>", inline_code, "</code>");
       }
+    } else if (fragments[i].type == HtmlFragments::Types::INLINE_MATH) {
+      html += StrCat("<span class='math-latex'>",
+                     GetHtmlFragmentText(content_, fragments[i]), "</span>");
     } else {
       html += GetHtmlFragmentText(content_, fragments[i]);
     }

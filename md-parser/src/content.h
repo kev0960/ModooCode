@@ -18,7 +18,8 @@ struct HtmlFragments {
     IMAGE,
     CODE,
     INLINE_CODE,
-    SIDENOTE
+    SIDENOTE,
+    INLINE_MATH
   } type;
 
   // Start and end are inclusive.

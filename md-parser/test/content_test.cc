@@ -17,6 +17,10 @@ string CreateInlineCode(const string& s) {
   return StrCat("<code class='inline-code'>", s, "</code>");
 }
 
+string CreateInlineMath(const string& s) {
+  return StrCat("<span class='math-latex'>", s, "</span>");
+}
+
 string CreateLinkHtml(const string& link_name, const string& link) {
   return StrCat("<a href='", link, "'>", link_name, "</a>");
 }
@@ -144,6 +148,13 @@ TEST(ContentTest, InlineCode) {
   EXPECT_EQ(SurroundP(StrCat("this is ", CreateInlineCode("a * some_var__x"),
                              " command")),
             ignore_other_stuff.OutputHtml(&mock_parser_env));
+}
+
+TEST(ContentTest, InlineMath) {
+  Content inline_math("some $$x=2*b + y$$ math");
+  EXPECT_EQ(
+      SurroundP(StrCat("some ", CreateInlineMath("$x=2*b + y$"), " math")),
+      inline_math.OutputHtml(&mock_parser_env));
 }
 
 TEST(ContentTest, Sidenote) {
