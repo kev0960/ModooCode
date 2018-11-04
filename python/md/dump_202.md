@@ -73,8 +73,9 @@ return !compare(str); // str 과 같으면 compare 에서 0 을 리턴한다.
 여기서 `!compare(str)` 을 리턴하는 이유는 `compare` 함수에서 `str` 과 `*this` 가 같으면 0 을 리턴하도록 하였는데, `operator==` 은 둘이 같으면 `true` 를 리턴해야 되기 때문입니다. 따라서 `NOT` 연산자인 `!` 를 앞에 붙여서 리턴하면 올바르게 작동할 수 있습니다. 그럼, 실제로 우리의 새롭게 오버로딩한 `==` 연산자가 잘 작동하는지 살펴봅시다.
 
 ```cpp
-
 #include <iostream>
+#include <string.h>
+
 using namespace std;
 
 
@@ -511,9 +512,9 @@ public:
 Complex(double real, double img) : real(real), img(img) {}
 
 Complex plus(const Complex& c);
-Complex minus(constComplex& c);
-Complex times(constComplex& c);
-Complex divide(constComplex& c);
+Complex minus(const Complex& c);
+Complex times(const Complex& c);
+Complex divide(const Complex& c);
 };
 ```
 
@@ -557,30 +558,30 @@ public:
 Complex(double real, double img) : real(real), img(img) {}
 Complex(const Complex& c) { real = c.real, img = c.img;}
 
-Complex operator+(constComplex& c);
-Complex operator-(constComplex& c);
-Complex operator*(constComplex& c);
-Complex operator/(constComplex& c);
+Complex operator+(const Complex& c);
+Complex operator-(const Complex& c);
+Complex operator*(const Complex& c);
+Complex operator/(const Complex& c);
 
 void println() { cout << "( " << real << " , " << img << " ) " << endl;}
 };
 
-Complex Complex::operator+(constComplex& c)
+Complex Complex::operator+(const Complex& c)
 {
 Complex temp(real + c.real, img + c.img);
 return temp;
 }
-Complex Complex::operator-(constComplex& c)
+Complex Complex::operator-(const Complex& c)
 {
 Complex temp(real - c.real, img - c.img);
 return temp;
 }
-Complex Complex::operator*(constComplex& c)
+Complex Complex::operator*(const Complex& c)
 {
 Complex temp(real* c.real - img * c.img, real * c.img + img * c.real);
 return temp;
 }
-Complex Complex::operator/(constComplex& c)
+Complex Complex::operator/(const Complex& c)
 {
 Complex temp((real * c.real + img * c.img)/(c.real * c.real + c.img * c.img)
 , (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img) );
@@ -609,10 +610,10 @@ c.println();
 
 ```cpp
 
-Complex operator+(constComplex& c);
-Complex operator-(constComplex& c);
-Complex operator*(constComplex& c);
-Complex operator/(constComplex& c);
+Complex operator+(const Complex& c);
+Complex operator-(const Complex& c);
+Complex operator*(const Complex& c);
+Complex operator/(const Complex& c);
 ```
 
 
@@ -622,7 +623,7 @@ Complex operator/(constComplex& c);
 
 ```cpp
 
-Complex& operator+ (constComplex& c)
+Complex& operator+ (const Complex& c)
 {
 real += c.real;
 img += c.img;
@@ -659,7 +660,7 @@ Complex a = b + c + b;
 아마 `Complex` 클래스를 구현하면서 한 가지 빠뜨렸다고 생각하고 있는 것이 있을 것입니다. 바로, 대입 연산자  (=) 이지요. 아마도, 대입 연산자야 말로 가장 먼저 구현했어야 할 연산자 함수가 아니였을까 합니다.
 ```cpp
 
-Complex& operator=(constComplex& c);
+Complex& operator=(const Complex& c);
 ```
 
 
@@ -673,7 +674,7 @@ Complex& operator=(constComplex& c);
 이와 같은 사실을 바탕으로 `operator=` 함수를 완성시켜 보면 아래와 같습니다.
 
 ```cpp
-Complex& Complex::operator=(constComplex &c)
+Complex& Complex::operator=(const Complex &c)
 
 {
 real = c.real; img = c.img;
@@ -797,11 +798,11 @@ a = b;
 
 ```cpp
 
-Complex& operator+=(constComplex& c);
-Complex& operator-=(constComplex& c);
-Complex& operator*=(constComplex& c);
+Complex& operator+=(const Complex& c);
+Complex& operator-=(const Complex& c);
+Complex& operator*=(const Complex& c);
 
-Complex& operator/=(constComplex& c);
+Complex& operator/=(const Complex& c);
 ```
 
 
@@ -810,19 +811,19 @@ Complex& operator/=(constComplex& c);
 
 ```cpp
 
-Complex& Complex::operator+=(constComplex& c)
+Complex& Complex::operator+=(const Complex& c)
 {
 (*this) = (*this) + c; return *this;
 }
-Complex& Complex::operator-=(constComplex& c)
+Complex& Complex::operator-=(const Complex& c)
 {
 (*this) = (*this) - c;return *this;
 }
-Complex& Complex::operator*=(constComplex& c)
+Complex& Complex::operator*=(const Complex& c)
 {
 (*this) = (*this) * c;return *this;
 }
-Complex& Complex::operator/=(constComplex& c)
+Complex& Complex::operator/=(const Complex& c)
 {
 (*this) = (*this) / c;return *this;
 }
@@ -849,10 +850,10 @@ Complex(double real, double img) : real(real), img(img) {}
 Complex(const Complex& c) { real = c.real, img = c.img;}
 
 
-Complex operator+(constComplex& c);
-Complex operator-(constComplex& c);
-Complex operator*(constComplex& c);
-Complex operator/(constComplex& c);
+Complex operator+(const Complex& c);
+Complex operator-(const Complex& c);
+Complex operator*(const Complex& c);
+Complex operator/(const Complex& c);
 
 
 Complex& operator+=(const Complex& c);
@@ -863,22 +864,22 @@ Complex& operator/=(const Complex& c);
 void println() { cout << "( " << real << " , " << img << " ) " << endl;}
 };
 
-Complex Complex::operator+(constComplex& c)
+Complex Complex::operator+(const Complex& c)
 {
 Complex temp(real + c.real, img + c.img);
 return temp;
 }
-Complex Complex::operator-(constComplex& c)
+Complex Complex::operator-(const Complex& c)
 {
 Complex temp(real - c.real, img - c.img);
 return temp;
 }
-Complex Complex::operator*(constComplex& c)
+Complex Complex::operator*(const Complex& c)
 {
 Complex temp(real* c.real - img * c.img, real * c.img + img * c.real);
 return temp;
 }
-Complex Complex::operator/(constComplex& c)
+Complex Complex::operator/(const Complex& c)
 {
 Complex temp((real * c.real + img * c.img)/(c.real * c.real + c.img * c.img)
 , (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img) );
@@ -888,15 +889,15 @@ Complex& Complex::operator+=(const Complex& c)
 {
 (*this) = (*this) + c; return *this;
 }
-Complex& Complex::operator-=(constComplex& c)
+Complex& Complex::operator-=(const Complex& c)
 {
 (*this) = (*this) - c;return *this;
 }
-Complex& Complex::operator*=(constComplex& c)
+Complex& Complex::operator*=(const Complex& c)
 {
 (*this) = (*this) * c;return *this;
 }
-Complex& Complex::operator/=(constComplex& c)
+Complex& Complex::operator/=(const Complex& c)
 {
 (*this) = (*this) / c;return *this;
 }
@@ -1168,19 +1169,19 @@ Complex(double real, double img) : real(real), img(img) {}
 Complex(const Complex& c) { real = c.real, img = c.img;}
 
 
-Complex operator+(constComplex& c);
+Complex operator+(const Complex& c);
 Complex operator+(const char *str);
 
 
-Complex operator-(constComplex& c);
-Complex operator*(constComplex& c);
-Complex operator/(constComplex& c);
+Complex operator-(const Complex& c);
+Complex operator*(const Complex& c);
+Complex operator/(const Complex& c);
 
 
-Complex& operator+=(constComplex& c);
-Complex& operator-=(constComplex& c);
-Complex& operator*=(constComplex& c);
-Complex& operator/=(constComplex& c);
+Complex& operator+=(const Complex& c);
+Complex& operator-=(const Complex& c);
+Complex& operator*=(const Complex& c);
+Complex& operator/=(const Complex& c);
 
 
 Complex& operator=(const Complex &c);
@@ -1190,7 +1191,7 @@ void println() { cout << "( " << real << " , " << img << " ) " << endl;}
 };
 
 
-Complex Complex::operator+(constComplex& c)
+Complex Complex::operator+(const Complex& c)
 {
 Complex temp(real + c.real, img + c.img);
 return temp;
@@ -1269,39 +1270,39 @@ if(pos_i >= 1 && str[pos_i - 1] == '-') str_img *= -1.0;
 Complex temp(str_real, str_img);
 return (*this) + temp;
 }
-Complex Complex::operator-(constComplex& c)
+Complex Complex::operator-(const Complex& c)
 {
 Complex temp(real - c.real, img - c.img);
 return temp;
 }
-Complex Complex::operator*(constComplex& c)
+Complex Complex::operator*(const Complex& c)
 {
 Complex temp(real* c.real - img * c.img, real * c.img + img * c.real);
 return temp;
 }
-Complex Complex::operator/(constComplex& c)
+Complex Complex::operator/(const Complex& c)
 {
 Complex temp((real * c.real + img * c.img)/(c.real * c.real + c.img * c.img)
 , (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img) );
 return temp;
 }
-Complex& Complex::operator+=(constComplex& c)
+Complex& Complex::operator+=(const Complex& c)
 {
 (*this) = (*this) + c; return *this;
 }
-Complex& Complex::operator-=(constComplex& c)
+Complex& Complex::operator-=(const Complex& c)
 {
 (*this) = (*this) - c;return *this;
 }
-Complex& Complex::operator*=(constComplex& c)
+Complex& Complex::operator*=(const Complex& c)
 {
 (*this) = (*this) * c;return *this;
 }
-Complex& Complex::operator/=(constComplex& c)
+Complex& Complex::operator/=(const Complex& c)
 {
 (*this) = (*this) / c;return *this;
 }
-Complex& Complex::operator=(constComplex &c)
+Complex& Complex::operator=(const Complex &c)
 {
 real = c.real; img = c.img;
 return *this;
@@ -1437,10 +1438,10 @@ Complex(const Complex& c) { real = c.real, img = c.img;}
 Complex(const char* str);
 
 
-Complex operator+(constComplex& c);
-Complex operator-(constComplex& c);
-Complex operator*(constComplex& c);
-Complex operator/(constComplex& c);
+Complex operator+(const Complex& c);
+Complex operator-(const Complex& c);
+Complex operator*(const Complex& c);
+Complex operator/(const Complex& c);
 
 
 Complex operator+(const char *str);
@@ -1449,10 +1450,10 @@ Complex operator*(const char *str);
 Complex operator/(const char *str);
 
 
-Complex& operator+=(constComplex& c);
-Complex& operator-=(constComplex& c);
-Complex& operator*=(constComplex& c);
-Complex& operator/=(constComplex& c);
+Complex& operator+=(const Complex& c);
+Complex& operator-=(const Complex& c);
+Complex& operator*=(const Complex& c);
+Complex& operator/=(const Complex& c);
 
 
 Complex& operator=(const Complex &c);
@@ -1530,22 +1531,22 @@ if(minus) num *= -1.0;
 
 return num;
 }
-Complex Complex::operator+(constComplex& c)
+Complex Complex::operator+(const Complex& c)
 {
 Complex temp(real + c.real, img + c.img);
 return temp;
 }
-Complex Complex::operator-(constComplex& c)
+Complex Complex::operator-(const Complex& c)
 {
 Complex temp(real - c.real, img - c.img);
 return temp;
 }
-Complex Complex::operator*(constComplex& c)
+Complex Complex::operator*(const Complex& c)
 {
 Complex temp(real* c.real - img * c.img, real * c.img + img * c.real);
 return temp;
 }
-Complex Complex::operator/(constComplex& c)
+Complex Complex::operator/(const Complex& c)
 {
 Complex temp((real * c.real + img * c.img)/(c.real * c.real + c.img * c.img)
 , (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img) );
@@ -1571,23 +1572,23 @@ Complex Complex::operator/(const char* str)
 Complex temp(str);
 return (*this) / temp;
 }
-Complex& Complex::operator+=(constComplex& c)
+Complex& Complex::operator+=(const Complex& c)
 {
 (*this) = (*this) + c; return *this;
 }
-Complex& Complex::operator-=(constComplex& c)
+Complex& Complex::operator-=(const Complex& c)
 {
 (*this) = (*this) - c;return *this;
 }
-Complex& Complex::operator*=(constComplex& c)
+Complex& Complex::operator*=(const Complex& c)
 {
 (*this) = (*this) * c;return *this;
 }
-Complex& Complex::operator/=(constComplex& c)
+Complex& Complex::operator/=(const Complex& c)
 {
 (*this) = (*this) / c;return *this;
 }
-Complex& Complex::operator=(constComplex &c)
+Complex& Complex::operator=(const Complex &c)
 {
 real = c.real; img = c.img;
 return *this;

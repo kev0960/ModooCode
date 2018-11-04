@@ -220,13 +220,6 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
       string file_index(filename.begin() + filename.find_last_of("_") + 1,
                         filename.begin() + filename.find_last_of("."));*/
       // file_info[file_index] = parsers_[parser_index]->GetHeaderInfo();
-      std::cerr << "Filename : " << GetFileId(filename) << " :: ";
-      auto& vec = file_id_to_path_vec[GetFileId(filename)];
-      for (const string& s : vec) {
-        std::cerr << s << " ";
-      }
-      std::cerr << std::endl;
-
       output_file << parsers_[parser_index]->ConvertToHtml(
           &ref_to_url, file_id_to_path_vec[GetFileId(filename)]);
       parser_index++;

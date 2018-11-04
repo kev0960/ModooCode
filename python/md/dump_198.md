@@ -75,7 +75,6 @@ int string_length; // 문자열 길이
 그럼 생성자들은 어떨까요. 일단, 위에 제가 구현하고자 요구했던 내용들을 충족시키기 위해서는 아래와 같은 생성자들을 만들어야 합니다.
 
 ```cpp
-
 // 문자 하나로 생성
 MyString(char c);
 
@@ -154,8 +153,11 @@ cout << string_content[i];
 그리고 마지막으로, 우리의 `MyString` 클래스의 내용을 보기 위해서, 문자열을 출력하는 함수 `print` 와 `println` 을 만들었습니다. (단지 마지막에 개행을 하느냐 안하느냐의 차이) 그럼, 우리의 현재 임시로 만들어 놓은 `MyString` 클래스가 잘 작동하고 있는지 살펴보도록 합시다.
 
 ```cpp
-
 #include <iostream>
+
+// string.h 는 strlen 때문에 include 했는데, 사실 여러분이 직접 strlen
+// 과 같은 함수를 만들어서 써도 됩니다.
+#include <string.h>
 using namespace std;
 
 
@@ -450,8 +452,8 @@ delete [] prev_string_content;
 참고로 `reserve` 함수의 경우, 만일 할당하려는 크기가 현재의 할당된 크기보다 작다면 굳이 할당할 필요가 없게 됩니다. 따라서 위와 같이 `size` 가 `memory_capacity` 보다 클 경우에만 할당하도록 처리하였습니다. 과연 잘 작동하는지 살펴볼까요.
 
 ```cpp
-
 #include <iostream>
+#include <string.h>
 using namespace std;
 
 
@@ -808,8 +810,9 @@ string_content[i + loc] = str.string_content[i];
 를 수행하면, `insert` 되는 문자가 밀린 문자열 공간에 들어가면서 `abbc` 에서 `adbc` 가 됩니다. 실제로 실행해보면 아래와 같이 잘 작동함을 알 수 있습니다.
 
 ```cpp
-
 #include <iostream>
+#include <string.h>
+
 using namespace std;
 
 
@@ -1134,8 +1137,9 @@ elsememory_capacity = string_length + str.string_length;
 
 
 ```cpp
-
 #include <iostream>
+#include <string.h>
+
 using namespace std;
 
 class MyString
@@ -1484,8 +1488,9 @@ return -1; // 찾지 못했음
 ```cpp
 
 #include <iostream>
-using namespace std;
+#include <string.h>
 
+using namespace std;
 
 class MyString
 {
@@ -1857,7 +1862,7 @@ return -1;
 ```cpp
 
 #include <iostream>
-
+#include <string.h>
 
 // min 함수를 사용하기 위한 헤더
 // 사실 min 정도는 여러분이 간단히 만들어서 써도
