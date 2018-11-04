@@ -88,7 +88,6 @@ class InlineCoder:
     if len(line) > 0 and line[0] == '*':
       right = self.process_chunk(line[1:])
       return '*' + right
-
     return self.process_chunk(line)
 
   def process_chunk(self, chunk):
@@ -106,7 +105,7 @@ class InlineCoder:
     def check_inline_code_ok(code):
       if code in self.exceptions:
         return False
-      if len(code) == 1:
+      if len(code) <= 1:
         return False
       if len(code) > 4 and code[:2] == '**':
         return False
@@ -137,8 +136,9 @@ class InlineCoder:
         chk = chunk[i]
         if i + 1 < len(chunk) and chunk[i] == chunk[i + 1]:
           chk += chunk[i + 1]
-        if chunk.find(chk, i + 1) != -1:
-          i = chunk.find(chk, i + 1) + len(chk)
+        res = chunk.find(chk, i + 2)
+        if res != -1:
+          i = res + len(chk)
         continue
 
       if chunk[i] == '$' and i + 1 < len(chunk) and chunk[i + 1] == '$':

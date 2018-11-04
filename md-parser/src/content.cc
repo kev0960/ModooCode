@@ -381,7 +381,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       // back to our website.
       string link_text = GetHtmlFragmentText(content_, fragments[i]);
       if (url.find("http") == string::npos) {
-        string url = parser_env->GetUrlOfReference(link_text);
+        string url = parser_env->GetUrlOfReference(&link_text);
         EscapeHtmlString(&link_text);
         if (!url.empty()) {
           html += StrCat("<a href='", url, "' class='link-code'>", link_text,
@@ -432,7 +432,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       html += StrCat("</p>", fragments[i].formatted_code, "<p>");
     } else if (fragments[i].type == HtmlFragments::Types::INLINE_CODE) {
       string inline_code = GetHtmlFragmentText(content_, fragments[i]);
-      string ref_url = parser_env->GetUrlOfReference(inline_code);
+      string ref_url = parser_env->GetUrlOfReference(&inline_code);
       EscapeHtmlString(&inline_code);
       if (!ref_url.empty()) {
         html += StrCat("<a href='", ref_url, "' class='link-code'>",

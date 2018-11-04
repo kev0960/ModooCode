@@ -1,6 +1,8 @@
 ----------------
 title : C++ 레퍼런스 - vector::insert
 cat_title :  vector::insert
+ref_title : insert
+path : /C++ Reference/Containers/vector
 --------------
 
 

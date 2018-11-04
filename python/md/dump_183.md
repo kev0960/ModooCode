@@ -1,6 +1,8 @@
 ----------------
 title : C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수
 cat_title :  vector::assign
+ref_title : assign
+path : /C++ Reference/Containers/vector
 --------------
 
 
@@ -52,9 +54,6 @@ void assign ( size_type n, const T& u );
 
 
 ###  리턴값
-
-
-
 
 
 없다

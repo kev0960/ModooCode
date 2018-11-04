@@ -203,31 +203,51 @@ int ParserEnvironment::ShouldEndListTag() {
 }
 // Return the url string if the ref_name is a entry of the reference.
 // Otherwise, return an empty string.
-string ParserEnvironment::GetUrlOfReference(const string& ref_name) {
+string ParserEnvironment::GetUrlOfReference(string* ref_name) {
   if (ref_to_url_ == nullptr) {
     return "";
   }
-  auto result = ref_to_url_->find(ref_name);
+  auto delim = ref_name->find("$");
+
+  string specifier;
+  if (delim != string::npos) {
+    specifier.assign(ref_name->begin() + delim + 1, ref_name->end());
+    ref_name->erase(ref_name->begin() + delim, ref_name->end());
+  }
+
+  auto result = ref_to_url_->find(*ref_name);
   if (result == ref_to_url_->end()) {
     return "";
   }
 
   // Now have to find the best fit.
   const auto& reference_infos = result->second;
-  for (const string& current_path : path_vector_) {
+  if (specifier.empty()) {
+    for (const string& current_path : path_vector_) {
+      for (const ReferenceInfo& info : reference_infos) {
+        const auto& paths = info.paths;
+        for (const string& path : paths) {
+          if (current_path == path) {
+            return info.url;
+          }
+        }
+      }
+    }
+  } else {
     for (const ReferenceInfo& info : reference_infos) {
       const auto& paths = info.paths;
       for (const string& path : paths) {
-        if (current_path == path) {
+        if (specifier == path) {
           return info.url;
         }
       }
     }
+    return "";
   }
 
   // This part will not likely to be reached due to the root directory.
   // But just in case something happens.
-  LOG << "ERROR :: Root directory not found? " << ref_name
+  LOG << "ERROR :: Root directory not found? " << ref_name << " " << specifier
       << path_vector_.size();
   for (const string& current_path : path_vector_) {
     LOG << "Path vector : " << current_path;

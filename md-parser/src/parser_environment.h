@@ -59,7 +59,7 @@ class ParserEnvironment {
     path_vector_ = path_vector;
   }
 
-  string GetUrlOfReference(const string& ref_name);
+  string GetUrlOfReference(string* ref_name);
 
  private:
   EnumListManager enum_list_manager_;

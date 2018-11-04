@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - STL 컨테이너 (STL Container)
 cat_title :  STL 컨테이너 (STL Container)
+path : /C++ Reference/Containers
 --------------
 
 
@@ -23,7 +24,7 @@ cat_title :  STL 컨테이너 (STL Container)
 [시퀀스 컨테이너(vector, list, deque)에 대한 자세한 설명을 보려면 여기를 클릭](http://itguru.tistory.com/223)!
 
 
-이처럼 컨테이너가 보관하는 원소의 타입에 크게 관계 없기 때문에 실제 프로그래밍에서 자주 사용되고 있다. 또한 표준 라이브러리에서는, 컨테이너를 여러가지 형태로 구현하여서 프로그래머들에게 각각의 상황에 적합한 컨테이너를 고를 수 있도록 제공하고 있는데, 예컨대 동적 배열( [vector](http://itguru.tistory.com/175)), 큐(queue), 스택(stack), 힙(priority_queue), 링크드 리스트 ( [list](http://itguru.tistory.com/177)) 트리 (set), 연관 컨테이너 (map) 등등이 지원되고 있다.
+이처럼 컨테이너가 보관하는 원소의 타입에 크게 관계 없기 때문에 실제 프로그래밍에서 자주 사용되고 있다. 또한 표준 라이브러리에서는, 컨테이너를 여러가지 형태로 구현하여서 프로그래머들에게 각각의 상황에 적합한 컨테이너를 고를 수 있도록 제공하고 있는데, 예컨대 동적 배열(`vector`), 큐(`queue`), 스택(`stack`), 힙(`priority_queue`), 링크드 리스트 (`list`) 트리 (`set`), 연관 컨테이너 (`map`) 등등이 지원되고 있다.
 
 [연관 컨테이너(set, map, multiset, multimap,](http://itguru.tistory.com/224)unordered_set, unordered_map) [에 대한 자세한 설명을 보려면 여기를 클릭](http://itguru.tistory.com/223)!
 

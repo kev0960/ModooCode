@@ -1,13 +1,9 @@
 ----------------
 title : C++ 레퍼런스 - vector::push_back
-cat_title :  vector::push_back
+cat_title : vector::push_back
+ref_title : push_back
+path : /C++ Reference/Containers/vector
 --------------
-
-
-
-
-
-
 
 ```warning
 이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
@@ -20,14 +16,12 @@ cat_title :  vector::push_back
 #@ vector::push_back
 
 ```info
-
 void push_back ( const T& x );
 
 ```
 
-
-
 벡터 끝에 원소를 추가한다.
+
 현재의 마지막 원소 뒤에 새로운 원소를 추가하며, 그 원소의 값은 `x` 의 복사본으로 초기화 된다.
 
 
@@ -39,20 +33,14 @@ void push_back ( const T& x );
 ###  인자
 
 
-`x`
-새로 추가 될 원소에 복사 될 원소`T` 는 벡터에 저장되어있는 원소들의 타입이다.
-
+* `x` : 새로 추가 될 원소에 복사 될 원소`T` 는 벡터에 저장되어있는 원소들의 타입이다.
 
 
 ###  리턴값
 
-
-
-
 없음
 
-
-만일 재할당이 발생한다면 이는 Allocator::allocate() 를 이용해서 수행되는데, 예외를 던질(throw) 수 있다. (디폴트 할당자의 경우 만일 요청한 할당이 성공하지 않을 경우 `bad_alloc` 이 던져진다)
+만일 재할당이 발생한다면 이는 `Allocator::allocate()` 를 이용해서 수행되는데, 예외를 던질(throw) 수 있다. (디폴트 할당자의 경우 만일 요청한 할당이 성공하지 않을 경우 `bad_alloc` 이 던져진다)
 
 
 

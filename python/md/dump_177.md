@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - STL 컨테이너 - list
 cat_title :  list
+path : /C++ Reference/Containers/list
 --------------
 
 

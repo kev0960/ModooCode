@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - STL 컨테이너 - vector
 cat_title :  vector
+path : /C++ Reference/Containers/vector
 --------------
 
 
@@ -120,13 +121,13 @@ template < class T, class Allocator = allocator<T> > class vector;
 수정자 (Modifier)
 
 
-*  [assign](http://itguru.tistory.com/183): 벡터의 원소를 집어넣는다.
+* `assign` : 벡터의 원소를 집어넣는다.
 
-*  [push_back](http://itguru.tistory.com/185): 벡터 끝에 원소를 집어 넣는다.
+* `push_back`: 벡터 끝에 원소를 집어 넣는다.
 
 * `pop_back` : 마지막 원소를 제거한다.
 
-*  [insert](http://itguru.tistory.com/186): 벡터 중간에 원소를 추가한다.
+* `insert$vector` : 벡터 중간에 원소를 추가한다.
 
 * `erase` : 원소를 제거한다.
 

@@ -421,21 +421,26 @@
 ,
 	"174" : {
 	"cat_title" : "STL 컨테이너 (STL Container)",
+	"path" : "/C++ Reference/Containers",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 (STL Container)"
 }
 ,
 	"175" : {
 	"cat_title" : "vector",
+	"path" : "/C++ Reference/Containers/vector",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - vector"
 }
 ,
 	"176" : {
 	"cat_title" : "deque",
+	"path" : "/C++ Reference/Containers/deque",
+	"ref_title" : "<deque>",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - deque"
 }
 ,
 	"177" : {
 	"cat_title" : "list",
+	"path" : "/C++ Reference/Containers/list",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - list"
 }
 ,
@@ -473,6 +478,8 @@
 ,
 	"183" : {
 	"cat_title" : "vector::assign",
+	"path" : "/C++ Reference/Containers/vector",
+	"ref_title" : "assign",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수"
 }
 ,
@@ -482,11 +489,15 @@
 ,
 	"185" : {
 	"cat_title" : "vector::push_back",
+	"path" : "/C++ Reference/Containers/vector",
+	"ref_title" : "push_back",
 	"title" : "C++ 레퍼런스 - vector::push_back"
 }
 ,
 	"186" : {
 	"cat_title" : "vector::insert",
+	"path" : "/C++ Reference/Containers/vector",
+	"ref_title" : "insert",
 	"title" : "C++ 레퍼런스 - vector::insert"
 }
 ,
@@ -770,7 +781,7 @@
 	"234" : {
 	"cat_title" : "basic_string",
 	"path" : "/C++ Reference/string",
-	"ref_title" : "basic_string",
+	"ref_title" : "basic_string, std::basic_string",
 	"title" : "C++ 레퍼런스 - basic_string"
 }
 ,
@@ -791,8 +802,22 @@
 	"237" : {
 	"cat_title" : "string 생성자",
 	"path" : "/C++ Reference/string",
-	"ref_title" : "string, wstring",
+	"ref_title" : "string, wstring, std::string, std::wstring, std::u16string, std::u32string",
 	"title" : "C++ 레퍼런스 - string 생성자"
+}
+,
+	"238" : {
+	"cat_title" : "insert",
+	"path" : "/C++ Reference/string",
+	"ref_title" : "insert",
+	"title" : "C++ 레퍼런스 - string 의 insert 함수"
+}
+,
+	"239" : {
+	"cat_title" : "basic_string_view",
+	"path" : "/C++ Reference/string_view",
+	"ref_title" : "basic_string_view, std::basic_string_view",
+	"title" : "C++ 레퍼런스 - basic_string_view"
 }
 ,
 	"24" : {
