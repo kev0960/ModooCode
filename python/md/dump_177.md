@@ -16,11 +16,11 @@ path : /C++ Reference/Containers/list
 
 #@ `list`
 
-  리스트(list) 는 헤더파일 `<list>` 에 정의된 순차 컨테이너의 한 종류로 원소들은 메모리 상에 선형으로 배열된다.
+**리스트(list)** 는 헤더파일 `<list>` 에 정의된 순차 컨테이너의 한 종류로 원소들은 메모리 상에 선형으로 배열된다.
 
-  리스트 컨테이너는 이중 연결 리스트 (doubly linked list) 로 구현된다. 이중 연결 리스트를 이용하면 메모리 상의 임의의 위치에 원소를 저장하더라도 참조할 수 있게 된다. 왜냐하면 어떤 원소의 위치는 이전 원소와 다음 원소의 링크를 통해 따라서 추적해나갈 수 있기 때문이다.
+리스트 컨테이너는 보통 **이중 연결 리스트 (doubly linked list)**로 구현된다. 이중 연결 리스트를 이용하면 메모리 상의 임의의 위치에 원소를 저장하더라도 참조할 수 있게 된다. 왜냐하면 어떤 원소의 위치는 이전 원소와 다음 원소의 링크를 통해 따라서 추적해나갈 수 있기 때문이다.
 
-  덕분에 리스트는 아래와 같은 장점을 가진다.
+덕분에 리스트는 아래와 같은 장점을 가진다.
 
 
 *  컨테이너 임의의 위치에 원소의 삽입과 삭제가 가능하다 (상수 시간)
@@ -31,13 +31,15 @@ path : /C++ Reference/Containers/list
 
 
 
-  다른 표준 순차 컨테이너 ( [vector](http://itguru.tistory.com/175), [deque](http://itguru.tistory.com/176)) 와 비교했을 때, 리스트는 원소의 삽입, 삭제, 그리고 컨테이너 내부에서의 원소들 간의 이동이 매우 효율적이다. 따라서 정렬 알고리즘 처럼 원소의 이동이 빈번하게 일어나는 곳에 적용하면 효율적이다. 특히 list::sort 함수와, 원소 이동 관련한 함수가 list::splice 가 기본적으로 제공되어서 편리하다.
+다른 표준 순차 컨테이너 (`vector`, `deque`) 와 비교했을 때, 리스트는 원소의 삽입, 삭제, 그리고 컨테이너 내부에서의 원소들 간의 이동이 매우 효율적이다. 따라서 정렬 알고리즘 처럼 원소의 이동이 빈번하게 일어나는 곳에 적용하면 효율적이다. 특히 `list::sort` 함수와, 원소 이동 관련한 함수가 `list::splice` 가 기본적으로 제공되어서 편리하다.
 
-  하지만 리스트의 가장 큰 문제점은 원소들을 인덱스로 직접 참조하는 것이 비효율적이라는 것이다. 예를 들어서 리스트의 6 번째 원소를 참조하기 위해서는 리스트의 시작 부분으로 부터 링크를 하나씩 돌면서 찾아 나가야 한다. 뿐만 아니라, 링크 되는 다른 원소의 주소값을 보관해야 하기 때문에 추가적인 메모리가 사용된다는 것인데, 보관하는 원소에 크기가 작을 수 록 배보다 배꼽이 더 커지는 현상이 발생하게 된다. (원소의 주소값은 4 바이트인데, 보관하는 것은 1 바이트 원소라면 전체 메모리 사용의 `80%` 가 단순히 다음 원소의 주소값을 보관하는데 낭비된다)
+하지만 리스트의 가장 큰 문제점은 원소들을 인덱스로 직접 참조하는 것이 비효율적이라는 것이다. 예를 들어서 리스트의 6 번째 원소를 참조하기 위해서는 리스트의 시작 부분으로 부터 링크를 하나씩 돌면서 찾아 나가야 한다.
 
-  다른 순차 컨테이너들 처럼 메모리 할당과 해제는 내부적으로 스스로 수행한다.
+뿐만 아니라, 링크 되는 다른 원소의 주소값을 보관해야 하기 때문에 추가적인 메모리가 사용된다는 것인데, 보관하는 원소에 크기가 작을 수 록 배보다 배꼽이 더 커지는 현상이 발생하게 된다. (원소의 주소값은 4 바이트인데, 보관하는 것은 1 바이트 원소라면 전체 메모리 사용의 `80%` 가 단순히 다음 원소의 주소값을 보관하는데 낭비된다)
 
-  리스트는 C++ 표준 템플릿 라이브러리에서 아래와 같이 구현된다.
+다른 순차 컨테이너들 처럼 메모리 할당과 해제는 내부적으로 스스로 수행한다.
+
+리스트는 C++ 표준 템플릿 라이브러리에서 아래와 같이 구현된다.
 
 ```cpp
 template < class T, class Allocator = allocator<T> > class list;
@@ -49,17 +51,7 @@ template < class T, class Allocator = allocator<T> > class list;
 * `Allocator` : 어떠한 방식으로 메모리를 할당할지에 관련한 할당자(allocator) 타입을 나타낸다. 기본값으로 `T` 의 할당자 클래스 템플릿을 사용하며, `Heap` 에 할당하게 된다. 많은 경우 인자를 생략한다.
 
 
-
-
-
-
-
-
 ###  멤버 함수
-
-
-
-
 
 * 생성자 : 리스트를 생성한다.
 
@@ -82,7 +74,7 @@ template < class T, class Allocator = allocator<T> > class list;
 
 
 
-할당 관련` (` [벡터](http://itguru.tistory.com/175)와는 다르게 `capacity` 와 `reserve` 가 없다!)
+할당 관련 ([벡터](http://itguru.tistory.com/175)와는 다르게 `capacity` 와 `reserve` 가 없다!)
 
 * `size` : 리스트의 `size` 를 리턴한다 (현재 원소의 개수)
 
@@ -179,13 +171,13 @@ template < class T, class Allocator = allocator<T> > class list;
 
 
 
-* `reference` : Allocator::reference
+* `reference` : `Allocator::reference`
 
 
-* `const_reference` :  Allocator::const_reference
+* `const_reference` :  `Allocator::const_reference`
 
 
-* `iterator` :  임의 접근 반복자(random `access iterator)`
+* `iterator` :  임의 접근 반복자(random access iterator)
 
 
 
@@ -209,13 +201,13 @@ template < class T, class Allocator = allocator<T> > class list;
 
 * `allocator_type` : 할당자
 
-* `pointer` : 포인터 (Allocator::pointer)
+* `pointer` : 포인터 (`Allocator::pointer`)
 
-* `const_pointer` : 상수 포인터 (Allocator::const_pointer)
+* `const_pointer` : 상수 포인터 (`Allocator::const_pointer`)
 
 * `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
 
-* `const_reverse_iterator` :  상수 역 반복자 (reverse_iterator<const_iterator>)
+* `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)
 
 
 
