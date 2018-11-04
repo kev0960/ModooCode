@@ -763,7 +763,7 @@
 	"233" : {
 	"cat_title" : "<string>",
 	"path" : "/C++ Reference/string",
-	"ref_title" : "string",
+	"ref_title" : "<string>",
 	"title" : "C++ 레퍼런스 - string 라이브러리"
 }
 ,
@@ -772,6 +772,27 @@
 	"path" : "/C++ Reference/string",
 	"ref_title" : "basic_string",
 	"title" : "C++ 레퍼런스 - basic_string"
+}
+,
+	"235" : {
+	"cat_title" : "substr",
+	"path" : "/C++ Reference/string",
+	"ref_title" : "substr, basic_string::substr",
+	"title" : "C++ 레퍼런스 - string 의 substr 함수"
+}
+,
+	"236" : {
+	"cat_title" : "getline",
+	"path" : "/C++ Reference/string",
+	"ref_title" : "getline, string::getline",
+	"title" : "C++ 레퍼런스 - string 의 getline 함수"
+}
+,
+	"237" : {
+	"cat_title" : "string 생성자",
+	"path" : "/C++ Reference/string",
+	"ref_title" : "string, wstring",
+	"title" : "C++ 레퍼런스 - string 생성자"
 }
 ,
 	"24" : {

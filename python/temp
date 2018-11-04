@@ -1,0 +1,217 @@
+----------------
+title : C++ 레퍼런스 - string 생성자
+cat_title :  string 생성자
+ref_title : string, wstring
+path : /C++ Reference/string
+----------------
+
+#@ string::string
+
+```cpp
+basic_string() noexcept(noexcept( Allocator() )): basic_string( Allocator() ) {}
+explicit basic_string( const Allocator& alloc ) noexcept;
+```
+
+빈 문자열을 생성한다.
+
+```cpp
+basic_string( size_type count, 
+              CharT ch, 
+              const Allocator& alloc = Allocator() );
+```
+
+count 만큼의 문자 ch 를 가진 문자열을 생상한다. 같은 문자가 반복되는 문자열을 생성할 때 사용하면 편리하다.
+
+```cpp
+basic_string( const basic_string& other,
+              size_type pos,
+              const Allocator& alloc = Allocator() );
+basic_string( const basic_string& other, 
+              size_type pos, 
+              size_type count,
+              const Allocator& alloc = Allocator() );
+```
+
+인자로 전달된 문자열 other 의 부분문자열로 문자를 생성한다. 첫 번째 경우, other 의 pos 부터 끝까지를 문자열로 생성하고, 두 번째의 경우 pos 부터 count 만큼을 택해서 문자열을 생성한다. substr 함수의 작동 원리와 동일하다.
+
+```cpp
+basic_string( const CharT* s,
+              size_type count, 
+              const Allocator& alloc = Allocator() );
+```
+
+s 의 첫 count 문자만큼을 취해서 문자열을 생성한다. 만약에 s 가 가리키는 문자열의 길이가 count 보다 작다면 **어떤식으로 작동해야 할지 정의되어 있지 않다.** \sidenote{이를 undefined behavior 라고 한다} 따라서 반드시 s 의 길이가 count 이상 인지 확인해야 한다.
+
+```cpp
+basic_string( const CharT* s,
+              const Allocator& alloc = Allocator() );
+```
+
+널 종류 문자열 s 를 복사해서 문자열을 생성한다.
+
+```cpp
+template< class InputIt >
+basic_string( InputIt first, InputIt last, 
+              const Allocator& alloc = Allocator() );
+```
+
+first 부터 last 바로 전 까지의 문자들을 취해서 문자열을 생성한다. 
+
+```cpp
+basic_string( const basic_string& other );
+basic_string( const basic_string& other, const Allocator& alloc );
+basic_string( basic_string&& other ) noexcept;
+basic_string( basic_string&& other, const Allocator& alloc );
+```
+
+basic_string 의 복사 생성자와 이동 생성자들.
+
+```cpp
+basic_string( std::initializer_list<CharT> ilist, 
+              const Allocator& alloc = Allocator() );
+```
+
+초기화자 리스트(initializer list) ilist 로 부터 문자열을 생성한다.
+
+```cpp
+template < class T >
+explicit basic_string( const T& t, const Allocator& alloc = Allocator() );
+```
+
+t 를 string_view sv 로 변환 한 뒤에 (`std::basic_string_view<CharT, Traits> sv = t`),
+sv 로 부터 문자열을 초기화 한다 (이는 `basic_string(sv.data(), sv.size(), alloc)` 와 동일함). 따라서 T 는 반드시 string_view 로 변환 가능한 타입이어야만 한다. 
+
+```cpp
+basic_string( const T& t, size_type pos, size_type n,
+              const Allocator& alloc = Allocator() );
+```
+
+t 를 string_view sv 호 변환한 뒤에 (`std::basic_string_view<CharT, Traits> sv = t`), pos 부터 n 개의 문자들로 문자열을 초기화 한다 (`basic_string(sv.substr(pos, n), a)` 와 동일). 이 경우 역시 T 가 string_view 로 변환 가능한 타입이어야 한다. 
+
+### 인자들 
+
+* alloc	-	문자열의 할당을 담당하는 할당자. 명시하지 않을 경우 디폴트 할당자가 사용된다.
+* count	-	만들어지는 문자열의 길이
+* ch	-	초기화 시에 어떤 문자를 사용할 것인지.
+* pos	-	사용할 첫 번째 문자의 위치
+* first, last	-	읽어들일 문자의 범위 (last 는 읽어들이지 않는다.)
+* s	-	문자열 초기화를 위해 읽어들일 문자 배열을 가리키는 포인터
+* other	-	문자열 초기화를 위해 읽어들일 다른 문자열
+* ilist	-	초기화자 리스트(`std::initializer_list`)
+* t	-	std::basic_string_view 로 변환 가능한 객체로, 이를 바탕으로 문자열을 초기화 한다. 
+
+### 복잡도 
+
+이동 생성자를 제외한 나머지 모두의 경우, 생성되는 문자열의 길이에 비례한다. 즉 $$O(n)$$, $$n$$ 은 문자열의 길이
+
+### 주의 할 점
+
+'\0' (널 문자열) 를 포함하고 있는 문자열로 초기화 할 시에, 주의해야 할 점이 있다.
+
+```cpp
+std::string s1 = "ab\0\0cd";   // s1 contains "ab"
+std::string s2{"ab\0\0cd", 6}; // s2 contains "ab\0\0cd"
+```
+
+위 s1 의 경우, `basic_string( const CharT* s, const Allocator& alloc = Allocator())` 꼴의 생성자가 오버로딩 되서, 뒤에 오는 `\0cd` 를 무시하게 된다. (첫 번째 NULL 문자를 만날 때 까지 만 읽기 때문에).
+
+반면에 s2 의 경우, `basic_string( const CharT* s, size_type count, const Allocator& alloc = Allocator());` 꼴의 생성자가 오버로딩 되서, NULL 을 만나느냐의 유무와 상관없이 정해진 길의 문자열 (위 경우 6) 을 읽기 때문에 s1 과 같은 문제는 생기지 않는다.
+
+s1 과 같은 문제를 막기 위해서는 리터럴 연산자인 operator""s 를 사용해서, 문자열을 있는 그대로 읽을 수 있게 된다. 
+
+```cpp
+std::string s3 = "ab\0\0cd"s;  // s3 contains "ab\0\0cd"
+```
+
+```cpp
+#include <iostream>
+#include <cassert>
+#include <iterator>
+#include <string>
+#include <cctype>
+ 
+int main()
+{
+  {
+    // string::string()
+    std::string s;
+    assert(s.empty() && (s.length() == 0) && (s.size() == 0));
+  }
+ 
+  {
+    // string::string(size_type count, charT ch)
+    std::string s(4, '=');
+    std::cout << s << '\n'; // "===="
+  }
+ 
+  {
+    std::string const other("Exemplary");
+    // string::string(string const& other, size_type pos, size_type count)
+    std::string s(other, 0, other.length()-1);
+    std::cout << s << '\n'; // "Exemplar"
+  }
+ 
+  {
+    // string::string(charT const* s, size_type count)
+    std::string s("C-style string", 7);
+    std::cout << s << '\n'; // "C-style"
+  }
+ 
+  {
+    // string::string(charT const* s)
+    std::string s("C-style\0string");
+    std::cout << s << '\n'; // C 스타일 문자열 (널 종료 문자열)
+  }
+ 
+  {
+    char mutable_c_str[] = "another C-style string";
+    // string::string(InputIt first, InputIt last)
+    std::string s(std::begin(mutable_c_str)+8, std::end(mutable_c_str)-1);
+    std::cout << s << '\n'; // C 스타일 문자열 (널 종료 문자열)
+  }
+ 
+  {
+    std::string const other("Exemplar");
+    std::string s(other);
+    std::cout << s << '\n'; // "Exemplar"
+  }
+ 
+  {
+    // string::string(string&& str)
+    std::string s(std::string("C++ by ") + std::string("example"));
+    std::cout << s << '\n'; // "C++ by example"
+  }
+ 
+  {
+    // string(std::initializer_list<charT> ilist)
+    std::string s({ 'C', '-', 's', 't', 'y', 'l', 'e' });
+    std::cout << s << '\n'; // "C-style"
+  }
+ 
+  {
+    // overload resolution selects string(InputIt first, InputIt last) [with InputIt = int]
+    // which behaves as if string(size_type count, charT ch) is called
+    std::string s(3, std::toupper('a'));
+    std::cout << s << '\n'; // "AAA"
+  }
+}
+```
+
+실행 결과 
+
+```exec
+====
+Exemplar
+C-style
+C-style
+C-style string
+Exemplar
+C++ by example
+C-style
+AAA
+```
+
+### 연관된 함수
+
+* assign - 문자열에 문자를 대입한다.
+* operator= - 문자열의 문자열을 대입한다.

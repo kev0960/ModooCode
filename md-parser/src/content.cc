@@ -258,8 +258,8 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     if (math_start != -1) {
       if (content_[i] == '$' && i + 1 < content_.size() &&
           content_[i + 1] == '$') {
-        fragments.push_back(HtmlFragments(HtmlFragments::Types::INLINE_MATH,
-                                          math_start, i));
+        fragments.push_back(
+            HtmlFragments(HtmlFragments::Types::INLINE_MATH, math_start, i));
         math_start = -1;
         i += 1;
       }
@@ -433,11 +433,11 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     } else if (fragments[i].type == HtmlFragments::Types::INLINE_CODE) {
       string inline_code = GetHtmlFragmentText(content_, fragments[i]);
       string ref_url = parser_env->GetUrlOfReference(inline_code);
+      EscapeHtmlString(&inline_code);
       if (!ref_url.empty()) {
         html += StrCat("<a href='", ref_url, "' class='link-code'>",
                        inline_code, "</a>");
       } else {
-        EscapeHtmlString(&inline_code);
         html += StrCat("<code class='inline-code'>", inline_code, "</code>");
       }
     } else if (fragments[i].type == HtmlFragments::Types::INLINE_MATH) {
@@ -574,6 +574,12 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
         EscapeHtmlString(&info_str);
         fragment.formatted_code =
             StrCat("<pre class='info'>", OutputLinksInBox(info_str), "</pre>");
+      } else if (fragment.code_style == "exec") {
+        string info_str = content_.substr(
+            fragment.str_start, fragment.str_end - fragment.str_start);
+        EscapeHtmlString(&info_str);
+        fragment.formatted_code = StrCat("<pre class='exec-preview'>",
+                                         OutputLinksInBox(info_str), "</pre>");
       } else if (fragment.code_style != "cpp" &&
                  fragment.code_style != "info_format") {
         string unformatted_code = content_.substr(

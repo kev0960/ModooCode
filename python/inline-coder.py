@@ -98,7 +98,7 @@ class InlineCoder:
         return True
       elif c in {
           '(', ')', '{', '}', ',', '.', '!', '+', '-', '*', '/', '=', '[', ']',
-          '<', '>', '~', '_', '&', '%', '|', '?', ':'
+          '<', '>', '~', '_', '&', '%', '|', '?', ':', ';'
       }:
         return True
       return False
@@ -140,6 +140,12 @@ class InlineCoder:
         if chunk.find(chk, i + 1) != -1:
           i = chunk.find(chk, i + 1) + len(chk)
         continue
+
+      if chunk[i] == '$' and i + 1 < len(chunk) and chunk[i + 1] == '$':
+        res = chunk.find('$$', i + 2)
+        if res != -1:
+          i = res + 2
+          continue
 
       if (chunk[i] == '!' and i + 1 < len(chunk) and
           chunk[i + 1] == '[') or chunk[i] == '[':
