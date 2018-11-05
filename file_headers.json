@@ -827,6 +827,27 @@
 	"title" : "씹어먹는 C 언어 - <12 - 2. 포인터는 영희이다! (포인터)>"
 }
 ,
+	"240" : {
+	"cat_title" : "erase",
+	"path" : "/C++ Reference/string",
+	"ref_title" : "erase, basic_string::erase",
+	"title" : "C++ 레퍼런스 - string 의 erase 함수"
+}
+,
+	"241" : {
+	"cat_title" : "find",
+	"path" : "/C++ Reference/string",
+	"ref_title" : "find, basic_string::find",
+	"title" : "C++ 레퍼런스 - string 의 find 함수"
+}
+,
+	"242" : {
+	"cat_title" : "string_view",
+	"path" : "/C++ Reference/string_view",
+	"ref_title" : "string_view, std::string_view, wstring_view, std::wstring_view",
+	"title" : "C++ 레퍼런스 - basic_string_view"
+}
+,
 	"25" : {
 	"cat_title" : "12 - 3. 포인터는 영희이다! (포인터)",
 	"next_page" : "26",

@@ -20,8 +20,13 @@ void * memmove ( void * destination, const void * source, size_t num );
 
 
 메모리 블록을 옮긴다.
-`source` 가 가리키는 곳 부터 `num` 바이트 만큼을 `destination` 이 가리키는 곳으로 옮긴다. 이 때, 메모리 복사 수행시, 중간에 버퍼를 이용하게 되므로 `destination` 과 `source` 의 해당하는 범위가 겹쳐져도 문제는 없다.
-이 때, `destination` 와 `source` 가 가리키는 타입은 위 함수에서는 상관이 없다. 오직 단순하게 이진 데이터 만을 복사하는 것이기 때문이다. 또한 위 함수는 `source` 의 널 종료 문자를 확인하지 않는다. 언제나 정확히 `num` 바이트 만큼 복사를 수행한다.
+
+`source` 가 가리키는 곳 부터 `num` 바이트 만큼을 `destination` 이 가리키는 곳으로 옮긴다. 
+
+메모리 복사 수행시, 중간에 버퍼를 이용하게 되므로 `destination` 과 `source` 의 해당하는 범위가 겹쳐져도 문제는 없다.
+
+`destination` 와 `source` 가 가리키는 타입은 위 함수에서는 상관이 없다. 오직 단순하게 이진 데이터 만을 복사하는 것이기 때문이다. 또한 위 함수는 `source` 의 널 종료 문자를 확인하지 않는다. 언제나 정확히 `num` 바이트 만큼 복사를 수행한다.
+
 오버플로우를 방지하기 위해 `destination` 와 `source` 가 가리키는 배열 모두 적어도 `num` 바이트 이상은 되어야 한다.
 
 

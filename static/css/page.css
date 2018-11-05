@@ -2,8 +2,8 @@
     text-align: center;
 }
 
-.wrap h3 > p {
-    margin-bottom:0;
+.wrap h3>p {
+    margin-bottom: 0;
 }
 
 .font-italic {
@@ -15,16 +15,17 @@
 }
 
 .wrap h3 {
-    margin-bottom:1rem;
-    border-left:10px solid #005ecb;
-    border-bottom:3px solid #005ecb;
-    padding-bottom:5px;
-    padding-left:10px;
-    color:#005ecb;
-    padding-top:5px;
+    margin-bottom: 1rem;
+    border-left: 10px solid #005ecb;
+    border-bottom: 3px solid #005ecb;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    color: #005ecb;
+    padding-top: 5px;
 }
 
 /* Warning */
+
 .warning {
     font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: rgba(252, 222, 199, 1);
@@ -36,8 +37,9 @@
 .warning a {
     color: rgb(247, 22, 22);
     font-weight: bold;
-    font-size:110%;
+    font-size: 110%;
 }
+
 .info {
     font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: rgb(231, 253, 181);
@@ -50,7 +52,7 @@
     font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: #2d2a2e;
     border: 1px solid #2d2a2e;
-    color : white;
+    color: white;
     padding: 10px;
     font-size: 0.9em;
 }
@@ -61,51 +63,51 @@
     margin-top: 4px;
     float: right;
     margin-top: 4px;
-    background:#6b6464 linear-gradient(to bottom, #bbb7b7, #6b6464);
+    background: #6b6464 linear-gradient(to bottom, #bbb7b7, #6b6464);
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     transition: background-position 0.1s linear;
-    color:white;
-    padding:7px 20px 7px 15px;
+    color: white;
+    padding: 7px 20px 7px 15px;
     border: 1px solid #cccccc;
     border-radius: 4px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
 }
 
 .plain-code {
-    overflow-y:scroll!important;
+    overflow-y: scroll!important;
 }
 
 .exec-result {
-    background-color:black;
-    color:white;
-    margin-top:0px;
+    background-color: black;
+    color: white;
+    margin-top: 0px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
 
 .exec-result-title {
-    margin-bottom:0px;
-    margin-top:10px;
-    padding-bottom:8px;
-    padding-top:8px;
-    padding-left:15px;
-    font-size:0.95em;
-    background-color:#e8e8e8;
-    color:#101010;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-left: 15px;
+    font-size: 0.95em;
+    background-color: #e8e8e8;
+    color: #101010;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
 
 .compile-error-title {
-    margin-left:10px;
-    color:red;
-    font-size:0.7em;
+    margin-left: 10px;
+    color: red;
+    font-size: 0.7em;
 }
 
 .run-success-title {
-    margin-left:10px;
-    color:green;
-    font-size:0.7em;
+    margin-left: 10px;
+    color: green;
+    font-size: 0.7em;
 }
 
 .compiler-error-line {
@@ -116,67 +118,69 @@
 
 .button-group {
     overflow: hidden;
-    display:flex;
-    flex-direction:row;
-    margin-bottom:5px;
-    padding-bottom:10px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
 }
 
 .stdin {
     flex: 2;
-    margin-right:10px;
-    margin-top:5px;
+    margin-right: 10px;
+    margin-top: 5px;
 }
 
 .stdin::placeholder {
-    padding-left:10px;
+    padding-left: 10px;
 }
 
 .stdin-label {
-    margin-top:10px;
-    margin-right:10px;
-    font-size:0.8em;
-    color:black;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 0.8em;
+    color: black;
 }
+
 .run {
     margin-top: 4px;
     background: #51a351 linear-gradient(to bottom, #62c462, #51a351);
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     transition: background-position 0.1s linear;
-    color:white;
-    padding:7px 20px 7px 15px;
+    color: white;
+    padding: 7px 20px 7px 15px;
     border: 1px solid #cccccc;
     border-radius: 4px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 1px 2px rgba(0, 0, 0, .05);
 }
 
 .monaco-container {
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 @media (max-width: 48em) {
     #open-sidebar {
-        position:absolute;
-        top:10px;
-        left:10px;
-        font-size:1.5em;
-        display:none;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 1.5em;
+        display: none;
         z-index: 100;
     }
 }
+
 @media (min-width: 49em) {
     #open-sidebar {
-        position:absolute;
-        top:35px;
-        left:20px;
-        font-size:1.5em;
-        display:none;
+        position: absolute;
+        top: 35px;
+        left: 20px;
+        font-size: 1.5em;
+        display: none;
         z-index: 100;
     }
 }
 
 #open-sidebar-btn {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .page-nav-btns {
@@ -187,7 +191,7 @@
 
 .page-nav-btns p {
     text-align: center;
-    margin-top:0;
+    margin-top: 0;
 }
 
 .page-nav-btns p:first-of-type {
@@ -200,20 +204,21 @@ p.nav-page-title {
     margin-bottom: 0;
     color: #515151;
 }
+
 .page-btn-common {
     flex: 1;
-    font-size:1em;
+    font-size: 1em;
     padding: 15px 25px;
     background-color: white;
     border: 1px solid #dddddd;
     font-weight: bold;
     cursor: pointer;
-    color:black;
+    color: black;
 }
 
 .page-btn-common:hover {
-    color:white;
-    background-color:#0085a1;
+    color: white;
+    background-color: #0085a1;
     border: 1px solid #0085a1;
     text-decoration: none;
 }
@@ -223,24 +228,24 @@ p.nav-page-title {
 }
 
 .prev-page-btn {
-    margin-left:5%;
-    margin-right:5%;
-}
-
-.next-page-btn {
-    margin-left:auto;
+    margin-left: 5%;
     margin-right: 5%;
 }
 
-thead > tr {
+.next-page-btn {
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+thead>tr {
     white-space: nowrap;
     text-align: center;
     font-weight: bold;
-    background-color:#cccccc;
+    background-color: #cccccc;
 }
 
 table p {
-    margin-bottom:0;
+    margin-bottom: 0;
 }
 
 h2.ref-header {
@@ -248,7 +253,7 @@ h2.ref-header {
     font-size: 1.8rem;
     border-bottom: 5px solid rgb(232, 232, 232);
     padding-bottom: 4px;
-    position:relative;
+    position: relative;
 }
 
 h2.ref-header::before {
@@ -263,15 +268,16 @@ h2.ref-header::before {
 
 h3.lecture-header {
     border: none;
-    font-size:1.2em;
+    font-size: 1.2em;
     padding: 0;
     margin-bottom: 3px;
     color: #ea5e5e;
 }
 
-h3.lecture-header + p {
-    margin-left:10px;
+h3.lecture-header+p {
+    margin-left: 10px;
 }
+
 .content-img {
     display: block;
     margin-left: auto;
@@ -290,12 +296,12 @@ h3.lecture-header + p {
 
 @media (max-width: 1453px) {
     .sidenote {
-        font-size:smaller;
-        border-top:1px solid #e6e6e6;
-        border-bottom:1px solid #e6e6e6;
-        padding-top:10px;
+        font-size: smaller;
+        border-top: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+        padding-top: 10px;
         padding-bottom: 10px;
-        color:#5e6973;
+        color: #5e6973;
         margin-bottom: 10px;
     }
 }
@@ -303,48 +309,49 @@ h3.lecture-header + p {
 @media (min-width: 1454px) {
     .sidenote {
         position: absolute;
-        left:755px;
-        width:288px;
-        font-size:smaller;
-        border-top:1px solid #e6e6e6;
-        border-bottom:1px solid #e6e6e6;
-        padding-top:10px;
+        left: 755px;
+        width: 288px;
+        font-size: smaller;
+        border-top: 1px solid #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+        padding-top: 10px;
         padding-bottom: 10px;
-        color:#5e6973;
+        color: #5e6973;
     }
 }
 
 .shrink-btn {
     background: none;
-    border-top:1px solid black;
-    border-left:1px solid black;
-    border-right:1px solid black;
-    border-bottom:none;
-    padding-top:5px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: none;
+    padding-top: 5px;
     padding-bottom: 5px;
     cursor: pointer;
 }
 
 .shrink-btn:hover {
     background: grey;
-    color:white;
+    color: white;
 }
 
 .toc-sidebar {
     list-style: none;
-    padding-left:20px;
+    padding-left: 20px;
 }
 
 .toc-sidebar .toc-H2 {
     font-size: 140%;
     font-weight: bold;
 }
+
 .toc-sidebar .toc-H3 {
-    font-size:125%;
+    font-size: 125%;
 }
 
 .toc-sidebar .toc-H4 {
-    padding-left:15px;
+    padding-left: 15px;
 }
 
 .toc-sidebar li {
@@ -353,11 +360,11 @@ h3.lecture-header + p {
 
 .toc-header {
     font-size: 140%;
-    margin-left:20px;
+    margin-left: 20px;
     border-bottom: 1px solid;
     padding-bottom: 2px;
-    margin-right:15px;
-    margin-bottom:5px;
+    margin-right: 15px;
+    margin-bottom: 5px;
     color: white;
     font-weight: bold;
 }

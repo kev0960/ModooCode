@@ -56,5 +56,6 @@
     "cstddef": "cpp",
     "cstring": "cpp",
     "ctime": "cpp"
-  }
+  },
+  "python.pythonPath": "/home/jaebum/anaconda3/bin/python"
 }

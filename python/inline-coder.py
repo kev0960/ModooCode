@@ -88,6 +88,12 @@ class InlineCoder:
     if len(line) > 0 and line[0] == '*':
       right = self.process_chunk(line[1:])
       return '*' + right
+    elif len(line) > 3 and line[:1].isdigit(
+    ) and line[1] == '.' and line[2] == ' ':
+      enum = line[:3]
+      right = self.process_chunk(line[3:])
+      return enum + right
+
     return self.process_chunk(line)
 
   def process_chunk(self, chunk):

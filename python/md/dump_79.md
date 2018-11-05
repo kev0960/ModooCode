@@ -35,8 +35,10 @@ char * strcpy ( char * destination, const char * source );
 별다른 변수들을 사용하지 않고도 다음과 같이 간단하게 구현할 수 있다.
 
 ```cpp
-
-/* 이 소스는 http://www.jbox.dk/sanos/source/lib/string.c.html#:38  에서 가져옴*/char *strcpy(char *dst, const char *src){    char *cp = dst;    while (*cp++ = *src++);    return dst;}
+/* 이 소스는 http://www.jbox.dk/sanos/source/lib/string.c.html#:38  에서 가져옴*/
+char *strcpy(char *dst, const char *src)
+{
+      char *cp = dst;    while (*cp++ = *src++);    return dst;}
 ```
 
 
@@ -110,7 +112,7 @@ int main ()
 *  [memmove](http://itguru.tistory.com/78) :  메모리 블록을 옮긴다.
 *  [memchr](http://itguru.tistory.com/92)  :  메모리 블록에 문자를 위치시킨다.
 *  [memcmp](http://itguru.tistory.com/84)  :  두 개의 메모리 블록을 비교한다.
-* memset  :  메모리 블록을 채운다.
+* `memset`  :  메모리 블록을 채운다.
 
 
 
