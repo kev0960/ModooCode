@@ -4,10 +4,6 @@ cat_title :  fopen
 --------------
 
 
-
-
-
-
 ```warning
 아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
 
@@ -25,7 +21,7 @@ FILE * fopen ( const char * filename, const char * mode );
 
 `filename` 인자에서 지정한 파일을 열고, 이에 해당하는 스트림의 `FILE` 객체를 가리키는 포인터를 반환한다. 이 때, 이 스트림에서 어떠한 입출력 작업이 가능한지는 `mode` 인자에 의해 결정된다.
 
-`fopen` 함수는 동시에 최소 `FOPEN_MAX` 개의 파일들을 열 수 있게 보장하고 있으며 (이 이상 열 수도 있지만 성공적으로 열 수 있을지에 대해선 보장할 수 없다) 이 값은 실행 환경에 따라 다를 수 있다. 참고로 `FOPEN_MAX` 는 <[stdio.h](http://itguru.tistory.com/34)> (C++ 에서는 < [cstdio](http://itguru.tistory.com/34)>) 에 정의되어 있는 매크로 상수 이다.
+`fopen` 함수는 동시에 최소 `FOPEN_MAX` 개의 파일들을 열 수 있게 보장하고 있으며 (이 이상 열 수도 있지만 성공적으로 열 수 있을지에 대해선 보장할 수 없다) 이 값은 실행 환경에 따라 다를 수 있다. 참고로 `FOPEN_MAX` 는 [stdio.h](http://itguru.tistory.com/34) (C++ 에서는 [cstdio](http://itguru.tistory.com/34)) 에 정의되어 있는 매크로 상수 이다.
 
 
 

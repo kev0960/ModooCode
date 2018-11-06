@@ -26,7 +26,8 @@ void rewind ( FILE * stream );
 fseek (stream, 0, SEEK_SET);
 ```
 
-과 정확히 동일하다.단, [fseek](http://itguru.tistory.com/72)함수와는 달리 `rewind` 함수는 오류 지정자를 초기화 한다.
+과 정확히 동일하다. 단, [fseek](http://itguru.tistory.com/72)함수와는 달리 `rewind` 함수는 오류 지정자를 초기화 한다.
+
 따라서, 스트림이 읽기 및 쓰기 형식으로 열려있을 경우, `rewind` 함수를 호출함으로써 읽기에서 쓰기 모드로, 쓰기에서 읽기 모드로 변경할 수 있다.
 
 
@@ -59,7 +60,11 @@ fseek (stream, 0, SEEK_SET);
 ```cpp
 
 
-/*myfile.txt 에 A 부터 Z 까지 출력한 뒤, 다시 pFile 을 파일의 처음으로 옮긴 후 파일의 내용을 읽어들인다. 즉, buffer 에는 A 부터 Z 까지 들어가게 된다. 따라서 화면에는 ABCDEFGHIZKLMNOPQRSTUVWXYZ 가 출력된다.이 예제는http://www.cplusplus.com/reference/clibrary/cstdio/rewind/에서 가져왔습니다.*/#include <stdio.h>int main (){    int n;    FILE * pFile;    char buffer [27];    pFile = fopen ("myfile.txt","w+");    for ( n='A' ; n<='Z' ; n++)        fputc ( n, pFile);    rewind (pFile);    fread (buffer,1,26,pFile);    fclose (pFile);    buffer[26]='\0';    puts (buffer);    return 0;}
+/*myfile.txt 에 A 부터 Z 까지 출력한 뒤, 다시 pFile 을 파일의 처음으로 옮긴 후 파일의 내용을 읽어들인다. 즉, buffer 에는 A 부터 Z 까지 들어가게 된다. 따라서 화면에는 ABCDEFGHIZKLMNOPQRSTUVWXYZ 가 출력된다.이 예제는http://www.cplusplus.com/reference/clibrary/cstdio/rewind/에서 가져왔습니다.*/
+#include <stdio.h>
+int main (){
+      int n;
+     FILE * pFile;    char buffer [27];    pFile = fopen ("myfile.txt","w+");    for ( n='A' ; n<='Z' ; n++)        fputc ( n, pFile);    rewind (pFile);    fread (buffer,1,26,pFile);    fclose (pFile);    buffer[26]='\0';    puts (buffer);    return 0;}
 ```
 
 실행 결과

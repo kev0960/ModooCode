@@ -20,7 +20,9 @@ size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );
 
 
 스트림에 데이터 블록을 쓴다.
+
 스트림에 `count` 개의 원소를 가지는 배열을 쓴다. 각각의 원소는 `size` 바이트이고, 그 배열은 `ptr` 이 가리키는 것이다.
+
 따라서, 전체 스트림에 써지는 바이트 수는 `size * count` 가 된다.
 전체 스트림에 써지는 바이트 수 만큼 위치 지정자가 증가하게 된다.
 

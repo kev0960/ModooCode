@@ -20,16 +20,16 @@ char * strncpy ( char * destination, const char * source, size_t num );
 ```
 
 문자열에서 일부 문자들 만을 복사한다.
-`source` 에서 `destination` 으로 `source` 의 처음 `num` 개의 문자들 만을 복사(NULL 도 포함해서) 한다. `num` 보다 `source` 의 문자 수가 더 적다면은 모자란 부분은 0 으로 생각되어서 `destination` 에 복사가 된다. 다시 말해 `source` 가 "abc" 인다, `num` 이 5 라면 `destination` 에는 "abc\0\0" 가 들어가게 된다.
+
+`source` 에서 `destination` 으로 `source` 의 처음 `num` 개의 문자들 만을 복사(NULL 도 포함해서) 한다.
+
+`num` 보다 `source` 의 문자 수가 더 적다면은 모자란 부분은 0 으로 생각되어서 `destination` 에 복사가 된다. 다시 말해 `source` 가 "abc" 인다, `num` 이 5 라면 `destination` 에는 "abc\0\0" 가 들어가게 된다.
 
 `strncpy` 함수는 복사시 `destination` 끝에 반드시 `NULL` 문자를 붙이는 것이 아니므로 사용에 주의를 해야 한다.
 
 
 
 ###  인자
-
-
-
 
 `destination`
 

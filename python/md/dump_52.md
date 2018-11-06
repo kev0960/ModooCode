@@ -16,7 +16,9 @@ int ferror ( FILE * stream );
 ```
 
 오류 표시자를 검사한다.
+
 인자에서 지정한 스트림의 오류 표시자가 설정 되어 있는지 확인하고, 설정 되어 있다면 0 이 아닌 값을 리턴한다.
+
 보통 오류 표시자는 이전의 스트림 작업에서 오류가 발생했을 때 설정된다.
 
 ###  인자
@@ -68,9 +70,3 @@ int main ()
 *  [feof](http://itguru.tistory.com/51)  :  파일 끝 표시자를 검사한다.
 *  [clearerr](http://itguru.tistory.com/50):  오류 표시자들을 클리어(clear) 한다.
 *  [perror](http://itguru.tistory.com/53)  :  오류 메세지를 표시한다.
-
-
-
-
-
-

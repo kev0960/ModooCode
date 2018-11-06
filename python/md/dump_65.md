@@ -125,6 +125,6 @@ int main ()
 ###  연관된 함수
 
 *  [scanf](http://itguru.tistory.com/36)  :  표준 입력(stdin) 에서 데이터를 특정한 형식으로 읽어온다.
-* fprintf  :  스트림에 특정한 형식으로 데이터를 쓴다.
-* fread  :  스트림에서 데이터 블록을 읽어온다.
+* `fprintf ` :  스트림에 특정한 형식으로 데이터를 쓴다.
+* `fread ` :  스트림에서 데이터 블록을 읽어온다.
 *  [fgets](http://itguru.tistory.com/38)  :  스트림에서 문자열을 읽어온다.

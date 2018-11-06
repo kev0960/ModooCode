@@ -20,7 +20,10 @@ char * strncat ( char * destination, char * source, size_t num );
 
 
 문자열에 일부 문자들을 덧붙인다.
-`source` 의 처음 `num` 개의 문자들을 `destination` 끝에 덧붙인다. 이 때, `destination` 끝에는 자동으로 `NULL` 문자 까지 붙여진다. 만일, `source` 의 문자열의 길이가 `num` 보다 작다면, `source` 의 `NULL` 문자 까지만 붙여진다.
+
+`source` 의 처음 `num` 개의 문자들을 `destination` 끝에 덧붙인다. 이 때, `destination` 끝에는 자동으로 `NULL` 문자 까지 붙여진다.
+
+만일, `source` 의 문자열의 길이가 `num` 보다 작다면, `source` 의 `NULL` 문자 까지만 붙여진다.
 
 
 
@@ -96,7 +99,6 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 에서 가져왔습니다.
 
 */
-
 
 char *strncat(char *s1, const char *s2, size_t count){    char *start = s1;    while (*s1++);    s1--;    while (count--)    {        if (!(*s1++ = *s2++)) return start;    }    *s1 = '\0';    return start;}
 ```

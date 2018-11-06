@@ -20,13 +20,16 @@ size_t strxfrm ( char * destination, const char * source, size_t num );
 
 
 `locale` 을 사용해 문자열을 변환한다.
-`source` 가 가리키는 C 형식 문자열을 현재 `locale` 에 따라 문자열을 변환한 후 변환한 문자열의 처음 `num` 개 문자를 `destination` 에 복사한다. 이 때,  변환된 문자열의 길이를 리턴하게 된다.  이 함수는 또한 문자열의 길이를 계산하는데 (NULL 은 세지지 않는다) 사용할 수 있는데, `destination` 에 `NULL` 포인터를 넣고, `num` 에 0 을 주면 된다.
+
+`source` 가 가리키는 C 형식 문자열을 현재 `locale` 에 따라 문자열을 변환한 후 변환한 문자열의 처음 `num` 개 문자를 `destination` 에 복사한다.
+
+이 때, 변환된 문자열의 길이를 리턴하게 된다.
+
+이 함수는 또한 문자열의 길이를 계산하는데 (NULL 은 세지 않는다) 사용할 수 있는데, `destination` 에 `NULL` 포인터를 넣고, `num` 에 0 을 주면 된다.
 
 
 
 ###  인자
-
-
 
 
 `destination`

@@ -22,9 +22,11 @@ size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
 
 
 스트림에서 데이터 블록을 읽어온다.
+
 스트림에서 `count` 개의 원소를 가지는 배열을 읽어온다. 이 때, 각 원소의 크기는 `size` 바이트 이고 `ptr` 이 가리키는 배열에 넣게 된다. (이 때, `count` 와 `size` 와 `ptr` 은 모두 `fread` 의 각각의 인자들을 의미한다)
+
 스트림의 위치 표시자는 읽어들인 바이트 수 만큼 증가하게 된다.
-전체 읽어들인 바이트 수는 만일 성공적일 경우, (size * count) 가 된다.
+전체 읽어들인 바이트 수는 만일 성공적일 경우, `(size * count)` 가 된다.
 
 
 
@@ -53,7 +55,9 @@ size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
 
 
 
-만일 성공적으로 지정한 원소의 개수 만큼 읽어들였다면 읽어들인 원소의 개수가 `size_t` 형으로 리턴된다. 참고로 `size_t` 형은 정수 타입이다. 만일 읽어들인 개수가 `count` 인자에서 지정한 것과 다르거나, `End OF File` 에 도달하였다면 오류가 발생한다. 이 때, 여러분은 [ferror](http://itguru.tistory.com/52)함수나 [feof](http://itguru.tistory.com/51)함수를 이용하여 어떠한 오류인지를 파악할 수 있다.
+만일 성공적으로 지정한 원소의 개수 만큼 읽어들였다면 읽어들인 원소의 개수가 `size_t` 형으로 리턴된다. 
+
+참고로 `size_t` 형은 정수 타입이다. 만일 읽어들인 개수가 `count` 인자에서 지정한 것과 다르거나, `End OF File` 에 도달하였다면 오류가 발생한다. 이 때, 여러분은 [ferror](http://itguru.tistory.com/52)함수나 [feof](http://itguru.tistory.com/51)함수를 이용하여 어떠한 오류인지를 파악할 수 있다.
 
 
 
@@ -125,10 +129,3 @@ int main () {
 * `fwrite` : 스트림에 데이터 블록을 쓴다.
 *  [fgetc](http://itguru.tistory.com/37): 스트림에서 한 문자를 가져온다.
 *  [fscanf](http://itguru.tistory.com/65): 스트림에서 형식에 맞추러 데이터를 읽어온다.
-
-
-
-
-
-
-

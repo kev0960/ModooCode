@@ -20,9 +20,11 @@ int feof ( FILE * stream );
 
 
 파일 끝 표시자(End-of-File indicator)를 검사한다.
+
 인자로 넘겨준 스트림의 파일 끝 표시자를 검사하여 설정(set) 되어 있다면 0 이 아닌 값을 리턴한다.
 보통 표시자는 이전의 입출력 작업에 의해 스트림이 파일 끝에 도달하였을 때 설정된다.
- [rewind](http://itguru.tistory.com/75)이나 [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수들 중 어느 하나가 성공적으로 위치 표시자의 값을 바꾸기 전 까지, 모든 입출력 작업들은 오류를 리턴하게 된다.
+
+[rewind](http://itguru.tistory.com/75)이나 [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수들 중 어느 하나가 성공적으로 위치 표시자의 값을 바꾸기 전 까지, 모든 입출력 작업들은 오류를 리턴하게 된다.
 
 ###  인자
 

@@ -12,13 +12,13 @@ cat_title :  fgets
 
 
 ```info
-
-
-﻿#include <stdio.h> // C++ 의 경우 <cstdio>﻿﻿﻿char * fgets ( char * str, int num, FILE * stream );
+#include <stdio.h> // C++ 의 경우 <cstdio>
+char * fgets ( char * str, int num, FILE * stream );
 ```
 
 스트림(stream)에서 문자열을 받는다.
-스트림에서 문자열을 받아서 (num - 1) 개의 문자를 입력 받을 때 까지나, 개행 문자나 파일 끝(End-of-File) 에 도달할 때 까지 입력 받아서 C 형식의 문자열로 저장한다. 개행 문자는 `fgets` 로 하여금 입력을 끝나게 하지만 이 문자 역시 `str` 에 저장한다. `NULL` 문자는 자동적으로 마지막으로 입력받은 문자 뒤에 붙는다.
+
+스트림에서 문자열을 받아서 `(num - 1)` 개의 문자를 입력 받을 때 까지나, 개행 문자나 파일 끝(End-of-File) 에 도달할 때 까지 입력 받아서 C 형식의 문자열로 저장한다. 개행 문자는 `fgets` 로 하여금 입력을 끝나게 하지만 이 문자 역시 `str` 에 저장한다. `NULL` 문자는 자동적으로 마지막으로 입력받은 문자 뒤에 붙는다.
 
 참고적으로 `fgets` 함수는 [scanf](http://itguru.tistory.com/36)함수와는 달리 오직 개행 문자에 의해서만 입력이 끝나기 때문에 띄어쓰기가 있는 문자열도 입력 받을 수 있다. 반면에 `scanf` 함수의 경우 개행 문자 뿐만이 아니라 ' ' 와 '\t' 에 의해서도 입력이 끝나기 때문에 띄어쓰기가 있는 문자열은 입력 받을 수 없다.
 
@@ -47,9 +47,12 @@ cat_title :  fgets
 
 
 성공적으로 읽어들였다면 함수는 `str` 을 리턴한다.
+
 만일 파일 끝에 도달하였는데 아무런 문자도 읽어들이지 않았다면 `str` 의 내용은 변하지 않고 그 대신 `null` 포인터가 리턴된다.
+
 또한 오류가 발생해도 `null` 포인터가 리턴된다.
- [ferror](http://itguru.tistory.com/52)함수나 [ feof](http://itguru.tistory.com/51)를 사용해서 각각 어떤 오류가 발생하였는지, 파일 끝에 도달하였는지 알 수 있다.
+
+[ferror](http://itguru.tistory.com/52)함수나 [ feof](http://itguru.tistory.com/51)를 사용해서 각각 어떤 오류가 발생하였는지, 파일 끝에 도달하였는지 알 수 있다.
 
 
 
@@ -60,7 +63,10 @@ cat_title :  fgets
 /* 화면에서 문자열을 읽어들인다. */
 
 
-#include <stdio.h>#define MAX_STR_SIZE 100int main(){    char str_read[MAX_STR_SIZE];    fgets(str_read, MAX_STR_SIZE, stdin);    printf("읽어들인 문자열 : %s \n", str_read);    return 0;}
+#include <stdio.h>
+#define MAX_STR_SIZE 100
+int main()
+{    char str_read[MAX_STR_SIZE];    fgets(str_read, MAX_STR_SIZE, stdin);    printf("읽어들인 문자열 : %s \n", str_read);    return 0;}
 ```
 
 실행 결과

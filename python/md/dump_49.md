@@ -20,7 +20,8 @@ int ungetc ( int character, FILE * stream );
 
 
 스트림에 문자를 다시 집어 넣는다(unget)
-스트림에 마지막으로 문자가 읽어들여졌던 자리에 문자(ungetc 함수에 인자로 전달된 character)가 말그대로 들어가고, 파일 위치 표시자가 감소하여 이전 위치를 가리키게 한다. 따라서, 다음 읽기 작업에서는 방금 스트림에 집어 넣어졌던 문자가 읽히기 된다.
+
+스트림에 마지막으로 문자가 읽어들여졌던 자리에 문자(`ungetc` 함수에 인자로 전달된 character)가 말그대로 들어가고, 파일 위치 표시자가 감소하여 이전 위치를 가리키게 한다. 따라서, 다음 읽기 작업에서는 방금 스트림에 집어 넣어졌던 문자가 읽히기 된다.
 
 예를 들면
 
@@ -33,7 +34,11 @@ ungetc ('a', fp);
 ch = getc(fp);
 ```
 
-을 한다면 `a.txt` 에 무엇이 들어 있던 간에 `ch` 에는 `a` 가 들어가게 된다. 왜냐하면 `ungetc` 를 실행하기 직전에 위치 표시자의 값은 2 였다. 그런데 `ungetc` 를 호출함으로써 위치 표시자의 값은 1 이 되고, 그 자리에 `a` 가 써지게 된다. 그 후 `getc` 함수를 호출하면 현재 파일 위치 표시자의 문자를 리턴하는데, 여기서 위치 표시자의 값은 1 이고 그 자리에 `a` 가 있으므로 결과적으로 `ch` 에는 `a` 가 들어간다. 물론, `a` 가 써진다는 말은파일에 실질적으로 `a` 가 기록되는 것이 아니라버퍼에 써지는 것이다.
+을 한다면 `a.txt` 에 무엇이 들어 있던 간에 `ch` 에는 `a` 가 들어가게 된다. 왜냐하면 `ungetc` 를 실행하기 직전에 위치 표시자의 값은 2 였다.
+
+그런데 `ungetc` 를 호출함으로써 위치 표시자의 값은 1 이 되고, 그 자리에 `a` 가 써지게 된다.
+
+그 후 `getc` 함수를 호출하면 현재 파일 위치 표시자의 문자를 리턴하는데, 여기서 위치 표시자의 값은 1 이고 그 자리에 `a` 가 있으므로 결과적으로 `ch` 에는 `a` 가 들어간다. 물론, `a` 가 써진다는 말은파일에 실질적으로 `a` 가 기록되는 것이 아니라 버퍼에 써지는 것이다.
 
 `unget` 함수를 여러번 호출하게 되면 나중 읽기작업에서 호출된 역순으로 출력된다.예를 들어
 
@@ -59,10 +64,10 @@ ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
 ```
 
 만일 `EOF` 표시자가 설정된 상태에서 이 함수를 호출하면 `EOF` 표시자는 초기화(clear) 된다.
+
 `fseek` 나 `fsetpos` 나 `rewind` 함수를 호출하면 이전에 `unget` 함수에 의해 들어갔었던 문자들이 모두 삭제된다.
+
 만일 `unget` 함수의 `character` 인자로 전달된 값이 `EOF` 라면 입력 스트림에는 아무런 변화가 없게된다.
-
-
 
 ###  인자
 
@@ -96,7 +101,11 @@ ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
 
 ```cpp
 
-/*myfile.txt 로 부터 각 문장을 입력 받되  # 로 시작하는 문장은 @ 로 대체해서 입력받는다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/ungetc/에서 가져왔습니다. */#include <stdio.h>int main (){    FILE * pFile;    int c;    char buffer [256];    pFile = fopen ("myfile.txt","rt");    if (pFile==NULL) perror ("Error opening file");    else    {        while (!feof (pFile))        {            c=getc (pFile);            if (c == '#')                ungetc ('@',pFile);            else                ungetc (c,pFile);            fgets (buffer,255,pFile);            fputs (buffer,stdout);        }    }    return 0;}
+/*myfile.txt 로 부터 각 문장을 입력 받되  # 로 시작하는 문장은 @ 로 대체해서 입력받는다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/ungetc/에서 가져왔습니다. */
+#include <stdio.h>
+int main ()
+{
+      FILE * pFile;    int c;    char buffer [256];    pFile = fopen ("myfile.txt","rt");    if (pFile==NULL) perror ("Error opening file");    else    {        while (!feof (pFile))        {            c=getc (pFile);            if (c == '#')                ungetc ('@',pFile);            else                ungetc (c,pFile);            fgets (buffer,255,pFile);            fputs (buffer,stdout);        }    }    return 0;}
 ```
 
 `myfile.txt` 의 내용
@@ -119,7 +128,7 @@ c=getc (pFile);
                 ungetc (c,pFile);
 ```
 
-일단 `getc` 를 통해 `pFile` 에서 문장의 첫번째 문자를 읽어온다. (왜냐하면 밑의 `fgets` 를 통해 개행 문자가 있을 때 까지 읽어오기 때문에 `getc` 는 언제나 문장의 첫번째 문자를 읽어오게 된다) 이 때, 그 문자가 # 이라면 ungetc('@', `pFile)` 을 통해 버퍼에서 현재 '#' 가 들어 있는 위치에 @ 가 들어가게 된다. 따라서
+일단 `getc` 를 통해 `pFile` 에서 문장의 첫번째 문자를 읽어온다. (왜냐하면 밑의 `fgets` 를 통해 개행 문자가 있을 때 까지 읽어오기 때문에 `getc` 는 언제나 문장의 첫번째 문자를 읽어오게 된다) 이 때, 그 문자가 # 이라면 `ungetc('@', pFile)` 을 통해 버퍼에서 현재 '#' 가 들어 있는 위치에 @ 가 들어가게 된다. 따라서
 
 ```cpp
             fgets (buffer,255,pFile);

@@ -19,8 +19,9 @@ int putchar ( int character );
 ```
 
 표준 출력(stdout) 에 문자를 쓴다.
+
 표준 출력에서 현재 위치 표시자가 가리키는 곳에 문자를 쓴 뒤, 위치 표시자를 다음 위치로 전진시킨다.
-`putchar` 함수는 [putc](http://itguru.tistory.com/46)(character, stdout) 과 동일하다.
+`putchar` 함수는 `putc(character, stdout)` 를 한 것과 동일하다.
 
 
 
