@@ -23,7 +23,6 @@ next_page : 222
 앞선 강좌에서는 템플릿 인자로 타입들만 전달하였지만, 실제로는 일반적인 값들도 인자로 전달할 수 있습니다. 아래의 예제를 살펴보겠습니다.
 
 ```cpp-formatted
-
 /* 템플릿 인자로 값을 받기 */
 #include <iostream>
 using namespace std;
@@ -74,7 +73,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 template <typename T, int N>
 ```
 
@@ -88,7 +86,6 @@ template <typename T, int N>
 아무튼, 템플릿 인자로는 단순한 정수타입이나, 레퍼런스, 포인터만 받을 수 있다고 생각하시면 됩니다.
 
 ```cpp-formatted
-
 // 배열 wrapper 클래스
 Array<int, 3> arr_w(arr);
 ```
@@ -100,7 +97,6 @@ Array<int, 3> arr_w(arr);
 위와 같이 템플릿 인스턴스화를 하게 되면, 템플릿에 `T` 자리에는 `int` 가, `N` 자리에는 3 이 들어가겠지요. 그렇다면 컴파일러는
 
 ```cpp-formatted
-
 T data[N];
 ```
 
@@ -110,7 +106,6 @@ T data[N];
 
 
 ```cpp-formatted
-
 int data[3];
 ```
 
@@ -119,7 +114,6 @@ int data[3];
 으로 대체해서 코드를 생성하게 되고, 마찬가지로
 
 ```cpp-formatted
-
 // 배열을 받는 레퍼런스 arr
 Array(T (&arr)[N]) {
   for (int i = 0; i < N; i++) {
@@ -133,7 +127,6 @@ Array(T (&arr)[N]) {
 생성자 역시
 
 ```cpp-formatted
-
 // 배열을 받는 레퍼런스 arr
 Array(int (&arr)[3]) {
   for (int i = 0; i < 3; i++) {
@@ -152,7 +145,6 @@ Array(int (&arr)[3]) {
 그런데, 과연 아래 두 개 클래스는 같은 클래스 일까요? 다른 클래스 일까요?
 
 ```cpp-formatted
-
 Array<int, 5> Array<int, 3>
 ```
 
@@ -161,7 +153,6 @@ Array<int, 5> Array<int, 3>
 간단히 아래 코드로 확인해 볼 수 있습니다.
 
 ```cpp-formatted
-
 cout << (typeid(Array<int, 3>) == typeid(Array<int, 5>)) << endl;
 ```
 
@@ -180,7 +171,6 @@ cout << (typeid(Array<int, 3>) == typeid(Array<int, 5>)) << endl;
 그렇다면 아래와 같이 정의된 Int 클래스를 생각해봅시다.
 
 ```cpp-formatted
-
 template <int N>
 struct Int {
   static const int num = N;
@@ -197,7 +187,6 @@ struct Int {
 따라서 아래 처럼 마치 객체를 생성하듯 타입들을 생성할 수 있습니다.
 
 ```cpp-formatted
-
 typedef Int<1> one;
 typedef Int<2> two;
 ```
@@ -212,7 +201,6 @@ typedef Int<2> two;
 그럼 이제 `one` 과 `two` 를 가지고 무엇을 할 수 있을까요? 재미있게도 마치 `int` 변수를 다루는 것 처럼 연산자를 만들 수 있습니다. 아래 예제를 살펴볼까요.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <typeinfo>
 using namespace std;
@@ -252,7 +240,6 @@ int main() {
 덧셈을 수행하는 템플릿 클래스를 살펴봅시다.
 
 ```cpp-formatted
-
 template <typename T, typename U>
 struct add {
   typedef Int<T::num + U::num> result;
@@ -265,7 +252,6 @@ struct add {
 
 
 ```cpp-formatted
-
 typedef add<one, two>::result three;
 ```
 
@@ -277,7 +263,6 @@ typedef add<one, two>::result three;
 실제로, 그 결과를 보면
 
 ```cpp-formatted
-
 cout << "Addtion result : " << three::num << endl;
 ```
 
@@ -299,18 +284,14 @@ cout << "Addtion result : " << three::num << endl;
 
 
 
-###  템플릿 메타 프로그래밍
- (Template `Meta Programming - TMP)`
+###  템플릿 메타 프로그래밍 (Template Meta Programming - TMP)
 
-
-
-
-여태까지타입은 어떠한 객체에 무엇을 저장하느냐를 지정하는데 사용해 왔지, 타입 자체가 어떠한 값을 가지지는 않았습니다. 하지만, 바로 위 예제를 통해서 알 수 있듯이, 템플릿을 사용하면 객체를 생성하지 않더라도,타입에 어떠한 '값' 을 부여할 수 있고, 또 그타입들을 가지고 '연산' 을 할 수 있다는 점 입니다.
+여태까지 타입은 어떠한 객체에 무엇을 저장하느냐를 지정하는데 사용해 왔지, 타입 자체가 어떠한 값을 가지지는 않았습니다. 하지만, 바로 위 예제를 통해서 알 수 있듯이, 템플릿을 사용하면 객체를 생성하지 않더라도, 타입에 어떠한 '값' 을 부여할 수 있고, 또 그타입들을 가지고 '연산' 을 할 수 있다는 점 입니다.
 
 또한 타입은 반드시 컴파일 타임에 확정되어야 하므로, 컴파일 타임에 모든 연산이 끝나게 됩니다.
-이렇게 타입을 가지고컴파일 타임에 생성되는 '코드'로 프로그래밍을 하는 것을 메타 프로그래밍(meta programming) 이라고 합니다. C++ 의 경우 템플릿을 가지고 이러한 작업을 하기 때문에 템플릿 메타 프로그래밍, 줄여서 `TMP`라고 부릅니다.
-```cpp-formatted
+이렇게 타입을 가지고컴파일 타임에 생성되는 '코드'로 프로그래밍을 하는 것을 **메타 프로그래밍(meta programming)** 이라고 합니다. C++ 의 경우 템플릿을 가지고 이러한 작업을 하기 때문에 **템플릿 메타 프로그래밍**, 줄여서  **TMP** 라고 부릅니다.
 
+```cpp-formatted
 /* 컴파일 타임 팩토리얼 계산 */
 #include <iostream>
 using namespace std;
@@ -341,7 +322,6 @@ int main() { cout << "6! = 1*2*3*4*5*6 = " << Factorial<6>::result << endl; }
 팩토리얼(factorial) 은 단순히 1 부터  n 까지 곱한 것이라 생각하면 됩니다. 예를 들어 3 팩토리얼 (3! 이라 씁니다) 은 `1 * 2 * 3` 이라 생각하면 됩니다. 이 팩토리얼을 어떻게 하면 이전 예제와 같은 템플릿을 사용한 구조로 나타낼 수 있을까요? 사실 아래와 같이 매우 단순합니다.
 
 ```cpp-formatted
-
 template <int N>
 struct Factorial {
   static const int result = N * Factorial<N - 1>::result;
@@ -353,7 +333,6 @@ struct Factorial {
 만약에 저 `Factorial` 을 일반적인 함수로 구성하려고 했다면 아마 아래와 같은 재귀 함수 형태를 사용했겠지요.
 
 ```cpp-formatted
-
 int factorial(int n) {
   if (n == 1) return 1;
 
@@ -366,7 +345,6 @@ int factorial(int n) {
 따라서 우리는 위 처럼 재귀 함수 호출이 끝나게 하기 위해선, `n` 이 1 일 때 따로 처리를 해주어야 합니다. 템플릿 역시 마찬가지로 `n = 1` 일 때 따로 처리할 수 있는데 바로 아래 처럼 템플릿 특수화를 이용해주면 됩니다.
 
 ```cpp-formatted
-
 template <>
 struct Factorial<1> {
   static const int result = 1;
@@ -394,15 +372,17 @@ struct Factorial<1> {
 
 한 가지 재미있는 사실은어떠한 C++ 코드도 템플릿 메타 프로그래밍 코드로 변환할 수 있다는 점입니다(물론 엄청나게 코드가 길어지겠지만요). 게다가 템플릿 메타 프로그래밍으로 작성된 코드는 모두 컴파일 타임에 모든 연산이 끝나기 때문에 프로그램 실행 속도를 향상 시킬 수 있다는 장점이 있습니다 (당연히도 컴파일 시간은 엄청 늘어나게 됩니다).
 
-하지만 그렇다고 해서 템플릿 메타 프로그래밍으로 프로그램 전체를 구현하는 일은 없습니다. 일단 템플릿 메타 프로그래밍은 매우 복잡합니다. 물론 위 `Factorial` 예제는 꽤 간단하였지만 아래 좀 더 복잡한 예제를 다루면서 왜 템플릿 메타 프로그래밍이 힘든 것인지 이야기 하겠습니다. 그 뿐만이 아니라, 템플릿 메타 프로그래밍으로 작성된 코드는 버그를 찾는 것이 매우 힘듭니다. 일단 기본적으로 '컴파일' 타임에 연산하는 것이기 때문에 디버깅이 불가능 하고, C++ 컴파일러에 특성 상 템플릿 오류 시에 엄청난 길이의 오류를 내뿜게 됩니다.
+하지만 그렇다고 해서 템플릿 메타 프로그래밍으로 프로그램 전체를 구현하는 일은 없습니다. 일단 템플릿 메타 프로그래밍은 매우 복잡합니다. 물론 위 `Factorial` 예제는 꽤 간단하였지만 아래 좀 더 복잡한 예제를 다루면서 왜 템플릿 메타 프로그래밍이 힘든 것인지 이야기 하겠습니다.
+
+그 뿐만이 아니라, 템플릿 메타 프로그래밍으로 작성된 코드는 버그를 찾는 것이 매우 힘듭니다. 일단 기본적으로 '컴파일' 타임에 연산하는 것이기 때문에 디버깅이 불가능 하고, C++ 컴파일러에 특성 상 템플릿 오류 시에 엄청난 길이의 오류를 내뿜게 됩니다.
 
 따라서 `TMP` 를 이용하는 경우는 꽤나 제한적이지만, 많은 C++ 라이브러리들이 `TMP` 를 이용해서 구현되었고 (Boost 라이브러리), `TMP` 를 통해서 컴파일 타임에 여러 오류들을 잡아낼 수 도 있고 (Ex. 단위나 통화 일치 여부등등) 속도가 매우 중요한 프로그램의 경우 `TMP` 를 통해서 런타임 속도도 향상 시킬 수 있습니다.
 
 아래에서 좀 더 복잡한 예제를 가지고 그렇다면 `TMP` 를 어떻게 사용할 지에 대해서 자세히 알아보도록 하겠습니다.
 
 컴퓨터 상에서 두 수의 최대공약수를 구하기 위해선 보통 유클리드 호제법을 이용합니다. 이는 매우 간단한데, 이 알고리즘을 일반적인 함수로 나타내자면 아래와 같습니다.
-```cpp-formatted
 
+```cpp-formatted
 int gcd(int a, int b) {
   if (b == 0) {
     return a;
@@ -412,12 +392,9 @@ int gcd(int a, int b) {
 }
 ```
 
-
-
 따라서 이를 그대로 `TMP` 로 바꿔보면 아래와 같습니다. (여러분도 직접 해보세요!)
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -449,8 +426,6 @@ int main() { cout << "gcd (36, 24) :: " << GCD<36, 24>::value << endl; }
 이 최대 공약수 계산 클래스를 만든 이유는, 바로 `Ratio` 클래스를 만들기 위함입니다. `Ratio` 클래스는 유리수(p/q 꼴로 쓸 수 있는 수) 를 오차 없이 표현해 주는 클래스 입니다. 물론 `TMP` 를 사용하지 않고 간단하게 클래스를 사용해서도 만들 수 있습니다. 하지만 일단 연습 삼아서 한 번 `TMP` 를 사용해서 만들어 보겠습니다.
 
 ```cpp-formatted
-
-
 template <int N, int D = 1>
 struct Ratio {
   typedef Ratio<N, D> type;
@@ -464,7 +439,6 @@ struct Ratio {
 먼저 `Ratio` 클래스는 위 처럼 정의할 수 있겠습니다. 위 처럼 분자와 분모를 템플릿 인자로 받고, 타입을 나타내게 됩니다. 참고로 편의상
 
 ```cpp-formatted
-
 typedef Ratio<N, D> type;
 ```
 
@@ -476,7 +450,6 @@ typedef Ratio<N, D> type;
 그렇다면 이 `Ratio` 로 덧셈을 수행하는 템플릿을 만들어보겠습니다. 상당히 직관적입니다.
 
 ```cpp-formatted
-
 template <class R1, class R2>
 struct _Ratio_add {
   typedef Ratio<R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
@@ -488,7 +461,6 @@ struct _Ratio_add {
 두 분수의 더한 결과를 `Ratio` 에 분자 분모로 전달하면 알아서 기약분수로 만들어줍니다.
 
 ```cpp-formatted
-
 typedef Ratio<R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
 ```
 
@@ -497,7 +469,6 @@ typedef Ratio<R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
 그 후에, 그 덧셈 결과를 `type` 로 나타내게 됩니다. 따라서 덧셈을 수행하기 위해서는
 
 ```cpp-formatted
-
 typedef _Ratio_add<rat, rat2>::type result;
 ```
 
@@ -507,7 +478,6 @@ typedef _Ratio_add<rat, rat2>::type result;
 
 
 ```cpp-formatted
-
 template <class R1, class R2>
 struct Ratio_add : _Ratio_add<R1, R2>::type {};
 ```
@@ -517,7 +487,6 @@ struct Ratio_add : _Ratio_add<R1, R2>::type {};
 바로 `_Ratio_add<R1, R2>::type` 를 상속 받는 `Ratio_add` 클래스를 만들어 버리는 것입니다! 상당히 재미있는 아이디어입니다. 따라서 `Ratio_add` 는 마치 `Ratio` 타입 처럼 사용할 수 있게 됩니다. 전체 코드를 살펴 보자면 아래와 같습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <typeinfo>
 using namespace std;
@@ -576,7 +545,6 @@ int main() {
 참고로 `C++11` 부터 `typedef` 대신에 좀 더 직관적인 `using` 이라는 키워드를 사용할 수 있습니다.
 
 ```cpp-formatted
-
 typedef Ratio_add<rat, rat2> rat3;
 using rat3 = Ratio_add<rat, rat2>;
 ```
@@ -586,7 +554,6 @@ using rat3 = Ratio_add<rat, rat2>;
 위 두 문장 모두 동일한 의미를 가집니다. 다만 `using` 을 사용하였을 경우 `typedef` 보다 좀 더 이해하기가 쉽습니다. 특히, 함수 포인터의 경우 만일 `void` 를 리턴하고 `int, int` 를 인자로 받는 함수의 포인터의 타입을 `func` 라고 정의하기 위해서는 `typedef` 로
 
 ```cpp-formatted
-
 typedef void (*func)(int, int);
 ```
 
@@ -595,7 +562,6 @@ typedef void (*func)(int, int);
 위와 같이 사용해야 했지만 (놀랍게도 `func` 이 새로 정의된 타입 이름이 됩니다) `using` 키워드를 사용하면
 
 ```cpp-formatted
-
 using func = void (*)(int, int);
 ```
 
@@ -604,7 +570,6 @@ using func = void (*)(int, int);
 아래와 같이 매우 직관적으로 나타낼 수 있습니다. 따라서 위의 코드를 수정하자면;
 
 ```cpp-formatted
-
 int main() {
   using rat = Ratio<2, 3>;
   using rat2 = Ratio<3, 2>;
@@ -625,7 +590,6 @@ int main() {
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -723,8 +687,8 @@ int main() {
 #### 문제 1
 
 `N` 번째 피보나치 수를 나타내는 `TMP` 를 만들어보세요. 참고로 피보나치 수는, `N` 번째 항이 `N - 1` 번째 항과 `N - 2` 번째 항의 합으로 정의되는 수 입니다. 참고로 1, `1, 2, 3, 5, ...` 로 진행됩니다.(난이도 : 하)
-```cpp-formatted
 
+```cpp-formatted
 int main() {
   cout << "5 번째 피보나치 수 :: " << fib<5>::result << endl;  // 5
 }
@@ -736,7 +700,6 @@ int main() {
 
 
 ```cpp-formatted
-
 int main() {
   cout << boolalpha;
   cout << "Is prime ? :: " << is_prime<2>::result << endl;   // true

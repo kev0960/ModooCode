@@ -20,10 +20,7 @@ class InlineCoder:
     with open("temp", "w") as temp:
       temp.write(data)
 
-    '''
-    with open(filename, "w") as fw:
-      fw.write(self.handle(data))
-    '''
+    data = self.handle(data)
 
     with open(filename, "w") as fw:
       fw.write(self.format_codes(data))
@@ -241,6 +238,4 @@ class InlineCoder:
 if __name__ == "__main__":
   if len(sys.argv) > 1:
     file_name = sys.argv[1]
-    dirs = os.listdir('../md')
-    for file_name in dirs:
-      coder = InlineCoder('../md/' + file_name)
+    coder = InlineCoder('../md/' + file_name)

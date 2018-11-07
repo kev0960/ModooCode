@@ -33,17 +33,15 @@ next_page : 223
 
 지난번 생각해보기 문제는 아래와 같습니다.
 ```info
-
 1. TMP 를 사용해서 어떤 수가 소수인지 아닌지를 판별하는 프로그램을 만들어보세요. (난이도 : 상)
-
 
 int main()
 {
-cout << boolalpha;
-cout << "Is prime ? :: " << is_prime<2>::result << endl; // true
-cout << "Is prime ? :: " << is_prime<10>::result << endl; // false
-cout << "Is prime ? :: " << is_prime<11>::result << endl; // true
-cout << "Is prime ? :: " << is_prime<61>::result << endl; // true
+  cout << boolalpha;
+  cout << "Is prime ? :: " << is_prime<2>::result << endl; // true
+  cout << "Is prime ? :: " << is_prime<10>::result << endl; // false
+  cout << "Is prime ? :: " << is_prime<11>::result << endl; // true
+  cout << "Is prime ? :: " << is_prime<61>::result << endl; // true
 }
 ```
 
@@ -52,7 +50,6 @@ cout << "Is prime ? :: " << is_prime<61>::result << endl; // true
 사실 처음에 딱 보았을 때 도대체 어떻게 `TMP` 로 구현할 것인지 감이 안잡혔을 것입니다. 하지만 만약에 소수 인지 아닌지 판별하라는 '함수' 를 작성하게 하였다면 잘 작성하였겠지요. 아마 여러분은 아래와 같은 코드를 쓰셨을 것입니다.
 
 ```cpp-formatted
-
 bool is_prime(int N) {
   if (N == 2) return true;
   if (N == 3) return true;
@@ -70,7 +67,6 @@ bool is_prime(int N) {
 왜 2 와 3 일 때 따로 처리하냐면 `N / 2` 까지 나누는 걸로 비교할 때 `2, 3` 일 경우 제대로 처리가 안되기 때문입니다. 이제 여러분이 해야할 일은 간단히 저 코드를 `TMP` 형식으로 옮기는 것입니다.
 
 ```cpp-formatted
-
 template <>
 struct is_prime<2> {
   static const bool result = true;
@@ -102,7 +98,6 @@ struct check_div<N, N / 2> {
 무언가 잘 짜여진 코드 같습니다. 하지만 실제로 컴파일 해보면 다음과 같은 오류가 발생합니다.
 
 ```warning
-
 check_div<N,N/>: non-type parameter of a partial specialization must be a simple identifier
 ```
 
@@ -111,7 +106,6 @@ check_div<N,N/>: non-type parameter of a partial specialization must be a simple
 바로
 
 ```cpp-formatted
-
 template <int N>
 struct check_div<N, N / 2> {
   static const bool result = (N % (N / 2) == 0);
@@ -123,7 +117,6 @@ struct check_div<N, N / 2> {
 이 부분에서 발생하는 문제 이지요. 위 오류가 발생한 문제는 템플릿 부분 특수화 시에 반드시 다른 연산자가 붙지 않고 단순한 식별자만 입력해주어야만 합니다. 따라서 C++ 컴파일러에 한계 상
 
 ```warning
-
 struct check_div<N, N / 2>
 ```
 
@@ -135,7 +128,6 @@ struct check_div<N, N / 2>
 따라서 아래와 같이 `int` 값을 표현하는 타입을 만들 수 있습니다.
 
 ```cpp-formatted
-
 template <int N>
 struct INT {
   static const int num = N;
@@ -161,7 +153,6 @@ using three = INT<3>;
 예를 들어 `one` 타입은 1을, `two` 타입은 2 를 나타내게 됩니다. 그렇다면 이를 바탕으로 `TMP` 코드를 수정해보도록 하겠습니다.
 
 ```cpp-formatted
-
 using one = INT<1>;
 using two = INT<2>;
 using three = INT<3>;
@@ -200,7 +191,6 @@ struct check_div<N, divide<N, two>::result> {
 
 
 ```warning
-
 'check_div': 'divide<N,two>::result' is not a valid template type argument for parameter 'd'
 ```
 
@@ -209,7 +199,6 @@ struct check_div<N, divide<N, two>::result> {
 왜 저런 오류가 발생하였을까요? 일단 오류가 발생하는 다음 두 부분의 코드를 살펴보겠습니다.
 
 ```cpp-formatted
-
 (N::num % d::num == 0) || check_div<N, add<d, one>::result>::result;
 ```
 
@@ -218,7 +207,6 @@ struct check_div<N, divide<N, two>::result> {
 와
 
 ```cpp-formatted
-
 struct check_div<N, divide<N, two>::result> {
 ```
 
@@ -230,18 +218,17 @@ struct check_div<N, divide<N, two>::result> {
 그런데, 컴파일러에 구조상 어떠한 식별자(변수 이름이든 함수 이름이든 코드 상의 이름들 `-` 위 코드의 경우 `add, check_div,, result, one` 등등 ...) 를 보았을 때 이 식별자가 '값' 인지 '타입' 인지 결정을 해야 합니다. 왜냐하면 예를들어서
 
 ```info
-
 template <typename T>
 int func() {
-T::t* p;
+  T::t* p;
 }
 
 class A {
-const static int t;
+  const static int t;
 };
 
 class B {
-using t = int;
+  using t = int;
 };
 ```
 
@@ -250,7 +237,6 @@ using t = int;
 위와 같은 템플릿 함수에서 저 문장을 해석할 때 만약에 클래스 `A` 에 대해서, `func` 함수를 특수화 한다면, `t` 가 어떠한 `int` 값이 되어서
 
 ```info
-
 T::t * p;
 ```
 
@@ -262,7 +248,6 @@ T::t * p;
 반면에 `func` 함수가 클래스 `B` 에 대해서 특수화 된다면,
 
 ```info
-
 T::t* p;
 ```
 
@@ -275,10 +260,9 @@ T::t* p;
 
 
 ```info
-
 template <>
 struct divide <int a, int b> {
-const static int result = a + b;
+  const static int result = a + b;
 };
 ```
 
@@ -290,7 +274,6 @@ const static int result = a + b;
 따라서 컴파일러가 저 문장을 성공적으로 해석하기 위해서는 우리가 반드시 "야 저 `result` 는 무조건 타입이야" 라고 알려주어야만 합니다. 이를 위해서는 간단히 아래 코드 처럼
 
 ```cpp-formatted
-
 struct check_div<N, typename divide<N, two>::result> {
 ```
 
@@ -299,7 +282,6 @@ struct check_div<N, typename divide<N, two>::result> {
 'typename' 키워드를 붙여주면 됩니다.마찬가지로
 
 ```cpp-formatted
-
 (N::num % d::num == 0) || check_div<N, add<d, one>::result>::result;
 ```
 
@@ -308,7 +290,6 @@ struct check_div<N, typename divide<N, two>::result> {
 에서 `typename` 키워드를 붙인다면
 
 ```cpp-formatted
-
 (N::num % d::num == 0) || check_div<N, typename add<d, one>::result>::result;
 ```
 
@@ -320,7 +301,6 @@ struct check_div<N, typename divide<N, two>::result> {
 따라서 이를 고치면 다음과 같습니다.
 
 ```cpp-formatted
-
 template <typename N, typename d>
 struct check_div {
   // result 중에서 한 개라도 true 면 전체가 true
@@ -568,7 +548,6 @@ struct subtract_dim_ {
 자 이제, 실제 데이터를 담는 클래스를 만들어보도록 하겠습니다.
 
 ```cpp-formatted
-
 template <typename T, typename D>
 struct quantity {
   T q;
@@ -601,8 +580,7 @@ quantity operator-(quantity<T, D> quant) { return quantity<T, D>(q - quant.q); }
 
 그렇다면 실제로 테스트를 해볼까요.
 
-```cpp-formatted
-
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -695,7 +673,8 @@ struct quantity {
   quantity operator-(quantity<T, D> quant) {
     return quantity<T, D>(q - quant.q);
   }
-} int main() {
+};
+int main() {
   using one = Ratio<1, 1>;
   using zero = Ratio<0, 1>;
 
@@ -751,7 +730,6 @@ kg + kg;
 예를 들어서 가속도를 나타내기 위해서는
 
 ```cpp-formatted
-
 meter / (second * second)
 ```
 
@@ -760,7 +738,6 @@ meter / (second * second)
 이렇게 해주면 됩니다. 다만 새로운 차원의 데이터 (`Dim<zero, one, minus_two>`) 가 탄생할 뿐이지요. 따라서, `operator*` 와 `operator/` 의 경우 두 개의 다른 차원의 값을 받아도 처리할 수 있어야 합니다. 따라서 `opreator*` 와 `/` 를 정의해보자면 아래와 같습니다.
 
 ```cpp-formatted
-
 template <typename D2>
 quantity<T, typename add_dim_<D, D2>::type> operator*(quantity<T, D2> quant) {
   return quantity<T, typename add_dim_<D, D2>::type>(q * quant.q);
@@ -778,7 +755,6 @@ quantity<T, typename subtract_dim_<D, D2>::type> operator/(
 새로 만들어지는 타입의 차원은 당연히도 `add_dim_<D, D2>::type` 이 되겠고 (`opreator*` 의 경우), 그 값은 그냥 실제 값을 곱해주면 됩니다. 이와 더불어서
 
 ```cpp-formatted
-
 3 * kg
 ```
 
@@ -800,7 +776,6 @@ quantity<T, D> operator/(T scalar) { return quantity<T, D>(q / scalar); }
 
 
 ```cpp-formatted
-
 // F 의 타입은?
 F = kg * meter / (second * second);
 ```
@@ -810,7 +785,6 @@ F = kg * meter / (second * second);
 일단 `F` 의 차원은 계산해보면 (1, 1, -2) 이렇게 나올 것 입니다. 따라서, `F` 의 `dim` 타입은 `<Ratio<1, 1>, Ratio<1, 1>, Ratio<-2, 1>>` 가 되겠지요. 다시 말해, `F` 를 다음과 같이 나타낼 수 있습니다.
 
 ```cpp-formatted
-
 quantity<double, Dim<one, one, Ratio<-2, 1>>> F =
   kg * meter / (second * second);
 ```
@@ -827,9 +801,9 @@ quantity<double, Dim<one, one, Ratio<-2, 1>>> F =
 ###  타입을 알아서 추측해라! `- auto` 키워드
 
 
+C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 경우 굳이 타입을 쓰지 않아도 알아서 추측할 수 있는 경우들이 많이 있습니다.
 
-
-C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 경우 굳이 타입을 쓰지 않아도 알아서 추측할 수 있는 경우들이 많이 있습니다. 예를 들어서 C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 경우 굳이 타입을 쓰지 않아도 알아서 추측할 수 있는 경우들이 많이 있습니다. 예를 들어서,
+예를 들어서,
 ```cpp-formatted
 
 (??) a = 3;
@@ -846,14 +820,12 @@ some_class a;
 ```
 
 
-
-의 경우 저 (??) 에는 아마 `some_class` 가 들어가겠지요/ 즉 객체가 복사 생성 될 때, 그 복사 생성하는 대상의 타입을 확실히 알 수 있다면 굳이 그 객체의 타입을 명시하지 않아도 컴파일러가 알아낼 수 있습니다.
+의 경우 저 (??) 에는 아마 `some_class` 가 들어가겠지요? 즉 객체가 복사 생성 될 때, 그 복사 생성하는 대상의 타입을 확실히 알 수 있다면 굳이 그 객체의 타입을 명시하지 않아도 컴파일러가 알아낼 수 있습니다.
 
 
 물론 때때로 컴파일러가 타입을 제대로 유추할 수 없는 경우도 있습니다. 예를 들어서, 우리의 위 예제 코드에서
 
 ```cpp-formatted
-
 quantity<double, Dim<one, zero, zero>> kg(1);
 ```
 
@@ -862,7 +834,6 @@ quantity<double, Dim<one, zero, zero>> kg(1);
 의 경우 만약에 저 타입 부분을 가리고
 
 ```cpp-formatted
-
 (??) kg(1);
 ```
 
@@ -871,7 +842,6 @@ quantity<double, Dim<one, zero, zero>> kg(1);
 와 같이 살펴본다면 어떨까요? 컴파일러에 입장에서는 단순히 생각해봤을 때 그냥 1 로 초기화 하는 변수 이므로 (??) 에는 `int` 가 들어가겠지요. 따라서 이 경우에는 우리가 원하는 타입으로 생성할 수 없습니다. 반면에,
 
 ```cpp-formatted
-
 (??) F = kg * meter / (second * second);
 ```
 
@@ -926,7 +896,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 cout << "c 의 타입은? :: " << typeid(c).name() << endl;
 cout << "num 의 타입은? :: " << typeid(num).name() << endl;
 cout << "some2 의 타입은? :: " << typeid(some2).name() << endl;
@@ -940,7 +909,6 @@ cout << "some2 의 타입은? :: " << typeid(some2).name() << endl;
 마지막으로 `some3` 를 살펴봅시다.
 
 ```cpp-formatted
-
 auto some3(10);  // SomeClass 객체를 만들까요?
 ```
 
@@ -952,7 +920,6 @@ auto some3(10);  // SomeClass 객체를 만들까요?
 하지만 아래의 `F` 의 경우 정확히 타입을 추론할 수 있기 때문에 그냥
 
 ```cpp-formatted
-
 // F 의 타입은 굳이 알필요 없다!
 auto F = kg * meter / (second * second);
 ```
@@ -964,7 +931,6 @@ auto F = kg * meter / (second * second);
 
 참고로 편의를 위해 `quantity` 를 `ostream` 으로 출력해주는 함수인
 ```cpp-formatted
-
 template <typename T, typename D>
 ostream& operator<<(ostream& out, const quantity<T, D>& q) {
   out << q.q << "kg^" << D::M::num / D::M::den << "m^" << D::L::num / D::L::den
@@ -979,7 +945,6 @@ ostream& operator<<(ostream& out, const quantity<T, D>& q) {
 를 제작하였습니다. 따라서 전체 코드를 살펴보면 다음과 같습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <typeinfo>
 using namespace std;
@@ -1131,13 +1096,13 @@ int main() {
 
 
 
-이것으로 템플릿 메타프로그래밍에 대한 강좌를 마치도록 하겠습니다. 사실 실제 현업에서 템플릿 메타 프로그래밍을 활용하는 경우는 그다지 많지 않습니다. 왜냐하면 일단 `TMP` 의 특성상복잡하고, 머리를 매우 많이 써야되고, 무엇보다도 버그가 발생하였을 때 찾는 것이 매우 힘듧니다`. .
+이것으로 템플릿 메타프로그래밍에 대한 강좌를 마치도록 하겠습니다. 사실 실제 현업에서 템플릿 메타 프로그래밍을 활용하는 경우는 그다지 많지 않습니다. 왜냐하면 일단 `TMP` 의 특성상복잡하고, 머리를 매우 많이 써야되고, 무엇보다도 버그가 발생하였을 때 찾는 것이 매우 힘듧니다.
 
 
 하지만 우리의 `Unit` 클래스 처럼 `TMP` 를 적절하게 활용하면 런타임에서 찾아야 하는 오류를 컴파일 타임에서 미리 다 잡아낼 수 도 있고, 런타임 시에 수행해야 하는 연산들도 일부 컴파일 타임으로 옮길 수 있습니다.
 
 
-만약에 `TMP` 를 직접 작성할 일이 있다면 이미 `TMP` 를 그나마 편하게 수행하기 위해 만들어진 boost::MPL 라이브러리가 있습니다. 이 라이브러리를 활용하신다면 비교적 쉽게 `TMP` 코드를 짤 수 있을 것입니다!
+만약에 `TMP` 를 직접 작성할 일이 있다면 이미 `TMP` 를 그나마 편하게 수행하기 위해 만들어진 `boost::MPL` 라이브러리가 있습니다. 이 라이브러리를 활용하신다면 비교적 쉽게 `TMP` 코드를 짤 수 있을 것입니다!
 
 
 다음 강좌에서는 C++ 의 또다른 막강한 무기인 표준 라이브러리 (STL) 에 대해 알아보도록 하겠습니다!

@@ -37,6 +37,10 @@ std::unique_ptr<char[]> cstring_from_string(const string& s) {
   return c_str;
 }
 
+string space_from_space_and_tab(std::pair<int, int> space_and_tab) {
+  return string(space_and_tab.first + space_and_tab.second * 2, ' ');
+}
+
 }  // namespace
 
 MDParser::MDParser(std::string content)
@@ -121,7 +125,8 @@ void MDParser::AnalyzeLine(const std::string& line,
     }
     return;
   } else if (in_code_) {
-    if (!parser_env_.AppendToLastContent(StrCat("\n", line))) {
+    if (!parser_env_.AppendToLastContent(
+            StrCat("\n", space_from_space_and_tab(space_and_tab), line))) {
       LOG << "(ERROR) Code parsing error!";
     }
   } else if (first_token_info == NEWLINE) {

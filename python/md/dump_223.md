@@ -51,14 +51,14 @@ next_page : 224
 
 `C++ STL` 에서 컨테이너는 크게 두 가지 종류가 있습니다. 먼저 배열 처럼 객체들을 순차적으로 보관하는 **시퀀스 컨테이너 (sequence container)** 와 키를 바탕으로 대응되는 값을 찾아주는 **연관 컨테이너 (associative container)** 가 있습니다.
 
-먼저 시퀀스 컨테이너의 경우 `vector, list, deque` 이렇게 3 개가 정의되어 있습니다. 먼저 벡터(vector) 의 경우, 쉽게 생각하면 가변길이 배열이라 보시면 됩니다 (템플릿 강의에서 `Vector` 를 제작하신 것을 기억 하시나요?) 벡터에는 원소들이 메모리 상에서 실제로 순차적으로 저장되어 있고, 따라서 임의의 위치에 있는 원소를 접근하는 것을 매우 빠르게 수행할 수 있습니다.
+먼저 시퀀스 컨테이너의 경우 `vector`, `list`, `deque` 이렇게 3 개가 정의되어 있습니다. 먼저 벡터(`vector`) 의 경우, 쉽게 생각하면 가변길이 배열이라 보시면 됩니다 (템플릿 강의에서 `Vector` 를 제작하신 것을 기억 하시나요?) 벡터에는 원소들이 메모리 상에서 실제로 순차적으로 저장되어 있고, 따라서 임의의 위치에 있는 원소를 접근하는 것을 매우 빠르게 수행할 수 있습니다.
 
 ### 정확히 얼마나 빠르다고?
 
 
 사실 '매우 빠르다' 라는 말은 주관적일 수 밖에 없습니다. 따라서 어떠한 작업의 수행 속도를 나타내기 위해선 수학적으로 나타내야 합니다.
 
-컴퓨터 공학에선 어떠한 작업의 처리 속도를 **복잡도(complexity)** 라고 부르고, 그 복잡도를 Big `O` 표기법이라는 것으로 나타냅니다. 이 표기법은, `N` 개의 데이터가 주어져 있을 때 그 작업을 수행하기 위해 몇 번의 작업을 필요로 하는지 `N` 에 대한 식으로 표현하는 방식입니다. (즉 복잡도가 클 수록 작업이 수행되는데 걸리는 시간이 늘어나겠지요)
+컴퓨터 공학에선 어떠한 작업의 처리 속도를 **복잡도(complexity)** 라고 부르고, 그 복잡도를 Big $$O$$ 표기법이라는 것으로 나타냅니다. 이 표기법은, $$N$$ 개의 데이터가 주어져 있을 때 그 작업을 수행하기 위해 몇 번의 작업을 필요로 하는지 $$N$$ 에 대한 식으로 표현하는 방식입니다. (즉 복잡도가 클 수록 작업이 수행되는데 걸리는 시간이 늘어나겠지요)
 
 예를 들어 가장 기초적인 버블 정렬을 생각해봅시다. 버블 정렬의 코드는 간단히 보자면 아래와 같습니다.
 
@@ -89,7 +89,7 @@ $$O(N^2)$$
 
 $$O(N\log N) $$
 
-물론 퀵소트 알고리즘을 사용했을 때 항상 버블 정렬 방식 보다 빠르게 정렬할 수 있다는 의미는 아닙니다. 왜냐하면 저 항 앞에 어떠한 계수가 붙어있는지 알 수 없기 때문이지요. 만약에 버블 정렬이 O(N²) 이고 퀵소트가 $$O(100000 N \log N)$$ 이였다면 $$N$$ 이 1000 일 때 버블 정렬 이 더 빠르게 수행됩니다.  (물론 이렇게 극단적이지 않습니다. 퀵소트가 거의 대부분 더 빠르게 됩니다!)
+물론 퀵소트 알고리즘을 사용했을 때 항상 버블 정렬 방식 보다 빠르게 정렬할 수 있다는 의미는 아닙니다. 왜냐하면 저 항 앞에 어떠한 계수가 붙어있는지 알 수 없기 때문이지요. 만약에 버블 정렬이 $$O(N^2)$$ 이고 퀵소트가 $$O(100000 N \log N)$$ 이였다면 $$N$$ 이 1000 일 때 버블 정렬이 더 빠르게 수행됩니다.  (물론 이렇게 극단적이지 않습니다. 퀵소트가 거의 대부분 더 빠르게 됩니다!)
 
 
 하지만, $$N$$ 이 정말 커진다면 언젠가는 퀵소트가 버블 정렬보다 더 빨리 수행되는 때가 발생합니다.
@@ -223,14 +223,11 @@ int main() {
 와 같이 잘 수행됨을 알 수 있습니다.
 
 ```cpp-formatted
-
 // 전체 벡터를 출력하기
 for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
   cout << *itr << endl;
 }
 ```
-
-
 
 `vector` 의 반복자의 타입은 위 처럼 `vector<>::iterator` 멤버 타입으로 정의되어 있고, `vec.begin()` 이나 `vec.end()` 함수가 이를 리턴합니다. `end()` 가 `vector` 의 마지막 원소 바로 뒤를 가리키기 때문에 `for` 문에서 `vector` 전체 원소를 보고 싶다면 `vec.end()` 가 아닐 때 까지 반복하면 됩니다.
 
@@ -238,11 +235,8 @@ for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
 앞서 반복자를 마치 포인터 처럼 사용한다고 하였는데, 실제로 현재 반복자가 가리키는 원소의 값을 보고 싶다면;
 
 ```cpp-formatted
-
 cout << *itr << endl;
 ```
-
-
 
 포인터로 `*` 를 해서 가리키는 주소값의 값을 보았던 것처럼, `*` 연산자를 이용해서 `itr` 이 가리키는 원소를 볼 수 있습니다. 물론 `itr` 은 실제 포인터가 아니고 `*` 연산자를 오버로딩해서 마치 포인터 처럼 동작하게 만든 것입니다. `*` 연산자는 `itr` 이 가리키는 원소의 레퍼런스를 리턴합니다.
 
@@ -251,8 +245,6 @@ cout << *itr << endl;
 vector<int>::iterator itr = vec.begin() + 2;
 cout << "3 번째 원소 :: " << *itr << endl;
 ```
-
-
 
 또한 반복자 역시 `+` 연산자를 통해서 그 만큼 떨어져 있는 원소를 가리키게 할 수 도 있습니다. (그냥 배열을 가리키는 포인터와 정확히 똑같이 동작한다고 생각하시면 됩니다!)
 
@@ -312,14 +304,12 @@ int main() {
 참고로 템플릿 버전의 경우,
 
 ```cpp-formatted
-
 for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
 ```
 
 와 같이 앞에 `typename` 을 추가해줘야만 합니다. 그 이유는, `iterator` 가 `vector<T>` 의 의존 타입이기 때문입니다. [의존 타입이 무엇인지 기억 안나시는 분은 이 강좌를 참조하시기 바랍니다](http://itguru.tistory.com/222?category=361027)`. .
 
 ```cpp-formatted
-
 // vec[2] 앞에 15 추가
 vec.insert(vec.begin() + 2, 15);
 ```
@@ -332,15 +322,11 @@ vec.erase(vec.begin() + 3);
 print_vector(vec);
 ```
 
-
-
 또 아까전에 언급하였던 `erase` 도 인자로 반복자를 받고, 그 반복자가 가리키는 원소를 제거합니다. 위 경우 4번째 원소인 30이 지워지겠지요. 물론 `insert` 과 `erase` 함수 모두 `O(n)` 으로 느린편입니다.
-
 
 참고로 `vector` 에서 반복자로 `erase` 나 `insert` 함수를 사용할 때 주의해야할 점이 있습니다.
 
-```cpp-formatted
-
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -349,7 +335,7 @@ template <typename T>
 void print_vector(vector<T>& vec) {
   // 전체 벡터를 출력하기
   cout << "[ ";
-  for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
     cout << *itr << " ";
   }
   cout << "]";
@@ -395,7 +381,6 @@ int main() {
 
 
 ```warning
-
 for (; itr != end_itr; itr ++) {
 if (*itr == 20) {
 vec.erase(itr);
@@ -412,21 +397,17 @@ vec.erase(itr);
 그렇다면
 
 ```warning
-
 vector<int>::iterator itr = vec.begin();
-
-
 for (; itr != vec.end(); itr ++) {
-if (*itr == 20) {
-vec.erase(itr);
-}
+  if (*itr == 20) {
+    vec.erase(itr);
+  }
 }
 ```
 
 와 같이 코드를 고치면 오류가 없어질까요? 실행해보시면 알겠지만 여전히 위와 같은 오류가 발생합니다. 왜냐하면 `itr` 이 유효한 반복자가 아니기 때문에 `vec.end()` 로 올바른 `end` 반복자 값을 매번 가지고 와도 `for` 문이 끝나지 않게 되는 것입니다. 결과적으로 코드를 제대로 고치려면 다음과 같이 해야 합니다.
 
 ```cpp-formatted
-
 vector<int>::iterator itr = vec.begin();
 
 for (; itr != vec.end(); itr++) {
@@ -452,7 +433,6 @@ for (; itr != vec.end(); itr++) {
 사실 생각해보면 위 바뀐 코드는 꽤나 비효율적임을 알 수 있습니다. 왜냐하면 20 인 원소를 지우고, 다시 처음으로 돌아가서 원소들을 찾고 있기 때문이지요. 그냥 20 인 원소 바로 다음 위치 부터 찾아나가면 될 텐데 말입니다.
 
 ```cpp-formatted
-
 for (vector<int>::size_type i = 0; i != vec.size(); i++) {
   if (vec[i] == 20) {
     vec.erase(vec.begin() + i);
@@ -466,7 +446,6 @@ for (vector<int>::size_type i = 0; i != vec.size(); i++) {
 그렇다면 아예 위 처럼 굳이 반복자를 쓰지 않고 `erase` 함수에만 반복자를 바로 만들어서 전달하면 됩니다.
 
 ```cpp-formatted
-
 vec.erase(vec.begin() + i);
 ```
 
@@ -480,8 +459,7 @@ vec.erase(vec.begin() + i);
 
 `vector` 에서 지원하는 반복자로 `const_iterator` 가 있습니다. 이는 마치 `const` 포인터를 생각하시면 됩니다. 즉, `const_iterator` 의 경우 가리키고 있는 원소의 값을 바꿀 수 없습니다. 예를 들어서
 
-```cpp-formatted
-
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -489,7 +467,7 @@ using namespace std;
 template <typename T>
 void print_vector(vector<T>& vec) {
   // 전체 벡터를 출력하기
-  for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
     cout << *itr << endl;
   }
 }
@@ -519,12 +497,9 @@ int main() {
 }
 ```
 
-
-
 컴파일 하였다면
 
 ```warning
-
 'citr': you cannot assign to a variable that is const
 ```
 
@@ -543,7 +518,7 @@ vector<int>::const_iterator citr = vec.cbegin() + 2;
 `vector` 에서 지원하는 반복자 중 마지막 종류로 역반복자 (reverse iterator) 가 있습니다. 이는 반복자와 똑같지만 벡터 뒤에서 부터 앞으로 거꾸로 간다는 특징이 있습니다. 아래 예제를 살펴볼까요.
 
 
-```cpp-formatted
+```cpp
 
 #include <iostream>
 #include <vector>
@@ -552,7 +527,7 @@ using namespace std;
 template <typename T>
 void print_vector(vector<T>& vec) {
   // 전체 벡터를 출력하기
-  for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
     cout << *itr << endl;
   }
 }
@@ -604,7 +579,7 @@ int main() {
 
 
 
-리스트(list) 의 경우 양방향 연결 구조를 가진 자료형이라 볼 수 있습니다.
+리스트(`list`) 의 경우 양방향 연결 구조를 가진 자료형이라 볼 수 있습니다.
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F246A0A4B595B396939AF3D)
 
 따라서 `vector` 와는 달리 임의의 위치에 있는 원소에 접근을 바로 할 수 없습니다. `list` 컨테이너 자체에서는 시작 원소와 마지막 원소의 위치만을 기억하기 때문에, 임의의 위치에 있는 원소에 접근하기 위해서는 하나씩 링크를 따라가야 합니다.
@@ -769,7 +744,7 @@ for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
 
 
 
-마지막으로 살펴볼 컨테이너는 덱(deque `- deck` 이라고 발음합니다) 이라고 불리는 자료형 입니다. 덱은 벡터와 비슷하게 $$O(1)$$ 으로 임의의 위치의 원소에 접근할 수 있으며 맨 뒤에 원소를 추가/제거 하는 작업도 $$O(1)$$ 으로 수행할 수 있습니다. 뿐만아니라 벡터와는 다르게 맨 앞에 원소를 추가/제거 하는 작업 까지도 $$O(1)$$ 으로 수행 가능합니다.
+마지막으로 살펴볼 컨테이너는 덱(`deque`) 이라고 불리는 자료형 입니다. 덱은 벡터와 비슷하게 $$O(1)$$ 으로 임의의 위치의 원소에 접근할 수 있으며 맨 뒤에 원소를 추가/제거 하는 작업도 $$O(1)$$ 으로 수행할 수 있습니다. 뿐만아니라 벡터와는 다르게 맨 앞에 원소를 추가/제거 하는 작업 까지도 $$O(1)$$ 으로 수행 가능합니다.
 
 임의의 위치에 있는 원소를 제거/추가 하는 작업은 벡터와 마찬가지로 $$O(n)$$ 으로 수행 가능합니다. 뿐만 아니라 그 속도도 벡터 보다 더 빠릅니다 (이 부분은 아래 덱이 어떻게 구현되어 있는지 설명하면서 살펴보겠습니다.)
 
