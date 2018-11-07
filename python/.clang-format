@@ -1,0 +1,5 @@
+BasedOnStyle: Google
+IndentWidth: 2
+UseTab: Never
+TabWidth: 2
+ContinuationIndentWidth: 2

@@ -1,6 +1,7 @@
 import os
 import re
 import sys
+from subprocess import PIPE, Popen
 
 
 # Surround possible inline codes with ``.
@@ -19,8 +20,13 @@ class InlineCoder:
     with open("temp", "w") as temp:
       temp.write(data)
 
+    '''
     with open(filename, "w") as fw:
       fw.write(self.handle(data))
+    '''
+
+    with open(filename, "w") as fw:
+      fw.write(self.format_codes(data))
 
   def handle(self, data):
     result = []
@@ -191,16 +197,50 @@ class InlineCoder:
 
     return chunk
 
+  def format_codes(self, data):
+    lines = data.split('\n')
+    i = 0
+    code_chunk = ""
+
+    file_content = ""
+    while i < len(lines):
+      line = lines[i]
+      
+      if len(line) >= 3 and line[:3] == '```':
+        # Find the end part.
+        first_line = line
+
+        i += 1
+        while i < len(lines):
+          line = lines[i]
+          if len(line) >= 3 and line[:3] == '```':
+            break
+          code_chunk += (line + '\n')
+          i += 1
+        
+        # code chunk contains the content between ```s
+        if first_line[3:] == 'cpp':
+          # Remove NBSP from code chunk
+          code_chunk = code_chunk.replace(u'\xa0', u' ')
+          p = Popen(['clang-format'], stdin=PIPE, stdout=PIPE)
+          stdout, _ = p.communicate(code_chunk.encode('utf-8'))
+          code_chunk = stdout.decode('utf-8')
+          file_content += ('```cpp-formatted\n' + code_chunk + '```\n')
+        else :
+          file_content += (first_line + '\n' + code_chunk + '```\n')
+
+        code_chunk = ""
+        i += 1
+        continue
+
+      file_content += (line + '\n')
+      i += 1
+
+    return file_content.rstrip()
 
 if __name__ == "__main__":
-  '''
-  for filename in os.listdir("../md"):
-    real_filename = "../md/" + filename
-    with open(real_filename, "r+") as f:
-      data = f.read()
-      f.seek(0)
-      f.write(handle(data))
-  '''
   if len(sys.argv) > 1:
     file_name = sys.argv[1]
-    coder = InlineCoder('../md/' + file_name)
+    dirs = os.listdir('./md')
+    for file_name in dirs:
+      coder = InlineCoder('./md/' + file_name)

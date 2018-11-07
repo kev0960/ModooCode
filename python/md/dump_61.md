@@ -61,11 +61,25 @@ unbuffered 스트림의 경우, 데이터는 fully buffered 스트림과는 달�
 ###  예제
 
 
-```cpp
-
-/*myfile.txt 와 myfile2.txt 를 각각 쓰기 모드 와 덧붙이기(append) 모드로 열어서 buffer 을 버퍼로 사용한다. 이 때, pFIle1 의 경우 buffer 를 버퍼로 사용하지만 pFile2 는 버퍼를 사용하지 않는다. */
+```cpp-formatted
+/* myfile.txt 와 myfile2.txt 를 각각 쓰기 모드 와 덧붙이기(append) 모드로 열어서
+ * buffer 을 버퍼로 사용한다. 이 때, pFIle1 의 경우 buffer 를 버퍼로 사용하지만
+ * pFile2 는 버퍼를 사용하지 않는다. */
 #include <stdio.h>
-int main () {  char buffer[BUFSIZ];  FILE *pFile1, *pFile2;  pFile1=fopen ("myfile.txt","w");  pFile2=fopen ("myfile2.txt","a");  setbuf ( pFile1 , buffer );  fputs ("This is sent to a buffered stream\n",pFile1);  fflush (pFile1);  setbuf ( pFile2 , NULL );  fputs ("This is sent to an unbuffered stream\n",pFile2);  fclose (pFile1);  fclose (pFile2);  return 0;}
+int main() {
+  char buffer[BUFSIZ];
+  FILE *pFile1, *pFile2;
+  pFile1 = fopen("myfile.txt", "w");
+  pFile2 = fopen("myfile2.txt", "a");
+  setbuf(pFile1, buffer);
+  fputs("This is sent to a buffered stream\n", pFile1);
+  fflush(pFile1);
+  setbuf(pFile2, NULL);
+  fputs("This is sent to an unbuffered stream\n", pFile2);
+  fclose(pFile1);
+  fclose(pFile2);
+  return 0;
+}
 ```
 
 파일에 쓰여진 결과
@@ -78,17 +92,17 @@ int main () {  char buffer[BUFSIZ];  FILE *pFile1, *pFile2;  pFile1=fopen ("m
 
 일단 첫번째의 경우
 
-```cpp
-  setbuf ( pFile1 , buffer );
-  fputs ("This is sent to a buffered stream\n",pFile1);
-  fflush (pFile1);
+```cpp-formatted
+setbuf(pFile1, buffer);
+fputs("This is sent to a buffered stream\n", pFile1);
+fflush(pFile1);
 ```
 
 `buffer` 을 `pFile1` 스트림의 버퍼로 사용하였다. 이 때, 데이터가 한 블록이 다 채워졌는지 아닌지 모르므로 마지막에 `fflush` 를 강제적으로 호출하여 파일에 써준다.
 
-```cpp
-  setbuf ( pFile2 , NULL );
-  fputs ("This is sent to an unbuffered stream\n",pFile2);
+```cpp-formatted
+setbuf(pFile2, NULL);
+fputs("This is sent to an unbuffered stream\n", pFile2);
 ```
 
 두번째의 경우 `pFile2` 는 버퍼를 사용하지 않는 `unbuffered` 스트림 이므로 버퍼를 강제적으로 비울 필요가 없다. (사실 비울 버퍼도 없다)왜냐하면 쓰기 작업을 하자 마자 바로 파일에 쓰여지기 때문이다.
@@ -101,10 +115,3 @@ int main () {  char buffer[BUFSIZ];  FILE *pFile1, *pFile2;  pFile1=fopen ("m
 *  [fopen](http://itguru.tistory.com/58)  :  파일을 연다.
 *  [fflush](http://itguru.tistory.com/57):  스트림을 비운다.
 *  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼링 방식을 설정한다.
-
-
-
-
-
-
-

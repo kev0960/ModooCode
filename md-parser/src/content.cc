@@ -580,6 +580,11 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
         EscapeHtmlString(&info_str);
         fragment.formatted_code = StrCat("<pre class='exec-preview'>",
                                          OutputLinksInBox(info_str), "</pre>");
+      } else if (fragment.code_style == "cpp_formatted") {
+        string formatted_code = content_.substr(
+            fragment.str_start, fragment.str_end - fragment.str_start + 1);
+        formatted_code = FormatCodeUsingFSH(formatted_code);
+        fragment.formatted_code = formatted_code;
       } else if (fragment.code_style != "cpp" &&
                  fragment.code_style != "info_format") {
         string unformatted_code = content_.substr(

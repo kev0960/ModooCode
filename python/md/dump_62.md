@@ -79,26 +79,25 @@ int setvbuf ( FILE * stream, char * buffer, int mode, size_t size );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
-파일을 _IOFBF 형식으로 열며, 버퍼는 크기가 1024 바이트로 컴퓨터가 자동으로 할당하게 한다.
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/setvbuf/
-에서 가져왔습니다.
+파일을 _IOFBF 형식으로 열며, 버퍼는 크기가 1024 바이트로 컴퓨터가 자동으로
+할당하게 한다. 이 예제는
+http://www.cplusplus.com/reference/clibrary/cstdio/setvbuf/ 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    FILE *pFile;
-    pFile=fopen ("myfile.txt","w");
-    setvbuf ( pFile , NULL , _IOFBF , 1024 );
+int main() {
+  FILE *pFile;
+  pFile = fopen("myfile.txt", "w");
+  setvbuf(pFile, NULL, _IOFBF, 1024);
 
-    /* 여러 파일 입출력 작업들 */
+  /* 여러 파일 입출력 작업들 */
 
-    fclose (pFile);
+  fclose(pFile);
 
-    return 0;
+  return 0;
 }
 ```
 
