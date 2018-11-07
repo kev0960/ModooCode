@@ -241,6 +241,6 @@ class InlineCoder:
 if __name__ == "__main__":
   if len(sys.argv) > 1:
     file_name = sys.argv[1]
-    dirs = os.listdir('./md')
+    dirs = os.listdir('../md')
     for file_name in dirs:
-      coder = InlineCoder('./md/' + file_name)
+      coder = InlineCoder('../md/' + file_name)
