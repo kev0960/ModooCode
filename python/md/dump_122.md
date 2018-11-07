@@ -93,30 +93,29 @@ C++ 에서의 `strftime` 함수는 1990 년의 `ISO-C` 표준에서와 동일하
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/ctime/strftime/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <time.h>
 
-int main ()
-{
-    time_t rawtime;
-    struct tm * timeinfo;
-    char buffer [80];
+int main() {
+  time_t rawtime;
+  struct tm* timeinfo;
+  char buffer[80];
 
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
+  time(&rawtime);
+  timeinfo = localtime(&rawtime);
 
-    strftime (buffer,80,"Now it's %I:%M%p.",timeinfo);
-    puts (buffer);
+  strftime(buffer, 80, "Now it's %I:%M%p.", timeinfo);
+  puts(buffer);
 
-    return 0;
+  return 0;
 }
 ```
 

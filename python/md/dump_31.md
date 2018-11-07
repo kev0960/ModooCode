@@ -28,17 +28,16 @@ next_page : 29
 
 먼저 `Visual Express 2008` 을 실행하셔서 다음의 코드를 복사해 넣어 봅시다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    char a, b, c;
-    a = 100;
-    b = 300;
-    c = a + b;
+int main() {
+  char a, b, c;
+  a = 100;
+  b = 300;
+  c = a + b;
 
-    printf("%d + %d = %d \n", a, b, c);
-    return 0;
+  printf("%d + %d = %d \n", a, b, c);
+  return 0;
 }
 ```
 
@@ -119,24 +118,21 @@ int main()
 
 예를 들어 아래의 코드를 봅시다(사실 아래 것도 그리 복잡한 것은 아니지만 적절한 예제가 없어서.. 여러분이 직접 프로그래밍 하시다 보면 알게 될것입니다) .
 
-```cpp
+```cpp-formatted
 /* 샘플 코드 */
 #include <stdio.h>
 
-int main()
-{
-    int arr[10];
-    int i;
+int main() {
+  int arr[10];
+  int i;
 
-    for(i=0;i<10;i++)
-    {
-        scanf("%d", &arr[i]);
-    }
-    for(i=0;i<=10;i++)
-    {
-        printf("%d \n", arr[i]);
-    }
-    return 0;
+  for (i = 0; i < 10; i++) {
+    scanf("%d", &arr[i]);
+  }
+  for (i = 0; i <= 10; i++) {
+    printf("%d \n", arr[i]);
+  }
+  return 0;
 }
 ```
 
@@ -155,6 +151,3 @@ int main()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

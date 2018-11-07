@@ -19,14 +19,13 @@ next_page : 138
 
 사실, 지금 제 강좌를 보고 계시는 분들 중에서는 막 C 언어 공부를 끝내고 오신 분들도 많으실 텐데요, 무언가 초심자의 마음으로 돌아간 것 같지 않으세요? C 언어에서 막 어려운 프로그래밍 하다가 C++ 오니 다시 맨 밑바닥 부터 화면에 출력하는 것을 하니 답답한 마음이 들 것도 같네요.. 하지만 이것도 잠시라고 생각하세요. 곧 놀라운 C++ 의 세계가 펼쳐질 것입니다.
 
-```cpp
+```cpp-formatted
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    cout << "Hello, World!!" << endl;
-    return 0;
+int main() {
+  cout << "Hello, World!!" << endl;
+  return 0;
 }
 ```
 
@@ -40,7 +39,7 @@ int main()
 
   위 코드가 바로 지난 강좌에서 사용하였던 코드 입니다. 일단 C 언어와 비슷한 점들 부터 찾아보도록 합시다. 일단 맨 위에
 
-```cpp
+```cpp-formatted
 #include <iostream>
 ```
 
@@ -51,16 +50,16 @@ int main()
 
 그 다음 줄의 `using ...` 을 보면 잘 모르겠네요.일단 패스~그 아래를 보게 되면 다시 어디서 많이 보던 것이 나왔죠?
 
-```cpp
+```cpp-formatted
 int main()
 ```
 
 
 네. `main` 함수를 정의하는 부분 입니다. 그리고 그 함수의 몸체를 보면
 
-```cpp
-    cout << "Hello, World!!" << endl;
-    return 0;
+```cpp-formatted
+cout << "Hello, World!!" << endl;
+return 0;
 ```
 
 
@@ -70,40 +69,35 @@ int main()
 
 하지만 미스테리로 남아있던 부분부터 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 using namespace std;
 ```
 
 
 위 문장을 직역해보면 '`std` 라는 이름 공간(namespace) 를 사용하겠다' 라는 의미가 됩니다. 그렇다면 이름 공간이란 것이 정확히 무엇일까요? 이름 공간은 말그대로 특정한 공간에 이름을 붙여준 것입니다. 예를 들어서
 
-```cpp
+```cpp-formatted
 #include "header1.h"
 #include "header2.h"
 
-int main()
-{
-    function();
-}
+int main() { function(); }
 ```
 
 
 와 같은 표현을 사용했다고 합시다. 그런데 문제는 `header1.h` 에도 `function` 이 정의되어 있고, `header2.h` 에도 이름만 똑같이 다른 일을 하는 `function` 이 정의되어 있는 것입니다. 보통 C 언어에서는 이러한 문제를 해결하기 위해 우리에게 주어진 선택권은 오직 하나, 함수의 이름을 바꾸는 것 밖에 없었지만 C++ 에서는 이름 공간을 도입한 덕분에 이 문제를 유연하게 해결할 수 있었습니다. 바로 `namespace` 를 사용하는 것이지요.
 
-```cpp
+```cpp-formatted
 // header1.h 의 내용
-namespace header1
-{
-    int function();
+namespace header1 {
+int function();
 }
 ```
 
 
-```cpp
+```cpp-formatted
 // header2.h 의 내용
-namespace header2
-{
-    int function();
+namespace header2 {
+int function();
 }
 ```
 
@@ -111,64 +105,58 @@ namespace header2
 위 둘은 각각 다른 `header` 들의 내용 입니다. 각각의 함수들은 다른 `namespace` 에 존재합니다. 즉, `header1` 에 있는 `function` 의 경우 'header1.h 에 `header1` 라는 이름 공간에 살고 있는 function' 이 되고, `header2` 에 있는 `function` 의 경우 'header2.h 에 `header2` 라는 이름 공간에 살고 있는 function' 이 되는 것이지요. 즉 기존의 C 에서는 'header1.h 에 살고 있는 function' 과 'header2.h 에 살고있는 function' 으로 밖에 나눌 수 없었지만 C++ 에서는 좀더 세부적으로 분류할 수 있게 됩니다. 따라서 실제로 `main` 함수에서 사용할 때는
 
 
-```cpp
+```cpp-formatted
 #include "header1.h"
 #include "header2.h"
 
-int main()
-{
-    header1::function(); // header1 이란 이름 공간에 있는 function 을 호출
+int main() {
+  header1::function();  // header1 이란 이름 공간에 있는 function 을 호출
 }
 ```
 
 
 과 같이 사용하게 됩니다. 하지만 만일 위 같은 `function` 을 여러번 반복적으로 호출하게 되는 경우 어떨까요. 앞에 `header1::` 을 붙이기가 상당히 귀찮게 됩니다. 그래서 아래와 같이 '나는 앞으로 `header1` 이란 이름 공간에 들어있는 것들만 쓸거다!' 라고 선언할 수 있습니다.
 
-```cpp
+```cpp-formatted
 #include "header1.h"
 #include "header2.h"
 using namespace header1;
-int main()
-{
-    function(); // header1 에 있는 함수를 호출
+int main() {
+  function();  // header1 에 있는 함수를 호출
 }
-
 ```
 
 물론 그렇다고 해서 `header2` 에 있는 함수를 못 사용하는 것은 아니고 다음과 같이 지정해서 써주면 됩니다.
 
-```cpp
+```cpp-formatted
 #include "header1.h"
 #include "header2.h"
 using namespace header1;
-int main()
-{
-    header2::function(); // header2 에 있는 함수를 호출
-    function(); // header1 에 있는 함수를 호출
+int main() {
+  header2::function();  // header2 에 있는 함수를 호출
+  function();           // header1 에 있는 함수를 호출
 }
 ```
 
 
 그렇다면 다시 원래 예제를 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 using namespace std;
 
-int main()
-{
-    cout << "Hello, World!!" << endl;
-    return 0;
+int main() {
+  cout << "Hello, World!!" << endl;
+  return 0;
 }
 ```
 
 
 여기서 `cout` 과 `endl` 은 모두 `iostream` 헤더파일의 `std` 라는 이름 공간에 정의되어 있는 것들입니다. 따라서 만일 `using namespace std;` 를 붙여주지 않았더라면
 
-```cpp
-int main()
-{
-    std::cout << "Hello, World!!" << std::endl;
-    return 0;
+```cpp-formatted
+int main() {
+  std::cout << "Hello, World!!" << std::endl;
+  return 0;
 }
 ```
 
@@ -186,7 +174,7 @@ cout << 출력할 것 << 출력할 것 << ... << 출력할 것;
 
 그리고 `endl` 은 화면에 출력해주는 '함수' 입니다. 놀라셨지요? 하지만 그냥
 
-```cpp
+```cpp-formatted
 cout << endl;
 ```
 
@@ -204,8 +192,10 @@ cout << endl;
 
 아래 문장은 화면에 어떻게 출력될까요?
 
-```cpp
-cout << "hi" << endl << "my name is " << "Psi" << endl;
+```cpp-formatted
+cout << "hi" << endl
+     << "my name is "
+     << "Psi" << endl;
 ```
 
 
@@ -217,10 +207,3 @@ cout << "hi" << endl << "my name is " << "Psi" << endl;
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-
-
-

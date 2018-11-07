@@ -58,7 +58,7 @@ char fill ( char fillch );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 채우기 문자를 'x' 로 설정하고 이를 사용한다.
@@ -71,20 +71,19 @@ http://www.cplusplus.com/reference/iostream/ios/fill/
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-    char prev;
+int main() {
+  char prev;
 
-    cout.width (10);
-    cout << 40 << endl;
+  cout.width(10);
+  cout << 40 << endl;
 
-    prev = cout.fill ('x');
-    cout.width (10);
-    cout << 40 << endl;
+  prev = cout.fill('x');
+  cout.width(10);
+  cout << 40 << endl;
 
-    cout.fill(prev);
+  cout.fill(prev);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -104,14 +103,12 @@ int main ()
 
 
 
-```cpp
-( basic_ios<charT,traits> )
+```cpp-formatted
+(basic_ios<charT, traits>)
 
-typedef charT char_type;
-char_type fill () const;
-char_type fill ( char_type fillch );
-
-
+  typedef charT char_type;
+char_type fill() const;
+char_type fill(char_type fillch);
 ```
 
 
@@ -122,10 +119,3 @@ char_type fill ( char_type fillch );
 
 * `setfill` : 채우기 문자를 설정한다. (조작자)
 * `ios_base::width` : 필드 폭을 설정하거나 그 값을 얻어온다.
-
-
-
-
-
-
-

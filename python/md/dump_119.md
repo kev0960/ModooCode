@@ -44,7 +44,7 @@ struct tm * gmtime ( const time_t * timer );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 세계 몇몇 도시의 시각을 보여준다.
@@ -52,7 +52,7 @@ struct tm * gmtime ( const time_t * timer );
 http://www.cplusplus.com/reference/clibrary/ctime/gmtime/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <time.h>
 
@@ -61,22 +61,25 @@ http://www.cplusplus.com/reference/clibrary/ctime/gmtime/
 #define CCT (+8)
 #define GMT (+9)
 
-int main ()
-{
-    time_t rawtime;
-    struct tm * ptm;
+int main() {
+  time_t rawtime;
+  struct tm* ptm;
 
-    time ( &rawtime );
+  time(&rawtime);
 
-    ptm = gmtime ( &rawtime );
+  ptm = gmtime(&rawtime);
 
-    puts ("Current time around the World:");
-    printf ("Phoenix, AZ (U.S.) :  %2d:%02d\n", (ptm->tm_hour+MST)%24, ptm->tm_min);
-    printf ("Reykjavik (Iceland) : %2d:%02d\n", (ptm->tm_hour+UTC)%24, ptm->tm_min);
-    printf ("Beijing (China) :     %2d:%02d\n", (ptm->tm_hour+CCT)%24, ptm->tm_min);
-    printf ("Seoul (Korea) :       %2d:%02d\n", (ptm->tm_hour+GMT)%24, ptm->tm_min);
+  puts("Current time around the World:");
+  printf("Phoenix, AZ (U.S.) :  %2d:%02d\n", (ptm->tm_hour + MST) % 24,
+         ptm->tm_min);
+  printf("Reykjavik (Iceland) : %2d:%02d\n", (ptm->tm_hour + UTC) % 24,
+         ptm->tm_min);
+  printf("Beijing (China) :     %2d:%02d\n", (ptm->tm_hour + CCT) % 24,
+         ptm->tm_min);
+  printf("Seoul (Korea) :       %2d:%02d\n", (ptm->tm_hour + GMT) % 24,
+         ptm->tm_min);
 
-    return 0;
+  return 0;
 }
 ```
 

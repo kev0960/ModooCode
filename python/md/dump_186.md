@@ -89,7 +89,7 @@ template <class InputIterator>
 
 
 
-```cpp
+```cpp-formatted
 
 /*
 
@@ -104,39 +104,29 @@ template <class InputIterator>
 #include <vector>
 using namespace std;
 
+int main() {
+  vector<int> myvector(3, 100);
+  vector<int>::iterator it;
 
-int main ()
-{
-vector<int> myvector (3,100);
-vector<int>::iterator it;
+  it = myvector.begin();
+  it = myvector.insert(it, 200);
 
+  myvector.insert(it, 2, 300);
 
-it = myvector.begin();
-it = myvector.insert ( it , 200 );
+  // "it" no longer valid, get a new one:
+  it = myvector.begin();
 
+  vector<int> anothervector(2, 400);
+  myvector.insert(it + 2, anothervector.begin(), anothervector.end());
 
-myvector.insert (it,2,300);
+  int myarray[] = {501, 502, 503};
+  myvector.insert(myvector.begin(), myarray, myarray + 3);
 
+  cout << "myvector contains:";
+  for (it = myvector.begin(); it < myvector.end(); it++) cout << " " << *it;
+  cout << endl;
 
-// "it" no longer valid, get a new one:
-it = myvector.begin();
-
-
-vector<int> anothervector (2,400);
-myvector.insert (it+2,anothervector.begin(),anothervector.end());
-
-
-int myarray [] = { 501,502,503 };
-myvector.insert (myvector.begin(), myarray, myarray+3);
-
-
-cout << "myvector contains:";
-for (it=myvector.begin(); it<myvector.end(); it++)
-cout << " " << *it;
-cout << endl;
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -166,6 +156,3 @@ return 0;
 
 *  [vector::push_back](http://itguru.tistory.com/185): 벡터 끝에 원소를 추가한다.
 * vector::erase : 원소를 삭제한다.
-
-
-

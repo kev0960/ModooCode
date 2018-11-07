@@ -75,7 +75,7 @@ istream& getline (char* s, streamsize n, char delim );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 getline 함수를 통해 사용자로 부터 문자열을 입력 받는다.
@@ -87,19 +87,18 @@ http://www.cplusplus.com/reference/iostream/istream/getline
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-    char name[256], title[256];
+int main() {
+  char name[256], title[256];
 
-    cout << "Enter your name: ";
-    cin.getline (name,256);
+  cout << "Enter your name: ";
+  cin.getline(name, 256);
 
-    cout << "Enter your favourite movie: ";
-    cin.getline (title,256);
+  cout << "Enter your favourite movie: ";
+  cin.getline(title, 256);
 
-    cout << name << "'s favourite movie is " << title;
+  cout << name << "'s favourite movie is " << title;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -117,11 +116,11 @@ int main ()
 
 
 
-```cpp
+```cpp-formatted
 // ( basic_istream<charT,traits> )
 typedef charT char_type;
-basic_istream& getline (char_type* s, streamsize n );
-basic_istream& getline (char_type* s, streamsize n, char_type delim );
+basic_istream& getline(char_type* s, streamsize n);
+basic_istream& getline(char_type* s, streamsize n, char_type delim);
 ```
 
 
@@ -133,8 +132,3 @@ basic_istream& getline (char_type* s, streamsize n, char_type delim );
 *  [istream::get](http://itguru.tistory.com/191)  :  서식화 되지 않은 데이터를 스트림에서 가져온다.
 *  [istream::ignore](http://itguru.tistory.com/193)  :  문자를 추출하고 버린다.
 *  [istream::gcount](http://itguru.tistory.com/192): 이전의 서식화 되지 않았던 입력 작업서 추출하였던 문자의 개수를 얻어온다.
-
-
-
-
-

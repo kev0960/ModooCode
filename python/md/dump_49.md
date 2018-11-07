@@ -25,12 +25,12 @@ int ungetc ( int character, FILE * stream );
 
 예를 들면
 
-```cpp
+```cpp-formatted
 FILE *fp = fopen("a.txt", "r");
 char ch;
 getc(fp);
 getc(fp);
-ungetc ('a', fp);
+ungetc('a', fp);
 ch = getc(fp);
 ```
 
@@ -42,25 +42,25 @@ ch = getc(fp);
 
 `unget` 함수를 여러번 호출하게 되면 나중 읽기작업에서 호출된 역순으로 출력된다.예를 들어
 
-```cpp
+```cpp-formatted
 ungetc('a', fp);
 ungetc('b', fp);
 
-ch = getc(fp); // ch 에는 b 가 들어간다.
-ch = getc(fp);  //  ch 에는 a 가 들어간다.
+ch = getc(fp);  // ch 에는 b 가 들어간다.
+ch = getc(fp);  //  ch 에는 a 가 들어간다.
 ```
 
 주의할 점은 `unget` 함수를 여러번 호출하여서 중간에 파일 위치 표시자의 값이 0 이 된다면 그 이후에 호출된 `unget` 함수들은 모두 무시된다. 예를 들어
 
-```cpp
+```cpp-formatted
 fp = fopen("test.txt", "r");
-getc(fp); // 이 함수 호출 이후 위치 표시자의 값은 1
-ungetc('a', fp); // 이 함수 호출 이후 값은 0
-ungetc('b', fp); // 따라서 버퍼에 b 가 들어갈 수 없다.
+getc(fp);         // 이 함수 호출 이후 위치 표시자의 값은 1
+ungetc('a', fp);  // 이 함수 호출 이후 값은 0
+ungetc('b', fp);  // 따라서 버퍼에 b 가 들어갈 수 없다.
 
-ch = getc(fp); // ch 에는 a 가 들어간다.
-printf("%c" ,ch);
-ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
+ch = getc(fp);  // ch 에는 a 가 들어간다.
+printf("%c", ch);
+ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
 ```
 
 만일 `EOF` 표시자가 설정된 상태에서 이 함수를 호출하면 `EOF` 표시자는 초기화(clear) 된다.
@@ -99,13 +99,33 @@ ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
 
 
 
-```cpp
+```cpp-formatted
 
-/*myfile.txt 로 부터 각 문장을 입력 받되  # 로 시작하는 문장은 @ 로 대체해서 입력받는다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/ungetc/에서 가져왔습니다. */
+/*myfile.txt 로 부터 각 문장을 입력 받되  # 로 시작하는 문장은 @ 로 대체해서
+ * 입력받는다.이 예제는
+ * http://www.cplusplus.com/reference/clibrary/cstdio/ungetc/에서 가져왔습니다.
+ */
 #include <stdio.h>
-int main ()
-{
-      FILE * pFile;    int c;    char buffer [256];    pFile = fopen ("myfile.txt","rt");    if (pFile==NULL) perror ("Error opening file");    else    {        while (!feof (pFile))        {            c=getc (pFile);            if (c == '#')                ungetc ('@',pFile);            else                ungetc (c,pFile);            fgets (buffer,255,pFile);            fputs (buffer,stdout);        }    }    return 0;}
+int main() {
+  FILE* pFile;
+  int c;
+  char buffer[256];
+  pFile = fopen("myfile.txt", "rt");
+  if (pFile == NULL)
+    perror("Error opening file");
+  else {
+    while (!feof(pFile)) {
+      c = getc(pFile);
+      if (c == '#')
+        ungetc('@', pFile);
+      else
+        ungetc(c, pFile);
+      fgets(buffer, 255, pFile);
+      fputs(buffer, stdout);
+    }
+  }
+  return 0;
+}
 ```
 
 `myfile.txt` 의 내용
@@ -120,19 +140,19 @@ int main ()
 
 위 프로그램 소스에 대해 간단히 설명을 하자면
 
-```cpp
-c=getc (pFile);
-            if (c == '#')
-                ungetc ('@',pFile);
-            else
-                ungetc (c,pFile);
+```cpp-formatted
+c = getc(pFile);
+if (c == '#')
+  ungetc('@', pFile);
+else
+  ungetc(c, pFile);
 ```
 
 일단 `getc` 를 통해 `pFile` 에서 문장의 첫번째 문자를 읽어온다. (왜냐하면 밑의 `fgets` 를 통해 개행 문자가 있을 때 까지 읽어오기 때문에 `getc` 는 언제나 문장의 첫번째 문자를 읽어오게 된다) 이 때, 그 문자가 # 이라면 `ungetc('@', pFile)` 을 통해 버퍼에서 현재 '#' 가 들어 있는 위치에 @ 가 들어가게 된다. 따라서
 
-```cpp
-            fgets (buffer,255,pFile);
-            fputs (buffer,stdout);
+```cpp-formatted
+fgets(buffer, 255, pFile);
+fputs(buffer, stdout);
 ```
 
 를 하게 되면 `buffer` 에는 @ 부터 '\n' 이 나올 때 까지, 즉 한 문장의 끝까지 들어가게 된다.
@@ -154,9 +174,3 @@ c=getc (pFile);
 *  [fgetc](http://itguru.tistory.com/37):  스트림에서 문자를 받는다.
 
 *  [putc](http://itguru.tistory.com/46)  :  스트림에 문자를 쓴다.
-
-
-
-
-
-

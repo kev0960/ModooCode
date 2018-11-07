@@ -51,9 +51,8 @@ bool fail ( ) const;
 
 
 
-```cpp
-( basic_ios<charT,traits> )
-bool fail () const;
+```cpp-formatted
+(basic_ios<charT, traits>)bool fail() const;
 ```
 
 
@@ -64,25 +63,24 @@ bool fail () const;
 
 
 
-```cpp
+```cpp-formatted
 /*
 
-cin 으로 int 형 변수를 입력 받는데, 그 외의 타입의 값이 오면 failbit 가 설정되어 입력을 중지한다.
+cin 으로 int 형 변수를 입력 받는데, 그 외의 타입의 값이 오면 failbit 가 설정되어
+입력을 중지한다.
 
 */
 #include <iostream>
 using namespace std;
 
-int main( )
-{
-    int i;
-    while(! cin.fail())
-    {
-        cin >> i;
-        cout << "What you typed : " << i << endl;
-    }
+int main() {
+  int i;
+  while (!cin.fail()) {
+    cin >> i;
+    cout << "What you typed : " << i << endl;
+  }
 
-    return 0;
+  return 0;
 }
 ```
 

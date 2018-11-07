@@ -28,7 +28,7 @@ next_page : 211
 
 이게 무슨 말이냐면 상속이란 것이 없던 C 언어에서는 어떠한 구조체 사이의 관계를 표현할 수 있는 방법이 없었습니다. 하지만 C++ 에서 상속이란 것을 도입함으로써, 클래스 사이에 관계를 표현할 수 있게 되었는데, 예를 들어서 `Manager` 가 `Employee` 를 상속한다;
 
-```cpp
+```cpp-formatted
 class Manager : public Employee
 ```
 
@@ -59,14 +59,13 @@ class Manager : public Employee
 
 즉, 자동차는 엔진을 가진다 (자동차 `has a` 엔진), 자동차는 브레이크를 가진다 (자동차 `has a` 브레이크) 이와 같이 말이지요. 이런 `has - a` 관계는 우리가 흔히 해왔듯이 다음과 같이 클래스로 나타내면 됩니다.
 
-```cpp
+```cpp-formatted
 
-class Car
-{
-private:
-Engine e;
-Brake b; // 아마 break 아니냐고 생각하는 사람들이 있을 텐데 :)
-....
+class Car {
+ private:
+  Engine e;
+  Brake b;  // 아마 break 아니냐고 생각하는 사람들이 있을 텐데 :)
+  ....
 };
 ```
 
@@ -74,13 +73,12 @@ Brake b; // 아마 break 아니냐고 생각하는 사람들이 있을 텐데 :)
 
 또 다른 예로 바로 우리의 `EmployeeList` 를 들을 수 도 있습니다. `EmployeeList` 는 `Employee` 들과 `has - a` 관계 이지요. 따라서, 실제로 `EmployeeList` 클래스를 보면
 
-```cpp
+```cpp-formatted
 
-class EmployeeList
-{
-int alloc_employee; // 할당한 총 직원 수
-int current_employee; // 현재 직원 수
-Employee **employee_list; // 직원 데이터
+class EmployeeList {
+  int alloc_employee;        // 할당한 총 직원 수
+  int current_employee;      // 현재 직원 수
+  Employee **employee_list;  // 직원 데이터
 ```
 
 와 같이 `Employee` 를 포함하고 있음을 알 수 있습니다.
@@ -90,57 +88,39 @@ Employee **employee_list; // 직원 데이터
 ###  (다시 보는) 오버라이딩
 
 
-```cpp
+```cpp-formatted
 #include <iostream>
 #include <string>
 using namespace std;
 
+class Parent {
+  string s;
 
-class Parent
-{
-string s;
-public:
-Parent () : s("부모")
-{
-cout << "부모 클래스" << endl;
-}
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
 
-
-void what() { cout << s << endl;}
+  void what() { cout << s << endl; }
 };
-class Child : public Parent
-{
-string s;
+class Child : public Parent {
+  string s;
 
+ public:
+  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
 
-public:
-Child () : s("자식"), Parent()
-{
-cout << "자식 클래스" << endl;
-}
-
-
-void what() { cout << s << endl;}
-
-
+  void what() { cout << s << endl; }
 };
-int main()
-{
-cout << " === 부모 클래스 생성 ===" << endl;
-Parent p;
+int main() {
+  cout << " === 부모 클래스 생성 ===" << endl;
+  Parent p;
 
+  p.what();
 
-p.what();
+  cout << " === 자식 클래스 생성 ===" << endl;
+  Child c;
 
+  c.what();
 
-cout << " === 자식 클래스 생성 ===" << endl;
-Child c;
-
-
-c.what();
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -160,53 +140,37 @@ return 0;
 
 이번에는 코드를 약간 변형해보도록 하겠습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+class Parent {
+  string s;
 
-class Parent
-{
-string s;
-public:
-Parent () : s("부모")
-{
-cout << "부모 클래스" << endl;
-}
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
 
-
-void what() { cout << s << endl;}
+  void what() { cout << s << endl; }
 };
-class Child : public Parent
-{
-string s;
+class Child : public Parent {
+  string s;
 
+ public:
+  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
 
-public:
-Child () : s("자식"), Parent()
-{
-cout << "자식 클래스" << endl;
-}
-
-
-void what() { cout << s << endl;}
-
-
+  void what() { cout << s << endl; }
 };
-int main()
-{
-Parent p;
-Child c;
+int main() {
+  Parent p;
+  Child c;
 
+  cout << "=== 포인터 버전 ===" << endl;
+  Parent* p_c = &c;
+  p_c->what();
 
-cout << "=== 포인터 버전 ===" << endl;
-Parent* p_c = &c;
-p_c->what();
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -225,7 +189,7 @@ return 0;
 
 이번에는 `Child` 의 객체 `c` 를 `Parent` 객체를 가리키는 포인터에 넣었습니다.
 
-```cpp
+```cpp-formatted
 
 Parent* p_c = &c;
 ```
@@ -251,53 +215,37 @@ Parent* p_c = &c;
 
 그렇다면 업 캐스팅의 반대인 다운 캐스팅도 있을까요?
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+class Parent {
+  string s;
 
-class Parent
-{
-string s;
-public:
-Parent () : s("부모")
-{
-cout << "부모 클래스" << endl;
-}
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
 
-
-void what() { cout << s << endl;}
+  void what() { cout << s << endl; }
 };
-class Child : public Parent
-{
-string s;
+class Child : public Parent {
+  string s;
 
+ public:
+  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
 
-public:
-Child () : s("자식"), Parent()
-{
-cout << "자식 클래스" << endl;
-}
-
-
-void what() { cout << s << endl;}
-
-
+  void what() { cout << s << endl; }
 };
-int main()
-{
-Parent p;
-Child c;
+int main() {
+  Parent p;
+  Child c;
 
+  cout << "=== 포인터 버전 ===" << endl;
+  Child* p_p = &p;
+  p_p->what();
 
-cout << "=== 포인터 버전 ===" << endl;
-Child* p_p = &p;
-p_p->what();
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -324,56 +272,39 @@ Parent * 에서 Child * 로 변환할 수 없습니다.
 
 하지만 다음과 같은 상황은 어떨까요.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+class Parent {
+  string s;
 
-class Parent
-{
-string s;
-public:
-Parent () : s("부모")
-{
-cout << "부모 클래스" << endl;
-}
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
 
-
-void what() { cout << s << endl;}
+  void what() { cout << s << endl; }
 };
-class Child : public Parent
-{
-string s;
+class Child : public Parent {
+  string s;
 
+ public:
+  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
 
-public:
-Child () : s("자식"), Parent()
-{
-cout << "자식 클래스" << endl;
-}
-
-
-void what() { cout << s << endl;}
-
-
+  void what() { cout << s << endl; }
 };
-int main()
-{
-Parent p;
-Child c;
+int main() {
+  Parent p;
+  Child c;
 
+  cout << "=== 포인터 버전 ===" << endl;
+  Parent* p_p = &c;
 
-cout << "=== 포인터 버전 ===" << endl;
-Parent* p_p = &c;
+  Child* p_c = p_p;
+  p_c->what();
 
-
-Child* p_c = p_p;
-p_c->what();
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -390,7 +321,7 @@ error C2440: 'initializing' : cannot convert from 'Parent *' to 'Child *'
 
 `Child* p_c` 에 `Parent *` 를 대입하면 안된다는 똑같은 오류가 발생합니다. 하지만 우리는 `p_p` 가 가리키는 것이 `Parent` 객체가 아니라 `Child` 객체라는 사실을 알고 있습니다. 그렇기 때문에 비록 `Parent *` 포인터를 다운 캐스팅 함에도 불구하고 `p_p` 가 실제로는 `Child` 객체를 가리키기 때문에
 
-```cpp
+```cpp-formatted
 
 Child* p_c = p_p;
 ```
@@ -399,65 +330,48 @@ Child* p_c = p_p;
 
 를 해도 전혀 문제가 없습니다. 이를 위해서는 아래 처럼 강제적으로 타입 변환을 하면 됩니다.
 
-```cpp
+```cpp-formatted
 
-Child* p_c = static_cast<Child *>(p_p);
+Child* p_c = static_cast<Child*>(p_p);
 ```
 
 
 
 비록 약간은 위험하지만 (만일 `p_p` 가 사실은 `Child` 객체를 가리키지 않는다면?) 컴파일 오류를 발생시키지 않고 성공적으로 컴파일 할 수 있습니다. 그렇다면 만일 `p_p` 가 사실 `Parent` 객체를 가리키는데 강제적으로 타입 변환을 해서 `what` 을 실행한다면 어떨까요?
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+class Parent {
+  string s;
 
-class Parent
-{
-string s;
-public:
-Parent () : s("부모")
-{
-cout << "부모 클래스" << endl;
-}
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
 
-
-void what() { cout << s << endl;}
+  void what() { cout << s << endl; }
 };
-class Child : public Parent
-{
-string s;
+class Child : public Parent {
+  string s;
 
+ public:
+  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
 
-public:
-Child () : s("자식"), Parent()
-{
-cout << "자식 클래스" << endl;
-}
-
-
-void what() { cout << s << endl;}
-
-
+  void what() { cout << s << endl; }
 };
-int main()
-{
-Parent p;
-Child c;
+int main() {
+  Parent p;
+  Child c;
 
+  cout << "=== 포인터 버전 ===" << endl;
+  Parent* p_p = &p;
 
-cout << "=== 포인터 버전 ===" << endl;
-Parent* p_p = &p;
+  Child* p_c = static_cast<Child*>(p_p);
+  p_c->what();
 
-
-Child* p_c = static_cast<Child *>(p_p);
-p_c->what();
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -485,20 +399,17 @@ return 0;
 
 
 자, 그럼 이제 위에서 다룬 내용을 가지고 EmployeeList 를 어떻게 하면 좀 더 간단하게 만들 수 있을 지 생각해봅시다.
-```cpp
+```cpp-formatted
 
-class EmployeeList
-{
-int alloc_employee; // 할당한 총 직원 수
+class EmployeeList {
+  int alloc_employee;  // 할당한 총 직원 수
 
+  int current_employee;  // 현재 직원 수
+  int current_manager;   // 현재 매니저 수
 
-int current_employee; // 현재 직원 수
-int current_manager; // 현재 매니저 수
-
-
-Employee **employee_list; // 직원 데이터
-Manager **manager_list; // 매니저 데이터
-// ... 
+  Employee **employee_list;  // 직원 데이터
+  Manager **manager_list;    // 매니저 데이터
+  // ...
 ```
 
 위와 같은 구성에서 가장 문제가 되는 것이 각 클래스 별로 데이터를 따로 보관해야 된다는 것입니다. 즉 `Employee` 들은 `Employee *` 가 가리켜야 하고, `Manager` 들은 `Manager *` 가 가리켜야 합니다. 만일 무한 상사에서 클래스 하나를 더 추가해달라고 연락이 왔다간 때릴 지도 모르겠지요.
@@ -507,16 +418,15 @@ Manager **manager_list; // 매니저 데이터
 하지만, 한 가지 위에서 배운 사실은, 업 캐스팅은 매우 자유롭게 수행될 수 있다는 점입니다. 즉, `Employee *` 가 `Manager` 객체를 가리켜도 별 문제가 없다는 것이지요. 그렇다면 `manager_list` 를 그냥 지워 버리고, `employee_list` 가 `Employee, Manager` 상관없이 가리키게 해도 될까요? 그러면 참 좋겠지만 다음과 같은 문제점이 있습니다.
 
 
-```cpp
+```cpp-formatted
 
-void print_employee_info()
-{
-int total_pay = 0;
-for(int i = 0; i < current_employee; i ++) {
-employee_list[i]->print_info();
-total_pay += employee_list[i]->calculate_pay();
-}
-...
+void print_employee_info() {
+  int total_pay = 0;
+  for (int i = 0; i < current_employee; i++) {
+    employee_list[i]->print_info();
+    total_pay += employee_list[i]->calculate_pay();
+  }
+  ...
 ```
 
 
@@ -532,134 +442,112 @@ total_pay += employee_list[i]->calculate_pay();
 실제로,
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Employee
-{
-protected:
-string name;
-int age;
+class Employee {
+ protected:
+  string name;
+  int age;
 
-string position; // 직책 (이름)
-int rank; // 순위 (값이 클 수록 높은 순위)
+  string position;  // 직책 (이름)
+  int rank;         // 순위 (값이 클 수록 높은 순위)
 
-public:
+ public:
+  Employee(string name, int age, string position, int rank)
+      : name(name), age(age), position(position), rank(rank) {}
 
-Employee(string name, int age, string position, int rank)
-: name(name), age(age), position(position), rank(rank) {}
+  // 복사 생성자
+  Employee(const Employee& employee) {
+    name = employee.name;
+    age = employee.age;
+    position = employee.position;
+    rank = employee.rank;
+  }
 
-// 복사 생성자
-Employee(const Employee& employee)
-{
-name = employee.name;
-age = employee.age;
-position = employee.position;
-rank = employee.rank;
-}
+  // 디폴트 생성자
+  Employee() {}
 
-// 디폴트 생성자
-Employee () {}
-
-void print_info()
-{
-cout << name << " (" << position << " , " << age << ") ==> " << calculate_pay() << "만원" << endl;
-}
-int calculate_pay()
-{
-return 200 + rank * 50;
-}
+  void print_info() {
+    cout << name << " (" << position << " , " << age << ") ==> "
+         << calculate_pay() << "만원" << endl;
+  }
+  int calculate_pay() { return 200 + rank * 50; }
 };
 
-class Manager : public Employee
-{
-int year_of_service;
+class Manager : public Employee {
+  int year_of_service;
 
-public:
-Manager(string name, int age, string position, int rank, int year_of_service)
-: year_of_service(year_of_service), Employee(name, age, position, rank) {}
+ public:
+  Manager(string name, int age, string position, int rank, int year_of_service)
+      : year_of_service(year_of_service), Employee(name, age, position, rank) {}
 
-// 복사 생성자
-Manager(const Manager& manager)
-: Employee(manager.name, manager.age, manager.position, manager.rank)
-{
-year_of_service = manager.year_of_service;
-}
+  // 복사 생성자
+  Manager(const Manager& manager)
+      : Employee(manager.name, manager.age, manager.position, manager.rank) {
+    year_of_service = manager.year_of_service;
+  }
 
-// 디폴트 생성자
-Manager () : Employee() {}
+  // 디폴트 생성자
+  Manager() : Employee() {}
 
-int calculate_pay()
-{
-return 200 + rank * 50 + 5 * year_of_service;
-}
-void print_info()
-{
-cout << name << " (" << position << " , " << age << ", "
-<< year_of_service << "년차) ==> " << calculate_pay() << "만원" << endl;
-}
+  int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
+  void print_info() {
+    cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" << endl;
+  }
 };
-class EmployeeList
-{
-int alloc_employee; // 할당한 총 직원 수
-int current_employee; // 현재 직원 수
-Employee **employee_list; // 직원 데이터
+class EmployeeList {
+  int alloc_employee;        // 할당한 총 직원 수
+  int current_employee;      // 현재 직원 수
+  Employee** employee_list;  // 직원 데이터
 
-public:
+ public:
+  EmployeeList(int alloc_employee) : alloc_employee(alloc_employee) {
+    employee_list = new Employee*[alloc_employee];
 
-EmployeeList(int alloc_employee) : alloc_employee(alloc_employee)
-{
-employee_list = new Employee* [alloc_employee];
+    current_employee = 0;
+  }
+  void add_employee(Employee* employee) {
+    // 사실 current_employee 보다 alloc_employee 가 더
+    // 많아지는 경우 반드시 재할당을 해야 하지만, 여기서는
+    // 최대한 단순하게 생각해서 alloc_employee 는
+    // 언제나 current_employee 보다 크다고 생각한다.
+    // (즉 할당된 크기는 현재 총 직원수 보다 많음)
+    employee_list[current_employee] = employee;
+    current_employee++;
+  }
+  int current_employee_num() { return current_employee; }
 
-current_employee = 0;
-}
-void add_employee(Employee* employee)
-{
-// 사실 current_employee 보다 alloc_employee 가 더
-// 많아지는 경우 반드시 재할당을 해야 하지만, 여기서는
-// 최대한 단순하게 생각해서 alloc_employee 는
-// 언제나 current_employee 보다 크다고 생각한다.
-// (즉 할당된 크기는 현재 총 직원수 보다 많음)
-employee_list[current_employee] = employee;
-current_employee ++;
-}
-int current_employee_num()
-{
-return current_employee;
-}
-
-void print_employee_info()
-{
-int total_pay = 0;
-for(int i = 0; i < current_employee; i ++) {
-employee_list[i]->print_info();
-total_pay += employee_list[i]->calculate_pay();
-}
-cout << "총 비용 : " << total_pay << "만원 " << endl;
-}
-~EmployeeList()
-{
-for(int i = 0; i < current_employee; i ++) {
-delete employee_list[i];
-}
-delete [] employee_list;
-}
+  void print_employee_info() {
+    int total_pay = 0;
+    for (int i = 0; i < current_employee; i++) {
+      employee_list[i]->print_info();
+      total_pay += employee_list[i]->calculate_pay();
+    }
+    cout << "총 비용 : " << total_pay << "만원 " << endl;
+  }
+  ~EmployeeList() {
+    for (int i = 0; i < current_employee; i++) {
+      delete employee_list[i];
+    }
+    delete[] employee_list;
+  }
 };
-int main()
-{
-EmployeeList emp_list(10);
-emp_list.add_employee(new Employee("노홍철", 34, "평사원", 1));
-emp_list.add_employee(new Employee("하하", 34, "평사원", 1));
-emp_list.add_employee(new Manager("유재석", 41, "부장", 7, 12));
-emp_list.add_employee(new Manager("정준하", 43, "과장", 4, 15));
-emp_list.add_employee(new Manager("박명수", 43, "차장", 5, 13));
-emp_list.add_employee(new Employee("정형돈", 36, "대리", 2));
-emp_list.add_employee(new Employee("길", 36, "인턴", -2));
-emp_list.print_employee_info();
-return 0;
+int main() {
+  EmployeeList emp_list(10);
+  emp_list.add_employee(new Employee("노홍철", 34, "평사원", 1));
+  emp_list.add_employee(new Employee("하하", 34, "평사원", 1));
+  emp_list.add_employee(new Manager("유재석", 41, "부장", 7, 12));
+  emp_list.add_employee(new Manager("정준하", 43, "과장", 4, 15));
+  emp_list.add_employee(new Manager("박명수", 43, "차장", 5, 13));
+  emp_list.add_employee(new Employee("정형돈", 36, "대리", 2));
+  emp_list.add_employee(new Employee("길", 36, "인턴", -2));
+  emp_list.print_employee_info();
+  return 0;
 }
 ```
 
@@ -686,60 +574,42 @@ return 0;
 
 
 `EmployeeList` 문제를 해결하기 전에 좀 더 간단한 예시로 살펴보겠습니다.
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+class Parent {
+  string s;
 
-class Parent
-{
-string s;
-public:
-Parent () : s("부모")
-{
-cout << "부모 클래스" << endl;
-}
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
 
-
-virtual void what() { cout << s << endl;}
+  virtual void what() { cout << s << endl; }
 };
-class Child : public Parent
-{
-string s;
+class Child : public Parent {
+  string s;
 
+ public:
+  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
 
-public:
-Child () : s("자식"), Parent()
-{
-cout << "자식 클래스" << endl;
-}
-
-
-void what() { cout << s << endl;}
-
-
+  void what() { cout << s << endl; }
 };
-int main()
-{
-Parent p;
-Child c;
+int main() {
+  Parent p;
+  Child c;
 
+  Parent* p_c = &c;
+  Parent* p_p = &p;
 
-Parent* p_c = &c;
-Parent* p_p = &p;
+  cout << " == 실제 객체는 Parent == " << endl;
+  p_p->what();
 
+  cout << " == 실제 객체는 Child == " << endl;
+  p_c->what();
 
-cout << " == 실제 객체는 Parent == " << endl;
-p_p->what();
-
-
-cout << " == 실제 객체는 Child == " << endl;
-p_c->what();
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -751,15 +621,13 @@ return 0;
 
 
 어라? 위 결과를 보셨다면 놀라움을 금치 못하셨을 것입니다.
-```cpp
+```cpp-formatted
 
 Parent* p_c = &c;
 Parent* p_p = &p;
 
-
 cout << " == 실제 객체는 Parent == " << endl;
 p_p->what();
-
 
 cout << " == 실제 객체는 Child == " << endl;
 p_c->what();
@@ -774,19 +642,15 @@ p_c->what();
 
 이와 같은 일이 가능해진 이유는 바로;
 
-```cpp
+```cpp-formatted
 
-class Parent
-{
-string s;
-public:
-Parent () : s("부모")
-{
-cout << "부모 클래스" << endl;
-}
+class Parent {
+  string s;
 
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
 
-virtualvoid what() { cout << s << endl;}
+  virtualvoid what() { cout << s << endl; }
 };
 ```
 
@@ -794,7 +658,7 @@ virtualvoid what() { cout << s << endl;}
 
 이 `virtual` 키워드 하나 때문입니다. 이 `virtual` 키워드는, 다음과 같은 역할을 합니다.
 
-```cpp
+```cpp-formatted
 
 p_c->what();
 ```
@@ -816,7 +680,7 @@ p_c->what();
 
 반면에
 
-```cpp
+```cpp-formatted
 
 p_p->what();
 ```
@@ -838,7 +702,7 @@ p_p->what();
 
 이렇게 컴파일 시에 어떤 함수가 실행될 지 정해지지 않고 런타임 시에 정해지는 일을 가리켜서 **동적 바인딩(dynamic binding)** 이라고 부릅니다. 즉,
 
-```cpp
+```cpp-formatted
 
 p_c->what();
 ```
@@ -847,14 +711,13 @@ p_c->what();
 
 에서 `Child` 의 `what` 을 실행할지, `Parent` 의 `what` 을 실행하지 결정은 런타임에 이루어지게 됩니다. 물론 위 코드에선 컴파일 시에 무조건 `p_c->what()` 이 `Child` 의 `what` 이 실행되도록 정해진 거 아니냐고 물을 수 있지만 다음과 같은 상황을 생각해보세요.
 
-```cpp
+```cpp-formatted
 
-  // i 는 사용자로부터 입력받는 변수
-if(i == 1) {
-p_p = &c;
-}
-else {
-p_p = &p;
+// i 는 사용자로부터 입력받는 변수
+if (i == 1) {
+  p_p = &c;
+} else {
+  p_p = &p;
 }
 p_p->what();
 ```
@@ -868,143 +731,104 @@ p_p->what();
 
 이제 여러분은 그동안 골머리를 썩여왔던 `EmployeeList` 문제도 해결할 수 있게 되었습니다. 단순히 `Employee` 클래스의 `calculate_pay` 함수와 `print_info` 함수 앞에 `virtual` 만 붙여주면 깔끔하게 정리 되지요.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+class Employee {
+ protected:
+  string name;
+  int age;
 
-class Employee
-{
+  string position;  // 직책 (이름)
+  int rank;         // 순위 (값이 클 수록 높은 순위)
 
+ public:
+  Employee(string name, int age, string position, int rank)
+      : name(name), age(age), position(position), rank(rank) {}
 
-protected:
-string name;
-int age;
+  // 복사 생성자
+  Employee(const Employee& employee) {
+    name = employee.name;
+    age = employee.age;
+    position = employee.position;
+    rank = employee.rank;
+  }
 
+  // 디폴트 생성자
+  Employee() {}
 
-string position; // 직책 (이름)
-int rank; // 순위 (값이 클 수록 높은 순위)
-
-
-public:
-
-
-Employee(string name, int age, string position, int rank)
-: name(name), age(age), position(position), rank(rank) {}
-
-
-// 복사 생성자
-Employee(const Employee& employee)
-{
-name = employee.name;
-age = employee.age;
-position = employee.position;
-rank = employee.rank;
-}
-
-
-// 디폴트 생성자
-Employee () {}
-
-
-virtualvoid print_info()
-{
-cout << name << " (" << position << " , " << age << ") ==> " << calculate_pay() << "만원" << endl;
-}
-virtualint calculate_pay()
-{
-return 200 + rank * 50;
-}
+  virtualvoid print_info() {
+    cout << name << " (" << position << " , " << age << ") ==> "
+         << calculate_pay() << "만원" << endl;
+  }
+  virtualint calculate_pay() { return 200 + rank * 50; }
 };
 
+class Manager : public Employee {
+  int year_of_service;
 
-class Manager : public Employee
-{
-int year_of_service;
+ public:
+  Manager(string name, int age, string position, int rank, int year_of_service)
+      : year_of_service(year_of_service), Employee(name, age, position, rank) {}
 
-
-public:
-Manager(string name, int age, string position, int rank, int year_of_service)
-: year_of_service(year_of_service), Employee(name, age, position, rank) {}
-
-
-int calculate_pay()
-{
-return 200 + rank * 50 + 5 * year_of_service;
-}
-void print_info()
-{
-cout << name << " (" << position << " , " << age << ", "
-<< year_of_service << "년차) ==> " << calculate_pay() << "만원" << endl;
-}
-
-
+  int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
+  void print_info() {
+    cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" << endl;
+  }
 };
-class EmployeeList
-{
-int alloc_employee; // 할당한 총 직원 수
-int current_employee; // 현재 직원 수
-Employee **employee_list; // 직원 데이터
+class EmployeeList {
+  int alloc_employee;        // 할당한 총 직원 수
+  int current_employee;      // 현재 직원 수
+  Employee** employee_list;  // 직원 데이터
 
+ public:
+  EmployeeList(int alloc_employee) : alloc_employee(alloc_employee) {
+    employee_list = new Employee*[alloc_employee];
+    current_employee = 0;
+  }
+  void add_employee(Employee* employee) {
+    // 사실 current_employee 보다 alloc_employee 가 더
+    // 많아지는 경우 반드시 재할당을 해야 하지만, 여기서는
+    // 최대한 단순하게 생각해서 alloc_employee 는
+    // 언제나 current_employee 보다 크다고 생각한다.
+    // (즉 할당된 크기는 현재 총 직원수 보다 많음)
+    employee_list[current_employee] = employee;
+    current_employee++;
+  }
+  int current_employee_num() { return current_employee; }
 
-public:
+  void print_employee_info() {
+    int total_pay = 0;
+    for (int i = 0; i < current_employee; i++) {
+      employee_list[i]->print_info();
+      total_pay += employee_list[i]->calculate_pay();
+    }
 
-
-EmployeeList(int alloc_employee) : alloc_employee(alloc_employee)
-{
-employee_list = new Employee* [alloc_employee];
-current_employee = 0;
-}
-void add_employee(Employee* employee)
-{
-// 사실 current_employee 보다 alloc_employee 가 더
-// 많아지는 경우 반드시 재할당을 해야 하지만, 여기서는
-// 최대한 단순하게 생각해서 alloc_employee 는
-// 언제나 current_employee 보다 크다고 생각한다.
-// (즉 할당된 크기는 현재 총 직원수 보다 많음)
-employee_list[current_employee] = employee;
-current_employee ++;
-}
-int current_employee_num()
-{
-return current_employee;
-}
-
-
-void print_employee_info()
-{
-int total_pay = 0;
-for(int i = 0; i < current_employee; i ++) {
-employee_list[i]->print_info();
-total_pay += employee_list[i]->calculate_pay();
-}
-
-
-cout << "총 비용 : " << total_pay << "만원 " << endl;
-}
-~EmployeeList()
-{
-for(int i = 0; i < current_employee; i ++) {
-delete employee_list[i];
-}
-delete [] employee_list;
-}
+    cout << "총 비용 : " << total_pay << "만원 " << endl;
+  }
+  ~EmployeeList() {
+    for (int i = 0; i < current_employee; i++) {
+      delete employee_list[i];
+    }
+    delete[] employee_list;
+  }
 };
-int main()
-{
-EmployeeList emp_list(10);
-emp_list.add_employee(new Employee("노홍철", 34, "평사원", 1));
-emp_list.add_employee(new Employee("하하", 34, "평사원", 1));
+int main() {
+  EmployeeList emp_list(10);
+  emp_list.add_employee(new Employee("노홍철", 34, "평사원", 1));
+  emp_list.add_employee(new Employee("하하", 34, "평사원", 1));
 
-emp_list.add_employee(new Manager("유재석", 41, "부장", 7, 12));
-emp_list.add_employee(new Manager("정준하", 43, "과장", 4, 15));
-emp_list.add_employee(new Manager("박명수", 43, "차장", 5, 13));
-emp_list.add_employee(new Employee("정형돈", 36, "대리", 2));
-emp_list.add_employee(new Employee("길", 36, "인턴", -2));
-emp_list.print_employee_info();
-return 0;
+  emp_list.add_employee(new Manager("유재석", 41, "부장", 7, 12));
+  emp_list.add_employee(new Manager("정준하", 43, "과장", 4, 15));
+  emp_list.add_employee(new Manager("박명수", 43, "차장", 5, 13));
+  emp_list.add_employee(new Employee("정형돈", 36, "대리", 2));
+  emp_list.add_employee(new Employee("길", 36, "인턴", -2));
+  emp_list.print_employee_info();
+  return 0;
 }
 ```
 
@@ -1019,7 +843,7 @@ return 0;
 
 와 같이 비록 `Employee*` 가 가리키고 있음에도 불구하고 `Manager` 면 `Manager` 의 함수를, `Employee` 면 `Employee` 의 함수를 잘 호출하고 있음을 알 수 있습니다. 물론 바뀐 것은 단 두 단어. `virtual` 키워들을 `Employee` 의 함수들 앞에 추가해놓은 것 뿐이지요.
 
-```cpp
+```cpp-formatted
 
 employee_list[i]->print_info();
 total_pay += employee_list[i]->calculate_pay();
@@ -1051,9 +875,3 @@ total_pay += employee_list[i]->calculate_pay();
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-
-

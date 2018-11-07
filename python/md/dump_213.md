@@ -53,7 +53,7 @@ C++ 의 모든 입출력 클래스는 `ios_base` 를 부모 클래스로 하게 
 
 
 여태까지 `ios_base` 와 `ios` 클래스들이 입출력 작업을 위해 바탕을 깔아주는 클래스 였다면, `istream` 은 실제로 입력을 수행하는 클래스 입니다. 대표적으로 우리가 항상 사용하던 `operator>>` 가 이 `istream` 클래스에 정의되어 있는 연산자 입니다. 또, `cin` 은 `istream` 클래스의 객체 중 하나 입니다. 그렇기 때문에 우리는
-```cpp
+```cpp-formatted
 
 cin >> a;
 ```
@@ -62,39 +62,39 @@ cin >> a;
 
 와 같은 작업을 할 수 있었던 것이지요. 우리가, 어떤 타입에 대해서도 `cin` 을 사용할 수 있었던 이유는 (`a` 가 `char` 이냐 `int` 이냐에 상관없이) 바로 `opeartor>>` 가 그런 모든 기본 타입들에 대해서는 정의가 되어있기 때문입니다.
 
-```cpp
-istream& operator>> (bool& val);
+```cpp-formatted
+istream& operator>>(bool& val);
 
-istream& operator>> (short& val);
+istream& operator>>(short& val);
 
-istream& operator>> (unsigned short& val);
+istream& operator>>(unsigned short& val);
 
-istream& operator>> (int& val);
+istream& operator>>(int& val);
 
-istream& operator>> (unsigned int& val);
+istream& operator>>(unsigned int& val);
 
-istream& operator>> (long& val);
+istream& operator>>(long& val);
 
-istream& operator>> (unsigned long& val);
+istream& operator>>(unsigned long& val);
 
-istream& operator>> (long long& val);
+istream& operator>>(long long& val);
 
-istream& operator>> (unsigned long long& val);
+istream& operator>>(unsigned long long& val);
 
-istream& operator>> (float& val);
+istream& operator>>(float& val);
 
-istream& operator>> (double& val);
+istream& operator>>(double& val);
 
-istream& operator>> (long double& val);
+istream& operator>>(long double& val);
 
-istream& operator>> (void*& val);
+istream& operator>>(void*& val);
 ```
 
 
 
 그렇다고 해서, 우리가 언제나 위 타입들 빼고는 `operator>>` 로 받을 수 없는 것이 아닙니다. 실제로 `istream` 클래스의 멤버 함수로는 없지만;
 
-```cpp
+```cpp-formatted
 
 string s;
 
@@ -108,13 +108,12 @@ cin >> s;
 
 이 경우에는
 
-```cpp
+```cpp-formatted
 
 istream& operator>>(istream& in, string& s)
 
 {
-
-// 구현한다
+  // 구현한다
 }
 ```
 
@@ -125,11 +124,17 @@ istream& operator>>(istream& in, string& s)
 
 `operator>>` 의 또 다른 특징으로는, 모든 공백문자 (띄어쓰기나 엔터, 탭 등)을 입력시에 무시해버린다는 점입니다. 그렇기 때문에, 만일 `cin` 을 통해서 문장을 입력 받는 다면, 첫 단어 만 입력 받고 나머지를 읽을 수 없습니다. 예제로 간단히 살펴보자면
 
-```cpp
+```cpp-formatted
 #include <iostream>
 #include <string>
 using namespace std;
-int main(){    string s;while (true) {        cin >> s;        cout <<"word : " << s << endl;    }}
+int main() {
+  string s;
+  while (true) {
+    cin >> s;
+    cout << "word : " << s << endl;
+  }
+}
 ```
 
 
@@ -145,19 +150,18 @@ int main(){    string s;while (true) {        cin >> s;        cout <<"word : " 
 와 같이 문장을 입력하더라도, 공백문자에 따라서 각각을 분리해서 입력받게 되는 것입니다.
 위와 같이 비록 `operator>>` 가 매우 편리해보이지만, 반드시 주의해야 할 점이 있는 점이 있습니다.
 
-```cpp
+```cpp-formatted
 
 // 주의할 점
 #include <iostream>
 usingnamespace std;
-int main()
-{
-int t;
-while (true) {
-        cin >> t;
-        cout <<"입력 :: " << t << endl;
-if(t == 0)break;
-    }
+int main() {
+  int t;
+  while (true) {
+    cin >> t;
+    cout << "입력 :: " << t << endl;
+    if (t == 0) break;
+  }
 }
 ```
 
@@ -198,13 +202,19 @@ if(t == 0)break;
 
 문제는 이렇게 그냥 리턴해버리면서 버퍼에 남아 있는 'c\n' 이 문자열에는 손대지 않는다는 것입니다. 그렇기 때문에 다음에 또 읽고, 또 읽고, ... 결국 위와 같은 문제를 일으키게 됩니다.
 
-```cpp
+```cpp-formatted
 
 // 해결 방안
 #include <iostream>
 #include <string>
 using namespace std;
-int main(){int t;while (cin >> t) {        cout <<"입력 :: " << t << endl;if(t == 0)break;    }}
+int main() {
+  int t;
+  while (cin >> t) {
+    cout << "입력 :: " << t << endl;
+    if (t == 0) break;
+  }
+}
 ```
 
 
@@ -220,7 +230,7 @@ int main(){int t;while (cin >> t) {        cout <<"입력 :: " << t << en
 
 위와 같이 무한 루프에 빠지지 않고 제대로 처리됨을 알 수 있습니다. 어떻게 가능한 것일까요? 일단, `while` 문의 조건에 들어가 있는 저 식의 의미 부터 이해를 해봅시다.
 
-```cpp
+```cpp-formatted
 
 while (cin >> t) {
 ```
@@ -229,7 +239,7 @@ while (cin >> t) {
 
 위 식을 보기에 앞서, `ios` 에 정의되어 있는 함수들을 살펴보자면 다음과 같은 함수가 있음을 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 operator void*() const;
 ```
@@ -243,13 +253,17 @@ operator void*() const;
 
 위와 같이 문제를 해결할 수 있었지만, 입력을 계속 진행 할 수는 없습니다. 왜냐하면 현재 `cin` 에 `fail` 비트가 켜진 상태이므로, 플래그를 초기화해버리지 않는 한 `cin` 을 이용하여 입력 받을 수 없게 됩니다.
 
-```cpp
+```cpp-formatted
 #include <iostream>
 #include <string>
 using namespace std;
-int main(){
-  int t;    cin >> t;// 고의적으로 문자를 입력하면 failbit 가 켜진다
-  cout <<"fail 비트가 켜진 상태이므로, 입력받지 않는다" << endl;    string s;    cin >> s;}
+int main() {
+  int t;
+  cin >> t;  // 고의적으로 문자를 입력하면 failbit 가 켜진다
+  cout << "fail 비트가 켜진 상태이므로, 입력받지 않는다" << endl;
+  string s;
+  cin >> s;
+}
 ```
 
 
@@ -263,22 +277,24 @@ int main(){
 
 그렇다면 이 문제를 어떻게 해결 할 수 있을까요?
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
-int main(){
+int main() {
   int t;
   while (true) {
-            cin >> t;
-            cout <<"입력 :: " << t << endl;
-            if(cin.fail()) {
-              cout <<"제대로 입력해주세요" << endl;
-              cin.clear();// 플래그들을 초기화 하고
-              cin.ignore(100,'\n');// 개행문자가 나올 때 까지 무시한다
-            }
-        if(t == 0)break;    }}
+    cin >> t;
+    cout << "입력 :: " << t << endl;
+    if (cin.fail()) {
+      cout << "제대로 입력해주세요" << endl;
+      cin.clear();            // 플래그들을 초기화 하고
+      cin.ignore(100, '\n');  // 개행문자가 나올 때 까지 무시한다
+    }
+    if (t == 0) break;
+  }
+}
 ```
 
 
@@ -293,20 +309,20 @@ int main(){
 위와 같이 잘 처리됩니다. 위 과정이 어떻게 가능한지 자세히 살펴보도록 합시다.
 
 
-```cpp
+```cpp-formatted
 
-if(cin.fail()) {
+if (cin.fail()) {
 ```
 
 
 
 먼저 `fail` 함수는 `ios` 에 정의되어 있으며, `failbit` 가 `true` 거나 `badbit` 가 `true` 면 `true` 를 리턴합니다. 만일 숫자가 아닌 것을 입력한다면 `failbit` 가 `true` 이므로, `cin.fail()` 은 `true` 가 되어 조건문을 실행하게 됩니다.
 
-```cpp
+```cpp-formatted
 
-cin.clear(); // 플래그들을 초기화 하고
+cin.clear();  // 플래그들을 초기화 하고
 
-cin.ignore(100, '\n'); // 버퍼를 비워버린다
+cin.ignore(100, '\n');  // 버퍼를 비워버린다
 ```
 
 
@@ -341,15 +357,23 @@ this is a very bad input\n
 
 
 앞서 `ios_base` 클래스에서, 스트림의 입출력 형식을 바꿀 수 있다고 하였습니다. 예를들어서, 여태까지 수를 입력하면 10진수로 처리되었지만, 이번에는 16진수로 처리할 수 있는 법입니다. 이를 어떻게 가능하게 하는지 아래의 예제로 보여드리겠습니다.
-```cpp
+```cpp-formatted
 #include <string>
 using namespace std;
-int main(){int t;while (true) {
-          cin.setf(ios_base::hex, ios_base::basefield);       
-           cin >> t;        cout <<"입력 :: " << t << endl;if(cin.fail()) {
-                        cout <<"제대로 입력해주세요" << endl;
-                                    cin.clear();// 플래그들을 초기화 하고            cin.ignore(100,'n');//개행문자가 나올 때까지 무시한다
-                        }if(t == 0)break;    }}
+int main() {
+  int t;
+  while (true) {
+    cin.setf(ios_base::hex, ios_base::basefield);
+    cin >> t;
+    cout << "입력 :: " << t << endl;
+    if (cin.fail()) {
+      cout << "제대로 입력해주세요" << endl;
+      cin.clear();  // 플래그들을 초기화 하고 cin.ignore(100,'n');//개행문자가
+                    // 나올 때까지 무시한다
+    }
+    if (t == 0) break;
+  }
+}
 ```
 
 성공적으로 컴파일 하였다면
@@ -357,7 +381,7 @@ int main(){int t;while (true) {
 
 
 위와 같이 16진수 입력을 잘 받는 다는 것을 볼 수 있습니다. (출력 형식은 바꾸지 않았으므로, 10진수로 출력됩니다) 이 처럼 입력 받는 형식을 16진수로 바꿔준 함수는 보시다 싶이, 아래와 같은 스트림의 설정을 바꾸는 `setf` 함수 덕분입니다.
-```cpp
+```cpp-formatted
 
 cin.setf(ios_base::hex, ios_base::basefield);
 ```
@@ -372,25 +396,24 @@ cin.setf(ios_base::hex, ios_base::basefield);
 
 그런데 흥미롭게도, 비슷하지만 또 다른 방식으로 16진수를 받을 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 // 조작자의 사용
 #include <iostream>
 #include <string>
 usingnamespace std;
-int main()
-{
-int t;
-while (true) {
-        cin >> hex >> t;
-        cout <<"입력 :: " << t << endl;
-if(cin.fail()) {
-            cout <<"제대로 입력해주세요" << endl;
-            cin.clear();// 플래그들을 초기화 하고
-            cin.ignore(100,'n');//개행문자가 나올 때까지 무시한다
-        }
-if(t == 0)break;
-    }
+int main() {
+  int t;
+  while (true) {
+    cin >> hex >> t;
+    cout << "입력 :: " << t << endl;
+    if (cin.fail()) {
+      cout << "제대로 입력해주세요" << endl;
+      cin.clear();           // 플래그들을 초기화 하고
+      cin.ignore(100, 'n');  //개행문자가 나올 때까지 무시한다
+    }
+    if (t == 0) break;
+  }
 }
 ```
 
@@ -407,7 +430,7 @@ if(t == 0)break;
 
 위와 같이 16진수를 잘 입력받는다는 사실을 알 수 있습니다. 이게 어떻게 된 일 일까요?
 
-```cpp
+```cpp-formatted
 
 cin >> hex >> t;
 ```
@@ -418,25 +441,25 @@ cin >> hex >> t;
 
 위의 형식 플래그 `hex` 는 `ios_base` 에 선언되어 있는 단순한 상수 '값' 입니다. 반면에 조작자 `hex` 의 경우 `ios` 에 정의되어 있는 '함수' 입니다. 이 조작자 hex 의 정의를 살펴보자면, 아래와 같이 `ios_base` 객체를 레퍼런스로 받고, 다시 그 객체를 리턴하도록 정의 되어 있습니다.
 
-```cpp
+```cpp-formatted
 
-std::ios_base& hex( std::ios_base& str );
+std::ios_base& hex(std::ios_base& str);
 ```
 
 
 
 그렇다면, `operator>>` 중에서 위 함수를 인자로 가지는 경우도 있을까요? 물론 있습니다.
 
-```cpp
+```cpp-formatted
 
-istream& operator>> (ios_base& (*pf)(ios_base&));
+istream& operator>>(ios_base& (*pf)(ios_base&));
 ```
 
 
 
 이렇게, `operator>>` 에서 조작자를 받는다면 많은 일을 하는 것이 아니라 단순히 `pf(*this)` 를 호출하게 됩니다. 호출된 hex 함수가 하는 일 또한 별로 없습니다. 단순히,
 
-```cpp
+```cpp-formatted
 
 str.setf(std::ios_base::hex, std::ios_base::basefield)
 ```
@@ -477,25 +500,22 @@ str.setf(std::ios_base::hex, std::ios_base::basefield)
 `streambuf` 클래스는 스트림의 상태를 나타내기 위해서 세 개의 포인터를 정의하고 있습니다. 먼저 버퍼의 시작 부분을 가리키는 시작 포인터와, 다음으로 읽을 문자를 가리키고 있는 포인터 (우리가 흔히 말하는 스트림 위치 지정자), 그리고 버퍼의 끝 부분을 가리키고 있는 끝 포인터가 있습니다. `streambuf` 클래스는 입력 버퍼와 출력 버퍼를 구분해서 각각 `get area` 와 `put area` 라 부르는데, 이에 따라 각각을 가리키는 포인터도 `g` 와 `p` 를 붙여서 표현하게 됩니다.
 
 아래 예제를 통해 `streambuf` 를 어떻게 하면 간단히 조작할 수 있는지 보여드리도록 하겠습니다.
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+int main() {
+  string s;
+  cin >> s;
 
-int main()
-{
-string s;
-cin >> s;
-
-
-// 위치 지정자를 한 칸 옮기고, 그 다음 문자를 훔쳐본다 (이 때는 움직이지 않음)
-char peek = cin.rdbuf()->snextc();
-if(cin.fail()) cout << "Failed";
-cout << "두 번째 단어 맨 앞글자 : " << peek  << endl;
-cin >> s;  cout << "다시 읽으면 : " << s << endl;
-
+  // 위치 지정자를 한 칸 옮기고, 그 다음 문자를 훔쳐본다 (이 때는 움직이지 않음)
+  char peek = cin.rdbuf()->snextc();
+  if (cin.fail()) cout << "Failed";
+  cout << "두 번째 단어 맨 앞글자 : " << peek << endl;
+  cin >> s;
+  cout << "다시 읽으면 : " << s << endl;
 }
 ```
 
@@ -510,7 +530,7 @@ cin >> s;  cout << "다시 읽으면 : " << s << endl;
 
 위와 같이 나옴을 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 char peek = cin.rdbuf()->snextc();
 ```
@@ -533,9 +553,10 @@ char peek = cin.rdbuf()->snextc();
 
 `snextc` 함수가 스트림 위치 지정자를 한 칸 전진시키므로, 공백 문자를 띄어넘고, `w` 를 가리키게 됩니다. 그리고, 이에 해당하는 문자인 `w` 를 리턴하게 됩니다. 이 때 `snextc` 함수는 스트림 위치 지정자를 건드리지 않기 때문에,
 
-```cpp
+```cpp-formatted
 
-cin >> s;  cout << "다시 읽으면 : " << s << endl;
+cin >> s;
+cout << "다시 읽으면 : " << s << endl;
 ```
 
 
@@ -567,22 +588,3 @@ cin >> s;  cout << "다시 읽으면 : " << s << endl;
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

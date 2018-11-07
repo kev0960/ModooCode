@@ -33,64 +33,54 @@ next_page : 198
 ###  생성자의 초기화 리스트(initializer `list)`
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-class Marine
-{
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-int damage; // 공격력
-bool is_dead;
+class Marine {
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  int damage;            // 공격력
+  bool is_dead;
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
 
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-void show_status(); // 상태를 보여준다.
+  void show_status();  // 상태를 보여준다.
 };
 
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-damage(5), is_dead(false) {}
+Marine::Marine() : hp(50), coord_x(0), coord_y(0), damage(5), is_dead(false) {}
 
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-damage(5), is_dead(false) {}
+Marine::Marine(int x, int y)
+    : coord_x(x), coord_y(y), hp(50), damage(5), is_dead(false) {}
 
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
 }
-int Marine::attack()
-{
-return damage;
+int Marine::attack() { return damage; }
+void Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
 }
-void Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-}
-void Marine::show_status()
-{
-cout << " *** Marine *** " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
+void Marine::show_status() {
+  cout << " *** Marine *** " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
 }
 
-int main()
-{
-Marine marine1 (2, 3);
-Marine marine2 (3, 5);
+int main() {
+  Marine marine1(2, 3);
+  Marine marine2(3, 5);
 
-marine1.show_status();
-marine2.show_status();
+  marine1.show_status();
+  marine2.show_status();
 }
 ```
 
@@ -102,22 +92,20 @@ marine2.show_status();
 
 예전에 만들었던 `Marine` 클래스와 달라진 것은 딱 하나인데, 바로 생성자에서 무언가 특이한 것을 도입했다는 것입니다. 한 번 살펴보도록 할까요.
 
-```cpp
+```cpp-formatted
 
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-damage(5), is_dead(false) {}
+Marine::Marine() : hp(50), coord_x(0), coord_y(0), damage(5), is_dead(false) {}
 ```
 
 
 놀랍게도 함수 본체에는 아무것도 없습니다. 오직, 위에 추가된 이상한 것들이 기존의 생성자가 했던 일과 동일한 작업을 하고 있을 뿐입니다. 기존의 생성자는
-```cpp
+```cpp-formatted
 
-Marine::Marine()
-{
-hp = 50;
-coord_x = coord_y = 0;
-damage = 5;
-is_dead = false;
+Marine::Marine() {
+  hp = 50;
+  coord_x = coord_y = 0;
+  damage = 5;
+  is_dead = false;
 }
 ```
 
@@ -129,7 +117,7 @@ is_dead = false;
 위와 같이 생성자 이름 뒤에
 
 
-```cpp
+```cpp-formatted
 
 : hp(50), coord_x(0), coord_y(0),
 damage(5), is_dead(false) {}
@@ -140,10 +128,10 @@ damage(5), is_dead(false) {}
 로 오는 것을 **초기화 리스트 (initializer list)** 라고 부르며, 생성자 호출과 동시에 멤버 변수들을 초기화해주게 됩니다.
 
 
-```cpp
+```cpp-formatted
 
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-damage(5), is_dead(false) {}
+Marine::Marine(int x, int y)
+    : coord_x(x), coord_y(y), hp(50), damage(5), is_dead(false) {}
 ```
 
 
@@ -153,9 +141,9 @@ damage(5), is_dead(false) {}
 
 멤버 초기화 리스트의 일반적인 꼴은 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 
-(생성자 이름) : var1 ( arg1 ), var2 ( arg2) { }
+(생성자 이름) : var1(arg1), var2(arg2) {}
 ```
 
 
@@ -163,10 +151,10 @@ damage(5), is_dead(false) {}
 여기서 `var` 들은 클래스의 멤버 변수들을 지칭하고, `arg` 는 그 멤버 변수들을 무엇으로 초기화 할 지 지칭하는 역할을 합니다. 한 가지 흥미로운 점은 `var1` 과 `arg1` 의 이름이 같아도 되는데, 실제로 아래의 예제는
 
 
-```cpp
+```cpp-formatted
 
-Marine::Marine(int coord_x, int coord_y) : coord_x(coord_x), coord_y(coord_y), hp(50),
-damage(5), is_dead(false) {}
+Marine::Marine(int coord_x, int coord_y)
+    : coord_x(coord_x), coord_y(coord_y), hp(50), damage(5), is_dead(false) {}
 ```
 
 
@@ -177,15 +165,14 @@ damage(5), is_dead(false) {}
 
 
 
-```cpp
+```cpp-formatted
 
-Marine::Marine(int coord_x, int coord_y)
-{
-coord_x = coord_x;
-coord_y = coord_y;
-hp = 50;
-damage = 5;
-is_dead = false;
+Marine::Marine(int coord_x, int coord_y) {
+  coord_x = coord_x;
+  coord_y = coord_y;
+  hp = 50;
+  damage = 5;
+  is_dead = false;
 }
 ```
 
@@ -197,14 +184,13 @@ is_dead = false;
 그렇다면, 왜 도대체 초기화 리스트를 사용해야 되냐고 물을 수 있습니다. 왜냐하면
 
 
-```cpp
+```cpp-formatted
 
-Marine::Marine()
-{
-hp = 50;
-coord_x = coord_y = 0;
-damage = 5;
-is_dead = false;
+Marine::Marine() {
+  hp = 50;
+  coord_x = coord_y = 0;
+  damage = 5;
+  is_dead = false;
 }
 ```
 
@@ -213,17 +199,16 @@ is_dead = false;
 나
 
 
-```cpp
+```cpp-formatted
 
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-damage(5), is_dead(false) {}
+Marine::Marine() : hp(50), coord_x(0), coord_y(0), damage(5), is_dead(false) {}
 ```
 
 는 하는 일이 똑같아 보이기 때문이죠. 하지만 실제로 약간의 차이가 있습니다. 왜냐하면, 초기화 리스트를 사용한 버전의 경우 **생성과 초기화를 동시에** 하게 됩니다.
 
 반면에 초기화 리스트를 사용하지 않는다면 **생성을 먼저 하고 그 다음에 대입** 을 수행하게 됩니다. 쉽게 말하면 초기화 리스트를 사용하는 것은
 
-```cpp
+```cpp-formatted
 
 int a = 10;
 ```
@@ -232,7 +217,7 @@ int a = 10;
 
 이라 하는 것과 같고, 그냥 예전 버전의 생성자를 사용하는 것은
 
-```cpp
+```cpp-formatted
 
 int a;
 a = 10;
@@ -260,70 +245,61 @@ ref = c; // [http://itguru.tistory.com/141](http://itguru.tistory.com/141) 를 �
 모두 컴파일 오류가 나겠지요. 따라서 만약에 클래스 내부에 레퍼런스 변수나 상수를 넣고 싶다면 이들을 생성자에서 무조건 초기화 리스트를 사용해서 초기화 시켜주어야만 합니다.
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-class Marine
-{
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-bool is_dead;
+class Marine {
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  bool is_dead;
 
-const int default_damage; // 기본 공격력
+  const int default_damage;  // 기본 공격력
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
 
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-void show_status(); // 상태를 보여준다.
+  void show_status();  // 상태를 보여준다.
 };
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-default_damage(5), is_dead(false) {}
+Marine::Marine()
+    : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {}
 
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-default_damage(5), is_dead(false) {}
+Marine::Marine(int x, int y)
+    : coord_x(x), coord_y(y), hp(50), default_damage(5), is_dead(false) {}
 
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
 }
-int Marine::attack()
-{
-return default_damage;
+int Marine::attack() { return default_damage; }
+void Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
 }
-void Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-}
-void Marine::show_status()
-{
-cout << " *** Marine *** " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
+void Marine::show_status() {
+  cout << " *** Marine *** " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
 }
 
-int main()
-{
-Marine marine1 (2, 3);
-Marine marine2 (3, 5);
+int main() {
+  Marine marine1(2, 3);
+  Marine marine2(3, 5);
 
-marine1.show_status();
-marine2.show_status();
+  marine1.show_status();
+  marine2.show_status();
 
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
-marine2.be_attacked(marine1.attack());
+  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  marine2.be_attacked(marine1.attack());
 
-marine1.show_status();
-marine2.show_status();
+  marine1.show_status();
+  marine2.show_status();
 }
 ```
 
@@ -343,10 +319,10 @@ marine2.show_status();
 위 마린 클래스는 프로그래머들의 실수로 마린의 공격력이 이상하게 변하는 것을 막기 위해서 기본 공격력이라는 상수 멤버를 도입해서, 딱 고정 시켜 버리고 마음 편하게 프로그래밍 할 수 있도록 하였습니다. 따라서 이를 위해 생성자에서 초기화 리스트를 도입해서
 
 
-```cpp
+```cpp-formatted
 
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-default_damage(5), is_dead(false) {}
+Marine::Marine()
+    : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {}
 ```
 
 
@@ -354,10 +330,10 @@ default_damage(5), is_dead(false) {}
 와 같이, `default_damage` 를 생성과 동시에 초기화 할 수 있도록 하였습니다. 따라서 우리는 상수인 `default_damage` 를 5 로 초기화 할 수 있고, 이 값은 영원히 바뀌지 않게 됩니다.
 
 
-```cpp
+```cpp-formatted
 
-Marine marine1 (2, 3);
-Marine marine2 (3, 5);
+Marine marine1(2, 3);
+Marine marine2(3, 5);
 
 marine1.show_status();
 marine2.show_status();
@@ -368,7 +344,7 @@ marine2.show_status();
 위와 같이 `Marine` 의 객체들 (`marine1, marine2`) 를 생성하면서 생성자 오버로딩에 따라 `Marine(int x, int y)` 가 호출되는데, 이를 통해 각각 (2,3) 과 (3,5) 에 위치해 있는 마린 객체들을 만들 수 있게 되었습니다. 그리고, `show_status` 를 호출해 보면 이들이 제대로 정의 되어 있다는 사실을 알 수 있습니다.
 
 
-```cpp
+```cpp-formatted
 
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 marine2.be_attacked(marine1.attack());
@@ -382,74 +358,69 @@ marine2.be_attacked(marine1.attack());
 위와 같이 중요한 값들을 상수로 처리하는 것은 매우 유용한 일입니다. 다른 프로그래머가 이 클래스를 사용하면서 실수로 `marine` 의 `default_damage` 를 변경하는 명령을 집어 넣더라고 컴파일 오류가 발생하기 때문에 프로그램을 실행해서 지루한 디버깅 과정을 거쳐서 알아 내는 것 보다 훨씬 효율적으로 오류를 발견할 수 있겠지요.
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-class Marine
-{
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-bool is_dead;
+class Marine {
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  bool is_dead;
 
-const int default_damage; // 기본 공격력
+  const int default_damage;  // 기본 공격력
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
-Marine(int x, int y, int default_damage);
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
+  Marine(int x, int y, int default_damage);
 
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-void show_status(); // 상태를 보여준다.
+  void show_status();  // 상태를 보여준다.
 };
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-default_damage(5), is_dead(false) {}
+Marine::Marine()
+    : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {}
 
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-default_damage(5), is_dead(false) {}
+Marine::Marine(int x, int y)
+    : coord_x(x), coord_y(y), hp(50), default_damage(5), is_dead(false) {}
 
-Marine::Marine(int x, int y, int default_damage) : coord_x(x), coord_y(y), hp(50),
-default_damage(default_damage), is_dead(false) {}
+Marine::Marine(int x, int y, int default_damage)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
+      default_damage(default_damage),
+      is_dead(false) {}
 
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
 }
-int Marine::attack()
-{
-return default_damage;
+int Marine::attack() { return default_damage; }
+void Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
 }
-void Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-}
-void Marine::show_status()
-{
-cout << " *** Marine *** " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
+void Marine::show_status() {
+  cout << " *** Marine *** " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
 }
 
-int main()
-{
-Marine marine1 (2, 3, 10);
-Marine marine2 (3, 5, 10);
+int main() {
+  Marine marine1(2, 3, 10);
+  Marine marine2(3, 5, 10);
 
-marine1.show_status();
-marine2.show_status();
+  marine1.show_status();
+  marine2.show_status();
 
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
-marine2.be_attacked(marine1.attack());
+  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  marine2.be_attacked(marine1.attack());
 
-marine1.show_status();
-marine2.show_status();
+  marine1.show_status();
+  marine2.show_status();
 }
 ```
 
@@ -466,17 +437,21 @@ marine2.show_status();
 이 예제에서는 생성자 하나를 새로 더 추가하였는데 한 번 살펴보도록 합시다.
 
 
-```cpp
+```cpp-formatted
 
-Marine::Marine(int x, int y, int default_damage) : coord_x(x), coord_y(y), hp(50),
-default_damage(default_damage), is_dead(false) {}
+Marine::Marine(int x, int y, int default_damage)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
+      default_damage(default_damage),
+      is_dead(false) {}
 ```
 
 
 
 이전에는 `default_damage` 에 초기화 리스트로 5 를 전달하였는데, 이 생성자의 경우 어떤 값을 전달할 지 인자로 받은 다음에 그 내용을 상수에 넣어주었습니다. 마찬가지로 이는
 
-```cpp
+```cpp-formatted
 
 const int default_damage = (인자로 받은 default_damage);
 ```
@@ -514,90 +489,90 @@ const int default_damage = (인자로 받은 default_damage);
 
 또한, 이 `static` 멤버 변수의 경우, 클래스의 모든 객체들이 '공유' 하는 변수로써 각 객체 별로 따로 존재하는 멤버 변수들과는 달리 모든 객체들이 '하나의' `static` 멤버 변수를 사용하게 됩니다. 그럼 바로 아래의 예제를 살펴 보도록 합시다.
 
-```cpp
+```cpp-formatted
 
 // static 멤버 변수의 사용
 
 #include <iostream>
 using namespace std;
 
-class Marine
-{
-static int total_marine_num;
+class Marine {
+  static int total_marine_num;
 
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-bool is_dead;
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  bool is_dead;
 
-const int default_damage; // 기본 공격력
+  const int default_damage;  // 기본 공격력
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
-Marine(int x, int y, int default_damage);
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
+  Marine(int x, int y, int default_damage);
 
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-void show_status(); // 상태를 보여준다.
+  void show_status();  // 상태를 보여준다.
 
-~Marine() { total_marine_num --;}
+  ~Marine() { total_marine_num--; }
 };
 int Marine::total_marine_num = 0;
 
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-default_damage(5), is_dead(false) { total_marine_num ++;}
-
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-default_damage(5), is_dead(false) { total_marine_num ++; }
-
-Marine::Marine(int x, int y, int default_damage) : coord_x(x), coord_y(y), hp(50),
-default_damage(default_damage), is_dead(false) { total_marine_num ++; }
-
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
-}
-int Marine::attack()
-{
-return default_damage;
-}
-void Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-}
-void Marine::show_status()
-{
-cout << " *** Marine *** " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
-cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+Marine::Marine()
+    : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
+  total_marine_num++;
 }
 
-void create_marine()
-{
-Marine marine3(10, 10, 4);
-marine3.show_status();
+Marine::Marine(int x, int y)
+    : coord_x(x), coord_y(y), hp(50), default_damage(5), is_dead(false) {
+  total_marine_num++;
 }
-int main()
-{
-Marine marine1 (2, 3, 5);
-marine1.show_status();
 
-Marine marine2 (3, 5, 10);
-marine2.show_status();
+Marine::Marine(int x, int y, int default_damage)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
+      default_damage(default_damage),
+      is_dead(false) {
+  total_marine_num++;
+}
 
-create_marine();
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
+}
+int Marine::attack() { return default_damage; }
+void Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
+}
+void Marine::show_status() {
+  cout << " *** Marine *** " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
+  cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+}
 
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
-marine2.be_attacked(marine1.attack());
+void create_marine() {
+  Marine marine3(10, 10, 4);
+  marine3.show_status();
+}
+int main() {
+  Marine marine1(2, 3, 5);
+  marine1.show_status();
 
-marine1.show_status();
-marine2.show_status();
+  Marine marine2(3, 5, 10);
+  marine2.show_status();
+
+  create_marine();
+
+  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  marine2.be_attacked(marine1.attack());
+
+  marine1.show_status();
+  marine2.show_status();
 }
 ```
 
@@ -609,14 +584,14 @@ marine2.show_status();
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F23493B3451A0FC9111D803)
 
 와 같이 나오게 됩니다.
-```cpp
+```cpp-formatted
 
 static int total_marine_num;
 ```
 
 먼저 위와 같이 클래스 `static` 변수를 정의하였습니다. 모든 전역 및 `static` 변수들은 정의와 동시에 값이 자동으로 0  으로 초기화 되기 때문에 이 경우 우리가 굳이 따로 초기화 하지 않아도 되지만 클래스 `static` 변수들의 경우 아래와 같은 방법으로 초기화 합니다.
 
-```cpp
+```cpp-formatted
 
 int Marine::total_marine_num = 0;
 ```
@@ -626,21 +601,19 @@ int Marine::total_marine_num = 0;
 간혹 어떤 사람들의 경우 클래스 내부에서
 
 
-```cpp
+```cpp-formatted
 
-class Marine
-{
-static int total_marine_num = 0;
+class Marine {
+  static int total_marine_num = 0;
 ```
 
 와 같이 초기화 해도 되지 않냐고 묻는 경우가 있는데, 멤버 변수들을 위와 같이 초기화 시키지 못하는 것처럼 `static` 변수 역시 클래스 내부에서 위와 같이 초기화 하는 것은 불가능 합니다. 위와 같은 꼴이 되는유일한 경우는 `const static` 변수일 때만 가능한데, 실제로
 
 
-```cpp
+```cpp-formatted
 
-class Marine
-{
-const static int x = 0;
+class Marine {
+  const static int x = 0;
 ```
 
 으로 쓸 수 있습니다.
@@ -649,23 +622,33 @@ const static int x = 0;
 그럼 실제로 `total_marine_sum` 이 잘 작동하고 있는지 살펴보도록 합시다. 클래스의 편한 점이 생성자와 소멸자를 제공한다는 점인데, 덕분에 `Marine` 이 생성될 때, 그리고 소멸될 때 굳이 따로 처리하지 않고도, 생성자와 소멸자 안에 `total_marine_num` 을 조작하는 문장을 넣어주면 편하게 처리할 수 있습니다. 그 결과
 
 
-```cpp
+```cpp-formatted
 
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-default_damage(5), is_dead(false) { total_marine_num ++;}
+Marine::Marine()
+    : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
+  total_marine_num++;
+}
 
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-default_damage(5), is_dead(false) { total_marine_num ++; }
+Marine::Marine(int x, int y)
+    : coord_x(x), coord_y(y), hp(50), default_damage(5), is_dead(false) {
+  total_marine_num++;
+}
 
-Marine::Marine(int x, int y, int default_damage) : coord_x(x), coord_y(y), hp(50),
-default_damage(default_damage), is_dead(false) { total_marine_num ++; }
+Marine::Marine(int x, int y, int default_damage)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
+      default_damage(default_damage),
+      is_dead(false) {
+  total_marine_num++;
+}
 ```
 
 로 각 생성자 호출 시에 `total_marine_num` 을 1 씩 증가시키는 문장을 넣었고,
 
-```cpp
+```cpp-formatted
 
-~Marine() { total_marine_num --;}
+~Marine() { total_marine_num--; }
 ```
 
 
@@ -673,32 +656,30 @@ default_damage(default_damage), is_dead(false) { total_marine_num ++; }
 소멸 될때는 1 감소시키는 문장을 넣었습니다.
 
 
-```cpp
+```cpp-formatted
 
-Marine marine1 (2, 3, 5);
+Marine marine1(2, 3, 5);
 marine1.show_status();
 
-Marine marine2 (3, 5, 10);
+Marine marine2(3, 5, 10);
 marine2.show_status();
 ```
 
 따라서 위를 실행하면 실제로 총 `Marine` 의 수가 `1, 2` 늘어나는 것을 확인할 수 있고, 그 다음에 `create_marine` 을 실행하였을 때
 
 
-```cpp
+```cpp-formatted
 
-void create_marine()
-{
-Marine marine3(10, 10, 4);
-marine3.show_status();
+void create_marine() {
+  Marine marine3(10, 10, 4);
+  marine3.show_status();
 }
-
 ```
 
 역시 `marine3` 을 생성함으로써 총 `marine` 의 수가 3 이 됨을 확인할 수 있는데, `marine3` 은 `create_marine` 의 지역 객체이기 때문에 `create_marine` 이 종료될 때 소멸되게 됩니다. 따라서 다시 `main` 함수로 돌아와서
 
 
-```cpp
+```cpp-formatted
 
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 marine2.be_attacked(marine1.attack());
@@ -716,94 +697,93 @@ marine1.show_status();
 
 즉, `static` 이 아닌 멤버 함수들의 경우 객체를 만들어야지만 각 멤버 함수들을 호출할 수 있지만 `static` 함수의 경우, 객체가 없어도 그냥 클래스 자체에서 호출할 수 있게 됩니다. 그럼, 아래 예제를 살펴볼까요.
 
-```cpp
+```cpp-formatted
 
 // static 함수
 
 #include <iostream>
 using namespace std;
 
-class Marine
-{
-static int total_marine_num;
-const static int i = 0;
+class Marine {
+  static int total_marine_num;
+  const static int i = 0;
 
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-bool is_dead;
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  bool is_dead;
 
-const int default_damage; // 기본 공격력
+  const int default_damage;  // 기본 공격력
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
-Marine(int x, int y, int default_damage);
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
+  Marine(int x, int y, int default_damage);
 
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-void show_status(); // 상태를 보여준다.
-static void show_total_marine();
-~Marine() { total_marine_num --;}
+  void show_status();  // 상태를 보여준다.
+  static void show_total_marine();
+  ~Marine() { total_marine_num--; }
 };
 int Marine::total_marine_num = 0;
-void Marine::show_total_marine()
-{
-cout << "전체 마린 수 : " << total_marine_num << endl;
+void Marine::show_total_marine() {
+  cout << "전체 마린 수 : " << total_marine_num << endl;
 }
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-default_damage(5), is_dead(false) { total_marine_num ++;}
-
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-default_damage(5), is_dead(false) { total_marine_num ++; }
-
-Marine::Marine(int x, int y, int default_damage) : coord_x(x), coord_y(y), hp(50),
-default_damage(default_damage), is_dead(false) { total_marine_num ++; }
-
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
-}
-int Marine::attack()
-{
-return default_damage;
-}
-void Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-}
-void Marine::show_status()
-{
-cout << " *** Marine *** " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
-cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+Marine::Marine()
+    : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
+  total_marine_num++;
 }
 
-void create_marine()
-{
-Marine marine3(10, 10, 4);
-Marine::show_total_marine();
+Marine::Marine(int x, int y)
+    : coord_x(x), coord_y(y), hp(50), default_damage(5), is_dead(false) {
+  total_marine_num++;
 }
-int main()
-{
-Marine marine1 (2, 3, 5);
-Marine::show_total_marine();
 
-Marine marine2 (3, 5, 10);
-Marine::show_total_marine();
+Marine::Marine(int x, int y, int default_damage)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
+      default_damage(default_damage),
+      is_dead(false) {
+  total_marine_num++;
+}
 
-create_marine();
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
+}
+int Marine::attack() { return default_damage; }
+void Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
+}
+void Marine::show_status() {
+  cout << " *** Marine *** " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
+  cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+}
 
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
-marine2.be_attacked(marine1.attack());
+void create_marine() {
+  Marine marine3(10, 10, 4);
+  Marine::show_total_marine();
+}
+int main() {
+  Marine marine1(2, 3, 5);
+  Marine::show_total_marine();
 
-marine1.show_status();
-marine2.show_status();
+  Marine marine2(3, 5, 10);
+  Marine::show_total_marine();
+
+  create_marine();
+
+  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  marine2.be_attacked(marine1.attack());
+
+  marine1.show_status();
+  marine2.show_status();
 }
 ```
 
@@ -822,7 +802,7 @@ marine2.show_status();
 `static` 함수는 앞에서 이야기 한 것과 같이, 어떤 객체에 종속되는 것이 아니라 클래스에 종속되는 것으로, 따라서 이를 호출하는 방법도 `(객체).(멤버 함수)` 가 아니라,
 
 
-```cpp
+```cpp-formatted
 Marine::show_total_marine();
 ```
 
@@ -831,12 +811,11 @@ Marine::show_total_marine();
 와 같이 `(클래스)::(static 함수)` 형식으로 호출하게 됩니다. 왜냐하면 어떠한 객체도 이 함수를 소유하고 있지 않기 때문이죠. 그러하기에, `static` 함수 내에서는 클래스의 `static` 변수 만을 이용할 수 밖에 없습니다. 만일 `static` 함수 내에서 아래처럼 그냥 클래스의 멤버 변수들을 이용한다면
 
 
-```cpp
+```cpp-formatted
 
-void Marine::show_total_marine()
-{
-cout << default_damage << endl; // default_damage 는 멤버 변수
-cout << "전체 마린 수 : " << total_marine_num << endl;
+void Marine::show_total_marine() {
+  cout << default_damage << endl;  // default_damage 는 멤버 변수
+  cout << "전체 마린 수 : " << total_marine_num << endl;
 }
 ```
 
@@ -849,95 +828,92 @@ cout << "전체 마린 수 : " << total_marine_num << endl;
 ###  this
 
 
-```cpp
+```cpp-formatted
 // 자기 자신을 가리키는 포인터 this
 #include <iostream>
 using namespace std;
 
+class Marine {
+  static int total_marine_num;
+  const static int i = 0;
 
-class Marine
-{
-static int total_marine_num;
-const static int i = 0;
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  bool is_dead;
 
+  const int default_damage;  // 기본 공격력
 
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-bool is_dead;
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
+  Marine(int x, int y, int default_damage);
 
+  int attack();                          // 데미지를 리턴한다.
+  Marine& be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);               // 새로운 위치
 
-const int default_damage; // 기본 공격력
-
-
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
-Marine(int x, int y, int default_damage);
-
-
-int attack(); // 데미지를 리턴한다.
-Marine& be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
-
-
-void show_status(); // 상태를 보여준다.
-static void show_total_marine();
-~Marine() { total_marine_num --;}
+  void show_status();  // 상태를 보여준다.
+  static void show_total_marine();
+  ~Marine() { total_marine_num--; }
 };
 int Marine::total_marine_num = 0;
-void Marine::show_total_marine()
-{
-cout << "전체 마린 수 : " << total_marine_num << endl;
+void Marine::show_total_marine() {
+  cout << "전체 마린 수 : " << total_marine_num << endl;
 }
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-default_damage(5), is_dead(false) { total_marine_num ++;}
-
-
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-
-default_damage(5), is_dead(false) { total_marine_num ++; }
-
-Marine::Marine(int x, int y, int default_damage) : coord_x(x), coord_y(y), hp(50),
-default_damage(default_damage), is_dead(false) { total_marine_num ++; }
-
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
-}
-int Marine::attack()
-{
-return default_damage;
-}
-Marine& Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-
-return *this;
-}
-void Marine::show_status()
-{
-cout << " *** Marine *** " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
-cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+Marine::Marine()
+    : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
+  total_marine_num++;
 }
 
-int main()
-{
-Marine marine1 (2, 3, 5);
-marine1.show_status();
+Marine::Marine(int x, int y)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
 
-Marine marine2 (3, 5, 10);
-marine2.show_status();
+      default_damage(5),
+      is_dead(false) {
+  total_marine_num++;
+}
 
-cout << endl << "마린 1 이 마린 2 를 두 번 공격! " << endl;
-marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
+Marine::Marine(int x, int y, int default_damage)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
+      default_damage(default_damage),
+      is_dead(false) {
+  total_marine_num++;
+}
 
-marine1.show_status();
-marine2.show_status();
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
+}
+int Marine::attack() { return default_damage; }
+Marine& Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
+
+  return *this;
+}
+void Marine::show_status() {
+  cout << " *** Marine *** " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
+  cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+}
+
+int main() {
+  Marine marine1(2, 3, 5);
+  marine1.show_status();
+
+  Marine marine2(3, 5, 10);
+  marine2.show_status();
+
+  cout << endl << "마린 1 이 마린 2 를 두 번 공격! " << endl;
+  marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
+
+  marine1.show_status();
+  marine2.show_status();
 }
 ```
 
@@ -957,32 +933,26 @@ marine2.show_status();
 일단 가장 먼저 눈에 띄는 것은 바로 레퍼런스를 리턴하는 함수와 `this` 라는 것인데, 차근 차근 살펴 보도록 하겠습니다.
 
 
-```cpp
+```cpp-formatted
 
-Marine& Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
+Marine& Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
 
-
-return *this;
+  return *this;
 }
 ```
 
 일단 `this` 라는 것이 C++ 언어 차원에서 정의되어 있는 키워드 인데, 이는 객체 자신을 가리키는 포인터의 역할을 합니다. 즉, 이 멤버 함수를 호출하는 객체 자신을 가리킨다는 것이지요. 따라서, 실제로 위 내용은
 
 
-```cpp
+```cpp-formatted
 
-Marine& Marine::be_attacked(int damage_earn)
-{
-this->hp -= damage_earn;
-if(this->hp <= 0)
-this->is_dead = true;
+Marine& Marine::be_attacked(int damage_earn) {
+  this->hp -= damage_earn;
+  if (this->hp <= 0) this->is_dead = true;
 
-
-return *this;
+  return *this;
 }
 ```
 
@@ -999,44 +969,42 @@ return *this;
 ###  레퍼런스를 리턴하는 함수
 
 
-```cpp
+```cpp-formatted
 // 레퍼런스를 리턴하는 함수
 #include <iostream>
 using namespace std;
 
-class A
-{
-int x;
+class A {
+  int x;
 
-public:
-A(int c) : x(c) {}
+ public:
+  A(int c) : x(c) {}
 
-int& access_x() { return x; }
-int get_x() { return x;}
-void show_x() { cout << x << endl;}
+  int& access_x() { return x; }
+  int get_x() { return x; }
+  void show_x() { cout << x << endl; }
 };
 
-int main()
-{
-A a(5);
-a.show_x();
+int main() {
+  A a(5);
+  a.show_x();
 
-int& c = a.access_x();
-c = 4;
-a.show_x();
+  int& c = a.access_x();
+  c = 4;
+  a.show_x();
 
-int d = a.access_x();
-d = 3;
-a.show_x();
+  int d = a.access_x();
+  d = 3;
+  a.show_x();
 
-// 아래는 오류
-// int& e = a.get_x();
-// e = 2;
-// a.show_x();
+  // 아래는 오류
+  // int& e = a.get_x();
+  // e = 2;
+  // a.show_x();
 
-int f = a.get_x();
-f = 1;
-a.show_x();
+  int f = a.get_x();
+  f = 1;
+  a.show_x();
 }
 ```
 
@@ -1050,16 +1018,16 @@ a.show_x();
 일단 위 클래스 `A` 는 아래와 같이 `int` 와 `int` 의 레퍼런스를 리턴하는 두 개의 함수를 가지고 있습니다.
 
 
-```cpp
+```cpp-formatted
 
 int& access_x() { return x; }
-int get_x() { return x;}
+int get_x() { return x; }
 ```
 
 `access_x` 는 `x` 의 레퍼런스를 리턴하게 되고, `get_x` 는 `x` 의 '값' 을 리턴하게 되지요. 실제로 이들이 어떻게 작동하는지 살펴보도록 하겠습니다.
 
 
-```cpp
+```cpp-formatted
 
 int& c = a.access_x();
 c = 4;
@@ -1068,9 +1036,9 @@ a.show_x();
 
 여기서 레퍼런스 `c` 는 `x` 의 레퍼런스, 즉 `x` 의 별명을 받았습니다. 따라서, `c` 는 `x` 의 별명으로 탄생하게 되는 것이지요.레퍼런스를 리턴하는 함수는 그 함수 부분을 원래의 변수로 치환했다고 생각해도 상관이 없습니다. 다시 말해서
 
-```cpp
+```cpp-formatted
 
-int &c = x; // 여기서 x 는 a 의 x
+int &c = x;  // 여기서 x 는 a 의 x
 ```
 
 
@@ -1078,7 +1046,7 @@ int &c = x; // 여기서 x 는 a 의 x
 와 동일한 말이라는 것입니다. 따라서 `c` 의 값을 바꾸는 것은 `a` 의 `x` 의 값을 바꾸는 것과 동일한 의미이므로 (c 는 단순히 x 에 다른 이름을 붙여준 것일뿐!) `show_x` 를 실행 시에 `x` 의 값이 5 에서 4 로 바뀌었음을 알 수 있습니다. 그렇다면 아래 예도 살펴볼까요.
 
 
-```cpp
+```cpp-formatted
 
 int d = a.access_x();
 d = 3;
@@ -1113,7 +1081,7 @@ error C2440: 'initializing' : cannot convert from 'int' to 'int &' (int 를 int&
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F272F193851A18E5A29B569)
 
 `get_x` 의 리턴으로 인해 임시로 '복사생성' 된 `int` 는 `a.get_x()` 부분을 대체하며 위 그림의 경우
-```cpp
+```cpp-formatted
 
 int &e = x'
 ```
@@ -1123,7 +1091,7 @@ int &e = x'
 과 같이 되는데, x' 은 문장이 끝날 때 자동으로 소멸되는 임시 객체 이기 때문에 레퍼런스를 만들 수 없습니다. 설사 레퍼런스를 만들었다고 해도 '이미 존재하지 않는 것에 대한 별명' 이 되므로 이 레퍼런스에 접근하는 것은 오류이겠지요. 아무튼 이러한 이유로 `int` 를 리턴하는 `a.get_x` 에 대해서는 레퍼런스를 만들 수 없습니다. (정확한 설명을 하자면 `int&` 는 좌측값에 대한 레퍼런스 이고, `a.get_x()` 는 우측값 이기 때문에 레퍼런스를 만들 수 없습니다. 좌측값, 우측값 내용은 나중에 더 자세히 다루겠지만 [궁금하신 분들은 이 글을 읽어보세요](http://itguru.tistory.com/189)`!)`
 
 
-```cpp
+```cpp-formatted
 
 int f = a.get_x();
 f = 1;
@@ -1134,7 +1102,7 @@ a.show_x();
 
 마지막으로 위 코드는 익히 보왔던 것 처럼, 임시로 생성된 `int` 변수 (위 그림에서는 `x'`) 이 `f` 에 복사되는데, 역시 `f = 1` 한 것이 실제 객체 `a` 의 `x` 에게는 아무런 영향을 끼칠 수 없겠지요. 한 가지 재미있는 점은
 
-```cpp
+```cpp-formatted
 
 a.access_x() = 3;
 ```
@@ -1143,7 +1111,7 @@ a.access_x() = 3;
 
 위 문장이 잘 작동한다는 점인데, 앞에서도 말했지만 '레퍼런스를 리턴하는 함수는 그 함수 부분을 리턴하는 원래 변수로 치환해도 됀다' 라는 말이 명확히 들어맞는 다는 점입니다. 즉, 위 문장은 결국
 
-```cpp
+```cpp-formatted
 
 a.x = 3;
 ```
@@ -1152,7 +1120,7 @@ a.x = 3;
 
 과 동일한 말이 됩니다. 그 에 반면, 잘 알고 있듯이
 
-```cpp
+```cpp-formatted
 
 a.get_x() = 3;
 ```
@@ -1165,16 +1133,13 @@ a.get_x() = 3;
 그럼 이제 다시 예전의 `Marine` 예제로 돌아가보도록 합시다.
 
 
-```cpp
+```cpp-formatted
 
-Marine& Marine::be_attacked(int damage_earn)
-{
-this->hp -= damage_earn;
-if(this->hp <= 0)
-this->is_dead = true;
+Marine& Marine::be_attacked(int damage_earn) {
+  this->hp -= damage_earn;
+  if (this->hp <= 0) this->is_dead = true;
 
-
-return *this;
+  return *this;
 }
 ```
 
@@ -1182,7 +1147,7 @@ return *this;
 
 위 경우 `be_attacked` 함수는 `Marine&` 타입을 리턴하게 되는데, 위 경우, `*this` 를 리턴하게 됩니다. 앞에서도 말했지만 `this` 가 지금 이 함수를 호출한 객체를 가리키는 것은 기억 하시죠? 그렇기 때문에 `*this` 는 그 객체 자신을 의미하게 됩니다. 따라서,
 
-```cpp
+```cpp-formatted
 
 marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 ```
@@ -1192,16 +1157,13 @@ marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 문장의 경우, 먼저 `marine2.be_attacked(marine1.attack())` 이 먼저 실행되고 리턴되는 것이 다시 `marine2` 이므로 그 다음에 또 한 번`marine2.be_attacked(marine1.attack`()) 가 실행된다고 생각할 수 있습니다. 간단하죠? 만일, `be_attacked` 함수의 리턴 타입이 `Marine&` 이 아니라 그냥 `Marine` 이라고 해봅시다. 즉, 만일 `be_attacked` 함수가 아래와 같이 바뀌었다고 가정한다면
 
 
-```cpp
+```cpp-formatted
 
-MarineMarine::be_attacked(int damage_earn)
-{
-this->hp -= damage_earn;
-if(this->hp <= 0)
-this->is_dead = true;
+MarineMarine::be_attacked(int damage_earn) {
+  this->hp -= damage_earn;
+  if (this->hp <= 0) this->is_dead = true;
 
-
-return *this;
+  return *this;
 }
 ```
 
@@ -1209,7 +1171,7 @@ return *this;
 
 위로 바뀐 함수를 가지고
 
-```cpp
+```cpp-formatted
 
 marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 ```
@@ -1230,7 +1192,7 @@ marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 
 
 C++ 에서는 변수들의 값을 바꾸지 않고 읽기 만 하는, 마치 상수 같 C++ 에서는 변수들의 값을 바꾸지 않고 읽기 만 하는, 마치 상수 같은멤버 함수를 '상수 함수' 로써 선언할 수 있습니다. 아래의 예제를 살펴봅시다.
-```cpp
+```cpp-formatted
 
 // 상수 멤버 함수
 
@@ -1238,90 +1200,87 @@ C++ 에서는 변수들의 값을 바꾸지 않고 읽기 만 하는, 마치 상
 #include <iostream>
 using namespace std;
 
+class Marine {
+  static int total_marine_num;
+  const static int i = 0;
 
-class Marine
-{
-static int total_marine_num;
-const static int i = 0;
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  bool is_dead;
 
+  const int default_damage;  // 기본 공격력
 
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-bool is_dead;
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
+  Marine(int x, int y, int default_damage);
 
+  int attack() const;                    // 데미지를 리턴한다.
+  Marine& be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);               // 새로운 위치
 
-const int default_damage; // 기본 공격력
-
-
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
-Marine(int x, int y, int default_damage);
-
-
-int attack() const ; // 데미지를 리턴한다.
-Marine& be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
-
-
-void show_status(); // 상태를 보여준다.
-static void show_total_marine();
-~Marine() { total_marine_num --;}
+  void show_status();  // 상태를 보여준다.
+  static void show_total_marine();
+  ~Marine() { total_marine_num--; }
 };
 int Marine::total_marine_num = 0;
-void Marine::show_total_marine()
-{
-cout << "전체 마린 수 : " << total_marine_num << endl;
+void Marine::show_total_marine() {
+  cout << "전체 마린 수 : " << total_marine_num << endl;
 }
-Marine::Marine() : hp(50), coord_x(0), coord_y(0),
-default_damage(5), is_dead(false) { total_marine_num ++;}
-
-
-Marine::Marine(int x, int y) : coord_x(x), coord_y(y), hp(50),
-
-default_damage(5), is_dead(false) { total_marine_num ++; }
-
-Marine::Marine(int x, int y, int default_damage) : coord_x(x), coord_y(y), hp(50),
-default_damage(default_damage), is_dead(false) { total_marine_num ++; }
-
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
-}
-int Marine::attack() const
-{
-return default_damage;
-}
-Marine& Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-
-return *this;
-}
-void Marine::show_status()
-{
-cout << " *** Marine *** " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
-cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+Marine::Marine()
+    : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
+  total_marine_num++;
 }
 
-int main()
-{
-Marine marine1 (2, 3, 5);
-marine1.show_status();
+Marine::Marine(int x, int y)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
 
-Marine marine2 (3, 5, 10);
-marine2.show_status();
+      default_damage(5),
+      is_dead(false) {
+  total_marine_num++;
+}
 
-cout << endl << "마린 1 이 마린 2 를 두 번 공격! " << endl;
-marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
+Marine::Marine(int x, int y, int default_damage)
+    : coord_x(x),
+      coord_y(y),
+      hp(50),
+      default_damage(default_damage),
+      is_dead(false) {
+  total_marine_num++;
+}
 
-marine1.show_status();
-marine2.show_status();
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
+}
+int Marine::attack() const { return default_damage; }
+Marine& Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
+
+  return *this;
+}
+void Marine::show_status() {
+  cout << " *** Marine *** " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
+  cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+}
+
+int main() {
+  Marine marine1(2, 3, 5);
+  marine1.show_status();
+
+  Marine marine2(3, 5, 10);
+  marine2.show_status();
+
+  cout << endl << "마린 1 이 마린 2 를 두 번 공격! " << endl;
+  marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
+
+  marine1.show_status();
+  marine2.show_status();
 }
 ```
 
@@ -1336,16 +1295,16 @@ marine2.show_status();
 
 와 같이 나옵니다. 사실 위 소스는 거의 바뀐 것은 없고, 단순히 예시를 위해 아래와 같이 `attack` 함수를 살짝 바꾸었습니다.
 
-```cpp
+```cpp-formatted
 
-int attack() const ; // 데미지를 리턴한다.
+int attack() const;  // 데미지를 리턴한다.
 ```
 
 
 
 일단 상수 함수는 위와 같은 형태로 선언을 하게 됩니다. 즉,
 
-```cpp
+```cpp-formatted
 
 (기존의 함수의 정의) const;
 ```
@@ -1355,12 +1314,9 @@ int attack() const ; // 데미지를 리턴한다.
 그리고 함수의 정의 역시 `const` 키워드를 꼭 넣어주어야 하는데, 아래와 같이 말이지요.
 
 
-```cpp
+```cpp-formatted
 
-int Marine::attack() const
-{
-return default_damage;
-}
+int Marine::attack() const { return default_damage; }
 ```
 
 
@@ -1383,37 +1339,31 @@ return default_damage;
 #### 문제 1
 
 아래와 같은 코드에서 `copy constructor` 는 몇 번 이나 표시될까요?
-```cpp
+```cpp-formatted
 
-class A
-{
-    int x;
+class A {
+  int x;
 
-
-public:
-    A(int c) : x(c) {}
-    A(const A& a) { x = a.x; cout << "복사생성" << endl;}
+ public:
+  A(int c) : x(c) {}
+  A(const A& a) {
+    x = a.x;
+    cout << "복사생성" << endl;
+  }
 };
 
+class B {
+  A a;
 
-class B
-{
-    A a;
-
-
-public:
-    B(int c) : a(c) {}
-    B(const B& b) : a(b.a) { }
-    A get_A() { return a;}
+ public:
+  B(int c) : a(c) {}
+  B(const B& b) : a(b.a) {}
+  A get_A() { return a; }
 };
 
-
-int main()
-{
-    B b(10);
-    A a1 = b.get_A();
-
-
+int main() {
+  B b(10);
+  A a1 = b.get_A();
 }
 ```
 

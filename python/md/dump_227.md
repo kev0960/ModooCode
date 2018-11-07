@@ -27,38 +27,30 @@ next_page : 228
 
 
 아래 코드를 실행해보면 결과가 어떻게 나올까요?
-```cpp
+```cpp-formatted
 
 #include <iostream>
 
 using namespace std;
 
+class A {
+  int data_;
 
-class A
-{
-int data_;
+ public:
+  A(int data) : data_(data) { cout << "일반 생성자 호출!" << endl; }
 
-
-public:
-A(int data) : data_(data) {
-cout << "일반 생성자 호출!" << endl;
-}
-
-A(const A& a) : data_(a.data_) {
-data_ = a.data_;
-cout << "복사 생성자 호출!" << endl;
-}
+  A(const A& a) : data_(a.data_) {
+    data_ = a.data_;
+    cout << "복사 생성자 호출!" << endl;
+  }
 };
 
+int main() {
+  A a(1);  // 일반 생성자 호출
+  A b(a);  // 복사 생성자 호출
 
-int main()
-{
-A a(1); // 일반 생성자 호출
-A b(a); // 복사 생성자 호출
-
-
-// 그렇다면 이것은?
-A c(A(2));
+  // 그렇다면 이것은?
+  A c(A(2));
 }
 ```
 
@@ -76,7 +68,7 @@ A c(A(2));
 
 뭔가 예상했던 것과 조금 다르지요?
 
-```cpp
+```cpp-formatted
 
 // 그렇다면 이것은?
 A c(A(2));
@@ -86,7 +78,7 @@ A c(A(2));
 
 이 부분에서 "일반 생성자 호출!" 한번 만 출력되었습니다. 아마 정석대로 였다면,
 
-```cpp
+```cpp-formatted
 
 A(2)
 ```
@@ -108,134 +100,99 @@ A(2)
 
 이전에 만들어 놓았던 `MyString` 클래스를 다시 살펴보도록 해봅시다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
+class MyString {
+  char *string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char *string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+  int memory_capacity;  // 현재 할당된 용량
 
+ public:
+  MyString();
 
-int memory_capacity; // 현재 할당된 용량
+  // 문자열로 부터 생성
+  MyString(const char *str);
 
+  // 복사 생성자
+  MyString(const MyString &str);
 
-public:
-MyString();
+  void reserve(int size);
+  MyString operator+(const MyString &s);
+  ~MyString();
 
+  int length() const;
 
-// 문자열로 부터 생성
-MyString(const char* str);
-
-
-// 복사 생성자
-MyString(const MyString &str);
-
-void reserve(int size);
-MyString operator+ (const MyString &s);
-~MyString();
-
-
-int length() const;
-
-
-void print();
-void println();
+  void print();
+  void println();
 };
 
-
-MyString::MyString()
-{
-cout << "생성자 호출 ! " << endl;
-string_length = 0;
-memory_capacity = 0;
-string_content = NULL;
+MyString::MyString() {
+  cout << "생성자 호출 ! " << endl;
+  string_length = 0;
+  memory_capacity = 0;
+  string_content = NULL;
 }
 
+MyString::MyString(const char *str) {
+  cout << "생성자 호출 ! " << endl;
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-MyString::MyString(const char* str)
-{
-cout << "생성자 호출 ! " << endl;
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
-
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-cout << "복사 생성자 호출 ! " << endl;
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString &str) {
+  cout << "복사 생성자 호출 ! " << endl;
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str.string_content[i];
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
 }
-MyString::~MyString()
-{
-delete[] string_content;
+MyString::~MyString() { delete[] string_content; }
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char *prev_string_content = string_content;
+
+    string_content = new char[size];
+    memory_capacity = size;
+
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
+
+    if (prev_string_content != NULL) delete[] prev_string_content;
+  }
 }
-void MyString::reserve(int size)
-{
-if (size > memory_capacity) {
-char *prev_string_content = string_content;
-
-
-string_content = new char[size];
-memory_capacity = size;
-
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = prev_string_content[i];
-
-
-if (prev_string_content != NULL)
-delete[] prev_string_content;
+MyString MyString::operator+(const MyString &s) {
+  MyString str;
+  str.reserve(string_length + s.string_length);
+  for (int i = 0; i < string_length; i++)
+    str.string_content[i] = string_content[i];
+  for (int i = 0; i < s.string_length; i++)
+    str.string_content[string_length + i] = s.string_content[i];
+  str.string_length = string_length + s.string_length;
+  return str;
 }
+int MyString::length() const { return string_length; }
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 }
-MyString MyString::operator+ (const MyString &s)
-{
-MyString str;
-str.reserve(string_length + s.string_length);
-for (int i = 0; i < string_length; i++)
-str.string_content[i] = string_content[i];
-for (int i = 0; i < s.string_length; i++)
-str.string_content[string_length + i] = s.string_content[i];
-str.string_length = string_length + s.string_length;
-return str;
-}
-int MyString::length() const
-{
-return string_length;
-}
-void MyString::print()
-{
-for (int i = 0; i != string_length; i++)
-cout << string_content[i];
-}
-void MyString::println()
-{
-for (int i = 0; i != string_length; i++)
-cout << string_content[i];
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-
-cout << endl;
+  cout << endl;
 }
 
-
-int main()
-{
-MyString str1("abc");
-MyString str2("def");
-cout << "-------------" << endl;
-MyString str3 = str1 + str2;
-str3.println();
+int main() {
+  MyString str1("abc");
+  MyString str2("def");
+  cout << "-------------" << endl;
+  MyString str3 = str1 + str2;
+  str3.println();
 }
 ```
 
@@ -251,7 +208,7 @@ str3.println();
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 MyString str3 = str1 + str2;
 ```
@@ -260,18 +217,17 @@ MyString str3 = str1 + str2;
 
 이 부분에서 두 개의 문자열을 더한 새로운 문자열로 `str3` 를 생성하고 있습니다.
 
-```cpp
+```cpp-formatted
 
-MyString MyString::operator+ (const MyString &s)
-{
-MyString str;
-str.reserve(string_length + s.string_length);
-for (int i = 0; i < string_length; i++)
-str.string_content[i] = string_content[i];
-for (int i = 0; i < s.string_length; i++)
-str.string_content[string_length + i] = s.string_content[i];
-str.string_length = string_length + s.string_length;
-return str;
+MyString MyString::operator+(const MyString &s) {
+  MyString str;
+  str.reserve(string_length + s.string_length);
+  for (int i = 0; i < string_length; i++)
+    str.string_content[i] = string_content[i];
+  for (int i = 0; i < s.string_length; i++)
+    str.string_content[string_length + i] = s.string_content[i];
+  str.string_length = string_length + s.string_length;
+  return str;
 }
 ```
 
@@ -304,7 +260,7 @@ return str;
 
 모든 C++ 표현식 (expression) 의 경우 두 가지 카테고리로 구분할 수 있습니다. 하나는 이 구문이 어떤 타입을 가지냐 이고, 다른 하나는 어떠한 종류의 '값' 을 가지냐 입니다. 값에 종류가 있어? 라고 생각 하실 수 있는데, 아래 예시를 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 
 int a = 3;
 ```
@@ -318,13 +274,12 @@ int a = 3;
 
 이렇게, 주소값을 취할 수 없는 값을 **우측값 (rvalue)** 라고 부릅니다. 이름에도 알 수 있듯이, 우측값은 식의 오른쪽에만 항상 와야 합니다. 좌측값이 식의 왼쪽 오른쪽 모두 올 수 있는반면, 우측값은 식의 오른쪽에만 존재해야 합니다.
 
-```cpp
+```cpp-formatted
 
-int a; // a 는 좌측값
-int& l_a = a; // l_a 는 좌측값 레퍼런스
+int a;         // a 는 좌측값
+int& l_a = a;  // l_a 는 좌측값 레퍼런스
 
-
-int& r_b = 3; // 3 은 우측값. 따라서 오류
+int& r_b = 3;  // 3 은 우측값. 따라서 오류
 ```
 
 
@@ -340,31 +295,21 @@ int& r_b = 3; // 3 은 우측값. 따라서 오류
 
 그럼 다른 예제를 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 
-int& func1(int& a)
-{
-return a;
-}
+int& func1(int& a) { return a; }
 
+int func2(int b) { return b; }
 
-int func2(int b)
-{
-return b;
-}
+int main() {
+  int a = 3;
+  func1(a) = 4;
+  cout << &func1(a) << endl;
 
-
-int main()
-{
-int a = 3;
-func1(a) = 4;
-cout << &func1(a) << endl;
-
-
-int b = 2;
-        a = func2(b); // 가능
-func2(b) = 5; // 오류 1
-cout << &func2(b) << endl; // 오류 2
+  int b = 2;
+  a = func2(b);               // 가능
+  func2(b) = 5;               // 오류 1
+  cout << &func2(b) << endl;  // 오류 2
 }
 ```
 
@@ -382,7 +327,7 @@ ErrorC2102'&' requires l-value
 
 일단 `func1` 의 경우 좌측값 레퍼런스를 리턴합니다. 앞서, 좌측값 레퍼런스의 경우 좌측값에 해당하기 때문에,
 
-```cpp
+```cpp-formatted
 
 func1(a) = 4;
 ```
@@ -395,16 +340,16 @@ func1(a) = 4;
 하지만 `func2` 를 살펴볼까요? `func2` 의 경우, 레퍼런스가 아닌, 일반적인 `int` 값을 리턴하고 있습니다. 이 때 리턴되는 값은
 
 
-```cpp
+```cpp-formatted
 
-        a = func2(b);
+a = func2(b);
 ```
 
 
 
 이 문장이 실행 될 때 잠깐 존재할 뿐 그 문장 실행이 끝나면 사라지게 됩니다. 즉, 실체가 없는 값이라는 뜻이지요. 따라서 `func2(b)` 는 우측값이 됩니다. 따라서 위와 같이 우측값이 실제 표현식의 오른쪽에 오는 경우는 가능하지만,
 
-```cpp
+```cpp-formatted
 
 func2(b) = 5;
 ```
@@ -413,9 +358,9 @@ func2(b) = 5;
 
 위 문장 처럼 우측값이 왼쪽의 오는 경우는 가능하지 않습니다.
 
-```cpp
+```cpp-formatted
 
-cout << &func2(b) << endl; // 오류 2
+cout << &func2(b) << endl;  // 오류 2
 ```
 
 
@@ -425,7 +370,7 @@ cout << &func2(b) << endl; // 오류 2
 
 그렇다면 앞선 예제에서
 
-```cpp
+```cpp-formatted
 
 MyString str3 = str1 + str2;
 ```
@@ -434,25 +379,25 @@ MyString str3 = str1 + str2;
 
 를 다시 살펴보도록 합시다. 위 문장은
 
-```cpp
+```cpp-formatted
 
-MyString str3 (str1.operator+(str2));
+MyString str3(str1.operator+(str2));
 ```
 
 
 
 와 동일합니다. 그런데, `operator+` 의 정의를 살펴보면,
 
-```cpp
+```cpp-formatted
 
-MyString MyString::operator+ (const MyString &s)
+MyString MyString::operator+(const MyString &s)
 ```
 
 
 
 로 우측값을 리턴하고 있는데, 이 우측값이 어떻게 좌측값 레퍼런스를 인자로 받는,
 
-```cpp
+```cpp-formatted
 
 MyString(const MyString &str);
 ```
@@ -461,9 +406,9 @@ MyString(const MyString &str);
 
 를 호출 시킬 수 있었을까요? 이는 `&` 가 좌측값 레퍼런스를 의미하지만, 예외적으로
 
-```cpp
+```cpp-formatted
 
-const T &
+const T&
 ```
 
 
@@ -494,153 +439,115 @@ const T &
 
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
+class MyString {
+  char *string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char *string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+  int memory_capacity;  // 현재 할당된 용량
 
+ public:
+  MyString();
 
-int memory_capacity; // 현재 할당된 용량
+  // 문자열로 부터 생성
+  MyString(const char *str);
 
+  // 복사 생성자
+  MyString(const MyString &str);
 
-public:
-MyString();
+  // 이동 생성자
+  MyString(MyString &&str);
 
+  void reserve(int size);
+  MyString operator+(const MyString &s);
+  ~MyString();
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  int length() const;
 
-
-// 복사 생성자
-MyString(const MyString &str);
-
-// 이동 생성자
-MyString(MyString&& str);
-
-
-void reserve(int size);
-MyString operator+ (const MyString &s);
-~MyString();
-
-
-int length() const;
-
-
-void print();
-void println();
+  void print();
+  void println();
 };
 
-
-MyString::MyString()
-{
-cout << "생성자 호출 ! " << endl;
-string_length = 0;
-memory_capacity = 0;
-string_content = NULL;
+MyString::MyString() {
+  cout << "생성자 호출 ! " << endl;
+  string_length = 0;
+  memory_capacity = 0;
+  string_content = NULL;
 }
 
+MyString::MyString(const char *str) {
+  cout << "생성자 호출 ! " << endl;
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-MyString::MyString(const char* str)
-{
-cout << "생성자 호출 ! " << endl;
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
-
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-cout << "복사 생성자 호출 ! " << endl;
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString &str) {
+  cout << "복사 생성자 호출 ! " << endl;
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str.string_content[i];
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
 }
-MyString::MyString(MyString&& str)
-{
-cout << "이동 생성자 호출 !" << endl;
-string_length = str.string_length;
-string_content = str.string_content;
-memory_capacity = str.memory_capacity;
+MyString::MyString(MyString &&str) {
+  cout << "이동 생성자 호출 !" << endl;
+  string_length = str.string_length;
+  string_content = str.string_content;
+  memory_capacity = str.memory_capacity;
 
-
-// 임시 객체 소멸 시에 메모리를 해제하지
-// 못하게 한다.
-str.string_content = nullptr;
+  // 임시 객체 소멸 시에 메모리를 해제하지
+  // 못하게 한다.
+  str.string_content = nullptr;
 }
-MyString::~MyString()
-{
-if (string_content)
-delete[] string_content;
+MyString::~MyString() {
+  if (string_content) delete[] string_content;
 }
-void MyString::reserve(int size)
-{
-if (size > memory_capacity) {
-char *prev_string_content = string_content;
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char *prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-string_content = new char[size];
-memory_capacity = size;
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = prev_string_content[i];
-
-
-if (prev_string_content != NULL)
-delete[] prev_string_content;
+    if (prev_string_content != NULL) delete[] prev_string_content;
+  }
 }
+MyString MyString::operator+(const MyString &s) {
+  MyString str;
+  str.reserve(string_length + s.string_length);
+  for (int i = 0; i < string_length; i++)
+    str.string_content[i] = string_content[i];
+  for (int i = 0; i < s.string_length; i++)
+    str.string_content[string_length + i] = s.string_content[i];
+  str.string_length = string_length + s.string_length;
+  return str;
 }
-MyString MyString::operator+ (const MyString &s)
-{
-MyString str;
-str.reserve(string_length + s.string_length);
-for (int i = 0; i < string_length; i++)
-str.string_content[i] = string_content[i];
-for (int i = 0; i < s.string_length; i++)
-str.string_content[string_length + i] = s.string_content[i];
-str.string_length = string_length + s.string_length;
-return str;
+int MyString::length() const { return string_length; }
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 }
-int MyString::length() const
-{
-return string_length;
-}
-void MyString::print()
-{
-for (int i = 0; i != string_length; i++)
-cout << string_content[i];
-}
-void MyString::println()
-{
-for (int i = 0; i != string_length; i++)
-cout << string_content[i];
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-
-cout << endl;
+  cout << endl;
 }
 
+int main() {
+  MyString str1("abc");
+  MyString str2("def");
 
-int main()
-{
-MyString str1("abc");
-MyString str2("def");
-
-
-cout << "-------------" << endl;
-MyString str3 = str1 + str2;
-str3.println();
+  cout << "-------------" << endl;
+  MyString str3 = str1 + str2;
+  str3.println();
 }
 ```
 
@@ -659,19 +566,17 @@ str3.println();
 
 먼저 우측값 레퍼런스를 사용한 이동 생성자의 정의 부분 부터 살펴봅시다.
 
-```cpp
+```cpp-formatted
 
-MyString::MyString(MyString&& str)
-{
-cout << "이동 생성자 호출 !" << endl;
-string_length = str.string_length;
-string_content = str.string_content;
-memory_capacity = str.memory_capacity;
+MyString::MyString(MyString&& str) {
+  cout << "이동 생성자 호출 !" << endl;
+  string_length = str.string_length;
+  string_content = str.string_content;
+  memory_capacity = str.memory_capacity;
 
-
-// 임시 객체 소멸 시에 메모리를 해제하지
-// 못하게 한다.
-str.string_content = nullptr;
+  // 임시 객체 소멸 시에 메모리를 해제하지
+  // 못하게 한다.
+  str.string_content = nullptr;
 }
 ```
 
@@ -682,7 +587,7 @@ str.string_content = nullptr;
 
 그렇다면 한 가지 퀴즈! 과연 `str` 자체는 우측값 일까요 좌측값 일까요? 당연히도 좌측값 입니다. 실체가 있기 때문이지요 (`str` 이라는 이름이 있잖아요). 다시 말해 `str` 은 타입이 '`MyString` 의 우측값 레퍼런스' 인 좌측값 이라 보면 됩니다. 따라서 표현식의 좌측에 올 수도 있습니다. (마지막 줄 처럼)
 
-```cpp
+```cpp-formatted
 
 string_content = str.string_content;
 ```
@@ -691,7 +596,7 @@ string_content = str.string_content;
 
 이제 위와 같이 우리가 바라던 대로 임시 객체의 `string_content` 가 가리키는 메모리를 새로 생성되는 객체의 메모리로 옮겨주기만 하면 됩니다. 기존의 복사 생성자의 경우 문자열 전체를 새로 복사해야 했지만, 이동 생성자의 경우 단순히 주소값 하나만 달랑 복사해주면 끝이기 때문에 매우 간단합니다.
 
-```cpp
+```cpp-formatted
 
 // 임시 객체 소멸 시에 메모리를 해제하지
 // 못하게 한다.
@@ -705,12 +610,10 @@ str.string_content = nullptr;
 
 따라서 `str` 의 `string_content` 를 `nullptr` 로 바꿔줍니다. 참고로 `nullptr` 역시 C++ 11 에 새로 추가된 키워드로, 기존의 `NULL` 대체합니다. C 언어에서의 `NULL` 은 단순히 #define 으로 정의되어 있는 상수값 0 인데, 이 때문에 이 `NULL` 이 값 0 을 의미하는 것인지, 아니면 포인터 주소값 0 을 의미하는 것인지 구분할 수 가 없었습니다. 하지만 `nullptr` 로 '포인터 주소값 0' 을 정확히 명시해 준다면 미연에 발생할 실수를 줄여 줄 수 있게 됩니다.
 
-```cpp
+```cpp-formatted
 
-MyString::~MyString()
-{
-if (string_content)
-delete[] string_content;
+MyString::~MyString() {
+  if (string_content) delete[] string_content;
 }
 ```
 
@@ -721,15 +624,14 @@ delete[] string_content;
 
 일반적으로 우측값 레퍼런스는 아래와 같은 방식으로 사용할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 int a;
 int& l_a = a;
-int& ll_a = 3; // 불가능
-
+int& ll_a = 3;  // 불가능
 
 int&& r_b = 3;
-int&& rr_b = a; // 불가능
+int&& rr_b = a;  // 불가능
 ```
 
 
@@ -739,7 +641,7 @@ int&& rr_b = a; // 불가능
 
 우측값 레퍼런스의 재미있는 특징으로 레퍼런스 하는 임시 객체가 소멸되지 않도록 붙들고 있는다는 점입니다. 예를 들어서,
 
-```cpp
+```cpp-formatted
 
 MyString&& str3 = str1 + str2;
 str3.println();
@@ -768,9 +670,3 @@ str3.println();
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-
-

@@ -35,19 +35,18 @@ next_page : 26
 
 일단, 강의의 시작은 간단한 것으로 해보겠습니다. 이전해도 말했듯이 (벌써 몇 번째 반복하고 있는지는 모르겠지만 그 만큼 중요하니까) `int arr[10];` 이라는 배열을 만든다면 `arr` 이 `arr[0]` 을 가리킨다고 했습니다. 그렇다면 다른 `int*` 포인터가 이 배열을 가리킬 수 있지 않을까요? 한 번 프로그램을 짜봅시다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int arr[3] = {1,2,3};
-    int *parr;
+int main() {
+  int arr[3] = {1, 2, 3};
+  int *parr;
 
-    parr = arr;
-    /* parr = &arr[0]; 도 동일하다! */
+  parr = arr;
+  /* parr = &arr[0]; 도 동일하다! */
 
-    printf("arr[1] : %d \n", arr[1]);
-    printf("parr[1] : %d \n", parr[1]);
-    return 0;
+  printf("arr[1] : %d \n", arr[1]);
+  printf("parr[1] : %d \n", parr[1]);
+  return 0;
 }
 ```
 
@@ -58,14 +57,14 @@ int main()
 
  일단, 중점적으로 볼 부분은 아래와 같습니다.
 
-```cpp
-    parr = arr;
+```cpp-formatted
+parr = arr;
 ```
 
 바로 `arr` 에 저장되어 있는 값을 `parr` 에 대입하는 부분이지요. 앞에서 말했듯이 `arr` 은 `int` 를 가리키는 포인터 입니다. 이 때, `arr` 에 저장된 값, 즉 배열의 첫 번째 원소의 주소를 `parr` 에 대입하고 있습니다. 다시 말해 위 문장은 주석에도 잘 나와 있듯이 아래와 같은 문장이 됩니다.
 
-```cpp
-    parr = &arr[0]
+```cpp-formatted
+parr = &arr[0]
 ```
 
 따라서, `parr` 을 통해서 `arr` 을 이용했을 때와 동일하게 배열의 원소에 마음껏 접근할 수 있게 되는 것이 됩니다. 위 모습을 한 번 그림으로 나타내보면 (아마도 여러분들은 지금 수준이라면 머리속으로 다 그릴 수 있어야 할 것입니다)
@@ -73,26 +72,23 @@ int main()
 
 ![arr[0 은 arr 과 parr 모두가 가리키게 됩니다. ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F194C49214B01139B70E9DA)
 참고적으로 한 방의 크기는 그림의 단순화를 위해 4 바이트로 하였습니다.
-```cpp
+```cpp-formatted
 /* 포인터 이용하기 */
 #include <stdio.h>
-int main()
-{
-    int arr[10] = {100,98,97,95,89,76,92,96,100,99};
+int main() {
+  int arr[10] = {100, 98, 97, 95, 89, 76, 92, 96, 100, 99};
 
-    int* parr = arr;
-    int sum = 0;
+  int* parr = arr;
+  int sum = 0;
 
-    while(parr - arr <= 9)
-    {
-        sum += (*parr);
-        parr ++;
-    }
+  while (parr - arr <= 9) {
+    sum += (*parr);
+    parr++;
+  }
 
-    printf("내 시험 점수 평균 : %d \n", sum/10);
-    return 0;
+  printf("내 시험 점수 평균 : %d \n", sum / 10);
+  return 0;
 }
-
 ```
 
   성공적으로 컴파일 하면
@@ -102,40 +98,37 @@ int main()
 
   일단, 포인터를 이용한 간단한 예제를 다루어보겠습니다.
 
-```cpp
-    int* parr = arr;
+```cpp-formatted
+int* parr = arr;
 ```
 
 먼저, `int` 형 1 차원 배열을 가리킬 수 있는 `int*` 포인터를 정의하였습니다. 그리고, 이 `parr` 은 배열 `arr` 을 가리키게 됩니다.
 
-```cpp
-    while(parr - arr <= 9)
-    {
-        sum += (*parr);
-        parr ++;
-    }
-
+```cpp-formatted
+while (parr - arr <= 9) {
+  sum += (*parr);
+  parr++;
+}
 ```
 
 그 다음 `while` 문을 살펴봅시다. `while` 문을 오래전에 배워서 기억이 안난다면 다시 뒤로 돌아가세요! 이 `while` 문은 `parr - arr` 이 9 이하일 동안 돌아가게 됩니다. `sum` 에 `parr` 이 가리키는 원소의 값을 더했습니다. `+=` 연산자의 의미는 아시죠? `sum +=` (*parr); 문장은 `sum = sum + *parr` 와 같다는 것 알고 계시지요?
 
-```cpp
-        parr ++;
+```cpp-formatted
+parr++;
 ```
 
 `parr` 을 1 증가시켰습니다. 이전 강좌에서도 이야기 하였지만 포인터 연산에서 1 증가시킨다면, `parr` 에 저장된 주소값에 1 이 더해지는 것이 아니라 `1 *` (포인터가 가리키는 타입의 크기) 가 더해진다는 것이지요. 즉, `int` 형 포인터 이므로 4 가 더해지므로, 결과적으로 배열의 그 다음 원소를 가리킬 수 있게 됩니다. 암튼, 위 작업을 반복하면 `arr` 배열의 모든 원소들의 합을 구하게 됩니다. `while` 문에서 9 이하일 동안만 반복하는 이유는, `parr - arr >= 10` 이 된다면 `parr[10` 이상의 값] 을 접근하게 되므로 오류를 뿜게 됩니다.
 
 여기서 궁금한 것이 없나요? 우리가 왜 굳이 `parr` 을 따로 선언하였을까요? 우리는 `arr` 이 `arr[0]` 을 가리킨다는 사실을 알고 있으므로 `arr` 을 증가시켜서 `*(arr)` 으로 접근해도 되지 않을까요? 한 번, `arr` 의 값을 변경할 수 있는지 없는지 살펴봅시다.
 
-```cpp
+```cpp-formatted
 /* 배열명 */
 #include <stdio.h>
-int main()
-{
-    int arr[10] = {100,98,97,95,89,76,92,96,100,99};
+int main() {
+  int arr[10] = {100, 98, 97, 95, 89, 76, 92, 96, 100, 99};
 
-    arr ++; // 오류!! 배열 이름은 const
-    return 0;
+  arr++;  // 오류!! 배열 이름은 const
+  return 0;
 }
 ```
 
@@ -162,31 +155,30 @@ error C2105: '++'에 l-value가 필요합니다.
 
 똑똑한 분들이라면 이러한 것들에 대해서도 생각해 보신 적이 있을 것입니다. 물론, 안하셔도 상관 없고요.. 저의 경우 포인터 처음 배울 때 그것 마저 이해하기도 힘들어서 한참 버벅거렸습니다 :) 아무튼. 지금 머리속으로 예상하시는 대로 포인터의 포인터는 다음과 같이 정의합니다.
 
-```cpp
-      int **p;
+```cpp-formatted
+int **p;
 ```
 
 위는 '`int` 를 가리키는 포인터를 가리키는 포인터' 라고 할 수 있습니다. 쉽게 머리에 와닿지 않죠? 당연합니다. 이전 강좌의 내용도 어려워 죽겠는데 위 내용까지 머리속에 쑤셔 넣으려면 얼마나 힘들겠어요? 그래서, 한 번 예제를 봅시다.
 
-```cpp
+```cpp-formatted
 /* 포인터의 포인터 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    int *pa;
-    int **ppa;
+int main() {
+  int a;
+  int *pa;
+  int **ppa;
 
-    pa = &a;
-    ppa = &pa;
+  pa = &a;
+  ppa = &pa;
 
-    a = 3;
+  a = 3;
 
-    printf("a : %d // *pa : %d // **ppa : %d \n", a, *pa, **ppa);
-    printf("&a : %d // pa : %d // *ppa : %d \n", &a, pa, *ppa);
-    printf("&pa : %d // ppa : %d \n", &pa, ppa);
+  printf("a : %d // *pa : %d // **ppa : %d \n", a, *pa, **ppa);
+  printf("&a : %d // pa : %d // *ppa : %d \n", &a, pa, *ppa);
+  printf("&pa : %d // ppa : %d \n", &pa, ppa);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -199,26 +191,26 @@ int main()
 
 일단 위에 보시다 싶이 같은 행에 있는 값들은 모두 같습니다. 사실, 위 예제는 그리 어려운 것이 아닙니다. 포인터에 제대로 이해만 했다면 말이죠. 일단 `ppa` 는 `int*` 를 가리키는 포인터 이기 때문에
 
-```cpp
-    ppa = &pa;
+```cpp-formatted
+ppa = &pa;
 ```
 
 와 같이 이전의 포인터에서 했던 것 처럼 똑같이 해주면 됩니다. `ppa` 에는 `pa` 의 주소값이 들어가게 되죠.
 
-```cpp
-    printf("&pa : %d // ppa : %d \n", &pa, ppa);
+```cpp-formatted
+printf("&pa : %d // ppa : %d \n", &pa, ppa);
 ```
 
 따라서 우리는 위의 문장이 같은 값을 출력함을 알 수 있습니다. 위의 실행한 결과를 보아도 둘다 1636564 를 출력했잖아요.
 
-```cpp
-    printf("&a : %d // pa : %d // *ppa : %d \n", &a, pa, *ppa);
+```cpp-formatted
+printf("&a : %d // pa : %d // *ppa : %d \n", &a, pa, *ppa);
 ```
 
 그리고 이제 아래에서 두 번째 문장을 봐 봅시다. `pa` 가 `a` 를 가리키고 있으므로 `pa` 에는 `a` 의 주소값이 들어갑니다. 따라서, `&a` 와 `pa` 는 같은 값이 되겠지요. 그러면 `*ppa` 는 어떨까요? `ppa` 가 `pa` 를 가리키고 있으므로 `*ppa` 를 하면 `pa` 를 지칭하는 것이 됩니다. 따라서 역시 `pa` 의 값, 즉 `&a` 의 값이 출력되게 됩니다.
 
-```cpp
-    printf("a : %d // *pa : %d // **ppa : %d \n", a, *pa, **ppa);
+```cpp-formatted
+printf("a : %d // *pa : %d // **ppa : %d \n", a, *pa, **ppa);
 ```
 
 마지막으로 위의 문장을 살펴 봅시다. `pa` 가 `a` 를 가리키고 있으므로 `*pa` 를 하면 `a` 를 지칭하는 것이 되어 `a` 의 값이 출력됩니다. 그렇다면 `**ppa` 는 어떨까요? 이를 다시 써 보면 `*(*ppa)` 가 되는데, `*ppa` 는 `pa` 를 지칭하는 것이기 때문에 `*pa` 가 되서, 결국 `a` 를 지칭하는 것이 됩니다. 따라서, 역시 `a` 의 값이 출력되겠지요. 어때요? 간단하죠?
@@ -234,8 +226,8 @@ int main()
 
 2 차원 배열의 `[]` 연산자에 대해선 제가 지난번 강좌에서 '생각 해보기' 문제로 내었던 것 같은데, 생각해보셨는지요? 일단 이전의 기억을 더듬에서 다음과 같은 배열이 컴퓨터 메모리 상에 어떻게 표현되는지 생각 해보도록 합시다.
 
-```cpp
-    int a[2][3];
+```cpp-formatted
+int a[2][3];
 ```
 
 물론, 이 배열은 2 차원 배열이므로 평면위에 표시된다고 생각할 수 도 있지만, 컴퓨터 메모리 구조는 1 차원 적이기 때문에 1 차원으로 바꿔서 생각해봅시다. 되었나요? 그렇다면, 제가 그림을 보여드리죠.
@@ -244,20 +236,19 @@ int main()
 실제로 프로그램을 짜서 실행해 보면 메모리 상에 위와 같이 나타남을 알 수 있습니다. 한 번 해보세요~
   일단, 위 그림에서 왼쪽에 메모리 상의 배열의 모습이 표현된 것은 여러분이 쉽게 이해하실 수 있스리라 믿습니다. 다만, 제가 설명해야 할 부분은 오른쪽에 큼지막하게 화살표로 가리키고 있는 부분이지요. 먼저 아래의 예제를 봅시다.
 
-```cpp
+```cpp-formatted
 /* 정말로? */
 #include <stdio.h>
-int main()
-{
-    int arr[2][3];
+int main() {
+  int arr[2][3];
 
-    printf("arr[0] : %x \n", arr[0]);
-    printf("&arr[0][0] : %x \n", &arr[0][0]);
+  printf("arr[0] : %x \n", arr[0]);
+  printf("&arr[0][0] : %x \n", &arr[0][0]);
 
-    printf("arr[1] : %x \n", arr[1]);
-    printf("&arr[1][0] : %x \n", &arr[1][0]);
+  printf("arr[1] : %x \n", arr[1]);
+  printf("&arr[1][0] : %x \n", &arr[1][0]);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -269,17 +260,16 @@ int main()
 
 `arr[0]` 에 저장되어 있는 값이 `arr[0][0]` 의 주소값과 같고, `arr[1]` 에 저장되어 있는 값이 `arr[1][0]` 의 주소값과 같습니다. 이것을 통해 알 수 있는 사실은..? 아마도 다 알겠지만, `arr[0]` 은 `arr[0][0]` 을 가리키는 포인터 이고, `arr[1]` 은 `arr[1][0]` 을 가리키는 포인터라는 뜻이 되겠지요. 이 때, `arr[0][0]` 의 형이 `int` 이므로 `arr[0]` 은 `int*` 형이 되겠고, 마찬가지로 `arr[1]` 도 `int*` 형이 되겠지요.
 
-```cpp
+```cpp-formatted
 /* a? */
 #include <stdio.h>
-int main()
-{
-    int arr[2][3];
+int main() {
+  int arr[2][3];
 
-    printf("&arr[0] : %x \n", &arr[0]);
-    printf("arr : %x \n", arr);
+  printf("&arr[0] : %x \n", &arr[0]);
+  printf("arr : %x \n", arr);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -306,22 +296,20 @@ int main()
 
 먼저 포인터의 형을 결정하는 두 가지 요소에 대해 이야기 하기 전에, 위에서 배열의 이름이 왜 `int**` 형이 될 수 없는지에 대해 먼저 이야기 해봅시다. 만일 `int**` 형이 될 수 있다면 맨 위에서 했던 것 처럼 `int**` 포인터가 배열의 이름을 가리킨다면 배열의 원소에 자유롭게 접근할 수 있어야만 할 것입니다.
 
-```cpp
+```cpp-formatted
 /* 과연 될까? */
 #include <stdio.h>
-int main()
-{
-    int arr[2][3]={{1,2,3},{4,5,6}};
-    int **parr;
+int main() {
+  int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+  int **parr;
 
-    parr = arr;
+  parr = arr;
 
-    printf("arr[1][1] : %d \n", arr[1][1]);
-    printf("parr[1][1] : %d \n", parr[1][1]);
+  printf("arr[1][1] : %d \n", arr[1][1]);
+  printf("parr[1][1] : %d \n", parr[1][1]);
 
-    return 0;
+  return 0;
 }
-
 ```
 
   그런데 컴파일 시에 아래와 같은 경고가 기분을 나쁘게 하네요.
@@ -376,16 +364,15 @@ int main()
 
 여기서 1 증가시 커지는 크기가 2 차원 배열에서는 `b * (형의 크기)` 를 의미하는지 궁금한 사람들이 있을 것입니다. 한 번 해봅시다.
 
-```cpp
+```cpp-formatted
 /* 1 증가하면 ? */
 #include <stdio.h>
-int main()
-{
-    int arr[2][3]={{1,2,3},{4,5,6}};
+int main() {
+  int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 
-    printf("arr : %x , arr + 1 : %x \n", arr, arr+1);
+  printf("arr : %x , arr + 1 : %x \n", arr, arr + 1);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -398,19 +385,18 @@ int main()
 
 왜 그럴까요? 사실, 그 이유는 단순합니다. 거의 맨 위의 그림을 보면 이차원 배열에서 `a` 가 `a[0]` 을 가리키고 있는 그림을 볼 수 있습니다. 만일 1 차원 배열 `b[3]` 이 있을 때 `b + 1` 을 하면 `b[1]` 을 가리키잖아요? 2 차원 배열도 동일하게 `a` 가 1 증가하면 `a[1]` 을 가리키게 됩니다. 다시 말해 두 번째 행의 시작 주소값을 가리키는 포인터를 가리키게 된다는 것이지요.
 
-```cpp
+```cpp-formatted
 /* 드디어! 배우는 배열의 포인터 */
 #include <stdio.h>
-int main()
-{
-    int arr[2][3]={{1,2,3},{4,5,6}};
-    int (*parr)[3];  // 괄호를 꼭 붙이세요
+int main() {
+  int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+  int(*parr)[3];  // 괄호를 꼭 붙이세요
 
-    parr = arr; // parr 이 arr 을 가리키게 한다.
+  parr = arr;  // parr 이 arr 을 가리키게 한다.
 
-    printf("parr[1][2] : %d , arr[1][2] : %d \n", parr[1][2], arr[1][2]);
+  printf("parr[1][2] : %d , arr[1][2] : %d \n", parr[1][2], arr[1][2]);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -427,30 +413,29 @@ int main()
 
 이렇게 포인터를 정의하였을 때 앞서 이야기한 포인터의 조건을 잘 만족하는지 보도록 합시다. 일단, (배열의 형) 을 통해서 원소의 크기에 대한 정보를 알 수 있습니다. 즉, 가리키는 것에 대한 정보를 알 수 있게 됩니다. (조건 1 만족). 또한, `[2` 차원 배열의 열 개수] 를 통해서 1 증가시 커지는 크기도 알게 됩니다. 바로 배열의 형 크기 - 예를 들어 `int` 는 `4, char` 은 `1 * (2 차원 배열의 열 개수)` 만큼 커지게 됩니다.
 
-```cpp
-    int (*parr)[3];
+```cpp-formatted
+int (*parr)[3];
 ```
 
 위와 같이 정의한 포인터 `parr` 을 해석해 보면, `int` 형 이차원 배열을 가리키는데, 그 배열의 열의 개수가 3 개 이군요! 라는 사실을 알 수 있습니다 (정확히 말하면, `int*` 를 가리키는데, 1 증가시 3 이 커진다 라는 의미입니다)
 
   주의할 점은 괄호로 꼭 묶어주어야 한다는 것입니다. 만일 괄호로 묶지 않는다면 다른 결과가 나오니 주의하세요.
 
-```cpp
+```cpp-formatted
 /* 배열 포인터 */
 #include <stdio.h>
-int main()
-{
-    int arr[2][3]={{1,2,3},{4,5,6}};
-    int brr[10][3];
-    int crr[2][5];
+int main() {
+  int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+  int brr[10][3];
+  int crr[2][5];
 
-    int (*parr)[3];
+  int(*parr)[3];
 
-    parr = arr; // O.K
-    parr = brr; // O.K
-    parr = crr; // 오류!!!!
+  parr = arr;  // O.K
+  parr = brr;  // O.K
+  parr = crr;  // 오류!!!!
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -468,23 +453,22 @@ $$ x + 4bc + 4d $$
 
 포인터 배열, 말그대로 '포인터들의 배열' 입니다. 위에서 설명한 배열 포인터는 '배열을 가리키는 포인터' 였죠. 두 용어가 상당히 헷갈리는데, 그냥 '언제나 진짜는 뒷부분' 이라고 생각하시면 됩니다. 즉, 포인터 배열은 정말로 배열이고, 배열 포인터는 정말로 포인터 였죠.
 
-```cpp
+```cpp-formatted
 /* 포인터배열*/
 #include <stdio.h>
-int main()
-{
-    int *arr[3];
-    int a = 1, b = 2, c = 3;
-    arr[0] = &a;
-    arr[1] = &b;
-    arr[2] = &c;
+int main() {
+  int *arr[3];
+  int a = 1, b = 2, c = 3;
+  arr[0] = &a;
+  arr[1] = &b;
+  arr[2] = &c;
 
-    printf("a : %d, *arr[0] : %d \n", a, *arr[0]);
-    printf("b : %d, *arr[1] : %d \n", b, *arr[1]);
-    printf("b : %d, *arr[2] : %d \n", c, *arr[2]);
+  printf("a : %d, *arr[0] : %d \n", a, *arr[0]);
+  printf("b : %d, *arr[1] : %d \n", b, *arr[1]);
+  printf("b : %d, *arr[2] : %d \n", c, *arr[2]);
 
-    printf("&a : %d, arr[0] : %d \n", &a, arr[0]);
-    return 0;
+  printf("&a : %d, arr[0] : %d \n", &a, arr[0]);
+  return 0;
 }
 ```
 
@@ -495,22 +479,22 @@ int main()
 마지막 출력결과는 여러분과 상이할 수 있으나 두 값이 같음을 주목하세요
   일단, `arr` 배열의 정의 부분을 봐봅시다.
 
-```cpp
-    int *arr[3];
+```cpp-formatted
+int *arr[3];
 ```
 
   위 정의가 마음에 와닿나요? 사실, 저는 처음에 배울 때 별로 와닿지 않았습니다. 사실, 이전에도 말했듯이 위 정의는 아래의 정의와 동일합니다.
 
-```cpp
-    int* arr[3];
+```cpp-formatted
+int* arr[3];
 ```
 
 이제, 이해가 되시는지요? 우리가 배열의 형을 `int, char` 등등으로 하듯이, 배열의 형을 역시 `int*` 으로도 할 수 있습니다. 다시말해, 배열의 각각의 원소는 '`int` 를 가리키는 포인터' 형으로 선언된 것입니다. 따라서, `int` 배열에서 각각의 원소를 `int` 형 변수로 취급했던 것처럼 `int*` 배열에서 각각의 원소를 포인터로 취급할 수 있습니다. 마치, 아래처럼 말이지요.
 
-```cpp
-    arr[0] = &a;
-    arr[1] = &b;
-    arr[2] = &c;
+```cpp-formatted
+arr[0] = &a;
+arr[1] = &b;
+arr[2] = &c;
 ```
 
   각각의 원소는 각각 `int` 형 변수 `a,b,c` 를 가리키게 됩니다.이를 그림으로 표현하면 아래와 같습니다.

@@ -22,12 +22,19 @@ next_page : 14
 
 3일전에, Psi 는 친구로 부터 1 부터 100 까지의 합을 구해달라는 요청을 받았습니다. Psi 는 수학자 가우스 처럼 똑똑하지가 못하기에, 등차수열의 합을 구하는 방법을 알지 못했습니다. 하지만 Psi 는 이 블로그에서 C 언어를 통해 계산하는 법을 알았으므로 이를 이용하기로 하였습니다. 그래서, 그는 다음과 같이 30분 동안 열심히 타이핑 하여 아래와 같은 프로그램을 만들었습니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    printf("%d",1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20 + 21 + 22 + 23 + 24 + 25 + 26 + 27 + 28 + 29 + 30 + 31 + 32 + 33 + 34 + 35 + 36 + 37 + 38 + 39 + 40 + 41 + 42 + 43 + 44 + 45 + 46 + 47 + 48 + 49 + 50 + 51 + 52 + 53 + 54 + 55 + 56 + 57 + 58 + 59 + 60 + 61 + 62 + 63 + 64 + 65 + 66 + 67 + 68 + 69 + 70 + 71 + 72 + 73 + 74 + 75 + 76 + 77 + 78 + 79 + 80 + 81 + 82 + 83 + 84 + 85 + 86 + 87 + 88 + 89 + 90 + 91 + 92 + 93 + 94 + 95 + 96 + 97 + 98 + 99 + 100 );
-    return 0;
+int main() {
+  printf("%d", 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 +
+                 16 + 17 + 18 + 19 + 20 + 21 + 22 + 23 + 24 + 25 + 26 + 27 +
+                 28 + 29 + 30 + 31 + 32 + 33 + 34 + 35 + 36 + 37 + 38 + 39 +
+                 40 + 41 + 42 + 43 + 44 + 45 + 46 + 47 + 48 + 49 + 50 + 51 +
+                 52 + 53 + 54 + 55 + 56 + 57 + 58 + 59 + 60 + 61 + 62 + 63 +
+                 64 + 65 + 66 + 67 + 68 + 69 + 70 + 71 + 72 + 73 + 74 + 75 +
+                 76 + 77 + 78 + 79 + 80 + 81 + 82 + 83 + 84 + 85 + 86 + 87 +
+                 88 + 89 + 90 + 91 + 92 + 93 + 94 + 95 + 96 + 97 + 98 + 99 +
+                 100);
+  return 0;
 }
 ```
 
@@ -44,17 +51,15 @@ int main()
 
 따라서, 이번 강좌에서는 반복문에 대해 중점적으로 알아보도록 하겠습니다. 반복문은 컴퓨터 상에서 상당히 많이 쓰이므로 반드시 이해하시기 바랍니다. 일단, C 언어에서 사용할 수 있는 반복문은 여러 종류가 먼저 있습니다만, 가장 먼저 널리 쓰이는 `for` 문에 대해 알아 보도록 하겠습니다.
 
-```cpp
- #include <stdio.h>
-int main()
-{
-    int i;
-    for(i=0;i<20;i++)
-    {
-        printf("숫자 : %d \n", i);
-    }
+```cpp-formatted
+#include <stdio.h>
+int main() {
+  int i;
+  for (i = 0; i < 20; i++) {
+    printf("숫자 : %d \n", i);
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -90,12 +95,11 @@ for(초기식;조건식;증감식)
 
 그렇다면 위의 소스 코드는 어떨까요?
 
-```cpp
+```cpp-formatted
 
-    for(i=0;i<20;i++)
-    {
-        printf("숫자 : %d \n", i);
-    }
+for (i = 0; i < 20; i++) {
+  printf("숫자 : %d \n", i);
+}
 ```
 
 우리가 컴퓨터라면, 일단 컴퓨터는 `for` 문을 보고,
@@ -131,19 +135,17 @@ for(초기식;조건식;증감식)
 
 와우! `for` 문은 의외로 간단 합니다. 단지 알아야 하실 것은 `for` 문은 "특정한 연산을 제어변수가 조건에 맞을 때 만 반복해 주는 것이다." 라고 이해 하시면 되겠습니다.
 
-```cpp
+```cpp-formatted
 /* 1 부터 19 까지의 합*/
 #include <stdio.h>
-int main()
-{
-    int i,sum = 0;
-    for(i=0;i<20;++i)
-    {
-        sum = sum + i;
-    }
-    printf("1 부터 19 까지의 합 : %d",sum);
+int main() {
+  int i, sum = 0;
+  for (i = 0; i < 20; ++i) {
+    sum = sum + i;
+  }
+  printf("1 부터 19 까지의 합 : %d", sum);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -158,17 +160,16 @@ int main()
 
 일단, 위 프로그램의 핵심부분은 아래와 같습니다.
 
-```cpp
-    for(i=0;i<20;++i)
-    {
-        sum = sum + i;
-    }
+```cpp-formatted
+for (i = 0; i < 20; ++i) {
+  sum = sum + i;
+}
 ```
 
 `for` 문을 살펴보자면, 위 `for` 문은 총 20 회 실행되며 `i` 는 0 부터 19 까지의 값을 가집니다. 이 때 주목해야 할 부분은 바로
 
-```cpp
-        sum = sum + i;
+```cpp-formatted
+sum = sum + i;
 ```
 
 이 부분이죠. `sum` 이라는 변수에 `i` 의 값이 계속 더해집니다. 아시다 싶이 여러분은 `sum = sum + i` 라는 식의 뜻이 `0 = i` 라는 괴상한 방정식이 아니라 '=' 를 '대입 연산자' 로 생각하여 '`sum` 이란 변수에 `sum + i` 의 값을 집어 넣는다' 라는 의미가 됩니다. 즉, 위 상태로 `for` 문을 실행하게 되면 `sum` 에 0 부터 19 까지의 값이 더해지게 됩니다.
@@ -188,18 +189,16 @@ sum = sum + 19; // sum = 190;
 
 이 되는 것이지요. 그렇다면 이제 Psi 의 고충을 풀어줄 시간이 왔네요. 1 부터 10000 까지의 합은 어떻게 구할까요? 그야 간단합니다. 단지 조건식만 약간 수정해 주면 됩니다. 한가지 걱정할 부분은 만약 10000 까지의 합이 `int` 자료형의 범위보다 크면 안되는데, 다행히도 크지 않으므로 그냥 계산 하시면 됩니다. 이는 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int i,sum = 0;
-    for(i=0;i<=10000;++i)
-    {
-        sum = sum + i;
-    }
-    printf("1 부터 10000 까지의 합 : %d \n",sum);
+int main() {
+  int i, sum = 0;
+  for (i = 0; i <= 10000; ++i) {
+    sum = sum + i;
+  }
+  printf("1 부터 10000 까지의 합 : %d \n", sum);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -210,29 +209,27 @@ int main()
 
 와 같네요. 결국 Psi 는 친구와의 우정을 지킬 수 있었습니다. ㅎㅎ
 
-```cpp
+```cpp-formatted
 /* for 문 응용 */
 #include <stdio.h>
-int main()
-{
-    int i;
-    int subject, score;
-    double sum_score = 0;
+int main() {
+  int i;
+  int subject, score;
+  double sum_score = 0;
 
-    printf("몇 개의 과목 점수를 입력 받을 것인가요?");
-    scanf("%d", &subject);
+  printf("몇 개의 과목 점수를 입력 받을 것인가요?");
+  scanf("%d", &subject);
 
-    printf("\n 각 과목의 점수를 입력해 주세요 \n");
-    for(i = 1; i <= subject; i++)
-    {
-        printf("과목 %d : ", i);
-        scanf("%d", &score);
-        sum_score = sum_score + score;
-    }
+  printf("\n 각 과목의 점수를 입력해 주세요 \n");
+  for (i = 1; i <= subject; i++) {
+    printf("과목 %d : ", i);
+    scanf("%d", &score);
+    sum_score = sum_score + score;
+  }
 
-    printf("전체 과목의 평균은 : %.2f \n", sum_score / subject);
+  printf("전체 과목의 평균은 : %.2f \n", sum_score / subject);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -243,34 +240,32 @@ int main()
 
 음, 여러 과목을 입력해 보면서 실제 시험 성적 평균을 내보시기 바랍니다. 아무튼, 위 소스를 살펴 봅시다. 일단, 가장 중요한 부분인 `for` 문 부분 부터 보자면...
 
-```cpp
-    for(i = 1; i <= subject; i++)
-    {
-        printf("과목 %d : ", i);
-        scanf("%d", &score);
-        sum_score = sum_score + score;
-    }
-
+```cpp-formatted
+for (i = 1; i <= subject; i++) {
+  printf("과목 %d : ", i);
+  scanf("%d", &score);
+  sum_score = sum_score + score;
+}
 ```
 
 `for` 문을 살펴보면 `i` 의 값이 1 에서 `subject` 까지 1 씩 증가하면서 돌아가네요. 이 말은 즉슨,  `for` 문 안의 내용이 `subject` 번 실행된다는 뜻입니다. (즉, `subject` 가 3 이라면, `i` 의 값이 1 부터 3 까지 1 씩 증가하면서 돌아가므로 `1,2,3.` 즉 3 번 `for` 문 속 내용이 실행됩니다)
 
   이 때,
 
-```cpp
-        printf("과목 %d : ", i);
-        scanf("%d", &score);
+```cpp-formatted
+printf("과목 %d : ", i);
+scanf("%d", &score);
 ```
 
 위 부분에서 각 과목의 점수를 입력받고, 그 입력받은 점수를 `score` 라는 변수에 저장하게 되죠.
 
-```cpp
-        sum_score = sum_score + score;
+```cpp-formatted
+sum_score = sum_score + score;
 ```
 
 그리고, 그 입력받은 `score` 를 `sum_score` 에 더하게 됩니다. 다시말해, `for` 문이 모두 돌아가고 나면 `sum_score` 에는 입력받은 과목들의 점수의 합이 들어가게 됩니다. 따라서,
-```cpp
-   printf("전체 과목의 평균은 : %.2f \n", sum_score / subject);
+```cpp-formatted
+printf("전체 과목의 평균은 : %.2f \n", sum_score / subject);
 ```
 
 평균은 총점을 과목 수로 나눈 것이므로 `sum_score / subject` 가 우리가 구하고 싶은 전체 과목 평균이 되겠군요.
@@ -283,30 +278,25 @@ int main()
 
 
 
-```cpp
+```cpp-formatted
 /* break! */
 #include <stdio.h>
-int main()
-{
-    int usranswer;
+int main() {
+  int usranswer;
 
-    printf("컴퓨터가 생각한 숫자를 맞추어 보세요! \n");
+  printf("컴퓨터가 생각한 숫자를 맞추어 보세요! \n");
 
-    for(;;)
-    {
-        scanf("%d", &usranswer);
-        if(usranswer == 3)
-        {
-            printf("맞추셨군요! \n");
-            break;
-        }
-        else
-        {
-            printf("틀렸어요! \n");
-        }
-    }
+  for (;;) {
+    scanf("%d", &usranswer);
+    if (usranswer == 3) {
+      printf("맞추셨군요! \n");
+      break;
+    } else {
+      printf("틀렸어요! \n");
+    }
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -317,33 +307,27 @@ int main()
 
 `3` 이 입력 될 때 까지 계속 물어보다가 3 을 입력하게 되면 프로그램이 종료됩니다 3 이 입력 될 때 까지 계속 물어보다가 3 을 입력하게 되면 프로그램이 종료됩니다.
 
-```cpp
-    for(;;)
-    {
-        scanf("%d", &usranswer);
-        if(usranswer == 3)
-        {
-            printf("맞추셨군요! \n");
-            break;
-        }
-        else
-        {
-            printf("틀렸어요! \n");
-        }
-    }
+```cpp-formatted
+for (;;) {
+  scanf("%d", &usranswer);
+  if (usranswer == 3) {
+    printf("맞추셨군요! \n");
+    break;
+  } else {
+    printf("틀렸어요! \n");
+  }
+}
 ```
 
 일단, `for` 문을 잠시 살펴 봅시다. 그런데, 한 가지 이상한 점이 있죠? 초기식, 조건식, 증감식이 모두 없습니다! 그렇다면 이 `for` 문은 얼마나 실행 되야 되는 것인가요? 답은, `for` 문의 조건식이 명시되지 않는다면 항상 '참' 이라 인식 되기 때문에 이 `for` 문은 언제나 참이됩니다. 다시 말해, 무한히 중괄호 속의 내용을 실행한다는 것이지요. 그래서, 만약
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    for(;;)
-    {
-        printf("a");
-    }
-    return 0;
+int main() {
+  for (;;) {
+    printf("a");
+  }
+  return 0;
 }
 ```
 
@@ -354,50 +338,42 @@ int main()
 
 와 같이 나오게 됩니다.
 
-```cpp
-        scanf("%d", &usranswer);
-        if(usranswer == 3)
-        {
-            printf("맞추셨군요! \n");
-            break;
-        }
-        else
-        {
-            printf("틀렸어요! \n");
-        }
+```cpp-formatted
+scanf("%d", &usranswer);
+if (usranswer == 3) {
+  printf("맞추셨군요! \n");
+  break;
+} else {
+  printf("틀렸어요! \n");
+}
 ```
 
 아무튼, `scanf` 를 통해 `usranswer` 에 사용자가 입력한 수를 저장합니다. 그리고 `if` 문을 통해 비교하지요. 과연 컴퓨터가 생각한 3 과 같은지... 만약 같다면 '맞추셨군요!' 가 출력이 됩니다. 그리고,프로그램이 종료되죠. 즉, `for` 문을 빠져나갑니다. 그런데, 맞추지 못하면 `for` 문은 계속 돌고 돌게 됩니다. 우리가 맞출 때 까지요. 그렇다면, 위 소스에서 `for` 문을 빠져나가게 하는 부분은 무엇일까요. 아마 짐작했던 대로, `break` 가 `for` 문을 탈출 시킵니다.
 
 `break` 는 `for` 문에 조건식에 상관 없이 실행이 되기만 하면 `for` 문을 그대로 탈출 시켜 버립니다. 이 말은 즉슨 `break` 아래의 어떠한 것들도 실행이 되지 않는 다는 것이지요.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    for(;;)
-    {
-        break;
-        printf("a");
-    }
-    return 0;
+int main() {
+  for (;;) {
+    break;
+    printf("a");
+  }
+  return 0;
 }
 ```
 
 따라서, 위와 같은 프로그램을 만들었을 때, `break` 문을 만나자 마자 `for` 문 밖으로 탈출 시키므로 `a` 는 출력이 되지 않고 프로그램은 종료됩니다. 반면에
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    for(;;)
-    {
-        printf("a");
-        break;
-    }
-    return 0;
+int main() {
+  for (;;) {
+    printf("a");
+    break;
+  }
+  return 0;
 }
-
 ```
 
 위와 같이 `break` 앞에 printf("a"); 가 있다면 `a` 가 출력이 되고 `for` 문을 빠져나가 종료가 되는 것이지요.
@@ -430,22 +406,19 @@ int main()
 
   `continue` 문은 `break` 문과 비슷하지만서도 하는 일은 완전히 다릅니다. `continue` 는 `break` 와는 달리 `for` 문을 빠져 나가지 않고, 그냥 패스 해주는 것입니다. 아래 예제를 봅시다.
 
-```cpp
+```cpp-formatted
 /* 5 의 배수를 제외한 숫자 출력 */
 #include <stdio.h>
-int main()
-{
-    int i;
+int main() {
+  int i;
 
-    for(i=0; i<100; i++)
-    {
-        if(i % 5 == 0)
-            continue;
+  for (i = 0; i < 100; i++) {
+    if (i % 5 == 0) continue;
 
-        printf("%d ", i);
-    }
+    printf("%d ", i);
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -457,14 +430,12 @@ int main()
    와 같이 나오게 됩니다. 보시다 싶이, 5 의 배수를 제외한 0 이상, 100 미만의 모든 수들이 출력 되었습니다.
 
 
-```cpp
-    for(i=0; i<100; i++)
-    {
-        if(i % 5 == 0)
-            continue;
+```cpp-formatted
+for (i = 0; i < 100; i++) {
+  if (i % 5 == 0) continue;
 
-        printf("%d ", i);
-    }
+  printf("%d ", i);
+}
 ```
 
   일단, `for` 문을 살펴보면 `i` 가 0 부터 100 미만의 값을 가지게 됩니다. 이 때, `if` 문을 살펴 보면 `i` 를 5로 나눈 나머지 (i % 5) 가 0 일 때 (== 0) `continue` 를 실행함을 볼 수 있습니다. `continue` 는 `break` 문 처럼 아래 모든 내용을 무시한다는 점에서 동일하지만, `break` 문은 루프를 빠져나가는데 반면 `continue` 는 다시 조건 점검부로 점프하게 됩니다. `continue` 는 마치 카드 게임에서 스킵과 같은 역할을 하게 됩니다. (break 문이 카드게임에서 퇴출 되는 것이라면...)
@@ -473,22 +444,19 @@ int main()
 
 문득 `for` 문을 배우면서 이러한 생각은 들지 않았나요? `if` 문 안에 `if` 문을 넣을 수 있는 것 처럼 `for` 문 안에도 `for` 문을 넣을 수 있을까? 네, 물론 넣을 수 있습니다. 아래 예제를 참조하세요.
 
-```cpp
+```cpp-formatted
 /* 구구단 */
 #include <stdio.h>
-단int main()
-{
-    int i , j;
+단int main() {
+  int i, j;
 
-    for(i=1; i<10; i++)
-    {
-        for(j=1; j<10; j++)
-        {
-            printf(" %d x %d = %d \n", i, j, i*j);
-        }
-    }
+  for (i = 1; i < 10; i++) {
+    for (j = 1; j < 10; j++) {
+      printf(" %d x %d = %d \n", i, j, i * j);
+    }
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -501,60 +469,51 @@ int main()
 
 와 같이 근사한 구구단 표가 출력됩니다.
 
-```cpp
-    for(i=1; i<10; i++)
-    {
-        for(j=1; j<10; j++)
-        {
-            printf(" %d x %d = %d \n", i, j, i*j);
-        }
-    }
-
+```cpp-formatted
+for (i = 1; i < 10; i++) {
+  for (j = 1; j < 10; j++) {
+    printf(" %d x %d = %d \n", i, j, i * j);
+  }
+}
 ```
 
 위 코드에서 구구단 표를 출력하는 부분은 바로 위 부분입니다. `for` 문이 2 개나 사용되어 있는 꼴이지요. 그런데 사실 돌아가는 원리는 간단합니다. 일단, 처음에 `i` 에 1 이 들어 가게 되죠. 그런 다음에
 
-```cpp
-        for(j=1; j<10; j++)
-        {
-            printf(" %d x %d = %d \n", i, j, i*j);
-        }
+```cpp-formatted
+for (j = 1; j < 10; j++) {
+  printf(" %d x %d = %d \n", i, j, i * j);
+}
 ```
 
 
 이 부분이 열심히 실행됩니다. 물론 위 부분이 열심히 실행되는 동안 `i` 의 값은 변하지 않고 (계속 1 로 남는다), `j` 의 값만 1 부터 9 까지 변하여 구구단의 `1 x 1 ~ 1 x 9` 까지 출력하게 되는 것이지요. 위 `for` 문이 끝나면, 다시
 
-```cpp
-    for(i=1; i<10; i++)
-```
+```cpp-formatted
+for (i = 1; i < 10; i++) ```
 
 이 부분이 실행되어 `i` 의 값이 1 증가합니다. 즉, `i` 는 2가 되는 것이지요. 이제 다시
 
-```cpp
-        for(j=1; j<10; j++)
-        {
-            printf(" %d x %d = %d \n", i, j, i*j);
-        }
+```cpp-formatted
+for (j = 1; j < 10; j++) {
+  printf(" %d x %d = %d \n", i, j, i * j);
+}
 ```
 
 가 실행되어 `2 x 1 ~ 2 x 9` 까지 출력되게 됩니다. 마찬가지 방법으로 `i` 의 값이 9 가 될 때 까지 실행한 뒤 `i` 의 값이 10 이 되면 `for` 문을 완전히 빠져 나와 실행이 종료 됩니다.
 
-```cpp
+```cpp-formatted
 /* 다음 소스만 보고 무슨 숫자가 출력될 지 맞추어 보세요~~ */
 #include <stdio.h>
-int main()
-{
-    int i , j;
+int main() {
+  int i, j;
 
-    for(i=1; i<10; i++)
-    {
-        for(j=1; j<i; j++)
-        {
-            printf("%d ", j);
-        }
-    }
+  for (i = 1; i < 10; i++) {
+    for (j = 1; j < i; j++) {
+      printf("%d ", j);
+    }
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -565,37 +524,32 @@ int main()
 
 가 나오게 됩니다. 아마 위에서 `for` 문에 대해 잘 이해하신 분들은 금방 이해 할 수 있겠지요.
 
-```cpp
-    for(i=1; i<10; i++)
-    {
-        for(j=1; j<i; j++)
-        {
-            printf("%d ", j);
-        }
-    }
-
+```cpp-formatted
+for (i = 1; i < 10; i++) {
+  for (j = 1; j < i; j++) {
+    printf("%d ", j);
+  }
+}
 ```
 
 이 부분에서 `i` 가 1 이면, `j` 가 출력되지 않고, `i` 가 2 가 되면 `j` 가 1 부터 1 까지, `i` 가 3 이 되면 `j` 는 1 부터 2 까지 순차적으로 출력되어 `i` 가 9 일 때, `j` 는 1 부터 8 까지 출력되어 위와 같은 모습을 보이게 됩니다. 어때요? 간단하지요?
 
   아마 이 쯤 하셨다면 `for` 문에 대해 질렸을 것 같으니 `for` 문과 비스므리하면서도 다른 반복문인 `while` 문에 대해 살펴 보도록 해봅시다.
 
-```cpp
+```cpp-formatted
 /* while 문 */
 #include <stdio.h>
-int main()
-{
-    int i = 1, sum = 0;
+int main() {
+  int i = 1, sum = 0;
 
-    while(i <= 100)
-    {
-        sum += i;
-        i++;
-    }
+  while (i <= 100) {
+    sum += i;
+    i++;
+  }
 
-    printf("1 부터 100 까지의 합 : %d \n", sum);
+  printf("1 부터 100 까지의 합 : %d \n", sum);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -619,36 +573,30 @@ int main()
 
   `for` 문 처럼 '조건식' 에는 이 `while` 문을 계속 돌게 할 조건이 들어갑니다. 예를 들어서 조건식에 `i <= 100` 이 들어간다면 `i` 가 100 이하 일 때 만 조건이 성립하므로 `i` 가 100 이하일 때 까지 `while` 문이 계속 돌아가게 됩니다.
 
-```cpp
-    while(i <= 100)
-    {
-        sum += i;
-        i++;
-    }
-
+```cpp-formatted
+while (i <= 100) {
+  sum += i;
+  i++;
+}
 ```
 
   위 경우, `i` 의 값이 100 이하 인 지 검사한 다음에 (i <= 100 ), `sum` 에 `i` 를 더하고 (sum += i ), `i` 의 값을 증가한 뒤 (i++ ), 다시 처음으로 돌아가게 됩니다. 이 때, `while` 문의 특징이 바로 시작 부터 조건식을 검사한다는 것입니다. (이는 `for` 문과 동일합니다.)
 따라서, 만약 `i < 1` 이 조건식이라면 `while` 문 내부의 내용은 하나도 실행되지 않고 종료되게 됩니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int i = 1, sum = 0;
+int main() {
+  int i = 1, sum = 0;
 
-    do
-    {
-        sum += i;
+  do {
+    sum += i;
 
-        i++;
-    }
-    while (i < 1);
+    i++;
+  } while (i < 1);
 
-    printf(" sum : %d \n", sum);
-    return 0;
+  printf(" sum : %d \n", sum);
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 하였다면
@@ -660,27 +608,22 @@ int main()
 
   `do - while` 문의 구조는 아래와 같습니다.
 
-```cpp
-    do
-    {
-        명령1;
-        명령2;
-        ...
-    }
-    while (조건식);
-
+```cpp-formatted
+do {
+  명령1;
+  명령2;
+  ...
+} while (조건식);
 ```
 
   `do - while` 문은 사실 `whlie` 문과 같습니다. 그런데, 한 가지 차이게 있는데, 앞서 말했듯이 `while` 문은 명령을 실행하기 전에 조건식이 참 인지 먼저 검사 합니다. 따라서, 조건식이 처음부터 참이 아니라면 `whlie` 문 안의 내용은 결코 실행 될 수 없겠지요. 그런데, `do - while` 은 먼저 명령을 실행 한 뒤에 조건식을 검사합니다. 따라서, 처음부터 조건식이 참이 아니라도 명령을 먼저 실행한 다음 조건식을 검사하기 때문에 최소한 한 번은 실행되게 됩니다.
 
-```cpp
-    do
-    {
-        sum += i;
+```cpp-formatted
+do {
+  sum += i;
 
-        i++;
-    }
-    while (i < 1);
+  i++;
+} while (i < 1);
 ```
 
 
@@ -754,6 +697,3 @@ int main()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

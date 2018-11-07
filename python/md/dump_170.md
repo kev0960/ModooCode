@@ -50,7 +50,7 @@ operator void * ( ) const;
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -58,19 +58,17 @@ http://www.cplusplus.com/reference/iostream/ios/operator_voidpt/
 에서 가져왔습니다.
 
 */
-#include <iostream>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
-int main ()
-{
-    ifstream is;
-    is.open ("test.txt");
+int main() {
+  ifstream is;
+  is.open("test.txt");
 
-    if ( (void*)is == 0)
-        cerr << "Error opening 'test.txt'\n";
+  if ((void*)is == 0) cerr << "Error opening 'test.txt'\n";
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -87,9 +85,8 @@ int main ()
 
 
 
-```cpp
-( basic_ios<charT,traits> )
-operator void * () const;
+```cpp-formatted
+(basic_ios<charT, traits>)operator void*() const;
 ```
 
 

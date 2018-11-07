@@ -60,26 +60,26 @@ C 문자열로 파일 접근 방식에 대한 정보를 포함해야 한다. 이
 
 ###  실행 예제
 
-```cpp
+```cpp-formatted
 /*
 
-a.txt 를 쓰기 형식으로 열어서 Hello, Psi 를 쓴 뒤, 다시 읽기 형식으로 열어서 그 내용을 읽어 출력한다.
+a.txt 를 쓰기 형식으로 열어서 Hello, Psi 를 쓴 뒤, 다시 읽기 형식으로 열어서 그
+내용을 읽어 출력한다.
 
 */
 #include <stdio.h>
-int main()
-{
-    FILE *fp;
-    char str[100];
+int main() {
+  FILE *fp;
+  char str[100];
 
-    fp = fopen("C:\\a.txt", "w");
-    fputs("Hello, Psi!!", fp);
+  fp = fopen("C:\\a.txt", "w");
+  fputs("Hello, Psi!!", fp);
 
-    fp = freopen("C:\\a.txt", "r", fp);
-    fgets(str, 99, fp);
+  fp = freopen("C:\\a.txt", "r", fp);
+  fgets(str, 99, fp);
 
-    printf("%s", str);
-    return 0;
+  printf("%s", str);
+  return 0;
 }
 ```
 
@@ -90,23 +90,21 @@ int main()
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F171C77104B76B24B4F80E7)
 
 
-```cpp
+```cpp-formatted
 /*
 
 표준 출력(stdout) 을 myfile.txt 의 스트림으로 변경한다.
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/freopen/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    freopen ("myfile.txt","w",stdout);
-    printf ("This sentence is redirected to a file.");
-    fclose (stdout);
-    return 0;
+int main() {
+  freopen("myfile.txt", "w", stdout);
+  printf("This sentence is redirected to a file.");
+  fclose(stdout);
+  return 0;
 }
-
 ```
 
 실행 결과
@@ -127,10 +125,3 @@ int main ()
 
 * [fopen](http://itguru.tistory.com/58)  :  파일을 연다
 * [fclose](http://itguru.tistory.com/54):  파일을 닫는다.
-
-
-
-
-
-
-

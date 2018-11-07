@@ -53,9 +53,22 @@ streambuf* rdbuf ( streambuf* sb );
 
 
 
-```cpp
+```cpp-formatted
 
-/*이 예제는http://www.cplusplus.com/reference/iostream/ios/rdbuf/에서 가져왔습니다.*/#include <iostream>#include <fstream>using namespace std;int main (){    streambuf *psbuf, *backup;    ofstream filestr;    filestr.open ("test.txt");    backup = cout.rdbuf();     // 현재 cout 의 스트림 버퍼를 백업한다.    psbuf = filestr.rdbuf();   // 파일 스트림 버퍼를 얻는다    cout.rdbuf(psbuf);         // 파일 스트림 버퍼를 cout 에 연관시킨다    cout << "This is written to the file"; // 따라서 이것은 파일에 쓰여진다.    cout.rdbuf(backup);        // 원래 cout 의 스트림 버퍼로 돌아간다.    filestr.close();    return 0;}
+/*이 예제는http://www.cplusplus.com/reference/iostream/ios/rdbuf/에서
+ * 가져왔습니다.*/
+#include <iostream> #include <fstream> using namespace std;
+int main() {
+  streambuf *psbuf, *backup;
+  ofstream filestr;
+  filestr.open("test.txt");
+  backup = cout.rdbuf();  // 현재 cout 의 스트림 버퍼를 백업한다.    psbuf =
+                          // filestr.rdbuf();   // 파일 스트림 버퍼를 얻는다
+                          // cout.rdbuf(psbuf);         // 파일 스트림 버퍼를
+                          // cout 에 연관시킨다    cout << "This is written to
+                          // the file"; // 따라서 이것은 파일에 쓰여진다.
+                          // cout.rdbuf(backup);        // 원래 cout 의 스트림
+                          // 버퍼로 돌아간다.    filestr.close();    return 0;}
 ```
 
 실행 결과
@@ -72,11 +85,11 @@ streambuf* rdbuf ( streambuf* sb );
 
 
 
-```cpp
-( basic_ios<charT,traits> )
+```cpp-formatted
+(basic_ios<charT, traits>)
 
-basic_streambuf<charT,traits> * rdbuf () const;
-basic_streambuf<charT,traits> * rdbuf ( basic_streambuf<charT,traits> sb);
+  basic_streambuf<charT, traits>* rdbuf() const;
+basic_streambuf<charT, traits>* rdbuf(basic_streambuf<charT, traits> sb);
 ```
 
 
@@ -86,12 +99,3 @@ basic_streambuf<charT,traits> * rdbuf ( basic_streambuf<charT,traits> sb);
 ###  연관된 자료
 
 * `streambuf` :  스트림의 부모(base) 버퍼 클래스
-
-
-
-
-
-
-
-
-

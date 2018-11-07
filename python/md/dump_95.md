@@ -59,7 +59,7 @@ char * strpbrk ( const char *, const char * );
 ###  함수의 구현
 
 
-```cpp
+```cpp-formatted
 /*
 
 다음 소스는
@@ -68,8 +68,16 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 
 */
 
-
-char *strpbrk(const char *string, const char *control){    const unsigned char *str = string;    const unsigned char *ctrl = control;    unsigned char map[32];    int count;    // Clear out bit map    for (count = 0; count < 32; count++) map[count] = 0;    // Set bits in control map    while (*ctrl)    {        map[*ctrl >> 3] |= (1 << (*ctrl & 7));        ctrl++;    }    // 1st char in control map stops search    while (*str)    {        if (map[*str >> 3] & (1 << (*str & 7))) return (char *) str;        str++;    }    return NULL;}
+char *strpbrk(const char *string, const char *control) {
+  const unsigned char *str = string;
+  const unsigned char *ctrl = control;
+  unsigned char map[32];
+  int count;  // Clear out bit map    for (count = 0; count < 32; count++)
+              // map[count] = 0;    // Set bits in control map    while (*ctrl)
+              // {        map[*ctrl >> 3] |= (1 << (*ctrl & 7));        ctrl++;
+              // }    // 1st char in control map stops search    while (*str) {
+              // if (map[*str >> 3] & (1 << (*str & 7))) return (char *) str;
+              // str++;    }    return NULL;}
 ```
 
 
@@ -82,35 +90,32 @@ char *strpbrk(const char *string, const char *control){    const unsigned cha
 
 
 
-```cpp
+```cpp-formatted
 /*
 
-strpbrk 로 일치하는 문자를 찾았다면 포인터의 값을 1 증가시켜서 그 다음 부분 부터 계속 검색을 수행한다.
-즉 str 에 포함된 모든 vowel 들의 위치를 구하게 된다.
-이 예제는
-http://www.cplusplus.com/reference/clibrary/cstring/strpbrk/
-에서 가져왔습니다.
+strpbrk 로 일치하는 문자를 찾았다면 포인터의 값을 1 증가시켜서 그 다음 부분 부터
+계속 검색을 수행한다. 즉 str 에 포함된 모든 vowel 들의 위치를 구하게 된다. 이
+예제는 http://www.cplusplus.com/reference/clibrary/cstring/strpbrk/ 에서
+가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[] = "This is a sample string";
-    char key[] = "aeiou";
-    char * pch;
-    printf ("Vowels in '%s': ",str);
-    pch = strpbrk (str, key);
+int main() {
+  char str[] = "This is a sample string";
+  char key[] = "aeiou";
+  char* pch;
+  printf("Vowels in '%s': ", str);
+  pch = strpbrk(str, key);
 
-    while (pch != NULL)
-    {
-        printf ("%c " , *pch);
-        pch = strpbrk (pch+1,key);
-    }
-    printf ("\n");
+  while (pch != NULL) {
+    printf("%c ", *pch);
+    pch = strpbrk(pch + 1, key);
+  }
+  printf("\n");
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -131,10 +136,3 @@ int main ()
 *  [strchr](http://itguru.tistory.com/93):  특정한 문자를 검색하는데 가장 먼저 나타나는 위치를 찾는다.
 * strrchr  :  특정한 문자를 검색하는데 가장 마지막으로 나타나는 위치를 찾는다.
 *  [memchr](http://itguru.tistory.com/92)  :  메모리에서 특정한 문자를 찾는다.
-
-
-
-
-
-
-

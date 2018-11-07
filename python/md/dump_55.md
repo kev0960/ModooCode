@@ -27,24 +27,23 @@ next_page : 60
 
 그런데 말이죠. 위 방법에는 살짝 문제점이 있었습니다. 책의 정보를 수정하기 위해서 함수에 인자로 전달할 때 상당히 불편하다는 사실입니다. 한 번 도서 관리 프로그램의 새로운 책을 추가하는 함수였던 `add_book` 함수의 원형을 가져와보았습니다.
 
-```cpp
-int add_book(char (*book_name)[30], char (*auth_name)[30], char (*publ_name)[30],
-             int *borrowed, int *num_total_book);
-
+```cpp-formatted
+int add_book(char (*book_name)[30], char (*auth_name)[30],
+             char (*publ_name)[30], int *borrowed, int *num_total_book);
 ```
 
 헐. `num_total_book` 을 빼더라도 인자가 너무나 깁니다. 그래도 도서 관리 프로그램은 봐줄만 했죠. 하지만 우리가 만들게 될 `Sims` 는 다릅니다. 일단 사람 한 명에는 수없이 많은 정보가 있습니다. 예를 들어, 이름, 나이, 직업, 성격 (외향적, 내향적, 사교적, ... 들을 모두 수치화 시켜서 보관한다), 직업, 재산, 가족 관계 등등 수없이 많은 정보가 있습니다. 책과는 완전히 다르지요. 우리가 사람의 정보를 수정하기 위해 함수를 호출할 때 마다 이렇게 무지막지 하게 많은 정보들을 인자로 전달하려면 손가락이 빠질 뿐더러 눈도 매우 아프게 됩니다.
 
 우리가 배열을 배웠기 전의 모습을 생각해봅시다. 배열을 배우기 전에, 예를 들어 10 명의 학생의 점수를 보관하기 위해 10 개의 변수를 선언해서 각각에 보관했어야 했습니다. 하지만, 배열을 배운 이후는 어떨까요? 10 개의 변수를 한꺼번에 배열로 처리하여 배열의 각각의 원소를 손쉽게 다루기 위해서였습니다. 즉 `int arr[10];` 이라 한다면 `int` 형 변수 10 개를 쉽게 다룰 수 있는 것입니다. 뿐만 아니라 함수에 `int` 형 변수를 전달할 때, `int` 형 변수 10 개를 일일히 전달하려면
 
-```cpp
-int func(int a, int b, int c, .....(생략) ... )
+```cpp-formatted
+int func(int a, int b, int c, .....(생략)...)
 ```
 
 
 와 같이 해야 합니다. 그런데 `int` 형 변수 10 개를 `arr` 을 이용하여 쉽게 전달할 수 있습니다. 아래와 같이요.
 
-```cpp
+```cpp-formatted
 int func(int *arr);
 ```
 
@@ -52,28 +51,26 @@ int func(int *arr);
 
 정말 괜찮은 아이디어입니다. 하지만 C 언어에서는 배열의 원소의 타입은 모두 동일해야 합니다. 다시말해 동일한 배열에서 어떤 원소는 `char` 이고 어떤 원소는 `int` 일 수 없다는 것이죠. 다행스럽게도 C 언어에서는 배열로 해결하지 못하는 문제를 **구조체** 를 이용하여 해결할 수 있었습니다.
 
-```cpp
+```cpp-formatted
 /* 구조체의 도입*/
 #include <stdio.h>
-struct Human
-{
-    int age; /* 나이 */
-    int height; /* 키 */
-    int weight; /* 몸무게 */
-}; /* ; 붙이는 것 주의하세요 */
-int main()
-{
-    struct Human Psi;
+struct Human {
+  int age;    /* 나이 */
+  int height; /* 키 */
+  int weight; /* 몸무게 */
+};            /* ; 붙이는 것 주의하세요 */
+int main() {
+  struct Human Psi;
 
-    Psi.age = 99;
-    Psi.height = 185;
-    Psi.weight = 80;
+  Psi.age = 99;
+  Psi.height = 185;
+  Psi.weight = 80;
 
-    printf("Psi 에 대한 정보 \n");
-    printf("나이   : %d \n", Psi.age);
-    printf("키     : %d \n", Psi.height);
-    printf("몸무게 : %d \n", Psi.weight);
-    return 0;
+  printf("Psi 에 대한 정보 \n");
+  printf("나이   : %d \n", Psi.age);
+  printf("키     : %d \n", Psi.height);
+  printf("몸무게 : %d \n", Psi.weight);
+  return 0;
 }
 ```
 
@@ -85,13 +82,12 @@ int main()
 
 아마 여러분은 위 소스 코드에서 여러가지 새로운 것들을 보실 수 있으셨을 겁니다. 아마 이 강좌가 끝날 즈음에는 위 사실들을 자유롭게 다룰 수 있게 되니 크게 걱정 안하셔도 됩니다. 일단 구조체를 정의한 부분 부터 살펴 봅시다. 직관적으로 아래의 부분과 같다는 사실을 알 수 있습니다.
 
-```cpp
-struct Human
-{
-    int age; /* 나이 */
-    int height; /* 키 */
-    int weight; /* 몸무게 */
-}; /* ; 붙이는 것 주의하세요 */
+```cpp-formatted
+struct Human {
+  int age;    /* 나이 */
+  int height; /* 키 */
+  int weight; /* 몸무게 */
+};            /* ; 붙이는 것 주의하세요 */
 ```
 
 
@@ -101,20 +97,17 @@ struct Human
 
   구조체의 일반적인 정의는 아래와 같습니다.
 
-```cpp
-struct 구조체이름
-{
-    멤버들.. 예를 들면
-    char str[10];
-    int i;
+```cpp-formatted
+struct 구조체이름 {
+  멤버들..예를 들면 char str[10];
+  int i;
 }; /* 마지막에 꼭 ; 를 붙인다. */
-
 ```
 
 다음은 `main` 함수내부를 살펴 볼 것입니다.
 
-```cpp
-    struct Human Psi;
+```cpp-formatted
+struct Human Psi;
 ```
 
 
@@ -122,60 +115,54 @@ struct 구조체이름
 
 그렇다면 배열에서 `[]` 를 이용해서 원소에 접근하듯이, 구조체에서도 멤버에 접근할 방법이 있어야 겠죠? C 언어에서는 `.` 을 이용하여 원소에 접근할 수 있습니다. 예를 들어서, Psi 의 `height` 멤버에 접근하려면 `Psi.height` 라고 하면 됩니다. 이는 마치 배열에서 `arr[3]` 과 같이 원소에 접근하는 것과 동일한 것입니다. 다만 구조체는 `.` 을 이용하고, 멤버가 무엇인지 특별히 명시해주어야 하는 것만 빼고요.
 
-```cpp
-    Psi.age = 99;
-    Psi.height = 185;
-    Psi.weight = 80;
-
+```cpp-formatted
+Psi.age = 99;
+Psi.height = 185;
+Psi.weight = 80;
 ```
 
 따라서, 위 작업은 Psi 라는 구조체의 각 멤버에 값을 대입하는 것입니다. 이는 마치 배열에서 `arr[1] = 99, arr[2] = 185` 와 같이 하는 것과 동일합니다.
 
 지금 구조체를 처음 배워서 살짝 이해가 안되는 것도 있고 무언가 혼동되는 것이 있을 것입니다. 그래도 구조체가 무엇인지는 감이 대충 오지 않나요? 이제, 다음 예제를 살펴 보아서 구조체가 뭔지 감을 확 잡아보도록 합시다.
 
-```cpp
+```cpp-formatted
 /* 구조체 예제 2 */
 #include <stdio.h>
 char copy_str(char *dest, char *src);
-struct Books
-{
-    /* 책 이름 */
-    char name[30];
-    /* 저자 이름 */
-    char auth[30];
-    /* 출판사 이름 */
-    char publ[30];
-    /* 빌려 졌나요? */
-    int borrowed;
+struct Books {
+  /* 책 이름 */
+  char name[30];
+  /* 저자 이름 */
+  char auth[30];
+  /* 출판사 이름 */
+  char publ[30];
+  /* 빌려 졌나요? */
+  int borrowed;
 };
-int main()
-{
-    struct Books Harry_Potter;
+int main() {
+  struct Books Harry_Potter;
 
-    copy_str(Harry_Potter.name, "Harry Potter");
-    copy_str(Harry_Potter.auth, "J.K. Rolling");
-    copy_str(Harry_Potter.publ, "Scholastic");
-    Harry_Potter.borrowed = 0;
+  copy_str(Harry_Potter.name, "Harry Potter");
+  copy_str(Harry_Potter.auth, "J.K. Rolling");
+  copy_str(Harry_Potter.publ, "Scholastic");
+  Harry_Potter.borrowed = 0;
 
-    printf("책 이름 : %s \n", Harry_Potter.name);
-    printf("저자 이름 : %s \n", Harry_Potter.auth);
-    printf("출판사 이름 : %s \n", Harry_Potter.publ);
+  printf("책 이름 : %s \n", Harry_Potter.name);
+  printf("저자 이름 : %s \n", Harry_Potter.auth);
+  printf("출판사 이름 : %s \n", Harry_Potter.publ);
 
-
-    return 0;
+  return 0;
 }
-char copy_str(char *dest, char *src)
-{
-    while (*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+char copy_str(char *dest, char *src) {
+  while (*src) {
+    *dest = *src;
+    src++;
+    dest++;
+  }
 
-    *dest = '\0';
+  *dest = '\0';
 
-    return 1;
+  return 1;
 }
 ```
 
@@ -189,30 +176,29 @@ char copy_str(char *dest, char *src)
 
 먼저, 구조체를 정의한 부분 부터 살펴 보도록 합시다.
 
-```cpp
-struct Books
-{
-    /* 책 이름 */
-    char name[30];
-    /* 저자 이름 */
-    char auth[30];
-    /* 출판사 이름 */
-    char publ[30];
-    /* 빌려 졌나요? */
-    int borrowed;
+```cpp-formatted
+struct Books {
+  /* 책 이름 */
+  char name[30];
+  /* 저자 이름 */
+  char auth[30];
+  /* 출판사 이름 */
+  char publ[30];
+  /* 빌려 졌나요? */
+  int borrowed;
 };
 ```
 
 
 흥미로운 점은 이 `Book` 구조체가 우리가 이전에 만들었던 도서 관리 프로그램을 쏙 빼닮았다는 것이죠. 그 때 에는 각 책을 배열의 한 개의 원소로 표현했는데, 책 이름의 경우 `name[100][30]` 의 한 문자열 `name[i]` 으로, (여기서 `i` 는 임의의 수), 빌려 졌는지에 대한 유무의 경우, `borrowed[100]` 의 한 원소 `borrowed[i]` 로 표현했었죠. 하지만 구조체를 이용하면 책의 각각의 정보를 따로 따로 배열에 정의할 필요가 없게 됩니다. `main` 함수를 살펴보면
 
-```cpp
-    struct Books Harry_Potter;
+```cpp-formatted
+struct Books Harry_Potter;
 
-    copy_str(Harry_Potter.name, "Harry Potter");
-    copy_str(Harry_Potter.auth, "J.K. Rolling");
-    copy_str(Harry_Potter.publ, "Scholastic");
-    Harry_Potter.borrowed = 0;
+copy_str(Harry_Potter.name, "Harry Potter");
+copy_str(Harry_Potter.auth, "J.K. Rolling");
+copy_str(Harry_Potter.publ, "Scholastic");
+Harry_Potter.borrowed = 0;
 ```
 
 먼저 우리는 `Harry_Potter` 라는 `struct Books` 의 구조체 변수를 만들었습니다. 자, 그럼 `Harry_Potter` 의 각 멤버에 값을 대입해야 겠죠? 먼저 책의 이름, 즉 `Harry_Potter.name` 에 "Harry Potter" 를, 마찬가지로 저자 이름과 출판사에도 모두 대입합니다. 마지막으로 빌렸는지 안빌렸는지에 대한 유무 확인을 위한 `Harry_Potter.borrowed` 에도 0 을 넣어주어야 합니다.
@@ -221,17 +207,16 @@ struct Books
 
 한 번 구조체 정의 부분을
 
-```cpp
-struct Books
-{
-    /* 책 이름 */
-    char name[30];
-    /* 저자 이름 */
-    char auth[30];
-    /* 출판사 이름 */
-    char publ[30];
-    /* 빌려 졌나요? */
-    int borrowed = 0;
+```cpp-formatted
+struct Books {
+  /* 책 이름 */
+  char name[30];
+  /* 저자 이름 */
+  char auth[30];
+  /* 출판사 이름 */
+  char publ[30];
+  /* 빌려 졌나요? */
+  int borrowed = 0;
 };
 ```
 
@@ -261,49 +246,42 @@ error C2224: '.publ' 왼쪽에는 구조체/공용 구조체 형식이 있어야
 사실 위 처럼 나온 이유는 간단합니다. 구조체의 정의에서는 변수를 초기화 할 수 없기 때문입니다. 그냥, 받아 들여주세요. 구조체 정의 내부에서는 변수를 초기화 할 수 없다고 말이죠. 특히, 위와 같이 실수를 할 경우 찾기도 잘 어렵고 오류들도 엉뚱한 것들만 나오기 때문에 위와 같은 실수를 조심하는 것이 아주 중요합니다.
 
 
-```cpp
+```cpp-formatted
 /* 구조체 예제*/
 #include <stdio.h>
-struct Books
-{
-    /* 책 이름 */
-    char name[30];
-    /* 저자 이름 */
-    char auth[30];
-    /* 출판사 이름 */
-    char publ[30];
-    /* 빌려 졌나요? */
-    int borrowed;
+struct Books {
+  /* 책 이름 */
+  char name[30];
+  /* 저자 이름 */
+  char auth[30];
+  /* 출판사 이름 */
+  char publ[30];
+  /* 빌려 졌나요? */
+  int borrowed;
 };
-int main()
-{
-    struct Books book_list[3];
-    int i;
+int main() {
+  struct Books book_list[3];
+  int i;
 
-    for(i=0;i<3;i++)
-    {
-        printf("책 %d 정보 입력 : ", i);
-        scanf("%s%s%s", book_list[i].name, book_list[i].auth, book_list[i].publ);
-        book_list[i].borrowed = 0;
-    }
+  for (i = 0; i < 3; i++) {
+    printf("책 %d 정보 입력 : ", i);
+    scanf("%s%s%s", book_list[i].name, book_list[i].auth, book_list[i].publ);
+    book_list[i].borrowed = 0;
+  }
 
-    for(i=0;i<3;i++)
-    {
-        printf("------------------------------- \n");
-        printf("책 %s 의 정보\n", book_list[i].name);
-        printf("저자 : %s \n", book_list[i].auth);
-        printf("출판사 : %s \n", book_list[i].publ);
+  for (i = 0; i < 3; i++) {
+    printf("------------------------------- \n");
+    printf("책 %s 의 정보\n", book_list[i].name);
+    printf("저자 : %s \n", book_list[i].auth);
+    printf("출판사 : %s \n", book_list[i].publ);
 
-        if(book_list[i].borrowed == 0)
-        {
-            printf("안 빌려짐\n");
-        }
-        else
-        {
-            printf("빌려짐 \n");
-        }
-    }
-    return 0;
+    if (book_list[i].borrowed == 0) {
+      printf("안 빌려짐\n");
+    } else {
+      printf("빌려짐 \n");
+    }
+  }
+  return 0;
 }
 ```
 
@@ -315,42 +293,37 @@ int main()
 
 먼저 구조체의 정의에 대한 부분은 생략하고 바로 `main` 함수 부터 이야기 하겠습니다.
 
-```cpp
-    struct Books book_list[3];
+```cpp-formatted
+struct Books book_list[3];
 ```
 
 
 일단 위 문장을 보았을 때 어떤 분들은 이해가 잘 되지만 어떤 분들은 이해가 안될 수 도 있을 것이니 다시 한 번 설명하겠습니다. 이전에도 말했듯이 `int arr[3]` 에서 `int` 가 하나의 타입이듯이, `struct Books` 가 하나의 타입으로 생각하면 됩니다. 그런데, `int arr[3]` 을 하면 `arr` 에 `int` 형 원소가 3 개 만들어지듯이, `book_list` 배열에는 `struct Books` 형의 변수가 3 개 만들어지는 것이지요.
 
-```cpp
-    for(i=0;i<3;i++)
-    {
-        printf("책 %d 정보 입력 : ", i);
-        scanf("%s%s%s", book_list[i].name, book_list[i].auth, book_list[i].publ);
-        book_list[i].borrowed = 0;
-    }
+```cpp-formatted
+for (i = 0; i < 3; i++) {
+  printf("책 %d 정보 입력 : ", i);
+  scanf("%s%s%s", book_list[i].name, book_list[i].auth, book_list[i].publ);
+  book_list[i].borrowed = 0;
+}
 ```
 
 
 이제, `for` 문을 살펴봅시다. `scanf` 함수로 `book_list` 의 `i` 원소의 `name, auth, publ` 멤버에 문자열을 입력받고 있는 모습을 볼 수 있습니다 또한 `borrowed` 의 값도 0 으로 초기화 해주고 있습니다.
 
-```cpp
- for(i=0;i<3;i++)
-    {
-        printf("------------------------------- \n");
-        printf("책 %s 의 정보\n", book_list[i].name);
-        printf("저자 : %s \n", book_list[i].auth);
-        printf("출판사 : %s \n", book_list[i].publ);
+```cpp-formatted
+for (i = 0; i < 3; i++) {
+  printf("------------------------------- \n");
+  printf("책 %s 의 정보\n", book_list[i].name);
+  printf("저자 : %s \n", book_list[i].auth);
+  printf("출판사 : %s \n", book_list[i].publ);
 
-        if(book_list[i].borrowed == 0)
-        {
-            printf("안 빌려짐\n");
-        }
-        else
-        {
-            printf("빌려짐 \n");
-        }
-    }
+  if (book_list[i].borrowed == 0) {
+    printf("안 빌려짐\n");
+  } else {
+    printf("빌려짐 \n");
+  }
+}
 ```
 
 
@@ -362,27 +335,25 @@ int main()
 
 으음... 위 파란색 제목만 보고도 눈살을 찌부리는 분들이 있을 지도 모릅니다. 한동안 포인터에게서 벗어난 줄 알았는데 또 등장하는거냐! 하지만 구조체 포인터, 말그대로 구조체를 가리키는 포인터 역시 잘만 이해하면 정말로 아무 것도 아닌 것이 됩니다. 오히려 나중엔 "내가 왜 여기서 겁먹었지?" 라는 생각이 들 정도로요.
 
-```cpp
+```cpp-formatted
 /* 구조체 포인터 */
 #include <stdio.h>
-struct test
-{
-    int a,b;
+struct test {
+  int a, b;
 };
-int main()
-{
-    struct test st;
-    struct test *ptr;
+int main() {
+  struct test st;
+  struct test *ptr;
 
-    ptr = &st;
+  ptr = &st;
 
-    (*ptr).a = 1;
-    (*ptr).b = 2;
+  (*ptr).a = 1;
+  (*ptr).b = 2;
 
-    printf("st 의 a 멤버 : %d \n", st.a);
-    printf("st 의 b 멤버 : %d \n", st.b);
+  printf("st 의 a 멤버 : %d \n", st.a);
+  printf("st 의 b 멤버 : %d \n", st.b);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -396,15 +367,15 @@ int main()
 
 즉, 구조체는 한 개의 타입을 창조하는 것과 마찬가지라는 것입니다. 마치 `int` 나 `char` 처럼 말이지요. 그런데 이러한 타입들을 가리킬 때 우리가 포인터를 어떻게 사용했나요? 바로, `int *` 나 `char *` 로 사용했습니다. 구조체도 마찬가지 입니다.
 
-```cpp
-    struct test st;
-    struct test *ptr;
+```cpp-formatted
+struct test st;
+struct test *ptr;
 ```
 
 위의 두 번째 문장과 같이 `struct test *ptr,` 즉 "struct `test` 형을 가리키는 포인터 ptr" 을 정의한 것이지요. 여기서 주의해야 할 점은 `ptr` 은 절대로 **구조체가 아니라는 것**입니다. `ptr` 역시 다른 모든 포인터 처럼 4 바이트의 공간을 차지하는 것입니다. (물론 컴퓨터 마다 다를 수 있지만 아마 여러분이 사용하는 컴퓨터는 십중 팔구일 것입니다) \sidenote{이 강좌는 2010년에 제작되었습니다. 2018년 지금 현재 64비트 시스템을 사용하시는 분들의 경우 포인터는 8 바이트를 차지합니다.}
 
-```cpp
-    ptr = &st;
+```cpp-formatted
+ptr = &st;
 ```
 
 그리고 위와 같이 `ptr` 에 `str` 의 주소값을 집어 넣습니다. 그런데 눈치가 조금 빠르신 분들은 다음과 같이 질문할 수 있습니다.
@@ -415,10 +386,9 @@ int main()
 
 이제 `ptr` 은 구조체 `st` 를 가리키는 포인터가 됩니다.
 
-```cpp
-    (*ptr).a = 1;
-    (*ptr).b = 2;
-
+```cpp-formatted
+(*ptr).a = 1;
+(*ptr).b = 2;
 ```
 
 그럼 `ptr` 이 가리키는 구조체의 멤버의 값을 변경하는 부분을 살펴 봅시다. 일단 여러분은 `(*ptr)` 이라는 부분이 `st` 라는 것과 동일하다는 사실을 알 수 있습니다. 왜냐하면 `ptr` 이 `st` 를 가리키고 있기 때문이죠. 따라서 `(*ptr).a = 1` 은 `st.a = 1` 과 완전히 `100%` 동일한 문장임을 알 수 있습니다. 그 아랫 줄도 마찬가지이죠. `(*ptr).b = 2` 도 `st.b = 2` 와 정확히 일치하는 문장입니다. 따라서 아래 `printf` 문에서 `st.a` 의 값은 `1, st.b` 의 값은 2 가 출력된 것입니다.
@@ -451,13 +421,23 @@ error C2100: 간접 참조가 잘못되었습니다.
 
 결과적으로 구조체 포인터를 사용해서 멤버에 접근하려면 `(*ptr).a` 와 같이 언제나 괄호로 감싸 주어야 됩니다. 상당히 귀찮은 일이 아닐 수 없습니다. 하지만 똑똑한 C 프로그래머들은 이 문제를 해결하기 위해 다음과 같이 아름다운 기호를 등장시켰습니다.
 
-```cpp
+```cpp-formatted
 
 /* 구조체 포인터 */
 #include <stdio.h>
-struct test{    int a,b;};
-int main(){
-      struct test st;    struct test *ptr;    ptr = &st;    ptr->a = 1;    ptr->b = 2;    printf("st 의 a 멤버 : %d \n", st.a);    printf("st 의 b 멤버 : %d \n", st.b);    return 0;}
+struct test {
+  int a, b;
+};
+int main() {
+  struct test st;
+  struct test *ptr;
+  ptr = &st;
+  ptr->a = 1;
+  ptr->b = 2;
+  printf("st 의 a 멤버 : %d \n", st.a);
+  printf("st 의 b 멤버 : %d \n", st.b);
+  return 0;
+}
 ```
 
   성공적으로 컴파일 했다면
@@ -467,9 +447,9 @@ int main(){
 
 여기서 새로 등장한 기호는 제가 가장 좋아하는 기호입니다.
 
-```cpp
-    ptr->a = 1;
-    ptr->b = 2;
+```cpp-formatted
+ptr->a = 1;
+ptr->b = 2;
 ```
 
 위와 같이 `(*ptr).a = 1` 이라는 문장을 `ptr->a = 1` 로 간단히 표현할 수 있습니다. 아래 `ptr->b = 2` 역시 `(*ptr).b = 2` 와 정확히 일치하는 문장입니다. 단순히 사용자의 편의를 위해서 `->` 라는 새로운 기호를 도입한 것 뿐이지요. (이 기호는 위의 우선 순위 표 맨 위에서도 볼 수 있습니다)
@@ -496,7 +476,3 @@ int main(){
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-

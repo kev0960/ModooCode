@@ -71,14 +71,14 @@ istream& operator>> (istream& is, unsigned char* str );
 
   이 함수들이 연산자 오버로딩 함수들이기 때문에 이 연산자를 사용하기 위해서는
 
-```cpp
+```cpp-formatted
 strm >> variable;
 ```
 
  와 같이 사용하면 된다. 이 때 `strm` 은 [istream](http://itguru.tistory.com/146) 객체의 이름이고, `variable` 은 우변으로 전달되는 인자이다. 물론 이 연산자를 아래처럼 쭉 이어나가서 사용해도 된다.
 
-```cpp
-strm >> variable1 >> variable2 >> variable3; //...
+```cpp-formatted
+strm >> variable1 >> variable2 >> variable3;  //...
 ```
 
 이는 `strm` 객체에 추출 연산을 계속 진행하는 것과 다름 없다.
@@ -181,7 +181,7 @@ strm >> variable1 >> variable2 >> variable3; //...
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 cin 으로 여러 작업을 수행한다.
@@ -193,27 +193,25 @@ http://www.cplusplus.com/reference/iostream/istream/operator%3E%3E/
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-    int n;
-    char str[10];
+int main() {
+  int n;
+  char str[10];
 
-    cout << "Enter a number: ";
-    cin >> n;
-    cout << "You have entered: " << n << endl;
+  cout << "Enter a number: ";
+  cin >> n;
+  cout << "You have entered: " << n << endl;
 
-    cout << "Enter a hexadecimal number: ";
-    cin >> hex >> n;            // manipulator
-    cout << "Its decimal equivalent is: " << n << endl;
+  cout << "Enter a hexadecimal number: ";
+  cin >> hex >> n;  // manipulator
+  cout << "Its decimal equivalent is: " << n << endl;
 
-    cout << "Enter a word: ";
-    cin.width (10);        // limit width
-    cin >> str;
-    cout << "The first 9 chars of your word are: " << str << endl;
+  cout << "Enter a word: ";
+  cin.width(10);  // limit width
+  cin >> str;
+  cout << "The first 9 chars of your word are: " << str << endl;
 
-    return 0;
+  return 0;
 }
-
 ```
 
   실행 결과
@@ -226,25 +224,30 @@ int main ()
 
 
 
-```cpp
+```cpp-formatted
 template <class charT, class traits>
-  basic_istream<charT,traits>& operator>> (basic_istream<charT,traits>& is, charT& ch );
+basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is,
+                                         charT& ch);
 
 template <class charT, class traits>
-  basic_istream<charT,traits>& operator>> (basic_istream<charT,traits>& is, signed char& ch );
+basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is,
+                                         signed char& ch);
 
 template <class charT, class traits>
-  basic_istream<charT,traits>& operator>> (basic_istream<charT,traits>& is, unsigned char& ch );
+basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is,
+                                         unsigned char& ch);
 
 template <class charT, class traits>
-  basic_istream<charT,traits>& operator>> (basic_istream<charT,traits>& is, charT* str );
+basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is,
+                                         charT* str);
 
 template <class charT, class traits>
-  basic_istream<charT,traits>& operator>> (basic_istream<charT,traits>& is, signed char* str );
+basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is,
+                                         signed char* str);
 
 template <class charT, class traits>
-  basic_istream<charT,traits>& operator>> (basic_istream<charT,traits>& is, unsigned char* str );
-
+basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is,
+                                         unsigned char* str);
 ```
 
 
@@ -259,10 +262,3 @@ template <class charT, class traits>
 * ostream::operator<<  :  서식에 맞게 데이터를 삽입한다.
 
 * istream::sentry  :  예외에 안전한 접두/접미 작업을 수행한다.
-
-
-
-
-
-
-

@@ -45,8 +45,9 @@ path : /C++ Reference/Containers/deque
 
   C++ 표준 템플릿 라이브러리에서는 데크는 다음과 같은 두 개의 템플릿 인자를 받는다.
 
-```cpp
-template < class T, class Allocator = allocator<T> > class deque;
+```cpp-formatted
+template <class T, class Allocator = allocator<T> >
+class deque;
 ```
 
 
@@ -186,8 +187,3 @@ template < class T, class Allocator = allocator<T> > class deque;
 * `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
 
 * `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)
-
-
-
-
-

@@ -53,16 +53,13 @@ $$g(x) = x^2 - 3x + 4, g(5) = ?$$
 
 우리가 프로그래밍을 하면서 여러가지 작업들을 반복적으로 해야되는 경우가 종종 있습니다. 예를 들어서 변수 `a` 와 `b` 중 최대값을 구하는 것을 생각해봅시다. 우리가 이를 프로그래밍 시에 필요로 하게 된다면 다음과 같이 해야 될 것입니다.
 
-```cpp
-    int max;
-    if(a >= b)
-    {
-        max = a;
-    }
-    else
-    {
-        max = b;
-    }
+```cpp-formatted
+int max;
+if (a >= b) {
+  max = a;
+} else {
+  max = b;
+}
 ```
 
 뭐, 위 코드는 아주 아주 쉬운 코드 이니 설명은 하지 않겠습니다. 그런데, 실제로 프로그래밍을 하다 보면 어떠한 두 변수의 최대값을 구하는 경우가 자주 생긴다는 것입니다. 현재 까지 배운 바로는 이러한 상황에서는 코드 복사 붙여넣기를 통해 소스를 채워나가면 된다고 생각했습니다. 자, 그렇다면 이러한 방법이 합리적인 것일까요?
@@ -82,25 +79,23 @@ $$g(x) = x^2 - 3x + 4, g(5) = ?$$
 
 일단, 최대값을 구하는 함수를 만들어 보기 전에 아주 아주 간단한 함수를 먼저 만들어보겠습니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 /* 보통 C 언어에서, 좋은 함수의 이름은 그 함수가
 무슨 작업을 하는지 명확히 하는 것이다. 수학에서는
 f(x), g(x) 로 막 정하지만, C 언어에서는 그 함수가 하는
 작업을 설명해주는 이름을 정하는 것이 좋다. */
-int print_hello()
-{
-    printf("Hello!! \n");
-    return 0;
+int print_hello() {
+  printf("Hello!! \n");
+  return 0;
 }
-int main()
-{
-    printf("함수를 불러보자 : ");
-    print_hello();
+int main() {
+  printf("함수를 불러보자 : ");
+  print_hello();
 
-    printf("또 부를까? ");
-    print_hello();
-    return 0;
+  printf("또 부를까? ");
+  print_hello();
+  return 0;
 }
 ```
 
@@ -111,10 +106,9 @@ int main()
 
   음.. 일단 우리가 여태까지 보아왔던 것과 매우 다른 모습입니다. 하지만 걱정하지 마세요. 금세 이해하게 될 것이니까요.
 
-```cpp
-int print_hello()
-{
-// 잠시 생략
+```cpp-formatted
+int print_hello() {
+  // 잠시 생략
 }
 ```
 
@@ -124,11 +118,10 @@ int print_hello()
 
 우리가 앞서, 마술 상자를 이야기 하였을 때, 우리가 36 을 마술 상자에 넣는다면, 4 를 더해서 40 을 출력한다고 하였습니다. 이 때, 우리는 '출력된다' 라는 사실을 함수에서는 '반환한다' 라고 이야기 합니다. 영어로는 `return` 이라고 하지요.
 
-```cpp
-int print_hello()
-{
-    printf("Hello!! \n");
-return 0;
+```cpp-formatted
+int print_hello() {
+  printf("Hello!! \n");
+  return 0;
 }
 ```
 
@@ -142,22 +135,21 @@ return 0;
 
 하지만 우리의 예제 처럼 `print_hello` 라고 하게 된다면 이 함수가 대략 'hello 를 출력하는구나' 라는 사실을 알 수 있겠지요. 다만, 함수의 이름이 너무 길어지면 함수를 사용시 너무 불편하므로 20 자가 넘어가게 하지는 맙시다. 또한, 함수의 이름 역시 변수의 이름 조건과 동일하므로 기억나지 않는 분들은 [3강 변수가 뭐지?](http://itguru.tistory.com/entry/%EC%94%B9%EC%96%B4%EB%A8%B9%EB%8A%94-C-%EC%96%B8%EC%96%B4-3-%EB%B3%80%EC%88%98%EA%B0%80-%EB%AD%90%EC%A7%80) 의 맨 마지막 부분을 보세요.
 
-```cpp
-int print_hello()
-{
-    printf("Hello!! \n");
-    return 0;
+```cpp-formatted
+int print_hello() {
+  printf("Hello!! \n");
+  return 0;
 }
 ```
 
 함수의 정의부분은 그만 살펴보고, 이제 함수가 무슨 일을 하는지 알 수 있는 부분을 살펴 봅시다. 이 부분은 보통 함수의 **몸체(body)** 라고 부릅니다. 이번 예제 함수의 몸체는 설명을 안해도 잘 알 수 있습니다. 이 함수는 `printf("Hello!! \n");` 을 실행한 후, 0 을 반환한다 이지요?
 
-```cpp
-    printf("함수를 불러보자 : ");
-   print_hello();
+```cpp-formatted
+printf("함수를 불러보자 : ");
+print_hello();
 
-    printf("또 부를까? ");
-   print_hello();
+printf("또 부를까? ");
+print_hello();
 ```
 
 마지막으로 실제로 함수를 호출하는 부분을 살펴 봅시다. 함수를 불러내는 방법(보통 **호출한다(call)** 라는 표현을 사용하므로 앞으로 호출한다고 표현하겠습니다) 은 단순히 함수의 이름을 써주시기만 하면 됩니다. 물론 그 뒤에 `()` 도 붙여주어야 겠지요.
@@ -168,19 +160,17 @@ int print_hello()
 
 이와 같은 현상은 실생활에서도 볼 수 있습니다. 밥을 먹고 있다가 '엄마가 부르신다' 라는 함수가 호출되면 엄마한테로 달려갑니다. 그리고 '엄마가 부르신다' 라는 함수가 종료되면 다시 밥 먹던 식탁으로 와서 밥을 먹게 되지요. 이 때, 함수의 종료는 두 가지 형태로 있을 수 있습니다. 하나는 반환이 되어 종료를 하게 되는 것이고 다른 하나는 함수의 끝 부분 까지 실행하여 종료되는 것입니다. 함수는 반환을 하여 종료되는 것이 안전합니다. 한 가지 중요한 사실은 `return` 을 실행하면 함수는 무조건 종료되어 함수를 호출하였던 부분을 돌아간다는 점입니다.
 
-```cpp
+```cpp-formatted
 /* 함수의 리턴 */
 #include <stdio.h>
-int return_func()
-{
-    printf("난 실행된다 \n");
-    return 0;
-    printf("난 안돼 ㅠㅠ \n");
+int return_func() {
+  printf("난 실행된다 \n");
+  return 0;
+  printf("난 안돼 ㅠㅠ \n");
 }
-int main()
-{
-    return_func();
-    return 0;
+int main() {
+  return_func();
+  return 0;
 }
 ```
 
@@ -191,17 +181,17 @@ int main()
 
   물론 앞에서 이야기 하였듯이 짐작은 하고 있으셨겠지만 확실히 보여드리기 위해 예제를 작성하였습니다.
 
-```cpp
+```cpp-formatted
 int return_func()
 ```
 
 연습 삼아 위 부분이 무슨 의미인지 다시 한 번 살펴봅시다. 일단, `int` 를 보아 이 함수는 `int` 형을 리턴한다는 의미이고, `return_func` 을 보아서 이 함수의 이름이 `return_func` 라는 사실을 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 {
-    printf("난 실행된다 \n");
-    return 0;
-    printf("난 안돼 ㅠㅠ \n");
+  printf("난 실행된다 \n");
+  return 0;
+  printf("난 안돼 ㅠㅠ \n");
 }
 ```
 
@@ -211,19 +201,15 @@ int return_func()
 
 공부하기 함수에는 'C 언어 공부하기', '숙제하기' 등등의 작업들이 있었는데, 공교롭게도 엄마가 실수로 'C 언어 공부하기' 와 '숙제하기' 사이에 '공부 끝' 이라는 `return` 문장을 집어 넣은 것입니다! 결과적으로 이 아이는 C 언어 공부하기를 다 실행하자 마자, '공부 끝' 이 실행되어 (함수의 `return`) 결국 원 상태로 돌아가 다시 컴퓨터 게임을 하기 시작하였습니다.
 
-```cpp
+```cpp-formatted
 /* 반환값 */
 #include <stdio.h>
-int ret()
-{
-    return 1000;
-}
-int main()
-{
-    int a = ret();
-    printf("ret() 함수의 반환값 : %d \n", a);
+int ret() { return 1000; }
+int main() {
+  int a = ret();
+  printf("ret() 함수의 반환값 : %d \n", a);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -234,7 +220,7 @@ int main()
 
   마지막으로 한 번더, 함수의 정의 부분을 분석해봅시다.
 
-```cpp
+```cpp-formatted
 int ret()
 ```
 
@@ -242,21 +228,18 @@ int ret()
 
 그리고 `ret` 함수의 몸체를 살펴 보자면 상당히 간단하다라는 것을 알 수 있습니다.
 
-```cpp
-{
-    return 1000;
-}
+```cpp-formatted
+{ return 1000; }
 ```
 
   그리고 위 코드는 "이 함수를 호출하면 1000 을 리턴한다" 정도 되겠지요.
 
-```cpp
-int main()
-{
-    int a = ret();
-    printf("ret() 함수의 반환값 : %d \n", a);
+```cpp-formatted
+int main() {
+  int a = ret();
+  printf("ret() 함수의 반환값 : %d \n", a);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -275,7 +258,7 @@ int main()
 
   보통 메인 함수를 아래와 같은 형태로 정의합니다.
 
-```cpp
+```cpp-formatted
 int main()
 ```
 
@@ -288,24 +271,21 @@ int main()
 
 이번에는 맨 위에서 구상하였던 마술 상자 ( 4 를 더한값을 출력하는..) 를 제작해보기로 하였습니다. 일단 여러분은 아래와 같이 구현할 수 있지 않을까 라는 것을 머리속에 떠올릴 것입니다.
 
-```cpp
+```cpp-formatted
 /* 마술 상자 */
 #include <stdio.h>
-int magicbox()
-{
-    i+=4;
-    return 0;
+int magicbox() {
+  i += 4;
+  return 0;
 }
-int main()
-{
-    int i;
-    printf("마술 상자에 집어넣을 값 : ");
-    scanf("%d", &i);
+int main() {
+  int i;
+  printf("마술 상자에 집어넣을 값 : ");
+  scanf("%d", &i);
 
-    magicbox();
-    printf("마술 상자를 지나면 : %d \n", i);
-    return 0;
-
+  magicbox();
+  printf("마술 상자를 지나면 : %d \n", i);
+  return 0;
 }
 ```
 
@@ -319,11 +299,10 @@ error C2065: 'i' : 선언되지 않은 식별자입니다.
 
 어떠한 함수를 호출할 때, 호출된 함수는 함수를 호출한 놈에 대해서 어떠한 것도 알고 있지 않습니다. 즉, 내가 `magicbox` 라는 함수를 호출하였을 때, 이 `magicbox` 는 내가 얘를 호출하였는지, 다른 애가 (즉, 다른 코드를 말하는 것이겠죠;;) 얘를 호출하였는지 '전혀 알 수 없다' 라는 것입니다.
 
-```cpp
-int magicbox()
-{
-    i+=4;
-    return 0;
+```cpp-formatted
+int magicbox() {
+  i += 4;
+  return 0;
 }
 ```
 
@@ -350,19 +329,17 @@ int magicbox()
 ###  함수의 인자
 
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int slave(int master_money)
-{
-    master_money += 10000;
-    return master_money;
+int slave(int master_money) {
+  master_money += 10000;
+  return master_money;
 }
-int main()
-{
-    int my_money = 100000;
-    printf("2009.12.12 재산 : $%d \n", slave(my_money));
+int main() {
+  int my_money = 100000;
+  printf("2009.12.12 재산 : $%d \n", slave(my_money));
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -375,7 +352,7 @@ int main()
 
   일단, 함수의 정의 부분이 바뀐 것을 볼 수 있습니다.
 
-```cpp
+```cpp-formatted
 int slave(int master_money)
 ```
 
@@ -387,59 +364,55 @@ int slave(int master_money)
 
 하지만, **인자(argument, 혹은 매개변수(parameter) 라고 부른다)** 를 이용하면 이러한 일을 가능하게 합니다. 일단, 인자는 직관적으로 봐도 알 수 있듯이 `slave` 함수 내에 선언이 되어 있는 변수 입니다. 이 때, 인자는 함수 정의할 때의 소괄호 안에 나타나게 되죠. 위의 경우 `slave` 함수는 `int` 형의 `master_money` 라는 변수를 인자로 가지고 있습니다. 이제, 이 함수를 어떠한 함수에서 호출을 한다고 합시다. 그렇다면, 이 함수를 호출 할 때, 인자에 적당한 값을 넣어 주어야 합니다. 마치 아래와 같이요.
 
-```cpp
-  slave(500);
+```cpp-formatted
+slave(500);
 ```
 
 이 말은 "`slave` 함수를 호출할 때, `slave` 함수 안에서 정의된 `master_money` 라는 변수에 500 이라는값을 전달하겠다!" 라는 의미가 되겠지요.따라서, `slave` 함수 내부에 정의된 `master_money` 라는 변수에는 500 이라는 값이 들어가게 됩니다. 그렇다면 아래는 어떨까요?
 
-```cpp
-  slave(my_money);
+```cpp-formatted
+slave(my_money);
 ```
 
 이 것도 마찬가지 입니다. 이렇게 이용한다면 "`slave` 함수를 호출할 때, `slave` 함수 안에서 정의된 `master_money` 라는 변수에 `my_money` 의값을 전달하겠다!" 가 되겠지요. 만일 `my_money` 에 10000 이 있었더라면 `slave` 함수를 호출 시에 `master_money` 에는 10000 이 들어가게 됩니다. 결론적으로 말하자면 함수의 인자는 '함수를 호출한 것과, 함수를 서로 연결해 주는 통신 수단' 이라고 말할 수 있습니다. 이러한 연유에서 수학적인 용어로 틀린 표현 이지만 C 에선 '매개 변수' 라고 부릅니다.
 
 그렇다면, 위의 예제를 한 번 살펴볼까요?
 
-```cpp
-int main()
-{
-    int my_money = 100000;
-    printf("2009.12.12 재산 : $%d \n", slave(my_money));
+```cpp-formatted
+int main() {
+  int my_money = 100000;
+  printf("2009.12.12 재산 : $%d \n", slave(my_money));
 
-    return 0;
+  return 0;
 }
 ```
 
 일단, `slave` 함수를 호출하는 **호출자(caller)** 의 코드를 살펴봅시다. `printf` 에서, 맨 뒤에 `%d` 에 들어갈 값으로 `slave(my_money)` 가 반환 하는 값을 넣었습니다. `slave(my_money)` 가 반환하는 값을 먼저 넣기 위해선 `slave` 함수를 호출해야 하는데 이 때 `my_money` 의 값이 `slave` 함수의 인자로 전달이 됩니다. 그러면 `slave` 함수는 아래의 코드를 실행하겠지요.
 
-```cpp
+```cpp-formatted
 {
-    master_money += 10000;
-    return master_money;
+  master_money += 10000;
+  return master_money;
 }
-
 ```
 
 즉, `master_money` 에 10000 을 더한 후, 그 값을 반환하게 됩니다. 따라서, 100000 에 10000 이 더해진 110000 이 출력되겠지요.
 
 이번에는 과연 성공적으로 컴파일 될지 의문이 드는 예제를 한 번 만들어 보았습니다.
 
-```cpp
+```cpp-formatted
 /* 될까용 */
 #include <stdio.h>
-int slave(int my_money)
-{
-    my_money += 10000;
-    return my_money;
+int slave(int my_money) {
+  my_money += 10000;
+  return my_money;
 }
-int main()
-{
-    int my_money = 100000;
-    printf("2009.12.12 재산 : $%d \n", slave(my_money));
-    printf("my_money : %d", my_money);
+int main() {
+  int my_money = 100000;
+  printf("2009.12.12 재산 : $%d \n", slave(my_money));
+  printf("my_money : %d", my_money);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -450,24 +423,22 @@ int main()
 
   아마도, 앞의 내용을 열심히 배우신 분들은 위 코드가 정상적으로 실행될 것이라는 것을 알고 계셨겠죠? 하지만, 그렇지 못한 분들을 위해 설명 하자면
 
-```cpp
-int slave(int my_money)
-{
-    my_money += 10000;
-    return my_money;
+```cpp-formatted
+int slave(int my_money) {
+  my_money += 10000;
+  return my_money;
 }
 ```
 
 위 `slave` 함수는 `my_money` 를 인자로 받고 있습니다. 여기서 중요한 점은 `my_money` 가 `slave` 의 변수라는 것입니다. 그렇다면 `slave` 함수를 호출하는 부분을 볼까요.
 
-```cpp
-int main()
-{
-    int my_money = 100000;
-    printf("2009.12.12 재산 : $%d \n", slave(my_money));
-    printf("my_money : %d", my_money);
+```cpp-formatted
+int main() {
+  int my_money = 100000;
+  printf("2009.12.12 재산 : $%d \n", slave(my_money));
+  printf("my_money : %d", my_money);
 
-    return 0;
+  return 0;
 }
 ```
 

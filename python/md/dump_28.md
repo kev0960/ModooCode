@@ -27,46 +27,43 @@ next_page : 30
 
 지난번 내용은 잘 기억하고 있는지요? 다시 한 번 요약해 보자면, "어떠한 함수가 특정한 타입의 변수/배열의 값을 바꾸려면 함수의 인자는 반드시 타입을 가리키는 포인터 형을 이용해야 한다!" 였습니다.사실, 이 문장이 이해가 잘 되지 않았던 분들이 있으리라 생각됩니다. 하지만, 이번 강좌를 보고 난다면 이 문장의 의미를 정확하게 파악할 수 있을 것입니다.
 
-```cpp
-/* 눈 돌아가는 예제. 포인터가 가리키는 변수를 서로 바꾼다.  */
+```cpp-formatted
+/* 눈 돌아가는 예제. 포인터가 가리키는 변수를 서로 바꾼다.  */
 #include <stdio.h>
 
 int pswap(int **pa, int **pb);
-int main()
-{
-    int a,b;
-    int *pa, *pb;
+int main() {
+  int a, b;
+  int *pa, *pb;
 
-    pa = &a;
-    pb = &b;
+  pa = &a;
+  pb = &b;
 
-    printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
-    printf("pa 의 주소값 : %x \n \n", &pa);
-    printf("pb 가 가리키는 변수의 주소값 : %x \n", pb);
-    printf("pb 의 주소값 : %x \n", &pb);
+  printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
+  printf("pa 의 주소값 : %x \n \n", &pa);
+  printf("pb 가 가리키는 변수의 주소값 : %x \n", pb);
+  printf("pb 의 주소값 : %x \n", &pb);
 
-    printf(" ------------- 호출 -------------- \n");
-    pswap(&pa, &pb);
-    printf(" ------------- 호출끝 -------------- \n");
+  printf(" ------------- 호출 -------------- \n");
+  pswap(&pa, &pb);
+  printf(" ------------- 호출끝 -------------- \n");
 
-    printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
-    printf("pa 의 주소값 : %x \n \n", &pa);
-    printf("pb 가 가리키는 변수의 주소값 : %x \n", pb);
-    printf("pb 의 주소값 : %x \n", &pb);
-    return 0;
-
+  printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
+  printf("pa 의 주소값 : %x \n \n", &pa);
+  printf("pb 가 가리키는 변수의 주소값 : %x \n", pb);
+  printf("pb 의 주소값 : %x \n", &pb);
+  return 0;
 }
-int pswap(int **ppa, int **ppb)
-{
-    int *temp = *ppa;
+int pswap(int **ppa, int **ppb) {
+  int *temp = *ppa;
 
-    printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-    printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
+  printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
+  printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
 
-    *ppa = *ppb;
-    *ppb = temp;
+  *ppa = *ppb;
+  *ppb = temp;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -82,24 +79,23 @@ int pswap(int **ppa, int **ppb)
 
   따라서, 우리는 위 이야기를 토대로 아래와 같이 함수를 정의하였습니다.
 
-```cpp
+```cpp-formatted
 int pswap(int **ppa, int **ppb)
 ```
 
   상당히, 잘한 것이지요. 이제, 함수의 몸체를 봐봅시다.
 
-```cpp
-int pswap(int **ppa, int **ppb)
-{
-    int *temp = *ppa;
+```cpp-formatted
+int pswap(int **ppa, int **ppb) {
+  int *temp = *ppa;
 
-    printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-    printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
+  printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
+  printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
 
-    *ppa = *ppb;
-    *ppb = temp;
+  *ppa = *ppb;
+  *ppb = temp;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -107,9 +103,9 @@ int pswap(int **ppa, int **ppb)
 
 만일 우리가 위 예제 처럼 `pswap` 함수를 호출하였다고 하면, `ppa` 는 `pa` 를 가리키고 있고, `ppb` 는 `pb` 를 가리키고 있겠지요. 따라서, `*ppa` 라 하면 `pa` 의 값을 이야기 합니다. 그런데, `pa` 는 `int*` 형이므로, `pa` 의 값을 보관하는 변수는 반드시 `int*` 이여야 되겠지요. 따라서, 우리는 `int*` 형의 `temp` 변수를 정의하였습니다. 그 아래의 내용은 이전에 만들어 보았던 `swap` 함수와 동일합니다.
 
-```cpp
-    printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-    printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
+```cpp-formatted
+printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
+printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
 ```
 
 그렇다면 우리는 위 두개의 `printf` 문장에서 어떤 결과가 출력될 지 예측 가능합니다. 위 예제에서 `ppa` 가 `pa` 를 가리키고 있으므로 `ppa` 의 값을 출력하면 `pa` 의 주소값이 나오고, `ppb` 도 마찬가지로 나오겠죠. 위 출력결과에서 실제로 같다는 것을 확인할 수 있습니다. 어때요. `pswap` 함수가 이해가 되나요?
@@ -122,48 +118,39 @@ int pswap(int **ppa, int **ppb)
 
 그렇다면, 이번에는 이차원 배열을 인자로 받는 함수에 대해서 생각해 보도록 합시다.
 
-```cpp
+```cpp-formatted
 /* 2 차원 배열의 각 원소를 1 씩 증가시키는 함수 */
 #include <stdio.h>
 /* 열의 개수가 2 개인 이차원 배열과, 총 행의 수를 인자로 받는다. */
 int add1_element(int (*arr)[2], int row);
-int main()
-{
-    int arr[3][2];
-    int i,j;
+int main() {
+  int arr[3][2];
+  int i, j;
 
-    for(i=0;i<3;i++)
-    {
-        for(j=0;j<2;j++)
-        {
-            scanf("%d", &arr[i][j]);
-        }
-    }
+  for (i = 0; i < 3; i++) {
+    for (j = 0; j < 2; j++) {
+      scanf("%d", &arr[i][j]);
+    }
+  }
 
-    add1_element(arr, 3);
+  add1_element(arr, 3);
 
-    for(i=0;i<3;i++)
-    {
-        for(j=0;j<2;j++)
-        {
-            printf("arr[%d][%d] : %d \n", i,j,arr[i][j]);
-        }
-    }
-    return 0;
-
+  for (i = 0; i < 3; i++) {
+    for (j = 0; j < 2; j++) {
+      printf("arr[%d][%d] : %d \n", i, j, arr[i][j]);
+    }
+  }
+  return 0;
 }
-int add1_element(int (*arr)[2], int row)
-{
-    int i,j;
-    for(i=0;i<row;i++)
-    {
-        for(j=0;j<2;j++)
-        {
-            arr[i][j]++;
-        }
-    }
+int add1_element(int (*arr)[2], int row) {
+  int i, j;
+  for (i = 0; i < row; i++) {
+    for (j = 0; j < 2; j++) {
+      arr[i][j]++;
+    }
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -174,72 +161,64 @@ int add1_element(int (*arr)[2], int row)
 
 역시 잘 실행되는군요. 일단, 함수의 정의부분 부터 살펴봅시다.
 
-```cpp
-int add1_element(int (*arr)[2], int row)
-{
-    int i,j;
-    for(i=0;i<row;i++)
-    {
-        for(j=0;j<2;j++)
-        {
-            arr[i][j]++;
-        }
-    }
+```cpp-formatted
+int add1_element(int (*arr)[2], int row) {
+  int i, j;
+  for (i = 0; i < row; i++) {
+    for (j = 0; j < 2; j++) {
+      arr[i][j]++;
+    }
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
 이 함수는 인자를 두 개 받고 있는데 하나는 열의 개수가 2 개인 이차원 배열을 가리키는 포인터 이고, 하나는 함수의 행의 수를 받는 인자입니다.
 
-```cpp
-    for(i=0;i<row;i++)
-    {
-        for(j=0;j<2;j++)
-        {
-            arr[i][j]++;
-        }
-    }
-
+```cpp-formatted
+for (i = 0; i < row; i++) {
+  for (j = 0; j < 2; j++) {
+    arr[i][j]++;
+  }
+}
 ```
 
 우리는 `row` 를 통해 이 이차원배열의 행의 개수를 알 수 있고, 열의 개수는 이미 알고 있으므로 (배열 포인터에서) 각 원소를 1 씩 증가시키는 작업을 시행할 수 있게됩니다. 위와 같이 말이죠. 우리는 포인터를 잘 배워서 헷갈릴 문제는 없지만 많은 사람들에게 다음과 같이 인자를 받는것이 어렵게 느껴집니다.
 
-```cpp
+```cpp-formatted
 int add1_element(int (*arr)[2], int row)
 ```
 
 그래서, 오직 함수의 인자의 경우에서만 위 형태의 인자를 다음과 같이도 표현할 수 있습니다.
 
-```cpp
+```cpp-formatted
 int add1_element(int arr[][2], int row)
 ```
 
   이는 오직 함수의 인자에서만 적용되는 것입니다. 만일
 
-```cpp
-    int parr[][3] = arr;
+```cpp-formatted
+int parr[][3] = arr;
 ```
 
 와 같은 문장을 이용했더라면 컴퓨터는 `parr` 을 '열의 개수가 3 개이고 행의 개수는 정해지지 않는 배열' 이라 생각해서 오류를 내게 됩니다. (만일 행의 개수를 생략했다면 배열을 정의시 초기화도 해주어야 되는데는 위는 그러지 않으므로) 암튼, 함수의 인자에서만 가능한 형태라는 것을 기억해 주시기 바랍니다.
 
 덧붙여서 응용력을 살짝 이용하면 다차원 배열의 인자도 정의할 수 있습니다. 예를 들어서
 
-```cpp
-int multi(int (*arr)[3][2][5])
-{
-    arr[1][1][1][1] = 1;
-    return 0;
+```cpp-formatted
+int multi(int (*arr)[3][2][5]) {
+  arr[1][1][1][1] = 1;
+  return 0;
 }
 ```
 
   혹은
 
-```cpp
-int multi(int arr[][3][2][5])
-{
-    arr[1][1][1][1] = 1;
-    return 0;
+```cpp-formatted
+int multi(int arr[][3][2][5]) {
+  arr[1][1][1][1] = 1;
+  return 0;
 }
 ```
   
@@ -249,13 +228,20 @@ int multi(int arr[][3][2][5])
 
 ###  상수인 인자
 
-```cpp
+```cpp-formatted
 /* 상수를 인자로 받아들이기 */
 #include <stdio.h>
 int read_val(const int val);
-int main(){    int a;    scanf("%d", &a);    read_val(a);    return 0;}
-int read_val(const int val){    val = 5; // 허용되지 않는다.
-    return 0;}
+int main() {
+  int a;
+  scanf("%d", &a);
+  read_val(a);
+  return 0;
+}
+int read_val(const int val) {
+  val = 5;  // 허용되지 않는다.
+  return 0;
+}
 ```
 
 컴파일 하게 되면 아래와 같은 오류를 만나게 됩니다.
@@ -276,31 +262,29 @@ int read_val(const int val){    val = 5; // 허용되지 않는다.
 
 그렇다면, 함수 포인터가 함수를 가리키기 위해서는 그 함수의 시작 주소값을 알아야 합니다. 그런데, 배열과 마찬가지로 함수의 이름이 바로 함수의 시작 주소값을 나타냅니다.
 
-```cpp
+```cpp-formatted
 /* 함수 포인터 */
 #include <stdio.h>
 
 int max(int a, int b);
-int main()
-{
-    int a, b;
-    int (*pmax)(int, int);
-    pmax = max;
+int main() {
+  int a, b;
+  int (*pmax)(int, int);
+  pmax = max;
 
-    scanf("%d %d", &a, &b);
-    printf("max(a,b) : %d \n", max(a,b));
-    printf("pmax(a,b) : %d \n", pmax(a,b));
+  scanf("%d %d", &a, &b);
+  printf("max(a,b) : %d \n", max(a, b));
+  printf("pmax(a,b) : %d \n", pmax(a, b));
 
-    return 0;
+  return 0;
 }
-int max(int a, int b)
-{
-    if(a>b)
-        return a;
-    else
-        return b;
+int max(int a, int b) {
+  if (a > b)
+    return a;
+  else
+    return b;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -310,8 +294,8 @@ int max(int a, int b)
 
 역시 우리가 예상했던 데로 잘 흘러가는 것 같습니다. 함수 포인터는 어떻게 정의하는지 살펴봅시다.
 
-```cpp
-    int (*pmax)(int, int);
+```cpp-formatted
+int (*pmax)(int, int);
 ```
 
 일단, 위는 함수 포인터 `pmax` 의 정의 입니다. 위 정의를 보고 다음과 같은 사실을 알 수 있습니다. '이 함수 포인터 `pmax` 는 함수의 리턴값이 `int` 형이고, 인자 두 개가 각각 `int` 인 함수를 가리키는구나!'. 따라서, 우리는 `pmax` 함수 포인터로 특정한 함수를 가리킬 때, 그 함수는 반드시 `pmax` 의 정의와 일치해야 합니다. 함수 포인터의 일반적인 정의는 다음과 같습니다.
@@ -323,65 +307,59 @@ int max(int a, int b)
 
 이제 `pmax` 가 `max` 를 가리키게 되는 부분을 봅시다.
 
-```cpp
-    pmax = max;
+```cpp-formatted
+pmax = max;
 ```
 
 `max` 함수를 살펴보면 `pmax` 의 정의와 일치하므로, `max` 함수의 시작 주소값을 `pmax` 에 대입할 수 있게 됩니다. 이 때, 앞에서도 말했듯이 특정한 함수의 시작 주소값을 알려면 그냥 함수 이름을 넣어주면 됩니다. `pmax = &max` 와 같은 형식은 틀린 것입니다.
 
-```cpp
-    printf("max(a,b) : %d \n", max(a,b));
-    printf("pmax(a,b) : %d \n", pmax(a,b));
-
+```cpp-formatted
+printf("max(a,b) : %d \n", max(a, b));
+printf("pmax(a,b) : %d \n", pmax(a, b));
 ```
 
 `pmax` 는 이제 `max` 함수를 가리키므로 `pmax` 를 통해 `max` 함수가 할 수 있었던 모든 작업들을 할 수 있게 됩니다. 이때도 역시 그냥 `pmax` 를 `max` 처럼 이용하면 됩니다. 이는 배열에서
 
-```cpp
-    int arr[3];
-    int *p = arr;
+```cpp-formatted
+int arr[3];
+int *p = arr;
 
-    arr[2]; // p[2] 와 정확히 일치
-    p[2];
+arr[2];  // p[2] 와 정확히 일치
+p[2];
 ```
 
 와 같이 `arr[2]` 와 `p[2]` 가 동일한 것과 같습니다. 아무튼 `max(a,b)` 를 하나 `pmax(a,b)` 를 하나 결과는 똑같이 나오게 됩니다.
 
-```cpp
+```cpp-formatted
 /* 함수 포인터 */
 #include <stdio.h>
 
 int max(int a, int b);
 int donothing(int c, int k);
-int main()
-{
-    int a, b;
-    int (*pfunc)(int, int);
-    pfunc = max;
+int main() {
+  int a, b;
+  int (*pfunc)(int, int);
+  pfunc = max;
 
-    scanf("%d %d", &a, &b);
-    printf("max(a,b) : %d \n", max(a,b));
-    printf("pfunc(a,b) : %d \n", pfunc(a,b));
+  scanf("%d %d", &a, &b);
+  printf("max(a,b) : %d \n", max(a, b));
+  printf("pfunc(a,b) : %d \n", pfunc(a, b));
 
-    pfunc = donothing;
+  pfunc = donothing;
 
-    printf("donothing(1,1) : %d \n", donothing(1,1));
-    printf("pfunc(1,1) : %d \n", pfunc(1,1));
-    return 0;
+  printf("donothing(1,1) : %d \n", donothing(1, 1));
+  printf("pfunc(1,1) : %d \n", pfunc(1, 1));
+  return 0;
 }
-int max(int a, int b)
-{
-    if(a>b)
-        return a;
-    else
-        return b;
+int max(int a, int b) {
+  if (a > b)
+    return a;
+  else
+    return b;
 
-    return 0;
+  return 0;
 }
-int donothing(int c, int k)
-{
-    return 1;
-}
+int donothing(int c, int k) { return 1; }
 ```
 
   성공적으로 컴파일 했다면
@@ -391,35 +369,35 @@ int donothing(int c, int k)
 
 일단, 우리는 이전의 예제와 동일한 형태의 함수 포인터 `pfunc` 을 정의하였습니다.
 
-```cpp
-    int (*pfunc)(int, int);
+```cpp-formatted
+int (*pfunc)(int, int);
 ```
 
 이는 '리턴형이 `int` 이고 두 개의 인자 각각의 포인터 형이 `int` 인 함수를 가리킵니다. 그런데, `donothing` 함수와 `max` 함수 모두 이 조건을 만족하고 있습니다. 즉, 이들은 인자의 변수들도 다루고 하는 일도 다르지만 리턴값이 `int` 로 같고 두 개의 인자 모두 `int` 이므로 `pfunc` 이 이 두개의 함수를 가리킬 수 있는 것입니다.
 
-```cpp
-    pfunc = max;
+```cpp-formatted
+pfunc = max;
 
-    scanf("%d %d", &a, &b);
-    printf("max(a,b) : %d \n", max(a,b));
-    printf("pfunc(a,b) : %d \n", pfunc(a,b));
+scanf("%d %d", &a, &b);
+printf("max(a,b) : %d \n", max(a, b));
+printf("pfunc(a,b) : %d \n", pfunc(a, b));
 
-    pfunc = donothing;
+pfunc = donothing;
 
-    printf("donothing(1,1) : %d \n", donothing(1,1));
-    printf("pfunc(1,1) : %d \n", pfunc(1,1));
+printf("donothing(1,1) : %d \n", donothing(1, 1));
+printf("pfunc(1,1) : %d \n", pfunc(1, 1));
 ```
 
 따라서, 위와 같이 했을 때 `pfunc` 이, 자기가 가리키는 함수의 역할을 제대로 하고 있다는 것을 알 수 있습니다. 그런데 말이죠. 함수 포인터를 만들 때, 인자의 형이 무엇인지 알기 힘든 경우가 종종 있습니다. 예를 들어 아래와 같은 함수의 원형을 봅시다.
 
-```cpp
+```cpp-formatted
 int increase(int (*arr)[3], int row)
 ```
 
 흠... 두 번째 인자의 형은 `int` 라는 것은 알겠는데 첫번째 인자의 형은 도대체 뭘까요? 사실, 간단합니다. 특정한 타입의 인자를 판별하는 일은 단순히변수의 이름만을 빼버리면 됩니다. 따라서, 첫번째 인자의 형은 `int (*)[3]` 입니다. 즉, `increase` 함수를 가리키는 함수 포인터의 원형은 아래와 같습니다.
 
-```cpp
-    int (*pfunc)(int (*)[3], int);
+```cpp-formatted
+int (*pfunc)(int (*)[3], int);
 ```
 
   간단하지요? 이것을 이전에 이차원 배열을 인자로 받았던 함수에 적용시켜 보면 정확히 작동한다는 것을 알 수 있습니다.
@@ -464,6 +442,3 @@ int increase(int (*arr)[3], int row)
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

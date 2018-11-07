@@ -47,7 +47,7 @@ int rand ( void );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 숫자 맞추기
@@ -55,32 +55,32 @@ int rand ( void );
 http://www.cplusplus.com/reference/clibrary/cstdlib/rand/
 에서 가져왔습니다
 
- */
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-int main ()
-{
-    int iSecret, iGuess;
+int main() {
+  int iSecret, iGuess;
 
-    /* initialize random seed: */
-    srand ( time(NULL) );
+  /* initialize random seed: */
+  srand(time(NULL));
 
-    /* generate secret number: */
-    iSecret = rand() % 10 + 1;
+  /* generate secret number: */
+  iSecret = rand() % 10 + 1;
 
-    do {
-        printf ("Guess the number (1 to 10): ");
-        scanf ("%d",&iGuess);
-        if (iSecret<iGuess) puts ("The secret number is lower");
-        else if (iSecret>iGuess) puts ("The secret number is higher");
-    } while (iSecret!=iGuess);
+  do {
+    printf("Guess the number (1 to 10): ");
+    scanf("%d", &iGuess);
+    if (iSecret < iGuess)
+      puts("The secret number is lower");
+    else if (iSecret > iGuess)
+      puts("The secret number is higher");
+  } while (iSecret != iGuess);
 
-    puts ("Congratulations!");
-    return 0;
+  puts("Congratulations!");
+  return 0;
 }
-
 ```
 
 실행 결과

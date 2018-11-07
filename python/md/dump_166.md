@@ -51,10 +51,8 @@ bool bad ( ) const;
 
 
 
-```cpp
-( basic_ios<charT,traits> )
-bool bad () const;
-
+```cpp-formatted
+(basic_ios<charT, traits>)bool bad() const;
 ```
 
 

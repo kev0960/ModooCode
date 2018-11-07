@@ -23,20 +23,19 @@ C 언어에서는 `malloc` 과 `free` 함수를 지원하여 힙 상에서의 �
 
 하지만, 언어 차원에서 지원하는 것으로 바로 `new` 와 `delete` 라고 할 수 있습니다. `new` 는 말 그대로 `malloc` 과 대응되는 것으로 메모리를 할당하고 `delete` 는 `free` 에 대응되는 것으로 메모리를 해제합니다. 그럼 한 번 소스를 살펴볼까요.
 
-```cpp
+```cpp-formatted
 /* new 와 delete 의 사용 */
- #include <iostream>
+#include <iostream>
 using namespace std;
 
-int main()
-{
-int* p = new int ;
-*p = 10;
+int main() {
+  int* p = new int;
+  *p = 10;
 
-cout << *p << endl;
+  cout << *p << endl;
 
-delete p;
-return 0;
+  delete p;
+  return 0;
 }
 ```
 
@@ -49,46 +48,45 @@ return 0;
 
 위와 같이 `int` 영역이 잘 할당 되어서 10 이 출력이 되었음을 알 수 있습니다.
 
-```cpp
-int* p = new int ;
+```cpp-formatted
+int* p = new int;
 ```
 
 
 먼저 위와 같이 `int` 크기의 공간을 할당하여 그 주소값을 `p` 에 집어 넣었음을 알 수 있습니다. `new` 를 사용하는 방법은
 
-```cpp
-    T* pointer = new T;
+```cpp-formatted
+T* pointer = new T;
 ```
 
 
 와 같습니다. `T` 에는 임의의 타입이 들어가겠지요. 그리고 이제 `p` 위치에 할당된 공간에
 
-```cpp
+```cpp-formatted
 *p = 10;
 ```
 
 
 를 통해서 값을 집어넣었고 이를 출력하였습니다. 마지막으로 할당된 공간을 해제하기 위해서 `delete` 를 사용하였는데
 
-```cpp
+```cpp-formatted
 delete p;
 ```
 
 
 위와 같이 `delete p` 를 하게 되면 `p` 에 할당된 공간이 해제됩니다. 물론 `delete` 로 해제할 수 있는 메모리 공간은 사용자가 `new` 를 통해서 할당한 공간만 가능합니다.
 
-```cpp
+```cpp-formatted
 /* 지역 변수 delete 하기 */
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    int a = 5;
+int main() {
+  int a = 5;
 
-    delete &a;
+  delete &a;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -105,24 +103,25 @@ int main()
 ###  new 로 배열 할당하기
 
 
-```cpp
+```cpp-formatted
 /* new 로 배열 할당하기 */
-
 
 #include <iostream>
 using namespace std;
-int main(){
-      int arr_size;
-      cout << "array size : ";
-      cin >> arr_size;
-      int *list = new int [arr_size];
-      for(int i = 0; i < arr_size; i ++)    {
-            cin >> list[i];
-        }
-        for(int i = 0; i < arr_size; i ++)    {
-              cout << i << "th element of list : " <<  list[i] << endl;
-          }
-          delete [] list;    return 0;}
+int main() {
+  int arr_size;
+  cout << "array size : ";
+  cin >> arr_size;
+  int *list = new int[arr_size];
+  for (int i = 0; i < arr_size; i++) {
+    cin >> list[i];
+  }
+  for (int i = 0; i < arr_size; i++) {
+    cout << i << "th element of list : " << list[i] << endl;
+  }
+  delete[] list;
+  return 0;
+}
 ```
 
 
@@ -133,47 +132,47 @@ int main(){
 
   위 소스에는 많은 새로운 내용이 담겨 있으니 차근 차근 살펴보도록 합시다.
 
-```cpp
-    int arr_size;
+```cpp-formatted
+int arr_size;
 
-    cout << "array size : ";
-    cin >> arr_size;
+cout << "array size : ";
+cin >> arr_size;
 
-    int *list = new int [arr_size];
+int *list = new int[arr_size];
 ```
 
 
 먼저 위와 같이 배열의 크기를 잡을 `arr_size` 라는 변수를 정의하였고 그 값을 입력 받았습니다. 그리고 `list` 에 `new` 를 이용하여 크기가 `arr_size` 인 `int` 배열을 생성하였습니다. 배열을 생성할 때 에는 `[]` 를 이용해 배열의 크기를 넣어주면 되는데,
 
-```cpp
-    T* pointer = new T [size];
+```cpp-formatted
+T* pointer = new T[size];
 ```
 
 
 `T` 를 임의의 타입이라 하면 위와 같이 하면 됩니다. 따라서 `list` 는 이제 크기가 `arr_size` 인 `int` 배열을 가지게 됩니다. 사실 여기서 한 가지 놀라운 점이 있는데 C 에선 변수의 선언을 모두 최상단에 몰아서 해야 했지만 C++ 은 그렇지 않다는 점입니다. C++ 에서는 편리하게도 소스의 아무대서나 변수를 선언할 수 있으며, 그 변수는 그 변수를 포함하고 있는 중괄호를 빠져 나갈 때 소멸됩니다. 예를 들어서 아래와 같은 코드를 봅시다.
 
-```cpp
-     // 생략
-    {
-        int a = 4;
-        cout << "안에서 a : " << a;
-    }
+```cpp-formatted
+// 생략
+{
+  int a = 4;
+  cout << "안에서 a : " << a;
+}
 
-    cout << "밖에서 a : " << a ;
+cout << "밖에서 a : " << a;
 ```
 
 
 만일 여러분이 위와 같이 중괄호 안에서 변수 `a` 를 선언하였다면 변수 `a` 의 사용 범위는 그 중괄호 안 뿐입니다. 즉 안에서 `a` 는 4 로 잘 출력이 되겠지만 "밖에서 a :" 문장은 오류가 나게 될 것입니다. 왜냐하면 변수 `a` 가 그 곳에서는 존재하지 않기 때문이죠. 따라서 여러분은 이 점을 항상 유의하셔야 겠습니다. 또한 한 가지 더 재미있는 점은, 어떤 변수를 사용할 때 컴파일러는 그 변수를 가장 가까운 범위(scope) 부터 찾게 됩니다. 예를 들어 아래의 코드를 보세요
 
-```cpp
-    int a = 4;
-    {
-        cout << "외부의 변수 1" << a << endl;
-        int a = 3;
-        cout << "내부의 변수 " << a << endl;
-    }
+```cpp-formatted
+int a = 4;
+{
+  cout << "외부의 변수 1" << a << endl;
+  int a = 3;
+  cout << "내부의 변수 " << a << endl;
+}
 
-    cout << "외부의 변수 2" << a << endl;
+cout << "외부의 변수 2" << a << endl;
 ```
 
 
@@ -196,15 +195,13 @@ int main(){
 
 이제 다시 본론으로 돌아와서 원래 코드를 살펴봅시다.
 
-```cpp
-    for(int i = 0; i < arr_size; i ++)
-    {
-        cin >> list[i];
-    }
-    for(int i = 0; i < arr_size; i ++)
-    {
-        cout << i << "th element of list : " <<  list[i] << endl;
-    }
+```cpp-formatted
+for (int i = 0; i < arr_size; i++) {
+  cin >> list[i];
+}
+for (int i = 0; i < arr_size; i++) {
+  cout << i << "th element of list : " << list[i] << endl;
+}
 ```
 
 
@@ -214,8 +211,8 @@ int main(){
 
 아무튼 이렇게 해서 `list` 의 각 원소들을 입력받고 또 이를 출력할 수 있었습니다.
 
-```cpp
-    delete [] list;
+```cpp-formatted
+delete[] list;
 ```
 
 
@@ -237,102 +234,90 @@ int main(){
 
   대략 이 정도로만 하고 저는 한번 아래와 같이 소스를 짜보았습니다.
 
-```cpp
+```cpp-formatted
 #include <iostream>
 using namespace std;
 
-typedef struct Animal
-{
-    char name[30]; // 이름
-    int age; // 나이
+typedef struct Animal {
+  char name[30];  // 이름
+  int age;        // 나이
 
-    int health; // 체력
-    int food; // 배부른 정도
-    int clean; // 깨끗한 정도
+  int health;  // 체력
+  int food;    // 배부른 정도
+  int clean;   // 깨끗한 정도
 } Animal;
 
-void create_animal(Animal *animal)
-{
-    cout << "동물의 이름? ";
-    cin >> animal->name;
+void create_animal(Animal *animal) {
+  cout << "동물의 이름? ";
+  cin >> animal->name;
 
-    cout << "동물의 나이? ";
-    cin >> animal->age;
+  cout << "동물의 나이? ";
+  cin >> animal->age;
 
-    animal->health = 100;
-    animal->food = 100;
-    animal->clean = 100;
+  animal->health = 100;
+  animal->food = 100;
+  animal->clean = 100;
 }
 
-void play(Animal *animal)
-{
-    animal->health += 10;
-    animal->food -= 20;
-    animal->clean -= 30;
+void play(Animal *animal) {
+  animal->health += 10;
+  animal->food -= 20;
+  animal->clean -= 30;
 }
-void one_day_pass(Animal *animal)
-{
-    // 하루가 지나면
-    animal->health -= 10;
-    animal->food -= 30;
-    animal->clean -= 20;
+void one_day_pass(Animal *animal) {
+  // 하루가 지나면
+  animal->health -= 10;
+  animal->food -= 30;
+  animal->clean -= 20;
 }
-void show_stat(Animal *animal)
-{
-    cout << animal->name << "의 상태" << endl;
-    cout << "체력    : " << animal->health << endl;
-    cout << "배부름 : " << animal->food << endl;
-    cout << "청결    : " << animal->clean << endl;
+void show_stat(Animal *animal) {
+  cout << animal->name << "의 상태" << endl;
+  cout << "체력    : " << animal->health << endl;
+  cout << "배부름 : " << animal->food << endl;
+  cout << "청결    : " << animal->clean << endl;
 }
-int main()
-{
-    Animal* list[10];
-    int animal_num = 0;
+int main() {
+  Animal *list[10];
+  int animal_num = 0;
 
-    for(;;)
-    {
-        cout << "1. 동물 추가하기" << endl;
-        cout << "2. 놀기 " << endl;
-        cout << "3. 상태 보기 " << endl;
+  for (;;) {
+    cout << "1. 동물 추가하기" << endl;
+    cout << "2. 놀기 " << endl;
+    cout << "3. 상태 보기 " << endl;
 
-        int input;
-        cin >> input;
+    int input;
+    cin >> input;
 
-        switch(input)
-        {
-            int play_with;
-        case 1:
-            list[animal_num] = new Animal;
-            create_animal(list[animal_num]);
+    switch (input) {
+      int play_with;
+      case 1:
+        list[animal_num] = new Animal;
+        create_animal(list[animal_num]);
 
-            animal_num ++;
-            break;
-        case 2:
-            cout << "누구랑 놀게? : ";
-            cin >> play_with;
+        animal_num++;
+        break;
+      case 2:
+        cout << "누구랑 놀게? : ";
+        cin >> play_with;
 
-            if(play_with < animal_num)
-                play(list[play_with]);
+        if (play_with < animal_num) play(list[play_with]);
 
-            break;
+        break;
 
-        case 3:
-            cout << "누구껄 보게? : ";
-            cin >> play_with;
-            if(play_with < animal_num)
-                show_stat(list[play_with]);
-            break;
-        }
+      case 3:
+        cout << "누구껄 보게? : ";
+        cin >> play_with;
+        if (play_with < animal_num) show_stat(list[play_with]);
+        break;
+    }
 
-        for(int i = 0; i != animal_num; i++)
-        {
-            one_day_pass(list[i]);
-        }
-    }
-    for(int i = 0; i != animal_num; i++)
-    {
-        delete list[i];
-    }
+    for (int i = 0; i != animal_num; i++) {
+      one_day_pass(list[i]);
+    }
+  }
+  for (int i = 0; i != animal_num; i++) {
+    delete list[i];
+  }
 }
 ```
 
@@ -344,39 +329,36 @@ int main()
 
   그림과 같이 잘 작동됨을 알 수 있습니다. 사실 위 코드에는 그다지 특별한 것이 없습니다. 일단 주요 부분을 살펴볼까요.
 
-```cpp
-typedef struct Animal
-{
-    char name[30]; // 이름
-    int age; // 나이
+```cpp-formatted
+typedef struct Animal {
+  char name[30];  // 이름
+  int age;        // 나이
 
-    int health; // 체력
-    int food; // 배부른 정도
-    int clean; // 깨끗한 정도
+  int health;  // 체력
+  int food;    // 배부른 정도
+  int clean;   // 깨끗한 정도
 } Animal;
 ```
 
 
 위와 같이 `Animal` 구조체를 만들어서 `typedef` 를 통해 `struct Animal` 을 `Animal` 로 간추렸습니다. 그리고,
 
-```cpp
-            list[animal_num] = new Animal;
-            create_animal(list[animal_num]);
+```cpp-formatted
+list[animal_num] = new Animal;
+create_animal(list[animal_num]);
 ```
 
 
 위와 같이 `Animal` 을 `new` 로 생성하면 `create_animal` 함수를 통해서 `Animal` 의 각 값들을 초기화 해주었고요, 사용자가 놀기를 요청하면
 
-```cpp
-            if(play_with < animal_num)
-                play(list[play_with]);
+```cpp-formatted
+if (play_with < animal_num) play(list[play_with]);
 ```
 
 위 처럼 `play` 함수를 호출해서 놀기를 수행하였습니다. 마지막으로 사용자가 각 동물의 상태를 보기 원한다면
 
-```cpp
-            if(play_with < animal_num)
-                show_stat(list[play_with]);
+```cpp-formatted
+if (play_with < animal_num) show_stat(list[play_with]);
 ```
 
 
@@ -386,30 +368,29 @@ typedef struct Animal
 
 이렇게 할 수 만 있다면 `play` 함수에 귀찮게 인자를 전달할 필요도 없고 또 함수 내부에서도
 
-```cpp
-void play(Animal *animal)
-{
-    animal->health += 10;
-    animal->food -= 20;
-    animal->clean -= 30;
+```cpp-formatted
+void play(Animal *animal) {
+  animal->health += 10;
+  animal->food -= 20;
+  animal->clean -= 30;
 }
 ```
 
 
 위와 같이 귀찮게 `animal->` 을 앞에 붙여가면서 작업할 필요도 없습니다. 왜냐하면 `list[play_with]->play()` 라고 했을 때 `play` 는 '자기 자신의 함수' 이기 때문에
 
-```cpp
-    health += 10;
-    food -= 20;
-    clean -= 30;
+```cpp-formatted
+health += 10;
+food -= 20;
+clean -= 30;
 ```
 
 
 이렇게 해도 된다는 것입니다. 왜냐하면 `list[play_with]->play()` 이라 했을 때 `health, food, clean` 이 의미하는 것이 `list[play_with]` 의 것이기 때문입니다. 상당히 괜찮은 생각 아닌가요? 위 소스에서 불편한 점은 이것만이 아닙니다. `new` 를 통해 새로운 동물을 할당하는 부분을 살펴봅시다.
 
-```cpp
-            list[animal_num] = new Animal;
-            create_animal(list[animal_num]);
+```cpp-formatted
+list[animal_num] = new Animal;
+create_animal(list[animal_num]);
 ```
 
 
@@ -421,32 +402,30 @@ void play(Animal *animal)
 
 그러면 여러분은 아래와 같이 소스를 짤 것입니다.
 
-```cpp
-typedef struct Bird
-{
-    char name[30]; // 이름
-    int age; // 나이
+```cpp-formatted
+typedef struct Bird {
+  char name[30];  // 이름
+  int age;        // 나이
 
-    int health; // 체력
-    int food; // 배부른 정도
-    int clean; // 깨끗한 정도
+  int health;  // 체력
+  int food;    // 배부른 정도
+  int clean;   // 깨끗한 정도
 
-    // 여기까지는 Animal 과 동일하다.
-    int height; // 나는 고도
+  // 여기까지는 Animal 과 동일하다.
+  int height;  // 나는 고도
 
 } Bird;
 
-typedef struct Fish
-{
-    char name[30]; // 이름
-    int age; // 나이
+typedef struct Fish {
+  char name[30];  // 이름
+  int age;        // 나이
 
-    int health; // 체력
-    int food; // 배부른 정도
-    int clean; // 깨끗한 정도
+  int health;  // 체력
+  int food;    // 배부른 정도
+  int clean;   // 깨끗한 정도
 
-    // 여기까지는 Animal 과 동일하다.
-    int deep; // 나는 고도
+  // 여기까지는 Animal 과 동일하다.
+  int deep;  // 나는 고도
 
 } Fish;
 ```
@@ -474,7 +453,3 @@ typedef struct Fish
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-

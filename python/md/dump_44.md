@@ -43,15 +43,14 @@ cat_title :  getchar
 
 
 
-```cpp
+```cpp-formatted
 /* 한 문자를 읽는다.*/
 #include <stdio.h>
-int main ()
-{
-    char ch = getchar();
-    printf("문자 : %c \n", ch);
+int main() {
+  char ch = getchar();
+  printf("문자 : %c \n", ch);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -63,20 +62,19 @@ int main ()
 
 `getchar` 함수는 아래와 같이 버퍼를 비우는데에도 종종 사용될 수 있다.
 
-```cpp
+```cpp-formatted
 /* 버퍼 비우기 */
 #include <stdio.h>
-int main ()
-{
-    int i;
-    char c;
+int main() {
+  int i;
+  char c;
 
-    scanf("%d", &i);
-    getchar();
-    scanf("%c", &c);
+  scanf("%d", &i);
+  getchar();
+  scanf("%c", &c);
 
-    printf("입력한 문자 : %c \n", c);
-return 0;
+  printf("입력한 문자 : %c \n", c);
+  return 0;
 }
 ```
 
@@ -91,7 +89,7 @@ return 0;
 
 물론 `getchar` 함수를 호출하지 않고도 `scanf` 함수 만으로 문제를 해결할 수 있다. [자세한 내용은 여기를 클릭하세요](http://itguru.tistory.com/36)
 
-```cpp
+```cpp-formatted
 /*
 
 타이프기 처럼 한 문장을 입력하면 아래 써진다.
@@ -101,16 +99,15 @@ return 0;
 
 */
 #include <stdio.h>
-int main ()
-{
-    char c;
-    puts ("Enter text. Include a dot ('.') in a sentence to exit:");
-    do {
-        c=getchar();
-        putchar (c);
-    } while (c != '.');
+int main() {
+  char c;
+  puts("Enter text. Include a dot ('.') in a sentence to exit:");
+  do {
+    c = getchar();
+    putchar(c);
+  } while (c != '.');
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -132,9 +129,3 @@ int main ()
 * `putchar ` : `stdout` 에 한 문자를 쓴다.
 
 *  [scanf](http://itguru.tistory.com/36)  :  형식 문자열에 정의된 방법에 따라 데이터를 `stdin` 에서 읽는다.
-
-
-
-
-
-

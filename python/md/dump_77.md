@@ -58,10 +58,11 @@ void * memcpy ( void * destination, const void * source, size_t num );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
-첫번째 memcpy 함수는 str2 에 str1 의 문자열 길이 + 1 (끝의 널 문자 때문에 1 을 더해줌) 만큼을 str2 에 복사해 넣는다.
+첫번째 memcpy 함수는 str2 에 str1 의 문자열 길이 + 1 (끝의 널 문자 때문에 1 을
+더해줌) 만큼을 str2 에 복사해 넣는다.
 
 두번째 memcpy 함수는 str3 에 "copy successful\0" 을 복사해 넣는다.
 
@@ -69,19 +70,18 @@ void * memcpy ( void * destination, const void * source, size_t num );
 http://www.cplusplus.com/reference/clibrary/cstring/memcpy/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
-int main ()
-{
-    char str1[]="Sample string";
-    char str2[40];
-    char str3[40];
+int main() {
+  char str1[] = "Sample string";
+  char str2[40];
+  char str3[40];
 
-    memcpy (str2,str1,strlen(str1)+1);
-    memcpy (str3,"copy successful",16);
-    printf ("str1: %s\nstr2: %s\nstr3: %s\n",str1,str2,str3);
-    return 0;
+  memcpy(str2, str1, strlen(str1) + 1);
+  memcpy(str3, "copy successful", 16);
+  printf("str1: %s\nstr2: %s\nstr3: %s\n", str1, str2, str3);
+  return 0;
 }
 ```
 
@@ -100,9 +100,3 @@ int main ()
 *  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
 *  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.
 *  [strncpy](http://itguru.tistory.com/80)  :  문자열에서 특정한 개수의 문자를 복사한다.
-
-
-
-
-
-

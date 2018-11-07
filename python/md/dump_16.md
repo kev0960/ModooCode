@@ -14,38 +14,30 @@ next_page : 17
 
 이번 강좌에서는 `if` 문의 친구인 `switch` 문에 대해 배워 보도록 하겠습니다. `switch` 문이 `if` 문의 친구라고 한 이유는 하는 일이 정말로 `if` 문과 비슷하기 때문이죠. 일단, 아래의 초-간단한 강아지 시뮬레이션을 보세요.
 
-```cpp
+```cpp-formatted
 /* 마이펫 */
 #include <stdio.h>
-int main()
-{
-    int input;
+int main() {
+  int input;
 
-    printf("마이펫 \n");
-    printf("무엇을 하실 것인지 입력하세요 \n");
-    printf("1. 밥주기 \n");
-    printf("2. 씻기기 \n");
-    printf("3. 재우기 \n");
+  printf("마이펫 \n");
+  printf("무엇을 하실 것인지 입력하세요 \n");
+  printf("1. 밥주기 \n");
+  printf("2. 씻기기 \n");
+  printf("3. 재우기 \n");
 
-    scanf("%d", &input);
+  scanf("%d", &input);
 
-    if(input == 1)
-    {
-        printf("아이 맛있어 \n");
-    }
-    else if(input == 2)
-    {
-        printf("아이 시원해 \n");
-    }
-    else if(input == 3)
-    {
-        printf("zzz \n");
-    }
-    else
-    {
-        printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
-    }
-    return 0;
+  if (input == 1) {
+    printf("아이 맛있어 \n");
+  } else if (input == 2) {
+    printf("아이 시원해 \n");
+  } else if (input == 3) {
+    printf("zzz \n");
+  } else {
+    printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
+  }
+  return 0;
 }
 ```
 
@@ -105,66 +97,62 @@ int main()
 
 따라서, 위와 같이 동일한 변수에 대해 비교문이 반복되는 경우에 아래와 같이 깔끔한 `switch` 문을 적용 시킬 수 있습니다.
 
-```cpp
+```cpp-formatted
 /* 업그레이드 버전 */
 #include <stdio.h>
-int main()
-{
-    int input;
+int main() {
+  int input;
 
-    printf("마이펫 업그레이드\n");
-    printf("무엇을 하실 것인지 입력하세요 \n");
-    printf("1. 밥주기 \n");
-    printf("2. 씻기기 \n");
-    printf("3. 재우기 \n");
+  printf("마이펫 업그레이드\n");
+  printf("무엇을 하실 것인지 입력하세요 \n");
+  printf("1. 밥주기 \n");
+  printf("2. 씻기기 \n");
+  printf("3. 재우기 \n");
 
-    scanf("%d", &input);
+  scanf("%d", &input);
 
-    switch(input)
-    {
-    case 1:
-        printf("아이 맛있어 \n");
-        break;
+  switch (input) {
+    case 1:
+      printf("아이 맛있어 \n");
+      break;
 
-    case 2:
-        printf("아이 시원해 \n");
-        break;
+    case 2:
+      printf("아이 시원해 \n");
+      break;
 
-    case 3:
-        printf("zzz \n");
-        break;
+    case 3:
+      printf("zzz \n");
+      break;
 
-    default :
-        printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
-        break;
-    }
+    default:
+      printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
+      break;
+  }
 
-    return 0;
+  return 0;
 }
-
 ```
 
 아마 컴파일 된 결과는 위와 동일하게 나올 것 입니다. 이제, 위 소스 코드에서 가장 중요한 부분인 `switch` 문 부분을 살펴보도록 합시다.
 
-```cpp
- switch(input)
-    {
-    case 1:
-        printf("아이 맛있어 \n");
-        break;
+```cpp-formatted
+switch (input) {
+  case 1:
+    printf("아이 맛있어 \n");
+    break;
 
-    case 2:
-        printf("아이 시원해 \n");
-        break;
+  case 2:
+    printf("아이 시원해 \n");
+    break;
 
-    case 3:
-        printf("zzz \n");
-        break;
+  case 3:
+    printf("zzz \n");
+    break;
 
-    default :
-        printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
-        break;
-    }
+  default:
+    printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
+    break;
+}
 ```
 
 `switch` 문의 기본 구조는 아래와 같습니다.
@@ -199,38 +187,35 @@ int main()
 
 하지만 만약 여러분이 `break;` 문을 빠뜨리게 되면 위와 같은 상황이 벌어질 수 있습니다.
 
-```cpp
+```cpp-formatted
 /* 실패작 */
 #include <stdio.h>
-int main()
-{
-    int input;
+int main() {
+  int input;
 
-    printf("마이펫 업그레이드\n");
-    printf("무엇을 하실 것인지 입력하세요 \n");
-    printf("1. 밥주기 \n");
-    printf("2. 씻기기 \n");
-    printf("3. 재우기 \n");
+  printf("마이펫 업그레이드\n");
+  printf("무엇을 하실 것인지 입력하세요 \n");
+  printf("1. 밥주기 \n");
+  printf("2. 씻기기 \n");
+  printf("3. 재우기 \n");
 
-    scanf("%d", &input);
+  scanf("%d", &input);
 
-    switch(input)
-    {
-    case 1:
-        printf("아이 맛있어 \n");
+  switch (input) {
+    case 1:
+      printf("아이 맛있어 \n");
 
-    case 2:
-        printf("아이 시원해 \n");
+    case 2:
+      printf("아이 시원해 \n");
 
-    case 3:
-        printf("zzz \n");
+    case 3:
+      printf("zzz \n");
 
-    default :
-        printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
+    default:
+      printf("무슨 명령인지 못 알아 듣겠어. 왈왈 \n");
+  }
 
-    }
-
-    return 0;
+  return 0;
 }
 ```
 
@@ -241,39 +226,36 @@ int main()
 
 와 같이 웃지 않을 수 없는 상황이 벌어집니다. 여러분들이 1 을 입력한다면 `case 1:` 이 실행되어 그 내용들이 모두 실행되지만 `break` 문으로 `switch` 문을 빠져 나가지 못해서 아래 `case` 들 까지 줄줄이 실행되어 위와 같은 꼴을 볼 수 있습니다.
 
-```cpp
+```cpp-formatted
 /* 영어 말하기 */
 #include <stdio.h>
-int main()
-{
-    char input;
+int main() {
+  char input;
 
-    printf("(소문자) 알파벳 읽기\n");
-    printf("알파벳 : ");
+  printf("(소문자) 알파벳 읽기\n");
+  printf("알파벳 : ");
 
-    scanf("%c", &input);
+  scanf("%c", &input);
 
-    switch(input)
-    {
-    case 'a':
-        printf("에이 \n");
-        break;
+  switch (input) {
+    case 'a':
+      printf("에이 \n");
+      break;
 
-    case 'b':
-        printf("비 \n");
-        break;
+    case 'b':
+      printf("비 \n");
+      break;
 
-    case 'c':
-        printf("씨 \n");
-        break;
+    case 'c':
+      printf("씨 \n");
+      break;
 
-    default :
-        printf("죄송해요.. 머리가 나빠서 못 읽어요  \n");
-        break;
+    default:
+      printf("죄송해요.. 머리가 나빠서 못 읽어요  \n");
+      break;
+  }
 
-    }
-
-    return 0;
+  return 0;
 }
 ```
 
@@ -331,6 +313,3 @@ int main()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

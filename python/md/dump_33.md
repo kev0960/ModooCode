@@ -20,18 +20,17 @@ next_page : 43
 
 일단, 아래 코드를 실행해봅시다.
 
-```cpp
+```cpp-formatted
 /* 문자열 */
 #include <stdio.h>
-int main()
-{
-    char str[] = "sentence";
-    char *pstr = "sentence";
+int main() {
+  char str[] = "sentence";
+  char *pstr = "sentence";
 
-    printf("str : %s \n", str);
-    printf("pstr : %s \n", pstr);
+  printf("str : %s \n", str);
+  printf("pstr : %s \n", pstr);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -40,16 +39,16 @@ int main()
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F11100D0D4B5C7D143D8049)
 
-```cpp
-    char str[] = "sentence";
-    char *pstr = "sentence";
+```cpp-formatted
+char str[] = "sentence";
+char *pstr = "sentence";
 ```
 
 일단, 여러분들은 당연하게도 위 두 개의 문장을 보고 이상하다고 생각하셨을 것입니다. 일단 첫번째 문장은 평범한 문장 입니다. `sentence` 라는 문자열을 `str` 이라는 배열에 집어 넣고 있지요. 그런데 두 번째 문장은 말이죠. 상당히 이상합니다. 왜냐하면 일단 "sentence" 는 문자열이고, 어떤 변수의 주소값이 아닙니다. `pstr` 는 `char` 형을 가리키는 포인터 이므로 `char` 형 변수의 주소값이 들어가야되기 때문이죠.
 
 그런데 우리는 마치 "sentence" 를 특정한 주소값 마냥 사용하고 있습니다. 그런데, 말이죠. "sentence" 는 주소값 맞습니다. 그렇다면 무엇의 주소값이죠? 바로, "sentence" 라는 문자열이 저장된 주소값 (시작 주소값) 을 말합니다. 정말로 놀랍지 않습니까? 사실 저도 잘 믿기지 않습니다. 만일 믿기지 않는다면 아래 문장을 넣어 실행해 보세요.
 
-```cpp
+```cpp-formatted
 printf("%d \n", "sentence");
 ```
 
@@ -57,18 +56,17 @@ printf("%d \n", "sentence");
 
 일단, "sentence" 의 정체를 먼저 파악하기 전에 다음의 소스 코드를 실행해보시기 바랍니다.
 
-```cpp
+```cpp-formatted
 /* 문자열 */
 #include <stdio.h>
-int main()
-{
-    char str[] = "hello";
-    char *pstr = "goodbye";
+int main() {
+  char str[] = "hello";
+  char *pstr = "goodbye";
 
-    str[1] = 'a';
-    pstr[1] = 'a';
+  str[1] = 'a';
+  pstr[1] = 'a';
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -81,8 +79,8 @@ Windows 7 의 경우 위와 같은 화면이 나오며 다른 운영체제의 �
 
 헐.. 왜 오류가 난 것일까요? 일단, `pstr[1] = 'a';` 를 주석 처리한 후 다시 실행해 보면 제대로 실행됨을 알 수 있습니다. 다시말해,
 
-```cpp
-  pstr[1] = 'a';
+```cpp-formatted
+pstr[1] = 'a';
 ```
 
 가 문제인 것이군요. 그런데 말이죠. 왜 문제가 발생한 것일까요? 맨 위의 예제에서 `pstr` 의 값을 읽기만 하였을 때(`printf` 함수는 값을 읽기만 하지 변경하지 않는다) 정상적으로 실행되었지만 아래에서 `pstr[1] = 'a';` 를 통해 `pstr` 의 값을 변경하였을 때 오류가 출력된 것을 보아 마치 상수 처럼 컴퓨터에서 값을 변경하도록 허락 하지 않는 것 같습니다.
@@ -92,29 +90,29 @@ Windows 7 의 경우 위와 같은 화면이 나오며 다른 운영체제의 �
 
  프로그래밍 언어에서 **리터럴(literal)**이란, 소스 코드 상에서 고정된 값을 가지는 것을 일컫습니다. 특히, C 언어의 경우 큰 따옴표(") 로 묶인 것들을 **문자열 리터럴(string literal)** 이라 부릅니다.
 
-```cpp
-    char str[] = "hello";
-    char *pstr = "goodbye";
-    printf("why so serious?");
-    scanf("%c", str[0]);
+```cpp-formatted
+char str[] = "hello";
+char *pstr = "goodbye";
+printf("why so serious?");
+scanf("%c", str[0]);
 ```
 
 그렇다면 위 4 개의 문장에서 문자열 리터럴은 무엇일까요? 물론, 짐작하였던 대로 `hello, goodbye, why so serious, %c` 모두 리터럴이 됩니다. 왜냐하면 모두 큰따옴표로 묶여져 있잖아요? 그런데 왜 `hello, goodbye, why so serious, %c` 처럼 큰따옴표로 둘러쌓인 것들을 왜 리터럴이라 부르는 것일까요?
 
 답은 간단합니다. 이들은 소스 코드 상에서 고정된 값을 가지기 때문이죠. 예를 들어서 `hello` 가 소스 코드 상에서 고정된 값을 가지지 않는 다고 해봅시다. 만일 내가 아래와 같은 문장을 이용했다고 하면
 
-```cpp
-    char str[] = "hello";
+```cpp-formatted
+char str[] = "hello";
 ```
 
 실제 프로그램에서는 `str` 에 `hello` 가 아닌 다른 값 `-` 예를 들어 `hi` 가 들어갈 수 도 있다는 것입니다.
 
 이는 마치....
 
-```cpp
-    int i,j;
-    // 잡다한 작업들...
-    i = j;
+```cpp-formatted
+int i, j;
+// 잡다한 작업들...
+i = j;
 ```
 
 위와 같은 코드에서 맨 마지막 문장이 `i` 에 3 을 대입되기를 기대하는 것과 같은 것입니다.
@@ -129,17 +127,17 @@ Windows 7 의 경우 위와 같은 화면이 나오며 다른 운영체제의 �
 
 따라서 리터럴이 보관되는 곳은 "오직 읽기만 가능한 곳" 이 됩니다. 다시 말해 이곳에 한 번 저장된 값은 죽었다 깨어나도 영원이 동일하게 유지가 되는 것입니다. 만일 이곳을 함부로 변경하려고 하는 시도가 있다면 바로 오류를 삑 출력하게 되죠. 그렇기 때문에 우리는 `char str[] = "hello";` 를 했다면 `str` 에 `hello` 가 들어가고 `printf("why so serious?");` 를 했다면 화면에 `why so serious` 가 출력될 것이라고 보장할 수 있다는 것이죠. 왜냐하면 이 모든 문자열들이 "문자열 리터럴" 이라는 이름 하에 메모리 상의 특별한 공간에서 철저히 보호 받고 있기 때문입니다.
 
-```cpp
-      char *pstr = "goodbye";
-     pstr[1] = 'a';
+```cpp-formatted
+char *pstr = "goodbye";
+pstr[1] = 'a';
 ```
 
 그럼 위 코드를 다시 살펴봅시다. 우리는 앞서 `goodbye` 역시 문자열 리터럴 이기 때문에 "리터럴 들의 세상 (정확히 말하면 이 곳에는 리터럴들만 있는 것이 아니라 우리가 프로그램 상에서 정의한 상수들도 이곳에 저장됩니다) " 에 저장된다고 했습니다. 그런데 이 곳은 오직 읽기만 가능한 곳이므로 쓰기를 시도 하려고 할 시에 오류를 뿜게 된다고 했습니다. 그런데 말이죠. 제가 무례하게도 `pstr[1] = 'a';` 을 통해 "리터럴 세상에 저장된 리터럴 goodbye" 의 값을 변경하려고 했습니다. 따라서 컴퓨터에서 오류를 삑 뿜게 되는 것이죠.
 
   반면에
 
-```cpp
-    printf("pstr : %s \n", pstr);
+```cpp-formatted
+printf("pstr : %s \n", pstr);
 ```
 
 와 같이 오직 읽기 작업만을 수행하는 `printf` 의 경우 잘 실행되지요. 왜냐하면 리터럴 세상에 저장된 리터럴들에 쓰기는 불가능 하지만 적어도 읽기는 허용되기 때문입니다.
@@ -156,15 +154,14 @@ Windows 7 의 경우 위와 같은 화면이 나오며 다른 운영체제의 �
 
 C 언어에서 문자열을 다루는 일은 생각보다 불편한 편입니다. 예를 들어서 `int` 형 변수의 경우
 
-```cpp
-int i,j = 0;
+```cpp-formatted
+int i, j = 0;
 i = j + 3;
-
 ```
 
   과 같이 값을 더하는 것이 가능하지만 문자열의 경우
 
-```cpp
+```cpp-formatted
 char str1[] = {"abc"};
 char str2[] = {"def"};
 str1 = str1 + str2;
@@ -174,21 +171,19 @@ str1 = str1 + str2;
 
   뿐만 아니라 다음과 같이 문자열을 비교하는 것도 불가능합니다.
 
-```cpp
-if(str1 == str2)
-```
+```cpp-formatted
+if (str1 == str2) ```
 
 왜냐하면 위 문장의 의미는 "`str1` 의 문자열이 들어있는 메모리 상의 (시작)주소와 `str2` 의 문자열이 들어있는 메모리 상의 (시작) 주소값을 비교해라" 라는 의미의 문장이기 때문입니다. 따라서 역시 우리가 원하던 기능이 실행 될 수가 없습니다. 물론 다음과 같은 문장도 원하는 대로 실행이 되지 않습니다.
 
-```cpp
-if(str1 == "abc")
-```
+```cpp-formatted
+if (str1 == "abc") ```
 
 잘 알겠지만 "abc" 은 리터럴 입니다. 즉, `str1` 과 "abc" 를 비교한다는 뜻은 "str1 이 저장된 메모리 상의 주소값과 `abc` 라는 문자열 리터럴이 보관된 메모리 상의 주소값을 비교" 하는 문장이기 때문에 절대로 우리가 원하는 "str1 의 문자열과 `abc` 를 비교한다" 라는 뜻을 가질 수 없습니다.
 
 가장 짜증나는 문제는 문자열을 원하는 대로도 복사를 못한다는 것입니다. 다시말해 `int` 형 변수처럼 원하는 값을 "대입" 할 수 없다는 말입니다. 만일 우리가
 
-```cpp
+```cpp-formatted
 str1 = str2;
 ```
 
@@ -222,7 +217,7 @@ str1 = str2;
 
 세번째로 함수의 인자로 무엇을 받아야 할 지 생각해 봅시다. 당연하게도 두 개의 문자열을 받아야 하므로 포인터를 사용해야겠죠? 이 때 문자열들은 `char` 형 배열 이기에 `char*` 을 인자로 2 개 가지는 함수를 만들 것 입니다.
 
-```cpp
+```cpp-formatted
 /*
 
 char copy_str(char *dest, char *src);
@@ -230,51 +225,46 @@ char copy_str(char *dest, char *src);
 src 의 문자열을 dest 로 복사한다. 단, dest 의 크기가 반드시 src 보다 커야 한다.
 
 */
-char copy_str(char *dest, char *src)
-{
-    while (*src)
-    {
-        *dest = *src;
-        src ++; // 그 다음 문자를 가리킨다.
-        dest ++;
-    }
-    *dest = '\0';
+char copy_str(char *dest, char *src) {
+  while (*src) {
+    *dest = *src;
+    src++;  // 그 다음 문자를 가리킨다.
+    dest++;
+  }
+  *dest = '\0';
 
-    return 1;
+  return 1;
 }
 ```
 
 예를 들어 위 함수를 써먹어 봅시다.
 
-```cpp
+```cpp-formatted
 /* copy_str 사용 예제 */
 #include <stdio.h>
 char copy_str(char *src, char *dest);
-int main()
-{
-    char str1[] = "hello";
-    char str2[] = "hi";
+int main() {
+  char str1[] = "hello";
+  char str2[] = "hi";
 
-    printf("복사 이전 : %s \n", str1);
+  printf("복사 이전 : %s \n", str1);
 
-    copy_str(str1, str2);
+  copy_str(str1, str2);
 
-    printf("복사 이후 : %s \n ", str1);
+  printf("복사 이후 : %s \n ", str1);
 
-    return 0;
+  return 0;
 }
-char copy_str(char *dest, char *src)
-{
-    while (*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+char copy_str(char *dest, char *src) {
+  while (*src) {
+    *dest = *src;
+    src++;
+    dest++;
+  }
 
-    *dest = '\0';
+  *dest = '\0';
 
-    return 1;
+  return 1;
 }
 ```
 
@@ -285,21 +275,20 @@ char copy_str(char *dest, char *src)
 
 현재 여러분 정도의 수준이 되었다면 위 `copy_str` 함수 정도는 손쉽게 분석할 수 있으리라 믿지만 그래도 만약을 위해서 한 번 설명 해보도록 하겠습니다.
 
-```cpp
-    while (*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+```cpp-formatted
+while (*src) {
+  *dest = *src;
+  src++;
+  dest++;
+}
 ```
 
 먼저 `while` 문 부분을 살펴봅시다. `while` 문의 조건이 `*src` 입니다. 뭔 뜻인지 알겠죠? 문자열을 다룰 때 많이 쓰는 방법인데, `NULL` 문자의 값이 0 이므로 `*src` 가 `NULL` 문자에 도달하기 전 까지 `while` 문이 계속 돌아가게 됩니다.
 
 그리고 `*dest = *src` 를 통해서 `src` 의 문자를 `dest` 에 대입하였습니다. 그리고 `src` 와 `dest` 를 각각 1 씩 증가시켰는데.. 포인터의 연산 기억 하시죠? 포인터에 1 을 더하면 단순히 주소값이 1 이 들어가는 것이 아니라 포인터가 가리키는 타입의 크기를 곱한 만큼 증가한다는 사실. 다시말해 배열의 그 다음 원소를 가리킬 수 있다는 것입니다.
 
-```cpp
-    *dest = '\0';
+```cpp-formatted
+*dest = '\0';
 ```
 
 마지막으로 `dest` 에 '\0' ,  즉 `NULL` 문자를 집어 넣었습니다. 아까 위의 `while` 문에서 `src` 가 `NULL` 이 된다면 `while` 문을 종료해 버렸기 때문에 `src` 에 넣을 틈이 없었는데 마지막에 위와 같이 처리해줌으로써 `dest` 에 `NULL` 문자를 끝부분에 삽입할 수 있게되었습니다.
@@ -308,9 +297,9 @@ char copy_str(char *dest, char *src)
 
 잠깐만요! 아마도 이 문자열을 복사하는 함수를 만들면서 "굳이 이 함수를 만들어야 되나?" 라고 생각하시는 분들이 있나요? 아마 있겠지요. 저도 그랬으니까요. 보통 이런 생각을 하시는 분들은 다음과 같은 코드를 제안합니다.
 
-```cpp
-    char str[100];
-    str = "abcdefg"; /* str 에 abcdefg 가 복사되지 않을까? */
+```cpp-formatted
+char str[100];
+str = "abcdefg"; /* str 에 abcdefg 가 복사되지 않을까? */
 ```
 
   그러나 이 방법으로 컴파일을 하게 되면 아래와 같은 오류를 만나게 됩니다.
@@ -326,7 +315,7 @@ error C2106: '=' : 왼쪽 피연산자는 l-value이어야 합니다.
 
   그런데 말이죠. 왜 다음 문장은 말이 되는 것일까요?
 
-```cpp
+```cpp-formatted
 char str[100] = "abcdefg";
 ```
 
@@ -349,83 +338,79 @@ char str[100] = "abcdefg";
 
 완성된 소스는 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 /*
 
 stradd 함수
 
 dest 에 src 문자열을 끝에 붙인다.
-이 때 dest 문자열의 크기를 검사하지 않으므로 src 가 들어갈 수 있는 충분한 크기가 있어야 한다.
+이 때 dest 문자열의 크기를 검사하지 않으므로 src 가 들어갈 수 있는 충분한 크기가
+있어야 한다.
 
 */
-char stradd(char *dest, char *src)
-{
-    /* dest 의 끝 부분을 찾는다.*/
-    while (*dest)
-    {
-        dest++;
-    }
+char stradd(char *dest, char *src) {
+  /* dest 의 끝 부분을 찾는다.*/
+  while (*dest) {
+    dest++;
+  }
 
-    /*
-    while 문을 지나고 나면 dest 는 dest 문자열의 NULL 문자를 가리키고 있게 된다.
-    이제 src 의 문자열들을 dest 의 NULL 문자 있는 곳 부터 복사해넣는다.
-    */
-    while(*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+  /*
+  while 문을 지나고 나면 dest 는 dest 문자열의 NULL 문자를 가리키고 있게 된다.
+  이제 src 의 문자열들을 dest 의 NULL 문자 있는 곳 부터 복사해넣는다.
+  */
+  while (*src) {
+    *dest = *src;
+    src++;
+    dest++;
+  }
 
-    /* 마지막으로 dest 에 NULL 추가 (왜냐하면 src 에서 NULL 이 추가 되지 않았으므로) */
-    *dest = '\0';
+  /* 마지막으로 dest 에 NULL 추가 (왜냐하면 src 에서 NULL 이 추가 되지
+   * 않았으므로) */
+  *dest = '\0';
 
-    return 1;
+  return 1;
 }
 ```
 
 
   이제 위 함수를 써먹어 봅시다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 char stradd(char *dest, char *src);
-int main()
-{
-    char str1[100]="hello my name is ";
-    char str2[]="Psi";
+int main() {
+  char str1[100] = "hello my name is ";
+  char str2[] = "Psi";
 
-    printf("합치기 이전 : %s \n", str1);
+  printf("합치기 이전 : %s \n", str1);
 
-    stradd(str1, str2);
+  stradd(str1, str2);
 
-    printf("합친 이후 : %s \n", str1);
+  printf("합친 이후 : %s \n", str1);
 
-    return 0;
+  return 0;
 }
-char stradd(char *dest, char *src)
-{
-    /* dest 의 끝 부분을 찾는다.*/
-    while (*dest)
-    {
-        dest++;
-    }
+char stradd(char *dest, char *src) {
+  /* dest 의 끝 부분을 찾는다.*/
+  while (*dest) {
+    dest++;
+  }
 
-    /*
-    while 문을 지나고 나면 dest 는 dest 문자열의 NULL 문자를 가리키고 있게 된다.
-    이제 src 의 문자열들을 dest 의 NULL 문자 있는 곳 부터 복사해넣는다.
-    */
-    while(*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+  /*
+  while 문을 지나고 나면 dest 는 dest 문자열의 NULL 문자를 가리키고 있게 된다.
+  이제 src 의 문자열들을 dest 의 NULL 문자 있는 곳 부터 복사해넣는다.
+  */
+  while (*src) {
+    *dest = *src;
+    src++;
+    dest++;
+  }
 
-    /* 마지막으로 dest 에 NULL 추가 (왜냐하면 src 에서 NULL 이 추가 되지 않았으므로) */
-    *dest = '\0';
+  /* 마지막으로 dest 에 NULL 추가 (왜냐하면 src 에서 NULL 이 추가 되지
+   * 않았으므로) */
+  *dest = '\0';
 
-    return 1;
+  return 1;
 }
 ```
 
@@ -436,29 +421,26 @@ char stradd(char *dest, char *src)
 
 역시. 제대로 출력이 됩니다. 일단 `stradd` 의 구조는 단순합니다. `dest` 의 끝에 문자열을 덧붙이기 위해서는 먼저 `dest` 문자열의 끝 부분을 찾아야겠죠? 따라서
 
-```cpp
-    while (*dest)
-    {
-        dest++;
-    }
-
+```cpp-formatted
+while (*dest) {
+  dest++;
+}
 ```
 
 를 통해서 `dest` 의 널문자의 위치를 찾습니다. (물론 그 위치는 `dest` 가 가리키고 있겠지요) 이제, 그 널문자가 들어갔던 곳을 포함하여 `dest` 의 끝에 `src` 문자열을 덧쓰면 됩니다. 아래와 같이죠.
 
-```cpp
-    while(*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+```cpp-formatted
+while (*src) {
+  *dest = *src;
+  src++;
+  dest++;
+}
 ```
 
 물론 이때도 주의해야 할 점은 `*src` 가 `NULL` 이 되면 `while` 문이 종료되므로 `src` 의 널문자를 복사할 수 없게 됩니다. 따라서 아래와 같이 `dest` 의 끝부분에 `NULL` 문자를 집어 넣어주어야 합니다.
 
-```cpp
-    *dest = '\0';
+```cpp-formatted
+*dest = '\0';
 ```
 
 자. 그럼 이해가 되셨는지요?
@@ -482,86 +464,68 @@ if(compare(str1, str2))
 
 완성된 소스는 아래와 같습니다.
 
-```cpp
-char compare(char *str1, char *str2)
-{
-    while (*str1)
-    {
-        if(*str1 != *str2)
-        {
-            return 0;
-        }
+```cpp-formatted
+char compare(char *str1, char *str2) {
+  while (*str1) {
+    if (*str1 != *str2) {
+      return 0;
+    }
 
-        str1++;
-        str2++;
-    }
+    str1++;
+    str2++;
+  }
 
-    if(*str2 == '\0')
-        return 1;
+  if (*str2 == '\0') return 1;
 
-    return 0;
+  return 0;
 }
 ```
 
 
 이제 위 함수를 써먹어 봅시다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 char compare(char *str1, char *str2);
-int main ()
-{
-    char str[20]="hello every1";
-    char str2[20]="hello everyone";
-    char str3[20]="hello every1 hi";
-    char str4[20]="hello every1";
+int main() {
+  char str[20] = "hello every1";
+  char str2[20] = "hello everyone";
+  char str3[20] = "hello every1 hi";
+  char str4[20] = "hello every1";
 
-    if(compare(str, str2))
-    {
-        printf("%s 와 %s 는 같다 \n", str, str2);
-    }
-    else
-    {
-        printf("%s 와 %s 는 다르다 \n", str, str2);
-    }
+  if (compare(str, str2)) {
+    printf("%s 와 %s 는 같다 \n", str, str2);
+  } else {
+    printf("%s 와 %s 는 다르다 \n", str, str2);
+  }
 
-    if(compare(str, str3))
-    {
-        printf("%s 와 %s 는 같다 \n", str, str3);
-    }
-    else
-    {
-        printf("%s 와 %s 는 다르다 \n", str, str3);
-    }
+  if (compare(str, str3)) {
+    printf("%s 와 %s 는 같다 \n", str, str3);
+  } else {
+    printf("%s 와 %s 는 다르다 \n", str, str3);
+  }
 
-    if(compare(str, str4))
-    {
-        printf("%s 와 %s 는 같다 \n", str, str4);
-    }
-    else
-    {
-        printf("%s 와 %s 는 다르다 \n", str, str4);
-    }
+  if (compare(str, str4)) {
+    printf("%s 와 %s 는 같다 \n", str, str4);
+  } else {
+    printf("%s 와 %s 는 다르다 \n", str, str4);
+  }
 
-    return 0;
+  return 0;
 }
-char compare(char *str1, char *str2)
-{
-    while (*str1)
-    {
-        if(*str1 != *str2)
-        {
-            return 0;
-        }
+char compare(char *str1, char *str2) {
+  while (*str1) {
+    if (*str1 != *str2) {
+      return 0;
+    }
 
-        str1++;
-        str2++;
-    }
+    str1++;
+    str2++;
+  }
 
-    if(*str2 == '\0')
-        return 1;
+  if (*str2 == '\0') return 1;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -571,17 +535,15 @@ char compare(char *str1, char *str2)
 
    `compare` 함수가 어떻게 작동하는지 알아보도록 합시다,.
 
-```cpp
-    while (*str1)
-    {
-        if(*str1 != *str2)
-        {
-            return 0;
-        }
+```cpp-formatted
+while (*str1) {
+  if (*str1 != *str2) {
+    return 0;
+  }
 
-        str1++;
-        str2++;
-    }
+  str1++;
+  str2++;
+}
 ```
 
 
@@ -589,9 +551,8 @@ char compare(char *str1, char *str2)
 
 그런데 여기서 끝난 것이 아닙니다. 만일 `str1` 과 `str2` 가 `str1` 부분만 일치하였다면 어떨까요? 다시말해 `str1` 은 "abc" 이지만 `str2` 는 "abcd" 라면? 그렇다면 `while` 문에서 검사할 때 `str1` 이 끝날 때 까지만 검사하므로 `while` 문을 잘 통과하게 됩니다. 따라서 여러분은 `str1` 이 끝났을 때 `str2` 도 끝났는지 확인해볼 필요성이 있습니다.
 
-```cpp
-    if(*str2 == '\0')
-        return 1;
+```cpp-formatted
+if (*str2 == '\0') return 1;
 ```
 
 따라서 위 문장을 추가해줌으로써 우리는 `str2` 가 끝이 났는지 확인할 수 있게 됩니다. 만일 `*str2` 가 \0 이 아니라면, 즉 `str2` 가 끝난 것이 아니라면 `str1` 과 `str2` 는 다른 것이 되므로 함수는 0 을 리턴하게 됩니다. 어때요? 간단하죠? 사실 위에서 설명한 4 개의 함수들만 이용하면 문자열을 이용한 왠만한 작업들은 수행이 가능합니다. 이번 강좌는 이쯤게 끝내도록 하겠습니다. 문자열 함수를 이용해서 문자열들을 적절히 가지고 노는 것은 여러분의 몫입니다. 부디 문자열을 가지고 여러가지 재미있는 프로그램을 만들어보았으면 합니다.
@@ -644,6 +605,3 @@ char compare(char *str1, char *str2)
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

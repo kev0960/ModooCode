@@ -53,18 +53,18 @@ void* & pword (int idx);
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://msdn.microsoft.com/en-us/library/77z9kz41.aspx
 에서 가져왔습니다.
 
-pword 로 cin 객체의 내부 확장 가능 배열의 i 번째 원소에 testing 의 주소를 넣고 이를 출력한다.
+pword 로 cin 객체의 내부 확장 가능 배열의 i 번째 원소에 testing 의 주소를 넣고
+이를 출력한다.
 */
 
-
-#include <iostream>using namespace std;int main( ){    static const int i = ios_base::xalloc();    cin.pword( i ) = "testing";    cout << ( char * )cin.pword( i ) << endl;}
+#include <iostream>using namespace std;int main( ){    static const int i = ios_base::xalloc();    cin.pword( i ) = "testing";    cout << ( char * )cin.pword( i ) << endl;}
 ```
 
 

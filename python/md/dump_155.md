@@ -19,9 +19,9 @@ ref_title : setf
 
 
 
-```cpp
-fmtflags setf ( fmtflags fmtfl );
-fmtflags setf ( fmtflags fmtfl, fmtflags mask );
+```cpp-formatted
+fmtflags setf(fmtflags fmtfl);
+fmtflags setf(fmtflags fmtfl, fmtflags mask);
 ```
 
 
@@ -73,7 +73,7 @@ fmtflags setf ( fmtflags fmtfl, fmtflags mask );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -84,14 +84,13 @@ http://www.cplusplus.com/reference/iostream/ios_base/setf/
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-    cout.setf ( ios::hex, ios::basefield );       // hex 를 설정한다.
-    cout.setf ( ios::showbase );                  // showbase 를 설정
-    cout << 100 << endl;
-    cout.setf ( 0, ios::showbase );               // showbase 를 끈다.
-    cout << 100 << endl;
-    return 0;
+int main() {
+  cout.setf(ios::hex, ios::basefield);  // hex 를 설정한다.
+  cout.setf(ios::showbase);             // showbase 를 설정
+  cout << 100 << endl;
+  cout.setf(0, ios::showbase);  // showbase 를 끈다.
+  cout << 100 << endl;
+  return 0;
 }
 ```
 

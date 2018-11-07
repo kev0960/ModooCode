@@ -69,30 +69,28 @@ C 형식 문자열로 부동 소수점 수를 문자열 형태로 포함하고 �
 
 
 
-```cpp
+```cpp-formatted
 /*
 
-각도를 문자열로 입력 받아서 double 형 수치 값으로 변환한 뒤 이의 sine 값을 계산한다.
-이 예제는
-http://www.cplusplus.com/reference/clibrary/cstdlib/atof/
+각도를 문자열로 입력 받아서 double 형 수치 값으로 변환한 뒤 이의 sine 값을
+계산한다. 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdlib/atof/
 에서 가져왔습니다.
 
- */
+ */
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
-int main ()
-{
-    double n,m;
-    double pi=3.1415926535;
-    char szInput [256];
-    printf ( "Enter degrees: " );
-    gets ( szInput );
-    n = atof ( szInput );
-    m = sin (n*pi/180);
-    printf ( "The sine of %f degrees is %f\n" , n, m );
-    return 0;
+int main() {
+  double n, m;
+  double pi = 3.1415926535;
+  char szInput[256];
+  printf("Enter degrees: ");
+  gets(szInput);
+  n = atof(szInput);
+  m = sin(n * pi / 180);
+  printf("The sine of %f degrees is %f\n", n, m);
+  return 0;
 }
 ```
 
@@ -113,9 +111,3 @@ int main ()
 * `strtod`  :  문자열을 `double` 형 값으로 바꾼다.
 *  [atoi](http://itguru.tistory.com/131)  :  문자열을 `int` 형 값으로 바꾼다.
 *  [atol](http://itguru.tistory.com/132)  :  문자열을 `long` 형 값으로 바꾼다.
-
-
-
-
-
-

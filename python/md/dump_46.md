@@ -59,16 +59,15 @@ cat_title :  putc
 
 
 
-```cpp
+```cpp-formatted
 /* stdout (표준 출력) 에 p 를 쓴다.*/
 #include <stdio.h>
-int main ()
-{
-    char ch = 'p';
+int main() {
+  char ch = 'p';
 
-    putc(ch, stdout);
+  putc(ch, stdout);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -78,26 +77,25 @@ int main ()
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1666211A4B6AB39234C27A)
 
 
-```cpp
+```cpp-formatted
 /*
 
 alphabet.txt 에 (없다면 파일을 생성해서) A 부터 Z 까지 쓴다.
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/putc/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    char c;
+int main() {
+  FILE* pFile;
+  char c;
 
-    pFile=fopen("alphabet.txt","wt");
-    for (c = 'A' ; c <= 'Z' ; c++) {
-        putc (c , pFile);
-    }
-    fclose (pFile);
-    return 0;
+  pFile = fopen("alphabet.txt", "wt");
+  for (c = 'A'; c <= 'Z'; c++) {
+    putc(c, pFile);
+  }
+  fclose(pFile);
+  return 0;
 }
 ```
 
@@ -132,10 +130,3 @@ int main ()
 
 
 *  [fprintf](http://itguru.tistory.com/64)  :  스트림에 형식에 맞춘 데이터를 쓴다.
-
-
-
-
-
-
-

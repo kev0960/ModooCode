@@ -51,13 +51,27 @@ int fsetpos ( FILE * stream, const fpos_t * pos );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 
 /*
-먼저 position 에 myfile.txt 의 맨 처음 부분을 넣은 후 myfile.txt 에 "That is a sample" 을 쓴다. 그 다음에 fsetpos 함수를 호출함으로써 fputs 로 인해 변경되었던 위치 지정자가 다시 파일 맨 앞으로 옮겨진다. 그 후 "This" 를 다시 출력하면 결국 "This is a sample" 이 된다.이 예제는http://www.cplusplus.com/reference/clibrary/cstdio/fsetpos/에서 가져왔습니다.*/
+먼저 position 에 myfile.txt 의 맨 처음 부분을 넣은 후 myfile.txt 에 "That is a
+sample" 을 쓴다. 그 다음에 fsetpos 함수를 호출함으로써 fputs 로 인해 변경되었던
+위치 지정자가 다시 파일 맨 앞으로 옮겨진다. 그 후 "This" 를 다시 출력하면 결국
+"This is a sample" 이 된다.이
+예제는http://www.cplusplus.com/reference/clibrary/cstdio/fsetpos/에서
+가져왔습니다.*/
 #include <stdio.h>
-int main (){ 
-     FILE * pFile;    fpos_t position;    pFile = fopen ("myfile.txt","w");    fgetpos (pFile, &position);    fputs ("That is a sample",pFile);    fsetpos (pFile, &position);    fputs ("This",pFile);    fclose (pFile);    return 0;}
+int main() {
+  FILE* pFile;
+  fpos_t position;
+  pFile = fopen("myfile.txt", "w");
+  fgetpos(pFile, &position);
+  fputs("That is a sample", pFile);
+  fsetpos(pFile, &position);
+  fputs("This", pFile);
+  fclose(pFile);
+  return 0;
+}
 ```
 
 
@@ -83,10 +97,3 @@ int main (){ 
 *  [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자를 다시 조정한다.
 
 *  [rewind](http://itguru.tistory.com/75)  :  스트림 위치 지정자를 맨 처음으로 되돌린다.
-
-
-
-
-
-
-

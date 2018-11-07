@@ -53,7 +53,7 @@ void * memset ( void * ptr, int value, size_t num );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -64,12 +64,11 @@ http://www.cplusplus.com/reference/clibrary/cstring/memset/
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[] = "almost every programmer should know memset!";
-    memset (str,'-',6);
-    puts (str);
-    return 0;
+int main() {
+  char str[] = "almost every programmer should know memset!";
+  memset(str, '-', 6);
+  puts(str);
+  return 0;
 }
 ```
 

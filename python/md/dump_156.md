@@ -16,8 +16,8 @@ ref_title : unsetf
 
 #@ ios_base::unsetf
 
-```cpp
-void unsetf ( fmtflags mask );
+```cpp-formatted
+void unsetf(fmtflags mask);
 ```
 
 
@@ -54,7 +54,7 @@ void unsetf ( fmtflags mask );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -65,14 +65,13 @@ http://www.cplusplus.com/reference/iostream/ios_base/unsetf/
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-    cout.setf ( ios::hex, ios::basefield );       // hex 를 설정한다.
-    cout.setf ( ios::showbase );                  // showbase 를 설정
-    cout << 100 << endl;
-    cout.unsetf( ios::showbase );               // showbase 를 끝다.
-    cout << 100 << endl;
-    return 0;
+int main() {
+  cout.setf(ios::hex, ios::basefield);  // hex 를 설정한다.
+  cout.setf(ios::showbase);             // showbase 를 설정
+  cout << 100 << endl;
+  cout.unsetf(ios::showbase);  // showbase 를 끝다.
+  cout << 100 << endl;
+  return 0;
 }
 ```
 

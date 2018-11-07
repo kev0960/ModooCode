@@ -43,15 +43,14 @@ next_page : 8
 
 ### 변수 선언하기
 
-```cpp
+```cpp-formatted
 /* 변수 알아보기 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    a = 10;
-    printf("a 의 값은 : %d \n", a);
-    return 0;
+int main() {
+  int a;
+  a = 10;
+  printf("a 의 값은 : %d \n", a);
+  return 0;
 }
 ```
 
@@ -62,7 +61,7 @@ int main()
 
   일단, 이번에도 역시 생소한 것들이 나왔기 때문에 한 문장씩 차근차근 살펴 봅시다.
 
-```cpp
+```cpp-formatted
 int a;
 ```
 
@@ -70,7 +69,7 @@ int a;
 
 이 때, `a` 앞에 붙은 `int` 라는 것은'int' 형의 데이터를 보관한다는 뜻으로, `int` 형의 변수는 `-2147483648` 에서 부터 `2147483648` 까지의 숫자를 보관 할 수 있게 됩니다. 따라서, 만약 중간의 문장을
 
-```cpp
+```cpp-formatted
 a = 10000000000000;
 ```
 
@@ -90,13 +89,13 @@ $$ \pm 2.3 \times 10^{-308} \backsim \pm 1.7 \times 10^{308} $$
 
 의 수들을 표현 할 수 있습니다. (이에 대한 정확한 설명은 후에 다루겠습니다.)
 
-```cpp
+```cpp-formatted
 a = 10;
 ```
 
 위 문장은 무엇을 의미할까요? 언뜻 보기에도 감이 오시겠지만, 변수 `a` 에 10 을 집어넣는 다는 것입니다. 따라서 나중에 `a` 의 값을 출력시 10 이 나올 것입니다. 이와 같은 형태의 문장은 후에, 연산자에 대해 다룰 때 다시 알아보도록 하겠습니다.
 
-```cpp
+```cpp-formatted
 printf("a 의 값은 : %d \n", a);
 ```
 
@@ -104,17 +103,16 @@ printf("a 의 값은 : %d \n", a);
 
 또 다른 예제를 봅시다.
 
-```cpp
+```cpp-formatted
 /* 변수 알아보기 2*/
 #include <stdio.h>
-int main()
-{
-    int a;
-    a = 127;
-    printf("a 의 값은 %d 진수로 %o 입니다. \n",8, a);
-    printf("a 의 값은 %d 진수로 %d 입니다. \n",10, a);
-    printf("a 의 값은 %d 진수로 %x 입니다. \n",16, a);
-    return 0;
+int main() {
+  int a;
+  a = 127;
+  printf("a 의 값은 %d 진수로 %o 입니다. \n", 8, a);
+  printf("a 의 값은 %d 진수로 %d 입니다. \n", 10, a);
+  printf("a 의 값은 %d 진수로 %x 입니다. \n", 16, a);
+  return 0;
 }
 ```
 
@@ -137,16 +135,15 @@ int main()
 
 앞서 말했듯이, 실수형에는 `float` 와 `double` 이 있습니다. `double` 의 경우 `int` 형에 비해 덩치가 2 배나 크지만 그 만큼 엄청난 크기의 숫자를 다룰 수 있습니다. 그 대신, 처음 15 개의 숫자들만 정확하고 나머지는 10 의 지수 형태로 표현됩니다. 또한 `float` 과 `double` 의 장점은 소수를 표시할 수 있다는 점인데, 정수형 변수에서 소수를 넣는다면 (예를들어 `int a; a = 1.234;`), 소수 부분은 다 잘린 채, 나중에 `a` 의 값을 표시해 보면 1 이 나올 것 입니다.
 
-```cpp
+```cpp-formatted
 /* 변수 알아보기 3*/
 #include <stdio.h>
-int main()
-{
-    float a = 3.141592f;
-    double b = 3.141592;
-    printf("a : %f \n", a);
-    printf("b : %f \n", b);
-    return 0;
+int main() {
+  float a = 3.141592f;
+  double b = 3.141592;
+  printf("a : %f \n", a);
+  printf("b : %f \n", b);
+  return 0;
 }
 ```
 
@@ -157,17 +154,17 @@ int main()
 
    일단, 위 코드를 보면서 궁금한 점이 생기지 않았나요?
 
-```cpp
-    float a = 3.141592f;
-    double b = 3.141592;
+```cpp-formatted
+float a = 3.141592f;
+double b = 3.141592;
 ```
 
 
 왜, `float` 형 변수 `a` 를 선언할 때 에는 숫자 뒤에 `f` 를 붙였는데 `double` 형 에서는 `f` 를 안 붙였는 지요. 왜냐하면, 그냥 `f` 를 안 붙이고 `float a = 3.141592` 로 하면 이를 `double` 형으로 인식하여 문제가 생길 수 있습니다. 따라서, `float` 형이라는 것을 확실히 표시해 주기 위해 `f` 를 끝에 붙이는 것입니다.
 
-```cpp
-    printf("a : %f \n", a);
-    printf("b : %f \n", b);
+```cpp-formatted
+printf("a : %f \n", a);
+printf("b : %f \n", b);
 ```
 
 이제, 마지막으로 `%d, %o, %x` 도 아닌 `%f` 가 등장하였습니다. 만약, 여기서 `a` 를 `%d` 형식으로 출력하면 어떻게 될까요? 한 번 해보세요. 아마 이상한 숫자가 나오게 될 것입니다. 왜냐하면 `a` 는 지금 정수형 변수가 아니기 때문 입니다. 설사, 우리가 `a = 3f; b = 3;` 라고 해도, 이미 `a` 와 `b` 를 실수형 변수로 선언하였기 때문에 컴퓨터는`a ,b` 를 절대 정수로 보지 않습니다.
@@ -176,13 +173,13 @@ int main()
 
 참고로 주의할 사항은 `printf` 에서 `%f` 를 이용해 수를 출력 할 때 다음과 같이 언제나 소수점을 뒤에 붙여 주어야 한다는 점입니다. 예를 들어서
 
-```cpp
+```cpp-formatted
 printf("%f", 1);
 ```
 
 을 하면 화면에 이상한 값 (아마도 0 이 출력될 것입니다) 이 나오지만
 
-```cpp
+```cpp-formatted
 printf("%f", 1.0);
 ```
 
@@ -190,18 +187,17 @@ printf("%f", 1.0);
 
 ### `printf` 의 또 다른 형식
 
-```cpp
+```cpp-formatted
 /* printf 형식 */
 #include <stdio.h>
-int main()
-{
-    float a = 3.141592f;
-    double b = 3.141592;
-    int c = 123;
-    printf("a : %.2f \n", a);
-    printf("c : %5d \n", c);
-    printf("b : %6.3f \n", b);
-    return 0;
+int main() {
+  float a = 3.141592f;
+  double b = 3.141592;
+  int c = 123;
+  printf("a : %.2f \n", a);
+  printf("c : %5d \n", c);
+  printf("b : %6.3f \n", b);
+  return 0;
 }
 ```
 
@@ -210,7 +206,7 @@ int main()
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1523470E49EF5445F36C7A)
 
-```cpp
+```cpp-formatted
 printf("a : %.2f \n", a);
 ```
 
@@ -218,7 +214,7 @@ printf("a : %.2f \n", a);
 
 여기서 '무조건' 이라는 것은 `%.100f` 로 할 경우에도, `3.141592000000....00` 을 표시해서 무조건 100 개를 출력하게 합니다.
 
-```cpp
+```cpp-formatted
 printf("c : %5d \n", c);
 ```
 
@@ -226,7 +222,7 @@ printf("c : %5d \n", c);
 
 그런데, 123456 을 표시할 때, `%5d` 조건을 준다면 어떻할까요? 이 때는 그냥 123456 을 다 표시합니다. 앞서 `.?f` 는 `?` 의 수 만큼 무조건 소수점 자리수를 맞추어야 하지만 이 경우는 반드시 지켜야 되는 것은 아닙니다
 
-```cpp
+```cpp-formatted
 printf("b : %6.3f \n", b);
 ```
 
@@ -236,60 +232,59 @@ printf("b : %6.3f \n", b);
 
 앞서, 보았듯이 변수를 선언하는 것은 어려운 일이 아닙니다. 단지, 아래의 형태로 맞추어 주기만 하면 됩니다.
 
-```cpp
-(변수의 자료형) 변수1, 변수2, .....  ;
+```cpp-formatted
+(변수의 자료형) 변수1, 변수2, .....;
 /* 예를 들어 */
-int a , b, c, hi;
+int a, b, c, hi;
 float d, e, f, bravo;
 double g, programming;
 long h;
 short i;
-char j,k, hello, mineral ;
-
+char j, k, hello, mineral;
 ```
 
 이 때, 변수 선언시 주의해야 할 점이 있습니다. 만약에 여러분이 오래된 버전의 C 언어 (C89) 를 사용한다면, 변수 선언시 반드시 최상단에 위치해야 합니다. 하지만, 여러분이 지금 사용하고 있는 최신 버전의 C 의 변수 사용하기 전 아무데나 변수를 선언해도 상관 없습니다. 
 
-```cpp
+```cpp-formatted
 /* 변수 선언시 주의해야 할 점 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    a = 1;
-    printf("a 는 : %d", a);
-    int b; // 괜찮음!
-    return 0;
+int main() {
+  int a;
+  a = 1;
+  printf("a 는 : %d", a);
+  int b;  // 괜찮음!
+  return 0;
 }
 ```
 
 두 번째로, 사람의 이름을 지을 때, 여러가지를 고려하듯이 변수의 이름에서도 여러가지 조건들이 있습니다. 아래 예제를 보세요.
 
-```cpp
+```cpp-formatted
 /* 변수 선언시 주의해야 할 점 */
 #include <stdio.h>
-int main()
-{
-    int a, A; // a 와 A 는 각기 다른 변수 입니다.
-    int 1hi;
-    // (오류) 숫자가 앞에 위치할 수 없습니다.
-    int hi123, h123i, h1234324; // 숫자가 뒤에 위치하면 괜찮습니다.
-    int 한글이좋아;
-    /*
-    (오류)
-    변수는 오직 알파벳, 숫자, 그리고 _ (underscore)로만으로 이루어져야 합니다. */
-    int space bar;
-    /*
-    (오류)
-    변수의 이름에는 띄어쓰기하면 안됩니다.  그 대신 _ 로 대체하는 것이 읽기 좋습니다.*/
-    int space_bar; // 이것은 괜찮습니다.
-    int enum, long, double, int;
-    /* (오류)
-       지금 나열한 이름들은 모두 '예약어' 로 C 언어에서 이미 쓰이고 있는 것들입니다.
-       따라서 이러한 것들은 쓰면 안됩니다. 이를 구분하는 방법은 예약어들을 모두
-       외우거나 '파란색' 으로 표시된 것들은 모두 예약어라 볼 수 있습니다   */
+int main() {
+  int a, A;  // a 와 A 는 각기 다른 변수 입니다.
+  int 1hi;
+  // (오류) 숫자가 앞에 위치할 수 없습니다.
+  int hi123, h123i, h1234324;  // 숫자가 뒤에 위치하면 괜찮습니다.
+  int 한글이좋아;
+  /*
+  (오류)
+  변수는 오직 알파벳, 숫자, 그리고 _ (underscore)로만으로 이루어져야 합니다. */
+  int space bar;
+  /*
+  (오류)
+  변수의 이름에는 띄어쓰기하면 안됩니다.  그 대신 _ 로 대체하는 것이 읽기
+  좋습니다.*/
+  int space_bar;  // 이것은 괜찮습니다.
+  int enum, long, double, int;
+  /* (오류)
+     지금 나열한 이름들은 모두 '예약어' 로 C 언어에서 이미 쓰이고 있는
+     것들입니다. 따라서 이러한 것들은 쓰면 안됩니다. 이를 구분하는 방법은
+     예약어들을 모두 외우거나 '파란색' 으로 표시된 것들은 모두 예약어라 볼 수
+     있습니다   */
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -315,6 +310,3 @@ int main()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

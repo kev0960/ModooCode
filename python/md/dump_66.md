@@ -63,37 +63,35 @@ C 문자열이 저장될 `char` 배열을 가리키는 포인 C 문자열이 저
 |`%`      |`%` 다음에 %를 또 붙이면 `stdout` 에 `%` 를 출력한다.||
 
 위 서식 문자를 이용한 다양한 출력 형태는 아래와 같다.
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int integer = 123;
-    char character = 'c';
-    char string[] = "hello, world";
-    int* pointer = &integer;
-    double pi = 3.141592;
-    char buf[100];
+int main() {
+  int integer = 123;
+  char character = 'c';
+  char string[] = "hello, world";
+  int* pointer = &integer;
+  double pi = 3.141592;
+  char buf[100];
 
+  sprintf(buf, "integer : (decimal) %d (octal) %o \n", integer, integer);
+  printf("%s \n", buf);
 
-    sprintf(buf, "integer : (decimal) %d (octal) %o \n", integer, integer);
-    printf("%s \n", buf);
+  sprintf(buf, "character : %c \n", character);
+  printf("%s \n", buf);
 
-    sprintf(buf,"character : %c \n", character);
-    printf("%s \n", buf);
+  sprintf(buf, "string : %s \n", string);
+  printf("%s \n", buf);
 
-    sprintf(buf,"string : %s \n", string);
-    printf("%s \n", buf);
+  sprintf(buf, "pointer addr : %p \n", pointer);
+  printf("%s \n", buf);
 
-    sprintf(buf,"pointer addr : %p \n", pointer);
-    printf("%s \n", buf);
+  sprintf(buf, "floating point : %e // %f \n", pi, pi);
+  printf("%s \n", buf);
 
-    sprintf(buf,"floating point : %e // %f \n", pi, pi);
-    printf("%s \n", buf);
+  sprintf(buf, "percent symbol : %% \n");
+  printf("%s \n", buf);
 
-    sprintf(buf,"percent symbol : %% \n");
-    printf("%s \n", buf);
-
-    return 0;
+  return 0;
 }
 ```
 
@@ -120,49 +118,47 @@ int main()
 | (수) | 출력할 최소의 문자 개수. 만일 이 수 보다 출력할 수 보다 작다면 빈칸을 삽입하여 길이를 맞춘다. 대신에, 이 수 보다 출력할 수가 큰 수의 경우 잘려서 출력되지는 않는다.|
 |`*`   |폭을 형식 문자열에 지정해서 받지 않지만, 그 대신에 형식 문자열 뒤에 오는 인자들에 넣어서 받는다. 이 때, 이는 정수 값이여야 하며 폭을 지정하는 변수 뒤에 출력할 데이터가 위치하면 된다.|
 
-```cpp
+```cpp-formatted
 /* 사용 예 */
 #include <stdio.h>
-int main()
-{
-    FILE *fp = fopen("output.txt", "w");
-    char buffer[100];
-    int i = 123;
-    int j = -123;
-    double f = 3.141592;
+int main() {
+  FILE *fp = fopen("output.txt", "w");
+  char buffer[100];
+  int i = 123;
+  int j = -123;
+  double f = 3.141592;
 
-    sprintf(buffer, "폭 맞추기 \n");
-    fputs (buffer, fp);
-    sprintf(buffer, "i : %6d \n", i);
-    fputs (buffer, fp);
-    sprintf(buffer, "i : %7d \n", i);
-    fputs (buffer, fp);
-    sprintf(buffer, "i : %2d \n\n", i);
-    fputs (buffer, fp);
+  sprintf(buffer, "폭 맞추기 \n");
+  fputs(buffer, fp);
+  sprintf(buffer, "i : %6d \n", i);
+  fputs(buffer, fp);
+  sprintf(buffer, "i : %7d \n", i);
+  fputs(buffer, fp);
+  sprintf(buffer, "i : %2d \n\n", i);
+  fputs(buffer, fp);
 
-    sprintf(buffer, "왼쪽 정렬 \n");
-    fputs (buffer, fp);
-    sprintf(buffer, "i : %5d끝 \n", i);
-    fputs (buffer, fp);
-    sprintf(buffer, "오른쪽 정렬 \n");
-    fputs (buffer, fp);
-    sprintf(buffer, "i : %-5d끝 \n\n", i);
-    fputs (buffer, fp);
+  sprintf(buffer, "왼쪽 정렬 \n");
+  fputs(buffer, fp);
+  sprintf(buffer, "i : %5d끝 \n", i);
+  fputs(buffer, fp);
+  sprintf(buffer, "오른쪽 정렬 \n");
+  fputs(buffer, fp);
+  sprintf(buffer, "i : %-5d끝 \n\n", i);
+  fputs(buffer, fp);
 
-    sprintf(buffer, "# 문자의 사용 \n");
-    fputs (buffer, fp);
-    sprintf(buffer, "i : %#x \n", i);
-    fputs (buffer, fp);
-    sprintf(buffer, "i : %#X \n\n", i);
-    fputs (buffer, fp);
+  sprintf(buffer, "# 문자의 사용 \n");
+  fputs(buffer, fp);
+  sprintf(buffer, "i : %#x \n", i);
+  fputs(buffer, fp);
+  sprintf(buffer, "i : %#X \n\n", i);
+  fputs(buffer, fp);
 
-    sprintf(buffer, "부호 붙이기 \n");
-    fputs (buffer, fp);
-    sprintf(buffer, "%+d, %+d \n", i,j);
-    fputs (buffer, fp);
-    return 0;
+  sprintf(buffer, "부호 붙이기 \n");
+  fputs(buffer, fp);
+  sprintf(buffer, "%+d, %+d \n", i, j);
+  fputs(buffer, fp);
+  return 0;
 }
-
 ```
 
 출력결과
@@ -188,23 +184,21 @@ int main()
 |`l`|정수 서식 문자(i,d,o,u,x, `X)` 에 사용되었을 경우 인자를 `long int` 나 `unsigned long int` 로 생각하며 `c` 나 `s` 에 사용되었을 경우 `wide character` 나 `wide string` 으로 생각한다.|
 |`L`|인자를 `long double` 로 생각한다. (오직 부동 소수점 서식 문자인 `e,E,f,g, G` 에만 적용된다)|
 
-```cpp
+```cpp-formatted
 /* 사용 예 */
 #include <stdio.h>
-int main()
-{
-    double f = 3.141592;
-    int i = 12345;
-    char buffer[100];
+int main() {
+  double f = 3.141592;
+  int i = 12345;
+  char buffer[100];
 
-    sprintf(buffer, "f : %.3f \n", f);
-    printf("buf: %s \n", buffer);
-    sprintf(buffer, "i : %.10d \n", i);
-    printf("buf : %s \n", buffer);
+  sprintf(buffer, "f : %.3f \n", f);
+  printf("buf: %s \n", buffer);
+  sprintf(buffer, "i : %.10d \n", i);
+  printf("buf : %s \n", buffer);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 출력 결과
@@ -223,19 +217,18 @@ int main()
 
 `sprintf` 함수를 잘 이용하면 수를 손쉽게 문자열로 바꿀 수 있다. 바로 다음과 같이.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int i;
-    char str[100];
+int main() {
+  int i;
+  char str[100];
 
-    scanf("%d", &i);
-    sprintf(str, "%d", i);
+  scanf("%d", &i);
+  sprintf(str, "%d", i);
 
-    printf("str : %s \n", str);
+  printf("str : %s \n", str);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -261,7 +254,7 @@ int main()
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 sprintf 함수 예제
@@ -270,13 +263,12 @@ sprintf 함수 예제
 
 */
 #include <stdio.h>
-int main ()
-{
-    char buffer [50];
-    int n, a=5, b=3;
-    n=sprintf (buffer, "%d plus %d is %d", a, b, a+b);
-    printf ("[%s] is a %d char long string\n",buffer,n);
-    return 0;
+int main() {
+  char buffer[50];
+  int n, a = 5, b = 3;
+  n = sprintf(buffer, "%d plus %d is %d", a, b, a + b);
+  printf("[%s] is a %d char long string\n", buffer, n);
+  return 0;
 }
 ```
 

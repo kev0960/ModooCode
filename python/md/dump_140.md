@@ -53,29 +53,27 @@ void srand ( unsigned int seed );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/cstdlib/srand/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-int main ()
-{
-    printf ("First number: %d\n", rand() % 100);
-    srand ( time(NULL) );
-    printf ("Random number: %d\n", rand() % 100);
-    srand ( 1 );
-    printf ("Again the first number: %d\n", rand() %100);
+int main() {
+  printf("First number: %d\n", rand() % 100);
+  srand(time(NULL));
+  printf("Random number: %d\n", rand() % 100);
+  srand(1);
+  printf("Again the first number: %d\n", rand() % 100);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 실행 결과

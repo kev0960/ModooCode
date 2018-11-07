@@ -51,19 +51,18 @@ int fgetc ( FILE * stream );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 stdin 에서 문자를 입력받는다.
 
 */
 #include <stdio.h>
-int main ()
-{
-    int i = fgetc(stdin);
+int main() {
+  int i = fgetc(stdin);
 
-    printf("입력 값 : %c \n", i);
-    return 0;
+  printf("입력 값 : %c \n", i);
+  return 0;
 }
 ```
 
@@ -74,7 +73,7 @@ int main ()
 
 또다른 예제
 
-```cpp
+```cpp-formatted
 /*
 
 myfile.txt 에서의 $ 의 개수를 센다
@@ -83,23 +82,22 @@ myfile.txt 에서의 $ 의 개수를 센다
 
 */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    int c;
-    int n = 0;
-    pFile=fopen ("myfile.txt","r");
-    if (pFile==NULL) perror ("Error opening file");
-    else
-    {
-        do {
-            c = fgetc (pFile);
-            if (c == '$') n++;
-        } while (c != EOF);
-        fclose (pFile);
-        printf ("The file contains %d dollar sign characters ($).\n",n);
-    }
-    return 0;
+int main() {
+  FILE* pFile;
+  int c;
+  int n = 0;
+  pFile = fopen("myfile.txt", "r");
+  if (pFile == NULL)
+    perror("Error opening file");
+  else {
+    do {
+      c = fgetc(pFile);
+      if (c == '$') n++;
+    } while (c != EOF);
+    fclose(pFile);
+    printf("The file contains %d dollar sign characters ($).\n", n);
+  }
+  return 0;
 }
 ```
 
@@ -122,13 +120,3 @@ int main ()
 *  [fread](http://itguru.tistory.com/68)  :  스트림에서 데이타 한 블록을 읽어온다.
 
 *  [fscanf](http://itguru.tistory.com/65)  : 스트림에서 형식화 된 데이터를 읽어온다.
-
-
-
-
-
-
-
-
-
-

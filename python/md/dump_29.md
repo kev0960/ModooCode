@@ -44,24 +44,22 @@ next_page : 32
 
 널 문자가 들어갈 공간이 있어야 하기 때문에 3 글자라고 해도, 배열은 4 칸이 필요하게 됩니다. 위와 같이 `s[4]` 처럼요. 그럼, 위와 같이 널 종료 문자가 편리한 이유는 컴퓨터가 문자열의 끝을 쉽게 구할 수 있기 때문입니다. 우리가 굳이 '이 `s` 문자열은 3 문자인데, 출력해죠' 라고 말할 필요 없이, '`s` 문자열을 출력해' 란 말만 해주어도 컴퓨터가 알아서 '음, 널이 나올때 까지 출력해야지' 라고 출력한다는 것입니다.
 
-```cpp
+```cpp-formatted
 /* 널 뽀개기 */
 #include <stdio.h>
 
-int main()
-{
-    char null_1 = '\0'; // 이 3 개는 모두 동일하다
-    char null_2 = 0;
-    char null_3 = NULL; // 모두 대문자로 써야 한다
+int main() {
+  char null_1 = '\0';  // 이 3 개는 모두 동일하다
+  char null_2 = 0;
+  char null_3 = NULL;  // 모두 대문자로 써야 한다
 
-    char not_null = '0';
+  char not_null = '0';
 
-    printf("NULL 의 정수(아스키)값 : %d, %d, %d \n", null_1, null_2, null_3);
-    printf("'0' 의 정수(아스키)값 : %d \n", not_null);
+  printf("NULL 의 정수(아스키)값 : %d, %d, %d \n", null_1, null_2, null_3);
+  printf("'0' 의 정수(아스키)값 : %d \n", not_null);
 
-    return 0;
+  return 0;
 }
-
 ```
 
   성공적으로 컴파일 한다면
@@ -71,16 +69,16 @@ int main()
 
   와우. `NULL` 의 정수값은 모두 0 이 출력되었고, 문자 '0' 의 정수값은 42 가 출력되었습니다.
 
-```cpp
-   char null_1 = '\0'; // 이 3 개는 모두 동일하다
-    char null_2 = 0;
-    char null_3 = NULL;
+```cpp-formatted
+char null_1 = '\0';  // 이 3 개는 모두 동일하다
+char null_2 = 0;
+char null_3 = NULL;
 ```
 
 위 세개의 문장의 각 `char` 변수에는 모두 동일한 값, 즉 0 이 들어가게 됩니다. `null_1` 의 경우 '\0' 의 값, 즉 '\0' 의 아스키 값이 들어가는데 \0 의 아스키 값은 0 입니다. 왜 '0' 이라 안쓰고 '\0' 이라 쓰는지는 알겠죠? '0' (문자 `0)` 의 아스키값은 42 이기 때문입니다. (위에서 확인할 수 있듯이) 마찬가지로 `null_2` 에는 0 이 들어가고, `null_3` 에는 `NULL` 의 값이 들어가는데, `NULL` 은 0 이라고 정의되어 있는 상수 입니다. 따라서, `null_3` 에도 0 이 들어갑니다.
 
-```cpp
-    char not_null = '0';
+```cpp-formatted
+char not_null = '0';
 ```
 
 반면의 `not_null` 의 경우 문자 '0' 의 아스키값이 들어가는데, 문자 0 의 아스키값은 42 입니다. 따라서, `not_null` 의 정수값을 출력할 때 42 가 출력되었습니다. 위 예제를 통해 우리는 문자열의 마지막에는 종료 문자로 `'\0'` 이나 `NULL` 혹은 문자 0 이 아닌 0 이란 값 자체를 사용할 수 있음을 알았습니다.
@@ -93,22 +91,21 @@ warning C4047: '초기화 중' : 'char'의 간접 참조 수준이 'void *'과(�
 
 아래 예제를 통해 확실히 알아보죠.
 
-```cpp
+```cpp-formatted
 /* 문자열의 시작 */
 #include <stdio.h>
-int main()
-{
-    char sentence_1[4] = {'P', 's', 'i', '\0'};
-    char sentence_2[4] = {'P', 's', 'i', 0};
-    char sentence_3[4] = {'P', 's', 'i', NULL};
-    char sentence_4[4] = {"Psi"};
+int main() {
+  char sentence_1[4] = {'P', 's', 'i', '\0'};
+  char sentence_2[4] = {'P', 's', 'i', 0};
+  char sentence_3[4] = {'P', 's', 'i', NULL};
+  char sentence_4[4] = {"Psi"};
 
-    printf("sentence_1 : %s \n", sentence_1); // %s 를 통해서 문자열을 출력한다.
-    printf("sentence_2 : %s \n", sentence_2);
-    printf("sentence_3 : %s \n", sentence_3);
-    printf("sentence_4 : %s \n", sentence_4);
+  printf("sentence_1 : %s \n", sentence_1);  // %s 를 통해서 문자열을 출력한다.
+  printf("sentence_2 : %s \n", sentence_2);
+  printf("sentence_3 : %s \n", sentence_3);
+  printf("sentence_4 : %s \n", sentence_4);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -119,22 +116,23 @@ int main()
 
   오오오. 모두 Psi 가 성공적으로 출력되었습니다. 일단, 각 문자열을 정의하는 것 부터 살펴보도록 합시다.
 
-```cpp
-    char sentence_1[4] = {'P', 's', 'i', '\0'}; // \0 는 아스키값이 0 인 문자, 즉 종료 문자이다
+```cpp-formatted
+char sentence_1[4] = {'P', 's', 'i',
+                      '\0'};  // \0 는 아스키값이 0 인 문자, 즉 종료 문자이다
 ```
 
 일단, 첫번째 형식. 위는 `sentence_1` 이라는 크기가 4 인 `char` 배열을 정의하는 문장입니다. 각 원소에 차례로 `'P', 's', 'i'` 가 들어가고 그 뒤에 종료 문자 '\0' 이 들어갔습니다. 즉, `sentence_1` 은 완벽한 널 종료 문자열입니다. 마찬가지로 생각하면 `sentence_2, sentence_3` 도 널 종료 문자열 임을 알 수 있습니다. 그렇다면 `sentence_4` 의 정의 부분을 봅시다.
 
-```cpp
-    char sentence_4[4] = {"Psi"};
+```cpp-formatted
+char sentence_4[4] = {"Psi"};
 ```
 
 음. 이전까지 보아왔던 정의 형태 보다 약간 다르군요. 사실, 각 문자를 작은 따옴표로 표시해서 배열에 저장하는 일은 매우 번거로운 일이 아닐 수 없습니다. 그래서 C 언어에서는 위와 같이 문자들을 쭉 나열한 것을 큰 따옴표로 묶어주게 되면 알아서 각각의 문자로 넣어줍니다. 이 때, 널 문자는 뒤에 자동으로 추가 되니 굳이 큰따옴표 안에 특별히 명시해줄 필요는 없습니다. 초보자들이 흔히 하는 실수가 위와 같이 "Psi" 로 정의해놓고 배열의 크기를 3 으로 잡는 사람들이 간혹 있습니다. 이렇게 되면 `sentence` 에는 끝에 `NULL` 이 들어가지 않으므로 `sentence` 의 문자열을 출력하라고 했을 때 어떤 이상한 값이 뒤에 출력될지 모를 뿐더러 매우 위험한 작업 입니다. 꼭 널 문자를 위한 공간 하나를 더 추가하는 것을 잊지 마세요~
 
 아무튼, 위와 같이 정의하면 이전의 `sentence_1~3` 과 정확히 동일한 문자열이 됩니다.
 
-```cpp
-    printf("sentence_4 : %s \n", sentence_4);
+```cpp-formatted
+printf("sentence_4 : %s \n", sentence_4);
 ```
 
 위는 '`sentence_4` 부터 들어 있는(`sentence_4` 는 배열의 시작점을 가리키고 있다는 사실을 알고 있겠죠?) 문자열을 출력해달라' 라는 의미로 `%s` 를 이용하였습니다. 이전의 `%c` 는 한 문자만을 출력하는 것이지만 `%s` 를 이용한다면 `sentence_4` 에서 부터 널이 나올 때 까지 문자를 계속 출력하게 됩니다.
@@ -150,19 +148,17 @@ int main()
 
 무언가 깔끔하게 정리된 느낌이 드나요? 사실, 아직 들기는 힘듧니다. 다만, 이 강좌의 끝부분을 읽고 있을 때 쯤이면 그 차이가 완전히 머리속에서 정리 되기를 바랍니다.
 
-```cpp
+```cpp-formatted
 /* 포인터 간단 복습 */
 #include <stdio.h>
-int main()
-{
-    char word[30]={"long sentence"};
-    char *str = word;
+int main() {
+  char word[30] = {"long sentence"};
+  char *str = word;
 
-    printf("%s \n", str);
+  printf("%s \n", str);
 
-    return 0;
+  return 0;
 }
-
 ```
 
   성공적으로 컴파일 하였다면
@@ -172,29 +168,28 @@ int main()
 
 위 예제는 사실 단순합니다. 우리가 이전에 배운 내용에 따르면 `char*` 을 이용해서 `char` 배열을 가리킬 수 있다고 하였습니다. 위는 이를 그대로 적용 시킨 것으로 `str` 이라는 `char` 을 가리키는 포인터가 배열 `word` 를 가리키고 있습니다. 따라서,
 
-```cpp
-    printf("%s \n", str);
+```cpp-formatted
+printf("%s \n", str);
 ```
 
 에서 `str` 이 가리키는 것을 문자열로 출력 (즉, 널이 나올때 까지 출력) 해 위와 같이 `long sentence` 가 나오게 된 것입니다.
 
-```cpp
+```cpp-formatted
 /* 문자열 바꾸기 */
 #include <stdio.h>
-int main()
-{
-    char word[]={"long sentence"};
+int main() {
+  char word[] = {"long sentence"};
 
-    printf("조작 이전 : %s \n", word);
+  printf("조작 이전 : %s \n", word);
 
-    word[0] = 'a';
-    word[1] = 'b';
-    word[2] = 'c';
-    word[3] = 'd';
+  word[0] = 'a';
+  word[1] = 'b';
+  word[2] = 'c';
+  word[3] = 'd';
 
-    printf("조작 이후 : %s \n", word);
+  printf("조작 이후 : %s \n", word);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -205,17 +200,17 @@ int main()
 
   사실 위 과정도 매우 단순합니다. 일단, 첫번째로 문자열을 정의하는 부분부터 살펴봅시다.
 
-```cpp
-    char word[]={"long sentence"};
+```cpp-formatted
+char word[] = {"long sentence"};
 ```
 
 오잉? 원소의 개수를 지정하는 부분에 아무런 숫자도 써있지 않습니다. 하지만, 여태까지 강좌를 열심히 보아왔던 분들에게는 별 이상하게 느껴지지 않을 것 입니다. 왜냐하면 `[ ]` 안을 빈칸으로 두었다는 뜻은 컴파일러가 알아서 원소의 수를 세어서 빈칸을 채워 넣으라는 뜻이지요. 따라서, 우리는 귀찮게 한글자 한글자 세어서 값을 써줄 필요 없이 단순히 빈칸으로 남겨 놓으기만 하면 됩니다. (물론 배열의 정확한 크기를 알아야 할 상황이 온다면 특별히 값을 명시해 주어야 겠지만)
 
-```cpp
-    word[0] = 'a';
-    word[1] = 'b';
-    word[2] = 'c';
-    word[3] = 'd';
+```cpp-formatted
+word[0] = 'a';
+word[1] = 'b';
+word[2] = 'c';
+word[3] = 'd';
 ```
 
 위와 같이 `word` 배열의 첫 4 개의 원소를 각각 `a,b,c,d` 로 변경하였습니다. 따라서 아래 `printf` 문에서 `long` 부분이 `abcd` 로 변경된 모습을 볼 수 있게 됩니다.
@@ -226,26 +221,23 @@ int main()
 
 나중에 프로그래밍을 하다 보면 특정한 문자열에 들어 있는 문자의 개수를 세는 일이 많을 것 입니다. 이를 수행하는 함수를 만들어 봅시다. 먼저, 여러분들께서 아래의 코드를 보지 말고 한 번 직접 작성해 보세요.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 int str_length(char *str);
-int main()
-{
-    char str[]={"What is your name?"};
+int main() {
+  char str[] = {"What is your name?"};
 
-    printf("이 문자열의 길이 : %d \n", str_length(str));
+  printf("이 문자열의 길이 : %d \n", str_length(str));
 
-    return 0;
+  return 0;
 }
-int str_length(char *str)
-{
-    int i = 0;
-    while(str[i])
-    {
-        i++;
-    }
+int str_length(char *str) {
+  int i = 0;
+  while (str[i]) {
+    i++;
+  }
 
-    return i;
+  return i;
 }
 ```
 
@@ -257,26 +249,23 @@ int str_length(char *str)
 
   소스 코드가 머리에 잘 다가오면 좋겠지만 일단 중요한 부분만 설명하고자 합니다.
 
-```cpp
-int str_length(char *str)
-{
-    int i = 0;
-    while(str[i])
-    {
-        i++;
-    }
+```cpp-formatted
+int str_length(char *str) {
+  int i = 0;
+  while (str[i]) {
+    i++;
+  }
 
-    return i;
+  return i;
 }
 ```
 
 일단 우리가 만들게 될 함수 이름은 `str_length` 함수 입니다. 인자는 `char` 형을 가리키는 포인터 형태 이므로, `char` 배열을 취할 수 있음을 알 수 있습니다. 이전에 함수 강좌에서도 이야기 했지만 일차원 배열을 가리키는 포인터는 (그 배열의 형)* 이라고 했죠? 아무튼, `str` 을 통해 문자열 배열을 가리킬 수 있습니다.
 
-```cpp
-    while(str[i])
-    {
-        i++;
-    }
+```cpp-formatted
+while (str[i]) {
+  i++;
+}
 ```
 
 일단 `while` 문의 조건 부분에는 `str[i]` 가 들어 있습니다. 이 말은 즉슨, `str[i]` 가 0 이 될 때 까지 `i` 의 값을 계속 증가 시키겠다죠? 그런데 문자열에서 `str[i]` 가 0 이 되는 순간은 언제일까요. 바로 `NULL` 문자 일 때, 즉 문자열의 끝 부분에 도달하였을 때 0 이 되는 것입니다. 다시말해 `while` 문에서 `str[i]` 가 문자열의 끝 부분이 될 때 `i` 값의 증가를 멈춘다는 것이지요.
@@ -288,21 +277,19 @@ int str_length(char *str)
 ###  문자열 입력받기
 
 
-```cpp
+```cpp-formatted
 /* 문자열 입력 */
 #include <stdio.h>
-int main()
-{
-    char words[30];
+int main() {
+  char words[30];
 
-    printf("30 자 이내의 문자열을 입력해주세요! : ");
-    scanf("%s", words);
+  printf("30 자 이내의 문자열을 입력해주세요! : ");
+  scanf("%s", words);
 
-    printf("문자열 : %s \n", words);
+  printf("문자열 : %s \n", words);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 
@@ -311,22 +298,22 @@ int main()
 
 이번에는 문자열을 입력 받는 방법에 대해 이야기 하고자 합니다. 이전에 5 강에서 문자를 입력받는 방법에 대해 이야기한 적이 있는데 기억이 나실련지요? 문자열을 입력 받는 것도 그다지 다를 바 없습니다.
 
-```cpp
-   char words[30];
+```cpp-formatted
+char words[30];
 ```
 
 일단 최대 29 글자 까지 저장할 수 있는 문자 배열 `words` 를 생성하였습니다. 왜 30 글자가 아니라 29 글자인지는 잘 알겠지요? 끝에 널이 들어가기 때문이죠.
 
-```cpp
-    printf("30 자 이내의 문자열을 입력해주세요! : ");
-    scanf("%s", words);
+```cpp-formatted
+printf("30 자 이내의 문자열을 입력해주세요! : ");
+scanf("%s", words);
 ```
 
 이제, `scanf` 를 통해서 문자열을 입력받습니다. 일단, 입력 받는 형식이 `%s` 입니다. 기존의 하나의 문자는 `%c` 였는데 , 문자열의 경우 `%s` 를 이용합니다. 또한, 두번째 인자에 `words` 를 써주었는데, 약간 이상합니다. 이전에 입력 받을 때 에는
 
-```cpp
-    char c;
-    scanf("%c", &c);
+```cpp-formatted
+char c;
+scanf("%c", &c);
 ```
 
 와 같이 `&` 를 이용해서 주소값을 전달하였는데 여기서는 `&` 를 붙이지 않았습니다. 하지만, 여태까지의 강좌를 잘 읽어보셨고 특히 함수에 대해 잘 공부하신 분이라면 별 이상한 점을 못느꼇을 것입니다. 왜냐하면 `words` 라는 배열의 이름 자체가 배열을 가리키고 있는 포인터 이기 때문에 `words` 의 값을 전달함으로써 배열의 (시작) 주소값을 잘 전달할 수 있습니다.
@@ -344,7 +331,7 @@ int main()
 
 놀랍게도 배열을 할당하지 않고도 다음과 같이 문자열을 지정할 수 있습니다.
 
-```cpp
+```cpp-formatted
 char *str = "abcdefghi";
 printf("%s", str); /* 하면 잘 출력된다.*/
 ```
@@ -355,13 +342,12 @@ printf("%s", str); /* 하면 잘 출력된다.*/
 
 다음 문장이 왜 성립하지 않는지 생각해보세요 (난이도 : 中上)
 
-```cpp
+```cpp-formatted
 char str_a[] = "abc";
 char str_b[] = "abc";
 
-if(str_a == str_b)
-{
-/* 이 부분이 실행되지 않는다.*/
+if (str_a == str_b) {
+  /* 이 부분이 실행되지 않는다.*/
 }
 ```
 
@@ -379,6 +365,3 @@ if(str_a == str_b)
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

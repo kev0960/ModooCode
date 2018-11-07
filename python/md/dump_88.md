@@ -52,56 +52,49 @@ next_page : 89
 
 먼저, `Human` 구조체 부터 봅시다.
 
-```cpp
+```cpp-formatted
 /* human.h */
-enum {MALE, FEMALE};
+enum { MALE, FEMALE };
 
-struct Human
-{
-    char name[20];
-    int age;
-    int gender;
+struct Human {
+  char name[20];
+  int age;
+  int gender;
 };
 
 struct Human Create_Human(char *name, int age, int gender);
 int Print_Human(struct Human *human);
-
 ```
 
 `human.h` 에는 위와 같은 것들이 포함되어 있습니다. 일단 열거형으로 남자와 여자에 대한 정수값들이 선언되어 있으며, `Human` 구조체, 그리고 한 `Human` 구조체 변수를 설정하는 `Create_Human` 함수와 한 `Human` 에 대한 정보를 출력하는 `Print_Human` 함수들이 설정되어 있습니다.
 
 그럼 이 함수들에 대한 정보를 가지는 `human.c` 파일을 봅시다.
 
-```cpp
+```cpp-formatted
 /* human.c */
+#include <stdio.h>
 #include "human.h"
 #include "str.h"
-#include <stdio.h>
 
-struct Human Create_Human(char *name, int age, int gender)
-{
-    struct Human human;
+struct Human Create_Human(char *name, int age, int gender) {
+  struct Human human;
 
-    human.age = age;
-    human.gender = gender;
-    copy_str(human.name, name);
+  human.age = age;
+  human.gender = gender;
+  copy_str(human.name, name);
 
-    return human;
+  return human;
 }
-int Print_Human(struct Human *human)
-{
-    printf("Name : %s \n", human->name);
-    printf("Age : %d \n", human->age);
-    if(human->gender == MALE)
-    {
-        printf("Gender : Male \n");
-    }
-    else if(human->gender == FEMALE)
-    {
-        printf("Gender : Female \n");
-    }
+int Print_Human(struct Human *human) {
+  printf("Name : %s \n", human->name);
+  printf("Age : %d \n", human->age);
+  if (human->gender == MALE) {
+    printf("Gender : Male \n");
+  } else if (human->gender == FEMALE) {
+    printf("Gender : Female \n");
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -110,46 +103,42 @@ int Print_Human(struct Human *human)
 
 `str.h` 는 단순히 `copy_str` 함수를 위한 것이므로 `str.h` 에는 다음과 같이 써있습니다.
 
-```cpp
+```cpp-formatted
 /* str.h */
 char copy_str(char *dest, char *src);
-
 ```
 
 또한
 
-```cpp
+```cpp-formatted
 /* str.c */
 #include "str.h"
 
-char copy_str(char *dest, char *src)
-{
-    while (*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+char copy_str(char *dest, char *src) {
+  while (*src) {
+    *dest = *src;
+    src++;
+    dest++;
+  }
 
-    *dest = '\0';
+  *dest = '\0';
 
-    return 1;
+  return 1;
 }
 ```
 
 
 와 같이 함수의 몸체가 나타나 있지요. 자, 그럼 `main` 함수가 위치한 `test.c` 를 봅시다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 #include "human.h"
-int main()
-{
-    struct Human Lee = Create_Human("Lee", 40, MALE);
+int main() {
+  struct Human Lee = Create_Human("Lee", 40, MALE);
 
-    Print_Human(&Lee);
+  Print_Human(&Lee);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -173,45 +162,42 @@ int main()
 
 아래 예제는 기존에 우리가 `copy_str` 을 이용하여 `str1` 에 `str2` 를 복사하는 과정을 나타냈습니다.
 
-```cpp
+```cpp-formatted
 /* test.c */
 #include <stdio.h>
 #include "str.h"
-int main()
-{
-    char str1[20] = {"hi"};
-    char str2[20] = {"hello every1"};
+int main() {
+  char str1[20] = {"hi"};
+  char str2[20] = {"hello every1"};
 
-    copy_str(str1, str2);
+  copy_str(str1, str2);
 
-    printf("str1 : %s \n", str1);
+  printf("str1 : %s \n", str1);
 
-    return 0;
+  return 0;
 }
 ```
 
 
-```cpp
+```cpp-formatted
 /* str.h */
 char copy_str(char *dest, char *src);
 ```
 
 
-```cpp
+```cpp-formatted
 /* str.c */
 #include "str.h"
-char copy_str(char *dest, char *src)
-{
-    while (*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+char copy_str(char *dest, char *src) {
+  while (*src) {
+    *dest = *src;
+    src++;
+    dest++;
+  }
 
-    *dest = '\0';
+  *dest = '\0';
 
-    return 1;
+  return 1;
 }
 ```
 
@@ -224,20 +210,19 @@ char copy_str(char *dest, char *src)
 
 일단 위와 같이 잘 복사되었음을 알 수 있습니다. 하지만 이는 정말로 귀찮은 일이 아닐 수 없습니다. 문자열을 복사하는 과정은 정말로 많이 쓰이는 것입니다. 이렇게 문자열 복사가 필요할 때 마다 `copy_str` 함수를 만들어서 쓴다면 참으로 귀찮은 일이 아닐 수 없습니다. 하지만 정말 다행스럽게도, 사람들은 이 역할을 하는 함수를 '미리' 만들어 놓았습니다.
 
-```cpp
+```cpp-formatted
 /* 라이브러리의 사용 */
 #include <stdio.h>
 #include <string.h>
-int main()
-{
-    char str1[20] = {"hi"};
-    char str2[20] = {"hello every1"};
+int main() {
+  char str1[20] = {"hi"};
+  char str2[20] = {"hello every1"};
 
-    strcpy(str1, str2);
+  strcpy(str1, str2);
 
-    printf("str1 : %s \n", str1);
+  printf("str1 : %s \n", str1);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -249,14 +234,14 @@ int main()
 
 와 같이 위와 똑같이 나옵니다.
 
-```cpp
+```cpp-formatted
 #include <string.h>
 ```
 
 위 명령은 "string.h" 파일에 있는 내용을 모두 가져다 붙인다 라는 의미를 가지고 있습니다. 그런데 이 `string.h` 파일에는 '문자열을 처리하는데 관련된 함수들의 원형' 모음이 있습니다. 따라서 우리는 이 파일을 `include` 시킴으로써 문자열을 처리하는 여러가지 편리한 함수들을 사용할 수 있게 됩니다. 우리가 `str.h` 를 `include` 해서 `copy_str` 을 사용할 수 있었던 것과 일맥 상통합니다. 우리는 여기서 'strcpy' 라는 함수를 사용했습니다.
 
-```cpp
-    strcpy(str1, str2);
+```cpp-formatted
+strcpy(str1, str2);
 ```
 
 
@@ -264,35 +249,28 @@ int main()
 
 이렇게 사람들이 미리 만든 함수들의 모임을 가리켜서 '라이브러리' 라고 합니다. 우리가 현재 사용한 라이브러리는 **문자열(string) 라이브러리** 입니다. 그렇다면 `stdio.h` 도 라이브러리 일까요? 맞습니다. 이는 **입출력 라이브러리** 로 입력과 출력에 관련된 함수들을 모아놓았습니다. 대표적으로 `prinf` 와 `scanf` 가 있지만 이전에 잠깐 소개했던 `getchar()` 함수나 `puts()` 등등 수 많은 함수가 여기에 정의되어 있습니다. 이 목록은 제 블로그 C 언어 레퍼런스를 참조하세요.
 
-```cpp
+```cpp-formatted
 /* strcmp 함수 */
 #include <stdio.h>
 #include <string.h>
-int main()
-{
-    char str1[20] = {"hi"};
-    char str2[20] = {"hello every1"};
-    char str3[20] = {"hi"};
+int main() {
+  char str1[20] = {"hi"};
+  char str2[20] = {"hello every1"};
+  char str3[20] = {"hi"};
 
-    if(!strcmp(str1, str2))
-    {
-        printf("%s and %s is equal \n", str1, str2);
-    }
-    else
-    {
-        printf("%s and %s is NOT equal \n", str1, str2);
-    }
+  if (!strcmp(str1, str2)) {
+    printf("%s and %s is equal \n", str1, str2);
+  } else {
+    printf("%s and %s is NOT equal \n", str1, str2);
+  }
 
-    if(!strcmp(str1, str3))
-    {
-        printf("%s and %s is equal \n", str1, str3);
-    }
-    else
-    {
-        printf("%s and %s is NOTequal \n", str1, str3);
-    }
+  if (!strcmp(str1, str3)) {
+    printf("%s and %s is equal \n", str1, str3);
+  } else {
+    printf("%s and %s is NOTequal \n", str1, str3);
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -324,15 +302,15 @@ int main()
 
 #### #define
 
-```cpp
+```cpp-formatted
 /* #define */
 #include <stdio.h>
 #define VAR 10
-int main()
-{
-      char arr[VAR] = {"hi"};
-    printf("%s\n", arr);
-    return 0;}
+int main() {
+  char arr[VAR] = {"hi"};
+  printf("%s\n", arr);
+  return 0;
+}
 ```
 
 성공적으로 컴파일 하였다면
@@ -357,15 +335,14 @@ int main()
 
 이는 소스 코드에서 ‘매크로이름’ 에 해당하는 부분을 ‘값’ 으로 대체하게 되는 것입니다. 물론, 전처리기 명령이기 때문에 컴파일 이전에 정확하게 대체됩니다. 따라서,
 
-```cpp
+```cpp-formatted
 
 #include <stdio.h>
 #define VAR 10
-int main()
-{
-    char arr[VAR] = {"hi"};
-    printf("%s\n", arr);
-    return 0;
+int main() {
+  char arr[VAR] = {"hi"};
+  printf("%s\n", arr);
+  return 0;
 }
 ```
 
@@ -373,16 +350,14 @@ int main()
 
 라는 문장은
 
-```cpp
+```cpp-formatted
 
 #include <stdio.h>
-int main()
-{
-    char arr[10] = {"hi"};
-    printf("%s\n", arr);
-    return 0;
+int main() {
+  char arr[10] = {"hi"};
+  printf("%s\n", arr);
+  return 0;
 }
-
 ```
 
 
@@ -392,14 +367,15 @@ int main()
 
 `ifdef` 와 `endif` 는 무언가 `if` 문과 관련이 있을 것 같습니다. `if` 문 처럼 특정한 조건에만 수행이 되겠지요.
 
-```cpp
+```cpp-formatted
 
 /* ifdef */
 #include <stdio.h>#define A
-int main(){
-#ifdef A    printf("AAAA \n");#endif
-#ifdef B    printf("BBBB \n");#endif
-    return 0;}
+int main() {
+#ifdef A printf("AAAA \n"); #endif
+#ifdef B printf("BBBB \n"); #endif
+  return 0;
+}
 ```
 
 
@@ -434,17 +410,17 @@ int main(){
 
 언제나 `ifdef` 는 `endif` 와 짝을 지어서 사용하는데, `ifdef` 에서 지정한 매크로가 정의되어 있다면 `ifdef` 와 `endif` 속에 있는 코드가 포함되고 그렇지 않다면 코드에 포함되지 않는 것으로 간주 됩니다. `#define A` 를 통해 `A` 가 정의 되어 있다면
 
-```cpp
+```cpp-formatted
 #ifdef A
-    printf("AAAA \n");
+printf("AAAA \n");
 #endif
 ```
 
 
 부분은 전처리기에 의해
 
-```cpp
-    printf("AAAA \n");
+```cpp-formatted
+printf("AAAA \n");
 ```
 
 
@@ -452,9 +428,9 @@ int main(){
 로 바뀌지만
 
 
-```cpp
+```cpp-formatted
 #ifdef B
-    printf("BBBB \n");
+printf("BBBB \n");
 #endif
 ```
 
@@ -466,7 +442,7 @@ int main(){
 
 그렇다면 각각 이 계산기를 위해 다음과 같이 소스를 짜야 할 것입니다.
 
-```cpp
+```cpp-formatted
 
 /*
 계산기 모델 1 을 위한 코드
@@ -478,7 +454,7 @@ float var1, var2;
 
 
 
-```cpp
+```cpp-formatted
 
 /*
 계산기 모델 2 을 위한 코드
@@ -492,7 +468,7 @@ double var1, var2;
 
 하지만 조건부 컴파일을 이용하면 이 두 개의 파일로 나누어서 해야 했던 작업을 다음과 같이 줄일 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 #define CACULATOR_MODEL_1
 
@@ -502,7 +478,7 @@ float var1, var2;
 #ifdef CALCULATOR_MODEL_2
 double var1, var2;
 #endif;
-//do something
+// do something
 ```
 
 
@@ -513,12 +489,12 @@ double var1, var2;
 
 위 조건부 컴파일에서 #else 라는 것도 사용할 수 있는데 이는 #ifdef 의 경우 이외의 나머지 것들을 처리하는 것입니다. 이 역시 #endif 로 항상 끝을 맺어주어야 합니다. 예를 들면 아래와 같지요.
 
-```cpp
+```cpp-formatted
 
 #ifdef CALC_1
 // do something
 #else
-//do something ‘else’
+// do something ‘else’
 #endif
 ```
 
@@ -543,6 +519,3 @@ double var1, var2;
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

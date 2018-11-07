@@ -28,27 +28,24 @@ next_page : 123
 ### 파일에 출력하기
 
 
-```cpp
+```cpp-formatted
 /* a.txt 에 내용을 기록한다. */
 #include <stdio.h>
 
-int main ()
-{
-    FILE *fp;
-    fp = fopen("a.txt", "w");
+int main() {
+  FILE *fp;
+  fp = fopen("a.txt", "w");
 
-    if(fp == NULL)
-    {
-        printf("Write Error!!\n");
-        return 0;
-    }
+  if (fp == NULL) {
+    printf("Write Error!!\n");
+    return 0;
+  }
 
-    fputs("Hello World!!! \n", fp);
+  fputs("Hello World!!! \n", fp);
 
-    fclose(fp);
-    return 0;
+  fclose(fp);
+  return 0;
 }
-
 ```
 
 
@@ -77,10 +74,9 @@ C:\Users\Lee\Documents\Visual Studio 2008\Projects\teach\teach
 
 와우! 우리가 원하던 문자열 "Hello World!!!" 가 제대로 들어가 있는 것을 보실 수 있습니다. 이제, 다시 소스 코드를 살펴보도록 하죠.
 
-```cpp
-    FILE *fp;
-    fp = fopen("a.txt", "w");
-
+```cpp-formatted
+FILE *fp;
+fp = fopen("a.txt", "w");
 ```
 
   사실 우리가 하드디스크에 저장되어 있는 파일들을 자유롭게 이용할 수 있다고는 하나 이를 쓰는 과정은 매우매우 복잡할 것입니다. 왜냐하면 파일을 새로 만든다고 쳐도, 하드디스크 어떤 부분에 파일을 새로 만들어야 할지, 얼마나 크게 파일을 만들 수 있는지 등의 모든 것들을 고려해야 합니다. 자그마한 파일 하나를 만드는데 이런 짓들을 하기엔 너무 지나친 일이지요. 그래서 다행스럽게도 이와 같은 복잡한 일들은 컴퓨터 운영체제에서 알아서 해줍니다.
@@ -115,9 +111,9 @@ http://en.wikipedia.org/wiki/File:Stdstreams-notitle.svg
 
 이제 다시 맨 처음의 예제로 돌아가보도록 합시다.
 
-```cpp
-    FILE *fp;
-    fp = fopen("a.txt", "w");
+```cpp-formatted
+FILE *fp;
+fp = fopen("a.txt", "w");
 ```
 
 이렇게 해서 스트림을 만들었으면 `fopen` 함수는 만든 스트림을 가리키는 포인터를 리턴합니다. 스트림에 관한 정보는 `FILE` 구조체에 들어가 있습니다. (FILE 구조체에 대한 자세한 내용을 알고 싶다면 [여기](http://blog.naver.com/bsbs0126/150033511204)로) 이제, 우리는 `fp` 를 가지고 파일을 사용할 수 있게 되는 것입니다. 그런데, 우리는 `fopen` 에서 두 번째 인자로 "w" 를 전달했는데, 이 말의 의미는 파일에 오직 '쓰기' 만이 가능하게 하겠다 라는 의미 입니다. 다시 말해 스트림인데도 출력 스트림만 만들어 놓은 것이지요. (파일에 쓰는 것은 프로그램의 관점에서 보았을 때 출력이므로 출력 스트림, 파일에서 읽는 것은 프로그램의 관점에서 보았을 때 입력 받는 것이므로 입력 스트림 입니다) 쉽게 말하면 일방 통행 도로를 만들어 놓은 것과 같습니다.
@@ -126,8 +122,8 @@ http://en.wikipedia.org/wiki/File:Stdstreams-notitle.svg
 
 예를 들어 C 드라이브의 `BBB` 라는 폴더의 `a.txt` 를 원한다면 다음과 같이 하면 됩니다.
 
-```cpp
-    fp = fopen("C:\\BBB\\a.txt", "w");
+```cpp-formatted
+fp = fopen("C:\\BBB\\a.txt", "w");
 ```
 
 
@@ -135,26 +131,24 @@ http://en.wikipedia.org/wiki/File:Stdstreams-notitle.svg
 
 아무튼, 우리의 `a.txt` 의 경우 원래 존재 하지 않았을 것이므로 `fopen` 에서 `a.txt` 를 `"w"` 로 여는 순간 새로운 파일이 만들어집니다.
 
-```cpp
-    if(fp == NULL)
-    {
-        printf("Write Error!!\n");
-        return 0;
-    }
+```cpp-formatted
+if (fp == NULL) {
+  printf("Write Error!!\n");
+  return 0;
+}
 ```
 
 
 이 다음은 아주 중요한 부분인데, 파일이 어떠한 이유에서라든지 열지 못한 경우 `fopen` 함수는 `NULL` 을 리턴합니다. `fopen` 이 실패하는 경우는 그리 많지 않으므로 이 부분을 생략하는 경우가 가끔 있는데, 만일 `fopen` 이 실패하게 되었을 경우 이렇게 검사하지 않는다면 소스 뒷부분에서 어떠한 문제가 발생할지 모르므로 이렇게 항상 검사하는 것이 중요합니다.
 
-```cpp
-    fputs("Hello World!!! \n", fp);
-
+```cpp-formatted
+fputs("Hello World!!! \n", fp);
 ```
 
 이제 `fputs` 라는 훌륭한 함수로 파일에 기록할 수 있습니다. 첫번째 인자로 파일에 기록할 문자열을 전달하고 두번째 인자로 어떠한 스트림을 택할지 그 포인터를 써주면 됩니다. 우리는 우리가 위에서 열은 파일 스트림을 택할 것이므로 `fp` 를 써주면 됩니다. 재미있는 사실은 표준 스트림들은 이미 이름이 정해져 있는데 앞서 말했듯이 `stdout` 은 컴퓨터의 모니터에 해당하는 표준 출력 스트림이라 했습니다. 즉, 두 번째 인자로 `stdout` 을 전달하면 우리 콘솔 화면에 그 문자열이 뜨게 되겠지요.
 
-```cpp
-    fputs("Hello World!!! \n", stdout);
+```cpp-formatted
+fputs("Hello World!!! \n", stdout);
 ```
 
 
@@ -165,29 +159,28 @@ http://en.wikipedia.org/wiki/File:Stdstreams-notitle.svg
 
   와 같이 실제로 잘 나오는 것을 알 수 있습니다. 아무튼
 
-```cpp
-    fputs("Hello World!!! \n", fp);
+```cpp-formatted
+fputs("Hello World!!! \n", fp);
 ```
 
 
 를 통해 파일에 `"Hello World!!! \n"` 을 기록하게 됩니다. 이제 마지막으로
 
-```cpp
-    fclose(fp);
+```cpp-formatted
+fclose(fp);
 ```
 
 를 통해 연결되었던 스트림을 닫아 주어야만 합니다. 만일 이렇게 `fclose` 로 닫지 않는다면 스트림이 계속 살아 있게 되어서 이 파일은 계속 쓰기 상태로 남아 있게 됩니다. 이는 프로그램이 종료되기 전까지 이 상태로 계속 남아 있기 때문에, 마치 동적 메모리 할당에서 `free` 로 메모리를 반환해 주어야 하는 것처럼 스트림도 닫아 주어야 합니다.
 
 재미있는 사실은 `fclose` 로 표준 스트림들도 닫아버릴 수 있는데 예를 들어
 
-```cpp
+```cpp-formatted
 /* stdout 을 닫아버린다 */
 #include <stdio.h>
-int main ()
-{
-    fclose(stdout);
-    printf("aaa");
-    return 0;
+int main() {
+  fclose(stdout);
+  printf("aaa");
+  return 0;
 }
 ```
 
@@ -204,22 +197,22 @@ int main ()
 ### 파일에서 입력 받기
 
 
-```cpp
+```cpp-formatted
 /* fgets 로 a.txt 에서 내용을 입력 받는다. */
 
-
- #include <stdio.h>
- int main (){
-       FILE *fp = fopen("a.txt", "r");
-       char buf[20]; // 내용을 입력받을 곳
-       if(fp == NULL)    {
-             printf("READ ERROR !! \n");
-             return 0;    
-     }
-         fgets(buf, 20, fp);
-         printf("입력받는 내용 : %s \n", buf);
-         fclose(fp);
-         return 0;}
+#include <stdio.h>
+int main() {
+  FILE *fp = fopen("a.txt", "r");
+  char buf[20];  // 내용을 입력받을 곳
+  if (fp == NULL) {
+    printf("READ ERROR !! \n");
+    return 0;
+  }
+  fgets(buf, 20, fp);
+  printf("입력받는 내용 : %s \n", buf);
+  fclose(fp);
+  return 0;
+}
 ```
 
 
@@ -230,24 +223,23 @@ int main ()
 
 한 번 소스코드를 살펴봅시다.
 
-```cpp
-    FILE *fp = fopen("a.txt", "r");
+```cpp-formatted
+FILE *fp = fopen("a.txt", "r");
 ```
 
 이번에는 "w" 가 아니라 "r" 형으로 열었습니다. 이번에는 **읽기** 형식으로 파일을 열게됩니다.
 
-```cpp
-    if(fp == NULL)
-    {
-        printf("READ ERROR !! \n");
-        return 0;
-    }
+```cpp-formatted
+if (fp == NULL) {
+  printf("READ ERROR !! \n");
+  return 0;
+}
 ```
 
 이전 예제와 마찬가지로 `fp` 가 `NULL` 인지 아닌지 확인하는데, 특히 읽기 형식으로 파일을 열 때 에는 더욱 주의해야 할 부분입니다. 왜냐하면 쓰기 형식으로 파일을 열었을 때 에는 파일이 존재하지 않는다면 새로 만들었지만 읽기 형식으로 열 때 에는 읽어들일 파일이 없다면 `NULL` 을 리턴하고 스트림을 만들지 않기 때문이지요.
 
-```cpp
-    fgets(buf, 20, fp);
+```cpp-formatted
+fgets(buf, 20, fp);
 ```
 
 
@@ -255,31 +247,28 @@ int main ()
 
 우리의 경우 `buf` 라는 공간에 20 바이트를 입력받을 것입니다. `fgets` 의 좋은 점이 입력받는 양을 제한할 수 있다는 점인데 기존의 `scanf` 와 의 경우 문자열을 입력 받을 때 제한을 두지 않아 할당된 메모리 크기를 넘어버리는 오버플로우 (예를 들어 `char str[20];` 에 100 글자를 입력 받는다던지) 가 되는 경우가 있었지만 `fgets` 는 이를 방지할 수 있으므로 상당히 안정적이라고 볼 수 있습니다.
 
-```cpp
-     printf("입력받는 내용 : %s \n", buf);
+```cpp-formatted
+printf("입력받는 내용 : %s \n", buf);
 ```
 
 
 이렇게 입력 받은 `printf` 로 출력하면 됩니다.
 
-```cpp
+```cpp-formatted
 /* 한 글자씩 입력받기*/
 #include <stdio.h>
 
-int main ()
-{
-    FILE *fp = fopen("a.txt", "r");
-    char c;
+int main() {
+  FILE *fp = fopen("a.txt", "r");
+  char c;
 
-    while((c = fgetc(fp)) != EOF)
-    {
-        printf("%c", c);
-    }
+  while ((c = fgetc(fp)) != EOF) {
+    printf("%c", c);
+  }
 
-    fclose(fp);
-    return 0;
+  fclose(fp);
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 하였다면
@@ -289,38 +278,35 @@ int main ()
 
 와 같이 나옵니다.
 
-```cpp
-    while((c = fgetc(fp)) != EOF)
-    {
-        printf("%c", c);
-    }
+```cpp-formatted
+while ((c = fgetc(fp)) != EOF) {
+  printf("%c", c);
+}
 ```
 
 
 주목할 부분은 위 부분 입니다. `fgetc` 는 `fp` 에서 문자 하나를 얻어옵니다. 즉, 한 문자씩 읽어들이는 것이지요. 이 때 문자열 맨 마지막이 `NULL` 문자로 종료를 나타내는 것 처럼,파일의 맨 마지막에는 `EOF` 라고 `End Of File` 을 나타내는 값인 `-1` 이 들어가 있습니다. 실제로 `EOF` 의 원형을 찾아보아도
 
-```cpp
-#define EOF     (-1)
+```cpp-formatted
+#define EOF (-1)
 ```
 
 로 `-1` 로 선언되어 있습니다. 따라서 우리는 `c` 가 `EOF` 인지 아닌지 비교함을 통해 파일의 끝까지 입력을 받았는지 안받았는지 알 수 있습니다. 이와 같은 방식을 통해 아래 예제 처럼 파일의 크기를 알아내는 프로그램도 만들 수 있습니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 
-int main ()
-{
-    FILE *fp = fopen("a.txt", "r");
-    int size = 0;
+int main() {
+  FILE *fp = fopen("a.txt", "r");
+  int size = 0;
 
-    while(fgetc(fp) != EOF)
-    {
-        size++;
-    }
+  while (fgetc(fp) != EOF) {
+    size++;
+  }
 
-    printf("이 파일의 크기는 : %d bytes \n", size);
-    fclose(fp);
-    return 0;
+  printf("이 파일의 크기는 : %d bytes \n", size);
+  fclose(fp);
+  return 0;
 }
 ```
 
@@ -349,22 +335,21 @@ int main ()
 
 그런데 만일 여러분이 `abcd` 까지 파일에서 입력 받았는데 다시 처음 부터 입력받고 싶다면 어떻게 할까요? 일단 두 가지 방법이 있는데 하나는 `fopen` 으로 파일을 다른 스트림으로 또 여는 것이고, 또다른 방법은 파일 위치지정자를 맨 앞으로 옮기면 되겠지요. 여기서는 후자를 택하도록 합시다.
 
-```cpp
+```cpp-formatted
 
 #include <stdio.h>
-int main ()
-{
-    /* 현재 fp 에 abcdef 가 들어있는 상태*/
-    FILE *fp = fopen("a.txt", "r");
-    fgetc(fp);
-    fgetc(fp);
-    fgetc(fp);
-    fgetc(fp);
-    /* d 까지 입력받았으니 파일 위치지정자는 이제 e 를 가리키고 있다 */
-    fseek(fp, 0, SEEK_SET);
-    printf("다시 파일 처음에서 입력 받는다면 : %c \n", fgetc(fp));
-    fclose(fp);
-    return 0;
+int main() {
+  /* 현재 fp 에 abcdef 가 들어있는 상태*/
+  FILE *fp = fopen("a.txt", "r");
+  fgetc(fp);
+  fgetc(fp);
+  fgetc(fp);
+  fgetc(fp);
+  /* d 까지 입력받았으니 파일 위치지정자는 이제 e 를 가리키고 있다 */
+  fseek(fp, 0, SEEK_SET);
+  printf("다시 파일 처음에서 입력 받는다면 : %c \n", fgetc(fp));
+  fclose(fp);
+  return 0;
 }
 ```
 
@@ -380,7 +365,7 @@ int main ()
 
 와 같이 `a` 가 다시 잘 나오는 것을 보실 수 있습니다.
 
-```cpp
+```cpp-formatted
 fgetc(fp);
 fgetc(fp);
 fgetc(fp);
@@ -390,26 +375,25 @@ fgetc(fp);
 
 일단 `a.txt` 에 원래 `abcdef` 가 들어있었다고 합시다. 그렇다면 위 문장을 통해 차례대로 `a,b,c,d` 를 입력받고 (물론 저장은 하지 않지만) 이제 파일 위치지정자는 `e` 를 가리키게 됩니다. 그런데,
 
-```cpp
-    fseek(fp, 0, SEEK_SET);
+```cpp-formatted
+fseek(fp, 0, SEEK_SET);
 ```
 
 를 통해 파일 위치지정자를 맨 처음으로 돌려버릴 수 있었습니다. `fseek` 함수는 `fp` 를 세번째 인자로 부터 두번째 인자 만큼 떨어진 곳으로 파일 위치지정자를 돌리는데, 위 경우 `SEEK_SET` 으로 부터 0 번째 떨어진 곳, 즉 `SEEK_SET` 으로 돌린다고 볼 수 있습니다.
 
 이 때 `SEEK_SET` 은 파일의 맨 처음을 일컫는 매크로 상수 입니다. 따라서 위 함수를 통해 `fp` 의 파일 위치지정자를 맨 처음으로 돌려서 다시 `fgetc` 를 하였을 때 `a` 를 입력받게 됩니다. 참고로, `SEEK_SET` 외에도, 현재의 위치를 표시하는 `SEEK_CUR` 과 파일의 맨 마지막을 표시하는 `SEEK_END` 상수들이 있습니다.
 
-```cpp
+```cpp-formatted
 
 /* 출력 스트림도 마찬가지*/
 #include <stdio.h>
-int main ()
-{
-    FILE *fp = fopen("a.txt", "w");
-    fputs("Psi is an excellent C programmer", fp);
-    fseek(fp, 0, SEEK_SET);
-    fputs("is Psi", fp);
-    fclose(fp);
-    return 0;
+int main() {
+  FILE *fp = fopen("a.txt", "w");
+  fputs("Psi is an excellent C programmer", fp);
+  fseek(fp, 0, SEEK_SET);
+  fputs("is Psi", fp);
+  fclose(fp);
+  return 0;
 }
 ```
 
@@ -426,15 +410,15 @@ int main ()
 
 로 나타납니다. 사실 이번 예제도 상당히 쉬운데, 먼저 `fputs` 로
 
-```cpp
-    fputs("Psi is an excellent C programmer", fp);
+```cpp-formatted
+fputs("Psi is an excellent C programmer", fp);
 ```
 
 
 `Psi is an excellent C programmer` 을 넣었고, 이 때 파일을 열어보았더라면 이와 같은 문장이 들어 있었을 것입니다. 그런데,
 
-```cpp
-    fseek(fp, 0, SEEK_SET);
+```cpp-formatted
+fseek(fp, 0, SEEK_SET);
 ```
 
 
@@ -467,8 +451,3 @@ int main ()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-
-

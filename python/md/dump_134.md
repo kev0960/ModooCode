@@ -125,14 +125,13 @@ next_page : 136
 자 그럼 왼쪽에 생긴 `hello.cpp` 를 클릭 한 뒤, 나타나는 창에 아래와 같이 코드를 씁니다.
 
 
-```cpp
+```cpp-formatted
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    cout << "Hello, World!!!" << endl;
-    return 0;
+int main() {
+  cout << "Hello, World!!!" << endl;
+  return 0;
 }
 ```
 
@@ -154,8 +153,3 @@ int main()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-

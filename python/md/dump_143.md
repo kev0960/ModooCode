@@ -267,10 +267,3 @@ ref_title : iostream
 
 
 * ws  :  공백문자를 추출한다.
-
-
-
-
-
-
-

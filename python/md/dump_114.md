@@ -53,25 +53,24 @@ time_t time ( time_t * timer );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/ctime/time/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <time.h>
 
-int main ()
-{
-    time_t seconds;
+int main() {
+  time_t seconds;
 
-    seconds = time (NULL);
-    printf ("%ld hours since January 1, 1970 \n", seconds/3600);
+  seconds = time(NULL);
+  printf("%ld hours since January 1, 1970 \n", seconds / 3600);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -90,10 +89,3 @@ int main ()
 * [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 바꾼다.
 *  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 를 `UTC` 시간에 따라 `tm` 구조체로 바꾼다.
 *  [localtime](http://itguru.tistory.com/120)  : `time_t` 를 지역 시간에 따라 `tm` 구조체로 바꾼다.
-
-
-
-
-
-
-

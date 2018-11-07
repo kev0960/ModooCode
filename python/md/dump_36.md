@@ -87,12 +87,12 @@ int  scanf ( const char * format, ... );
 
 `scanf` 함수를 사용하다 보면 다음과 같이 입력을 받지 않고 넘어가는 경우가 종종 있다.
 
-```cpp
-    printf("숫자를 입력하세요 : ");
-    scanf("%d", &num);
+```cpp-formatted
+printf("숫자를 입력하세요 : ");
+scanf("%d", &num);
 
-    printf("문자를 입력하세요 : ");
-    scanf("%c", &c);
+printf("문자를 입력하세요 : ");
+scanf("%c", &c);
 ```
 
 로 하면 "문자를 입력하세요 : " 부분이 실행되지 않고 넘어간다.
@@ -100,7 +100,7 @@ int  scanf ( const char * format, ... );
 
 이 글에 제시된 해결책 보다 조금 높은 수준을 원한다면 `*` 문자를 활용하면 된다. 앞에서 말했듯이 `*` 문자는 `stdin` 에서 입력은 받지만 그 데이터는 버려버리는 특징을 이용하면
 
-```cpp
+```cpp-formatted
 scanf("%d", &num);
 scanf("%*c%c", &c);
 ```
@@ -115,14 +115,14 @@ scanf("%*c%c", &c);
 
 `scanf` 함수는 문자열 입력시 입력받을 문자열의 최대 개수를 제한을 두지 않으므로버퍼 오버플로우가 발생할 여지가 충분히 있다. 이를 해결하기 위해서는 역시 [fgets](http://itguru.tistory.com/38)함수를 이용하거나 폭을 지정해 주면 된다.예를 들어서
 
-```cpp
+```cpp-formatted
 char str[10];
 scanf("%9s", str);
 ```
 
 와 같이 한다면 우리가 `stdin` 에 아무리 많이 입력해도 `scanf` 는 오직 9 문자만을 취하므로 안전하게 입력이 가능하다. (배열의 크기는 10 이지만 `NULL` 문자를 위해서 9 자만 입력해야 한다) 하지만 이와 같이 할 경우에도 문제가 있는데, 사용자가 9 문자 보다 많이 입력했을 경우 `scanf` 는 오직 9 문자만을 처리하므로 일부 문자가 버퍼에 남아 있어서 다음번 입력 시 차질이 생긴다. 이는 다음과 같이 해결 할 수 있다.
 
-```cpp
+```cpp-formatted
 scanf("%9s%*s", str);
 ```
 
@@ -133,11 +133,24 @@ scanf("%9s%*s", str);
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /* 각 형식에 맞는 입력을 받은 뒤 이를 출력한다.*/
 #include <stdio.h>
 int main() {
-      char str[10];    char ch;    int dec, hex, oct;    float db;    printf("문자열, 문자, 십진수, 16 진수, 8 진수, 소수를 각각 입력하세요\n");    scanf("%9s %*s %c %d %x %o %f", str, &ch, &dec, &hex, &oct, &db);    printf("문자열 : %s \n", str);    printf("문자 : %c \n", ch);    printf("십진수 : %d \n", dec);    printf("16 진수 : %x \n", hex);    printf("8 진수 : %o \n", oct);    printf("소수 : %f \n", db);    return 0;}
+  char str[10];
+  char ch;
+  int dec, hex, oct;
+  float db;
+  printf("문자열, 문자, 십진수, 16 진수, 8 진수, 소수를 각각 입력하세요\n");
+  scanf("%9s %*s %c %d %x %o %f", str, &ch, &dec, &hex, &oct, &db);
+  printf("문자열 : %s \n", str);
+  printf("문자 : %c \n", ch);
+  printf("십진수 : %d \n", dec);
+  printf("16 진수 : %x \n", hex);
+  printf("8 진수 : %o \n", oct);
+  printf("소수 : %f \n", db);
+  return 0;
+}
 ```
 
 실행 결과
@@ -145,10 +158,10 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F1653C4014B6857C23335C6)
 
-```cpp
+```cpp-formatted
 /*
 
-다음 예제는 
+다음 예제는
 
   http://www.cplusplus.com/reference/clibrary/cstdio/scanf/
 
@@ -156,8 +169,19 @@ int main() {
 
 */
 #include <stdio.h>
-int main () {
-      char str [80];    int i;    printf ("Enter your family name: ");    scanf ("%s",str);    printf ("Enter your age: ");    scanf ("%d",&i);    printf ("Mr. %s , %d years old.\n",str,i);    printf ("Enter a hexadecimal number: ");    scanf ("%x",&i);    printf ("You have entered %#x (%d).\n",i,i);    return 0;}
+int main() {
+  char str[80];
+  int i;
+  printf("Enter your family name: ");
+  scanf("%s", str);
+  printf("Enter your age: ");
+  scanf("%d", &i);
+  printf("Mr. %s , %d years old.\n", str, i);
+  printf("Enter a hexadecimal number: ");
+  scanf("%x", &i);
+  printf("You have entered %#x (%d).\n", i, i);
+  return 0;
+}
 ```
 
 실행 결과

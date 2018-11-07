@@ -40,16 +40,15 @@ int putchar ( int character );
 
 ###  실행 예제
 
-```cpp
+```cpp-formatted
 /* 화면에 'p' 를 출력한다 */
 #include <stdio.h>
-int main ()
-{
-    char ch = 'p';
+int main() {
+  char ch = 'p';
 
-    putchar (ch);
+  putchar(ch);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -58,7 +57,7 @@ int main ()
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F16415F144B6AB65213766E)
 
-```cpp
+```cpp-formatted
 /*
 
 화면에 알파벳 A 부터 Z 까지 출력한다.
@@ -68,13 +67,12 @@ int main ()
 */
 #include <stdio.h>
 
-int main ()
-{
-    char c;
-    for (c = 'A' ; c <= 'Z' ; c++) {
-        putchar (c);
-    }
-    return 0;
+int main() {
+  char c;
+  for (c = 'A'; c <= 'Z'; c++) {
+    putchar(c);
+  }
+  return 0;
 }
 ```
 
@@ -97,10 +95,3 @@ int main ()
 *  [fputc](http://itguru.tistory.com/39):  스트림에 문자를 쓴다.
 
 *  [getchar](http://itguru.tistory.com/44)  :  표준 입력(stdin) 에서 문자를 받는다.
-
-
-
-
-
-
-

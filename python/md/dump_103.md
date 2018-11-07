@@ -17,53 +17,44 @@ next_page : 117
 
 안녕하세요 여러분. 저의 C 언어 강의도 이제 막바지에 다다랐습니다. 정말로 첫번째 강의부터 여기 까지 달려오셨다면 정말 대단하다고 말씀 드리고 싶네요. 마라톤에 비유하자면, `42.195km` 에서 한 `40km` 정도 까지 열심히 뛰어 왔다고 보시면 됩니다. 그럼, 나머지 `2.195km` 도 더 뛸 의향이 있겠죠?
 
-```cpp
+```cpp-formatted
 /* 루저 위너 판별*/
 #include <stdio.h>
 int Print_Status(struct HUMAN human);
-struct HUMAN
-{
-    int age;
-    int height;
-    int weight;
-    int gender;
+struct HUMAN {
+  int age;
+  int height;
+  int weight;
+  int gender;
 };
 
-int main()
-{
-    struct HUMAN Adam = {31, 182, 75, 0};
-    struct HUMAN Eve = {27, 166, 48, 1};
+int main() {
+  struct HUMAN Adam = {31, 182, 75, 0};
+  struct HUMAN Eve = {27, 166, 48, 1};
 
-    Print_Status(Adam);
-    Print_Status(Eve);
+  Print_Status(Adam);
+  Print_Status(Eve);
 }
 
-int Print_Status(struct HUMAN human)
-{
-    if(human.gender == 0)
-    {
-        printf("MALE \n");
-    }
-    else
-    {
-        printf("FEMALE \n");
-    }
+int Print_Status(struct HUMAN human) {
+  if (human.gender == 0) {
+    printf("MALE \n");
+  } else {
+    printf("FEMALE \n");
+  }
 
-    printf("AGE : %d / Height : %d / Weight : %d \n", human.age, human.height, human.weight);
+  printf("AGE : %d / Height : %d / Weight : %d \n", human.age, human.height,
+         human.weight);
 
-    if(human.gender == 0 && human.height >= 180)
-    {
-        printf("HE IS A WINNER!! \n");
-    }
-    else if(human.gender == 0 && human.height < 180)
-    {
-        printf("HE IS A LOSER!! \n");
-    }
+  if (human.gender == 0 && human.height >= 180) {
+    printf("HE IS A WINNER!! \n");
+  } else if (human.gender == 0 && human.height < 180) {
+    printf("HE IS A LOSER!! \n");
+  }
 
-    printf("------------------------------------------- \n");
+  printf("------------------------------------------- \n");
 
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -83,54 +74,45 @@ error C2059: 구문 오류 : '}'
 
 물론 있습니다.
 
-```cpp
+```cpp-formatted
 /* typedef 의 이용 */
 #include <stdio.h>
-struct HUMAN
-{
-    int age;
-    int height;
-    int weight;
-    int gender;
+struct HUMAN {
+  int age;
+  int height;
+  int weight;
+  int gender;
 };
 
 typedef struct HUMAN Human;
 int Print_Status(Human human);
-int main()
-{
-    Human Adam = {31, 182, 75, 0};
-    Human Eve = {27, 166, 48, 1};
+int main() {
+  Human Adam = {31, 182, 75, 0};
+  Human Eve = {27, 166, 48, 1};
 
-    Print_Status(Adam);
-    Print_Status(Eve);
+  Print_Status(Adam);
+  Print_Status(Eve);
 }
 
-int Print_Status(Human human)
-{
-    if(human.gender == 0)
-    {
-        printf("MALE \n");
-    }
-    else
-    {
-        printf("FEMALE \n");
-    }
+int Print_Status(Human human) {
+  if (human.gender == 0) {
+    printf("MALE \n");
+  } else {
+    printf("FEMALE \n");
+  }
 
-    printf("AGE : %d / Height : %d / Weight : %d \n", human.age, human.height, human.weight);
+  printf("AGE : %d / Height : %d / Weight : %d \n", human.age, human.height,
+         human.weight);
 
-    if(human.gender == 0 && human.height >= 180)
-    {
-        printf("HE IS A WINNER!! \n");
-    }
-    else if(human.gender == 0 && human.height < 180)
-    {
-        printf("HE IS A LOSER!! \n");
-    }
+  if (human.gender == 0 && human.height >= 180) {
+    printf("HE IS A WINNER!! \n");
+  } else if (human.gender == 0 && human.height < 180) {
+    printf("HE IS A LOSER!! \n");
+  }
 
-    printf("------------------------------------------- \n");
+  printf("------------------------------------------- \n");
 
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -143,7 +125,7 @@ int Print_Status(Human human)
 
 위 코드에서 가장 눈여겨 보아야 할 부분은
 
-```cpp
+```cpp-formatted
 typedef struct HUMAN Human;
 ```
 
@@ -159,47 +141,41 @@ typedef (이름을 새로 부여하고자 하는 타입) (새로 준 타입의 �
 
 즉 위와 같은 일을 하고 나면 다음과 같은 문장은 모두 동일해집니다.
 
-```cpp
-    struct HUMAN a;
-    Human a;
+```cpp-formatted
+struct HUMAN a;
+Human a;
 ```
 
 상당히 편리해졌지요? 하지만 진정 `typedef` 를 이용하는 이유는 이렇게 형을 간단하게 쓴다는 이유 때만은 아닙니다. 아래의 예제를 보세요.
 
-```cpp
+```cpp-formatted
 /* 간단한 계산기 프로그램 */
 #include <stdio.h>
-int main()
-{
-    int input;
-    int a,b;
+int main() {
+  int input;
+  int a, b;
 
-    while(1)
-    {
-        printf("--- 계산기 --- \n");
-        printf("1. 덧셈 \n");
-        printf("2. 뺄셈 \n");
-        printf("3. 종료 \n");
+  while (1) {
+    printf("--- 계산기 --- \n");
+    printf("1. 덧셈 \n");
+    printf("2. 뺄셈 \n");
+    printf("3. 종료 \n");
 
-        scanf("%d", &input);
+    scanf("%d", &input);
 
-        if(input == 1)
-        {
-            printf("두 수 : ");
-            scanf("%d%d", &a, &b);
-            printf("%d 와 %d 의 합 : %d \n", a,b,a+b);
-        }
-        else if(input == 2)
-        {
-            printf("두 수 : ");
-            scanf("%d%d", &a, &b);
-            printf("%d 와 %d 의 차 : %d \n", a,b,a-b);
-        }
-        else
-            break;
-    }
+    if (input == 1) {
+      printf("두 수 : ");
+      scanf("%d%d", &a, &b);
+      printf("%d 와 %d 의 합 : %d \n", a, b, a + b);
+    } else if (input == 2) {
+      printf("두 수 : ");
+      scanf("%d%d", &a, &b);
+      printf("%d 와 %d 의 차 : %d \n", a, b, a - b);
+    } else
+      break;
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -213,41 +189,35 @@ int main()
 
 그렇다면 이를 위해 소스 코드 전체의 모든 변수들을 `char` 이나 `short` 로 바꿔주어야 합니다. 그런데 만일 동일한 프로그램인데 다른 기종의 계산기 에서는 `int` 형이 사용 가능하다고 합시다. 그렇다면 이 코드를 다시 또 바꿔주어야 합니다. 아주 아주 귀찮은 일이 아닐 수 없죠. 이런 상황을 대비하여서 다음과 같이 코드를 바꿔봅시다.
 
-```cpp
+```cpp-formatted
 /* 향상된 소스 코드 */
 #include <stdio.h>
 typedef int CAL_TYPE;
-int main()
-{
-    CAL_TYPE input;
-    CAL_TYPE a,b;
+int main() {
+  CAL_TYPE input;
+  CAL_TYPE a, b;
 
-    while(1)
-    {
-        printf("--- 계산기 --- \n");
-        printf("1. 덧셈 \n");
-        printf("2. 뺄셈 \n");
-        printf("3. 종료 \n");
+  while (1) {
+    printf("--- 계산기 --- \n");
+    printf("1. 덧셈 \n");
+    printf("2. 뺄셈 \n");
+    printf("3. 종료 \n");
 
-        scanf("%d", &input);
+    scanf("%d", &input);
 
-        if(input == 1)
-        {
-            printf("두 수 : ");
-            scanf("%d%d", &a, &b);
-            printf("%d 와 %d 의 합 : %d \n", a,b,a+b);
-        }
-        else if(input == 2)
-        {
-            printf("두 수 : ");
-            scanf("%d%d", &a, &b);
-            printf("%d 와 %d 의 차 : %d \n", a,b,a-b);
-        }
-        else
-            break;
-    }
+    if (input == 1) {
+      printf("두 수 : ");
+      scanf("%d%d", &a, &b);
+      printf("%d 와 %d 의 합 : %d \n", a, b, a + b);
+    } else if (input == 2) {
+      printf("두 수 : ");
+      scanf("%d%d", &a, &b);
+      printf("%d 와 %d 의 차 : %d \n", a, b, a - b);
+    } else
+      break;
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -259,26 +229,23 @@ int main()
 ### 여러가지 `typedef` 들
 
 
-```cpp
+```cpp-formatted
 /* 여러가지 typedef 예제들 */
 
-
- #include <stdio.h>
- int add(int a, int b){
-       return a+b;
-   }
-   typedef int CAL_TYPE;
-   typedef int (*Padd)(int,int);
-   typedef int Arrays[10];
-   int main(){
-         CAL_TYPE a = 10;
-         Arrays arr = {1,2,3,4,5,6,7,8,9,0}; 
-        Padd ptr = add;
-         printf("a : %d \n", a);
-         printf("arr[3] : %d \n", arr[3]);
-         printf("add(3, 5) : %d \n", ptr(3,5));
-         return 0;
-     }
+#include <stdio.h>
+int add(int a, int b) { return a + b; }
+typedef int CAL_TYPE;
+typedef int (*Padd)(int, int);
+typedef int Arrays[10];
+int main() {
+  CAL_TYPE a = 10;
+  Arrays arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+  Padd ptr = add;
+  printf("a : %d \n", a);
+  printf("arr[3] : %d \n", arr[3]);
+  printf("add(3, 5) : %d \n", ptr(3, 5));
+  return 0;
+}
 ```
 
 
@@ -290,34 +257,34 @@ int main()
 
 가장 먼저 소스 코드에서 아래 문장 부터 살펴봅시다.
 
-```cpp
-typedef int (*Padd)(int,int);
+```cpp-formatted
+typedef int (*Padd)(int, int);
 ```
 
 
 이전에 배웠던 함수 포인터가 잘 기억이 나시는지는 잘 모르겠지만 아무튼, 위 `typedef` 명령문은 복잡한 함수 포인터 명령을 `Padd` 라는 이름을 붙이는 것입니다. 즉, 다음 문장은 정확히 동일해집니다.
 
-```cpp
+```cpp-formatted
 int (*ptr)(int, int) = add;
 Padd ptr = add;
 ```
 
 참고로 간혹
 
-```cpp
-typedef int (*Padd)(int,int);
+```cpp-formatted
+typedef int (*Padd)(int, int);
 ```
 
 문장을 잘못 이해 하셔서, "우리가 앞에서 배운 바에 따르면 위 문장은 `int` 라는 형에 `(*Padd)(int, int)` 라는 또다른 이름을 붙이는 것이 아닌가?" 라고 물으실 수 있는데, 그건 아니고 `Padd` 라는 이름을 붙여주신다고 생각하시면 편합니다. 마찬가지로
 
-```cpp
+```cpp-formatted
 typedef int Arrays[10];
 ```
 
 
 도 역시 '원소가 10 개인 `int` 형 배열을 선언해라' 문장을 `Arrays` 라고 하나의 이름으로 바꾼 것이라 보면 됩니다. 즉,
 
-```cpp
+```cpp-formatted
 int arr[10];
 Arrays arr;
 ```
@@ -336,47 +303,40 @@ Arrays arr;
 
 만일 여러분이 특정한 외부 센서와 소통하는 프로그램을 만든다고 합시다. 이 센서는 RAM 의 특정 영역을 이용하는데, 만일 센서에 값이 감지되지 않으면 그 곳의 값이 0 이 되어 무언가가 감지되면 그 부분의 값을 1 로 한다고 합시다. 그렇다면 여러분은 십중팔구 아래와 같은 코드를 작성할 것입니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-typedef struct SENSOR
-{
-    /* 감지 안되면 0, 감지되면 1 이다.*/
-    int sensor_flag;
-    int data;
+typedef struct SENSOR {
+  /* 감지 안되면 0, 감지되면 1 이다.*/
+  int sensor_flag;
+  int data;
 } SENSOR;
 
-int main()
-{
-    SENSOR *sensor;
-    /* 값이 감지되지 않는 동안 계속 무한 루프를 돈다*/
-    while(!(sensor->sensor_flag))
-    {
-    }
-    printf("Data : %d \n", sensor->data);
+int main() {
+  SENSOR *sensor;
+  /* 값이 감지되지 않는 동안 계속 무한 루프를 돈다*/
+  while (!(sensor->sensor_flag)) {
+  }
+  printf("Data : %d \n", sensor->data);
 }
 ```
 
 \sidenote{참고로 typedef 를 위와 같이 써줌으로써 typedef struct SENSOR SENSOR 한 효과를 낼 수 있습니다.} 위 코드는 가상의 코드 이므로 컴파일 해보지 않겠습니다만, 일단 여러분은 위 코드에서 별 이상을 느끼지는 못할 것입니다. 하지만 똑똑한 컴파일러는 ‘너무 과하게 똑똑해서’ 우리가 사용한 `while` 문을 최적화 해버립니다. 보통의 상황에서 `sensor->sensor_flag` 의 값이 바뀌는 경우는 없기 때문에 굳이 `while` 문을 매번 돌릴 때 마다 값을 비교할 필요가 없게 되는 것이지요. 그냥 컴파일러는 값을 딱 한 번만 읽고 0 이 아니라면 그냥 가고, 0 이라면 `while` 문을 무한히 돌리는 것으로 생각해버립니다. 결과적으로 위 코드를 컴파일러는 다음과 같은 코드로 바꿔버립니다.
 
-```cpp
+```cpp-formatted
 
 #include <stdio.h>
-typedef struct SENSOR
-{
-    /* 감지 안되면 0, 감지되면 1 이다.*/
-    int sensor_flag;
-    int data;
-}SENSOR;
-int main()
-{
-    SENSOR *sensor;
-    if(!(sensor->sensor_flag))
-    {
-        while(1)
-        {
-        }
-    }
-    printf("Data : %d \n", sensor->data);
+typedef struct SENSOR {
+  /* 감지 안되면 0, 감지되면 1 이다.*/
+  int sensor_flag;
+  int data;
+} SENSOR;
+int main() {
+  SENSOR *sensor;
+  if (!(sensor->sensor_flag)) {
+    while (1) {
+    }
+  }
+  printf("Data : %d \n", sensor->data);
 }
 ```
 
@@ -386,24 +346,21 @@ int main()
 
 첫번째로는 컴파일러의 최적화 옵션을 빼버리는 것입니다. `gcc` 에서는 단순히 최적화 옵션을 안주면 됩니다. `Visual Studio` 에서는 살짝 복잡한데, 프로젝트 속성의 **C/C++ –> 최적화** 에서 사용 안함을 선택하시면 됩니다. 그런데, 최적화를 하지 않기에는 너무나 그 손실이 큽니다. 최적화 옵션을 끄는 순간 다른 모든 코드들도 최적화를 하지 않겠다는 의미가 되거든요. 이를 위해 `volatile` 키워드가 생겨났습니다.
 
-```cpp
+```cpp-formatted
 
 #include <stdio.h>
-typedef struct SENSOR
-{
-    /* 감지 안되면 0, 감지되면 1 이다.*/
-    int sensor_flag;
-    int data;
+typedef struct SENSOR {
+  /* 감지 안되면 0, 감지되면 1 이다.*/
+  int sensor_flag;
+  int data;
 } SENSOR;
 
-int main()
-{
-    volatile SENSOR *sensor;
-    /* 값이 감지되지 않는 동안 계속 무한 루프를 돈다*/
-    while(!(sensor->sensor_flag))
-    {
-    }
-    printf("Data : %d \n", sensor->data);
+int main() {
+  volatile SENSOR *sensor;
+  /* 값이 감지되지 않는 동안 계속 무한 루프를 돈다*/
+  while (!(sensor->sensor_flag)) {
+  }
+  printf("Data : %d \n", sensor->data);
 }
 ```
 
@@ -417,18 +374,16 @@ int main()
 
 #### `#pragma pack`
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-struct Weird
-{
-    char arr[2];
-    int i;
+struct Weird {
+  char arr[2];
+  int i;
 };
-int main()
-{
-    struct Weird a;
-    printf("size of a : %d \n", sizeof(a));
-    return 0;
+int main() {
+  struct Weird a;
+  printf("size of a : %d \n", sizeof(a));
+  return 0;
 }
 ```
 
@@ -451,20 +406,18 @@ int main()
 
 이렇게 컴파일러로 하여금 구조체를 더블 워드 경계에 놓지 말라고 하고 싶을 때 `pragma` 키워드를 이용하면 됩니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 /* 전처리기 명령에는 ; 를 붙이지 않는다! */
 #pragma pack(1)
-struct Weird
-{
-    char arr[2];
-    int i;
+struct Weird {
+  char arr[2];
+  int i;
 };
-int main()
-{
-    struct Weird a;
-    printf("size of a : %d \n", sizeof(a));
-    return 0;
+int main() {
+  struct Weird a;
+  printf("size of a : %d \n", sizeof(a));
+  return 0;
 }
 ```
 
@@ -480,26 +433,24 @@ int main()
 
 아까의 `Weird` 구조체 예제에서 `Werid` 부분만 다른 헤더파일로 빼놓아 봅시다. 이 헤더파일의 이름은 `werid.h` 입니다.
 
-```cpp
+```cpp-formatted
 /* weird.h */
-struct Weird
-{
-    char arr[2];
-    int i;
+struct Weird {
+  char arr[2];
+  int i;
 };
 ```
 
-```cpp
+```cpp-formatted
 
 /* test.c*/
 #include <stdio.h>
 #include "weird.h"
-int main()
-{
-    struct Weird a;
-    a.i = 3;
-    printf("Weird 구조체의 a.i : %d \n", a.i);
-    return 0;
+int main() {
+  struct Weird a;
+  a.i = 3;
+  printf("Weird 구조체의 a.i : %d \n", a.i);
+  return 0;
 }
 ```
 
@@ -516,17 +467,15 @@ int main()
 
 상당히 단순한 예제이지요. `test.c` 에서 `weird.h` 를 포함했으므로 `weird.h` 의 내용이 `test.c` 로 그대로 복사된 셈입니다. (즉, #include “weird.h” 부분이 `weird.h` 의  내용으로 바뀌었다고 보셔도 무방합니다) 따라서 `struct Weird` 를 사용할 수 있게 되므로 위와 같은 결과가 발생합니다. 그런데 만일 실수로 `weird.h` 를 두 번 포함했다고 합시다. 그렇다면 어떻게 될까요?
 
-```cpp
+```cpp-formatted
 
 #include <stdio.h>
 #include "weird.h"
-#include "weird.h"
-int main()
-{
-    struct Weird a;
-    a.i = 3;
-    printf("Weird 구조체의 a.i : %d \n", a.i);
-    return 0;
+int main() {
+  struct Weird a;
+  a.i = 3;
+  printf("Weird 구조체의 a.i : %d \n", a.i);
+  return 0;
 }
 ```
 
@@ -542,26 +491,23 @@ error C2011: 'Weird' : 'struct' 형식 재정의
 
 위와 같이 오류를 만나게 됩니다. 왜냐하면 각각 `#include "weird.h"` 부분이 `weird.h` 의 내용으로 바뀌어서 결과적으로는
 
-```cpp
+```cpp-formatted
 
 #include <stdio.h>
-struct Weird
-{
-    char arr[2];
-    int i;
+struct Weird {
+  char arr[2];
+  int i;
 };
-struct Weird
-{
-    char arr[2];
-    int i;
+struct Weird {
+  char arr[2];
+  int i;
 };
 
-int main()
-{
-    struct Weird a;
-    a.i = 3;
-    printf("Weird 구조체의 a.i : %d \n", a.i);
-    return 0;
+int main() {
+  struct Weird a;
+  a.i = 3;
+  printf("Weird 구조체의 a.i : %d \n", a.i);
+  return 0;
 }
 ```
 
@@ -570,33 +516,30 @@ int main()
 를 한 것과 마찬가지가 되어서 `struct Weird` 를 두 번 정의하였다고 오류가 나게 됩니다. 이를 막으려면 어떻게 해야 할까요?
 일단 C 의 기본 전처리기 명령을 이용하여 하는 방법이 있습니다.
 
-```cpp
+```cpp-formatted
 
 /* 수정된 weird.h*/
 #ifndef WEIRD_H
 #define WEIRD_H
-struct Weird
-{
-    char arr[2];
-    int i;
+struct Weird {
+  char arr[2];
+  int i;
 };
 #endif
 ```
 
 
 
-```cpp
+```cpp-formatted
 
 /* 이상한 test.c*/
 #include <stdio.h>
 #include "weird.h"
-#include "weird.h"
-int main()
-{
-    struct Weird a;
-    a.i = 3;
-    printf("Weird 구조체의 a.i : %d \n", a.i);
-    return 0;
+int main() {
+  struct Weird a;
+  a.i = 3;
+  printf("Weird 구조체의 a.i : %d \n", a.i);
+  return 0;
 }
 ```
 
@@ -613,32 +556,29 @@ int main()
 
 이렇게 하면 헤더파일의 내용이 중복으로 포함되는 것을 막을 수 있습니다. (이는 이미 수많은 헤더파일에서 사용되고 있는 방법입니다) 하지만 `#pragma` 를 이용하면 훨씬 단순하게 할 수 있는데,
 
-```cpp
+```cpp-formatted
 
 /* #pragma 의 위엄 – weird.h*/
 #pragma once
-struct Weird
-{
-    char arr[2];
-    int i;
+struct Weird {
+  char arr[2];
+  int i;
 };
 ```
 
 
 
 
-```cpp
+```cpp-formatted
 
 /* test.c*/
 #include <stdio.h>
 #include "weird.h"
-#include "weird.h"
-int main()
-{
-    struct Weird a;
-    a.i = 3;
-    printf("Weird 구조체의 a.i : %d \n", a.i);
-    return 0;
+int main() {
+  struct Weird a;
+  a.i = 3;
+  printf("Weird 구조체의 a.i : %d \n", a.i);
+  return 0;
 }
 ```
 
@@ -657,22 +597,22 @@ int main()
 
 실제로 아래 코드는 `stdio.h` 의 헤더파일을 열어본 것입니다.
 
-```cpp
+```cpp-formatted
 
 /***
-*stdio.h - definitions/declarations for standard I/O routines
-*
-*       Copyright (c) Microsoft Corporation. All rights reserved.
-*
-*Purpose:
-*       This file defines the structures, values, macros, and functions
-*       used by the level 2 I/O ("standard I/O") routines.
-*       [ANSI/System V]
-*
-*       [Public]
-*
-****/
-#if     _MSC_VER > 1000
+ *stdio.h - definitions/declarations for standard I/O routines
+ *
+ *       Copyright (c) Microsoft Corporation. All rights reserved.
+ *
+ *Purpose:
+ *       This file defines the structures, values, macros, and functions
+ *       used by the level 2 I/O ("standard I/O") routines.
+ *       [ANSI/System V]
+ *
+ *       [Public]
+ *
+ ****/
+#if _MSC_VER > 1000
 #pragma once
 #endif
 
@@ -681,14 +621,14 @@ int main()
 
 /* 내용 (생략) */
 
-#endif  /* _INC_STDIO */
+#endif /* _INC_STDIO */
 ```
 
 
 
 위 헤더파일에서 사용하는 컴파일러마다 어떠한 키워드를 사용할 수 있게 하였는지 알 수 있는데,
-```cpp
-#if     _MSC_VER > 1000
+```cpp-formatted
+#if _MSC_VER > 1000
 #pragma once
 #endif
 ```
@@ -697,14 +637,14 @@ int main()
 
 를 보면 `_MSC_VER` 이 1000 보다 크면 `#pragma once` 키워드를 사용하라고 되어있습니다. `_MSC_VER` 은 마이크로소프트 사의 전처리기에 의해 기본적으로 정의되어 있는 상수로 컴파일러의 버전을 나타내는데, `Visual C++` 의 경우 `_MSC_VER` 값이 1000 부터 시작 하여 현재 2008 버전은 1500 의 값을 가지고 있습니다. 즉, 현재 버전의 컴파일러의 경우 `_MSV_VER > 1000` 이 참이 되므로 `#pragma once` 키워드를 이용하게 됩니다. 구 버전의 컴파일러는 그 아래
 
-```cpp
+```cpp-formatted
 
 #ifndef _INC_STDIO
 #define _INC_STDIO
 
 …
 
-#endif  /* _INC_STDIO */
+#endif /* _INC_STDIO */
 ```
 
 
@@ -730,8 +670,3 @@ MSDN 에 들어가서 `#pragma` 와 연관된 키워드들을 잘 살펴보시�
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-
-

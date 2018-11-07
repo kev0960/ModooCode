@@ -54,16 +54,15 @@ cat_title :  fputs
 
 
 
-```cpp
+```cpp-formatted
 /* 화면에 str 의 내용을 출력한다. */
 #include <stdio.h>
-int main ()
-{
-    char str[] = "string to print \n";
+int main() {
+  char str[] = "string to print \n";
 
-    fputs(str, stdout);
+  fputs(str, stdout);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -74,7 +73,7 @@ int main ()
 
 화면(stdout) 에 `str` 의 내용인 `string to print` \n 이 출력된 것을 볼 수 있다.
 
-```cpp
+```cpp-formatted
 /*
 
 mylog.txt 에 (없으면 파일을 생성한다) 사용자로 부터 입력받은 문자열을 추가한다.
@@ -85,17 +84,16 @@ mylog.txt 에 (없으면 파일을 생성한다) 사용자로 부터 입력받�
 */
 
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    char sentence [256];
+int main() {
+  FILE* pFile;
+  char sentence[256];
 
-    printf("mylog.txt 에 추가할 문자열을 입력하세요: ");
-    fgets (sentence,255,stdin);
-    pFile = fopen ("mylog.txt","a");
-    fputs (sentence,pFile);
-    fclose (pFile);
-    return 0;
+  printf("mylog.txt 에 추가할 문자열을 입력하세요: ");
+  fgets(sentence, 255, stdin);
+  pFile = fopen("mylog.txt", "a");
+  fputs(sentence, pFile);
+  fclose(pFile);
+  return 0;
 }
 ```
 
@@ -127,8 +125,3 @@ int main ()
 *  [fprintf](http://itguru.tistory.com/64): 특정한 형식으로 스트림에 쓴다.
 
 *  [fwrite](http://itguru.tistory.com/69): 스트림에 데이터 블록을 쓴다.
-
-
-
-
-

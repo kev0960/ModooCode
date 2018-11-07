@@ -23,41 +23,36 @@ next_page : 99
 ###  구조체 동적 할당
 
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 #include <stdlib.h>
-struct Something
-{
-    int a,b;
+struct Something {
+  int a, b;
 };
-int main()
-{
-    struct Something *arr;
-    int size, i;
+int main() {
+  struct Something *arr;
+  int size, i;
 
-    printf("원하시는 구조체 배열의 크기 : ");
-    scanf("%d", &size);
+  printf("원하시는 구조체 배열의 크기 : ");
+  scanf("%d", &size);
 
-    arr = (struct Something *)malloc(sizeof(struct Something) * size);
+  arr = (struct Something *)malloc(sizeof(struct Something) * size);
 
-    for(i=0;i<size;i++)
-    {
-        printf("arr[%d].a : ", i);
-        scanf("%d", &arr[i].a);
-        printf("arr[%d].b : ", i);
-        scanf("%d", &arr[i].b);
-    }
+  for (i = 0; i < size; i++) {
+    printf("arr[%d].a : ", i);
+    scanf("%d", &arr[i].a);
+    printf("arr[%d].b : ", i);
+    scanf("%d", &arr[i].b);
+  }
 
-    for(i=0;i<size;i++)
-    {
-        printf("arr[%d].a : %d , arr[%d].b : %d \n", i, arr[i].a, i, arr[i].b);
-    }
+  for (i = 0; i < size; i++) {
+    printf("arr[%d].a : %d , arr[%d].b : %d \n", i, arr[i].a, i, arr[i].b);
+  }
 
-    free(arr);
+  free(arr);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 했다면
@@ -70,15 +65,15 @@ int main()
 
 저의 구조체 강좌를 여태까지 잘 보신 분들은 잘 아시겠지만 '구조체' 역시 특별하게 생각해야 될 것이 아니라 '사용자가 만든 하나의 데이터 타입' 이라고 보시면 된다고 했습니다. 다시 말해 구조체도 `int` 처럼 사용할 수 있다는 것이지요. 따라서 구조체 배열을 `malloc` 을 이용하여 지지고 볶는 일은 전혀 이상할 것이 없는 행동 입니다.
 
-```cpp
-    struct Something *arr;
+```cpp-formatted
+struct Something *arr;
 ```
 
 
 일단 1 차원 구조체 배열을 가리키기 위한 `arr` 을 선언하였습니다. `int` 형 배열을 만들기 위해 `int` *arr; 이라 했던 것과 정확히 일치 합니다.
 
-```cpp
-    arr = (struct Something *)malloc(sizeof(struct Something) * size);
+```cpp-formatted
+arr = (struct Something *)malloc(sizeof(struct Something) * size);
 ```
 
 
@@ -86,21 +81,20 @@ int main()
 
 물론 위 경우는 조금 특별하지만 예를 들어 구조체의 크기가 10 바이트일 경우 컴퓨터가 **더블워드 경계(double word boundary)** 에 놓음으로 속도를 향상시키는 경우가 있는데 이 경우 구조체의 크기는 12 바이트로 간주될 수 있습니다. 사실 자세한 내용은 여기서 생략하기로 하고 아무튼 기역해야 할 점은 언제나 `sizeof` 를 사용해야 한다는 점입니다. 무턱대고 크기를 추정하지 맙시다!
 
-```cpp
-    for(i=0;i<size;i++)
-    {
-        printf("arr[%d].a : ", i);
-        scanf("%d", &arr[i].a);
-        printf("arr[%d].b : ", i);
-        scanf("%d", &arr[i].b);
-    }
+```cpp-formatted
+for (i = 0; i < size; i++) {
+  printf("arr[%d].a : ", i);
+  scanf("%d", &arr[i].a);
+  printf("arr[%d].b : ", i);
+  scanf("%d", &arr[i].b);
+}
 ```
 
 
 이렇게 할당을 하고 나면 입력을 받아야 겠지요? 위와 같은 `for` 문을 열심히 돌려서 입력을 받으면 됩니다.
 
-```cpp
-    free(arr);
+```cpp-formatted
+free(arr);
 ```
 
 
@@ -120,11 +114,10 @@ int main()
 
 상당히 단순하지요? 이를 C 코드로 나타내면 다음과 같습니다.
 
-```cpp
-struct Node
-{
-    int data; /* 데이터 */
-    struct Node* nextNode; /* 다음 노드를 가리키는 부분 */
+```cpp-formatted
+struct Node {
+  int data;              /* 데이터 */
+  struct Node* nextNode; /* 다음 노드를 가리키는 부분 */
 };
 ```
 
@@ -141,16 +134,15 @@ struct Node
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F166252054C8DF0D2A57736)
 위 그림 처럼 기존에 있었던 연결을 없애버리고 그 사이에 새롭게 연결해주기만 하면 됩니다. 이러한 사실을 바탕으로 노드를 만들어봅시다. 가장 먼저 새로운 노드를 생성하는 `CreateNode` 함수 부터 만들어봅시다. 이 함수는 노드를 생성하기만 합니다. 노드를 생성하기 위해서는 데이터와 이 노드가 가리키는 다음 노드가 필요한데 이 함수는 단순히 첫번째 노드를 만드는 역할을 한다고 하고 `nextNode` 를 `NULL` 로 줍시다.
 
-```cpp
+```cpp-formatted
 /* 새 노드를 만드는 함수 */
-struct Node* CreateNode(int data)
-{
-    struct Node* newNode = (struct Node *)malloc(sizeof(struct Node));
+struct Node* CreateNode(int data) {
+  struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
 
-    newNode->data = data;
-    newNode->nextNode = NULL;
+  newNode->data = data;
+  newNode->nextNode = NULL;
 
-    return newNode;
+  return newNode;
 }
 ```
 
@@ -159,24 +151,23 @@ struct Node* CreateNode(int data)
 
 사실 이 함수는 노드를 생성하기만 할 뿐 노드를 어떻게 관계짓지는 못합니다. 따라서 어떠한 노드 뒤에 새로운 노드를 생성하는 함수를 만들어야 할 것입니다. 이 함수는 `InsertNode` 함수라고 합시다. 따라서 어떠한 노드뒤에 올지 '앞에 있는 노드' 에 관한 정보와 '새로운 노드를 위한 데이터' 가 필요하므로 `struct Node *current, int data` 를 인자로 가져야 합니다.
 
-```cpp
+```cpp-formatted
 /* current 라는 노드 뒤에 노드를 새로 만들어 넣는 함수 */
-struct Node* InsertNode(struct Node *current, int data)
-{
-    /* current 노드가 가리키고 있던 다음 노드가 after 이다 */
-    struct Node* after = current->nextNode;
+struct Node* InsertNode(struct Node* current, int data) {
+  /* current 노드가 가리키고 있던 다음 노드가 after 이다 */
+  struct Node* after = current->nextNode;
 
-    /* 새로운 노드를 생성한다 */
-    struct Node* newNode = (struct Node *)malloc(sizeof(struct Node));
+  /* 새로운 노드를 생성한다 */
+  struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
 
-    /* 새 노드에 값을 넣어준다. */
-    newNode->data = data;
-    newNode->nextNode = after;
+  /* 새 노드에 값을 넣어준다. */
+  newNode->data = data;
+  newNode->nextNode = after;
 
-    /* current 는 이제 newNode 를 가리키게 된다 */
-    current->nextNode = newNode;
+  /* current 는 이제 newNode 를 가리키게 된다 */
+  current->nextNode = newNode;
 
-    return newNode;
+  return newNode;
 }
 ```
 
@@ -186,26 +177,26 @@ struct Node* InsertNode(struct Node *current, int data)
 
 위 함수에 대한 설명을 위 그림을 보면서 해봅시다.
 
-```cpp
-    /* 새로운 노드를 생성한다 */
-    struct Node* newNode = (struct Node *)malloc(sizeof(struct Node));
+```cpp-formatted
+/* 새로운 노드를 생성한다 */
+struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
 ```
 
 
 일단 위 문장을 통해 새로운 노드 `newNode` 를 생성하였습니다.
 
-```cpp
-    /* 새 노드에 값을 넣어준다. */
-    newNode->data = data;
-    newNode->nextNode = after;
+```cpp-formatted
+/* 새 노드에 값을 넣어준다. */
+newNode->data = data;
+newNode->nextNode = after;
 ```
 
 
 이제 위 과정을 통해 `newNode` 에 `nextNode` 를 넣어주는 과정인데요, 이는 위 그림에서 3 번에 해당하는 과정입니다.
 
-```cpp
-    /* current 는 이제 newNode 를 가리키게 된다 */
-    current->nextNode = newNode;
+```cpp-formatted
+/* current 는 이제 newNode 를 가리키게 된다 */
+current->nextNode = newNode;
 ```
 
 
@@ -213,34 +204,30 @@ struct Node* InsertNode(struct Node *current, int data)
 
 이렇게 노드를 잘 만들어주었다면 노드를 파괴하는 역할을 가지는 함수 역시 만들어야 합니다. 이를 위해서는 이 노드를 가리키고 있던 이전 노드가 필요하게 됩니다. 그런데 이 노드를 가리키고 있던 노드를 찾기 위해서는 맨 처음 부터 뒤져나가야 하는데, 맨 처음 노트를 헤드 라고 하며 우리의 `DestoryNode` 함수는 헤드를 인자로 받아야 합니다. 물론 파괴하고자 하는 노드도 인자로 받아야 하지요
 
-```cpp
+```cpp-formatted
 /* 선택된 노드를 파괴하는 함수 */
-void DestroyNode(struct Node *destroy, struct Node* head)
-{
-    /* 다음 노드를 가리킬 포인터*/
-    struct Node *next = head;
+void DestroyNode(struct Node *destroy, struct Node *head) {
+  /* 다음 노드를 가리킬 포인터*/
+  struct Node *next = head;
 
-    /* head 를 파괴하려 한다면 */
-    if(destroy == head)
-    {
-        free(destroy);
-        return;
-    }
+  /* head 를 파괴하려 한다면 */
+  if (destroy == head) {
+    free(destroy);
+    return;
+  }
 
-    /* 만일 next 가 NULL 이면 종료 */
-    while(next)
-    {
-        /* 만일 next 다음 노드가 destroy 라면 next 가 destory 앞 노드*/
-        if(next->nextNode == destroy)
-        {
-            /* 따라서 next 의 다음 노드는 destory 가 아니라 destroy 의 다음 노드가 된다. */
-            next->nextNode = destroy->nextNode;
-        }
-        /* next 는 다음 노드를 가리킨다. */
-        next = next->nextNode;
-
-    }
-    free(destroy);
+  /* 만일 next 가 NULL 이면 종료 */
+  while (next) {
+    /* 만일 next 다음 노드가 destroy 라면 next 가 destory 앞 노드*/
+    if (next->nextNode == destroy) {
+      /* 따라서 next 의 다음 노드는 destory 가 아니라 destroy 의 다음 노드가
+       * 된다. */
+      next->nextNode = destroy->nextNode;
+    }
+    /* next 는 다음 노드를 가리킨다. */
+    next = next->nextNode;
+  }
+  free(destroy);
 }
 ```
 
@@ -248,19 +235,17 @@ void DestroyNode(struct Node *destroy, struct Node* head)
 위와 같이 만들면 됩니다. `head` 노드로 부터 차례 차례 하나 씩 다음 노드와 비교해가면서 찾아나가는 모습입니다. 이 과정은
 
 
-```cpp
-    while(next)
-    {
-        /* 만일 next 다음 노드가 destroy 라면 next 가 destory 앞 노드*/
-        if(next->nextNode == destroy)
-        {
-            /* 따라서 next 의 다음 노드는 destory 가 아니라 destroy 의 다음 노드가 된다. */
-            next->nextNode = destroy->nextNode;
-        }
-        /* next 는 다음 노드를 가리킨다. */
-        next = next->nextNode;
-
-    }
+```cpp-formatted
+while (next) {
+  /* 만일 next 다음 노드가 destroy 라면 next 가 destory 앞 노드*/
+  if (next->nextNode == destroy) {
+    /* 따라서 next 의 다음 노드는 destory 가 아니라 destroy 의 다음 노드가 된다.
+     */
+    next->nextNode = destroy->nextNode;
+  }
+  /* next 는 다음 노드를 가리킨다. */
+  next = next->nextNode;
+}
 ```
 
 
@@ -272,68 +257,78 @@ void DestroyNode(struct Node *destroy, struct Node* head)
 
 
 
-```cpp
+```cpp-formatted
 
 #include <stdio.h>
 #include <stdlib.h>
-struct Node* InsertNode(struct Node *current, int data);
-void DestroyNode(struct Node *destroy);
+struct Node* InsertNode(struct Node* current, int data);
+void DestroyNode(struct Node* destroy);
 struct Node* CreateNode(int data);
-void PrintNodeFrom(struct Node *from);
+void PrintNodeFrom(struct Node* from);
 
-struct Node
-{
-int data; /* 데이터 */
-struct Node* nextNode; /* 다음 노드를 가리키는 부분 */
+struct Node {
+  int data;              /* 데이터 */
+  struct Node* nextNode; /* 다음 노드를 가리키는 부분 */
 };
-int main()
-{
-struct Node* Node1 = CreateNode(100);
-struct Node* Node2 = InsertNode(Node1, 200);
-struct Node* Node3 = InsertNode(Node2, 300);
-/* Node 2 뒤에 Node4 넣기 */
-struct Node* Node4 = InsertNode(Node2, 400);
+int main() {
+  struct Node* Node1 = CreateNode(100);
+  struct Node* Node2 = InsertNode(Node1, 200);
+  struct Node* Node3 = InsertNode(Node2, 300);
+  /* Node 2 뒤에 Node4 넣기 */
+  struct Node* Node4 = InsertNode(Node2, 400);
 
-PrintNodeFrom(Node1);
-return 0;
+  PrintNodeFrom(Node1);
+  return 0;
 }
-void PrintNodeFrom(struct Node *from)
-{
-/* from 이 NULL 일 때 까지,
-   즉 끝 부분에 도달할 때 까지 출력 */
-while(from)
-{
-printf("노드의 데이터 : %d \n", from->data);
-from = from->nextNode;
-}
+void PrintNodeFrom(struct Node* from) {
+  /* from 이 NULL 일 때 까지,
+     즉 끝 부분에 도달할 때 까지 출력 */
+  while (from) {
+    printf("노드의 데이터 : %d \n", from->data);
+    from = from->nextNode;
+  }
 }
 /* current 라는 노드 뒤에 노드를 새로 만들어 넣는 함수 */
-struct Node* InsertNode(struct Node *current, int data)
-{
-/* current 노드가 가리키고 있던 다음 노드가 after 이다 */
-struct Node* after = current->nextNode;
+struct Node* InsertNode(struct Node* current, int data) {
+  /* current 노드가 가리키고 있던 다음 노드가 after 이다 */
+  struct Node* after = current->nextNode;
 
-/* 새로운 노드를 생성한다 */
-struct Node* newNode = (struct Node *)malloc(sizeof(struct Node));
+  /* 새로운 노드를 생성한다 */
+  struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
 
-/* 새 노드에 값을 넣어준다. */
-newNode->data = data;
-newNode->nextNode = after;
+  /* 새 노드에 값을 넣어준다. */
+  newNode->data = data;
+  newNode->nextNode = after;
 
-/* current 는 이제 newNode 를 가리키게 된다 */
-current->nextNode = newNode;
+  /* current 는 이제 newNode 를 가리키게 된다 */
+  current->nextNode = newNode;
 
-return newNode;
-}/* 선택된 노드를 파괴하는 함수 */void DestroyNode(struct Node *destroy, struct Node* head){    /* 다음 노드를 가리킬 포인터*/    struct Node *next = head;    /* head 를 파괴하려 한다면 */    if(destroy == head)    {        free(destroy);        return;    }    /* 만일 next 가 NULL 이면 종료 */    while(next)    {        /* 만일 next 다음 노드가 destroy 라면 next 가 destory 앞 노드*/        if(next->nextNode == destroy)        {            /* 따라서 next 의 다음 노드는 destory 가 아니라 destroy 의 다음 노드가 된다. */            next->nextNode = destroy->nextNode;        }        /* next 는 다음 노드를 가리킨다. */        next = next->nextNode;    }    free(destroy);}
+  return newNode;
+} /* 선택된 노드를 파괴하는 함수 */
+void DestroyNode(struct Node* destroy,
+                 struct Node* head) { /* 다음 노드를 가리킬 포인터*/
+  struct Node* next = head;           /* head 를 파괴하려 한다면 */
+  if (destroy == head) {
+    free(destroy);
+    return;
+  }              /* 만일 next 가 NULL 이면 종료 */
+  while (next) { /* 만일 next 다음 노드가 destroy 라면 next 가 destory 앞 노드*/
+    if (next->nextNode == destroy) { /* 따라서 next 의 다음 노드는 destory 가
+                                        아니라 destroy 의 다음 노드가 된다. */
+      next->nextNode = destroy->nextNode;
+    } /* next 는 다음 노드를 가리킨다. */
+    next = next->nextNode;
+  }
+  free(destroy);
+}
 /* 새 노드를 만드는 함수 */
-struct Node* CreateNode(int data)
-{
-struct Node* newNode = (struct Node *)malloc(sizeof(struct Node));
+struct Node* CreateNode(int data) {
+  struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
 
-newNode->data = data;
-newNode->nextNode = NULL;
+  newNode->data = data;
+  newNode->nextNode = NULL;
 
-return newNode;
+  return newNode;
 }
 ```
 
@@ -351,17 +346,15 @@ return newNode;
 
 
 
-```cpp
+```cpp-formatted
 
-void PrintNodeFrom(struct Node *from)
-{
-/* from 이 NULL 일 때 까지,
-   즉 끝 부분에 도달할 때 까지 출력 */
-while(from)
-{
-printf("노드의 데이터 : %d \n", from->data);
-from = from->nextNode;
-}
+void PrintNodeFrom(struct Node *from) {
+  /* from 이 NULL 일 때 까지,
+     즉 끝 부분에 도달할 때 까지 출력 */
+  while (from) {
+    printf("노드의 데이터 : %d \n", from->data);
+    from = from->nextNode;
+  }
 }
 ```
 
@@ -372,7 +365,7 @@ from = from->nextNode;
 
 
 
-```cpp
+```cpp-formatted
 
 struct Node* Node1 = CreateNode(100);
 struct Node* Node2 = InsertNode(Node1, 200);
@@ -407,27 +400,26 @@ struct Node* Node4 = InsertNode(Node2, 400);
 먼저 `memcpy` 함수 부터 봅시다.
 
 
-```cpp
+```cpp-formatted
 
 /* memcpy 함수 */
 
 #include <stdio.h>
 #include <string.h>
 
-int main()
-{
-char str[50]="I love Chewing C hahaha";
-char str2[50];
-char str3[50];
+int main() {
+  char str[50] = "I love Chewing C hahaha";
+  char str2[50];
+  char str3[50];
 
-memcpy(str2, str, strlen(str)+1);
-memcpy(str3, "hello", 6);
+  memcpy(str2, str, strlen(str) + 1);
+  memcpy(str3, "hello", 6);
 
-printf("%s \n", str);
-printf("%s \n", str2);
-printf("%s \n", str3);
+  printf("%s \n", str);
+  printf("%s \n", str2);
+  printf("%s \n", str3);
 
-return 0;
+  return 0;
 }
 ```
 
@@ -448,8 +440,8 @@ return 0;
 `memcpy` 함수는 메모리의 특정한 부분으로 부터 얼마 까지의 부분을 다른 메모리 영역으로 복사해주는 함수 입니다. 위와 같이 문자열을 복사하는데 사용될 수 있죠. 물론 문자열 복사를 전문적으로 하는 함수는 `strcpy` 이지만 위와 같이 `memcpy` 함수를 사용하는 것도 나쁘지 않습니다.
 
 
-```cpp
-memcpy(str2, str, strlen(str)+1);
+```cpp-formatted
+memcpy(str2, str, strlen(str) + 1);
 ```
 
 
@@ -457,7 +449,7 @@ memcpy(str2, str, strlen(str)+1);
 일단 위 문장은 '`str` 로 부터 `strlen(str) + 1` 만큼의 문자를 `str2` 로 복사해라' 라는 의미 입니다. 이 때, `strlen` 함수는 문자열의 길이를 리턴해주는 함수로 예를 들어 `strlen("abc");` 를 하면 3 이 리턴됩니다. 이 때 마지막의 `NULL` 문자는 세지 않으므로 `str2` 에 `memcpy` 로 복사할 때 에는 1 을 더한만큼을 더 복사해주어야 합니다.
 
 
-```cpp
+```cpp-formatted
 memcpy(str3, "hello", 6)
 ```
 
@@ -469,23 +461,22 @@ memcpy(str3, "hello", 6)
 다음으로 `memmove` 함수에 대해 살펴봅시다. 이 함수는 메모리의 특정한 부분의 내용을 다른 부분으로 옮겨주는 역할을 합니다. 이 때 '옮긴다' 고 해서 이전 공간에 있던 데이터가 사라지지는 않습니다.
 
 
-```cpp
+```cpp-formatted
 
 /* memmove 함수 */
 
 #include <stdio.h>
 #include <string.h>
 
-int main()
-{
-char str[50]="I love Chewing C hahaha";
+int main() {
+  char str[50] = "I love Chewing C hahaha";
 
-printf("%s \n", str);
-printf("memmove 이후 \n");
-memmove(str+23, str+17, 6);
-printf("%s", str);
+  printf("%s \n", str);
+  printf("memmove 이후 \n");
+  memmove(str + 23, str + 17, 6);
+  printf("%s", str);
 
-return 0;
+  return 0;
 }
 ```
 
@@ -503,10 +494,10 @@ return 0;
 와 같이 나옵니다.
 
 
-```cpp
+```cpp-formatted
 
-char str[50]="I love Chewing C hahaha";
-memmove(str+23, str+17, 6);
+char str[50] = "I love Chewing C hahaha";
+memmove(str + 23, str + 17, 6);
 ```
 
 
@@ -516,24 +507,23 @@ memmove(str+23, str+17, 6);
 마지막으로 `memcmp` 함수를 살펴보도록 합시다. 이는 이름에서도 충분히 짐작이 되듯이 두 개의 메모리 공간을 서로 비교하는 함수 입니다.
 
 
-```cpp
+```cpp-formatted
 
 /* memcmp 함수 */
 
 #include <stdio.h>
 #include <string.h>
 
-int main()
-{
-int arr[10]= {1,2,3,4,5};
-int arr2[10] = {1,2,3,4,5};
+int main() {
+  int arr[10] = {1, 2, 3, 4, 5};
+  int arr2[10] = {1, 2, 3, 4, 5};
 
-if(memcmp(arr, arr2, 5)==0)
-printf("arr 과 arr2 는 일치! \n");
-else
-printf("arr 과 arr2 는 일치 안함 \n");
+  if (memcmp(arr, arr2, 5) == 0)
+    printf("arr 과 arr2 는 일치! \n");
+  else
+    printf("arr 과 arr2 는 일치 안함 \n");
 
-return 0;
+  return 0;
 }
 ```
 
@@ -551,9 +541,8 @@ return 0;
 `memcmp` 함수는 꽤 유용하게 사용될 수 있습니다. 이 함수는 메모리의 두 부분을 원하는 만큼 비교를 합니다. 이 때 같다면 0, 다르다면 결과에 따라 0 이 아닌 값을 리턴하게 되지요.
 
 
-```cpp
-if(memcmp(arr, arr2, 5)==0)
-```
+```cpp-formatted
+if (memcmp(arr, arr2, 5) == 0) ```
 
 
 
@@ -582,12 +571,11 @@ if(memcmp(arr, arr2, 5)==0)
 
 앞서 구현하였던 `Node` 의 단점으로 '이 노드를 가리키는 노드' 를 쉽게 알 수 없다는 점이다. 이를 보완하기 위해
 
-```cpp
-struct Node
-{
-    int data; /* 데이터 */
-    struct Node* nextNode;/* 다음 노드를 가리키는 부분 */
-    struct Node* prevNode; /* 이전 노드를 가리키는 부분 */
+```cpp-formatted
+struct Node {
+  int data;              /* 데이터 */
+  struct Node* nextNode; /* 다음 노드를 가리키는 부분 */
+  struct Node* prevNode; /* 이전 노드를 가리키는 부분 */
 };
 ```
 
@@ -612,10 +600,3 @@ struct Node
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-
-
-
-

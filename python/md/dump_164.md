@@ -31,7 +31,7 @@ bool good ( ) const;
 
 이 함수가 리턴하는 값은 아래의 작업의 결과와 동일하다.
 
-```cpp
+```cpp-formatted
 (rdstate() == 0)
 ```
 
@@ -56,8 +56,8 @@ bool good ( ) const;
 ###  템플릿 멤버 선언
 
 
-```cpp
-( basic_ios<charT,traits> )bool good () const;
+```cpp-formatted
+(basic_ios<charT, traits>)bool good() const;
 ```
 
 ###  연관된 함수

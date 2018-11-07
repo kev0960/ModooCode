@@ -25,19 +25,19 @@ next_page : 25
 
 이전에 11 - 1 강에서 상수에 대해 잠깐 언급한 것이 기억이 나시나요? 그 때 저는 어떠한 데이터를 상수로 만들기 위해 그 앞에 `const` 키워드를 붙여주면 된다고 했습니다. 예를 들어서
 
-```cpp
+```cpp-formatted
 const int a = 3;
 ```
 
 과 같이 값이 3 인 `int` 변수 `a` 를 상수로 정의할 수 있습니다. `const` 는 단순히 말해서 '이 데이터의 내용은 절대로 바뀔 수 없다' 라는 의미의 키워드 입니다. 따라서, 위 문장의 의미는 '이 `int` 변수 `a` 의 값은 절대로 바뀌면 안된다!!!' 가 됩니다. 위와 같이 정의한 상수 `a` 를 아래 문장에
 
-```cpp
+```cpp-formatted
 a = 4;
 ```
 
 와 같이 하려고 해도 컴파일 시에 오류가 발생하게 됩니다. 왜냐하면 `a` 는 상수로 선언이 되어 있으므로 값이 절대로 변경될 수 없기 때문이죠. 심지어 '값이 변경될 가능성이 있는 문장' 조차 허용되지 않습니다. 예를 들어
 
-```cpp
+```cpp-formatted
 a = 3;
 ```
 
@@ -45,25 +45,25 @@ a = 3;
 
 여러분은 도대체 왜 상수를 사용하는지 의문을 가질 것 입니다. 하지만 상수는 프로그래밍 상에서 프로그래머들의 실수를 줄여주고, 실수를 했다고 해도 실수를 잡아내는데 중요한 역할을 하고 있습니다. 예를 들어 아래와 같은 문장을 봅시다.
 
-```cpp
+```cpp-formatted
 const double PI = 3.141592;
 ```
 
 즉 `double` 형 변수 `PI` 를 `3.141592` 라는 값을 가지게 선언하였습니다. 왜 이렇게 해도 되냐면 실제로 `PI` 값은 절대로 바뀌지 않는 상수 이기 때문이죠. 따라서, 프로그래머가 밤에 졸면서 코딩을 하다가 아래와 같이
 
-```cpp
+```cpp-formatted
 PI = 10;
 ```
 
 `PI` 의 값을 문장을 집어 넣었다고 해도 컴파일 시 오류가 발생하여 프로그래머는 이를 고칠 수 있게 됩니다. 반면에 `PI` 를 그냥 `double` 형 변수로 선언했다고 해봅시다.
 
-```cpp
+```cpp-formatted
 double PI = 3.141592;
 ```
 
 그렇다면 프로그래머가 아래와 같은 코드를 잠결에 집어 넣었다면
 
-```cpp
+```cpp-formatted
 PI = 10;
 ```
 
@@ -71,18 +71,17 @@ PI = 10;
 
 아무튼. 이번에는 포인터에도 `const` 를 붙일 수 있는지 생각해 봅시다.
 
-```cpp
+```cpp-formatted
 /* 상수 포인터? */
 #include <stdio.h>
-int main()
-{
-    int a;
-    int b;
-    const int* pa = &a;
+int main() {
+  int a;
+  int b;
+  const int* pa = &a;
 
-    *pa = 3; // 올바르지 않은 문장
-    pa = &b; // 올바른 문장
-    return 0;
+  *pa = 3;  // 올바르지 않은 문장
+  pa = &b;  // 올바른 문장
+  return 0;
 }
 ```
 
@@ -94,8 +93,9 @@ error C2166: l-value가 const 개체를 지정합니다.
 
 일단, 위 오류가 왜 발생하였는지에 대해 이야기 하기 앞서서 아래 문장이 무슨 의미를 가지는지 살펴 봅시다.
 
-```cpp
-    const int* pa = &a; //int* pa 와 같이 정의해도 int *pa 와 같다는 사실은 다 알고 있죠?
+```cpp-formatted
+const int* pa =
+  &a;  // int* pa 와 같이 정의해도 int *pa 와 같다는 사실은 다 알고 있죠?
 ```
 
 여러분은 위 문장을 보면 다음과 같은 생각이 떠오를 것입니다. "저 포인터는 `const int` 형을 가리키는 포인터인데, 어떻게 `int` 형 변수 `a` 의 주소값이 대입 될 수 있지? 그러면 안되는 거 아니야?". 하지만, 제가 앞에서 누누히 강조해 왔듯이 `const` 라는 키워드는 **이 데이터의 값은 절대로 바뀌면 안된다** 라고 일러주는 키워드라고 하였습니다.
@@ -114,25 +114,24 @@ error C2166: l-value가 const 개체를 지정합니다.
 
 물론 `a =` 3; 과 같은 문장은 오류를 출려하지 않습니다. 앞에서도 말했듯이 변수 `a` 자체는 `const` 가 아니기 때문이죠.
 
-```cpp
-    pa = &b; // 올바른 문장
+```cpp-formatted
+pa = &b;  // 올바른 문장
 ```
 
 그렇다면 위 문장은 옳은 문장 입니다. 왜 일까요? (아마 당연하다고 생각하면 여러분은 훌륭한 학생들 입니다) 이는 아래 예제와 함께 설명하도록 하겠습니다.
 
-```cpp
+```cpp-formatted
 /* 상수 포인터? */
 #include <stdio.h>
-int main()
-{
-    int a;
-    int b;
-    int* const pa = &a;
+int main() {
+  int a;
+  int b;
+  int* const pa = &a;
 
-    *pa = 3; // 올바른 문장
-    pa = &b; // 올바르지 않은 문장
+  *pa = 3;  // 올바른 문장
+  pa = &b;  // 올바르지 않은 문장
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -144,8 +143,8 @@ int main()
 
 앞서 보았던 오류와 동일한 오류가 뜹니다. 그런데 위치가 다릅니다. 앞에서는 위 문장에서 오류가 발생했는데 이번엔 아래에서 발생합니다. 일단, 포인터의 정의 부분 부터 이야기 해봅시다.
 
-```cpp
-   int* const pa = &a;
+```cpp-formatted
+int* const pa = &a;
 ```
 
 차근차근 봐 보면, 우리는 `int*` 를 가리키는 `pa` 라는 포인터를 정의하였습니다. 그런데 이번에는 `const` 키워드가 `int*` 앞에 있는 것이 아니라 `int*` 와 `pa` 사이에 놓이고 있습니다. 뭐지? 하지만 이 것은 `const` 키워드의 의미를 그대로 생각해 보면 간단합니다. `pa` 의 값이 바뀐 안된다는 것이지요.
@@ -158,27 +157,26 @@ int main()
 
 결론적으로 위 문장은 오류를 뿜게 됩니다. 왜냐하면 `pa` 가 다른 변수를 가리키기 때문이죠 (즉 `pa` 에 저장된 주소값을 바꾸므로) 반면에 위의 예제에서 오류가 났던 문장은 올바르게 돌아갑니다.
 
-```cpp
-    *pa = 3; // 올바른 문장
+```cpp-formatted
+*pa = 3;  // 올바른 문장
 ```
 
 왜냐하면 `pa` 가 가리키는 값을 바꾸면 안된다는 말은 안했기 때문이죠. (그냥 `int*`)
 
 한 번 위에 나와있던 것을 모두 합쳐 보면
 
-```cpp
+```cpp-formatted
 /* 상수 포인터? */
 #include <stdio.h>
-int main()
-{
-    int a;
-    int b;
-    const int* const pa = &a;
+int main() {
+  int a;
+  int b;
+  const int* const pa = &a;
 
-    *pa = 3; // 올바르지 않은 문장
-    pa = &b; // 올바르지 않은 문장
+  *pa = 3;  // 올바르지 않은 문장
+  pa = &b;  // 올바르지 않은 문장
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -190,19 +188,18 @@ int main()
 
 이번에는 포인터의 덧셈과 뺄셈에 대해서 다루어 보도록 하겠습니다. 앞에서도 강조하였지만 지금 하는 작업들이 무의미해 보이고 쓸모 없어 보이지만 나중에 정말로 중요하게 다루어 집니다. 조금만 힘내세요 (아마도 C 언어에서 가장 재미 없는 부분일듯.)
 
-```cpp
+```cpp-formatted
 /* 포인터의 덧셈 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    int* pa;
-    pa = &a;
+int main() {
+  int a;
+  int* pa;
+  pa = &a;
 
-    printf("pa 의 값 : %d \n", pa);
-    printf("(pa + 1) 의 값 : %d \n", pa + 1);
+  printf("pa 의 값 : %d \n", pa);
+  printf("(pa + 1) 의 값 : %d \n", pa + 1);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -213,8 +210,8 @@ int main()
 여러분의 출력 결과는 위에 나온 결과와 다를 수 있습니다. 다만, 두 수의 차이는 4 일 것입니다.
   아마 여러분은 출력된 결과를 보면서 깜짝 놀랐을 것입니다. 우리는 분명히
 
-```cpp
-    printf("(pa + 1) 의 값 : %d \n", pa + 1);
+```cpp-formatted
+printf("(pa + 1) 의 값 : %d \n", pa + 1);
 ```
 
 에서 `pa + 1` 의 값을 출력하라고 명시하였습니다. 제가 앞에서도 이야기 하였듯이 `pa` 에는 자신이 가리키는 변수의 주소값이 들어갑니다. 따라서, `pa + 1` 을 하면 1244812 에 1 이 더해진 1244813 가 아니라, 4 가 더해진 1244816 이 출력되었습니다. 이게 도대체 무슨 일입니까? `1244812 + 1 = 1244816` 이라고요?
@@ -223,26 +220,25 @@ int main()
 
 일단, 위 추측을 확인해보기 위해 int  포인터 말고도 크기가 다른 `char` 이다 `double` 등에 대해서도 해봅시다.
 
-```cpp
+```cpp-formatted
 /* 과연? */
 #include <stdio.h>
-int main()
-{
-    int a;
-    char b;
-    double c;
-    int* pa = &a;
-    char* pb = &b;
-    double* pc = &c;
+int main() {
+  int a;
+  char b;
+  double c;
+  int* pa = &a;
+  char* pb = &b;
+  double* pc = &c;
 
-    printf("pa 의 값 : %d \n", pa);
-    printf("(pa + 1) 의 값 : %d \n", pa + 1);
-    printf("pb 의 값 : %d \n", pb);
-    printf("(pb + 1) 의 값 : %d \n", pb + 1);
-    printf("pc 의 값 : %d \n", pc);
-    printf("(pc + 1) 의 값 : %d \n", pc + 1);
+  printf("pa 의 값 : %d \n", pa);
+  printf("(pa + 1) 의 값 : %d \n", pa + 1);
+  printf("pb 의 값 : %d \n", pb);
+  printf("(pb + 1) 의 값 : %d \n", pb + 1);
+  printf("pc 의 값 : %d \n", pc);
+  printf("(pc + 1) 의 값 : %d \n", pc + 1);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -258,20 +254,18 @@ int main()
 
 일단 직관적으로 포인터의 뺄셈은 허용될 것 같습니다. 왜냐하면 뺄셈은 본질적으로 덧셈과 다를 바 없기 때문이죠. (1 - 1 = 1 + (-1)) 아무튼 해 보면 덧셈과 유사한 결과가 나타납니다.
 
-```cpp
+```cpp-formatted
 /* 포인터 뺄셈 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    int* pa = &a;
+int main() {
+  int a;
+  int* pa = &a;
 
-    printf("pa 의 값 : %d \n", pa);
-    printf("(pa - 1) 의 값 : %d \n", pa - 1);
+  printf("pa 의 값 : %d \n", pa);
+  printf("(pa - 1) 의 값 : %d \n", pa - 1);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 후 실행 해보면
@@ -281,18 +275,17 @@ int main()
 여러분의 출력 결과는 위에 나온 결과와 다를 수 있습니다.
   역시 우리의 예상대로 4 가 빼졌습니다.
 
-```cpp
+```cpp-formatted
 /* 포인터끼리의 덧셈 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    int* pa = &a;
-    int b;
-    int *pb = &b;
-    int *pc = pa + pb;
+int main() {
+  int a;
+  int *pa = &a;
+  int b;
+  int *pb = &b;
+  int *pc = pa + pb;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -306,22 +299,21 @@ error C2110: '+' : 두 포인터를 더할 수 없습니다.
 
 그런데 한 가지 놀라운 점은 포인터끼리의 뺄셈은 가능하다는 것입니다. 왜 그런지에 대한 설명은 나중에 합시다.
 
-```cpp
+```cpp-formatted
 /* 포인터의 대입 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    int* pa = &a;
-    int* pb;
+int main() {
+  int a;
+  int* pa = &a;
+  int* pb;
 
-    *pa = 3;
-    pb = pa;
+  *pa = 3;
+  pb = pa;
 
-    printf("pa 가 가리키고 있는 것 : %d \n", *pa);
-    printf("pb 가 가리키고 있는 것 : %d \n", *pb);
+  printf("pa 가 가리키고 있는 것 : %d \n", *pa);
+  printf("pb 가 가리키고 있는 것 : %d \n", *pb);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -332,8 +324,8 @@ int main()
 
 와 같이 나옵니다. 뭐 당연한 일이지요.
 
-```cpp
-    pb = pa;
+```cpp-formatted
+pb = pa;
 ```
 
 부분에서 `pa` 에 저장되어 있는 값 (즉, `pa` 가 가리키고 있는 변수의 주소값) 을 `pb` 에 대입하였습니다. 따라서 `pb` 도 `pa` 가 가리키던 것의 주소값을 가지게 되는 것이지요. 결과적으로 `pb` 와 `pa` 모두 `a` 를 가리키게 됩니다. 주의해야 될 점은 `pa` 와 `pb` 가 형이 같아야 한다는 점 입니다. 다시 말해 `pa` 가 `int*` 면 `pb` 도 `int*` 여야 합니다. 만일 형이 다르다면 형변환을 해주어야 하는데 이에 대한 이야기는 나중에 합시다.
@@ -352,8 +344,8 @@ int main()
 
 이전 강좌에서 (11 강) 저는 여러분에게 배열에 대해 이야기 했었습니다. 그 때, 배열은 '변수가 여러개 모인 것으로 생각할 수 있다' 라고 이야기 했었지요. 그런데 말이죠. 또다른 놀라운 특징이 있습니다. 바로 배열들의 각 원소는 메모리 상에 연속되게 놓인 다는 점입니다. 뭐, 놀랍지 않다면 말고요. 어쨋든,
 
-```cpp
-int arr[10] = {1,2,3,4,5,6,7,8,9,10};
+```cpp-formatted
+int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 ```
 
   이라는 배열을 정의한다면 메모리 상에서 다음과 같이 나타납니다.
@@ -364,19 +356,17 @@ int arr[10] = {1,2,3,4,5,6,7,8,9,10};
 
 즉, 위와 같이 메모리 상에 연속된 형태로 나타난다는 점이지요. 한 개의 원소는 `int` 형 변수이기 때문에 4 바이트를 차지하게 됩니다. 물론, 위 사실을 믿지 못하시는 분들은 아래와 같이 컴퓨터를 통해 직접 확인해 볼 수 있습니다.
 
-```cpp
+```cpp-formatted
 /* 배열의 존재 상태? */
 #include <stdio.h>
-int main()
-{
-    int arr[10]={1,2,3,4,5,6,7,8,9,10};
-    int i;
+int main() {
+  int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  int i;
 
-    for(i=0;i<10;i++)
-    {
-        printf("arr[%d] 의 주소값 : %x \n", i, &arr[i]);
-    }
-    return 0;
+  for (i = 0; i < 10; i++) {
+    printf("arr[%d] 의 주소값 : %x \n", i, &arr[i]);
+  }
+  return 0;
 }
 ```
 
@@ -393,32 +383,27 @@ int main()
 
 한 번 이 아이디어를 적용시켜서 배열의 원소를 가리키는 포인터를 만들어봅시다.
 
-```cpp
+```cpp-formatted
 /* 과연? */
 #include <stdio.h>
-int main()
-{
-    int arr[10]={1,2,3,4,5,6,7,8,9,10};
-    int* parr;
-    int i;
-    parr = &arr[0];
+int main() {
+  int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  int* parr;
+  int i;
+  parr = &arr[0];
 
-    for(i=0;i<10;i++)
-    {
-        printf("arr[%d] 의 주소값 : %x ", i, &arr[i]);
-        printf("(parr + %d) 의 값 : %x ", i, (parr + i));
+  for (i = 0; i < 10; i++) {
+    printf("arr[%d] 의 주소값 : %x ", i, &arr[i]);
+    printf("(parr + %d) 의 값 : %x ", i, (parr + i));
 
-        if(&arr[i] == (parr + i))
-        {
-        /* 만일 (parr + i) 가 성공적으로 arr[i] 를 가리킨다면 */
-            printf(" --> 일치 \n");
-        }
-        else
-        {
-            printf("--> 불일치\n");
-        }
-    }
-    return 0;
+    if (&arr[i] == (parr + i)) {
+      /* 만일 (parr + i) 가 성공적으로 arr[i] 를 가리킨다면 */
+      printf(" --> 일치 \n");
+    } else {
+      printf("--> 불일치\n");
+    }
+  }
+  return 0;
 }
 ```
 
@@ -429,33 +414,32 @@ int main()
 
  정확히 모두 일치가 나옵니다. 위 소스코드가 이해가 안되는 분들이 있을 까봐 살짝 설명을 드리기는 하겠습니다.
 
-```cpp
-      parr = &arr[0];
+```cpp-formatted
+parr = &arr[0];
 ```
 
 `parr` 이라는 `int` 형을 가리키는 포인터는 `arr[0]` 이라는 `int` 형 변수를 가리킵니다. (배열의 각 원소는 하나의 변수로 생각할 수 있다는 사실은 까먹지 않았죠?)
 
-```cpp
-        printf("arr[%d] 의 주소값 : %x ", i, &arr[i]);
-        printf("(parr + %d) 의 값 : %x ", i, (parr + i));
+```cpp-formatted
+printf("arr[%d] 의 주소값 : %x ", i, &arr[i]);
+printf("(parr + %d) 의 값 : %x ", i, (parr + i));
 ```
 
 이제, `arr[i]` 의 주소값과 `(parr + i)` 의 값을 출력해봅니다. 만일 `parr + i` 의 값이 `arr[i]` 의 주소값과 같다면 하단의 `if-else` 에서 일치가 출력되고 다르다면 불일치가 출력되게 됩니다. 그런데, 이미 예상하고 있던 바이지만 `parr` 이 `int` 형이므로 `+ i` 를 하면 주소값에는 사실상 `4*i` 가 더해지게 되는 것이지요. 이 때 `arr[i]` 의 주소값도 `i` 가 하나씩 커질 때 마다 4 씩 증가하므로 (`int` 형 배열이므로) 결과적으로 모든 결과가 일치하게 되는 것 입니다.
 
 이렇게 포인터에 정수를 더하는 것 만으로도 배열의 각 원소를 가리킬 수 있습니다. 그렇다면 `*` 를 이용하여 원소들과 똑같은 역할을 할 수 있게 되겠군요. 마치 아래 예제 처럼 말이지요.
 
-```cpp
+```cpp-formatted
 /* 우왕 */
 #include <stdio.h>
-int main()
-{
-    int arr[10]={1,2,3,4,5,6,7,8,9,10};
-    int* parr;
+int main() {
+  int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  int* parr;
 
-    parr = &arr[0];
+  parr = &arr[0];
 
-    printf("arr[3] = %d , *(parr + 3) = %d \n", arr[3], *(parr + 3));
-    return 0;
+  printf("arr[3] = %d , *(parr + 3) = %d \n", arr[3], *(parr + 3));
+  return 0;
 }
 ```
 
@@ -487,17 +471,15 @@ int main()
 
 그러곤 1 도, 2 도, 3 도, 아닌 이상한 값이 나오는 것을 보고 당황하셨겠죠.. 그런데, 놀랍게도 그 때 출력되는 값은 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int arr[3]={1,2,3};
+int main() {
+  int arr[3] = {1, 2, 3};
 
-    printf("arr 의 정체 : %x \n", arr);
-    printf("arr[0] 의 주소값 : %x \n", &arr[0]);
+  printf("arr 의 정체 : %x \n", arr);
+  printf("arr[0] 의 주소값 : %x \n", &arr[0]);
 
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -511,19 +493,16 @@ int main()
 
 따라서 배열에서 배열의 이름은 배열의 시작 주소값을 지칭하고 있다는 사실을 알 수 있습니다. 다시 말해, 배열의 이름은 배열의 시작 주소를 가리키는 포인터라고 생각할 수 있겠군요. 그렇다면 다음과 같은 연산이 가능할까요?
 
-```cpp
+```cpp-formatted
 /* 될까? */
 #include <stdio.h>
-int main()
-{
+int main() {
+  int arr[2] = {1, 2};
+  int brr[2] = {3, 4};
 
-    int arr[2]={1,2};
-    int brr[2]={3,4};
+  arr = brr;  // 안됨
 
-    arr = brr; // 안됨
-
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -547,16 +526,15 @@ error C2106: '=' : 왼쪽 피연산자는 l-value이어야 합니다.
 
 그런데, 우리는 앞서 포인터와 배열의 놀라운 관계를 배웠기 때문에 `[ ]` 연산자의 역할을 대충 짐작할 수 있습니다.
 
-```cpp
+```cpp-formatted
 /* [] 연산자 */
 #include <stdio.h>
-int main()
-{
-    int arr[5]={1,2,3,4,5};
+int main() {
+  int arr[5] = {1, 2, 3, 4, 5};
 
-    printf("a[3] : %d \n", arr[3]);
-    printf("*(a+3) : %d \n", *(arr+3));
-    return 0;
+  printf("a[3] : %d \n", arr[3]);
+  printf("*(a+3) : %d \n", *(arr + 3));
+  return 0;
 }
 ```
 
@@ -569,16 +547,15 @@ int main()
 
   따라서 다음과 같이 신기한 연산도 가능합니다.
 
-```cpp
+```cpp-formatted
 /* 신기한 [] 사용 */
 #include <stdio.h>
-int main()
-{
-    int arr[5]={1,2,3,4,5};
+int main() {
+  int arr[5] = {1, 2, 3, 4, 5};
 
-    printf("3[arr] : %d \n", 3[arr]);
-    printf("*(3+a) : %d \n", *(arr+3));
-    return 0;
+  printf("3[arr] : %d \n", 3 [arr]);
+  printf("*(3+a) : %d \n", *(arr + 3));
+  return 0;
 }
 ```
 
@@ -594,45 +571,45 @@ int main()
 
 앞에서 말하기를 `int` 를 가리키는 포인터를 정의하기 위해 다음의 두 문장을 모두 사용할 수 있다고 했습니다.
 
-```cpp
-    int* p;
-    int *p;
+```cpp-formatted
+int* p;
+int* p;
 ```
 
 그런데 말이죠. 제 강좌 말도 다른 곳에서 C 언어를 공부했던 사람들이라면 아래와 같은 형식을 훨씬 많이 쓴다는 사실을 알 수 있었을 것입니다.
 
-```cpp
-    int *p;
+```cpp-formatted
+int *p;
 ```
 
 왜 일까요? 우리가 `int` 형 변수를 여러개 한 번에 선언하려 했을 때 `int a,b,c,d;` 라 하잖아요. 포인터 변수를 여러개 선언 하려면 아래와 같이 해야 합니다.
 
-```cpp
-   int *p, *q, *r;
+```cpp-formatted
+int *p, *q, *r;
 ```
 
   물론
 
-```cpp
-    int* p, *q, *r;
+```cpp-formatted
+int *p, *q, *r;
 ```
 
   게 해도 됩니다. 다만,
 
-```cpp
-    int* p;
+```cpp-formatted
+int* p;
 ```
 
   꼴로 한다면 다음과 같이 실수 할 확률이 매우 커지게 됩니다. 왜냐하면 아래와 같이 한다면
 
-```cpp
-    int* p,q,r;
+```cpp-formatted
+int *p, q, r;
 ```
 
 `p` 만 `int` 를 가리키는 포인터 이고, `q, r` 은 평범한 `int` 형 변수가 됩니다. 따라서, 앞으로 저는 제 강좌에서 모든 포인터들은
 
-```cpp
-    int *p;
+```cpp-formatted
+int *p;
 ```
 
 꼴로 선언 하도록 하겠습니다.

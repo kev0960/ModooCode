@@ -32,17 +32,15 @@ next_page : 20
 ###  배열의 기초
 
 
-```cpp
+```cpp-formatted
 /* 배열 기초 */
 #include <stdio.h>
-int main()
-{
-    int arr[10] = {1,2,3,4,5,6,7,8,9,10};
+int main() {
+  int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-    printf("Array 3 번째 원소 : %d \n ", arr[2]);
-    return 0;
+  printf("Array 3 번째 원소 : %d \n ", arr[2]);
+  return 0;
 }
-
 ```
 
   성공적으로 컴파일 하였다면
@@ -70,16 +68,16 @@ int main()
 
   와 같이 해주면 됩니다. 위의 경우
 
-```cpp
-    int arr[10] = {1,2,3,4,5,6,7,8,9,10};
+```cpp-formatted
+int arr[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 ```
 
  와 같이 해주었으므로, 'int 형의 10 개의 원소를 가지는 배열 arr!' 이라고 생각하시면 됩니다. 다시말해, 이 배열은 10 개의 `int` 형 변수들을 보관 할 수 있게 됩니다. 만약 `char arr[10]` 이라 한다면 각 원소들이 모두 `char` 형으로 선언 됩니다. 또한 위와 같이 중괄호로 감싸 주었을 때, 배열의 각각의 원소에는 중괄호 속의 각 값들이 순차적으로 들어가게 됩니다. 배열의 첫 번째 원소에는 `1,` 두 번째 원소에는 `2, ... 10` 번째 원소에는 10 이 들어가게 됩니다.
 
   그런데, 막연하게 배열을 정의해 놓고 보니 배열의 각각의 원소들에 접근하는 방법을 알려주지 않았군요. 사실 이는 간단합니다. 배열의 `n` 번째 원소의 접근하기 위해서는 `arr[n-1]` 와 같이 써 주시면 됩니다. 즉, 대괄호[] 안에 접근하고자 하는 원소의 (번째수 `- 1)` 을 써주면 되죠. 예를 들어서
 
-```cpp
-    printf("Array 3 번째 원소 : %d \n ", arr[2]);
+```cpp-formatted
+printf("Array 3 번째 원소 : %d \n ", arr[2]);
 ```
 
   이라고 하면 배열의 3 번째 원소인 3 를 출력하게 됩니다. 많은 사람이 헷갈리는 부분인데, `arr[2]` 라고 하게되면 배열의 2 번째 원소인 2 를 출력하게 될 줄이라고 생각하지만 사실 3 번째 원소가 출력되게 됩니다. 즉, `arr[0]` 은 배열의 첫 번째 원소인 1 이 출력되고 `arr[9]` 는 배열의 10 번째 원소인 10 이 출력되게 됩니다.
@@ -113,9 +111,16 @@ int main()
 
 
 
-```cpp
+```cpp-formatted
 
-/* 배열 출력하기 */#include <stdio.h>int main(){    int arr[10] = {2,10,30,21,34,23,53,21,9,1};    int i;    for(i=0;i<10;i++)    {        printf("배열의 %d 번째 원소 : %d \n", i+1, arr[i]);    }    return 0;}
+/* 배열 출력하기 */ #include <stdio.h> int main() {
+  int arr[10] = {2, 10, 30, 21, 34, 23, 53, 21, 9, 1};
+  int i;
+  for (i = 0; i < 10; i++) {
+    printf("배열의 %d 번째 원소 : %d \n", i + 1, arr[i]);
+  }
+  return 0;
+}
 ```
 
 성공적으로 컴파일 하였다면
@@ -125,81 +130,77 @@ int main()
 
   아마, 여태까지 배운 내용을 잘 숙지하셨다면 위 소스를 어려움 없이 이해 하셨을 것이라고 생각합니다.
 
-```cpp
-    int arr[10] = {2,10,30,21,34,23,53,21,9,1};
+```cpp-formatted
+int arr[10] = {2, 10, 30, 21, 34, 23, 53, 21, 9, 1};
 ```
 
 일단, 배열의 정의 부분. `arr` 라는 원소를 10 개 가지는 `int` 형 배열을 선언한다라는 뜻이지요. 이 때, 각 원소의 값들은 중괄호 속에 있는 값들이 순차적으로 들어가므로 `2, 10, 30 ~ 9, 1` 까지 들어가게 됩니다.
 
-```cpp
-    for(i=0;i<10;i++)
-    {
-        printf("배열의 %d 번째 원소 : %d \n", i+1, arr[i]);
-    }
-
+```cpp-formatted
+for (i = 0; i < 10; i++) {
+  printf("배열의 %d 번째 원소 : %d \n", i + 1, arr[i]);
+}
 ```
 
  이제, 배열의 원소들의 값들을 출력하는 부분 입니다. 잘 아시다싶이, `for` 문은 `i = 0` 부터 9 까지 1 씩 증가하면서 대입하는데 각 경우의 배열의 `i` 번째 원소를 출력하게 되므로 위 처럼 배열의 원소들의 값들이 출력되게 됩니다. 다시 한 번 기억하세요! 배열의 `n` 번째 원소를 참조하려면 `arr[n-1]` 로 입력해야 합니다!! `arr[n]` 이 '절대로' 아닙니다!
 
   여기서 우리는 배열의 장점을 알 수 있습니다. 위 프로그램을 배열 없이 작성한다고 생각해보세요. 우리는 10 개의 서로 다른 변수를 만들어서 각각을 출력하는 작업을 해야 했을 것 입니다. 아래 (더러운) 코드는 위 예제와 동일한 내용을 10 개의 변수를 잡아서 직접 출력한 것을 보여 줍니다.
 
-```cpp
+```cpp-formatted
 /* 더러운 코드 */
 #include <stdio.h>
-int main()
-{
-    int a,b,c,d,e,f,g,h,i,j;
-    a=2;
-    b=10;
-    c=30;
-    d=21;
-    e=34;
-    f=23;
-    g=53;
-    h=21;
-    i=9;
-    j=1;
+int main() {
+  int a, b, c, d, e, f, g, h, i, j;
+  a = 2;
+  b = 10;
+  c = 30;
+  d = 21;
+  e = 34;
+  f = 23;
+  g = 53;
+  h = 21;
+  i = 9;
+  j = 1;
 
-    printf("1 째 값 : %d \n", a);
-    printf("2 째 값 : %d \n", b);
-    printf("3 째 값 : %d \n", c);
-    printf("4 째 값 : %d \n", d);
-    printf("5 째 값 : %d \n", e);
-    printf("6 째 값 : %d \n", f);
-    printf("7 째 값 : %d \n", g);
-    printf("8 째 값 : %d \n", h);
-    printf("9 째 값 : %d \n", i);
-    printf("10 째 값 : %d \n", j);
+  printf("1 째 값 : %d \n", a);
+  printf("2 째 값 : %d \n", b);
+  printf("3 째 값 : %d \n", c);
+  printf("4 째 값 : %d \n", d);
+  printf("5 째 값 : %d \n", e);
+  printf("6 째 값 : %d \n", f);
+  printf("7 째 값 : %d \n", g);
+  printf("8 째 값 : %d \n", h);
+  printf("9 째 값 : %d \n", i);
+  printf("10 째 값 : %d \n", j);
 
-    return 0;
+  return 0;
 }
-
 ```
 
   만일 여기에서 10 개의 변수의 값을 각각 입력받는 부분이라도 추가하라면 마우스라도 움켜 쥐고 울 것입니다.
  하지만 배열을 이용하면 간단히 끝내 버릴 수 있습니다. 아래 예제 처럼 말이지요.
 
-```cpp
+```cpp-formatted
 /* 평균 구하기*/
 #include <stdio.h>
-int main()
-{
-    int arr[5]; // 성적을 저장하는 배열
-    int i, ave = 0;
+int main() {
+  int arr[5];  // 성적을 저장하는 배열
+  int i, ave = 0;
 
-    for(i=0;i<5;i++) // 학생들의 성적을 입력받는 부분
-    {
-        printf("%d 번째 학생의 성적은? ", i+1);
-        scanf("%d", &arr[i]);
-    }
-    for(i=0;i<5;i++) // 전체 학생 성적의 합을 구하는 부분
-    {
-        ave = ave + arr[i];
-    }
+  for (i = 0; i < 5; i++)  // 학생들의 성적을 입력받는 부분
+  {
+    printf("%d 번째 학생의 성적은? ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+  for (i = 0; i < 5; i++)  // 전체 학생 성적의 합을 구하는 부분
+  {
+    ave = ave + arr[i];
+  }
 
-    printf("전체 학생의 평균은 : %d \n", ave/5); // 평균이므로 5 로 나누어 준다.
+  printf("전체 학생의 평균은 : %d \n",
+         ave / 5);  // 평균이므로 5 로 나누어 준다.
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -210,22 +211,21 @@ int main()
 
     사실, 위 평균 구하는 프로그램은 앞에서도 한 번 만들어 보았는데 이번에는 배열을 이용하여 프로그램을 만들어 보았습니다. 이전보다 오히려 더 복잡해진 느낌이지만, 학생 개개인의 성적을 변수로 보관하기 때문에 더 많은 작업들을 할 수 있게 되죠.
 
-```cpp
-    for(i=0;i<5;i++) // 학생들의 성적을 입력받는 부분
-    {
-        printf("%d 번째 학생의 성적은? ", i+1);
-        scanf("%d", &arr[i]);
-    }
+```cpp-formatted
+for (i = 0; i < 5; i++)  // 학생들의 성적을 입력받는 부분
+{
+  printf("%d 번째 학생의 성적은? ", i + 1);
+  scanf("%d", &arr[i]);
+}
 ```
 
   위 소스에서 학생들의 성적을 입력받는 부분 입니다. 별다른 특징이 없습니다. 이전에 `scanf` 에서 &(변수명) 형태로 값을 입력 받았는데 배열도 마찬가지로 같습니다. (이 부분에 대해서는 나중에 좀 더 자세히 다루도록 하지요. 왜 `&(arr[i])` 로 안해도 상관이 없는지...) 배열도, `&arr[i]` 로 쓰면 `arr` 배열의 (i+1) 번째 원소에 입력을 받게 됩니다. 이 때, `arr` 이 `int` 형 배열이기에 각 원소도 모두 `int` 형 이므로 `%d` 를 사용하게 되지요.
 
-```cpp
-    for(i=0;i<5;i++) // 전체 학생 성적의 합을 구하는 부분
-    {
-        ave = ave + arr[i];
-    }
-
+```cpp-formatted
+for (i = 0; i < 5; i++)  // 전체 학생 성적의 합을 구하는 부분
+{
+  ave = ave + arr[i];
+}
 ```
 
  이제 `ave` 에 배열의 각 원소들의 합을 구하는 부분 입니다. 배열도 변수의 모음이기에, 각 원소들은 모두 변수처럼 사용 가능합니다. 물론 배열의 각 원소들끼리의 연산도 가능합니다. 예를 들어서
@@ -236,18 +236,40 @@ int main()
 
   와 같이 해도 `ave[4]` 는 정확한 값이 들어가게 되지요. 마지막으로
 
-```cpp
-    printf("전체 학생의 평균은 : %d \n", ave/5);
+```cpp-formatted
+printf("전체 학생의 평균은 : %d \n", ave / 5);
 ```
 
   라 하면 전체 학생들의 평균을 구할 수 있게 됩니다.
 
   자, 그렇다면 아까 위의 친구가 부탁했던 프로그램을 만들 수 있는 수준까지 도달할 수 있겠습니다. 한 번 여러분이 짜보고 제가 만든 소스코드와 비교해 보는 것도 좋은 방법 인 것 같습니다. (참고로 저는 학생을 30 명으로 하면 처음에 데이터 입력하기가 너무 힘들어서 그냥 10 명으로 했으니 여러분은 마음대로 하시기 바랍니다.)
 
-```cpp
+```cpp-formatted
 
 소스 보기
-/* 친구의 부탁 */#include <stdio.h>int main(){    int arr[10];;    int i, ave = 0;    for(i=0;i<10;i++)    {        printf("%d 번째 학생의 성적은? ", i+1);        scanf("%d", &arr[i]);    }    for(i=0;i<10;i++)    {        ave = ave + arr[i];    }    ave = ave/10;    printf("전체 학생의 평균은 : %d \n", ave);    for(i=0;i<10;i++)    {        printf("학생 %d : ", i + 1);        if(arr[i] >= ave)            printf("합격 \n");        else            printf("불합격 \n");    }    return 0;}
+  /* 친구의 부탁 */ #include<stdio.h> int
+  main() {
+  int arr[10];
+  ;
+  int i, ave = 0;
+  for (i = 0; i < 10; i++) {
+    printf("%d 번째 학생의 성적은? ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+  for (i = 0; i < 10; i++) {
+    ave = ave + arr[i];
+  }
+  ave = ave / 10;
+  printf("전체 학생의 평균은 : %d \n", ave);
+  for (i = 0; i < 10; i++) {
+    printf("학생 %d : ", i + 1);
+    if (arr[i] >= ave)
+      printf("합격 \n");
+    else
+      printf("불합격 \n");
+  }
+  return 0;
+}
 ```
 
 성공적으로 컴파일 하였다면 아래와 같은 화면을 볼 수 있을 것입니다.
@@ -257,15 +279,14 @@ int main()
 
 유후! 어때요. 잘 출력되는 지요.
 
-```cpp
-    for(i=0;i<10;i++)
-    {
-        printf("학생 %d : ", i + 1);
-        if(arr[i] >= ave)
-            printf("합격 \n");
-        else
-            printf("불합격 \n");
-    }
+```cpp-formatted
+for (i = 0; i < 10; i++) {
+  printf("학생 %d : ", i + 1);
+  if (arr[i] >= ave)
+    printf("합격 \n");
+  else
+    printf("불합격 \n");
+}
 ```
 
   사실, 위 소스는 앞에서 보았던 우리의 평균 구하는 소스에 약간 더해서 만든 것 이므로 위 부분만 살펴 보면 되겠습니다. `i` 가 0 부터 9 까지 가면서 배열의 각 원소들을 `ave` 와 비교하고 있습니다. 만약, `ave` 이상이라면 합격, 그렇지 않다면 불합격을 출려갛게 말이지요. 솔직히 이 정도 수준의 프로그램 소스는 이제 더이상 설명해 줄 필요가 없어진 것 같습니다. (저만 그런가요? 만약 그렇지 않다면 이전의 강의들을 다시 한 번 정독하기를 강력하게 권합니다)
@@ -283,16 +304,40 @@ int main()
 
  이러한 아이디어를 바탕으로 프로그램을 짜 보겠습니다. 여러분은 아래 제가 구현한 코드를 보지 말고 한 번 스스로 해보시기 바랍니다. 참고로 저의 프로그램은 소수를 1000 개 만 찾습니다.
 
-```cpp
+```cpp-formatted
 
 
 /* 소수 프로그램 */
 #include <stdio.h>
 int main() {
-    /* 우리가 소수인지 판별하고 있는 수 */    
-    int guess = 5;    /* 소수의 배열 */    int prime[1000];    /*    현재까지 찾은 (소수의 개수 - 1)    아래 두 개의 소수를 미리 찾았으므로    초기값은 1 이 된다.    */    int index = 1;    /* for 문 변수 */    int i;    /* 소수인지 판별위해 쓰이는 변수*/    int ok;    /* 처음 두 소수는 특별한 경우로 친다 */    prime[0] = 2;    prime[1] = 3;    for(;;)    {        ok = 0;        for(i=0;i<=index;i++)        {            if(guess % prime[i] != 0)            {                ok++;            }            else            {
-
-                break;            }        }        if(ok == (index + 1))        {            index++;            prime[index] = guess;            printf("소수 : %d \n", prime[index]);            if(index == 999)                break;        }        guess+= 2;    }    return 0;}
+  /* 우리가 소수인지 판별하고 있는 수 */
+  int guess = 5; /* 소수의 배열 */
+  int prime[1000]; /*    현재까지 찾은 (소수의 개수 - 1)    아래 두 개의 소수를
+                      미리 찾았으므로    초기값은 1 이 된다.    */
+  int index = 1; /* for 문 변수 */
+  int i;         /* 소수인지 판별위해 쓰이는 변수*/
+  int ok;        /* 처음 두 소수는 특별한 경우로 친다 */
+  prime[0] = 2;
+  prime[1] = 3;
+  for (;;) {
+    ok = 0;
+    for (i = 0; i <= index; i++) {
+      if (guess % prime[i] != 0) {
+        ok++;
+      } else {
+        break;
+      }
+    }
+    if (ok == (index + 1)) {
+      index++;
+      prime[index] = guess;
+      printf("소수 : %d \n", prime[index]);
+      if (index == 999) break;
+    }
+    guess += 2;
+  }
+  return 0;
+}
 ```
 
 
@@ -304,18 +349,14 @@ int main() {
 
   와 같이 소수가 쭉 나오는 것을 볼 수 있습니다. 일단 위 소스코드의 핵심적인 부분만 설명해 보도록 하겠습니다.
 
-```cpp
-        for(i=0;i<=index;i++)
-        {
-            if(guess % prime[i] != 0)
-            {
-                ok++;
-            }
-            else
-            {
-                break;
-            }
-        }
+```cpp-formatted
+for (i = 0; i <= index; i++) {
+  if (guess % prime[i] != 0) {
+    ok++;
+  } else {
+    break;
+  }
+}
 ```
 
 위 부분은 `guess` 이하의 모든 소수들로 나누어 보고 있는 작업 입니다. `index` 는 `(배열에 저장된 소수의 개수 - 1)` 인데 `prime[i]` 로 접근하고 있으므로 배열의 모든 소수들로 나누어 보게 됩니다. 
@@ -324,15 +365,13 @@ int main() {
 
 이 때, 주의해야 할 점은 한 개의 수를 검사할 때 마다 `ok` 가 0 으로 리셋되어야 합니다. 그렇지 않다면 정확한 결과를 얻을 수 없겠죠?
 
-```cpp
-        if(ok == (index + 1))
-        {
-            index++;
-            prime[index] = guess;
-            printf("소수 : %d \n", prime[index]);
-            if(index == 999)
-                break;
-        }
+```cpp-formatted
+if (ok == (index + 1)) {
+  index++;
+  prime[index] = guess;
+  printf("소수 : %d \n", prime[index]);
+  if (index == 999) break;
+}
 ```
 
 따라서, 위와 같이 `index` 를 하나 더 증가시킨 후 `prime[index]` 에 `guess` 를 추가 시켜 줍니다. 만일 `index` 가 999 가 된다면 배열이 꽉 찼단 뜻이 되므로 `break` 를 해서 `for(;;)` 를 빠져 나가게 됩니다. 어때요? 배열을 이용하여 정말 많은 일을 할 수 있지요?
@@ -347,40 +386,36 @@ int main() {
 
  그렇다면, 그의 아이디어를 빌려서 프로그램을 만들어 봅시다.
 
-```cpp
+```cpp-formatted
 /* 과연 될까? */
 #include <stdio.h>
-int main()
-{
-    int total;
-    printf("전체 학생수 : ");
-    scanf("%d", &total);
-    int arr[total];
-    int i, ave = 0;
+int main() {
+  int total;
+  printf("전체 학생수 : ");
+  scanf("%d", &total);
+  int arr[total];
+  int i, ave = 0;
 
-    for(i=0;i<total;i++)
-    {
-        printf("%d 번째 학생의 성적은? ", i+1);
-        scanf("%d", &arr[i]);
-    }
-    for(i=0;i<total;i++)
-    {
-        ave = ave + arr[i];
-    }
+  for (i = 0; i < total; i++) {
+    printf("%d 번째 학생의 성적은? ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+  for (i = 0; i < total; i++) {
+    ave = ave + arr[i];
+  }
 
-    ave = ave/total;
-    printf("전체 학생의 평균은 : %d \n", ave);
+  ave = ave / total;
+  printf("전체 학생의 평균은 : %d \n", ave);
 
-    for(i=0;i<total;i++)
-    {
-        printf("학생 %d : ", i + 1);
-        if(arr[i] >= ave)
-            printf("합격 \n");
-        else
-            printf("불합격 \n");
-    }
+  for (i = 0; i < total; i++) {
+    printf("학생 %d : ", i + 1);
+    if (arr[i] >= ave)
+      printf("합격 \n");
+    else
+      printf("불합격 \n");
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -395,38 +430,34 @@ int main()
 
   아아. 애초에 사람이 입력하는 대로 배열의 크기를 임의로 정할 수 는 없는 것이였군요. 그렇다면, 그냥 변수 크기 지정시 특정한 값이 들어있는 변수가 가능한지 살펴 봅시다.
 
-```cpp
+```cpp-formatted
 /* 설마 이것도? */
 #include <stdio.h>
-int main()
-{
-    int total = 3;
-    int arr[total];
-    int i, ave = 0;
+int main() {
+  int total = 3;
+  int arr[total];
+  int i, ave = 0;
 
-    for(i=0;i<total;i++)
-    {
-        printf("%d 번째 학생의 성적은? ", i+1);
-        scanf("%d", &arr[i]);
-    }
-    for(i=0;i<total;i++)
-    {
-        ave = ave + arr[i];
-    }
+  for (i = 0; i < total; i++) {
+    printf("%d 번째 학생의 성적은? ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+  for (i = 0; i < total; i++) {
+    ave = ave + arr[i];
+  }
 
-    ave = ave/total;
-    printf("전체 학생의 평균은 : %d \n", ave);
+  ave = ave / total;
+  printf("전체 학생의 평균은 : %d \n", ave);
 
-    for(i=0;i<total;i++)
-    {
-        printf("학생 %d : ", i + 1);
-        if(arr[i] >= ave)
-            printf("합격 \n");
-        else
-            printf("불합격 \n");
-    }
+  for (i = 0; i < total; i++) {
+    printf("학생 %d : ", i + 1);
+    if (arr[i] >= ave)
+      printf("합격 \n");
+    else
+      printf("불합격 \n");
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -445,15 +476,14 @@ int main()
 
 상수는 변수의 정반대로 처음 정의시 그 값이 바로 주어지고, 그 값이 영원히 바뀌지 않습니다.
 
-```cpp
+```cpp-formatted
 /* 상수 */
 #include <stdio.h>
-int main()
-{
-    const int a = 3;
+int main() {
+  const int a = 3;
 
-    printf("%d", a);
-    return 0;
+  printf("%d", a);
+  return 0;
 }
 ```
 
@@ -470,20 +500,19 @@ int main()
 
   위 소스의 경우, `a` 라는 이름의 `int` 형 상수이고 그 값은 3 이라는 것을 나타내고 있습니다.
 
-```cpp
-      const int a = 3;
+```cpp-formatted
+const int a = 3;
 ```
 
 상수라고 해서 꼭 특별한 것이 있는 것은 아닙니다. 단지, 처음에 한 번 저장된 값은 '절대로' 변하지 않는 다는 점일 뿐이지요. 그렇기 때문에 처음 상수를 정의시 값을 정의해 주지 않는다면
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    const int a;
+int main() {
+  const int a;
 
-    printf("%d", a);
-    return 0;
+  printf("%d", a);
+  return 0;
 }
 ```
 
@@ -494,17 +523,15 @@ int main()
 
 상수는 또한 그 특성 답게 그 값 자체를 바꿀 수 없습니다. 예를 들어서
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    const int a = 2;
+int main() {
+  const int a = 2;
 
-    a = a + 3;
-    printf("%d", a);
-    return 0;
+  a = a + 3;
+  printf("%d", a);
+  return 0;
 }
-
 ```
 
   를 한다면,
@@ -514,16 +541,14 @@ int main()
 
   와 같은 오류가 발생하게 됩니다. 즉, 상수는 어떠한 짓으로도 값을 변경할 수 없는 불멸의 데이터 입니다. 이러한 특성 때문에 여러분은 아마 '배열의 크기를 상수로 지정할 수 는 없을까?' 라는 생각을 하게 됩니다. 하지만, 아래와 같은 코드를 보면 이러한 생각이 깨지게 되죠.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int b = 3;
-    const int a = b;
-    char c[a];
-    return 0;
+int main() {
+  int b = 3;
+  const int a = b;
+  char c[a];
+  return 0;
 }
-
 ```
 
 즉, 이는 상수 `a` 로 배열의 크기가 할당이 가능하게 된다면 다시 말해 변수 `b` 의 크기로 배열의 크기를 지정할 수 있다는 말이 되기 때문에 이전에 '변수로 배열의 크기를 지정할 수 없다' 라는 사실에 모순 됩니다.
@@ -536,14 +561,13 @@ int main()
 
   우리가 변수의 값을 초기화 하지 않는다면 그 변수는 무슨 값을 가질 까? 라는 생각을 한 분들이 많을 것 같습니다. 0 을가질까요? 아닙니다. 0 도 값 이지 않습니까? 0 을 가진다면 0 이라는 값을 가진다는 것 이지요? 그렇다면 한 번 해보지요.값이 대입되지 않은 변수의 값을 출력해보는 프로그램을 짜보면 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int arr;
+int main() {
+  int arr;
 
-    printf("니 값은 모니 : %d", arr);
-    return 0;
+  printf("니 값은 모니 : %d", arr);
+  return 0;
 }
 ```
 
@@ -560,18 +584,16 @@ warning C4700: 초기화되지 않은 'arr' 지역 변수를 사용했습니다.
 
   아니 이럴수가! 변수 `arr` 의 값을 보기위해 값을 출력하려고 했더니만, 런타임 오류(프로그램 실행 중에 발생하는 오류)가발생하군요. 운영체제는 초기화 되지 않은 변수에 대한 접근 자체를 불허하고 있습니다. 이 때문에 우리는 이 변수에 들어있는 값을영영 보지 못하게 됩니다.
 
-```cpp
+```cpp-formatted
 /* 초기화 되지 않은 값 */
 #include <stdio.h>
-int main()
-{
-    int arr[3];
-    arr[0] = 1;
-    printf("니 값은 모니 : %d", arr[1]); // arr[0] 이 아닌 arr[1] 을 출력
+int main() {
+  int arr[3];
+  arr[0] = 1;
+  printf("니 값은 모니 : %d", arr[1]);  // arr[0] 이 아닌 arr[1] 을 출력
 
-    return 0;
+  return 0;
 }
-
 ```
 
   이번에는 배열의 경우를 살펴 봅시다. 상콤한 기분으로 컴파일을 했으나,
@@ -587,15 +609,14 @@ warning C4700: 초기화되지 않은 'arr' 지역 변수를 사용했습니다.
 
   역시, `arr[1]` 의 값은 정의되어 있지 않기 때문에 이 값을 출력할 생각은 꿈도 꾸지 말라는 것이라는 것이죠. 참으로 야속한 컴퓨터 입니다.
 
-```cpp
+```cpp-formatted
 /* 초기화 되지 않은 값 */
- #include <stdio.h>
-int main()
-{
-    int arr[3] = {1};
-    printf("니 값은 모니 : %d", arr[1]);
+#include <stdio.h>
+int main() {
+  int arr[3] = {1};
+  printf("니 값은 모니 : %d", arr[1]);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -614,29 +635,28 @@ arr[0] = 1;
 
 물론 맞는 말 입니다. `printf` 부분을 `arr[0]` 출력으로 바꾸어 보면 여러분이 생각했던 대로 1 이 출력됩니다. 하지만, `arr[1]` 이 도대체 왜 오류가 나지 않는 것일까요? 아까전에  `int arr[3]; arr[0] = 1;` 방법으로 해서 끔찍한 오류가 발생되는 것을 여러분이 두 눈으로 톡톡히 보셨지 않습니까? 그 이유는
 
-```cpp
-    int arr[3] = {1};
-
+```cpp-formatted
+int arr[3] = {1};
 ```
 
 와 같이 정의한다면 컴파일러가 내부적으로 아래와 같이 생각하기 때문입니다.
 
-```cpp
-int arr[3] = {1,0,0};
+```cpp-formatted
+int arr[3] = {1, 0, 0};
 ```
 
 따라서, 자동적으로 우리가 특별히 초기화 하지 않은 원소들에는 0 이 들어가게 됩니다.
 
 그렇다면
 
-```cpp
-int arr2[5] = {1,2,3};
+```cpp-formatted
+int arr2[5] = {1, 2, 3};
 ```
 
 은 어떻게 될까요? 역시, 해보면
 
-```cpp
-int arr2[5] = {1,2,3,0,0}
+```cpp-formatted
+int arr2[5] = {1, 2, 3, 0, 0}
 ```
 
 과 같이 한 것과 똑같이 됩니다.

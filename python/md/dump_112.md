@@ -51,7 +51,7 @@ time_t mktime ( struct tm * timeptr );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 특정한 날짜가 무슨 요일인지 알아온다.
@@ -59,41 +59,42 @@ time_t mktime ( struct tm * timeptr );
 http://www.cplusplus.com/reference/clibrary/ctime/mktime/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <time.h>
 
-int main ()
-{
-    time_t rawtime;
-    struct tm * timeinfo;
-    int year, month ,day;
-    char * weekday[] = { "Sunday", "Monday",
-        "Tuesday", "Wednesday",
-        "Thursday", "Friday", "Saturday"};
+int main() {
+  time_t rawtime;
+  struct tm* timeinfo;
+  int year, month, day;
+  char* weekday[] = {"Sunday",   "Monday", "Tuesday", "Wednesday",
+                     "Thursday", "Friday", "Saturday"};
 
-    /* 사용자로 부터 날짜를 입력 받는다. */
-    printf ("Enter year: "); scanf ("%d",&year);
-    printf ("Enter month: "); scanf ("%d",&month);
-    printf ("Enter day: "); scanf ("%d",&day);
+  /* 사용자로 부터 날짜를 입력 받는다. */
+  printf("Enter year: ");
+  scanf("%d", &year);
+  printf("Enter month: ");
+  scanf("%d", &month);
+  printf("Enter day: ");
+  scanf("%d", &day);
 
-    /* rawtime 에 time 함수로 현재 시간 정보로 세팅한 뒤,
-       사용자로 부터 입력받은 데이터로 년/월/일 정보를 수정한다. */
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
-    timeinfo->tm_year = year - 1900;
-    timeinfo->tm_mon = month - 1;
-    timeinfo->tm_mday = day;
+  /* rawtime 에 time 함수로 현재 시간 정보로 세팅한 뒤,
+     사용자로 부터 입력받은 데이터로 년/월/일 정보를 수정한다. */
+  time(&rawtime);
+  timeinfo = localtime(&rawtime);
+  timeinfo->tm_year = year - 1900;
+  timeinfo->tm_mon = month - 1;
+  timeinfo->tm_mday = day;
 
-    /* mktime 함수를 호출하면 년/월/일 데이터에 따라
-       tm_wday 와 tm_yday 를 설정한다. 이 때 리턴되는 time_t 데이터는 사용하지 않는다.*/
-    mktime ( timeinfo );
+  /* mktime 함수를 호출하면 년/월/일 데이터에 따라
+     tm_wday 와 tm_yday 를 설정한다. 이 때 리턴되는 time_t 데이터는 사용하지
+     않는다.*/
+  mktime(timeinfo);
 
-    printf ("That day is a %s.\n", weekday[timeinfo->tm_wday]);
+  printf("That day is a %s.\n", weekday[timeinfo->tm_wday]);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 실행 결과

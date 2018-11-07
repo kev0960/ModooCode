@@ -23,189 +23,148 @@ next_page: 230
 
 하지만, 만약에 좌측값도 이동을 시키고 싶다면 어떨까요? 예를 들어서 아래와 같이 두 변수의 값을 바꾸는 `swap` 함수를 생각해보세요.
 
-```cpp
+```cpp-formatted
 
 template <typename T>
-void my_swap(T &a, T &b)
-{
-T tmp(a);
-a = b;
-b = tmp;
+void my_swap(T &a, T &b) {
+  T tmp(a);
+  a = b;
+  b = tmp;
 }
 ```
 
 위 `my_swap` 함수에서 `tmp` 라는 임시 객체를 생성한 뒤에, `b` 를 `a` 에 복사하고, `b` 에 `a` 를 복사하게 됩니다. 문제는 무려 복사를 쓸데없이 3 번이나 한다는 점입니다. 예를 들어서 `T` 가 `MyString` 인 경우를 생각해봅시다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
+class MyString {
+  char *string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char *string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+  int memory_capacity;  // 현재 할당된 용량
 
+ public:
+  MyString();
 
-int memory_capacity; // 현재 할당된 용량
+  // 문자열로 부터 생성
+  MyString(const char *str);
 
+  // 복사 생성자
+  MyString(const MyString &str);
 
-public:
-MyString();
+  // 이동 생성자
+  MyString(MyString &&str);
 
+  void reserve(int size);
+  MyString operator+(const MyString &s);
+  MyString &operator=(const MyString &s);
+  ~MyString();
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  int length() const;
 
-
-// 복사 생성자
-MyString(const MyString &str);
-
-
-// 이동 생성자
-MyString(MyString&& str);
-
-
-void reserve(int size);
-MyString operator+ (const MyString &s);
-MyString& operator= (const MyString &s);
-~MyString();
-
-
-int length() const;
-
-
-void println();
+  void println();
 };
 
-
-MyString::MyString()
-{
-cout << "생성자 호출 ! " << endl;
-string_length = 0;
-memory_capacity = 0;
-string_content = NULL;
+MyString::MyString() {
+  cout << "생성자 호출 ! " << endl;
+  string_length = 0;
+  memory_capacity = 0;
+  string_content = NULL;
 }
 
+MyString::MyString(const char *str) {
+  cout << "생성자 호출 ! " << endl;
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-MyString::MyString(const char* str)
-{
-cout << "생성자 호출 ! " << endl;
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
-
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-cout << "복사 생성자 호출 ! " << endl;
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString &str) {
+  cout << "복사 생성자 호출 ! " << endl;
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str.string_content[i];
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
 }
-MyString::MyString(MyString&& str)
-{
-cout << "이동 생성자 호출 !" << endl;
-string_length = str.string_length;
-string_content = str.string_content;
-memory_capacity = str.memory_capacity;
+MyString::MyString(MyString &&str) {
+  cout << "이동 생성자 호출 !" << endl;
+  string_length = str.string_length;
+  string_content = str.string_content;
+  memory_capacity = str.memory_capacity;
 
-
-// 임시 객체 소멸 시에 메모리를 해제하지
-// 못하게 한다.
-str.string_content = nullptr;
+  // 임시 객체 소멸 시에 메모리를 해제하지
+  // 못하게 한다.
+  str.string_content = nullptr;
 }
-MyString::~MyString()
-{
-if (string_content)
-delete[] string_content;
+MyString::~MyString() {
+  if (string_content) delete[] string_content;
 }
-void MyString::reserve(int size)
-{
-if (size > memory_capacity) {
-char *prev_string_content = string_content;
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char *prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-string_content = new char[size];
-memory_capacity = size;
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = prev_string_content[i];
-
-
-if (prev_string_content != NULL)
-delete[] prev_string_content;
+    if (prev_string_content != NULL) delete[] prev_string_content;
+  }
 }
+MyString MyString::operator+(const MyString &s) {
+  MyString str;
+  str.reserve(string_length + s.string_length);
+  for (int i = 0; i < string_length; i++)
+    str.string_content[i] = string_content[i];
+  for (int i = 0; i < s.string_length; i++)
+    str.string_content[string_length + i] = s.string_content[i];
+  str.string_length = string_length + s.string_length;
+  return str;
 }
-MyString MyString::operator+ (const MyString &s)
-{
-MyString str;
-str.reserve(string_length + s.string_length);
-for (int i = 0; i < string_length; i++)
-str.string_content[i] = string_content[i];
-for (int i = 0; i < s.string_length; i++)
-str.string_content[string_length + i] = s.string_content[i];
-str.string_length = string_length + s.string_length;
-return str;
-}
-MyString& MyString::operator= (const MyString &s)
-{
-cout << "복사!" << endl;
-if (s.string_length > memory_capacity) {
-delete[] string_content;
-string_content = new char [s.string_length];
-memory_capacity = s.string_length;
-}
-string_length = s.string_length;
-for (int i = 0; i != string_length; i++) {
-string_content[i] = s.string_content[i];
-}
+MyString &MyString::operator=(const MyString &s) {
+  cout << "복사!" << endl;
+  if (s.string_length > memory_capacity) {
+    delete[] string_content;
+    string_content = new char[s.string_length];
+    memory_capacity = s.string_length;
+  }
+  string_length = s.string_length;
+  for (int i = 0; i != string_length; i++) {
+    string_content[i] = s.string_content[i];
+  }
 
-
-return *this;
+  return *this;
 }
-int MyString::length() const
-{
-return string_length;
-}
-void MyString::println()
-{
-for (int i = 0; i != string_length; i++)
-cout << string_content[i];
+int MyString::length() const { return string_length; }
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-
-cout << endl;
+  cout << endl;
 }
 template <typename T>
-void my_swap(T &a, T &b)
-{
-T tmp(a);
-a = b;
-b = tmp;
+void my_swap(T &a, T &b) {
+  T tmp(a);
+  a = b;
+  b = tmp;
 }
 
+int main() {
+  MyString str1("abc");
+  MyString str2("def");
+  cout << "Swap 전 -----" << endl;
+  str1.println();
+  str2.println();
 
-int main()
-{
-MyString str1("abc");
-MyString str2("def");
-cout << "Swap 전 -----" << endl;
-str1.println();
-str2.println();
-
-
-cout << "Swap 후 -----" << endl;
-my_swap(str1, str2);
-str1.println();
-str2.println();
+  cout << "Swap 후 -----" << endl;
+  my_swap(str1, str2);
+  str1.println();
+  str2.println();
 }
 ```
 
@@ -221,14 +180,13 @@ str2.println();
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 template <typename T>
-void my_swap(T &a, T &b)
-{
-T tmp(a);
-a = b;
-b = tmp;
+void my_swap(T &a, T &b) {
+  T tmp(a);
+  a = b;
+  b = tmp;
 }
 ```
 
@@ -236,7 +194,7 @@ b = tmp;
 
 위 `my_swap` 함수를 살펴봅시다. 일단, 첫번째 줄에서, `a` 가 좌측값이기 때문에 `tmp` 의 복사 생성자가 호출됩니다. 따라서 1 차적으로 `a` 가 차지하는 공간 만큼 메모리 할당이 발생한 후 `a` 의 데이터가 복사됩니다.
 
-```cpp
+```cpp-formatted
 a = b;
 ```
 
@@ -244,7 +202,7 @@ a = b;
 
 두 번째로 `a =` b; 에서 2 차적으로 복사가 발생합니다. 그리고 마지막으로,
 
-```cpp
+```cpp-formatted
 b = tmp;
 ```
 
@@ -262,7 +220,7 @@ b = tmp;
 
 하지만 위를 `my_swap` 에서 구현하기 위해서는 여러가지 문제가 있습니다. 일단 첫번째로 `my_swap` 함수는 `generic` 한 함수 입니다. 다시 말해,
 
-```cpp
+```cpp-formatted
 
 template <typename T>
 void my_swap(T &a, T &b)
@@ -272,12 +230,11 @@ void my_swap(T &a, T &b)
 
 위 함수가 일반적인 타입 `T` 에 대해 작동해야 한다는 의미이지요. 하지만 위 `string_content` 의 경우 `MyString` 에만 존재하는 필드이기 때문에 일반적인 타입 `T` 에 대해서는 작동하지 않습니다. 물론 그렇다고 해서 불가능 한 것은 아닙니다. 아래 처럼 템플릿 특수화를 이용하면 되기 때문이죠.
 
-```cpp
+```cpp-formatted
 
 template <>
-void my_swap(MyString &a, MyString &b)
-{
-// ...
+void my_swap(MyString &a, MyString &b) {
+  // ...
 }
 ```
 
@@ -288,7 +245,7 @@ void my_swap(MyString &a, MyString &b)
 
 위 문제를 원래의 `my_swap` 함수를 사용하면서 좀 더 깔끔하게 해결할 수 있는 방법은 없을까요?
 
-```cpp
+```cpp-formatted
 
 T tmp(a);
 ```
@@ -307,156 +264,119 @@ T tmp(a);
 
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
+class MyString {
+  char *string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char *string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+  int memory_capacity;  // 현재 할당된 용량
 
+ public:
+  MyString();
 
-int memory_capacity; // 현재 할당된 용량
+  // 문자열로 부터 생성
+  MyString(const char *str);
 
+  // 복사 생성자
+  MyString(const MyString &str);
 
-public:
-MyString();
+  // 이동 생성자
+  MyString(MyString &&str);
 
+  void reserve(int size);
+  MyString operator+(const MyString &s);
+  MyString &operator=(const MyString &s);
+  ~MyString();
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  int length() const;
 
-
-// 복사 생성자
-MyString(const MyString &str);
-
-
-// 이동 생성자
-MyString(MyString&& str);
-
-
-void reserve(int size);
-MyString operator+ (const MyString &s);
-MyString& operator= (const MyString &s);
-~MyString();
-
-
-int length() const;
-
-
-void println();
+  void println();
 };
 
-
-MyString::MyString()
-{
-cout << "생성자 호출 ! " << endl;
-string_length = 0;
-memory_capacity = 0;
-string_content = NULL;
+MyString::MyString() {
+  cout << "생성자 호출 ! " << endl;
+  string_length = 0;
+  memory_capacity = 0;
+  string_content = NULL;
 }
 
+MyString::MyString(const char *str) {
+  cout << "생성자 호출 ! " << endl;
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-MyString::MyString(const char* str)
-{
-cout << "생성자 호출 ! " << endl;
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
-
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-cout << "복사 생성자 호출 ! " << endl;
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString &str) {
+  cout << "복사 생성자 호출 ! " << endl;
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str.string_content[i];
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
 }
-MyString::MyString(MyString&& str)
-{
-cout << "이동 생성자 호출 !" << endl;
-string_length = str.string_length;
-string_content = str.string_content;
-memory_capacity = str.memory_capacity;
+MyString::MyString(MyString &&str) {
+  cout << "이동 생성자 호출 !" << endl;
+  string_length = str.string_length;
+  string_content = str.string_content;
+  memory_capacity = str.memory_capacity;
 
-
-// 임시 객체 소멸 시에 메모리를 해제하지
-// 못하게 한다.
-str.string_content = nullptr;
-str.string_length = 0;
-str.memory_capacity = 0;
+  // 임시 객체 소멸 시에 메모리를 해제하지
+  // 못하게 한다.
+  str.string_content = nullptr;
+  str.string_length = 0;
+  str.memory_capacity = 0;
 }
-MyString::~MyString()
-{
-if (string_content)
-delete[] string_content;
+MyString::~MyString() {
+  if (string_content) delete[] string_content;
 }
-void MyString::reserve(int size)
-{
-if (size > memory_capacity) {
-char *prev_string_content = string_content;
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char *prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-string_content = new char[size];
-memory_capacity = size;
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = prev_string_content[i];
-
-
-if (prev_string_content != NULL)
-delete[] prev_string_content;
+    if (prev_string_content != NULL) delete[] prev_string_content;
+  }
 }
+MyString MyString::operator+(const MyString &s) {
+  MyString str;
+  str.reserve(string_length + s.string_length);
+  for (int i = 0; i < string_length; i++)
+    str.string_content[i] = string_content[i];
+  for (int i = 0; i < s.string_length; i++)
+    str.string_content[string_length + i] = s.string_content[i];
+  str.string_length = string_length + s.string_length;
+  return str;
 }
-MyString MyString::operator+ (const MyString &s)
-{
-MyString str;
-str.reserve(string_length + s.string_length);
-for (int i = 0; i < string_length; i++)
-str.string_content[i] = string_content[i];
-for (int i = 0; i < s.string_length; i++)
-str.string_content[string_length + i] = s.string_content[i];
-str.string_length = string_length + s.string_length;
-return str;
-}
-int MyString::length() const
-{
-return string_length;
-}
-void MyString::println()
-{
-for (int i = 0; i != string_length; i++)
-cout << string_content[i];
+int MyString::length() const { return string_length; }
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-
-cout << endl;
+  cout << endl;
 }
 
+int main() {
+  MyString str1("abc");
+  cout << "이동 전 -----" << endl;
+  cout << "str1 : ";
+  str1.println();
 
-int main()
-{
-MyString str1("abc");
-cout << "이동 전 -----" << endl;
-cout << "str1 : ";
-str1.println();
-
-
-cout << "이동 후 -----" << endl;
-MyString str2(move(str1));
-cout << "str1 : ";
-str1.println();
-cout << "str2 : ";
-str2.println();
+  cout << "이동 후 -----" << endl;
+  MyString str2(move(str1));
+  cout << "str1 : ";
+  str1.println();
+  cout << "str2 : ";
+  str2.println();
 }
 ```
 
@@ -472,7 +392,7 @@ str2.println();
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 cout << "이동 후 -----" << endl;
 MyString str2(move(str1));
@@ -482,7 +402,7 @@ MyString str2(move(str1));
 
 부분을 살펴보도록 합시다. 놀랍게도 `str2` 의 복사 생성자가 아닌 이동 생성자가 호출되었습니다. C++ 11 에 새롭게 추가된 `move` 함수는 입력받은 좌측값을 이동 가능한 값으로 캐스팅 해줍니다.사실 `move` 함수가 수정하는 것은 아무 것도 없습니다. 다만 컴파일러가 `move` 함수가 리턴하는 값을 '이동 가능 하구나' 라고 생각하게 해주지요.
 
-```cpp
+```cpp-formatted
 
 cout << "str1 : ";
 str1.println();
@@ -497,178 +417,142 @@ str2.println();
 
 자 이제 이 새로운 `move` 를 이용해서 위 `my_swap` 함수를 수정해보도록 합시다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
+class MyString {
+  char *string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char *string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+  int memory_capacity;  // 현재 할당된 용량
 
+ public:
+  MyString();
 
-int memory_capacity; // 현재 할당된 용량
+  // 문자열로 부터 생성
+  MyString(const char *str);
 
+  // 복사 생성자
+  MyString(const MyString &str);
 
-public:
-MyString();
+  // 이동 생성자
+  MyString(MyString &&str);
 
+  void reserve(int size);
+  MyString operator+(const MyString &s);
+  MyString &operator=(const MyString &s);
+  ~MyString();
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  int length() const;
 
-
-// 복사 생성자
-MyString(const MyString &str);
-
-
-// 이동 생성자
-MyString(MyString&& str);
-
-
-void reserve(int size);
-MyString operator+ (const MyString &s);
-MyString& operator= (const MyString &s);
-~MyString();
-
-
-int length() const;
-
-
-void println();
+  void println();
 };
 
-
-MyString::MyString()
-{
-cout << "생성자 호출 ! " << endl;
-string_length = 0;
-memory_capacity = 0;
-string_content = NULL;
+MyString::MyString() {
+  cout << "생성자 호출 ! " << endl;
+  string_length = 0;
+  memory_capacity = 0;
+  string_content = NULL;
 }
 
+MyString::MyString(const char *str) {
+  cout << "생성자 호출 ! " << endl;
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-MyString::MyString(const char* str)
-{
-cout << "생성자 호출 ! " << endl;
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
-
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-cout << "복사 생성자 호출 ! " << endl;
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString &str) {
+  cout << "복사 생성자 호출 ! " << endl;
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = str.string_content[i];
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
 }
-MyString::MyString(MyString&& str)
-{
-cout << "이동 생성자 호출 !" << endl;
-string_length = str.string_length;
-string_content = str.string_content;
-memory_capacity = str.memory_capacity;
+MyString::MyString(MyString &&str) {
+  cout << "이동 생성자 호출 !" << endl;
+  string_length = str.string_length;
+  string_content = str.string_content;
+  memory_capacity = str.memory_capacity;
 
-
-// 임시 객체 소멸 시에 메모리를 해제하지
-// 못하게 한다.
-str.string_content = nullptr;
-str.string_length = 0;
-str.memory_capacity = 0;
+  // 임시 객체 소멸 시에 메모리를 해제하지
+  // 못하게 한다.
+  str.string_content = nullptr;
+  str.string_length = 0;
+  str.memory_capacity = 0;
 }
-MyString::~MyString()
-{
-if (string_content)
-delete[] string_content;
+MyString::~MyString() {
+  if (string_content) delete[] string_content;
 }
-void MyString::reserve(int size)
-{
-if (size > memory_capacity) {
-char *prev_string_content = string_content;
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char *prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-string_content = new char[size];
-memory_capacity = size;
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
-
-for (int i = 0; i != string_length; i++)
-string_content[i] = prev_string_content[i];
-
-
-if (prev_string_content != NULL)
-delete[] prev_string_content;
+    if (prev_string_content != NULL) delete[] prev_string_content;
+  }
 }
+MyString MyString::operator+(const MyString &s) {
+  MyString str;
+  str.reserve(string_length + s.string_length);
+  for (int i = 0; i < string_length; i++)
+    str.string_content[i] = string_content[i];
+  for (int i = 0; i < s.string_length; i++)
+    str.string_content[string_length + i] = s.string_content[i];
+  str.string_length = string_length + s.string_length;
+  return str;
 }
-MyString MyString::operator+ (const MyString &s)
-{
-MyString str;
-str.reserve(string_length + s.string_length);
-for (int i = 0; i < string_length; i++)
-str.string_content[i] = string_content[i];
-for (int i = 0; i < s.string_length; i++)
-str.string_content[string_length + i] = s.string_content[i];
-str.string_length = string_length + s.string_length;
-return str;
-}
-MyString& MyString::operator= (const MyString &s)
-{
-cout << "복사!" << endl;
-if (s.string_length > memory_capacity) {
-delete[] string_content;
-string_content = new char [s.string_length];
-memory_capacity = s.string_length;
-}
-string_length = s.string_length;
-for (int i = 0; i != string_length; i++) {
-string_content[i] = s.string_content[i];
-}
+MyString &MyString::operator=(const MyString &s) {
+  cout << "복사!" << endl;
+  if (s.string_length > memory_capacity) {
+    delete[] string_content;
+    string_content = new char[s.string_length];
+    memory_capacity = s.string_length;
+  }
+  string_length = s.string_length;
+  for (int i = 0; i != string_length; i++) {
+    string_content[i] = s.string_content[i];
+  }
 
-
-return *this;
+  return *this;
 }
-int MyString::length() const
-{
-return string_length;
+int MyString::length() const { return string_length; }
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
+
+  cout << endl;
 }
-void MyString::println()
-{
-for (int i = 0; i != string_length; i++)
-cout << string_content[i];
-
-
-cout << endl;
-}
-
 
 template <typename T>
-void my_swap(T &a, T &b)
-{
-T tmp(move(a));
-a = move(b);
-b = move(tmp);
+void my_swap(T &a, T &b) {
+  T tmp(move(a));
+  a = move(b);
+  b = move(tmp);
 }
-int main()
-{
-MyString str1("abc");
-MyString str2("def");
-cout << "Swap 전 -----" << endl;
-cout << "str1 : "; str1.println();
-cout << "str2 : "; str2.println();
+int main() {
+  MyString str1("abc");
+  MyString str2("def");
+  cout << "Swap 전 -----" << endl;
+  cout << "str1 : ";
+  str1.println();
+  cout << "str2 : ";
+  str2.println();
 
-
-cout << "Swap 후 -----" << endl;
-my_swap(str1, str2);
-cout << "str1 : "; str1.println();
-cout << "str2 : "; str2.println();
+  cout << "Swap 후 -----" << endl;
+  my_swap(str1, str2);
+  cout << "str1 : ";
+  str1.println();
+  cout << "str2 : ";
+  str2.println();
 }
 ```
 
@@ -686,7 +570,7 @@ cout << "str2 : "; str2.println();
 
 위에서 보시다싶이 `swap` 은 잘 되었지만, 공교롭게도 두 번의 복사를 수행하였습니다.
 
-```cpp
+```cpp-formatted
 
 a = move(b);
 b = move(tmp);
@@ -696,29 +580,27 @@ b = move(tmp);
 
 왜냐하면 바로 위 두 줄 때문이지요. 비록 `move` 를 시키고자 하였지만, 오버로딩 된 `operator=` 가 복사를 수행하였습니다. 그 이유는 현재 정의된 `operator=` 가
 
-```cpp
+```cpp-formatted
 
-MyString& MyString::operator= (const MyString &s)
+MyString& MyString::operator=(const MyString& s)
 ```
 
 
 
 꼴 이므로, `s` 를 그대로 복사하기 때문이지요. 따라서 우리는 우측값에만 특이적으로 오버로딩 되는 `operator=` 를 정의해줘야만 합니다. 아래와 같이 말이지요.
 
-```cpp
+```cpp-formatted
 
-MyString& MyString::operator= (MyString&& s)
-{
-cout << "이동!" << endl;
-string_content = s.string_content;
-memory_capacity = s.memory_capacity;
-string_length = s.string_length;
+MyString& MyString::operator=(MyString&& s) {
+  cout << "이동!" << endl;
+  string_content = s.string_content;
+  memory_capacity = s.memory_capacity;
+  string_length = s.string_length;
 
-
-s.string_content = nullptr;
-s.memory_capacity = 0;
-s.string_length = 0;
-return *this;
+  s.string_content = nullptr;
+  s.memory_capacity = 0;
+  s.string_length = 0;
+  return *this;
 }
 ```
 
@@ -746,12 +628,11 @@ return *this;
 
 
 `C++ 11` 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다 C++ 11 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다.
-```cpp
+```cpp-formatted
 
 template <typename T>
-void wrapper(T u)
-{
-g(u);
+void wrapper(T u) {
+  g(u);
 }
 ```
 
@@ -762,7 +643,7 @@ g(u);
 
 하지만 실제로 저러한 형태의 전달 방식이 사용되는 경우가 종종 있습니다. 예를 들어 `STL` 의 `vector` 에는 `emplace_back` 이라는 함수가 있습니다. 예를 들어서 클래스 `A` 를 원소로 가지는 벡터의 뒤에 원소를 추가하기 위해서는
 
-```cpp
+```cpp-formatted
 
 vec.push_back(A(1, 2, 3));
 ```
@@ -771,9 +652,9 @@ vec.push_back(A(1, 2, 3));
 
 과 같이 객체를 생성한 뒤에 인자로 전달해줘야만 합니다. 하지만 이 과정에서 불필요한 이동 혹은 복사가 발생하게 됩니다. 그렇다면, 아예 벡터에 인자를 전달해준 다음, 벡터 내부에서 자체적으로 객체를 생성한 뒤에 벡터 뒤에 추가하면 어떨까요? 이를 가능하게 하는게 `emplace_back` 함수 입니다.
 
-```cpp
+```cpp-formatted
 
-vec.emplace_back(1,2,3); // 위와 동일한 작업을 수행한다.
+vec.emplace_back(1, 2, 3);  // 위와 동일한 작업을 수행한다.
 ```
 
 
@@ -783,50 +664,36 @@ vec.emplace_back(1,2,3); // 위와 동일한 작업을 수행한다.
 
 그렇다면 문제는 `emplace_back` 함수가 받은 인자들을 `A` 의 생성자에 제대로 전달해야 합니다. 그렇지 않을 경우 사용자가 의도하지 않은 생성자가 호출될 수 있기 때문입니다. 그렇다면 위와 같은 `wrapper` 함수를 어떻게 하면 잘 정의할 수 있을까요?
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-
 template <typename T>
-void wrapper(T u)
-{
-g(u);
+void wrapper(T u) {
+  g(u);
 }
-
 
 class A {};
 
+void g(A& a) { cout << "좌측값 레퍼런스 호출" << endl; }
+void g(const A& a) { cout << "좌측값 상수 레퍼런스 호출" << endl; }
+void g(A&& a) { cout << "우측값 레퍼런스 호출" << endl; }
 
-void g(A& a) {
-cout << "좌측값 레퍼런스 호출" << endl;
-}
-void g(const A& a) {
-cout << "좌측값 상수 레퍼런스 호출" << endl;
-}
-void g(A&& a) {
-cout << "우측값 레퍼런스 호출" << endl;
-}
+int main() {
+  A a;
+  const A ca;
 
+  cout << "원본 --------" << endl;
+  g(a);
+  g(ca);
+  g(A());
 
-int main()
-{
-A a;
-const A ca;
-
-
-cout << "원본 --------" << endl;
-g(a);
-g(ca);
-g(A());
-
-
-cout << "Wrapper -----" << endl;
-wrapper(a);
-wrapper(ca);
-wrapper(A());
+  cout << "Wrapper -----" << endl;
+  wrapper(a);
+  wrapper(ca);
+  wrapper(A());
 }
 ```
 
@@ -839,7 +706,7 @@ wrapper(A());
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 cout << "원본 --------" << endl;
 g(a);
@@ -854,12 +721,11 @@ g(A());
 
 이러한 일이 발생한 이유는 C++ 컴파일러가 템플릿 타입을 추론할 때,템플릿 인자 `T` 가 레퍼런스가 아닌 일반적인 타입이라면 `const` 를 무시하기 때문입니다. 다시 말해,
 
-```cpp
+```cpp-formatted
 
 template <typename T>
-void wrapper(T u)
-{
-g(u);
+void wrapper(T u) {
+  g(u);
 }
 ```
 
@@ -868,12 +734,11 @@ g(u);
 에서 `T` 가 전부 다 `class A` 로 추론됩니다. 따라서 위 세 경우 전부 다 좌측값 레퍼런스를 호출하는 `g` 를 호출하였습니다.
 
 
-```cpp
+```cpp-formatted
 
 template <typename T>
-void wrapper(T& u)
-{
-g(u);
+void wrapper(T& u) {
+  g(u);
 }
 ```
 
@@ -905,61 +770,43 @@ g(A());
 
 그렇다면 아예 우측값을 레퍼런스로 받을 수 있도록 `const A&` 와 `A&` 따로 만들어주는 방법이 있습니다. 아래와 같이 말이지요.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-
 template <typename T>
-void wrapper(T& u)
-{
-cout << "T& 로 추론됨" << endl;
-g(u);
+void wrapper(T& u) {
+  cout << "T& 로 추론됨" << endl;
+  g(u);
 }
 
-
 template <typename T>
-void wrapper(const T& u)
-{
-cout << "const T& 로 추론됨" << endl;
-g(u);
+void wrapper(const T& u) {
+  cout << "const T& 로 추론됨" << endl;
+  g(u);
 }
-
-
-
 
 class A {};
 
+void g(A& a) { cout << "좌측값 레퍼런스 호출" << endl; }
+void g(const A& a) { cout << "좌측값 상수 레퍼런스 호출" << endl; }
+void g(A&& a) { cout << "우측값 레퍼런스 호출" << endl; }
 
-void g(A& a) {
-cout << "좌측값 레퍼런스 호출" << endl;
-}
-void g(const A& a) {
-cout << "좌측값 상수 레퍼런스 호출" << endl;
-}
-void g(A&& a) {
-cout << "우측값 레퍼런스 호출" << endl;
-}
+int main() {
+  A a;
+  const A ca;
 
+  cout << "원본 --------" << endl;
+  g(a);
+  g(ca);
+  g(A());
 
-int main()
-{
-A a;
-const A ca;
-
-
-cout << "원본 --------" << endl;
-g(a);
-g(ca);
-g(A());
-
-
-cout << "Wrapper -----" << endl;
-wrapper(a);
-wrapper(ca);
-wrapper(A());
+  cout << "Wrapper -----" << endl;
+  wrapper(a);
+  wrapper(ca);
+  wrapper(A());
 }
 ```
 
@@ -981,29 +828,24 @@ wrapper(A());
 
 뿐만이 아니라 다음과 같은 문제가 있습니다. 예를 들어서 함수 `g` 가 인자를 한 개가 아니라 2 개를 받는다고 가정합니다. 그렇다면 우리는 다음과 같은 모든 조합의 템플릿 함수들을 정의해야합니다.
 
-```cpp
+```cpp-formatted
 
 template <typename T>
-void wrapper(T& u, T &v)
-{
-g(u, v);
+void wrapper(T& u, T& v) {
+  g(u, v);
 }
 template <typename T>
-void wrapper(const T& u, T &v)
-{
-g(u, v);
+void wrapper(const T& u, T& v) {
+  g(u, v);
 }
 
-
 template <typename T>
-void wrapper(T& u, const T &v)
-{
-g(u, v);
+void wrapper(T& u, const T& v) {
+  g(u, v);
 }
 template <typename T>
-void wrapper(const T& u, const T &v)
-{
-g(u, v);
+void wrapper(const T& u, const T& v) {
+  g(u, v);
 }
 ```
 
@@ -1014,49 +856,35 @@ g(u, v);
 
 하지만 놀랍게도 C++ 11 에서는 이를 간단하게 해결할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-
 template <typename T>
-void wrapper(T&& u)
-{
-g(forward<T>(u));
+void wrapper(T&& u) {
+  g(forward<T>(u));
 }
-
 
 class A {};
 
+void g(A& a) { cout << "좌측값 레퍼런스 호출" << endl; }
+void g(const A& a) { cout << "좌측값 상수 레퍼런스 호출" << endl; }
+void g(A&& a) { cout << "우측값 레퍼런스 호출" << endl; }
 
-void g(A& a) {
-cout << "좌측값 레퍼런스 호출" << endl;
-}
-void g(const A& a) {
-cout << "좌측값 상수 레퍼런스 호출" << endl;
-}
-void g(A&& a) {
-cout << "우측값 레퍼런스 호출" << endl;
-}
+int main() {
+  A a;
+  const A ca;
 
+  cout << "원본 --------" << endl;
+  g(a);
+  g(ca);
+  g(A());
 
-int main()
-{
-A a;
-const A ca;
-
-
-cout << "원본 --------" << endl;
-g(a);
-g(ca);
-g(A());
-
-
-cout << "Wrapper -----" << endl;
-wrapper(a);
-wrapper(ca);
-wrapper(A());
+  cout << "Wrapper -----" << endl;
+  wrapper(a);
+  wrapper(ca);
+  wrapper(A());
 }
 ```
 
@@ -1072,12 +900,11 @@ wrapper(A());
 와 같이 잘 작동함을 알 수 있습니다.
 
 
-```cpp
+```cpp-formatted
 
 template <typename T>
-void wrapper(T&& u)
-{
-g(forward<T>(u));
+void wrapper(T&& u) {
+  g(forward<T>(u));
 }
 ```
 
@@ -1101,7 +928,7 @@ U&& r4; // int && &&; r4 는 int&&
 
 즉 쉽게 생각하면 `&` 는 1 이고 `&&` 은 0 이라 둔 뒤에, `OR` 연산을 한다고 보면 됩니다. 그렇다면,
 
-```cpp
+```cpp-formatted
 
 wrapper(a);
 wrapper(ca);
@@ -1111,7 +938,7 @@ wrapper(ca);
 
 위 두 개의 호출의 경우 `T` 가 각각 `A&` 와 `const A&` 로 추론될 것이고,
 
-```cpp
+```cpp-formatted
 
 wrapper(A());
 ```
@@ -1123,7 +950,7 @@ wrapper(A());
 
 그런데 문제는 이제 직접 `g` 에 이 인자를 전달하는 방법입니다. 왜 그냥
 
-```cpp
+```cpp-formatted
 
 g(u)
 ```
@@ -1136,7 +963,7 @@ g(u)
 하지만 위 경우 아무때나 `move` 를 하면 안됩니다. 인자로 받은 `u` 가 우측값 레퍼런스 일 때 에만 `move` 를 해줘야만 하는 것입니다. 만일 좌측값 레퍼런스일 때 `move` 를 해버린다면 좌측값에 오버로딩 되는 `g` 가 아닌 우측값에 오버로딩 되는 `g` 가 호출되겠지요.
 
 
-```cpp
+```cpp-formatted
 
 g(forward<T>(u));
 ```
@@ -1146,12 +973,11 @@ g(forward<T>(u));
 이 문제를 해결해주는 것이 `forward` 함수 입니다. 이 함수는 `u` 가 우측값 레퍼런스 일 때 에만 마치 `move` 를 적용한 것 처럼 작동합니다. 실제로 `forward` 가 어떻게 생겼나면,
 
 
-```cpp
+```cpp-formatted
 
-template<class S>
-S&& forward(typename remove_reference<S>::type& a) noexcept
-{
-  return static_cast<S&&>(a);
+template <class S>
+S&& forward(typename remove_reference<S>::type& a) noexcept {
+  return static_cast<S&&>(a);
 }
 ```
 
@@ -1161,11 +987,10 @@ S&& forward(typename remove_reference<S>::type& a) noexcept
 
 
 
-```cpp
+```cpp-formatted
 
-A& && forward(typename remove_reference<A&>::type& a) noexcept
-{
-  return static_cast<A& &&>(a);
+A&&& forward(typename remove_reference<A&>::type& a) noexcept {
+  return static_cast<A&&&>(a);
 }
 ```
 
@@ -1175,12 +1000,9 @@ A& && forward(typename remove_reference<A&>::type& a) noexcept
 
 
 
-```cpp
+```cpp-formatted
 
-A& forward(A& a) noexcept
-{
-  return static_cast<A&>(a);
-}
+A& forward(A& a) noexcept { return static_cast<A&>(a); }
 ```
 
 
@@ -1189,12 +1011,9 @@ A& forward(A& a) noexcept
 
 
 
-```cpp
+```cpp-formatted
 
-A&& forward(A& a) noexcept
-{
-  return static_cast<A&&>(a);
-}
+A&& forward(A& a) noexcept { return static_cast<A&&>(a); }
 ```
 
 

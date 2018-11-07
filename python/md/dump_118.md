@@ -53,25 +53,24 @@ char * ctime ( const time_t * timer );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/ctime/ctime/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <time.h>
 
-int main ()
-{
-    time_t rawtime;
+int main() {
+  time_t rawtime;
 
-    time ( &rawtime );
-    printf ( "The current local time is: %s", ctime (&rawtime) );
+  time(&rawtime);
+  printf("The current local time is: %s", ctime(&rawtime));
 
-    return 0;
+  return 0;
 }
 ```
 

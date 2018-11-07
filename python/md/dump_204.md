@@ -44,15 +44,15 @@ next_page : 209
 
 이 때, 명시적 캐스팅은 다음과 같이 수행되었지요.
 
-```cpp
+```cpp-formatted
 ptr = (Something *)other_ptr;
-int_variable = (int) float_variable;
+int_variable = (int)float_variable;
 ```
 
 
 와 같이 말이지요. 즉, 괄호 안에 원하는 타입을 넣고 변환을 수행한 것입니다. 하지만 이러한 방식을 사용하다 보니까 프로그래머들 사이에서 몇 가지 문제점들을 발견하였습니다. 일단, 괄호 안에 타입을 넣는 방식으로 변환을 수행하는 탓에, 코드의 가독성이 떨어지게 됩니다. 즉,
 
-```cpp
+```cpp-formatted
 
 function((int)variable);
 ```
@@ -77,16 +77,16 @@ function((int)variable);
 
 예를 들어서, `static_cast` 로 `float` 타입의 `float_variable` 이라는 변수를 `int` 타입의 변수로 타입 변환하기 위해서는;
 
-```cpp
+```cpp-formatted
 
-static_cast<int>(float_variable) ;
+static_cast<int>(float_variable);
 ```
 
 
 
 이렇게 해주시면 됩니다. 이는 C 언어에서
 
-```cpp
+```cpp-formatted
 
 (int)(float_variable)
 ```
@@ -106,11 +106,10 @@ static_cast<int>(float_variable) ;
 
 제가 이 `N` 차원 배열을 구현하는 프로젝트에서 사용할 아이디어는, 이전에 2 차원 배열의 동적할당을 수행하면서 얻은 아이디어와 비슷합니다. 예전에 동적으로 2 차원 배열을 구현할 때 다음과 같이 구성하였습니다. (참고로 아래 코드에서 할당한 2 차원 배열의 크기는 `arr[x1][x2]` 입니다)
 
-```cpp
-int **arr;
-arr = new int* [x1];
-for(int i = 0; i < x1; i ++)
-arr[x1] = new int [x2];
+```cpp-formatted
+int** arr;
+arr = new int*[x1];
+for (int i = 0; i < x1; i++) arr[x1] = new int[x2];
 ```
 
 
@@ -129,12 +128,11 @@ arr[x1] = new int [x2];
 
 하지만 관점을 바꾸어서 조금만 생각해보면 이 문제는 손쉽게 해결할 수 있음을 알 수 있습니다. 위에서 포인터를 사용하는 것이 단순히 다음 레벨의 배열들을 가리키기 위함이라면, 굳이 `N` 포인터를 사용하지 않고도 만들 수 있기 때문입니다.
 
-```cpp
+```cpp-formatted
 
-struct Address
-{
-int level;
-void* next;
+struct Address {
+  int level;
+  void* next;
 };
 ```
 
@@ -165,20 +163,17 @@ void* next;
 
 이러한 아이디어를 바탕으로 일단 우리의 `N` 차원 `Array` 배열의 클래스를 대략적으로 설계해보도록 합시다.
 
-```cpp
+```cpp-formatted
 
-class Array
-{
-const int dim; // 몇 차원 배열인지
-int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
+class Array {
+  const int dim;  // 몇 차원 배열인지
+  int* size;  // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
 
-
-public:
-Array(int dim, int* array_size)  : dim(dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = array_size[i];
-}
+ public:
+  Array(int dim, int* array_size) : dim(dim) {
+    size = new int[dim];
+    for (int i = 0; i < dim; i++) size[i] = array_size[i];
+  }
 };
 ```
 
@@ -189,23 +184,19 @@ for(int i = 0; i < dim; i ++) size[i] = array_size[i];
 
 그런데 여기서 중요한 것이 빠진것 같습니다. 바로 실질적으로 데이터를 보관하는 부분인데요, 앞에서도 설명하였듯이 우리의 거대한 `N` 차원 배열은 마치 거대한 나무 처럼 가느다란 줄기로 부터 시작해서 엄청나게 큰 뿌리로 퍼지는 모습입니다. 하지만 이 거대한 배열을 가리키게 위해서 `Array` 에서 필요한 것은 단 하나, 바로 맨 상단의 시작점일 뿐이지요. 이 시작점은 `Address *` 타입으로, 이를 `top` 이라고 부르기로 하였습니다. 따라서 최종적으로 `Array` 에 필요한 `data` 멤버들은 다음과 같습니다.
 
-```cpp
+```cpp-formatted
 
-class Array
-{
-const int dim; // 몇 차원 배열인지
-int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
+class Array {
+  const int dim;  // 몇 차원 배열인지
+  int* size;  // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
 
+  Address* top;
 
-Address* top;
-
-
-public:
-Array(int dim, int* array_size)  : dim(dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = array_size[i];
-}
+ public:
+  Array(int dim, int* array_size) : dim(dim) {
+    size = new int[dim];
+    for (int i = 0; i < dim; i++) size[i] = array_size[i];
+  }
 };
 ```
 
@@ -213,30 +204,25 @@ for(int i = 0; i < dim; i ++) size[i] = array_size[i];
 
 아 물론, `Address` 라는 새로운 구조체를 도입하였기 때문에 `Address` 의 정의 자체도 넣어야만 합니다. 한 가지 재미있는 점은 클래스 안에도 클래스를 넣을 수 있다는 사실인데, 외부에서 우리 `Array` 배열이 내부적으로 어떻게 작동하는지 공개하고 싶지 않고, 또 내부 정보에 접근하는 것을 원치 않기 때문에 `Array` 안에 `Address` 구조체를 넣어 버리겠습니다. (참고로 C++ 에서 구조체는 모든 멤버 함수, 변수가 디폴트로 `public` 인 클래스라고 생각하시면 됩니다)
 
-```cpp
+```cpp-formatted
 
-class Array
-{
-const int dim; // 몇 차원 배열인지
-int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
+class Array {
+  const int dim;  // 몇 차원 배열인지
+  int* size;  // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
 
+  struct Address {
+    int level;
+    // 맨 마지막 레벨(dim - 1 레벨) 은 데이터 배열을 가리키고, 그 위 상위
+    // 레벨에서는 다음 Address 배열을 가리킨다.
+    void* next;
+  };
+  Address* top;
 
-struct Address
-{
-int level;
-// 맨 마지막 레벨(dim - 1 레벨) 은 데이터 배열을 가리키고, 그 위 상위 레벨에서는
-// 다음 Address 배열을 가리킨다.
-void* next;
-};
-Address* top;
-
-
-public:
-Array(int dim, int* array_size)  : dim(dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = array_size[i];
-}
+ public:
+  Array(int dim, int* array_size) : dim(dim) {
+    size = new int[dim];
+    for (int i = 0; i < dim; i++) size[i] = array_size[i];
+  }
 };
 ```
 
@@ -262,22 +248,22 @@ for(int i = 0; i < dim; i ++) size[i] = array_size[i];
 따라서 이 생각들을 정리하면 다음과 같은 코드를 짤 수 있습니다.
 
 
-```cpp
+```cpp-formatted
 
 // address 를 초기화 하는 함수이다. 재귀 호출로 구성되어 있다.
-void initialize_address(Address *current)
-{
-if(!current ) return;
-if(current->level == dim - 1) { // 두 번째 질문 (종료 조건)
-current->next = new int [size[current->level]];
-return;
-}
-current->next = new Address[size[current->level]];
-for(int i = 0; i != size[current->level]; i ++) {// 다음 단계로 넘어가는 과정
-(static_cast<Address *>(current->next)+ i)->level = current->level + 1;
+void initialize_address(Address *current) {
+  if (!current) return;
+  if (current->level == dim - 1) {  // 두 번째 질문 (종료 조건)
+    current->next = new int[size[current->level]];
+    return;
+  }
+  current->next = new Address[size[current->level]];
+  for (int i = 0; i != size[current->level];
+       i++) {  // 다음 단계로 넘어가는 과정
+    (static_cast<Address *>(current->next) + i)->level = current->level + 1;
 
-initialize_address(static_cast<Address *>(current->next) + i);
-}
+    initialize_address(static_cast<Address *>(current->next) + i);
+  }
 }
 ```
 
@@ -288,7 +274,7 @@ initialize_address(static_cast<Address *>(current->next) + i);
 
 반면에 종료 조건에 해당하지 않는 경우 `initialize_address` 함수에서 어떻게 처리하는지 볼까요. 일단;
 
-```cpp
+```cpp-formatted
 
 current->next = new Address[size[current->level]];
 ```
@@ -300,11 +286,11 @@ current->next = new Address[size[current->level]];
 
 이렇게 `Address` 배열을 만들게 된다면, 이 각각의 원소들에 대해서도 종료 조건에 도달하기 전까지 동일한 처리를 계속 반복해주어야만 하겠지요? 따라서 아래 처럼 `for` 문으로
 
-```cpp
+```cpp-formatted
 
-for(int i = 0; i != size[current->level]; i ++) {// 다음 단계로 넘어가는 과정
-(static_cast<Address *>(current->next)+ i)->level = current->level + 1;
-initialize_address(static_cast<Address *>(current->next) + i);
+for (int i = 0; i != size[current->level]; i++) {  // 다음 단계로 넘어가는 과정
+  (static_cast<Address *>(current->next) + i)->level = current->level + 1;
+  initialize_address(static_cast<Address *>(current->next) + i);
 }
 ```
 
@@ -312,16 +298,16 @@ initialize_address(static_cast<Address *>(current->next) + i);
 
 새롭게 생성한 각각의 원소들에 대해 `initialize_address` 를 동일하게 수행하고 있습니다.
 
-```cpp
+```cpp-formatted
 
-(static_cast<Address *>(current->next)+ i)->level = current->level + 1;
+(static_cast<Address *>(current->next) + i)->level = current->level + 1;
 ```
 
 
 
 위 처럼 그 `current` 의 `next` 가 가리키고 있는 원소들의 레벨 값을 다음 단계로 설정한 다음에
 
-```cpp
+```cpp-formatted
 
 initialize_address(static_cast<Address *>(current->next) + i);
 ```
@@ -330,7 +316,7 @@ initialize_address(static_cast<Address *>(current->next) + i);
 
 각각의 원소들에 대한 `initialize_address` 함수를 호출하게 됩니다. 참고로,
 
-```cpp
+```cpp-formatted
 
 (static_cast<Address *>(current->next) + i)
 ```
@@ -349,17 +335,15 @@ initialize_address(static_cast<Address *>(current->next) + i);
 
 생성자를 만들었으므로, 소멸자도 비슷한 방식으로 만들어주면 됩니다. 다만, 소멸자의 경우 주의할 점이, 생성자는 '위에서 아래로' 메모리들을 점차 확장 시켜 나갔지만, 소멸자는 '아래에서 위로' 메모리를 점차 소멸시켜 나가야 된다는 점입니다. 물론, 이로 살짝 바꾸는 것은 별로 어려운 일이 아닙니다.
 
-```cpp
+```cpp-formatted
 
-void delete_address(Address *current)
-{
-if (!current) return;
-for(int i = 0; current->level < dim - 1 && i < size[current->level]; i ++) {
-delete_address(static_cast<Address *>(current->next) + i);
-}
+void delete_address(Address *current) {
+  if (!current) return;
+  for (int i = 0; current->level < dim - 1 && i < size[current->level]; i++) {
+    delete_address(static_cast<Address *>(current->next) + i);
+  }
 
-
-delete [] current->next;
+  delete[] current->next;
 }
 ```
 
@@ -370,36 +354,29 @@ delete [] current->next;
 
 이들을 조합해서, 우리의 `Array` 클래스의 생성자를 수정해보도록 합시다.
 
-```cpp
+```cpp-formatted
 
-Array(int dim, int* array_size) : dim(dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = array_size[i];
+Array(int dim, int* array_size) : dim(dim) {
+  size = new int[dim];
+  for (int i = 0; i < dim; i++) size[i] = array_size[i];
 
+  top = new Address;
+  top->level = 0;
 
-top = new Address;
-top->level = 0;
-
-
-initialize_address(top);
+  initialize_address(top);
 }
-Array(const Array& arr) : dim(arr.dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = arr.size[i];
+Array(const Array& arr) : dim(arr.dim) {
+  size = new int[dim];
+  for (int i = 0; i < dim; i++) size[i] = arr.size[i];
 
+  top = new Address;
+  top->level = 0;
 
-top = new Address;
-top->level = 0;
-
-
-initialize_address(top);
+  initialize_address(top);
 }
-~Array()
-{
-delete_address(top);
-delete [] size;
+~Array() {
+  delete_address(top);
+  delete[] size;
 }
 ```
 
@@ -420,13 +397,13 @@ delete [] size;
 
 그렇다면, 여러개의 `[]` 들을 어떻게 처리하냐면 예를 들어 우리가
 
-```cpp
+```cpp-formatted
 arr[1][2][3][4]
 ```
 
 를 하였을 때, 제일 먼저 `arr[1]` 이 처리되며, 첫 번째 차원으로 1 을 선택했다는 정보가 담긴 어떠한 객체 `T` 를 리턴합니다. 그리고,
 
-```cpp
+```cpp-formatted
 
 (T)[2][3][4]
 ```
@@ -435,7 +412,7 @@ arr[1][2][3][4]
 
 가 수행이 되겠지요. 이 `T` 또한 `operator[]` 가 있어서, 두번째 차원으로 2 를 선택했다는 정보가 담긴 객체 T' 을 리턴합니다. 그렇다면 이제,
 
-```cpp
+```cpp-formatted
 
 (T')[3][4]
 ```
@@ -444,7 +421,7 @@ arr[1][2][3][4]
 
 가 되겠고, 마찬가지로 계속 진행하게 된다면
 
-```cpp
+```cpp-formatted
 
 T'''
 ```
@@ -454,19 +431,19 @@ T'''
 
 일단 `Array` 가 아닌 새로운 타입의 객체를 만들어야 한다는 것만은 분명합니다. 왜냐하면, 만일 `operator[]` 가 `Array&` 타입이라면, 1 차원 `Array` 배열에 대해서
 
-```cpp
+```cpp-formatted
 arr[1] = 3;
 ```
 
 과 같은 문장은 말이 안되기 때문입니다. 그렇다고 해서 `operator[]` 가 `int&` 타입을 리턴할 수 도 없는 처지 입니다. 왜냐하면, 만일 `int&` 타입을 리턴하였을 경우에 1 차원 배열인
 
-```cpp
+```cpp-formatted
 arr[1] = 3;
 ```
 
 과 같은 문장은 쉽게 처리할 수 있다고 하지만, 그 보다 고차원 배열에 대해서
 
-```cpp
+```cpp-formatted
 
 arr[1][2] = 3;
 ```
@@ -482,15 +459,13 @@ arr[1][2] = 3;
 
 이러한 생각을 바탕으로 `int` 의 `Wrapper` 클래스 `Int` 의 얼개를 그려보자면 다음과 같습니다.
 
-```cpp
+```cpp-formatted
 
-class Int
-{
-void* data;
+class Int {
+  void* data;
 
-
-int level;
-Array* array;
+  int level;
+  Array* array;
 };
 ```
 
@@ -501,7 +476,7 @@ Array* array;
 
 예를 들어서
 
-```cpp
+```cpp-formatted
 arr[1][2];
 ```
 
@@ -516,26 +491,24 @@ arr[1][2];
 
 먼저 `Int` 의 생성자는 아래와 같이 구성할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
-Int(int index, int _level = 0, void* _data = NULL, Array* _array = NULL)
- : level(_level), data(_data), array(_array)
-{
-if(_level < 1 || index >= array->size[_level - 1]) {
-data = NULL;
-return;
-}
-if(level == array->dim) {
-// 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
-data = static_cast<void *>(
-(static_cast<int *>(
-static_cast<Array::Address *>(data)->next) + index));
-} else {
-// 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
-data = static_cast<void*>
-(static_cast<Array::Address*>(
-static_cast<Array::Address *>(data)->next) + index);
-}
+Int(int index, int _level = 0, void *_data = NULL, Array *_array = NULL)
+    : level(_level), data(_data), array(_array) {
+  if (_level < 1 || index >= array->size[_level - 1]) {
+    data = NULL;
+    return;
+  }
+  if (level == array->dim) {
+    // 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
+    data = static_cast<void *>(
+      (static_cast<int *>(static_cast<Array::Address *>(data)->next) + index));
+  } else {
+    // 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
+    data = static_cast<void *>(
+      static_cast<Array::Address *>(static_cast<Array::Address *>(data)->next) +
+      index);
+  }
 };
 ```
 
@@ -544,16 +517,16 @@ static_cast<Array::Address *>(data)->next) + index);
 
 `Int` 생성자의 내용을 설명하기 전에, 위에 `Int` 생성자의 인자로 이상한 것들이 보이지요? 왜 인자에 값을 미리 대입하고 있는 것인가요?
 
-```cpp
+```cpp-formatted
 
-int index, int _level = 0, void* _data = NULL, Array* _array = NULL
+int index, int _level = 0, void *_data = NULL, Array *_array = NULL
 ```
 
 
 
 이들은 모두 디폴트 인자(default argument)라고 부르는 것이며, 함수에 값을 전달해주지 않는다면 인자에 기본으로 이 값들이 들어가게 됩니다. 예를 들어서 우리가 `Int` 의 생성자에
 
-```cpp
+```cpp-formatted
 
 Int(3)
 ```
@@ -562,7 +535,7 @@ Int(3)
 
 이라고 호출하였다면, `index` 에는 3 이 들어가겠지만, `_level` 에는 0, `_data` 과 `_array` 에는 `NULL` 이 들어가겠지요. 만약에 인자를 지정해 주었다면, 디폴트 값 대신에 지정한 인자가 들어가게 됩니다. 예를 들어서
 
-```cpp
+```cpp-formatted
 
 Int(3, 1)
 ```
@@ -571,16 +544,16 @@ Int(3, 1)
 
 이렇게 한다면 `index` 에는 `3, _level` 에는 `1,` 그리고 나머지에는 디폴트 값인 `NULL` 이 들어갑니다. 또한 한 가지 당연한 사실이지만, 디폴트 인자들은 함수의맨 마지막 인자 부터 '연속적으로'만 사용할 수 있습니다. 왜냐하면 만일 우리가 디폴트 인자를
 
-```cpp
+```cpp-formatted
 
-int index, int _level = 0, void *_data = NULL, Array* _array
+int index, int _level = 0, void *_data = NULL, Array *_array
 ```
 
 
 
 이렇게 중간에 두었다면 사용자가
 
-```cpp
+```cpp-formatted
 
 Int(3, 1, ptr)
 ```
@@ -592,11 +565,11 @@ Int(3, 1, ptr)
 
 자 그럼 이제 `Int` 생성자의 내부를 살펴보도록 하겠습니다.
 
-```cpp
+```cpp-formatted
 
-if(_level < 1 || index >= array->size[_level - 1]) {
-data = NULL;
-return;
+if (_level < 1 || index >= array->size[_level - 1]) {
+  data = NULL;
+  return;
 }
 ```
 
@@ -604,17 +577,17 @@ return;
 
 일단 위와 같이 오류가 발생하였을 경우 처리하는 모습입니다. 클래스를 구현할 때는 항상 클래스를 사용하는 사용자가 어떠한 이상한 짓을 하더라도 대처할 수 있는 자세가 필요합니다. 위와 같이 꼼꼼하게 발생할 수 있는 예외 상황을 처리하도록 합시다.
 
-```cpp
+```cpp-formatted
 
-if(level == array->dim) {
-// 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
-data = static_cast<void *>(
-(static_cast<int *>(static_cast<Array::Address *>(data)->next) + index));
+if (level == array->dim) {
+  // 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
+  data = static_cast<void *>(
+    (static_cast<int *>(static_cast<Array::Address *>(data)->next) + index));
 } else {
-// 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
-data = static_cast<void*>
-(static_cast<Array::Address*>(
-static_cast<Array::Address *>(data)->next) + index);
+  // 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
+  data = static_cast<void *>(
+    static_cast<Array::Address *>(static_cast<Array::Address *>(data)->next) +
+    index);
 }
 ```
 
@@ -622,7 +595,7 @@ static_cast<Array::Address *>(data)->next) + index);
 
 그 다음 부분을 살펴보자면, 상당히 중요한 부분입니다. 먼저 `if` 문에서 이 `Int` 의 `level` 과 `array->dim` 이 같다는 것은 무엇을 의미할까요? 이 말은, 원소에 접근하는 단계의 중간 산물이 아니라, 실질적으로 접근이 완료 되었다는 것입니다. 따라서, `Int` 의 `data` 에는 `(int *)` 타입의 포인터 주소값이 (void* 로 다시 캐스팅 되어서) 들어가겠지요. 즉, `level == array->dim` 이 되는 상황은 예컨대 3 차원 배열에서
 
-```cpp
+```cpp-formatted
 
 arr[1][2][3];
 ```
@@ -631,7 +604,7 @@ arr[1][2][3];
 
 을 하였을 때 `arr[1]` 은 `level 1` 짜리 `Int` 객체 `T` 를 리턴해서
 
-```cpp
+```cpp-formatted
 
 T[2][3]
 ```
@@ -640,7 +613,7 @@ T[2][3]
 
 이 되고, `T[2]` 는 `level 2` 짜리 `Int` 객체 T' 을 리턴해서
 
-```cpp
+```cpp-formatted
 
 T'[3]
 ```
@@ -649,11 +622,11 @@ T'[3]
 
 이 되고, 다시 `T'[3]` 은 `level 3` 짜리 `Int` 객체 `T''` 을 리턴하게 되는데, 이 `T''` 의 `data` 가 가리키는 포인터가 이전들과는 다르게 `int` 변수의 주소값이라는 것이지요. 그렇다면 당연히도 `else` 부분에서는, `data` 에 다음 `Address` 값이 들어갑니다.
 
-```cpp
+```cpp-formatted
 
-data = static_cast<void*>
-(static_cast<Array::Address*>(
-static_cast<Array::Address *>(data)->next)+ index);
+data = static_cast<void *>(
+  static_cast<Array::Address *>(static_cast<Array::Address *>(data)->next) +
+  index);
 ```
 
 
@@ -663,11 +636,10 @@ static_cast<Array::Address *>(data)->next)+ index);
 
 이와 같은 사실을 바탕으로 하면 `Array` 의 `operator[]` 와 `Int` 의 `operator[]` 는 별로 어렵지 않게 만들 수 있습니다. 먼저 `Array` 의 `operator[]` 를 살펴보면
 
-```cpp
+```cpp-formatted
 
-Int Array::operator[](const int index)
-{
-return Int(index, 1, static_cast<void *>(top), this);
+Int Array::operator[](const int index) {
+  return Int(index, 1, static_cast<void *>(top), this);
 }
 ```
 
@@ -675,12 +647,11 @@ return Int(index, 1, static_cast<void *>(top), this);
 
 위와 같이 `Int` 를 리턴하게 되며, `level` 로는 `1,` 그리고 `data` 인자로는 `top` 을 전달합니다. 따라서 `Int` 생성자에서, 생성되는 객체가 `top` 의 `next` 가 가리키고 있는 `index` 번째 원소를 `data` 로 가질 수 있게 되지요.
 
-```cpp
+```cpp-formatted
 
-Int operator[] (const int index)
-{
-if(!data) return 0;
-return Int(index, level + 1, data, array);
+Int operator[](const int index) {
+  if (!data) return 0;
+  return Int(index, level + 1, data, array);
 }
 ```
 
@@ -691,12 +662,11 @@ return Int(index, level + 1, data, array);
 
 자 이제, `Int` 가 `Wrapper` 클래스로써 동작하기에 가장 필수적인 요소인 타입 변환 연산자를 살펴보면;
 
-```cpp
+```cpp-formatted
 
-operator int()
-{
-if(data) return *static_cast<int *>(data);
-return 0;
+operator int() {
+  if (data) return *static_cast<int *>(data);
+  return 0;
 }
 ```
 
@@ -707,174 +677,138 @@ return 0;
 
 자 그럼, 실제 전체 코드를 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 
 // 대망의 Array 배열
 #include <iostream>
 using namespace std;
 
-
 class Array;
 class Int;
 
+class Array {
+  friend Int;
 
-class Array
-{
-friend Int;
+  const int dim;  // 몇 차원 배열 인지
+  int* size;  // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
 
+  struct Address {
+    int level;
+    // 맨 마지막 레벨(dim - 1 레벨) 은 데이터 배열을 가리키고, 그 위 상위
+    // 레벨에서는 다음 Address 배열을 가리킨다.
+    void* next;
+  };
 
-const int dim; // 몇 차원 배열 인지
-int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
+  Address* top;
 
+ public:
+  Array(int dim, int* array_size) : dim(dim) {
+    size = new int[dim];
+    for (int i = 0; i < dim; i++) size[i] = array_size[i];
 
-struct Address
-{
-int level;
-// 맨 마지막 레벨(dim - 1 레벨) 은 데이터 배열을 가리키고, 그 위 상위 레벨에서는
-// 다음 Address 배열을 가리킨다.
-void* next;
+    top = new Address;
+    top->level = 0;
+
+    initialize_address(top);
+  }
+  Array(const Array& arr) : dim(arr.dim) {
+    size = new int[dim];
+    for (int i = 0; i < dim; i++) size[i] = arr.size[i];
+
+    top = new Address;
+    top->level = 0;
+
+    initialize_address(top);
+  }
+  // address 를 초기화 하는 함수이다. 재귀 호출로 구성되어 있다.
+  void initialize_address(Address* current) {
+    if (!current) return;
+    if (current->level == dim - 1) {
+      current->next = new int[size[current->level]];
+      return;
+    }
+    current->next = new Address[size[current->level]];
+    for (int i = 0; i != size[current->level]; i++) {
+      (static_cast<Address*>(current->next) + i)->level = current->level + 1;
+      initialize_address(static_cast<Address*>(current->next) + i);
+    }
+  }
+  void delete_address(Address* current) {
+    if (!current) return;
+    for (int i = 0; current->level < dim - 1 && i < size[current->level]; i++) {
+      delete_address(static_cast<Address*>(current->next) + i);
+    }
+
+    delete[] current->next;
+  }
+  Int operator[](const int index);
+  ~Array() {
+    delete_address(top);
+    delete[] size;
+  }
 };
+class Int {
+  void* data;
 
+  int level;
+  Array* array;
 
-Address* top;
+ public:
+  Int(int index, int _level = 0, void* _data = NULL, Array* _array = NULL)
+      : level(_level), data(_data), array(_array) {
+    if (_level < 1 || index >= array->size[_level - 1]) {
+      data = NULL;
+      return;
+    }
+    if (level == array->dim) {
+      // 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
+      data = static_cast<void*>(
+        (static_cast<int*>(static_cast<Array::Address*>(data)->next) + index));
+    } else {
+      // 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
+      data = static_cast<void*>(
+        static_cast<Array::Address*>(static_cast<Array::Address*>(data)->next) +
+        index);
+    }
+  };
 
+  Int(const Int& i) : data(i.data), level(i.level), array(i.array) {}
 
-public:
+  operator int() {
+    if (data) return *static_cast<int*>(data);
+    return 0;
+  }
+  Int& operator=(const int& a) {
+    if (data) *static_cast<int*>(data) = a;
+    return *this;
+  }
 
-
-Array(int dim, int* array_size) : dim(dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = array_size[i];
-
-
-top = new Address;
-top->level = 0;
-
-
-initialize_address(top);
-}
-Array(const Array& arr) : dim(arr.dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = arr.size[i];
-
-
-top = new Address;
-top->level = 0;
-
-
-initialize_address(top);
-}
-// address 를 초기화 하는 함수이다. 재귀 호출로 구성되어 있다.
-void initialize_address(Address *current)
-{
-if(!current ) return;
-if(current->level == dim - 1) {
-current->next = new int [size[current->level]];
-return;
-}
-current->next = new Address[size[current->level]];
-for(int i = 0; i != size[current->level]; i ++) {
-(static_cast<Address *>(current->next)+ i)->level = current->level + 1;
-initialize_address(static_cast<Address *>(current->next) + i);
-}
-}
-void delete_address(Address *current)
-{
-if (!current) return;
-for(int i = 0; current->level < dim - 1 && i < size[current->level]; i ++) {
-delete_address(static_cast<Address *>(current->next) + i);
-}
-
-
-delete [] current->next;
-}
-Int operator[](const int index);
-~Array()
-{
-delete_address(top);
-delete [] size;
-}
-
-
+  Int operator[](const int index) {
+    if (!data) return 0;
+    return Int(index, level + 1, data, array);
+  }
 };
-class Int
-{
-void* data;
-
-
-int level;
-Array* array;
-public:
-
-
-Int(int index, int _level = 0, void* _data = NULL, Array* _array = NULL)
-: level(_level), data(_data), array(_array)
-{
-if(_level < 1 || index >= array->size[_level - 1]) {
-data = NULL;
-return;
+Int Array::operator[](const int index) {
+  return Int(index, 1, static_cast<void*>(top), this);
 }
-if(level == array->dim) {
-// 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
-data = static_cast<void *>(
-(static_cast<int *>(
-static_cast<Array::Address *>(data)->next) + index));
-} else {
-// 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
-data = static_cast<void*>
-(static_cast<Array::Address*>(
-static_cast<Array::Address *>(data)->next) + index);
-}
-};
+int main() {
+  int size[] = {2, 3, 4};
+  Array arr(3, size);
 
-
-Int(const Int& i) : data(i.data), level(i.level), array(i.array) {}
-
-
-operator int()
-{
-if(data) return *static_cast<int *>(data);
-return 0;
-}
-Int& operator=(const int& a)
-{
-if(data) *static_cast<int *>(data) = a ;
-return *this;
-}
-
-
-Int operator[] (const int index)
-{
-if(!data) return 0;
-return Int(index, level + 1, data, array);
-}
-};
-Int Array::operator[](const int index)
-{
-return Int(index, 1, static_cast<void *>(top), this);
-}
-int main()
-{
-int size[] = {2, 3, 4};
-Array arr(3, size);
-
-
-for(int i = 0; i < 2; i ++) {
-for(int j = 0; j < 3; j ++) {
-for(int k = 0; k < 4; k ++) {
-arr[i][j][k] = (i + 1) * (j + 1) * (k + 1);
-}
-}
-}
-for(int i = 0; i < 2; i ++) {
-for(int j = 0; j < 3; j ++) {
-for(int k = 0; k < 4; k ++) {
-cout << i << " " << j << " " << k << " " << arr[i][j][k] << endl;
-}
-}
-}
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 3; j++) {
+      for (int k = 0; k < 4; k++) {
+        arr[i][j][k] = (i + 1) * (j + 1) * (k + 1);
+      }
+    }
+  }
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 3; j++) {
+      for (int k = 0; k < 4; k++) {
+        cout << i << " " << j << " " << k << " " << arr[i][j][k] << endl;
+      }
+    }
+  }
 }
 ```
 
@@ -894,7 +828,7 @@ cout << i << " " << j << " " << k << " " << arr[i][j][k] << endl;
 
 한 가지 중요하게 살펴볼 점은, 두 개의 클래스를 한 파일에서 사용하기 때문에 클래스의 정의 순서가 매우 중요하다는 점입니다. 소스 상단에
 
-```cpp
+```cpp-formatted
 
 class Array;
 class Int;
@@ -904,7 +838,7 @@ class Int;
 
 와 같이 클래스를 '선언' 하였습니다. 클래스를 선언하지 않는다면, 아래 `Array` 클래스에서
 
-```cpp
+```cpp-formatted
 
 friend Int;
 ```
@@ -914,11 +848,10 @@ friend Int;
 를 할 수 없게 됩니다. 왜냐하면 컴파일러 입장에서 `Int` 가 뭔지 알 턱이 없기 때문입니다. 따라서 `friend` 선언을 하기 전에, 이와 같이 `class Int` 를 먼저 맨 위에 선언해서 사용할 수 있도록 해야 합니다. 그럼에도 불구하고, 맨 밑에
 
 
-```cpp
+```cpp-formatted
 
-Int Array::operator[](const int index)
-{
-return Int(index, 1, static_cast<void *>(top), this);
+Int Array::operator[](const int index) {
+  return Int(index, 1, static_cast<void *>(top), this);
 }
 ```
 
@@ -935,13 +868,12 @@ return Int(index, 1, static_cast<void *>(top), this);
 
 이를 위해 `Array` 에 `Iterator` 라는 클래스를 추가할 것입니다.
 
-```cpp
+```cpp-formatted
 
-class Iterator
-{
-int* location;
-Array* arr;
-        }
+class Iterator {
+  int* location;
+  Array* arr;
+}
 ```
 
 
@@ -951,7 +883,7 @@ Array* arr;
 
 이를 위해서, 우리의 `Iterator` 클래스에, 현재 `Iterator` 가 어떤 원소를 가리키고 있는지에 대한 정보를 멤버 변수로 가지게 하겠습니다. 이는 `int * location` 에 배열로 보관되는데, 예를 들어 3 차원 배열에서 `Iterator` 가
 
-```cpp
+```cpp-formatted
 
 arr[1][2][3]
 ```
@@ -960,31 +892,28 @@ arr[1][2][3]
 
 을 가리키고 있다면 `location` 배열에는 `{1,2,3}` 이렇게 들어가게 되는 것이지요. 상당히 단순한 방법이지요? 그렇기 때문에 `operator++()` 함수 자체도 매우 간단하게 만들 수 있습니다.
 
-```cpp
+```cpp-formatted
 
-Iterator& operator++()
-{
-if(location[0] >= arr->size[0]) return (*this);
+Iterator& operator++() {
+  if (location[0] >= arr->size[0]) return (*this);
 
+  bool carry = false;  // 받아 올림이 있는지
+  int i = arr->dim - 1;
+  do {
+    // 어차피 다시 돌아온다는 것은 carry 가 true
+    // 라는 의미 이므로 ++ 을 해야 한다.
+    location[i]++;
+    if (location[i] >= arr->size[i] && i >= 1) {
+      // i 가 0 일 경우 0 으로 만들지 않는다 (이러면 begin 과 중복됨)
+      location[i] -= arr->size[i];
+      carry = true;
+      i--;
+    } else
+      carry = false;
 
-bool carry = false; // 받아 올림이 있는지
-int i = arr->dim - 1;
-do {
-// 어차피 다시 돌아온다는 것은 carry 가 true
-// 라는 의미 이므로 ++ 을 해야 한다.
-location[i] ++;
-if(location[i] >= arr->size[i] && i >= 1) {
-// i 가 0 일 경우 0 으로 만들지 않는다 (이러면 begin 과 중복됨)
-location[i] -= arr->size[i];
-carry = true;
-i --;
-} else carry = false;
+  } while (i >= 0 && carry);
 
-
-} while (i >= 0 && carry);
-
-
-return (*this);
+  return (*this);
 }
 ```
 
@@ -1007,14 +936,15 @@ return (*this);
 
 이렇기 때문에 `do - while` 문 안에서도 특별히
 
-```cpp
+```cpp-formatted
 
-if(location[i] >= arr->size[i] && i >= 1) {
-// i 가 0 일 경우 0 으로 만들지 않는다 (이러면 begin 과 중복됨)
-location[i] -= arr->size[i];
-carry = true;
-i --;
-} else carry = false;
+if (location[i] >= arr->size[i] && i >= 1) {
+  // i 가 0 일 경우 0 으로 만들지 않는다 (이러면 begin 과 중복됨)
+  location[i] -= arr->size[i];
+  carry = true;
+  i--;
+} else
+  carry = false;
 ```
 
 
@@ -1023,12 +953,11 @@ i --;
 
 참고로, 전위 증가 연산자를 만들었으므로 후위 증가 연산자도 만드는 것을 잊지 마세요.
 
-```cpp
+```cpp-formatted
 
-Iterator& operator++(int)
-{
-++(*this);
-return (*this);
+Iterator& operator++(int) {
+  ++(*this);
+  return (*this);
 }
 ```
 
@@ -1036,15 +965,14 @@ return (*this);
 
 그렇다면 가장 중요한 `*` 연산자는 어떨까요. (*itr) 을 통해 실제 데이터에 접근해야 하므로, `Int` 를 리턴하게 됩니다. 따라서 그 모양은 다음과 같겠지요.
 
-```cpp
+```cpp-formatted
 
-Int Array::Iterator::operator* ()
-{
-Int start = arr->operator[](location[0]);
-for(int i = 1; i <= arr->dim - 1; i ++) {
-start = start.operator[](location[i]);
-}
-return start;
+Int Array::Iterator::operator*() {
+  Int start = arr->operator[](location[0]);
+  for (int i = 1; i <= arr->dim - 1; i++) {
+    start = start.operator[](location[i]);
+  }
+  return start;
 }
 ```
 
@@ -1055,32 +983,26 @@ return start;
 
 이제 `Array` 클래스에 현재 배열의 시작과 끝을 `Iterator` 객체로 리턴해주는 것만 만들어주면 됩니다. 각각을 `begin` 와 `end` 라고 해보면;
 
-```cpp
+```cpp-formatted
 
-Iterator begin()
-{
-int * arr = new int[dim];
-for(int i = 0; i != dim; i ++) arr[i] = 0;
+Iterator begin() {
+  int* arr = new int[dim];
+  for (int i = 0; i != dim; i++) arr[i] = 0;
 
+  Iterator temp(this, arr);
+  delete[] arr;
 
-Iterator temp(this, arr);
-delete [] arr;
-
-
-return temp;
+  return temp;
 }
-Iterator end()
-{
-int * arr = new int[dim];
-arr[0] = size[0];
-for(int i = 1; i < dim; i ++) arr[i] = 0;
+Iterator end() {
+  int* arr = new int[dim];
+  arr[0] = size[0];
+  for (int i = 1; i < dim; i++) arr[i] = 0;
 
+  Iterator temp(this, arr);
+  delete[] arr;
 
-Iterator temp(this, arr);
-delete [] arr;
-
-
-return temp;
+  return temp;
 }
 ```
 
@@ -1093,284 +1015,232 @@ return temp;
 
 
 
-```cpp
+```cpp-formatted
 
 // 대망의 N 차원 배열
 #include <iostream>
 using namespace std;
 
-
 class Array;
 class Int;
 class Iterator;
 
+class Array {
+  friend Int;
+  friend Iterator;
 
-class Array
-{
-friend Int;
-friend Iterator;
+  const int dim;  // 몇 차원 배열 인지
+  int* size;  // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
 
+  struct Address {
+    int level;
+    // 맨 마지막 레벨(dim - 1 레벨) 은 데이터 배열을 가리키고, 그 위 상위
+    // 레벨에서는 다음 Address 배열을 가리킨다.
+    void* next;
+  };
 
-const int dim; // 몇 차원 배열 인지
-int* size; // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
+  Address* top;
 
+ public:
+  class Iterator {
+    int* location;
+    Array* arr;
 
-struct Address
-{
-int level;
-// 맨 마지막 레벨(dim - 1 레벨) 은 데이터 배열을 가리키고, 그 위 상위 레벨에서는
-// 다음 Address 배열을 가리킨다.
-void* next;
+    friend Int;
+
+   public:
+    Iterator(Array* arr, int* loc = NULL) : arr(arr) {
+      location = new int[arr->dim];
+      for (int i = 0; i != arr->dim; i++)
+        location[i] = (loc != NULL ? loc[i] : 0);
+    }
+    Iterator(const Iterator& itr) : arr(itr.arr) {
+      location = new int[arr->dim];
+      for (int i = 0; i != arr->dim; i++) location[i] = itr.location[i];
+    }
+    ~Iterator() { delete[] location; }
+    // 다음 원소를 가리키게 된다.
+    Iterator& operator++() {
+      if (location[0] >= arr->size[0]) return (*this);
+
+      bool carry = false;  // 받아 올림이 있는지
+      int i = arr->dim - 1;
+      do {
+        // 어차피 다시 돌아온다는 것은 carry 가 true
+        // 라는 의미 이므로 ++ 을 해야 한다.
+        location[i]++;
+        if (location[i] >= arr->size[i] && i >= 1) {
+          // i 가 0 일 경우 0 으로 만들지 않는다 (이러면 begin 과 중복됨)
+          location[i] -= arr->size[i];
+          carry = true;
+          i--;
+        } else
+          carry = false;
+
+      } while (i >= 0 && carry);
+
+      return (*this);
+    }
+    Iterator& operator=(const Iterator& itr) {
+      arr = itr.arr;
+      location = new int[itr.arr->dim];
+      for (int i = 0; i != arr->dim; i++) location[i] = itr.location[i];
+
+      return (*this);
+    }
+    Iterator& operator++(int) {
+      ++(*this);
+      return (*this);
+    }
+    bool operator!=(const Iterator& itr) {
+      if (itr.arr->dim != arr->dim) return true;
+
+      for (int i = 0; i != arr->dim; i++) {
+        if (itr.location[i] != location[i]) return true;
+      }
+
+      return false;
+    }
+    Int operator*();
+  };
+  Array(int dim, int* array_size) : dim(dim) {
+    size = new int[dim];
+    for (int i = 0; i < dim; i++) size[i] = array_size[i];
+
+    top = new Address;
+    top->level = 0;
+
+    initialize_address(top);
+  }
+  Array(const Array& arr) : dim(arr.dim) {
+    size = new int[dim];
+    for (int i = 0; i < dim; i++) size[i] = arr.size[i];
+
+    top = new Address;
+    top->level = 0;
+
+    initialize_address(top);
+  }
+  // address 를 초기화 하는 함수이다. 재귀 호출로 구성되어 있다.
+  void initialize_address(Address* current) {
+    if (!current) return;
+    if (current->level == dim - 1) {
+      current->next = new int[size[current->level]];
+      return;
+    }
+    current->next = new Address[size[current->level]];
+    for (int i = 0; i != size[current->level]; i++) {
+      (static_cast<Address*>(current->next) + i)->level = current->level + 1;
+      initialize_address(static_cast<Address*>(current->next) + i);
+    }
+  }
+  void delete_address(Address* current) {
+    if (!current) return;
+    for (int i = 0; current->level < dim - 1 && i < size[current->level]; i++) {
+      delete_address(static_cast<Address*>(current->next) + i);
+    }
+
+    delete[] current->next;
+  }
+  Int operator[](const int index);
+  ~Array() {
+    delete_address(top);
+    delete[] size;
+  }
+
+  Iterator begin() {
+    int* arr = new int[dim];
+    for (int i = 0; i != dim; i++) arr[i] = 0;
+
+    Iterator temp(this, arr);
+    delete[] arr;
+
+    return temp;
+  }
+  Iterator end() {
+    int* arr = new int[dim];
+    arr[0] = size[0];
+    for (int i = 1; i < dim; i++) arr[i] = 0;
+
+    Iterator temp(this, arr);
+    delete[] arr;
+
+    return temp;
+  }
 };
+class Int {
+  void* data;
 
+  int level;
+  Array* array;
 
-Address* top;
+ public:
+  Int(int index, int _level = 0, void* _data = NULL, Array* _array = NULL)
+      : level(_level), data(_data), array(_array) {
+    if (_level < 1 || index >= array->size[_level - 1]) {
+      data = NULL;
+      return;
+    }
+    if (level == array->dim) {
+      // 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
+      data = static_cast<void*>(
+        (static_cast<int*>(static_cast<Array::Address*>(data)->next) + index));
+    } else {
+      // 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
+      data = static_cast<void*>(
+        static_cast<Array::Address*>(static_cast<Array::Address*>(data)->next) +
+        index);
+    }
+  };
 
+  Int(const Int& i) : data(i.data), level(i.level), array(i.array) {}
 
-public:
-class Iterator
-{
-int* location;
-Array* arr;
+  operator int() {
+    if (data) return *static_cast<int*>(data);
+    return 0;
+  }
+  Int& operator=(const int& a) {
+    if (data) *static_cast<int*>(data) = a;
+    return *this;
+  }
 
-
-friend Int;
-public:
-Iterator(Array* arr, int* loc = NULL) : arr(arr)
-{
-location = new int [arr->dim];
-for(int i = 0; i != arr->dim; i ++) location[i] = (loc != NULL ? loc[i] : 0);
-}
-Iterator(const Iterator& itr) : arr(itr.arr)
-{
-location = new int [arr->dim];
-for(int i = 0; i != arr->dim; i ++) location[i] = itr.location[i];
-}
-~Iterator() { delete [] location;}
-// 다음 원소를 가리키게 된다.
-Iterator& operator++()
-{
-if(location[0] >= arr->size[0]) return (*this);
-
-
-bool carry = false; // 받아 올림이 있는지
-int i = arr->dim - 1;
-do {
-// 어차피 다시 돌아온다는 것은 carry 가 true
-// 라는 의미 이므로 ++ 을 해야 한다.
-location[i] ++;
-if(location[i] >= arr->size[i] && i >= 1) {
-// i 가 0 일 경우 0 으로 만들지 않는다 (이러면 begin 과 중복됨)
-location[i] -= arr->size[i];
-carry = true;
-i --;
-} else carry = false;
-
-
-} while (i >= 0 && carry);
-
-
-return (*this);
-}
-Iterator& operator= (const Iterator& itr)
-{
-arr = itr.arr;
-location = new int [itr.arr->dim];
-for(int i = 0; i != arr->dim; i ++)
-location[i] = itr.location[i];
-
-
-return (*this);
-}
-Iterator& operator++(int)
-{
-++(*this);
-return (*this);
-}
-bool operator!=(const Iterator &itr)
-{
-if(itr.arr->dim != arr->dim) return true;
-
-
-for(int i = 0; i != arr->dim; i ++) {
-if(itr.location[i] != location[i]) return true;
-}
-
-
-return false;
-}
-Int operator* ();
+  Int operator[](const int index) {
+    if (!data) return 0;
+    return Int(index, level + 1, data, array);
+  }
 };
-Array(int dim, int* array_size) : dim(dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = array_size[i];
-
-
-top = new Address;
-top->level = 0;
-
-
-initialize_address(top);
+Int Array::operator[](const int index) {
+  return Int(index, 1, static_cast<void*>(top), this);
 }
-Array(const Array& arr) : dim(arr.dim)
-{
-size = new int [dim];
-for(int i = 0; i < dim; i ++) size[i] = arr.size[i];
-
-
-top = new Address;
-top->level = 0;
-
-
-initialize_address(top);
+Int Array::Iterator::operator*() {
+  Int start = arr->operator[](location[0]);
+  for (int i = 1; i <= arr->dim - 1; i++) {
+    start = start.operator[](location[i]);
+  }
+  return start;
 }
-// address 를 초기화 하는 함수이다. 재귀 호출로 구성되어 있다.
-void initialize_address(Address *current)
-{
-if(!current ) return;
-if(current->level == dim - 1) {
-current->next = new int [size[current->level]];
-return;
-}
-current->next = new Address[size[current->level]];
-for(int i = 0; i != size[current->level]; i ++) {
-(static_cast<Address *>(current->next)+ i)->level = current->level + 1;
-initialize_address(static_cast<Address *>(current->next) + i);
-}
-}
-void delete_address(Address *current)
-{
-if (!current) return;
-for(int i = 0; current->level < dim - 1 && i < size[current->level]; i ++) {
-delete_address(static_cast<Address *>(current->next) + i);
-}
+int main() {
+  int size[] = {2, 3, 4};
+  Array arr(3, size);
 
+  Array::Iterator itr = arr.begin();
+  for (int i = 0; itr != arr.end(); itr++, i++) (*itr) = i;
+  for (itr = arr.begin(); itr != arr.end(); itr++) cout << *itr << endl;
 
-delete [] current->next;
-}
-Int operator[](const int index);
-~Array()
-{
-delete_address(top);
-delete [] size;
-}
-
-
-Iterator begin()
-{
-int * arr = new int[dim];
-for(int i = 0; i != dim; i ++) arr[i] = 0;
-
-
-Iterator temp(this, arr);
-delete [] arr;
-
-
-return temp;
-}
-Iterator end()
-{
-int * arr = new int[dim];
-arr[0] = size[0];
-for(int i = 1; i < dim; i ++) arr[i] = 0;
-
-
-Iterator temp(this, arr);
-delete [] arr;
-
-
-return temp;
-}
-};
-class Int
-{
-void* data;
-
-
-int level;
-Array* array;
-public:
-
-
-Int(int index, int _level = 0, void* _data = NULL, Array* _array = NULL)
-: level(_level), data(_data), array(_array)
-{
-if(_level < 1 || index >= array->size[_level - 1]) {
-data = NULL;
-return;
-}
-if(level == array->dim) {
-// 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
-data = static_cast<void *>(
-(static_cast<int *>(
-static_cast<Array::Address *>(data)->next) + index));
-} else {
-// 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
-data = static_cast<void*>
-(static_cast<Array::Address*>(
-static_cast<Array::Address *>(data)->next) + index);
-}
-};
-
-
-Int(const Int& i) : data(i.data), level(i.level), array(i.array) {}
-
-
-operator int()
-{
-if(data) return *static_cast<int *>(data);
-return 0;
-}
-Int& operator=(const int& a)
-{
-if(data) *static_cast<int *>(data) = a ;
-return *this;
-}
-
-
-Int operator[] (const int index)
-{
-if(!data) return 0;
-return Int(index, level + 1, data, array);
-}
-};
-Int Array::operator[](const int index)
-{
-return Int(index, 1, static_cast<void *>(top), this);
-}
-Int Array::Iterator::operator* ()
-{
-Int start = arr->operator[](location[0]);
-for(int i = 1; i <= arr->dim - 1; i ++) {
-start = start.operator[](location[i]);
-}
-return start;
-}
-int main()
-{
-int size[] = {2, 3, 4};
-Array arr(3, size);
-
-Array::Iterator itr = arr.begin();
-for(int i = 0;itr != arr.end(); itr ++, i ++) (*itr) = i;
-for(itr = arr.begin();itr != arr.end(); itr ++) cout << *itr << endl;
-
-
-for(int i = 0; i < 2; i ++) {
-for(int j = 0; j < 3; j ++) {
-for(int k = 0; k < 4; k ++) {
-arr[i][j][k] = (i + 1) * (j + 1) * (k + 1) + arr[i][j][k];
-}
-}
-}
-for(int i = 0; i < 2; i ++) {
-for(int j = 0; j < 3; j ++) {
-for(int k = 0; k < 4; k ++) {
-cout << i << " " << j << " " << k << " " << arr[i][j][k] << endl;
-}
-}
-}
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 3; j++) {
+      for (int k = 0; k < 4; k++) {
+        arr[i][j][k] = (i + 1) * (j + 1) * (k + 1) + arr[i][j][k];
+      }
+    }
+  }
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 3; j++) {
+      for (int k = 0; k < 4; k++) {
+        cout << i << " " << j << " " << k << " " << arr[i][j][k] << endl;
+      }
+    }
+  }
 }
 ```
 
@@ -1388,10 +1258,10 @@ cout << i << " " << j << " " << k << " " << arr[i][j][k] << endl;
 와 같이 잘 실행됨을 알 수 있습니다. 한 가지 눈여겨 볼 점은
 
 
-```cpp
+```cpp-formatted
 
 Array::Iterator itr = arr.begin();
-for(int i = 0;itr != arr.end(); itr ++, i ++) (*itr) = i;
+for (int i = 0; itr != arr.end(); itr++, i++) (*itr) = i;
 ```
 
 
@@ -1421,8 +1291,3 @@ for(int i = 0;itr != arr.end(); itr ++, i ++) (*itr) = i;
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-

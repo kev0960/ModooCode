@@ -29,7 +29,7 @@ C 언어에서 주석은 두 가지 방법으로 넣을 수 있습니다.
 
   일단 전자의 경우 `/*` 와 `*/` 로 묶인 내부의 모든 내용들이 주석으로 처리 됩니다. 즉,
 
-```cpp
+```cpp-formatted
 /*
 
 이 부분은 내가 아무리 생쇼를 해도 컴파일러가 무시
@@ -42,17 +42,16 @@ printf("Hello, World"); <- 이 것도 당연히 무시
 
  와 같이 난리를 쳐도 `/*` 와 `*/` 로 묶인 부분은 무시됩니다. 아래 예제를 보면 이해가 더욱 잘 될 것입니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    /*
-    printf("Hello, World!\n");
-    printf("Hi, Human \n");
-    */
-    printf("Hi, Computer \n");
+int main() {
+  /*
+  printf("Hello, World!\n");
+  printf("Hi, Human \n");
+  */
+  printf("Hi, Computer \n");
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -65,7 +64,7 @@ int main()
 
 반면의 `//` 형태의 주석의 경우 `//` 가 쳐진 줄 만이 주석으로 처리가 됩니다. 즉,
 
-```cpp
+```cpp-formatted
 // Hello, World! 를 출력한다.
 printf("Hello, World!");
 ```
@@ -73,15 +72,14 @@ printf("Hello, World!");
 로 하면 아래 `printf` 부분 잘 실행됩니다. 하지만 위 주석은 역시 무시됩니다
 아래 예제를 보면 확실히 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    //printf("Hello, World!\n");
-    printf("Hi, Human \n");
-    printf("Hi, Computer \n");
+int main() {
+  // printf("Hello, World!\n");
+  printf("Hi, Human \n");
+  printf("Hi, Computer \n");
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -101,6 +99,3 @@ int main()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

@@ -56,15 +56,14 @@ int puts ( const char * str );
 
 
 
-```cpp
+```cpp-formatted
 /* 화면에 str 의 내용을 출력한다 */
 #include <stdio.h>
 
-int main ()
-{
-    char str[] = "Hello, World!";
-    puts(str);
-    return 0;
+int main() {
+  char str[] = "Hello, World!";
+  puts(str);
+  return 0;
 }
 ```
 
@@ -91,9 +90,3 @@ int main ()
 *  [putchar](http://itguru.tistory.com/47)  :  `stdout` 에 문자를 쓴다.
 
 *  [gets](http://itguru.tistory.com/45)  :  `stdin` 에서 문자열을 받는다.
-
-
-
-
-
-

@@ -14,10 +14,10 @@ cat_title :  fread
 
 
 
-```cpp
-#include <stdio.h> // C++ 에서는 <cstdio>
+```cpp-formatted
+#include <stdio.h>  // C++ 에서는 <cstdio>
 
-size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
+size_t fread(void* ptr, size_t size, size_t count, FILE* stream);
 ```
 
 
@@ -64,57 +64,54 @@ size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 myfile.bin 의 내용을 읽어 들여와 동적으로 할당한 buffer 에 저장한다.
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fread/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
-int main () {
-    FILE * pFile;
-    long lSize;
-    char * buffer;
-    size_t result;
+int main() {
+  FILE* pFile;
+  long lSize;
+  char* buffer;
+  size_t result;
 
-    pFile = fopen ( "myfile.bin" , "rb" );
-    if (pFile==NULL)
-    {
-        fputs ("File error",stderr);
-        exit (1);
-    }
+  pFile = fopen("myfile.bin", "rb");
+  if (pFile == NULL) {
+    fputs("File error", stderr);
+    exit(1);
+  }
 
-    // 파일의 크기를 ISize 에 저장한다.
-    fseek (pFile , 0 , SEEK_END);
-    lSize = ftell (pFile);
-    rewind (pFile);
+  // 파일의 크기를 ISize 에 저장한다.
+  fseek(pFile, 0, SEEK_END);
+  lSize = ftell(pFile);
+  rewind(pFile);
 
-    // 전체 파일의 내용을 받을 수 있을 정도의 크기로 메모리를 할당한다.
-    buffer = (char*) malloc (sizeof(char)*lSize);
-    if (buffer == NULL)
-    {
-        fputs ("Memory error",stderr);
-        exit (2);
-    }
+  // 전체 파일의 내용을 받을 수 있을 정도의 크기로 메모리를 할당한다.
+  buffer = (char*)malloc(sizeof(char) * lSize);
+  if (buffer == NULL) {
+    fputs("Memory error", stderr);
+    exit(2);
+  }
 
-    // 그 파일의 내용을 버퍼에 저장한다.
-    result = fread (buffer,1,lSize,pFile);
-    if (result != lSize)
-    {
-        fputs ("Reading error",stderr);
-        exit (3);
-    }
+  // 그 파일의 내용을 버퍼에 저장한다.
+  result = fread(buffer, 1, lSize, pFile);
+  if (result != lSize) {
+    fputs("Reading error", stderr);
+    exit(3);
+  }
 
-    /* 이제 파일의 모든 내용은 버퍼에 들어가게 된다. */
+  /* 이제 파일의 모든 내용은 버퍼에 들어가게 된다. */
 
-    // 종료
-    fclose (pFile);
-    free (buffer);
-    return 0;
+  // 종료
+  fclose(pFile);
+  free(buffer);
+  return 0;
 }
 ```
 

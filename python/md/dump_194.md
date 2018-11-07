@@ -51,7 +51,7 @@ int peek ( );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 
 /*
 
@@ -65,30 +65,23 @@ int peek ( );
 #include <iostream>
 using namespace std;
 
+int main() {
+  char c;
+  int n;
+  char str[256];
 
-int main () {
-char c;
-int n;
-char str[256];
+  cout << "Enter a number or a word: ";
+  c = cin.peek();
 
+  if ((c >= '0') && (c <= '9')) {
+    cin >> n;
+    cout << "You have entered number " << n << endl;
+  } else {
+    cin >> str;
+    cout << " You have entered word " << str << endl;
+  }
 
-cout << "Enter a number or a word: ";
-c=cin.peek();
-
-
-if ( (c >= '0') && (c <= '9') )
-{
-cin >> n;
-cout << "You have entered number " << n << endl;
-}
-else
-{
-cin >> str;
-cout << " You have entered word " << str << endl;
-}
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -113,11 +106,10 @@ return 0;
 
 
 
-```cpp
+```cpp-formatted
 
-( basic_istream<charT,traits> )
-typedef traits::int_type int_type;
-int_type peek ( );
+(basic_istream<charT, traits>)typedef traits::int_type int_type;
+int_type peek();
 ```
 
 
@@ -129,6 +121,3 @@ int_type peek ( );
 
 *  [istream::get](http://itguru.tistory.com/191): 스트림에서 서식화 되지 않은 데이터를 가져온다.
 *  [istream::operator>>](http://itguru.tistory.com/147): 스트림에서 서식화 된 데이터를 가져온다.
-
-
-

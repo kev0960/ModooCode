@@ -44,23 +44,20 @@ printf("너의 이름은 뭐니?\n");
 
   아래 예제를 봅시다.
 
-```cpp
+```cpp-formatted
 /* if 문 이란? */
 #include <stdio.h>
-int main()
-{
-    int i;
-    printf("입력하고 싶은 숫자를 입력하세요! : ");
-    scanf("%d", &i);
+int main() {
+  int i;
+  printf("입력하고 싶은 숫자를 입력하세요! : ");
+  scanf("%d", &i);
 
-    if(i == 7)
-{
-        printf("당신은 행운의 숫자 7 을 입력했습니다");
+  if (i == 7) {
+    printf("당신은 행운의 숫자 7 을 입력했습니다");
+  }
+
+  return 0;
 }
-
-    return 0;
-}
-
 ```
 
 (※ 참고로 위의 소스 코드에서 붉은색 중괄호와 검은색 중괄호를 이용한 까닭은 설명을 쉽게 하기 위한 것이지 소스코드 작성시 실제로 색깔을 바꿔줄 필요는 없습니다)
@@ -74,12 +71,10 @@ int main()
 
  처럼 나오게 됩니다. 일단, 위 소스 코드에는 우리가 여태까지 보지 못했던 것이 있으니 찬찬히 뜯어 보도록 합시다.
 
-```cpp
-    if(i == 7)
-{
-        printf("당신은 행운의 숫자 7 을 입력했습니다");
+```cpp-formatted
+if (i == 7) {
+  printf("당신은 행운의 숫자 7 을 입력했습니다");
 }
-
 ```
 
 이는위 소스코드에서 가장 핵심적인 부분입니다. 영어에서 흔히 말할 때 어떨 때, if 라는 단어를 쓰나요. 예를 들어서, *If you are smart enough, please learn C language* (만약 당신이 충분히 똑똑하다면, C 언어를 배워라!) 라는 문장을 보았을 때 **If** 라는 단어는 무슨 역할을 하나요? 아마 영어를 조금이나마 배운 사람들이라면, **if** 는 '만약 `~` ' 이라는 의미를 가진 것임을 바로 알 수 있습니다.
@@ -88,9 +83,8 @@ int main()
 
   따라서, 만약 `i` 의 값이 7 이라면,
 
-```cpp
+```cpp-formatted
 printf("당신은 행운의 숫자 7 을 입력했습니다");
-
 ```
 
 를 실행 한 후 붉은 색 중괄호 밖으로 빠져 나갑니다. 이제, 붉은 색 중괄호 밖으로 빠져나간 다음 다시 아래로 순차적으로 실행하게 되죠. 즉, 마지막으로 `return 0;` 가 실행됩니다.
@@ -105,20 +99,18 @@ printf("당신은 행운의 숫자 7 을 입력했습니다");
 
 따라서, `if (0)` 이라 한다면 그 중괄호 속의 내용은 절대로 실행되지 않고, `if(1)` 이라 한다면 그 중괄호 속의 내용은 `100%` 실행되게 됩니다.
 
-```cpp
+```cpp-formatted
 /* 나눗셈 예제 */
 #include <stdio.h>
-int main()
-{
-    double i,j;
-    printf("나누고 싶은 두 정수를 입력하세요 : ");
-    scanf("%lf %lf", &i, &j);
+int main() {
+  double i, j;
+  printf("나누고 싶은 두 정수를 입력하세요 : ");
+  scanf("%lf %lf", &i, &j);
 
-    printf("%f 를 %f 로 나눈 결과는 : %f \n", i,j,i/j);
+  printf("%f 를 %f 로 나눈 결과는 : %f \n", i, j, i / j);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 후 10 과 3 을 입력하였다면 아래와 같이 나오게 됩니다
@@ -137,24 +129,21 @@ int main()
 
   따라서 위 프로그램을 아래와 같이 수정합시다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    double i,j;
-    printf("나누고 싶은 두 정수를 입력하세요 : ");
-    scanf("%lf %lf", &i, &j);
+int main() {
+  double i, j;
+  printf("나누고 싶은 두 정수를 입력하세요 : ");
+  scanf("%lf %lf", &i, &j);
 
-    if(j == 0)
-    {
-        printf("0 으로 나눌 수 없습니다. \n");
-        return 0;
-    }
-    printf("%f 를 %f 로 나눈 결과는 : %f \n", i,j,i/j);
+  if (j == 0) {
+    printf("0 으로 나눌 수 없습니다. \n");
+    return 0;
+  }
+  printf("%f 를 %f 로 나눈 결과는 : %f \n", i, j, i / j);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 만약 1 을 0 으로 나누었다면
@@ -168,50 +157,44 @@ int main()
  로 위와 같이 정상적으로 나타난다.
  이제, 위 소스코드를 뜯어 보기로 합시다.
 
-```cpp
-    {
-        printf("0 으로 나눌 수 없습니다. \n");
-        return 0;
-    }
-
+```cpp-formatted
+{
+  printf("0 으로 나눌 수 없습니다. \n");
+  return 0;
+}
 ```
 
 만약 `j` 의 값이 0 이라면 중괄호 속의 내용이 실행되며, "0 으로 나눌 수 없습니다" 가 표시되고 프로그램이 종료(return `0)` 됩니다.
 
 반면에, `j` 의 값이 0 이 아니라면 중괄호 속의 내용이 실행되지 않습니다. 즉, 아래의 내용이 실행되게 됩니다.
 
-```cpp
-    printf("%f 를 %f 로 나눈 결과는 : %f \n", i,j,i/j);
+```cpp-formatted
+printf("%f 를 %f 로 나눈 결과는 : %f \n", i, j, i / j);
 
-    return 0;
-
+return 0;
 ```
 
 이렇듯, `if` 문은 여러 조건에 따른 처리를 위해 사용합니다. 먼저 나왔던 예제는 `i` 의 값이 7 일 때의 처리를 위해 `if` 문을 사용하였고 위의 예제는 `j` 의 값이 0 일 때의 처리를 위해 사용하였습니다.
 
-```cpp
+```cpp-formatted
 /* 합격? 불합격? */
 #include <stdio.h>
-int main()
-{
-    int score;
+int main() {
+  int score;
 
-    printf("당신의 수학점수를 입력하세요! : ");
-    scanf("%d", &score);
+  printf("당신의 수학점수를 입력하세요! : ");
+  scanf("%d", &score);
 
-    if(score >= 90)
-    {
-        printf("당신은 합격입니다! \n");
-    }
+  if (score >= 90) {
+    printf("당신은 합격입니다! \n");
+  }
 
-    if(score < 90)
-    {
-        printf("당신은 불합격 입니다! \n");
-    }
+  if (score < 90) {
+    printf("당신은 불합격 입니다! \n");
+  }
 
-    return 0;
+  return 0;
 }
-
 ```
 
 위 소스를 성공적으로 컴파일하였다면 다음과 같이 나옵니다.
@@ -225,24 +208,21 @@ int main()
 
  와 같이 나타납니다.
 
-```cpp
-    if(score >= 90)
-    {
-        printf("당신은 합격입니다! \n");
-    }
+```cpp-formatted
+if (score >= 90) {
+  printf("당신은 합격입니다! \n");
+}
 
-    if(score < 90)
-    {
-        printf("당신은 불합격 입니다! \n");
-    }
-
+if (score < 90) {
+  printf("당신은 불합격 입니다! \n");
+}
 ```
 
 위 소스의 핵심이라 할 수 있는 부분은 위 두 부분입니다.일단, `if(score >= 90)` 이라는 부분부터 살펴 봅시다. 이미 짐작은 했겠지만 `>=` 은 '~ 이상', 즉 '~ 보다 크거나 같다' 를 의미합니다. 따라서, `score` 의 값이 90 보다 '크거나 같으면' `if` 문 안의 내용이 참 (true) 이 되어 중괄호 속의 내용이 실행됩니다.
 
 따라서, 처음에 우리가 91 점을 입력하였을 때 `score >= 90` 이 참이 되어서 
 
-```cpp
+```cpp-formatted
 printf("당신은 합격 입니다! \n");
 ```
 
@@ -252,44 +232,42 @@ printf("당신은 합격 입니다! \n");
 
 마찬가지로, 아래 `score < 90` 도 보자면 `score` 가 90 미만일 때 참이다 라는 사실을 나타낸 것임을 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 /* 크기 비교하기 */
 #include <stdio.h>
-int main()
-{
-    int i,j;
+int main() {
+  int i, j;
 
-    printf("크기를 비교할 두 수를 입력해 주세요 : ");
-    scanf("%d %d",&i, &j);
+  printf("크기를 비교할 두 수를 입력해 주세요 : ");
+  scanf("%d %d", &i, &j);
 
-    if(i > j)// i 가 j 보다 크면
-    {
-        printf("%d 는 %d 보다 큽니다 \n", i,j);
-    }
-    if(i < j)// i 가 j 보다 작으면
-    {
-        printf("%d 는 %d 보다 작습니다 \n", i,j);
-    }
-    if(i >= j)// i 가 j 보다 크거나 같으면
-    {
-        printf("%d 는 %d 보다 크거나 같습니다 \n", i,j);
-    }
-    if(i <= j)// i 가 j 보다 작거나 같으면
-    {
-        printf("%d 는 %d 보다 작거나 같습니다 \n", i,j);
-    }
-    if(i == j)// i 와 j 가 같으면
-    {
-        printf("%d 는 %d 와(과) 같습니다 \n", i,j);
-    }
-    if(i != j) // i 와 j 가 다르면
-    {
-        printf("%d 는 %d 와(과) 다릅니다 \n", i,j);
-    }
+  if (i > j)  // i 가 j 보다 크면
+  {
+    printf("%d 는 %d 보다 큽니다 \n", i, j);
+  }
+  if (i < j)  // i 가 j 보다 작으면
+  {
+    printf("%d 는 %d 보다 작습니다 \n", i, j);
+  }
+  if (i >= j)  // i 가 j 보다 크거나 같으면
+  {
+    printf("%d 는 %d 보다 크거나 같습니다 \n", i, j);
+  }
+  if (i <= j)  // i 가 j 보다 작거나 같으면
+  {
+    printf("%d 는 %d 보다 작거나 같습니다 \n", i, j);
+  }
+  if (i == j)  // i 와 j 가 같으면
+  {
+    printf("%d 는 %d 와(과) 같습니다 \n", i, j);
+  }
+  if (i != j)  // i 와 j 가 다르면
+  {
+    printf("%d 는 %d 와(과) 다릅니다 \n", i, j);
+  }
 
-    return 0;
+  return 0;
 }
-
 ```
 
 위 내용을 성공적으로 컴파일 후, 10 과 4 를 입력하였다면
@@ -329,26 +307,21 @@ if ( 조건)
 
 ### `if - else` 문 시작하기
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int num;
+int main() {
+  int num;
 
-    printf("아무 숫자나 입력해 보세요 : ");
-    scanf("%d", &num);
+  printf("아무 숫자나 입력해 보세요 : ");
+  scanf("%d", &num);
 
-    if(num == 7)
-    {
-        printf("행운의 숫자 7 이군요!\n");
-    }
-    else
-    {
-        printf("그냥 보통 숫자인 %d 를 입력했군요\n", num);
-    }
-    return 0;
+  if (num == 7) {
+    printf("행운의 숫자 7 이군요!\n");
+  } else {
+    printf("그냥 보통 숫자인 %d 를 입력했군요\n", num);
+  }
+  return 0;
 }
-
 ```
 
 만약 성공적으로 컴파일 하였다면 7 을 입력했을 때,
@@ -363,22 +336,18 @@ int main()
 
  자, 이제 위 소스를 뜯어 봅시다.
 
-```cpp
-    if(num == 7)
-    {
-        printf("행운의 숫자 7 이군요!\n");
-    }
-
+```cpp-formatted
+if (num == 7) {
+  printf("행운의 숫자 7 이군요!\n");
+}
 ```
 
 여태 까지 보왔듯이, 이 부분은 그냥 평범한 `if` 문이군요. 하지만 그 다음 부분에 심상치 않은 것이 등장합니다.
 
-```cpp
-    else
-    {
-        printf("그냥 보통 숫자인 %d 를 입력했군요\n", num);
-    }
-
+```cpp-formatted
+else {
+  printf("그냥 보통 숫자인 %d 를 입력했군요\n", num);
+}
 ```
 
 이번에는 여태까지 배우지 않은 것인 `else` 라는 것이 등장합니다. 영어를 잘 하시는 분들은 지레 짐작하시고 있었겠지만 `else` 는 '그 외의 `~ ,` 그 밖의 `~` ' 의 뜻으로 사용되는 단어입니다. 
@@ -389,34 +358,26 @@ int main()
 
 위의 경우에서도 만약 `num` 의 값이 7 이 아니였다면 `if` 문을 만족 안하게 되는 것입니다. 그러면 자연스럽게 `else` 로 넘어와서 "그냥 보통 숫자인 ... 를 입력했군요" 를 출력하게 되는 것이지요. 하지만, `num` 의 값이 7 이 였다면 `if` 문을 만족하는 것이기 때문에 `else` 는 거들떠 보지도 않고 넘어가게 됩니다.
 
-```cpp
+```cpp-formatted
 /* if - else 죽음의 숫자? */
 #include <stdio.h>
-int main()
-{
-    int num;
+int main() {
+  int num;
 
-    printf("아무 숫자나 입력해 보세요 : ");
-    scanf("%d", &num);
+  printf("아무 숫자나 입력해 보세요 : ");
+  scanf("%d", &num);
 
-    if(num == 7)
-    {
-        printf("행운의 숫자 7 이군요!\n");
-    }
-    else
-    {
-        if(num == 4)
-        {
-            printf("죽음의 숫자 4 인가요 ;;; \n");
-        }
-        else
-        {
-            printf("그냥 평범한 숫자 %d \n", num);
-        }
-    }
-    return 0;
+  if (num == 7) {
+    printf("행운의 숫자 7 이군요!\n");
+  } else {
+    if (num == 4) {
+      printf("죽음의 숫자 4 인가요 ;;; \n");
+    } else {
+      printf("그냥 평범한 숫자 %d \n", num);
+    }
+  }
+  return 0;
 }
-
 ```
 
 이번에 성공적으로 컴파일 한 후, 숫자들을 입력해 보면 비슷한 결과가 나오지만 4 를 입력했을 경우 "죽음의 숫자 4 인가요 ;;; " 가 나오게 됩니다.
@@ -425,19 +386,14 @@ int main()
 
   자, 이제 소스를 뜯어 보기로 합시다.
 
-```cpp
-    else
-    {
-        if(num == 4)
-        {
-            printf("죽음의 숫자 4 인가요 ;;; \n");
-        }
-        else
-        {
-            printf("그냥 평범한 숫자 %d \n", num);
-        }
-    }
-
+```cpp-formatted
+else {
+  if (num == 4) {
+    printf("죽음의 숫자 4 인가요 ;;; \n");
+  } else {
+    printf("그냥 평범한 숫자 %d \n", num);
+  }
+}
 ```
 
 앞 `if (num==7)` 부분은 이미 설명 했으니 생략하기로 하고, `else` 문의 구조만 뜯어 보기로 합시다. 만약 `num` 의 값이 4 였다고 합시다. 그렇다면, 처음에 만나는 `if` 문에서 `num == 7` 이 거짓이 되므로 `else` 로 넘어가게 됩니다.
@@ -448,75 +404,55 @@ int main()
 
 그렇다면 이제 아이디어를 확장해서 `num` 이 1 부터 10 일 때 까지 특별한 설명을 달기로 합시다. 그러면 아래와 같이 프로그램을 짜야 되겠죠.
 
-```cpp
+```cpp-formatted
 /* 쓰레기 코드 */
 #include <stdio.h>
-int main()
-{
-    int num;
+int main() {
+  int num;
 
-    printf("아무 숫자나 입력해 보세요 : ");
-    scanf("%d", &num);
+  printf("아무 숫자나 입력해 보세요 : ");
+  scanf("%d", &num);
 
-    if(num == 7)
-    {
-        printf("행운의 숫자 7 이군요!\n");
-    }
-    else
-    {
-        if(num == 4)
-        {
-            printf("죽음의 숫자 4 인가요 ;;; \n");
-        }
-        else
-        {
-            if(num == 1)
-            {
-                printf("첫 번째 숫자!! \n");
-            }
-            else
-            {
-                if(num == 2)
-                {
-                    printf("이 숫자는 바로 두번째 숫자 \n");
-                }
-                else
-                {
-                    ...... (생략) ......
-                }
-            }
-        }
-    }
-    return 0;
+  if (num == 7) {
+    printf("행운의 숫자 7 이군요!\n");
+  } else {
+    if (num == 4) {
+      printf("죽음의 숫자 4 인가요 ;;; \n");
+    } else {
+      if (num == 1) {
+        printf("첫 번째 숫자!! \n");
+      } else {
+        if (num == 2) {
+          printf("이 숫자는 바로 두번째 숫자 \n");
+        } else {
+          ......(생략)......
+        }
+      }
+    }
+  }
+  return 0;
 }
-
 ```
 
 정말 믿도 끝도 없이 길어져서 나중에는 중괄호가 너무 많아 헷갈리기도 하고, 보기도 불편하게 됩니다. 하지만, C 언어는 위대한지라, 이 문제를 간단히 해결하였습니다.
 
-```cpp
+```cpp-formatted
 /* 새로쓰는 죽음의 숫자 예제 */
 #include <stdio.h>
-int main()
-{
-    int num;
+int main() {
+  int num;
 
-    printf("아무 숫자나 입력해 보세요 : ");
-    scanf("%d", &num);
+  printf("아무 숫자나 입력해 보세요 : ");
+  scanf("%d", &num);
 
-    if(num == 7)
-    {
-        printf("행운의 숫자 7 이군요!\n");
-    }
-    else if(num == 4)
-    {
-        printf("죽음의 숫자 4 인가요 ;;; \n");
-    }
-    else
-    {
-        printf("그냥 평범한 숫자 %d \n", num);
-    }
-    return 0;
+  if (num == 7) {
+    printf("행운의 숫자 7 이군요!\n");
+  } else if (num == 4) {
+    printf("죽음의 숫자 4 인가요 ;;; \n");
+  } else {
+    printf("그냥 평범한 숫자 %d \n", num);
+  }
+  return 0;
 }
 ```
 
@@ -573,38 +509,31 @@ int main()
 
 단지, 보기 편하게 하기 위해 '간략하게' 줄인 꼴과 같다는 것입니다. 마치 `a = a + 10` 을 `a+= 10` 으로 바꾼 것 처럼 말이죠.
 
-```cpp
+```cpp-formatted
 /* if 와 if- else if 의 차이*/
 #include <stdio.h>
-int main()
-{
-    int num;
+int main() {
+  int num;
 
-    printf("아무 숫자나 입력해 보세요 : ");
-    scanf("%d", &num);
+  printf("아무 숫자나 입력해 보세요 : ");
+  scanf("%d", &num);
 
-    if(num == 7)
-    {
-        printf("a 행운의 숫자 7 이군요!\n");
-    }
-    else if(num == 7)
-    {
-        printf("b 행운의 숫자 7 이군요! \n");
-    }
+  if (num == 7) {
+    printf("a 행운의 숫자 7 이군요!\n");
+  } else if (num == 7) {
+    printf("b 행운의 숫자 7 이군요! \n");
+  }
 
-    // 비교
-    if(num == 7)
-    {
-        printf("c 행운의 숫자 7 이군요!\n");
-    }
-    if(num == 7)
-    {
-        printf("d 행운의 숫자 7 이군요! \n");
-    }
+  // 비교
+  if (num == 7) {
+    printf("c 행운의 숫자 7 이군요!\n");
+  }
+  if (num == 7) {
+    printf("d 행운의 숫자 7 이군요! \n");
+  }
 
-    return 0;
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 후, 7 을 입력하였다면
@@ -615,16 +544,12 @@ int main()
 
   우리가 컴퓨터 라고 생각하고 프로그램을 실행해 봅시다. 통상적으로 프로그램은 소스코드의 위에서 부터 아래 방향으로 실행됩니다
 
-```cpp
-     if(num == 7)
-    {
-        printf("a 행운의 숫자 7 이군요!\n");
-    }
-    else if(num == 7)
-    {
-        printf("b 행운의 숫자 7 이군요! \n");
-    }
-
+```cpp-formatted
+if (num == 7) {
+  printf("a 행운의 숫자 7 이군요!\n");
+} else if (num == 7) {
+  printf("b 행운의 숫자 7 이군요! \n");
+}
 ```
 
 컴퓨터가 쭉 프로그램을 읽다가 위 부분에 도달하면
@@ -638,51 +563,42 @@ int main()
 
   다시 컴퓨터가 쭉 읽다가 아래와 같은 문장을 발견했네요.
 
-```cpp
-     if(num == 7)
-    {
-        printf("c 행운의 숫자 7 이군요!\n");
-    }
-    if(num == 7)
-    {
-        printf("d 행운의 숫자 7 이군요! \n");
-    }
-
+```cpp-formatted
+if (num == 7) {
+  printf("c 행운의 숫자 7 이군요!\n");
+}
+if (num == 7) {
+  printf("d 행운의 숫자 7 이군요! \n");
+}
 ```
 
 "어! `if` 문이군. 그런데 `num` 의 값이 7 이므로 이 `if` 문은 참이야. 중괄호 속의 내용을 실행해야지" 하면서 "c 행운의 숫자 7 이군요!" 가 출력된다. 마찬가지로 아래도
 
 "어! `if` 문이군. 그런데 `num` 의 값이 7 이므로 이 `if` 문은 참이야. 중괄호 속의 내용을 실행해야지" 하면서 "d 행운의 숫자 7 이군요!" 가 출력되는 것입니다.
 
-```cpp
+```cpp-formatted
 /* if-else 문 마지막 연습 */
 #include <stdio.h>
-int main()
-{
-    float ave_score;
-    float math, english, science, programming;
+int main() {
+  float ave_score;
+  float math, english, science, programming;
 
-    printf("수학, 영어, 과학, 컴퓨터 프로그래밍 점수를 각각 입력해 주세요 ! : ");
-    scanf("%f %f %f %f", &math, &english, &science, &programming);
+  printf("수학, 영어, 과학, 컴퓨터 프로그래밍 점수를 각각 입력해 주세요 ! : ");
+  scanf("%f %f %f %f", &math, &english, &science, &programming);
 
-    ave_score = (math + english + science + programming) / 4; // 4 과목의 평균을 구한다.
-    printf("당신의 평균 점수는 %f 입니다 \n", ave_score);
-    if(ave_score >= 90)
-    {
-        printf("당신은 우등생 입니다. ");
-    }
-    else if(ave_score >= 30)
-    {
-        printf("조금만 노력하세요!. \n");
-    }
-    else
-    {
-        printf("공부를 발로 합니까? \n");
-    }
+  ave_score =
+    (math + english + science + programming) / 4;  // 4 과목의 평균을 구한다.
+  printf("당신의 평균 점수는 %f 입니다 \n", ave_score);
+  if (ave_score >= 90) {
+    printf("당신은 우등생 입니다. ");
+  } else if (ave_score >= 30) {
+    printf("조금만 노력하세요!. \n");
+  } else {
+    printf("공부를 발로 합니까? \n");
+  }
 
-    return 0;
+  return 0;
 }
-
 ```
 
 만약 성공적으로 컴파일 하였다면
@@ -691,31 +607,22 @@ int main()
 
  와 같이 나오게 됩니다. 그 외에도, 다른 값들을 입력하면 다른 결과가 출력됨을 알 수 있습니다.
 
-```cpp
-    ave_score = (math + english + science + programming) / 4;
-
+```cpp-formatted
+ave_score = (math + english + science + programming) / 4;
 ```
 
   아마, 산술 연산을 까먹으신 분들은 없겠죠? 위 식이 2 초 내로 이해가 되지 않는다면 [ 4 강](http://itguru.tistory.com/entry/%EC%94%B9%EC%96%B4%EB%A8%B9%EB%8A%94-C-%EC%96%B8%EC%96%B4-4-%EA%B3%84%EC%82%B0%ED%95%98%EB%A6%AC)을 다시 공부하시기 바랍니다.  위 식은, 수학, 영어, 과학, 프로그래밍 점수의 평균을 구해서 `ave_score` 라는 변수에 대입하는 식입니다.
 
-```cpp
-    if(ave_score >= 90)
-    {
-        printf("당신은 우등생 입니다. ");
-    }
-    else if(ave_score >= 40)
-    {
-        printf("조금만 노력하세요!. \n");
-    }
-    else if(ave_score > 0)
-    {
-        printf("공부를 발로 합니까? \n");
-    }
-    else
-    {
-        printf("인생을 포기하셨군요. \n");
-    }
-
+```cpp-formatted
+if (ave_score >= 90) {
+  printf("당신은 우등생 입니다. ");
+} else if (ave_score >= 40) {
+  printf("조금만 노력하세요!. \n");
+} else if (ave_score > 0) {
+  printf("공부를 발로 합니까? \n");
+} else {
+  printf("인생을 포기하셨군요. \n");
+}
 ```
 
 위 프로그램의 핵심 부분(?) 이라 할 수 있는 이 부분을 잘 살펴봅시다. 만약 내 평균 점수가 93 이라면, "당신은 우등생 입니다" 가 출력되게 되죠. 그리고, 아래 `else if` 와 `else` 는 무시하고 종료됩니다.
@@ -726,25 +633,21 @@ int main()
 
 마지막으로 평균점수가 0 점 이하 라면, 떨거지 처리(?) 인 `else` 에서 참이 되어서 "인생을 포기하였군요" 가 실행됩니다.
 
-```cpp
+```cpp-formatted
 /* 크기 비교 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    printf("아무 숫자나 입력하세요 : ");
-    scanf("%d", &a);
+int main() {
+  int a;
+  printf("아무 숫자나 입력하세요 : ");
+  scanf("%d", &a);
 
-    if(a >= 10)
-    {
-        if(a < 20)
-        {
-            printf(" %d 는 10 이상, 20 미만인 수 입니다. \n", a);
-        }
-    }
-    return 0;
+  if (a >= 10) {
+    if (a < 20) {
+      printf(" %d 는 10 이상, 20 미만인 수 입니다. \n", a);
+    }
+  }
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 후, 10 이상 20 미만의 수를 입력했다면
@@ -753,15 +656,12 @@ int main()
 
  와 같이 나오게 된다. 위 소스 코드는 간단하다. 우리가 여태까지 배운 내용 만으로도 충분히 이해 할 수 있는 부분입니다.
 
-```cpp
-    if(a >= 10)
-    {
-        if(a < 20)
-        {
-            printf(" %d 는 10 이상, 20 미만인 수 입니다. \n", a);
-        }
-    }
-
+```cpp-formatted
+if (a >= 10) {
+  if (a < 20) {
+    printf(" %d 는 10 이상, 20 미만인 수 입니다. \n", a);
+  }
+}
 ```
 
 처음에, `a` 의 값이 10 이상이면 참이 되어서 중괄호 속의 내용을 실행하게 되고, 또한 거기서 `a < 20` 이라는 `if` 문을 만나게 되는데 이 것 조차 참이라면 "... 는 10 이상, 20 미만인 수 입니다" 가 출력되는 것입니다.
@@ -772,24 +672,20 @@ int main()
 
 ### 논리 연산자
 
-```cpp
+```cpp-formatted
 /* 논리 연산자 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    printf("아무 숫자나 입력하세요 : ");
-    scanf("%d", &a);
+int main() {
+  int a;
+  printf("아무 숫자나 입력하세요 : ");
+  scanf("%d", &a);
 
-    if(a >= 10 && a < 20)
-    {
-        printf(" %d 는 10 이상, 20 미만인 수 입니다. \n", a);
-    }
+  if (a >= 10 && a < 20) {
+    printf(" %d 는 10 이상, 20 미만인 수 입니다. \n", a);
+  }
 
-    return 0;
+  return 0;
 }
-
-
 ```
 
 위 소스를 그대로 컴파일 해 보면 위와 결과가 똑같이 나옵니다. 그렇다면 '&&' 는 무엇일까요? 그 것은 바로 **논리 곱(AND)** 라고 불리는 논리 연산자 입니다.
@@ -808,23 +704,20 @@ int main()
 
 따라서 `if (a >= 10 & a < 20 )` 이나, `0x10 && 0xAE` 와 같은 연산은 모두 틀린 것이 됩니다.
 
-```cpp
+```cpp-formatted
 /* 논리 합 */
 #include <stdio.h>
-int main()
-{
-    int height, weight;
-    printf("당신의 키와 몸무게를 각각 입력해 주세요 : ");
-    scanf("%d %d", &height, &weight);
+int main() {
+  int height, weight;
+  printf("당신의 키와 몸무게를 각각 입력해 주세요 : ");
+  scanf("%d %d", &height, &weight);
 
-    if(height >= 190 || weight >= 100)
-    {
-        printf("당신은 '거구' 입니다. \n");
-    }
+  if (height >= 190 || weight >= 100) {
+    printf("당신은 '거구' 입니다. \n");
+  }
 
-    return 0;
+  return 0;
 }
-
 ```
 
 
@@ -838,36 +731,30 @@ int main()
 
 기억을 되살려 봅시다. `AND` 와 `OR` 의 차이가 뭐였죠? 음.... 아, 기억 나는군요. `AND` 가 두 조건이 모두 참 일 때, 참을 반환한다면, `OR` 은 두 조건이 모두 거짓 일 때 만 거짓을 반환합니다. 다시말해 `(참) || (거짓) == (참)` 이 된다는 것이지요.
 
-```cpp
-if(height >= 190 || weight >= 100)
-
-```
+```cpp-formatted
+if (height >= 190 || weight >= 100) ```
 
 그렇다면 위 `if` 문을 살펴 봅시다. `height >= 190` 이 참 이라면, `OR` 연산한 값은 `weight` 의 크기에 관계없이 무조건 참이 되어서 중괄호 속의 내용을 실행 합니다. 또한 `height >= 190` 이 거짓이여도, `weight >= 100` 이 참 이라면 중괄호 속의 내용을 실행하게 되죠.
 
 따라서, `OR` 논리 연산자는 조건식에서 적어도 어느 하나가 참 이라면 무조건 `if` 문의 내용을 실행해 주게 됩니다.
 
-```cpp
+```cpp-formatted
 /* 논리 부정*/
 #include <stdio.h>
-int main()
-{
-    int height, weight;
-    printf("당신의 키와 몸무게를 각각 입력해 주세요 : ");
-    scanf("%d %d", &height, &weight);
+int main() {
+  int height, weight;
+  printf("당신의 키와 몸무게를 각각 입력해 주세요 : ");
+  scanf("%d %d", &height, &weight);
 
-    if(height >= 190 || weight >= 100)
-    {
-        printf("당신은 '거구' 입니다. \n");
-    }
-    if(!(height >= 190 || weight >= 100))
-    {
-        printf("당신은 거구가 아닙니다. \n");
-    }
+  if (height >= 190 || weight >= 100) {
+    printf("당신은 '거구' 입니다. \n");
+  }
+  if (!(height >= 190 || weight >= 100)) {
+    printf("당신은 거구가 아닙니다. \n");
+  }
 
-    return 0;
+  return 0;
 }
-
 ```
 
 위 소스를 성공적으로 컴파일 한 후, 180 과 80 을 입력하였다면
@@ -878,12 +765,10 @@ int main()
 
  위 소스에서 관심있게 살펴 보아야 할 부분은 바로 이 부분이죠.
 
-```cpp
-    if(!(height >= 190 || weight >= 100))
-    {
-        printf("당신은 거구가 아닙니다. \n");
-    }
-
+```cpp-formatted
+if (!(height >= 190 || weight >= 100)) {
+  printf("당신은 거구가 아닙니다. \n");
+}
 ```
 
 (참고로 위의 소스와 다른 점은 `height` 앞에 `!` 가 붙었다는 점 입니다.) 다른 것은 다 똑같은데, 새로 붙은 `!` 가 무슨 역할을 하는 것 같나요?
@@ -903,7 +788,3 @@ int main()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-

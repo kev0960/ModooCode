@@ -39,16 +39,31 @@ void clearerr ( FILE * stream );
 
 ###  실행 예제
 
-```cpp
+```cpp-formatted
 
-/* 인위적으로 오류를 발생시킨 뒤 이 오류가 clearerr 에 의해 어떻게 처리되는지 살펴본다.
+/* 인위적으로 오류를 발생시킨 뒤 이 오류가 clearerr 에 의해 어떻게 처리되는지
+살펴본다.
 
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/clearerr/에서 가져왔습니다. */
+이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/clearerr/에서
+가져왔습니다. */
 #include <stdio.h>
-int main () {
-    FILE * pFile;
-    pFile = fopen("myfile.txt","r");
-    if (pFile==NULL) perror ("Error opening file");    else    {        fputc ('x',pFile);        if (ferror (pFile))        {            printf ("Error Writing to myfile.txt\n");            clearerr (pFile);        }        fgetc (pFile);        if (!ferror (pFile))            printf ("No errors reading myfile.txt\n");        fclose (pFile);    }    return 0;}
+int main() {
+  FILE* pFile;
+  pFile = fopen("myfile.txt", "r");
+  if (pFile == NULL)
+    perror("Error opening file");
+  else {
+    fputc('x', pFile);
+    if (ferror(pFile)) {
+      printf("Error Writing to myfile.txt\n");
+      clearerr(pFile);
+    }
+    fgetc(pFile);
+    if (!ferror(pFile)) printf("No errors reading myfile.txt\n");
+    fclose(pFile);
+  }
+  return 0;
+}
 ```
 
 실행 결과

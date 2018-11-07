@@ -29,9 +29,12 @@ struct tm * localtime ( const time_t * timer );
 
 
 
-```cpp
+```cpp-formatted
 
-time_t rawtime;struct tm * timeinfo;time ( &rawtime );timeinfo = localtime ( &rawtime );
+time_t rawtime;
+struct tm* timeinfo;
+time(&rawtime);
+timeinfo = localtime(&rawtime);
 ```
 
 
@@ -66,7 +69,7 @@ time_t rawtime;struct tm * timeinfo;time ( &rawtime );timeinfo = localtime ( &ra
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 현재 시각을 출력한다.
@@ -74,20 +77,19 @@ time_t rawtime;struct tm * timeinfo;time ( &rawtime );timeinfo = localtime ( &ra
 http://www.cplusplus.com/reference/clibrary/ctime/localtime/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <time.h>
 
-int main ()
-{
-    time_t rawtime;
-    struct tm * timeinfo;
+int main() {
+  time_t rawtime;
+  struct tm* timeinfo;
 
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
-    printf ( "Current local time and date: %s", asctime (timeinfo) );
+  time(&rawtime);
+  timeinfo = localtime(&rawtime);
+  printf("Current local time and date: %s", asctime(timeinfo));
 
-    return 0;
+  return 0;
 }
 ```
 

@@ -59,7 +59,7 @@ C 형식 문자열을 `long` 형 정수로 변환하여 변환된 값을 리턴�
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 문자열로 데이터를 입력 받아서 long int 형으로 변환한다.
@@ -72,15 +72,14 @@ http://www.cplusplus.com/reference/clibrary/cstdlib/atol/
 #include <stdio.h>
 #include <stdlib.h>
 
-int main ()
-{
-    long int li;
-    char szInput [256];
-    printf ("Enter a long number: ");
-    gets ( szInput );
-    li = atol (szInput);
-    printf ("The value entered is %d. The double is %d.\n",li,li*2);
-    return 0;
+int main() {
+  long int li;
+  char szInput[256];
+  printf("Enter a long number: ");
+  gets(szInput);
+  li = atol(szInput);
+  printf("The value entered is %d. The double is %d.\n", li, li * 2);
+  return 0;
 }
 ```
 
@@ -99,10 +98,3 @@ int main ()
 *  [atoi](http://itguru.tistory.com/131)  :  문자열을 정수로 변환한다.
 *  [atof](http://itguru.tistory.com/124)  :  문자열을 `double` 형으로 변환한다.
 * strtol  :  문자열을 `long` 형으로 변환한다.
-
-
-
-
-
-
-

@@ -50,7 +50,7 @@ void push_back ( const T& x );
 
 
 
-```cpp
+```cpp-formatted
 
 /*
 
@@ -65,27 +65,20 @@ void push_back ( const T& x );
 #include <vector>
 using namespace std;
 
+int main() {
+  vector<int> myvector;
+  int myint;
 
-int main ()
-{
-vector<int> myvector;
-int myint;
+  cout << "Please enter some integers (enter 0 to end):\n";
 
+  do {
+    cin >> myint;
+    myvector.push_back(myint);
+  } while (myint);
 
-cout << "Please enter some integers (enter 0 to end):\n";
+  cout << "myvector stores " << (int)myvector.size() << " numbers.\n";
 
-
-do
-{
-cin >> myint;
-myvector.push_back (myint);
-} while (myint);
-
-
-cout << "myvector stores " << (int) myvector.size() << " numbers.\n";
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -115,9 +108,3 @@ return 0;
 
 * `vector::pop_back` : 마지막 원소를 삭제한다.
 *  [vector::insert](http://itguru.tistory.com/186): 원소를 추가한다.
-
-
-
-
-
-

@@ -26,28 +26,24 @@ next_page : 169
 ###  함수 사용하기
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
 void print_square(int arg);
-int main()
-{
-    int i;
+int main() {
+  int i;
 
-    cout << "제곱할 수 ? : ";
-    cin >> i;
+  cout << "제곱할 수 ? : ";
+  cin >> i;
 
-    print_square(i);
+  print_square(i);
 
-    return 0;
+  return 0;
 }
 
-void print_square(int arg)
-{
-    cout << "전달된 인자 : " << arg*arg << endl;
-}
+void print_square(int arg) { cout << "전달된 인자 : " << arg * arg << endl; }
 ```
 
 
@@ -59,29 +55,23 @@ void print_square(int arg)
 
 위 소스를 보면, 사실 굳이 설명이 필요 없이 이해가 잘 되실 것입니다. C++ 에서 C 와 입출력 방법이 다를 뿐 다 똑같습니다. 일단, 아래의 코드에서 우리는 `void` 형의 (리턴값이 없는) 함수 `print_square` 을 선언합니다.
 
-```cpp
+```cpp-formatted
 
 void print_square(int arg);
-
 ```
 
 그리고 이 함수는
 
-```cpp
+```cpp-formatted
 
-void print_square(int arg)
-{
-    cout << "전달된 인자 : " << arg*arg << endl;
-}
-
+void print_square(int arg) { cout << "전달된 인자 : " << arg * arg << endl; }
 ```
 
 와 같은 작업을 수행하지요. 즉 `arg* arg` 를 출력하는 것입니다. 그리고 `main` 함수에서 인자로 `i` 를 전달했지요.
 
-```cpp
+```cpp-formatted
 
-    print_square(i);
-
+print_square(i);
 ```
 
 따라서 `arg` 에 `i` 의 값이 들어가서 `i * i` 인, 우리의 실행 결과의 경우 12 를 전달해서 144 가 출력되게 되는 것이지요. 매우 간단합니다. 사실 C 하고 전혀 다를 바가 없어요!
@@ -91,27 +81,24 @@ void print_square(int arg)
 ###  레퍼런스의 도입
 
 
-```cpp
+```cpp-formatted
 
 
 #include <iostream>
 
 using namespace std;
-int change_val(int *p)
-{
-*p = 3;
+int change_val(int *p) {
+  *p = 3;
 
-return 0;
+  return 0;
 }
-int main()
-{
-int number = 5;
+int main() {
+  int number = 5;
 
-cout << number << endl;
-change_val(&number);
-cout << number << endl;
+  cout << number << endl;
+  change_val(&number);
+  cout << number << endl;
 }
-
 ```
 
 
@@ -125,26 +112,24 @@ cout << number << endl;
 
 이런 분들 위해서 C++ 에서 새롭게 생겨난 개념이 있습니다. 바로 **레퍼런스** 입니다.
 
-```cpp
+```cpp-formatted
 
 
 #include <iostream>
 
 using namespace std;
-int change_val(int &p)
-{
-p = 3;
+int change_val(int &p) {
+  p = 3;
 
-return 0;
+  return 0;
 }
-int main()
-{
-int number = 5;
+int main() {
+  int number = 5;
 
-cout << number << endl;
-change_val(number);
-cout << number << endl;}
-
+  cout << number << endl;
+  change_val(number);
+  cout << number << endl;
+}
 ```
 
 
@@ -166,7 +151,7 @@ LOOKING FOR INFORMATION |[U] (정보를 얻기 위해)찾아봄, 참고, 참조
 
 레퍼런스를 정의하는 방법은 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 
 int& ref = number;
 ```
@@ -186,8 +171,8 @@ int &ref;
 
 참고로 말하자면 레퍼런스는 한 번 초기화 되면 다른 변수의 별명이 될 수 없습니다. 예를 들어서
 
-```cpp
- int a = 10;
+```cpp-formatted
+int a = 10;
 int &ref = a;
 int b = 3;
 ref = b;
@@ -195,15 +180,15 @@ ref = b;
 
 를 하면 `ref = b;` 에서 `ref` 가 `b` 를 가리키는 것이 아니라, `a = b;`, 즉 `a` 에 3 이 대입되는 것입니다. 물론
 
-```cpp
+```cpp-formatted
 &ref = b;
 ```
 
 
 와 같은 문장은 `&a = b;` 즉, "`a` 의 주소값을 3 으로 변경한다?" 라는 말이 안되는 문장이고
 
-```cpp
-       ref &=b;
+```cpp-formatted
+ref &= b;
 ```
 
 는 `ref = ref &b;`, 즉 `a = a & b;` 와 같은 문장으로 역시 전혀 의미가 다릅니다. 아무튼 레퍼런스는 포인터로 치면 `int const *` 와 같은 형태라 말할 수 있습니다. 즉 한 번 별명이 된다면 영원히 바뀔 수 없는 것이지요. (물론 포인터와 레퍼런스는 엄연히 다른 것입니다!)
@@ -211,16 +196,15 @@ ref = b;
   일부 C 언어를 배운 사람의 경우 레퍼런스와 포인터가 헷갈릴 수 있습니다. 예를 들어 아래와 같은 코드를 보세요.
 
 
-```cpp
+```cpp-formatted
 
 
-int number  = 10;
+int number = 10;
 int& ref = number;
-int *p = &number;
+int* p = &number;
 
 ref++;
 p++;
-
 ```
 
 
@@ -230,7 +214,7 @@ p++;
 
   이제 다시 원래 소스를 다시 살펴보자면
 
-```cpp
+```cpp-formatted
 
 change_val(number);
 ```
@@ -238,43 +222,39 @@ change_val(number);
 
 위와 같이 `change_val` 함수를 호출하였고 인자로 `number` 을 전달하였습니다. 따라서
 
-```cpp
+```cpp-formatted
 
 
-int change_val(int &p)
-{
-p = 3;
+int change_val(int &p) {
+  p = 3;
 
-return 0;
+  return 0;
 }
-
 ```
 
 
 위 문장에서 `int &p = number;` 로 `p` 가 `number` 의 별명이 됩니다. 따라서 `p = 3;` 이라 하는 것은 `main` 의 `number = 3;` 을 하는 것과 정확히 동일한 작업입니다.
 
-```cpp
+```cpp-formatted
 // 참조자 이해하기
 
 #include <iostream>
 using namespace std;
 
-int main()
-{
-int x;
-int& y = x;
-int& z = y;
+int main() {
+  int x;
+  int& y = x;
+  int& z = y;
 
-x = 1;
-cout << "x : " << x << " y : " << y << " z : " << z << endl;
+  x = 1;
+  cout << "x : " << x << " y : " << y << " z : " << z << endl;
 
-y = 2;
-cout << "x : " << x << " y : " << y << " z : " << z << endl;
+  y = 2;
+  cout << "x : " << x << " y : " << y << " z : " << z << endl;
 
-z = 3;
-cout << "x : " << x << " y : " << y << " z : " << z << endl;
+  z = 3;
+  cout << "x : " << x << " y : " << y << " z : " << z << endl;
 }
-
 ```
 
 
@@ -285,7 +265,7 @@ cout << "x : " << x << " y : " << y << " z : " << z << endl;
   사실 위 소스를 타이핑 하면서 고개를 갸우뚱 하시는 분들이 있을 지도 모릅니다. 왜냐하면 여러분들은 그간 C 언어의 '악마의 포인터 세계' 에서 사셨기 때문이지요. 하지만 여기서 강조하지만, 포인터와 레퍼런스는 비슷하면서도 다른 녀석들입니다. 먼저 다음과 같은 부분은 쉽게 이해하셨겠지요.
 
 
-```cpp
+```cpp-formatted
 int x;
 int& y = x;
 ```
@@ -293,7 +273,7 @@ int& y = x;
 
 "음. `x` 에 대한 레퍼런스로 `y` 를 정의하였구나. 즉 `y` 는 `x` 의 또다른 별명이 되겠지." 라고 다들 생각하셨겠지요. 그러면서 여러분은 아마 제가 앞서 말한 "어떤 특정 타입 `T` 에 대해 참조자를 만들고 싶다면 `T&` 와 같이 정의하면 됩니다." 를 머리속에 떠올리면서 다음 소스를 보고 의문을 가졌을 것입니다.
 
-```cpp
+```cpp-formatted
 int& y = x;
 int& z = y;
 ```
@@ -303,7 +283,7 @@ int& z = y;
 "`y` 가 `int&` 이므로 `z` 는 `int&&` 가 되야 하는데 왜 `int&` 이지?". 좋은 질문입니다. 물론 이 이야기가 포인터였다면 정확히 들어맞을 터 입니다. 포인터였다면
 
 
-```cpp
+```cpp-formatted
 int x;
 int* y = &x;
 int** z = &y;
@@ -313,35 +293,35 @@ int** z = &y;
 
   와 같이 소스를 작성했어야 맞겠죠. 하지만 포인터와 레퍼런스는 다릅니다. 앞선 소스를 다시 살펴봅시다.
 
-```cpp
+```cpp-formatted
 
 
 int& y = x;
 int& z = y;
-
 ```
 
 
 `y` 는 `x` 의 레퍼런스 입니다. 즉 우리가 코드 상에서 `y` 라고 표시한 것은 `y` 를 그대로 `x` 로 바꾸어도 의미가 변하지 않는 다는 것이지요. 다시 말해
 
 
-```cpp
-       int& z = x;int& z = y;
+```cpp-formatted
+int& z = x;
+int& z = y;
 ```
 
 
 위 두 문장은 정확히 같은 문장이라는 것입니다. 따라서 앞선 논의에 따라서 역시 `int&` 가 되어야 합니다. 여러분은 레퍼런스를 포인터의 개념으로 생각하시면 안됩니다. 그냥 어떤 변수의 다른 이름이라고 생각하시면 편할 것입니다. 따라서 위 세 문장의 정의식은 결국 `x` 의 다른 이름인 `y` 와 `z` 를 만들어준 것 뿐입니다.
 
 
-```cpp
+```cpp-formatted
 x = 1;
 cout << "x : " << x << " y : " << y << " z : " << z << endl;
 
 y = 2;
 cout << "x : " << x << " y : " << y << " z : " << z << endl;
 
-z = 3;cout << "x : " << x << " y : " << y << " z : " << z << endl;
-
+z = 3;
+cout << "x : " << x << " y : " << y << " z : " << z << endl;
 ```
 
 결과적으로 위 문장들은 모두 `1,1,1` 과 `2,2,2` 와 `3,3,3` 을 출력하게 되겠지요.
@@ -350,15 +330,15 @@ z = 3;cout << "x : " << x << " y : " << y << " z : " << z << endl;
 
 아니면 이미 느꼈을 지도 모르죠. 지난 강좌에서 변수 입력시 배웠던 `cin` 을 기억하시나요? 아마 사용자로 부터 변수에 값을 입력 받을 때 다음과 같이 했었을 것입니다.
 
-```cpp
+```cpp-formatted
 
-        cin >> user_input;
+cin >> user_input;
 ```
 
 
 그런데 무언가 이상하지 않으세요? 예전에 `scanf` 로 이용할 때 분명히
 
-```cpp
+```cpp-formatted
 
 scanf("%d", &user_input);
 ```
@@ -370,19 +350,17 @@ scanf("%d", &user_input);
 ###  상수에 대한 참조자
 
 
-```cpp
+```cpp-formatted
 
 
 #include <iostream>
 using namespace std;
 
-int main()
-{
-int &ref = 4;
+int main() {
+  int &ref = 4;
 
-cout << ref << endl;
+  cout << ref << endl;
 }
-
 ```
 
 위와 같은 소스를 살펴봅시다. 일단 컴파일 해보면 아래와 같은 오류가 나타날 것입니다.
@@ -393,12 +371,12 @@ error C2440: 'initializing' : cannot convert from 'int' to 'int &'
 
 왜 오류가 나타날까요? 아마 여러분들은 다 알고 계시겠지요. 위 상수 값 자체는 '리터럴' 이기 때문에 ([리터럴이 무엇인지 모르겠으면 여기로](http://itguru.tistory.com/33)) 상수이고 따라서 위와 같이 레퍼런스로 참조한다면
 
-```cpp
-    ref = 5;
+```cpp-formatted
+ref = 5;
 ```
 로 리터럴의 값을 바꿀 수 있는 여지가 생기기 때문에 참조할 수 없습니다. 하지만 아래와 같이
 
-```cpp
+```cpp-formatted
 
 const int &ref = 4;
 ```
@@ -406,7 +384,7 @@ const int &ref = 4;
 
 상수 참조자로 선언한다면 리터럴도 참조 할 수 있게 되는 것입니다. 예컨대
 
-```cpp
+```cpp-formatted
 int a = ref;
 ```
 
@@ -420,10 +398,9 @@ int a = ref;
 아마도 예전 C 강좌에서 포인터 가지고 한 이야기를 레퍼런스를 가지고 다시 한 번 재탕하는 기분입니다. 하지만 이 주제는 많은 C++ 초보자들의 머리를 아프게하는 문제이기도 하지요. 일단은, 레퍼런스의 배열이 과연 가능한 것인지에 대해 부터 생각해봅시다. 앞서 말했듯이 레퍼런스는 반드시 정의와 함께 초기화를 해주어야 한다고 했습니다. 따라서 여러분의 머리속에는 다음과 같이 레퍼런스의 배열을 정의하는 것을 떠올렸을 것입니다.
 
 
-```cpp
+```cpp-formatted
 int a, b;
 int& arr[2] = {a, b};
-
 ```
 
   그런데 말이죠. 컴파일 하기도 전에 빨간줄이 그어지네요. 아무튼 컴파일을 해보면
@@ -443,8 +420,8 @@ There shall be no references to references,no arrays of references, and no point
 
 정말로 '불법' 인 것이 맞군요. 이것이 말이 돼냐 안돼냐를 떠나기 전에 C++ 규정에서 레퍼런스의 배열을 선언하는 것을 막아버리고 있습니다. 그러면 도대체 왜 안될까요? 왠지 위에서
 
-```cpp
- int& arr[2] = {a, b};
+```cpp-formatted
+int& arr[2] = {a, b};
 ```
 
 로 해서 "`arr[0]` 는 `a` 를 의미하고 `arr[1]` 은 `b` 를 의미하고.." 로 만들면 안될까요. 여러분은 먼저 '레퍼런스의 포인터는 존재할 수 없다' 에 대해 생각해보도록 합시다. 레퍼런스의 포인터는 왜 존재하지 않을까요. 당연한 이야기 입니다. 위에서 말했듯이 레퍼런스는 메모리 상에 특정 공간을 차지하는 것이 아니라 컴파일 시에 원래 레퍼런스가 참조하던 변수의 주소값으로 대체된다고 하였습니다. 따라서 메모리 공간을 차지하지 않는 것의 포인터를 생각한다는 것은 말이 안되는 것입니다.
@@ -454,23 +431,21 @@ There shall be no references to references,no arrays of references, and no point
 하지만 배열의 레퍼런스는 어떨까요?
 
 
-```cpp
+```cpp-formatted
 #include <iostream>
 using namespace std;
 
-int main()
-{
-int arr[3] = {1,2,3};
-int (&ref)[3] = arr;
+int main() {
+  int arr[3] = {1, 2, 3};
+  int(&ref)[3] = arr;
 
-ref[0] = 2;
-ref[1] = 3;
-ref[2] = 1;
+  ref[0] = 2;
+  ref[1] = 3;
+  ref[2] = 1;
 
-cout << arr[0] << arr[1] << arr[2] << endl;
-return 0;
+  cout << arr[0] << arr[1] << arr[2] << endl;
+  return 0;
 }
-
 ```
 
   성공적으로 컴파일 하였다면
@@ -480,10 +455,9 @@ return 0;
   먼저 가장 중요한 첫 두줄을 살펴봅시다.
 
 
-```cpp
-int arr[3] = {1,2,3};
+```cpp-formatted
+int arr[3] = {1, 2, 3};
 int (&ref)[3] = arr;
-
 ```
 
 위와 같이 `ref` 가 `arr` 을 가리키도록 하였습니다. 위와 같이 하면 `ref[0]` 부터 `ref[2]` 가 각각 `arr[0]` 부터 `arr[2]` 의 레퍼런스가 됩니다. 사실 배열의 레퍼런스는 잘 사용되지 않습니다. 왜냐하면 위와 같이 배열의 크기를 명확히 명시해 주어야 합니다. `int (&ref)[3]` 이라면 반드시 크기가 3 인 `int` 배열을 가리켜야 하고 `int (&ref)[5]` 라면 크기가 5 인 `int` 배열을 가리켜야 하겠지요.
@@ -491,10 +465,9 @@ int (&ref)[3] = arr;
 하지만 포인터를 사용하면 굳이 그럴 필요 없이 단순히 `int *P` 하나로 모든 1 차원 배열들을 가리킬 수 있으니, 배열을 가리킬 필요가 있을 경우 레퍼런스 보다는 포인터를 사용하는 것을 훨씬 더 권장합니다. 참고로 그 이상 차원의 배열들도 마찬가지로 아래와 같이 레퍼런스를 사용하여 정의할 수 있습니다.
 
 
-```cpp
-int arr[3][2] = {1,2,3,4,5,6};
+```cpp-formatted
+int arr[3][2] = {1, 2, 3, 4, 5, 6};
 int (&ref)[3][2] = arr;
-
 ```
 
 
@@ -510,45 +483,34 @@ int (&ref)[3][2] = arr;
 
 C++ 를 처음 배우신 분들이 가장 많이 헷갈려 하는 부분이 바로 레퍼런스를 반환하는 함수 입니다. 아래의 코드를 살펴볼까요 C++ 를 처음 배우신 분들이 가장 많이 헷갈려 하는 부분이 바로 레퍼런스를 반환하는 함수 입니다. 아래의 코드를 살펴볼까요.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
+int fn1(int &a) { return a; }
 
-int fn1(int &a) {
-return a;
-}
-
-
-int main()
-{
-int x = 1;
-cout << fn1(x)++ << endl;
-
+int main() {
+  int x = 1;
+  cout << fn1(x)++ << endl;
 }
 ```
 
 당연히도 위 코드는 컴파일 되지 않습니다. 왜냐하면 `fn1(x)` 를 했을 때, "아 이제, `a` 를 `x` 의 별명으로 해야지~" 라고 한 후에, 이를 리턴하면서 그냥 평범한 `int` 로 리턴하였기 때문에 임시로 복사된 `x` 의 '값' 이 반환되는 것입니다 (이를 우측값이라 하는데, 나중에 자세히 다루도록 하겠습니다). 당연히도 이 값은 임시로 생성된 것이므로, 읽기만 가능하지 수정은 불가능 합니다.
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-int fn1(int &a) {
-return a;
-}
+int fn1(int &a) { return a; }
 
-int& fn2(int &a) {
-return a;
-}
-int main()
-{
-int x = 1;
-cout << fn2(x)++ << endl;
-cout << "x :: " << x << endl;
+int &fn2(int &a) { return a; }
+int main() {
+  int x = 1;
+  cout << fn2(x)++ << endl;
+  cout << "x :: " << x << endl;
 }
 ```
 
@@ -563,17 +525,15 @@ cout << "x :: " << x << endl;
 아주 깔끔하게 잘 나옵니다.
 놀라운 점은, `x` 의 값이 바뀌었다는 점입니다. 그 이유는 `fn2` 을 살펴보면 알 수 있습니다.
 
-```cpp
-int& fn2(int &a) {
-return a;
-}
+```cpp-formatted
+int& fn2(int& a) { return a; }
 ```
 
 
 
 `fn2` 를 보면 인자로 레퍼런스를 받아서, 다시 그것을 그대로 리턴합니다. 쉽게말해,
 
-```cpp
+```cpp-formatted
 fn2(x)
 ```
 
@@ -599,8 +559,3 @@ fn2(x)
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-

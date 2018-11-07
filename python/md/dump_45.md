@@ -65,12 +65,17 @@ C 형식의 문자열이 저장될 `char` 배열의 포인터 C 형식의 문자
 
 
 
-```cpp
+```cpp-formatted
 
-/* 사용자로 부터 문자열을 입력받는다.  */
+/* 사용자로 부터 문자열을 입력받는다.  */
 #include <stdio.h>
-int main ()
-{    char str[100];    printf("당신의 이름은 무엇인가요? ");    gets(str);    printf("만나서 반가워요 %s 님 \n", str);    return 0;}
+int main() {
+  char str[100];
+  printf("당신의 이름은 무엇인가요? ");
+  gets(str);
+  printf("만나서 반가워요 %s 님 \n", str);
+  return 0;
+}
 ```
 
 실행 결과
@@ -92,9 +97,3 @@ int main ()
 *  [getchar](http://itguru.tistory.com/44)  :  표준 입력(stdin)에서 문자를 읽어온다.
 
 *  [scanf](http://itguru.tistory.com/36)  :  표준 입력에서 데이터를 형식에 맞추어 읽어온다.
-
-
-
-
-
-

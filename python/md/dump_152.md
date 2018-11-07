@@ -15,9 +15,9 @@ cat_title :  ios_base::width
 
 #@ ios_base::width
 
-```cpp
-streamsize width ( ) const;
-streamsize width ( streamsize wide );
+```cpp-formatted
+streamsize width() const;
+streamsize width(streamsize wide);
 ```
 
 
@@ -55,7 +55,7 @@ streamsize width ( streamsize wide );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -66,15 +66,14 @@ http://www.cplusplus.com/reference/iostream/ios_base/width/
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-    cout << 100 << endl;
-    cout.width(10);
-    cout << 100 << endl;
-    cout.fill('x');
-    cout.width(15);
-    cout << left << 100 << endl;
-    return 0;
+int main() {
+  cout << 100 << endl;
+  cout.width(10);
+  cout << 100 << endl;
+  cout.fill('x');
+  cout.width(15);
+  cout << left << 100 << endl;
+  return 0;
 }
 ```
 

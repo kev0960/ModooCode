@@ -22,62 +22,44 @@ next_page : 222
 
 앞선 강좌에서는 템플릿 인자로 타입들만 전달하였지만, 실제로는 일반적인 값들도 인자로 전달할 수 있습니다. 아래의 예제를 살펴보겠습니다.
 
-```cpp
+```cpp-formatted
 
 /* 템플릿 인자로 값을 받기 */
 #include <iostream>
 using namespace std;
 
-
 template <typename T, unsigned int N>
-class Array
-{
-T data[N];
+class Array {
+  T data[N];
 
+ public:
+  // 배열을 받는 레퍼런스 arr
+  Array(T (&arr)[N]) {
+    for (int i = 0; i < N; i++) {
+      data[i] = arr[i];
+    }
+  }
 
-public:
+  T* get_array() { return data; }
 
+  unsigned int size() { return N; }
 
-// 배열을 받는 레퍼런스 arr
-Array(T (&arr)[N]) {
-for (int i = 0; i < N; i++) {
-data[i] = arr[i];
-}
-}
-
-
-T* get_array() {
-return data;
-}
-
-
-unsigned int size() {
-return N;
-}
-
-
-void print_all() {
-for (int i = 0; i < N; i++) {
-cout << data[i] << ", ";
-}
-cout << endl;
-}
+  void print_all() {
+    for (int i = 0; i < N; i++) {
+      cout << data[i] << ", ";
+    }
+    cout << endl;
+  }
 };
 
+int main() {
+  int arr[3] = {1, 2, 3};
 
-int main()
-{
-int arr[3] = { 1,2,3 };
+  // 배열 wrapper 클래스
+  Array<int, 3> arr_w(arr);
 
-
-// 배열 wrapper 클래스
-Array<int, 3> arr_w (arr);
-
-
-arr_w.print_all();
+  arr_w.print_all();
 }
-
-
 ```
 
 
@@ -91,7 +73,7 @@ arr_w.print_all();
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 template <typename T, int N>
 ```
@@ -105,10 +87,10 @@ template <typename T, int N>
 
 아무튼, 템플릿 인자로는 단순한 정수타입이나, 레퍼런스, 포인터만 받을 수 있다고 생각하시면 됩니다.
 
-```cpp
+```cpp-formatted
 
 // 배열 wrapper 클래스
-Array<int, 3> arr_w (arr);
+Array<int, 3> arr_w(arr);
 ```
 
 
@@ -117,7 +99,7 @@ Array<int, 3> arr_w (arr);
 
 위와 같이 템플릿 인스턴스화를 하게 되면, 템플릿에 `T` 자리에는 `int` 가, `N` 자리에는 3 이 들어가겠지요. 그렇다면 컴파일러는
 
-```cpp
+```cpp-formatted
 
 T data[N];
 ```
@@ -127,7 +109,7 @@ T data[N];
 를
 
 
-```cpp
+```cpp-formatted
 
 int data[3];
 ```
@@ -136,13 +118,13 @@ int data[3];
 
 으로 대체해서 코드를 생성하게 되고, 마찬가지로
 
-```cpp
+```cpp-formatted
 
-  // 배열을 받는 레퍼런스 arr
+// 배열을 받는 레퍼런스 arr
 Array(T (&arr)[N]) {
-for (int i = 0; i < N; i++) {
-data[i] = arr[i];
-}
+  for (int i = 0; i < N; i++) {
+    data[i] = arr[i];
+  }
 }
 ```
 
@@ -150,13 +132,13 @@ data[i] = arr[i];
 
 생성자 역시
 
-```cpp
+```cpp-formatted
 
-  // 배열을 받는 레퍼런스 arr
-Array(int (&arr)[3]) {
-for (int i = 0; i < 3; i++) {
-data[i] = arr[i];
-}
+// 배열을 받는 레퍼런스 arr
+Array(int (&arr)[3]) {
+  for (int i = 0; i < 3; i++) {
+    data[i] = arr[i];
+  }
 }
 ```
 
@@ -169,17 +151,16 @@ data[i] = arr[i];
 
 그런데, 과연 아래 두 개 클래스는 같은 클래스 일까요? 다른 클래스 일까요?
 
-```cpp
+```cpp-formatted
 
-Array<int, 5>
-Array<int, 3>
+Array<int, 5> Array<int, 3>
 ```
 
 
 
 간단히 아래 코드로 확인해 볼 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 cout << (typeid(Array<int, 3>) == typeid(Array<int, 5>)) << endl;
 ```
@@ -198,11 +179,11 @@ cout << (typeid(Array<int, 3>) == typeid(Array<int, 5>)) << endl;
 
 그렇다면 아래와 같이 정의된 Int 클래스를 생각해봅시다.
 
-```cpp
+```cpp-formatted
 
 template <int N>
 struct Int {
-static const int num = N;
+  static const int num = N;
 };
 ```
 
@@ -215,7 +196,7 @@ static const int num = N;
 
 따라서 아래 처럼 마치 객체를 생성하듯 타입들을 생성할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 typedef Int<1> one;
 typedef Int<2> two;
@@ -230,38 +211,30 @@ typedef Int<2> two;
 
 그럼 이제 `one` 과 `two` 를 가지고 무엇을 할 수 있을까요? 재미있게도 마치 `int` 변수를 다루는 것 처럼 연산자를 만들 수 있습니다. 아래 예제를 살펴볼까요.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <typeinfo>
 using namespace std;
 
-
 template <int N>
 struct Int {
-static const int num = N;
+  static const int num = N;
 };
-
 
 template <typename T, typename U>
 struct add {
-typedef Int <T::num + U::num> result;
+  typedef Int<T::num + U::num> result;
 };
 
+int main() {
+  typedef Int<1> one;
+  typedef Int<2> two;
 
-int main()
-{
-typedef Int<1> one;
-typedef Int<2> two;
+  typedef add<one, two>::result three;
 
-
-typedef add<one, two>::result three;
-
-
-cout << "Addtion result : " << three::num << endl;
+  cout << "Addtion result : " << three::num << endl;
 }
-
-
 ```
 
 
@@ -278,11 +251,11 @@ cout << "Addtion result : " << three::num << endl;
 
 덧셈을 수행하는 템플릿 클래스를 살펴봅시다.
 
-```cpp
+```cpp-formatted
 
 template <typename T, typename U>
 struct add {
-typedef Int<T::num + U::num> result;
+  typedef Int<T::num + U::num> result;
 };
 ```
 
@@ -291,7 +264,7 @@ typedef Int<T::num + U::num> result;
 위 `add` 클래스의 템플릿은 인자로 두 개의 타입을 받아서 그 타입의 `num` 멤버를 더해서 새로운 타입인 `result` 를 만들어 내게 됩니다.
 
 
-```cpp
+```cpp-formatted
 
 typedef add<one, two>::result three;
 ```
@@ -303,7 +276,7 @@ typedef add<one, two>::result three;
 
 실제로, 그 결과를 보면
 
-```cpp
+```cpp-formatted
 
 cout << "Addtion result : " << three::num << endl;
 ```
@@ -336,29 +309,23 @@ cout << "Addtion result : " << three::num << endl;
 
 또한 타입은 반드시 컴파일 타임에 확정되어야 하므로, 컴파일 타임에 모든 연산이 끝나게 됩니다.
 이렇게 타입을 가지고컴파일 타임에 생성되는 '코드'로 프로그래밍을 하는 것을 메타 프로그래밍(meta programming) 이라고 합니다. C++ 의 경우 템플릿을 가지고 이러한 작업을 하기 때문에 템플릿 메타 프로그래밍, 줄여서 `TMP`라고 부릅니다.
-```cpp
+```cpp-formatted
 
 /* 컴파일 타임 팩토리얼 계산 */
 #include <iostream>
 using namespace std;
 
-
 template <int N>
 struct Factorial {
-static const int result = N * Factorial<N - 1>::result;
+  static const int result = N * Factorial<N - 1>::result;
 };
-
 
 template <>
 struct Factorial<1> {
-static const int result = 1;
+  static const int result = 1;
 };
 
-
-int main()
-{
-cout << "6! = 1*2*3*4*5*6 = " << Factorial<6>::result << endl;
-}
+int main() { cout << "6! = 1*2*3*4*5*6 = " << Factorial<6>::result << endl; }
 ```
 
 
@@ -373,11 +340,11 @@ cout << "6! = 1*2*3*4*5*6 = " << Factorial<6>::result << endl;
 
 팩토리얼(factorial) 은 단순히 1 부터  n 까지 곱한 것이라 생각하면 됩니다. 예를 들어 3 팩토리얼 (3! 이라 씁니다) 은 `1 * 2 * 3` 이라 생각하면 됩니다. 이 팩토리얼을 어떻게 하면 이전 예제와 같은 템플릿을 사용한 구조로 나타낼 수 있을까요? 사실 아래와 같이 매우 단순합니다.
 
-```cpp
+```cpp-formatted
 
 template <int N>
 struct Factorial {
-static const int result = N * Factorial<N - 1>::result;
+  static const int result = N * Factorial<N - 1>::result;
 };
 ```
 
@@ -385,13 +352,12 @@ static const int result = N * Factorial<N - 1>::result;
 
 만약에 저 `Factorial` 을 일반적인 함수로 구성하려고 했다면 아마 아래와 같은 재귀 함수 형태를 사용했겠지요.
 
-```cpp
+```cpp-formatted
 
 int factorial(int n) {
-if (n == 1) return 1;
+  if (n == 1) return 1;
 
-
-return n * factorial(n - 1);
+  return n * factorial(n - 1);
 }
 ```
 
@@ -399,11 +365,11 @@ return n * factorial(n - 1);
 
 따라서 우리는 위 처럼 재귀 함수 호출이 끝나게 하기 위해선, `n` 이 1 일 때 따로 처리를 해주어야 합니다. 템플릿 역시 마찬가지로 `n = 1` 일 때 따로 처리할 수 있는데 바로 아래 처럼 템플릿 특수화를 이용해주면 됩니다.
 
-```cpp
+```cpp-formatted
 
 template <>
 struct Factorial<1> {
-static const int result = 1;
+  static const int result = 1;
 };
 ```
 
@@ -435,16 +401,14 @@ static const int result = 1;
 아래에서 좀 더 복잡한 예제를 가지고 그렇다면 `TMP` 를 어떻게 사용할 지에 대해서 자세히 알아보도록 하겠습니다.
 
 컴퓨터 상에서 두 수의 최대공약수를 구하기 위해선 보통 유클리드 호제법을 이용합니다. 이는 매우 간단한데, 이 알고리즘을 일반적인 함수로 나타내자면 아래와 같습니다.
-```cpp
+```cpp-formatted
 
-int gcd(int a, int b)
-{
-if (b == 0) {
-return a;
-}
+int gcd(int a, int b) {
+  if (b == 0) {
+    return a;
+  }
 
-
-return  gcd(b, a % b);
+  return gcd(b, a % b);
 }
 ```
 
@@ -452,30 +416,22 @@ return  gcd(b, a % b);
 
 따라서 이를 그대로 `TMP` 로 바꿔보면 아래와 같습니다. (여러분도 직접 해보세요!)
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-
 template <int X, int Y>
-struct GCD
-{
-static const int value = GCD<Y, X%Y>::value;
+struct GCD {
+  static const int value = GCD<Y, X % Y>::value;
 };
-
 
 template <int X>
-struct GCD<X, 0>
-{
-static const int value = X;
+struct GCD<X, 0> {
+  static const int value = X;
 };
 
-
-int main()
-{
-cout << "gcd (36, 24) :: " << GCD<36, 24>::value << endl;
-}
+int main() { cout << "gcd (36, 24) :: " << GCD<36, 24>::value << endl; }
 ```
 
 
@@ -492,16 +448,14 @@ cout << "gcd (36, 24) :: " << GCD<36, 24>::value << endl;
 
 이 최대 공약수 계산 클래스를 만든 이유는, 바로 `Ratio` 클래스를 만들기 위함입니다. `Ratio` 클래스는 유리수(p/q 꼴로 쓸 수 있는 수) 를 오차 없이 표현해 주는 클래스 입니다. 물론 `TMP` 를 사용하지 않고 간단하게 클래스를 사용해서도 만들 수 있습니다. 하지만 일단 연습 삼아서 한 번 `TMP` 를 사용해서 만들어 보겠습니다.
 
-```cpp
-
+```cpp-formatted
 
 
 template <int N, int D = 1>
-struct Ratio
-{
-typedef Ratio<N, D> type;
-static const int num = N;
-static const int den = D;
+struct Ratio {
+  typedef Ratio<N, D> type;
+  static const int num = N;
+  static const int den = D;
 };
 ```
 
@@ -509,7 +463,7 @@ static const int den = D;
 
 먼저 `Ratio` 클래스는 위 처럼 정의할 수 있겠습니다. 위 처럼 분자와 분모를 템플릿 인자로 받고, 타입을 나타내게 됩니다. 참고로 편의상
 
-```cpp
+```cpp-formatted
 
 typedef Ratio<N, D> type;
 ```
@@ -521,12 +475,11 @@ typedef Ratio<N, D> type;
 
 그렇다면 이 `Ratio` 로 덧셈을 수행하는 템플릿을 만들어보겠습니다. 상당히 직관적입니다.
 
-```cpp
+```cpp-formatted
 
 template <class R1, class R2>
-struct _Ratio_add
-{
-typedef Ratio <R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
+struct _Ratio_add {
+  typedef Ratio<R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
 };
 ```
 
@@ -534,16 +487,16 @@ typedef Ratio <R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
 
 두 분수의 더한 결과를 `Ratio` 에 분자 분모로 전달하면 알아서 기약분수로 만들어줍니다.
 
-```cpp
+```cpp-formatted
 
-typedef Ratio <R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
+typedef Ratio<R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
 ```
 
 
 
 그 후에, 그 덧셈 결과를 `type` 로 나타내게 됩니다. 따라서 덧셈을 수행하기 위해서는
 
-```cpp
+```cpp-formatted
 
 typedef _Ratio_add<rat, rat2>::type result;
 ```
@@ -553,7 +506,7 @@ typedef _Ratio_add<rat, rat2>::type result;
 이런 식으로 사용하면 되겠지요. 하지만 한 발 더 나아가서, 귀찮게 ::type 를 치고 싶지 않다고 해 봅시다. 다시 말해 `Ratio_add` 를 하면 그 자체로 두 `Ratio` 가 더해진 타입이 되는 것이지요. 이는 아래와 같이 구현할 수 있습니다.
 
 
-```cpp
+```cpp-formatted
 
 template <class R1, class R2>
 struct Ratio_add : _Ratio_add<R1, R2>::type {};
@@ -563,57 +516,44 @@ struct Ratio_add : _Ratio_add<R1, R2>::type {};
 
 바로 `_Ratio_add<R1, R2>::type` 를 상속 받는 `Ratio_add` 클래스를 만들어 버리는 것입니다! 상당히 재미있는 아이디어입니다. 따라서 `Ratio_add` 는 마치 `Ratio` 타입 처럼 사용할 수 있게 됩니다. 전체 코드를 살펴 보자면 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <typeinfo>
 using namespace std;
 
-
 template <int X, int Y>
-struct GCD
-{
-static const int value = GCD<Y, X%Y>::value;
+struct GCD {
+  static const int value = GCD<Y, X % Y>::value;
 };
-
 
 template <int X>
-struct GCD<X, 0>
-{
-static const int value = X;
+struct GCD<X, 0> {
+  static const int value = X;
 };
-
 
 template <int N, int D = 1>
-struct Ratio
-{
-typedef Ratio<N, D> type;
-static const int num = N; // 분자
-static const int den = D; // 분모
+struct Ratio {
+  typedef Ratio<N, D> type;
+  static const int num = N;  // 분자
+  static const int den = D;  // 분모
 };
 template <class R1, class R2>
-struct _Ratio_add
-{
-typedef Ratio <R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
+struct _Ratio_add {
+  typedef Ratio<R1::num * R2::den + R2::num * R1::den, R1::den * R2::den> type;
 };
-
 
 template <class R1, class R2>
 struct Ratio_add : _Ratio_add<R1, R2>::type {};
 
+int main() {
+  typedef Ratio<2, 3> rat;
+  typedef Ratio<3, 2> rat2;
+  typedef Ratio_add<rat, rat2> rat3;
 
+  cout << rat3::num << " / " << rat3::den << endl;
 
-
-int main()
-{
-typedef Ratio<2, 3> rat;
-typedef Ratio<3, 2> rat2;
-typedef Ratio_add<rat, rat2> rat3;
-
-cout << rat3::num << " / " << rat3::den << endl;
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -635,9 +575,9 @@ return 0;
 
 참고로 `C++11` 부터 `typedef` 대신에 좀 더 직관적인 `using` 이라는 키워드를 사용할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
-  typedef Ratio_add<rat, rat2> rat3;
+typedef Ratio_add<rat, rat2> rat3;
 using rat3 = Ratio_add<rat, rat2>;
 ```
 
@@ -645,37 +585,34 @@ using rat3 = Ratio_add<rat, rat2>;
 
 위 두 문장 모두 동일한 의미를 가집니다. 다만 `using` 을 사용하였을 경우 `typedef` 보다 좀 더 이해하기가 쉽습니다. 특히, 함수 포인터의 경우 만일 `void` 를 리턴하고 `int, int` 를 인자로 받는 함수의 포인터의 타입을 `func` 라고 정의하기 위해서는 `typedef` 로
 
-```cpp
+```cpp-formatted
 
-        typedef void (*func)(int, int);
+typedef void (*func)(int, int);
 ```
 
 
 
 위와 같이 사용해야 했지만 (놀랍게도 `func` 이 새로 정의된 타입 이름이 됩니다) `using` 키워드를 사용하면
 
-```cpp
+```cpp-formatted
 
-using func = void(*) (int, int);
+using func = void (*)(int, int);
 ```
 
 
 
 아래와 같이 매우 직관적으로 나타낼 수 있습니다. 따라서 위의 코드를 수정하자면;
 
-```cpp
+```cpp-formatted
 
-int main()
-{
-using rat = Ratio<2, 3>;
-using rat2 = Ratio<3, 2>;
+int main() {
+  using rat = Ratio<2, 3>;
+  using rat2 = Ratio<3, 2>;
 
+  using rat3 = Ratio_add<rat, rat2>;
+  cout << rat3::num << " / " << rat3::den << endl;
 
-using rat3 = Ratio_add<rat, rat2>;
-cout << rat3::num << " / " << rat3::den << endl;
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -687,80 +624,72 @@ return 0;
 마찬가지 방법으로 모든 사칙연산들을 구현하자면 아래와 같습니다.
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
 template <int X, int Y>
-struct GCD
-{
-static const int value = GCD<Y, X%Y>::value;
+struct GCD {
+  static const int value = GCD<Y, X % Y>::value;
 };
 
 template <int X>
-struct GCD<X, 0>
-{
-static const int value = X;
+struct GCD<X, 0> {
+  static const int value = X;
 };
 
 template <int N, int D = 1>
-struct Ratio
-{
-private:
-const static int _gcd = GCD<N, D>::value;
+struct Ratio {
+ private:
+  const static int _gcd = GCD<N, D>::value;
 
-public:
-typedef Ratio<N / _gcd, D / _gcd> type;
-static const int num = N / _gcd;
-static const int den = D / _gcd;
+ public:
+  typedef Ratio<N / _gcd, D / _gcd> type;
+  static const int num = N / _gcd;
+  static const int den = D / _gcd;
 };
 template <class R1, class R2>
-struct _Ratio_add
-{
-using type = Ratio <R1::num * R2::den + R2::num * R1::den, R1::den * R2::den>;
+struct _Ratio_add {
+  using type = Ratio<R1::num * R2::den + R2::num * R1::den, R1::den * R2::den>;
 };
 
 template <class R1, class R2>
 struct Ratio_add : _Ratio_add<R1, R2>::type {};
 
 template <class R1, class R2>
-struct _Ratio_subtract
-{
-using type = Ratio <R1::num * R2::den - R2::num * R1::den, R1::den * R2::den>;
+struct _Ratio_subtract {
+  using type = Ratio<R1::num * R2::den - R2::num * R1::den, R1::den * R2::den>;
 };
 
 template <class R1, class R2>
 struct Ratio_subtract : _Ratio_subtract<R1, R2>::type {};
 
 template <class R1, class R2>
-struct _Ratio_multiply
-{
-using type = Ratio <R1::num * R2::num , R1::den * R2::den>;
+struct _Ratio_multiply {
+  using type = Ratio<R1::num * R2::num, R1::den * R2::den>;
 };
 
 template <class R1, class R2>
 struct Ratio_multiply : _Ratio_multiply<R1, R2>::type {};
 
 template <class R1, class R2>
-struct _Ratio_divide
-{
-using type = Ratio < R1::num * R2::den, R1::den * R2::num>;
+struct _Ratio_divide {
+  using type = Ratio<R1::num * R2::den, R1::den * R2::num>;
 };
 
 template <class R1, class R2>
 struct Ratio_divide : _Ratio_divide<R1, R2>::type {};
 
-int main()
-{
-using r1 = Ratio<2, 3>;
-using r2 = Ratio<3, 2>;
+int main() {
+  using r1 = Ratio<2, 3>;
+  using r2 = Ratio<3, 2>;
 
-using r3 = Ratio_add<r1, r2>;
-cout << "2/3 + 3/2 = " << r3::num << " / " << r3::den << endl;
+  using r3 = Ratio_add<r1, r2>;
+  cout << "2/3 + 3/2 = " << r3::num << " / " << r3::den << endl;
 
-using r4 = Ratio_multiply<r1, r3>;
-cout << "13 / 6 * 2 /3 = " << r4::num << " / " << r4::den << endl;
+  using r4 = Ratio_multiply<r1, r3>;
+  cout << "13 / 6 * 2 /3 = " << r4::num << " / " << r4::den << endl;
 }
 ```
 
@@ -794,11 +723,10 @@ cout << "13 / 6 * 2 /3 = " << r4::num << " / " << r4::den << endl;
 #### 문제 1
 
 `N` 번째 피보나치 수를 나타내는 `TMP` 를 만들어보세요. 참고로 피보나치 수는, `N` 번째 항이 `N - 1` 번째 항과 `N - 2` 번째 항의 합으로 정의되는 수 입니다. 참고로 1, `1, 2, 3, 5, ...` 로 진행됩니다.(난이도 : 하)
-```cpp
+```cpp-formatted
 
-int main()
-{
-cout << "5 번째 피보나치 수 :: " << fib<5>::result << endl; // 5
+int main() {
+  cout << "5 번째 피보나치 수 :: " << fib<5>::result << endl;  // 5
 }
 ```
 
@@ -807,16 +735,15 @@ cout << "5 번째 피보나치 수 :: " << fib<5>::result << endl; // 5
 `TMP` 를 사용해서 어떤 수가 소수인지 아닌지를 판별하는 프로그램을 만들어보세요. (난이도 : 상)참고로 이 문제는 다음 강좌에서 다룰 예정입니다!
 
 
-```cpp
+```cpp-formatted
 
-int main()
-{
-cout << boolalpha;
-cout << "Is prime ? :: " << is_prime<2>::result << endl; // true
-cout << "Is prime ? :: " << is_prime<10>::result << endl; // false
+int main() {
+  cout << boolalpha;
+  cout << "Is prime ? :: " << is_prime<2>::result << endl;   // true
+  cout << "Is prime ? :: " << is_prime<10>::result << endl;  // false
 
-cout << "Is prime ? :: " << is_prime<11>::result << endl; // true
-cout << "Is prime ? :: " << is_prime<61>::result << endl; // true
+  cout << "Is prime ? :: " << is_prime<11>::result << endl;  // true
+  cout << "Is prime ? :: " << is_prime<61>::result << endl;  // true
 }
 ```
 
@@ -830,8 +757,3 @@ cout << "Is prime ? :: " << is_prime<61>::result << endl; // true
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-

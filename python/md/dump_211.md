@@ -23,7 +23,7 @@ next_page : 213
 
 지난 시간에 배웠던 것을 간단히 정리해보자면 다음과 같습니다. `Parent` 클래스와 `Child` 클래스에 모두  f 라는 가상함수가 정의되어 있고, `Child` 클래스가 `Parent` 를 상속 받는다고 해봅시다. 그런 다음에 동일한 `Parent*` 타입의 포인터들도 각각 `Parent` 객체와 `Child` 객체를 가리킨다고 해봅시다.
 
-```cpp
+```cpp-formatted
 
 Parent* p = new Parent();
 Parent* c = new Child();
@@ -33,7 +33,7 @@ Parent* c = new Child();
 
 컴퓨터 입장에서 `p` 와 `c` 모두 `Parent` 를 가리키는 포인터들이므로, 당연히
 
-```cpp
+```cpp-formatted
 
 p->f();
 c->f();
@@ -51,47 +51,29 @@ c->f();
 
 사실 클래스의 상속을 사용함으로써 중요하게 처리해야 되는 부분이 있습니다. 바로, 소멸자를 가상함수로 만들어야 된다는 점입니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-
-class Parent
-{
-public :
-Parent()
-{
-cout << "Parent 생성자 호출" << endl;
-}
-~Parent()
-{
-cout << "Parent 소멸자 호출" << endl;
-}
+class Parent {
+ public:
+  Parent() { cout << "Parent 생성자 호출" << endl; }
+  ~Parent() { cout << "Parent 소멸자 호출" << endl; }
 };
-class Child : public Parent
-{
-public:
-Child() : Parent()
-{
-cout << "Child 생성자 호출" << endl;
-}
-~Child()
-{
-cout << "Child 소멸자 호출" << endl;
-}
+class Child : public Parent {
+ public:
+  Child() : Parent() { cout << "Child 생성자 호출" << endl; }
+  ~Child() { cout << "Child 소멸자 호출" << endl; }
 };
-int main()
-{
-cout << "--- 평범한 Child 만들었을 때 ---" << endl;
-{
-Child c;
-}
-cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
-{
-Parent *p = new Child();
-delete p;
-}
+int main() {
+  cout << "--- 평범한 Child 만들었을 때 ---" << endl;
+  { Child c; }
+  cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
+  {
+    Parent *p = new Child();
+    delete p;
+  }
 }
 ```
 
@@ -109,12 +91,10 @@ delete p;
 
 일단 평범하게 `Child` 객체를 만든 부분을 살펴봅시다.
 
-```cpp
+```cpp-formatted
 
 cout << "--- 평범한 Child 만들었을 때 ---" << endl;
-{
-Child c;
-}
+{ Child c; }
 ```
 
 
@@ -126,12 +106,12 @@ Child c;
 
 그런데 문제는 그 아래 `Parent` 포인터가 `Child` 객체를 가리킬 때 입니다.
 
-```cpp
+```cpp-formatted
 
 cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
 {
-Parent *p = new Child();
-delete p;
+  Parent *p = new Child();
+  delete p;
 }
 ```
 
@@ -142,47 +122,29 @@ delete p;
 
 하지만 `virtual` 키워드를 배운 이상 여러분은 무엇을 해야 하는지 알고 계실 것입니다. 단순히 `Parent` 의 소멸자를 `virtual` 로 만들어버리면 됩니다. `Parent` 의 소멸자를 `virtual` 로 만들면, `p` 가 소멸자를 호출할 때, `Child` 의 소멸자를 성공적으로 호출할 수 있게 됩니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-
-class Parent
-{
-public :
-Parent()
-{
-cout << "Parent 생성자 호출" << endl;
-}
-virtual ~Parent()
-{
-cout << "Parent 소멸자 호출" << endl;
-}
+class Parent {
+ public:
+  Parent() { cout << "Parent 생성자 호출" << endl; }
+  virtual ~Parent() { cout << "Parent 소멸자 호출" << endl; }
 };
-class Child : public Parent
-{
-public:
-Child() : Parent()
-{
-cout << "Child 생성자 호출" << endl;
-}
-~Child()
-{
-cout << "Child 소멸자 호출" << endl;
-}
+class Child : public Parent {
+ public:
+  Child() : Parent() { cout << "Child 생성자 호출" << endl; }
+  ~Child() { cout << "Child 소멸자 호출" << endl; }
 };
-int main()
-{
-cout << "--- 평범한 Child 만들었을 때 ---" << endl;
-{
-Child c;
-}
-cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
-{
-Parent *p = new Child();
-delete p;
-}
+int main() {
+  cout << "--- 평범한 Child 만들었을 때 ---" << endl;
+  { Child c; }
+  cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
+  {
+    Parent *p = new Child();
+    delete p;
+  }
 }
 ```
 
@@ -213,40 +175,28 @@ delete p;
 
 여태 까지 부모 클래스에서 자식 클래스의 함수에 접근할 때 항상 부모 클래스의 포인터를 통해서 접근하였습니다. 하지만, 사실 부모 클래스의 레퍼런스여도 문제 없이 작동합니다. 아래 간단한 예제를 통해 살펴보겠습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-
 class A {
-public :
-virtual void show() {
-cout << "Parent !" << endl;
-}
+ public:
+  virtual void show() { cout << "Parent !" << endl; }
 };
 class B : public A {
-public:
-void show() {
-cout << "Child!" << endl;
-}
+ public:
+  void show() { cout << "Child!" << endl; }
 };
 
+void test(A& a) { a.show(); }
+int main() {
+  A a;
+  B b;
+  test(a);
+  test(b);
 
-void test(A& a) {
-a.show();
-}
-int main()
-{
-
-
-A a;
-B b;
-test(a);
-test(b);
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -261,18 +211,16 @@ return 0;
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
-void test(A& a) {
-a.show();
-}
+void test(A& a) { a.show(); }
 ```
 
 
 
 `test` 함수를 살펴보면 `A` 클래스의 레퍼런스를 받게 되어 있지만,
 
-```cpp
+```cpp-formatted
 
 test(b);
 ```
@@ -302,19 +250,17 @@ test(b);
 그렇다면 왜 C++ 에서는 `virtual` 키워드를 이용해 사용자가 직접 `virtual` 로 선언하도록 하였을까요? 그 이유는 가상 함수를 사용하게 되면 약간의 **오버헤드 (overhead)** 가 존재하기 때문입니다. \sidenote{보통의 함수를 호출하는 것 보다 가상 함수를 호출하는 데 걸리는 시간이 조금 더 오래 걸립니다.} 이를 이해하기 위해 가상 함수라는 것이 어떻게 구현되는지, 다시 말해 마술과 같은 동적 바인딩이 어떻게 구현되는지 살펴보도록 합시다.
 
 예를 들어서 다음과 같은 간단한 두 개의 클래스를 생각해봅시다.
-```cpp
+```cpp-formatted
 
-class Parent
-{
-public:
-virtual void func1();
-virtual void func2();
+class Parent {
+ public:
+  virtual void func1();
+  virtual void func2();
 };
-class Child : public Parent
-{
-public:
-virtual void func1();
-  void func3();
+class Child : public Parent {
+ public:
+  virtual void func1();
+  void func3();
 };
 ```
 
@@ -333,7 +279,7 @@ C++ 컴파일러는 가상 함수가 하나라도 존재하는 클래스에 대�
 하지만, 가상 함수를 호출하였을 때는 그 실행 과정이 다릅니다. 위에서도 보이다 싶이, 가상 함수 테이블을 한 단계 더 걸쳐서, 실제로 '어떤 함수를 고를지' 결정하게 됩니다. 예를 들어서;
 
 
-```cpp
+```cpp-formatted
 
 Parent* p = Parent();
 p->func1();
@@ -352,8 +298,8 @@ p->func1();
 
 에 해당하는 코드를 작성하게 됩니다. 그렇다면, 다음의 경우는 어떨까요?
 
-```cpp
-Parent* c = Child();
+```cpp-formatted
+Parent* c = Child();
 c->func1();
 ```
 
@@ -369,44 +315,36 @@ c->func1();
 ###  순수 가상 함수(pure `virtual` function)와 추상 클래스(abstract `class)`
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-class Animal
-{
-public:
-Animal() {}
-virtual ~Animal() {}
-virtual void speak() = 0;
+class Animal {
+ public:
+  Animal() {}
+  virtual ~Animal() {}
+  virtual void speak() = 0;
 };
 
-class Dog : public Animal
-{
-public:
-Dog() : Animal() {}
-void speak() {
-cout << "왈왈" << endl;
-}
+class Dog : public Animal {
+ public:
+  Dog() : Animal() {}
+  void speak() { cout << "왈왈" << endl; }
 };
 
-class Cat : public Animal
-{
-public:
-Cat() : Animal() {}
-void speak() {
-cout << "야옹야옹" << endl;
-}
+class Cat : public Animal {
+ public:
+  Cat() : Animal() {}
+  void speak() { cout << "야옹야옹" << endl; }
 };
 
-int main()
-{
-Animal* dog = new Dog();
-Animal* cat = new Cat();
+int main() {
+  Animal* dog = new Dog();
+  Animal* cat = new Cat();
 
-dog->speak();
-cat->speak();
+  dog->speak();
+  cat->speak();
 }
 ```
 
@@ -418,14 +356,13 @@ cat->speak();
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F226A0B4253DB346C046970)
 
 위 코드를 보면서 한 가지 특이한 점을 눈치 채셨을 것입니다.
-```cpp
+```cpp-formatted
 
-class Animal
-{
-public:
-Animal() {}
-virtual ~Animal() {}
-virtual void speak() = 0;
+class Animal {
+ public:
+  Animal() {}
+  virtual ~Animal() {}
+  virtual void speak() = 0;
 };
 ```
 
@@ -440,7 +377,7 @@ virtual void speak() = 0;
 
 당연하게도, 순수 가상 함수는 본체가 없기 때문에, 이 함수를 호출하는 것은 불가능합니다. 그렇기 때문에, `Animal` 객체를 생성하는것 또한 불가능입니다. 왜냐하면,
 
-```cpp
+```cpp-formatted
 Animal a;
 a.speak();
 ```
@@ -468,15 +405,12 @@ error C2259: 'Animal' : cannot instantiate abstract class
 따라서;
 
 
-```cpp
+```cpp-formatted
 
-class Dog : public Animal
-{
-public:
-Dog() : Animal() {}
-void speak() {
-cout << "왈왈" << endl;
-}
+class Dog : public Animal {
+ public:
+  Dog() : Animal() {}
+  void speak() { cout << "왈왈" << endl; }
 };
 ```
 
@@ -492,14 +426,13 @@ cout << "왈왈" << endl;
 즉, 이 클래스를 상속받아서 사용하는 사람에게 "이 기능은 일반적인 상황에서 만들기 힘드니 너가 직접 특수화 되는 클래스에 맞추어서 만들어서 써라." 라고 말해주는 것이지요.
 예를 들어서 위에서 예를 든 `Animal` 클래스의 경우
 
-```cpp
+```cpp-formatted
 
-class Animal
-{
-public:
-Animal() {}
-virtual ~Animal() {}
-virtual void speak() = 0;
+class Animal {
+ public:
+  Animal() {}
+  virtual ~Animal() {}
+  virtual void speak() = 0;
 };
 ```
 
@@ -509,7 +442,7 @@ virtual void speak() = 0;
 
 추상 클래스의 또 한가지 특징은 비록 객체는 생성할 수 없지만, 추상 클래스를 가리키는 포인터는 문제 없이 만들 수 있다는 점입니다. 위 예에서도 살펴보았듯이, 아무런 문제 없이 `Animal*` 의 변수를 생성하였습니다.
 
-```cpp
+```cpp-formatted
 
 Animal* dog = new Dog();
 Animal* cat = new Cat();
@@ -528,27 +461,23 @@ cat->speak();
 
 마지막으로 C++ 에서의 상속의 또 다른 특징인 다중 상속에 대해 알아보도록 합시다. C++ 에서는 한 클래스가 다른 여러 개의 클래스들을 상속 받는 것을 허용합니다. 이를 가리켜서 **다중 상속 (multiple inheritance)** 라고 부릅니다.
 
-```cpp
+```cpp-formatted
 
 class A
 
 {
-public:
-int a;
+ public:
+  int a;
 };
 
-
-class B
-{
-public:
-int b;
+class B {
+ public:
+  int b;
 };
 
-
-class C : public A, public B
-{
-public:
-int c;
+class C : public A, public B {
+ public:
+  int c;
 };
 ```
 
@@ -559,7 +488,7 @@ int c;
 이를 그림으로 표현하자면 위 같은 모양이 되겠지요. 사실 다중 상속은 보통의 상속 하고 똑같이 생각하시면 됩니다. 단순히 그냥 `A` 와 `B` 의 내용이 모두 C 에 들어간다고 생각하시면 됩니다. 따라서;
 
 
-```cpp
+```cpp-formatted
 
 C c;
 c.a = 3;
@@ -571,44 +500,32 @@ c.c = 4;
 
 와 같은 것이 가능하게 되는 것이지요. 다중 상속에서 한 가지 재미있는 점은 생성자들의 호출 순서 입니다. 여러분은 과연 위 예에서 `A` 의 생성자가 먼저 호출될지, `B` 의 생성자가 먼저 호출될 지 궁금할 것입니다. 한 번 확인을 해보도록 하겠습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
+class A {
+ public:
+  int a;
 
-class A
-{
-public:
-int a;
-
-
-A() { cout << "A 생성자 호출" << endl;}
+  A() { cout << "A 생성자 호출" << endl; }
 };
 
+class B {
+ public:
+  int b;
 
-class B
-{
-public:
-int b;
-
-
-B() { cout << "B 생성자 호출" << endl; }
+  B() { cout << "B 생성자 호출" << endl; }
 };
 
+class C : public A, public B {
+ public:
+  int c;
 
-class C : public A, public B
-{
-public:
-int c;
-
-
-C() : A(), B() { cout << "C 생성자 호출" << endl;}
+  C() : A(), B() { cout << "C 생성자 호출" << endl; }
 };
-int main()
-{
-C c;
-}
+int main() { C c; }
 ```
 
 
@@ -622,7 +539,7 @@ C c;
 
 위 처럼 `A -> B -> C` 순으로 호출됨을 알 수 있습니다. 그렇다면 이번에는,
 
-```cpp
+```cpp-formatted
 
 class C : public A, public B
 ```
@@ -631,7 +548,7 @@ class C : public A, public B
 
 에서
 
-```cpp
+```cpp-formatted
 
 class C : public B, public A
 ```
@@ -650,26 +567,21 @@ class C : public B, public A
 
 사실 다중 상속은 실제 프로그래밍에서 많이 쓰이지는 않습니다. 왜냐하면 다음과 같은 위험이 언제나 도사리고 있기 때문이지요.
 
-```cpp
+```cpp-formatted
 
-class A
-{
-public:
-int a;
+class A {
+ public:
+  int a;
 };
 
-
-class B
-{
-public:
-int a;
+class B {
+ public:
+  int a;
 };
 
-
-class C : public B, public A
-{
-public:
-int c;
+class C : public B, public A {
+ public:
+  int c;
 };
 ```
 
@@ -677,12 +589,11 @@ int c;
 
 위처럼 만일 두 개의 클래스에서 이름이 같은 멤버 변수나 함수가 있다고 해봅시다. 예를 들어 위 예에서는 클래스 `A` 와 `B` 에 모두 `a` 라는 이름의 멤버 변수가 들어가 있습니다.
 
-```cpp
+```cpp-formatted
 
-int main()
-{
-C c;
-c.a = 3;
+int main() {
+  C c;
+  c.a = 3;
 }
 ```
 
@@ -704,23 +615,19 @@ error C2385: ambiguous access of 'a'
 
 다중 상속의 또 다른 문제는 일명 **다이아몬드 상속(diamond inheritance)** 혹은 공포의 다이아몬드 상속(dreadful diamond of derivation) 이라고 부르는 형태의 다중 상속에 있습니다. 예를 들어 다음과 같은 형태의 상속 관계를 생각해봅시다.
 
-```cpp
+```cpp-formatted
 
-class Human
-{
-// ...
+class Human {
+  // ...
 };
-class HandsomeHuman : public Human
-{
-// ...
+class HandsomeHuman : public Human {
+  // ...
 };
-class SmartHuman : public Human
-{
-// ...
+class SmartHuman : public Human {
+  // ...
 };
-class Me : public HandsomeHuman, public SmartHuman
-{
-// ...
+class Me : public HandsomeHuman, public SmartHuman {
+  // ...
 };
 ```
 
@@ -741,24 +648,20 @@ class Me : public HandsomeHuman, public SmartHuman
 
 다행이도 이를 해결할 수 있는 방법이 있습니다.
 
-```cpp
+```cpp-formatted
 
-class Human
-{
-public:
-// ...
+class Human {
+ public:
+  // ...
 };
-class HandsomeHuman : public virtual Human
-{
-// ...
+class HandsomeHuman : public virtual Human {
+  // ...
 };
-class SmartHuman : public virtual Human
-{
-// ...
+class SmartHuman : public virtual Human {
+  // ...
 };
-class Me : public HandsomeHuman, public SmartHuman
-{
-// ...
+class Me : public HandsomeHuman, public SmartHuman {
+  // ...
 };
 ```
 
@@ -783,11 +686,3 @@ class Me : public HandsomeHuman, public SmartHuman
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-
-
-
-

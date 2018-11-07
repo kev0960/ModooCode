@@ -56,29 +56,28 @@ int printf ( const char * format, ... );
 |`%`      |`%` 다음에 %를 또 붙이면 `stdout` 에 `%` 를 출력한다.||
 
 위 서식 문자를 이용한 다양한 출력 형태는 아래와 같다.
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    int integer = 123;
-    char character = 'c';
-    char string[] = "hello, world";
-    int* pointer = &integer;
-    double pi = 3.141592;
+int main() {
+  int integer = 123;
+  char character = 'c';
+  char string[] = "hello, world";
+  int* pointer = &integer;
+  double pi = 3.141592;
 
-    printf("integer : (decimal) %d (octal) %o \n", integer, integer);
+  printf("integer : (decimal) %d (octal) %o \n", integer, integer);
 
-    printf("character : %c \n", character);
+  printf("character : %c \n", character);
 
-    printf("string : %s \n", string);
+  printf("string : %s \n", string);
 
-    printf("pointer addr : %p \n", pointer);
+  printf("pointer addr : %p \n", pointer);
 
-    printf("floating point : %e // %f \n", pi, pi);
+  printf("floating point : %e // %f \n", pi, pi);
 
-    printf("percent symbol : %% \n");
+  printf("percent symbol : %% \n");
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -105,31 +104,31 @@ int main()
 | (수) | 출력할 최소의 문자 개수. 만일 이 수 보다 출력할 수 보다 작다면 빈칸을 삽입하여 길이를 맞춘다. 대신에, 이 수 보다 출력할 수가 큰 수의 경우 잘려서 출력되지는 않는다.|
 |`*`   |폭을 형식 문자열에 지정해서 받지 않지만, 그 대신에 형식 문자열 뒤에 오는 인자들에 넣어서 받는다. 이 때, 이는 정수 값이여야 하며 폭을 지정하는 변수 뒤에 출력할 데이터가 위치하면 된다.|
 
-```cpp
+```cpp-formatted
 /* 사용 예 */
 #include <stdio.h>
-int main(){
-    int i = 123;
-    int j = -123;
-    double f = 3.141592;
+int main() {
+  int i = 123;
+  int j = -123;
+  double f = 3.141592;
 
-    printf("폭 맞추기 \n");
-    printf("i : %6d \n", i);
-    printf("i : %7d \n", i);
-    printf("i : %2d \n\n", i);
+  printf("폭 맞추기 \n");
+  printf("i : %6d \n", i);
+  printf("i : %7d \n", i);
+  printf("i : %2d \n\n", i);
 
-    printf("왼쪽 정렬 \n");
-    printf("i : %-5d끝 \n", i);
-    printf("오른쪽 정렬 \n");
-    printf("i : %5d끝 \n\n", i);
+  printf("왼쪽 정렬 \n");
+  printf("i : %-5d끝 \n", i);
+  printf("오른쪽 정렬 \n");
+  printf("i : %5d끝 \n\n", i);
 
-    printf("# 문자의 사용 \n");
-    printf("i : %#x \n", i);
-    printf("i : %#X \n\n", i);
+  printf("# 문자의 사용 \n");
+  printf("i : %#x \n", i);
+  printf("i : %#X \n\n", i);
 
-    printf("부호 붙이기 \n");
-    printf("%+d, %+d \n", i,j);
-    return 0;
+  printf("부호 붙이기 \n");
+  printf("%+d, %+d \n", i, j);
+  return 0;
 }
 ```
 
@@ -154,20 +153,18 @@ int main(){
 |`l`|정수 서식 문자(i,d,o,u,x, `X)` 에 사용되었을 경우 인자를 `long int` 나 `unsigned long int` 로 생각하며 `c` 나 `s` 에 사용되었을 경우 `wide character` 나 `wide string` 으로 생각한다.|
 |`L`|인자를 `long double` 로 생각한다. (오직 부동 소수점 서식 문자인 `e,E,f,g, G` 에만 적용된다)|
 
-```cpp
+```cpp-formatted
 /* 사용 예 */
 #include <stdio.h>
-int main()
-{
-    double f = 3.141592;
-    int i = 12345;
+int main() {
+  double f = 3.141592;
+  int i = 12345;
 
-    printf("f : %.3f \n", f);
-    printf("i : %.10d \n", i);
+  printf("f : %.3f \n", f);
+  printf("i : %.10d \n", i);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 출력 결과
@@ -187,8 +184,3 @@ int main()
 
 
 출력에 성공하면 출력된 전체 문자의 개수가 리턴된다. 출력에 실패하면 음수가 리턴된다.
-
-
-
-
-

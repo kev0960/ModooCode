@@ -24,8 +24,8 @@ size_t strlen ( const char * str );
 
 간혹
 
-```cpp
-char mystr[100]="test string";
+```cpp-formatted
+char mystr[100] = "test string";
 ```
 
 
@@ -56,7 +56,7 @@ C 형식 문자 C 형식 문자열
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -64,11 +64,11 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 에서 가져왔습니다.
 
 */
-size_t strlen(const char *s)
-{
-  const char *eos = s;
-  while (*eos++);
-  return (int) (eos - s - 1);
+size_t strlen(const char *s) {
+  const char *eos = s;
+  while (*eos++)
+    ;
+  return (int)(eos - s - 1);
 }
 ```
 
@@ -80,7 +80,7 @@ size_t strlen(const char *s)
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 문자열을 하나 입력 받아서 그 길이를 리턴한다.
@@ -88,17 +88,16 @@ size_t strlen(const char *s)
 http://www.cplusplus.com/reference/clibrary/cstring/strlen/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char szInput[256];
-    printf ("Enter a sentence: ");
-    gets (szInput);
-    printf ("The sentence entered is %u characters long.\n",strlen(szInput));
-    return 0;
+int main() {
+  char szInput[256];
+  printf("Enter a sentence: ");
+  gets(szInput);
+  printf("The sentence entered is %u characters long.\n", strlen(szInput));
+  return 0;
 }
 ```
 

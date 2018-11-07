@@ -50,9 +50,8 @@ bool eof ( ) const;
 
 
 
-```cpp
-( basic_ios<charT,traits> )
-bool eof () const;
+```cpp-formatted
+(basic_ios<charT, traits>)bool eof() const;
 ```
 
 

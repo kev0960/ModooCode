@@ -37,35 +37,28 @@ streamsize  gcount ( ) const;
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
+int main() {
+  char str[256];
+  ifstream is;
 
-int main ()
- {
-char str[256];
-ifstream is;
+  cout << "Enter the name of an existing text file: ";
+  cin.get(str, 256);
 
+  is.open(str);          // open file
+  is.getline(str, 256);  // 파일의 내용을 읽는다.
 
-cout << "Enter the name of an existing text file: ";
-cin.get (str,256);
+  cout << str << endl;
+  cout << is.gcount() << endl;  // 입력 받은 문자의 수
 
+  is.close();  // close file
 
-is.open (str);        // open file
-is.getline(str, 256); // 파일의 내용을 읽는다.
-
-
-cout << str << endl;
-cout << is.gcount() << endl; // 입력 받은 문자의 수
-
-
-is.close();           // close file
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -79,10 +72,9 @@ return 0;
 ###  템플릿 멤버 정의
 
 
-```cpp
+```cpp-formatted
 
-( basic_istream<charT,traits> )
-streamsize gcount () const;
+(basic_istream<charT, traits>)streamsize gcount() const;
 ```
 
 ###  연관된 함수
@@ -92,6 +84,3 @@ streamsize gcount () const;
 *  [istream::ignore](http://itguru.tistory.com/193): 스트림에서 문자를 받고 버린다.
 * istream::read : 한 데이터 블록을 읽는다.
 * istream::readsome : 버퍼에 가능한 데이터 블록을 읽는다.
-
-
-

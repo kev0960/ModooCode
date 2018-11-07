@@ -56,12 +56,23 @@ const char * strstr ( const char * str1, const char * str2 );
 
 
 
-```cpp
+```cpp-formatted
 
 
 /*이 소스는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다*/
-char *strstr(const char *str1, const char *str2){
-      char *cp = (char *) str1;    char *s1, *s2;    if (!*str2) return (char *) str1;    while (*cp)    {        s1 = cp;        s2 = (char *) str2;        while (*s1 && *s2 && !(*s1 - *s2)) s1++, s2++;        if (!*s2) return cp;        cp++;    }    return NULL;}
+char *strstr(const char *str1, const char *str2) {
+  char *cp = (char *)str1;
+  char *s1, *s2;
+  if (!*str2) return (char *)str1;
+  while (*cp) {
+    s1 = cp;
+    s2 = (char *)str2;
+    while (*s1 && *s2 && !(*s1 - *s2)) s1++, s2++;
+    if (!*s2) return cp;
+    cp++;
+  }
+  return NULL;
+}
 ```
 
 
@@ -115,142 +126,123 @@ char *strstr(const char *str1, const char *str2){
 
 이를 바탕으로 코드를 짜보면 아래와 같이 된다.
 
-```cpp
+```cpp-formatted
 /*
 
-참고로 다음 코드는 http://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string_search_algorithm
-에서 가져왔습니다.
+참고로 다음 코드는
+http://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string_search_algorithm 에서
+가져왔습니다.
 
 테이블을 생성하는 함수는
 나쁜 문자 이동의 경우 static void prepare_badcharacter_heuristic,
 착한 접미부 이동의 경우 void prepare_goodsuffix_heuristic 이다.
 
 */
-# include <limits.h>
-# include <string.h>
+#include <limits.h>
+#include <string.h>
 
-# define ALPHABET_SIZE (1 << CHAR_BIT)
+#define ALPHABET_SIZE (1 << CHAR_BIT)
 
-static void compute_prefix(const char* str, size_t size,
-                           int result[size])
-{
-    size_t q;
-    int k;
-    result[0] = 0;
+static void compute_prefix(const char *str, size_t size, int result[size]) {
+  size_t q;
+  int k;
+  result[0] = 0;
 
-    k = 0;
-    for (q = 1; q < size; q++) {
-        while (k > 0 && str[k] != str[q])
-            k = result[k-1];
+  k = 0;
+  for (q = 1; q < size; q++) {
+    while (k > 0 && str[k] != str[q]) k = result[k - 1];
 
-        if (str[k] == str[q])
-            k++;
-        result[q] = k;
-    }
+    if (str[k] == str[q]) k++;
+    result[q] = k;
+  }
 }
 
 static void prepare_badcharacter_heuristic(const char *str, size_t size,
-                                           int result[ALPHABET_SIZE])
-{
+                                           int result[ALPHABET_SIZE]) {
+  size_t i;
 
-    size_t i;
+  for (i = 0; i < ALPHABET_SIZE; i++) result[i] = -1;
 
-    for (i = 0; i < ALPHABET_SIZE; i++)
-        result[i] = -1;
-
-    for (i = 0; i < size; i++)
-        result[(size_t) str[i]] = i;
+  for (i = 0; i < size; i++) result[(size_t)str[i]] = i;
 }
 
 void prepare_goodsuffix_heuristic(const char *normal, size_t size,
-                                  int result[size + 1])
-{
+                                  int result[size + 1]) {
+  char *left = (char *)normal;
+  char *right = left + size;
+  char reversed[size + 1];
+  char *tmp = reversed + size;
+  size_t i;
 
-    char *left = (char *) normal;
-    char *right = left + size;
-    char reversed[size+1];
-    char *tmp = reversed + size;
-    size_t i;
+  /* reverse string */
+  *tmp = 0;
+  while (left < right) *(--tmp) = *(left++);
 
-    /* reverse string */
-    *tmp = 0;
-    while (left < right)
-        *(--tmp) = *(left++);
+  int prefix_normal[size];
+  int prefix_reversed[size];
 
-    int prefix_normal[size];
-    int prefix_reversed[size];
+  compute_prefix(normal, size, prefix_normal);
+  compute_prefix(reversed, size, prefix_reversed);
 
-    compute_prefix(normal, size, prefix_normal);
-    compute_prefix(reversed, size, prefix_reversed);
+  for (i = 0; i <= size; i++) {
+    result[i] = size - prefix_normal[size - 1];
+  }
 
-    for (i = 0; i <= size; i++) {
-        result[i] = size - prefix_normal[size-1];
-    }
+  for (i = 0; i < size; i++) {
+    const int j = size - prefix_reversed[i];
+    const int k = i - prefix_reversed[i] + 1;
 
-    for (i = 0; i < size; i++) {
-        const int j = size - prefix_reversed[i];
-        const int k = i - prefix_reversed[i]+1;
-
-        if (result[j] > k)
-            result[j] = k;
-    }
+    if (result[j] > k) result[j] = k;
+  }
 }
 /*
-* Boyer-Moore search algorithm
-*/
-const char *boyermoore_search(const char *haystack,
-                              const char *needle) {
-    /*
-    * Calc string sizes
-    */
-    size_t needle_len, haystack_len;
-    needle_len = strlen(needle);
-    haystack_len = strlen(haystack);
+ * Boyer-Moore search algorithm
+ */
+const char *boyermoore_search(const char *haystack, const char *needle) {
+  /*
+   * Calc string sizes
+   */
+  size_t needle_len, haystack_len;
+  needle_len = strlen(needle);
+  haystack_len = strlen(haystack);
 
-    /*
-    * Simple checks
-    */
-    if(haystack_len == 0)
-        return NULL;
-    if(needle_len == 0)
-        return haystack;
+  /*
+   * Simple checks
+   */
+  if (haystack_len == 0) return NULL;
+  if (needle_len == 0) return haystack;
 
-    /*
-    * Initialize heuristics
-    */
-    int badcharacter[ALPHABET_SIZE];
-    int goodsuffix[needle_len+1];
+  /*
+   * Initialize heuristics
+   */
+  int badcharacter[ALPHABET_SIZE];
+  int goodsuffix[needle_len + 1];
 
-    prepare_badcharacter_heuristic(needle, needle_len, badcharacter);
-    prepare_goodsuffix_heuristic(needle, needle_len, goodsuffix);
+  prepare_badcharacter_heuristic(needle, needle_len, badcharacter);
+  prepare_goodsuffix_heuristic(needle, needle_len, goodsuffix);
 
-    /*
-    * Boyer-Moore search
-    */
-    size_t s = 0;
-    while(s <= (haystack_len - needle_len))
-    {
-        size_t j = needle_len;
-        while(j > 0 && needle[j-1] == haystack[s+j-1])
-            j--;
+  /*
+   * Boyer-Moore search
+   */
+  size_t s = 0;
+  while (s <= (haystack_len - needle_len)) {
+    size_t j = needle_len;
+    while (j > 0 && needle[j - 1] == haystack[s + j - 1]) j--;
 
-        if(j > 0)
-        {
-            int k = badcharacter[(size_t) haystack[s+j-1]];
-            int m;
-            if(k < (int)j && (m = j-k-1) > goodsuffix[j])
-                s+= m;
-            else
-                s+= goodsuffix[j];
-        }
-        else
-        {
-            return haystack + s;
-        }
-    }
+    if (j > 0) {
+      int k = badcharacter[(size_t)haystack[s + j - 1]];
+      int m;
+      if (k < (int)j && (m = j - k - 1) > goodsuffix[j])
+        s += m;
+      else
+        s += goodsuffix[j];
+    } else {
+      return haystack + s;
+    }
+  }
 
-    /* not found */
-    return NULL;
+  /* not found */
+  return NULL;
 }
 ```
 
@@ -263,27 +255,25 @@ const char *boyermoore_search(const char *haystack,
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/cstring/strstr/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[] ="This is a simple string";
-    char * pch;
-    pch = strstr (str,"simple");
-    strncpy (pch,"sample",6);
-    puts (str);
-    return 0;
+int main() {
+  char str[] = "This is a simple string";
+  char* pch;
+  pch = strstr(str, "simple");
+  strncpy(pch, "sample", 6);
+  puts(str);
+  return 0;
 }
-
 ```
 
 실행 결과

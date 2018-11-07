@@ -56,7 +56,7 @@ istream&  ignore ( streamsize n = 1, int delim = EOF );
 
 
 
-```cpp
+```cpp-formatted
 
 /*
 
@@ -70,26 +70,19 @@ istream&  ignore ( streamsize n = 1, int delim = EOF );
 #include <iostream>
 using namespace std;
 
+int main() {
+  char first, last;
 
-int main ()
-{
-char first, last;
+  cout << "Enter your first and last names: ";
 
+  first = cin.get();
+  cin.ignore(256, ' ');  // 스트림에서 ' ' 를 지워버린다.
 
-cout << "Enter your first and last names: ";
+  last = cin.get();
 
+  cout << "Your initials are " << first << last;
 
-first=cin.get();
-cin.ignore(256,' '); // 스트림에서 ' ' 를 지워버린다.
-
-
-last=cin.get();
-
-
-cout << "Your initials are " << first << last;
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -101,11 +94,10 @@ return 0;
 ###  템플릿 멤버 정의
 
 
-```cpp
+```cpp-formatted
 
-( basic_istream<charT,traits> )
-typedef traits::int_type int_type;
-basic_istream& ignore (streamsize n = 1, int_type delim = traits::eof() );
+(basic_istream<charT, traits>)typedef traits::int_type int_type;
+basic_istream& ignore(streamsize n = 1, int_type delim = traits::eof());
 ```
 
 ###  연관된 함수
@@ -115,6 +107,3 @@ basic_istream& ignore (streamsize n = 1, int_type delim = traits::eof() );
 *  [istream::getline](http://itguru.tistory.com/149): 스트림에서 한 줄 입력받는다.
 * istream::read : 데이터 블록을 읽는다.
 * istream::readsome : 버퍼에 가능한 데이터 블록을 읽는다.
-
-
-

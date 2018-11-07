@@ -56,7 +56,7 @@ char * strncat ( char * destination, char * source, size_t num );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 str1 의 "To be " 와 str2 의 "or not to be" 를 합쳐서 str1 에 저장한다
@@ -68,17 +68,15 @@ http://www.cplusplus.com/reference/clibrary/cstring/strncat/
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str1[20];
-    char str2[20];
-    strcpy (str1,"To be ");
-    strcpy (str2,"or not to be");
-    strncat (str1, str2, 6);
-    puts (str1);
-    return 0;
+int main() {
+  char str1[20];
+  char str2[20];
+  strcpy(str1, "To be ");
+  strcpy(str2, "or not to be");
+  strncat(str1, str2, 6);
+  puts(str1);
+  return 0;
 }
-
 ```
 
 실행 결과
@@ -91,7 +89,7 @@ int main ()
 ###  함수 구현 예
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 소스는
@@ -100,7 +98,17 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 
 */
 
-char *strncat(char *s1, const char *s2, size_t count){    char *start = s1;    while (*s1++);    s1--;    while (count--)    {        if (!(*s1++ = *s2++)) return start;    }    *s1 = '\0';    return start;}
+char *strncat(char *s1, const char *s2, size_t count) {
+  char *start = s1;
+  while (*s1++)
+    ;
+  s1--;
+  while (count--) {
+    if (!(*s1++ = *s2++)) return start;
+  }
+  *s1 = '\0';
+  return start;
+}
 ```
 
 

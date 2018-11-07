@@ -59,14 +59,17 @@ char * fgets ( char * str, int num, FILE * stream );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /* 화면에서 문자열을 읽어들인다. */
-
 
 #include <stdio.h>
 #define MAX_STR_SIZE 100
-int main()
-{    char str_read[MAX_STR_SIZE];    fgets(str_read, MAX_STR_SIZE, stdin);    printf("읽어들인 문자열 : %s \n", str_read);    return 0;}
+int main() {
+  char str_read[MAX_STR_SIZE];
+  fgets(str_read, MAX_STR_SIZE, stdin);
+  printf("읽어들인 문자열 : %s \n", str_read);
+  return 0;
+}
 ```
 
 실행 결과
@@ -76,7 +79,7 @@ int main()
 
 이 때 유의해서 볼 점은 `str_read` 에 개행 문자도 입력 되어서 `printf` 문 출력결과에서 개행이 두 번 되었다는 점을 볼 수 있다.
 
-```cpp
+```cpp-formatted
 /*
 
 myfile.txt 에서 읽어들인 문자열을 출력한다.
@@ -85,19 +88,19 @@ myfile.txt 에서 읽어들인 문자열을 출력한다.
 
 */
 #include <stdio.h>
-int main()
-{
-    FILE * pFile;
-    char mystring [100];
+int main() {
+  FILE* pFile;
+  char mystring[100];
 
-    pFile = fopen ("myfile.txt" , "r");
-    if (pFile == NULL) perror ("Error opening file");
-    else {
-        fgets (mystring , 100 , pFile);
-        puts (mystring);
-        fclose (pFile);
-    }
-    return 0;
+  pFile = fopen("myfile.txt", "r");
+  if (pFile == NULL)
+    perror("Error opening file");
+  else {
+    fgets(mystring, 100, pFile);
+    puts(mystring);
+    fclose(pFile);
+  }
+  return 0;
 }
 ```
 
@@ -119,10 +122,3 @@ int main()
 *  [fgetc](http://itguru.tistory.com/37):   스트림에서 문자 하나를 읽어온다.
 
 *  [gets](http://itguru.tistory.com/45)  :  표준 입력(stdin) 에서 문자열을 읽어온다.
-
-
-
-
-
-
-

@@ -126,11 +126,3 @@ title : C++ 11 자주 질문되는 것들 모음 (C++ 11 FAQs - Bjarne Stroustup
 아래는 위 내용들에 대한 모든 대답을 담은 pdf 파일 입니다. 전체 페이지는 103쪽 입니다.
 
  [ cplusplus_faq.pdf](/attachment/cplusplus_faq.pdf)
-
-
-
-
-
-
-
-

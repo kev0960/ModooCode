@@ -16,9 +16,9 @@ ref_title : flags
 
 #@ ios_base::flags
 
-```cpp
-fmtflags flags ( ) const;
-fmtflags flags ( fmtflags fmtfl );
+```cpp-formatted
+fmtflags flags() const;
+fmtflags flags(fmtflags fmtfl);
 ```
 
 
@@ -60,12 +60,12 @@ fmtflags flags ( fmtflags fmtfl );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 cout 의 서식 플래그로 right, hex, showbase 를 전달한다.
-이를 통해 100 은 오른쪽에 10 크기로 맞추어서, 16 진수로, 무슨 진법으로(0x) 표시하였는지 명시되어 출력된다.
-이 예제는
+이를 통해 100 은 오른쪽에 10 크기로 맞추어서, 16 진수로, 무슨 진법으로(0x)
+표시하였는지 명시되어 출력된다. 이 예제는
 http://www.cplusplus.com/reference/iostream/ios_base/flags/
 에서 가져왔습니다
 
@@ -73,12 +73,11 @@ http://www.cplusplus.com/reference/iostream/ios_base/flags/
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-    cout.flags ( ios::right | ios::hex | ios::showbase );
-    cout.width (10);
-    cout << 100;
-    return 0;
+int main() {
+  cout.flags(ios::right | ios::hex | ios::showbase);
+  cout.width(10);
+  cout << 100;
+  return 0;
 }
 ```
 

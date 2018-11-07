@@ -15,8 +15,8 @@ cat_title :  ios_base::getloc
 
 #@ ios_base::getloc
 
-```cpp
-locale getloc ( ) const;
+```cpp-formatted
+locale getloc() const;
 ```
 
 
@@ -53,17 +53,16 @@ locale getloc ( ) const;
 
 
 
-```cpp
+```cpp-formatted
 // 로케일 이름을 출력한다.
 #include <iostream>
 #include <locale>
 using namespace std;
 
-int main ()
-{
-    locale current = cout.getloc();
-    cout << current.name() << endl; // 현재 로케일 이름을 출력한다.
-    return 0;
+int main() {
+  locale current = cout.getloc();
+  cout << current.name() << endl;  // 현재 로케일 이름을 출력한다.
+  return 0;
 }
 ```
 

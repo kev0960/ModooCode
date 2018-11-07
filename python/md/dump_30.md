@@ -70,8 +70,8 @@ next_page : 31
 
 일단, 위 버블 정렬 알고리즘을 C 언어에서 구현하기 위해서 저는 여러분들이 다음과 같은 함수를 만들어주기를 원합니다.
 
-```cpp
-Bubble_sort(int* arr, int num_elements), swap(int *pele)
+```cpp-formatted
+Bubble_sort(int* arr, int num_elements), swap(int* pele)
 ```
 
 `Bubble_sort` 함수는 말그대로 정렬을 하는 함수 입니다. 이 때, `num_elements` 로 `arr` 이 가리키는 배열의 원소 개수를 알아야 하겠죠? 그리고 `swap` 함수는 `pele` 가 가리키는 원소와 그 다음 원소를 서로 뒤바꿔주는 함수 입니다. 따라서 `Bubble_sort` 함수가 `pele` 함수를 호출해야 되겠죠?
@@ -124,20 +124,17 @@ $$m = qn + r, (0 \le r < q), \text{gcd}(m, n) = \text{gcd}(qn + r, n) = \text{gc
 
   여러분은 '자기 자신을 호출한다' 에 대해서 많은 고민을 많이 하셨을 것입니다. 일단, 아래의 코드를 직접 컴파일 후 실행해보세요
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int recursive (int n)
-{
-    printf("난 인자가 %d 에요! \n");
-    if (n <= 0)
-        return 0;
+int recursive(int n) {
+  printf("난 인자가 %d 에요! \n");
+  if (n <= 0) return 0;
 
-    recursive(0);
+  recursive(0);
 }
-int main()
-{
-    recursive(3);
-    return 0;
+int main() {
+  recursive(3);
+  return 0;
 }
 ```
 
@@ -148,24 +145,20 @@ int main()
 
   흠. 어느 정도 예측 가능했던 결과입니다. 그렇다면, 아래의 코드는 어떨까요?
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int recursive (int n)
-{
-    printf("난 인자가 %d 에요! \n", n);
-    if (n <= 0)
-        return 0;
+int recursive(int n) {
+  printf("난 인자가 %d 에요! \n", n);
+  if (n <= 0) return 0;
 
-    recursive(n - 1);
+  recursive(n - 1);
 
-    return 0;
+  return 0;
 }
-int main()
-{
-    recursive(3);
-    return 0;
+int main() {
+  recursive(3);
+  return 0;
 }
-
 ```
 
   성공적으로 컴파일 했다면
@@ -266,6 +259,3 @@ N 진법에서 M 진법으로 변환하는 프로그램을 만들어보세요. (
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

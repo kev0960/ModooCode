@@ -123,8 +123,3 @@ gcc -o helloworld helloworld.c
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-
-

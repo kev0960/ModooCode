@@ -58,50 +58,45 @@ int memcmp ( const void * ptr1, const void * ptr2, size_t num );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/cstring/memcmp/
 에서 가져왔습니다.
 
-참고로 아래의 예제는 단어를 순서대로 배열하는데 요긴하게 이용될 수 있습니다. (예: 사전)
+참고로 아래의 예제는 단어를 순서대로 배열하는데 요긴하게 이용될 수 있습니다.
+(예: 사전)
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str1[256];
-    char str2[256];
-    int n;
-    size_t len1, len2;
+int main() {
+  char str1[256];
+  char str2[256];
+  int n;
+  size_t len1, len2;
 
-    printf ("Enter a sentence: ");
-    gets(str1);
+  printf("Enter a sentence: ");
+  gets(str1);
 
-    printf ("Enter another sentence: ");
-    gets(str2);
+  printf("Enter another sentence: ");
+  gets(str2);
 
-    len1=strlen(str1);
-    len2=strlen(str2);
+  len1 = strlen(str1);
+  len2 = strlen(str2);
 
-    n=memcmp ( str1, str2, len1>len2?len1:len2 );
+  n = memcmp(str1, str2, len1 > len2 ? len1 : len2);
 
-    if (n>0)
-    {
-        printf ("'%s' is greater than '%s'.\n",str1,str2);
-    }
-    else if (n<0)
-    {
-        printf ("'%s' is less than '%s'.\n",str1,str2);
-    }
-    else
-    {
-        printf ("'%s' is the same as '%s'.\n",str1,str2);
-    }
-    return 0;
+  if (n > 0) {
+    printf("'%s' is greater than '%s'.\n", str1, str2);
+  } else if (n < 0) {
+    printf("'%s' is less than '%s'.\n", str1, str2);
+  } else {
+    printf("'%s' is the same as '%s'.\n", str1, str2);
+  }
+  return 0;
 }
 ```
 

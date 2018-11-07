@@ -52,33 +52,31 @@ long int ftell ( FILE * stream );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
-파일 전체의 크기를 읽어온다. pFile 을 파일 끝으로 선택한 뒤, ftell 함수를 통해서 파일 처음 부터 pFile 까지, 즉 파일 처음 부터 끝 까지의 바이트 수를 계산한다.
-이 예제는
-http://www.cplusplus.com/reference/clibrary/cstdio/ftell/
-에서 가져왔습니다.
+파일 전체의 크기를 읽어온다. pFile 을 파일 끝으로 선택한 뒤, ftell 함수를 통해서
+파일 처음 부터 pFile 까지, 즉 파일 처음 부터 끝 까지의 바이트 수를 계산한다. 이
+예제는 http://www.cplusplus.com/reference/clibrary/cstdio/ftell/ 에서
+가져왔습니다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    long size;
+int main() {
+  FILE* pFile;
+  long size;
 
-    pFile = fopen ("myfile.txt","rb");
+  pFile = fopen("myfile.txt", "rb");
 
-    if (pFile==NULL)
-        perror ("Error opening file");
-    else
-    {
-        fseek (pFile, 0, SEEK_END);
-        size=ftell (pFile);
-        fclose (pFile);
-        printf ("Size of myfile.txt: %ld bytes.\n",size);
-    }
-    return 0;
+  if (pFile == NULL)
+    perror("Error opening file");
+  else {
+    fseek(pFile, 0, SEEK_END);
+    size = ftell(pFile);
+    fclose(pFile);
+    printf("Size of myfile.txt: %ld bytes.\n", size);
+  }
+  return 0;
 }
 ```
 
@@ -101,10 +99,3 @@ int main ()
 *  [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자를 다시 조정한다.
 *  [fgetpos](http://itguru.tistory.com/70):  스트림의 위치 지정자의 현재 위치를 구한다.
 *  [rewind](http://itguru.tistory.com/75)  :  스트림 위치 지정자를 맨 처음으로 설정한다.
-
-
-
-
-
-
-

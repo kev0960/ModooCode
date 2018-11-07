@@ -56,7 +56,7 @@ C 문자열 형식의 `str1` 과 `str2` 를 비교한다.
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 다음 소스는
@@ -64,17 +64,17 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 에서 가져왔습니다.
 
 */
-int strcmp(const char *s1, const char *s2)
-{
-  int ret = 0;
-  while (!(ret = *(unsigned char *) s1 - *(unsigned char *) s2) && *s2) ++s1, ++s2;
+int strcmp(const char *s1, const char *s2) {
+  int ret = 0;
+  while (!(ret = *(unsigned char *)s1 - *(unsigned char *)s2) && *s2)
+    ++s1, ++s2;
 
-  if (ret < 0)
-    ret = -1;
-  else if (ret > 0)
-    ret = 1 ;
+  if (ret < 0)
+    ret = -1;
+  else if (ret > 0)
+    ret = 1;
 
-  return ret;
+  return ret;
 }
 ```
 
@@ -85,28 +85,27 @@ int strcmp(const char *s1, const char *s2)
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/cstring/strcmp/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char szKey[] = "apple";
-    char szInput[80];
-    do {
-        printf ("Guess my favourite fruit? ");
-        gets (szInput);
-    } while (strcmp (szKey,szInput) != 0);
+int main() {
+  char szKey[] = "apple";
+  char szInput[80];
+  do {
+    printf("Guess my favourite fruit? ");
+    gets(szInput);
+  } while (strcmp(szKey, szInput) != 0);
 
-    puts ("Correct answer!");
-    return 0;
+  puts("Correct answer!");
+  return 0;
 }
 ```
 
@@ -122,9 +121,3 @@ int main ()
 *  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
 *  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자가 마지막으로 나타나는 위치를 찾는다.
 *  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 다른 문자열에서 차지하는 길이를 계산한다.
-
-
-
-
-
-

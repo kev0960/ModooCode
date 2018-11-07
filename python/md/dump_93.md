@@ -62,7 +62,7 @@ C 형식 문자 C 형식 문자열
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 str 에서 's' 라는 문자를 계속 찾는다.
@@ -70,25 +70,23 @@ str 에서 's' 라는 문자를 계속 찾는다.
 http://www.cplusplus.com/reference/clibrary/cstring/strchr/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[] = "This is a sample string";
-    char * pch;
-    printf ("Looking for the 's' character in \"%s\"...\n",str);
+int main() {
+  char str[] = "This is a sample string";
+  char* pch;
+  printf("Looking for the 's' character in \"%s\"...\n", str);
 
-    pch=strchr(str,'s');
+  pch = strchr(str, 's');
 
-    while (pch!=NULL)
-    {
-        printf ("found at %d\n",pch-str+1);
-        pch=strchr(pch+1,'s');
-    }
+  while (pch != NULL) {
+    printf("found at %d\n", pch - str + 1);
+    pch = strchr(pch + 1, 's');
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -105,10 +103,3 @@ int main ()
 * [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자를 검색하되, 가장 마지막으로 나타나는 위치를 구한다.
 *  [memchr](http://itguru.tistory.com/92) :  메모리 블록에서 특정한 문자를 검색한다.
 *  [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 다른 문자열에 포함된 문자들 중 일치하는 문자를 검색한다.
-
-
-
-
-
-
-

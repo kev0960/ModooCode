@@ -62,48 +62,42 @@ ostream* tie ( ostream* tiestr );
 
 
 
-```cpp
+```cpp-formatted
 
 /*
 
 
- 처음에 *cin.tie() 를 통해 cout 에 내용을 출력한 뒤, cin.tie(&ofs) 로
- 파일으로 엮여진 출력스트림을 변경 한 뒤, 다시 그 내용을 출력한다.
- 이 예제는
+ 처음에 *cin.tie() 를 통해 cout 에 내용을 출력한 뒤, cin.tie(&ofs) 로
+ 파일으로 엮여진 출력스트림을 변경 한 뒤, 다시 그 내용을 출력한다.
+ 이 예제는
 
 
  [http://www.cplusplus.com/reference/iostream/ios/tie/](http://www.cplusplus.com/reference/iostream/ios/tie/)
 
 
- 에서 가져왔습니다.
+ 에서 가져왔습니다.
 
 
 */
-#include <iostream>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
+int main() {
+  ostream *prevstr;
+  ofstream ofs;
+  ofs.open("test.txt");
 
-int main ()
-{
-ostream *prevstr;
-ofstream ofs;
-ofs.open ("test.txt");
+  cout << "tie example:" << endl;
 
+  *cin.tie() << "This is inserted into cout";
+  prevstr = cin.tie(&ofs);
+  *cin.tie() << "This is inserted into the file";
+  cin.tie(prevstr);
 
-cout << "tie example:" << endl;
+  ofs.close();
 
-
-*cin.tie() << "This is inserted into cout";
-prevstr = cin.tie (&ofs);
-*cin.tie() << "This is inserted into the file";
-cin.tie (prevstr);
-
-
-ofs.close();
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -128,17 +122,8 @@ return 0;
 ###  템플릿 멤버 정의
 
 
-```cpp
+```cpp-formatted
 
-(basic_ios<charT,traits>)
-basic_ostream<charT,traits> * tie () const;
-basic_ostream<charT,traits> * tie ( basic_ostream<charT,traits> tiestr );
+(basic_ios<charT, traits>)basic_ostream<charT, traits>* tie() const;
+basic_ostream<charT, traits>* tie(basic_ostream<charT, traits> tiestr);
 ```
-
-
-
-
-
-
-
-

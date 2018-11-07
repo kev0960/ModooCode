@@ -62,7 +62,7 @@ C 형식 문자열인 `str1` 의 처음 `num` 개의 문자를 다른 C 형식 �
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 "R2xx" 의 처음 두 문자, 즉 R2 와 str 의 각 문자열들의 처음 두 문자를 비교한다.
@@ -74,19 +74,16 @@ http://www.cplusplus.com/reference/clibrary/cstring/strncmp/
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[][5] = { "R2D2" , "C3PO" , "R2A6" };
-    int n;
-    puts ("Looking for R2 astromech droids...");
-    for (n=0 ; n<3 ; n++)
-        if (strncmp (str[n],"R2xx",2) == 0)
-        {
-            printf ("found %s\n",str[n]);
-        }
-        return 0;
+int main() {
+  char str[][5] = {"R2D2", "C3PO", "R2A6"};
+  int n;
+  puts("Looking for R2 astromech droids...");
+  for (n = 0; n < 3; n++)
+    if (strncmp(str[n], "R2xx", 2) == 0) {
+      printf("found %s\n", str[n]);
+    }
+  return 0;
 }
-
 ```
 
 실행 결과
@@ -104,10 +101,3 @@ int main ()
 *  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
 *  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 지정한 문자의 마지막 위치를 얻는다.
 *  [strspn](http://itguru.tistory.com/97)  :  문자열의 일치된 정도를 얻는다. (자세한 내용은 레퍼런스 참조)
-
-
-
-
-
-
-

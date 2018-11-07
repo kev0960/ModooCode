@@ -41,8 +41,9 @@ path : /C++ Reference/Containers/list
 
 리스트는 C++ 표준 템플릿 라이브러리에서 아래와 같이 구현된다.
 
-```cpp
-template < class T, class Allocator = allocator<T> > class list;
+```cpp-formatted
+template <class T, class Allocator = allocator<T> >
+class list;
 ```
 
 
@@ -208,8 +209,3 @@ template < class T, class Allocator = allocator<T> > class list;
 * `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
 
 * `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)
-
-
-
-
-

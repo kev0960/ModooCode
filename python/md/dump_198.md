@@ -57,12 +57,11 @@ next_page : 202
 
 또한, 문자열 데이터의 길이를 보관하는 이유는 문자열 길이를 사용할 일이 굉장히 많은데, 그 때 마다 계속 길이를 구하는 것은 상당히 불필요한 일이기 때문입니다. 따라서 길이를 한 번 구해놓고 길이가 바뀔 때 까지 변경하지 않는 방법이 유용할 것입니다. 그럼, 위 내용을 바탕으로 한번 `MyString` 을 구성해보도록 하겠습니다.
 
-```cpp
+```cpp-formatted
 
-class MyString
-{
-char * string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 };
 ```
 
@@ -74,17 +73,15 @@ int string_length; // 문자열 길이
 
 그럼 생성자들은 어떨까요. 일단, 위에 제가 구현하고자 요구했던 내용들을 충족시키기 위해서는 아래와 같은 생성자들을 만들어야 합니다.
 
-```cpp
+```cpp-formatted
 // 문자 하나로 생성
 MyString(char c);
-
 
 // 문자열로 부터 생성
 MyString(const char* str);
 
-
 // 복사 생성자
-MyString(const MyString &str);
+MyString(const MyString& str);
 ```
 
 
@@ -93,33 +90,25 @@ MyString(const MyString &str);
 
 C 형식의 문자열을 그대로 보관한다면, 문자열의 끝 부분을 쉽게 체크할 수 있다는 장점이 있지만 이 문제는 우리가 `string_length` 라는 변수를 같이 도입함으로써 해결할 수 있게 되었습니다. 따라서, 저희 `MyString` 클래스에서는 실제 문자에만 해당하는 내용만을 `string_content` 에 보관하도록 하겠습니다.
 
-```cpp
+```cpp-formatted
 
-MyString::MyString(char c)
-{
-string_content = new char[1];
-string_content[0] = c;
-string_length = 1;
+MyString::MyString(char c) {
+  string_content = new char[1];
+  string_content[0] = c;
+  string_length = 1;
 }
-MyString::MyString(const char* str)
-{
-string_length = strlen(str);
-string_content = new char[string_length];
+MyString::MyString(const char* str) {
+  string_length = strlen(str);
+  string_content = new char[string_length];
 
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-string_length = str.string_length;
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str.string_content[i];
+MyString::MyString(const MyString& str) {
+  string_length = str.string_length;
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
 }
-MyString::~MyString()
-{
-delete [] string_content;
-}
+MyString::~MyString() { delete[] string_content; }
 ```
 
 
@@ -128,31 +117,26 @@ delete [] string_content;
 
 그럼 이제 매우 쉽게 문자열의 길이를 구하는 함수를 만들 수 있게 되었습니다. 단순히 `string_length` 만 리턴해 주면 되는 것입니다.참고로 내부 변수의 내용을 바꾸지 않거나, 상수 함수들만 호출하는 함수들은 왠만하면 이 `length` 함수 처럼 `const` 함수로 정의해 주는 것이 좋습니다.
 
-```cpp
+```cpp-formatted
 
-int MyString::length() const
-{
-return string_length;
-}
+int MyString::length() const { return string_length; }
 ```
 
 
 
 다만 이러한 방식으로 문자열의 길이를 구한다면, 문자열 조작시에 `string_length` 의 값을 올바른 값으로 설정해야만 합니다. 예를 들어서, 두 문자열을 서로 더해서 새로운 문자열을 만들 때 새로운 문자열의 `string_length` 는 두 문자열의 `string_length` 의 합이 되겠지요. 마찬가지로 부분 문자열을 추출하거나, 문자 하나를 지우는 등 모든 작업을 할 때 `string_length` 값을 정확하게 조정해야만 합니다.
 
-```cpp
+```cpp-formatted
 
-void MyString::print()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 }
 ```
 
 
 그리고 마지막으로, 우리의 `MyString` 클래스의 내용을 보기 위해서, 문자열을 출력하는 함수 `print` 와 `println` 을 만들었습니다. (단지 마지막에 개행을 하느냐 안하느냐의 차이) 그럼, 우리의 현재 임시로 만들어 놓은 `MyString` 클래스가 잘 작동하고 있는지 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 #include <iostream>
 
 // string.h 는 strlen 때문에 include 했는데, 사실 여러분이 직접 strlen
@@ -160,89 +144,61 @@ cout << string_content[i];
 #include <string.h>
 using namespace std;
 
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char * string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+ public:
+  // 문자 하나로 생성
+  MyString(char c);
 
+  // 문자열로 부터 생성
+  MyString(const char* str);
 
-public:
-// 문자 하나로 생성
-MyString(char c);
+  // 복사 생성자
+  MyString(const MyString& str);
 
+  ~MyString();
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  int length() const;
 
-
-// 복사 생성자
-MyString(const MyString &str);
-
-
-~MyString();
-
-
-int length() const;
-
-
-void print();
-void println();
+  void print();
+  void println();
 };
 
-
-MyString::MyString(char c)
-{
-string_content = new char[1];
-string_content[0] = c;
+MyString::MyString(char c) {
+  string_content = new char[1];
+  string_content[0] = c;
 }
-MyString::MyString(const char* str)
-{
-string_length = strlen(str);
-string_content = new char[string_length];
+MyString::MyString(const char* str) {
+  string_length = strlen(str);
+  string_content = new char[string_length];
 
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString& str) {
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str.string_content[i];
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
 }
-MyString::~MyString()
-{
-delete [] string_content;
+MyString::~MyString() { delete[] string_content; }
+int MyString::length() const { return string_length; }
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 }
-int MyString::length() const
-{
-return string_length;
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
+
+  cout << endl;
 }
-void MyString::print()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-}
-void MyString::println()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
+int main() {
+  MyString str1("hello world!");
+  MyString str2(str1);
 
-
-cout << endl;
-}
-int main()
-{
-MyString str1("hello world!");
-MyString str2(str1);
-
-
-str1.println();
-str2.println();
+  str1.println();
+  str2.println();
 }
 ```
 
@@ -269,7 +225,7 @@ str2.println();
 
 `assign` 함수는 '지정하다' 라는 뜻을 가진 함수로, 우리가 흔히 생각하는 '=' 과 동일한 역할을 하게 됩니다. 예를 들어서 우리의 `MyString` 변수 `str` 에서
 
-```cpp
+```cpp-formatted
 str.assign("abc");
 ```
 
@@ -277,58 +233,49 @@ str.assign("abc");
 
 를 하게 된다면 `str` 에는 원래 있었던 문자열이 지워지고 `abc` 가 들어가게 되겠지요. 그렇다면 우리는 다음과 같은 두 개의 `assign` 함수를 준비할 수 있습니다.
 
-```cpp
+```cpp-formatted
 MyString& assign(MyString& str);
 
-MyString& assign(const char *str);
+MyString& assign(const char* str);
 ```
 
 물론 이 `assign` 함수들의 구현 자체는 매우 간단하게 할 수 있습니다. 저의 경우 다음과 같이 구현하였습니다.
 
-```cpp
+```cpp-formatted
 
-MyString& MyString::assign(MyString& str)
-{
-if(str.string_length > string_length) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
+MyString& MyString::assign(MyString& str) {
+  if (str.string_length > string_length) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
+    string_content = new char[str.string_length];
+  }
+  for (int i = 0; i != str.string_length; i++) {
+    string_content[i] = str.string_content[i];
+  }
 
-string_content = new char [str.string_length];
+  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
+  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+
+  string_length = str.string_length;
+
+  return *this;
 }
-for(int i = 0; i != str.string_length; i ++) {
-string_content[i] = str.string_content[i];
-}
+MyString& MyString::assign(const char* str) {
+  int str_length = strlen(str);
+  if (str_length > string_length) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
+    string_content = new char[str_length];
+  }
+  for (int i = 0; i != str_length; i++) {
+    string_content[i] = str[i];
+  }
 
-// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+  string_length = str_length;
 
-
-string_length = str.string_length;
-
-
-return *this;
-}
-MyString& MyString::assign(const char *str)
-{
-int str_length = strlen(str);
-if(str_length > string_length) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
-
-
-string_content = new char [str_length];
-}
-for(int i = 0; i != str_length; i ++) {
-string_content[i] = str[i];
-}
-
-
-string_length = str_length;
-
-
-return *this;
+  return *this;
 }
 ```
 
@@ -340,7 +287,7 @@ return *this;
 
 그런데 이렇나 방식으로 구현하는데에는 약간의 문제가 있습니다. 예를 들어 다음과 같은 상황을 생각해봅시다.
 
-```cpp
+```cpp-formatted
 
 MyString str1("very very very long string");
 str1.assign("short string");
@@ -365,52 +312,43 @@ str1.assign("very long string");
 
 따라서 이러한 비효율 적인 막기 위해서는 얼마나 많은 공간이 할당되어 있는지 알 수 있는 정보를 따로 보관하는 것이 좋을 것이라 생각됩니다. 이를 위해 `memory_capacity` 라는, 현재 할당된 메모리 공간의 크기를 나타내는 새로운 변수를 추가하였습니다.
 
-```cpp
+```cpp-formatted
 
-MyString& MyString::assign(MyString& str)
-{
-if(str.string_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
+MyString& MyString::assign(MyString& str) {
+  if (str.string_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
+    string_content = new char[str.string_length];
+    memory_capacity = str.string_length;
+  }
+  for (int i = 0; i != str.string_length; i++) {
+    string_content[i] = str.string_content[i];
+  }
 
-string_content = new char [str.string_length];
-memory_capacity = str.string_length;
+  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
+  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+
+  string_length = str.string_length;
+
+  return *this;
 }
-for(int i = 0; i != str.string_length; i ++) {
-string_content[i] = str.string_content[i];
-}
+MyString& MyString::assign(const char* str) {
+  int str_length = strlen(str);
+  if (str_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
+    string_content = new char[str_length];
+    memory_capacity = str_length;
+  }
+  for (int i = 0; i != str_length; i++) {
+    string_content[i] = str[i];
+  }
 
-// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+  string_length = str_length;
 
-
-string_length = str.string_length;
-
-
-return *this;
-}
-MyString& MyString::assign(const char *str)
-{
-int str_length = strlen(str);
-if(str_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
-
-
-string_content = new char [str_length];
-memory_capacity = str_length;
-}
-for(int i = 0; i != str_length; i ++) {
-string_content[i] = str[i];
-}
-
-
-string_length = str_length;
-
-
-return *this;
+  return *this;
 }
 ```
 
@@ -418,32 +356,24 @@ return *this;
 
 이렇게 하게 된다면, 앞선 그림에서 나타나는 상황과 같은 문제를 방지할 수 있게 됩니다. 이렇게 `capacity` 를 도입함으로써 여러가지 새로운 함수들을 추가할 수 있게 되었습니다. 예를 들어서, 할당할 문자열의 크기를 미리 예약해 놓는 `reserve` 함수와 현재 문자열의 할당된 메모리 크기를 나타내는 `capacity` 함수를 만들 수 있습니다. 이들은 다음과 같습니다.
 
-```cpp
+```cpp-formatted
 
-int MyString::capacity()
-{
-return memory_capacity;
-}
-void MyString::reserve(int size)
-{
-if(size > memory_capacity) {
-char *prev_string_content = string_content;
+int MyString::capacity() { return memory_capacity; }
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char *prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-string_content = new char [size];
-memory_capacity = size;
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
+    delete[] prev_string_content;
+  }
 
-for(int i = 0; i != string_length; i ++)
-string_content[i] = prev_string_content[i];
-
-
-delete [] prev_string_content;
-}
-
-
-// 만일 예약하려는 size 가 현재 capacity 보다 작다면
-// 아무것도 안해도 된다.
+  // 만일 예약하려는 size 가 현재 capacity 보다 작다면
+  // 아무것도 안해도 된다.
 }
 ```
 
@@ -451,178 +381,131 @@ delete [] prev_string_content;
 
 참고로 `reserve` 함수의 경우, 만일 할당하려는 크기가 현재의 할당된 크기보다 작다면 굳이 할당할 필요가 없게 됩니다. 따라서 위와 같이 `size` 가 `memory_capacity` 보다 클 경우에만 할당하도록 처리하였습니다. 과연 잘 작동하는지 살펴볼까요.
 
-```cpp
-#include <iostream>
+```cpp-formatted
 #include <string.h>
+#include <iostream>
 using namespace std;
 
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char * string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+  int memory_capacity;  // 현재 할당된 용량
 
+ public:
+  // 문자 하나로 생성
+  MyString(char c);
 
-int memory_capacity; // 현재 할당된 용량
+  // 문자열로 부터 생성
+  MyString(const char* str);
 
+  // 복사 생성자
+  MyString(const MyString& str);
 
-public:
-// 문자 하나로 생성
-MyString(char c);
+  ~MyString();
 
+  int length() const;
+  int capacity() const;
+  void reserve(int size);
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  void print();
+  void println();
 
-
-// 복사 생성자
-MyString(const MyString &str);
-
-
-~MyString();
-
-
-int length()const;
-int capacity()const;
-void reserve(int size);
-
-
-void print();
-void println();
-
-MyString& assign(MyString& str);
-MyString& assign(const char *str);
+  MyString& assign(MyString& str);
+  MyString& assign(const char* str);
 };
 
-
-MyString::MyString(char c)
-{
-string_content = new char[1];
-string_content[0] = c;
-memory_capacity = 1;
-string_length = 1;
+MyString::MyString(char c) {
+  string_content = new char[1];
+  string_content[0] = c;
+  memory_capacity = 1;
+  string_length = 1;
 }
-MyString::MyString(const char* str)
-{
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
+MyString::MyString(const char* str) {
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString& str) {
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
+}
+MyString::~MyString() { delete[] string_content; }
+int MyString::length() const { return string_length; }
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
+}
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str.string_content[i];
-}
-MyString::~MyString()
-{
-delete [] string_content;
-}
-int MyString::length() const
-{
-return string_length;
-}
-void MyString::print()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-}
-void MyString::println()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-
-
-cout << endl;
+  cout << endl;
 }
 
+MyString& MyString::assign(MyString& str) {
+  if (str.string_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
-MyString& MyString::assign(MyString& str)
-{
-if(str.string_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
+    string_content = new char[str.string_length];
+    memory_capacity = str.string_length;
+  }
+  for (int i = 0; i != str.string_length; i++) {
+    string_content[i] = str.string_content[i];
+  }
 
+  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
+  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
 
-string_content = new char [str.string_length];
-memory_capacity = str.string_length;
+  string_length = str.string_length;
+
+  return *this;
 }
-for(int i = 0; i != str.string_length; i ++) {
-string_content[i] = str.string_content[i];
+MyString& MyString::assign(const char* str) {
+  int str_length = strlen(str);
+  if (str_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
+
+    string_content = new char[str_length];
+    memory_capacity = str_length;
+  }
+  for (int i = 0; i != str_length; i++) {
+    string_content[i] = str[i];
+  }
+
+  string_length = str_length;
+
+  return *this;
 }
+int MyString::capacity() const { return memory_capacity; }
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char* prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
+    delete[] prev_string_content;
+  }
 
-string_length = str.string_length;
-
-
-return *this;
+  // 만일 예약하려는 size 가 현재 capacity 보다 작다면
+  // 아무것도 안해도 된다.
 }
-MyString& MyString::assign(const char *str)
-{
-int str_length = strlen(str);
-if(str_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
+int main() {
+  MyString str1("very very very long string");
+  str1.reserve(30);
 
-
-string_content = new char [str_length];
-memory_capacity = str_length;
-}
-for(int i = 0; i != str_length; i ++) {
-string_content[i] = str[i];
-}
-
-
-string_length = str_length;
-
-
-return *this;
-}
-int MyString::capacity()const
-{
-return memory_capacity;
-}
-void MyString::reserve(int size)
-{
-if(size > memory_capacity) {
-char *prev_string_content = string_content;
-
-
-string_content = new char [size];
-memory_capacity = size;
-
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = prev_string_content[i];
-
-
-delete [] prev_string_content;
-}
-
-
-// 만일 예약하려는 size 가 현재 capacity 보다 작다면
-// 아무것도 안해도 된다.
-}
-int main()
-{
-MyString str1("very very very long string");
-str1.reserve(30);
-
-
-cout << "Capacity : " << str1.capacity() << endl;
-cout << "String length : " << str1.length() << endl;
-str1.println();
+  cout << "Capacity : " << str1.capacity() << endl;
+  cout << "String length : " << str1.length() << endl;
+  str1.println();
 }
 ```
 
@@ -642,12 +525,13 @@ str1.println();
 
 마지막으로 추가할 함수는 임의의 위치의 문자를 리턴하는 함수로, 이전 C 언어에서 `[]` 로 구현되었던 것입니다. C 문자열의 경우 구조상 배열의 범위를 벗어나는 위치에 대한 문자를 요구하여도 이를 처리할 수 밖에 없었는데 (이는 결국 심각한 오류로 이루어졌죠) C++ 의 경우 특정 위치의 문자를 얻는 것을 함수로 만들어서 올바르지 않는 위치에 대한 문제를 처리할 수 잇게 되었습니다.
 
-```cpp
+```cpp-formatted
 
-char MyString::at(int i)
-{
-if(i >= string_length || i < 0) return NULL;
-else return string_content[i];
+char MyString::at(int i) {
+  if (i >= string_length || i < 0)
+    return NULL;
+  else
+    return string_content[i];
 }
 ```
 
@@ -679,7 +563,7 @@ else return string_content[i];
 
 문자열 처리에서 가장 빈번하게 사용되는 작업으로, 문자열 중간에 다른 문자열을 삽입하는 작업을 들 수 있습니다. 사실 여태까지 만들언 놓은 함수들만을 가지고도 `insert` 작업을 쉽게 구현할 수 있겠지만, 빈번하게 사용되는 작업이다 보니까 미리 만들어 놓아서 인터페이스로 제공하는 것도 나쁘지 않을 것이라 생각됩니다.
 
-```cpp
+```cpp-formatted
 MyString& MyString::insert(int loc, MyString& str);
 MyString& MyString::insert(int loc, const char* str);
 MyString& MyString::insert(int loc, char c);
@@ -692,17 +576,15 @@ MyString& MyString::insert(int loc, char c);
 
 저는 맨 위의 `MyString` 을 인자로 받는 함수 하나만 제작할 것입니다. 왜냐하면 이 함수만 제대로 제작한다면 나머지 아래의 두 함수는
 
-```cpp
+```cpp-formatted
 
-MyString& MyString::insert(int loc, const char* str)
-{
-MyString temp(str);
-return insert(loc, temp);
+MyString& MyString::insert(int loc, const char* str) {
+  MyString temp(str);
+  return insert(loc, temp);
 }
-MyString& MyString::insert(int loc, char c)
-{
-MyString temp(c);
-return insert(loc, temp);
+MyString& MyString::insert(int loc, char c) {
+  MyString temp(c);
+  return insert(loc, temp);
 }
 ```
 
@@ -710,69 +592,57 @@ return insert(loc, temp);
 
 와 같이 간단하게 처리할 수 있기 때문이지요. 따라서 우리가 제대로 만들어야 할 함수는 맨 위의 `MyString` 을 인자로 받는 함수 입니다.
 
-```cpp
+```cpp-formatted
 
-MyString& MyString::insert(int loc, MyString& str)
-{
-// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
-// abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
+MyString& MyString::insert(int loc, MyString& str) {
+  // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
+  // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
 
+  // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
+  if (loc < 0 || loc > string_length) return *this;
 
-// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-if(loc < 0 || loc > string_length) return *this;
+  if (string_length + str.string_length > memory_capacity) {
+    // 이제 새롭게 동적으로 할당을 해야 한다.
+    memory_capacity = string_length + str.string_length;
 
+    char* prev_string_content = string_content;
+    string_content = new char[memory_capacity];
 
-if(string_length + str.string_length > memory_capacity) {
-// 이제 새롭게 동적으로 할당을 해야 한다.
-memory_capacity = string_length + str.string_length;
+    // 일단 insert 되는 부분 직전까지의 내용을 복사한다.
+    int i;
+    for (i = 0; i < loc; i++) {
+      string_content[i] = prev_string_content[i];
+    }
 
+    // 그리고 새롭에 insert 되는 문자열을 넣는다.
+    for (int j = 0; j != str.string_length; j++) {
+      string_content[i + j] = str.string_content[j];
+    }
 
-char *prev_string_content = string_content;
-string_content = new char[memory_capacity];
+    // 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
+    for (; i < string_length; i++) {
+      string_content[str.string_length + i] = prev_string_content[i];
+    }
 
+    delete[] prev_string_content;
 
-// 일단 insert 되는 부분 직전까지의 내용을 복사한다.
-int i;
-for(i = 0; i < loc; i ++) {
-string_content[i] = prev_string_content[i];
-}
+    string_length = string_length + str.string_length;
+    return *this;
+  }
 
+  // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
+  // 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
 
-// 그리고 새롭에 insert 되는 문자열을 넣는다.
-for(int j = 0; j != str.string_length; j ++) {
-string_content[i + j] = str.string_content[j];
-}
+  for (int i = string_length - 1; i >= loc; i--) {
+    // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
+    string_content[i + str.string_length] = string_content[i];
+  }
+  // 그리고 insert 되는 문자 다시 집어넣기
+  for (int i = 0; i < str.string_length; i++)
+    string_content[i + loc] = str.string_content[i];
 
-
-// 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
-for(; i < string_length; i ++) {
-string_content[str.string_length + i] = prev_string_content[i];
-}
-
-
-delete [] prev_string_content;
-
-
-string_length = string_length + str.string_length;
-return *this;
-}
-
-
-// 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
-// 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
-
-
-for(int i = string_length - 1; i >= loc; i --) {
-// 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
-string_content[i + str.string_length] = string_content[i];
-}
-// 그리고 insert 되는 문자 다시 집어넣기
-for(int i = 0; i < str.string_length; i ++)
-string_content[i + loc] = str.string_content[i];
-
-
-string_length = string_length + str.string_length;
-return *this;
+  string_length = string_length + str.string_length;
+  return *this;
 }
 ```
 
@@ -787,291 +657,228 @@ return *this;
 
 반면에, 메모리를 다시 할당할 필요가 없는 경우 원래의 문자열 내용을 이용하며 삽입된 문자열을 `string_content` 에 넣어야 하므로 약간의 트릭을 이용하였습니다. 바로, 자리가 바뀌는 문자열들을 먼저 뒤로 밀어버리는 것입니다. 이미 메모리의 할당된 공간은 충분하기 때문에 뒤로 미는 것을 쉽게 수행할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
-for(int i = string_length - 1; i >= loc; i --) {
-// 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
-string_content[i + str.string_length] = string_content[i];
+for (int i = string_length - 1; i >= loc; i--) {
+  // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
+  string_content[i + str.string_length] = string_content[i];
 ```
 
 
 
 예를 들어서 앞서 `abc` 에서 `d` 를 삽입하는 예에서, 1 의 위치에 `d` 를 넣었으므로, 자리가 바뀌는 것들은 `bc` 가 됩니다. 따라서 먼저 `bc` 를 뒤로 밀어버린 다음, 생긴 공간에 `d` 를 집어 넣으면 되는 것입니다. 즉, 위 작업을 수행하면 `abc` 는 `abbc` 가 되고,
 
-```cpp
+```cpp-formatted
 
 // 그리고 insert 되는 문자 다시 집어넣기
-for(int i = 0; i < str.string_length; i ++)
-string_content[i + loc] = str.string_content[i];
+for (int i = 0; i < str.string_length; i++)
+  string_content[i + loc] = str.string_content[i];
 ```
 
 
 
 를 수행하면, `insert` 되는 문자가 밀린 문자열 공간에 들어가면서 `abbc` 에서 `adbc` 가 됩니다. 실제로 실행해보면 아래와 같이 잘 작동함을 알 수 있습니다.
 
-```cpp
-#include <iostream>
+```cpp-formatted
 #include <string.h>
+#include <iostream>
 
 using namespace std;
 
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char * string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+  int memory_capacity;  // 현재 할당된 용량
 
+ public:
+  // 문자 하나로 생성
+  MyString(char c);
 
-int memory_capacity; // 현재 할당된 용량
+  // 문자열로 부터 생성
+  MyString(const char* str);
 
+  // 복사 생성자
+  MyString(const MyString& str);
 
-public:
-// 문자 하나로 생성
-MyString(char c);
+  ~MyString();
 
+  int length() const;
+  int capacity() const;
+  void reserve(int size);
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  void print();
+  void println();
 
+  MyString& assign(MyString& str);
+  MyString& assign(const char* str);
 
-// 복사 생성자
-MyString(const MyString &str);
+  char at(int i);
 
-
-~MyString();
-
-
-int length()const;
-int capacity()const;
-void reserve(int size);
-
-
-void print();
-void println();
-
-MyString& assign(MyString& str);
-MyString& assign(const char *str);
-
-
-char at(int i);
-
-
-MyString& MyString::insert(int loc, MyString& str);
-MyString& MyString::insert(int loc, const char* str);
-MyString& MyString::insert(int loc, char c);
+  MyString& MyString::insert(int loc, MyString& str);
+  MyString& MyString::insert(int loc, const char* str);
+  MyString& MyString::insert(int loc, char c);
 };
 
-
-MyString::MyString(char c)
-{
-string_content = new char[1];
-string_content[0] = c;
-memory_capacity = 1;
-string_length = 1;
+MyString::MyString(char c) {
+  string_content = new char[1];
+  string_content[0] = c;
+  memory_capacity = 1;
+  string_length = 1;
 }
-MyString::MyString(const char* str)
-{
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
+MyString::MyString(const char* str) {
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString& str) {
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
+}
+MyString::~MyString() { delete[] string_content; }
+int MyString::length() const { return string_length; }
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
+}
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str.string_content[i];
-}
-MyString::~MyString()
-{
-delete [] string_content;
-}
-int MyString::length()const
-{
-return string_length;
-}
-void MyString::print()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-}
-void MyString::println()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-
-
-cout << endl;
+  cout << endl;
 }
 
+MyString& MyString::assign(MyString& str) {
+  if (str.string_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
-MyString& MyString::assign(MyString& str)
-{
-if(str.string_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
+    string_content = new char[str.string_length];
+    memory_capacity = str.string_length;
+  }
+  for (int i = 0; i != str.string_length; i++) {
+    string_content[i] = str.string_content[i];
+  }
 
+  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
+  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
 
-string_content = new char [str.string_length];
-memory_capacity = str.string_length;
+  string_length = str.string_length;
+
+  return *this;
 }
-for(int i = 0; i != str.string_length; i ++) {
-string_content[i] = str.string_content[i];
+MyString& MyString::assign(const char* str) {
+  int str_length = strlen(str);
+  if (str_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
+
+    string_content = new char[str_length];
+    memory_capacity = str_length;
+  }
+  for (int i = 0; i != str_length; i++) {
+    string_content[i] = str[i];
+  }
+
+  string_length = str_length;
+
+  return *this;
 }
+int MyString::capacity() const { return memory_capacity; }
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char* prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
+    delete[] prev_string_content;
+  }
 
-string_length = str.string_length;
-
-
-return *this;
+  // 만일 예약하려는 size 가 현재 capacity 보다 작다면
+  // 아무것도 안해도 된다.
 }
-MyString& MyString::assign(const char *str)
-{
-int str_length = strlen(str);
-if(str_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
-
-
-string_content = new char [str_length];
-memory_capacity = str_length;
+char MyString::at(int i) {
+  if (i >= string_length || i < 0)
+    return NULL;
+  else
+    return string_content[i];
 }
-for(int i = 0; i != str_length; i ++) {
-string_content[i] = str[i];
+MyString& MyString::insert(int loc, MyString& str) {
+  // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
+  // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
+
+  // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
+  if (loc < 0 || loc > string_length) return *this;
+
+  if (string_length + str.string_length > memory_capacity) {
+    // 이제 새롭게 동적으로 할당을 해야 한다.
+    memory_capacity = string_length + str.string_length;
+
+    char* prev_string_content = string_content;
+    string_content = new char[memory_capacity];
+
+    // 일단 insert 되는 부분 직전까지의 내용을 복사한다.
+    int i;
+    for (i = 0; i < loc; i++) {
+      string_content[i] = prev_string_content[i];
+    }
+
+    // 그리고 새롭에 insert 되는 문자열을 넣는다.
+    for (int j = 0; j != str.string_length; j++) {
+      string_content[i + j] = str.string_content[j];
+    }
+
+    // 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
+    for (; i < string_length; i++) {
+      string_content[str.string_length + i] = prev_string_content[i];
+    }
+
+    delete[] prev_string_content;
+
+    string_length = string_length + str.string_length;
+    return *this;
+  }
+
+  // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
+  // 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
+
+  for (int i = string_length - 1; i >= loc; i--) {
+    // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
+    string_content[i + str.string_length] = string_content[i];
+  }
+  // 그리고 insert 되는 문자 다시 집어넣기
+  for (int i = 0; i < str.string_length; i++)
+    string_content[i + loc] = str.string_content[i];
+
+  string_length = string_length + str.string_length;
+  return *this;
 }
-
-
-string_length = str_length;
-
-
-return *this;
+MyString& MyString::insert(int loc, const char* str) {
+  MyString temp(str);
+  return insert(loc, temp);
 }
-int MyString::capacity()const
-{
-return memory_capacity;
+MyString& MyString::insert(int loc, char c) {
+  MyString temp(c);
+  return insert(loc, temp);
 }
-void MyString::reserve(int size)
-{
-if(size > memory_capacity) {
-char *prev_string_content = string_content;
+int main() {
+  MyString str1("very long string");
+  MyString str2("<some string inserted between>");
+  str1.reserve(30);
 
+  cout << "Capacity : " << str1.capacity() << endl;
+  cout << "String length : " << str1.length() << endl;
+  str1.println();
 
-string_content = new char [size];
-memory_capacity = size;
-
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = prev_string_content[i];
-
-
-delete [] prev_string_content;
-}
-
-
-// 만일 예약하려는 size 가 현재 capacity 보다 작다면
-// 아무것도 안해도 된다.
-}
-char MyString::at(int i)
-{
-if(i >= string_length || i < 0) return NULL;
-else return string_content[i];
-}
-MyString& MyString::insert(int loc, MyString& str)
-{
-// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
-// abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
-
-
-// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-if(loc < 0 || loc > string_length) return *this;
-
-
-if(string_length + str.string_length > memory_capacity) {
-// 이제 새롭게 동적으로 할당을 해야 한다.
-memory_capacity = string_length + str.string_length;
-
-
-char *prev_string_content = string_content;
-string_content = new char[memory_capacity];
-
-
-// 일단 insert 되는 부분 직전까지의 내용을 복사한다.
-int i;
-for(i = 0; i < loc; i ++) {
-string_content[i] = prev_string_content[i];
-}
-
-
-// 그리고 새롭에 insert 되는 문자열을 넣는다.
-for(int j = 0; j != str.string_length; j ++) {
-string_content[i + j] = str.string_content[j];
-}
-
-
-// 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
-for(; i < string_length; i ++) {
-string_content[str.string_length + i] = prev_string_content[i];
-}
-
-
-delete [] prev_string_content;
-
-
-string_length = string_length + str.string_length;
-return *this;
-}
-
-
-// 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
-// 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
-
-
-for(int i = string_length - 1; i >= loc; i --) {
-// 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
-string_content[i + str.string_length] = string_content[i];
-}
-// 그리고 insert 되는 문자 다시 집어넣기
-for(int i = 0; i < str.string_length; i ++)
-string_content[i + loc] = str.string_content[i];
-
-
-string_length = string_length + str.string_length;
-return *this;
-}
-MyString& MyString::insert(int loc, const char* str)
-{
-MyString temp(str);
-return insert(loc, temp);
-}
-MyString& MyString::insert(int loc, char c)
-{
-MyString temp(c);
-return insert(loc, temp);
-}
-int main()
-{
-MyString str1("very long string");
-MyString str2("<some string inserted between>");
-str1.reserve(30);
-
-
-cout << "Capacity : " << str1.capacity() << endl;
-cout << "String length : " << str1.length() << endl;
-str1.println();
-
-
-str1.insert(5, str2);
-str1.println();
+  str1.insert(5, str2);
+  str1.println();
 }
 ```
 
@@ -1089,10 +896,10 @@ str1.println();
 훌륭한 `MyString` 클래스를 만들기 위해서, 한 가지 좀 더 생각해보아야 할 점들이 있습니다. 과연 `insert` 를 사용하는 경우는 보통 어떤 경우일까요? 많은 경우 `insert` 는 많은 문자열을 한 꺼번에 집어넣는 것이 아니라, 작은 크기의 문자열들을 자주 집어넣는 경우가 많습니다. 즉, 큰 크기의 문자열을 한 번에 `insert` 하는 작업 보다는 작은 크기의 문자열들을 여러번 `insert` 하는 명령을 많이 수행한다는 뜻이지요. 그런데, 만일 이미 `capacity` 한계에 달한 문자열 클래스에 문자 'a' 를 계속 추가하는 명령을 생각해보도록 합시다.
 
 
-```cpp
+```cpp-formatted
 
-while (some_condition){
-str.insert(some_location, 'a');
+while (some_condition) {
+  str.insert(some_location, 'a');
 }
 ```
 
@@ -1106,24 +913,23 @@ str.insert(some_location, 'a');
 따라서 'insert 작업에서의 잦은 할당/해제를 피하기 위해 미리 메모리를 할당해놓기' 와 '메모리를 할당해 놓되, 많은 자원을 낭비하지 않는다' 라는 두 조건을 모두 만족하는 방법이 있을까요? 물론 있습니다. 메모리를 미리 할당할 경우, 현재 메모리 크기의 두 배 정도를 할당해 놓는 다는 것입니다. 이를 코드로 표현하면 아래와 같습니다.
 
 
-```cpp
+```cpp-formatted
 
-MyString& MyString::insert(int loc, MyString& str)
-{
-// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
-// abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
+MyString& MyString::insert(int loc, MyString& str) {
+  // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
+  // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
 
-// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-if(loc < 0 || loc > string_length) return *this;
+  // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
+  if (loc < 0 || loc > string_length) return *this;
 
-if(string_length + str.string_length > memory_capacity) {
-// 이제 새롭게 동적으로 할당을 해야 한다.
+  if (string_length + str.string_length > memory_capacity) {
+    // 이제 새롭게 동적으로 할당을 해야 한다.
 
-if(memory_capacity * 2 > string_length + str.string_length)
-memory_capacity *= 2;
-elsememory_capacity = string_length + str.string_length;
+    if (memory_capacity * 2 > string_length + str.string_length)
+      memory_capacity *= 2;
+    elsememory_capacity = string_length + str.string_length;
 
-// 생략..
+  // 생략..
 ```
 
 
@@ -1136,238 +942,213 @@ elsememory_capacity = string_length + str.string_length;
 참고로 이러한 방법은 C++ 에서 동적으로 할당되는 메모리를 처리하는데 매우 빈번하게 사용되는 기법중 하나입니다.
 
 
-```cpp
-#include <iostream>
+```cpp-formatted
 #include <string.h>
+#include <iostream>
 
 using namespace std;
 
-class MyString
-{
-char * string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-int memory_capacity; // 현재 할당된 용량
+  int memory_capacity;  // 현재 할당된 용량
 
-public:
-// 문자 하나로 생성
-MyString(char c);
+ public:
+  // 문자 하나로 생성
+  MyString(char c);
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  // 문자열로 부터 생성
+  MyString(const char* str);
 
-// 복사 생성자
-MyString(const MyString &str);
+  // 복사 생성자
+  MyString(const MyString& str);
 
-~MyString();
+  ~MyString();
 
-int length()const;
-int capacity()const;
-void reserve(int size);
+  int length() const;
+  int capacity() const;
+  void reserve(int size);
 
-void print();
-void println();
+  void print();
+  void println();
 
-MyString& assign(MyString& str);
-MyString& assign(const char *str);
+  MyString& assign(MyString& str);
+  MyString& assign(const char* str);
 
-char at(int i);
+  char at(int i);
 
-MyString& MyString::insert(int loc, MyString& str);
-MyString& MyString::insert(int loc, const char* str);
-MyString& MyString::insert(int loc, char c);
+  MyString& MyString::insert(int loc, MyString& str);
+  MyString& MyString::insert(int loc, const char* str);
+  MyString& MyString::insert(int loc, char c);
 };
 
-MyString::MyString(char c)
-{
-string_content = new char[1];
-string_content[0] = c;
-memory_capacity = 1;
-string_length = 1;
+MyString::MyString(char c) {
+  string_content = new char[1];
+  string_content[0] = c;
+  memory_capacity = 1;
+  string_length = 1;
 }
-MyString::MyString(const char* str)
-{
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
+MyString::MyString(const char* str) {
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString& str) {
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str.string_content[i];
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
 }
-MyString::~MyString()
-{
-delete [] string_content;
+MyString::~MyString() { delete[] string_content; }
+int MyString::length() const { return string_length; }
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 }
-int MyString::length()const
-{
-return string_length;
-}
-void MyString::print()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-}
-void MyString::println()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-cout << endl;
+  cout << endl;
 }
 
-MyString& MyString::assign(MyString& str)
-{
-if(str.string_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
+MyString& MyString::assign(MyString& str) {
+  if (str.string_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
-string_content = new char [str.string_length];
-memory_capacity = str.string_length;
+    string_content = new char[str.string_length];
+    memory_capacity = str.string_length;
+  }
+  for (int i = 0; i != str.string_length; i++) {
+    string_content[i] = str.string_content[i];
+  }
+
+  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
+  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+
+  string_length = str.string_length;
+
+  return *this;
 }
-for(int i = 0; i != str.string_length; i ++) {
-string_content[i] = str.string_content[i];
+MyString& MyString::assign(const char* str) {
+  int str_length = strlen(str);
+  if (str_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
+
+    string_content = new char[str_length];
+    memory_capacity = str_length;
+  }
+  for (int i = 0; i != str_length; i++) {
+    string_content[i] = str[i];
+  }
+
+  string_length = str_length;
+
+  return *this;
 }
+int MyString::capacity() const { return memory_capacity; }
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char* prev_string_content = string_content;
 
-// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+    string_content = new char[size];
+    memory_capacity = size;
 
-string_length = str.string_length;
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
-return *this;
+    delete[] prev_string_content;
+  }
+
+  // 만일 예약하려는 size 가 현재 capacity 보다 작다면
+  // 아무것도 안해도 된다.
 }
-MyString& MyString::assign(const char *str)
-{
-int str_length = strlen(str);
-if(str_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
-
-string_content = new char [str_length];
-memory_capacity = str_length;
+char MyString::at(int i) {
+  if (i >= string_length || i < 0)
+    return NULL;
+  else
+    return string_content[i];
 }
-for(int i = 0; i != str_length; i ++) {
-string_content[i] = str[i];
+MyString& MyString::insert(int loc, MyString& str) {
+  // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
+  // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
+
+  // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
+  if (loc < 0 || loc > string_length) return *this;
+
+  if (string_length + str.string_length > memory_capacity) {
+    // 이제 새롭게 동적으로 할당을 해야 한다.
+
+    if (memory_capacity * 2 > string_length + str.string_length)
+      memory_capacity *= 2;
+    elsememory_capacity = string_length + str.string_length;
+
+    char* prev_string_content = string_content;
+    string_content = new char[memory_capacity];
+
+    // 일단 insert 되는 부분 직전까지의 내용을 복사한다.
+    int i;
+    for (i = 0; i < loc; i++) {
+      string_content[i] = prev_string_content[i];
+    }
+
+    // 그리고 새롭에 insert 되는 문자열을 넣는다.
+    for (int j = 0; j != str.string_length; j++) {
+      string_content[i + j] = str.string_content[j];
+    }
+
+    // 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
+    for (; i < string_length; i++) {
+      string_content[str.string_length + i] = prev_string_content[i];
+    }
+
+    delete[] prev_string_content;
+
+    string_length = string_length + str.string_length;
+    return *this;
+  }
+
+  // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
+  // 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
+
+  for (int i = string_length - 1; i >= loc; i--) {
+    // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
+    string_content[i + str.string_length] = string_content[i];
+  }
+  // 그리고 insert 되는 문자 다시 집어넣기
+  for (int i = 0; i < str.string_length; i++)
+    string_content[i + loc] = str.string_content[i];
+
+  string_length = string_length + str.string_length;
+  return *this;
 }
-
-string_length = str_length;
-
-return *this;
+MyString& MyString::insert(int loc, const char* str) {
+  MyString temp(str);
+  return insert(loc, temp);
 }
-int MyString::capacity()const
-{
-return memory_capacity;
+MyString& MyString::insert(int loc, char c) {
+  MyString temp(c);
+  return insert(loc, temp);
 }
-void MyString::reserve(int size)
-{
-if(size > memory_capacity) {
-char *prev_string_content = string_content;
+int main() {
+  MyString str1("very long string");
+  MyString str2("<some string inserted between>");
+  str1.reserve(30);
 
-string_content = new char [size];
-memory_capacity = size;
+  cout << "Capacity : " << str1.capacity() << endl;
+  cout << "String length : " << str1.length() << endl;
+  str1.println();
 
-for(int i = 0; i != string_length; i ++)
-string_content[i] = prev_string_content[i];
+  str1.insert(5, str2);
+  str1.println();
 
-delete [] prev_string_content;
-}
-
-// 만일 예약하려는 size 가 현재 capacity 보다 작다면
-// 아무것도 안해도 된다.
-}
-char MyString::at(int i)
-{
-if(i >= string_length || i < 0) return NULL;
-else return string_content[i];
-}
-MyString& MyString::insert(int loc, MyString& str)
-{
-// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
-// abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
-
-// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-if(loc < 0 || loc > string_length) return *this;
-
-if(string_length + str.string_length > memory_capacity) {
-// 이제 새롭게 동적으로 할당을 해야 한다.
-
-if(memory_capacity * 2 > string_length + str.string_length)
-memory_capacity *= 2;
-elsememory_capacity = string_length + str.string_length;
-
-char *prev_string_content = string_content;
-string_content = new char[memory_capacity];
-
-// 일단 insert 되는 부분 직전까지의 내용을 복사한다.
-int i;
-for(i = 0; i < loc; i ++) {
-string_content[i] = prev_string_content[i];
-}
-
-// 그리고 새롭에 insert 되는 문자열을 넣는다.
-for(int j = 0; j != str.string_length; j ++) {
-string_content[i + j] = str.string_content[j];
-}
-
-// 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
-for(; i < string_length; i ++) {
-string_content[str.string_length + i] = prev_string_content[i];
-}
-
-delete [] prev_string_content;
-
-string_length = string_length + str.string_length;
-return *this;
-}
-
-// 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
-// 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
-
-for(int i = string_length - 1; i >= loc; i --) {
-// 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
-string_content[i + str.string_length] = string_content[i];
-}
-// 그리고 insert 되는 문자 다시 집어넣기
-for(int i = 0; i < str.string_length; i ++)
-string_content[i + loc] = str.string_content[i];
-
-string_length = string_length + str.string_length;
-return *this;
-}
-MyString& MyString::insert(int loc, const char* str)
-{
-MyString temp(str);
-return insert(loc, temp);
-}
-MyString& MyString::insert(int loc, char c)
-{
-MyString temp(c);
-return insert(loc, temp);
-}
-int main()
-{
-MyString str1("very long string");
-MyString str2("<some string inserted between>");
-str1.reserve(30);
-
-cout << "Capacity : " << str1.capacity() << endl;
-cout << "String length : " << str1.length() << endl;
-str1.println();
-
-str1.insert(5, str2);
-str1.println();
-
-cout << "Capacity : " << str1.capacity() << endl;
-cout << "String length : " << str1.length() << endl;
-str1.println();
-
+  cout << "Capacity : " << str1.capacity() << endl;
+  cout << "String length : " << str1.length() << endl;
+  str1.println();
 }
 ```
 
@@ -1393,31 +1174,29 @@ str1.println();
 
 앞서 `insert` 함수를 만들었으니, 이번에는 정 반대의 역할을 하는 `erase` 함수를 만들어보도록 합시다. `erase` 함수는 `insert` 함수보다 만들기 훨씬 쉬운데, 왜냐하면 기본적으로 데이터의 양이 줄어 드는 것이기 때문에 복잡하게 `capacity` 이런 것들을 생각할 필요가 없기 때문입니다.
 
-```cpp
+```cpp-formatted
 MyString& erase(int loc, int num);
 ```
 
 `erase` 함수는 위와 같이 생겼고, `loc` 은 `insert` 와 동일하게 `loc` 의 해당하는 문자 '앞' 을 의미합니다. 그리고 `num` 은 지우는 문자의 수를 의미하죠. 예를 들어서 `abcd` 라는 문자열에서 `erase(1, 2);` 를 하게 된다면, 1 에 해당하는 문자 'b' 의 앞에서 부터 2 문자를 지우게 되어, `bc` 가 지워져서 `ad` 가 리턴됩니다.
 
-```cpp
+```cpp-formatted
 
 MyString& MyString::erase(int loc, int num)
 
 {
-// loc 의 앞 부터 시작해서 num 문자를 지운다.
-if(num < 0 || loc < 0 || loc > string_length) return *this;
+  // loc 의 앞 부터 시작해서 num 문자를 지운다.
+  if (num < 0 || loc < 0 || loc > string_length) return *this;
 
-// 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
-// 생각하면 됩니다.
+  // 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
+  // 생각하면 됩니다.
 
+  for (int i = loc + num; i < string_length; i++) {
+    string_content[i - num] = string_content[i];
+  }
 
-for(int i = loc + num; i < string_length; i ++) {
-string_content[i - num] = string_content[i];
-}
-
-
-string_length -= num;
-return *this;
+  string_length -= num;
+  return *this;
 }
 ```
 
@@ -1446,7 +1225,7 @@ return *this;
 
 문자열을 검색하는 알고리즘은 수 없이 많지만, 어떤 상황에 대해서도 좋은 성능을 발휘하는 알고리즘은 없습니다. (예를 들어 짧은 문자열 검색에 최적화 된 알고리즘과 긴 문자열 검색에 최적화 된 알고리즘들 같이 말입니다) 그렇기에 특별한 알고리즘을 사용하는 경우에는 그 클래스의 사용 목적이 명확해서 그 알고리즘이 좋은 성능을 발휘할 수 있는 경우에만 사용하는 것이 보통입니다. 따라서 우리의 `MyString` 의 경우, 가장 간단한 방법으로 `find` 알고리즘을 구현하기로 하였습니다.
 
-```cpp
+```cpp-formatted
 
 int find(int find_from, MyString& str);
 
@@ -1461,23 +1240,20 @@ int find(int find_from, char c);
 
 참고로 `find` 함수는 `find_from` 에서 부터 시작해서 가장 첫 번째 `str` 의 위치를 리턴하게 됩니다. 그리고 `str` 이 문자열에 포함되어 있지 않다면, -1 을 리턴하게 되지요. 이러한 방법으로, 어떤 문자열 내에 있는 모든 `str` 들을 찾을 수 있는 `for` 문을 생각할 수 도 있을 것입니다.
 
-```cpp
+```cpp-formatted
 
-int MyString::find(int find_from, MyString& str)
-{
-int i, j;
-if(str.string_length == 0) return -1;
-for(i = find_from; i < string_length - str.string_length; i ++) {
-for(j = 0; j < str.string_length; j ++) {
-if(string_content[i + j] != str.string_content[j]) break;
-}
+int MyString::find(int find_from, MyString& str) {
+  int i, j;
+  if (str.string_length == 0) return -1;
+  for (i = find_from; i < string_length - str.string_length; i++) {
+    for (j = 0; j < str.string_length; j++) {
+      if (string_content[i + j] != str.string_content[j]) break;
+    }
 
+    if (j == str.string_length) return i;
+  }
 
-if(j == str.string_length) return i;
-}
-
-
-return -1; // 찾지 못했음
+  return -1;  // 찾지 못했음
 }
 ```
 
@@ -1485,317 +1261,247 @@ return -1; // 찾지 못했음
 
 저의 경우 위와 같이 간단한 방법으로 `find` 함수를 구현하였습니다. `find_from` 부터  시작해서 `string_content` 와 `str` 가 완벽히 일치하는 부분이 생긴다면 그 위치를 리턴하고, 찾지 못할 경우 -1 을 리턴하도록 말이지요. 그럼 잘 작동하는지 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 
-#include <iostream>
 #include <string.h>
+#include <iostream>
 
 using namespace std;
 
-class MyString
-{
-char * string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
+  int memory_capacity;  // 현재 할당된 용량
 
-int memory_capacity; // 현재 할당된 용량
+ public:
+  // 문자 하나로 생성
+  MyString(char c);
 
+  // 문자열로 부터 생성
+  MyString(const char* str);
 
-public:
-// 문자 하나로 생성
-MyString(char c);
+  // 복사 생성자
+  MyString(const MyString& str);
 
+  ~MyString();
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  int length() const;
+  int capacity() const;
+  void reserve(int size);
 
+  void print();
+  void println();
 
-// 복사 생성자
-MyString(const MyString &str);
+  MyString& assign(MyString& str);
+  MyString& assign(const char* str);
 
+  char at(int i);
 
-~MyString();
+  MyString& insert(int loc, MyString& str);
+  MyString& insert(int loc, const char* str);
+  MyString& insert(int loc, char c);
 
+  MyString& erase(int loc, int num);
 
-int length()const;
-int capacity()const;
-void reserve(int size);
-
-
-void print();
-void println();
-
-MyString& assign(MyString& str);
-MyString& assign(const char *str);
-
-
-char at(int i);
-
-
-MyString& insert(int loc, MyString& str);
-MyString& insert(int loc, const char* str);
-MyString& insert(int loc, char c);
-
-
-MyString& erase(int loc, int num);
-
-
-int find(int find_from, MyString& str);
-int find(int find_from, const char* str);
-int find(int find_from, char c);
+  int find(int find_from, MyString& str);
+  int find(int find_from, const char* str);
+  int find(int find_from, char c);
 };
 
-
-MyString::MyString(char c)
-{
-string_content = new char[1];
-string_content[0] = c;
-memory_capacity = 1;
-string_length = 1;
+MyString::MyString(char c) {
+  string_content = new char[1];
+  string_content[0] = c;
+  memory_capacity = 1;
+  string_length = 1;
 }
-MyString::MyString(const char* str)
-{
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
+MyString::MyString(const char* str) {
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString& str) {
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
+}
+MyString::~MyString() { delete[] string_content; }
+int MyString::length() const { return string_length; }
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
+}
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str.string_content[i];
-}
-MyString::~MyString()
-{
-delete [] string_content;
-}
-int MyString::length()const
-{
-return string_length;
-}
-void MyString::print()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-}
-void MyString::println()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-
-
-cout << endl;
+  cout << endl;
 }
 
+MyString& MyString::assign(MyString& str) {
+  if (str.string_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
-MyString& MyString::assign(MyString& str)
-{
-if(str.string_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
+    string_content = new char[str.string_length];
+    memory_capacity = str.string_length;
+  }
+  for (int i = 0; i != str.string_length; i++) {
+    string_content[i] = str.string_content[i];
+  }
 
+  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
+  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
 
-string_content = new char [str.string_length];
-memory_capacity = str.string_length;
+  string_length = str.string_length;
+
+  return *this;
 }
-for(int i = 0; i != str.string_length; i ++) {
-string_content[i] = str.string_content[i];
+MyString& MyString::assign(const char* str) {
+  int str_length = strlen(str);
+  if (str_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
+
+    string_content = new char[str_length];
+    memory_capacity = str_length;
+  }
+  for (int i = 0; i != str_length; i++) {
+    string_content[i] = str[i];
+  }
+
+  string_length = str_length;
+
+  return *this;
 }
+int MyString::capacity() const { return memory_capacity; }
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char* prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
+    delete[] prev_string_content;
+  }
 
-string_length = str.string_length;
-
-
-return *this;
+  // 만일 예약하려는 size 가 현재 capacity 보다 작다면
+  // 아무것도 안해도 된다.
 }
-MyString& MyString::assign(const char *str)
-{
-int str_length = strlen(str);
-if(str_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
-
-
-string_content = new char [str_length];
-memory_capacity = str_length;
+char MyString::at(int i) {
+  if (i >= string_length || i < 0)
+    return NULL;
+  else
+    return string_content[i];
 }
-for(int i = 0; i != str_length; i ++) {
-string_content[i] = str[i];
+MyString& MyString::insert(int loc, MyString& str) {
+  // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
+  // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
+
+  // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
+  if (loc < 0 || loc > string_length) return *this;
+
+  if (string_length + str.string_length > memory_capacity) {
+    // 이제 새롭게 동적으로 할당을 해야 한다.
+
+    if (memory_capacity * 2 > string_length + str.string_length)
+      memory_capacity *= 2;
+    elsememory_capacity = string_length + str.string_length;
+
+    char* prev_string_content = string_content;
+    string_content = new char[memory_capacity];
+
+    // 일단 insert 되는 부분 직전까지의 내용을 복사한다.
+    int i;
+    for (i = 0; i < loc; i++) {
+      string_content[i] = prev_string_content[i];
+    }
+
+    // 그리고 새롭에 insert 되는 문자열을 넣는다.
+    for (int j = 0; j != str.string_length; j++) {
+      string_content[i + j] = str.string_content[j];
+    }
+
+    // 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
+    for (; i < string_length; i++) {
+      string_content[str.string_length + i] = prev_string_content[i];
+    }
+
+    delete[] prev_string_content;
+
+    string_length = string_length + str.string_length;
+    return *this;
+  }
+
+  // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
+  // 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
+
+  for (int i = string_length - 1; i >= loc; i--) {
+    // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
+    string_content[i + str.string_length] = string_content[i];
+  }
+  // 그리고 insert 되는 문자 다시 집어넣기
+  for (int i = 0; i < str.string_length; i++)
+    string_content[i + loc] = str.string_content[i];
+
+  string_length = string_length + str.string_length;
+  return *this;
 }
-
-
-string_length = str_length;
-
-
-return *this;
+MyString& MyString::insert(int loc, const char* str) {
+  MyString temp(str);
+  return insert(loc, temp);
 }
-int MyString::capacity()const
-{
-return memory_capacity;
-}
-void MyString::reserve(int size)
-{
-if(size > memory_capacity) {
-char *prev_string_content = string_content;
-
-
-string_content = new char [size];
-memory_capacity = size;
-
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = prev_string_content[i];
-
-
-delete [] prev_string_content;
-}
-
-
-// 만일 예약하려는 size 가 현재 capacity 보다 작다면
-// 아무것도 안해도 된다.
-}
-char MyString::at(int i)
-{
-if(i >= string_length || i < 0) return NULL;
-else return string_content[i];
-}
-MyString& MyString::insert(int loc, MyString& str)
-{
-// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
-// abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
-
-
-// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-if(loc < 0 || loc > string_length) return *this;
-
-
-if(string_length + str.string_length > memory_capacity) {
-// 이제 새롭게 동적으로 할당을 해야 한다.
-
-
-if(memory_capacity * 2 > string_length + str.string_length)
-memory_capacity *= 2;
-elsememory_capacity = string_length + str.string_length;
-
-
-char *prev_string_content = string_content;
-string_content = new char[memory_capacity];
-
-
-// 일단 insert 되는 부분 직전까지의 내용을 복사한다.
-int i;
-for(i = 0; i < loc; i ++) {
-string_content[i] = prev_string_content[i];
-}
-
-
-// 그리고 새롭에 insert 되는 문자열을 넣는다.
-for(int j = 0; j != str.string_length; j ++) {
-string_content[i + j] = str.string_content[j];
-}
-
-
-// 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
-for(; i < string_length; i ++) {
-string_content[str.string_length + i] = prev_string_content[i];
-}
-
-
-delete [] prev_string_content;
-
-
-string_length = string_length + str.string_length;
-return *this;
+MyString& MyString::insert(int loc, char c) {
+  MyString temp(c);
+  return insert(loc, temp);
 }
 
+MyString& MyString::erase(int loc, int num) {
+  // loc 의 앞 부터 시작해서 num 문자를 지운다.
+  if (num < 0 || loc < 0 || loc > string_length) return *this;
 
-// 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
-// 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
+  // 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
+  // 생각하면 됩니다.
 
+  for (int i = loc + num; i < string_length; i++) {
+    string_content[i - num] = string_content[i];
+  }
 
-for(int i = string_length - 1; i >= loc; i --) {
-// 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
-string_content[i + str.string_length] = string_content[i];
+  string_length -= num;
+  return *this;
 }
-// 그리고 insert 되는 문자 다시 집어넣기
-for(int i = 0; i < str.string_length; i ++)
-string_content[i + loc] = str.string_content[i];
+int MyString::find(int find_from, MyString& str) {
+  int i, j;
+  if (str.string_length == 0) return -1;
+  for (i = find_from; i < string_length - str.string_length; i++) {
+    for (j = 0; j < str.string_length; j++) {
+      if (string_content[i + j] != str.string_content[j]) break;
+    }
 
+    if (j == str.string_length) return i;
+  }
 
-string_length = string_length + str.string_length;
-return *this;
+  return -1;  // 찾지 못했음
 }
-MyString& MyString::insert(int loc, const char* str)
-{
-MyString temp(str);
-return insert(loc, temp);
+int MyString::find(int find_from, const char* str) {
+  MyString temp(str);
+  return find(find_from, temp);
 }
-MyString& MyString::insert(int loc, char c)
-{
-MyString temp(c);
-return insert(loc, temp);
+int MyString::find(int find_from, char c) {
+  MyString temp(c);
+  return find(find_from, temp);
 }
-
-
-MyString& MyString::erase(int loc, int num)
-{
-// loc 의 앞 부터 시작해서 num 문자를 지운다.
-if(num < 0 || loc < 0 || loc > string_length) return *this;
-
-// 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
-// 생각하면 됩니다.
-
-
-for(int i = loc + num; i < string_length; i ++) {
-string_content[i - num] = string_content[i];
-}
-
-
-string_length -= num;
-return *this;
-}
-int MyString::find(int find_from, MyString& str)
-{
-int i, j;
-if(str.string_length == 0) return -1;
-for(i = find_from; i < string_length - str.string_length; i ++) {
-for(j = 0; j < str.string_length; j ++) {
-if(string_content[i + j] != str.string_content[j]) break;
-}
-
-
-if(j == str.string_length) return i;
-}
-
-
-return -1; // 찾지 못했음
-}
-int MyString::find(int find_from, const char* str)
-{
-MyString temp(str);
-return find(find_from, temp);
-}
-int MyString::find(int find_from, char c)
-{
-MyString temp(c);
-return find(find_from, temp);
-}
-int main()
-{
-MyString str1("this is a very very long string");
-cout << "Location of first <very> in the string : " << str1.find(0, "very") << endl;
-cout << "Location of second <very> in the string : " << str1.find(str1.find(0, "very") + 1, "very") << endl;
+int main() {
+  MyString str1("this is a very very long string");
+  cout << "Location of first <very> in the string : " << str1.find(0, "very")
+       << endl;
+  cout << "Location of second <very> in the string : "
+       << str1.find(str1.find(0, "very") + 1, "very") << endl;
 }
 ```
 
@@ -1818,7 +1524,7 @@ cout << "Location of second <very> in the string : " << str1.find(str1.find(0, "
 
 마지막으로 만들 함수는 문자열 간의 크기를 비교하는 `compare` 함수 입니다. 여기서 '크기' 를 비교한다는 의미는 사전식으로 배열해서 어떤 문자열이 더 뒤에 오는지 판단한다는 의미가 됩니다. 이 함수를 이용해서 문자열 전체를 정렬하는 함수라던지, 기존의 C 언어에서 `strcmp` 함수 등으로 지원하였던 것들을 그대로 사용할 수 있게 됩니다.
 
-```cpp
+```cpp-formatted
 
 int compare(MyString& str);
 ```
@@ -1827,31 +1533,33 @@ int compare(MyString& str);
 
 일단 함수의 원형은 위와 같이 `*this` 와 `str` 을 비교하는 형태로 이루어집니다.
 
-```cpp
+```cpp-formatted
 
 int MyString::compare(MyString& str)
 
 {
-// (*this) - (str) 을 수행해서 그 1, 0, -1 로 그 결과를 리턴한다
-// 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
-// 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
+  // (*this) - (str) 을 수행해서 그 1, 0, -1 로 그 결과를 리턴한다
+  // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
+  // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
 
+  for (int i = 0; i < min(string_length, str.string_length); i++) {
+    if (string_content[i] > str.string_content[i])
+      return 1;
 
-for(int i = 0; i < min(string_length, str.string_length); i ++) {
-if(string_content[i] > str.string_content[i]) return 1;
+    else if (string_content[i] < str.string_content[i])
+      return -1;
+  }
 
-else if(string_content[i] < str.string_content[i]) return -1;
-}
+  // 여기 까지 했는데 끝나지 않았다면 앞 부분 까지 모두 똑같은 것이 된다.
+  // 만일 문자열 길이가 같다면 두 문자열은 아예 같은 문자열이 된다.
 
-// 여기 까지 했는데 끝나지 않았다면 앞 부분 까지 모두 똑같은 것이 된다.
-// 만일 문자열 길이가 같다면 두 문자열은 아예 같은 문자열이 된다.
+  if (string_length == str.string_length) return 0;
 
-if(string_length == str.string_length) return 0;
+  // 참고로 abc 와 abcd 의 크기 비교는 abcd 가 더 뒤에 오게 된다.
+  else if (string_length > str.string_length)
+    return 1;
 
-// 참고로 abc 와 abcd 의 크기 비교는 abcd 가 더 뒤에 오게 된다.
-else if(string_length > str.string_length) return 1;
-
-return -1;
+  return -1;
 }
 ```
 
@@ -1859,351 +1567,277 @@ return -1;
 
 참고로 말하면 `abc` 와 `abcd` 의 크기를 비교하면 `abc` 가 `abcd` 보다 사전식으로 더 앞에 오게 됩니다. 따라서 이에 대한 처리는 뒷부분에서 따로 하게 됩니다. 그리고 한 가지 더 말하자면 `min` 과 `max` 함수는 `iostream` 를 `include` 하면 사용할 수 있는 함수들 이므로, 굳이 귀찮게 만드실 필요는 없습니다.
 
-```cpp
+```cpp-formatted
 
-#include <iostream>
 #include <string.h>
+#include <iostream>
 
 // min 함수를 사용하기 위한 헤더
-// 사실 min 정도는 여러분이 간단히 만들어서 써도
+// 사실 min 정도는 여러분이 간단히 만들어서 써도
 // 됩니다.
 #include <algorithm>
 
-
 using namespace std;
 
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
-class MyString
-{
-char * string_content; // 문자열 데이터를 가리키는 포인터
-int string_length; // 문자열 길이
+  int memory_capacity;  // 현재 할당된 용량
 
+ public:
+  // 문자 하나로 생성
+  MyString(char c);
 
-int memory_capacity; // 현재 할당된 용량
+  // 문자열로 부터 생성
+  MyString(const char* str);
 
+  // 복사 생성자
+  MyString(const MyString& str);
 
-public:
-// 문자 하나로 생성
-MyString(char c);
+  ~MyString();
 
+  int length() const;
+  int capacity() const;
+  void reserve(int size);
 
-// 문자열로 부터 생성
-MyString(const char* str);
+  void print();
+  void println();
 
+  MyString& assign(MyString& str);
+  MyString& assign(const char* str);
 
-// 복사 생성자
-MyString(const MyString &str);
+  char at(int i);
 
+  MyString& insert(int loc, MyString& str);
+  MyString& insert(int loc, const char* str);
+  MyString& insert(int loc, char c);
 
-~MyString();
+  MyString& erase(int loc, int num);
 
+  int find(int find_from, MyString& str);
+  int find(int find_from, const char* str);
+  int find(int find_from, char c);
 
-int length()const;
-int capacity()const;
-void reserve(int size);
-
-
-void print();
-void println();
-
-MyString& assign(MyString& str);
-MyString& assign(const char *str);
-
-
-char at(int i);
-
-
-MyString& insert(int loc, MyString& str);
-MyString& insert(int loc, const char* str);
-MyString& insert(int loc, char c);
-
-
-MyString& erase(int loc, int num);
-
-
-int find(int find_from, MyString& str);
-int find(int find_from, const char* str);
-int find(int find_from, char c);
-
-
-int compare(MyString& str);
+  int compare(MyString& str);
 };
 
-
-MyString::MyString(char c)
-{
-string_content = new char[1];
-string_content[0] = c;
-memory_capacity = 1;
-string_length = 1;
+MyString::MyString(char c) {
+  string_content = new char[1];
+  string_content[0] = c;
+  memory_capacity = 1;
+  string_length = 1;
 }
-MyString::MyString(const char* str)
-{
-string_length = strlen(str);
-memory_capacity = string_length;
-string_content = new char[string_length];
+MyString::MyString(const char* str) {
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
 
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str[i];
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
-MyString::MyString(const MyString &str)
-{
-string_length = str.string_length;
-string_content = new char[string_length];
+MyString::MyString(const MyString& str) {
+  string_length = str.string_length;
+  string_content = new char[string_length];
 
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
+}
+MyString::~MyString() { delete[] string_content; }
+int MyString::length() const { return string_length; }
+void MyString::print() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
+}
+void MyString::println() {
+  for (int i = 0; i != string_length; i++) cout << string_content[i];
 
-for(int i = 0; i != string_length; i ++)
-string_content[i] = str.string_content[i];
-}
-MyString::~MyString()
-{
-delete [] string_content;
-}
-int MyString::length()const
-{
-return string_length;
-}
-void MyString::print()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-}
-void MyString::println()
-{
-for(int i = 0; i != string_length; i ++)
-cout << string_content[i];
-
-
-cout << endl;
+  cout << endl;
 }
 
+MyString& MyString::assign(MyString& str) {
+  if (str.string_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
 
-MyString& MyString::assign(MyString& str)
-{
-if(str.string_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
+    string_content = new char[str.string_length];
+    memory_capacity = str.string_length;
+  }
+  for (int i = 0; i != str.string_length; i++) {
+    string_content[i] = str.string_content[i];
+  }
 
+  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
+  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
 
-string_content = new char [str.string_length];
-memory_capacity = str.string_length;
+  string_length = str.string_length;
+
+  return *this;
 }
-for(int i = 0; i != str.string_length; i ++) {
-string_content[i] = str.string_content[i];
+MyString& MyString::assign(const char* str) {
+  int str_length = strlen(str);
+  if (str_length > memory_capacity) {
+    // 그러면 다시 할당을 해줘야만 한다.
+    delete[] string_content;
+
+    string_content = new char[str_length];
+    memory_capacity = str_length;
+  }
+  for (int i = 0; i != str_length; i++) {
+    string_content[i] = str[i];
+  }
+
+  string_length = str_length;
+
+  return *this;
 }
+int MyString::capacity() const { return memory_capacity; }
+void MyString::reserve(int size) {
+  if (size > memory_capacity) {
+    char* prev_string_content = string_content;
 
+    string_content = new char[size];
+    memory_capacity = size;
 
-// 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-// 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
+    for (int i = 0; i != string_length; i++)
+      string_content[i] = prev_string_content[i];
 
+    delete[] prev_string_content;
+  }
 
-string_length = str.string_length;
-
-
-return *this;
+  // 만일 예약하려는 size 가 현재 capacity 보다 작다면
+  // 아무것도 안해도 된다.
 }
-MyString& MyString::assign(const char *str)
-{
-int str_length = strlen(str);
-if(str_length > memory_capacity) {
-// 그러면 다시 할당을 해줘야만 한다.
-delete [] string_content;
-
-
-string_content = new char [str_length];
-memory_capacity = str_length;
+char MyString::at(int i) {
+  if (i >= string_length || i < 0)
+    return NULL;
+  else
+    return string_content[i];
 }
-for(int i = 0; i != str_length; i ++) {
-string_content[i] = str[i];
+MyString& MyString::insert(int loc, MyString& str) {
+  // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
+  // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
+
+  // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
+  if (loc < 0 || loc > string_length) return *this;
+
+  if (string_length + str.string_length > memory_capacity) {
+    // 이제 새롭게 동적으로 할당을 해야 한다.
+
+    if (memory_capacity * 2 > string_length + str.string_length)
+      memory_capacity *= 2;
+    elsememory_capacity = string_length + str.string_length;
+
+    char* prev_string_content = string_content;
+    string_content = new char[memory_capacity];
+
+    // 일단 insert 되는 부분 직전까지의 내용을 복사한다.
+    int i;
+    for (i = 0; i < loc; i++) {
+      string_content[i] = prev_string_content[i];
+    }
+
+    // 그리고 새롭에 insert 되는 문자열을 넣는다.
+    for (int j = 0; j != str.string_length; j++) {
+      string_content[i + j] = str.string_content[j];
+    }
+
+    // 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
+    for (; i < string_length; i++) {
+      string_content[str.string_length + i] = prev_string_content[i];
+    }
+
+    delete[] prev_string_content;
+
+    string_length = string_length + str.string_length;
+    return *this;
+  }
+
+  // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
+  // 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
+
+  for (int i = string_length - 1; i >= loc; i--) {
+    // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
+    string_content[i + str.string_length] = string_content[i];
+  }
+  // 그리고 insert 되는 문자 다시 집어넣기
+  for (int i = 0; i < str.string_length; i++)
+    string_content[i + loc] = str.string_content[i];
+
+  string_length = string_length + str.string_length;
+  return *this;
 }
-
-
-string_length = str_length;
-
-
-return *this;
+MyString& MyString::insert(int loc, const char* str) {
+  MyString temp(str);
+  return insert(loc, temp);
 }
-int MyString::capacity()const
-{
-return memory_capacity;
-}
-void MyString::reserve(int size)
-{
-if(size > memory_capacity) {
-char *prev_string_content = string_content;
-
-
-string_content = new char [size];
-memory_capacity = size;
-
-
-for(int i = 0; i != string_length; i ++)
-string_content[i] = prev_string_content[i];
-
-
-delete [] prev_string_content;
-}
-
-
-// 만일 예약하려는 size 가 현재 capacity 보다 작다면
-// 아무것도 안해도 된다.
-}
-char MyString::at(int i)
-{
-if(i >= string_length || i < 0) return NULL;
-else return string_content[i];
-}
-MyString& MyString::insert(int loc, MyString& str)
-{
-// 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
-// abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
-
-
-// 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-if(loc < 0 || loc > string_length) return *this;
-
-
-if(string_length + str.string_length > memory_capacity) {
-// 이제 새롭게 동적으로 할당을 해야 한다.
-
-
-if(memory_capacity * 2 > string_length + str.string_length)
-memory_capacity *= 2;
-elsememory_capacity = string_length + str.string_length;
-
-
-char *prev_string_content = string_content;
-string_content = new char[memory_capacity];
-
-
-// 일단 insert 되는 부분 직전까지의 내용을 복사한다.
-int i;
-for(i = 0; i < loc; i ++) {
-string_content[i] = prev_string_content[i];
-}
-
-
-// 그리고 새롭에 insert 되는 문자열을 넣는다.
-for(int j = 0; j != str.string_length; j ++) {
-string_content[i + j] = str.string_content[j];
-}
-
-
-// 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
-for(; i < string_length; i ++) {
-string_content[str.string_length + i] = prev_string_content[i];
-}
-
-
-delete [] prev_string_content;
-
-
-string_length = string_length + str.string_length;
-return *this;
+MyString& MyString::insert(int loc, char c) {
+  MyString temp(c);
+  return insert(loc, temp);
 }
 
+MyString& MyString::erase(int loc, int num) {
+  // loc 의 앞 부터 시작해서 num 문자를 지운다.
+  if (num < 0 || loc < 0 || loc > string_length) return *this;
 
-// 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
-// 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
+  // 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
+  // 생각하면 됩니다.
 
+  for (int i = loc + num; i < string_length; i++) {
+    string_content[i - num] = string_content[i];
+  }
 
-for(int i = string_length - 1; i >= loc; i --) {
-// 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
-string_content[i + str.string_length] = string_content[i];
+  string_length -= num;
+  return *this;
 }
-// 그리고 insert 되는 문자 다시 집어넣기
-for(int i = 0; i < str.string_length; i ++)
-string_content[i + loc] = str.string_content[i];
+int MyString::find(int find_from, MyString& str) {
+  int i, j;
+  if (str.string_length == 0) return -1;
+  for (i = find_from; i < string_length - str.string_length; i++) {
+    for (j = 0; j < str.string_length; j++) {
+      if (string_content[i + j] != str.string_content[j]) break;
+    }
 
+    if (j == str.string_length) return i;
+  }
 
-string_length = string_length + str.string_length;
-return *this;
+  return -1;  // 찾지 못했음
 }
-MyString& MyString::insert(int loc, const char* str)
-{
-MyString temp(str);
-return insert(loc, temp);
+int MyString::find(int find_from, const char* str) {
+  MyString temp(str);
+  return find(find_from, temp);
 }
-MyString& MyString::insert(int loc, char c)
-{
-MyString temp(c);
-return insert(loc, temp);
+int MyString::find(int find_from, char c) {
+  MyString temp(c);
+  return find(find_from, temp);
 }
+int MyString::compare(MyString& str) {
+  // (*this) - (str) 을 수행해서 그 1, 0, -1 로 그 결과를 리턴한다
+  // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
+  // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
 
+  for (int i = 0; i < min(string_length, str.string_length); i++) {
+    if (string_content[i] > str.string_content[i])
+      return 1;
 
-MyString& MyString::erase(int loc, int num)
-{
-// loc 의 앞 부터 시작해서 num 문자를 지운다.
-if(num < 0 || loc < 0 || loc > string_length) return *this;
+    else if (string_content[i] < str.string_content[i])
+      return -1;
+  }
 
-// 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
-// 생각하면 됩니다.
+  // 여기 까지 했는데 끝나지 않았다면 앞 부분 까지 모두 똑같은 것이 된다.
+  // 만일 문자열 길이가 같다면 두 문자열은 아예 같은 문자열이 된다.
 
+  if (string_length == str.string_length) return 0;
 
-for(int i = loc + num; i < string_length; i ++) {
-string_content[i - num] = string_content[i];
+  // 참고로 abc 와 abcd 의 크기 비교는 abcd 가 더 뒤에 오게 된다.
+  else if (string_length > str.string_length)
+    return 1;
+
+  return -1;
 }
+int main() {
+  MyString str1("abcdef");
+  MyString str2("abcde");
 
-
-string_length -= num;
-return *this;
-}
-int MyString::find(int find_from, MyString& str)
-{
-int i, j;
-if(str.string_length == 0) return -1;
-for(i = find_from; i < string_length - str.string_length; i ++) {
-for(j = 0; j < str.string_length; j ++) {
-if(string_content[i + j] != str.string_content[j]) break;
-}
-
-
-if(j == str.string_length) return i;
-}
-
-
-return -1; // 찾지 못했음
-}
-int MyString::find(int find_from, const char* str)
-{
-MyString temp(str);
-return find(find_from, temp);
-}
-int MyString::find(int find_from, char c)
-{
-MyString temp(c);
-return find(find_from, temp);
-}
-int MyString::compare(MyString& str)
-{
-// (*this) - (str) 을 수행해서 그 1, 0, -1 로 그 결과를 리턴한다
-// 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
-// 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
-
-
-for(int i = 0; i < min(string_length, str.string_length); i ++) {
-if(string_content[i] > str.string_content[i]) return 1;
-
-else if(string_content[i] < str.string_content[i]) return -1;
-}
-
-// 여기 까지 했는데 끝나지 않았다면 앞 부분 까지 모두 똑같은 것이 된다.
-// 만일 문자열 길이가 같다면 두 문자열은 아예 같은 문자열이 된다.
-
-if(string_length == str.string_length) return 0;
-
-// 참고로 abc 와 abcd 의 크기 비교는 abcd 가 더 뒤에 오게 된다.
-else if(string_length > str.string_length) return 1;
-
-return -1;
-}
-int main()
-{
-MyString str1("abcdef");
-MyString str2("abcde");
-
-cout << "str1 and str2 compare : " << str1.compare(str2) << endl;
+  cout << "str1 and str2 compare : " << str1.compare(str2) << endl;
 }
 ```
 
@@ -2251,7 +1885,3 @@ cout << "str1 and str2 compare : " << str1.compare(str2) << endl;
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-

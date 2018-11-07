@@ -12,10 +12,10 @@ cat_title :  fgetpos
 
 #@ fgetpos
 
-```cpp
-#include <stdio.h> // C++ 에서는 <cstdio>
+```cpp-formatted
+#include <stdio.h>  // C++ 에서는 <cstdio>
 
-int fgetpos ( FILE * stream, fpos_t * position );
+int fgetpos(FILE* stream, fpos_t* position);
 ```
 
 
@@ -53,37 +53,35 @@ int fgetpos ( FILE * stream, fpos_t * position );
 
 ###  실행 예제
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fgetpos/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    int c;
-    int n;
-    fpos_t pos;
+int main() {
+  FILE* pFile;
+  int c;
+  int n;
+  fpos_t pos;
 
-    pFile = fopen ("myfile.txt","r");
-    if (pFile==NULL) perror ("Error opening file");
-    else
-    {
-        c = fgetc (pFile);
-        printf ("1st character is %c\n",c);
-        fgetpos (pFile,&pos);
-        for (n=0;n<3;n++)
-        {
-            fsetpos (pFile,&pos);
-            c = fgetc (pFile);
-            printf ("2nd character is %c\n",c);
-        }
-        fclose (pFile);
-    }
-    return 0;
+  pFile = fopen("myfile.txt", "r");
+  if (pFile == NULL)
+    perror("Error opening file");
+  else {
+    c = fgetc(pFile);
+    printf("1st character is %c\n", c);
+    fgetpos(pFile, &pos);
+    for (n = 0; n < 3; n++) {
+      fsetpos(pFile, &pos);
+      c = fgetc(pFile);
+      printf("2nd character is %c\n", c);
+    }
+    fclose(pFile);
+  }
+  return 0;
 }
 ```
 
@@ -111,11 +109,3 @@ int main ()
 * [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
 * [ftell](http://itguru.tistory.com/74)  :  스트림 위치 지정자의 현재 위치를 구한다.
 * [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자의 위치를 변경한다.
-
-
-
-
-
-
-
-

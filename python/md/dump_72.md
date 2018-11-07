@@ -68,25 +68,25 @@ int fseek ( FILE * stream, long int offset, int origin );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
-example.txt 에 "This is an apple" 을 쓴 뒤에 다시 fseek 함수를 이용하여 n 부터 sam 으로 바꾼다. 즉, example.txt 에는 "This is an sample" 이 들어가게 된다.
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fseek/
-에서 가져왔습니다.
+example.txt 에 "This is an apple" 을 쓴 뒤에 다시 fseek 함수를 이용하여 n 부터
+sam 으로 바꾼다. 즉, example.txt 에는 "This is an sample" 이 들어가게 된다. 이
+예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fseek/ 에서
+가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 
-int main ()
-{
-    FILE * pFile;
-    pFile = fopen ( "example.txt" , "w" );
-    fputs ( "This is an apple." , pFile );
-    fseek ( pFile , 9 , SEEK_SET );
-    fputs ( " sam" , pFile );
-    fclose ( pFile );
-    return 0;
+int main() {
+  FILE* pFile;
+  pFile = fopen("example.txt", "w");
+  fputs("This is an apple.", pFile);
+  fseek(pFile, 9, SEEK_SET);
+  fputs(" sam", pFile);
+  fclose(pFile);
+  return 0;
 }
 ```
 
@@ -110,10 +110,3 @@ int main ()
 *  [ftell](http://itguru.tistory.com/74)  :  스트림의 현재 위치를 구한다.
 *  [fsetpos](http://itguru.tistory.com/73):  스트림의 위치 지정자를 설정한다.
 *  [rewind](http://itguru.tistory.com/75)  :  스트림의 위치 지정자를 맨 처음으로 설정한다.
-
-
-
-
-
-
-

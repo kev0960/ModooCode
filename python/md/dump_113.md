@@ -27,19 +27,18 @@ ref_title : time_t
 
 ### 실행 예제
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 #include <time.h>
 
-int main ()
-{
-    time_t seconds;
+int main() {
+  time_t seconds;
 
-    time (&seconds);
+  time(&seconds);
 
-    printf("1970년 부터 몇 초나 지났나 : %d 초 \n", seconds);
+  printf("1970년 부터 몇 초나 지났나 : %d 초 \n", seconds);
 
-    return 0;
+  return 0;
 }
 ```
 

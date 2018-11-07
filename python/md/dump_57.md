@@ -45,19 +45,30 @@ int fflush ( FILE * stream );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
-example.txt 파일을 "r+" 로 오픈하여 "test" 를 쓴 뒤 pFile 버퍼를 비우고 다시 파일로 부터 읽어온다.
+example.txt 파일을 "r+" 로 오픈하여 "test" 를 쓴 뒤 pFile 버퍼를 비우고 다시
+파일로 부터 읽어온다.
 
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fflush/에서 가져왔습니다.
+이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fflush/에서
+가져왔습니다.
 */
 #include <stdio.h>
 char mybuffer[80];
-int main(){ 
-     FILE * pFile;    pFile = fopen ("example.txt","r+");
-      if (pFile == NULL) perror ("Error opening file"); 
-     else {        fputs ("test",pFile);        fflush(pFile);
-        fgets (mybuffer,80,pFile);        puts (mybuffer);        fclose (pFile);        return 0;    }}
+int main() {
+  FILE* pFile;
+  pFile = fopen("example.txt", "r+");
+  if (pFile == NULL)
+    perror("Error opening file");
+  else {
+    fputs("test", pFile);
+    fflush(pFile);
+    fgets(mybuffer, 80, pFile);
+    puts(mybuffer);
+    fclose(pFile);
+    return 0;
+  }
+}
 ```
 
 

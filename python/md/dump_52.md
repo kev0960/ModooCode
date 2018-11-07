@@ -34,28 +34,26 @@ int ferror ( FILE * stream );
 
 ###  실행 예제
 
-```cpp
+```cpp-formatted
 /*
 
-읽기 전용으로 열은 파일에 fputc 를 이용해 강제적을 파일에 쓰기를 함으로써 오류를 발생시켜 ferror 함수에 의해 어떻게 처리되는지 살펴본다.
-이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/ferror/
-에서 가져왔습니다.
+읽기 전용으로 열은 파일에 fputc 를 이용해 강제적을 파일에 쓰기를 함으로써 오류를
+발생시켜 ferror 함수에 의해 어떻게 처리되는지 살펴본다. 이 예제는
+http://www.cplusplus.com/reference/clibrary/cstdio/ferror/ 에서 가져왔습니다.
 */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    pFile=fopen("myfile.txt","r");
-    if (pFile==NULL) perror ("Error opening file");
+int main() {
+  FILE* pFile;
+  pFile = fopen("myfile.txt", "r");
+  if (pFile == NULL)
+    perror("Error opening file");
 
-    else
-    {
-        fputc ('x',pFile);
-        if (ferror (pFile))
-            printf ("Error Writing to myfile.txt\n");
-        fclose (pFile);
-    }
-    return 0;
+  else {
+    fputc('x', pFile);
+    if (ferror(pFile)) printf("Error Writing to myfile.txt\n");
+    fclose(pFile);
+  }
+  return 0;
 }
 ```
 

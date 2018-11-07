@@ -23,15 +23,14 @@ title : 씹어먹는 C++ 토막글 ② - 람다(lambda) 함수
 어떤 벡터의 원소들의 모든 곱을 계산하는 코드를 구성한다고 생각해봅시다. 아마 가장 초보적으로 이 코드를 구성하는 방법은 아마 아래와 같을 것입니다.
 
 
-```cpp
+```cpp-formatted
 
 vector<int>::const_iterator iter = cardinal.begin();
 vector<int>::const_iterator iter_end = cardinal.end();
 int total_elements = 1;
-while( iter != iter_end )
-{
-total_elements *= *iter;
-++iter;
+while (iter != iter_end) {
+  total_elements *= *iter;
+  ++iter;
 }
 ```
 
@@ -43,20 +42,18 @@ total_elements *= *iter;
 만일 "나는 C++ 쫌 해" 정도 되는 사람이라는 `Functor` 를 이용해서 아래와 같은 코드를 짜냈을 것입니다.
 
 
-```cpp
+```cpp-formatted
 
 int total_elements = 1;
-for_each( cardinal.begin(), cardinal.end(), product<int>(total_elements) );
+for_each(cardinal.begin(), cardinal.end(), product<int>(total_elements));
 template <typename T>
-struct product
-{
-product( T & storage ) : value(storage) {}
-template< typename V>
-void operator()( V & v )
-{
-value *= v;
-}
-T & value;
+struct product {
+  product(T& storage) : value(storage) {}
+  template <typename V>
+  void operator()(V& v) {
+    value *= v;
+  }
+  T& value;
 };
 ```
 
@@ -67,9 +64,10 @@ T & value;
 물론 전체적인 코드의 질이 높아졌다고 볼 수 있지만, `Functor` 을 이용하기 위해 `product` 라는 구조체를 생성하면서 구질구질하게 생성자도 만들고, 또 `void operator()` 도 정의해주어야겠죠. 상당히 귀찮은 일이 아닐 수 없습니다.
 
 
-```cpp
+```cpp-formatted
 int total_elements = 1;
-for_each( cardinal.begin(), cardinal.end(), [&total_elements](int i){total_elements *= i;} );
+for_each(cardinal.begin(), cardinal.end(),
+         [&total_elements](int i) { total_elements *= i; });
 ```
 
 
@@ -77,29 +75,26 @@ for_each( cardinal.begin(), cardinal.end(), [&total_elements](int i){total_eleme
 자. 그럼 위 코드를 한번 봅시다. 짧고 간결하며, 무엇 보다도 `while` 문이나 `functor` 와 같은 구질구질한 코드 없이 깔끔하게 `for_each` 의 특징을 그대로 살려주었다고 볼 수 있습니다. 즉 `Functor` 에 들어갈 내용을 `product` 라는 구조체를 정의하면서 쭉 써내려갈 내용을 한 번에 깔끔하게 정리해놓은 것이지요. 이것이 바로 `Lambda` 의 위력입니다.
 
 간단히 `Functor` 를 이용한 코드와 `Lambda` 를 이용한 코드를 비교해 보아도 그 차이를 실감할 수 있을 것입니다.
-```cpp
+```cpp-formatted
 
 // Functor 사용
 
-struct mod
-{
-mod(int m) : modulus(m) {}
-int operator()(int v){ return v % modulus; }
-int modulus;
+struct mod {
+  mod(int m) : modulus(m) {}
+  int operator()(int v) { return v % modulus; }
+  int modulus;
 };
 int my_mod = 8;
-transform( in.begin(), in.end(), out.begin(),
-mod(my_mod) );
+transform(in.begin(), in.end(), out.begin(), mod(my_mod));
 ```
 
 
-```cpp
+```cpp-formatted
 
 // Lambda 사용
 int my_mod = 8;
-transform( in.begin(), in.end(), out.begin(),
-[my_mod](int v) ->int
-{ return v % my_mod; } );
+transform(in.begin(), in.end(), out.begin(),
+          [my_mod](int v) -> int { return v % my_mod; });
 ```
 
 
@@ -115,8 +110,8 @@ transform( in.begin(), in.end(), out.begin(),
 그 다음의 () 는 람다가 실행시 받을 인자들을 써 넣습니다. 위 람다는 `int` 형의 `v_` 를 인자로 받는 군요. 여기는 그냥 실제로 함수에서 사용하는 인자 리스트와 동일하게 적어주면 됩니다. 이제, 그 옆으로 보면 `->` 가 있고 반환 타입을 적어주시면 됩니다. 위 람다의 경우 `int` 를 리턴합니다. 마지막으로 람다 내부에서 실행할 내용을 적어주면 되는데, 위 람다의 경우 `v_` 와 `my_mod` 를 모듈러 연산해서 그 결과를 리턴하네요.
 만일 우리가
 
-```cpp
-[my_mod](int v_)->int{return v_ % my_mod;}
+```cpp-formatted
+[my_mod](int v_) -> int { return v_ % my_mod; }
 ```
 
 위와 같이 코드 상에 `Lambda` 를 썼다고 해봅시다. 그러면 런타임시 이름은 없지만, 메모리 상에  임시적으로 존재하는 클로져 (Closure) 객체가 생성됩니다. 이 클로져 객체는 함수 객체(function object) 처럼 행동합니다. (이러한 연유로 람다를 람다 함수라고 부르는 경우가 있습니다 - 사실 엄밀히 말하면 클로져 객체지 함수는 아닙니다)
@@ -124,18 +119,18 @@ transform( in.begin(), in.end(), out.begin(),
 
 그렇다면
 
-```cpp
+```cpp-formatted
 
-[](){ cout << "foo" << endl; }()
+[]() { cout << "foo" << endl; }()
 ```
 
 
 
 를 실행하였을 때 어떠한 결과가 나올까요? 일단
 
-```cpp
+```cpp-formatted
 
-[](){ cout << "foo" << endl; }
+[]() { cout << "foo" << endl; }
 ```
 
 
@@ -154,18 +149,18 @@ transform( in.begin(), in.end(), out.begin(),
 
 그러면 조금 더 복잡한 예제를 살펴볼까요?
 
-```cpp
+```cpp-formatted
 
-[](int v){cout << v << "*6=" << v*6 << endl;} (7);
+[](int v) { cout << v << "*6=" << v * 6 << endl; }(7);
 ```
 
 
 
 는 어떨까요.
 
-```cpp
+```cpp-formatted
 
-  [](int v){cout << v << "*6=" << v*6 << endl;}
+[](int v) { cout << v << "*6=" << v * 6 << endl; }
 ```
 
 
@@ -184,10 +179,10 @@ transform( in.begin(), in.end(), out.begin(),
 람다 자체가 함수 처럼 자유롭게 사용할 수 있는 것이기 때문에 인자로 (당연히) 레퍼런스 들도 전달 가능합니다. 예를 들어
 
 
-```cpp
+```cpp-formatted
 
 int i = 7;
-[](int & v){ v*= 6; } (i);
+[](int& v) { v *= 6; }(i);
 cout << "the correct value is: " << i << endl;
 ```
 
@@ -205,18 +200,18 @@ cout << "the correct value is: " << i << endl;
 
 참고로 받는 인자가 없을 경우, 예컨대
 
-```cpp
+```cpp-formatted
 
-[](){ cout << "foo" << endl; }
+[]() { cout << "foo" << endl; }
 ```
 
 
 
 의 경우 인자 () 를 생략 할 수 있습니다. 즉,
 
-```cpp
+```cpp-formatted
 
-[]{ cout << "foo" << endl; }
+[] { cout << "foo" << endl; }
 ```
 
 
@@ -243,7 +238,7 @@ cout << "the correct value is: " << i << endl;
 그렇다면 한 번 예제를 살펴볼까요.
 
 
-```cpp
+```cpp-formatted
 
 int total_elements = 1;
 vector<int> cardinal;
@@ -253,7 +248,7 @@ cardinal.push_back(2);
 cardinal.push_back(4);
 cardinal.push_back(8);
 
-for_each( cardinal.begin(), cardinal.end(),[&](int i){ total_elements*= i; } );
+for_each(cardinal.begin(), cardinal.end(), [&](int i) { total_elements *= i; });
 
 cout << "total elements : " << total_elements << endl;
 ```
@@ -273,23 +268,20 @@ cout << "total elements : " << total_elements << endl;
 이번에는 조금 더 복잡한 예제를 살펴보도록 합시다.
 
 
-```cpp
+```cpp-formatted
 
-template< typename T >
-void fill( vector<int> & v, T done )
-{
-int i = 0;
-while( !done() )
-{
-v.push_back( i++ );
-}
+template <typename T>
+void fill(vector<int>& v, T done) {
+  int i = 0;
+  while (!done()) {
+    v.push_back(i++);
+  }
 }
 
 vector<int> stuff;
-fill( stuff,
-[&]()->bool{ return stuff.size() >= 8; } );
+fill(stuff, [&]() -> bool { return stuff.size() >= 8; });
 
-for_each (stuff.begin(), stuff.end(), [](int i) {cout << i << " " ;});
+for_each(stuff.begin(), stuff.end(), [](int i) { cout << i << " "; });
 ```
 
 
@@ -302,27 +294,23 @@ for_each (stuff.begin(), stuff.end(), [](int i) {cout << i << " " ;});
 로 출력됩니다.
 
 
-```cpp
+```cpp-formatted
 
-void fill( vector<int> & v, T done )
-{
-int i = 0;
-while( !done() )
-{
-v.push_back( i++ );
-}
+void fill(vector<int>& v, T done) {
+  int i = 0;
+  while (!done()) {
+    v.push_back(i++);
+  }
 }
 
 vector<int> stuff;
 
-fill( stuff,
-[&]()->bool{ int sum=0;
-for_each( stuff.begin(), stuff.end(),
-[&](int i){ sum += i; } );
-return sum >= 10;
-}
-);
-for_each (stuff.begin(), stuff.end(), [](int i) {cout << i << " " ;});
+fill(stuff, [&]() -> bool {
+  int sum = 0;
+  for_each(stuff.begin(), stuff.end(), [&](int i) { sum += i; });
+  return sum >= 10;
+});
+for_each(stuff.begin(), stuff.end(), [](int i) { cout << i << " "; });
 ```
 
 
@@ -332,13 +320,12 @@ for_each (stuff.begin(), stuff.end(), [](int i) {cout << i << " " ;});
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F1306BC4C50EB0FDD05EF5B)
 
  한 가지 흥미로운 점은 `Capture` 를 레퍼런스가 아닌 값으로 할 때 언제 `Capture` 가 되냐는 것입니다.
-```cpp
+```cpp-formatted
 
 int v = 42;
-auto func = [=]{ cout << v << endl; };
+auto func = [=] { cout << v << endl; };
 v = 8;
 func();
-
 ```
 
 
@@ -357,10 +344,13 @@ func();
 `Capture` 를 값으로 할 때 주의점은 그 변수들에는 자동으로 `const` 속성이 붙는 다는 것입니다. 즉 값으로 `Capture` 시 그 변수들의 내용을 바꿀 수 없습니다. 따라서 아래와 같은 코드는
 
 
-```cpp
+```cpp-formatted
 
 int i = 10;
-auto two_i = [=]()->int{ i*= 2; return i; };
+auto two_i = [=]() -> int {
+  i *= 2;
+  return i;
+};
 cout << "2i:" << two_i() << " i:" << i << endl;
 ```
 
@@ -374,10 +364,13 @@ cout << "2i:" << two_i() << " i:" << i << endl;
 답은 간단합니다. 람다에 `mutable` 속성을 추가해주면 됩니다.
 
 
-```cpp
+```cpp-formatted
 
 int i = 10;
-auto two_i = [=]() mutable ->int{ i*= 2; return i; };
+auto two_i = [=]() mutable -> int {
+  i *= 2;
+  return i;
+};
 cout << "2i:" << two_i() << " i:" << i << endl;
 ```
 
@@ -398,24 +391,25 @@ cout << "2i:" << two_i() << " i:" << i << endl;
 이제 그럼 조금 복잡한 코드를 살펴볼까요.
 
 
-```cpp
+```cpp-formatted
 
-class gorp
-{
-vector<int> values;
-int m_;
-public:
-gorp(int mod) : m_(mod) {}
-gorp& put(int v){ values.push_back(v); return *this; }
-int extras()
-{
-int count = 0;
-for_each( values.begin(), values.end(),
-[=,&count](int v){ count += v % m_; } );
-return count;
-}
+class gorp {
+  vector<int> values;
+  int m_;
+
+ public:
+  gorp(int mod) : m_(mod) {}
+  gorp& put(int v) {
+    values.push_back(v);
+    return *this;
+  }
+  int extras() {
+    int count = 0;
+    for_each(values.begin(), values.end(),
+             [=, &count](int v) { count += v % m_; });
+    return count;
+  }
 };
-
 
 gorp g(4);
 g.put(3).put(7).put(8);
@@ -437,13 +431,15 @@ cout << "extras: " << g.extras();
 
 이렇게 `this` 를 암묵적으로 `Capture` 할 수 있기에 아래와 같은 놀라운 일도 발생할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
-struct foo
-{
-foo() : i(0) {}
-void amazing(){ [=]{ i=8; }(); }
-int i;는
+struct foo {
+  foo() : i(0) {}
+  void amazing() {
+    [=] { i = 8; }();
+  }
+  int i;
+  는
 };
 foo f;
 f.amazing();
@@ -461,13 +457,13 @@ cout << "f.i : " << f.i;
 
 
 `Capture` 되는 개체들은 모두 람다가 정의된 위치에서 접근 가능해야만 합니다. 예를 들어
-```cpp
+```cpp-formatted
 
 int i = 8;
 {
-int j = 2;
-auto f = [=]{ cout << i/j; };
-f();
+  int j = 2;
+  auto f = [=] { cout << i / j; };
+  f();
 }
 ```
 
@@ -482,15 +478,13 @@ f();
 
 그렇다면 아래 코드는 어떨까요?
 
-```cpp
+```cpp-formatted
 
 int i = 8;
-auto f =
-[i]()
-{
-int j = 2;
-auto m = [=]{ cout << i/j; };
-m();
+auto f = [i]() {
+  int j = 2;
+  auto m = [=] { cout << i / j; };
+  m();
 };
 f();
 ```
@@ -511,15 +505,13 @@ f();
 
 
 
-```cpp
+```cpp-formatted
 
 int i = 8;
-auto f =
-[]()
-{
-int j = 2;
-auto m = [=]{ cout << i/j; };
-m();
+auto f = []() {
+  int j = 2;
+  auto m = [=] { cout << i / j; };
+  m();
 };
 f();
 ```
@@ -532,16 +524,14 @@ f();
 조금 더 복잡한 예로 아래의 코드를 살펴봅시다.
 
 
-```cpp
+```cpp-formatted
 
 int i = 8;
-auto f =
-[=]()
-{
-int j = 2;
-auto m = [&]{ i /= j; };
-m();
-cout << "inner: " << i;
+auto f = [=]() {
+  int j = 2;
+  auto m = [&] { i /= j; };
+  m();
+  cout << "inner: " << i;
 };
 
 f();
@@ -556,16 +546,14 @@ cout << " outer: " << i;
 이를 해결하려면, 당연히도 `mutable` 속성을 붙여주면 됩니다.
 
 
-```cpp
+```cpp-formatted
 
 int i = 8;
-auto f =
-[i]() mutable
-{
-int j = 2;
-auto m = [&, j]() mutable{ i /= j; };
-m();
-cout << "inner: " << i;
+auto f = [i]() mutable {
+  int j = 2;
+  auto m = [&, j]() mutable { i /= j; };
+  m();
+  cout << "inner: " << i;
 };
 f();
 cout << " outer: " << i;
@@ -595,15 +583,17 @@ cout << " outer: " << i;
 모든 클로져 객체들은 암묵적으로 정의된 복사 생성자(copy constructor)와 소멸자(destructor)를 가지고 있습니다. 이 때 클로져 객체가 복사 생성 될 때 값으로 `Capture` 된 것들의 복사 생성이 일어나겠지요. 아래의 예를 한번 보도록 하겠습니다.
 
 일단
-```cpp
+```cpp-formatted
 
-struct trace
-{
-trace() : i(0) { cout << "construct\n"; }
-trace(trace const &) { cout << "copy construct\n"; }
-~trace() { cout << "destroy\n"; }
-trace& operator=(trace&) { cout << "assign\n"; return *this;}
-int i;
+struct trace {
+  trace() : i(0) { cout << "construct\n"; }
+  trace(trace const&) { cout << "copy construct\n"; }
+  ~trace() { cout << "destroy\n"; }
+  trace& operator=(trace&) {
+    cout << "assign\n";
+    return *this;
+  }
+  int i;
 };
 ```
 
@@ -612,11 +602,10 @@ int i;
 와 같이 생성, 복사 생성, 소멸, 그리고 대입 연산을 확인할 수 있는 `trace` 라는 구조체를 정의해놓고
 
 
-```cpp
+```cpp-formatted
 
 trace t;
 int i = 8;
-
 
 auto f = [=]() { return i / 2; };
 ```
@@ -635,16 +624,14 @@ auto f = [=]() { return i / 2; };
 
 그렇다면 아래의 예는 어떨까요
 
-```cpp
+```cpp-formatted
 
 trace t;
 int i = 8;
 
-
 auto m1 = [=]() { int i = t.i; };
 
 cout << " --- make copy --- " << endl;
-
 
 auto m2 = m1;
 ```
@@ -666,10 +653,10 @@ auto m2 = m1;
 
 
 람다를 저장 및 전달하는 방식으로 앞에서 두 가지 방법을 보았습니다. 바로
-```cpp
+```cpp-formatted
 
-template<typename T> void foo(T f)
-auto f = []{};
+template <typename T>
+void foo(T f) auto f = [] {};
 ```
 
 
@@ -680,10 +667,10 @@ auto f = []{};
 또 다른 방법으로는 함수 포인터를 이용하는 방법이 있는데요, 이 경우 람다가 Capture 하는 것이 없어야만 합니다.
 
 
-```cpp
+```cpp-formatted
 
-typedef int(*f_type)(int);
-f_type f = [](int i)->int{ return i+20; };
+typedef int (*f_type)(int);
+f_type f = [](int i) -> int { return i + 20; };
 cout << f(8);
 ```
 
@@ -698,12 +685,11 @@ cout << f(8);
 그런데, C++ 11 에서는 클로져 객체를 전달하고 또 저장할 수 있는 막강한 기능이 제공됩니다. 바로 `std::function` 인데요, 그 어떤 클로져 객체나 함수 등을 모두 보관할 수 있는 만능 저장소 입니다. (참고로 `std::function` 은 Visual Studio 2010 에서 `<functional>` 을 include 해야 합니다)
 
 
-```cpp
+```cpp-formatted
 
-std::function< int(std::string const &) > f;
-f = [](std::string const & s)->int{ return s.size(); };
+std::function<int(std::string const &)> f;
+f = [](std::string const &s) -> int { return s.size(); };
 int size = f("http://itguru.tistory.com");
-
 
 cout << size << endl;
 ```
@@ -721,20 +707,18 @@ cout << size << endl;
 
 이 `std::function` 을 통해 아래와 같이 재밌는 코드도 짤 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 std::function<int(int)> f1;
-std::function<int(int)> f2 =
-[&](int i)->int
-{
-cout << i << " ";
-if(i>5) { return f1(i-2); }
+std::function<int(int)> f2 = [&](int i) -> int {
+  cout << i << " ";
+  if (i > 5) {
+    return f1(i - 2);
+  }
 };
-f1 =
-[&](int i)->int
-{
-cout << i << " ";
-return f2(++i);
+f1 = [&](int i) -> int {
+  cout << i << " ";
+  return f2(++i);
 };
 f1(10);
 ```
@@ -759,17 +743,15 @@ f1(10);
 마찬가지로 아래와 같은 재귀 호출 함수도 구현할 수 있습니다.
 
 
-```cpp
+```cpp-formatted
 
 std::function<int(int)> fact;
-fact =
-[&fact](int n)->int
-{
-if(n==0){ return 1; }
-else
-{
-return (n *fact(n-1));
-}
+fact = [&fact](int n) -> int {
+  if (n == 0) {
+    return 1;
+  } else {
+    return (n * fact(n - 1));
+  }
 };
 cout << "factorial(4) : " << fact(4) << endl;
 ```
@@ -797,7 +779,3 @@ cout << "factorial(4) : " << fact(4) << endl;
 C++ 에 새롭게 추가된 람다는 기존의 C++ 과 전혀 다른 새로운 개념 입니다. 하지만 람다를 이용하면 수십줄의 코드도 한 두 줄로 간추릴 수 있는, 엄청난 기능이 아닐 수 없습니다 C++ 에 새롭게 추가된 람다는 기존의 C++ 과 전혀 다른 새로운 개념 입니다. 하지만 람다를 이용하면 수십줄의 코드도 한 두 줄로 간추릴 수 있는, 엄청난 기능이 아닐 수 없습니다.
 이제 여러분들 손에는 람다라는 막강한 도구가 주어졌습니다. 이를 어떻게 사용하느냐는 여러분의 몫이지요 :)
 그리고 이런 훌륭한 강의를 제공해주신 `Michael Caisse` 님에게 감사의 말을 전합니다.
-
-
-
-

@@ -50,7 +50,7 @@ char * strcat ( char * destination, const char * source );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 str 에 각 문자열들을 덧붙인다.
@@ -58,19 +58,18 @@ str 에 각 문자열들을 덧붙인다.
 http://www.cplusplus.com/reference/clibrary/cstring/strncat/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[80];
-    strcpy (str,"these ");
-    strcat (str,"strings ");
-    strcat (str,"are ");
-    strcat (str,"concatenated.");
-    puts (str);
-    return 0;
+int main() {
+  char str[80];
+  strcpy(str, "these ");
+  strcat(str, "strings ");
+  strcat(str, "are ");
+  strcat(str, "concatenated.");
+  puts(str);
+  return 0;
 }
 ```
 
@@ -87,9 +86,16 @@ int main ()
 
 
 
-```cpp
-/*아래 코드는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다.*/
-char *strcat(char *dst, const char *src) {    char *cp = dst;    while (*cp) cp++;    while (*cp++ = *src++);    return dst;}
+```cpp-formatted
+/*아래 코드는http://www.jbox.dk/sanos/source/lib/string.c.html에서
+ * 가져왔습니다.*/
+char *strcat(char *dst, const char *src) {
+  char *cp = dst;
+  while (*cp) cp++;
+  while (*cp++ = *src++)
+    ;
+  return dst;
+}
 ```
 
 

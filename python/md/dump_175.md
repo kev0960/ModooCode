@@ -42,8 +42,9 @@ path : /C++ Reference/Containers/vector
 
 C++ 표준 템플릿 라이브러리 (STL) 에서는 벡터를 다음과 같이 두 개의 템플릿 인자를 가지도록 구현하였다.
 
-```cpp
-template < class T, class Allocator = allocator<T> > class vector;
+```cpp-formatted
+template <class T, class Allocator = allocator<T> >
+class vector;
 ```
 
 
@@ -201,16 +202,16 @@ template < class T, class Allocator = allocator<T> > class vector;
 따라서 `bool` 원소의 레퍼런스는 `bool&` 가 아니라, 아래와 같이 `vector<bool>` 에 특별히 정의되어 있는 멤버 변수를 통해 `vector<bool>` 의 단일 비트에 대한 조작을 수행할 수 있게 된다.
 
 
-```cpp
+```cpp-formatted
 class vector<bool>::reference {
-  friend class vector;
-  reference();                                 // public 생성자가 아니다
-public:
-  ~reference();
-  operator bool () const;                      // bool 로 캐스팅 한다.
-  reference& operator= ( const bool x );       // bool 을 대입
-  reference& operator= ( const reference& x );  // 비트로 대입
-  void flip();                                 // 비트값 반전 (0 -> 1, 1 -> 0)
+  friend class vector;
+  reference();  // public 생성자가 아니다
+ public:
+  ~reference();
+  operator bool() const;                     // bool 로 캐스팅 한다.
+  reference& operator=(const bool x);        // bool 을 대입
+  reference& operator=(const reference& x);  // 비트로 대입
+  void flip();  // 비트값 반전 (0 -> 1, 1 -> 0)
 }
 ```
 

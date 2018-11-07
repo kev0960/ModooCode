@@ -15,9 +15,9 @@ cat_title :  ios_base::precision
 
 #@ ios_base::precision
 
-```cpp
-streamsize precision ( ) const;
-streamsize precision ( streamsize prec );
+```cpp-formatted
+streamsize precision() const;
+streamsize precision(streamsize prec);
 ```
 
 
@@ -61,7 +61,7 @@ streamsize precision ( streamsize prec );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -72,17 +72,16 @@ http://www.cplusplus.com/reference/iostream/ios_base/precision/
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-    double f = 3.14159;
-    cout.setf(0,ios::floatfield);            // floatfield 설정 안됨
-    cout.precision(5);
-    cout << f << endl;
-    cout.precision(10);
-    cout << f << endl;
-    cout.setf(ios::fixed,ios::floatfield);   // floatfield 를 fixed 로 설정
-    cout << f << endl;
-    return 0;
+int main() {
+  double f = 3.14159;
+  cout.setf(0, ios::floatfield);  // floatfield 설정 안됨
+  cout.precision(5);
+  cout << f << endl;
+  cout.precision(10);
+  cout << f << endl;
+  cout.setf(ios::fixed, ios::floatfield);  // floatfield 를 fixed 로 설정
+  cout << f << endl;
+  return 0;
 }
 ```
 

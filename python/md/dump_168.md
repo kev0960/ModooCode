@@ -50,9 +50,8 @@ bool operator ! ( ) const;
 
 
 
-```cpp
-( basic_ios<charT,traits> )
-bool operator ! () const;
+```cpp-formatted
+(basic_ios<charT, traits>)bool operator!() const;
 ```
 
 
@@ -62,7 +61,7 @@ bool operator ! () const;
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -70,16 +69,15 @@ http://www.cplusplus.com/reference/iostream/ios/operatornot/
 에서 가져왔습니다.
 
 */
-#include <iostream>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
-int main () {
-    ifstream is;
-    is.open ("test.txt");
-    if (!is)
-        cerr << "Error opening 'test.txt'\n";
-    return 0;
+int main() {
+  ifstream is;
+  is.open("test.txt");
+  if (!is) cerr << "Error opening 'test.txt'\n";
+  return 0;
 }
 ```
 

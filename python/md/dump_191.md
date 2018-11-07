@@ -112,7 +112,7 @@ istream& get ( streambuf& sb, char delim );
 
 
 
-```cpp
+```cpp-formatted
 
 /*
 
@@ -123,35 +123,28 @@ istream& get ( streambuf& sb, char delim );
 
 
 */
-#include <iostream>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
+int main() {
+  char c, str[256];
+  ifstream is;
 
-int main () {
-char c, str[256];
-ifstream is;
+  cout << "Enter the name of an existing text file: ";
+  cin.get(str, 256);
 
+  is.open(str);  // open file
 
-cout << "Enter the name of an existing text file: ";
-cin.get (str,256);
+  while (is.good())  // loop while extraction from file is possible
+  {
+    c = is.get();  // get character from file
+    if (is.good()) cout << c;
+  }
 
+  is.close();  // close file
 
-is.open (str);        // open file
-
-
-while (is.good())     // loop while extraction from file is possible
-{
-c = is.get();       // get character from file
-if (is.good())
-cout << c;
-}
-
-
-is.close();           // close file
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -175,18 +168,17 @@ return 0;
 
 
 
-```cpp
+```cpp-formatted
 
-( basic_istream<charT,traits> )
+(basic_istream<charT, traits>)
 
-
-typedef charT char_type;
+  typedef charT char_type;
 int_type get();
-basic_istream& get (char_type& c );
-basic_istream& get (char_type* s, streamsize n );
-basic_istream& get (char_type* s, streamsize n, char_type delim );
-basic_istream& get (basic_streambuf<char_type,traits>& sb);
-basic_istream& get (basic_streambuf<char_type,traits>& sb, char_type delim );
+basic_istream& get(char_type& c);
+basic_istream& get(char_type* s, streamsize n);
+basic_istream& get(char_type* s, streamsize n, char_type delim);
+basic_istream& get(basic_streambuf<char_type, traits>& sb);
+basic_istream& get(basic_streambuf<char_type, traits>& sb, char_type delim);
 ```
 
 ###  연관된 함수
@@ -195,6 +187,3 @@ basic_istream& get (basic_streambuf<char_type,traits>& sb, char_type delim );
 *  [istream::getline](http://itguru.tistory.com/149): 스트림에서 한 줄을 입력받는다.
 *  [istream::ignore](http://itguru.tistory.com/193): 문자를 스트림에서 입력받고 버린다.
 *  [istream::gcount](http://itguru.tistory.com/192): 마지막 서식화되지 않는 입력 작업에서 입력 받은 문자의 수를 얻는다.
-
-
-

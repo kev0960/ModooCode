@@ -59,26 +59,25 @@ char * strncpy ( char * destination, const char * source, size_t num );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
-str2 에  str1 의 첫 5 문자, 즉 "To be" 를 복사해 넣는다. 이 때, str2 에는 자동으로 끝에 NULL 문자가 붙는 것이 아니므로 인위적으로 넣어주어야 한다.
-이 예제는
-http://www.cplusplus.com/reference/clibrary/cstring/strncpy/
-에서 가져왔습니다.
+str2 에  str1 의 첫 5 문자, 즉 "To be" 를 복사해 넣는다. 이 때, str2 에는
+자동으로 끝에 NULL 문자가 붙는 것이 아니므로 인위적으로 넣어주어야 한다. 이
+예제는 http://www.cplusplus.com/reference/clibrary/cstring/strncpy/ 에서
+가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str1[]= "To be or not to be";
-    char str2[6];
-    strncpy (str2,str1,5);
-    str2[5]='\0';
-    puts (str2);
-    return 0;
+int main() {
+  char str1[] = "To be or not to be";
+  char str2[6];
+  strncpy(str2, str1, 5);
+  str2[5] = '\0';
+  puts(str2);
+  return 0;
 }
 ```
 
@@ -95,7 +94,7 @@ int main ()
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 다음 소스는
@@ -103,15 +102,14 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 에서 가져온 것입니다.
 
 */
-char *strncpy(char *dest, const char *source, size_t count)
-{
-    char *start = dest;
+char *strncpy(char *dest, const char *source, size_t count) {
+  char *start = dest;
 
-    while (count && (*dest++ = *source++)) count--;
-    if (count) while (--count) *dest++ = '\0';
-    return start;
+  while (count && (*dest++ = *source++)) count--;
+  if (count)
+    while (--count) *dest++ = '\0';
+  return start;
 }
-
 ```
 
 

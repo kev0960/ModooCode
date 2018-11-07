@@ -25,32 +25,28 @@ next_page : 83
 
 
 
-```cpp
+```cpp-formatted
 /* 구조체 안의 구조체*/
 #include <stdio.h>
-struct employee
-{
-    int age;
-    int salary;
+struct employee {
+  int age;
+  int salary;
 };
-struct company
-{
-    struct employee data;
-    char name[10];
+struct company {
+  struct employee data;
+  char name[10];
 };
-int main()
-{
-    struct company Kim;
+int main() {
+  struct company Kim;
 
-    Kim.data.age = 31;
-    Kim.data.salary = 3000000;
+  Kim.data.age = 31;
+  Kim.data.salary = 3000000;
 
-    printf("Kim's age : %d \n", Kim.data.age);
-    printf("Kim's salary : %d$/year \n", Kim.data.salary);
+  printf("Kim's age : %d \n", Kim.data.age);
+  printf("Kim's salary : %d$/year \n", Kim.data.salary);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 했다면
@@ -60,37 +56,34 @@ int main()
 
 먼저 `employee` 구조체를 살펴 봅시다.
 
-```cpp
-struct employee
-{
-    int age;
-    int salary;
+```cpp-formatted
+struct employee {
+  int age;
+  int salary;
 };
 ```
 
 위 구조체에는 `int` 형의 `age` 와 `salary` 변수 두 개가 멤버로 되어 있습니다. 다음, `company` 구조체를 살펴보면
 
-```cpp
-struct company
-{
-    struct employee data;
-    char name[10];
+```cpp-formatted
+struct company {
+  struct employee data;
+  char name[10];
 };
-
 ```
 
 와 같이 또다른 구조체 변수를 멤버로 가짐을 볼 수 있습니다. 뭔가 이상하다는 느낌이 들 수 도 있는데, 사실 위와 같이 정의해도 되는 것은 당연한 일입니다. 왜냐하면 제가 이전에도 말했듯이 구조체는 **사용자가 정의한 또다른 형(type)** 이라고 보는 것이기 때문이죠.
 
 구조체 역시 `int` 나 `char` 과 같은 하나의 형 입니다. 우리가 만든 형은 이름이 `struct employee` 라는 것이고, 그 중 `data` 라는 (구조체) 변수를 생성하였죠. 이는 `int a` 와 지극히 똑같은 작업 입니다.
 
-```cpp
-    struct company Kim;
+```cpp-formatted
+struct company Kim;
 ```
 
 위와 같이 `company` 구조체를 정의한 뒤, 'struct company' 형의 변수 `Kim` 을 정의하였습니다. 이제, `Kim` 의 멤버들에게 값을 대입해 보아야 겠죠.
 
-```cpp
-    Kim.data.age = 31;
+```cpp-formatted
+Kim.data.age = 31;
 ```
 
 일단 위 문장을 살펴 봅시다. '.' 연산자의 우선 순위는 왼쪽 부터 이므로 `Kim.data` 가 해석 된 후, `(Kim.data).age` 가 해석이 됩니다. 다시 말해 "`Kim` 의 `data` 멤버의 `age` 멤버" 로 생각 되는 것이지요. 따라서 위와 같이 "Kim 의 `data` 멤버의 `age` 멤버" 에 31 의 값을 넣었습니다. 마찬가지로 `salary` 에 30000 을 넣었습니다.
@@ -103,31 +96,28 @@ struct company
 
 구조체는 말그대로 여러분이 창조하신 하나의 타입이기 때문에 `int , char` 등이 가능했던 모든 것들을 구조체는 그대로 할 수 있습니다. 역시 구조체 형을 리턴하는 함수도 가능하겠지요.
 
-```cpp
+```cpp-formatted
 /* 구조체를 리턴하는 함수 */
 #include <stdio.h>
 struct AA function(int j);
-struct AA
-{
-    int i;
+struct AA {
+  int i;
 };
 
-int main()
-{
-    struct AA a;
+int main() {
+  struct AA a;
 
-    a = function(10);
-    printf("a.i : %d \n", a.i);
+  a = function(10);
+  printf("a.i : %d \n", a.i);
 
-return 0;
+  return 0;
 }
 
-struct AA function(int j)
-{
-    struct AA A;
-    A.i = j;
+struct AA function(int j) {
+  struct AA A;
+  A.i = j;
 
-    return A;
+  return A;
 }
 ```
 
@@ -139,32 +129,30 @@ struct AA function(int j)
 
 먼저 `AA` 라는 구조체를 정의하였습니다. 편의상 멤버는 `int` i  로 하나만 가진다고 합시다.
 
-```cpp
-struct AA
-{
-    int i;
+```cpp-formatted
+struct AA {
+  int i;
 };
 ```
 
 
 아래는 "struct AA" 형을 리턴하는 함수 `function` 입니다. 인자로는 `int j` 를 취합니다.
 
-```cpp
-struct AA function(int j)
-{
-    struct AA A;
-    A.i = j;
+```cpp-formatted
+struct AA function(int j) {
+  struct AA A;
+  A.i = j;
 
-    return A;
+  return A;
 }
 ```
 
 말그래도 `struct AA` 형을 리턴하기 때문에 리턴하는 것 역시 `struct AA` 형의 것이 되야 합니다. 위 함수는 인자로 받는 `j` 값으로 `A` 의 `i` 멤버를 `j` 의 값으로 초기화 한 후 이를 그대로 리턴합니다.
 
-```cpp
-    struct AA a;
+```cpp-formatted
+struct AA a;
 
-    a = function(10);
+a = function(10);
 ```
 
 우리는 `main` 함수에서 `struct AA` 타입의 구조체 변수 `a` 를 정의하였습니다. 그렇다면 `a = function(10);` 을 통해 `function(10)` 이 리턴한 구조체의 대입이 일어나게 됩니다.  `function(10)` 은 '`i` 멤버의 값이 10 인 구조체 변수' 를 리턴하므로 `a` 의 `i` 멤버 값은 10 이 됩니다.
@@ -181,53 +169,47 @@ struct Anomynous Var1, Var2; // "struct Anomynous" 형의 변수 Var1 , Var2 를
 
 그런데 구조체 변수를 정의하는 방법 중 아래와 같이 색다른 방법을 소개해 드립니다.
 
-```cpp
+```cpp-formatted
 /*
 
 구조체 변수를 정의하는 색다른 방법.
-예제를 이렇게 길게 만든 이유는 소스를 읽으면서 구조체와 조금 더 친해지기 바래서 입니다.
-소스를 찬찬히 분석해보세요 ^^
+예제를 이렇게 길게 만든 이유는 소스를 읽으면서 구조체와 조금 더 친해지기 바래서
+입니다. 소스를 찬찬히 분석해보세요 ^^
 
 */
 #include <stdio.h>
 char copy_str(char *dest, char *src);
-int Print_Obj_Status (struct obj OBJ);
-struct obj
-{
-    char name[20];
-    int x,y;
+int Print_Obj_Status(struct obj OBJ);
+struct obj {
+  char name[20];
+  int x, y;
 } Ball;
 
-int main()
-{
-    Ball.x = 3;
-    Ball.y = 4;
-    copy_str(Ball.name, "RED BALL");
+int main() {
+  Ball.x = 3;
+  Ball.y = 4;
+  copy_str(Ball.name, "RED BALL");
 
-    Print_Obj_Status(Ball);
+  Print_Obj_Status(Ball);
 
-    return 0;
-
+  return 0;
 }
-int Print_Obj_Status (struct obj OBJ)
-{
-    printf("Location of %s \n", OBJ.name);
-    printf("( %d , %d ) \n", OBJ.x, OBJ.y);
+int Print_Obj_Status(struct obj OBJ) {
+  printf("Location of %s \n", OBJ.name);
+  printf("( %d , %d ) \n", OBJ.x, OBJ.y);
 
-    return 0;
+  return 0;
 }
-char copy_str(char *dest, char *src)
-{
-    while (*src)
-    {
-        *dest = *src;
-        src ++;
-        dest ++;
-    }
+char copy_str(char *dest, char *src) {
+  while (*src) {
+    *dest = *src;
+    src++;
+    dest++;
+  }
 
-    *dest = '\0';
+  *dest = '\0';
 
-    return 1;
+  return 1;
 }
 ```
 
@@ -236,17 +218,16 @@ char copy_str(char *dest, char *src)
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F195FEB0C4C14C8D901E478)
 
-```cpp
-struct obj
-{
-    char name[20];
-    int x,y;
+```cpp-formatted
+struct obj {
+  char name[20];
+  int x, y;
 } Ball;
 ```
 
 저는 위와 같이 "sturct obj" 라는 구조체를 정의하였고 멤버는 위와 같습니다. 그런데, 맨 아래 `Ball` 은 무엇인가요? 이는 바로 그냥 `sturct obj` 형의 `Ball` 이란 구조체 변수를 정의하라는 뜻입니다. 사실 우리가 `main` 함수 내부에서
 
-```cpp
+```cpp-formatted
 struct obj Ball;
 ```
 
@@ -254,53 +235,44 @@ struct obj Ball;
 
 나머지 부분은 여러분이 스스로 분석해 보시기 바랍니다.
 
-```cpp
+```cpp-formatted
 /* 멤버를 쉽게 초기화 하기*/
 #include <stdio.h>
 int Print_Status(struct HUMAN human);
-struct HUMAN
-{
-    int age;
-    int height;
-    int weight;
-    int gender;
+struct HUMAN {
+  int age;
+  int height;
+  int weight;
+  int gender;
 };
 
-int main()
-{
-    struct HUMAN Adam = {31, 182, 75, 0};
-    struct HUMAN Eve = {27, 166, 48, 1};
+int main() {
+  struct HUMAN Adam = {31, 182, 75, 0};
+  struct HUMAN Eve = {27, 166, 48, 1};
 
-    Print_Status(Adam);
-    Print_Status(Eve);
+  Print_Status(Adam);
+  Print_Status(Eve);
 }
 
-int Print_Status(struct HUMAN human)
-{
-    if(human.gender == 0)
-    {
-        printf("MALE \n");
-    }
-    else
-    {
-        printf("FEMALE \n");
-    }
+int Print_Status(struct HUMAN human) {
+  if (human.gender == 0) {
+    printf("MALE \n");
+  } else {
+    printf("FEMALE \n");
+  }
 
-    printf("AGE : %d / Height : %d / Weight : %d \n", human.age, human.height, human.weight);
+  printf("AGE : %d / Height : %d / Weight : %d \n", human.age, human.height,
+         human.weight);
 
-    if(human.gender == 0 && human.height >= 180)
-    {
-        printf("HE IS A WINNER!! \n");
-    }
-    else if(human.gender == 0 && human.height < 180)
-    {
-        printf("HE IS A LOSER!! \n");
-    }
+  if (human.gender == 0 && human.height >= 180) {
+    printf("HE IS A WINNER!! \n");
+  } else if (human.gender == 0 && human.height < 180) {
+    printf("HE IS A LOSER!! \n");
+  }
 
-    printf("------------------------------------------- \n");
+  printf("------------------------------------------- \n");
 
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -311,35 +283,33 @@ int Print_Status(struct HUMAN human)
 
 위 예제도 역시 구조체의 잡다한 기능 중 하나를 보여주고 있습니다. 바로 멤버를 초기화 하는 방식 인데요, 우리가 이전까지 멤버를 초기화 해온 방법 보다 더 쉽게 할 수 있습니다.
 
-```cpp
-struct HUMAN
-{
-    int age;
-    int height;
-    int weight;
-    int gender;
+```cpp-formatted
+struct HUMAN {
+  int age;
+  int height;
+  int weight;
+  int gender;
 };
 ```
 
 `HUMAN` 구조체는 위와 같이 4 개의 `int` 형 멤버들을 가지고 있습니다.
 
-```cpp
-    struct HUMAN Adam = {31, 182, 75, 0};
-    struct HUMAN Eve = {27, 166, 48, 1};
+```cpp-formatted
+struct HUMAN Adam = {31, 182, 75, 0};
+struct HUMAN Eve = {27, 166, 48, 1};
 ```
 
 그리고 `main` 내부에서 위와 같이 `Adam` 과 `Eve` 를 정의하였죠. 이 때, `= {}` 를 통해서 중괄호 내부의 정보들이 순차적으로 각 멤버에 대입되게 됩니다. 따라서 `Adam` 의 경우 `age` 에는 31 이, `height` 에는 182 가, `weight` 에는 75, `gender` 에는 0 이 들어가게 되죠.
 
 이전 예제에서 배운 초기화 방식에서는 다음과 같이 해주면 됩니다.
 
-```cpp
-struct HUMAN
-{
-    int age;
-    int height;
-    int weight;
-    int gender;
-}Adam = {31, 182, 75, 0}, Eve = {27, 166, 48, 1};
+```cpp-formatted
+struct HUMAN {
+  int age;
+  int height;
+  int weight;
+  int gender;
+} Adam = {31, 182, 75, 0}, Eve = {27, 166, 48, 1};
 ```
 
 
@@ -356,12 +326,11 @@ struct obj
 
 의 경우 어떻게 하면 될까요? 간단 합니다.
 
-```cpp
-struct obj
-{
-    char name[20];
-    int x,y;
-} Ball={"abc", 10, 2};
+```cpp-formatted
+struct obj {
+  char name[20];
+  int x, y;
+} Ball = {"abc", 10, 2};
 ```
 
 와 같이 하게 되면 `name` 에는 "abc" `, x` 에는 `10, y` 에는 2 가 들어가게 됩니다.
@@ -380,21 +349,19 @@ struct obj
 
 위 그림을 보아도 알 수 있듯이 공용체의 각 멤버들의메모리 시작 주소는 모두 동일합니다. 따라서 우리는 위 그림의 `union A` 의 경우 `j` 의 값을 변경함으로 써 `i` 의 값을 변경할 수 있고 마찬가지로 `i` 의 값을 변경함으로써  `j` 의 값을 변경할 수 있게 됩니다. 과연 이 말이 진짜 인지 확인해 보도록 합시다.
 
-```cpp
+```cpp-formatted
 
 /* 공용체 */
 #include <stdio.h>
-union A
-{
-    int i;
-    char j;
+union A {
+  int i;
+  char j;
 };
-int main()
-{
-    union A a;
-    a.i = 0x12345678;
-    printf("%x", a.j);
-    return 0;
+int main() {
+  union A a;
+  a.i = 0x12345678;
+  printf("%x", a.j);
+  return 0;
 }
 ```
 
@@ -427,19 +394,17 @@ int main()
 
 와 같이 1 바이트 씩 역으로 보관함을 알 수 있습니다. 따라서 우리가 출력했던 `j` 값은 `0x78` 이 됩니다. 만일 `j` 를 `short` 형을 지정했으면 어떨까요? `0x7856` 이 나올까요? `0x5678` 이 나올까요?
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-union A
-{
-    int i;
-    short j;
+union A {
+  int i;
+  short j;
 };
-int main()
-{
-    union A a;
-    a.i = 0x12345678;
-    printf("%x", a.j);
-    return 0;
+int main() {
+  union A a;
+  a.i = 0x12345678;
+  printf("%x", a.j);
+  return 0;
 }
 ```
 
@@ -491,25 +456,29 @@ if(human.gender == MALE) // 사람의 성별이 남자 일 때
 
 와 같이 한다면 확실히 알아 듣기 쉽겠지요. 하지만 문제는 이를 위해 `MALE` 이라는 상수를 설정해야 되고 이 때문에 메모리가 낭비되게 됩니다. 이는 프로그래머의 입장에서 난감한 일이 아닐 수 없지요. C 에서는 이를 **열거형(Enum)**을 도입해서 말끔하게 해결해줍니다.
 
-```cpp
+```cpp-formatted
 
 /* 열거형의 도입 */
 #include <stdio.h>
-enum {RED, BLUE, WHITE, BLACK};
-int main()
-{
-    int palette = RED;
-    switch(palette)
-    {
-    case RED:
-        printf("palette : RED \n");
-        break;
-    case BLUE:
-        printf("palette : BLUE \n");
-        break;
+enum { RED, BLUE, WHITE, BLACK };
+int main() {
+  int palette = RED;
+  switch (palette) {
+    case RED:
+      printf("palette : RED \n");
+      break;
+    case BLUE:
+      printf("palette : BLUE \n");
+      break;
 
-    case WHITE:        printf("palette : WHITE \n");        break;
-    case BLACK:        printf("palette : BLACK \n");        break;    }}
+    case WHITE:
+      printf("palette : WHITE \n");
+      break;
+    case BLACK:
+      printf("palette : BLACK \n");
+      break;
+  }
+}
 ```
 
 
@@ -525,8 +494,8 @@ int main()
 일단, 열거형을 정의한 부분 부터 살펴 봅시다.
 
 
-```cpp
-enum {RED, BLUE, WHITE, BLACK};
+```cpp-formatted
+enum { RED, BLUE, WHITE, BLACK };
 ```
 
 
@@ -549,15 +518,14 @@ if(palette == RED) // 현재 파레트의 색이 빨강인지 확인한다.
 
 
 
-```cpp
+```cpp-formatted
 
 /* 열거형 팁 */
 #include <stdio.h>
-enum {RED = 3, BLUE, WHITE, BLACK};
-int main()
-{
-    int palette = BLACK;
-    printf("%d \n", palette);
+enum { RED = 3, BLUE, WHITE, BLACK };
+int main() {
+  int palette = BLACK;
+  printf("%d \n", palette);
 }
 ```
 
@@ -573,15 +541,15 @@ int main()
 
 
 
-```cpp
-enum {RED = 3, BLUE, WHITE, BLACK};
+```cpp-formatted
+enum { RED = 3, BLUE, WHITE, BLACK };
 ```
 
 으로 한다면 `RED = 3` 부터 해서 `BLUE = 4, WHITE = 5, BLACK = 6` 이 됩니다. 또한,
 
 
-```cpp
-enum {RED = 3, BLUE , WHITE = 3, BLACK}
+```cpp-formatted
+enum { RED = 3, BLUE, WHITE = 3, BLACK }
 ```
 
 으로 한다면 수를 지정한 부분 부터 다시 시작 되는 방식으로 `BLUE = 4, BLACK = 4` 가 됩니다.

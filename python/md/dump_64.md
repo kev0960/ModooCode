@@ -71,30 +71,29 @@ C 문자열로 스트림에 써질 텍스트를 포함하고 있다 C 문자열�
 
 
 위 서식 문자를 이용한 다양한 출력 형태는 아래와 같다.
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    FILE *fp = fopen("output.txt", "w");
-    int integer = 123;
-    char character = 'c';
-    char string[] = "hello, world";
-    int* pointer = &integer;
-    double pi = 3.141592;
+int main() {
+  FILE* fp = fopen("output.txt", "w");
+  int integer = 123;
+  char character = 'c';
+  char string[] = "hello, world";
+  int* pointer = &integer;
+  double pi = 3.141592;
 
-    fprintf(fp, "integer : (decimal) %d (octal) %o \n", integer, integer);
+  fprintf(fp, "integer : (decimal) %d (octal) %o \n", integer, integer);
 
-    fprintf(fp, "character : %c \n", character);
+  fprintf(fp, "character : %c \n", character);
 
-    fprintf(fp, "string : %s \n", string);
+  fprintf(fp, "string : %s \n", string);
 
-    fprintf(fp, "pointer addr : %p \n", pointer);
+  fprintf(fp, "pointer addr : %p \n", pointer);
 
-    fprintf(fp, "floating point : %e // %f \n", pi, pi);
+  fprintf(fp, "floating point : %e // %f \n", pi, pi);
 
-    fprintf(fp, "percent symbol : %% \n");
+  fprintf(fp, "percent symbol : %% \n");
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -131,35 +130,33 @@ int main()
 | (수) | 출력할 최소의 문자 개수. 만일 이 수 보다 출력할 수 보다 작다면 빈칸을 삽입하여 길이를 맞춘다. 대신에, 이 수 보다 출력할 수가 큰 수의 경우 잘려서 출력되지는 않는다.|
 |`*`   |폭을 형식 문자열에 지정해서 받지 않지만, 그 대신에 형식 문자열 뒤에 오는 인자들에 넣어서 받는다. 이 때, 이는 정수 값이여야 하며 폭을 지정하는 변수 뒤에 출력할 데이터가 위치하면 된다.|
 
-```cpp
+```cpp-formatted
 /* 사용 예 */
 #include <stdio.h>
-int main()
-{
-    FILE *fp = fopen("output.txt", "w");
-    int i = 123;
-    int j = -123;
-    double f = 3.141592;
+int main() {
+  FILE *fp = fopen("output.txt", "w");
+  int i = 123;
+  int j = -123;
+  double f = 3.141592;
 
-    fprintf(fp, "폭 맞추기 \n");
-    fprintf(fp, "i : %6d \n", i);
-    fprintf(fp, "i : %7d \n", i);
-    fprintf(fp, "i : %2d \n\n", i);
+  fprintf(fp, "폭 맞추기 \n");
+  fprintf(fp, "i : %6d \n", i);
+  fprintf(fp, "i : %7d \n", i);
+  fprintf(fp, "i : %2d \n\n", i);
 
-    fprintf(fp, "왼쪽 정렬 \n");
-    fprintf(fp, "i : %5d끝 \n", i);
-    fprintf(fp, "오른쪽 정렬 \n");
-    fprintf(fp, "i : %-5d끝 \n\n", i);
+  fprintf(fp, "왼쪽 정렬 \n");
+  fprintf(fp, "i : %5d끝 \n", i);
+  fprintf(fp, "오른쪽 정렬 \n");
+  fprintf(fp, "i : %-5d끝 \n\n", i);
 
-    fprintf(fp, "# 문자의 사용 \n");
-    fprintf(fp, "i : %#x \n", i);
-    fprintf(fp, "i : %#X \n\n", i);
+  fprintf(fp, "# 문자의 사용 \n");
+  fprintf(fp, "i : %#x \n", i);
+  fprintf(fp, "i : %#X \n\n", i);
 
-    fprintf(fp, "부호 붙이기 \n");
-    fprintf(fp, "%+d, %+d \n", i,j);
-    return 0;
+  fprintf(fp, "부호 붙이기 \n");
+  fprintf(fp, "%+d, %+d \n", i, j);
+  return 0;
 }
-
 ```
 
 출력결과
@@ -187,20 +184,18 @@ int main()
 |`l`|정수 서식 문자(i,d,o,u,x, `X)` 에 사용되었을 경우 인자를 `long int` 나 `unsigned long int` 로 생각하며 `c` 나 `s` 에 사용되었을 경우 `wide character` 나 `wide string` 으로 생각한다.|
 |`L`|인자를 `long double` 로 생각한다. (오직 부동 소수점 서식 문자인 `e,E,f,g, G` 에만 적용된다)|
 
-```cpp
+```cpp-formatted
 /* 사용 예 */
 #include <stdio.h>
-int main()
-{
-    double f = 3.141592;
-    int i = 12345;
+int main() {
+  double f = 3.141592;
+  int i = 12345;
 
-    fprintf(stdout, "f : %.3f \n", f);
-    fprintf(stdout, "i : %.10d \n", i);
+  fprintf(stdout, "f : %.3f \n", f);
+  fprintf(stdout, "i : %.10d \n", i);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 출력 결과
@@ -227,31 +222,29 @@ int main()
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 사용자로 부터 이름을 입력받아 이를 깔끔하게 myfile.txt 에 기록한다.
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fprintf/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    int n;
-    char name [100];
+int main() {
+  FILE* pFile;
+  int n;
+  char name[100];
 
-    pFile = fopen ("myfile.txt","w");
-    for (n=0 ; n<3 ; n++)
-    {
-        puts ("please, enter a name: ");
-        gets (name);
-        fprintf (pFile, "Name %d [%-10.10s]\n",n,name);
-    }
-    fclose (pFile);
+  pFile = fopen("myfile.txt", "w");
+  for (n = 0; n < 3; n++) {
+    puts("please, enter a name: ");
+    gets(name);
+    fprintf(pFile, "Name %d [%-10.10s]\n", n, name);
+  }
+  fclose(pFile);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -289,7 +282,3 @@ int main ()
 *  [fwrite](http://itguru.tistory.com/69)  :  스트림에 데이터 블록을 쓴다.
 
 *  [fputs](http://itguru.tistory.com/40)  :  스트림에 문자열을 쓴다.
-
-
-
-

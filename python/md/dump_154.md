@@ -54,9 +54,9 @@ ref_title : ios_base::fmtflags, fmtflags
 
 참고로 `ios_base::fmtflags` 타입의 이 값들은 같은 이름을 가진 전역 함수인 조작자들과 혼동되서는 안된다. 이 조작자들은 `ios_base::fmtflags` 타입으로 사용될 수 없으며 (사실 그들은 함수이다!), 이들 상수를 조작자로도 사용할 수 없다. 예컨대 아래와 같은 차이가 있다.
 
-```cpp
-ios_base::skipws     // ios_base::fmtflags 타입의 상수
-skipws               // 조작자 (전역 함수)
+```cpp-formatted
+ios_base::skipws  // ios_base::fmtflags 타입의 상수
+  skipws          // 조작자 (전역 함수)
 ```
 
 
@@ -71,7 +71,7 @@ skipws               // 조작자 (전역 함수)
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -82,37 +82,36 @@ http://www.cplusplus.com/reference/iostream/ios_base/fmtflags/
 #include <iostream>
 using namespace std;
 
-int main ()
-{
-  // fmtflags 타입 상수들을 직접 이용하기
-  cout.setf (ios_base::hex , ios_base::basefield);
-  cout.setf (ios_base::showbase);
-  cout << 100 << endl;
+int main() {
+  // fmtflags 타입 상수들을 직접 이용하기
+  cout.setf(ios_base::hex, ios_base::basefield);
+  cout.setf(ios_base::showbase);
+  cout << 100 << endl;
 
-  // ios_base 를 상속 받은 ios 에서도 이 멤버들에 접근할 수 있다.
-  cout.setf (ios::hex , ios::basefield);
-  cout.setf (ios::showbase);
-  cout << 100 << endl;
+  // ios_base 를 상속 받은 ios 에서도 이 멤버들에 접근할 수 있다.
+  cout.setf(ios::hex, ios::basefield);
+  cout.setf(ios::showbase);
+  cout << 100 << endl;
 
-  // 역시 이들을 객체의 멤버 상수들로도 접근할 수 있다.
-  cout.setf (cout.hex , cout.basefield);
-  cout.setf (cout.showbase);
-  cout << 100 << endl;
+  // 역시 이들을 객체의 멤버 상수들로도 접근할 수 있다.
+  cout.setf(cout.hex, cout.basefield);
+  cout.setf(cout.showbase);
+  cout << 100 << endl;
 
-  // fmtflags 를 타입 자체로도 사용할 수 있다.
-  ios_base::fmtflags ff;
-  ff = cout.flags();
-  ff &= ~cout.basefield;   // basefield 비트들을 초기화 시켜버린다.
-  ff |= cout.hex;          // hex 를 설정
-  ff |= cout.showbase;     // showbase 를 설정
-  cout.flags(ff);
-  cout << 100 << endl;
+  // fmtflags 를 타입 자체로도 사용할 수 있다.
+  ios_base::fmtflags ff;
+  ff = cout.flags();
+  ff &= ~cout.basefield;  // basefield 비트들을 초기화 시켜버린다.
+  ff |= cout.hex;         // hex 를 설정
+  ff |= cout.showbase;    // showbase 를 설정
+  cout.flags(ff);
+  cout << 100 << endl;
 
-  // 아래는 fmtflags 타입 멤버들을 이용한 것은 아니고
-  // 이름이 동일한 조작자 showbase 를 이용한 것이다
-  cout << hex << showbase << 100 << endl;
+  // 아래는 fmtflags 타입 멤버들을 이용한 것은 아니고
+  // 이름이 동일한 조작자 showbase 를 이용한 것이다
+  cout << hex << showbase << 100 << endl;
 
-  return 0;
+  return 0;
 }
 ```
 
@@ -138,8 +137,3 @@ int main ()
 *  [ios_base::unsetf](http://itguru.tistory.com/156)  :  특정 서식 플래그를 초기화 한다.
 
 * setiosflags  :  서식 플래그들을 설정한다 (조작자)
-
-
-
-
-

@@ -20,14 +20,11 @@ next_page : 98
 
 만일 여러분이 다른 곳에서 C 를 배웠더라면 다음과 같은 것을 보셨을 수 도 있습니다.
 
-```cpp
+```cpp-formatted
 /* 특별한 hello world */
 #include <stdio.h>
 
-void main()
-{
-    printf("Hello, World! \n");
-}
+void main() { printf("Hello, World! \n"); }
 ```
 
 
@@ -38,7 +35,7 @@ void main()
 
 일단, 위 소스 코드에서 살펴볼 부분은 두 가지 입니다. 먼저 함수의 정의 부분을 보면
 
-```cpp
+```cpp-formatted
 void main()
 ```
 
@@ -49,19 +46,16 @@ void main()
 
 이렇게 `void` 형 함수는 아무것도 리턴하지 않으므로 다음과 같은 문장은 모두 틀린 셈입니다.
 
-```cpp
+```cpp-formatted
 void a();
-int main()
-{
-    int i;
-    i=a();
+int main() {
+  int i;
+  i = a();
 
-    return 0;
+  return 0;
 }
 
-void a()
-{
-}
+void a() {}
 ```
 
 
@@ -69,30 +63,27 @@ void a()
 
 `void` 형 변수는 많은 곳에서 사용 됩니다. 주로, '리턴을 할 필요가 없는 함수' 들의 경우가 대부분이죠. 예를 들어서 두 변수의 값을 교환하는 함수를 생각해봅시다. 아마 여러분은 여태까지 다음과 같이 함수를 만들었을 것입니다.
 
-```cpp
-int swap(int *a, int *b)
-{
-    int temp;
+```cpp-formatted
+int swap(int *a, int *b) {
+  int temp;
 
-    temp = *a;
-    *a = *b;
-    *b = temp;
+  temp = *a;
+  *a = *b;
+  *b = temp;
 
-    return 0;
+  return 0;
 }
-
 ```
 
 하지만 `swap` 함수는 리턴할 필요가 전혀 없죠. 단순히 두 수의 값만 바꾸면 끝인데 뭐하러 귀찮게 리턴을 하냐 말이죠. 오히려 불필요한 `return` 0; 를 수행할 시간 동안 다른 작업을 하는 것이 훨씬 효율적이라 생각됩니다. 이렇게 `return` 문이 불필요한 경우 `void` 함수를 사용하면
 
-```cpp
-void swap(int *a, int *b)
-{
-    int temp;
+```cpp-formatted
+void swap(int *a, int *b) {
+  int temp;
 
-    temp = *a;
-    *a = *b;
-    *b = temp;
+  temp = *a;
+  *a = *b;
+  *b = temp;
 }
 ```
 
@@ -107,16 +98,15 @@ void swap(int *a, int *b)
 
 
 
-```cpp
+```cpp-formatted
 /* void 형 변수?? */
 #include <stdio.h>
-int main()
-{
-    void a;
+int main() {
+  void a;
 
-    a = 3;
+  a = 3;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -130,15 +120,15 @@ error C2182: 'a' : 'void' 형식을 잘못 사용했습니다.
 
 와 같은 오류 메세지를 보게 됩니다. 우리가 위에서 `void` 형 함수에 대해 살펴 보았습니다. 그렇다면 `void` 형의 변수도 정의할 수 있을 것 같은데 사실 이는 오류 입니다. 컴파일러가
 
-```cpp
-    int a;
+```cpp-formatted
+int a;
 ```
 
 
 라는 문장을 보게 된다면 컴파일러는 '아, `int` 형의 변수 `a` 를 선언하는 구나. 메모리 상에 미리 4 바이트의 공간을 마련해 놓아야지' 라고 생각할 것입니다. 그런데
 
-```cpp
-    void a;
+```cpp-formatted
+void a;
 ```
 
 
@@ -146,14 +136,13 @@ error C2182: 'a' : 'void' 형식을 잘못 사용했습니다.
 
 그렇다면 이것은 가능할까요?
 
-```cpp
+```cpp-formatted
 /* void 형을 가리키는 포인터 */
 #include <stdio.h>
-int main()
-{
-    void* a;
+int main() {
+  void* a;
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -162,28 +151,26 @@ int main()
 
 그렇다면 `void* a` 포인터는 `void` 형의 변수의 메모리 주소를 가지게 될까요? 물론, 논리를 따지고 보면 맞지만 `void` 형 변수라는 것은 존재할 수 없기 때문에 `void` 형 포인터의 존재는 쓸모가 없어 보입니다. 하지만 사실 `void` 는 타입이 없기 때문에 거꾸로 생각해 보면어떠한 형태의 포인터의 값이라도 담을 수 있게 됩니다. 예를 들면
 
-```cpp
-    void *a;
-    double b = 123.3;
+```cpp-formatted
+void *a;
+double b = 123.3;
 
-    a=&b;
-
+a = &b;
 ```
 
 와 같이 말이죠. 다시 말해 `a` 는 순전히 오직 '주소값의 보관' 역할만 하게 되는 셈입니다.
 
-```cpp
+```cpp-formatted
 /* b 의 값을 보려면 */
 #include <stdio.h>
-int main()
-{
-    void *a;
-    double b = 123.3;
+int main() {
+  void *a;
+  double b = 123.3;
 
-    a=&b;
+  a = &b;
 
-    printf("%lf", *a);
-    return 0;
+  printf("%lf", *a);
+  return 0;
 }
 ```
 
@@ -197,19 +184,16 @@ error C2100: 간접 참조가 잘못되었습니다.
 
 와 같은 오류를 보게 됩니다. 이 오류가 발생하는 이유 역시 쉽게 알 수 있습니다. 왜냐하면 컴파일러는 `*a` 가 무엇을 말하는지 알 수 없거든요. 여태까지 `*a` 를 해석할 때 컴파일러는 `a` 가 가리키는 것의 타입을 보고 메모리 상에서 `a` 부터 얼마 만큼 읽어들어야 할 지 결정했는데 `void a;` 의 경우 메모리 상에서 얼마만큼 읽어들여야 할 지 모르기 때문입니다. 따라서 이는 다음과 같이 수정되어야 합니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    void *a;
-    double b = 123.3;
+int main() {
+  void *a;
+  double b = 123.3;
 
-    a=&b;
+  a = &b;
 
-    printf("%lf", *(double *)a)
-    return 0;
+  printf("%lf", *(double *)a) return 0;
 }
-
 ```
 
 성공적으로 컴파일 하였다면
@@ -219,8 +203,8 @@ int main()
 
 와 같이 잘 출력됨을 알 수 있습니다.
 
-```cpp
-    printf("%lf", *(double *)a);
+```cpp-formatted
+printf("%lf", *(double *)a);
 ```
 
 
@@ -234,27 +218,24 @@ int main()
 
 따라서 우리는 순전히 주소값 만을 받기 위해서는 `void` 형 포인터를 사용하는 것이 바람직하다고 볼 수 있습니다. 물론 포인터 간의 형변환을 통해서 처리할 수 있지만 어떠한 형태의 포인터 주소값도 가능하다라는 의미를 살리기 위해서는 `void` 형 포인터를 이용하는 것이 바람직합니다.
 
-```cpp
+```cpp-formatted
 /* 임의의 주소값 p 로 부터 byte 만큼 읽은 함수*/
 #include <stdio.h>
 int read_char(void *p, int byte);
-int main ()
-{
-    int arr[1]={0x12345678};
+int main() {
+  int arr[1] = {0x12345678};
 
-    printf("%x \n", arr[0]);
-    read_char(arr, 4);
+  printf("%x \n", arr[0]);
+  read_char(arr, 4);
 }
-int read_char(void *p, int byte)
-{
-    do
-    {
-        printf("%x \n", *(char *)p);
-        byte--;
+int read_char(void *p, int byte) {
+  do {
+    printf("%x \n", *(char *)p);
+    byte--;
 
-    }while( ((char *)p) ++ && byte);
+  } while (((char *)p)++ && byte);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -266,13 +247,12 @@ int read_char(void *p, int byte)
 
 `read_char` 함수를 살펴봅시다. 무언가 여태까지 해온 것 보다 코딩 실력이 업그레이드 된 것 같은데 찬찬히 살펴 보면
 
-```cpp
-    do
-    {
-        printf("%x \n", *(char *)p);
-        byte--;
+```cpp-formatted
+do {
+  printf("%x \n", *(char *)p);
+  byte--;
 
-    }while( ((char *)p) ++ && byte);
+} while (((char *)p)++ && byte);
 ```
 
 
@@ -282,8 +262,8 @@ int read_char(void *p, int byte)
 
 아무튼 이와 같은 방법으로 `p` 의 주소값을 계속 1 씩 증가시키는데, 이 때 `byte` 의 값이 0 이되거나 (`(char *)p)` 의 값이 0 (즉 `NULL` 일 때) `while` 문이 종료됩니다. 제가 `do while` 을 이용한 이유는 만일 동일한 조건문으로 `while` 문을 만들게 된다면 처음에 `((char *)p)++` 이 먼저 실행되기 때문에 `p` 부터 읽지 않고 `p + 1` 부터 읽게되는 불상사가 발생하기 때문에 이를 막기 위해 `do while` 문을 이용했습니다.
 
-```cpp
-      printf("%x \n", *(char *)p);
+```cpp-formatted
+printf("%x \n", *(char *)p);
 ```
 
 는 `p` 가 가리키는 주소값에 위치한 데이터 1 바이트 씩 16 진수로 출력하게 됩니다. 따라서 `read_char` 함수를 호출함을 통해 `int` 형 배열인 `arr` 의 원소를 1 바이트씩 읽게 되는 것이죠. 어떤 사람들은 그 결과가 12 34 56 78 순으로 출력해야 한다고 물을 수 있는데, 이는 '엔디안' 에 대한 개념이 없는 것이기 때문에 [이 강좌](http://itguru.tistory.com/71)를 잠시 보고 오시기 바랍니다.
@@ -294,18 +274,15 @@ int read_char(void *p, int byte)
 
 ###  메인 함수의 인자
 
-```cpp
+```cpp-formatted
 /* main 함수의 인자라고?? */
 #include <stdio.h>
-int main (int argc, char **argv)
-{
-    printf("받은 인자의 개수 : %d \n", argc);
-    printf("이 프로그램의 경로 : %s \n", argv[0]);
+int main(int argc, char **argv) {
+  printf("받은 인자의 개수 : %d \n", argc);
+  printf("이 프로그램의 경로 : %s \n", argv[0]);
 
-    return 0;
-
+  return 0;
 }
-
 ```
 
 성공적으로 컴파일 했다면
@@ -315,8 +292,8 @@ int main (int argc, char **argv)
 
 아마도 이 강좌를 보고 계신 여러분 중 일부는 위와 같은 메인 함수에 친숙하실 지도 모릅니다.
 
-```cpp
-int main (int argc, char **argv)
+```cpp-formatted
+int main(int argc, char **argv)
 ```
 
 
@@ -324,21 +301,18 @@ int main (int argc, char **argv)
 
 일단 `argc` 는 `main` 함수가 받은 인자의 수 입니다. 그리고 `argv` 는 `main` 함수가 받은 각각의 인자들을 나타내죠. 프로그램을 실행하면 기본적으로 아무런 인자들을 넣지 않더라도 위와 같은 정보는 들어가게 됩니다. 즉, `main` 함수는 자신의 실행 경로를 인자로 받게 되죠. 그렇다면 다른 인자들도 넣을 수 있을까요? 한 번 해봅시다.
 
-```cpp
+```cpp-formatted
 /* 인자를 가지는 메인 함수 */
 #include <stdio.h>
-int main (int argc, char **argv)
-{
-    int i;
-    printf("받은 인자의 개수 : %d \n", argc);
+int main(int argc, char **argv) {
+  int i;
+  printf("받은 인자의 개수 : %d \n", argc);
 
-    for(i=0; i < argc; i++)
-    {
-        printf("이 프로그램이 받은 인자 : %s \n", argv[i]);
-    }
+  for (i = 0; i < argc; i++) {
+    printf("이 프로그램이 받은 인자 : %s \n", argv[i]);
+  }
 
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -455,8 +429,3 @@ calc.exe 5 + 10
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-
-

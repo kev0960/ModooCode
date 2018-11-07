@@ -32,25 +32,23 @@ next_page : 100
 
 도대체 어떻게 그런 일이 가능할까요.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char **argv)
-{
-    int SizeOfArray;
-    int *arr;
+int main(int argc, char **argv) {
+  int SizeOfArray;
+  int *arr;
 
-    printf("만들고 싶은 배열의 원소의 수 : ");
-    scanf("%d", &SizeOfArray);
+  printf("만들고 싶은 배열의 원소의 수 : ");
+  scanf("%d", &SizeOfArray);
 
-    arr = (int *)malloc(sizeof(int) * SizeOfArray);
-    // int arr[SizeOfArray] 와 동일한 작업을 한 크기의 배열 생성
+  arr = (int *)malloc(sizeof(int) * SizeOfArray);
+  // int arr[SizeOfArray] 와 동일한 작업을 한 크기의 배열 생성
 
-    free(arr);
+  free(arr);
 
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -62,16 +60,16 @@ int main(int argc, char **argv)
 
 일단 위 예제를 통해서는 정말 우리가 원하는 크기의 배열이 생겼는지는 모르겠지만 일단 위 소스코드 부터 파헤쳐봅시다.
 
-```cpp
-    printf("만들고 싶은 배열의 원소의 수 : ");
-    scanf("%d", &SizeOfArray);
+```cpp-formatted
+printf("만들고 싶은 배열의 원소의 수 : ");
+scanf("%d", &SizeOfArray);
 ```
 
 
 먼저 우리는 위 과정을 통해서 우리가 원하고자 하는 `int` 배열의 원소의 개수를 입력 받았습니다. 그리고,
 
-```cpp
-    arr = (int *)malloc(sizeof(int) * SizeOfArray);
+```cpp-formatted
+arr = (int *)malloc(sizeof(int) * SizeOfArray);
 ```
 
 
@@ -85,8 +83,8 @@ int main(int argc, char **argv)
 
 따라서 `arr` 에는 `malloc` 이 할당해준 메모리를 이용할 수 있게 됩니다. 즉, `arr[SizeOfArray]` 만큼을 사용할 수 있게 되죠.
 
-```cpp
-    free(arr);
+```cpp-formatted
+free(arr);
 ```
 
 
@@ -106,40 +104,36 @@ int main(int argc, char **argv)
 하지만 힙의 경우 다릅니다. 메모리의 힙 부분은 사용자가 자유롭게 할당하거나 해제할 수 있습니다. 따라서 우리의 `malloc` 함수도 이 힙을 이용하는 것입니다. 우리가 만들어낸 `arr` 은 힙에 위치하고 있습니다. 힙은 할당과 해제가 자유로운 만큼 제대로 사용해야 합니다. 만일 힙에 할당은 하였는데 해제를 하지 않았다면 나중에 어떠한 문제가 발생할지 모릅니다. 다른 메모리 부분의 경우 컴퓨터가 알아서 처리하기 때문에 문제가 발생할 여지가 적지만 힙은 인간이 다루는 만큼 철저히 해야 합니다.
 
 
-```cpp
+```cpp-formatted
 /* 동적 할당의 활용 */
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char **argv)
-{
-    int student; // 입력 받고자 하는 학생 수
-    int i, input;
-    int *score; // 학생 들의 수학점수 변수
-    int sum = 0; // 총점
+int main(int argc, char **argv) {
+  int student;  // 입력 받고자 하는 학생 수
+  int i, input;
+  int *score;   // 학생 들의 수학점수 변수
+  int sum = 0;  // 총점
 
-    printf("학생의 수는? : ");
-    scanf("%d", &student);
+  printf("학생의 수는? : ");
+  scanf("%d", &student);
 
-    score = (int *)malloc(student*sizeof(int));
+  score = (int *)malloc(student * sizeof(int));
 
-    for(i=0;i<student;i++)
-    {
-        printf("학생 %d 의 점수 : ", i);
-        scanf("%d", &input);
+  for (i = 0; i < student; i++) {
+    printf("학생 %d 의 점수 : ", i);
+    scanf("%d", &input);
 
-        score[i] = input;
-    }
+    score[i] = input;
+  }
 
-    for(i=0;i<student;i++)
-    {
-        sum += score[i];
-    }
+  for (i = 0; i < student; i++) {
+    sum += score[i];
+  }
 
-    printf("전체 학생 평균 점수 : %d \n", sum/student);
-    free(score);
-    return 0;
-
+  printf("전체 학생 평균 점수 : %d \n", sum / student);
+  free(score);
+  return 0;
 }
 ```
 
@@ -150,26 +144,24 @@ int main(int argc, char **argv)
 
 와 같이 나옵니다.
 
-```cpp
-    score = (int *)malloc(student*sizeof(int));
+```cpp-formatted
+score = (int *)malloc(student * sizeof(int));
 ```
 
 
 먼저 위 부분을 통해 원소의 개수가 `student` 인 `int` 형 배열을 생성하였죠. 따라서 우리는 `score` 을 `int score[student]` 로 한 것 마냥 사용할 수 있게 됩니다.
 
-```cpp
-    for(i=0;i<student;i++)
-    {
-        printf("학생 %d 의 점수 : ", i);
-        scanf("%d", &input);
+```cpp-formatted
+for (i = 0; i < student; i++) {
+  printf("학생 %d 의 점수 : ", i);
+  scanf("%d", &input);
 
-        score[i] = input;
-    }
+  score[i] = input;
+}
 
-    for(i=0;i<student;i++)
-    {
-        sum += score[i];
-    }
+for (i = 0; i < student; i++) {
+  sum += score[i];
+}
 ```
 
 
@@ -186,39 +178,34 @@ int main(int argc, char **argv)
 
 그럼 이를 실행에 옮기도록 하겠습니다.
 
-```cpp
+```cpp-formatted
 /* 2 차원 배열의 동적 할당 */
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char **argv)
-{
-    int i;
-    int x,y;
-    int **arr; // 우리는 arr[x][y] 를 만들 것이다.
+int main(int argc, char **argv) {
+  int i;
+  int x, y;
+  int **arr;  // 우리는 arr[x][y] 를 만들 것이다.
 
+  printf("arr[x][y] 를 만들 것입니다.\n");
+  scanf("%d %d", &x, &y);
 
-    printf("arr[x][y] 를 만들 것입니다.\n");
-    scanf("%d %d", &x, &y);
+  arr = (int **)malloc(sizeof(int *) * x);
+  // int* 형의 원소를 x 개 가지는 1 차원 배열 생성
 
-    arr = (int **)malloc(sizeof(int *) * x);
-    // int* 형의 원소를 x 개 가지는 1 차원 배열 생성
+  for (i = 0; i < x; i++) {
+    arr[i] = (int *)malloc(sizeof(int) * y);
+  }
 
-    for(i=0;i<x;i++)
-    {
-        arr[i] = (int *)malloc(sizeof(int) * y);
-    }
+  printf("생성 완료! \n");
 
-    printf("생성 완료! \n");
+  for (i = 0; i < x; i++) {
+    free(arr[i]);
+  }
+  free(arr);
 
-    for(i=0;i<x;i++)
-    {
-        free(arr[i]);
-    }
-    free(arr);
-
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -230,15 +217,15 @@ int main(int argc, char **argv)
 흠. 일단 잘 생성은 된 것 같기는 한데, 한 번 차근 차근 소스를 따라가 봅시다.
 
 
-```cpp
-    int **arr; // 우리는 arr[x][y] 를 만들 것이다.
+```cpp-formatted
+int **arr;  // 우리는 arr[x][y] 를 만들 것이다.
 ```
 
 
 일단 `int **arr` 부터 봅시다. 만일 `int array[3];` 이란 배열을 만들었다면 `array` 의 형은 무엇일까요. 네 맞습니다. `int *` 입니다. 그렇다면 `int * arr[10];` 이란 배열을 만들었다면 `arr` 의 형은? 네. `int **arr` 이죠. 따라서 우리는 `int **arr;` 과 같이 선언하였습니다.
 
-```cpp
-    arr = (int **)malloc(sizeof(int *) * x);
+```cpp-formatted
+arr = (int **)malloc(sizeof(int *) * x);
 ```
 
 
@@ -248,11 +235,10 @@ int main(int argc, char **argv)
 
 자. 그럼 `arr` 배열의 각각의 원소들은 `int *` 형 이므로 다른 `int` 배열을 가리키기를 갈망하고 있을 것입니다. 우리는 그 욕구를 해소 시켜 주어야 겠죠. 따라서 각각의 원소들에 대해 원하는 메모리 공간을 짝지어 줍시다.
 
-```cpp
-    for(i=0;i<x;i++)
-    {
-        arr[i] = (int *)malloc(sizeof(int) * y);
-    }
+```cpp-formatted
+for (i = 0; i < x; i++) {
+  arr[i] = (int *)malloc(sizeof(int) * y);
+}
 ```
 
 
@@ -266,7 +252,7 @@ int main(int argc, char **argv)
 
 와 같이 말이지요. 하지만 우리가 만든 배열은 `arr` 의 원소들이 가리키는 메모리 공간이 연달아 존재한다고 보장할 수 없습니다. 또한 한 가지 재미있는점은 우리가 만든 '2 차원 배열 처럼 생긴' 포인터 배열은 2 차원 배열과는 달리 함수의 인자로 손쉽게 넘길 수 있습니다. 예를 들면
 
-```cpp
+```cpp-formatted
 int array(int **array);
 ```
 
@@ -276,62 +262,55 @@ int array(int **array);
 
 아무튼 이와 같은 방법으로 2 차원 배열 (사실은 다르지만 이렇게 부르겠습니다) 를 생성하였습니다. 우리가 이 배열을 힙에 할당하였으면 사용이 끝났으면 역시 되돌려 주어야 하겠죠. 해제하는 순서는 할당하는 순서와 정 반대로 하면 됩니다. 즉, `arr[i]` 들이 가리키고 있던 `int` 배열들을 해제한 후, `arr` 을 해제하면 되겠지요. 만일 `arr` 을 먼저 해제하면 `arr[i]` 들이 메모리 상에서 사라지게 되므로 `arr[i]` 들이 가리키고 있던 `int` 배열들을 해제할 수 없게 되므로 오류가 나게 됩니다.
 
-```cpp
+```cpp-formatted
 /* 2 차원 배열 동적 할당의 활용 */
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char **argv)
-{
-    int i,j, input, sum = 0;
-    int subject, students;
-    int **arr;
-    // 우리는 arr[subject][students] 배열을 만들 것이다.
+int main(int argc, char **argv) {
+  int i, j, input, sum = 0;
+  int subject, students;
+  int **arr;
+  // 우리는 arr[subject][students] 배열을 만들 것이다.
 
-    printf("과목 수 : ");
-    scanf("%d", &subject);
+  printf("과목 수 : ");
+  scanf("%d", &subject);
 
-    printf("학생의 수 : ");
-    scanf("%d", &students);
+  printf("학생의 수 : ");
+  scanf("%d", &students);
 
-    arr =(int **)malloc(sizeof(int *) * subject);
+  arr = (int **)malloc(sizeof(int *) * subject);
 
-    for(i=0;i<subject;i++)
-    {
-        arr[i]=(int *)malloc(sizeof(int) * students);
-    }
+  for (i = 0; i < subject; i++) {
+    arr[i] = (int *)malloc(sizeof(int) * students);
+  }
 
-    for(i=0;i<subject;i++)
-    {
-        printf("과목 %d 점수 --------- \n", i);
+  for (i = 0; i < subject; i++) {
+    printf("과목 %d 점수 --------- \n", i);
 
-        for(j=0;j<students;j++)
-        {
-            printf("학생 %d 점수 입력 : ", j);
-            scanf("%d", &input);
+    for (j = 0; j < students; j++) {
+      printf("학생 %d 점수 입력 : ", j);
+      scanf("%d", &input);
 
-            arr[i][j] = input;
-        }
-    }
+      arr[i][j] = input;
+    }
+  }
 
-    for(i=0;i<subject;i++)
-    {
-        sum = 0;
-        for(j=0;j<students;j++)
-        {
-            sum += arr[i][j];
-        }
-        printf("과목 %d 평균 점수 : %d \n", i, sum/students);
-    }
+  for (i = 0; i < subject; i++) {
+    sum = 0;
+    for (j = 0; j < students; j++) {
+      sum += arr[i][j];
+    }
+    printf("과목 %d 평균 점수 : %d \n", i, sum / students);
+  }
 
-    for(i=0;i<subject;i++)
-    {
-        free(arr[i]);
-    }
+  for (i = 0; i < subject; i++) {
+    free(arr[i]);
+  }
 
-    free(arr);
+  free(arr);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -342,133 +321,117 @@ int main(int argc, char **argv)
 
 와 같이 나옵니다. 대성공이군요!
 
-```cpp
-    int **arr;
+```cpp-formatted
+int **arr;
 ```
 
 
 위 예제에서 우리는 과목별 학생의 점수를 보관하기 위해 이차원 배열을 사용하였습니다. 즉 `arr[subject][students]` 를 만든 것이지요. 이를 위해
 
-```cpp
-    arr =(int **)malloc(sizeof(int *) * subject);
+```cpp-formatted
+arr = (int **)malloc(sizeof(int *) * subject);
 
-    for(i=0;i<subject;i++)
-    {
-        arr[i]=(int *)malloc(sizeof(int) * students);
-    }
-
+for (i = 0; i < subject; i++) {
+  arr[i] = (int *)malloc(sizeof(int) * students);
+}
 ```
 
 를 통해 `arr[subject][students]` 를 만들 수 있었습니다. 따라서 이제 과목별 학생의 점수를
 
-```cpp
-    for(i=0;i<subject;i++)
-    {
-        printf("과목 %d 점수 --------- \n", i);
+```cpp-formatted
+for (i = 0; i < subject; i++) {
+  printf("과목 %d 점수 --------- \n", i);
 
-        for(j=0;j<students;j++)
-        {
-            printf("학생 %d 점수 입력 : ", j);
-            scanf("%d", &input);
+  for (j = 0; j < students; j++) {
+    printf("학생 %d 점수 입력 : ", j);
+    scanf("%d", &input);
 
-            arr[i][j] = input;
-        }
-    }
+    arr[i][j] = input;
+  }
+}
 ```
 
 
 로 얻었습니다. `arr` 은 사실 2 차원 배열은 아니지만 2 차원 배열과 똑같이 행동하므로 `arr[i][j]` 와 같은 문장도 맞게 되지요. `arr[i][j]` 를 `i` 행 `j` 열에 위치한 값이라 생각해도 무방합니다.
 
-```cpp
-    for(i=0;i<subject;i++)
-    {
-        sum = 0;
-        for(j=0;j<students;j++)
-        {
-            sum += arr[i][j];
-        }
-        printf("과목 %d 평균 점수 : %d \n", i, sum/students);
-    }
+```cpp-formatted
+for (i = 0; i < subject; i++) {
+  sum = 0;
+  for (j = 0; j < students; j++) {
+    sum += arr[i][j];
+  }
+  printf("과목 %d 평균 점수 : %d \n", i, sum / students);
+}
 ```
 
 
 이제 값을 모두 입력받았다면 각 과목별 평균을 내면 되는데 이는 간단히 위와 같은 `for` 문으로 해결할 수 있었습니다.
 
-```cpp
-    for(i=0;i<subject;i++)
-    {
-        free(arr[i]);
-    }
+```cpp-formatted
+for (i = 0; i < subject; i++) {
+  free(arr[i]);
+}
 
-    free(arr);
-
+free(arr);
 ```
 
 마지막으로 할당 받은 메모리의 사용이 끝났기 때문에 해제해야 하는데 이는 이전에 설명했던 예제와 동일하게 하면 됩니다.
 
-```cpp
+```cpp-formatted
 /* 할당한 (2 차원 배열 처럼 생긴) 배열 전달하기 */
 #include <stdio.h>
 #include <stdlib.h>
 
 void get_average(int **arr, int numStudent, int numSubject);
 
-int main(int argc, char **argv)
-{
-    int i,j, input, sum = 0;
-    int subject, students;
-    int **arr;
-    // 우리는 arr[subject][students] 배열을 만들 것이다.
+int main(int argc, char **argv) {
+  int i, j, input, sum = 0;
+  int subject, students;
+  int **arr;
+  // 우리는 arr[subject][students] 배열을 만들 것이다.
 
-    printf("과목 수 : ");
-    scanf("%d", &subject);
+  printf("과목 수 : ");
+  scanf("%d", &subject);
 
-    printf("학생의 수 : ");
-    scanf("%d", &students);
+  printf("학생의 수 : ");
+  scanf("%d", &students);
 
-    arr =(int **)malloc(sizeof(int *) * subject);
+  arr = (int **)malloc(sizeof(int *) * subject);
 
-    for(i=0;i<subject;i++)
-    {
-        arr[i]=(int *)malloc(sizeof(int) * students);
-    }
+  for (i = 0; i < subject; i++) {
+    arr[i] = (int *)malloc(sizeof(int) * students);
+  }
 
-    for(i=0;i<subject;i++)
-    {
-        printf("과목 %d 점수 --------- \n", i);
+  for (i = 0; i < subject; i++) {
+    printf("과목 %d 점수 --------- \n", i);
 
-        for(j=0;j<students;j++)
-        {
-            printf("학생 %d 점수 입력 : ", j);
-            scanf("%d", &input);
+    for (j = 0; j < students; j++) {
+      printf("학생 %d 점수 입력 : ", j);
+      scanf("%d", &input);
 
-            arr[i][j] = input;
-        }
-    }
+      arr[i][j] = input;
+    }
+  }
 
-    get_average(arr, students, subject);
+  get_average(arr, students, subject);
 
-    for(i=0;i<subject;i++)
-    {
-        free(arr[i]);
-    }
-    free(arr);
+  for (i = 0; i < subject; i++) {
+    free(arr[i]);
+  }
+  free(arr);
 
-    return 0;
+  return 0;
 }
-void get_average(int **arr, int numStudent, int numSubject)
-{
-    int i,j, sum;
+void get_average(int **arr, int numStudent, int numSubject) {
+  int i, j, sum;
 
-    for(i=0;i<numSubject;i++)
-    {
-        sum = 0;
-        for(j=0;j<numStudent;j++)
-        {
-            sum += arr[i][j];
-        }
-        printf("과목 %d 평균 점수 : %d \n", i, sum/numStudent);
-    }
+  for (i = 0; i < numSubject; i++) {
+    sum = 0;
+    for (j = 0; j < numStudent; j++) {
+      sum += arr[i][j];
+    }
+    printf("과목 %d 평균 점수 : %d \n", i, sum / numStudent);
+  }
 }
 ```
 
@@ -479,7 +442,7 @@ void get_average(int **arr, int numStudent, int numSubject)
 
 와 같이 나옵니다. 다른 부분은 모두 똑같으므로 함수만 살펴봅시다.
 
-```cpp
+```cpp-formatted
 void get_average(int **arr, int numStudent, int numSubject)
 ```
 

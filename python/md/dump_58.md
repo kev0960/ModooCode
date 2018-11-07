@@ -65,33 +65,32 @@ C 문자열로 파일 접근 모드를 설정한다. 이 모드는 다음이 될
 
 
 
-```cpp
+```cpp-formatted
 /*
 
-example.txt 파일을 생성한 뒤, 쓰기 형식으로 오픈하여 "안녕하세요 여러분 \n Psi 입니다 \n" 를 파일 내용에 집어 넣는다. 그리고, example.txt 를 덧붙이기 형식으로 오픈한 뒤 뒤에 "어 그래 안녕" 을 덧붙인다.
+example.txt 파일을 생성한 뒤, 쓰기 형식으로 오픈하여 "안녕하세요 여러분 \n Psi
+입니다 \n" 를 파일 내용에 집어 넣는다. 그리고, example.txt 를 덧붙이기 형식으로
+오픈한 뒤 뒤에 "어 그래 안녕" 을 덧붙인다.
 
 */
 #include <stdio.h>
-int main()
-{
-    FILE *fp, *fp2;
+int main() {
+  FILE *fp, *fp2;
 
-    if((fp = fopen("example.txt", "w")) == NULL)
-    {
-        printf("파일 읽기 오류! \n");
-        return 0;
-    }
+  if ((fp = fopen("example.txt", "w")) == NULL) {
+    printf("파일 읽기 오류! \n");
+    return 0;
+  }
 
-    fputs("안녕하세요 여러분 \n Psi 입니다 \n", fp);
+  fputs("안녕하세요 여러분 \n Psi 입니다 \n", fp);
 
-    if((fp2 = fopen("example.txt", "a")) == NULL)
-    {
-        printf("파일 읽기 오류! \n");
-        return 0;
-    }
+  if ((fp2 = fopen("example.txt", "a")) == NULL) {
+    printf("파일 읽기 오류! \n");
+    return 0;
+  }
 
-    fputs("어 그래 안녕?", fp2);
-    return 0;
+  fputs("어 그래 안녕?", fp2);
+  return 0;
 }
 ```
 
@@ -115,9 +114,3 @@ int main()
 *  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼의 모드를 설정한다.
 * `tmpfile`   :  임시 파일을 연다.
 * `tmpnam`  : 임시 파일 이름을 생성한다.
-
-
-
-
-
-

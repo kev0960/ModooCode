@@ -12,10 +12,10 @@ cat_title :  fwrite
 
 #@ fwrite
 
-```cpp
-#include <stdio.h> // C++ 에서는 <cstdio>
+```cpp-formatted
+#include <stdio.h>  // C++ 에서는 <cstdio>
 
-size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );
+size_t fwrite(const void* ptr, size_t size, size_t count, FILE* stream);
 ```
 
 
@@ -65,23 +65,22 @@ size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 myfile.bin 에 "xyz" 라는 문자열을 출력한다.
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fwrite/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    char buffer[] = { 'x' , 'y' , 'z' };
-    pFile = fopen ( "myfile.bin" , "wb" );
-    fwrite (buffer , 1 , sizeof(buffer) , pFile );
-    fclose (pFile);
-    return 0;
+int main() {
+  FILE* pFile;
+  char buffer[] = {'x', 'y', 'z'};
+  pFile = fopen("myfile.bin", "wb");
+  fwrite(buffer, 1, sizeof(buffer), pFile);
+  fclose(pFile);
+  return 0;
 }
 ```
 
@@ -116,9 +115,3 @@ int main ()
 *  [putc](http://itguru.tistory.com/46):  스트릠에 문자를 쓴다.
 
 *  [fputc](http://itguru.tistory.com/39)  : 스트림에 문자를 쓴다.
-
-
-
-
-
-

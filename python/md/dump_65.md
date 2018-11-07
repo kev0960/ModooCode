@@ -71,10 +71,10 @@ C 형식 문자열로 다음의 것들을 포함하고 있 C 형식 문자열로
 
 에를 들면 아래와 같다.
 
-```cpp
-    FILE *fp = fopen("out.txt", "w");
-    int i;
-    fscanf(fp, "%d", &i); /* 꼭 주소값을 전달해야 된다는 점에 유의! */
+```cpp-formatted
+FILE *fp = fopen("out.txt", "w");
+int i;
+fscanf(fp, "%d", &i); /* 꼭 주소값을 전달해야 된다는 점에 유의! */
 ```
 
 ###  리턴값
@@ -87,27 +87,29 @@ C 형식 문자열로 다음의 것들을 포함하고 있 C 형식 문자열로
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
-myfile.txt 에 3.1416 과 PI 를 쓴 뒤, 이를 다시 myfile.txt 에서 읽어들인다. 이 때, myfile.txt 를 w+ 형식으로 열었으므로 출력 뒤에 입력을 하기 위해서는 fflush 나 rewind 와 같은 파일 위치 지정자 조정 함수를 호출해야 하는데 이 경우 rewind 함수를 호출하여 위치 표시자를 맨 앞으로 돌렸다.
+myfile.txt 에 3.1416 과 PI 를 쓴 뒤, 이를 다시 myfile.txt 에서 읽어들인다. 이
+때, myfile.txt 를 w+ 형식으로 열었으므로 출력 뒤에 입력을 하기 위해서는 fflush
+나 rewind 와 같은 파일 위치 지정자 조정 함수를 호출해야 하는데 이 경우 rewind
+함수를 호출하여 위치 표시자를 맨 앞으로 돌렸다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    char str [80];
-    float f;
-    FILE * pFile;
+int main() {
+  char str[80];
+  float f;
+  FILE* pFile;
 
-    pFile = fopen ("myfile.txt","w+");
-    fprintf (pFile, "%f %s", 3.1416, "PI");
-    rewind (pFile);
-    fscanf (pFile, "%f", &f);
-    fscanf (pFile, "%s", str);
-    fclose (pFile);
-    printf ("I have read: %f and %s \n",f,str);
-    return 0;
+  pFile = fopen("myfile.txt", "w+");
+  fprintf(pFile, "%f %s", 3.1416, "PI");
+  rewind(pFile);
+  fscanf(pFile, "%f", &f);
+  fscanf(pFile, "%s", str);
+  fclose(pFile);
+  printf("I have read: %f and %s \n", f, str);
+  return 0;
 }
 ```
 

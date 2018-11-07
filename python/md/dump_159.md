@@ -15,8 +15,8 @@ cat_title :  ios_base::register_callback
 
 #@ ios_base::register_callback
 
-```cpp
-void register_callback ( event_callback fn, int index );
+```cpp-formatted
+void register_callback(event_callback fn, int index);
 ```
 
 
@@ -26,8 +26,8 @@ void register_callback ( event_callback fn, int index );
 
 이 때 콜백 함수는 `event_callback` 타입이여야만 하는데 이는
 
-```cpp
-(*fn)(ev,*this,index)
+```cpp-formatted
+(*fn)(ev, *this, index)
 ```
 
 
@@ -48,8 +48,8 @@ void register_callback ( event_callback fn, int index );
 
 호출하고 싶은 함수를 가리키는 포인터. 이 때 `event_callback` 타입은 아래와 같다.
 
-```cpp
-    typedef void (* event_callback) (event ev, ios_base& ios, int index);
+```cpp-formatted
+typedef void (*event_callback)(event ev, ios_base& ios, int index);
 ```
 
 
@@ -73,7 +73,7 @@ void register_callback ( event_callback fn, int index );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 testfn 이 imbue 함수 호출시와 ostream 객체 소멸시 두 번 호출된다
@@ -82,30 +82,30 @@ http://www.cplusplus.com/reference/iostream/ios_base/register_callback/
 에서 가져왔습니다.
 
 */
-#include <iostream>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
-void testfn (ios_base::event ev, ios_base& iosobj, int index)
-{
-    switch (ev)
-    {
-    case ios_base::copyfmt_event:
-        cout << "copyfmt_event\n"; break;
-    case ios_base::imbue_event:
-        cout << "imbue_event\n"; break;
-    case ios_base::erase_event:
-        cout << "erase_event\n"; break;
-    }
-    cout << "인자로 전달된 인덱스" << index << endl;
+void testfn(ios_base::event ev, ios_base& iosobj, int index) {
+  switch (ev) {
+    case ios_base::copyfmt_event:
+      cout << "copyfmt_event\n";
+      break;
+    case ios_base::imbue_event:
+      cout << "imbue_event\n";
+      break;
+    case ios_base::erase_event:
+      cout << "erase_event\n";
+      break;
+  }
+  cout << "인자로 전달된 인덱스" << index << endl;
 }
 
-int main ()
-{
-    ofstream filestr;
-    filestr.register_callback (testfn,0);
-    filestr.imbue (cout.getloc());
-    return 0;
+int main() {
+  ofstream filestr;
+  filestr.register_callback(testfn, 0);
+  filestr.imbue(cout.getloc());
+  return 0;
 }
 ```
 

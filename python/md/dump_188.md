@@ -34,85 +34,67 @@ next_page : 197
 
 스타크래프트라는 거대한 프로젝트를 진행하기에 앞서서 일단, 유닛 하나 부터 만들어 보도록 할 것입니다. 위에 조그만 사진에 있는 총들고 서 잇는 사람은 스타크래프트의 마린 이라는 유닛 입니다. (테란 유저로써 제가 가장 사랑하는 유닛 중 하나라고 볼 수 있죠) 위 유닛은 스타크래프트 유닛 중에서 가장 단순하고 기본이 되는 유닛이라고 할 수 있습니다. 그렇다면 한 번, 이 마린을 코드 상에서 구현해보도록 합시다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 using namespace std;
 
-class Marine
-{
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-int damage; // 공격력
-bool is_dead;
+class Marine {
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  int damage;            // 공격력
+  bool is_dead;
 
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
-
-
-void show_status(); // 상태를 보여준다.
+  void show_status();  // 상태를 보여준다.
 };
-Marine::Marine()
-{
-hp = 50;
-coord_x = coord_y = 0;
-damage = 5;
-is_dead = false;
+Marine::Marine() {
+  hp = 50;
+  coord_x = coord_y = 0;
+  damage = 5;
+  is_dead = false;
 }
-Marine::Marine(int x, int y)
-{
-coord_x = x;
-coord_y = y;
-hp = 50;
-damage = 5;
-is_dead = false;
+Marine::Marine(int x, int y) {
+  coord_x = x;
+  coord_y = y;
+  hp = 50;
+  damage = 5;
+  is_dead = false;
 }
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
 }
-int Marine::attack()
-{
-return damage;
+int Marine::attack() { return damage; }
+void Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
 }
-void Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-}
-void Marine::show_status()
-{
-cout << " *** Marine *** " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
+void Marine::show_status() {
+  cout << " *** Marine *** " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
 }
 
+int main() {
+  Marine marine1(2, 3);
+  Marine marine2(3, 5);
 
-int main()
-{
-Marine marine1 (2, 3);
-Marine marine2 (3, 5);
+  marine1.show_status();
+  marine2.show_status();
 
+  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  marine2.be_attacked(marine1.attack());
 
-marine1.show_status();
-marine2.show_status();
-
-
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
-marine2.be_attacked(marine1.attack());
-
-
-marine1.show_status();
-marine2.show_status();
+  marine1.show_status();
+  marine2.show_status();
 }
 ```
 
@@ -131,26 +113,22 @@ marine2.show_status();
 
 
 
-```cpp
-class Marine
-{
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-int damage; // 공격력
-bool is_dead;
+```cpp-formatted
+class Marine {
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  int damage;            // 공격력
+  bool is_dead;
 
+ public:
+  Marine();              // 기본 생성자
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y); // x, y 좌표에 마린 생성
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
-
-
-void show_status(); // 상태를 보여준다.
+  void show_status();  // 상태를 보여준다.
 };
 ```
 
@@ -163,17 +141,17 @@ void show_status(); // 상태를 보여준다.
 
 따라서 위와 같이 코드를 구성하였습니다. 사실 나머지 함수들은 그 구현이 너무 간단해서 굳이 따로 집어서 살펴볼 필요는 없을 것 같습니다. 그래서 바로 `main` 함수의 코드들을 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 
-Marine marine1 (2, 3);
-Marine marine2 (3, 5);
+Marine marine1(2, 3);
+Marine marine2(3, 5);
 ```
 
 
 
 먼저, 위 두개의 `marine1` 과 `marine2` 라는 이름의 `Marine` 객체들을 생성하였습니다. 물론 생성자 오버로딩에 의해 각각 (2,3), (3,5) 에 위치한 마린들이 생성되었지요.
 
-```cpp
+```cpp-formatted
 
 marine1.show_status();
 marine2.show_status();
@@ -184,7 +162,7 @@ marine2.show_status();
 이제 위 함수들을 통해서 각각의 마린의 상태를 출력한 뒤에,
 
 
-```cpp
+```cpp-formatted
 
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 marine2.be_attacked(marine1.attack());
@@ -199,33 +177,26 @@ marine2.be_attacked(marine1.attack());
 
 그럴 때는 `marine1, marine2` 와 같이 일일히 이름 붙이기도 벅찰 뿐더러, 사용자가 몇 개의 마린을 만들겠다라고 컴파일 시점에 정해버리는 것도 아니기 때문에 수십개의 `marine1, marine2...` 를 미리 만들 수 도 없는 격입니다. 그럼 어떡할께요? 답은 단순합니다. `marine` 들을 배열로 정해버리면 되지요.
 
-```cpp
-/* int main 전 까지 내용은 동일 */
-int main()
-{
-Marine* marines[100];
+```cpp-formatted
+/* int main 전 까지 내용은 동일 */
+int main() {
+  Marine* marines[100];
 
+  marines[0] = new Marine(2, 3);
+  marines[1] = new Marine(3, 5);
 
-marines[0] = new Marine (2, 3);
-marines[1] = new Marine (3, 5);
+  marines[0]->show_status();
+  marines[1]->show_status();
 
+  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 
-marines[0]->show_status();
-marines[1]->show_status();
+  marines[0]->be_attacked(marines[1]->attack());
 
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  marines[0]->show_status();
+  marines[1]->show_status();
 
-
-marines[0]->be_attacked(marines[1]->attack());
-
-
-marines[0]->show_status();
-marines[1]->show_status();
-
-
-
-delete marines[0];
-delete marines[1];
+  delete marines[0];
+  delete marines[1];
 }
 ```
 
@@ -250,10 +221,10 @@ delete marines[1];
 예전에, `new` 와 `delete` 에 대해서 배울 때 `malloc` 과의 차이점에 대해서 잠깐 언급 했던 것이 기억 나나요? 그 때는 아직 내용을 다 배우지 못해서, `new` 와 `malloc` 모두 동적으로 할당하지만 '무언가' 다르다고 했었는데, 위 코드에서 여러분들은 아마 눈치 채셨을 것이라 생각됩니다. 바로` new` 의 경우 객체를 동적으로 생성하면서와 동시에 자동으로 생성자도 호출해준다는 점입니다.
 
 
-```cpp
+```cpp-formatted
 
-marines[0] = new Marine (2, 3);
-marines[1] = new Marine (3, 5);
+marines[0] = new Marine(2, 3);
+marines[1] = new Marine(3, 5);
 ```
 
 
@@ -261,7 +232,7 @@ marines[1] = new Marine (3, 5);
 위와 같이 `Marine(2,3)` 과 `Marine(3,5)` 라는 생성자를 자동으로 호출해주지요. 이것이 바로 C++ 에 맞는 새로운 동적 할당이라고 볼 수 있습니다.
 
 
-```cpp
+```cpp-formatted
 
 marines[0]->show_status();
 marines[1]->show_status();
@@ -272,7 +243,7 @@ marines[1]->show_status();
 물론 `Marine` 들의 포인터를 가리키는 배열이기 때문에 메소드를 호출할 때 . 이 아니라 `->` 를 사용해줘야 되겠지요. 마지막으로, 동적으로 할당한 메모리는 언제나 해제해 주어야 된다는 원칙에 따라
 
 
-```cpp
+```cpp-formatted
 
 delete marines[0];
 delete marines[1];
@@ -290,111 +261,88 @@ delete marines[1];
 
 알고 보니 각각의 마린에도 이름을 지정할 수 있었습니다. 그래서, 우리는 만들어놓은 `Marine` 클래스에 `name` 이라는 이름을 저장할 수 있는 또다른 인스턴스 변수를 추가하도록 합시다.
 
-```cpp
+```cpp-formatted
 // 마린의 이름 만들기
-#include <iostream>
 #include <string.h>
+#include <iostream>
 using namespace std;
 
+class Marine {
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  int damage;            // 공격력
+  bool is_dead;
+  char* name;  // 마린 이름
 
-class Marine
-{
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-int damage; // 공격력
-bool is_dead;
-char *name; // 마린 이름
+ public:
+  Marine();                                       // 기본 생성자
+  Marine(int x, int y, const char* marine_name);  // 이름까지 지정
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
 
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y, const char* marine_name); // 이름까지 지정
-Marine(int x, int y); // x, y 좌표에 마린 생성
-
-
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
-
-
-void show_status(); // 상태를 보여준다.
+  void show_status();  // 상태를 보여준다.
 };
-Marine::Marine()
-{
-hp = 50;
-coord_x = coord_y = 0;
-damage = 5;
-is_dead = false;
-name = NULL;
+Marine::Marine() {
+  hp = 50;
+  coord_x = coord_y = 0;
+  damage = 5;
+  is_dead = false;
+  name = NULL;
 }
-Marine::Marine(int x, int y, const char* marine_name)
-{
-name = new char [strlen(marine_name) + 1];
-strcpy(name, marine_name);
+Marine::Marine(int x, int y, const char* marine_name) {
+  name = new char[strlen(marine_name) + 1];
+  strcpy(name, marine_name);
 
-
-coord_x = x;
-coord_y = y;
-hp = 50;
-damage = 5;
-is_dead = false;
+  coord_x = x;
+  coord_y = y;
+  hp = 50;
+  damage = 5;
+  is_dead = false;
 }
-Marine::Marine(int x, int y)
-{
-coord_x = x;
-coord_y = y;
-hp = 50;
-damage = 5;
-is_dead = false;
-name = NULL;
+Marine::Marine(int x, int y) {
+  coord_x = x;
+  coord_y = y;
+  hp = 50;
+  damage = 5;
+  is_dead = false;
+  name = NULL;
 }
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
 }
-int Marine::attack()
-{
-return damage;
+int Marine::attack() { return damage; }
+void Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
 }
-void Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
-}
-void Marine::show_status()
-{
-cout << " *** Marine : " << name << " ***" << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
+void Marine::show_status() {
+  cout << " *** Marine : " << name << " ***" << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
 }
 
+int main() {
+  Marine* marines[100];
 
-int main()
-{
-Marine* marines[100];
+  marines[0] = new Marine(2, 3, "Marine 2");
+  marines[1] = new Marine(1, 5, "Marine 1");
 
+  marines[0]->show_status();
+  marines[1]->show_status();
 
-marines[0] = new Marine (2, 3, "Marine 2");
-marines[1] = new Marine (1, 5, "Marine 1");
+  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 
+  marines[0]->be_attacked(marines[1]->attack());
 
-marines[0]->show_status();
-marines[1]->show_status();
+  marines[0]->show_status();
+  marines[1]->show_status();
 
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
-
-
-marines[0]->be_attacked(marines[1]->attack());
-
-
-marines[0]->show_status();
-marines[1]->show_status();
-
-
-delete marines[0];
-delete marines[1];
+  delete marines[0];
+  delete marines[1];
 }
 ```
 
@@ -415,16 +363,15 @@ delete marines[1];
 
 그런데 사실, 위 코드에는 또다른 문제점이 있습니다.
 
-```cpp
-Marine::Marine(int x, int y, const char* marine_name)
-{
-name = new char [strlen(marine_name) + 1];
-strcpy(name, marine_name);
-coord_x = x;
-coord_y = y;
-hp = 50;
-damage = 5;
-is_dead = false;
+```cpp-formatted
+Marine::Marine(int x, int y, const char* marine_name) {
+  name = new char[strlen(marine_name) + 1];
+  strcpy(name, marine_name);
+  coord_x = x;
+  coord_y = y;
+  hp = 50;
+  damage = 5;
+  is_dead = false;
 }
 ```
 
@@ -436,117 +383,93 @@ is_dead = false;
 그렇다면, 만일 `main` 함수 끝에서 `Marine` 이 `delete` 될 때, 즉 우리가 생성했던 객체가 소멸 될 때 자동으로 호출되는 함수 - 마치 객체가 생성될 때 자동으로 호출 되었던 생성자 처럼 소멸 될 때 자동으로 호출되는 함수가 있다면 얼마나 좋을까요? 놀랍게도 이미 C++ 에서는 이 기능을 지원하고 있습니다. 바로 **소멸자(Destructor)** 이죠.
 
 
-```cpp
-#include <iostream>
+```cpp-formatted
 #include <string.h>
+#include <iostream>
 using namespace std;
 
+class Marine {
+  int hp;                // 마린 체력
+  int coord_x, coord_y;  // 마린 위치
+  int damage;            // 공격력
+  bool is_dead;
+  char* name;  // 마린 이름
 
-class Marine
-{
-int hp; // 마린 체력
-int coord_x, coord_y; // 마린 위치
-int damage; // 공격력
-bool is_dead;
-char *name; // 마린 이름
+ public:
+  Marine();                                       // 기본 생성자
+  Marine(int x, int y, const char* marine_name);  // 이름까지 지정
+  Marine(int x, int y);  // x, y 좌표에 마린 생성
+  ~Marine();
 
+  int attack();                       // 데미지를 리턴한다.
+  void be_attacked(int damage_earn);  // 입는 데미지
+  void move(int x, int y);            // 새로운 위치
 
-public:
-Marine(); // 기본 생성자
-Marine(int x, int y, const char* marine_name); // 이름까지 지정
-Marine(int x, int y); // x, y 좌표에 마린 생성
-~Marine();
-
-
-int attack(); // 데미지를 리턴한다.
-void be_attacked(int damage_earn); // 입는 데미지
-void move(int x, int y); // 새로운 위치
-
-
-void show_status(); // 상태를 보여준다.
+  void show_status();  // 상태를 보여준다.
 };
-Marine::Marine()
-{
-hp = 50;
-coord_x = coord_y = 0;
-damage = 5;
-is_dead = false;
-name = NULL;
+Marine::Marine() {
+  hp = 50;
+  coord_x = coord_y = 0;
+  damage = 5;
+  is_dead = false;
+  name = NULL;
 }
-Marine::Marine(int x, int y, const char* marine_name)
-{
-name = new char [strlen(marine_name) + 1];
-strcpy(name, marine_name);
+Marine::Marine(int x, int y, const char* marine_name) {
+  name = new char[strlen(marine_name) + 1];
+  strcpy(name, marine_name);
 
-
-coord_x = x;
-coord_y = y;
-hp = 50;
-damage = 5;
-is_dead = false;
+  coord_x = x;
+  coord_y = y;
+  hp = 50;
+  damage = 5;
+  is_dead = false;
 }
-Marine::Marine(int x, int y)
-{
-coord_x = x;
-coord_y = y;
-hp = 50;
-damage = 5;
-is_dead = false;
-name = NULL;
+Marine::Marine(int x, int y) {
+  coord_x = x;
+  coord_y = y;
+  hp = 50;
+  damage = 5;
+  is_dead = false;
+  name = NULL;
 }
-void Marine::move(int x, int y)
-{
-coord_x = x;
-coord_y = y;
+void Marine::move(int x, int y) {
+  coord_x = x;
+  coord_y = y;
 }
-int Marine::attack()
-{
-return damage;
+int Marine::attack() { return damage; }
+void Marine::be_attacked(int damage_earn) {
+  hp -= damage_earn;
+  if (hp <= 0) is_dead = true;
 }
-void Marine::be_attacked(int damage_earn)
-{
-hp -= damage_earn;
-if(hp <= 0)
-is_dead = true;
+void Marine::show_status() {
+  cout << " *** Marine : " << name << " ***" << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
 }
-void Marine::show_status()
-{
-cout << " *** Marine : " << name << " ***" << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
+Marine::~Marine() {
+  cout << name << " 의 소멸자 호출 ! " << endl;
+  if (name != NULL) {
+    delete[] name;
+  }
 }
-Marine::~Marine()
-{
-cout << name << " 의 소멸자 호출 ! " << endl;
-if(name != NULL)
-{
-delete [] name;
-}
-}
-int main()
-{
-Marine* marines[100];
+int main() {
+  Marine* marines[100];
 
+  marines[0] = new Marine(2, 3, "Marine 2");
+  marines[1] = new Marine(1, 5, "Marine 1");
 
-marines[0] = new Marine (2, 3, "Marine 2");
-marines[1] = new Marine (1, 5, "Marine 1");
+  marines[0]->show_status();
+  marines[1]->show_status();
 
+  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 
-marines[0]->show_status();
-marines[1]->show_status();
+  marines[0]->be_attacked(marines[1]->attack());
 
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  marines[0]->show_status();
+  marines[1]->show_status();
 
-
-marines[0]->be_attacked(marines[1]->attack());
-
-
-marines[0]->show_status();
-marines[1]->show_status();
-
-
-delete marines[0];
-delete marines[1];
+  delete marines[0];
+  delete marines[1];
 }
 ```
 
@@ -576,7 +499,7 @@ delete marines[1];
 
 우리의 `Marine` 클래스의 소멸자의 경우
 
-```cpp
+```cpp-formatted
 ~Marine();
 ```
 
@@ -588,58 +511,44 @@ delete marines[1];
 우리의 소멸자의 내용을 살펴보자면
 
 
-```cpp
-Marine::~Marine()
-{
-cout << name << " 의 소멸자 호출 ! " << endl;
-if(name != NULL)
-{
-delete [] name;
-}
+```cpp-formatted
+Marine::~Marine() {
+  cout << name << " 의 소멸자 호출 ! " << endl;
+  if (name != NULL) {
+    delete[] name;
+  }
 }
 ```
 
 위와 같이 `name` 이 `NULL` 이 아닐 경우에 (즉 동적으로 할당이 되었을 경우에) 만 `delete` 로 `name` 을 삭제하는 것을 알 수 있습니다. 참고로 `name` 자체가 `char` 의 배열로 동적할당 하였기 때문에 `delete` 역시 `delete [] name,` 즉 `[]` 를 꼭 써주어야만 합니다.
 
-```cpp
+```cpp-formatted
 delete marines[0];
 delete marines[1];
 ```
 
 객체가 소멸될 때 소멸자가 호출된다고 출력하도록 했는데, 실제로 위 코드가 실행 시 소멸자 호출 메세지가 뜬다는 것을 확인할 수 있습니다.
 
-```cpp
+```cpp-formatted
 // 소멸자 호출 확인하기
-#include <iostream>
 #include <string.h>
+#include <iostream>
 using namespace std;
 
+class Test {
+  char c;
 
-class Test
-{
-char c;
-
-
-public:
-Test(char _c)
-{
-c = _c;
-cout << "생성자 호출 " << c << endl;
-}
-~Test()
-{
-cout << "소멸자 호출 " << c << endl;
-}
+ public:
+  Test(char _c) {
+    c = _c;
+    cout << "생성자 호출 " << c << endl;
+  }
+  ~Test() { cout << "소멸자 호출 " << c << endl; }
 };
-void simple_function()
-{
-Test b('b');
-}
-int main()
-{
-Test a('a');
-simple_function();
-
+void simple_function() { Test b('b'); }
+int main() {
+  Test a('a');
+  simple_function();
 }
 ```
 
@@ -649,55 +558,43 @@ simple_function();
 
 와 같이 나옵니다. 위 코드에서 여러분은 '객체가 파괴될 때 호출되는 소멸자' 를 확실하게 확인할 수 있었을 것입니다.
 
-```cpp
-class Test
-{
-char c;
+```cpp-formatted
+class Test {
+  char c;
 
-public:
-Test(char _c)
-{
-c = _c;
-cout << "생성자 호출 " << c << endl;
-}
-~Test()
-{
-cout << "소멸자 호출 " << c << endl;
-}
+ public:
+  Test(char _c) {
+    c = _c;
+    cout << "생성자 호출 " << c << endl;
+  }
+  ~Test() { cout << "소멸자 호출 " << c << endl; }
 };
 ```
 
 `Test` 클래스는 매우 간단한데, 생성자와 소멸자 호출 때 어떤 객체의 것이 호출되는지 확인하기 위해 `char c` 를 도입하였습니다.
 
 
-```cpp
-int main()
-{
-Test a('a');
-simple_function();
-
+```cpp-formatted
+int main() {
+  Test a('a');
+  simple_function();
 }
 ```
 
 일단 가장 먼저 `main` 함수에서 `a` 객체를 생성하였으므로 `a` 의 생성자가 호출됩니다. 그리고 `simple_function` 을 실행하게 되면,
 
 
-```cpp
-void simple_function()
-{
-Test b('b');
-}
+```cpp-formatted
+void simple_function() { Test b('b'); }
 ```
 
 `simple_function` 안에서 또 `b` 객체를 생성하므로 `b` 의 생성자가 호출되지요. 하지만 `b` 는 `simple_function` 의 지역 객체이기 때문에 `simple_function` 이 종료됨과 동시에 `b` 역시 소멸되게 됩니다. 따라서 끝에서 `b` 의 소멸자가 호출되지요.
 
 
-```cpp
-int main()
-{
-Test a('a');
-simple_function();
-
+```cpp-formatted
+int main() {
+  Test a('a');
+  simple_function();
 }
 ```
 
@@ -723,58 +620,50 @@ simple_function();
 
 사실 위에 나타나 있는 포토캐논의 모습은 한 개가 아니라 수십 개의 포토캐논이 서로 겹친 모습입니다. 다시 말해 같은 포토캐논들이 수 백개 '복사' 되었다고 볼 수 있지요. 위와 같이 동일한 포토캐논을 만들어 내는 방법은 각각의 포토캐논을 일일히 생성자로 생성 할 수 도 있지만, 1 개만 생성해 놓고, 그 한 개를 가지고 나머지 포토캐논들은 '복사 생성' 할 수 도 있는 것입니다.
 
-```cpp
+```cpp-formatted
 // 포토캐논
-#include <iostream>
 #include <string.h>
+#include <iostream>
 using namespace std;
 
+class Photon_Cannon {
+  int hp, shield;
+  int coord_x, coord_y;
+  int damage;
 
-class Photon_Cannon
-{
-int hp, shield;
-int coord_x, coord_y;
-int damage;
+ public:
+  Photon_Cannon(int x, int y);
+  Photon_Cannon(const Photon_Cannon& pc);
 
-
-public:
-Photon_Cannon(int x, int y);
-Photon_Cannon(const Photon_Cannon & pc);
-
-void show_status();
+  void show_status();
 };
-Photon_Cannon::Photon_Cannon(const Photon_Cannon & pc)
-{
-cout << "복사 생성자 호출 !" << endl;
-hp = pc.hp;
-shield = pc.shield;
-coord_x = pc.coord_x;
-coord_y = pc.coord_y;
-damage = pc.damage;
+Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
+  cout << "복사 생성자 호출 !" << endl;
+  hp = pc.hp;
+  shield = pc.shield;
+  coord_x = pc.coord_x;
+  coord_y = pc.coord_y;
+  damage = pc.damage;
 }
-Photon_Cannon::Photon_Cannon(int x, int y)
-{
-cout << "생성자 호출 !" << endl;
-hp = shield = 100;
-coord_x = x;
-coord_y = y;
-damage = 20;
+Photon_Cannon::Photon_Cannon(int x, int y) {
+  cout << "생성자 호출 !" << endl;
+  hp = shield = 100;
+  coord_x = x;
+  coord_y = y;
+  damage = 20;
 }
-void Photon_Cannon::show_status()
-{
-cout << "Photon Cannon " << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
+void Photon_Cannon::show_status() {
+  cout << "Photon Cannon " << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
 }
-int main()
-{
-Photon_Cannon pc1(3, 3);
-Photon_Cannon pc2 (pc1);
-Photon_Cannon pc3 = pc2;
+int main() {
+  Photon_Cannon pc1(3, 3);
+  Photon_Cannon pc2(pc1);
+  Photon_Cannon pc3 = pc2;
 
-
-pc1.show_status();
-pc2.show_status();
+  pc1.show_status();
+  pc2.show_status();
 }
 ```
 
@@ -789,35 +678,34 @@ pc2.show_status();
 
 먼저 우리가 제작한 **복사 생성자 (copy constructor)** 부터 살펴보도록 합시다.
 
-```cpp
-Photon_Cannon(const Photon_Cannon & pc);
+```cpp-formatted
+Photon_Cannon(const Photon_Cannon& pc);
 ```
 
 사실 위는 복사 생성자의 표준적인 정의라고 볼 수 있습니다. 즉, 복사 생성자는 어떤 클래스 `T` 가 있다면
 
-```cpp
+```cpp-formatted
 
-T (const T & a);
+T(const T& a);
 ```
 
 라고 정의됩니다. 즉, 다른 `T` 의 객체 `a` 를상수 레퍼런스로 받는 다는 이야기 입니다. 여기서 `a` 가 `const` 이기 때문에 우리는 복사 생성자 내부에서 `a` 의 데이터를 변경할 수 없고, 오직 새롭게 초기화 되는 인스턴스 변수들에게 '복사' 만 할 수 있게 됩니다. 다시 말해,
 
 
-```cpp
-Photon_Cannon::Photon_Cannon(const Photon_Cannon & pc)
-{
-cout << "복사 생성자 호출 !" << endl;
-hp = pc.hp;
-shield = pc.shield;
-coord_x = pc.coord_x;
-coord_y = pc.coord_y;
-damage = pc.damage;
+```cpp-formatted
+Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
+  cout << "복사 생성자 호출 !" << endl;
+  hp = pc.hp;
+  shield = pc.shield;
+  coord_x = pc.coord_x;
+  coord_y = pc.coord_y;
+  damage = pc.damage;
 }
 ```
 
 위와 같이 복사 생성자 내부에서 `pc` 의 인스턴스 변수들에 접근해서 객체의 `shield, coord_x, coord_y` 등을 초기화 할 수 는 있지만
 
-```cpp
+```cpp-formatted
 pc.coord_x = 3;
 ```
 
@@ -834,26 +722,26 @@ pc.coord_x = 3;
 
 이제 위와 같이 정의된 복사 생성자를 실제로 어떻게 이용하는지 살펴보도록 합시다.
 
-```cpp
+```cpp-formatted
 Photon_Cannon pc1(3, 3);
-Photon_Cannon pc2 (pc1);
+Photon_Cannon pc2(pc1);
 ```
 
 일단 `pc1` 은 `int x, int y` 를 인자로 가지는 생성자가 오버로딩 되었고, `pc2` 의 경우 인자로 `pc1` 을 넘겼으므로 복사 생성자가 호출되었음을 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 Photon_Cannon pc3 = pc2;
 ```
 
 그렇다면 위 코드는 어떻까요? 놀랍게도, 위 코드 역시 복사 생성자가 호출됩니다. C++ 컴파일러는 위 문장을 아래와 동일하게 해석합니다.
 
-```cpp
-Photon_Cannon pc3 (pc2);
+```cpp-formatted
+Photon_Cannon pc3(pc2);
 ```
 
 따라서 복사 생성자가 호출되게 되는 것입니다. 물론, 위는 아주아주 특별한 경우 입니다. 만일 그냥
 
-```cpp
+```cpp-formatted
 pc3 = pc2;
 ```
 
@@ -863,15 +751,15 @@ pc3 = pc2;
 참고로 한 가지 더 말하자면,
 
 
-```cpp
+```cpp-formatted
 Photon_Cannon pc3 = pc2;
 ```
 
 와
 
-```cpp
+```cpp-formatted
 Photon_Cannon pc3;
- pc3 = pc2;
+pc3 = pc2;
 ```
 
 는 엄연히 다른 문장입니다. 왜냐하면 위의 것은 말 그대로 복사 생성자가 1 번 호출되는 것이고, 아래 것은 그냥 생성자가 1 번 호출되고, `pc3 = pc2;` 라는 명령이 실행되는 것이지요. 다시 한 번 강조하지만, 복사 생성자는 오직 '생성' 시에 호출된다는 것을 명심하시면 됩니다.
@@ -883,15 +771,14 @@ Photon_Cannon pc3;
 만일 우리가 위 `Photon_Cannon` 의 디폴트 복사 생성자의 내용을 추정해 본다면
 
 
-```cpp
+```cpp-formatted
 
-Photon_Cannon::Photon_Cannon(const Photon_Cannon & pc)
-{
-hp = pc.hp;
-shield = pc.shield;
-coord_x = pc.coord_x;
-coord_y = pc.coord_y;
-damage = pc.damage;
+Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
+  hp = pc.hp;
+  shield = pc.shield;
+  coord_x = pc.coord_x;
+  coord_y = pc.coord_y;
+  damage = pc.damage;
 }
 ```
 
@@ -905,81 +792,66 @@ damage = pc.damage;
 
 이번에도 위의 마린 처럼 포토 캐논의 이름을 지어줄 수 있다는 사실을 알고 클래스 `Photon_Cannon` 에 `char *name` 을 추가 해주었습니다. 그리고, 복사 생성자는 그냥 위에서 처럼 디폴트 복사 생성자를 사용하기로 했죠. 그 코드는 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 
 // 디폴트 복사 생성자의 한계
-#include <iostream>
 #include <string.h>
+#include <iostream>
 using namespace std;
 
+class Photon_Cannon {
+  int hp, shield;
+  int coord_x, coord_y;
+  int damage;
 
-class Photon_Cannon
-{
-int hp, shield;
-int coord_x, coord_y;
-int damage;
+  char *name;
 
+ public:
+  Photon_Cannon(int x, int y);
+  Photon_Cannon(int x, int y, char *cannon_name);
+  ~Photon_Cannon();
 
-char *name;
-
-
-public:
-Photon_Cannon(int x, int y);
-Photon_Cannon(int x, int y, char *cannon_name);
-~Photon_Cannon();
-
-void show_status();
+  void show_status();
 };
 
+Photon_Cannon::Photon_Cannon(int x, int y) {
+  hp = shield = 100;
+  coord_x = x;
+  coord_y = y;
+  damage = 20;
 
-Photon_Cannon::Photon_Cannon(int x, int y)
-{
-hp = shield = 100;
-coord_x = x;
-coord_y = y;
-damage = 20;
-
-
-name = NULL;
+  name = NULL;
 }
-Photon_Cannon::Photon_Cannon(int x, int y, char *cannon_name)
-{
-hp = shield = 100;
-coord_x = x;
-coord_y = y;
-damage = 20;
+Photon_Cannon::Photon_Cannon(int x, int y, char *cannon_name) {
+  hp = shield = 100;
+  coord_x = x;
+  coord_y = y;
+  damage = 20;
 
-
-name = new char [strlen(cannon_name) + 1];
-strcpy(name, cannon_name);
+  name = new char[strlen(cannon_name) + 1];
+  strcpy(name, cannon_name);
 }
-Photon_Cannon::~Photon_Cannon()
-{
+Photon_Cannon::~Photon_Cannon() {
+  // 0 이 아닌 값은 if 문에서 true 로 처리되므로
+  // 0 인가 아닌가를 비교할 때 그냥 if(name) 하면
+  // if(name != 0) 과 동일한 의미를 가질 수 있다.
 
-// 0 이 아닌 값은 if 문에서 true 로 처리되므로
-// 0 인가 아닌가를 비교할 때 그냥 if(name) 하면
-// if(name != 0) 과 동일한 의미를 가질 수 있다.
+  // 참고로 if 문 다음에 문장이 1 개만 온다면
+  // 중괄호를 생략 가능하다.
 
-// 참고로 if 문 다음에 문장이 1 개만 온다면
-// 중괄호를 생략 가능하다.
-
-
-if(name)
-delete [] name;
+  if (name) delete[] name;
 }
-void Photon_Cannon::show_status()
-{
-cout << "Photon Cannon :: " << name << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
+void Photon_Cannon::show_status() {
+  cout << "Photon Cannon :: " << name << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
 }
-int main()
-{
-Photon_Cannon pc1(3,3, "Cannon");
-Photon_Cannon pc2 = pc1;
+int main() {
+  Photon_Cannon pc1(3, 3, "Cannon");
+  Photon_Cannon pc2 = pc1;
 
-pc1.show_status();
-pc2.show_status();
+  pc1.show_status();
+  pc2.show_status();
 }
 ```
 
@@ -996,15 +868,14 @@ pc2.show_status();
 
 이럴 수가. 오래간만에 보는 런타임 오류입니다. 왜 이런 오류가 발생하였을까요? 분명히 디폴트 복사 생성자는 1 대 1 로 원소들 간의 정확한 복사를 수행해 준다고 했었는데 말이죠. 그럼 일단, 여기서 우리의 디폴트 복사 생성자가 어떻게 생겼는지 살펴보도록 합시다. 아마두 추정컨대, 컴파일러는 솔직하게 1 대 1 복사를 해주는 디폴트 복사 생성자를 아래와 같이 만들어 주었을 것입니다.
 
-```cpp
-Photon_Cannon::Photon_Cannon(const Photon_Cannon & pc)
-{
-hp = pc.hp;
-shield = pc.shield;
-coord_x = pc.coord_x;
-coord_y = pc.coord_y;
-damage = pc.damage;
-  name = pc.name;
+```cpp-formatted
+Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
+  hp = pc.hp;
+  shield = pc.shield;
+  coord_x = pc.coord_x;
+  coord_y = pc.coord_y;
+  damage = pc.damage;
+  name = pc.name;
 }
 ```
 
@@ -1027,11 +898,9 @@ damage = pc.damage;
 그러면 소멸자는 `pc1` 의 내용을 모두 파괴 함과 동시에 `0x125ADD3` 에 할당한 메모리 까지 `delete` 하게 됩니다. 그런데 문제는 `pc2` 의 `name` 이 해제된 메모리인 `0x125ADD3` 을 가리키고 있다는 것입니다.
 
 
-```cpp
-Photon_Cannon::~Photon_Cannon()
-{
-if(name)
-delete [] name;
+```cpp-formatted
+Photon_Cannon::~Photon_Cannon() {
+  if (name) delete[] name;
 }
 ```
 
@@ -1047,84 +916,70 @@ delete [] name;
 
 위 과정을 그림으로 설명하자면 복사 생성자에서 `hp, shield` 와 같은 변수 들은 얕은 복사를 하지만, `name` 의 경우 따로 메모리를 할당해서 그 내용만 복사하는 깊은 복사를 수행하게 되는 것이지요. 그러면 소멸자에서도 메모리 해제시 각기 다른 메모리를 해제하는 것이기 때문에 전혀 문제가 발생하지 않습니다. 이를 바탕으로 복사 생성자를 만들어보면 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 
 // 복사 생성자의 중요성
-#include <iostream>
 #include <string.h>
+#include <iostream>
 using namespace std;
 
+class Photon_Cannon {
+  int hp, shield;
+  int coord_x, coord_y;
+  int damage;
 
-class Photon_Cannon
-{
-int hp, shield;
-int coord_x, coord_y;
-int damage;
+  char *name;
 
+ public:
+  Photon_Cannon(int x, int y);
+  Photon_Cannon(int x, int y, char *cannon_name);
+  Photon_Cannon(const Photon_Cannon &pc);
+  ~Photon_Cannon();
 
-char *name;
-
-
-public:
-Photon_Cannon(int x, int y);
-Photon_Cannon(int x, int y, char *cannon_name);
-Photon_Cannon(const Photon_Cannon &pc);
-~Photon_Cannon();
-
-void show_status();
+  void show_status();
 };
-Photon_Cannon::Photon_Cannon(int x, int y)
-{
-hp = shield = 100;
-coord_x = x;
-coord_y = y;
-damage = 20;
+Photon_Cannon::Photon_Cannon(int x, int y) {
+  hp = shield = 100;
+  coord_x = x;
+  coord_y = y;
+  damage = 20;
 
-
-name = NULL;
+  name = NULL;
 }
-Photon_Cannon::Photon_Cannon(const Photon_Cannon &pc)
-{
-cout << "복사 생성자 호출! " << endl;
-hp = pc.hp;
-shield = pc.shield;
-coord_x = pc.coord_x;
-coord_y = pc.coord_y;
-damage = pc.damage;
+Photon_Cannon::Photon_Cannon(const Photon_Cannon &pc) {
+  cout << "복사 생성자 호출! " << endl;
+  hp = pc.hp;
+  shield = pc.shield;
+  coord_x = pc.coord_x;
+  coord_y = pc.coord_y;
+  damage = pc.damage;
 
-
-name = new char [strlen(pc.name) + 1];
-strcpy(name, pc.name);
+  name = new char[strlen(pc.name) + 1];
+  strcpy(name, pc.name);
 }
-Photon_Cannon::Photon_Cannon(int x, int y, char *cannon_name)
-{
-hp = shield = 100;
-coord_x = x;
-coord_y = y;
-damage = 20;
+Photon_Cannon::Photon_Cannon(int x, int y, char *cannon_name) {
+  hp = shield = 100;
+  coord_x = x;
+  coord_y = y;
+  damage = 20;
 
+  name = new char[strlen(cannon_name) + 1];
+  strcpy(name, cannon_name);
+}
+Photon_Cannon::~Photon_Cannon() {
+  if (name) delete[] name;
+}
+void Photon_Cannon::show_status() {
+  cout << "Photon Cannon :: " << name << endl;
+  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
+  cout << " HP : " << hp << endl;
+}
+int main() {
+  Photon_Cannon pc1(3, 3, "Cannon");
+  Photon_Cannon pc2 = pc1;
 
-name = new char [strlen(cannon_name) + 1];
-strcpy(name, cannon_name);
-}
-Photon_Cannon::~Photon_Cannon()
-{
-if(name)
-delete [] name;
-}
-void Photon_Cannon::show_status()
-{
-cout << "Photon Cannon :: " << name << endl;
-cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-cout << " HP : " << hp << endl;
-}
-int main()
-{
-Photon_Cannon pc1(3,3, "Cannon");
-Photon_Cannon pc2 = pc1;
-
-pc1.show_status();
-pc2.show_status();
+  pc1.show_status();
+  pc2.show_status();
 }
 ```
 
@@ -1152,24 +1007,21 @@ pc2.show_status();
 
 아래와 같은 문자열 클래스를 완성해보세요 (난이도 : 中)
 
-```cpp
+```cpp-formatted
 
-class string
-{
-char *str;
-int len;
+class string {
+  char *str;
+  int len;
 
+ public:
+  string(char c, int n);  // 문자 c 가 n 개 있는 문자열로 정의
+  string(char *s);
+  string(const string &s);
+  ~string();
 
-public:
-string (char c, int n); // 문자 c 가 n 개 있는 문자열로 정의
-string (char * s);
-string (const string & s);
-~string();
-
-
-void add_string (const string &s); // str 뒤에 s 를 붙인다.
-void copy_string (const string &s); // str 에 s 를 복사한다.
-int strlen(); // 문자열 길이 리턴
+  void add_string(const string &s);   // str 뒤에 s 를 붙인다.
+  void copy_string(const string &s);  // str 에 s 를 복사한다.
+  int strlen();                       // 문자열 길이 리턴
 };
 ```
 
@@ -1181,14 +1033,3 @@ int strlen(); // 문자열 길이 리턴
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-
-
-
-
-
-
-

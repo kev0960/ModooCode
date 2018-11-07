@@ -52,7 +52,7 @@ size_t strcspn ( const char * str1, const char * str2 );
 ###  구현 예
 
 
-```cpp
+```cpp-formatted
 /*
 
 아래 소스는
@@ -60,24 +60,23 @@ http://www.koders.com/c/fidE1F6D546E578F9FF41B8000B08F8A73D4D86F8FA.aspx
 에서 가져왔습니다.
 
 */
-size_t strcspn (const char *s, const char *reject)
-{
-    size_t count = 0;
+size_t strcspn(const char *s, const char *reject) {
+  size_t count = 0;
 
-    while (*s != '\0')
-        if (strchr (reject, *s++) == NULL)
-            ++count;
-        else
-            return count;
+  while (*s != '\0')
+    if (strchr(reject, *s++) == NULL)
+      ++count;
+    else
+      return count;
 
-    return count;
+  return count;
 }
 ```
 
 
 상당히 간단한 코드이다. `strchr` 의 사용법만 알면 쉽게 이해할 수 있지만, 살짝 비효율 적인데 함수를 호출하는 작업이 시간이 꽤 걸리기 때문이다. 아래 나온 코드는 좀더 복잡하지만 빠르게 수행된다.
 
-```cpp
+```cpp-formatted
 /*
 
 아래 소스는
@@ -85,33 +84,30 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 에서 가져왔습니다.
 
 */
-size_t strcspn(const char *string, const char *control)
-{
-    const unsigned char *str = string;
-    const unsigned char *ctrl = control;
+size_t strcspn(const char *string, const char *control) {
+  const unsigned char *str = string;
+  const unsigned char *ctrl = control;
 
-    unsigned char map[32];
-    int count;
+  unsigned char map[32];
+  int count;
 
-    // Clear out bit map
-    for (count = 0; count < 32; count++) map[count] = 0;
+  // Clear out bit map
+  for (count = 0; count < 32; count++) map[count] = 0;
 
-    // Set bits in control map
-    ,   while (*ctrl)
-    {
-        map[*ctrl >> 3] |= (1 << (*ctrl & 7));
-        ctrl++;
-    }
+  // Set bits in control map
+  , while (*ctrl) {
+    map[*ctrl >> 3] |= (1 << (*ctrl & 7));
+    ctrl++;
+  }
 
-    // 1st char in control map stops search
-    count = 0;
-    map[0] |= 1;
-    while (!(map[*str >> 3] & (1 << (*str & 7))))
-    {
-        count++;
-        str++;
-    }
-    return count;
+  // 1st char in control map stops search
+  count = 0;
+  map[0] |= 1;
+  while (!(map[*str >> 3] & (1 << (*str & 7)))) {
+    count++;
+    str++;
+  }
+  return count;
 }
 ```
 
@@ -120,8 +116,8 @@ size_t strcspn(const char *string, const char *control)
 
 이 때, `map` 에는 다음과 같은 형식으로 문자에 대한 정보가 저장된다.
 
-```cpp
-        map[*ctrl >> 3] |= (1 << (*ctrl & 7));
+```cpp-formatted
+map[*ctrl >> 3] |= (1 << (*ctrl & 7));
 // map[*ctrl >> 3] = map[*ctrl >> 3] | (1 << (*ctrl & 7)); 와 같다.
 ```
 
@@ -141,25 +137,24 @@ size_t strcspn(const char *string, const char *control)
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/cstring/strcspn/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[] = "fcba73";
-    char keys[] = "1234567890";
-    int i;
-    i = strcspn (str,keys);
-    printf ("The first number in str is at position %d.\n",i+1);
-    return 0;
+int main() {
+  char str[] = "fcba73";
+  char keys[] = "1234567890";
+  int i;
+  i = strcspn(str, keys);
+  printf("The first number in str is at position %d.\n", i + 1);
+  return 0;
 }
 ```
 
@@ -184,10 +179,3 @@ int main ()
 *  [strstr](http://itguru.tistory.com/101)   :  문자열에 특정한 문자열에 포함된 위치를 구한다.
 
 *  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부분일 비교한다.
-
-
-
-
-
-
-

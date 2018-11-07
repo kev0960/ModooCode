@@ -15,8 +15,8 @@ cat_title :  ios_base::imbue
 
 #@ ios_base::imbue
 
-```cpp
-locale imbue ( const locale& loc );
+```cpp-formatted
+locale imbue(const locale& loc);
 ```
 
 
@@ -55,7 +55,7 @@ locale imbue ( const locale& loc );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
@@ -67,12 +67,12 @@ http://www.cplusplus.com/reference/iostream/ios_base/imbue/
 #include <locale>
 using namespace std;
 
-int main()
-{
-    locale mylocale("french");      // 로케일 객체를 '프랑스' 로 설정한다.
-    cout.imbue( mylocale );   // 이를 cout 로케일로 설정한다.
-    cout << (double) 3.14159 << endl; //프랑스에서는 . 대신 , 를 사용하므로 3,14159 로 표시된다.
-    return 0;
+int main() {
+  locale mylocale("french");  // 로케일 객체를 '프랑스' 로 설정한다.
+  cout.imbue(mylocale);       // 이를 cout 로케일로 설정한다.
+  cout << (double)3.14159
+       << endl;  //프랑스에서는 . 대신 , 를 사용하므로 3,14159 로 표시된다.
+  return 0;
 }
 ```
 

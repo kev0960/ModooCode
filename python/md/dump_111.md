@@ -53,9 +53,25 @@ double difftime ( time_t time2, time_t time1 );
 
 
 
-```cpp
+```cpp-formatted
 
-/*이름을 쓰는데 얼마나 걸리는지 알아온다.이 예제는http://www.cplusplus.com/reference/clibrary/ctime/difftime/에서 가져왔습니다.*/#include <stdio.h>#include <time.h>int main (){    time_t start,end;    char szInput [256];    double dif;    time (&start);    printf ("Please, enter your name: ");    gets (szInput);    time (&end);    dif = difftime (end,start);    printf ("Hi %s.\n", szInput);    printf ("It took you %.2lf seconds to type your name.\n", dif );    return 0;}
+/*이름을 쓰는데 얼마나 걸리는지 알아온다.이
+ * 예제는http://www.cplusplus.com/reference/clibrary/ctime/difftime/에서
+ * 가져왔습니다.*/
+#include <stdio.h> #include <time.h> int
+main() {
+  time_t start, end;
+  char szInput[256];
+  double dif;
+  time(&start);
+  printf("Please, enter your name: ");
+  gets(szInput);
+  time(&end);
+  dif = difftime(end, start);
+  printf("Hi %s.\n", szInput);
+  printf("It took you %.2lf seconds to type your name.\n", dif);
+  return 0;
+}
 ```
 
 

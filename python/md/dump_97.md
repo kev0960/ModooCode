@@ -51,32 +51,36 @@ size_t strspn ( const char * str1, const char * str2 );
 ###  구현 예
 
 
-```cpp
+```cpp-formatted
 /*
 
- 이 소스는
+ 이 소스는
 http://www.jbox.dk/sanos/source/lib/string.c.html
 에서 가져왔습니다.
 
 */
 
-
 size_t strspn(const char *string, const char *control) {
-      const unsigned char *str = string;
-      const unsigned char *ctrl = control;
-      unsigned char map[32];
-      int count;    // Clear out bit map
-      for (count = 0; count < 32; count++)
-         map[count] = 0;    // Set bits in control map
-      while (*ctrl)    {
-            map[*ctrl >> 3] |= (1 << (*ctrl & 7));
-            ctrl++;
-        }    // 1st char NOT in control map stops search
-        if (*str)    { 
-             count = 0;
-              while (map[*str >> 3] & (1 << (*str & 7)))        { 
-                   count++;            str++;        }  
-              return count;    }    return 0;}
+  const unsigned char *str = string;
+  const unsigned char *ctrl = control;
+  unsigned char map[32];
+  int count;  // Clear out bit map
+  for (count = 0; count < 32; count++)
+    map[count] = 0;  // Set bits in control map
+  while (*ctrl) {
+    map[*ctrl >> 3] |= (1 << (*ctrl & 7));
+    ctrl++;
+  }  // 1st char NOT in control map stops search
+  if (*str) {
+    count = 0;
+    while (map[*str >> 3] & (1 << (*str & 7))) {
+      count++;
+      str++;
+    }
+    return count;
+  }
+  return 0;
+}
 ```
 
 위 예는 상당히 복잡하고도 참신한 아이디어를 방법으로 `strspn` 함수를 구현하였는데, 위 코드에 대한 자세한 설명을 위해서는 [http://itguru.tistory.com/94](http://itguru.tistory.com/94) 를 참조하면 된다.
@@ -85,26 +89,25 @@ size_t strspn(const char *string, const char *control) {
 
 ###  실행 예제
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/cstring/strstr/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    int i;
-    char strtext[] = "129th";
-    char cset[] = "1234567890";
+int main() {
+  int i;
+  char strtext[] = "129th";
+  char cset[] = "1234567890";
 
-    i = strspn (strtext,cset);
-    printf ("The length of initial number is %d.\n",i);
-    return 0;
+  i = strspn(strtext, cset);
+  printf("The length of initial number is %d.\n", i);
+  return 0;
 }
 ```
 

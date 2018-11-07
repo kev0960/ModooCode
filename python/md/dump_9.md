@@ -31,18 +31,16 @@ next_page : 10
 
 보시는 것과 같이 `char` 은 맨 위에 위치해 있으며 크기는 1 바이트 입니다. 또한, 이를 통해 나타낼 수 있는 숫자의 범위를 알려주고 있는데, 이는 -128 부터 127 까지, 256 가지 입니다.
 
-```cpp
-/* 문자를 저장하는 변수  */
+```cpp-formatted
+/* 문자를 저장하는 변수  */
 #include <stdio.h>
-int main()
-{
-    char a;
-    a = 'a';
+int main() {
+  char a;
+  a = 'a';
 
-printf("a 의 값과 들어 있는 문자는? 값 : %d , 문자 : %c \n",a,a);
-    return 0;
+  printf("a 의 값과 들어 있는 문자는? 값 : %d , 문자 : %c \n", a, a);
+  return 0;
 }
-
 ```
 
 위 소스를 성공적으로 컴파일 했다면
@@ -52,20 +50,20 @@ printf("a 의 값과 들어 있는 문자는? 값 : %d , 문자 : %c \n",a,a);
 
   위와 같이 나옵니다. 일단, 소스를 분석해 보겠습니다.
 
-```cpp
-    char a;
+```cpp-formatted
+char a;
 ```
 
   이 부분은 `char` 형 변수를 선언하는 부분입니다. 기억이 안나시는 분들은 [3강](http://itguru.tistory.com/?page=2)을 참조하세요.
 
-```cpp
+```cpp-formatted
 a = 'a';
 ```
 
 
 이 부분은 `a` 라는 변수에 문자 `a` 를 대입하고 있습니다. 이 때, 모든 문자들은 모두 작은 따옴표로 묶어 주어야 합니다. 만약 작은 따옴표로 묶지 않고 그냥 썼다면
 
-```cpp
+```cpp-formatted
 a = a;
 ```
 
@@ -73,8 +71,8 @@ C 컴파일러는 이 `a` 가 변수 `a` 라고 착각하여 `a` 라는 변수�
   
 문자를 대입하는 것도 숫자를 대입하는 것과 동일합니다. 대입 연산자를 이용하면 되죠.
 
-```cpp
-    printf("a 의 값과 들어 있는 문자는? 값 : %d , 문자 : %c \n",a,a);
+```cpp-formatted
+printf("a 의 값과 들어 있는 문자는? 값 : %d , 문자 : %c \n", a, a);
 ```
 
 마지막으로, 위 `printf` 문에 대해 보도록 하겠습니다. 앞에서 말했듯이 컴퓨터는 `a` 가 문자라는 것 자체를 모른다고 했습니다. 단지 우리가 `a` 를 문자로 보느냐 아니면 숫자를 보느냐에 따라 달라진다고 했는데, 이 말 뜻을 위 `printf` 문을 보면 알 수 있습니다.
@@ -95,21 +93,19 @@ C 컴파일러는 이 `a` 가 변수 `a` 라고 착각하여 `a` 라는 변수�
 
 ###  scanf 의 도입
 
-```cpp
-/* 섭씨온도를 화씨로 바꾸기  */
+```cpp-formatted
+/* 섭씨온도를 화씨로 바꾸기  */
 #include <stdio.h>
-int main()
-{
-    double celsius; // 섭씨 온도
+int main() {
+  double celsius;  // 섭씨 온도
 
-    printf("섭씨 온도를 화씨 온도로 바꿔주는 프로그램 입니다. \n");
-    printf("섭씨 온도를 입력해 주세요 : ");
-    scanf("%lf",&celsius); // 섭씨 온도를 입력 받는다.
+  printf("섭씨 온도를 화씨 온도로 바꿔주는 프로그램 입니다. \n");
+  printf("섭씨 온도를 입력해 주세요 : ");
+  scanf("%lf", &celsius);  // 섭씨 온도를 입력 받는다.
 
-    printf("섭씨 %f 도는 화씨로 %f 도 입니다 \n", celsius, 9 * celsius / 5 + 32);
+  printf("섭씨 %f 도는 화씨로 %f 도 입니다 \n", celsius, 9 * celsius / 5 + 32);
 
-    return 0;
-
+  return 0;
 }
 ```
 
@@ -123,15 +119,14 @@ int main()
 
  위와 같이 섭씨가 화씨 온도로 변경된 값이 출력됩니다. 와우! 드디어 쓸만한 프로그램을 처음으로 만들어 보게 된 것 같군요. 소스 코드를 찬찬히 살펴 보도록 합시다.
 
-```cpp
-    double celsius; // 섭씨 온도
-
+```cpp-formatted
+double celsius;  // 섭씨 온도
 ```
 
 일단, `celsius` 라는 `double` 형 변수를 선언하였습니다. 변수의 이름을 종전의 `a , b` 에서 `celsius` 라고 한 이유는 좀 더 이해하기 편하기 때문이죠. 좋은 소스 코드의 조건은 다른 사람이 이해하기 쉬운 소스 코드 이고, 다른 사람이 이해하기 쉬운 소스코드는 기본적으로 변수 이름을 보고도 변수를 한 눈에 파악하기 쉽게 만드는 것입니다.
 
-```cpp
-    scanf("%lf",&celsius); // 섭씨 온도를 입력 받는다.
+```cpp-formatted
+scanf("%lf", &celsius);  // 섭씨 온도를 입력 받는다.
 ```
 
 이제, 새로운 것이 등장하였군요. `printf` 에 이어 등장한 `scanf` 군. `printf` 가 화면에 결과를 출력해 주는 함수였다면, `scanf` 는 화면(키보드) 로 부터 결과를 받아들이는 입력 함수 입니다. 이렇게 흔히 `printf` 와 `scanf` 를 가리켜 입출력함수라 하죠. 이 때, `scanf` 함수는 우리가 어떠한 입력을 하기 전까지 계속 기다립니다. 또한, 입력을 할 때 엔터를 눌러야지만 입력으로 처리됩니다.
@@ -142,8 +137,8 @@ int main()
 
 마찬가지로 `double` 형 변수도 무조건 `%lf`  로만 입력 받아야 합니다. 그 외에도, `printf` 는 정수형 변수는 모두 `%d` 로 출력 가능했던 반면에 `scanf` 는 각 자료형 마다 포맷이 다 정해져 있습니다. 아래 예제에서 잠시 `scanf` 의 포맷 들에 대해 정리해 보도록 하겠습니다
 
-```cpp
-    printf("섭씨 %f 도는 화씨로 %f 도 입니다 \n",celsius, 9 *celsius / 5 + 32);
+```cpp-formatted
+printf("섭씨 %f 도는 화씨로 %f 도 입니다 \n", celsius, 9 * celsius / 5 + 32);
 ```
 
   마지막으로 위 프로그램의 중요한 부분을 살펴보자. 바로 이 부분에서 섭씨와 화씨의 환산 작업이 이루어 진다. 참고로, 화씨와 섭씨의 변환 공식은 아래와 같습니다.
@@ -152,39 +147,37 @@ $$C  \cdot \frac{9}{5} + 32 = F$$
 
 따라서, 이 공식을 그대로 C 언어 수식을 바꾼 것이 `9 * celsius / 5 + 32` 인 것입니다. 곱셈과 나눗셈의 우선순위가 높으므로 `9 * celsius / 5` 가 먼저 계산 된 후 32 가 더해지므로 위의 식과  일치합니다. 따라서, 결국 `printf` 의 두번째 `%f` 부분에는 위 계산된 화씨의 값이 들어가게 됩니다.
 
-```cpp
-/* scanf 총 정리  */
+```cpp-formatted
+/* scanf 총 정리  */
 #include <stdio.h>
-int main()
-{
-    char ch; // 문자
+int main() {
+  char ch;  // 문자
 
-    short sh; // 정수
-    int i;
-    long lo;
+  short sh;  // 정수
+  int i;
+  long lo;
 
-    float fl; // 실수
-    double du;
+  float fl;  // 실수
+  double du;
 
-    printf("char 형 변수 입력 : ");
-    scanf("%c", &ch);
+  printf("char 형 변수 입력 : ");
+  scanf("%c", &ch);
 
-    printf("short 형 변수 입력 : ");
-    scanf("%hd", &sh);
-    printf("int 형 변수 입력 : ");
-    scanf("%d", &i);
-    printf("long 형 변수 입력 : ");
-    scanf("%ld", &lo);
+  printf("short 형 변수 입력 : ");
+  scanf("%hd", &sh);
+  printf("int 형 변수 입력 : ");
+  scanf("%d", &i);
+  printf("long 형 변수 입력 : ");
+  scanf("%ld", &lo);
 
-    printf("float 형 변수 입력 : ");
-    scanf("%f", &fl);
-    printf("double 형 변수 입력 : ");
-    scanf("%lf", &du);
+  printf("float 형 변수 입력 : ");
+  scanf("%f", &fl);
+  printf("double 형 변수 입력 : ");
+  scanf("%lf", &du);
 
-
-    printf("char : %c , short : %d , int : %d ", ch, sh, i);
-    printf("long : %d , float : %f, double : %f \n",lo,fl,du);
-    return 0;
+  printf("char : %c , short : %d , int : %d ", ch, sh, i);
+  printf("long : %d , float : %f, double : %f \n", lo, fl, du);
+  return 0;
 }
 ```
 
@@ -193,33 +186,32 @@ int main()
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1806421D49F5BFD8C959E0)
 
 
-```cpp
-    printf("char 형 변수 입력 : ");
-    scanf("%c", &ch);
+```cpp-formatted
+printf("char 형 변수 입력 : ");
+scanf("%c", &ch);
 ```
 
 일단, 제일 먼저 문자를 입력 받는 부분을 봅시다. 예전에도 이야기 했지만 한글은 2 바이트를 차지하기 때문에 최대 1 바이트를 차지하는 `char` 형 변수인 `ch` 에 한글을 치면 오류가 납니다. 이와 같이 허용된 메모리 이상에 데이터를 집어넣어 발생하는 오류를 **버퍼 오버플로우(Buffer Overflow)** 라고 하며 보안 상 매우 취약합니다.\sidenote{버퍼 오버플로우를 이용해서 공격자들이 프로그램의 정상적인 코드가 아니라, 자신들이 원하는 코드가 실행될 수 있도록 조종할 수 있습니다.} 뿐만 아니라 근처의 데이터가 손상됨에 따라 큰 문제가 발생하게 될 수 도 있습니다.  따라서, 여러분들은 버퍼 오버플로우가 일어나지 않게 허용된 데이타 이상을 집어넣는지 안집어 넣는지 검사할 필요성이 있습니다.
 
 또한 앞으로 우리가 `char` 형 변수를 선언할 때 에는 '이 사람이 문자를 보관하는 변수를 선언하는 구나' 라고 생각하도록 합시다. 왜냐하면 보통 수 데이타를 보관하는 변수로는 `int` 를 쓰지 `char` 을 잘 쓰지 않을 뿐더러 `char` 이름도 `character` 에서 따왔을 만큼 문자와 무언가 관련이 있기 때문이죠.
 
-```cpp
-  printf("short 형 변수 입력 : ");
-    scanf("%hd", &sh);
-    printf("int 형 변수 입력 : ");
-    scanf("%d", &i);
-    printf("long 형 변수 입력 : ");
-    scanf("%ld", &lo);
+```cpp-formatted
+printf("short 형 변수 입력 : ");
+scanf("%hd", &sh);
+printf("int 형 변수 입력 : ");
+scanf("%d", &i);
+printf("long 형 변수 입력 : ");
+scanf("%ld", &lo);
 ```
 
 
 이 부분은 여러분들이 무난하게 이해하실 수 있으리라 봅니다. 단지 포맷에 `%hd, %d, %ld` 로 다른 것 뿐이지요. 참고로 `short` 형이나 `long` 형은 아직 다루지는 않았지만 `int` 와 똑같은 계열의 정수형 변수라고 생각하시면 됩니다.
 
-```cpp
-    printf("float 형 변수 입력 : ");
-    scanf("%f", &fl);
-    printf("double 형 변수 입력 : ");
-    scanf("%lf", &du);
-
+```cpp-formatted
+printf("float 형 변수 입력 : ");
+scanf("%f", &fl);
+printf("double 형 변수 입력 : ");
+scanf("%lf", &du);
 ```
 
 마찬가지로 `float` 형에서는 `%f` 로, `double` 형에서는 `%lf` 로 사용한다는 것을 기억하시기 바랍니다.
@@ -240,7 +232,3 @@ int main()
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-

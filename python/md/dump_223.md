@@ -62,14 +62,14 @@ next_page : 224
 
 예를 들어 가장 기초적인 버블 정렬을 생각해봅시다. 버블 정렬의 코드는 간단히 보자면 아래와 같습니다.
 
-```cpp
+```cpp-formatted
 
 for (int i = 0; i < N; i++) {
-for (int j = i + 1; j < N; j++) {
-if (arr[i] > arr[j]) {
-swap(arr, i, j)
-}
-}
+  for (int j = i + 1; j < N; j++) {
+    if (arr[i] > arr[j]) {
+      swap(arr, i, j)
+    }
+  }
 }
 ```
 
@@ -107,25 +107,22 @@ $$O(N\log N) $$
 
 그렇다면 다시 벡터 자료형으로 돌아오겠습니다. `vector` 의 경우, 임의의 위치에 있는 원소에 접근을 $$O(1)$$ 로 수행할 수 있습니다. 게다가 맨 뒤에 새로운 원소를 추가하거나 제거하는 것 역시 $$O(1)$$ 에 수행합니다. `vector` 의 임의의 원소에 접근하는 것은 배열처럼 `[]` 를 이용하거나, `at` 함수를 이용하면 됩니다. 또한 맨 뒤에 원소를 추가하거나 제거하기 위해서는 `push_back` 혹은 `pop_back` 함수를 사용하면 됩니다. 아래 예를 보겠습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
+int main() {
+  vector<int> vec;
+  vec.push_back(10);  // 맨 뒤에 10 추가
+  vec.push_back(20);  // 맨 뒤에 20 추가
+  vec.push_back(30);  // 맨 뒤에 30 추가
+  vec.push_back(40);  // 맨 뒤에 40 추가
 
-int main()
-{
-vector<int> vec;
-vec.push_back(10); // 맨 뒤에 10 추가
-vec.push_back(20); // 맨 뒤에 20 추가
-vec.push_back(30); // 맨 뒤에 30 추가
-vec.push_back(40); // 맨 뒤에 40 추가
-
-
-for (vector<int>::size_type i = 0; i < vec.size(); i++) {
-cout << "vec 의 " << i + 1 << " 번째 원소 :: " << vec[i] << endl;
-}
+  for (vector<int>::size_type i = 0; i < vec.size(); i++) {
+    cout << "vec 의 " << i + 1 << " 번째 원소 :: " << vec[i] << endl;
+  }
 }
 ```
 
@@ -184,38 +181,31 @@ cout << "vec 의 " << i + 1 << " 번째 원소 :: " << vec[i] << endl;
 
 이에 여러가지 이유가 있겠지만, 가장 중요한 점이 이를 통해 빈 벡터를 표현할 수 있다는 점입니다. 만일 `begin() == end()` 라면 원소가 없는 벡터를 의미하겠지요. 만약에 `vec.end()` 가 마지막 원소를 가리킨다면 비어있는 벡터를 표현할 수 없게 됩니다.
 
-```cpp
+```cpp-formatted
 
 // 반복자 사용 예시
 #include <iostream>
 #include <vector>
 using namespace std;
 
+int main() {
+  vector<int> vec;
+  vec.push_back(10);
+  vec.push_back(20);
+  vec.push_back(30);
+  vec.push_back(40);
 
-int main()
-{
-vector<int> vec;
-vec.push_back(10);
-vec.push_back(20);
-vec.push_back(30);
-vec.push_back(40);
+  // 전체 벡터를 출력하기
+  for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+    cout << *itr << endl;
+  }
 
+  // int arr[4] = {10, 20, 30, 40}
+  // *(arr + 2) == arr[2] == 30;
+  // *(itr + 2) == vec[2] == 30;
 
-// 전체 벡터를 출력하기
-for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
-cout << *itr << endl;
-}
-
-
-// int arr[4] = {10, 20, 30, 40}
-// *(arr + 2) == arr[2] == 30;
-// *(itr + 2) == vec[2] == 30;
-
-
-vector<int>::iterator itr = vec.begin() + 2;
-cout << "3 번째 원소 :: " << *itr << endl;
-
-
+  vector<int>::iterator itr = vec.begin() + 2;
+  cout << "3 번째 원소 :: " << *itr << endl;
 }
 ```
 
@@ -232,11 +222,11 @@ cout << "3 번째 원소 :: " << *itr << endl;
 
 와 같이 잘 수행됨을 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 // 전체 벡터를 출력하기
 for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
-cout << *itr << endl;
+  cout << *itr << endl;
 }
 ```
 
@@ -247,7 +237,7 @@ cout << *itr << endl;
 
 앞서 반복자를 마치 포인터 처럼 사용한다고 하였는데, 실제로 현재 반복자가 가리키는 원소의 값을 보고 싶다면;
 
-```cpp
+```cpp-formatted
 
 cout << *itr << endl;
 ```
@@ -256,7 +246,7 @@ cout << *itr << endl;
 
 포인터로 `*` 를 해서 가리키는 주소값의 값을 보았던 것처럼, `*` 연산자를 이용해서 `itr` 이 가리키는 원소를 볼 수 있습니다. 물론 `itr` 은 실제 포인터가 아니고 `*` 연산자를 오버로딩해서 마치 포인터 처럼 동작하게 만든 것입니다. `*` 연산자는 `itr` 이 가리키는 원소의 레퍼런스를 리턴합니다.
 
-```cpp
+```cpp-formatted
 
 vector<int>::iterator itr = vec.begin() + 2;
 cout << "3 번째 원소 :: " << *itr << endl;
@@ -269,46 +259,39 @@ cout << "3 번째 원소 :: " << *itr << endl;
 
 반복자를 이용하면 아래와 같이 `insert` 와 `erase` 함수도 사용할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-
 template <typename T>
-void print_vector(vector<T>& vec)
-{
-// 전체 벡터를 출력하기
-for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
-cout << *itr << endl;
+void print_vector(vector<T>& vec) {
+  // 전체 벡터를 출력하기
+  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end();
+       itr++) {
+    cout << *itr << endl;
+  }
 }
-}
-int main()
-{
-vector<int> vec;
-vec.push_back(10);
-vec.push_back(20);
-vec.push_back(30);
-vec.push_back(40);
+int main() {
+  vector<int> vec;
+  vec.push_back(10);
+  vec.push_back(20);
+  vec.push_back(30);
+  vec.push_back(40);
 
+  cout << "처음 벡터 상태" << endl;
+  print_vector(vec);
+  cout << "----------------------------" << endl;
 
-cout << "처음 벡터 상태" << endl;
-print_vector(vec);
-cout << "----------------------------" << endl;
+  // vec[2] 앞에 15 추가
+  vec.insert(vec.begin() + 2, 15);
+  print_vector(vec);
 
-
-// vec[2] 앞에 15 추가
-vec.insert(vec.begin() + 2, 15);
-print_vector(vec);
-
-
-cout << "----------------------------" << endl;
-// vec[3] 제거
-vec.erase(vec.begin() + 3);
-print_vector(vec);
-
-
+  cout << "----------------------------" << endl;
+  // vec[3] 제거
+  vec.erase(vec.begin() + 3);
+  print_vector(vec);
 }
 ```
 
@@ -328,14 +311,14 @@ print_vector(vec);
 
 참고로 템플릿 버전의 경우,
 
-```cpp
+```cpp-formatted
 
 for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
 ```
 
 와 같이 앞에 `typename` 을 추가해줘야만 합니다. 그 이유는, `iterator` 가 `vector<T>` 의 의존 타입이기 때문입니다. [의존 타입이 무엇인지 기억 안나시는 분은 이 강좌를 참조하시기 바랍니다](http://itguru.tistory.com/222?category=361027)`. .
 
-```cpp
+```cpp-formatted
 
 // vec[2] 앞에 15 추가
 vec.insert(vec.begin() + 2, 15);
@@ -343,7 +326,7 @@ vec.insert(vec.begin() + 2, 15);
 
 앞서 `insert` 함수를 소개하였는데, 위 처럼 인자로 반복자를 받고, 그 반복자 앞에 원소를 추가해줍니다. 위 경우 `vec.begin() + 2` 앞에 15 를 추가하므로 `10, 20, 30, 40` 에서 `10, 20, 15, 30, 40` 이 됩니다.
 
-```cpp
+```cpp-formatted
 
 vec.erase(vec.begin() + 3);
 print_vector(vec);
@@ -356,51 +339,43 @@ print_vector(vec);
 
 참고로 `vector` 에서 반복자로 `erase` 나 `insert` 함수를 사용할 때 주의해야할 점이 있습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-
 template <typename T>
-void print_vector(vector<T>& vec)
-{
-// 전체 벡터를 출력하기
-cout << "[ ";
-for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
-cout << *itr << " ";
+void print_vector(vector<T>& vec) {
+  // 전체 벡터를 출력하기
+  cout << "[ ";
+  for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+    cout << *itr << " ";
+  }
+  cout << "]";
 }
-cout << "]";
-}
-int main()
-{
-vector<int> vec;
-vec.push_back(10);
-vec.push_back(20);
-vec.push_back(30);
-vec.push_back(40);
-vec.push_back(20);
+int main() {
+  vector<int> vec;
+  vec.push_back(10);
+  vec.push_back(20);
+  vec.push_back(30);
+  vec.push_back(40);
+  vec.push_back(20);
 
+  cout << "처음 벡터 상태" << endl;
+  print_vector(vec);
 
-cout << "처음 벡터 상태" << endl;
-print_vector(vec);
+  vector<int>::iterator itr = vec.begin();
+  vector<int>::iterator end_itr = vec.end();
 
-vector<int>::iterator itr = vec.begin();
-vector<int>::iterator end_itr = vec.end();
+  for (; itr != end_itr; itr++) {
+    if (*itr == 20) {
+      vec.erase(itr);
+    }
+  }
 
-
-for (; itr != end_itr; itr ++) {
-if (*itr == 20) {
-vec.erase(itr);
-}
-}
-
-
-cout << "값이 20 인 원소를 지운다!" << endl;
-print_vector(vec);
-
-
+  cout << "값이 20 인 원소를 지운다!" << endl;
+  print_vector(vec);
 }
 ```
 
@@ -450,16 +425,15 @@ vec.erase(itr);
 
 와 같이 코드를 고치면 오류가 없어질까요? 실행해보시면 알겠지만 여전히 위와 같은 오류가 발생합니다. 왜냐하면 `itr` 이 유효한 반복자가 아니기 때문에 `vec.end()` 로 올바른 `end` 반복자 값을 매번 가지고 와도 `for` 문이 끝나지 않게 되는 것입니다. 결과적으로 코드를 제대로 고치려면 다음과 같이 해야 합니다.
 
-```cpp
+```cpp-formatted
 
 vector<int>::iterator itr = vec.begin();
 
-
-for (; itr != vec.end(); itr ++) {
-if (*itr == 20) {
-vec.erase(itr);
-itr = vec.begin();
-}
+for (; itr != vec.end(); itr++) {
+  if (*itr == 20) {
+    vec.erase(itr);
+    itr = vec.begin();
+  }
 }
 ```
 
@@ -477,13 +451,13 @@ itr = vec.begin();
 
 사실 생각해보면 위 바뀐 코드는 꽤나 비효율적임을 알 수 있습니다. 왜냐하면 20 인 원소를 지우고, 다시 처음으로 돌아가서 원소들을 찾고 있기 때문이지요. 그냥 20 인 원소 바로 다음 위치 부터 찾아나가면 될 텐데 말입니다.
 
-```cpp
+```cpp-formatted
 
 for (vector<int>::size_type i = 0; i != vec.size(); i++) {
-if (vec[i] == 20) {
-vec.erase(vec.begin() + i);
-i--;
-}
+  if (vec[i] == 20) {
+    vec.erase(vec.begin() + i);
+    i--;
+  }
 }
 ```
 
@@ -491,7 +465,7 @@ i--;
 
 그렇다면 아예 위 처럼 굳이 반복자를 쓰지 않고 `erase` 함수에만 반복자를 바로 만들어서 전달하면 됩니다.
 
-```cpp
+```cpp-formatted
 
 vec.erase(vec.begin() + i);
 ```
@@ -506,51 +480,42 @@ vec.erase(vec.begin() + i);
 
 `vector` 에서 지원하는 반복자로 `const_iterator` 가 있습니다. 이는 마치 `const` 포인터를 생각하시면 됩니다. 즉, `const_iterator` 의 경우 가리키고 있는 원소의 값을 바꿀 수 없습니다. 예를 들어서
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-
 template <typename T>
-void print_vector(vector<T>& vec)
-{
-// 전체 벡터를 출력하기
-for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
-cout << *itr << endl;
+void print_vector(vector<T>& vec) {
+  // 전체 벡터를 출력하기
+  for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+    cout << *itr << endl;
+  }
 }
-}
-int main()
-{
-vector<int> vec;
-vec.push_back(10);
-vec.push_back(20);
-vec.push_back(30);
-vec.push_back(40);
+int main() {
+  vector<int> vec;
+  vec.push_back(10);
+  vec.push_back(20);
+  vec.push_back(30);
+  vec.push_back(40);
 
+  cout << "초기 vec 상태" << endl;
+  print_vector(vec);
 
-cout << "초기 vec 상태" << endl;
-print_vector(vec);
+  // itr 은 vec[2] 를 가리킨다.
+  vector<int>::iterator itr = vec.begin() + 2;
 
+  // vec[2] 의 값을 50으로 바꾼다.
+  *itr = 50;
 
-// itr 은 vec[2] 를 가리킨다.
-vector<int>::iterator itr = vec.begin() + 2;
+  cout << "---------------" << endl;
+  print_vector(vec);
 
+  vector<int>::const_iterator citr = vec.cbegin() + 2;
 
-// vec[2] 의 값을 50으로 바꾼다.
-*itr = 50;
-
-
-cout << "---------------" << endl;
-print_vector(vec);
-
-
-vector<int>::const_iterator citr = vec.cbegin() + 2;
-
-
-// 상수 반복자가 가리키는 값은 바꿀수 없다. 불가능!
-*citr = 30;
+  // 상수 반복자가 가리키는 값은 바꿀수 없다. 불가능!
+  *citr = 30;
 }
 ```
 
@@ -567,7 +532,7 @@ vector<int>::const_iterator citr = vec.cbegin() + 2;
 
 와 같이, `const` 반복자가 가리키고 있는 값은 바꿀 수 없다고 오류가 발생합니다. 주의할 점은, `const` 반복자의 경우
 
-```cpp
+```cpp-formatted
 
 vector<int>::const_iterator citr = vec.cbegin() + 2;
 ```
@@ -578,37 +543,35 @@ vector<int>::const_iterator citr = vec.cbegin() + 2;
 `vector` 에서 지원하는 반복자 중 마지막 종류로 역반복자 (reverse iterator) 가 있습니다. 이는 반복자와 똑같지만 벡터 뒤에서 부터 앞으로 거꾸로 간다는 특징이 있습니다. 아래 예제를 살펴볼까요.
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
 template <typename T>
-void print_vector(vector<T>& vec)
-{
-// 전체 벡터를 출력하기
-for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
-cout << *itr << endl;
+void print_vector(vector<T>& vec) {
+  // 전체 벡터를 출력하기
+  for (typenamevector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+    cout << *itr << endl;
+  }
 }
-}
-int main()
-{
-vector<int> vec;
-vec.push_back(10);
-vec.push_back(20);
-vec.push_back(30);
-vec.push_back(40);
+int main() {
+  vector<int> vec;
+  vec.push_back(10);
+  vec.push_back(20);
+  vec.push_back(30);
+  vec.push_back(40);
 
-cout << "초기 vec 상태" << endl;
-print_vector(vec);
+  cout << "초기 vec 상태" << endl;
+  print_vector(vec);
 
-cout << "역으로 vec 출력하기!" << endl;
-// itr 은 vec[2] 를 가리킨다.
-vector<int>::reverse_iterator r_iter = vec.rbegin();
-for (; r_iter != vec.rend(); r_iter++) {
-cout << *r_iter << endl;
-}
+  cout << "역으로 vec 출력하기!" << endl;
+  // itr 은 vec[2] 를 가리킨다.
+  vector<int>::reverse_iterator r_iter = vec.rbegin();
+  for (; r_iter != vec.rend(); r_iter++) {
+    cout << *r_iter << endl;
+  }
 }
 ```
 
@@ -650,27 +613,23 @@ cout << *r_iter << endl;
 
 물론 리스트의 장점이 없는 것은 아닙니다. `vector` 의 경우 맨 뒤를 제외하고는 임의의 위치에 원소를 추가하거나 제거하는 작업이 `O(n)` 이였지만 리스트의 경우 `O(1)` 으로 매우 빠르게 수행될 수 있습니다. 왜냐하면 원하는 위치 앞과 뒤에 있는 링크값만 바꿔주면 되기 때문입니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <list>
 using namespace std;
 
+int main() {
+  list<int> lst;
 
-int main()
-{
-list<int> lst;
+  lst.push_back(10);
+  lst.push_back(20);
+  lst.push_back(30);
+  lst.push_back(40);
 
-
-lst.push_back(10);
-lst.push_back(20);
-lst.push_back(30);
-lst.push_back(40);
-
-
-for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
-cout << *itr << endl;
-}
+  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+    cout << *itr << endl;
+  }
 }
 ```
 
@@ -689,11 +648,10 @@ cout << *itr << endl;
 
 한 가지 재미있는점은 리스트의 반복자의 경우 다음과 같은 연산밖에 수행할 수 없습니다.
 
-```cpp
+```cpp-formatted
 
-itr ++ // ++itr
-itr -- // --itr 도 됩니다.
-
+itr++    // ++itr
+  itr--  // --itr 도 됩니다.
 ```
 
 
@@ -714,62 +672,53 @@ itr + 5 // 불가능!
 
 즉, 임의의 위치에 접근할 수 있는 반복자 입니다 (참고로 `RandomAccessIterator` 는 `BidirectionalIterator` 를 상속받고 있습니다)
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <list>
 using namespace std;
 
-
 template <typename T>
-void print_list(list<T>& lst)
-{
-cout << "[";
-// 전체 리스트를 출력하기
-for (list<T>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
-cout << *itr << " ";
+void print_list(list<T>& lst) {
+  cout << "[";
+  // 전체 리스트를 출력하기
+  for (list<T>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+    cout << *itr << " ";
+  }
+  cout << "]" << endl;
 }
-cout << "]" << endl;
-}
-int main()
-{
-list<int> lst;
+int main() {
+  list<int> lst;
 
+  lst.push_back(10);
+  lst.push_back(20);
+  lst.push_back(30);
+  lst.push_back(40);
 
-lst.push_back(10);
-lst.push_back(20);
-lst.push_back(30);
-lst.push_back(40);
+  cout << "처음 리스트의 상태 " << endl;
+  print_list(lst);
 
+  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+    // 만일 현재 원소가 20 이라면
+    // 그 앞에 50 을 집어넣는다.
+    if (*itr == 20) {
+      lst.insert(itr, 50);
+    }
+  }
 
-cout << "처음 리스트의 상태 " << endl;
-print_list(lst);
+  cout << "값이 20 인 원소 앞에 50을 추가 " << endl;
+  print_list(lst);
 
+  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+    // 값이 30 인 원소를 삭제한다.
+    if (*itr == 30) {
+      lst.erase(itr);
+      break;
+    }
+  }
 
-for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
-// 만일 현재 원소가 20 이라면
-// 그 앞에 50 을 집어넣는다.
-if (*itr == 20) {
-lst.insert(itr, 50);
-}
-}
-
-
-cout << "값이 20 인 원소 앞에 50을 추가 " << endl;
-print_list(lst);
-
-
-for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
-// 값이 30 인 원소를 삭제한다.
-if (*itr == 30) {
-lst.erase(itr);
-break;
-}
-}
-
-
-cout << "값이 30 인 원소를 제거한다" << endl;
-print_list(lst);
+  cout << "값이 30 인 원소를 제거한다" << endl;
+  print_list(lst);
 }
 ```
 
@@ -785,14 +734,14 @@ print_list(lst);
 
 와 같이 잘 나옵니다.
 
-```cpp
+```cpp-formatted
 
 for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
-// 만일 현재 원소가 20 이라면
-// 그 앞에 50 을 집어넣는다.
-if (*itr == 20) {
-lst.insert(itr, 50);
-}
+  // 만일 현재 원소가 20 이라면
+  // 그 앞에 50 을 집어넣는다.
+  if (*itr == 20) {
+    lst.insert(itr, 50);
+  }
 }
 ```
 
@@ -800,14 +749,14 @@ lst.insert(itr, 50);
 
 앞서 설명하였지만 리스트의 반복자는 `BidirectionalIterator` 이기 때문에 `++` 과 `--` 연산만 사용 가능합니다. 따라서 위 처럼 `for` 문으로 하나 하나 원소를 확인해보는것은 가능하지요. `vector` 와는 다르게 `insert` 작업은 `O(1)` 으로 매우 빠르게 실행됩니다.
 
-```cpp
+```cpp-formatted
 
 for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
-// 값이 30 인 원소를 삭제한다.
-if (*itr == 30) {
-lst.erase(itr);
-break;
-}
+  // 값이 30 인 원소를 삭제한다.
+  if (*itr == 30) {
+    lst.erase(itr);
+    break;
+  }
 }
 ```
 
@@ -846,38 +795,33 @@ break;
 
 하지만 블록 주소의 개수는 전체 원소 개수 보다 적고 ( 위 경우 N / 5 가 되겠네요. 왜냐하면 각 블록에 원소가 5개 씩 있으므로), 대체로 벡터에 저장되는객체들의 크기가 주소값의 크기보다 크기 때문에 복사 속도가 훨씬 빠릅니다.)
 
-```cpp
-#include <iostream>
+```cpp-formatted
 #include <deque>
+#include <iostream>
 using namespace std;
 
-
 template <typename T>
-void print_deque(deque<T>& dq)
-{
-// 전체 덱을 출력하기
-cout << "[ ";
-for (deque<T>::iterator itr = dq.begin(); itr != dq.end(); itr++) {
-cout << *itr << " ";
+void print_deque(deque<T>& dq) {
+  // 전체 덱을 출력하기
+  cout << "[ ";
+  for (deque<T>::iterator itr = dq.begin(); itr != dq.end(); itr++) {
+    cout << *itr << " ";
+  }
+  cout << " ] " << endl;
 }
-cout << " ] " << endl;
-}
-int main()
-{
-deque<int> dq;
-dq.push_back(10);
-dq.push_back(20);
-dq.push_front(30);
-dq.push_front(40);
+int main() {
+  deque<int> dq;
+  dq.push_back(10);
+  dq.push_back(20);
+  dq.push_front(30);
+  dq.push_front(40);
 
+  cout << "초기 dq 상태" << endl;
+  print_deque(dq);
 
-cout << "초기 dq 상태" << endl;
-print_deque(dq);
-
-
-cout << "맨 앞의 원소 제거" << endl;
-dq.pop_front();
-print_deque(dq);
+  cout << "맨 앞의 원소 제거" << endl;
+  dq.pop_front();
+  print_deque(dq);
 }
 ```
 
@@ -893,7 +837,7 @@ print_deque(dq);
 와 같이 잘 수행됩니다.
 
 
-```cpp
+```cpp-formatted
 
 dq.push_back(10);
 dq.push_back(20);
@@ -905,7 +849,7 @@ dq.push_front(40);
 
 위와 같이 `push_back` 과 `push_front` 를 이용해서 맨 앞과 뒤에 원소들을 추가하였고,
 
-```cpp
+```cpp-formatted
 
 dq.pop_front();
 ```
@@ -957,7 +901,3 @@ dq.pop_front();
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-

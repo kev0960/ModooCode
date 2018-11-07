@@ -26,8 +26,8 @@ void setstate (iostate state);
 
 이 함수는
 
-```cpp
-clear ( rdstate() | state );
+```cpp-formatted
+clear(rdstate() | state);
 ```
 
 
@@ -67,10 +67,10 @@ clear ( rdstate() | state );
 
 
 
-```cpp
+```cpp-formatted
 
 
-( basic_ios<charT,traits> )void setstate ( iostate state );
+(basic_ios<charT, traits>)void setstate(iostate state);
 ```
 
 

@@ -57,27 +57,26 @@ char * asctime ( const struct tm * timeptr );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://www.cplusplus.com/reference/clibrary/ctime/asctime/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <time.h>
 
-int main ()
-{
-    time_t rawtime;
-    struct tm * timeinfo;
+int main() {
+  time_t rawtime;
+  struct tm* timeinfo;
 
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
-    printf ( "The current date/time is: %s", asctime (timeinfo) );
+  time(&rawtime);
+  timeinfo = localtime(&rawtime);
+  printf("The current date/time is: %s", asctime(timeinfo));
 
-    return 0;
+  return 0;
 }
 ```
 

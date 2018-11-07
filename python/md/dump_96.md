@@ -61,7 +61,7 @@ C 문자 C 문자열
 ###  함수의 구현
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 소스는
@@ -70,8 +70,15 @@ http://www.jbox.dk/sanos/source/lib/string.c.html
 
 */
 
-
-char *strrchr(const char *s, int ch){    char *start = (char *) s;    while (*s++);    while (--s != start && *s != (char) ch);    if (*s == (char) ch) return (char *) s;    return NULL;}
+char *strrchr(const char *s, int ch) {
+  char *start = (char *)s;
+  while (*s++)
+    ;
+  while (--s != start && *s != (char)ch)
+    ;
+  if (*s == (char)ch) return (char *)s;
+  return NULL;
+}
 ```
 
 
@@ -82,7 +89,7 @@ char *strrchr(const char *s, int ch){    char *start = (char *) s;    whil
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 strrchr 함수를 통해 str 에서 s 가 포함된 가장 오른쪽 위치를 찾는다.
@@ -90,17 +97,16 @@ strrchr 함수를 통해 str 에서 s 가 포함된 가장 오른쪽 위치를 �
 http://www.cplusplus.com/reference/clibrary/cstring/strrchr/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[] = "This is a sample string";
-    char * pch;
-    pch=strrchr(str,'s');
-    printf ("Last occurence of 's' found at %d \n",pch-str+1);
-    return 0;
+int main() {
+  char str[] = "This is a sample string";
+  char* pch;
+  pch = strrchr(str, 's');
+  printf("Last occurence of 's' found at %d \n", pch - str + 1);
+  return 0;
 }
 ```
 

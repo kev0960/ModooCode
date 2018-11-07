@@ -47,24 +47,22 @@ cat_title :  getc
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 한 문자를 입력받은 후 이를 출력한다.
 
 */
 #include <stdio.h>
-int main ()
-{
-    int c;
+int main() {
+  int c;
 
-    c = getc(stdin);
+  c = getc(stdin);
 
-    printf("입력한 문자 : %c", c);
+  printf("입력한 문자 : %c", c);
 
-    return 0;
+  return 0;
 }
-
 ```
 
 실행 결과
@@ -76,32 +74,31 @@ int main ()
 
 위와 같이 입력한 문자가 출력되었음을 볼 수 있다. `getc` 함수는 `scanf` 와는 달리 공백 문자도 입력 받을 수 있다.
 
-```cpp
+```cpp-formatted
 /*
 
 myfile.txt 에 들어있는 $ 문자의 개수를 셉니다.
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/getc/
 에서 가져왔습니다.
 
- */
+ */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    int c;
-    int n = 0;
-    pFile=fopen ("myfile.txt","r");
-    if (pFile==NULL) perror ("Error opening file");
-    else
-    {
-        do {
-            c = getc (pFile);
-            if (c == '$') n++;
-        } while (c != EOF);
-        fclose (pFile);
-        printf ("File contains %d$.\n",n);
-    }
-    return 0;
+int main() {
+  FILE* pFile;
+  int c;
+  int n = 0;
+  pFile = fopen("myfile.txt", "r");
+  if (pFile == NULL)
+    perror("Error opening file");
+  else {
+    do {
+      c = getc(pFile);
+      if (c == '$') n++;
+    } while (c != EOF);
+    fclose(pFile);
+    printf("File contains %d$.\n", n);
+  }
+  return 0;
 }
 ```
 
@@ -136,10 +133,3 @@ int main ()
 
 
 *  [fwrite](http://itguru.tistory.com/69): 스트림에 데이터 블록을 쓴다.
-
-
-
-
-
-
-

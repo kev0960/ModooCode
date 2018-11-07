@@ -60,39 +60,38 @@ void clear ( iostate state = goodbit );
 
 
 
-```cpp
+```cpp-formatted
 /*
 
-test.txt 를 in 형식으로 open 하였으므로 읽기만 가능한다. 따라서 쓰기를 하면 오류가 발생하므로 myfile.fail() 이 true 가
-되고 입출력 작업은 중지되지만 오류 상태 플래그를 초기화함으로써 나중에 getline 을 수행할 수 있게 된다.
+test.txt 를 in 형식으로 open 하였으므로 읽기만 가능한다. 따라서 쓰기를 하면
+오류가 발생하므로 myfile.fail() 이 true 가 되고 입출력 작업은 중지되지만 오류
+상태 플래그를 초기화함으로써 나중에 getline 을 수행할 수 있게 된다.
 
 이 예제는
 http://www.cplusplus.com/reference/iostream/ios/clear/
 에서 가져왔습니다.
 
 */
-#include <iostream>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
-int main ()
-{
-    char buffer [80];
-    fstream myfile;
+int main() {
+  char buffer[80];
+  fstream myfile;
 
-    myfile.open ("test.txt",fstream::in);
+  myfile.open("test.txt", fstream::in);
 
-    myfile << "test";
-    if (myfile.fail())
-    {
-        cout << "Error writing to test.txt\n";
-        myfile.clear();
-    }
+  myfile << "test";
+  if (myfile.fail()) {
+    cout << "Error writing to test.txt\n";
+    myfile.clear();
+  }
 
-    myfile.getline (buffer,80);
-    cout << buffer << " successfully read from file.\n";
+  myfile.getline(buffer, 80);
+  cout << buffer << " successfully read from file.\n";
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -111,10 +110,10 @@ int main ()
 
 
 
-```cpp
-( basic_ios<charT,traits> )
+```cpp-formatted
+(basic_ios<charT, traits>)
 
-void clear ( iostate state = goodbit );
+  void clear(iostate state = goodbit);
 ```
 
 

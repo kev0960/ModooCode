@@ -39,54 +39,46 @@ C++ 에서는 위 두 가지 작업을 처리할 수 있 C++ 에서는 위 두 �
 
 ###  셋(set)
 
-```cpp
+```cpp-formatted
 #include <iostream>
 #include <set>
 using namespace std;
 
-
 template <typename T>
-void print_set(set<T>& s)
-{
-// 셋의 모든 원소들을 출력하기
-cout << "[ ";
-for (set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
-cout << *itr << " ";
+void print_set(set<T>& s) {
+  // 셋의 모든 원소들을 출력하기
+  cout << "[ ";
+  for (set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
+    cout << *itr << " ";
+  }
+  cout << " ] " << endl;
 }
-cout << " ] " << endl;
-}
-int main()
-{
-set<int> s;
-s.insert(10);
-s.insert(50);
-s.insert(20);
-s.insert(40);
-s.insert(30);
+int main() {
+  set<int> s;
+  s.insert(10);
+  s.insert(50);
+  s.insert(20);
+  s.insert(40);
+  s.insert(30);
 
+  cout << "순서대로 정렬되서 나온다" << endl;
+  print_set(s);
 
-cout << "순서대로 정렬되서 나온다" << endl;
-print_set(s);
+  cout << "20 이 s 의 원소인가요? :: ";
+  auto itr = s.find(20);
+  if (itr != s.end()) {
+    cout << "Yes" << endl;
+  } else {
+    cout << "No" << endl;
+  }
 
-
-cout << "20 이 s 의 원소인가요? :: ";
-auto itr = s.find(20);
-if (itr != s.end()) {
-cout << "Yes" << endl;
-}
-else {
-cout << "No" << endl;
-}
-
-
-cout << "25 가 s 의 원소인가요? :: ";
-itr = s.find(25);
-if (itr != s.end()) {
-cout << "Yes" << endl;
-}
-else {
-cout << "No" << endl;
-}
+  cout << "25 가 s 의 원소인가요? :: ";
+  itr = s.find(25);
+  if (itr != s.end()) {
+    cout << "Yes" << endl;
+  } else {
+    cout << "No" << endl;
+  }
 }
 ```
 
@@ -101,7 +93,7 @@ cout << "No" << endl;
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 s.insert(10);
 s.insert(50);
@@ -115,17 +107,16 @@ s.insert(30);
 
 셋에 원소를 추가하거나 지우는 작업은 $$O(log N)$$ 에 처리됩니다. 시퀀스 컨테이너의 경우 임의의 원소를 지우는 작업이 $$O(N)$$ 으로 수행되었다는 점을 생각하면 훨씬 빠르다고 볼 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 template <typename T>
-void print_set(set<T>& s)
-{
-// 셋의 모든 원소들을 출력하기
-cout << "[ ";
-for (set<int>::iterator itr = s.begin(); itr != s.end(); itr++) {
-cout << *itr << " ";
-}
-cout << " ] " << endl;
+void print_set(set<T>& s) {
+  // 셋의 모든 원소들을 출력하기
+  cout << "[ ";
+  for (set<int>::iterator itr = s.begin(); itr != s.end(); itr++) {
+    cout << *itr << " ";
+  }
+  cout << " ] " << endl;
 }
 ```
 
@@ -143,15 +134,14 @@ cout << " ] " << endl;
 
 또한 셋의 진가는 앞서 말했듯이 원소가 있냐 없냐를 확인할 때 드러납니다.
 
-```cpp
+```cpp-formatted
 
 cout << "20 이 s 의 원소인가요? :: ";
 auto itr = s.find(20);
 if (itr != s.end()) {
-cout << "Yes" << endl;
-}
-else {
-cout << "No" << endl;
+  cout << "Yes" << endl;
+} else {
+  cout << "No" << endl;
 }
 ```
 
@@ -224,37 +214,32 @@ cout << "No" << endl;
 
 또한 셋의 중요한 특징으로 바로 셋 안에는 중복된 원소들이 없다는 점이 있습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <set>
+#include <string>
 using namespace std;
 
-
 template <typename T>
-void print_set(set<T>& s)
-{
-// 셋의 모든 원소들을 출력하기
-cout << "[ ";
-for (auto itr = s.begin(); itr != s.end(); itr++) {
-cout << *itr << " ";
+void print_set(set<T>& s) {
+  // 셋의 모든 원소들을 출력하기
+  cout << "[ ";
+  for (auto itr = s.begin(); itr != s.end(); itr++) {
+    cout << *itr << " ";
+  }
+  cout << " ] " << endl;
 }
-cout << " ] " << endl;
-}
 
+int main() {
+  set<int> s;
+  s.insert(10);
+  s.insert(20);
+  s.insert(30);
+  s.insert(20);
+  s.insert(10);
 
-int main()
-{
-set<int> s;
-s.insert(10);
-s.insert(20);
-s.insert(30);
-s.insert(20);
-s.insert(10);
-
-
-print_set(s);
+  print_set(s);
 }
 ```
 
@@ -269,7 +254,7 @@ print_set(s);
 
 와 같이 나옵니다. 분명히
 
-```cpp
+```cpp-formatted
 
 s.insert(10);
 s.insert(20);
@@ -293,44 +278,38 @@ s.insert(10);
 
 
 위와 같이 기본 타입들 말고, 여러분이 만든 클래스의 객체를 셋의 원소로 사용할 때 한 가지 주의해야 할 점이 있습니다. 아래는 할 일 (Todo) 목록을 저장하기 위해 셋을 사용하는 예시 입니다. `Todo` 클래스는 2 개를 멤버 변수로 가지는데 하나는 할 일의 중요도이고, 하나는 해야할 일의 설명 입니다.
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <set>
+#include <string>
 using namespace std;
 
-
 template <typename T>
-void print_set(set<T>& s)
-{
-// 셋의 모든 원소들을 출력하기
-cout << "[ ";
-for (set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
-cout << *itr << " ";
-}
-cout << " ] " << endl;
+void print_set(set<T>& s) {
+  // 셋의 모든 원소들을 출력하기
+  cout << "[ ";
+  for (set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
+    cout << *itr << " ";
+  }
+  cout << " ] " << endl;
 }
 class Todo {
-int priority; // 중요도. 높을 수록 급한것!
-string job_desc;
+  int priority;  // 중요도. 높을 수록 급한것!
+  string job_desc;
 
-
-public:
-Todo(int priority, string job_desc) :
-priority(priority), job_desc(job_desc)
-{ }
+ public:
+  Todo(int priority, string job_desc)
+      : priority(priority), job_desc(job_desc) {}
 };
-int main()
-{
-set<Todo> todos;
+int main() {
+  set<Todo> todos;
 
-
-todos.insert(Todo(1, "농구 하기"));
-todos.insert(Todo(2, "수학 숙제 하기"));
-todos.insert(Todo(1, "프로그래밍 프로젝트"));
-todos.insert(Todo(3, "친구 만나기"));
-todos.insert(Todo(2, "영화 보기"));
+  todos.insert(Todo(1, "농구 하기"));
+  todos.insert(Todo(2, "수학 숙제 하기"));
+  todos.insert(Todo(1, "프로그래밍 프로젝트"));
+  todos.insert(Todo(3, "친구 만나기"));
+  todos.insert(Todo(2, "영화 보기"));
 }
 ```
 
@@ -345,70 +324,57 @@ binary '<': no operator found which takes a left-hand operand of type 'const Tod
 
 그렇다면 직접 `Todo` 클래스에 `operator<` 를 만들어주는 수 밖에 없습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <set>
+#include <string>
 using namespace std;
 
-
 template <typename T>
-void print_set(set<T>& s)
-{
-// 셋의 모든 원소들을 출력하기
-for (auto itr = s.begin(); itr != s.end(); itr++) {
-cout << *itr << " " << endl;
-}
+void print_set(set<T>& s) {
+  // 셋의 모든 원소들을 출력하기
+  for (auto itr = s.begin(); itr != s.end(); itr++) {
+    cout << *itr << " " << endl;
+  }
 }
 class Todo {
-int priority;
-string job_desc;
+  int priority;
+  string job_desc;
 
+ public:
+  Todo(int priority, string job_desc)
+      : priority(priority), job_desc(job_desc) {}
 
-public:
-Todo(int priority, string job_desc) :
-priority(priority), job_desc(job_desc)
-{}
+  bool operator<(const Todo& t) const {
+    if (priority == t.priority) {
+      return job_desc < t.job_desc;
+    }
+    return priority > t.priority;
+  }
 
-
-bool operator<(const Todo& t) const {
-if (priority == t.priority) {
-return job_desc < t.job_desc;
-}
-return priority > t.priority;
-}
-
-
-friend ostream& operator<< (ostream& o, const Todo& td);
+  friend ostream& operator<<(ostream& o, const Todo& td);
 };
 
-
-ostream& operator<< (ostream& o, const Todo& td)
-{
-o << "[ 중요도: " << td.priority << "] " << td.job_desc;
-return o;
+ostream& operator<<(ostream& o, const Todo& td) {
+  o << "[ 중요도: " << td.priority << "] " << td.job_desc;
+  return o;
 }
-int main()
-{
-set<Todo> todos;
+int main() {
+  set<Todo> todos;
 
+  todos.insert(Todo(1, "농구 하기"));
+  todos.insert(Todo(2, "수학 숙제 하기"));
+  todos.insert(Todo(1, "프로그래밍 프로젝트"));
+  todos.insert(Todo(3, "친구 만나기"));
+  todos.insert(Todo(2, "영화 보기"));
 
-todos.insert(Todo(1, "농구 하기"));
-todos.insert(Todo(2, "수학 숙제 하기"));
-todos.insert(Todo(1, "프로그래밍 프로젝트"));
-todos.insert(Todo(3, "친구 만나기"));
-todos.insert(Todo(2, "영화 보기"));
+  print_set(todos);
 
-print_set(todos);
-
-
-cout << "-------------" << endl;
-cout << "숙제를 끝냈다면!" << endl;
-todos.erase(todos.find(Todo(2, "수학 숙제 하기")));
-print_set(todos);
-
-
+  cout << "-------------" << endl;
+  cout << "숙제를 끝냈다면!" << endl;
+  todos.erase(todos.find(Todo(2, "수학 숙제 하기")));
+  print_set(todos);
 }
 ```
 
@@ -425,13 +391,13 @@ print_set(todos);
 
 먼저 `<` 연산자를 어떻게 구현하였는지 살펴보겠습니다.
 
-```cpp
+```cpp-formatted
 
 bool operator<(const Todo& t) const {
-if (priority == t.priority) {
-return job_desc < t.job_desc;
-}
-return priority > t.priority;
+  if (priority == t.priority) {
+    return job_desc < t.job_desc;
+  }
+  return priority > t.priority;
 }
 ```
 
@@ -441,17 +407,16 @@ return priority > t.priority;
 
 우리의 `Todo <` 연산자는 중요도가 다르면,
 
-```cpp
+```cpp-formatted
 
 return priority > t.priority;
-
 ```
 
 
 
 로 해서 중요도 값이 높은 일이 위로 가게 하였습니다. 만약 중요도가 같다면
 
-```cpp
+```cpp-formatted
 
 return job_desc < t.job_desc;
 ```
@@ -466,11 +431,9 @@ return job_desc < t.job_desc;
 
 만약에 우리가 중요도가 같을 때 따로 처리하지 않고 그냥
 
-```cpp
+```cpp-formatted
 
-bool operator<(const Todo& t) const {
-return priority > t.priority;
-}
+bool operator<(const Todo& t) const { return priority > t.priority; }
 ```
 
 
@@ -485,7 +448,7 @@ return priority > t.priority;
 
 위와 같이 중요도가 같은 애들은 추가 되지 않습니다. 왜냐하면 앞서 말했듯이 셋에는 중복된 원소를 허락하지 않습니다. 그런데, 셋의 입장에서
 
-```cpp
+```cpp-formatted
 
 Todo(1, "농구 하기")
 ```
@@ -494,7 +457,7 @@ Todo(1, "농구 하기")
 
 와
 
-```cpp
+```cpp-formatted
 
 Todo(1, "프로그래밍 프로젝트")
 ```
@@ -534,72 +497,60 @@ Todo(1, "프로그래밍 프로젝트") > Todo(1, "농구 하기")
 
 아래 예제를 보실까요.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <set>
+#include <string>
 using namespace std;
 
-
 template <typename T, typename C>
-void print_set(set<T, C>& s)
-{
-// 셋의 모든 원소들을 출력하기
-for (auto itr = s.begin(); itr != s.end(); itr++) {
-cout << *itr << " " << endl;
-}
+void print_set(set<T, C>& s) {
+  // 셋의 모든 원소들을 출력하기
+  for (auto itr = s.begin(); itr != s.end(); itr++) {
+    cout << *itr << " " << endl;
+  }
 }
 class Todo {
-int priority;
-string job_desc;
+  int priority;
+  string job_desc;
 
+ public:
+  Todo(int priority, string job_desc)
+      : priority(priority), job_desc(job_desc) {}
 
-public:
-Todo(int priority, string job_desc) :
-priority(priority), job_desc(job_desc)
-{}
+  friend struct TodoCmp;
 
-
-friend struct TodoCmp;
-
-
-friend ostream& operator<< (ostream& o, const Todo& td);
+  friend ostream& operator<<(ostream& o, const Todo& td);
 };
 struct TodoCmp {
-bool operator() (const Todo& t1, const Todo& t2) const {
-if (t1.priority == t2.priority) {
-return t1.job_desc < t2.job_desc;
-}
-return t1.priority > t2.priority;
-}
+  bool operator()(const Todo& t1, const Todo& t2) const {
+    if (t1.priority == t2.priority) {
+      return t1.job_desc < t2.job_desc;
+    }
+    return t1.priority > t2.priority;
+  }
 };
 
-
-ostream& operator<< (ostream& o, const Todo& td)
-{
-o << "[ 중요도: " << td.priority << "] " << td.job_desc;
-return o;
+ostream& operator<<(ostream& o, const Todo& td) {
+  o << "[ 중요도: " << td.priority << "] " << td.job_desc;
+  return o;
 }
-int main()
-{
-set<Todo, TodoCmp> todos;
+int main() {
+  set<Todo, TodoCmp> todos;
 
+  todos.insert(Todo(1, "농구 하기"));
+  todos.insert(Todo(2, "수학 숙제 하기"));
+  todos.insert(Todo(1, "프로그래밍 프로젝트"));
+  todos.insert(Todo(3, "친구 만나기"));
+  todos.insert(Todo(2, "영화 보기"));
 
-todos.insert(Todo(1, "농구 하기"));
-todos.insert(Todo(2, "수학 숙제 하기"));
-todos.insert(Todo(1, "프로그래밍 프로젝트"));
-todos.insert(Todo(3, "친구 만나기"));
-todos.insert(Todo(2, "영화 보기"));
+  print_set(todos);
 
-
-print_set(todos);
-
-
-cout << "-------------" << endl;
-cout << "숙제를 끝냈다면!" << endl;
-todos.erase(todos.find(Todo(2, "수학 숙제 하기")));
-print_set(todos);
+  cout << "-------------" << endl;
+  cout << "숙제를 끝냈다면!" << endl;
+  todos.erase(todos.find(Todo(2, "수학 숙제 하기")));
+  print_set(todos);
 }
 ```
 
@@ -615,15 +566,15 @@ print_set(todos);
 와 같이 나옵니다. 달라진 점은 일단 `Todo` 클래스에서 `operator<` 가 삭제되었습니다. 하지만 셋을 사용하기 위해 반드시 `Todo` 객체간의 비교를 수행해야 하기 때문에 다음과 같은 클래스를 만들었습니다.
 
 
-```cpp
+```cpp-formatted
 
 struct TodoCmp {
-bool operator() (const Todo& t1, const Todo& t2) const {
-if (t1.priority == t2.priority) {
-return t1.job_desc < t2.job_desc;
-}
-return t1.priority > t2.priority;
-}
+  bool operator()(const Todo& t1, const Todo& t2) const {
+    if (t1.priority == t2.priority) {
+      return t1.job_desc < t2.job_desc;
+    }
+    return t1.priority > t2.priority;
+  }
 };
 ```
 
@@ -631,20 +582,19 @@ return t1.priority > t2.priority;
 
 앞서 템플릿 첫 강좌에서 함수 객체를 배운 것이 기억 나시나요? 위 클래스는 정확히 함수 객체를 나타내고 있습니다. 이 `TodoCmp` 타입을
 
-```cpp
+```cpp-formatted
 
 set<Todo, TodoCmp> todos;
 ```
 
 위 처럼 `set` 에 두번째 인자로 넘겨주게 되면 셋은 이를 받아서 `TodoCmp` 클래스에 정의된 함수 객체를 바탕으로 모든 비교를 수행하게 됩니다. 실제로 `set` 클래스의 정의를 살펴보면;
 
-```cpp
+```cpp-formatted
 
-template<
-    class Key,
-    class Compare = std::less<Key>,
-    class Allocator = std::allocator<Key> // ← 후에 설명하겠습니다
-> class set;
+template <class Key, class Compare = std::less<Key>,
+          class Allocator = std::allocator<Key>  // ← 후에 설명하겠습니다
+          >
+class set;
 ```
 
 
@@ -661,56 +611,49 @@ template<
 
 맵은 셋과 거의 똑같은 자료 구조 입니다. 다만 셋의 경우 키만 보관했지만, 맵의 경우 키에 대응되는 값(value) 까지도 같이 보관하게 됩니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 
-#include <string>
 #include <map>
-
+#include <string>
 
 using namespace std;
 
-
 template <typename K, typename V>
-void print_map(map<K, V>& m)
-{
-// 맵의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << itr->first << " " << itr->second << endl;
+void print_map(map<K, V>& m) {
+  // 맵의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << itr->first << " " << itr->second << endl;
+  }
 }
-}
 
+int main() {
+  map<string, double> pitcher_list;
 
-int main()
-{
-map<string, double> pitcher_list;
+  // 참고로 2017년 7월 4일 현재 투수 방어율 순위입니다.
 
+  // 맵의 insert 함수는 pair 객체를 인자로 받습니다.
+  pitcher_list.insert(pair<string, double>("박세웅", 2.23));
+  pitcher_list.insert(pair<string, double>("해커 ", 2.93));
 
-// 참고로 2017년 7월 4일 현재 투수 방어율 순위입니다.
+  pitcher_list.insert(pair<string, double>("피어밴드 ", 2.95));
 
+  // 타입을 지정하지 않아도 간단히 make_pair 함수로
+  // pair 객체를 만들 수 도 있습니다.
+  pitcher_list.insert(make_pair("차우찬", 3.04));
+  pitcher_list.insert(make_pair("장원준 ", 3.05));
+  pitcher_list.insert(make_pair("헥터 ", 3.09));
 
-// 맵의 insert 함수는 pair 객체를 인자로 받습니다.
-pitcher_list.insert(pair<string, double>("박세웅", 2.23));
-pitcher_list.insert(pair<string, double>("해커 ", 2.93));
+  // 혹은 insert 를 안쓰더라도 [] 로 바로
+  // 원소를 추가할 수 있습니다.
+  pitcher_list["니퍼트"] = 3.56;
+  pitcher_list["박종훈"] = 3.76;
+  pitcher_list["켈리"] = 3.90;
 
-pitcher_list.insert(pair<string, double>("피어밴드 ", 2.95));
+  print_map(pitcher_list);
 
-// 타입을 지정하지 않아도 간단히 make_pair 함수로
-// pair 객체를 만들 수 도 있습니다.
-pitcher_list.insert(make_pair("차우찬", 3.04));
-pitcher_list.insert(make_pair("장원준 ", 3.05));
-pitcher_list.insert(make_pair("헥터 ", 3.09));
-
-// 혹은 insert 를 안쓰더라도 [] 로 바로
-// 원소를 추가할 수 있습니다.
-pitcher_list["니퍼트"] = 3.56;
-pitcher_list["박종훈"] = 3.76;
-pitcher_list["켈리"] = 3.90;
-
-print_map(pitcher_list);
-
-cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
+  cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 }
 ```
 
@@ -726,14 +669,14 @@ cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 와 같이 나옵니다.
 
 
-```cpp
+```cpp-formatted
 
 map<string, double> pitcher_list;
 ```
 
 맵의 경우 템플릿 인자로 2 개를 가지는데, 첫번째는 키의 타입이고, 두 번째는 값의 타입입니다. 우리는 투수 이름을 키로 가지고 대응되는 값을 그 투수의 방어율로 하는 맵을 만들 예정입니다.
 
-```cpp
+```cpp-formatted
 
 pitcher_list.insert(pair<string, double>("박세웅", 2.23));
 pitcher_list.insert(pair<string, double>("해커 ", 2.93));
@@ -742,18 +685,18 @@ pitcher_list.insert(pair<string, double>("피어밴드 ", 2.95));
 
 맵에 원소를 넣기 위해서는 반드시 `pair` 객체를 전달해야 합니다. `pair` 객체는 별다른게 아니고,
 
-```cpp
+```cpp-formatted
 
-template<class T1, class T2>
+template <class T1, class T2>
 struct pair {
-T1 first;
-T2 second;
+  T1 first;
+  T2 second;
 };
 ```
 
 로 생긴 단순히 2 개의 객체를 멤버로 가지는 객체 입니다. 문제는 `pair` 객체를 사용할 때 마다 위 처럼 템플릿 인자를 초기화 해야 하는데 꽤나 귀찮습니다. 그래서 `STL` 에서는 `make_pair` 함수를 제공해주는데,
 
-```cpp
+```cpp-formatted
 
 pitcher_list.insert(make_pair("차우찬", 3.04));
 pitcher_list.insert(make_pair("장원준 ", 3.05));
@@ -765,7 +708,7 @@ pitcher_list.insert(make_pair("헥터 ", 3.09));
 
 한 가지 재미있는 점은
 
-```cpp
+```cpp-formatted
 
 // 혹은 insert 를 안쓰더라도 [] 로 바로
 // 원소를 추가할 수 있습니다.
@@ -776,21 +719,20 @@ pitcher_list["켈리"] = 3.90;
 
 맵의 경우 `operator[]` 를 이용해서 새로운 원소를 추가할 수 도 있습니다 (만일 해당하는 키가 맵에 없다면). 만일 키가 이미 존재하고 있다면 값이 대체될 것입니다.
 
-```cpp
+```cpp-formatted
 
 template <typename K, typename V>
-void print_map(map<K, V>& m)
-{
-// 맵의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << itr->first << " " << itr->second << endl;
-}
+void print_map(map<K, V>& m) {
+  // 맵의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << itr->first << " " << itr->second << endl;
+  }
 }
 ```
 
 맵의 경우도 셋과 마찬가지로 반복자를 이용해서 순차적으로 맵에 저장되어 있는 원소들을 탐색할 수 있습니다. 참고로 셋의 경우 `*itr` 가 저장된 원소를 바로 가리켰는데, 맵의 경우 반복자가 맵에 저장되어 있는 `pair` 객체를 가리키게 됩니다. 따라서 `itr->first` 를 하면 해당 원소의 키를, `itr->second` 를 하면 해당 원소의 값을 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 ```
 
@@ -799,37 +741,30 @@ cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 
 하지만, `[]` 연산자를 사용할 때 주의해야 할 점이 있습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <map>
-
+#include <string>
 
 using namespace std;
 
-
 template <typename K, typename V>
-void print_map(map<K, V>& m)
-{
-// 맵의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << itr->first << " " << itr->second << endl;
+void print_map(map<K, V>& m) {
+  // 맵의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << itr->first << " " << itr->second << endl;
+  }
 }
-}
 
+int main() {
+  map<string, double> pitcher_list;
 
-int main()
-{
-map<string, double> pitcher_list;
+  pitcher_list["오승환"] = 3.58;
+  cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
 
-
-pitcher_list["오승환"] = 3.58;
-cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
-
-
-cout << "-----------------" << endl;
-print_map(pitcher_list);
+  cout << "-----------------" << endl;
+  print_map(pitcher_list);
 }
 ```
 
@@ -844,7 +779,7 @@ print_map(pitcher_list);
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 pitcher_list["오승환"] = 3.58;
 ```
@@ -853,7 +788,7 @@ pitcher_list["오승환"] = 3.58;
 
 일단 위와 같이 `pitcher_list` 에 오승환의 방어율만 추가하였기 때문에 류현진의 방어율을 검색하면 아무것도 나오지 않는게 정상입니다. 그런데,
 
-```cpp
+```cpp-formatted
 
 cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
 ```
@@ -866,45 +801,42 @@ cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
 `double` 의 디폴트 생성자의 경우 그냥 변수를 0 으로 초기화 해버립니다. 따라서 되도록이면 `find` 함수로 원소가 키가 존재하는지 먼저 확인 후에, 값을 참조하는 것이 좋습니다. 아래는 `find` 함수를 이용해서 안전한게 키에 대응되는 값을 찾는 방법입니다.
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <map>
+#include <string>
 
 using namespace std;
 
 template <typename K, typename V>
-void print_map(map<K, V>& m)
-{
-// 맵의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << itr->first << " " << itr->second << endl;
-}
+void print_map(map<K, V>& m) {
+  // 맵의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << itr->first << " " << itr->second << endl;
+  }
 }
 
 template <typename K, typename V>
 void search_and_print(map<K, V>& m, K key) {
-auto itr = m.find(key);
-if (itr != m.end()) {
-cout << key << " --> " << itr->second << endl;
+  auto itr = m.find(key);
+  if (itr != m.end()) {
+    cout << key << " --> " << itr->second << endl;
+  } else {
+    cout << key << "은(는) 목록에 없습니다" << endl;
+  }
 }
-else {
-cout << key << "은(는) 목록에 없습니다" << endl;
-}
-}
 
-int main()
-{
-map<string, double> pitcher_list;
+int main() {
+  map<string, double> pitcher_list;
 
-pitcher_list["오승환"] = 3.58;
+  pitcher_list["오승환"] = 3.58;
 
-print_map(pitcher_list);
-cout << "-----------------" << endl;
+  print_map(pitcher_list);
+  cout << "-----------------" << endl;
 
-search_and_print(pitcher_list, string("오승환"));
-search_and_print(pitcher_list, string("류현진"));
+  search_and_print(pitcher_list, string("오승환"));
+  search_and_print(pitcher_list, string("류현진"));
 }
 ```
 
@@ -921,17 +853,16 @@ search_and_print(pitcher_list, string("류현진"));
 와 같이 나옵니다.
 
 
-```cpp
+```cpp-formatted
 
 template <typename K, typename V>
 void search_and_print(map<K, V>& m, K key) {
-auto itr = m.find(key);
-if (itr != m.end()) {
-cout << key << " --> " << itr->second << endl;
-}
-else {
-cout << key << "은(는) 목록에 없습니다" << endl;
-}
+  auto itr = m.find(key);
+  if (itr != m.end()) {
+    cout << key << " --> " << itr->second << endl;
+  } else {
+    cout << key << "은(는) 목록에 없습니다" << endl;
+  }
 }
 ```
 
@@ -943,35 +874,33 @@ cout << key << "은(는) 목록에 없습니다" << endl;
 마지막으로 짚고 넘어갈 점은 맵 역시 셋 처럼 중복된 원소를 허락하지 않는다는 점입니다. 이미, 같은 키가 원소로 들어 있다면 나중에 오는 `insert` 는 무시됩니다.
 
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <map>
+#include <string>
 
 using namespace std;
 
 template <typename K, typename V>
-void print_map(map<K, V>& m)
-{
-// 맵의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << itr->first << " " << itr->second << endl;
+void print_map(map<K, V>& m) {
+  // 맵의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << itr->first << " " << itr->second << endl;
+  }
 }
-}
 
-int main()
-{
-map<string, double> pitcher_list;
+int main() {
+  map<string, double> pitcher_list;
 
-// 맵의 insert 함수는 pair 객체를 인자로 받습니다.
-pitcher_list.insert(pair<string, double>("박세웅", 2.23));
-pitcher_list.insert(pair<string, double>("박세웅", 2.93));
+  // 맵의 insert 함수는 pair 객체를 인자로 받습니다.
+  pitcher_list.insert(pair<string, double>("박세웅", 2.23));
+  pitcher_list.insert(pair<string, double>("박세웅", 2.93));
 
-print_map(pitcher_list);
+  print_map(pitcher_list);
 
-        // 2.23 이 나올까 2.93 이 나올까?
-cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
+  // 2.23 이 나올까 2.93 이 나올까?
+  cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 }
 ```
 
@@ -991,36 +920,32 @@ cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 
 앞서 셋과 맵 모두 중복된 원소를 허락하지 않습니다. 만일, 이미 원소가 존재하고 있는데 `insert` 를 하였으면 무시가 되었지요. 하지만 멀티셋과 멀티맵은 중복된 원소를 허락합니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <set>
+#include <string>
 using namespace std;
 
-
 template <typename K>
-void print_set(multiset<K>& s)
-{
-// 셋의의 모든 원소들을 출력하기
-for (auto itr = s.begin(); itr != s.end(); itr++) {
-cout << *itr << endl;
+void print_set(multiset<K>& s) {
+  // 셋의의 모든 원소들을 출력하기
+  for (auto itr = s.begin(); itr != s.end(); itr++) {
+    cout << *itr << endl;
+  }
 }
-}
 
-int main()
-{
-multiset<string> s;
+int main() {
+  multiset<string> s;
 
-s.insert("a");
-s.insert("b");
-s.insert("a");
-s.insert("c");
-s.insert("d");
-s.insert("c");
+  s.insert("a");
+  s.insert("b");
+  s.insert("a");
+  s.insert("c");
+  s.insert("d");
+  s.insert("c");
 
-
-print_set(s);
+  print_set(s);
 }
 ```
 
@@ -1036,35 +961,33 @@ print_set(s);
 와 같이 나옵니다. 만약에 기존의 `set` 이였다면 그냥 `a,b,c,d` 이렇게 나왔어야 하지만, 멀티셋의 경우 중복된 원소를 허락하기 때문에 `insert` 한 모든 원소들이 쭈르륵 나오게 됩니다.
 
 
-```cpp
+```cpp-formatted
 #include <iostream>
-#include <string>
 #include <map>
+#include <string>
 using namespace std;
 
 template <typename K, typename V>
-void print_map(multimap<K, V>& m)
-{
-// 맵의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << itr->first << " " << itr->second << endl;
+void print_map(multimap<K, V>& m) {
+  // 맵의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << itr->first << " " << itr->second << endl;
+  }
 }
-}
 
-int main()
-{
-multimap<int, string> m;
-m.insert(make_pair(1, "hello"));
-m.insert(make_pair(1, "hi"));
-m.insert(make_pair(1, "ahihi"));
-m.insert(make_pair(2, "bye"));
-m.insert(make_pair(2, "baba"));
+int main() {
+  multimap<int, string> m;
+  m.insert(make_pair(1, "hello"));
+  m.insert(make_pair(1, "hi"));
+  m.insert(make_pair(1, "ahihi"));
+  m.insert(make_pair(2, "bye"));
+  m.insert(make_pair(2, "baba"));
 
-print_map(m);
+  print_map(m);
 
-// 뭐가 나올까요?
-cout << "--------------------" << endl;
-cout << m.find(1)->second << endl;
+  // 뭐가 나올까요?
+  cout << "--------------------" << endl;
+  cout << m.find(1)->second << endl;
 }
 ```
 
@@ -1084,7 +1007,7 @@ cout << m.find(1)->second << endl;
 일단 맵 과는 다르게, 한 개의 키에 여러개의 값이 대응될 수 있다는 것은 알 수 있습니다. 하지만 이 때문에 `[]` 연산자를 멀티맵의 경우 사용할 수 없습니다. 왜냐하면 예를 들어서
 
 
-```cpp
+```cpp-formatted
 m[1]
 ```
 
@@ -1092,7 +1015,7 @@ m[1]
 
 을 했을 때 "hello" 를 리턴해야할지, 아니면 "hi" 를 리턴해야 할 지 알 수 없기 때문이지요. 따라서 멀티맵의 경우 아예 `[]` 연산자를 제공하지 않습니다. 그렇다면
 
-```cpp
+```cpp-formatted
 cout << m.find(1)->second << endl;
 ```
 
@@ -1103,48 +1026,39 @@ cout << m.find(1)->second << endl;
 
 그렇다면 1 에 대응되는 값들이 뭐가 있는지 어떻게 알까요? 이를 위해 멀티맵은 다음과 같은 함수를 제공하고 있습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
-#include <string>
 #include <map>
+#include <string>
 using namespace std;
 
-
 template <typename K, typename V>
-void print_map(multimap<K, V>& m)
-{
-// 맵의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << itr->first << " " << itr->second << endl;
-}
-}
-
-
-int main()
-{
-multimap<int, string> m;
-m.insert(make_pair(1, "hello"));
-m.insert(make_pair(1, "hi"));
-m.insert(make_pair(1, "ahihi"));
-m.insert(make_pair(2, "bye"));
-m.insert(make_pair(2, "baba"));
-
-
-print_map(m);
-
-
-cout << "--------------------" << endl;
-
-
-// 1 을 키로 가지는 반복자들의 시작과 끝을
-// pair 로 만들어서 리턴한다.
-auto range = m.equal_range(1);
-for (auto itr = range.first; itr != range.second; itr++) {
-cout << itr->first << " : " << itr->second << " " << endl;
+void print_map(multimap<K, V>& m) {
+  // 맵의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << itr->first << " " << itr->second << endl;
+  }
 }
 
+int main() {
+  multimap<int, string> m;
+  m.insert(make_pair(1, "hello"));
+  m.insert(make_pair(1, "hi"));
+  m.insert(make_pair(1, "ahihi"));
+  m.insert(make_pair(2, "bye"));
+  m.insert(make_pair(2, "baba"));
 
+  print_map(m);
+
+  cout << "--------------------" << endl;
+
+  // 1 을 키로 가지는 반복자들의 시작과 끝을
+  // pair 로 만들어서 리턴한다.
+  auto range = m.equal_range(1);
+  for (auto itr = range.first; itr != range.second; itr++) {
+    cout << itr->first << " : " << itr->second << " " << endl;
+  }
 }
 ```
 
@@ -1159,17 +1073,17 @@ cout << itr->first << " : " << itr->second << " " << endl;
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 auto range = m.equal_range(1);
 ```
 
 `equal_range` 함수의 경우 인자로 멀티맵의 키를 받은 뒤에, 이 키에 대응되는 원소들의 반복자들 중에서시작과 끝 바로 다음을 가리키는 반복자를 `pair` 객체로 만들어서 리턴합니다. 즉, `begin()` 과 `end()` 를 `pair` 로 만들어서 세트로 리턴한다고 볼 수 있겠지요. 다만, `first` 로 시작점을, `second` 로 끝점 바로 뒤를 알 수 있습니다. 왜 끝점 바로 뒤를 가리키는 반복자를 리턴하는지는 굳이 설명 안해도 알겠죠?
 
-```cpp
+```cpp-formatted
 
 for (auto itr = range.first; itr != range.second; itr++) {
-cout << itr->first << " : " << itr->second << " " << endl;
+  cout << itr->first << " : " << itr->second << " " << endl;
 }
 ```
 
@@ -1188,41 +1102,34 @@ cout << itr->first << " : " << itr->second << " " << endl;
 
 이 말이 무슨 말이냐면, 셋이나 맵의 경우 원소들이 순서대로 정렬되어서 내부에 저장되지만, `unordered_set` 과 `unordered_map` 의 경우 원소들이 순서대로 정렬되서 들어가지 않는다는 뜻입니다. 따라서 반복자로 원소들을 하나씩 출력해보면 거의 랜덤한 순서로 나오는 것을 볼 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 #include <unordered_set>
 using namespace std;
 
-
 template <typename K>
-void print_unordered_set(unordered_set<K>& m)
-{
-// 셋의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << *itr << endl;
+void print_unordered_set(unordered_set<K>& m) {
+  // 셋의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << *itr << endl;
+  }
 }
-}
 
+int main() {
+  unordered_set<string> s;
 
-int main()
-{
-unordered_set<string> s;
+  s.insert("hi");
+  s.insert("my");
+  s.insert("name");
+  s.insert("is");
+  s.insert("psi");
+  s.insert("welcome");
+  s.insert("to");
+  s.insert("c++");
 
-
-s.insert("hi");
-s.insert("my");
-s.insert("name");
-s.insert("is");
-s.insert("psi");
-s.insert("welcome");
-s.insert("to");
-s.insert("c++");
-
-
-print_unordered_set(s);
-
+  print_unordered_set(s);
 }
 ```
 
@@ -1275,60 +1182,51 @@ print_unordered_set(s);
 
 또한 처음부터 많은 개수의 상자를 사용할 수 없기 때문에 (메모리를 낭비할 순 없으므로..) 상자의 개수는 삽입되는 원소가 많아짐에 따라 점진적으로 늘어나게 됩니다. 문제는 상자의 개수가 늘어나면 해시 함수를 바꿔야 하기 때문에 (더 많은 값들을 해시값으로 반환할 수 있도록) 모든 원소들을 처음부터 끝 까지 다시 `insert` 해야 합니다. 이를 `rehash` 라 하며 $$O(N)$$ 만큼의 시간이 걸립니다.
 
-```cpp
+```cpp-formatted
 
 #include <iostream>
 #include <string>
 #include <unordered_set>
 using namespace std;
 
+template <typename K>
+void print_unordered_set(unordered_set<K>& m) {
+  // 셋의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << *itr << endl;
+  }
+}
 
 template <typename K>
-void print_unordered_set(unordered_set<K>& m)
-{
-// 셋의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << *itr << endl;
+void is_exist(unordered_set<K>& s, K key) {
+  auto itr = s.find(key);
+  if (itr != s.end()) {
+    cout << key << " 가 존재!" << endl;
+  } else {
+    cout << key << " 가 없다" << endl;
+  }
 }
-}
+int main() {
+  unordered_set<string> s;
 
+  s.insert("hi");
+  s.insert("my");
+  s.insert("name");
+  s.insert("is");
+  s.insert("psi");
+  s.insert("welcome");
+  s.insert("to");
+  s.insert("c++");
 
-template <typename K>
-void is_exist(unordered_set<K>& s, K key)
-{
-auto itr = s.find(key);
-if (itr != s.end()) {
-cout << key << " 가 존재!" << endl;
-}
-else {
-cout << key << " 가 없다" << endl;
-}
-}
-int main()
-{
-unordered_set<string> s;
+  print_unordered_set(s);
+  cout << "----------------" << endl;
+  is_exist(s, string("c++"));
+  is_exist(s, string("c"));
 
-
-s.insert("hi");
-s.insert("my");
-s.insert("name");
-s.insert("is");
-s.insert("psi");
-s.insert("welcome");
-s.insert("to");
-s.insert("c++");
-
-
-print_unordered_set(s);
-cout << "----------------" << endl;
-is_exist(s, string("c++"));
-is_exist(s, string("c"));
-
-
-cout << "----------------" << endl;
-cout << "'hi' 를 삭제" << endl;
-s.erase(s.find("hi"));
-is_exist(s, string("hi"));
+  cout << "----------------" << endl;
+  cout << "'hi' 를 삭제" << endl;
+  s.erase(s.find("hi"));
+  is_exist(s, string("hi"));
 }
 ```
 
@@ -1341,24 +1239,22 @@ is_exist(s, string("hi"));
 
 와 같이 나옵니다.
 
-```cpp
+```cpp-formatted
 
 template <typename K>
-void is_exist(unordered_set<K>& s, K key)
-{
-auto itr = s.find(key);
-if (itr != s.end()) {
-cout << key << " 가 존재!" << endl;
-}
-else {
-cout << key << " 가 없다" << endl;
-}
+void is_exist(unordered_set<K>& s, K key) {
+  auto itr = s.find(key);
+  if (itr != s.end()) {
+    cout << key << " 가 존재!" << endl;
+  } else {
+    cout << key << " 가 없다" << endl;
+  }
 }
 ```
 
 일단 위에서 볼 수 있듯이, `unordered_set` 과 `unordered_map` 모두 `find` 함수를 지원하며, 사용법은 그냥 셋과 정확히 동일합니다. `find` 함수의 경우 만일 해당하는 원소가 존재한다면 이를 가리키는 반복자를, 없다면 `end` 를 리턴합니다.
 
-```cpp
+```cpp-formatted
 s.erase(s.find("hi"));
 is_exist(s, string("hi"));
 ```
@@ -1374,17 +1270,14 @@ is_exist(s, string("hi"));
 
 한 가지 다행인 점은 C++ 에서 기본적인 타입들에 대한 해시 함수들을 제공하고 있습니다. 우리는 이들을 잘만 이용하기만 하면 됩니다.
 
-```cpp
+```cpp-formatted
 class Todo {
+  int priority;  // 중요도. 높을 수록 급한것!
+  string job_desc;
 
-int priority; // 중요도. 높을 수록 급한것!
-string job_desc;
-
-
-public:
-Todo(int priority, string job_desc) :
-priority(priority), job_desc(job_desc)
-{ }
+ public:
+  Todo(int priority, string job_desc)
+      : priority(priority), job_desc(job_desc) {}
 };
 ```
 
@@ -1395,10 +1288,10 @@ priority(priority), job_desc(job_desc)
 
 예를 들어 `string` 함수의 해시값을 계산하고 싶다면
 
-```cpp
+```cpp-formatted
 
 hash<string> hash_fn;
-size_t hash_val = hash_fn(str); // str 의 해시값 계산
+size_t hash_val = hash_fn(str);  // str 의 해시값 계산
 ```
 
 
@@ -1408,103 +1301,87 @@ size_t hash_val = hash_fn(str); // str 의 해시값 계산
 
 따라서 `Todo` 함수의 해시 함수를 계산하는 함수 객체를 만들기 위해 다음과 같이 `hash` 클래스의 `Todo` 특수화 버전을 만들어줘야 합니다.
 
-```cpp
+```cpp-formatted
 
-        // hash 클래스의 Todo 템플릿 특수화 버전!
-template<>
+// hash 클래스의 Todo 템플릿 특수화 버전!
+template <>
 struct hash<Todo> {
-size_t operator()(const Todo& t) const {
-// 해시 계산
-}
+  size_t operator()(const Todo& t) const {
+    // 해시 계산
+  }
 };
 ```
 
 해시 함수는 객체의 `operator()` 를 오버로드하면 되고 `std::size_t` 타입을 리턴하면 됩니다. 보통 `size_t` 타입은 `int` 랑 동일한데, 이 말은 해시값으로 0 부터 4294967295 까지 가능하다는 뜻입니다. 물론 그렇다고 해서 이 만큼의 상자를 사용하는 것은 아니고, 현재 컨테이너가 사용하고 있는 상자 개수로 나눈 나머지를 상자 번호로 사용하겠지요.
 
-```cpp
+```cpp-formatted
+#include <functional>
 #include <iostream>
 #include <string>
 #include <unordered_set>
-#include <functional>
 using namespace std;
 
+template <typename K>
+void print_unordered_set(unordered_set<K>& m) {
+  // 셋의 모든 원소들을 출력하기
+  for (auto itr = m.begin(); itr != m.end(); itr++) {
+    cout << *itr << endl;
+  }
+}
 
 template <typename K>
-void print_unordered_set(unordered_set<K>& m)
-{
-// 셋의 모든 원소들을 출력하기
-for (auto itr = m.begin(); itr != m.end(); itr++) {
-cout << *itr << endl;
-}
-}
-
-
-template <typename K>
-void is_exist(unordered_set<K>& s, K key)
-{
-auto itr = s.find(key);
-if (itr != s.end()) {
-cout << key << " 가 존재!" << endl;
-}
-else {
-cout << key << " 가 없다" << endl;
-}
+void is_exist(unordered_set<K>& s, K key) {
+  auto itr = s.find(key);
+  if (itr != s.end()) {
+    cout << key << " 가 존재!" << endl;
+  } else {
+    cout << key << " 가 없다" << endl;
+  }
 }
 class Todo {
-int priority; // 중요도. 높을 수록 급한것!
-string job_desc;
+  int priority;  // 중요도. 높을 수록 급한것!
+  string job_desc;
 
+ public:
+  Todo(int priority, string job_desc)
+      : priority(priority), job_desc(job_desc) {}
 
-public:
-Todo(int priority, string job_desc) :
-priority(priority), job_desc(job_desc)
-{ }
+  bool operator==(const Todo& t) const {
+    if (priority == t.priority && job_desc == t.job_desc) return true;
+    return false;
+  }
 
-
-bool operator== (const Todo& t) const {
-if (priority == t.priority
-&& job_desc == t.job_desc) return true;
-return false;
-}
-
-
-friend ostream& operator<<(ostream& o, const Todo& t);
-friend struct hash<Todo>;
+  friend ostream& operator<<(ostream& o, const Todo& t);
+  friend struct hash<Todo>;
 };
-
 
 // Todo 해시 함수를 위한 함수객체(Functor)
 // 를 만들어줍니다!
 namespace std {
-template<>
+template <>
 struct hash<Todo> {
-size_t operator()(const Todo& t) const {
-hash<string> hash_func;
+  size_t operator()(const Todo& t) const {
+    hash<string> hash_func;
 
-
-return t.priority ^ (hash_func(t.job_desc));
-}
+    return t.priority ^ (hash_func(t.job_desc));
+  }
 };
+}  // namespace std
+ostream& operator<<(ostream& o, const Todo& t) {
+  o << "[중요도 : " << t.priority << " ] " << t.job_desc;
+  return o;
 }
-ostream& operator<<(ostream& o, const Todo& t)
-{
-o << "[중요도 : " << t.priority << " ] " << t.job_desc;
-return o;
-}
 
+int main() {
+  unordered_set<Todo> todos;
 
-int main()
-{
-unordered_set<Todo> todos;
-
-
-todos.insert(Todo(1, "농구 하기"));
-todos.insert(Todo(2, "수학 숙제 하기"));
-todos.insert(Todo(1, "프로그래밍 프로젝트"));
-todos.insert(Todo(3, "친구 만나기"));
-todos.insert(Todo(2, "영화 보기"));
-print_unordered_set(todos);
-cout << "----------------" << endl;
+  todos.insert(Todo(1, "농구 하기"));
+  todos.insert(Todo(2, "수학 숙제 하기"));
+  todos.insert(Todo(1, "프로그래밍 프로젝트"));
+  todos.insert(Todo(3, "친구 만나기"));
+  todos.insert(Todo(2, "영화 보기"));
+  print_unordered_set(todos);
+  cout << "----------------" << endl;
 }
 ```
 
@@ -1524,20 +1401,19 @@ cout << "----------------" << endl;
 
 
 
-```cpp
+```cpp-formatted
 // Todo 해시 함수를 위한 함수객체(Functor)
 // 를 만들어줍니다!
 namespace std {
-template<>
+template <>
 struct hash<Todo> {
-size_t operator()(const Todo& t) const {
-hash<string> hash_func;
+  size_t operator()(const Todo& t) const {
+    hash<string> hash_func;
 
-
-return t.priority ^ (hash_func(t.job_desc));
-}
+    return t.priority ^ (hash_func(t.job_desc));
+  }
 };
-}
+}  // namespace std
 ```
 
 다행이도 `C++ STL` 에서는 기본적인 타입들 (`int, string` 등등) 에 대한 해시 함수를 제공하기 때문에 우리의 `Todo` 클래스의 해시 함수는 이들을 잘 사용해서 짬뽕만 시키면 됩니다. 일단 `priority` 는 `int` 값 이므로 그냥 해시값 자체로 쓰기로 하고, `string` 의 해시값은 `hash_func` 객체로 이용해서 계산하면 됩니다
@@ -1552,12 +1428,11 @@ return t.priority ^ (hash_func(t.job_desc));
 그리고 마지막으로 아래와 같이 간단히 `==` 연산자를 추가해주면 됩니다.
 
 
-```cpp
+```cpp-formatted
 
-bool operator== (const Todo& t) const {
-if (priority == t.priority
-&& job_desc == t.job_desc) return true;
-return false;
+bool operator==(const Todo& t) const {
+  if (priority == t.priority && job_desc == t.job_desc) return true;
+  return false;
 }
 ```
 

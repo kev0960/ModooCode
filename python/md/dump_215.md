@@ -28,29 +28,25 @@ next_page : 217
 
 파일 스트림은 기본적인 `istream` 이나 `ostream` 클래스 보다 더 지원하는 기능이 더 많기 때문에 이를 상속 받아서 작성되었으며, 각각을 상속 받은 것이 `ifstream` 과 `ofstream` 입니다. 이들 클래스를 모두 포함하는 라이브러리로 `fstream` 을 사용하면 됩니다.
 
-```cpp
+```cpp-formatted
 // 파일에서의 입출력
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
+int main() {
+  // 파일 읽기 준비
+  ifstream in("test.txt");
+  string s;
 
-int main()
-{
-// 파일 읽기 준비
-ifstream in("test.txt");
-string s;
-
-
-if (in.is_open()) {
-in >> s;
-cout << "입력 받은 문자열 :: " << s << endl;
-}
-else {
-cout << "파일을 찾을 수 없습니다!" << endl;
-}
-return 0;
+  if (in.is_open()) {
+    in >> s;
+    cout << "입력 받은 문자열 :: " << s << endl;
+  } else {
+    cout << "파일을 찾을 수 없습니다!" << endl;
+  }
+  return 0;
 }
 ```
 
@@ -91,7 +87,7 @@ return 0;
 
 아마 소스가 매우 간단하므로 그냥 봐도 이해 하실 수 있으리라 생각합니다. 기존의 콘솔에서 사용자 입력을 받는 것과 별반 다를 게 없어 보입니다. 단 한가지 빼고요.
 
-```cpp
+```cpp-formatted
 // 파일 읽기 준비
 ifstream in("test.txt");
 ```
@@ -105,7 +101,7 @@ ifstream in("test.txt");
 
 위와 같이 생성자에 파일 경로를 지정하면, 해당하는 파일을 찾고 열게 됩니다. 만일 파일이 존재하지 않는다면 파일을 열 수 없습니다. 따라서 파일이 열렸는지의 유무는 다음과 같이 확인할 수 있습니다.
 
-```cpp
+```cpp-formatted
 if (in.is_open()) {
 ```
 
@@ -113,7 +109,7 @@ if (in.is_open()) {
 
 `is_open` 은 기존의 `istream` 에는 없고 `ifstream` 에서 상속 받으면서 추가된 함수 입니다. 파일이 열렸는지의 유무를 리턴합니다. 만일 해당 경로에 있는 파일이 존재하지 않는다면 `false` 를 리턴하겠지요.
 
-```cpp
+```cpp-formatted
 in >> s;
 ```
 
@@ -127,43 +123,35 @@ in >> s;
 
 다만 `close` 를 직접 해야 되는 경우도 있습니다.
 
-```cpp
+```cpp-formatted
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
+int main() {
+  // 파일 읽기 준비
+  ifstream in("test.txt");
+  string s;
 
-int main()
-{
-// 파일 읽기 준비
-ifstream in("test.txt");
-string s;
+  if (in.is_open()) {
+    in >> s;
+    cout << "입력 받은 문자열 :: " << s << endl;
+  } else {
+    cout << "파일을 찾을 수 없습니다!" << endl;
+  }
 
+  in.close();
+  in.open("other.txt");
 
-if (in.is_open()) {
-in >> s;
-cout << "입력 받은 문자열 :: " << s << endl;
-}
-else {
-cout << "파일을 찾을 수 없습니다!" << endl;
-}
+  if (in.is_open()) {
+    in >> s;
+    cout << "입력 받은 문자열 :: " << s << endl;
+  } else {
+    cout << "파일을 찾을 수 없습니다!" << endl;
+  }
 
-
-in.close();
-in.open("other.txt");
-
-
-if (in.is_open()) {
-in >> s;
-cout << "입력 받은 문자열 :: " << s << endl;
-}
-else {
-cout << "파일을 찾을 수 없습니다!" << endl;
-}
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -180,7 +168,7 @@ return 0;
 
 
 
-```cpp
+```cpp-formatted
 
 in.close();
 in.open("other.txt");
@@ -190,32 +178,27 @@ in.open("other.txt");
 
 위 처럼 새로운 파일에서 같은 객체가 입력을 받기 위해서는 기존 파일 스트림과의 연결을 종료하고, 새로운 파일과 연결을 시켜주면 됩니다. 기존 파일과의 스트림 종료는 `close` 함수가, 새로운 파일과의 연결은 `open` 함수가 수행하고 있습니다. `open` 함수가 있기에 굳이 `ifstream` 객체 생성자에서 파일 경로를 바로 지정해줄 필요는 없고, 나중에 `open` 으로 원하는 파일을 열어도 상관 없습니다.
 
-```cpp
+```cpp-formatted
 // 이진수로 읽기
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
+int main() {
+  // 파일 읽기 준비
+  ifstream in("test.txt", ios::binary);
+  string s;
 
-int main()
-{
-// 파일 읽기 준비
-ifstream in("test.txt", ios::binary);
-string s;
+  int x;
+  if (in.is_open()) {
+    in.read((char*)(&x), 4);
+    cout << hex << x << endl;
+  } else {
+    cout << "파일을 찾을 수 없습니다!" << endl;
+  }
 
-
-int x;
-if (in.is_open()) {
-in.read((char*)(&x), 4);
-cout << hex << x << endl;
-}
-else {
-cout << "파일을 찾을 수 없습니다!" << endl;
-}
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -248,7 +231,7 @@ return 0;
 
 라고 생각하시는 분들은 엔디안을 간과한 것인데, 우리가 쓰는 `CPU` 의 경우 리틀 엔디안이라 해서, 높은 주소값에 높은 자리수가 온다고 생각하면 됩니다, 따라서 각각의 바이트가 `EF / BB / BF / EC` 가 거꾸로 `EC / BF / BB / EF` 이렇게 `int` 변수에 기록이 된 것입니다. (이에 대한 내용은 C 강좌에서도 다루었습니다)
 
-```cpp
+```cpp-formatted
 ifstream in("test.txt", ios::binary);
 ```
 
@@ -259,7 +242,7 @@ ifstream in("test.txt", ios::binary);
 
 이 `binary` 는 단순한 숫자로 `ios` 에 정의되어 있습니다. `binary` 말고도 설정할 수 있는 여러가지 옵션들이 있는데. 이들을 `OR` 해서 여러가지 옵션을 조합할 수 있습니다. ([여기](http://itguru.tistory.com/129) 에서의 비트연산 활용 부분을 생각하시면 됩니다)
 
-```cpp
+```cpp-formatted
 in.read((char*)(&x), 4);
 ```
 
@@ -267,8 +250,8 @@ in.read((char*)(&x), 4);
 
 `read` 함수는 말 그대로, 4 바이트의 내용을 읽으라는 의미로, 첫 번째 인자에 해당하는 버퍼를 전달해주어야 합니다. 우리의 경우 `int` 변수를 마치 4 바이트 짜리 `char` 배열이라 생각하게 해서이를 전달하였습니다. 두 번째 인자로 반드시 몇 바이트를 읽을 지 전달해야 합니다.
 
-```cpp
-    char x[10];
+```cpp-formatted
+char x[10];
 in.read(x, 10);
 ```
 
@@ -278,7 +261,7 @@ in.read(x, 10);
 
 
 
-```cpp
+```cpp-formatted
 cout << hex << x << endl;
 ```
 
@@ -294,47 +277,38 @@ cout << hex << x << endl;
 
 
 
-```cpp
+```cpp-formatted
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
+int main() {
+  // 파일 읽기 준비
+  ifstream in("test.txt");
+  string s;
 
-int main()
-{
-// 파일 읽기 준비
-ifstream in("test.txt");
-string s;
+  if (in.is_open()) {
+    // 위치 지정자를 파일 끝으로 옮긴다.
+    in.seekg(0, ios::end);
 
+    // 그리고 그 위치를 읽는다. (파일의 크기)
+    int size = in.tellg();
 
-if (in.is_open()) {
-// 위치 지정자를 파일 끝으로 옮긴다.
-in.seekg(0, ios::end);
+    // 그 크기의 문자열을 할당한다.
+    s.resize(size);
 
+    // 위치 지정자를 다시 파일 맨 앞으로 옮긴다.
+    in.seekg(0, ios::beg);
 
-// 그리고 그 위치를 읽는다. (파일의 크기)
-int size = in.tellg();
+    // 파일 전체 내용을 읽어서 문자열에 저장한다.
+    in.read(&s[0], size);
+    cout << s << endl;
+  } else {
+    cout << "파일을 찾을 수 없습니다!" << endl;
+  }
 
-
-// 그 크기의 문자열을 할당한다.
-s.resize(size);
-
-
-// 위치 지정자를 다시 파일 맨 앞으로 옮긴다.
-in.seekg(0, ios::beg);
-
-
-// 파일 전체 내용을 읽어서 문자열에 저장한다.
-in.read(&s[0], size);
-cout << s << endl;
-}
-else {
-cout << "파일을 찾을 수 없습니다!" << endl;
-}
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -351,7 +325,7 @@ return 0;
 
 
 
-```cpp
+```cpp-formatted
 // 위치 지정자를 파일 끝으로 옮긴다.
 in.seekg(0, ios::end);
 ```
@@ -360,7 +334,7 @@ in.seekg(0, ios::end);
 
 C 언어에서 `fseek` 과 같은 함수로, 파일 위치 지정자를 사용자의 입맛에 맞게 이리저리 움직일 수 있습니다. 두 번째 인자는, 파일 내 위치를 의미하고, 첫 번째 인자는 그 위치로 부터 얼마나 만큼 떨어져 있느냐를 의미합니다. 우리의 경우 위치 지정자를 파일의 끝에서 0 만큼 떨어진 것, 즉 파일의 끝으로 이동시켰습니다.
 
-```cpp
+```cpp-formatted
 // 그리고 그 위치를 읽는다. (파일의 크기)
 int size = in.tellg();
 ```
@@ -371,7 +345,7 @@ int size = in.tellg();
 
 
 
-```cpp
+```cpp-formatted
 // 위치 지정자를 다시 파일 맨 앞으로 옮긴다.
 in.seekg(0, ios::beg);
 ```
@@ -379,42 +353,37 @@ in.seekg(0, ios::beg);
 
 이제 파일을 읽어야할 텐데, 파일 위치 지정자를 끝으로 옮겨 놓았기 때문에 읽기 위해서는 다시 처음으로 옮겨주어야 합니다. 옮기지 않을 경우 위치 지정자가 파일 끝에 있으므로 아무것도 읽지 못할 것입니다.
 
-```cpp
+```cpp-formatted
 // 파일 전체 내용을 읽어서 문자열에 저장한다.
 in.read(&s[0], size);
 ```
 
 마지막으로 파일 전체에 내용을 문자열에 저장하면 됩니다.
 
-```cpp
+```cpp-formatted
 
 // getline 으로 읽어들이기
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
+int main() {
+  // 파일 읽기 준비
+  ifstream in("test.txt");
+  char buf[100];
 
-int main()
-{
-// 파일 읽기 준비
-ifstream in("test.txt");
-char buf[100];
+  if (in.is_open()) {
+    while (!in.eof()) {
+      // 한 줄 씩 최대 100 자 까지 읽어들인다.
+      in.getline(buf, 100);
+      cout << buf << endl;
+    }
+  } else {
+    cout << "파일을 찾을 수 없습니다!" << endl;
+  }
 
-
-if (in.is_open()) {
-while (!in.eof()) {
-// 한 줄 씩 최대 100 자 까지 읽어들인다.
-in.getline(buf, 100);
-cout << buf << endl;
-}
-}
-else {
-cout << "파일을 찾을 수 없습니다!" << endl;
-}
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -433,7 +402,7 @@ return 0;
 
 `getline` 함수는 파일에서 개행문자 (\n) 이 나올 때 가지 최대 지정한 크기 만큼 읽게됩니다. 만일 파일 끝에 도달하게 된다면 `eofbit` 가 켜지면서
 
-```cpp
+```cpp-formatted
 
 in.getline(buf, 100);
 ```
@@ -442,7 +411,7 @@ in.getline(buf, 100);
 
 위 경우 `buf` 에 최대 100 글자 까지 입력 받습니다. 물론 개행 문자가 나올 때 까지 입력 받는 다는 것은 디폴트 이고, 추가 인자로 지정해주면 해당 문자가 나올 때 가지 입력 받습니다. 예를 들어서
 
-```cpp
+```cpp-formatted
 in.getline(buf, 100, '.');
 ```
 
@@ -457,33 +426,28 @@ in.getline(buf, 100, '.');
 
 
 
-```cpp
+```cpp-formatted
 // string 에 정의된 getline 사용
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
+int main() {
+  // 파일 읽기 준비
+  ifstream in("test.txt");
 
-int main()
-{
-// 파일 읽기 준비
-ifstream in("test.txt");
+  string s;
+  if (in.is_open()) {
+    while (!in.eof()) {
+      getline(in, s);
+      cout << s << endl;
+    }
+  } else {
+    cout << "파일을 찾을 수 없습니다!" << endl;
+  }
 
-
-string s;
-if (in.is_open()) {
-while (!in.eof()) {
-getline(in, s);
-cout << s << endl;
-}
-}
-else {
-cout << "파일을 찾을 수 없습니다!" << endl;
-}
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -513,27 +477,23 @@ return 0;
 
 
 
-```cpp
+```cpp-formatted
 #include <iostream>
 
-#include <string>
 #include <fstream>
+#include <string>
 using namespace std;
 
+int main() {
+  // 파일 쓰기 준비
+  ofstream out("test.txt");
 
-int main()
-{
-// 파일 쓰기 준비
-ofstream out("test.txt");
+  string s;
+  if (out.is_open()) {
+    out << "이걸 쓰자~~";
+  }
 
-
-string s;
-if (out.is_open()) {
-out << "이걸 쓰자~~";
-}
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -551,26 +511,22 @@ return 0;
 
 만일 `test.txt` 가 존재하지 않을 경우, `test.txt` 를 생성한 뒤에, 생성이 성공하였다면 출력하게 됩니다. `ofstream` 은 열려는 파일이 존재하지 않으면 해당 파일을 생성하고 열게 됩니다. 만일, 해당 파일이 이미 존재한다면, 특별한 설정을 하지 않는다면 해당 파일 내용이 다 지워지고 새로운 내용으로 덮어 씌어지게 됩니다.
 
-```cpp
+```cpp-formatted
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
+int main() {
+  // 파일 쓰기준비
+  ofstream out("test.txt", ios::app);
 
-int main()
-{
-// 파일 쓰기준비
-ofstream out("test.txt", ios::app);
+  string s;
+  if (out.is_open()) {
+    out << "덧붙이기";
+  }
 
-
-string s;
-if (out.is_open()) {
-out << "덧붙이기";
-}
-
-
-return 0;
+  return 0;
 }
 ```
 
@@ -602,26 +558,25 @@ return 0;
 
 그렇다고 해서 `ate` 를 이용해서 기존에 있는 파일 데이터 한 가운데에 무언가를 끼워 넣을 수 있는 것은 아닙니다.
 
-```cpp
+```cpp-formatted
 // ate 와 app
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
-int main()
-{
-// 두 파일에는 모두 abc 라고 써 있었습니다.
-ofstream out("test.txt", ios::app);
-ofstream out2("test2.txt", ios::ate);
+int main() {
+  // 두 파일에는 모두 abc 라고 써 있었습니다.
+  ofstream out("test.txt", ios::app);
+  ofstream out2("test2.txt", ios::ate);
 
-out.seekp(3, ios::beg);
-out2.seekp(3, ios::beg);
+  out.seekp(3, ios::beg);
+  out2.seekp(3, ios::beg);
 
-out << "추가";
-out2 << "추가";
+  out << "추가";
+  out2 << "추가";
 
-return 0;
+  return 0;
 }
 ```
 
@@ -655,44 +610,37 @@ return 0;
 
 
 
-```cpp
+```cpp-formatted
+#include <fstream>
 #include <iostream>
 #include <string>
-#include <fstream>
 using namespace std;
 
+class Human {
+  string name;
+  int age;
 
-class Human
-{
-string name;
-int age;
+ public:
+  Human(const string& name, int age) : name(name), age(age) {}
+  string get_info() {
+    return "Name :: " + name + " / Age :: " + to_string(age);
+  }
 
-
-public:
-Human(const string& name, int age) : name(name), age(age) {}
-string get_info() {
-return "Name :: " + name + " / Age :: " + to_string(age);
-}
-
-
-friend ofstream& operator<<(ofstream& o, Human& h);
+  friend ofstream& operator<<(ofstream& o, Human& h);
 };
 
-
-ofstream& operator<< (ofstream& o, Human& h) {
-o << h.get_info();
-return o;
+ofstream& operator<<(ofstream& o, Human& h) {
+  o << h.get_info();
+  return o;
 }
-int main()
-{
-// 파일 쓰기 준비
-ofstream out("test.txt");
+int main() {
+  // 파일 쓰기 준비
+  ofstream out("test.txt");
 
-Human h("이재범", 60);
-out << h << endl;
+  Human h("이재범", 60);
+  out << h << endl;
 
-
-return 0;
+  return 0;
 }
 ```
 
@@ -715,20 +663,18 @@ return 0;
 
 
 
-```cpp
+```cpp-formatted
 #include <iostream>
 #include <sstream>
 using namespace std;
-int main()
-{
-istringstream ss("123");
-int x;
-ss >> x;
+int main() {
+  istringstream ss("123");
+  int x;
+  ss >> x;
 
+  cout << "입력 받은 데이터 :: " << x << endl;
 
-cout << "입력 받은 데이터 :: " << x << endl;
-
-return 0;
+  return 0;
 }
 ```
 
@@ -746,7 +692,7 @@ return 0;
 
 `sstream` 에는 `stringstream` 이 정의되어 있는데 이는 마치 문자열을 하나의 스트림이라 생각하게 해주는 가상화 장치라고 보시면 됩니다.
 
-```cpp
+```cpp-formatted
 istringstream ss("123");
 ```
 
@@ -754,7 +700,7 @@ istringstream ss("123");
 
 예를 들어서 우리는 위를 통해서 문자열 "123" 이 기록되어 있는 입력 스트림을 생성하였습니다. 마치 파일에 123 이라 기록해놓고 거기서 입력 받는 것과 동일하다고 생각하면 됩니다.
 
-```cpp
+```cpp-formatted
 int x;
 ss >> x;
 ```
@@ -766,27 +712,23 @@ ss >> x;
 
 이를 활용하면 `atoi` 와 같은 함수를 사용할 필요 없이 간편하게 문자열에서 숫자로 변환하는 함수를 만들 수 있습니다.
 
-```cpp
+```cpp-formatted
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 using namespace std;
 
+double to_number(string s) {
+  istringstream ss(s);
+  double x;
 
-double to_number(string s)
-{
-istringstream ss(s);
-double x;
-
-
-ss >> x;
-return x;
+  ss >> x;
+  return x;
 }
-int main()
-{
-cout << "변환:: 1 + 2 = " << to_number("1") + to_number("2") << endl;
+int main() {
+  cout << "변환:: 1 + 2 = " << to_number("1") + to_number("2") << endl;
 
-return 0;
+  return 0;
 }
 ```
 
@@ -801,26 +743,22 @@ return 0;
 
 위와 같이 간편하게 문자열을 숫자로 변환할 수 있습니다.
 
-```cpp
+```cpp-formatted
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 using namespace std;
 
+string to_str(int x) {
+  ostringstream ss;
+  ss << x;
 
-string to_str(int x)
-{
-ostringstream ss;
-ss << x;
-
-
-return ss.str();
+  return ss.str();
 }
-int main()
-{
-cout << "문자열로 변환:: 1 + 2 = " << to_str(1 + 2) << endl;
+int main() {
+  cout << "문자열로 변환:: 1 + 2 = " << to_str(1 + 2) << endl;
 
-return 0;
+  return 0;
 }
 ```
 
@@ -838,7 +776,7 @@ return 0;
 
 이번에는 거꾸로 데이터를 출력할 수 있는 `ostringstream` 이 있습니다. 위와 비슷한 방법으로 이번애는 거꾸로 숫자에서 ㅁ누자열로 바꾸는 함수를 제작할 수 있습니다.
 
-```cpp
+```cpp-formatted
 
 ostringstream ss;
 ss << x;
@@ -848,7 +786,7 @@ ss << x;
 
 위와 같이 `int` 변수 `x` 의 값을 문자열 스트림에 출력하였습니다. 이 과정에서 자동으로 숫자에서 문자열로의 변환이 있겠지요.
 
-```cpp
+```cpp-formatted
 return ss.str();
 ```
 
@@ -873,46 +811,34 @@ return ss.str();
 여러분은 `Table` 클래스를 상속 받는 `TextTable, CSVTable, HTMLTable` 클래스를 만들어서 `print_table` 함수를 오버라이드 할 함수들을 제작할 것입니다. 예를 들어 `TextTable` 클래스의 `print_table` 함수는 텍스트 형식으로, `CSVTable` 은 `CSV` 파일 형식으로 등등 만들어야 겠지요?
 제가 아래 대충 프로그램의 골격을 잡아 놓았으니 여러분들은 이를 채우기만 하면 됩니다.
 
-```cpp
+```cpp-formatted
 class Table;
 class Cell어
 
 {
-Table* table; // 어느 테이블에 속해있는지
-string data;
-int x, y; // 테이블 에서의 위치
-public:
-Cell(const string& data) : data(data) {};
+  Table* table;  // 어느 테이블에 속해있는지
+  string data;
+  int x, y;  // 테이블 에서의 위치
+ public:
+  Cell(const string& data) : data(data){};
 };
-class Table
-{
-Cell*** data_base; // 왜 3중 포인터 인지 잘 생각해보세요!
-public:
-Cell();
-virtual string print_table() = 0;
-void reg_cell(Cell* c, int row, int col); // Cell 을 등록한다
-string get_cell_string(int row, int col); // 해당 위치의 Cell 데이터를 얻는다.
-~Table();
+class Table {
+  Cell*** data_base;  // 왜 3중 포인터 인지 잘 생각해보세요!
+ public:
+  Cell();
+  virtual string print_table() = 0;
+  void reg_cell(Cell* c, int row, int col);  // Cell 을 등록한다
+  string get_cell_string(int row,
+                         int col);  // 해당 위치의 Cell 데이터를 얻는다.
+  ~Table();
 };
-ostream& operator<< (ostream& o, Table& t) {
-o << t.print_table();
-return o;
+ostream& operator<<(ostream& o, Table& t) {
+  o << t.print_table();
+  return o;
 }
-class TextTable : public Table
-{
-
-
-};
-class CSVTable : public Table
-{
-
-
-};
-class HTMLTable : public Table
-{
-
-
-};
+class TextTable : public Table {};
+class CSVTable : public Table {};
+class HTMLTable : public Table {};
 ```
 
 #### 문제 2 (난이도 :最上 - 위의 문제와 이어집니다)
@@ -944,11 +870,3 @@ class HTMLTable : public Table
 
  [다음 강좌 보러가기](http://itguru.tistory.com/135)
 ```
-
-
-
-
-
-
-
-

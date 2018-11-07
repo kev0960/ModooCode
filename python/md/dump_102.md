@@ -57,7 +57,7 @@ char * strtok ( char * str, const char * delimiters );
 ###  구현 예
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 소스는
@@ -66,8 +66,25 @@ http://research.microsoft.com/en-us/um/redmond/projects/invisible/src/crt/strtok
 
 */
 
-
-char * __cdecl strtok(char *s1, const char *delimit){    static char *lastToken = NULL; /* UNSAFE SHARED STATE! */    char *tmp;    /* Skip leading delimiters if new string. */    if ( s1 == NULL ) {        s1 = lastToken;        if (s1 == NULL)         /* End of story? */            return NULL;    } else {        s1 += strspn(s1, delimit);    }    /* Find end of segment */    tmp = strpbrk(s1, delimit);    if (tmp) {        /* Found another delimiter, split string and save state. */        *tmp = '\0';        lastToken = tmp + 1;    } else {        /* Last segment, remember that. */        lastToken = NULL;    }    return s1;}
+char *__cdecl strtok(char *s1, const char *delimit) {
+  static char *lastToken = NULL; /* UNSAFE SHARED STATE! */
+  char *tmp;                     /* Skip leading delimiters if new string. */
+  if (s1 == NULL) {
+    s1 = lastToken;
+    if (s1 == NULL) /* End of story? */
+      return NULL;
+  } else {
+    s1 += strspn(s1, delimit);
+  } /* Find end of segment */
+  tmp = strpbrk(s1, delimit);
+  if (tmp) { /* Found another delimiter, split string and save state. */
+    *tmp = '\0';
+    lastToken = tmp + 1;
+  } else { /* Last segment, remember that. */
+    lastToken = NULL;
+  }
+  return s1;
+}
 ```
 
 
@@ -76,13 +93,26 @@ char * __cdecl strtok(char *s1, const char *delimit){    static char *lastTok
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 
 
-/*' ', ',', '-', '.' 들을 구분 문자로 이용하여 - This, a sample string. 이라는 문자열을 토큰들로 분리한다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstring/strtok/ 에서 가져왔습니다 */
+/*' ', ',', '-', '.' 들을 구분 문자로 이용하여 - This, a sample string. 이라는
+ * 문자열을 토큰들로 분리한다.이 예제는
+ * http://www.cplusplus.com/reference/clibrary/cstring/strtok/ 에서 가져왔습니다
+ */
 #include <stdio.h>
 #include <string.h>
-int main () {   char str[] ="- This, a sample string.";    char * pch;    printf ("Splitting string \"%s\" into tokens:\n",str);    pch = strtok (str," ,.-");    while (pch != NULL)    {        printf ("%s\n",pch);        pch = strtok (NULL, " ,.-");    }    return 0;}
+int main() {
+  char str[] = "- This, a sample string.";
+  char* pch;
+  printf("Splitting string \"%s\" into tokens:\n", str);
+  pch = strtok(str, " ,.-");
+  while (pch != NULL) {
+    printf("%s\n", pch);
+    pch = strtok(NULL, " ,.-");
+  }
+  return 0;
+}
 ```
 
 

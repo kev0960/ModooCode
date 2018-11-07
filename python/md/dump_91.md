@@ -58,22 +58,21 @@ size_t strxfrm ( char * destination, const char * source, size_t num );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 strxfrm 을 이용하여 문자열의 길이를 구한다.
 
- */
+ */
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char str[20] = "Hello, World";
+int main() {
+  char str[20] = "Hello, World";
 
-    printf("문자열의 길이 : %d \n", strxfrm(NULL, str, 0));
+  printf("문자열의 길이 : %d \n", strxfrm(NULL, str, 0));
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -91,8 +90,3 @@ int main ()
 *  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
 *  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부분을 비교한다.
 *  [strcoll](http://itguru.tistory.com/86):  `locale` 을 사용하여 두 문자열을 비교한다.
-
-
-
-
-

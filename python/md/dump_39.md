@@ -48,22 +48,20 @@ int fputc ( int character, FILE * stream );
 ### 실행 예제
 ### 
 
-```cpp
+```cpp-formatted
 /* 표준출력(stdout) 에 문자열을 출력한다 */
 #include <stdio.h>
 
-int main ()
-{
-    char str[20]="hello every1";
-    int i = 0;
+int main() {
+  char str[20] = "hello every1";
+  int i = 0;
 
-    while (str[i])
-    {
-        fputc(str[i], stdout);
-        i++;
-    }
+  while (str[i]) {
+    fputc(str[i], stdout);
+    i++;
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -76,30 +74,26 @@ int main ()
 
 화면에 문자열 `str` 의 내용이 표시된다.
 
-```cpp
+```cpp-formatted
 /*
 alphabet.txt 라는 파일을 (없으면) 생성하고 A 부터 Z 까지 쓴다.
 참고로 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fputc/
 에서 가져왔습니다.
 */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    char c;
+int main() {
+  FILE* pFile;
+  char c;
 
-    pFile = fopen ("alphabet.txt","w");
-    if (pFile!=NULL)
-    {
-        for (c = 'A' ; c <= 'Z' ; c++)
-        {
-            fputc ( (int) c , pFile );
-        }
-        fclose (pFile);
-    }
-    return 0;
+  pFile = fopen("alphabet.txt", "w");
+  if (pFile != NULL) {
+    for (c = 'A'; c <= 'Z'; c++) {
+      fputc((int)c, pFile);
+    }
+    fclose(pFile);
+  }
+  return 0;
 }
-
 ```
 
 실행 결과
@@ -123,12 +117,3 @@ int main ()
 * `fwrite` : 스트림에 데이터 블록을 쓴다.
 
 *  [fopen](http://itguru.tistory.com/58): 파일을 연다.
-
-
-
-
-
-
-
-
-

@@ -18,18 +18,17 @@ next_page : 129
 
 지난 강좌에서 여러분들과 함께 도서 관리 프로그램을 열심히 만들었었습니다. 그리고 제가 여러분들께 '생각해보기' 로 입력을 받는 형태로 바꿔보자고 이야기 했었죠. 여러분들은 모두 해보셨나요? 아직 오랜 시간 고민을 하지 안 하신 분들은 살포시 뒤로가기를 눌러주시기 바랍니다.
 
-```cpp
+```cpp-formatted
 /* 도서 관리 프로그램의 전체 소스 코드*/
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
-struct BOOK
-{
-    char book_name[30];
-    char auth_name[30];
-    char publ_name[30];
-    int borrowed;
+struct BOOK {
+  char book_name[30];
+  char auth_name[30];
+  char publ_name[30];
+  int borrowed;
 };
 
 typedef struct BOOK BOOK;
@@ -41,315 +40,266 @@ int print_book_list(BOOK *book_list, int total_num_book);
 int retrieve_book_info(BOOK **book_list, int *total_num_book);
 char compare(char *str1, char *str2);
 
-int main ()
-{
-    int user_choice; /* 유저가 선택한 메뉴 */
-    int num_total_book = 0; /* 현재 책의 수 */
+int main() {
+  int user_choice;        /* 유저가 선택한 메뉴 */
+  int num_total_book = 0; /* 현재 책의 수 */
 
-    BOOK *book_list;
-    int i;
+  BOOK *book_list;
+  int i;
 
-    printf("도서관의 최대 보관 장서 수를 설정해주세요 : ");
-    scanf("%d", &user_choice);
+  printf("도서관의 최대 보관 장서 수를 설정해주세요 : ");
+  scanf("%d", &user_choice);
 
-    book_list = (BOOK *)malloc(sizeof(BOOK)*user_choice);
+  book_list = (BOOK *)malloc(sizeof(BOOK) * user_choice);
 
-    while (1)
-    {
-        printf("도서 관리 프로그램 \n");
-        printf("메뉴를 선택하세요 \n");
-        printf("1. 책을 새로 추가하기 \n");
-        printf("2. 책을 검색하기 \n");
-        printf("3. 책을 빌리기 \n");
-        printf("4. 책을 반납하기 \n");
-        printf("5. 프로그램 종료 \n");
-        printf("6. 책들의 내용을 book_list.txt 에 출력 \n");
-        printf("7. 책들의 내용을 book_list.txt 에서 불러옴 \n");
-        printf("8. 책들의 목록을 출력 \n");
+  while (1) {
+    printf("도서 관리 프로그램 \n");
+    printf("메뉴를 선택하세요 \n");
+    printf("1. 책을 새로 추가하기 \n");
+    printf("2. 책을 검색하기 \n");
+    printf("3. 책을 빌리기 \n");
+    printf("4. 책을 반납하기 \n");
+    printf("5. 프로그램 종료 \n");
+    printf("6. 책들의 내용을 book_list.txt 에 출력 \n");
+    printf("7. 책들의 내용을 book_list.txt 에서 불러옴 \n");
+    printf("8. 책들의 목록을 출력 \n");
 
-        printf("당신의 선택은 : ");
-        scanf("%d", &user_choice);
+    printf("당신의 선택은 : ");
+    scanf("%d", &user_choice);
 
-        if(user_choice == 1)
-        {
-            /* 책을 새로 추가하는 함수 호출 */
-            register_book(book_list, &num_total_book);
-        }
-        else if(user_choice == 2)
-        {
-            /* 책을 검색하는 함수 호출 */
-            search_book(book_list, num_total_book);
-        }
-        else if(user_choice == 3)
-        {
-            /* 책을 빌리는 함수 호출 */
-            borrow_book(book_list);
-        }
-        else if(user_choice == 4)
-        {
-            /* 책을 반납하는 함수 호출 */
-            return_book(book_list);
-        }
-        else if(user_choice == 5)
-        {
-            /* 프로그램을 종료한다. */
-            break;
-        }
-        else if(user_choice == 6)
-        {
-            /* book_list.txt 에 책들의 목록을 출력한다*/
-            print_book_list(book_list, num_total_book);
-        }
-        else if(user_choice == 7)
-        {
-            /* book_list.txt 에서 책들의 목록을 가져온다*/
-            retrieve_book_info(&book_list, &num_total_book);
-        }
-        else if(user_choice == 8)
-        {
-            /* 책들의 목록을 화면에 출력한다. */
-            for(i = 0; i < num_total_book; i++)
-            {
-                printf("%s // %s // %s // ", book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);
-                if(book_list[i].borrowed == 0)
-                    printf("NO\n");
-                else
-                    printf("YES\n");
-            }
-        }
-    }
+    if (user_choice == 1) {
+      /* 책을 새로 추가하는 함수 호출 */
+      register_book(book_list, &num_total_book);
+    } else if (user_choice == 2) {
+      /* 책을 검색하는 함수 호출 */
+      search_book(book_list, num_total_book);
+    } else if (user_choice == 3) {
+      /* 책을 빌리는 함수 호출 */
+      borrow_book(book_list);
+    } else if (user_choice == 4) {
+      /* 책을 반납하는 함수 호출 */
+      return_book(book_list);
+    } else if (user_choice == 5) {
+      /* 프로그램을 종료한다. */
+      break;
+    } else if (user_choice == 6) {
+      /* book_list.txt 에 책들의 목록을 출력한다*/
+      print_book_list(book_list, num_total_book);
+    } else if (user_choice == 7) {
+      /* book_list.txt 에서 책들의 목록을 가져온다*/
+      retrieve_book_info(&book_list, &num_total_book);
+    } else if (user_choice == 8) {
+      /* 책들의 목록을 화면에 출력한다. */
+      for (i = 0; i < num_total_book; i++) {
+        printf("%s // %s // %s // ", book_list[i].book_name,
+               book_list[i].auth_name, book_list[i].publ_name);
+        if (book_list[i].borrowed == 0)
+          printf("NO\n");
+        else
+          printf("YES\n");
+      }
+    }
+  }
 
-    free(book_list);
-    return 0;
+  free(book_list);
+  return 0;
 }
-int print_book_list(BOOK *book_list, int total_num_book)
-{
-    FILE *fp = fopen("book_list.txt", "w");
-    int i;
+int print_book_list(BOOK *book_list, int total_num_book) {
+  FILE *fp = fopen("book_list.txt", "w");
+  int i;
 
-    if(fp == NULL)
-    {
-        printf("출력 오류 ! \n");
-        return -1;
-    }
+  if (fp == NULL) {
+    printf("출력 오류 ! \n");
+    return -1;
+  }
 
-    fprintf(fp, "%d\n", total_num_book);
+  fprintf(fp, "%d\n", total_num_book);
 
-    for(i = 0; i < total_num_book; i++)
-    {
-        fprintf(fp, "%s\n%s\n%s\n", book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);
-        if(book_list[i].borrowed == 0)
-            fprintf(fp, "NO\n");
-        else
-            fprintf(fp, "YES\n");
-    }
+  for (i = 0; i < total_num_book; i++) {
+    fprintf(fp, "%s\n%s\n%s\n", book_list[i].book_name, book_list[i].auth_name,
+            book_list[i].publ_name);
+    if (book_list[i].borrowed == 0)
+      fprintf(fp, "NO\n");
+    else
+      fprintf(fp, "YES\n");
+  }
 
-    printf("출력 완료! \n");
-    fclose(fp);
+  printf("출력 완료! \n");
+  fclose(fp);
 
-    return 0;
+  return 0;
 }
-char compare(char *str1, char *str2)
-{
-    while (*str1)
-    {
-        if(*str1 != *str2)
-        {
-            return 0;
-        }
+char compare(char *str1, char *str2) {
+  while (*str1) {
+    if (*str1 != *str2) {
+      return 0;
+    }
 
-        str1++;
-        str2++;
-    }
+    str1++;
+    str2++;
+  }
 
-    if(*str2 == '\0')
-        return 1;
+  if (*str2 == '\0') return 1;
 
-    return 0;
+  return 0;
 }
 
 /* 포인터인 book_list 의 값을 바꿔야 하므로 더블 포인터 형태 */
-int retrieve_book_info(BOOK **book_list, int *total_num_book)
-{
-    FILE *fp = fopen("book_list.txt", "r");
-    int total_book;
-    int i;
-    char str[10];
+int retrieve_book_info(BOOK **book_list, int *total_num_book) {
+  FILE *fp = fopen("book_list.txt", "r");
+  int total_book;
+  int i;
+  char str[10];
 
-    if(fp == NULL)
-    {
-        printf("지정한 파일을 찾을 수 없습니다! \n");
-        return -1;
-    }
+  if (fp == NULL) {
+    printf("지정한 파일을 찾을 수 없습니다! \n");
+    return -1;
+  }
 
-    /* 찾았다면 전체 책의 개수를 읽어온다. */
-    fscanf(fp, "%d", &total_book);
-    (*total_num_book) = total_book;
+  /* 찾았다면 전체 책의 개수를 읽어온다. */
+  fscanf(fp, "%d", &total_book);
+  (*total_num_book) = total_book;
 
-    /* 기존의 book_list 데이터를 삭제 */
-    free(*book_list);
-    /* 그리고 다시 malloc 으로 재할당 한다. */
-    (*book_list) = (BOOK *)malloc(sizeof(BOOK)*total_book);
+  /* 기존의 book_list 데이터를 삭제 */
+  free(*book_list);
+  /* 그리고 다시 malloc 으로 재할당 한다. */
+  (*book_list) = (BOOK *)malloc(sizeof(BOOK) * total_book);
 
-    if(*book_list == NULL)
-    {
-        printf("\n ERROR \n");
-        return -1;
-    }
-    for(i=0;i<total_book;i++)
-    {
-        /* book_list[i]->book_name 이 아님에 유의!! */
-        fscanf(fp, "%s", (*book_list)[i].book_name);
-        fscanf(fp, "%s", (*book_list)[i].auth_name);
-        fscanf(fp, "%s", (*book_list)[i].publ_name);
-        fscanf(fp, "%s", str);
+  if (*book_list == NULL) {
+    printf("\n ERROR \n");
+    return -1;
+  }
+  for (i = 0; i < total_book; i++) {
+    /* book_list[i]->book_name 이 아님에 유의!! */
+    fscanf(fp, "%s", (*book_list)[i].book_name);
+    fscanf(fp, "%s", (*book_list)[i].auth_name);
+    fscanf(fp, "%s", (*book_list)[i].publ_name);
+    fscanf(fp, "%s", str);
 
-        if(compare(str, "YES"))
-        {
-            (*book_list)[i].borrowed = 1;
-        }
-        else if(compare(str, "NO"))
-        {
-            (*book_list)[i].borrowed = 0;
-        }
-    }
+    if (compare(str, "YES")) {
+      (*book_list)[i].borrowed = 1;
+    } else if (compare(str, "NO")) {
+      (*book_list)[i].borrowed = 0;
+    }
+  }
 
-    fclose(fp);
-    return 0;
-
+  fclose(fp);
+  return 0;
 }
 /* 책을 추가하는 함수*/
-int register_book(BOOK *book_list, int *nth)
-{
-    printf("책의 이름 : ");
-    scanf("%s", book_list[*nth].book_name);
+int register_book(BOOK *book_list, int *nth) {
+  printf("책의 이름 : ");
+  scanf("%s", book_list[*nth].book_name);
 
-    printf("책의 저자 : ");
-    scanf("%s", book_list[*nth].auth_name);
+  printf("책의 저자 : ");
+  scanf("%s", book_list[*nth].auth_name);
 
-    printf("책의 출판사 : ");
-    scanf("%s", book_list[*nth].publ_name);
+  printf("책의 출판사 : ");
+  scanf("%s", book_list[*nth].publ_name);
 
-    book_list[*nth].borrowed = 0;
-    (*nth)++;
+  book_list[*nth].borrowed = 0;
+  (*nth)++;
 
-    return 0;
+  return 0;
 }
 /* 책을 검색하는 함수 */
-int search_book(BOOK *book_list, int total_num_book)
-{
-    int user_input; /* 사용자의 입력을 받는다. */
-    int i;
-    char user_search[30];
+int search_book(BOOK *book_list, int total_num_book) {
+  int user_input; /* 사용자의 입력을 받는다. */
+  int i;
+  char user_search[30];
 
-    printf("어느 것으로 검색 할 것인가요? \n");
-    printf("1. 책 제목 검색 \n");
-    printf("2. 지은이 검색 \n");
-    printf("3. 출판사 검색 \n");
-    scanf("%d", &user_input);
+  printf("어느 것으로 검색 할 것인가요? \n");
+  printf("1. 책 제목 검색 \n");
+  printf("2. 지은이 검색 \n");
+  printf("3. 출판사 검색 \n");
+  scanf("%d", &user_input);
 
-    printf("검색할 단어를 입력해주세요 : ");
-    scanf("%s", user_search);
+  printf("검색할 단어를 입력해주세요 : ");
+  scanf("%s", user_search);
 
-    printf("검색 결과 \n");
+  printf("검색 결과 \n");
 
-    if(user_input == 1)
-    {
-        /*
+  if (user_input == 1) {
+    /*
 
-        i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을
-        사용자가 입력한 검색어와 비교하고 있다.
+    i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을
+    사용자가 입력한 검색어와 비교하고 있다.
 
-        */
-        for(i = 0;i < total_num_book; i++)
-        {
-            if(compare(book_list[i].book_name, user_search))
-            {
-                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",
-                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);
-            }
-        }
+    */
+    for (i = 0; i < total_num_book; i++) {
+      if (compare(book_list[i].book_name, user_search)) {
+        printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n", i,
+               book_list[i].book_name, book_list[i].auth_name,
+               book_list[i].publ_name);
+      }
+    }
 
-    }
-    else if(user_input == 2)
-    {
-        /*
+  } else if (user_input == 2) {
+    /*
 
-        i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을
-        사용자가 입력한 검색어와 비교하고 있다.
+    i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을
+    사용자가 입력한 검색어와 비교하고 있다.
 
-        */
-        for(i = 0;i < total_num_book; i++)
-        {
-            if(compare(book_list[i].auth_name, user_search))
-            {
-                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",
-                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);
-            }
-        }
+    */
+    for (i = 0; i < total_num_book; i++) {
+      if (compare(book_list[i].auth_name, user_search)) {
+        printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n", i,
+               book_list[i].book_name, book_list[i].auth_name,
+               book_list[i].publ_name);
+      }
+    }
 
-    }
-    else if(user_input == 3)
-    {
-        /*
+  } else if (user_input == 3) {
+    /*
 
-        i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를
-        사용자가 입력한 검색어와 비교하고 있다.
+    i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를
+    사용자가 입력한 검색어와 비교하고 있다.
 
-        */
-        for(i = 0;i < total_num_book; i++)
-        {
-            if(compare(book_list[i].publ_name, user_search))
-            {
-                printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n",
-                    i, book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);
-            }
-        }
-    }
+    */
+    for (i = 0; i < total_num_book; i++) {
+      if (compare(book_list[i].publ_name, user_search)) {
+        printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n", i,
+               book_list[i].book_name, book_list[i].auth_name,
+               book_list[i].publ_name);
+      }
+    }
+  }
 
-    return 0;
+  return 0;
 }
-int borrow_book(BOOK *book_list)
-{
-    /* 사용자로 부터 책번호를 받을 변수*/
-    int book_num;
+int borrow_book(BOOK *book_list) {
+  /* 사용자로 부터 책번호를 받을 변수*/
+  int book_num;
 
-    printf("빌릴 책의 번호를 말해주세요 \n");
-    printf("책 번호 : ");
-    scanf("%d", &book_num);
+  printf("빌릴 책의 번호를 말해주세요 \n");
+  printf("책 번호 : ");
+  scanf("%d", &book_num);
 
-    if(book_list[book_num].borrowed == 1)
-    {
-        printf("이미 대출된 책입니다! \n");
-    }
-    else
-    {
-        printf("책이 성공적으로 대출되었습니다. \n");
-        book_list[book_num].borrowed = 1;
-    }
+  if (book_list[book_num].borrowed == 1) {
+    printf("이미 대출된 책입니다! \n");
+  } else {
+    printf("책이 성공적으로 대출되었습니다. \n");
+    book_list[book_num].borrowed = 1;
+  }
 
-    return 0;
+  return 0;
 }
-int return_book(BOOK *book_list)
-{
-    /* 반납할 책의 번호 */
-    int num_book;
+int return_book(BOOK *book_list) {
+  /* 반납할 책의 번호 */
+  int num_book;
 
-    printf("반납할 책의 번호를 써주세요 \n");
-    printf("책 번호 : ");
-    scanf("%d", &num_book);
+  printf("반납할 책의 번호를 써주세요 \n");
+  printf("책 번호 : ");
+  scanf("%d", &num_book);
 
-    if(book_list[num_book].borrowed == 0)
-    {
-        printf("이미 반납되어 있는 상태입니다\n");
-    }
-    else
-    {
-        book_list[num_book].borrowed = 0;
-        printf("성공적으로 반납되었습니다\n");
-    }
+  if (book_list[num_book].borrowed == 0) {
+    printf("이미 반납되어 있는 상태입니다\n");
+  } else {
+    book_list[num_book].borrowed = 0;
+    printf("성공적으로 반납되었습니다\n");
+  }
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -363,87 +313,78 @@ int return_book(BOOK *book_list)
 
 일단, 저는 지난번 강좌의 '생각해보기' 에서 일컫은대로 `print_book_list` 함수의 파일 출력 형태를 수정하였습니다.
 
-```cpp
-int print_book_list(BOOK *book_list, int total_num_book)
-{
-    FILE *fp = fopen("book_list.txt", "w");
-    int i;
+```cpp-formatted
+int print_book_list(BOOK *book_list, int total_num_book) {
+  FILE *fp = fopen("book_list.txt", "w");
+  int i;
 
-    if(fp == NULL)
-    {
-        printf("출력 오류 ! \n");
-        return -1;
-    }
+  if (fp == NULL) {
+    printf("출력 오류 ! \n");
+    return -1;
+  }
 
-    fprintf(fp, "%d\n", total_num_book);
+  fprintf(fp, "%d\n", total_num_book);
 
-    for(i = 0; i < total_num_book; i++)
-    {
-        fprintf(fp, "%s\n%s\n%s\n", book_list[i].book_name, book_list[i].auth_name, book_list[i].publ_name);
-        if(book_list[i].borrowed == 0)
-            fprintf(fp, "NO\n");
-        else
-            fprintf(fp, "YES\n");
-    }
+  for (i = 0; i < total_num_book; i++) {
+    fprintf(fp, "%s\n%s\n%s\n", book_list[i].book_name, book_list[i].auth_name,
+            book_list[i].publ_name);
+    if (book_list[i].borrowed == 0)
+      fprintf(fp, "NO\n");
+    else
+      fprintf(fp, "YES\n");
+  }
 
-    printf("출력 완료! \n");
-    fclose(fp);
+  printf("출력 완료! \n");
+  fclose(fp);
 
-    return 0;
+  return 0;
 }
 ```
 
 일단 출력을 위해 `fprintf` 함수를 사용하고 있는데 문자열을 하나 출력할 때 마다 `\n` 을 넣어서 나중에 파일에서 입력받을 때 구분을 용이하게 하였습니다. `print_book_list` 함수는 상당히 간단하므로 설명은 이 정도에서 마치도록 하겠고요, 이제 가장 중요한 부분인 `retrieve_book_list` 함수에 대해 살펴봅시다.
 
-```cpp
+```cpp-formatted
 /* 포인터인 book_list 의 값을 바꿔야 하므로 더블 포인터 형태 */
-int retrieve_book_info(BOOK **book_list, int *total_num_book)
-{
-    FILE *fp = fopen("book_list.txt", "r");
-    int total_book;
-    int i;
-    char str[10];
+int retrieve_book_info(BOOK **book_list, int *total_num_book) {
+  FILE *fp = fopen("book_list.txt", "r");
+  int total_book;
+  int i;
+  char str[10];
 
-    if(fp == NULL)
-    {
-        printf("지정한 파일을 찾을 수 없습니다! \n");
-        return -1;
-    }
+  if (fp == NULL) {
+    printf("지정한 파일을 찾을 수 없습니다! \n");
+    return -1;
+  }
 
-    /* 찾았다면 전체 책의 개수를 읽어온다. */
-    fscanf(fp, "%d", &total_book);
-    (*total_num_book) = total_book;
+  /* 찾았다면 전체 책의 개수를 읽어온다. */
+  fscanf(fp, "%d", &total_book);
+  (*total_num_book) = total_book;
 
-    /* 기존의 book_list 데이터를 삭제 */
-    free(*book_list);
-    /* 그리고 다시 malloc 으로 재할당 한다. */
-    (*book_list) = (BOOK *)malloc(sizeof(BOOK)*total_book);
+  /* 기존의 book_list 데이터를 삭제 */
+  free(*book_list);
+  /* 그리고 다시 malloc 으로 재할당 한다. */
+  (*book_list) = (BOOK *)malloc(sizeof(BOOK) * total_book);
 
-    if(*book_list == NULL)
-    {
-        printf("\n ERROR \n");
-        return -1;
-    }
-    for(i=0;i<total_book;i++)
-    {
-        /* book_list[i]->book_name 이 아님에 유의!! */
-        fscanf(fp, "%s", (*book_list)[i].book_name);
-        fscanf(fp, "%s", (*book_list)[i].auth_name);
-        fscanf(fp, "%s", (*book_list)[i].publ_name);
-        fscanf(fp, "%s", str);
+  if (*book_list == NULL) {
+    printf("\n ERROR \n");
+    return -1;
+  }
+  for (i = 0; i < total_book; i++) {
+    /* book_list[i]->book_name 이 아님에 유의!! */
+    fscanf(fp, "%s", (*book_list)[i].book_name);
+    fscanf(fp, "%s", (*book_list)[i].auth_name);
+    fscanf(fp, "%s", (*book_list)[i].publ_name);
+    fscanf(fp, "%s", str);
 
-        if(compare(str, "YES"))
-        {
-            (*book_list)[i].borrowed = 1;
-        }
-        else if(compare(str, "NO"))
-        {
-            (*book_list)[i].borrowed = 0;
-        }
-    }
+    if (compare(str, "YES")) {
+      (*book_list)[i].borrowed = 1;
+    } else if (compare(str, "NO")) {
+      (*book_list)[i].borrowed = 0;
+    }
+  }
 
-    fclose(fp);
-    return 0;
+  fclose(fp);
+  return 0;
 }
 ```
 
@@ -463,17 +404,16 @@ int retrieve_book_info(BOOK **book_list, int *total_num_book)
 
 으로 보실 수 있습니다. 먼저 1 번 작업을 하는 부분을 살펴봅시다.
 
-```cpp
-int retrieve_book_info(BOOK **book_list, int *total_num_book)
-{
-    /*  ...(생략) ...*/
+```cpp-formatted
+int retrieve_book_info(BOOK **book_list, int *total_num_book) {
+  /*  ...(생략) ...*/
 
-    /* 찾았다면 전체 책의 개수를 읽어온다. */
-    fscanf(fp, "%d", &total_book);
-    (*total_num_book) = total_book;
+  /* 찾았다면 전체 책의 개수를 읽어온다. */
+  fscanf(fp, "%d", &total_book);
+  (*total_num_book) = total_book;
 
-    /* 기존의 book_list 데이터를 삭제 */
-    free(*book_list);
+  /* 기존의 book_list 데이터를 삭제 */
+  free(*book_list);
 ```
 
 
@@ -481,46 +421,41 @@ int retrieve_book_info(BOOK **book_list, int *total_num_book)
 
 이제 인자로 `book_list` 를 받았다면 위와 같이 `free` 를 통해 메모리 공간을 반환 함으로써 이전에 저장되어 있는 책 목록 데이터를 없앨 수 있습니다.
 
-```cpp
-    /* 그리고 다시 malloc 으로 재할당 한다. */
-    (*book_list) = (BOOK *)malloc(sizeof(BOOK)*total_book);
+```cpp-formatted
+/* 그리고 다시 malloc 으로 재할당 한다. */
+(*book_list) = (BOOK *)malloc(sizeof(BOOK) * total_book);
 
-    if(*book_list == NULL)
-    {
-        printf("\n ERROR \n");
-        return -1;
-    }
+if (*book_list == NULL) {
+  printf("\n ERROR \n");
+  return -1;
+}
 ```
 
 
 이제 두 번째 단계를 살펴보도록 합시다. 아까 위에서 `free` 함수를 통해 우리가 동적으로 할당하였던 `Heap` 공간에 있었던 데이터들은 날라가버렸습니다. 이제 다시 `malloc` 을 통해 책 목록에서 입력받는 `total_book` 의 크기 만큼 다시 할당 해야 겠지요? 따라서 위와 같이 `malloc` 함수를 통해 할당할 수 있게 됩니다.
 
 여기서 중요한 부분은 위와 같이 `*book_list == NULL` 을 통해 `malloc` 으로 메모리 할당이 제대로 이루어졌는지 확인할 수 있습니다. 이는 마치 파일 입출력에서 `fp == NULL` 로 검사하는 것과 비슷한 이치 입니다.
-```cpp
-      for(i=0;i<total_book;i++)
-    {
-        /* book_list[i]->book_name 이 아님에 유의!! */
-        fscanf(fp, "%s", (*book_list)[i].book_name);
-        fscanf(fp, "%s", (*book_list)[i].auth_name);
-        fscanf(fp, "%s", (*book_list)[i].publ_name);
-        fscanf(fp, "%s", str);
+```cpp-formatted
+for (i = 0; i < total_book; i++) {
+  /* book_list[i]->book_name 이 아님에 유의!! */
+  fscanf(fp, "%s", (*book_list)[i].book_name);
+  fscanf(fp, "%s", (*book_list)[i].auth_name);
+  fscanf(fp, "%s", (*book_list)[i].publ_name);
+  fscanf(fp, "%s", str);
 
-        if(compare(str, "YES"))
-        {
-            (*book_list)[i].borrowed = 1;
-        }
-        else if(compare(str, "NO"))
-        {
-            (*book_list)[i].borrowed = 0;
-        }
-    }
+  if (compare(str, "YES")) {
+    (*book_list)[i].borrowed = 1;
+  } else if (compare(str, "NO")) {
+    (*book_list)[i].borrowed = 0;
+  }
+}
 ```
 
 마지막으로 `for` 문을 통해서 파일로 부터 입력 받는 부분을 살펴봅시다. 여기서 `fscanf` 를 통해 문자열을 파일로 부터 입력을 받고 있는데 재미있는 부분은 `book_list` 의 구조체 변수들을 참조하는 과정 입니다. 왜 저렇게 어렵게 표현을 했을까요?
 
 일단 `*book_list` 를 통해서 원래 `main` 함수의 `book_list` 배열을 가리킬 수 있습니다. 그리고 `(*book_list)[i]` 를 통해 그 배열의 `i` 번째 원소를 가리킬 수 있지요. 이 때 그 원소는 구조체 변수 입니다. 따라서 우리는 `(*book_list)[i].book_name` 을 통해 `main` 함수의 특정 책의 책 이름에 대한 정보를 지칭할 수 있게 되지요. 이를 전개해서 표현 시켜 보면
 
-```cpp
+```cpp-formatted
 (*(*book_list) + i)).book_name
 ```
 
@@ -528,16 +463,16 @@ int retrieve_book_info(BOOK **book_list, int *total_num_book)
 
 이라 쓴 것과 동일한 표현이 됩니다. 그런데 문제는 이와 같이 포인터를 이용할 때 간혹 다음과 같이 쓰는 사람들이 있기 마련이죠.
 
-```cpp
+```cpp-formatted
 book_list[i]->book_name
 ```
 
 사실 저도 처음에 이렇게 썼다가 봉변을 맞았었는데 이렇게 사용하면 컴파일 시에 오류가 나지도 않고 디버깅 해도 도대체 뭐가 문제인지 알기 어렵습니다. 원래는 `(*book_list)[i].book_name` 이라고 머리 속에 생각은 하고 위와 같은 코드가 튀어 나왔지요. 그런데 이 둘은 완전히 다른 문장 입니다. 무엇이 다른지는 말그대로 전개를 시켜보면 알 수 있습니다.
 
-```cpp
+```cpp-formatted
 
-(*book_list)[i].book_name == ( *( *book_list + i)).book_name;
-book_list[i]->book_name == (  *( *(book_list + i))).book_name;
+(*book_list)[i].book_name == (*(*book_list + i)).book_name;
+book_list[i]->book_name == (*(*(book_list + i))).book_name;
 ```
 
 
@@ -569,6 +504,3 @@ book_list[i]->book_name == (  *( *(book_list + i))).book_name;
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-

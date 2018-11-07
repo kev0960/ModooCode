@@ -153,8 +153,3 @@ cat_title :  ifstream 클래스
 *  [register_callback](http://itguru.tistory.com/159)  :  이벤트 콜백 함수를 등록한다.
 
 * `sync_with_stdio` :  `iostream` 과 `cstdio` 스트림과의 동기화를 활성화 하거나 비활성화 한다.
-
-
-
-
-

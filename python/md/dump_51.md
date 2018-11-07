@@ -40,7 +40,7 @@ int feof ( FILE * stream );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 myfile.txt 의 총 바이트 수를 센다.
@@ -49,23 +49,22 @@ myfile.txt 의 총 바이트 수를 센다.
 
 */
 #include <stdio.h>
-int main ()
-{
-    FILE * pFile;
-    long n = 0;
-    pFile = fopen ("myfile.txt","rb");
-    if (pFile==NULL) perror ("Error opening file");
+int main() {
+  FILE* pFile;
+  long n = 0;
+  pFile = fopen("myfile.txt", "rb");
+  if (pFile == NULL)
+    perror("Error opening file");
 
-    else
-    {
-        while (!feof(pFile)) {
-            fgetc (pFile);
-            n++;
-        }
-        fclose (pFile);
-        printf ("Total number of bytes: %d\n", n-1);
-    }
-    return 0;
+  else {
+    while (!feof(pFile)) {
+      fgetc(pFile);
+      n++;
+    }
+    fclose(pFile);
+    printf("Total number of bytes: %d\n", n - 1);
+  }
+  return 0;
 }
 ```
 
@@ -87,10 +86,3 @@ int main ()
 
 * [clearerr](http://itguru.tistory.com/50):  오류 표시자들을 클리어한다.
 * [ferror](http://itguru.tistory.com/52)  :  오류 표시자를 검사한다.
-
-
-
-
-
-
-

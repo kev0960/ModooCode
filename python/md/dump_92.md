@@ -58,7 +58,7 @@ void * memchr ( const void *, int, size_t );
 
 ###  실행 예제
 
-```cpp
+```cpp-formatted
 /*
 
 str 에서 처음으로 나타나는 'p' 의 위치를 찾는다.
@@ -70,18 +70,17 @@ http://www.cplusplus.com/reference/clibrary/cstring/memchr/
 #include <stdio.h>
 #include <string.h>
 
-int main ()
-{
-    char * pch;
-    char str[] = "Example string";
-    pch = (char*) memchr (str, 'p', strlen(str));
+int main() {
+  char* pch;
+  char str[] = "Example string";
+  pch = (char*)memchr(str, 'p', strlen(str));
 
-    if (pch!=NULL)
-        printf ("'p' found at position %d.\n", pch-str+1);
-    else
-        printf ("'p' not found.\n");
+  if (pch != NULL)
+    printf("'p' found at position %d.\n", pch - str + 1);
+  else
+    printf("'p' not found.\n");
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -97,10 +96,3 @@ int main ()
 *  [strchr](http://itguru.tistory.com/93)  :  문자열에서 특정한 문자를 검색하되 가장 먼저 나타나는 위치를 구한다.
 *  [strrchr](http://itguru.tistory.com/96)  :
 문자열에서 특정한 문자를 검색하되 가장 마지막에 나타나는 위치를 구한다.
-
-
-
-
-
-
-

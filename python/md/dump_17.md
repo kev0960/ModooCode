@@ -24,19 +24,18 @@ next_page : 18
 
   일단, 위 조건을 무시한 아래의 예제를 살펴 봅시다.
 
-```cpp
+```cpp-formatted
 /* 무시 */
-#include<stdio.h>
-int main()
-{
-    int a;
-    double b;
+#include <stdio.h>
+int main() {
+  int a;
+  double b;
 
-    b = 2.4;
-    a = b;
+  b = 2.4;
+  a = b;
 
-    printf("%d", a);
-    return 0;
+  printf("%d", a);
+  return 0;
 }
 ```
 
@@ -181,18 +180,17 @@ $$2^{−127}$$
 
 그렇다면 우리는 경고가 나오지 않게 대입을 할 수 없는가요? 물론 있습니다. 서로의 형을 맞추어 버리면 되죠.
 
-```cpp
+```cpp-formatted
 /* 형변환 */
 #include <stdio.h>
-int main()
-{
-    int a;
-    double b;
+int main() {
+  int a;
+  double b;
 
-    b = 2.4;
-    a = (int)b;
+  b = 2.4;
+  a = (int)b;
 
-    printf("%d", a);
+  printf("%d", a);
 }
 ```
 
@@ -211,29 +209,28 @@ int main()
 
 예를 들어, 위의 경우 `double` 로 선언된 `b` 를 `int` 로 바꾸었으므로 `(int)b` 라 하면 됩니다. 이 때, 형을 바꾼다는 것은 영구적으로 바뀌는 것이 아닙니다. 다시 말해 `double` 인 `b` 를 `int` 로 캐스팅 한다고 해도 `b` 가 `int` 인 변수가 되는 것이 아니라 계산식에서 일시적으로 `int` 형 변수로 바꾼 후 생각하라는 것 이죠. 즉,캐스팅을 하고도
 
-```cpp
+```cpp-formatted
 printf("%f", b);
 ```
 
 를 하게 되면 2.4 가 성공적으로 출력됩니다. 위 예제에서 우리는 강제로 형을 변환하였습니다. 따라서 컴파일러는 '아, 이 사람이 마음을 먹고 아예 형이 다른 변수들의 대입을 시도하는 구나' 라고 생각하고 오류 메세지를 출력하지 않게 되는 것 입니다.
 
-```cpp
+```cpp-formatted
 /* 두 수의 비율 */
 #include <stdio.h>
-int main()
-{
-    int a,b;
-    float c, d;
+int main() {
+  int a, b;
+  float c, d;
 
-    printf("두 숫자 입력 : ");
-    scanf("%d %d", &a, &b);
+  printf("두 숫자 입력 : ");
+  scanf("%d %d", &a, &b);
 
-    c = a/b;
-    d = (float)a/b;
+  c = a / b;
+  d = (float)a / b;
 
-    printf("두 수의 비율 : %f %f", c , d);
+  printf("두 수의 비율 : %f %f", c, d);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -243,9 +240,9 @@ int main()
 
   와우! 신기하네요. 단지 형변환을 하고 안하고의 차이였지만 두 수의 비율이 하나는 정확하게 나오고 다른 하나는 부정확하게 나오는 군요. 일단, 위 예제에서 관건이 되는 부분은 바로 이 부분입니다.
 
-```cpp
-    c = a/b;
-    d = (float)a/b;
+```cpp-formatted
+c = a / b;
+d = (float)a / b;
 ```
 
 `c` 에는 `a` 를 `b` 로 나눈 값이 들어갑니다. `d` 에도 마찬가지인데 한 가지 차이점은 `d` 에서는 `a` 를 `float` 변수로 생각해서 계산하라라고 캐스팅 하였습니다. 이 때, 우리가 주목해야 하는 부분은 바로 `a` 와 `b` 가 정수형 변수라는 것 입니다.
@@ -268,11 +265,10 @@ int main()
 
 예를들어 사용자로부터 입력받은 실수 `f` 가 12.3456이라면 34만 추출한다. 이때 반올림은 고려하지 않아도 상관없다. `f` 가 달러 단위의 화폐 액수라고할 때 센트 단위만 추출해내는 경우라고 생각하면 된다. 다음 `????` 자리에 적합한 연산식을 작성하는 문제이다.
 
-```cpp
+```cpp-formatted
 printf("실수를 입력하시오 : ");
-scanf("%f",&f);
-i=????
-printf("i=%d\n",i);
+scanf("%f", &f);
+i = ? ? ? ? printf("i=%d\n", i);
 ```
 
 이 문제의 핵심은 음수이거나 소수점 이하의 자리수가 없는 경우까지 잘 고려하여 항상 잘 동작하는 코드를 만드는것이다.
@@ -286,7 +282,3 @@ printf("i=%d\n",i);
 
  [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
 ```
-
-
-
-

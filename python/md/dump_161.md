@@ -56,28 +56,27 @@ long& iword (int idx);
 
 
 
-```cpp
+```cpp-formatted
 /*
 
 이 예제는
 http://msdn.microsoft.com/en-us/library/77z9kz41.aspx
 에서 가져왔습니다.
 
-i, j 가 각각 xalloc 을 통해 얻어낸 index 들이고, cout 과 cin 의 내부 확장 가능 배열의 i , j 번째 원소에 각각 11 과 13 을 넣는다.
+i, j 가 각각 xalloc 을 통해 얻어낸 index 들이고, cout 과 cin 의 내부 확장 가능
+배열의 i , j 번째 원소에 각각 11 과 13 을 넣는다.
 */
 #include <iostream>
 using namespace std;
-int main( )
-{
-    static const int i = ios_base::xalloc();
-    static const int j = ios_base::xalloc();
+int main() {
+  static const int i = ios_base::xalloc();
+  static const int j = ios_base::xalloc();
 
-    cout.iword( i ) = 11;
-    cin.iword( j ) = 13;
+  cout.iword(i) = 11;
+  cin.iword(j) = 13;
 
-    cout << cout.iword( i ) << endl;
-    cout << cin.iword( j ) << endl;
-
+  cout << cout.iword(i) << endl;
+  cout << cin.iword(j) << endl;
 }
 ```
 

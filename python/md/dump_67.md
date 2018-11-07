@@ -64,11 +64,11 @@ C 문자열로 다음의 것들을 포함하고 있다 C 문자열로 다음의 
 
 예를 들면 다음과 같다.
 
-```cpp
-    char str[30]="word";
-    char c;
+```cpp-formatted
+char str[30] = "word";
+char c;
 
-    sscanf(str, "%c", &c);
+sscanf(str, "%c", &c);
 ```
 
 
@@ -79,21 +79,19 @@ C 문자열로 다음의 것들을 포함하고 있다 C 문자열로 다음의 
 
 보통 우리는 문자열을 수로 바꿀 때 `atoi` 함수를 사용하지만, `sscanf` 함수를 통해서도 동일한 작업을 수행할 수 있습니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main()
-{
-    char str[30]="1234";
-    int i;
+int main() {
+  char str[30] = "1234";
+  int i;
 
-    sscanf(str, "%d", &i);
+  sscanf(str, "%d", &i);
 
-    printf("Number from : '%s' \n", str);
-    printf("number : %d \n", i);
+  printf("Number from : '%s' \n", str);
+  printf("number : %d \n", i);
 
-   return 0;
+  return 0;
 }
-
 ```
 
 실행 결과
@@ -119,10 +117,19 @@ int main()
 
 
 
-```cpp
-/*sentence 로 부터 Rudolph 와 12 라는 수를 sscanf 함수를 이용해 추출한다.이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/sscanf/에서 가져왔습니다. */
+```cpp-formatted
+/*sentence 로 부터 Rudolph 와 12 라는 수를 sscanf 함수를 이용해 추출한다.이
+ * 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/sscanf/에서
+ * 가져왔습니다. */
 #include <stdio.h>
-int main (){    char sentence []="Rudolph is 12 years old";    char str [20];    int i;    sscanf (sentence,"%s %*s %d",str,&i);    printf ("%s -> %d\n",str,i);    return 0;}
+int main() {
+  char sentence[] = "Rudolph is 12 years old";
+  char str[20];
+  int i;
+  sscanf(sentence, "%s %*s %d", str, &i);
+  printf("%s -> %d\n", str, i);
+  return 0;
+}
 ```
 
 
@@ -143,9 +150,3 @@ int main (){    char sentence []="Rudolph is 12 years old";    char str [2
 *  [scanf](http://itguru.tistory.com/36)  :  표준입력(stdin) 으로 부터 데이터를 형식에 맞추어 읽어온다.
 
 *  [sprintf](http://itguru.tistory.com/66)  :  문자열에 데이터를 형식에 맞추어 쓴다.
-
-
-
-
-
-

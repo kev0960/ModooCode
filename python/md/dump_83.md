@@ -22,21 +22,19 @@ next_page : 87
 
 아래의 간단한 소스를 살펴 봅시다.
 
-```cpp
+```cpp-formatted
 /* 오류 */
 #include <stdio.h>
-int function()
-{
-    int a = 3;
-    return 0;
+int function() {
+  int a = 3;
+  return 0;
 }
-int main()
-{
-    int a;
-    function();
-    printf("%d", a);
+int main() {
+  int a;
+  function();
+  printf("%d", a);
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -65,25 +63,22 @@ int main()
 
 
 
-```cpp
+```cpp-formatted
 /* 전역 변수 */
 #include <stdio.h>
 
 int global = 0;
 
-int function()
-{
-    global++;
-    return 0;
+int function() {
+  global++;
+  return 0;
 }
-int main()
-{
-    global = 10;
-    function();
-    printf("%d \n", global);
-    return 0;
+int main() {
+  global = 10;
+  function();
+  printf("%d \n", global);
+  return 0;
 }
-
 ```
 
   성공적으로 컴파일 하였다면
@@ -95,9 +90,9 @@ int main()
 
 먼저 `main` 에서
 
-```cpp
-    global = 10;
-    function();
+```cpp-formatted
+global = 10;
+function();
 ```
 
 
@@ -107,21 +102,19 @@ int main()
 
 한 가지 재미있는 것은 모든 전역 변수들은 정의 시 자동으로 0 으로 초기화 된다는 것입니다.
 
-```cpp
+```cpp-formatted
 /* 전역 변수의 초기화 ? */
 #include <stdio.h>
 
 int global;
-int function()
-{
-    global++;
-    return 0;
+int function() {
+  global++;
+  return 0;
 }
-int main()
-{
-    function();
-    printf("%d \n", global);
-    return 0;
+int main() {
+  function();
+  printf("%d \n", global);
+  return 0;
 }
 ```
 
@@ -137,27 +130,24 @@ int main()
 
 따라서 위와 같이 1 이 출력되었죠.
 
-```cpp
+```cpp-formatted
 /* 함수 호출 횟수 세기*/
 #include <stdio.h>
 
 int How_Many_Times_This_Function_Called = 0;
-int function()
-{
-    How_Many_Times_This_Function_Called++;
-    printf("called : %d \n", How_Many_Times_This_Function_Called);
+int function() {
+  How_Many_Times_This_Function_Called++;
+  printf("called : %d \n", How_Many_Times_This_Function_Called);
 
-    return 0;
+  return 0;
 }
-int main()
-{
-    function();
-    function();
-    function();
-    function();
-    return 0;
+int main() {
+  function();
+  function();
+  function();
+  function();
+  return 0;
 }
-
 ```
 
   성공적으로 컴파일 하였다면
@@ -167,38 +157,35 @@ int main()
 
 위 프로그램에서는 `function` 이라는 변수가 몇 번 호출 되는지 알려줍니다. `How_Many_Times_This_Function_Called` 라는 변수는 `function` 함수를 몇 번 이나 호출했는데 카운트 해줍니다. 만일 `How_Many_Times_This_Function_Called` 를 `function` 함수의 지역 변수로 만들었다면 함수 종료 후 파괴 되므로 정보를 보관할 수 없었겠죠.
 
-```cpp
+```cpp-formatted
 /* 전역 변수의 문제점 */
 #include <stdio.h>
 
 int How_Many_Times_This_Function_Called = 0;
 int How_Many_Times_This_Function_Called2 = 0;
-int function()
-{
-    How_Many_Times_This_Function_Called++;
-    printf("function called : %d \n", How_Many_Times_This_Function_Called);
+int function() {
+  How_Many_Times_This_Function_Called++;
+  printf("function called : %d \n", How_Many_Times_This_Function_Called);
 
-    return 0;
+  return 0;
 }
-int function2()
-{
-    How_Many_Times_This_Function_Called2++;
-    printf("function 2 called : %d \n", How_Many_Times_This_Function_Called2);
+int function2() {
+  How_Many_Times_This_Function_Called2++;
+  printf("function 2 called : %d \n", How_Many_Times_This_Function_Called2);
 
-    return 0;
+  return 0;
 }
-int main()
-{
-    function();
-    function2();
-    function();
-    function2();
-    function2();
-    function2();
-    function();
-    function();
-    function2();
-    return 0;
+int main() {
+  function();
+  function2();
+  function();
+  function2();
+  function2();
+  function2();
+  function();
+  function();
+  function2();
+  return 0;
 }
 ```
 
@@ -224,40 +211,37 @@ int main()
 ###  정적 변수
 
 
-```cpp
+```cpp-formatted
 /* 정적 변수의 활용 */
 #include <stdio.h>
 
-int function()
-{
-    static int How_Many_Times_This_Function_Called = 0;
+int function() {
+  static int How_Many_Times_This_Function_Called = 0;
 
-    How_Many_Times_This_Function_Called++;
-    printf("function called : %d \n", How_Many_Times_This_Function_Called);
+  How_Many_Times_This_Function_Called++;
+  printf("function called : %d \n", How_Many_Times_This_Function_Called);
 
-    return 0;
+  return 0;
 }
-int function2()
-{
-    static int How_Many_Times_This_Function_Called = 0;
+int function2() {
+  static int How_Many_Times_This_Function_Called = 0;
 
-    How_Many_Times_This_Function_Called++;
-    printf("function 2 called : %d \n", How_Many_Times_This_Function_Called);
+  How_Many_Times_This_Function_Called++;
+  printf("function 2 called : %d \n", How_Many_Times_This_Function_Called);
 
-    return 0;
+  return 0;
 }
-int main()
-{
-    function();
-    function2();
-    function();
-    function2();
-    function2();
-    function2();
-    function();
-    function();
-    function2();
-    return 0;
+int main() {
+  function();
+  function2();
+  function();
+  function2();
+  function2();
+  function2();
+  function();
+  function();
+  function2();
+  return 0;
 }
 ```
 
@@ -275,15 +259,15 @@ static (변수의 타입) (변수의 이름);
 
 예를 들면
 
-```cpp
+```cpp-formatted
 static struct HUMAN adam;
 static char c;
 ```
 
 와 같이 말이죠.
 
-```cpp
-    static int How_Many_Times_This_Function_Called = 0;
+```cpp-formatted
+static int How_Many_Times_This_Function_Called = 0;
 ```
 
 먼저 `function` 함수 부터 살펴 봅시다. 위와 같이 정적 변수 `How_Many_Times_This_Function_Called` 를 정의하였습니다. 이는 지역 변수와 하는 짓이 비슷해서 다른 어떠한 함수에서도 `How_Many_Times_This_Function_Called` 에 접근할 수 없습니다. 당연하게도 `function2` 에 정의된 `How_Many_Times_This_Function_Called` 와 이름은 같지만 메모리 상에 다른 곳에 존재하는 완전히 다른 것입니다.
@@ -292,7 +276,7 @@ static char c;
 
 정적 변수의 특징은 앞에서도 말했듯이 함수가 종료 되어도 그 값을 계속 유지하고 있다는 점입니다. 따라서
 
-```cpp
+```cpp-formatted
 How_Many_Times_This_Function_Called++;
 ```
 
@@ -320,21 +304,20 @@ How_Many_Times_This_Function_Called++;
 
 그 다음으로 그 위에 전역 변수와 정적 변수가 거처하는 데이터 영역이 있습니다. 그 위에 바로 **힙(Heap)** 이라는 영역이 있는데 이 부분에 대해서는 나중에 설명하도록 합시다. 힙 맨 위를 보면 **스택(Stack)** 이 있습니다. 스택은 지역 변수가 거처하는 곳입니다. 스택의 특징으로는 지역 변수가 늘어나면 크기가 아래로 증가하다가 지역변수가 파괴되면 다시 스택의 크기는 위로 줄어들게 됩니다. 즉, 스택이 늘어나는 방향은 메모리 주소가 낮아지는 방향(아래 방향) 이라 보시면 됩니다.
 
-```cpp
+```cpp-formatted
 /* 메모리의 배치 모습 */
 
 #include <stdio.h>
 int global = 3;
-int main()
-{
-    int i;
-    char *str="Hello, Baby";
-    char arr[20]="WHATTHEHECK";
+int main() {
+  int i;
+  char *str = "Hello, Baby";
+  char arr[20] = "WHATTHEHECK";
 
-    printf("global : %x \n", &global);
-    printf("i : %x \n", &i);
-    printf("str : %x \n", str);
-    printf("arr : %x \n", arr);
+  printf("global : %x \n", &global);
+  printf("i : %x \n", &i);
+  printf("str : %x \n", str);
+  printf("arr : %x \n", arr);
 }
 ```
 

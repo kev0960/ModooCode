@@ -15,9 +15,9 @@ cat_title :  ios::exceptions
 
 #@ ios::exceptions
 
-```cpp
-iostate exceptions ( ) const;
-void exceptions ( iostate except );
+```cpp-formatted
+iostate exceptions() const;
+void exceptions(iostate except);
 ```
 
 
@@ -62,12 +62,26 @@ void exceptions ( iostate except );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 
-/*사용자가 file 의 exception 에 failbit 와 badbit 를 등록하였으므로 이들 비트가 설정될 때 예외를 throw 하게 된다. 나의 경우 test.txt 파일에 내용이 존재하지 않았으므로 failbit 가 설정되어서 예외가 throw 된 것이다.*/
-#include <iostream>
+/*사용자가 file 의 exception 에 failbit 와 badbit 를 등록하였으므로 이들 비트가
+ * 설정될 때 예외를 throw 하게 된다. 나의 경우 test.txt 파일에 내용이 존재하지
+ * 않았으므로 failbit 가 설정되어서 예외가 throw 된 것이다.*/
 #include <fstream>
-using namespace std;int main (){    ifstream file;    file.exceptions ( ifstream::failbit | ifstream::badbit );    try    {        file.open ("test.txt");        file.get();    }    catch (ifstream::failure e)    {        cout << "Exception opening/reading file";    }    file.close();    return 0;}
+#include <iostream>
+using namespace std;
+int main() {
+  ifstream file;
+  file.exceptions(ifstream::failbit | ifstream::badbit);
+  try {
+    file.open("test.txt");
+    file.get();
+  } catch (ifstream::failure e) {
+    cout << "Exception opening/reading file";
+  }
+  file.close();
+  return 0;
+}
 ```
 
 
@@ -84,10 +98,10 @@ using namespace std;int main (){    ifstream file;    file.exceptions ( if
 
 
 
-```cpp
+```cpp-formatted
 // ( basic_ios<charT,traits> )
-iostate exceptions () const;
-iostate exceptions ( iostate except );
+iostate exceptions() const;
+iostate exceptions(iostate except);
 ```
 
 
@@ -97,10 +111,3 @@ iostate exceptions ( iostate except );
 ###  연관된 함수
 
 *  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.
-
-
-
-
-
-
-

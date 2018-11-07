@@ -196,12 +196,11 @@ updated_date : 09/12/2018
 
 드디어 여러분 인생 첫 프로그램을 만들 시간이 다가왔습니다. 에디터 화면에 다음과 같이 입력합니다.
 
-```cpp
+```cpp-formatted
 #include <stdio.h>
-int main( )
-{
-printf("Hello, World! \n");
-         return 0;
+int main() {
+  printf("Hello, World! \n");
+  return 0;
 }
 ```
 

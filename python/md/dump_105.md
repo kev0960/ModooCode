@@ -56,7 +56,7 @@ char * strerror ( int errnum );
 ###  실행 예제
 
 
-```cpp
+```cpp-formatted
 /*
 
 존재하지 않는 파일 unexist.ent 를 열라고 해 오류가 발생한다.
@@ -64,20 +64,18 @@ char * strerror ( int errnum );
 http://www.cplusplus.com/reference/clibrary/cstring/strerror/
 에서 가져왔습니다.
 
- */
+ */
+#include <errno.h>
 #include <stdio.h>
 #include <string.h>
-#include <errno.h>
 
-int main ()
-{
-    FILE * pFile;
-    pFile = fopen ("unexist.ent","r");
-    if (pFile == NULL)
-        printf ("Error opening file unexist.ent: %s\n",strerror(errno));
-    return 0;
+int main() {
+  FILE* pFile;
+  pFile = fopen("unexist.ent", "r");
+  if (pFile == NULL)
+    printf("Error opening file unexist.ent: %s\n", strerror(errno));
+  return 0;
 }
-
 ```
 
 실행 결과

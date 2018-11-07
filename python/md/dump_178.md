@@ -29,29 +29,31 @@ vector ( const vector<T,Allocator>& x );
 벡터를 생성한다.
 벡터 컨테이너 객체를 생성하고, 사용한 생성자에 따라서 벡터 원소들을 초기화 한다.
 
-```cpp
-explicit vector ( const Allocator& = Allocator() );
+```cpp-formatted
+explicit vector(const Allocator& = Allocator());
 ```
 
 ▶ 디폴트 생성자(default `constructor)` 로 빈 벡터를 생성한다. 어떠한 원소도 담지 않고 있으므로 `size` 는 0 이다.
 
 
-```cpp
-explicit vector ( size_type n, const T& value= T(), const Allocator& = Allocator() );
+```cpp-formatted
+explicit vector(size_type n, const T& value = T(),
+                const Allocator& = Allocator());
 ```
 
 ▶값이 `T` 인 원소를 `n` 개 가지는 벡터 컨테이너를 생성한다.
 
 
-```cpp
-template <class InputIterator> vector ( InputIterator first, InputIterator last, const Allocator& = Allocator() );
+```cpp-formatted
+template <class InputIterator>
+vector(InputIterator first, InputIterator last, const Allocator& = Allocator());
 ```
 
 ▶`first` 부터 `last` 번째 원소 까지 반복자가 순회(iterate) 하며, 각각의 원소들을 생성되는 벡터 컨테이너의 원소로 복사한다.
 
 
-```cpp
-vector ( const vector<T,Allocator>& x );
+```cpp-formatted
+vector(const vector<T, Allocator>& x);
 ```
 
 ▶복사 생성자. 벡터 `x` 와 동일한 원소 (복사본) 를 가지는 벡터를 생성한다.
@@ -87,17 +89,30 @@ vector ( const vector<T,Allocator>& x );
 
 
 
-```cpp
+```cpp-formatted
 
-/*이 예제는http://www.cplusplus.com/reference/stl/vector/vector/에서 가져왔습니다.*/
+/*이 예제는http://www.cplusplus.com/reference/stl/vector/vector/에서
+ * 가져왔습니다.*/
 
 #include <iostream>
 #include <vector>
 using namespace std;
-int main () {    unsigned int i;    // 위에서 설명한 생성자들을 차례대로 오버로딩함    vector<int> first;                                // int 를 보관할 빈 벡터 생성    vector<int> second (4,100);                       // 값이 100 인 int 원소 4 개 보관    vector<int> third (second.begin(),second.end());  // second 의 처음 ~ 끝으로 생성    vector<int> fourth (third);                       // 세 번째 벡터 복사본   
- // 배열을 통해서도 생성 가능하다. 
- 
-  int myints[] = {16,2,77,29};    vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );    cout << "The contents of fifth are:";    for (i=0; i < fifth.size(); i++)        cout << " " << fifth[i];    cout << endl;    return 0;}
+int main() {
+  unsigned int i;  // 위에서 설명한 생성자들을 차례대로 오버로딩함 vector<int>
+                   // first;                                // int 를 보관할 빈
+                   // 벡터 생성    vector<int> second (4,100); // 값이 100 인
+                   // int 원소 4 개 보관    vector<int> third
+                   // (second.begin(),second.end());  // second 의 처음 ~ 끝으로
+                   // 생성    vector<int> fourth (third); // 세 번째 벡터 복사본
+  // 배열을 통해서도 생성 가능하다.
+
+  int myints[] = {16, 2, 77, 29};
+  vector<int> fifth(myints, myints + sizeof(myints) / sizeof(int));
+  cout << "The contents of fifth are:";
+  for (i = 0; i < fifth.size(); i++) cout << " " << fifth[i];
+  cout << endl;
+  return 0;
+}
 ```
 
 
@@ -128,13 +143,3 @@ int main () {    unsigned int i;    // 위에서 설명한 생성자들을
 
 
 * vector::assign : 벡터 내용을 대입한다.
-
-
-
-
-
-
-
-
-
-
