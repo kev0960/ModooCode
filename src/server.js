@@ -6,6 +6,8 @@ const google_strategy = require('passport-google-oauth2').Strategy;
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const request = require('request-promise-native');
+const {google} = require('googleapis');
+const goog_key = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 
 const HASH_ROUNDS = parseInt(process.env.HASH_ROUNDS);
 
@@ -103,6 +105,58 @@ module.exports = class Server {
         return done(null, user);
       });
     }.bind(this));
+
+    this.max_key = -1
+    Object.keys(this.file_infos).forEach(function(key) {
+      if (parseInt(key) > this.max_key) {
+        this.max_key = parseInt(key)
+      }
+    }.bind(this));
+
+    // Find top 5 Recent articles.
+    this.recent_articles = [];
+    let current = this.max_key;
+    while (current >= 0 && this.recent_articles.length < 5) {
+      if (this.file_infos[current].published != 'false') {
+        this.recent_articles.push(
+            {url: current, info: this.file_infos[current]});
+      }
+      current--;
+    }
+
+    this.jwt = new google.auth.JWT(
+        goog_key.client_email, null, goog_key.private_key,
+        'https://www.googleapis.com/auth/analytics.readonly');
+
+    this.visitor_counts = [];
+    this.GetVisitorData();
+
+    // Retrieve visitor data every 30 seconds.
+    setInterval(function() {
+      this.GetVisitorData();
+    }.bind(this), 30000);
+  }
+
+  GetVisitorData() {
+    let that = this;
+    this.jwt.authorize(function(err, response) {
+      google.analytics('v3').data.ga.get(
+          {
+            auth: that.jwt,
+            ids: 'ga:184092436',
+            'start-date': '7daysAgo',
+            'end-date': 'today',
+            metrics: 'ga:1dayUsers',
+            'dimensions': 'ga:date'
+          },
+          function(err, result) {
+            if (err) {
+              console.log("Google Analytics Error : ", err);
+              return;
+            }
+            that.visitor_counts = result.data.rows;
+          })
+    });
   }
 
   async findOrCreateUser(auth_type, profile, image_url) {
@@ -207,8 +261,12 @@ module.exports = class Server {
     // Set up all the routes.
     this.app.get('/', function(req, res) {
       this.getLatestComments(10).then(function(comments) {
-        res.render('./index.ejs', {comments});
-      });
+        res.render('./index.ejs', {
+          comments,
+          recent_articles: this.recent_articles,
+          visitor_counts: this.visitor_counts
+        });
+      }.bind(this));
     }.bind(this));
 
     this.app.get('/profile', function(req, res) {
@@ -223,8 +281,12 @@ module.exports = class Server {
       let user = req.user;
       if (!page_id) {
         this.getLatestComments(10).then(function(comments) {
-          res.render('./index.ejs', {comments});
-        });
+          res.render('./index.ejs', {
+            comments,
+            recent_articles: this.recent_articles,
+            visitor_counts: this.visitor_counts
+          });
+        }.bind(this));
         return;
       }
 
@@ -241,8 +303,12 @@ module.exports = class Server {
             function(err, html) {
               if (err) {
                 this.getLatestComments(10).then(function(comments) {
-                  res.render('./index.ejs', {comments});
-                });
+                  res.render('./index.ejs', {
+                    comments,
+                    recent_articles: this.recent_articles,
+                    visitor_counts: this.visitor_counts
+                  });
+                }.bind(this));
               } else {
                 res.send(html);
               }
@@ -259,11 +325,14 @@ module.exports = class Server {
             function(err, html) {
               if (err) {
                 this.getLatestComments(10).then(function(comments) {
-                  res.render('./index.ejs', {comments});
-                });
+                  res.render('./index.ejs', {
+                    comments,
+                    recent_articles: this.recent_articles,
+                    visitor_counts: this.visitor_counts
+                  });
+                }.bind(this));
                 return;
-              }
-              else {
+              } else {
                 res.send(html);
               }
             }.bind(this));

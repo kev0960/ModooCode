@@ -88,3 +88,5 @@ file_info_db
 /python/blog/
 /views/old/
 /views/new/
+
+auth.json

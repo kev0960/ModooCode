@@ -12,7 +12,8 @@
   <link rel="stylesheet" type="text/css" href="/css/index.css">
 
   <!-- Icons -->
-  <link rel="shortcut icon" href="/img/favicon.ico">
+  <link rel="icon" href="/img/ChewingCppFav.png" type="image/png">
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128245994-1"></script>
   <script>
@@ -82,6 +83,24 @@
               </p>
               </div>
             </div>
+        </div>
+      </div>
+      <div class="row-content">
+        <div class="item new-article">
+          <div class="item-text-header">
+          최근 글<span class="new-article-deco">Recent Articles</span>
+          </div>
+          <% for (let i = 0; i < 4; i ++) { %>
+          <div class="new-article-entry">
+            <a href="<%= recent_articles[i].url %>"><%= recent_articles[i].info.title %></a>
+            <% if (i < 2) { %>
+            <span class="new-article-new">New</span>
+            <% } %>
+          </div>
+          <% } %>
+        </div>
+        <div class="item visitor-box">
+          <canvas id="visitors"></canvas>
         </div>
       </div>
       <div class="row">
@@ -208,3 +227,49 @@
   </main>
 </body>
 </html>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js'>
+</script>
+<script>
+var ctx = document.getElementById("visitors").getContext('2d');
+ctx.canvas.height = ctx.canvas.width / 2.7;
+
+var counts = <%- JSON.stringify(visitor_counts) %>;
+var count = [];
+var labels = [];
+
+for (var i = 0; i < counts.length; i++) {
+  count.push(counts[i][1]);
+  var label = counts[i][0].substr(4);
+  label = label.slice(0, 2) + '.' + label.slice(2);
+  labels.push(label);
+}
+var visitor_chart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: labels,
+    datasets: [{
+      data: count,
+      borderColor: 'rgba(0, 190, 190)',
+      backgroundColor: 'rgba(0, 190, 190, 0.1)',
+    }],
+  },
+  options: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text: '일일 방문자 수'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+            min: 0,
+            stepSize: 400
+        }
+      }]
+    }
+  }
+})
+</script>

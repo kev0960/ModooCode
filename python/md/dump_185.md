@@ -51,14 +51,11 @@ void push_back ( const T& x );
 
 
 ```cpp-formatted
-
 /*
-
 
 이 예제는
  [http://www.cplusplus.com/reference/stl/vector/push_back/](http://www.cplusplus.com/reference/stl/vector/push_back/)
 에서 가져왔습니다
-
 
 */
 #include <iostream>

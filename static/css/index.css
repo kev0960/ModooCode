@@ -160,6 +160,11 @@ main {
 
 }
 
+.comment-box .comment-content:hover {
+  border-bottom: 1px solid #5f5f5f;
+  margin-right: none;
+}
+
 .item-text-header.comment {
   padding-bottom: 4px;
 }
@@ -190,4 +195,56 @@ main {
 
 .comment-box a:visited {
   color: #5f5f5f;
+}
+
+.new-article {
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.new-article .item-text-header {
+  font-size: 160%;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+.new-article-entry {
+  font-size: 15px;
+  padding-left: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+}
+
+.new-article-entry a {
+  text-decoration: none;
+  color: #268bd2;
+  display: inline-block;
+
+}
+
+.new-article-entry a:hover {
+  border-bottom: 1px solid #268bd2;
+}
+
+.new-article-deco {
+  font-size: 17px;
+  margin-left: 10px;
+  font-variant: small-caps;
+  font-weight: lighter;
+}
+
+#visitor {
+  width: 100%;
+}
+
+.visitor-box {
+  padding-left: 5px;
+}
+
+.new-article-new {
+  font-size: 80%;
+  margin-left: 6px;
+  color: red;
 }

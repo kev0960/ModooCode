@@ -6,12 +6,6 @@ path : /C++ Reference/Containers/vector
 --------------
 
 
-
-
-
-
-
-
 ```warning
 이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 <<The C++ Programming Language>> 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
@@ -26,7 +20,6 @@ path : /C++ Reference/Containers/vector
 
 
 ```info
-
 iterator insert ( iterator position, const T& x );
     void insert ( iterator position, size_type n, const T& x );
 template <class InputIterator>
@@ -42,7 +35,7 @@ template <class InputIterator>
 이 함수는 벡터의 크기를 효과적으로 증가시키는데, 만일 새로운 벡터의 size 가 현재 벡터의 `capacity` 보다 크다면 재할당을 하게 된다. 재할당 시, 벡터 컨테이너의 이전에 얻은 모든 반복자(iterator), 레퍼런스들은 무효화 된다.
 
 
-벡터는 배열의 형태로 저장되기 때문에 벡터 끝이 아닌 임의의 위치에 원소를 삽입하게 되면 그 뒤에 있는 원소들을 뒤로 이동시키게 된다. 따라서벡터에서 원소들 중간에 새로운 원소들을 삽입하는 일은 그다시 효율적이지 못하다.
+벡터는 배열의 형태로 저장되기 때문에 벡터 끝이 아닌 임의의 위치에 원소를 삽입하게 되면 그 뒤에 있는 원소들을 뒤로 이동시키게 된다. 따라서 벡터에서 원소들 중간에 새로운 원소들을 삽입하는 일은 그다시 효율적이지 못하다.
 
 따라서 이러한 작업을 많이 하게 된다면 다른 순차 컨테이너 ( [deque](http://itguru.tistory.com/176), [list](http://itguru.tistory.com/177)) 를 참고하기 바란다.
 
@@ -90,14 +83,11 @@ template <class InputIterator>
 
 
 ```cpp-formatted
-
 /*
-
 
 이 예제는
  [http://www.cplusplus.com/reference/stl/vector/insert/](http://www.cplusplus.com/reference/stl/vector/insert/)
 에서 가져왔습니다
-
 
 */
 #include <iostream>
@@ -147,7 +137,8 @@ int main() {
 
 
 삽입 이후의 벡터의 크기가 삽입 이전에 결정될 수 있다면 입력되는 원소의 개수와 (복사 생성) 삽입 위치 뒤에 있는 원소들의 개수 (이동 연산) 의 합에 선형으로 비례한다.
-만일 삽입 이후의 벡터의 크기가 결정될 수 없다면 삽입 이전에 결정되지 않는다면 (이는 `void insert ( iterator position, InputIterator first, InputIterator last );` 함수에서 `InputIterator` 가 순방향, 양방향, 임의 접근 반복자 모두가 아닐 경우) 삽입되는 원소의 수와 삽입 위치 뒤에 있는 원소의 개수의 곱에 비례한다.
+
+만일 삽입 이후의 벡터의 크기가 삽입 이전에 결정되지 않는다면 (이는 `void insert ( iterator position, InputIterator first, InputIterator last );` 함수에서 `InputIterator` 가 순방향, 양방향, 임의 접근 반복자 모두가 아닐 경우) 삽입되는 원소의 수와 삽입 위치 뒤에 있는 원소의 개수의 곱에 비례한다.
 
 
 
