@@ -53,6 +53,22 @@ class ZmqManager {
   }
 }
 
+function getDateTime() {
+  let date = new Date();
+  let hour = date.getHours();
+  hour = (hour < 10 ? '0' : '') + hour;
+  let min = date.getMinutes();
+  min = (min < 10 ? '0' : '') + min;
+  let sec = date.getSeconds();
+  sec = (sec < 10 ? '0' : '') + sec;
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  month = (month < 10 ? '0' : '') + month;
+  let day = date.getDate();
+  day = (day < 10 ? '0' : '') + day;
+  return year + ':' + month + ':' + day + ':' + hour + ':' + min + ':' + sec;
+}
+
 module.exports = class Server {
   constructor(app, static_data, client) {
     this.file_infos = static_data.file_infos;
@@ -151,7 +167,7 @@ module.exports = class Server {
           },
           function(err, result) {
             if (err) {
-              console.log("Google Analytics Error : ", err);
+              console.log('Google Analytics Error : ', err);
               return;
             }
             that.visitor_counts = result.data.rows;
@@ -290,8 +306,9 @@ module.exports = class Server {
         return;
       }
 
+      console.log('Page [', getDateTime(), '] ::', page_id);
+
       if (page_id <= 228) {
-        console.log('Page id : ', page_id);
         res.render(
             'page.ejs', {
               content_url: './old/blog_' + page_id + '.html',
@@ -368,10 +385,13 @@ module.exports = class Server {
       this.zmq_manager.sendCodeToRun(code, stdin, function(result) {
         if (result.exec_result.length > 0) {
           console.log(
-              'Execution result : \n',
-              truncateString(result.exec_result, 1024));
+              'Executed Code : \n', truncateString(code, 1024),
+              '\nExecution result : \n',
+              truncateString(result.exec_result, 128));
         } else {
-          console.log('Compile error : \n', result.compile_error);
+          console.log(
+              'Executed Code : \n', truncateString(code, 128),
+              'Compile error : \n', result.compile_error);
         }
         res.send(result);
       });
