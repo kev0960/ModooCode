@@ -203,7 +203,6 @@ int main() {
 문제는 이렇게 그냥 리턴해버리면서 버퍼에 남아 있는 'c\n' 이 문자열에는 손대지 않는다는 것입니다. 그렇기 때문에 다음에 또 읽고, 또 읽고, ... 결국 위와 같은 문제를 일으키게 됩니다.
 
 ```cpp-formatted
-
 // 해결 방안
 #include <iostream>
 #include <string>
@@ -217,8 +216,6 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
@@ -231,7 +228,6 @@ int main() {
 위와 같이 무한 루프에 빠지지 않고 제대로 처리됨을 알 수 있습니다. 어떻게 가능한 것일까요? 일단, `while` 문의 조건에 들어가 있는 저 식의 의미 부터 이해를 해봅시다.
 
 ```cpp-formatted
-
 while (cin >> t) {
 ```
 
@@ -240,11 +236,8 @@ while (cin >> t) {
 위 식을 보기에 앞서, `ios` 에 정의되어 있는 함수들을 살펴보자면 다음과 같은 함수가 있음을 알 수 있습니다.
 
 ```cpp-formatted
-
 operator void*() const;
 ```
-
-
 
 이 함수는 `ios` 객체를 `void*` 로 변환해줍니다. 이 때, `NULL` 포인터가 아닌 값을 리턴하는 조건이, `failbit` 와 `badbit` 가 모두 `off` 일 때 입니다. 즉, 스트림에 정상적으로 입출력 작업을 수행 할 수 있을 때 말입니다.
 
@@ -278,7 +271,6 @@ int main() {
 그렇다면 이 문제를 어떻게 해결 할 수 있을까요?
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -310,7 +302,6 @@ int main() {
 
 
 ```cpp-formatted
-
 if (cin.fail()) {
 ```
 
@@ -319,7 +310,6 @@ if (cin.fail()) {
 먼저 `fail` 함수는 `ios` 에 정의되어 있으며, `failbit` 가 `true` 거나 `badbit` 가 `true` 면 `true` 를 리턴합니다. 만일 숫자가 아닌 것을 입력한다면 `failbit` 가 `true` 이므로, `cin.fail()` 은 `true` 가 되어 조건문을 실행하게 됩니다.
 
 ```cpp-formatted
-
 cin.clear();  // 플래그들을 초기화 하고
 
 cin.ignore(100, '\n');  // 버퍼를 비워버린다
@@ -332,7 +322,6 @@ cin.ignore(100, '\n');  // 버퍼를 비워버린다
 따라서, 만일 제가 *this is a very bad input* 을 입력하였다면 버퍼에는
 
 ```info
-
 this is a very bad input\n
 ```
 
@@ -397,7 +386,6 @@ cin.setf(ios_base::hex, ios_base::basefield);
 그런데 흥미롭게도, 비슷하지만 또 다른 방식으로 16진수를 받을 수 있습니다.
 
 ```cpp-formatted
-
 // 조작자의 사용
 #include <iostream>
 #include <string>
@@ -431,7 +419,6 @@ int main() {
 위와 같이 16진수를 잘 입력받는다는 사실을 알 수 있습니다. 이게 어떻게 된 일 일까요?
 
 ```cpp-formatted
-
 cin >> hex >> t;
 ```
 
@@ -500,8 +487,8 @@ str.setf(std::ios_base::hex, std::ios_base::basefield)
 `streambuf` 클래스는 스트림의 상태를 나타내기 위해서 세 개의 포인터를 정의하고 있습니다. 먼저 버퍼의 시작 부분을 가리키는 시작 포인터와, 다음으로 읽을 문자를 가리키고 있는 포인터 (우리가 흔히 말하는 스트림 위치 지정자), 그리고 버퍼의 끝 부분을 가리키고 있는 끝 포인터가 있습니다. `streambuf` 클래스는 입력 버퍼와 출력 버퍼를 구분해서 각각 `get area` 와 `put area` 라 부르는데, 이에 따라 각각을 가리키는 포인터도 `g` 와 `p` 를 붙여서 표현하게 됩니다.
 
 아래 예제를 통해 `streambuf` 를 어떻게 하면 간단히 조작할 수 있는지 보여드리도록 하겠습니다.
-```cpp-formatted
 
+```cpp-formatted
 #include <iostream>
 #include <string>
 using namespace std;
@@ -531,7 +518,6 @@ int main() {
 위와 같이 나옴을 알 수 있습니다.
 
 ```cpp-formatted
-
 char peek = cin.rdbuf()->snextc();
 ```
 
@@ -554,7 +540,6 @@ char peek = cin.rdbuf()->snextc();
 `snextc` 함수가 스트림 위치 지정자를 한 칸 전진시키므로, 공백 문자를 띄어넘고, `w` 를 가리키게 됩니다. 그리고, 이에 해당하는 문자인 `w` 를 리턴하게 됩니다. 이 때 `snextc` 함수는 스트림 위치 지정자를 건드리지 않기 때문에,
 
 ```cpp-formatted
-
 cin >> s;
 cout << "다시 읽으면 : " << s << endl;
 ```
@@ -572,10 +557,6 @@ cout << "다시 읽으면 : " << s << endl;
 
 
 이상으로 C++ 에서의 입출력 라이브러리에 대해 간단히 알아보았습니다. 다음 강좌에서는 이제 이 라이브러리를 가지고 파일에서 어떠한 방식으로 입출력을 수행할 수 있는지 알아보도록 하겠습니다.
-
-
-
-
 
 
 
