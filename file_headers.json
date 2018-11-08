@@ -848,6 +848,20 @@
 	"title" : "C++ 레퍼런스 - string_view 생성자"
 }
 ,
+	"243" : {
+	"cat_title" : "malloc",
+	"path" : "/C Reference/stdlib.h",
+	"ref_title" : "malloc",
+	"title" : "C 언어 레퍼런스 - malloc 함수"
+}
+,
+	"244" : {
+	"cat_title" : "free",
+	"path" : "/C Reference/stdlib.h",
+	"ref_title" : "free",
+	"title" : "C 언어 레퍼런스 - free 함수"
+}
+,
 	"25" : {
 	"cat_title" : "12 - 3. 포인터는 영희이다! (포인터)",
 	"next_page" : "26",

@@ -88,7 +88,7 @@ class InlineCoder:
           return '|'.join([self.process_chunk(chunk) for chunk in chunks])
 
     self.in_table = False
-    if len(line) > 0 and line[0] == '*':
+    if len(line) > 0 and line[0] == '*' and line[1] != '*':
       right = self.process_chunk(line[1:])
       return '*' + right
     elif len(line) > 3 and line[:1].isdigit(
