@@ -18,6 +18,7 @@ static char kGppName[] = "/usr/bin/g++";
 static char kGppReadFromStdin[] = "-x";
 static char kGppLanguage[] = "c++";
 static char kDash[] = "-";
+static char kGppCpp17[] = "-std=c++17";
 static char kGppWarningAll[] = "-Wall";
 static char kGppWarningExtra[] = "-Wextra";
 static char kGppFortify[] = "-D_FORTIFY_SOURCE=2";
@@ -124,9 +125,16 @@ string RemoteExecuter::SyncCompile(const string& code, int thread_index) {
     snprintf(output_file_name, 100, "%s%d", kGppOutputFile, thread_index);
 
     // Build argv and env for execve.
-    char* gpp_argv[] = {kGppName,    kGppReadFromStdin, kGppLanguage,
-                        kDash,       kGppWarningAll,    kGppWarningExtra,
-                        kGppFortify, kGppOutputFlag,    output_file_name,
+    char* gpp_argv[] = {kGppName,
+                        kGppReadFromStdin,
+                        kGppLanguage,
+                        kDash,
+                        kGppCpp17,
+                        kGppWarningAll,
+                        kGppWarningExtra,
+                        kGppFortify,
+                        kGppOutputFlag,
+                        output_file_name,
                         NULL};
     char* env[] = {kPath, NULL};
 
