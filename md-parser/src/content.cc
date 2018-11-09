@@ -392,6 +392,18 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       html += StrCat("<a href='", url, "'>", link_text, "</a>");
     } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
       string img_src = GetHtmlFragmentText(content_, fragments[i], false);
+
+      // (alt) caption= (caption)
+      string alt_and_caption = GetHtmlFragmentText(content_, fragments[i]);
+      string caption, alt;
+      auto caption_pos = alt_and_caption.find("caption=");
+      if (caption_pos != string::npos) {
+        caption = alt_and_caption.substr(caption_pos + 8);
+        alt = alt_and_caption.substr(caption_pos);
+      } else {
+        alt = alt_and_caption;
+      }
+
       // If this image is from old tistory dump, then we have to switch to the
       // local iamge.
       if (img_src.find("http://img1.daumcdn.net") != string::npos) {
@@ -417,16 +429,18 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
         const string webp_image_name =
             img_src.substr(0, image_name_end) + ".webp";
         if (IsFileExist("../static" + webp_image_name)) {
-          html += StrCat(R"(</p><picture><source type="image/webp" srcset=")",
-                         webp_image_name, R"("><img class="content-img" src=")",
-                         img_src, R"(" alt=")",
-                         GetHtmlFragmentText(content_, fragments[i]),
-                         R"("></picture><p>)");
+          html += StrCat(
+              R"(</p><figure><picture><source type="image/webp" srcset=")",
+              webp_image_name, R"("><img class="content-img" src=")", img_src,
+              R"(" alt=")", alt,
+              R"("></picture><figcaption>)", caption,
+              R"(</figcaption></figure><p>)");
           continue;
         }
       }
-      html += StrCat("</p><img class='content-img' src='", img_src, "' alt='",
-                     GetHtmlFragmentText(content_, fragments[i]), "'><p>");
+      html += StrCat("</p><figure><img class='content-img' src='", img_src,
+                     "' alt='", alt, "'><figcaption>", caption,
+                     "</figcaption></figure><p>");
 
     } else if (fragments[i].type == HtmlFragments::Types::CODE) {
       html += StrCat("</p>", fragments[i].formatted_code, "<p>");

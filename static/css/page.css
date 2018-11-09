@@ -397,3 +397,8 @@ a.link-code {
     margin-right: auto;
     width: 160px;
 }
+
+figcaption {
+    text-align: center;
+    color: #888888;
+}
