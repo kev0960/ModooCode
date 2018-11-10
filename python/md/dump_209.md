@@ -22,8 +22,7 @@ next_page : 210
 
 
 
-###  표준 `String` 클래스
-
+###  표준 `string` 클래스
 
 
 아마 제 강좌를 훌륭하게 따라 오신 분들이라면 지난 강좌에서 `MyString` 클래스를 만드셨던 것이 기억이 나실 것입니다. C 언어 스타일의 문자열은 여러가지 문제점들이 많기 때문에 (예를 들어 문자열의 길이를 한 번에 알 수 없고 마지막 `NULL` 문자까지 하나 하나 읽어야 된다는 든지..) 문자열을 처리할 수 있는 새로운 무언가가 계속 필요해야 했습니다.
@@ -640,7 +639,6 @@ int main() {
 일단은 바로 `Employee` 와 `Manager` 클래스에 적용하기 전에 간단한 클래스를 먼저 만들어서 어떻게 C++ 에서 상속이라는 기능이 사용되는지 알아보도록 하겠습니다 . 일단은 바로 `Employee` 와 `Manager` 클래스에 적용하기 전에 간단한 클래스를 먼저 만들어서 어떻게 C++ 에서 상속이라는 기능이 사용되는지 알아보도록 하겠습니다.
 
 ```cpp-formatted
-
 class Parent
 
 {
@@ -658,12 +656,11 @@ class Parent
 위는 우리의 설명을 도와줄 부모 클래스 입니다. 그리고, 아래는 `Parent` 를 물려받은 `Child` 클래스 입니다.
 
 ```cpp-formatted
-
 class Child : public Parent {
   string s;
 
  public:
-  Child() : s("자식"), Parent() {
+  Child() : Parent(), s("자식") {
     cout << "자식 클래스" << endl;
 
     // Parent 에서 what() 을 물려 받았으므로
@@ -695,7 +692,7 @@ class Child : public Parent
 
 ```cpp-formatted
 
-Child() : s("자식"), Parent() {
+Child() : Parent(), s("자식") {
   cout << "자식 클래스" << endl;
 
   // Parent 에서 what() 을 물려 받았으므로
@@ -710,7 +707,7 @@ Child() : s("자식"), Parent() {
 
 ```cpp-formatted
 
-Child() : s("자식"), Parent()
+Child() : Parent(), s("자식")
 ```
 
 초기화 리스트에서 `Parent` 를 통해 부모의 생성자를 먼저 호출하게 됩니다. 그렇다면 아래의 코드를 살펴보도록 합시다.
@@ -733,7 +730,7 @@ class Child : public Parent {
   string s;
 
  public:
-  Child() : s("자식"), Parent() {
+  Child() : Parent(), s("자식") {
     cout << "자식 클래스" << endl;
 
     // Parent 에서 what() 을 물려 받았으므로
@@ -780,7 +777,7 @@ Child c;
 
 ```cpp-formatted
 
-Child() : s("자식"), Parent() {
+Child() : Parent(), s("자식") {
   cout << "자식 클래스" << endl;
 
   // Parent 에서 what() 을 물려 받았으므로
@@ -820,7 +817,7 @@ class Child : public Parent {
   string s;
 
  public:
-  Child() : s("자식"), Parent() {
+  Child() : Parent(), s("자식") {
     cout << "자식 클래스" << endl;
 
     // Parent 에서 what() 을 물려 받았으므로
@@ -935,7 +932,7 @@ class Child : public Parent {
   string child_string;
 
  public:
-  Child() : child_string("자식"), Parent() {
+  Child() : Parent(), child_string("자식") {
     cout << "자식 클래스" << endl;
 
     // 그렇다면 현재 private 인 Parent 의
@@ -1029,8 +1026,8 @@ error C2247: 'Parent::parent_string' not accessible because 'Child' uses 'privat
 
 
 그렇다면 이제 우리가 새롭게 습득한 도구인 '상속' 을 `Manager` 와 `Employee` 클래스 사이에 적용해보도록 합시다. 아래는 기존 `Manager` 클래스를 그대로 가져온 것인데, 원래의 `Employee` 클래스와 중복되는 부분을 굵은 글씨로 나타내보았습니다.
-```cpp-formatted
 
+```cpp-formatted
 class Manager {
   string name;
   int age;
@@ -1041,11 +1038,11 @@ class Manager {
 
  public:
   Manager(string name, int age, string position, int rank, int year_of_service)
-      : year_of_service(year_of_service),
-        name(name),
+      : name(name),
         age(age),
         position(position),
-        rank(rank) {}
+        rank(rank),
+        year_of_service(year_of_service) {}
 
   // 복사 생성자
   Manager(const Manager& manager) {
@@ -1076,7 +1073,6 @@ class Manager {
 
 
 ```cpp-formatted
-
 class Manager : public Employee {
   int year_of_service;
 
@@ -1127,7 +1123,6 @@ Manager() : Employee() {}
 
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -1167,7 +1162,7 @@ class Manager : public Employee {
 
  public:
   Manager(string name, int age, string position, int rank, int year_of_service)
-      : year_of_service(year_of_service), Employee(name, age, position, rank) {}
+      : Employee(name, age, position, rank), year_of_service(year_of_service) {}
 
   // 복사 생성자
   Manager(const Manager& manager)
