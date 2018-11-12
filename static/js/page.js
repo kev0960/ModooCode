@@ -632,6 +632,27 @@ $(() => {
     }));
     window.location.href = '/auth/goog';
   });
+
+  let already_added = false;
+  $('.sidenote').each(function(index) {
+    if ($(this).css('position') == 'absolute') {
+      $(this).css('top', '-=80');
+      already_added = false;
+    }
+  })
+
+  window.onresize = function() {
+    $('.sidenote').each(function(index) {
+      if ($(this).css('position') == 'absolute') {
+        if (!already_added) {
+          $(this).css('top', '-=80');
+          already_added = true;
+        }
+      } else {
+        already_added = false;
+      }
+    })
+  }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
