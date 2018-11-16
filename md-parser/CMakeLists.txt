@@ -64,6 +64,7 @@ add_executable(content_test
                src/content_quote.cc
                src/fast_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc
+               src/fast_py_syntax_highlighter.cc
                src/parser_environment.cc)
 target_link_libraries(content_test gtest_main chroma)
 add_test(NAME content_test COMMAND content_test)
@@ -80,6 +81,7 @@ add_executable(parser_test
                src/content_quote.cc
                src/fast_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc
+               src/fast_py_syntax_highlighter.cc
                src/parser_environment.cc)
 target_link_libraries(parser_test gmock_main chroma)
 add_test(NAME parser_test COMMAND parser_test)
@@ -88,6 +90,7 @@ add_executable(syntax_highlight_test
                test/syntax_highlight_test.cc
                src/util.cc
                src/fast_syntax_highlighter.cc
+               src/fast_py_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc)
 target_link_libraries(syntax_highlight_test gmock_main)
 add_test(NAME syntax_highlight_test COMMAND syntax_highlight_test)

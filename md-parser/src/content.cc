@@ -12,6 +12,7 @@
 
 #include "chroma.h"
 #include "fast_cpp_syntax_highlighter.h"
+#include "fast_py_syntax_highlighter.h"
 #include "util.h"
 
 static char kClangFormatName[] = "clang-format";
@@ -108,11 +109,16 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
   return formatted_code;
 }
 
-string FormatCodeUsingFSH(const string& content) {
-  FastCppSyntaxHighlighter highlighter(content);
-  highlighter.ParseCode();
-  highlighter.ColorMerge();
-  return highlighter.GenerateHighlightedHTML();
+string FormatCodeUsingFSH(const string& content, const string& code_type) {
+  std::unique_ptr<FastSyntaxHighlighter> highlighter;
+  if (code_type == "cpp") {
+    highlighter = std::make_unique<FastCppSyntaxHighlighter>(content);
+  } else {
+    highlighter = std::make_unique<FastPySyntaxHighlighter>(content);
+  }
+  highlighter->ParseCode();
+  highlighter->ColorMerge();
+  return highlighter->GenerateHighlightedHTML();
 }
 
 void StripItguruFromLink(string* link) {
@@ -191,7 +197,7 @@ void DoClangFormat(const string& code, string* formatted_code) {
     close(pipe_c2p[0]);
     // *formatted_code = FormatCodeUsingChroma(*formatted_code, "cpp",
     // "github");
-    *formatted_code = FormatCodeUsingFSH(*formatted_code);
+    *formatted_code = FormatCodeUsingFSH(*formatted_code, "cpp");
   } else {
     // In child process, call execve into the clang format.
 
@@ -249,8 +255,8 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     // Inline code escapes everything except `.
     if (code_start != -1) {
       if (content_[i] == '`') {
-        fragments.push_back(HtmlFragments(HtmlFragments::Types::INLINE_CODE,
-                                          code_start, i - 1));
+        fragments.emplace_back(HtmlFragments::Types::INLINE_CODE, code_start,
+                               i - 1);
         code_start = -1;
       }
       continue;
@@ -258,8 +264,8 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     if (math_start != -1) {
       if (content_[i] == '$' && i + 1 < content_.size() &&
           content_[i + 1] == '$') {
-        fragments.push_back(
-            HtmlFragments(HtmlFragments::Types::INLINE_MATH, math_start, i));
+        fragments.emplace_back(HtmlFragments::Types::INLINE_MATH, math_start,
+                               i);
         math_start = -1;
         i += 1;
       }
@@ -292,8 +298,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       if (matches == 1 && content_[i] == '~') continue;
       if (matches == 1 && content_[i] == '`') {
         if (text_start != -1) {
-          fragments.push_back(
-              HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
+          fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
           text_start = -1;
         }
         if (code_start == -1) {
@@ -306,8 +311,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       // Inline math.
       if (matches == 2 && content_[i] == '$') {
         if (text_start != -1) {
-          fragments.push_back(
-              HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
+          fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
           text_start = -1;
         }
         if (math_start == -1) {
@@ -319,8 +323,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       }
       // Mark the end of the text segment.
       if (text_start != -1) {
-        fragments.push_back(
-            HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
+        fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
         text_start = -1;
       }
       if (matches == 2) {
@@ -328,26 +331,25 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
         // read one *.
         if (bold_start < italic_start && italic_start != int_max) {
           italic_start = int_max;
-          fragments.push_back(HtmlFragments(HtmlFragments::Types::ITALIC));
+          fragments.emplace_back(HtmlFragments::Types::ITALIC);
         } else {
           bold_start = (bold_start == int_max ? i : int_max);
-          fragments.push_back(HtmlFragments(HtmlFragments::Types::BOLD));
+          fragments.emplace_back(HtmlFragments::Types::BOLD);
           i++;
         }
       } else if (matches == 1) {
         italic_start = (italic_start == int_max ? i : int_max);
         if (text_start != -1) {
-          fragments.push_back(
-              HtmlFragments(HtmlFragments::Types::TEXT, text_start, i - 1));
+          fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
           text_start = -1;
         }
-        fragments.push_back(HtmlFragments(HtmlFragments::Types::ITALIC));
+        fragments.emplace_back(HtmlFragments::Types::ITALIC);
       }
     }
   }
   if (text_start != -1) {
-    fragments.push_back(HtmlFragments(HtmlFragments::Types::TEXT, text_start,
-                                      content_.size() - 1));
+    fragments.emplace_back(HtmlFragments::Types::TEXT, text_start,
+                           content_.size() - 1);
   }
 
   // Now we have to generate formatted html.
@@ -359,16 +361,18 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
   string html = "<p>";
   for (size_t i = 0; i < fragments.size(); i++) {
     if (fragments[i].type == HtmlFragments::Types::BOLD) {
-      if (!bold)
+      if (!bold) {
         html += "<span class='font-weight-bold'>";
-      else
+      } else {
         html += "</span>";
+      }
       bold = !bold;
     } else if (fragments[i].type == HtmlFragments::Types::ITALIC) {
-      if (!italic)
+      if (!italic) {
         html += "<span class='font-italic'>";
-      else
+      } else {
         html += "</span>";
+      }
       italic = !italic;
     } else if (fragments[i].type == HtmlFragments::Types::SIDENOTE) {
       html +=
@@ -573,8 +577,7 @@ size_t Content::HandleCodes(const size_t start_pos,
 void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
   std::vector<std::thread> format_ops;
 
-  for (size_t i = 0; i < fragments->size(); i++) {
-    auto& fragment = fragments->at(i);
+  for (auto& fragment : *fragments) {
     if (fragment.type == HtmlFragments::Types::CODE) {
       if (fragment.code_style == "warning") {
         string warning_str = content_.substr(
@@ -597,21 +600,26 @@ void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
       } else if (fragment.code_style == "cpp-formatted") {
         string formatted_code = content_.substr(
             fragment.str_start, fragment.str_end - fragment.str_start + 1);
-        formatted_code = FormatCodeUsingFSH(formatted_code);
+        formatted_code = FormatCodeUsingFSH(formatted_code, "cpp");
         fragment.formatted_code = formatted_code;
-      } else if (fragment.code_style != "cpp" &&
-                 fragment.code_style != "info_format") {
-        string unformatted_code = content_.substr(
+      } else if (fragment.code_style == "py") {
+        string formatted_code = content_.substr(
             fragment.str_start, fragment.str_end - fragment.str_start + 1);
-        fragment.formatted_code = unformatted_code;
-      } else {
+        formatted_code = FormatCodeUsingFSH(formatted_code, "py");
+        fragment.formatted_code = formatted_code;
+      } else if (fragment.code_style == "cpp" ||
+                 fragment.code_style == "info_format") {
         // Sometimes the code contains NBSP character. This hinders the code to
         // be correctly formatted by the clang-format.
         string unformatted_code = content_.substr(
             fragment.str_start, fragment.str_end - fragment.str_start + 1);
         RemoveNbsp(&unformatted_code);
-        format_ops.push_back(std::thread(DoClangFormat, unformatted_code,
-                                         &fragment.formatted_code));
+        format_ops.emplace_back(DoClangFormat, unformatted_code,
+                                &fragment.formatted_code);
+      } else {
+        string unformatted_code = content_.substr(
+            fragment.str_start, fragment.str_end - fragment.str_start + 1);
+        fragment.formatted_code = unformatted_code;
       }
     }
   }

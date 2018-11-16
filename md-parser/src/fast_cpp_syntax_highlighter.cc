@@ -6,6 +6,7 @@
 
 namespace md_parser {
 
+namespace {
 char kWhiteSpaces[] = " \t\n";
 std::unordered_set<string> kCppKeywords = {
     /* C++ specific */
@@ -24,7 +25,6 @@ std::unordered_set<string> kCppKeywords = {
 std::unordered_set<string> kCppTypeKeywords = {
     "bool",   "int",  "long", "float", "short", "double", "char",    "unsigned",
     "signed", "void", "int8", "int16", "int32", "int64",  "wchar_t", "string"};
-namespace {
 
 // Check whether the character is allowed in the identifier.
 bool IsIdenfierAllowedChar(char c) {
@@ -153,7 +153,7 @@ bool FastCppSyntaxHighlighter::ParseCode() {
         } else {
           comment_end += 2;
         }
-        token_list_.push_back(SyntaxToken(COMMENT, i, comment_end));
+        token_list_.emplace_back(COMMENT, i, comment_end);
         i = comment_end - 1;
         continue;
       } else if (code_[i + 1] == '/') {
@@ -163,7 +163,7 @@ bool FastCppSyntaxHighlighter::ParseCode() {
         if (comment_end == string::npos) {
           comment_end = code_.length();
         }
-        token_list_.push_back(SyntaxToken(COMMENT, i, comment_end));
+        token_list_.emplace_back(COMMENT, i, comment_end);
         i = comment_end - 1;
         continue;
       }
@@ -282,7 +282,7 @@ size_t FastCppSyntaxHighlighter::HandleMacro(size_t macro_start) {
   if (delimiter_pos == string::npos) {
     header_token_end = code_.length();
   }
-  token_list_.push_back(SyntaxToken(MACRO_HEAD, macro_start, header_token_end));
+  token_list_.emplace_back(MACRO_HEAD, macro_start, header_token_end);
 
   if (delimiter_pos == string::npos) {
     return code_.length();
@@ -293,8 +293,7 @@ size_t FastCppSyntaxHighlighter::HandleMacro(size_t macro_start) {
     while (code_[delimiter_pos] == ' ') {
       delimiter_pos++;
     }
-    token_list_.push_back(
-        SyntaxToken(WHITESPACE, whitespace_start, delimiter_pos));
+    token_list_.emplace_back(WHITESPACE, whitespace_start, delimiter_pos);
     body_start = delimiter_pos;
   }
 
@@ -312,7 +311,7 @@ size_t FastCppSyntaxHighlighter::HandleMacro(size_t macro_start) {
     delimiter_pos = code_.length();
   }
 
-  token_list_.push_back(SyntaxToken(MACRO_BODY, body_start, delimiter_pos));
+  token_list_.emplace_back(MACRO_BODY, body_start, delimiter_pos);
   return delimiter_pos;
 }
 
@@ -339,9 +338,9 @@ void FastCppSyntaxHighlighter::AppendCurrentToken(SyntaxTokenType current_token,
         token_start--;
       }
     }
-    token_list_.push_back(SyntaxToken(current_token, token_start, token_end));
+    token_list_.emplace_back(current_token, token_start, token_end);
   } else if (current_token != NONE) {
-    token_list_.push_back(SyntaxToken(current_token, token_start, token_end));
+    token_list_.emplace_back(current_token, token_start, token_end);
   }
 }
 }  // namespace md_parser

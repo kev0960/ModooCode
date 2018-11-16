@@ -1,4 +1,5 @@
 #include "../src/fast_cpp_syntax_highlighter.h"
+#include "../src/fast_py_syntax_highlighter.h"
 #include "../src/util.h"
 #include "gtest/gtest.h"
 
@@ -36,6 +37,10 @@ string TokenTypeToString(SyntaxTokenType type) {
       return "WHITESPACE";
     case FUNCTION:
       return "FUNCTION";
+    case BUILT_IN:
+      return "BUILT_IN";
+    case MAGIC_FUNCTION:
+      return "MAGIC_FUNCTION";
     case NONE:
       return "NONE";
   }
@@ -66,6 +71,32 @@ class MockSyntaxHighlighter : public FastCppSyntaxHighlighter {
       LOG << TokenTypeToString(token_list_[i].token_types);
       LOG << " [" << token_list_[i].token_start << " , "
           << token_list_[i].token_end << "]";
+    }
+  }
+};
+
+class MockPySyntaxHighlighter : public FastPySyntaxHighlighter {
+ public:
+  MockPySyntaxHighlighter(const string& content)
+      : FastPySyntaxHighlighter(content) {}
+
+  void CheckSyntaxTokens(std::vector<SyntaxToken> token_list) {
+    EXPECT_EQ(token_list_.size(), token_list.size());
+    for (size_t i = 0; i < std::min(token_list_.size(), token_list.size());
+         i++) {
+      if (i < token_list_.size() && i < token_list.size()) {
+        EXPECT_EQ(TokenTypeToString(token_list[i].token_types),
+                  TokenTypeToString(token_list_[i].token_types));
+        EXPECT_EQ(token_list[i].token_start, token_list_[i].token_start);
+        EXPECT_EQ(token_list[i].token_end, token_list_[i].token_end);
+      }
+    }
+  }
+  void PrintTokens() {
+    LOG << "Parsed code : " << code_;
+    for (const auto& token : token_list_) {
+      LOG << TokenTypeToString(token.token_types);
+      LOG << " [" << token.token_start << " , " << token.token_end << "]";
     }
   }
 };
@@ -247,17 +278,73 @@ TEST(SyntaxHighlightTest, FunctionTest) {
 
   MockSyntaxHighlighter syn2("int x ( a ) {}");
   syn2.ParseCode();
-  syn2.CheckSyntaxTokens({{TYPE_KEYWORD, 0, 3},
+  syn2.CheckSyntaxTokens({
+      {TYPE_KEYWORD, 0, 3},
+      {WHITESPACE, 3, 4},
+      {FUNCTION, 4, 5},
+      {WHITESPACE, 5, 6},
+      {PARENTHESES, 6, 7},
+      {WHITESPACE, 7, 8},
+      {IDENTIFIER, 8, 9},
+      {WHITESPACE, 9, 10},
+      {PARENTHESES, 10, 11},
+      {WHITESPACE, 11, 12},
+      {BRACE, 12, 14},
+  });
+}
+
+TEST(PySyntaxHighlightTest, BuiltInTest) {
+  MockPySyntaxHighlighter syn("for i in range(x):");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({{KEYWORD, 0, 3},
                          {WHITESPACE, 3, 4},
-                         {FUNCTION, 4, 5},
+                         {IDENTIFIER, 4, 5},
                          {WHITESPACE, 5, 6},
-                         {PARENTHESES, 6, 7},
-                         {WHITESPACE, 7, 8},
-                         {IDENTIFIER, 8, 9},
-                         {WHITESPACE, 9, 10},
-                         {PARENTHESES, 10, 11},
-                         {WHITESPACE, 11, 12},
-                         {BRACE, 12, 14},
-                         });
+                         {KEYWORD, 6, 8},
+                         {WHITESPACE, 8, 9},
+                         {BUILT_IN, 9, 14},
+                         {PARENTHESES, 14, 15},
+                         {IDENTIFIER, 15, 16},
+                         {PARENTHESES, 16, 17},
+                         {OPERATOR, 17, 18}});
+}
+
+TEST(PySyntaxHighlightTest, PyComment) {
+  MockPySyntaxHighlighter syn("print(a) # Comment\nprint(c)");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({{BUILT_IN, 0, 5},
+                         {PARENTHESES, 5, 6},
+                         {IDENTIFIER, 6, 7},
+                         {PARENTHESES, 7, 8},
+                         {WHITESPACE, 8, 9},
+                         {COMMENT, 9, 18},
+                         {WHITESPACE, 18, 19},
+                         {BUILT_IN, 19, 24},
+                         {PARENTHESES, 24, 25},
+                         {IDENTIFIER, 25, 26},
+                         {PARENTHESES, 26, 27}});
+}
+
+TEST(PySyntaxHighlightTest, PyLongString) {
+  MockPySyntaxHighlighter syn("''' this is long string'''\nprint(a)");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({{STRING_LITERAL, 0, 26},
+                         {WHITESPACE, 26, 27},
+                         {BUILT_IN, 27, 32},
+                         {PARENTHESES, 32, 33},
+                         {IDENTIFIER, 33, 34},
+                         {PARENTHESES, 34, 35}});
+}
+
+TEST(PySyntaxHighlightTest, PyMagicFunction) {
+  MockPySyntaxHighlighter syn("def __init__(self):");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({{KEYWORD, 0, 3},
+                         {WHITESPACE, 3, 4},
+                         {MAGIC_FUNCTION, 4, 12},
+                         {PARENTHESES, 12, 13},
+                         {KEYWORD, 13, 17},
+                         {PARENTHESES, 17, 18},
+                         {OPERATOR, 18, 19}});
 }
 }  // namespace md_parser

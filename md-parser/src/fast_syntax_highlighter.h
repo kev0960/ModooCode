@@ -24,6 +24,8 @@ enum SyntaxTokenType {
   MACRO_BODY,  // "<iostream>"
   WHITESPACE,
   FUNCTION,
+  BUILT_IN, // range, print
+  MAGIC_FUNCTION, // __init__
   NONE  // Not matched to any token.
 };
 
@@ -64,6 +66,8 @@ class FastSyntaxHighlighter {
     class_to_style_map_.insert({"o", {{"color", "#ff6188"}}});
     class_to_style_map_.insert({"n", {{"color", "#ab9df2"}}});
     class_to_style_map_.insert({"f", {{"color", "#a9dc76"}}});
+    class_to_style_map_.insert({"l", {{"color", "#78dce8"}}});
+    class_to_style_map_.insert({"g", {{"color", "#78dce8"}}});
     // Background 2d2a2e
   }
 

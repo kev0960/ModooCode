@@ -39,6 +39,10 @@ string TokenTypeToClassName(const SyntaxTokenType token_type) {
       return "r";
     case FUNCTION:
       return "f";
+    case BUILT_IN:
+      return "l";
+    case MAGIC_FUNCTION:
+      return "g";
     case NONE:
       return "";
   }
