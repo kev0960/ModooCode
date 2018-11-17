@@ -254,6 +254,10 @@ module.exports = class Server {
   }
 
   async getLatestComments(num_comment) {
+    if (process.env.IN_WINDOWS_FOR_DEBUG === "true") {
+      return [];
+    }
+
     let latest_comments = await this.client.query(
         'SELECT content, comment_date, article_url, author_name FROM ' +
             'comment WHERE is_deleted = FALSE ORDER BY comment_date DESC LIMIT $1',

@@ -22,12 +22,14 @@ app.set('views', __dirname + '/../views');
 app.use(require('cookie-parser')());
 app.use(body_parser.urlencoded({extended: true}));
 app.use(require('express-session')(
-    {secret: 'keyboard cat', resave: true, saveUninitialized: true}));
+    {secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true}));
 
 
 const Server = require('./server.js');
 init.init().then(async function(static_data) {
-  client.connect();
+  if (process.env.IN_WINDOWS_FOR_DEBUG !== 'true') {
+    client.connect();
+  }
   const server = new Server(app, static_data, client);
 
   app.listen(8080, function() {
