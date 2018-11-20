@@ -402,3 +402,12 @@ figcaption {
     text-align: center;
     color: #888888;
 }
+
+.hangul_fallback {
+    font-family: "Noto Sans KR"!important;
+    font-size: 90%;
+}
+
+.td-align-center {
+    text-align: center;
+}
