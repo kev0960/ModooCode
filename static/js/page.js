@@ -399,18 +399,19 @@ $(() => {
       + '<button class="shrink-btn" id=\'code-font-small-' + index +
       '\'><i class="xi-zoom-out"></i>&nbsp;축소</button>';
 
-      if ($(this).height() > 500) {
+      if ($(this).height() > 300) {
         $('<div><button class="shrink-btn" id=\'shrink-' + index +
         '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button>'
         + code_font_change_and_lang + '</div>')
           .insertBefore($(this));
+        $(this).addClass('plain-code')
       } else {
         $('<div>' + code_font_change_and_lang + '</div>')
           .insertBefore($(this));
       }
 
       $('#shrink-' + index).click(function() {
-        let height = min($('#' + index).height(), 500);
+        let height = min($('#' + index).height(), 300);
         $('#' + index).height(height);
       });
 
@@ -434,7 +435,6 @@ $(() => {
         return;
       }
 
-      $(this).addClass('plain-code')
 
       $('<div class=\'button-group\'><label class=\'stdin-label\' for=\'stdin-' +
         index + '\'>입력</label><input type=\'text\' class=\'stdin\' ' +
@@ -531,7 +531,7 @@ $(() => {
     });
     $('.sidenote').each(function(index) {
       if ($(this).css('position') == 'absolute') {
-        $(this).css('top', '-=60');
+        $(this).css('top', '-=40');
         already_added = false;
       }
     });  
@@ -677,7 +677,7 @@ $(() => {
     $('.sidenote').each(function(index) {
       if ($(this).css('position') == 'absolute') {
         if (!already_added) {
-          $(this).css('top', '-=80');
+          $(this).css('top', '-=40');
           already_added = true;
         }
       } else {
