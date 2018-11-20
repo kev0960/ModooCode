@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
       }
     }
   }
-  md_parser::FastSyntaxHighlighter synh("");
+  md_parser::FastSyntaxHighlighter synh("", "cpp");
   synh.OutputColorCss("../views/css/vs-fast.css");
 
   md_parser::Driver driver(config);

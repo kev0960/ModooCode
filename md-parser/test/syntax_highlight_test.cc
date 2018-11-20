@@ -51,7 +51,7 @@ string TokenTypeToString(SyntaxTokenType type) {
 class MockSyntaxHighlighter : public FastCppSyntaxHighlighter {
  public:
   MockSyntaxHighlighter(const string& content)
-      : FastCppSyntaxHighlighter(content) {}
+      : FastCppSyntaxHighlighter(content, "cpp") {}
 
   void CheckSyntaxTokens(std::vector<SyntaxToken> token_list) {
     EXPECT_EQ(token_list_.size(), token_list.size());
@@ -78,7 +78,7 @@ class MockSyntaxHighlighter : public FastCppSyntaxHighlighter {
 class MockPySyntaxHighlighter : public FastPySyntaxHighlighter {
  public:
   MockPySyntaxHighlighter(const string& content)
-      : FastPySyntaxHighlighter(content) {}
+      : FastPySyntaxHighlighter(content, "py") {}
 
   void CheckSyntaxTokens(std::vector<SyntaxToken> token_list) {
     EXPECT_EQ(token_list_.size(), token_list.size());

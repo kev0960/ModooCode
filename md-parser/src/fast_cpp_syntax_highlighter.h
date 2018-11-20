@@ -5,7 +5,8 @@
 namespace md_parser {
 class FastCppSyntaxHighlighter : public FastSyntaxHighlighter {
  public:
-  FastCppSyntaxHighlighter(const string& code) : FastSyntaxHighlighter(code) {}
+  FastCppSyntaxHighlighter(const string& code, const string& language)
+      : FastSyntaxHighlighter(code, language) {}
   bool ParseCode() override;
 
  private:

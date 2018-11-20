@@ -112,9 +112,9 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
 string FormatCodeUsingFSH(const string& content, const string& code_type) {
   std::unique_ptr<FastSyntaxHighlighter> highlighter;
   if (code_type == "cpp") {
-    highlighter = std::make_unique<FastCppSyntaxHighlighter>(content);
+    highlighter = std::make_unique<FastCppSyntaxHighlighter>(content, code_type);
   } else {
-    highlighter = std::make_unique<FastPySyntaxHighlighter>(content);
+    highlighter = std::make_unique<FastPySyntaxHighlighter>(content, code_type);
   }
   highlighter->ParseCode();
   highlighter->ColorMerge();

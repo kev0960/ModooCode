@@ -5,7 +5,8 @@
 namespace md_parser {
 class FastPySyntaxHighlighter : public FastSyntaxHighlighter {
  public:
-  FastPySyntaxHighlighter(const string& code) : FastSyntaxHighlighter(code) {}
+  FastPySyntaxHighlighter(const string& code, const string& language)
+      : FastSyntaxHighlighter(code, language) {}
   bool ParseCode() override;
 
  private:

@@ -382,15 +382,56 @@ $(() => {
     $('pre.chroma').each(function(index) {
       let code = $(this).text();
 
+      let code_language = "";
+      if ($(this).attr('class').indexOf('py') !== -1) {
+        code_language = "<button class='code-language python'><i class='xi-file-text-o'>"
+        + "</i>&nbsp;Python</button>";
+      } else if($(this).attr('class').indexOf('cpp') !== -1) {
+        code_language = "<button class='code-language cpp'><i class='xi-file-text-o'>"
+        + "</i>&nbsp;C/C++</button>";
+      }
+
+      let code_font_change_and_lang = code_language 
+      + '<button class="shrink-btn" id=\'code-font-large-' + index +
+      '\'><i class="xi-zoom-in"></i>&nbsp;확대</button>'
+      + '<button class="shrink-btn" id=\'code-font-small-' + index +
+      '\'><i class="xi-zoom-out"></i>&nbsp;축소</button>';
+
+      if ($(this).height() > 500) {
+        $('<div><button class="shrink-btn" id=\'shrink-' + index +
+        '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button>'
+        + code_font_change_and_lang + '</div>')
+          .insertBefore($(this));
+      } else {
+        $('<div>' + code_font_change_and_lang + '</div>')
+          .insertBefore($(this));
+      }
+
+      $('#shrink-' + index).click(function() {
+        let height = min($('#' + index).height(), 500);
+        $('#' + index).height(height);
+      });
+
+      $('#code-font-large-' + index).click(function() {
+        let current_font_size = parseInt($('#' + index).css('font-size'));
+        current_font_size ++;
+        $('#' + index).css('font-size', current_font_size + 'px');
+      });
+
+      $('#code-font-small-' + index).click(function() {
+        let current_font_size = parseInt($('#' + index).css('font-size'));
+        current_font_size --;
+        $('#' + index).css('font-size', current_font_size + 'px');
+      });
+
+      $(this).attr('id', index);
+
       // Check whether the code starts with #include. If it is, then it is
       // probably executable.
-      if (code[0] != '#' && code[0] != '/') {
-        return;
-      } else if (code.indexOf('main') == -1) {
+      if ((code[0] != '#' && code[0] != '/') || code.indexOf('main') == -1) {
         return;
       }
 
-      $(this).attr('id', index);
       $(this).addClass('plain-code')
 
       $('<div class=\'button-group\'><label class=\'stdin-label\' for=\'stdin-' +
@@ -404,11 +445,7 @@ $(() => {
         '\'><i class=\'xi-refresh\'>' +
         '</i>&nbsp;&nbsp;실행</button></div>')
           .insertAfter($(this));
-      if ($(this).height() > 500) {
-        $('<div><button class="shrink-btn" id=\'shrink-' + index +
-          '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button></div>')
-            .insertBefore($(this));
-      }
+    
       $('<div style="display:none;"><p class="exec-result-title">실행 결과</p>' +
         '<pre id="result-' + index + '" class="exec-result"></pre></div>')
           .insertAfter($('#' + index).next());
@@ -429,11 +466,6 @@ $(() => {
       });
 
       $(this).css({'margin-bottom': '3px'});
-
-      $('#shrink-' + index).click(function() {
-        var height = min($('#' + index).height(), 500);
-        $('#' + index).height(height);
-      });
 
       $('#run-' + index).click(function() {
         let id = parseInt($(this).attr('id').split('-')[1]);

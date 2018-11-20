@@ -286,12 +286,15 @@ h3.lecture-header+p {
 
 .chroma {
     font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 20px;
     overflow-y: hidden;
     border: 1px solid black;
     background: #2d2a2e;
     color: white;
+    overflow-x: auto!important;
+    word-wrap: normal;
+    white-space: pre;
 }
 
 @media (max-width: 1453px) {
@@ -329,6 +332,7 @@ h3.lecture-header+p {
     padding-top: 5px;
     padding-bottom: 5px;
     cursor: pointer;
+    margin-right: 5px;
 }
 
 .shrink-btn:hover {
@@ -410,4 +414,32 @@ figcaption {
 
 .td-align-center {
     text-align: center;
+}
+
+.code-language {
+    background: none;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 5px;
+    padding-top: 8px;
+    padding-bottom: 5px;
+}
+
+.code-language:hover {
+    background: grey;
+    color: white;
+}
+
+.code-language.python {
+    background: #1f7dce;
+    color: white;
+}
+
+.code-language.cpp {
+    background: #f36d1e;
+    color: white;
 }

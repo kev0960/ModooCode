@@ -83,7 +83,7 @@ bool IsUnorderedMapIdentical(const std::unordered_map<K, V>& m1,
 
 }  // namespace
 string FastSyntaxHighlighter::GenerateHighlightedHTML() const {
-  string html = "<pre class='chroma'>";
+  string html = "<pre class='chroma lang-" + language_ + "'>";
   for (const auto& token : token_list_) {
     string class_name = TokenTypeToClassName(token.token_types);
     string token_str =

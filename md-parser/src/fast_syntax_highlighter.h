@@ -24,9 +24,9 @@ enum SyntaxTokenType {
   MACRO_BODY,  // "<iostream>"
   WHITESPACE,
   FUNCTION,
-  BUILT_IN, // range, print
-  MAGIC_FUNCTION, // __init__
-  NONE  // Not matched to any token.
+  BUILT_IN,        // range, print
+  MAGIC_FUNCTION,  // __init__
+  NONE             // Not matched to any token.
 };
 
 struct SyntaxToken {
@@ -47,7 +47,8 @@ struct SyntaxToken {
 
 class FastSyntaxHighlighter {
  public:
-  FastSyntaxHighlighter(const string& code) : code_(code) {
+  FastSyntaxHighlighter(const string& code, const string& language)
+      : code_(code), language_(language) {
     /* VS style
     class_to_style_map_.insert({"k", {{"color", "#0000ff"}}});
     class_to_style_map_.insert({"s", {{"color", "#a31515"}}});
@@ -83,6 +84,9 @@ class FastSyntaxHighlighter {
   std::vector<SyntaxToken> token_list_;
   std::unordered_map<string, std::unordered_map<string, string>>
       class_to_style_map_;
+
+ private:
+  string language_;
 };
 
 }  // namespace md_parser
