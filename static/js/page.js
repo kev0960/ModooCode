@@ -6,6 +6,8 @@ let total_comment_list = null;
 let parent_comment_list = [];
 let current_added_comment_box = null;
 let selected_comment_id = -1;
+let already_added = false;
+
 
 function countLine(code) {
   let cnt = 0;
@@ -527,6 +529,12 @@ $(() => {
         });
       });
     });
+    $('.sidenote').each(function(index) {
+      if ($(this).css('position') == 'absolute') {
+        $(this).css('top', '-=60');
+        already_added = false;
+      }
+    });  
   });
   initCategory();
 
@@ -664,14 +672,6 @@ $(() => {
     }));
     window.location.href = '/auth/goog';
   });
-
-  let already_added = false;
-  $('.sidenote').each(function(index) {
-    if ($(this).css('position') == 'absolute') {
-      $(this).css('top', '-=80');
-      already_added = false;
-    }
-  })
 
   window.onresize = function() {
     $('.sidenote').each(function(index) {
