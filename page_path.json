@@ -35,11 +35,11 @@
 },
 "Containers": {
 "files": ["174"],
-"deque": {
-"files": ["176"]
-},
 "vector": {
 "files": ["175","183","185","186"]
+},
+"deque": {
+"files": ["176"]
 },
 "list": {
 "files": ["177"]

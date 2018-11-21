@@ -313,6 +313,15 @@ module.exports = class Server {
       console.log('Page [', getDateTime(), '] ::', page_id);
 
       if (page_id <= 228) {
+        if (page_id == 15) {
+          return res.render('page.ejs', {
+            content_url: './new/231.html',
+            file_info: this.file_infos[231],
+            page_infos: this.page_infos,
+            file_infos: this.file_infos,
+            user
+          });
+        }
         res.render(
             'page.ejs', {
               content_url: './old/blog_' + page_id + '.html',
