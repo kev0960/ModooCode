@@ -404,7 +404,6 @@ $(() => {
         '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button>'
         + code_font_change_and_lang + '</div>')
           .insertBefore($(this));
-        $(this).addClass('plain-code')
       } else {
         $('<div>' + code_font_change_and_lang + '</div>')
           .insertBefore($(this));
@@ -435,7 +434,7 @@ $(() => {
         return;
       }
 
-
+      $(this).addClass('plain-code')
       $('<div class=\'button-group\'><label class=\'stdin-label\' for=\'stdin-' +
         index + '\'>입력</label><input type=\'text\' class=\'stdin\' ' +
         'id=\'stdin-' + index + '\' name=\'stdin-' + index +
