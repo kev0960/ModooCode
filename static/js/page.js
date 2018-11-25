@@ -201,6 +201,9 @@ function ProcessComment(comment_list) {
 function RecursiveCommentAdder(ul, comment_id) {
   // Add current comment.
   const current_comment = total_comment_list.get(comment_id);
+  if (!current_comment) {
+    return;
+  }
 
   // Do not display deleted comment only if it does not have any replies.
   if (current_comment.is_deleted && current_comment.reply_ids.length == 0) {
