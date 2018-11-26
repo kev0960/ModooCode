@@ -48,7 +48,7 @@ template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
   cout << "[ ";
-  for (set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
+  for (typename set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
     cout << *itr << " ";
   }
   cout << " ] " << endl;
@@ -113,7 +113,7 @@ template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
   cout << "[ ";
-  for (set<int>::iterator itr = s.begin(); itr != s.end(); itr++) {
+  for (typename set<int>::iterator itr = s.begin(); itr != s.end(); itr++) {
     cout << *itr << " ";
   }
   cout << " ] " << endl;
@@ -289,7 +289,7 @@ template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
   cout << "[ ";
-  for (set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
+  for (typename set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
     cout << *itr << " ";
   }
   cout << " ] " << endl;
