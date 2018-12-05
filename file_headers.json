@@ -586,7 +586,6 @@
 }
 ,
 	"201" : {
-	"title" : "오픈북 프로젝트 - 양질의 컴퓨터 문서 공급 프로젝트"
 }
 ,
 	"202" : {
@@ -707,16 +706,12 @@
 }
 ,
 	"224" : {
-	"cat_title" : "10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map",
-	"next_page" : "225",
-	"prev_page" : "223",
-	"title" : "씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map>"
+	"prev_page" : "223"
 }
 ,
 	"225" : {
 	"cat_title" : "10 - 3. C++ STL - 알고리즘(algorithm)",
 	"next_page" : "227",
-	"prev_page" : "224",
 	"title" : "씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>"
 }
 ,
@@ -779,10 +774,6 @@
 }
 ,
 	"234" : {
-	"cat_title" : "basic_string",
-	"path" : "/C++ Reference/string",
-	"ref_title" : "basic_string, std::basic_string",
-	"title" : "C++ 레퍼런스 - basic_string"
 }
 ,
 	"235" : {
@@ -828,10 +819,6 @@
 }
 ,
 	"240" : {
-	"cat_title" : "erase",
-	"path" : "/C++ Reference/string",
-	"ref_title" : "erase, basic_string::erase",
-	"title" : "C++ 레퍼런스 - string 의 erase 함수"
 }
 ,
 	"241" : {
@@ -879,14 +866,16 @@
 ,
 	"247" : {
 	"cat_title" : "2 - 1. 정렬 알고리즘과 분할 정복",
+	"next_page" : "248",
 	"path" : "/알고리즘",
 	"prev_page" : "246",
 	"title" : "모두의 알고리즘 - 2 - 1. 정렬 알고리즘과 분할 정복"
 }
 ,
 	"248" : {
-	"cat_title" : "2 - 1. 정렬 알고리즘의 꽃 - 퀵 소트(Quicksort)",
-	"published" : "false",
+	"cat_title" : "2 - 2. 정렬 알고리즘의 꽃 - 퀵 소트(Quicksort)",
+	"path" : "/알고리즘",
+	"prev_page" : "247",
 	"title" : "모두의 알고리즘 - 2 - 2. 정렬 알고리즘의 꽃 - 퀵 소트(Quicksort)"
 }
 ,

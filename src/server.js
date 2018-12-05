@@ -145,11 +145,15 @@ module.exports = class Server {
         'https://www.googleapis.com/auth/analytics.readonly');
 
     this.visitor_counts = [];
-    this.GetVisitorData();
+    if (process.env.IN_WINDOWS_FOR_DEBUG !== 'true') {
+      this.GetVisitorData();
+    }
 
     // Retrieve visitor data every 30 seconds.
     setInterval(function() {
-      this.GetVisitorData();
+      if (process.env.IN_WINDOWS_FOR_DEBUG !== 'true') {
+        this.GetVisitorData();
+      }
     }.bind(this), 30000);
   }
 

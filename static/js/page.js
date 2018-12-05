@@ -479,8 +479,6 @@ $(() => {
         } else {
           code = editors[id].getValue();
         }
-        gtag('event', 'execute-code');
-
         $.ajax({
           type: 'POST',
           url: '/run',
@@ -521,14 +519,12 @@ $(() => {
                   .prev()
                   .html(
                       '실행 결과<span class=\'compile-error-title\'>컴파일 오류</span>')
-              gtag('event', 'execute-code-fail');
             } else {
               $('#result-' + index).text(result.exec_result);
               $('#result-' + index)
                   .prev()
                   .html(
                       '실행 결과<span class=\'run-success-title\'>실행 성공</span>')
-              gtag('event', 'execute-code-success');
             }
             $('#result-' + index).parent().show();
           }
