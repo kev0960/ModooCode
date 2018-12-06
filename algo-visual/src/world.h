@@ -1,21 +1,32 @@
 #include <memory>
+#include <unordered_map>
 #include <utility>
 #include <vector>
-#include <unordered_map>
 
 namespace algo_visual {
 
 class Entity {
  public:
   virtual const std::pair<int, int> GetSize() = 0;
+
+  Entity() : base_x_(0), base_y_(0) {}
+
+  // Base position of the object.
+  void SetBasePosition(int x, int y) {
+    base_x_ = x;
+    base_y_ = y;
+  }
+
+ private:
+  int base_x_, base_y_;
 };
 
 class Scene {
  private:
   std::vector<Entity*> entities_;
 
-  // Position of entity at this scene.
-  std::unordered_map<Entity*, std::pair<int, int>> pos_at_scene_;
+  // Offset of entity with respect to its base position.
+  std::unordered_map<Entity*, std::pair<int, int>> entity_offsets_;
 };
 
 /*

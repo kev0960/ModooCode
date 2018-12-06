@@ -10,6 +10,7 @@ class VisVector : public std::vector<T>, public Entity {
   using std::vector<T>::vector;
 
   const std::pair<int, int> GetSize() override {
+    // First we need to calculate the size of string.
     return std::make_pair(0, 0);
   }
 };
