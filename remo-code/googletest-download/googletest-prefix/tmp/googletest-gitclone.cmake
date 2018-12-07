@@ -4,21 +4,21 @@ endif()
 
 set(run 0)
 
-if("/home/jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitinfo.txt" IS_NEWER_THAN "/home/jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt")
+if("/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitinfo.txt" IS_NEWER_THAN "/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt")
   set(run 1)
 endif()
 
 if(NOT run)
-  message(STATUS "Avoiding repeated git clone, stamp file is up to date: '/home/jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt'")
+  message(STATUS "Avoiding repeated git clone, stamp file is up to date: '/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt'")
   return()
 endif()
 
 execute_process(
-  COMMAND ${CMAKE_COMMAND} -E remove_directory "/home/jaebum/ModooCode/remo-code/googletest-src"
+  COMMAND ${CMAKE_COMMAND} -E remove_directory "/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to remove directory: '/home/jaebum/ModooCode/remo-code/googletest-src'")
+  message(FATAL_ERROR "Failed to remove directory: '/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-src'")
 endif()
 
 set(git_options)
@@ -47,13 +47,13 @@ foreach(config IN LISTS git_config)
   list(APPEND git_clone_options --config ${config})
 endforeach()
 
-# try the clone 3 times in case there is an odd git clone issue
+# try the clone 3 times incase there is an odd git clone issue
 set(error_code 1)
 set(number_of_tries 0)
 while(error_code AND number_of_tries LESS 3)
   execute_process(
     COMMAND "/usr/bin/git" ${git_options} clone ${git_clone_options} --origin "origin" "https://github.com/google/googletest.git" "googletest-src"
-    WORKING_DIRECTORY "/home/jaebum/ModooCode/remo-code"
+    WORKING_DIRECTORY "/mnt/c/Users/Jaebum/ModooCode/remo-code"
     RESULT_VARIABLE error_code
     )
   math(EXPR number_of_tries "${number_of_tries} + 1")
@@ -68,7 +68,7 @@ endif()
 
 execute_process(
   COMMAND "/usr/bin/git" ${git_options} checkout master --
-  WORKING_DIRECTORY "/home/jaebum/ModooCode/remo-code/googletest-src"
+  WORKING_DIRECTORY "/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
@@ -77,32 +77,32 @@ endif()
 
 execute_process(
   COMMAND "/usr/bin/git" ${git_options} submodule init 
-  WORKING_DIRECTORY "/home/jaebum/ModooCode/remo-code/googletest-src"
+  WORKING_DIRECTORY "/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to init submodules in: '/home/jaebum/ModooCode/remo-code/googletest-src'")
+  message(FATAL_ERROR "Failed to init submodules in: '/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-src'")
 endif()
 
 execute_process(
   COMMAND "/usr/bin/git" ${git_options} submodule update --recursive --init 
-  WORKING_DIRECTORY "/home/jaebum/ModooCode/remo-code/googletest-src"
+  WORKING_DIRECTORY "/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to update submodules in: '/home/jaebum/ModooCode/remo-code/googletest-src'")
+  message(FATAL_ERROR "Failed to update submodules in: '/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-src'")
 endif()
 
 # Complete success, update the script-last-run stamp file:
 #
 execute_process(
   COMMAND ${CMAKE_COMMAND} -E copy
-    "/home/jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitinfo.txt"
-    "/home/jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt"
-  WORKING_DIRECTORY "/home/jaebum/ModooCode/remo-code/googletest-src"
+    "/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitinfo.txt"
+    "/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt"
+  WORKING_DIRECTORY "/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-src"
   RESULT_VARIABLE error_code
   )
 if(error_code)
-  message(FATAL_ERROR "Failed to copy script-last-run stamp file: '/home/jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt'")
+  message(FATAL_ERROR "Failed to copy script-last-run stamp file: '/mnt/c/Users/Jaebum/ModooCode/remo-code/googletest-download/googletest-prefix/src/googletest-stamp/googletest-gitclone-lastrun.txt'")
 endif()
 

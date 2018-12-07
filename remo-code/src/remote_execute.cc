@@ -130,8 +130,6 @@ string RemoteExecuter::SyncCompile(const string& code, int thread_index) {
                         kGppLanguage,
                         kDash,
                         kGppCpp17,
-                        kGppWarningAll,
-                        kGppWarningExtra,
                         kGppFortify,
                         kGppOutputFlag,
                         output_file_name,
