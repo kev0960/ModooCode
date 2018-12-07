@@ -3,14 +3,26 @@
 
 #include <utility>
 #include <vector>
+#include <unordered_set>
 #include "util.h"
 #include "world.h"
 
 namespace algo_visual {
 
-struct ColoredCell {
+struct DecoratedCell {
   string color;
   int index;
+
+  bool operator==(const DecoratedCell& other) const {
+    return index == other.index;
+  }
+};
+
+template<>
+struct std::hash<DecoratedCell> {
+  size_t operator()(const DecoratedCell& c) const {
+    return std::hash<int>(index);
+  }
 };
 
 template <class T>
@@ -50,6 +62,7 @@ class VisVector : public std::vector<T>, public Entity {
   double padding_left_;
   double padding_right_;
 
+  unordered_set<DecoratedCell> color_info_;
 };
 
 }  // namespace algo_visual
