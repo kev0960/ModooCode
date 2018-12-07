@@ -1,13 +1,18 @@
+#ifndef WORLD_H
+#define WORLD_H
+
+#include <Magick++.h>
 #include <memory>
 #include <unordered_map>
 #include <utility>
 #include <vector>
+#include <list>
 
 namespace algo_visual {
 
 class Entity {
  public:
-  virtual const std::pair<int, int> GetSize() = 0;
+  virtual const std::pair<double, double> GetSize() = 0;
 
   Entity() : base_x_(0), base_y_(0) {}
 
@@ -16,6 +21,8 @@ class Entity {
     base_x_ = x;
     base_y_ = y;
   }
+
+  virtual std::list<Magick::Drawable> Draw() = 0;
 
  private:
   int base_x_, base_y_;
@@ -59,3 +66,5 @@ class World {
   bool is_drawing_;
 };
 }  // namespace algo_visual
+
+#endif

@@ -23,10 +23,11 @@ int main(int argc, char **argv) {
       DrawableText(301, 100, "이글은 조금 더 깁니다", "UTF-8"));
   image.draw(text_draw_list);
 
-  image.display();
-
   algo_visual::GetStringSize("안녕하세요!");
   algo_visual::GetStringSize("이글은 조금 더 깁니다");
   algo_visual::GetStringSize("English about same l");
+
+  algo_visual::VisVector<int> vec = std::initializer_list<int>{1,2,3,4,5};
+  cout << vec.GetSize().first << " ," << vec.GetSize().second;
   return 0;
 }
