@@ -8,22 +8,24 @@
 #include "world.h"
 
 namespace algo_visual {
-
 struct DecoratedCell {
-  string color;
+  std::string color;
   int index;
 
   bool operator==(const DecoratedCell& other) const {
     return index == other.index;
   }
 };
+}
 
 template<>
-struct std::hash<DecoratedCell> {
-  size_t operator()(const DecoratedCell& c) const {
-    return std::hash<int>(index);
+struct std::hash<algo_visual::DecoratedCell> {
+  size_t operator()(const algo_visual::DecoratedCell& c) const {
+    return static_cast<size_t>(c.index);
   }
 };
+
+namespace algo_visual {
 
 template <class T>
 class VisVector : public std::vector<T>, public Entity {
@@ -56,13 +58,15 @@ class VisVector : public std::vector<T>, public Entity {
     std::list<Magick::Drawable> draws;
   }
 
+  ~VisVector() {}
+
  private:
   double padding_top_;
   double padding_bottom_;
   double padding_left_;
   double padding_right_;
 
-  unordered_set<DecoratedCell> color_info_;
+  std::unordered_set<DecoratedCell> color_info_;
 };
 
 }  // namespace algo_visual

@@ -23,6 +23,7 @@ class Entity {
   }
 
   virtual std::list<Magick::Drawable> Draw() = 0;
+  virtual ~Entity() {}
 
  private:
   int base_x_, base_y_;
