@@ -19,12 +19,7 @@ next_page : 197
 뿐만 아니라 C++ 에서 새로 도입된 함수 오버로딩 덕분에 함수 이름을 일일히 따로 지정하지 않더라도 성공적으로 인자들의 타입에 따라 원하는 함수들만 호출 할 수 있게 되었습니다. 실제로 C 언어 였다면 인자의 타입에 따라서 함수의 이름들을 외워야 했지만 C++ 에서는 그럴 필요가 전혀 없게 되었다는 것이지요.
 
 
-
-
-
 ###  스타크래프트 만들기
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2615CA3E50E902B432E7CF)
 
@@ -35,7 +30,6 @@ next_page : 197
 스타크래프트라는 거대한 프로젝트를 진행하기에 앞서서 일단, 유닛 하나 부터 만들어 보도록 할 것입니다. 위에 조그만 사진에 있는 총들고 서 잇는 사람은 스타크래프트의 마린 이라는 유닛 입니다. (테란 유저로써 제가 가장 사랑하는 유닛 중 하나라고 볼 수 있죠) 위 유닛은 스타크래프트 유닛 중에서 가장 단순하고 기본이 되는 유닛이라고 할 수 있습니다. 그렇다면 한 번, 이 마린을 코드 상에서 구현해보도록 합시다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -111,8 +105,6 @@ int main() {
 
 어때요? 우리는 일단 위 소스코드에서 아주 초보적으로 작동하는 마린을 구현하였습니다. 한번 살펴볼까요?
 
-
-
 ```cpp-formatted
 class Marine {
   int hp;                // 마린 체력
@@ -132,8 +124,6 @@ class Marine {
 };
 ```
 
-
-
 위는 마린을 구현한 클래스 입니다. 즉, 위 클래스의 객체들이 바로 개개의 마린들이 되는 것이지요. 이전 강좌에서도 이야기 하였지만, 보통 어떠한 객체의 내부적 성질, 상태 등에 관련된 변수들은 모두 `private` 범주에 두고, 그 객체가 외부에 하는 행동들은 함수로써 구현하여 `public` 에 두면 된다고 하였습니다.
 
 그렇다면, 마린의 경우, 마린의 상태에 관련된 것들 - 예를 들어서, 마린의 현재 `hp` 라던지, 위치, 공격력, 그리고 생존 여부 등은 `private` 범주에 두어서 관리하고, 마린이 하는 행동들 - 즉, 이동한다 던지 공격한다 던지, 혹은 외부로 부터 공격 받는 등에 관련된 것들은 메소드로 만들어서 `public` 에서 범주로 두면 좋을 것 같습니다.
@@ -142,17 +132,14 @@ class Marine {
 따라서 위와 같이 코드를 구성하였습니다. 사실 나머지 함수들은 그 구현이 너무 간단해서 굳이 따로 집어서 살펴볼 필요는 없을 것 같습니다. 그래서 바로 `main` 함수의 코드들을 살펴보도록 합시다.
 
 ```cpp-formatted
-
 Marine marine1(2, 3);
 Marine marine2(3, 5);
 ```
 
 
-
 먼저, 위 두개의 `marine1` 과 `marine2` 라는 이름의 `Marine` 객체들을 생성하였습니다. 물론 생성자 오버로딩에 의해 각각 (2,3), (3,5) 에 위치한 마린들이 생성되었지요.
 
 ```cpp-formatted
-
 marine1.show_status();
 marine2.show_status();
 ```
@@ -163,7 +150,6 @@ marine2.show_status();
 
 
 ```cpp-formatted
-
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 marine2.be_attacked(marine1.attack());
 ```
@@ -222,7 +208,6 @@ int main() {
 
 
 ```cpp-formatted
-
 marines[0] = new Marine(2, 3);
 marines[1] = new Marine(3, 5);
 ```
@@ -233,7 +218,6 @@ marines[1] = new Marine(3, 5);
 
 
 ```cpp-formatted
-
 marines[0]->show_status();
 marines[1]->show_status();
 ```
@@ -793,7 +777,6 @@ Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
 이번에도 위의 마린 처럼 포토 캐논의 이름을 지어줄 수 있다는 사실을 알고 클래스 `Photon_Cannon` 에 `char *name` 을 추가 해주었습니다. 그리고, 복사 생성자는 그냥 위에서 처럼 디폴트 복사 생성자를 사용하기로 했죠. 그 코드는 아래와 같습니다.
 
 ```cpp-formatted
-
 // 디폴트 복사 생성자의 한계
 #include <string.h>
 #include <iostream>
@@ -808,7 +791,7 @@ class Photon_Cannon {
 
  public:
   Photon_Cannon(int x, int y);
-  Photon_Cannon(int x, int y, char *cannon_name);
+  Photon_Cannon(int x, int y, const char *cannon_name);
   ~Photon_Cannon();
 
   void show_status();
@@ -822,7 +805,7 @@ Photon_Cannon::Photon_Cannon(int x, int y) {
 
   name = NULL;
 }
-Photon_Cannon::Photon_Cannon(int x, int y, char *cannon_name) {
+Photon_Cannon::Photon_Cannon(int x, int y, const char *cannon_name) {
   hp = shield = 100;
   coord_x = x;
   coord_y = y;
@@ -855,11 +838,7 @@ int main() {
 }
 ```
 
-
-
 컴파일 후 실행해보면 아래와 같은 오류를 만나게 될 것입니다.
-
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2366084650EA5E22315B30)
@@ -917,7 +896,6 @@ Photon_Cannon::~Photon_Cannon() {
 위 과정을 그림으로 설명하자면 복사 생성자에서 `hp, shield` 와 같은 변수 들은 얕은 복사를 하지만, `name` 의 경우 따로 메모리를 할당해서 그 내용만 복사하는 깊은 복사를 수행하게 되는 것이지요. 그러면 소멸자에서도 메모리 해제시 각기 다른 메모리를 해제하는 것이기 때문에 전혀 문제가 발생하지 않습니다. 이를 바탕으로 복사 생성자를 만들어보면 아래와 같습니다.
 
 ```cpp-formatted
-
 // 복사 생성자의 중요성
 #include <string.h>
 #include <iostream>
@@ -932,7 +910,7 @@ class Photon_Cannon {
 
  public:
   Photon_Cannon(int x, int y);
-  Photon_Cannon(int x, int y, char *cannon_name);
+  Photon_Cannon(int x, int y, const char *cannon_name);
   Photon_Cannon(const Photon_Cannon &pc);
   ~Photon_Cannon();
 
@@ -957,7 +935,7 @@ Photon_Cannon::Photon_Cannon(const Photon_Cannon &pc) {
   name = new char[strlen(pc.name) + 1];
   strcpy(name, pc.name);
 }
-Photon_Cannon::Photon_Cannon(int x, int y, char *cannon_name) {
+Photon_Cannon::Photon_Cannon(int x, int y, const char *cannon_name) {
   hp = shield = 100;
   coord_x = x;
   coord_y = y;
@@ -1008,7 +986,6 @@ int main() {
 아래와 같은 문자열 클래스를 완성해보세요 (난이도 : 中)
 
 ```cpp-formatted
-
 class string {
   char *str;
   int len;
