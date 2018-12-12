@@ -479,6 +479,11 @@ $(() => {
         } else {
           code = editors[id].getValue();
         }
+        gtag('event', 'execute-code', {
+          'event_category': 'code',
+          'event_label': 'cpp'
+        });
+
         $.ajax({
           type: 'POST',
           url: '/run',
@@ -518,13 +523,21 @@ $(() => {
               $('#result-' + index)
                   .prev()
                   .html(
-                      '실행 결과<span class=\'compile-error-title\'>컴파일 오류</span>')
+                      '실행 결과<span class=\'compile-error-title\'>컴파일 오류</span>');
+              gtag('event', 'execute-code-fail', {
+                'event_category': 'code',
+                'event_label': 'cpp'
+              });
             } else {
               $('#result-' + index).text(result.exec_result);
               $('#result-' + index)
                   .prev()
                   .html(
-                      '실행 결과<span class=\'run-success-title\'>실행 성공</span>')
+                      '실행 결과<span class=\'run-success-title\'>실행 성공</span>');
+              gtag('event', 'execute-code-success', {
+                'event_category': 'code',
+                'event_label': 'cpp'
+              });
             }
             $('#result-' + index).parent().show();
           }
