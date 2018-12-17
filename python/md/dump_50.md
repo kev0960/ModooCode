@@ -40,7 +40,6 @@ void clearerr ( FILE * stream );
 ###  실행 예제
 
 ```cpp-formatted
-
 /* 인위적으로 오류를 발생시킨 뒤 이 오류가 clearerr 에 의해 어떻게 처리되는지
 살펴본다.
 

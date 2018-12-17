@@ -60,7 +60,6 @@ class Manager : public Employee
 즉, 자동차는 엔진을 가진다 (자동차 `has a` 엔진), 자동차는 브레이크를 가진다 (자동차 `has a` 브레이크) 이와 같이 말이지요. 이런 `has - a` 관계는 우리가 흔히 해왔듯이 다음과 같이 클래스로 나타내면 됩니다.
 
 ```cpp-formatted
-
 class Car {
  private:
   Engine e;
@@ -74,7 +73,6 @@ class Car {
 또 다른 예로 바로 우리의 `EmployeeList` 를 들을 수 도 있습니다. `EmployeeList` 는 `Employee` 들과 `has - a` 관계 이지요. 따라서, 실제로 `EmployeeList` 클래스를 보면
 
 ```cpp-formatted
-
 class EmployeeList {
   int alloc_employee;        // 할당한 총 직원 수
   int current_employee;      // 현재 직원 수
@@ -141,7 +139,6 @@ int main() {
 이번에는 코드를 약간 변형해보도록 하겠습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -190,7 +187,6 @@ int main() {
 이번에는 `Child` 의 객체 `c` 를 `Parent` 객체를 가리키는 포인터에 넣었습니다.
 
 ```cpp-formatted
-
 Parent* p_c = &c;
 ```
 
@@ -216,7 +212,6 @@ Parent* p_c = &c;
 그렇다면 업 캐스팅의 반대인 다운 캐스팅도 있을까요?
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -273,7 +268,6 @@ Parent * 에서 Child * 로 변환할 수 없습니다.
 하지만 다음과 같은 상황은 어떨까요.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -322,7 +316,6 @@ error C2440: 'initializing' : cannot convert from 'Parent *' to 'Child *'
 `Child* p_c` 에 `Parent *` 를 대입하면 안된다는 똑같은 오류가 발생합니다. 하지만 우리는 `p_p` 가 가리키는 것이 `Parent` 객체가 아니라 `Child` 객체라는 사실을 알고 있습니다. 그렇기 때문에 비록 `Parent *` 포인터를 다운 캐스팅 함에도 불구하고 `p_p` 가 실제로는 `Child` 객체를 가리키기 때문에
 
 ```cpp-formatted
-
 Child* p_c = p_p;
 ```
 
@@ -331,7 +324,6 @@ Child* p_c = p_p;
 를 해도 전혀 문제가 없습니다. 이를 위해서는 아래 처럼 강제적으로 타입 변환을 하면 됩니다.
 
 ```cpp-formatted
-
 Child* p_c = static_cast<Child*>(p_p);
 ```
 
@@ -340,7 +332,6 @@ Child* p_c = static_cast<Child*>(p_p);
 비록 약간은 위험하지만 (만일 `p_p` 가 사실은 `Child` 객체를 가리키지 않는다면?) 컴파일 오류를 발생시키지 않고 성공적으로 컴파일 할 수 있습니다. 그렇다면 만일 `p_p` 가 사실 `Parent` 객체를 가리키는데 강제적으로 타입 변환을 해서 `what` 을 실행한다면 어떨까요?
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -400,7 +391,6 @@ int main() {
 
 자, 그럼 이제 위에서 다룬 내용을 가지고 EmployeeList 를 어떻게 하면 좀 더 간단하게 만들 수 있을 지 생각해봅시다.
 ```cpp-formatted
-
 class EmployeeList {
   int alloc_employee;  // 할당한 총 직원 수
 
@@ -419,7 +409,6 @@ class EmployeeList {
 
 
 ```cpp-formatted
-
 void print_employee_info() {
   int total_pay = 0;
   for (int i = 0; i < current_employee; i++) {
@@ -443,7 +432,6 @@ void print_employee_info() {
 
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -575,7 +563,6 @@ int main() {
 
 `EmployeeList` 문제를 해결하기 전에 좀 더 간단한 예시로 살펴보겠습니다.
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -622,7 +609,6 @@ int main() {
 
 어라? 위 결과를 보셨다면 놀라움을 금치 못하셨을 것입니다.
 ```cpp-formatted
-
 Parent* p_c = &c;
 Parent* p_p = &p;
 
@@ -643,7 +629,6 @@ p_c->what();
 이와 같은 일이 가능해진 이유는 바로;
 
 ```cpp-formatted
-
 class Parent {
   string s;
 
@@ -659,7 +644,6 @@ class Parent {
 이 `virtual` 키워드 하나 때문입니다. 이 `virtual` 키워드는, 다음과 같은 역할을 합니다.
 
 ```cpp-formatted
-
 p_c->what();
 ```
 
@@ -681,7 +665,6 @@ p_c->what();
 반면에
 
 ```cpp-formatted
-
 p_p->what();
 ```
 
@@ -703,7 +686,6 @@ p_p->what();
 이렇게 컴파일 시에 어떤 함수가 실행될 지 정해지지 않고 런타임 시에 정해지는 일을 가리켜서 **동적 바인딩(dynamic binding)** 이라고 부릅니다. 즉,
 
 ```cpp-formatted
-
 p_c->what();
 ```
 
@@ -712,7 +694,6 @@ p_c->what();
 에서 `Child` 의 `what` 을 실행할지, `Parent` 의 `what` 을 실행하지 결정은 런타임에 이루어지게 됩니다. 물론 위 코드에선 컴파일 시에 무조건 `p_c->what()` 이 `Child` 의 `what` 이 실행되도록 정해진 거 아니냐고 물을 수 있지만 다음과 같은 상황을 생각해보세요.
 
 ```cpp-formatted
-
 // i 는 사용자로부터 입력받는 변수
 if (i == 1) {
   p_p = &c;
@@ -732,7 +713,6 @@ p_p->what();
 이제 여러분은 그동안 골머리를 썩여왔던 `EmployeeList` 문제도 해결할 수 있게 되었습니다. 단순히 `Employee` 클래스의 `calculate_pay` 함수와 `print_info` 함수 앞에 `virtual` 만 붙여주면 깔끔하게 정리 되지요.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -844,7 +824,6 @@ int main() {
 와 같이 비록 `Employee*` 가 가리키고 있음에도 불구하고 `Manager` 면 `Manager` 의 함수를, `Employee` 면 `Employee` 의 함수를 잘 호출하고 있음을 알 수 있습니다. 물론 바뀐 것은 단 두 단어. `virtual` 키워들을 `Employee` 의 함수들 앞에 추가해놓은 것 뿐이지요.
 
 ```cpp-formatted
-
 employee_list[i]->print_info();
 total_pay += employee_list[i]->calculate_pay();
 ```
@@ -866,12 +845,4 @@ total_pay += employee_list[i]->calculate_pay();
 
 그렇다면 프로그램 내부적으로 `virtual` 함수들은 어떻게 처리될까요? 즉, 이 포인터가 어떠한 객체를 가리키는지 어떻게 알 수 있을까요? (난이도 : 上)
 
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

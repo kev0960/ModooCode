@@ -4,8 +4,6 @@ cat_title : 17. 변수의 생존 조건 및 데이터 세그먼트의 구조
 next_page : 87
 --------------
 
-
-
 이번 강좌에서는
 
 * 지역 변수(local variable), 전역 변수(global variable), 정적 변수(static variable) 에 대해 알아본다.
@@ -362,13 +360,4 @@ CPU 의 레지스터에 대해 알아보자. `EAX, EBX` 는 무엇인가? 또한
 스택에 대한 폭넓은 이해를 위해 아래 글을 보는 것을 추천합니다. (동적 할당 부분 전까지만)
  [http://blog.naver.com/speciallive?Redirect=Log&logNo=98372211](http://blog.naver.com/speciallive?Redirect=Log&logNo=98372211)
 
-
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

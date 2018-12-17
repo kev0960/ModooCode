@@ -54,7 +54,6 @@ streambuf* rdbuf ( streambuf* sb );
 
 
 ```cpp-formatted
-
 /*이 예제는http://www.cplusplus.com/reference/iostream/ios/rdbuf/에서
  * 가져왔습니다.*/
 #include <iostream> #include <fstream> using namespace std;

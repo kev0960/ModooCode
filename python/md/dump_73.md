@@ -52,7 +52,6 @@ int fsetpos ( FILE * stream, const fpos_t * pos );
 
 
 ```cpp-formatted
-
 /*
 먼저 position 에 myfile.txt 의 맨 처음 부분을 넣은 후 myfile.txt 에 "That is a
 sample" 을 쓴다. 그 다음에 fsetpos 함수를 호출함으로써 fputs 로 인해 변경되었던

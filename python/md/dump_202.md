@@ -4,9 +4,6 @@ cat_title: 5 - 1. 내가 만든 연산자 - 연산자 오버로딩
 next_page : 203
 --------------
 
-
-
-
 이번 강좌에서는
 
 * 산술 연산자 오버로딩
@@ -61,7 +58,6 @@ bool operator== (MyString& str);
 이제, 우리가 `str1 == str2` 라는 명령을 한다면 이는 `str1.operator==(str2)` 로 내부적으로 변환되서 처리됩니다. 그리고 그 결과값을 리턴하게 되겠지요. 사실 `operator==` 를 만드는 것 자체는 별로 어려운 일은 아닙니다. 왜냐하면 이미 `MyString` 에서 `compare` 라는 좋은 함수를 제공하고 있기 때문이지요. 간단하게 만들어 보면 다음과 같습니다.
 
 ```cpp-formatted
-
 bool MyString::operator==(MyString& str) {
   return !compare(str);  // str 과 같으면 compare 에서 0 을 리턴한다.
 }
@@ -396,7 +392,6 @@ $$z = a + bi $$
 
 
 ```cpp-formatted
-
 class Complex {
  private:
   double real, img;
@@ -429,7 +424,6 @@ $$ \frac{z_1}{z_2} = \frac{a_1 + ib_1}{a_2 + ib_2} = \frac{(a_1+ ib_1)(a_2-ib_2)
 
 
 ```cpp-formatted
-
 class Complex {
  private:
   double real, img;
@@ -449,7 +443,6 @@ class Complex {
 이렇게 된다면 만일 `int` 형 변수였다면
 
 ```cpp-formatted
-
 a + b / c + d;
 ```
 
@@ -458,7 +451,6 @@ a + b / c + d;
 로 간단하게 쓸 수 있었던 명령을
 
 ```cpp-formatted
-
 a.plus(b.divide(c)).plus(d);
 ```
 
@@ -471,7 +463,6 @@ a.plus(b.divide(c)).plus(d);
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -530,7 +521,6 @@ int main() {
 와 같이 잘 나옴을 알 수 있습니다. 여기서 가장 중요하게 봐야 할 부분은 바로, 사칙연산 연산자 함수들의 리턴 타입 입니다.
 
 ```cpp-formatted
-
 Complex operator+(const Complex& c);
 Complex operator-(const Complex& c);
 Complex operator*(const Complex& c);
@@ -543,7 +533,6 @@ Complex operator/(const Complex& c);
 
 
 ```cpp-formatted
-
 Complex& operator+(const Complex& c) {
   real += c.real;
   img += c.img;
@@ -553,7 +542,6 @@ Complex& operator+(const Complex& c) {
 
 로 잘못 생각하는 경우도 있습니다. 물론 이렇게 설계하였을 경우, `Complex` 를 리턴하는 연산자 함수는 값의 복사가 일어나기 때문에 속도  저하가 발생하지만 위 처럼 레퍼런스를 리턴하게 되면 값의 복사 대신 레퍼런스만 복사하는 것이므로 큰 속도의 저하는 나타나지 않습니다. 하지만, 위와 같이 `operator+` 를 정의할 경우 다음과 같은 문장이 어떻게 처리되는지 생각해봅시다.
 ```cpp-formatted
-
 Complex a = b + c + b;
 ```
 
@@ -579,7 +567,6 @@ Complex a = b + c + b;
 
 아마 `Complex` 클래스를 구현하면서 한 가지 빠뜨렸다고 생각하고 있는 것이 있을 것입니다. 바로, 대입 연산자  (=) 이지요. 아마도, 대입 연산자야 말로 가장 먼저 구현했어야 할 연산자 함수가 아니였을까 합니다.
 ```cpp-formatted
-
 Complex& operator=(const Complex& c);
 ```
 
@@ -685,7 +672,6 @@ int main() {
 여담이지만, 이제 여러분은 다음 두 문장의 차이를 완벽히 이해 하실 수 있을 것이라 믿습니다.
 
 ```cpp-formatted
-
 Some_Class a = b;  // ①
 ```
 
@@ -694,7 +680,6 @@ Some_Class a = b;  // ①
 와
 
 ```cpp-formatted
-
 Some_Class a;  // ②
 a = b;
 ```
@@ -707,7 +692,6 @@ a = b;
 마찬가지 이유로 대입 사칙연산 함수들인, `+=, -=` 등을 구현할 수 있습니다. 일단 `=` 와 마찬가지로 아래와 같이 `Complex&` 를 리턴하고
 
 ```cpp-formatted
-
 Complex& operator+=(const Complex& c);
 Complex& operator-=(const Complex& c);
 Complex& operator*=(const Complex& c);
@@ -720,7 +704,6 @@ Complex& operator/=(const Complex& c);
 그 내부 구현은 간단히 미리 만들어 놓은 `operator+, operator-` 등을 이용해서 처리하면 됩니다.
 
 ```cpp-formatted
-
 Complex& Complex::operator+=(const Complex& c) {
   (*this) = (*this) + c;
   return *this;
@@ -744,7 +727,6 @@ Complex& Complex::operator/=(const Complex& c) {
 와 같이 말이지요. 전체 소스를 살펴보자면;
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -841,7 +823,6 @@ int main() {
 
 이번에는 `operator+` 를 개량해서, 꼭 `Complex` 수를 더하는 것이 아니라, 문자열로도 덧셈을 할 수 있도록 `operator+` 함수를 만드려 보려고 합니다. 다시 말해서,
 ```cpp-formatted
-
 y = z + "3+i2";
 ```
 
@@ -859,7 +840,6 @@ y = z + "3+i2";
 예를 들어서 "2+i3" 은 `Complex` 수 (2 , 3) 을 나타낸 것이라 생각합니다. 또한, "2-i3" 은 (2, -3 ) 을 나타낸 것이 되겠지요. 만일 실수부나 허수부의 값이 0 이라면 굳이 안써주어도 되는데, 예를 들어서 그냥 "3" 은 (3 , 0) 을 나타내며, "-5i" 는 (0, -5) 를 나타내게 됩니다. 참고로 우리의 실수부와 허수부는 `double` 변수 이기 때문에 문자열로 입력 받을 때 단순히 정수 부분만 받는 것이 아니라 소수점 아래 부분도 처리해 주어야만 할 것입니다. 이를 바탕으로 `operator+` 함수를 만들어 보도록 합시다.
 
 ```cpp-formatted
-
 Complex Complex::operator+(const char* str) {
   // 입력 받은 문자열을 분석하여 real 부분과 img 부분을 찾아야 한다.
   // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
@@ -902,7 +882,6 @@ Complex Complex::operator+(const char* str) {
 일단 문자열을 덧셈의 피연산자로 사용하게 되므로, `operator+` 의 인자는 `Complex &` 가 아니라 `const char *` 가 됩니다. 저의 경우, 이제 입력 받은 '문자열 복소수' 를 분석하기 위해서 가장 중요한 'i' 의 위치를 먼저 찾도록 하였습니다. 왜냐하면 이 'i' 를 기준으로 복소수의 실수부와 허수부가 나뉘어지기 때문이지요.
 
 ```cpp-formatted
-
 // 먼저 가장 기준이 되는 'i' 의 위치를 찾는다.
 int pos_i = -1;
 for (int i = 0; i != end; i++) {
@@ -919,7 +898,6 @@ for (int i = 0; i != end; i++) {
 
 
 ```cpp-formatted
-
 // 만일 'i' 가 없다면 이 수는 실수 뿐이다.
 if (pos_i == -1) {
   str_real = get_number(str, begin, end - 1);
@@ -934,7 +912,6 @@ if (pos_i == -1) {
 참고로 우리가 사용하는 `get_number` 함수는 특정 문자열에서 수 부분을 `double` 값으로 반환하는 함수 입니다. 사실 C 언어 표준 라이브러리인 `stdlib.h` 에서 `atof` 라는 함수를 제공해서 우리의 `get_number` 함수와 정확히 똑같은 작업을 하는 함수를 사용할 수 있지만, 한 번 이 함수를 직접 만들어보는 것도 나쁘지 않을 것이라 생각해서 `Complex` 클래스 내의 멤버 함수로 포함시켰습니다. 다만, 이 `get_number` 의 경우 `operator+` 함수의 내부적으로 사용되는 함수이지, 굳이 인터페이스로 제공할 필요는 없기 때문에 `private` 으로 설정하였습니다.
 
 ```cpp-formatted
-
 // 만일 'i' 가 있다면,  실수부와 허수부를 나누어서 처리하면 된다.
 str_real = get_number(str, begin, pos_i - 1);
 str_img = get_number(str, pos_i + 1, end - 1);
@@ -945,7 +922,6 @@ str_img = get_number(str, pos_i + 1, end - 1);
 자 이제, 다시 `operator+` 함수를 돌아와서 살펴보자면 만일 `i` 가 포함되어 있다면 `i` 를 기준으로 왼쪽의 실수부와 오른쪽의 허수부로 나뉘게 됩니다. 이 때 `str_real` 은 `get_number` 함수를 이용해서 정확히 실수 값을 얻을 수 있습니다. (왜냐하면 맨 뒤에 숫자 뒤에 딸려오는 문자들은 `get_number` 에서 알아서 무시된다) 하지만 `str_img` 의 경우 `i` 앞의 부호 부분이 잘리기 때문에 정확한 실수 값을 얻을 수 없기 때문에 따로
 
 ```cpp-formatted
-
 if (pos_i >= 1 && str[pos_i - 1] == '-') str_img *= -1.0;
 ```
 
@@ -955,7 +931,6 @@ if (pos_i >= 1 && str[pos_i - 1] == '-') str_img *= -1.0;
 
 
 ```cpp-formatted
-
 double Complex::get_number(const char *str, int from, int to) {
   bool minus = false;
   if (from > to) return 0;
@@ -991,7 +966,6 @@ double Complex::get_number(const char *str, int from, int to) {
 저의 경우 `get_number` 함수를 위와 같이 구현하였습니다. 만일 `from` 이 `to` 보다 크다면 당연히, 올바르지 않는 입력으로 0 을 반환하도록 하였습니다. (사실 이렇게 모든 예외적인 경우를 세세하게 처리하는 일도 매우 중요합니다) 그리고, 특별히 부호를 처리하기 위해서 `minus` 라는 `bool` 변수를 도입해서 마지막에 `minus` 가 `true` 일 경우에 부호를 음수로 바꾸도록 하였습니다.
 
 ```cpp-formatted
-
 if (str[from] == '-' || str[from] == '+') from++;
 ```
 
@@ -1001,7 +975,6 @@ if (str[from] == '-' || str[from] == '+') from++;
 
 
 ```cpp-formatted
-
 for (int i = from; i <= to; i++) {
   if (isdigit(str[i]) && integer_part) {
     num *= 10.0;
@@ -1022,7 +995,6 @@ for (int i = from; i <= to; i++) {
 
 
 ```cpp-formatted
-
 num *= 10.0;
 num += (str[i] - '0');
 ```
@@ -1032,7 +1004,6 @@ num += (str[i] - '0');
 를 해서 문자열 부분의 값을 읽어들일 수 있습니다. 즉 `1 -> 12 -> 123` 이 되겠지요. 참고로 `str[i] -` '0' 을 하는 기법은 상당히 자주 쓰이는데, `ASCII` 테이블 상에서 0 부터 9 까지 숫자들이 크기 순으로 연속적으로 배열되어 있기 때문에 단순히 '0' 을 빼버리면 그 숫자에 해당하는 실제 정수 값을 구할 수 있게 됩니다.
 
 ```cpp-formatted
-
 else if (isdigit(str[i]) && !integer_part) {
   decimal /= 10.0;
   num += ((str[i] - '0') * decimal);
@@ -1044,7 +1015,6 @@ else if (isdigit(str[i]) && !integer_part) {
 그리고 이번에는 소수점 뒷 부분을 읽어들일 차례 입니다. 소수점 뒷 부분의 경우 `decimal` 이란 새로운 변수를 도입하여서, 현재 읽어들이는 위치에 해당하는 값을 구할 수 있게 되는데요, 예를 들어 `123.456` 에서 4 의 경우 `decimal` 은 `0.1, 5` 는 `0.01` 등이 되겠지요. 이와 같은 방식으로 해서 우리는 원래의 문자열을 `double` 값으로 바꿀 수 있게 됩니다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -1205,7 +1175,6 @@ int main() {
 그렇게 된다면 길고 복잡했었던 `operator+ (const char * str)` 부분을 다음과 같이 간단하게 줄일 수 있기 때문이지요.
 
 ```cpp-formatted
-
 Complex Complex::operator+(const char* str) {
   Complex temp(str);
   return (*this) + temp;
@@ -1217,7 +1186,6 @@ Complex Complex::operator+(const char* str) {
 그렇다면, 간단히 `Complex(const char* str)` 을 만들어본다면 아래와 같습니다.
 
 ```cpp-formatted
-
 Complex::Complex(const char* str) {
   // 입력 받은 문자열을 분석하여 real 부분과 img 부분을 찾아야 한다.
   // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
@@ -1255,7 +1223,6 @@ Complex::Complex(const char* str) {
 그렇게 된다면, 나머지 함수들도,
 
 ```cpp-formatted
-
 Complex Complex::operator-(const char* str) {
   Complex temp(str);
   return (*this) - temp;
@@ -1275,7 +1242,6 @@ Complex Complex::operator/(const char* str) {
 로 간단하게 구현할 수 있게 됩니다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -1454,7 +1420,6 @@ int main() {
 한 가지 재미 있는 점은, `Complex(const char *str)` 생성자만 남겨놓고, `operator+(const char *str)` 계열들을 모두 지워보시고 컴파일 해보세요. 다시 말해서;
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -1610,7 +1575,6 @@ int main() {
 
 
 ```cpp-formatted
-
 Complex operator+(const char *str);
 Complex operator-(const char *str);
 Complex operator*(const char *str);
@@ -1622,7 +1586,6 @@ Complex operator/(const char *str);
 들을 모두 만들어 주었더니, 결과적으로 생성자 하나만 만들면 충분하다는 것이였나요? 놀랍게도, 우리의 컴파일러는 매우 똑똑하기 때문에 이와 같은 일이 가능합니다. 우리가
 
 ```cpp-formatted
-
 a = a + "-1.1 + i3.923";
 ```
 
@@ -1631,7 +1594,6 @@ a = a + "-1.1 + i3.923";
 와 같은 문장을 사용하였을 때, 앞에서 이야기 해왔듯이 컴파일러가 위 문장을
 
 ```cpp-formatted
-
 a = a.operator+("-1.1 + i3.923");
 ```
 
@@ -1640,7 +1602,6 @@ a = a.operator+("-1.1 + i3.923");
 로 바꿔줍니다. 하지만, 우리에게는 `operator+(const char *str)` 이 없고, `operator+(const Complex& c)` 밖에 없기 때문에 직접적으로 오버로딩 되지는 않습니다. 그렇지만, 컴파일러는 매우 똑똑하기 때문에 그 다음 순위로 오버로딩 될 수 있는 함수들이 있는지 없는 지 확인해봅니다. 그런데 놀랍게도, 우리에게는 `const char *` 에서 `Complex` 를 생성할 수 있는 생성자
 
 ```cpp-formatted
-
 Complex(const char* str);
 ```
 
@@ -1649,7 +1610,6 @@ Complex(const char* str);
 가 있기 때문에 컴파일러는 문자열 리터럴로 부터 `const Complex` 타입의 객체를 새롭게 생성할 수 있게 된다는 것입니다. 즉, 위 문장은 은 다음과 같이 변환됩니다.
 
 ```cpp-formatted
-
 a = a.operator+(Complex("-1.1 + i3.923"));
 ```
 
@@ -1661,7 +1621,6 @@ a = a.operator+(Complex("-1.1 + i3.923"));
 이러한 방식으로 여러분의 `Complex` 클래스의 문자열을 이용해서 복소수 덧셈을 수행할 수 있는 훌륭한 기능을 추가하였습니다. 하지만 문제는 다음과 같은 문장은 실행이 될 까요?
 
 ```cpp-formatted
-
 a = "-1.1 + i3.923" + a;
 ```
 
@@ -1670,7 +1629,6 @@ a = "-1.1 + i3.923" + a;
 사실 이 문장이나, 원래의
 
 ```cpp-formatted
-
 a = a + "-1.1 + i3.923";
 ```
 

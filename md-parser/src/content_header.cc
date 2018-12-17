@@ -33,6 +33,8 @@ HeaderType GetHeaderType(const string& header_token) {
     return FANCY_HEADER_FOR_REF;
   } else if (header_token == "###@") {
     return LECTURE_HEADER;
+  } else if (header_token == "##@") {
+    return TEMPLATE;
   }
   return NORMAL_HEADER;
 }
@@ -52,7 +54,35 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
   }
   string start_header, end_header;
   auto header_type = GetHeaderType(header_token_);
-  if (header_type == NORMAL_HEADER) {
+  if (header_type == TEMPLATE) {
+    TrimLeft(&content_);
+    if (content_ == "chewing-c-end") {
+      string s = R"(
+<div class='next-lecture-box'>강좌를 보다가 조금이라도 <span class='font-weight-bold'>궁금한 것이나 이상한 점이 있다면 꼭 댓글</span>을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. <br><br>
+현재 여러분이 보신 강좌는 <span class='font-italic lecture-title'>&lt;)";
+      string t =
+          R"(&gt;</span> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
+<div class="next-lecture"><a href="/notice/15">다음 강좌 보러가기</a></div></div>
+      )";
+      string page_title = parser_env->GetPageTitle();
+      StripMarkdown(&page_title);
+      EscapeHtmlString(&page_title);
+      return StrCat(s, page_title, t);
+    }
+    else if (content_ == "chewing-cpp-end") {
+      string s = R"(
+<div class='next-lecture-box'>강좌를 보다가 조금이라도 <span class='font-weight-bold'>궁금한 것이나 이상한 점이 있다면 꼭 댓글</span>을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. <br><br>
+현재 여러분이 보신 강좌는 <span class='font-italic lecture-title'>&lt;)";
+      string t =
+          R"(&gt;</span> 입니다. 이번 강좌의 모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
+<div class="next-lecture"><a href="/135">다음 강좌 보러가기</a></div></div>
+      )";
+      string page_title = parser_env->GetPageTitle();
+      StripMarkdown(&page_title);
+      EscapeHtmlString(&page_title);
+      return StrCat(s, page_title, t);
+    }
+  } else if (header_type == NORMAL_HEADER) {
     start_header =
         StrCat("<h", std::to_string(header_token_.size()), " id='page-heading-",
                std::to_string(header_index_), "'>");

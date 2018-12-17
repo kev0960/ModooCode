@@ -63,7 +63,6 @@ next_page : 224
 예를 들어 가장 기초적인 버블 정렬을 생각해봅시다. 버블 정렬의 코드는 간단히 보자면 아래와 같습니다.
 
 ```cpp-formatted
-
 for (int i = 0; i < N; i++) {
   for (int j = i + 1; j < N; j++) {
     if (arr[i] > arr[j]) {
@@ -108,7 +107,6 @@ $$O(N\log N) $$
 그렇다면 다시 벡터 자료형으로 돌아오겠습니다. `vector` 의 경우, 임의의 위치에 있는 원소에 접근을 $$O(1)$$ 로 수행할 수 있습니다. 게다가 맨 뒤에 새로운 원소를 추가하거나 제거하는 것 역시 $$O(1)$$ 에 수행합니다. `vector` 의 임의의 원소에 접근하는 것은 배열처럼 `[]` 를 이용하거나, `at` 함수를 이용하면 됩니다. 또한 맨 뒤에 원소를 추가하거나 제거하기 위해서는 `push_back` 혹은 `pop_back` 함수를 사용하면 됩니다. 아래 예를 보겠습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -182,7 +180,6 @@ int main() {
 이에 여러가지 이유가 있겠지만, 가장 중요한 점이 이를 통해 빈 벡터를 표현할 수 있다는 점입니다. 만일 `begin() == end()` 라면 원소가 없는 벡터를 의미하겠지요. 만약에 `vec.end()` 가 마지막 원소를 가리킨다면 비어있는 벡터를 표현할 수 없게 됩니다.
 
 ```cpp-formatted
-
 // 반복자 사용 예시
 #include <iostream>
 #include <vector>
@@ -241,7 +238,6 @@ cout << *itr << endl;
 포인터로 `*` 를 해서 가리키는 주소값의 값을 보았던 것처럼, `*` 연산자를 이용해서 `itr` 이 가리키는 원소를 볼 수 있습니다. 물론 `itr` 은 실제 포인터가 아니고 `*` 연산자를 오버로딩해서 마치 포인터 처럼 동작하게 만든 것입니다. `*` 연산자는 `itr` 이 가리키는 원소의 레퍼런스를 리턴합니다.
 
 ```cpp-formatted
-
 vector<int>::iterator itr = vec.begin() + 2;
 cout << "3 번째 원소 :: " << *itr << endl;
 ```
@@ -252,7 +248,6 @@ cout << "3 번째 원소 :: " << *itr << endl;
 반복자를 이용하면 아래와 같이 `insert` 와 `erase` 함수도 사용할 수 있습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -317,7 +312,6 @@ vec.insert(vec.begin() + 2, 15);
 앞서 `insert` 함수를 소개하였는데, 위 처럼 인자로 반복자를 받고, 그 반복자 앞에 원소를 추가해줍니다. 위 경우 `vec.begin() + 2` 앞에 15 를 추가하므로 `10, 20, 30, 40` 에서 `10, 20, 15, 30, 40` 이 됩니다.
 
 ```cpp-formatted
-
 vec.erase(vec.begin() + 3);
 print_vector(vec);
 ```
@@ -508,7 +502,6 @@ int main() {
 와 같이, `const` 반복자가 가리키고 있는 값은 바꿀 수 없다고 오류가 발생합니다. 주의할 점은, `const` 반복자의 경우
 
 ```cpp-formatted
-
 vector<int>::const_iterator citr = vec.cbegin() + 2;
 ```
 
@@ -589,7 +582,6 @@ int main() {
 물론 리스트의 장점이 없는 것은 아닙니다. `vector` 의 경우 맨 뒤를 제외하고는 임의의 위치에 원소를 추가하거나 제거하는 작업이 `O(n)` 이였지만 리스트의 경우 `O(1)` 으로 매우 빠르게 수행될 수 있습니다. 왜냐하면 원하는 위치 앞과 뒤에 있는 링크값만 바꿔주면 되기 때문입니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <list>
 using namespace std;
@@ -624,7 +616,6 @@ int main() {
 한 가지 재미있는점은 리스트의 반복자의 경우 다음과 같은 연산밖에 수행할 수 없습니다.
 
 ```cpp-formatted
-
 itr++    // ++itr
   itr--  // --itr 도 됩니다.
 ```
@@ -648,7 +639,6 @@ itr + 5 // 불가능!
 즉, 임의의 위치에 접근할 수 있는 반복자 입니다 (참고로 `RandomAccessIterator` 는 `BidirectionalIterator` 를 상속받고 있습니다)
 
 ```cpp-formatted
-
 #include <iostream>
 #include <list>
 using namespace std;
@@ -710,7 +700,6 @@ int main() {
 와 같이 잘 나옵니다.
 
 ```cpp-formatted
-
 for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
   // 만일 현재 원소가 20 이라면
   // 그 앞에 50 을 집어넣는다.
@@ -725,7 +714,6 @@ for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
 앞서 설명하였지만 리스트의 반복자는 `BidirectionalIterator` 이기 때문에 `++` 과 `--` 연산만 사용 가능합니다. 따라서 위 처럼 `for` 문으로 하나 하나 원소를 확인해보는것은 가능하지요. `vector` 와는 다르게 `insert` 작업은 `O(1)` 으로 매우 빠르게 실행됩니다.
 
 ```cpp-formatted
-
 for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
   // 값이 30 인 원소를 삭제한다.
   if (*itr == 30) {
@@ -813,7 +801,6 @@ int main() {
 
 
 ```cpp-formatted
-
 dq.push_back(10);
 dq.push_back(20);
 dq.push_front(30);
@@ -825,7 +812,6 @@ dq.push_front(40);
 위와 같이 `push_back` 과 `push_front` 를 이용해서 맨 앞과 뒤에 원소들을 추가하였고,
 
 ```cpp-formatted
-
 dq.pop_front();
 ```
 
@@ -868,11 +854,4 @@ dq.pop_front();
 [여기에서 시퀀스 컨테이너들의 모든 함수들을 찾아볼 수 있습니다.](http://en.cppreference.com/w/cpp/container)한 번 읽어보세요!
 
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <10 - 1. C++ 의 표준 템플릿 라이브러리 (STL) - 시퀀스 컨테이너>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

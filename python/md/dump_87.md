@@ -267,7 +267,6 @@ char compare(char *str1, char *str2);
 여러분은 `stdio.h` 에 무엇이 써져 있는지 궁금하지 않으세요? 한 번 제가 그 내용을 올려드리겠습니다. 참고로 [여기](https://code.woboq.org/userspace/glibc/libio/stdio.h.html)에서 전체 코드를 보실 수 있습니다.
 
 ```cpp-formatted
-
 #ifndef _STDIO_H
 #define _STDIO_H 1
 #define __GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION
@@ -653,7 +652,6 @@ char compare(char *str1, char *str2) {
 또한 `str.h` 에는 `compare` 함수의 원형이 선언되어 있죠.
 
 ```cpp-formatted
-
 /* str.h */
 char compare(char *str1, char *str2);
 ```
@@ -935,14 +933,4 @@ int main() {
 
 위 도서 관리 프로그램을 구조체를 이용하여 만든 것이 있을 것입니다. ( [http://itguru.tistory.com/60](http://itguru.tistory.com/60) 생각해 볼 문제 참조) 이 역시 위와 같이 파일로 쪼개 보세요.
 
-
-
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

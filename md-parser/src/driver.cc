@@ -61,7 +61,7 @@ void ReadFileInfo(
   }
 }
 
-bool TimeSpecEquals(const timespec& a, const timespec b) {
+bool TimeSpecEquals(const timespec& a, const timespec& b) {
   if (a.tv_nsec != b.tv_nsec || a.tv_sec != b.tv_sec) {
     return false;
   }
@@ -83,11 +83,19 @@ std::set<string> GetUnModifiedFiles(
     }
     const string file_id = GetFileId(filename);
     if (Contains(*file_id_to_stat_map, file_id) &&
+#ifdef __APPLE__
+        TimeSpecEquals(file_id_to_stat_map->at(file_id), file_info.st_mtimespec)) {
+#else 
         TimeSpecEquals(file_id_to_stat_map->at(file_id), file_info.st_mtim)) {
+#endif
       unmodified_files.insert(file_id);
     } else {
       std::cerr << "Diff : " << filename << std::endl;
+#ifdef __APPLE__
+      (*file_id_to_stat_map)[file_id] = file_info.st_mtimespec;
+#else
       (*file_id_to_stat_map)[file_id] = file_info.st_mtim;
+#endif
     }
   }
   return unmodified_files;

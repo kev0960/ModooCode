@@ -33,7 +33,6 @@ next_page : 210
 
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;  // 표준이므로 std 안에 string 이 정의되어 있습니다.
@@ -65,7 +64,6 @@ int main() {
 일단 기본적으로 "abc" 는 컴파일러 상에서는 C 형식 문자열로 인식됩니다. 즉, 위 문장은 `string` 클래스의 인자를 `const char *` 로 받는 생성자를 호출한 것으로 볼 수 있겠지요.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -100,7 +98,6 @@ int main() {
 특히 편리한 점으로 C 형식 문자열이였을 경우 문자열을 비교하기 위해서 `strcmp` 함수를 사용했어야 하고,
 
 ```cpp-formatted
-
 if (s == s2) cout << s << " 와 " << s2 << " 는 같다 " << endl;
 if (s != t) cout << s << " 와 " << t << " 는 다르다 " << endl;
 ```
@@ -121,7 +118,6 @@ if (s != t) cout << s << " 와 " << t << " 는 다르다 " << endl;
 
 우리가 만들어야 할 프로그램의 목적은 회사의 사원들의 월급을 계산해서 한달에 총 얼마나 되는 돈을 월급으로 지출해야 하는지 알려주는 단순한 프로그램 입니다. 그렇다면 일단 여러분은 각 사원들에 정보를 클래스로 만들어서 데이터를 보관하도록 하겠지요. 사원들의 필요한 데이터는 이름, 나이, 직책과 직책의 순위에 해당하는 숫자값 (예를 들어 평사원이면 `1,` 대리면 2 이런 식으로) 정도 입니다. 이를 바탕으로 간단히 클래스를 구성해본다면 다음과 같이 짤 수 있을 것입니다.
 ```cpp-formatted
-
 class Employee {
   string name;
   int age;
@@ -164,7 +160,6 @@ class Employee {
 일단 우리는 다음과 같은 멤버 변수들을 이용해서 사원 데이터를 처리할 것입니다.
 
 ```cpp-formatted
-
 int alloc_employee;        // 할당한 총 직원 수
 int current_employee;      // 현재 직원 수
 Employee **employee_list;  // 직원 데이터
@@ -176,7 +171,6 @@ Employee **employee_list;  // 직원 데이터
 `employee_list` 가 `Employee**` 타입으로 되어 있는 이유는, 우리가 이를 `Employee*` 객체를 담는 배열로 사용할 것이기 때문입니다. 그렇다면 `EmployeeList` 클래스의 생성자는 아래와 같이 쉽게 구성할 수 있겠지요.
 
 ```cpp-formatted
-
 EmployeeList(int alloc_employee) : alloc_employee(alloc_employee) {
   employee_list = new Employee*[alloc_employee];
   current_employee = 0;
@@ -188,7 +182,6 @@ EmployeeList(int alloc_employee) : alloc_employee(alloc_employee) {
 그리고 사원을 추가하는 함수는 아래처럼 단순하게 구성할 수 있습니다.
 
 ```cpp-formatted
-
 void add_employee(Employee* employee) {
   // 사실 current_employee 보다 alloc_employee 가 더
   // 많아지는 경우 반드시 재할당을 해야 하지만, 여기서는
@@ -206,7 +199,6 @@ void add_employee(Employee* employee) {
 그리고 나머지 짜잘한 함수들을 완성해준다면 다음과 같이 `EmployeeList` 클래스를 구성할 수 있게 됩니다.
 
 ```cpp-formatted
-
 class EmployeeList {
   int alloc_employee;        // 할당한 총 직원 수
   int current_employee;      // 현재 직원 수
@@ -256,7 +248,6 @@ class EmployeeList {
 따라서 전체 코드는 다음과 같습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -356,7 +347,6 @@ int main() {
 아 이렇게 사원 관리 프로그램을 잘 만들어서 제출해달라는 찰나, 무한 상사로 부터 연락을 한 통 받습니다. 차장 이상 급들은 관리데이터에 근속 년수를 포함시켜서 월급에 추가해달라고 말이지요. 그래서 저는 울며가며 겨자먹기로 `Manager` 클래스를 추가하였습니다. 사실 `Employee` 클래스랑 거의 똑같지만, 어쩔 수 없지요. 더 짜증나는 부분은 `EmployeeList` 클래스에서도 `Employee` 와 `Manager` 를 따로 처리해야 된다는 점입니다. 아무튼, 일단 `Manager` 클래스를 구성해봅시다.
 
 ```cpp-formatted
-
 class Manager {
   string name;
   int age;
@@ -401,7 +391,6 @@ class Manager {
 당연하게도 `Employee` 배열과 `Manager` 배열을 따로 만들어야만 합니다. 따라서 각 배열에 사용하고 있는 크기를 나타낼 변수도 따로 지정해야만 하겠지요. 따라서
 
 ```cpp-formatted
-
 int alloc_employee;  // 할당한 총 직원 수
 
 int current_employee;  // 현재 직원 수
@@ -414,7 +403,6 @@ Manager **manager_list;    // 매니저 데이터
 와 같이 바꿔주어야 합니다. (여기서 또한 간단하게 처리하기 위해서 각 배열에 할당한 크기는 모두 동일하다고 생각합니다). 그리고 무엇보다도 `EmployeeList` 클래스의 나머지 부분을 바꿔주면
 
 ```cpp-formatted
-
 class EmployeeList {
   int alloc_employee;  // 할당한 총 직원 수
 
@@ -475,7 +463,6 @@ class EmployeeList {
 와 같이 구성할 수 있습니다. 두 개의 배열을 관리하기 때문에 똑같은 코드를 변수 이름만 바꿔서 한 번 더 써야 합니다. 상당히 귀찮기 다름 없지요. 이를 바탕으로 전체 코드를 구성해보면 다음과 같습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -675,7 +662,6 @@ class Child : public Parent {
 가장 먼저 눈에 띄는 부분은 바로 맨 위 `class` 의 정의 부분으로
 
 ```cpp-formatted
-
 class Child : public Parent
 ```
 
@@ -691,7 +677,6 @@ class Child : public Parent
 마치 `Child` 클래스 안에 `Parent` 클래스의 코드가 그대로 들어가 있는 것 처럼 말이지요. 따라서 아래 처럼 `Child` 클래스에서 `Parent` 클래스의 `what` 함수를 호출 할 수 있게 됩니다.
 
 ```cpp-formatted
-
 Child() : Parent(), s("자식") {
   cout << "자식 클래스" << endl;
 
@@ -706,14 +691,12 @@ Child() : Parent(), s("자식") {
 그리고 또 하나 눈여겨 봐야 할 점은 `Child` 의 생성자 호출 부분 입니다. `Child` 의 생성자는 반드시 위 처럼 초기화자 리스트에서 부모의 생성자를 호출해서 부모의 생성을 먼저 처리 한 다음에, `Child` 의 생성자가 실행되어야 합니다 (마치 부모가 태어나야지 자식들이 태어날 수 있는 것 처럼 말이지요). 따라서 아래 처럼
 
 ```cpp-formatted
-
 Child() : Parent(), s("자식")
 ```
 
 초기화 리스트에서 `Parent` 를 통해 부모의 생성자를 먼저 호출하게 됩니다. 그렇다면 아래의 코드를 살펴보도록 합시다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -766,7 +749,6 @@ int main() {
 일단 여러분은 부모 클래스 생성에서 왜 저런식으로 출력되는지는 당연히 알고 계실 것입니다. `Parent` 의 생성자에서 '부모 클래스' 를 출력을 하게 되지요. 그렇다면 이번에는 `Child` 객체를 만들 때 왜 저런식으로 출력되는지 살펴보도록 합시다.
 
 ```cpp-formatted
-
 cout << " === 자식 클래스 생성 ===" << endl;
 Child c;
 ```
@@ -776,7 +758,6 @@ Child c;
 일단 위와 같이 `Child` 의 인자가 없는 생성자를 호출하게 됩니다.
 
 ```cpp-formatted
-
 Child() : Parent(), s("자식") {
   cout << "자식 클래스" << endl;
 
@@ -800,7 +781,6 @@ Child() : Parent(), s("자식") {
 그렇다면 만일 `Child` 에도 `what` 함수를 정의해주면 어떨까요.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -867,7 +847,6 @@ int main() {
 다음과 같은 코드를 생각해봅시다.
 
 ```cpp-formatted
-
 class Parent {
   string parent_string;
 
@@ -918,7 +897,6 @@ error C2248: 'Parent::parent_string' : cannot access private member declared in 
 이렇게 3 단계로 멤버의 접근 허용 범위를 지정할 수 있습니다. 그렇다면 실제로 `private` 을 `protected` 로 바꾼다면 잘 실행됨을 알 수 있습니다.
 
 ```cpp-formatted
-
 class Parent {
  protected:
   string parent_string;
@@ -952,7 +930,6 @@ class Child : public Parent {
 그렇다면 이제
 
 ```cpp-formatted
-
 class Child : public Parent
 ```
 
@@ -970,7 +947,6 @@ class Child : public Parent
 
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -1103,7 +1079,6 @@ class Manager : public Employee {
 
 
 ```cpp-formatted
-
 Manager(string name, int age, string position, int rank, int year_of_service)
     : year_of_service(year_of_service), Employee(name, age, position, rank) {}
 
@@ -1265,12 +1240,4 @@ int main() {
 자 그럼 이번 강좌는 여기에서 마치도록 하겠습니다. 사실 여기 까지만 읽으면 굳이 상속을 왜 쓰는지 이해하기 어렵다고 생각할 수 있습니다. 상속의 진짜 유용함은다음 강좌에서 다루도록 하겠습니다 :)
 
 
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <6 - 1. C++ 표준 스트링 & 부모의 것을 물려쓰자 - 상속>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

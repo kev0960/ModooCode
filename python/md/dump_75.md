@@ -59,7 +59,6 @@ fseek(stream, 0, SEEK_SET);
 
 ```cpp-formatted
 
-
 /*myfile.txt 에 A 부터 Z 까지 출력한 뒤, 다시 pFile 을 파일의 처음으로 옮긴 후
  * 파일의 내용을 읽어들인다. 즉, buffer 에는 A 부터 Z 까지 들어가게 된다. 따라서
  * 화면에는 ABCDEFGHIZKLMNOPQRSTUVWXYZ 가 출력된다.이

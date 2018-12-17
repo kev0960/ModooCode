@@ -100,7 +100,6 @@ ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
 
 
 ```cpp-formatted
-
 /*myfile.txt 로 부터 각 문장을 입력 받되  # 로 시작하는 문장은 @ 로 대체해서
  * 입력받는다.이 예제는
  * http://www.cplusplus.com/reference/clibrary/cstdio/ungetc/에서 가져왔습니다.

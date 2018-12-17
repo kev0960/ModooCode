@@ -38,7 +38,6 @@ streamsize  gcount ( ) const;
 
 
 ```cpp-formatted
-
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -73,7 +72,6 @@ int main() {
 
 
 ```cpp-formatted
-
 (basic_istream<charT, traits>)streamsize gcount() const;
 ```
 

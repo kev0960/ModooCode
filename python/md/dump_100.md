@@ -258,7 +258,6 @@ while (next) {
 
 
 ```cpp-formatted
-
 #include <stdio.h>
 #include <stdlib.h>
 struct Node* InsertNode(struct Node* current, int data);
@@ -347,7 +346,6 @@ struct Node* CreateNode(int data) {
 
 
 ```cpp-formatted
-
 void PrintNodeFrom(struct Node *from) {
   /* from 이 NULL 일 때 까지,
      즉 끝 부분에 도달할 때 까지 출력 */
@@ -366,7 +364,6 @@ void PrintNodeFrom(struct Node *from) {
 
 
 ```cpp-formatted
-
 struct Node* Node1 = CreateNode(100);
 struct Node* Node2 = InsertNode(Node1, 200);
 struct Node* Node3 = InsertNode(Node2, 300);
@@ -401,7 +398,6 @@ struct Node* Node4 = InsertNode(Node2, 400);
 
 
 ```cpp-formatted
-
 /* memcpy 함수 */
 
 #include <stdio.h>
@@ -462,7 +458,6 @@ memcpy(str3, "hello", 6)
 
 
 ```cpp-formatted
-
 /* memmove 함수 */
 
 #include <stdio.h>
@@ -495,7 +490,6 @@ int main() {
 
 
 ```cpp-formatted
-
 char str[50] = "I love Chewing C hahaha";
 memmove(str + 23, str + 17, 6);
 ```
@@ -508,7 +502,6 @@ memmove(str + 23, str + 17, 6);
 
 
 ```cpp-formatted
-
 /* memcmp 함수 */
 
 #include <stdio.h>
@@ -590,13 +583,4 @@ struct Node {
 
 이전 강좌에서 만들었던 도서 관리 프로그램을 동적 할당과 구조체를 이용하여 만들어보세요 (난이도 : 中)
 
-
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <20 - 2. 메모리 동적할당 + 메모리 갖고 놀기>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

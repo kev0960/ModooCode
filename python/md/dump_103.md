@@ -323,7 +323,6 @@ int main() {
 \sidenote{참고로 typedef 를 위와 같이 써줌으로써 typedef struct SENSOR SENSOR 한 효과를 낼 수 있습니다.} 위 코드는 가상의 코드 이므로 컴파일 해보지 않겠습니다만, 일단 여러분은 위 코드에서 별 이상을 느끼지는 못할 것입니다. 하지만 똑똑한 컴파일러는 ‘너무 과하게 똑똑해서’ 우리가 사용한 `while` 문을 최적화 해버립니다. 보통의 상황에서 `sensor->sensor_flag` 의 값이 바뀌는 경우는 없기 때문에 굳이 `while` 문을 매번 돌릴 때 마다 값을 비교할 필요가 없게 되는 것이지요. 그냥 컴파일러는 값을 딱 한 번만 읽고 0 이 아니라면 그냥 가고, 0 이라면 `while` 문을 무한히 돌리는 것으로 생각해버립니다. 결과적으로 위 코드를 컴파일러는 다음과 같은 코드로 바꿔버립니다.
 
 ```cpp-formatted
-
 #include <stdio.h>
 typedef struct SENSOR {
   /* 감지 안되면 0, 감지되면 1 이다.*/
@@ -347,7 +346,6 @@ int main() {
 첫번째로는 컴파일러의 최적화 옵션을 빼버리는 것입니다. `gcc` 에서는 단순히 최적화 옵션을 안주면 됩니다. `Visual Studio` 에서는 살짝 복잡한데, 프로젝트 속성의 **C/C++ –> 최적화** 에서 사용 안함을 선택하시면 됩니다. 그런데, 최적화를 하지 않기에는 너무나 그 손실이 큽니다. 최적화 옵션을 끄는 순간 다른 모든 코드들도 최적화를 하지 않겠다는 의미가 되거든요. 이를 위해 `volatile` 키워드가 생겨났습니다.
 
 ```cpp-formatted
-
 #include <stdio.h>
 typedef struct SENSOR {
   /* 감지 안되면 0, 감지되면 1 이다.*/
@@ -442,7 +440,6 @@ struct Weird {
 ```
 
 ```cpp-formatted
-
 /* test.c*/
 #include <stdio.h>
 #include "weird.h"
@@ -468,7 +465,6 @@ int main() {
 상당히 단순한 예제이지요. `test.c` 에서 `weird.h` 를 포함했으므로 `weird.h` 의 내용이 `test.c` 로 그대로 복사된 셈입니다. (즉, #include “weird.h” 부분이 `weird.h` 의  내용으로 바뀌었다고 보셔도 무방합니다) 따라서 `struct Weird` 를 사용할 수 있게 되므로 위와 같은 결과가 발생합니다. 그런데 만일 실수로 `weird.h` 를 두 번 포함했다고 합시다. 그렇다면 어떻게 될까요?
 
 ```cpp-formatted
-
 #include <stdio.h>
 #include "weird.h"
 int main() {
@@ -492,7 +488,6 @@ error C2011: 'Weird' : 'struct' 형식 재정의
 위와 같이 오류를 만나게 됩니다. 왜냐하면 각각 `#include "weird.h"` 부분이 `weird.h` 의 내용으로 바뀌어서 결과적으로는
 
 ```cpp-formatted
-
 #include <stdio.h>
 struct Weird {
   char arr[2];
@@ -517,7 +512,6 @@ int main() {
 일단 C 의 기본 전처리기 명령을 이용하여 하는 방법이 있습니다.
 
 ```cpp-formatted
-
 /* 수정된 weird.h*/
 #ifndef WEIRD_H
 #define WEIRD_H
@@ -531,7 +525,6 @@ struct Weird {
 
 
 ```cpp-formatted
-
 /* 이상한 test.c*/
 #include <stdio.h>
 #include "weird.h"
@@ -557,7 +550,6 @@ int main() {
 이렇게 하면 헤더파일의 내용이 중복으로 포함되는 것을 막을 수 있습니다. (이는 이미 수많은 헤더파일에서 사용되고 있는 방법입니다) 하지만 `#pragma` 를 이용하면 훨씬 단순하게 할 수 있는데,
 
 ```cpp-formatted
-
 /* #pragma 의 위엄 – weird.h*/
 #pragma once
 struct Weird {
@@ -570,7 +562,6 @@ struct Weird {
 
 
 ```cpp-formatted
-
 /* test.c*/
 #include <stdio.h>
 #include "weird.h"
@@ -598,7 +589,6 @@ int main() {
 실제로 아래 코드는 `stdio.h` 의 헤더파일을 열어본 것입니다.
 
 ```cpp-formatted
-
 /***
  *stdio.h - definitions/declarations for standard I/O routines
  *
@@ -638,7 +628,6 @@ int main() {
 를 보면 `_MSC_VER` 이 1000 보다 크면 `#pragma once` 키워드를 사용하라고 되어있습니다. `_MSC_VER` 은 마이크로소프트 사의 전처리기에 의해 기본적으로 정의되어 있는 상수로 컴파일러의 버전을 나타내는데, `Visual C++` 의 경우 `_MSC_VER` 값이 1000 부터 시작 하여 현재 2008 버전은 1500 의 값을 가지고 있습니다. 즉, 현재 버전의 컴파일러의 경우 `_MSV_VER > 1000` 이 참이 되므로 `#pragma once` 키워드를 이용하게 됩니다. 구 버전의 컴파일러는 그 아래
 
 ```cpp-formatted
-
 #ifndef _INC_STDIO
 #define _INC_STDIO
 
@@ -660,13 +649,4 @@ int main() {
 MSDN 에 들어가서 `#pragma` 와 연관된 키워드들을 잘 살펴보시기 바랍니다.
  [http://msdn.microsoft.com/en-us/library/d9x1s805%28v=VS.71%29.aspx](http://msdn.microsoft.com/en-us/library/d9x1s805%28v=VS.71%29.aspx)
 
-
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는 <<씹어먹는 C 언어 - <22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

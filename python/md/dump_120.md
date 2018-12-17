@@ -30,7 +30,6 @@ struct tm * localtime ( const time_t * timer );
 
 
 ```cpp-formatted
-
 time_t rawtime;
 struct tm* timeinfo;
 time(&rawtime);

@@ -69,7 +69,6 @@ clear(rdstate() | state);
 
 ```cpp-formatted
 
-
 (basic_ios<charT, traits>)void setstate(iostate state);
 ```
 

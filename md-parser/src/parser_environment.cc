@@ -261,6 +261,15 @@ string ParserEnvironment::GetUrlOfReference(string* ref_name) {
   return reference_infos[0].url;
 }
 
+string ParserEnvironment::GetPageTitle() {
+  if (header_.find("cat_title") != header_.end()) {
+    return header_["cat_title"];
+  } else if (header_.find("title") != header_.end()) {
+    return header_["title"];
+  }
+  return "";
+}
+
 bool ParserEnvironment::AdvanceToNextContent() {
   current_content_++;
   return current_content_ < content_list_.size();

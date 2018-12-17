@@ -69,7 +69,6 @@ int main() {
 일단 위 소스를 보게 된다면 이름이 'print' 인 함수 3 개가 정의가 되었음을 알 수 있습니다. 고전적인 C 컴파일러에서는 오류가 발생했겠지만 C++ 에서는 '함수의 이름이 같더라도 인자가 다르면 다른 함수' 라고 판단하기 때문에 오류가 발생하지 않는 것입니다.
 
 ```cpp-formatted
-
 void print(int x) void print(char x) void print(double x)
 ```
 
@@ -79,7 +78,6 @@ void print(int x) void print(char x) void print(double x)
 
 
 ```cpp-formatted
-
 int a = 1;
 char b = 'c';
 double c = 3.2f;
@@ -167,7 +165,6 @@ print(b);
 는 어떻게 될까요. 1 단계에서는 명백하게도 `char` 타입의 인자를 가진 `print` 가 없기에 2 단계로 넘어오게 됩니다. 그런데 2 단계에서는 `char` 이 `int` 로 변환된다면 `print (int x)` 를 호출할 수 있기 때문에 결국 `print (int x)` 가 호출되게 되는 것이지요.
 
 ```cpp-formatted
-
 // 모호한 오버로딩
 
 #include <iostream>
@@ -211,7 +208,6 @@ while trying to match the argument list '(double)'
 
 
 ```cpp-formatted
-
 #include <iostream>
 
 using namespace std;
@@ -303,7 +299,6 @@ int main() {
 위의 코드는 간단한 것들 (`add_year, set_date, show_date`) 만 만들어 놓은 상태입니다. 그런데, 이상한 것이 있죠? `class` 내부에는 아래 코드와 같이
 
 ```cpp-formatted
-
 public:
 void set_date(int _year, int _month, int _date);
 void add_day(int inc);
@@ -338,7 +333,6 @@ void set_date(int _year, int _month, int _day) {
 특히 나중에 클래스 자체만 따로 헤더파일로 뺄 수 도 있는데, 이 때 클래스 코드 길이가 너무 길면 불편하겠지요 . 보통 간단한 함수를 제외하면 대부분의 함수들은 클래스 바깥에서 위와 같이 정의하게 됩니다. 왜냐하면 클래스 내부에 쓸 경우 클래스 크기가 너무 길어져서 보기 좋지 않기 때문이죠. 특히 나중에 클래스 자체만 따로 헤더파일로 뺄 수 도 있는데, 이 때 클래스 코드 길이가 너무 길면 불편하겠지요.
 
 ```cpp-formatted
-
 Date day;
 day.set_date(2011, 3, 1);
 day.show_date();
@@ -364,7 +358,6 @@ day.show_date();
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 class Date {
@@ -430,7 +423,6 @@ Date(int _year, int _month, int _day)
 이렇게 정의가 된 생성자는 객체를 생성할 때 다음과 같이 위 함수에서 정의한 인자에 맞게마치 함수를 호출하듯이써준다면 위 생성자를 호출하며 객체를 생성할 수 있게 됩니다. 즉, 우리의 경우 아래와 같이 객체를 생성하였지요.
 
 ```cpp-formatted
-
 Date day(2011, 3, 1);
 ```
 
@@ -438,7 +430,6 @@ Date day(2011, 3, 1);
 이는 곧 "`Date` 클래스의 `day` 객체를 만들면서 생성자 `Date(int _year, int _month, int _day)` 를 호출한다" 라는 의미가 됩니다. 따라서 `Date` 의 객체를 생성할 때 생성자의 인자 `_year, _month, _day` 에 각각 `2011, 3, 1` 을 전달하며 객체를 생성하게 되는 것이지요. 매우 간단한 원리 입니다. 그러한 맥락에서 볼 때 아래와 같이 객체를 생성하는 것도 동일한 의미 입니다.
 
 ```cpp-formatted
-
 Date day = Date(2012, 3, 1);
 ```
 
@@ -446,7 +437,6 @@ Date day = Date(2012, 3, 1);
 이는 역시 `day` 객체를 생성하고, 이 때 생성자 `Date(2012, 3, 1)` 을 호출해서 이를 토대로 객체를 생성하라는 의미가 됩니다. 사실 객체를 정의하는 두 방식에는 각각 이름이 붙어 있는데,
 
 ```cpp-formatted
-
 Date day(2011, 3, 1);         // 암시적 방법 (implicit)
 Date day = Date(2012, 3, 1);  // 명시적 방법 (explicit)
 ```
@@ -472,7 +462,6 @@ Date day;
 물론 여러분이 직접 디폴트 생성자를 정의할 수 도 있습니다. 아래와 같이요.
 
 ```cpp-formatted
-
 // 디폴트 생성자 정의해보기
 
 #include <iostream>
@@ -521,7 +510,6 @@ int main() {
 
 
 ```cpp-formatted
-
 Date() {
   year = 2012;
   month = 7;
@@ -536,7 +524,6 @@ Date() {
 
 
 ```cpp-formatted
-
 Date day = Date();
 Date day2;
 ```
@@ -546,7 +533,6 @@ Date day2;
 그래서 사용하게 되면 위와 같이 디폴트 생성자를 이용해서 `day` 와 `day2` 를 추가할 수 있게 되는 것입니다. 한 가지 주의할 점은 위에서 인자가 있는 생성자에서 적용했던 것 처럼
 
 ```cpp-formatted
-
 Date day3();
 ```
 
@@ -561,7 +547,6 @@ Date day3();
 앞서 함수의 오버로딩에 대해 설명을 하였는데요, 생성자 역시 같은 함수이기에 오버로딩이 가능합니다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 class Date {
@@ -626,7 +611,6 @@ int main() {
 
 
 ```cpp-formatted
-
 class Point {
   int x, y;
 
@@ -656,11 +640,4 @@ class Geometry {
 };
 ```
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자) >>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

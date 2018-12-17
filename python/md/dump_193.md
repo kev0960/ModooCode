@@ -57,7 +57,6 @@ istream&  ignore ( streamsize n = 1, int delim = EOF );
 
 
 ```cpp-formatted
-
 /*
 
 
@@ -95,7 +94,6 @@ int main() {
 
 
 ```cpp-formatted
-
 (basic_istream<charT, traits>)typedef traits::int_type int_type;
 basic_istream& ignore(streamsize n = 1, int_type delim = traits::eof());
 ```

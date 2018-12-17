@@ -90,7 +90,6 @@ vector(const vector<T, Allocator>& x);
 
 
 ```cpp-formatted
-
 /*이 예제는http://www.cplusplus.com/reference/stl/vector/vector/에서
  * 가져왔습니다.*/
 

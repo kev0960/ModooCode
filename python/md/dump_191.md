@@ -113,7 +113,6 @@ istream& get ( streambuf& sb, char delim );
 
 
 ```cpp-formatted
-
 /*
 
 
@@ -169,7 +168,6 @@ int main() {
 
 
 ```cpp-formatted
-
 (basic_istream<charT, traits>)
 
   typedef charT char_type;

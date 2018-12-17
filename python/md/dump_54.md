@@ -41,7 +41,6 @@ int fclose ( FILE * stream );
 ###  실행 예제
 
 ```cpp-formatted
-
 /*myfile.txt 를 오픈하여 "fclose example" 을 쓴 후 파일을 닫는다.
 이 예제는 http://www.cplusplus.com/reference/clibrary/cstdio/fclose/에서
 가져왔습니다.*/

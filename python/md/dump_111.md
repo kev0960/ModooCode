@@ -54,7 +54,6 @@ double difftime ( time_t time2, time_t time1 );
 
 
 ```cpp-formatted
-
 /*이름을 쓰는데 얼마나 걸리는지 알아온다.이
  * 예제는http://www.cplusplus.com/reference/clibrary/ctime/difftime/에서
  * 가져왔습니다.*/

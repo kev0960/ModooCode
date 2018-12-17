@@ -63,7 +63,6 @@ ostream* tie ( ostream* tiestr );
 
 
 ```cpp-formatted
-
 /*
 
 
@@ -123,7 +122,6 @@ int main() {
 
 
 ```cpp-formatted
-
 (basic_ios<charT, traits>)basic_ostream<charT, traits>* tie() const;
 basic_ostream<charT, traits>* tie(basic_ostream<charT, traits> tiestr);
 ```

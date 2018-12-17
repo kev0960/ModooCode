@@ -4,8 +4,6 @@ cat_title: 2 - 2. C++ 은 C 친구일까?
 next_page : 169
 --------------
 
-
-
 이번 강좌에서는
 
 * 기초적인 함수의 사용
@@ -27,7 +25,6 @@ next_page : 169
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -56,21 +53,18 @@ void print_square(int arg) { cout << "전달된 인자 : " << arg * arg << endl;
 위 소스를 보면, 사실 굳이 설명이 필요 없이 이해가 잘 되실 것입니다. C++ 에서 C 와 입출력 방법이 다를 뿐 다 똑같습니다. 일단, 아래의 코드에서 우리는 `void` 형의 (리턴값이 없는) 함수 `print_square` 을 선언합니다.
 
 ```cpp-formatted
-
 void print_square(int arg);
 ```
 
 그리고 이 함수는
 
 ```cpp-formatted
-
 void print_square(int arg) { cout << "전달된 인자 : " << arg * arg << endl; }
 ```
 
 와 같은 작업을 수행하지요. 즉 `arg* arg` 를 출력하는 것입니다. 그리고 `main` 함수에서 인자로 `i` 를 전달했지요.
 
 ```cpp-formatted
-
 print_square(i);
 ```
 
@@ -82,7 +76,6 @@ print_square(i);
 
 
 ```cpp-formatted
-
 
 #include <iostream>
 
@@ -113,7 +106,6 @@ int main() {
 이런 분들 위해서 C++ 에서 새롭게 생겨난 개념이 있습니다. 바로 **레퍼런스** 입니다.
 
 ```cpp-formatted
-
 
 #include <iostream>
 
@@ -152,7 +144,6 @@ LOOKING FOR INFORMATION |[U] (정보를 얻기 위해)찾아봄, 참고, 참조
 레퍼런스를 정의하는 방법은 아래와 같습니다.
 
 ```cpp-formatted
-
 int& ref = number;
 ```
 
@@ -198,7 +189,6 @@ ref &= b;
 
 ```cpp-formatted
 
-
 int number = 10;
 int& ref = number;
 int* p = &number;
@@ -215,7 +205,6 @@ p++;
   이제 다시 원래 소스를 다시 살펴보자면
 
 ```cpp-formatted
-
 change_val(number);
 ```
 
@@ -223,7 +212,6 @@ change_val(number);
 위와 같이 `change_val` 함수를 호출하였고 인자로 `number` 을 전달하였습니다. 따라서
 
 ```cpp-formatted
-
 
 int change_val(int &p) {
   p = 3;
@@ -295,7 +283,6 @@ int** z = &y;
 
 ```cpp-formatted
 
-
 int& y = x;
 int& z = y;
 ```
@@ -331,7 +318,6 @@ cout << "x : " << x << " y : " << y << " z : " << z << endl;
 아니면 이미 느꼈을 지도 모르죠. 지난 강좌에서 변수 입력시 배웠던 `cin` 을 기억하시나요? 아마 사용자로 부터 변수에 값을 입력 받을 때 다음과 같이 했었을 것입니다.
 
 ```cpp-formatted
-
 cin >> user_input;
 ```
 
@@ -339,7 +325,6 @@ cin >> user_input;
 그런데 무언가 이상하지 않으세요? 예전에 `scanf` 로 이용할 때 분명히
 
 ```cpp-formatted
-
 scanf("%d", &user_input);
 ```
 
@@ -351,7 +336,6 @@ scanf("%d", &user_input);
 
 
 ```cpp-formatted
-
 
 #include <iostream>
 using namespace std;
@@ -377,7 +361,6 @@ ref = 5;
 로 리터럴의 값을 바꿀 수 있는 여지가 생기기 때문에 참조할 수 없습니다. 하지만 아래와 같이
 
 ```cpp-formatted
-
 const int &ref = 4;
 ```
 
@@ -484,7 +467,6 @@ int (&ref)[3][2] = arr;
 C++ 를 처음 배우신 분들이 가장 많이 헷갈려 하는 부분이 바로 레퍼런스를 반환하는 함수 입니다. 아래의 코드를 살펴볼까요 C++ 를 처음 배우신 분들이 가장 많이 헷갈려 하는 부분이 바로 레퍼런스를 반환하는 함수 입니다. 아래의 코드를 살펴볼까요.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -500,7 +482,6 @@ int main() {
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -549,13 +530,4 @@ fn2(x)
 
 레퍼런스가 메모리 상에 반드시 존재해야 하는 경우는 어떤 경우가 있을까요? 그리고 메모리 상에 존재할 필요가 없는 경우는 또 어떤 경우가 있을 까요? (난이도 : 上)
 
-
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

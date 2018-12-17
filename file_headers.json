@@ -586,6 +586,7 @@
 }
 ,
 	"201" : {
+	"title" : "오픈북 프로젝트 - 양질의 컴퓨터 문서 공급 프로젝트"
 }
 ,
 	"202" : {
@@ -681,6 +682,8 @@
 }
 ,
 	"220" : {
+	"cat_title" : "비주얼 스튜디오 2017 커뮤니티에서 C/C++ 프로그래밍 하기",
+	"path" : "/C",
 	"title" : "비주얼 스튜디오 2017 커뮤니티에서 C/C++ 프로그래밍 하기"
 }
 ,
@@ -706,12 +709,16 @@
 }
 ,
 	"224" : {
-	"prev_page" : "223"
+	"cat_title" : "10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map",
+	"next_page" : "225",
+	"prev_page" : "223",
+	"title" : "씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map>"
 }
 ,
 	"225" : {
 	"cat_title" : "10 - 3. C++ STL - 알고리즘(algorithm)",
 	"next_page" : "227",
+	"prev_page" : "224",
 	"title" : "씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>"
 }
 ,
@@ -733,7 +740,6 @@
 	"cat_title" : "13 - 1. 객체의 유일한 소유권 - unique_ptr",
 	"path" : "/C++",
 	"prev_page" : "230",
-	"published" : "false",
 	"title" : "씹어먹는 C ++ - <13 - 1. 객체의 유일한 소유권 - unique_ptr >>",
 	"updated_date" : "09/18/2018"
 }
@@ -774,6 +780,10 @@
 }
 ,
 	"234" : {
+	"cat_title" : "basic_string",
+	"path" : "/C++ Reference/string",
+	"ref_title" : "basic_string, std::basic_string",
+	"title" : "C++ 레퍼런스 - basic_string"
 }
 ,
 	"235" : {
@@ -819,6 +829,10 @@
 }
 ,
 	"240" : {
+	"cat_title" : "erase",
+	"path" : "/C++ Reference/string",
+	"ref_title" : "erase, basic_string::erase",
+	"title" : "C++ 레퍼런스 - string 의 erase 함수"
 }
 ,
 	"241" : {
@@ -898,6 +912,12 @@
 	"path" : "/C++ Reference/string",
 	"ref_title" : "replace, basic_string::replace",
 	"title" : "C++ 레퍼런스 - string 의 replace 함수"
+}
+,
+	"251" : {
+	"cat_title" : "본인 소개",
+	"path" : "/잡담/본인 소개",
+	"title" : "본인 소개 (2018-12-08) 업데이트"
 }
 ,
 	"26" : {

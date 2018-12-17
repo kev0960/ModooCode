@@ -4,9 +4,6 @@ cat_title: 5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩
 next_page : 204
 --------------
 
-
-
-
 이번 강좌에서는
 
 * 멤버 함수가 아닌 연산자 함수 오버로딩
@@ -29,7 +26,6 @@ next_page : 204
 지난 강좌에서, 마지막에 다음과 같은 문제점을 지적하였습니다.
 
 ```cpp-formatted
-
 a = a + "-1.1 + i3.923";  // ①
 ```
 
@@ -38,7 +34,6 @@ a = a + "-1.1 + i3.923";  // ①
 는 잘 컴파일 되서 실행되지만
 
 ```cpp-formatted
-
 a = "-1.1 + i3.923" + a;  // ②
 ```
 
@@ -61,7 +56,6 @@ a = "-1.1 + i3.923" + a;  // ②
 즉, 컴파일 시에 둘 중 하나의 가장 가까운 것을 택해서 처리됩니다. `a.operator@(b)` 에서의 `operator@` 는 `a` 의 클래스의 멤버 변수로써 사용되는 것이고, `operator@(a,b)` 에서의 `operator@` 는 그냥 일반적인 함수를 의미하게 됩니다. 따라서 이를 처리하기 위해 함수를 정의하여 봅시다.
 
 ```cpp-formatted
-
 Complex operator+(const Complex& a, const Complex& b) {
   Complex temp(a);
   return temp.operator+(b);
@@ -73,7 +67,6 @@ Complex operator+(const Complex& a, const Complex& b) {
 우리의 또 다른 `operator+` 는 두 개의 `const Complex&` 타입의 인자 `a,b` 를 받게 됩니다. 앞에서도 말했지만 컴파일러는 정확히 일치 하지 않는 경우, 가장 가까운 '가능한' 오버로딩 되는 함수를 찾게 되는데, 마침 우리에게는 `Complex(const char *)` 타입의 생성자가 있으므로,
 
 ```cpp-formatted
-
 "-1.1 + i3.923" + a;
 ```
 
@@ -82,7 +75,6 @@ Complex operator+(const Complex& a, const Complex& b) {
 는
 
 ```cpp-formatted
-
 operator+(Complex("-1.1 + i3.923"), a);
 ```
 
@@ -91,7 +83,6 @@ operator+(Complex("-1.1 + i3.923"), a);
 가 되어서 잘 실행되게 됩니다. 실제로 컴파일 해보면
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -253,7 +244,6 @@ Complex operator+(const Complex& a, const Complex& b) {
 왜 굳이 귀찮게 `temp` 라는 새로운 `Complex` 객체를 정의하여서 `temp` 와의 `+` 연산을 리턴하느냐 입니다. 그냥 `a + b` 할 것을 불필요 하게 복사 생성을 한 번 더 하게 되서 성능의 하락이 발생하게 됩니다. 하지만, 그냥 `a + b` 를 하게 된다면;
 
 ```cpp-formatted
-
 Complex operator+(const Complex& a, const Complex& b) { return a + b; }
 ```
 
@@ -299,7 +289,6 @@ error C2662: 'Complex::operator +' : cannot convert 'this' pointer from 'const C
 그런데 재미있는 사실에는 비슷한 역할을 하는 키워드가 C++ 에도 있다는 점입니다. 그 이름도 역시 **friend** 입니다.
 
 ```cpp-formatted
-
 class Complex {
  private:
   double real, img;
@@ -346,7 +335,6 @@ friend Complex operator+(const Complex& a, const Complex& b);
 따라서, 다음과 같은 코드를 사용하는 것도 가능하지요.
 
 ```cpp-formatted
-
 Complex operator+(const Complex& a, const Complex& b) {
   Complex temp(a.real + b.real, a.img + b.img);
   return temp;
@@ -361,7 +349,6 @@ Complex operator+(const Complex& a, const Complex& b) {
 한 가지 재미 있는 사실은 `friend` 키워드는 함수에만 적용할 수 있는 것이 아니라, 다른 클래스 자체도 `friend` 로 지정할 수 있습니다. 예를 들어서,
 
 ```cpp-formatted
-
 class A {
  private:
   int x;
@@ -394,7 +381,6 @@ class B {
 아마도, 눈치를 채신 분들이 있겠지만 우리가
 
 ```cpp-formatted
-
 cout << a;
 ```
 
@@ -406,7 +392,6 @@ cout << a;
 실제로 우리가 `include` 하던 `iostream` 의 헤더파일의 내용을 살펴보면 (실제로는 `ostream` 에 정의되어 있습니다. 다만 `iostream` 이 `ostream` 을 `include` 하고 있음) `ostream` 클래스에
 
 ```cpp-formatted
-
 ostream& operator<<(bool val);
 ostream& operator<<(short val);
 ostream& operator<<(unsigned short val);
@@ -428,7 +413,6 @@ ostream& operator<<(void* val);
 그렇다면 한 번 우리의 `Complex` 클래스에서 `ostream` 클래스의 연산자 `operator<<` 를 자유롭게 사용할 수 있으면 어떨까요. 예를 들어서
 
 ```cpp-formatted
-
 Complex c;
 cout << c;
 ```
@@ -438,7 +422,6 @@ cout << c;
 를 하게 되면 마치
 
 ```cpp-formatted
-
 Complex c;
 c.println();
 ```
@@ -451,7 +434,6 @@ c.println();
 그 대신에, 여태 까지 배운 내용에 따르면 아예 `operator<<` 전역 함수 하나를 정해서 `Complex` 의 `friend` 로 지정한 다음에 사용할 수 있습니다. 그 함수는 아마 다음과 같이 생겼겟지요.
 
 ```cpp-formatted
-
 ostream& operator<<(ostream& os, const Complex& c) {
   os << "( " << c.real << " , " << c.img << " ) ";
   return os;
@@ -463,7 +445,6 @@ ostream& operator<<(ostream& os, const Complex& c) {
 여기서 왜 `cout` 이 아니고 `os` 라고 의문을 가질 수 도 있는데, `cout` 자체가 `iostream` 에서 하나 만들어 놓은 `ostream` 객체 입니다. 따라서 `ostream&` 타입으로 `cout` 객체를 받아서 이를 출력하면 됩니다. 마찬가지로, `Complex` 클래스 내부에서 `friend` 선언을 해주시면 됩니다. 참고로 `opreator<<` 에서 `ostream&` 타입을 리턴하는 이유는 다음과 같은 문장을 처리할 수 있기 위해서입니다.
 
 ```cpp-formatted
-
 cout << "a 의 값은 : " << a << " 이다. " << endl;
 ```
 
@@ -472,7 +453,6 @@ cout << "a 의 값은 : " << a << " 이다. " << endl;
 `<<` 연산자는 왼쪽 부터 오른쪽 순으로 실행되기 때문에 가장 먼저 `cout.operator<<("a 의 값은?")` 이 실행되고, 그 자리에 `cout` 이 다시 리턴됩니다. 그 다음에는 `cout.operator<<(a);` 가 되서 쭉쭉 이어질 수 있도록 이와 같이 `ostream&` 를 리턴하게 되는 것입니다. 참고로, `Complex` 클래스 내부에는
 
 ```cpp-formatted
-
 friend ostream& operator<<(ostream& os, const Complex& c);
 ```
 
@@ -481,7 +461,6 @@ friend ostream& operator<<(ostream& os, const Complex& c);
 위와 같이 `friend` 선언을 해주시면 됩니다. 비슷한 방법으로 `Complex` 객체 `c` 에 대해 `cin >>` c; 와 같은 작업을 할 수 있습니다. 다만, 이번에는 `cin` 은 `istream` 객체이고, `opreator>>` 를 오버로딩 해야 된다는 점이 다를 뿐이지요.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 class Complex {
@@ -661,7 +640,6 @@ char& operator[](const int index);
 `index` 로 `[]` 안에 들어가는 값을 받게 됩니다. 그리고 `char&` 를 인자로 리턴하는 이유는
 
 ```cpp-formatted
-
 str[10] = 'c';
 ```
 
@@ -678,7 +656,6 @@ char& MyString::operator[](const int index) { return string_content[index]; }
 위와 같이 `index` 번째의 `string_content` 를 리턴해서, `operator[]` 를 사용하는 사용자가, 이의 레퍼런스를 가질 수 있게 되지요. 그렇다면, 전체 소스를 한 번 살펴보도록 합시다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -973,7 +950,6 @@ int main() {
 즉, `int` 자료형을 감싸는 int Wrapper 클래스 `Int` 는 다음과 같이 구성할 수 있습니다.
 
 ```cpp-formatted
-
 class Int
 
 {
@@ -991,7 +967,6 @@ class Int
 위 `Int` 클래스에 `int` 형 자료형을 보관하는 `data` 라는 변수를 정의해 놓았는데, 이렇게 한다면 `int` 형 데이터를 저장하는 객체로 `Int` 클래스를 사용할 수 있을 것입니다. 우리는 이 `Int` 객체가 `int` 의 `Wrapper` 클래스의 객체인 만큼, `int` 와 정확히 똑같이 작동하도록 만들고 싶습니다. 다시 말해서 다음과 같은 명령을 내려도 아무 하자 없이 잘 실행될 수 있도록 말이지요.
 
 ```cpp-formatted
-
 Int x = 3;      // Wrapper 객체
 int a = x + 4;  // 그냥 평범한 int 형 변수 a
 ```
@@ -1023,7 +998,6 @@ operator (변환 하고자 하는 타입) ()
 예를 들어 우리의 `int Wrapper` 클래스의 경우 다음과 같은 타입 변환 연산자를 정의할 수 있지요.
 
 ```cpp-formatted
-
 operator int()
 ```
 
@@ -1032,7 +1006,6 @@ operator int()
 한 가지 주의할 점은, 생성자 처럼 함수의 리턴 타입을 써주시면 안됩니다. 이는 C++ 에서 변환 연산자를 정의하기 위한 언어 상의 규칙이라고도 볼 수 있습니다. 그렇게 된다면, 우리의 `int` 변환 연산자는 다음과 같이 간단하게 구성할 수 있겠지요.
 
 ```cpp-formatted
-
 operator int() { return data; }
 ```
 
@@ -1041,7 +1014,6 @@ operator int() { return data; }
 그냥 단순히 `data` 를 리턴해주면 됩니다. 그렇게 된다면 우리의 `Wrapper` 클래스의 객체를 '읽는' 데에는 아무런 문제가 없게 됩니다. 왜냐하면 컴파일러 입장에서 적절한 변환 연산자로 `operator int` 를 찾아서 결국 `int` 로 변환해서 처리하기 때문이지요. 다만 문제는 '대입' 시에 발생하는데, 다행이도 디폴트 대입 연산자가 이 역시 알아서 잘 처리할 것이기 때문에 걱정 안하셔도 됩니다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -1082,7 +1054,6 @@ int main() {
 
 마지막으로 살펴볼 연산자로 우리가 흔히 `++, --` 로 사용하는 전위/후위 증감 연산자들 입니다. 아마, 이 연산자를 오버로딩 하기 전에 한 가지 궁금증이 드셨을 텐데요, 과연 C++ 컴파일러는 전위/후위 증감을 구분 해서 오버로딩 시켜주냐 입니다. 다시 말해;
 ```cpp-formatted
-
 a++;
 ++a;
 ```
@@ -1093,14 +1064,12 @@ a++;
 C++ 언어에서는 다음과 같은 재미있는 방법으로 구분합니다. 일단 C++ 언어에서는 다음과 같은 재미있는 방법으로 구분합니다. 일단;
 
 ```cpp-formatted
-
 operator++() operator--()
 ```
 
 은 전위 증감 연산자 (++x, --x) 를 오버로딩 하게 됩니다. 그렇다면 후위 증감 연산자 (x ++, x--) 는 어떨까요. 바로
 
 ```cpp-formatted
-
 operator++(int x) operator--(int x)
 ```
 
@@ -1113,7 +1082,6 @@ operator++(int x) operator--(int x)
 따라서 아래와 같은 테스트 클래스를 제작하였습니다.
 
 ```cpp-formatted
-
 class Test
 
 {
@@ -1139,7 +1107,6 @@ class Test
 클래스 자체에는 별거 없지만 전위와 후위가 호출될 때를 구별하기 위해 메세지를 출력하도록 하였습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -1213,11 +1180,4 @@ int main() {
 
 영어를 잘하시는 분들은 연산자 오버로딩에 관해 정리해 놓은 [다음 글](http://stackoverflow.com/questions/4421706/operator-overloading)을 읽어보시기를 추천합니다. 참고로 이 글에서 다루지만 본 강좌에서는 다루지 않는 일부 내용들은 아직 배운 내용이 아니라 생략한 것이므로 너무 걱정하지 마시고 복습하는 느낌으로 천천히 읽어보시면 좋습니다. (난이도 : 中)
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

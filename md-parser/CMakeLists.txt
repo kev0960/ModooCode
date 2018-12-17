@@ -9,12 +9,22 @@ set(CMAKE_CXX_FLAGS "-O3 -Wall")
 set(CMAKE_CXX_EXTENSIONS OFF)
 file(GLOB SOURCES src/*.cc src/*.h)
 
-add_library(chroma SHARED IMPORTED)
-set_target_properties(chroma
+if(NOT APPLE)
+  add_library(chroma SHARED IMPORTED)
+  set_target_properties(chroma
                       PROPERTIES IMPORTED_LOCATION
                                  "${CMAKE_SOURCE_DIR}/lib/chroma.so")
+endif()
+
 add_executable(md-parser ${SOURCES})
-target_link_libraries(md-parser chroma stdc++fs pthread)
+
+if(NOT APPLE)
+  target_link_libraries(md-parser chroma stdc++fs pthread)
+endif()
+
+if(APPLE)
+  target_link_libraries(md-parser stdc++fs pthread)
+endif()
 
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
@@ -51,7 +61,14 @@ else()
 endif()
 
 add_executable(util_test test/util_test.cc src/util.cc)
-target_link_libraries(util_test gtest_main chroma)
+
+if(NOT APPLE)
+  target_link_libraries(util_test gtest_main chroma)
+endif()
+if(APPLE)
+  target_link_libraries(util_test gtest_main)
+endif()
+
 add_test(NAME util_test COMMAND util_test)
 
 add_executable(content_test
@@ -66,7 +83,13 @@ add_executable(content_test
                src/fast_cpp_syntax_highlighter.cc
                src/fast_py_syntax_highlighter.cc
                src/parser_environment.cc)
-target_link_libraries(content_test gtest_main chroma)
+
+if(NOT APPLE)
+  target_link_libraries(content_test gtest_main)
+endif()
+if(APPLE)
+  target_link_libraries(content_test gtest_main)
+endif()
 add_test(NAME content_test COMMAND content_test)
 
 add_executable(parser_test
@@ -83,7 +106,13 @@ add_executable(parser_test
                src/fast_cpp_syntax_highlighter.cc
                src/fast_py_syntax_highlighter.cc
                src/parser_environment.cc)
-target_link_libraries(parser_test gmock_main chroma)
+
+if(NOT APPLE)
+  target_link_libraries(parser_test gtest_main)
+endif()
+if(APPLE)
+  target_link_libraries(parser_test gtest_main)
+endif()
 add_test(NAME parser_test COMMAND parser_test)
 
 add_executable(syntax_highlight_test

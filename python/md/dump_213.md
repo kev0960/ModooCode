@@ -54,7 +54,6 @@ C++ 의 모든 입출력 클래스는 `ios_base` 를 부모 클래스로 하게 
 
 여태까지 `ios_base` 와 `ios` 클래스들이 입출력 작업을 위해 바탕을 깔아주는 클래스 였다면, `istream` 은 실제로 입력을 수행하는 클래스 입니다. 대표적으로 우리가 항상 사용하던 `operator>>` 가 이 `istream` 클래스에 정의되어 있는 연산자 입니다. 또, `cin` 은 `istream` 클래스의 객체 중 하나 입니다. 그렇기 때문에 우리는
 ```cpp-formatted
-
 cin >> a;
 ```
 
@@ -95,7 +94,6 @@ istream& operator>>(void*& val);
 그렇다고 해서, 우리가 언제나 위 타입들 빼고는 `operator>>` 로 받을 수 없는 것이 아닙니다. 실제로 `istream` 클래스의 멤버 함수로는 없지만;
 
 ```cpp-formatted
-
 string s;
 
 cin >> s;
@@ -109,7 +107,6 @@ cin >> s;
 이 경우에는
 
 ```cpp-formatted
-
 istream& operator>>(istream& in, string& s)
 
 {
@@ -151,7 +148,6 @@ int main() {
 위와 같이 비록 `operator>>` 가 매우 편리해보이지만, 반드시 주의해야 할 점이 있는 점이 있습니다.
 
 ```cpp-formatted
-
 // 주의할 점
 #include <iostream>
 usingnamespace std;
@@ -371,7 +367,6 @@ int main() {
 
 위와 같이 16진수 입력을 잘 받는 다는 것을 볼 수 있습니다. (출력 형식은 바꾸지 않았으므로, 10진수로 출력됩니다) 이 처럼 입력 받는 형식을 16진수로 바꿔준 함수는 보시다 싶이, 아래와 같은 스트림의 설정을 바꾸는 `setf` 함수 덕분입니다.
 ```cpp-formatted
-
 cin.setf(ios_base::hex, ios_base::basefield);
 ```
 
@@ -429,7 +424,6 @@ cin >> hex >> t;
 위의 형식 플래그 `hex` 는 `ios_base` 에 선언되어 있는 단순한 상수 '값' 입니다. 반면에 조작자 `hex` 의 경우 `ios` 에 정의되어 있는 '함수' 입니다. 이 조작자 hex 의 정의를 살펴보자면, 아래와 같이 `ios_base` 객체를 레퍼런스로 받고, 다시 그 객체를 리턴하도록 정의 되어 있습니다.
 
 ```cpp-formatted
-
 std::ios_base& hex(std::ios_base& str);
 ```
 
@@ -438,7 +432,6 @@ std::ios_base& hex(std::ios_base& str);
 그렇다면, `operator>>` 중에서 위 함수를 인자로 가지는 경우도 있을까요? 물론 있습니다.
 
 ```cpp-formatted
-
 istream& operator>>(ios_base& (*pf)(ios_base&));
 ```
 
@@ -447,7 +440,6 @@ istream& operator>>(ios_base& (*pf)(ios_base&));
 이렇게, `operator>>` 에서 조작자를 받는다면 많은 일을 하는 것이 아니라 단순히 `pf(*this)` 를 호출하게 됩니다. 호출된 hex 함수가 하는 일 또한 별로 없습니다. 단순히,
 
 ```cpp-formatted
-
 str.setf(std::ios_base::hex, std::ios_base::basefield)
 ```
 
@@ -558,14 +550,4 @@ cout << "다시 읽으면 : " << s << endl;
 
 이상으로 C++ 에서의 입출력 라이브러리에 대해 간단히 알아보았습니다. 다음 강좌에서는 이제 이 라이브러리를 가지고 파일에서 어떠한 방식으로 입출력을 수행할 수 있는지 알아보도록 하겠습니다.
 
-
-
-```warning
-
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <7 - 1. C++ 에서의 입출력(istream, ostream)>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

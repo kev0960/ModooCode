@@ -52,7 +52,6 @@ int peek ( );
 
 
 ```cpp-formatted
-
 /*
 
 
@@ -107,7 +106,6 @@ int main() {
 
 
 ```cpp-formatted
-
 (basic_istream<charT, traits>)typedef traits::int_type int_type;
 int_type peek();
 ```
