@@ -143,7 +143,6 @@ error C2105: '++'에 l-value가 필요합니다.
 
 ```info
   (뭐시기 뭐시기) *const (배열 이름)
-
 ```
 
 과 같은 형태임을 알 수 있습니다. 결과적으로 배열의 이름은 죽어다 깨어나도 언제나 배열의 첫번째 원소를 가리키게 됩니다. 배열의 이름이 결코 다른 값들을 가리킬 수 없도록 C 에서 제한을 두는 이유는, 제 생각에 프로그래머가 실수로 배열의 이름이 가리키는 값을 잘못 바꿔서 배열을 '아무도 가리키지 않는 메모리 상의 미아'가 됨을 막으려고 한 것이 아닐까요?
@@ -242,11 +241,11 @@ int a[2][3];
 int main() {
   int arr[2][3];
 
-  printf("arr[0] : %x \n", arr[0]);
-  printf("&arr[0][0] : %x \n", &arr[0][0]);
+  printf("arr[0] : %p \n", arr[0]);
+  printf("&arr[0][0] : %p \n", &arr[0][0]);
 
-  printf("arr[1] : %x \n", arr[1]);
-  printf("&arr[1][0] : %x \n", &arr[1][0]);
+  printf("arr[1] : %p \n", arr[1]);
+  printf("&arr[1][0] : %p \n", &arr[1][0]);
 
   return 0;
 }
@@ -266,8 +265,8 @@ int main() {
 int main() {
   int arr[2][3];
 
-  printf("&arr[0] : %x \n", &arr[0]);
-  printf("arr : %x \n", arr);
+  printf("&arr[0] : %p \n", &arr[0]);
+  printf("arr : %p \n", arr);
 
   return 0;
 }
@@ -370,7 +369,7 @@ int main() {
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 
-  printf("arr : %x , arr + 1 : %x \n", arr, arr + 1);
+  printf("arr : %p , arr + 1 : %p \n", arr, arr + 1);
 
   return 0;
 }

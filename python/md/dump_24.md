@@ -112,7 +112,7 @@ const int* pa =
   *pa = 3; // 올바르지 않은 문장
 ```
 
-물론 `a =` 3; 과 같은 문장은 오류를 출려하지 않습니다. 앞에서도 말했듯이 변수 `a` 자체는 `const` 가 아니기 때문이죠.
+물론 `a = 3;` 과 같은 문장은 오류를 출려하지 않습니다. 앞에서도 말했듯이 변수 `a` 자체는 `const` 가 아니기 때문이죠.
 
 ```cpp-formatted
 pa = &b;  // 올바른 문장
@@ -196,8 +196,8 @@ int main() {
   int* pa;
   pa = &a;
 
-  printf("pa 의 값 : %d \n", pa);
-  printf("(pa + 1) 의 값 : %d \n", pa + 1);
+  printf("pa 의 값 : %p \n", pa);
+  printf("(pa + 1) 의 값 : %p \n", pa + 1);
 
   return 0;
 }
@@ -211,7 +211,7 @@ int main() {
   아마 여러분은 출력된 결과를 보면서 깜짝 놀랐을 것입니다. 우리는 분명히
 
 ```cpp-formatted
-printf("(pa + 1) 의 값 : %d \n", pa + 1);
+printf("(pa + 1) 의 값 : %p \n", pa + 1);
 ```
 
 에서 `pa + 1` 의 값을 출력하라고 명시하였습니다. 제가 앞에서도 이야기 하였듯이 `pa` 에는 자신이 가리키는 변수의 주소값이 들어갑니다. 따라서, `pa + 1` 을 하면 1244812 에 1 이 더해진 1244813 가 아니라, 4 가 더해진 1244816 이 출력되었습니다. 이게 도대체 무슨 일입니까? `1244812 + 1 = 1244816` 이라고요?
@@ -231,12 +231,12 @@ int main() {
   char* pb = &b;
   double* pc = &c;
 
-  printf("pa 의 값 : %d \n", pa);
-  printf("(pa + 1) 의 값 : %d \n", pa + 1);
-  printf("pb 의 값 : %d \n", pb);
-  printf("(pb + 1) 의 값 : %d \n", pb + 1);
-  printf("pc 의 값 : %d \n", pc);
-  printf("(pc + 1) 의 값 : %d \n", pc + 1);
+  printf("pa 의 값 : %p \n", pa);
+  printf("(pa + 1) 의 값 : %p \n", pa + 1);
+  printf("pb 의 값 : %p \n", pb);
+  printf("(pb + 1) 의 값 : %dp \n", pb + 1);
+  printf("pc 의 값 : %p \n", pc);
+  printf("(pc + 1) 의 값 : %p \n", pc + 1);
 
   return 0;
 }
@@ -261,8 +261,8 @@ int main() {
   int a;
   int* pa = &a;
 
-  printf("pa 의 값 : %d \n", pa);
-  printf("(pa - 1) 의 값 : %d \n", pa - 1);
+  printf("pa 의 값 : %p \n", pa);
+  printf("(pa - 1) 의 값 : %p \n", pa - 1);
 
   return 0;
 }
@@ -393,8 +393,8 @@ int main() {
   parr = &arr[0];
 
   for (i = 0; i < 10; i++) {
-    printf("arr[%d] 의 주소값 : %x ", i, &arr[i]);
-    printf("(parr + %d) 의 값 : %x ", i, (parr + i));
+    printf("arr[%d] 의 주소값 : %p ", i, &arr[i]);
+    printf("(parr + %d) 의 값 : %p ", i, (parr + i));
 
     if (&arr[i] == (parr + i)) {
       /* 만일 (parr + i) 가 성공적으로 arr[i] 를 가리킨다면 */
@@ -421,8 +421,8 @@ parr = &arr[0];
 `parr` 이라는 `int` 형을 가리키는 포인터는 `arr[0]` 이라는 `int` 형 변수를 가리킵니다. (배열의 각 원소는 하나의 변수로 생각할 수 있다는 사실은 까먹지 않았죠?)
 
 ```cpp-formatted
-printf("arr[%d] 의 주소값 : %x ", i, &arr[i]);
-printf("(parr + %d) 의 값 : %x ", i, (parr + i));
+printf("arr[%d] 의 주소값 : %p ", i, &arr[i]);
+printf("(parr + %d) 의 값 : %p ", i, (parr + i));
 ```
 
 이제, `arr[i]` 의 주소값과 `(parr + i)` 의 값을 출력해봅니다. 만일 `parr + i` 의 값이 `arr[i]` 의 주소값과 같다면 하단의 `if-else` 에서 일치가 출력되고 다르다면 불일치가 출력되게 됩니다. 그런데, 이미 예상하고 있던 바이지만 `parr` 이 `int` 형이므로 `+ i` 를 하면 주소값에는 사실상 `4*i` 가 더해지게 되는 것이지요. 이 때 `arr[i]` 의 주소값도 `i` 가 하나씩 커질 때 마다 4 씩 증가하므로 (`int` 형 배열이므로) 결과적으로 모든 결과가 일치하게 되는 것 입니다.
@@ -460,13 +460,10 @@ int main() {
 
 ```info
 #include <stdio.h>
-int main()
-{
+int main() {
     int arr[3]={1,2,3};
-
     printf("%d", arr);
 }
-
 ```
 
 그러곤 1 도, 2 도, 3 도, 아닌 이상한 값이 나오는 것을 보고 당황하셨겠죠.. 그런데, 놀랍게도 그 때 출력되는 값은 아래와 같습니다.
@@ -476,8 +473,8 @@ int main()
 int main() {
   int arr[3] = {1, 2, 3};
 
-  printf("arr 의 정체 : %x \n", arr);
-  printf("arr[0] 의 주소값 : %x \n", &arr[0]);
+  printf("arr 의 정체 : %p \n", arr);
+  printf("arr[0] 의 주소값 : %p \n", &arr[0]);
 
   return 0;
 }
