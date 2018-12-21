@@ -215,7 +215,7 @@ int add_one(int *a) {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F146925104B7D5EF68E44B1)
 
-이제, 마지막으로 구조체 포인터 연습을 해볼까 합니다.
+이제, 마지막으로 구조체 포인터 연습을 해볼깔 합니다.
 
 ```cpp-formatted
 struct TEST t;
@@ -505,8 +505,8 @@ struct TEST {
   int gender;
   char name[20];
 };
-int set_human(struct TEST *a, int age, int gender, char *name);
-char copy_str(char *dest, char *src);
+int set_human(struct TEST *a, int age, int gender, const char *name);
+char copy_str(char *dest, const char *src);
 
 int main() {
   struct TEST human;
@@ -517,14 +517,14 @@ int main() {
          human.name);
   return 0;
 }
-int set_human(struct TEST *a, int age, int gender, char *name) {
+int set_human(struct TEST *a, int age, int gender, const char *name) {
   a->age = age;
   a->gender = gender;
   copy_str(a->name, name);
 
   return 0;
 }
-char copy_str(char *dest, char *src) {
+char copy_str(char *dest, const char *src) {
   while (*src) {
     *dest = *src;
     src++;
@@ -557,9 +557,8 @@ struct TEST {
 위와 같이 `name[20]` 이라는 멤버를 새로 추가해주었습니다.
 
 ```cpp-formatted
-int set_human(struct TEST *a, int age, int gender, char *name);
+int set_human(struct TEST *a, int age, int gender, const char *name);
 ```
-
 
 그리고 `set_human` 함수에서 `name` 멤버 역시 같이 초기화해주기 위해 인자로 `char *` 형의 `name` 이라는 인자를 추가로 받게 됩니다.
 
@@ -571,7 +570,7 @@ set_human(&human, 10, 1, "Lee");
 
 
 ```cpp-formatted
-int set_human(struct TEST *a, int age, int gender, char *name) {
+int set_human(struct TEST *a, int age, int gender, const char *name) {
   a->age = age;
   a->gender = gender;
   copy_str(a->name, name);

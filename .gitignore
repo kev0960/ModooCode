@@ -90,3 +90,5 @@ file_info_db
 /views/new/
 
 auth.json
+
+.DS_Store

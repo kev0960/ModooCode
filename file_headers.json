@@ -184,10 +184,12 @@
 	"134" : {
 	"cat_title" : "1. 자~ C++ 의 세계로",
 	"next_page" : "136",
+	"prev_page" : "135",
 	"title" : "씹어먹는 C++ - <1. 자~ C++ 의 세계로>"
 }
 ,
 	"135" : {
+	"next_page" : "134",
 	"title" : "씹어먹는 C++ 강좌 계획"
 }
 ,
@@ -738,6 +740,7 @@
 ,
 	"229" : {
 	"cat_title" : "13 - 1. 객체의 유일한 소유권 - unique_ptr",
+	"next_page" : "252",
 	"path" : "/C++",
 	"prev_page" : "230",
 	"title" : "씹어먹는 C ++ - <13 - 1. 객체의 유일한 소유권 - unique_ptr >>",
@@ -918,6 +921,13 @@
 	"cat_title" : "본인 소개",
 	"path" : "/잡담/본인 소개",
 	"title" : "본인 소개 (2018-12-08) 업데이트"
+}
+,
+	"252" : {
+	"cat_title" : "13 - 2. 자원을 공유할 때 - shared_ptr 와 weak_ptr",
+	"path" : "/C++",
+	"prev_page" : "229",
+	"title" : "씹어먹는 C ++ - <13 - 2. 자원을 공유할 때 - shared_ptr 와 weak_ptr >>"
 }
 ,
 	"26" : {
