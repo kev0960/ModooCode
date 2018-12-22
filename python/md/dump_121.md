@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - stdlib.h (cstdlib)
 path : /C Reference/stdlib.h
 cat_title :  stdlib.h (cstdlib)
 ref_title : <stdlib.h>, cstdlib
+publish_date : 2011-01-05
 --------------
 
 

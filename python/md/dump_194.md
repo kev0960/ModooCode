@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - istream::peak 함수
 cat_title :  istream::peak
 ref_title : peak
+publish_date : 2012-11-09
 --------------
 
 ```warning

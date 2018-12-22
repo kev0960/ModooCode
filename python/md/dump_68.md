@@ -1,9 +1,8 @@
 ----------------
 title : C 언어 레퍼런스 - fread 함수
 cat_title :  fread
+publish_date : 2010-03-21
 --------------
-
-
 
 ```warning
 아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
@@ -11,8 +10,6 @@ cat_title :  fread
 ```
 
 #@ fread
-
-
 
 ```cpp-formatted
 #include <stdio.h>  // C++ 에서는 <cstdio>

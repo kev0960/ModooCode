@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios_base::xalloc 함수
 cat_title :  ios_base::xalloc
+publish_date : 2011-10-22
 --------------
 
 

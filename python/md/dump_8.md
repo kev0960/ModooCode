@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <4. 계산하리 >
 cat_title : 4. 계산하리
 next_page : 9
+publish_date : 2009-04-24
 --------------
 
 

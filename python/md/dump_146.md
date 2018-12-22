@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - istream 클래스
 cat_title :  istream 클래스
 ref_title : istream
+publish_date : 2011-08-17
 --------------
 
 

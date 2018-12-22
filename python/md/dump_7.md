@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <3. 변수가 뭐지? >
 cat_title : 3. 변수가 뭐지?
 next_page : 8
+publish_date : 2009-04-22
 --------------
 
 

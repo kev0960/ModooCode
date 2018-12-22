@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수
 cat_title :  vector::assign
 ref_title : assign
 path : /C++ Reference/Containers/vector
+publish_date : 2012-03-25
 --------------
 
 

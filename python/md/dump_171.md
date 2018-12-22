@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - ios::rdstate 함수
 cat_title :  ios::rdstate
 ref_title : rdstate
+publish_date : 2012-03-25
 --------------
 
 

@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>
 cat_title : 14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)
 next_page : 29
+publish_date : 2009-12-29
 --------------
 
 

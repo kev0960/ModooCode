@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트>
 cat_title : 15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트
 next_page : 55
+publish_date : 2010-02-08
 --------------
 
 

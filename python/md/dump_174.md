@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - STL 컨테이너 (STL Container)
 cat_title :  STL 컨테이너 (STL Container)
 path : /C++ Reference/Containers
+publish_date : 2012-03-24
 --------------
 
 ```info

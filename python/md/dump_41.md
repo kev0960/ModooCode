@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - getc 함수
 cat_title :  getc
+publish_date : 2010-02-02
 --------------
 
 

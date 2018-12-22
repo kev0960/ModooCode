@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <6. 만약에...(if 문)>
 cat_title : 6. 만약에... (if 문)
 next_page : 12
+publish_date : 2009-04-28
 --------------
 
 

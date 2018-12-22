@@ -464,3 +464,11 @@ figcaption {
 .lecture-title {
     font-weight: bold;
 }
+
+.publish-date {
+    font-size:65%!important;
+    padding:5px;
+    color: white;
+    background-color: green;
+    border-radius: 4px;
+}

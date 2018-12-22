@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>
 cat_title: 6 - 2.  가상(virtual) 함수와 다형성
 next_page : 211
+publish_date : 2014-03-31
 --------------
 
 

@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>
 cat_title: 4 - 4. 스타크래프트를 만들자 ② (const, static)
 next_page : 198
+publish_date : 2013-05-26
 --------------
 
 이번 강좌에서는

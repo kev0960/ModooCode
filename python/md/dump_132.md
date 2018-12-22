@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - atol 함수
 path : /C Reference/stdlib.h
 cat_title :  atol
+publish_date : 2011-01-27
 --------------
 
 

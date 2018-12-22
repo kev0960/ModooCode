@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - gets 함수
 cat_title :  gets
+publish_date : 2010-02-03
 --------------
 
 

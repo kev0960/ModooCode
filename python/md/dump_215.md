@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>
 cat_title: 7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream
 next_page : 217
+publish_date : 2016-07-14
 --------------
 
 이번 강좌에서는

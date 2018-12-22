@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <2 - 1. C++ 은 C 친구 - C 와 공통점>
 cat_title: 2 - 1. C++ 은 C 친구 - C 와 공통점
 next_page : 141
+publish_date : 2011-05-15
 --------------
 
 

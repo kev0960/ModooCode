@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - STL 컨테이너 - vector
 cat_title :  vector
 path : /C++ Reference/Containers/vector
+publish_date : 2012-03-24
 --------------
 
 ```warning

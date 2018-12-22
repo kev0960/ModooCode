@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - asctime 함수
 cat_title :  asctime
+publish_date : 2010-12-26
 --------------
 
 

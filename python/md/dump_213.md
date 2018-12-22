@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <7 - 1. C++ 에서의 입출력 (istream, ostream)>
 cat_title: 7 - 1. C++ 에서의 입출력 (istream, ostream)
 next_page : 215
+publish_date : 2015-05-04
 --------------
 
 

@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - rewind 함수
 cat_title :  rewind
+publish_date : 2010-04-24
 --------------
 
 

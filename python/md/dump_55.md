@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>
 cat_title : 16 - 1. 모아 모아 구조체(struct)
 next_page : 60
+publish_date : 2010-02-14
 --------------
 
 

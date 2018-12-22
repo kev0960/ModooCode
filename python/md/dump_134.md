@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <1. 자~ C++ 의 세계로>
 cat_title: 1. 자~ C++ 의 세계로
 next_page : 136
+publish_date : 2011-03-06
 --------------
 
 

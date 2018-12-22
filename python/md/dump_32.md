@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>
 cat_title : 15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해
 next_page : 33
+publish_date : 2010-01-25
 --------------
 
 

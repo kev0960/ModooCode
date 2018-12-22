@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >
 cat_title : 18 - 1. 파일 뽀개기 (헤더파일과 #include)
 next_page : 88
+publish_date : 2010-07-16
 --------------
 
 

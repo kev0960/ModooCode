@@ -33,6 +33,7 @@
     "googleapis": "^34.0.0",
     "monaco-editor": "^0.14.3",
     "monaco-editor-webpack-plugin": "^1.5.1",
+    "npm": "^6.5.0",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth2": "^0.1.6",

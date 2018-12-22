@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>
 cat_title: 11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)
 next_page: 230
+publish_date : 2018-03-27
 --------------
 
 

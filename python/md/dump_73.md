@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - fsetpos 함수
 cat_title :  fsetpos
+publish_date : 2010-04-24
 --------------
 
 

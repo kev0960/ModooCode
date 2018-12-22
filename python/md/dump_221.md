@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>
 cat_title: 9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)
 next_page : 222
+publish_date : 2017-06-26
 --------------
 
 이번 강좌에서는

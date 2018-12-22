@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - istream::gcount 함수
 cat_title :  istream::gcount
 ref_title : gcount
+publish_date : 2012-11-07
 --------------
 
 ```warning

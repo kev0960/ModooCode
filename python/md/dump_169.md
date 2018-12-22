@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>
 cat_title: 3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)
 next_page : 172
+publish_date : 2012-01-01
 --------------
 
 

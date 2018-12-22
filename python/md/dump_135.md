@@ -1,6 +1,7 @@
 ----------------
 title : 씹어먹는 C++ 강좌 계획
 next_page: 134
+publish_date : 2011-03-06
 --------------
 
 ![](/img/ChewingCpplogo.png)
