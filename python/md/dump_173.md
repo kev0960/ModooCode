@@ -123,7 +123,8 @@ int main() {
 이번에는 조금 특이한 경우 입니다. 일단 함수는
 
 ```cpp-formatted
-void print(int x) void print(double x)
+void print(int x)
+void print(double x)
 ```
 
 `int` 타입의 인자나 `double` 타입의 인자를 하나 받는 함수 하나 밖에 없습니다. 하지만 `main` 에서 각기 다른 타입의 인자들 (int, char, double) 로 `print` 함수를 호출하게 됩니다. 물론 `a` 나 `c` 의 경우 각자 자기를 인자로 하는 정확한 함수들이 있어서 성공적으로 호출 될 수 있겠지만,`char` 의 경우 자기와 정확히 일치하는 인자를 가지는 함수가 없기 때문에 '자신과 최대로 근접한 함수'를 찾게 됩니다.
@@ -619,16 +620,16 @@ class Point {
   Point(int pos_x, int pos_y);
 };
 class Geometry {
-  Point *point_array;
+  Point **point_array;
   // 현재 공간에 대한 점들의 정보를 담고 있는 배열
   // 물론 배열의 크기는 생성자에서 초기화 하고 충분히
   // 크게 잡도록 합시다 (점 100 개 정도?)
 
  public:
-  Geometry(Point *point_list);
+  Geometry(Point **point_list);
   Geometry();
 
-  void Add_Point(Point &point);
+  void Add_Point(const Point &point);
 
   // 모든 점들 간의 거리를 출력하는 함수 입니다.
   void Print_Distance();
