@@ -1,7 +1,7 @@
 ----------------
 title : 씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>
 cat_title: 4 - 5. 내가 만드는 String 클래스
-next_page : 202
+next_page : 253
 publish_date : 2013-08-15
 --------------
 

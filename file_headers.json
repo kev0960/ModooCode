@@ -669,7 +669,7 @@
 ,
 	"198" : {
 	"cat_title" : "4 - 5. 내가 만드는 String 클래스",
-	"next_page" : "202",
+	"next_page" : "253",
 	"prev_page" : "197",
 	"publish_date" : "2013-08-15",
 	"title" : "씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>"
@@ -696,7 +696,7 @@
 	"202" : {
 	"cat_title" : "5 - 1. 내가 만든 연산자 - 연산자 오버로딩",
 	"next_page" : "203",
-	"prev_page" : "198",
+	"prev_page" : "253",
 	"publish_date" : "2013-08-25",
 	"title" : "씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>"
 }
@@ -1056,6 +1056,15 @@
 	"prev_page" : "229",
 	"publish_date" : "2018-12-21",
 	"title" : "씹어먹는 C ++ - <13 - 2. 자원을 공유할 때 - shared_ptr 와 weak_ptr>"
+}
+,
+	"253" : {
+	"cat_title" : "4 - 6. 클래스의 explicit 과 mutable 키워드",
+	"next_page" : "202",
+	"path" : "/C++",
+	"prev_page" : "198",
+	"publish_date" : "2018-12-26",
+	"title" : "씹어먹는 C ++ - <4 - 6. 클래스의 explicit 과 mutable 키워드>"
 }
 ,
 	"26" : {
