@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - vector::push_back
 cat_title : vector::push_back
 ref_title : push_back
 path : /C++ Reference/Containers/vector
+publish_date : 2012-08-05
 --------------
 
 ```warning

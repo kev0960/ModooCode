@@ -2,10 +2,8 @@
 title : 씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>
 cat_title: 4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)
 next_page : 197
+publish_date : 2013-01-06
 --------------
-
-
-
 
 이번 강좌에서는
 
@@ -228,7 +226,6 @@ marines[1]->show_status();
 
 
 ```cpp-formatted
-
 delete marines[0];
 delete marines[1];
 ```
@@ -669,7 +666,6 @@ Photon_Cannon(const Photon_Cannon& pc);
 사실 위는 복사 생성자의 표준적인 정의라고 볼 수 있습니다. 즉, 복사 생성자는 어떤 클래스 `T` 가 있다면
 
 ```cpp-formatted
-
 T(const T& a);
 ```
 
@@ -756,7 +752,6 @@ pc3 = pc2;
 
 
 ```cpp-formatted
-
 Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
   hp = pc.hp;
   shield = pc.shield;
@@ -1002,11 +997,4 @@ class string {
 };
 ```
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

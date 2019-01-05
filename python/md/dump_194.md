@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - istream::peak 함수
 cat_title :  istream::peak
 ref_title : peak
+publish_date : 2012-11-09
 --------------
 
 ```warning
@@ -52,7 +53,6 @@ int peek ( );
 
 
 ```cpp-formatted
-
 /*
 
 
@@ -107,7 +107,6 @@ int main() {
 
 
 ```cpp-formatted
-
 (basic_istream<charT, traits>)typedef traits::int_type int_type;
 int_type peek();
 ```

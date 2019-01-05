@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map>
 cat_title: 10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map
 next_page : 225
+publish_date : 2017-07-08
 --------------
 
 이번 강좌에서는* `set, map, multiset, multimap`
@@ -94,7 +95,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 s.insert(10);
 s.insert(50);
 s.insert(20);
@@ -108,7 +108,6 @@ s.insert(30);
 셋에 원소를 추가하거나 지우는 작업은 $$O(log N)$$ 에 처리됩니다. 시퀀스 컨테이너의 경우 임의의 원소를 지우는 작업이 $$O(N)$$ 으로 수행되었다는 점을 생각하면 훨씬 빠르다고 볼 수 있습니다.
 
 ```cpp-formatted
-
 template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
@@ -135,7 +134,6 @@ void print_set(set<T>& s) {
 또한 셋의 진가는 앞서 말했듯이 원소가 있냐 없냐를 확인할 때 드러납니다.
 
 ```cpp-formatted
-
 cout << "20 이 s 의 원소인가요? :: ";
 auto itr = s.find(20);
 if (itr != s.end()) {
@@ -215,7 +213,6 @@ if (itr != s.end()) {
 또한 셋의 중요한 특징으로 바로 셋 안에는 중복된 원소들이 없다는 점이 있습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <set>
 #include <string>
@@ -255,7 +252,6 @@ int main() {
 와 같이 나옵니다. 분명히
 
 ```cpp-formatted
-
 s.insert(10);
 s.insert(20);
 s.insert(30);
@@ -279,7 +275,6 @@ s.insert(10);
 
 위와 같이 기본 타입들 말고, 여러분이 만든 클래스의 객체를 셋의 원소로 사용할 때 한 가지 주의해야 할 점이 있습니다. 아래는 할 일 (Todo) 목록을 저장하기 위해 셋을 사용하는 예시 입니다. `Todo` 클래스는 2 개를 멤버 변수로 가지는데 하나는 할 일의 중요도이고, 하나는 해야할 일의 설명 입니다.
 ```cpp-formatted
-
 #include <iostream>
 #include <set>
 #include <string>
@@ -325,7 +320,6 @@ binary '<': no operator found which takes a left-hand operand of type 'const Tod
 그렇다면 직접 `Todo` 클래스에 `operator<` 를 만들어주는 수 밖에 없습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <set>
 #include <string>
@@ -392,7 +386,6 @@ int main() {
 먼저 `<` 연산자를 어떻게 구현하였는지 살펴보겠습니다.
 
 ```cpp-formatted
-
 bool operator<(const Todo& t) const {
   if (priority == t.priority) {
     return job_desc < t.job_desc;
@@ -408,7 +401,6 @@ bool operator<(const Todo& t) const {
 우리의 `Todo <` 연산자는 중요도가 다르면,
 
 ```cpp-formatted
-
 return priority > t.priority;
 ```
 
@@ -417,7 +409,6 @@ return priority > t.priority;
 로 해서 중요도 값이 높은 일이 위로 가게 하였습니다. 만약 중요도가 같다면
 
 ```cpp-formatted
-
 return job_desc < t.job_desc;
 ```
 
@@ -432,7 +423,6 @@ return job_desc < t.job_desc;
 만약에 우리가 중요도가 같을 때 따로 처리하지 않고 그냥
 
 ```cpp-formatted
-
 bool operator<(const Todo& t) const { return priority > t.priority; }
 ```
 
@@ -449,7 +439,6 @@ bool operator<(const Todo& t) const { return priority > t.priority; }
 위와 같이 중요도가 같은 애들은 추가 되지 않습니다. 왜냐하면 앞서 말했듯이 셋에는 중복된 원소를 허락하지 않습니다. 그런데, 셋의 입장에서
 
 ```cpp-formatted
-
 Todo(1, "농구 하기")
 ```
 
@@ -458,7 +447,6 @@ Todo(1, "농구 하기")
 와
 
 ```cpp-formatted
-
 Todo(1, "프로그래밍 프로젝트")
 ```
 
@@ -498,7 +486,6 @@ Todo(1, "프로그래밍 프로젝트") > Todo(1, "농구 하기")
 아래 예제를 보실까요.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <set>
 #include <string>
@@ -567,7 +554,6 @@ int main() {
 
 
 ```cpp-formatted
-
 struct TodoCmp {
   bool operator()(const Todo& t1, const Todo& t2) const {
     if (t1.priority == t2.priority) {
@@ -583,14 +569,12 @@ struct TodoCmp {
 앞서 템플릿 첫 강좌에서 함수 객체를 배운 것이 기억 나시나요? 위 클래스는 정확히 함수 객체를 나타내고 있습니다. 이 `TodoCmp` 타입을
 
 ```cpp-formatted
-
 set<Todo, TodoCmp> todos;
 ```
 
 위 처럼 `set` 에 두번째 인자로 넘겨주게 되면 셋은 이를 받아서 `TodoCmp` 클래스에 정의된 함수 객체를 바탕으로 모든 비교를 수행하게 됩니다. 실제로 `set` 클래스의 정의를 살펴보면;
 
 ```cpp-formatted
-
 template <class Key, class Compare = std::less<Key>,
           class Allocator = std::allocator<Key>  // ← 후에 설명하겠습니다
           >
@@ -612,7 +596,6 @@ class set;
 맵은 셋과 거의 똑같은 자료 구조 입니다. 다만 셋의 경우 키만 보관했지만, 맵의 경우 키에 대응되는 값(value) 까지도 같이 보관하게 됩니다.
 
 ```cpp-formatted
-
 #include <iostream>
 
 #include <map>
@@ -670,14 +653,12 @@ int main() {
 
 
 ```cpp-formatted
-
 map<string, double> pitcher_list;
 ```
 
 맵의 경우 템플릿 인자로 2 개를 가지는데, 첫번째는 키의 타입이고, 두 번째는 값의 타입입니다. 우리는 투수 이름을 키로 가지고 대응되는 값을 그 투수의 방어율로 하는 맵을 만들 예정입니다.
 
 ```cpp-formatted
-
 pitcher_list.insert(pair<string, double>("박세웅", 2.23));
 pitcher_list.insert(pair<string, double>("해커 ", 2.93));
 pitcher_list.insert(pair<string, double>("피어밴드 ", 2.95));
@@ -686,7 +667,6 @@ pitcher_list.insert(pair<string, double>("피어밴드 ", 2.95));
 맵에 원소를 넣기 위해서는 반드시 `pair` 객체를 전달해야 합니다. `pair` 객체는 별다른게 아니고,
 
 ```cpp-formatted
-
 template <class T1, class T2>
 struct pair {
   T1 first;
@@ -697,7 +677,6 @@ struct pair {
 로 생긴 단순히 2 개의 객체를 멤버로 가지는 객체 입니다. 문제는 `pair` 객체를 사용할 때 마다 위 처럼 템플릿 인자를 초기화 해야 하는데 꽤나 귀찮습니다. 그래서 `STL` 에서는 `make_pair` 함수를 제공해주는데,
 
 ```cpp-formatted
-
 pitcher_list.insert(make_pair("차우찬", 3.04));
 pitcher_list.insert(make_pair("장원준 ", 3.05));
 pitcher_list.insert(make_pair("헥터 ", 3.09));
@@ -709,7 +688,6 @@ pitcher_list.insert(make_pair("헥터 ", 3.09));
 한 가지 재미있는 점은
 
 ```cpp-formatted
-
 // 혹은 insert 를 안쓰더라도 [] 로 바로
 // 원소를 추가할 수 있습니다.
 pitcher_list["니퍼트"] = 3.56;
@@ -720,7 +698,6 @@ pitcher_list["켈리"] = 3.90;
 맵의 경우 `operator[]` 를 이용해서 새로운 원소를 추가할 수 도 있습니다 (만일 해당하는 키가 맵에 없다면). 만일 키가 이미 존재하고 있다면 값이 대체될 것입니다.
 
 ```cpp-formatted
-
 template <typename K, typename V>
 void print_map(map<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
@@ -742,7 +719,6 @@ cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 하지만, `[]` 연산자를 사용할 때 주의해야 할 점이 있습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <map>
 #include <string>
@@ -780,7 +756,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 pitcher_list["오승환"] = 3.58;
 ```
 
@@ -789,7 +764,6 @@ pitcher_list["오승환"] = 3.58;
 일단 위와 같이 `pitcher_list` 에 오승환의 방어율만 추가하였기 때문에 류현진의 방어율을 검색하면 아무것도 나오지 않는게 정상입니다. 그런데,
 
 ```cpp-formatted
-
 cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
 ```
 
@@ -802,7 +776,6 @@ cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
 
 
 ```cpp-formatted
-
 #include <iostream>
 #include <map>
 #include <string>
@@ -854,7 +827,6 @@ int main() {
 
 
 ```cpp-formatted
-
 template <typename K, typename V>
 void search_and_print(map<K, V>& m, K key) {
   auto itr = m.find(key);
@@ -875,7 +847,6 @@ void search_and_print(map<K, V>& m, K key) {
 
 
 ```cpp-formatted
-
 #include <iostream>
 #include <map>
 #include <string>
@@ -921,7 +892,6 @@ int main() {
 앞서 셋과 맵 모두 중복된 원소를 허락하지 않습니다. 만일, 이미 원소가 존재하고 있는데 `insert` 를 하였으면 무시가 되었지요. 하지만 멀티셋과 멀티맵은 중복된 원소를 허락합니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <set>
 #include <string>
@@ -1027,7 +997,6 @@ cout << m.find(1)->second << endl;
 그렇다면 1 에 대응되는 값들이 뭐가 있는지 어떻게 알까요? 이를 위해 멀티맵은 다음과 같은 함수를 제공하고 있습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <map>
 #include <string>
@@ -1074,14 +1043,12 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 auto range = m.equal_range(1);
 ```
 
 `equal_range` 함수의 경우 인자로 멀티맵의 키를 받은 뒤에, 이 키에 대응되는 원소들의 반복자들 중에서시작과 끝 바로 다음을 가리키는 반복자를 `pair` 객체로 만들어서 리턴합니다. 즉, `begin()` 과 `end()` 를 `pair` 로 만들어서 세트로 리턴한다고 볼 수 있겠지요. 다만, `first` 로 시작점을, `second` 로 끝점 바로 뒤를 알 수 있습니다. 왜 끝점 바로 뒤를 가리키는 반복자를 리턴하는지는 굳이 설명 안해도 알겠죠?
 
 ```cpp-formatted
-
 for (auto itr = range.first; itr != range.second; itr++) {
   cout << itr->first << " : " << itr->second << " " << endl;
 }
@@ -1103,7 +1070,6 @@ for (auto itr = range.first; itr != range.second; itr++) {
 이 말이 무슨 말이냐면, 셋이나 맵의 경우 원소들이 순서대로 정렬되어서 내부에 저장되지만, `unordered_set` 과 `unordered_map` 의 경우 원소들이 순서대로 정렬되서 들어가지 않는다는 뜻입니다. 따라서 반복자로 원소들을 하나씩 출력해보면 거의 랜덤한 순서로 나오는 것을 볼 수 있습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 #include <unordered_set>
@@ -1183,7 +1149,6 @@ int main() {
 또한 처음부터 많은 개수의 상자를 사용할 수 없기 때문에 (메모리를 낭비할 순 없으므로..) 상자의 개수는 삽입되는 원소가 많아짐에 따라 점진적으로 늘어나게 됩니다. 문제는 상자의 개수가 늘어나면 해시 함수를 바꿔야 하기 때문에 (더 많은 값들을 해시값으로 반환할 수 있도록) 모든 원소들을 처음부터 끝 까지 다시 `insert` 해야 합니다. 이를 `rehash` 라 하며 $$O(N)$$ 만큼의 시간이 걸립니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 #include <unordered_set>
@@ -1240,7 +1205,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 template <typename K>
 void is_exist(unordered_set<K>& s, K key) {
   auto itr = s.find(key);
@@ -1289,7 +1253,6 @@ class Todo {
 예를 들어 `string` 함수의 해시값을 계산하고 싶다면
 
 ```cpp-formatted
-
 hash<string> hash_fn;
 size_t hash_val = hash_fn(str);  // str 의 해시값 계산
 ```
@@ -1302,7 +1265,6 @@ size_t hash_val = hash_fn(str);  // str 의 해시값 계산
 따라서 `Todo` 함수의 해시 함수를 계산하는 함수 객체를 만들기 위해 다음과 같이 `hash` 클래스의 `Todo` 특수화 버전을 만들어줘야 합니다.
 
 ```cpp-formatted
-
 // hash 클래스의 Todo 템플릿 특수화 버전!
 template <>
 struct hash<Todo> {
@@ -1429,7 +1391,6 @@ struct hash<Todo> {
 
 
 ```cpp-formatted
-
 bool operator==(const Todo& t) const {
   if (priority == t.priority && job_desc == t.job_desc) return true;
   return false;
@@ -1463,11 +1424,4 @@ bool operator==(const Todo& t) const {
 
 그렇다면 이번 강좌는 여기에서 마치도록 하겠습니다. 다음 강좌에서는 `STL` 알고리즘을 이용한 여러가지 작업들에 대해 알아보도록 하겠습니다!
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <10 - 2. C++ 의 표준 템플릿 라이브러리 (STL) - 연관 컨테이너>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-endw

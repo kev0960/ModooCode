@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - ios_base::fmtflags 타입
 cat_title :  ios_base::fmtflags 타입
 ref_title : ios_base::fmtflags, fmtflags
+publish_date : 2011-08-19
 --------------
 
 

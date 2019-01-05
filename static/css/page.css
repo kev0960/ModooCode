@@ -442,3 +442,33 @@ figcaption {
     background: #f36d1e;
     color: white;
 }
+
+.next-lecture-box {
+    font-family: 'Noto Sans KR', monospace;
+    background-color: rgba(252, 222, 199, 1);
+    border: 1px solid rgb(254, 104, 67);
+    padding: 10px;
+}
+
+.next-lecture {
+    text-align: right;
+    margin-top:15px;
+}
+
+.next-lecture > a {
+    color: #3c3c3c;
+    font-weight: bold;
+    font-size: 130%;
+}
+
+.lecture-title {
+    font-weight: bold;
+}
+
+.publish-date {
+    font-size:65%!important;
+    padding:5px;
+    color: white;
+    background-color: green;
+    border-radius: 4px;
+}

@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - perror 함수
 cat_title :  perror
+publish_date : 2010-02-08
 --------------
 
 
@@ -53,7 +54,6 @@ C 형식 문자열로 시스템 오류 메세지 다음에 이어서 출력할 �
 
 
 ```cpp-formatted
-
 
 /*존재하지 않는 파일(unexist.ent) 을 열어 오류를 발생시켜 perror 함수를
  * 호출시킨다.이 예제는

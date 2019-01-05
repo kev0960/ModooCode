@@ -15,6 +15,7 @@ int main(int argc, char **argv) {
   //image.draw(DrawableRectangle(200, 200, 270, 170));
   image.fontPointsize(20);
   std::vector<Drawable> text_draw_list;
+  /*
   text_draw_list.push_back(
       DrawableFont("NanumBarunGothic", NormalStyle, 400, NormalStretch));
   text_draw_list.push_back(DrawableText(101, 50, "English about same l"));
@@ -22,7 +23,7 @@ int main(int argc, char **argv) {
   text_draw_list.push_back(
       DrawableText(301, 100, "이글은 조금 더 깁니다", "UTF-8"));
   image.draw(text_draw_list);
-
+  */
   algo_visual::GetStringSize("안녕하세요!");
   algo_visual::GetStringSize("이글은 조금 더 깁니다");
   algo_visual::GetStringSize("English about same l");

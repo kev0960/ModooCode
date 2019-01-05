@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - STL 컨테이너 - deque
 ref_title : <deque>
 cat_title :  deque
 path : /C++ Reference/Containers/deque
+publish_date : 2012-03-24
 --------------
 
 

@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::exceptions
 cat_title :  ios::exceptions
+publish_date : 2011-08-18
 --------------
 
 
@@ -63,7 +64,6 @@ void exceptions(iostate except);
 
 
 ```cpp-formatted
-
 /*사용자가 file 의 exception 에 failbit 와 badbit 를 등록하였으므로 이들 비트가
  * 설정될 때 예외를 throw 하게 된다. 나의 경우 test.txt 파일에 내용이 존재하지
  * 않았으므로 failbit 가 설정되어서 예외가 throw 된 것이다.*/

@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>
 cat_title : 16 - 3. 구조체와 친구들(공용체(union), 열거형(enum)
 next_page : 83
+publish_date : 2010-06-13
 --------------
 
 
@@ -350,7 +351,6 @@ struct obj {
 위 그림을 보아도 알 수 있듯이 공용체의 각 멤버들의메모리 시작 주소는 모두 동일합니다. 따라서 우리는 위 그림의 `union A` 의 경우 `j` 의 값을 변경함으로 써 `i` 의 값을 변경할 수 있고 마찬가지로 `i` 의 값을 변경함으로써  `j` 의 값을 변경할 수 있게 됩니다. 과연 이 말이 진짜 인지 확인해 보도록 합시다.
 
 ```cpp-formatted
-
 /* 공용체 */
 #include <stdio.h>
 union A {
@@ -457,7 +457,6 @@ if(human.gender == MALE) // 사람의 성별이 남자 일 때
 와 같이 한다면 확실히 알아 듣기 쉽겠지요. 하지만 문제는 이를 위해 `MALE` 이라는 상수를 설정해야 되고 이 때문에 메모리가 낭비되게 됩니다. 이는 프로그래머의 입장에서 난감한 일이 아닐 수 없지요. C 에서는 이를 **열거형(Enum)**을 도입해서 말끔하게 해결해줍니다.
 
 ```cpp-formatted
-
 /* 열거형의 도입 */
 #include <stdio.h>
 enum { RED, BLUE, WHITE, BLACK };
@@ -519,7 +518,6 @@ if(palette == RED) // 현재 파레트의 색이 빨강인지 확인한다.
 
 
 ```cpp-formatted
-
 /* 열거형 팁 */
 #include <stdio.h>
 enum { RED = 3, BLUE, WHITE, BLACK };
@@ -565,11 +563,4 @@ enum { RED = 3, BLUE, WHITE = 3, BLACK }
 http://www.go4expert.com/forums/showthread.php?t=15
 
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

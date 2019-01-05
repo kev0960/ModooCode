@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - strtok 함수
 cat_title :  strtok
+publish_date : 2010-11-27
 --------------
 
 
@@ -96,8 +97,6 @@ char *__cdecl strtok(char *s1, const char *delimit) {
 
 
 ```cpp-formatted
-
-
 /*' ', ',', '-', '.' 들을 구분 문자로 이용하여 - This, a sample string. 이라는
  * 문자열을 토큰들로 분리한다.이 예제는
  * http://www.cplusplus.com/reference/clibrary/cstring/strtok/ 에서 가져왔습니다

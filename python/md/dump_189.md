@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C++ 토막글 ① - Rvalue(우측값) 레퍼런스에 관해
+publish_date : 2012-11-03
 --------------
 
 ```warning
@@ -50,7 +51,6 @@ title : 씹어먹는 C++ 토막글 ① - Rvalue(우측값) 레퍼런스에 관�
 예를 들어
 
 ```cpp-formatted
-
 int a = 42;
 int b = 43;
 
@@ -77,7 +77,6 @@ C++ 에서도 위와 같이 간단하게 생각 할 수 는 있지만, C++ 에�
 예를 들면
 
 ```cpp-formatted
-
 // 좌측값들
 //
 int i = 42;
@@ -109,7 +108,6 @@ j = 42;               // 42 는 우측값이다.
 `std::vector` 는 동적으로 할당 된 배열에 객체들을 보관하는 것인데요, 여태까지 C++ 을 충실히 배우신 분이라면 이 `X` 의 복사 대입 연산자는 아마 이렇게 구현하였을 것입니다.
 
 ```cpp-formatted
-
 X& X::operator=(X const& rhs) {
   // [...]
   // m_pResource 가 가리키는 리소스를 소멸한다.
@@ -124,7 +122,6 @@ X& X::operator=(X const& rhs) {
 그리고 비슷한 방법으로 복사 생성자를 구현하였다면 아래 코드에서;
 
 ```cpp-formatted
-
 X foo();  // foo 는 X 타입의 객체를 리턴하는 함수 이다!
 X x;
 x = foo();
@@ -149,7 +146,6 @@ x = foo();
 이와 같은 일이 가능했던 것은 위 `x = foo()` 에서 `foo()` 가 바로 우측값 이기 때문이입니다. 우측값을 대입하는 경우 다음과 같이 단순하게 복사 연산자를 구현할 수 있습니다.
 
 ```cpp-formatted
-
 // [...]
 // m_pResource 와 rhs.m_pResource 를 교환
 // [...]
@@ -160,7 +156,6 @@ x = foo();
 이를 바로 `move` 연산 이라고 하는 것입니다. `0x C++` 초기 버전에서는 위와 같은 과정이 템플릿 메타프로그래밍으로 가능했다는 이야기를 들었는데 분명 매우 복잡했을 것입니다. `C++11` 에서는 아래와 같은 함수의 오버로딩으로 구현할 수 있습니다.
 
 ```cpp-formatted
-
 X& X::operator=(<미지의 타입> rhs) {
   // [...]
   //  m_pResource 와 rhs.m_pResource 를 교환
@@ -184,7 +179,6 @@ X& X::operator=(<미지의 타입> rhs) {
 우측값 참조는 기존의 레퍼런스 `X&` 와 몇 가지 예외를 제외하고는 유사하게 작동합니다. 다만 둘의 가장 큰 차이점은 함수 오버로딩에서 좌측값은 좌측값 레퍼런스를, 우측값은 우측값 레퍼런스를 선호한다는 것이지요.
 
 ```cpp-formatted
-
 void foo(X& x);   // 좌측값 참조 오버로드
 void foo(X&& x);  // 우측값 참조 오버로드
 
@@ -206,7 +200,6 @@ foo(foobar());  // 인자에 우측값이 들어 갔으므로 우측값 참조 �
 어떠한 함수라도 인자로 우측값을 받도록 할 수 있지만, 대다수의 경우 `move` 연산을 위해서는 우측값 참조로 인자를 받는 경우는 복사 생성자나 대입 연산자들 밖에 없습니다.
 
 ```cpp-formatted
-
 X& X::operator=(X const& rhs);  // 기존의 구현 방법
 X& X::operator=(X&& rhs) {
   // Move 연산: this 와 rhs 의 내용을 swap 한다.
@@ -221,7 +214,6 @@ X& X::operator=(X&& rhs) {
 
 한 가지 참고할 사항은 만일 여러분이
 ```cpp-formatted
-
 void foo(X&);
 ```
 
@@ -230,7 +222,6 @@ void foo(X&);
 만 구현하고
 
 ```cpp-formatted
-
 void foo(X&&);
 ```
 
@@ -239,7 +230,6 @@ void foo(X&&);
 를 구현하지 않는다면, 예전부터 해왔던 것 처럼 `foo` 는 인자로 좌측값만 받을 수  있고 우측값을 받을 수 없습니다. 반면에 여러분이
 
 ```cpp-formatted
-
 void foo(X const &);
 ```
 
@@ -248,7 +238,6 @@ void foo(X const &);
 만 구현하고
 
 ```cpp-formatted
-
 void foo(X&&);
 ```
 
@@ -257,7 +246,6 @@ void foo(X&&);
 를 구현하지 않는다면, `foo` 는 좌측값 및 우측값 모두 인자로 받을 수 있지만, 좌측값과 우측값일 때를 구별해서 처리할 수 없기 때문에 `move` 연산시 많은 불필요한 작업이 수행됩니다. 따라서 이를 해결할 수 있는 유일한 방법은
 
 ```cpp-formatted
-
 void foo(X&&);
 ```
 
@@ -266,7 +254,6 @@ void foo(X&&);
 를 구현하는 것인데, 만일 아래 두 함수들 중 어느 하나라도 정의하지 않는다면
 
 ```cpp-formatted
-
 void foo(X &);
 void foo(X const &);
 ```
@@ -308,7 +295,6 @@ swap(a, b);
 따라서 `C++11` 에서는 표준 라이브러리 함수인 `std::move` 가 이를 위해 등장하였습니다. 이 함수는 인자로 받은 것을 우측값으로 바꿔주는 역할을 합니다. 따라서 `C++11` 에서 표준 라이브러리의 `swap` 함수는 아래와 같이 생겼습니다.
 
 ```cpp-formatted
-
 template <class T>
 void swap(T& a, T& b) {
   T tmp(std::move(a));
@@ -335,7 +321,6 @@ swap(a, b);
 이제 우리는 `std::move` 에 대해 조금 알게 되었으니, 이전에 복사 대입 연산자의 우측값 레퍼런스를 이용한 구현이 조금 문제가 있었는지 이해할 수 있는 수준이 되었습니다. 아래와 같은 두 개 변수 사의 단순한 대입 연산을 생각해봅시다.
 
 ```cpp-formatted
-
 a = b;
 ```
 
@@ -344,7 +329,6 @@ a = b;
 여기서 어떠한 일이 발생할까요? 아마 여러분은 `a` 에 보관되어 있던 객체가 `b` 의 복사본으로 교체될 것이고, 이 교체 과정에서 `a` 가 이전에 보관하였던 객체는 파괴될 것이라고 생각하실 수 있습니다. 그렇다면 아래의 예는 어떨까요?
 
 ```cpp-formatted
-
 a = std::move(b);
 ```
 
@@ -356,7 +340,6 @@ a = std::move(b);
 우리는 언제 객체가 소멸될지 모르는 끔찍한 상황에 직면하였습니다. 물론 객체가 소멸되지 않아도 별 문제를 야기하지 않는다면 상관이 없습니다만, 어떤 경우에는 객체의 소멸이 다른 영향을 끼칠 수 도 있다는 것입니다. 예를 들어서 소멸자 안에서 `thread` 의 `lock` 을 푼다 든지 말이지요. 따라서, 객체의 소멸 시에 수행되는 작업들이 외부에 다른 영향을 주게 된다면, 이는 반드시 우측값 참조 복사 생성자 내부에서 수행되어야만 합니다.
 
 ```cpp-formatted
-
 X& X::operator=(X&& rhs) {
   // 소멸자에서 수행되는 내용들 중 외부에 영향을 줄 수 있는 것들은
   // 여기서 수행해야만 합니다. 물론 객체를 실제로 파괴하면 안되고
@@ -378,7 +361,6 @@ X& X::operator=(X&& rhs) {
 이전처럼 `move` 를 사용하는 오버로딩 된 복사 생성자와 복사 대입 연산자가 있는 클래스라고 생각합시다. 그렇다면 아래와 같은 함수를 살펴봅시다.
 
 ```cpp-formatted
-
 void foo(X&& x) {
   X anotherX = x;
   // ...
@@ -390,7 +372,6 @@ void foo(X&& x) {
 그렇다면 여기서 어떠한 `X` 의 복사 생성자가 `foo` 내부에서 호출이 되는 것일까요? 우측값을 인자로 받는 것일까요, 좌측값을 인자로 받는 것일까요? 여러분이 언뜻 보시기에 `x` 가 `X` 의 우측값 참조로 정의되어 있으니 아마도 우측값을 인자로 받는 복사 생성자가 호출이 될 것이라고 생각 하실 것입니다. 왜냐하면
 
 ```cpp-formatted
-
 X(X&& rhs);
 ```
 
@@ -407,7 +388,6 @@ X(X&& rhs);
 무슨말인지 잘 모르겠다면 아래의 예를 보면 이해가 더 빠릅니다. 아래 함수 내에서 `x` 는 우측값 레퍼런스로 정의되었고 이름이 있기 때문에 (x 라는 이름이 있잖아요!) 위 정의에 따라 좌측값 입니다.
 
 ```cpp-formatted
-
 void foo(X&& x) {
   X anotherX = x;  // 좌측값 이므로 X(X const & rhs) 가 호출됨
 }
@@ -418,7 +398,6 @@ void foo(X&& x) {
 반면에 아래의 `goo` 함수의 경우 `X&&` 타입의 데이터를 리턴하고 그 것의 이름은 없기 때문에 이는 우측값이 됩니다.
 
 ```cpp-formatted
-
 X&& goo();
 X x = goo();  // 이름이 없으므로 우측값. 즉 X(X&& rhs) 가 호출됨
 ```
@@ -428,7 +407,6 @@ X x = goo();  // 이름이 없으므로 우측값. 즉 X(X&& rhs) 가 호출됨
 여기서 우리는 왜 이러한 방식으로 설계를 하였는지 알 수 있습니다. 만일 아래와 같은 코드에서 이름이 있는 것에 `move` 연산을 적용하게 되면
 
 ```cpp-formatted
-
 X anotherX = x;
 // 만일 여기서 실수로 x 를 이용한 코드를 작성하면 ???
 ```
@@ -441,7 +419,6 @@ X anotherX = x;
 그렇다면 "이름이 없다면 우측값이다" 는 어떨까요. 위의 `goo()` 를 살펴봅시다. 사실 드물게도 goo() 가 가리키는 객체가 `move` 이후에도 접근 가능한 것일 수 도 있는 것입니다. 그런데, 이전의 내용을 상기해보세요 - 우리가 종종 이 기능을 필요로 하지 않았나요? 우리는 앞에서 좌측값에 대해 강제적으로 `move` 연산을 적용시키기를 원했습니다. 그런데, 규칙에 따르면 "이름이 없다면 우측값이다" 를 통해 이를 성공적으로 수행할 수 있었지요. 이것이 바로 `std::move` 가 작동하는 원리 입니다. 사실 정확한 구현을 보여주기에는 아직도 갈길이 남아있지만, 우리는 `std::move` 를 이해하는데 한 발짝 더 가까이 다가갔습니다. 이 함수는 레퍼런스로 인자를 받은 뒤에 아무것도 하지 않고, 다시 이를 우측값 참조로 리턴하게 되는 것이지요. 따라서
 
 ```cpp-formatted
-
 std::move(x)
 ```
 
@@ -450,7 +427,6 @@ std::move(x)
 는 우측값 참조로 정의되었고, 이름을 가지지 않습니다. 따라서 이는 우측값이 됩니다. 즉, `std::move` 는 "이름을 가리기" 를 통해 우측값이 아닌 인자 조차도 우측값으로 바꿔주는 역할을 합니다. 사실 이러한 '이름의 유무' 에 대한 규칙은 매우 중요하므로 잘 알고 계셔야 합니다. 예를 들어서 여러분이 `Base` 라는 클래스를 만들었고, `move` 연산을 `Base` 의 복사 생성자와 대입 연산자에 구현하였다고 해봅시다.
 
 ```cpp-formatted
-
 Base(Base const& rhs);  // move 연산 아님
 Base(Base&& rhs);       // move 연산
 ```
@@ -460,7 +436,6 @@ Base(Base&& rhs);       // move 연산
 이제 여러분이 `Base` 를 상속 받은 `Derived` 라는 클래스를 만들었다고 생각합시다. `Derived` 클래스의 `Base` 클래스 부분에서 `move` 연산이 잘 작용하려면, 여러분은 반드시 `Derived` 에 복사 생성자와 대입 연산자를 오버로딩 해야 할 것입니다. 그럼 복사 생성자를 어떻게 구성하였는지 살펴볼까요. 좌측값을 사용한 버전은 단순합니다.
 
 ```cpp-formatted
-
 Derived(Derived const& rhs) : Base(rhs) {
   // Derived 에 관련된 작업들
 }
@@ -471,7 +446,6 @@ Derived(Derived const& rhs) : Base(rhs) {
 그렇다면 우측값을 사용한 버전은 어떨까요. 만일 여러분이 앞선 '이름에 관한 규칙' 을 잘 이해하지 못했더라면 아래와 같이 구현했을 것입니다.
 
 ```cpp-formatted
-
 Derived(Derived&& rhs)
     : Base(rhs)  // wrong: rhs 는 좌측값!
 {
@@ -484,7 +458,6 @@ Derived(Derived&& rhs)
 위와 같이 한다면, `Base` 의 좌측값 버전의 복사 생성자가 호출될 것입니다. 왜냐하면 `rhs` 는 명백하게도 'rhs' 라는 이름이 있기에 좌측값이기 때문이죠. 우리가 `Base` 의 `move` 복사 생성자를 호출하려면 아래와 같이 해야 할 것입니다.
 
 ```cpp-formatted
-
 Derived(Derived&& rhs)
     : Base(std::move(rhs))  // good: Base(Base&& rhs) 를 호출
 {
@@ -501,7 +474,6 @@ Derived(Derived&& rhs)
 
 아래와 같은 함수의 정의를 살펴봅시다.
 ```cpp-formatted
-
 X foo() {
   X x;
   // x 에 어떤 작업을 한다
@@ -514,7 +486,6 @@ X foo() {
 이전처럼 `X` 를 move 연산이 적용된 복사 생성자와 복사 대입 연산자가 있는 클래스라고 생각해봅시다. 위 함수를 잘 살펴본 여러분은, `move` 연산에 너무나 심취해버린 나머지 foo 의 리턴값과 `x` 와의 값 복사가 일어나고 있기 때문에 다음과 같이 `move` 연산을 적용해서 바꿀 것이라고 생각됩니다.
 
 ```cpp-formatted
-
 X foo() {
   X x;
   // perhaps do something to x
@@ -534,7 +505,6 @@ X foo() {
 
 맨 처음에도 말했지만 우측값 참조를 통해 해결할 수 있는 문제로 `move` 연산 뿐만이 아니라 완벽한 포워딩 문제도 있습니다. 아래와 같은 간단한 `factory` 함수를 살펴보도록 합시다.
 ```cpp-formatted
-
 template <typename T, typename Arg>
 shared_ptr<T> factory(Arg arg) {
   return shared_ptr<T>(new T(arg));
@@ -549,7 +519,6 @@ shared_ptr<T> factory(Arg arg) {
 가장 널리 쓰이는 해결책은 (boost::bind 에서 사용한 해결책) 바깥의 함수가 인자를 레퍼런스로 가지면 되는 것입니다.
 
 ```cpp-formatted
-
 template <typename T, typename Arg>
 shared_ptr<T> factory(Arg& arg) {
   return shared_ptr<T>(new T(arg));
@@ -561,7 +530,6 @@ shared_ptr<T> factory(Arg& arg) {
 위 방법은 좀 더 낫지만 완벽하지는 않습니다. 왜냐하면 이제 `factory` 함수는 우측값에 대해 성공적으로 호출이 되지 않기 때문이죠.
 
 ```cpp-formatted
-
 factory<X>(hoo());  // error.
 factory<X>(41);     // error.
 ```
@@ -571,7 +539,6 @@ factory<X>(41);     // error.
 이 문제는 인자를 `const` 참조로 바꾼다면 해결할 수 있습니다.
 
 ```cpp-formatted
-
 template <typename T, typename Arg>
 shared_ptr<T> factory(Arg const& arg) {
   return shared_ptr<T>(new T(arg));
@@ -605,7 +572,6 @@ A&& && → A&&
 두 번째로 템플릿 인자로 우측값 참조를 받는 함수 템플릿에는 아래와 같은 **특수 템플릿 인자 유추 규칙(special template argument deduction rule)** 이 있습니다.
 
 ```cpp-formatted
-
 template <typename T>
 void foo(T&&);
 ```
@@ -622,7 +588,6 @@ void foo(T&&);
 이러한 규칙을 바탕으로 우리는 이제 완벽한 전달 문제를 위해 우측값 참조를 사용할 수 있게 됩니다. 아래는 그 해결책 입니다.
 
 ```cpp-formatted
-
 template <typename T, typename Arg>
 shared_ptr<T> factory(Arg&& arg) {
   return shared_ptr<T>(new T(std::forward<Arg>(arg)));
@@ -634,7 +599,6 @@ shared_ptr<T> factory(Arg&& arg) {
 이 때 std::forward 는 아래와 같이 정의되어 있습니다.
 
 ```cpp-formatted
-
 template <class S>
 S&& forward(typename remove_reference<S>::type& a) noexcept {
   return static_cast<S&&>(a);
@@ -649,7 +613,6 @@ S&& forward(typename remove_reference<S>::type& a) noexcept {
 위 코드가 어떻게 완벽한 전달 문제를 해결하는지 살펴보기 위해 `factory` 함수가 각각 좌측값과 우측값으로 호출 될 때 어떻게 작동하는지 살펴보도록 합시다.`A` 와 `X` 를 타입이라고 하고, `factory<A>` 가 `X` 의 좌측값 타입으로 호출되었다고 합시다.  아래와 같이요.
 
 ```cpp-formatted
-
 X x;
 factory<A>(x);
 ```
@@ -659,7 +622,6 @@ factory<A>(x);
 앞서 특수 템플릿 인자 유추 규칙에 따라 `factory` 의 템플릿 인자 `Arg` 는 `X&` 로 변환됩니다. 따라서, 컴파일러는 아래와 같이 `factor` 와 `std::forward` 의 템플릿 인스턴스화 (instantiation) 을 수행하게 됩니다.
 
 ```cpp-formatted
-
 shared_ptr<A> factory(X&&& arg) {
   return shared_ptr<A>(new A(std::forward<X&>(arg)));
 }
@@ -674,7 +636,6 @@ X&&& forward(remove_reference<X&>::type& a) noexcept {
 `remove_reference` 를 수행하고 & 겹침 규칙을 적용하게 되면,
 
 ```cpp-formatted
-
 shared_ptr<A> factory(X& arg) {
   return shared_ptr<A>(new A(std::forward<X&>(arg)));
 }
@@ -690,7 +651,6 @@ X& std::forward(X& a) { return static_cast<X&>(a); }
 이번에는 `factory<A>` 가 `X` 의 우측값으로 호출되었다고 생각해봅시다.
 
 ```cpp-formatted
-
 X foo();
 factory<A>(foo());
 ```
@@ -700,7 +660,6 @@ factory<A>(foo());
 그러면 위의 특수 템플릿 인자 유추 규칙에 따라 `factory` 의 템플릿 인자 `Arg` 는 `X` 로 변환되게 됩니다. 따라서 컴파일러는 아래와 같은 함수 인스턴스화 된 함수 템플릿을 생성하게 되겠지요.
 
 ```cpp-formatted
-
 shared_ptr<A> factory(X&& arg) {
   return shared_ptr<A>(new A(std::forward<X>(arg)));
 }
@@ -723,7 +682,6 @@ X&& forward(X& a) noexcept { return static_cast<X&&>(a); }
 자. 그럼 이제 우리의 여정은 끝에 다다랐습니다. 이제 해야될 것은 `std::move` 의 정의를 살펴보는 일입니다. `std::move` 는 레퍼런스로 받은 인자를 우측값 처럼 행동하게 하는 것임을 기억하고 계시죠? 아래는 그 구현입니다.
 
 ```cpp-formatted
-
 template <class T>
 typename remove_reference<T>::type&& std::move(T&& a) noexcept {
   typedef typename remove_reference<T>::type&& RvalRef;
@@ -736,7 +694,6 @@ typename remove_reference<T>::type&& std::move(T&& a) noexcept {
 만일 우리가 좌측값 `X` 에 대해 `std::move` 를 호출하였다고 해봅시다.
 
 ```cpp-formatted
-
 X x;
 std::move(x);
 ```
@@ -746,7 +703,6 @@ std::move(x);
 그리고 우리의 특수 템플릿 인자 유추 규칙에 따라서 템플릿 인자 `T` 는 `X&` 로 바뀔 것이고, 따라서 컴파일러는 아래와 같이 템플릿 인스턴스화를 수행하게 됩니다.
 
 ```cpp-formatted
-
 typename remove_reference<X&>::type&& std::move(X&&& a) noexcept {
   typedef typename remove_reference<X&>::type&& RvalRef;
   return static_cast<RvalRef>(a);
@@ -758,7 +714,6 @@ typename remove_reference<X&>::type&& std::move(X&&& a) noexcept {
 `remove_reference` 와 `&` 겹침 규칙을 적용하고 나면
 
 ```cpp-formatted
-
 X&& std::move(X& a) noexcept { return static_cast<X&&>(a); }
 ```
 
@@ -767,7 +722,6 @@ X&& std::move(X& a) noexcept { return static_cast<X&&>(a); }
 와 같이 됩니다. 바로 우리가 원하는 작업이군요. 우리의 좌변값 `x` 는 인자인 좌변값 참조를 통해 인자로 전달되어서 이름없는 우변값 참조로 변호나될 것입니다. `std::move` 가 우변값에서도 작동하는지 확인하는 일은 여러분의 몫으로 남겨두겠습니다. 그런데, `std::move` 가 받은 인자를 우변값으로 바꿔주는 일이라면 도대체 왜 사람들이 우변값에 대해 `std::move` 를 호출할까요?
 
 ```cpp-formatted
-
 std::move(x);
 ```
 
@@ -776,7 +730,6 @@ std::move(x);
 로 쓰는 대신에 그냥
 
 ```cpp-formatted
-
 static_cast<X&&>(x);
 ```
 

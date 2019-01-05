@@ -1,5 +1,6 @@
 ----------------
 title : 씹어먹는 C++ 토막글 ② - 람다(lambda) 함수
+publish_date : 2013-01-08
 --------------
 
 ```warning
@@ -24,7 +25,6 @@ title : 씹어먹는 C++ 토막글 ② - 람다(lambda) 함수
 
 
 ```cpp-formatted
-
 vector<int>::const_iterator iter = cardinal.begin();
 vector<int>::const_iterator iter_end = cardinal.end();
 int total_elements = 1;
@@ -43,7 +43,6 @@ while (iter != iter_end) {
 
 
 ```cpp-formatted
-
 int total_elements = 1;
 for_each(cardinal.begin(), cardinal.end(), product<int>(total_elements));
 template <typename T>
@@ -76,7 +75,6 @@ for_each(cardinal.begin(), cardinal.end(),
 
 간단히 `Functor` 를 이용한 코드와 `Lambda` 를 이용한 코드를 비교해 보아도 그 차이를 실감할 수 있을 것입니다.
 ```cpp-formatted
-
 // Functor 사용
 
 struct mod {
@@ -90,7 +88,6 @@ transform(in.begin(), in.end(), out.begin(), mod(my_mod));
 
 
 ```cpp-formatted
-
 // Lambda 사용
 int my_mod = 8;
 transform(in.begin(), in.end(), out.begin(),
@@ -120,7 +117,6 @@ transform(in.begin(), in.end(), out.begin(),
 그렇다면
 
 ```cpp-formatted
-
 []() { cout << "foo" << endl; }()
 ```
 
@@ -129,7 +125,6 @@ transform(in.begin(), in.end(), out.begin(),
 를 실행하였을 때 어떠한 결과가 나올까요? 일단
 
 ```cpp-formatted
-
 []() { cout << "foo" << endl; }
 ```
 
@@ -150,7 +145,6 @@ transform(in.begin(), in.end(), out.begin(),
 그러면 조금 더 복잡한 예제를 살펴볼까요?
 
 ```cpp-formatted
-
 [](int v) { cout << v << "*6=" << v * 6 << endl; }(7);
 ```
 
@@ -159,7 +153,6 @@ transform(in.begin(), in.end(), out.begin(),
 는 어떨까요.
 
 ```cpp-formatted
-
 [](int v) { cout << v << "*6=" << v * 6 << endl; }
 ```
 
@@ -180,7 +173,6 @@ transform(in.begin(), in.end(), out.begin(),
 
 
 ```cpp-formatted
-
 int i = 7;
 [](int& v) { v *= 6; }(i);
 cout << "the correct value is: " << i << endl;
@@ -201,7 +193,6 @@ cout << "the correct value is: " << i << endl;
 참고로 받는 인자가 없을 경우, 예컨대
 
 ```cpp-formatted
-
 []() { cout << "foo" << endl; }
 ```
 
@@ -210,7 +201,6 @@ cout << "the correct value is: " << i << endl;
 의 경우 인자 () 를 생략 할 수 있습니다. 즉,
 
 ```cpp-formatted
-
 [] { cout << "foo" << endl; }
 ```
 
@@ -239,7 +229,6 @@ cout << "the correct value is: " << i << endl;
 
 
 ```cpp-formatted
-
 int total_elements = 1;
 vector<int> cardinal;
 
@@ -269,7 +258,6 @@ cout << "total elements : " << total_elements << endl;
 
 
 ```cpp-formatted
-
 template <typename T>
 void fill(vector<int>& v, T done) {
   int i = 0;
@@ -295,7 +283,6 @@ for_each(stuff.begin(), stuff.end(), [](int i) { cout << i << " "; });
 
 
 ```cpp-formatted
-
 void fill(vector<int>& v, T done) {
   int i = 0;
   while (!done()) {
@@ -321,7 +308,6 @@ for_each(stuff.begin(), stuff.end(), [](int i) { cout << i << " "; });
 
  한 가지 흥미로운 점은 `Capture` 를 레퍼런스가 아닌 값으로 할 때 언제 `Capture` 가 되냐는 것입니다.
 ```cpp-formatted
-
 int v = 42;
 auto func = [=] { cout << v << endl; };
 v = 8;
@@ -345,7 +331,6 @@ func();
 
 
 ```cpp-formatted
-
 int i = 10;
 auto two_i = [=]() -> int {
   i *= 2;
@@ -365,7 +350,6 @@ cout << "2i:" << two_i() << " i:" << i << endl;
 
 
 ```cpp-formatted
-
 int i = 10;
 auto two_i = [=]() mutable -> int {
   i *= 2;
@@ -392,7 +376,6 @@ cout << "2i:" << two_i() << " i:" << i << endl;
 
 
 ```cpp-formatted
-
 class gorp {
   vector<int> values;
   int m_;
@@ -432,7 +415,6 @@ cout << "extras: " << g.extras();
 이렇게 `this` 를 암묵적으로 `Capture` 할 수 있기에 아래와 같은 놀라운 일도 발생할 수 있습니다.
 
 ```cpp-formatted
-
 struct foo {
   foo() : i(0) {}
   void amazing() {
@@ -458,7 +440,6 @@ cout << "f.i : " << f.i;
 
 `Capture` 되는 개체들은 모두 람다가 정의된 위치에서 접근 가능해야만 합니다. 예를 들어
 ```cpp-formatted
-
 int i = 8;
 {
   int j = 2;
@@ -479,7 +460,6 @@ int i = 8;
 그렇다면 아래 코드는 어떨까요?
 
 ```cpp-formatted
-
 int i = 8;
 auto f = [i]() {
   int j = 2;
@@ -506,7 +486,6 @@ f();
 
 
 ```cpp-formatted
-
 int i = 8;
 auto f = []() {
   int j = 2;
@@ -525,7 +504,6 @@ f();
 
 
 ```cpp-formatted
-
 int i = 8;
 auto f = [=]() {
   int j = 2;
@@ -547,7 +525,6 @@ cout << " outer: " << i;
 
 
 ```cpp-formatted
-
 int i = 8;
 auto f = [i]() mutable {
   int j = 2;
@@ -584,7 +561,6 @@ cout << " outer: " << i;
 
 일단
 ```cpp-formatted
-
 struct trace {
   trace() : i(0) { cout << "construct\n"; }
   trace(trace const&) { cout << "copy construct\n"; }
@@ -603,7 +579,6 @@ struct trace {
 
 
 ```cpp-formatted
-
 trace t;
 int i = 8;
 
@@ -625,7 +600,6 @@ auto f = [=]() { return i / 2; };
 그렇다면 아래의 예는 어떨까요
 
 ```cpp-formatted
-
 trace t;
 int i = 8;
 
@@ -654,7 +628,6 @@ auto m2 = m1;
 
 람다를 저장 및 전달하는 방식으로 앞에서 두 가지 방법을 보았습니다. 바로
 ```cpp-formatted
-
 template <typename T>
 void foo(T f) auto f = [] {};
 ```
@@ -668,7 +641,6 @@ void foo(T f) auto f = [] {};
 
 
 ```cpp-formatted
-
 typedef int (*f_type)(int);
 f_type f = [](int i) -> int { return i + 20; };
 cout << f(8);
@@ -686,7 +658,6 @@ cout << f(8);
 
 
 ```cpp-formatted
-
 std::function<int(std::string const &)> f;
 f = [](std::string const &s) -> int { return s.size(); };
 int size = f("http://itguru.tistory.com");
@@ -708,7 +679,6 @@ cout << size << endl;
 이 `std::function` 을 통해 아래와 같이 재밌는 코드도 짤 수 있습니다.
 
 ```cpp-formatted
-
 std::function<int(int)> f1;
 std::function<int(int)> f2 = [&](int i) -> int {
   cout << i << " ";
@@ -744,7 +714,6 @@ f1(10);
 
 
 ```cpp-formatted
-
 std::function<int(int)> fact;
 fact = [&fact](int n) -> int {
   if (n == 0) {

@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::rdbuf 함수
 cat_title :  ios::rdbuf
+publish_date : 2012-03-25
 --------------
 
 
@@ -54,7 +55,6 @@ streambuf* rdbuf ( streambuf* sb );
 
 
 ```cpp-formatted
-
 /*이 예제는http://www.cplusplus.com/reference/iostream/ios/rdbuf/에서
  * 가져왔습니다.*/
 #include <iostream> #include <fstream> using namespace std;

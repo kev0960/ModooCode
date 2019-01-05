@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - STL 컨테이너 - vector 생성자
 
 cat_title :  vector 생성자
+publish_date : 2012-03-25
 --------------
 
 
@@ -90,7 +91,6 @@ vector(const vector<T, Allocator>& x);
 
 
 ```cpp-formatted
-
 /*이 예제는http://www.cplusplus.com/reference/stl/vector/vector/에서
  * 가져왔습니다.*/
 

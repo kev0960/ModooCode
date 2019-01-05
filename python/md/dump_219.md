@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>
 cat_title: 9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)
 next_page : 221
+publish_date : 2017-04-07
 --------------
 
 이번 강좌에서는
@@ -305,7 +306,6 @@ template <typename T> 와 template <class T> 는 같습니다.
 이렇게 정의한 템플릿의 인자에 값을 전달하기 위해서는
 
 ```cpp-formatted
-
 Vector<int> int_vec;
 ```
 
@@ -317,7 +317,6 @@ Vector<int> int_vec;
 여태까지는 인자로 특정한 '값' 혹은 '객체' 를 전달해왔지만 '타입' 그 자체를 전달한 적은 없었습니다. 하지만 템플릿을 통해 타입을 전달할 수 있게 됩니다.
 
 ```cpp-formatted
-
 Vector<int>  // 혹은
 
   Vector<string>
@@ -398,7 +397,6 @@ Vector<int> int_vec;
 예를 들어서 `bool` 데이터를 보관하는 벡터를 생각해봅시다.
 
 ```cpp-formatted
-
 Vector<bool> int_vec;
 ```
 
@@ -427,7 +425,6 @@ class test {};
 
 
 ```cpp-formatted
-
 template <typename B>
 class test<int, B, double> {};
 ```
@@ -703,7 +700,6 @@ if (s) {
 위 경우에도 `1 << (length % 32)` 을 통해서 정확히 `length % 32` 번째 비트만 1 로 바꾼 뒤, `OR` 연산을 해서 해당 `int` 의 자리를 `true` 로 만들어 줄 수 있습니다.
 
 ```cpp-formatted
-
 // 임의의 위치의 원소에 접근한다.
 bool operator[](int i) { return (data[i / 32] & (1 << (i % 32))) != 0; }
 ```
@@ -963,7 +959,6 @@ int main() {
 참고로 기존에 만들었던 `Vector` 에는 `swap` 함수가 없어서 새로 추가하였습니다.
 
 ```cpp-formatted
-
 template <typename Cont>
 void bubble_sort(Cont& cont) {
   for (int i = 0; i < cont.size(); i++) {
@@ -978,7 +973,6 @@ void bubble_sort(Cont& cont) {
 위 부분을 보면 정렬 함수를 템플릿으로 구현한 것을 볼 수 있습니다.
 
 ```cpp-formatted
-
 bubble_sort(int_vec);
 ```
 
@@ -1060,7 +1054,6 @@ bubble_sort(a);
 
 그럼 다음과 같은 함수를 생각해봅시다.
 ```cpp-formatted
-
 template <typename Cont, typename Comp>
 
 void bubble_sort(Cont& cont, Comp& comp) {
@@ -1079,7 +1072,6 @@ void bubble_sort(Cont& cont, Comp& comp) {
 위 함수는 기존의 `bubble_sort` 와는 달리 아예 `Comp` 라는 클래스를 템플릿 인자로 받고, 함수 자체도 `Comp` 객체를 따로 받습니다. 그렇다면 이 `comp` 객체가 무슨 일을 하냐면;
 
 ```cpp-formatted
-
 if (!comp(cont[i], cont[j])) {
 ```
 
@@ -1088,7 +1080,6 @@ if (!comp(cont[i], cont[j])) {
 이 `if` 문에서 마치 함수를 호출하는 것 처럼 사용되는데, `cont[i]` 와 `cont[j]` 를 받아서 내부적으로 크기 비교를 수행한 뒤에 그 결과를 리턴하고 있습니다. 한 가지 중요한 사실은 `comp` 는 함수가 아니라 객체 이고, `Comp` 클래스에서 () 연산자를 오버로딩한 버전입니다. 자세한 내용은 아래 전체 코드를 보면서 설명하겠습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -1226,7 +1217,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 struct Comp1 {
   bool operator()(int a, int b) { return a > b; }
 };
@@ -1241,7 +1231,6 @@ struct Comp2 {
 일단 위 두 클래스를 살펴보도록 합시다. `Comp1` 과 `Comp2` 모두 아무 것도 하지 않고 단순히 `operator()` 만 정의하고 있습니다. 그리고 이 `Comp1` 과 `Comp2` 객체들은 `bubble_sort` 함수 안에서
 
 ```cpp-formatted
-
 if (!comp(cont[i], cont[j])) {
 ```
 
@@ -1253,7 +1242,6 @@ if (!comp(cont[i], cont[j])) {
 따라서 사용자들은 입맛에 맞게, 보통의 `<` 연산자로 비교를 수행하는
 
 ```cpp-formatted
-
 template <typename Cont>
 void bubble_sort(Cont& cont)
 ```
@@ -1263,7 +1251,6 @@ void bubble_sort(Cont& cont)
 위 `bubble_sort` 함수를 사용하거나;
 
 ```cpp-formatted
-
 template <typename Cont, typename Comp>
 void bubble_sort(Cont& cont, Comp& comp)
 ```
@@ -1276,7 +1263,6 @@ void bubble_sort(Cont& cont, Comp& comp)
 물론
 
 ```cpp-formatted
-
 bubble_sort(int_vec, comp1);
 ```
 
@@ -1285,7 +1271,6 @@ bubble_sort(int_vec, comp1);
 를 했다면 두 번째 버전으로 템플릿 인스턴스화 되서 함수가 호출되고,
 
 ```cpp-formatted
-
 bubble_sort(int_vec);
 ```
 
@@ -1335,11 +1320,4 @@ void sort( RandomIt first, RandomIt last,Compare comp );
 
 위에서 컴파일러가 마법 처럼 템플릿 인자에 타입을 정해준다고 하지만 사실은 어떤 타입으로 추측할지 결정하는 일련의 규칙들이 있습니다. [자세한 내용은 여기](http://en.cppreference.com/w/cpp/language/template_argument_deduction) [를 참고해주세요](http://en.cppreference.com/w/cpp/language/template_argument_deduction)`!`
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>
 cat_title : 16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수
 next_page : 71
+publish_date : 2010-04-11
 --------------
 
 
@@ -215,7 +216,7 @@ int add_one(int *a) {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F146925104B7D5EF68E44B1)
 
-이제, 마지막으로 구조체 포인터 연습을 해볼까 합니다.
+이제, 마지막으로 구조체 포인터 연습을 해볼깔 합니다.
 
 ```cpp-formatted
 struct TEST t;
@@ -380,7 +381,6 @@ a = b;
 
 
 ```cpp-formatted
-
 /*구조체를 인자로 전달하기 */
 #include <stdio.h>
 struct TEST {
@@ -506,8 +506,8 @@ struct TEST {
   int gender;
   char name[20];
 };
-int set_human(struct TEST *a, int age, int gender, char *name);
-char copy_str(char *dest, char *src);
+int set_human(struct TEST *a, int age, int gender, const char *name);
+char copy_str(char *dest, const char *src);
 
 int main() {
   struct TEST human;
@@ -518,14 +518,14 @@ int main() {
          human.name);
   return 0;
 }
-int set_human(struct TEST *a, int age, int gender, char *name) {
+int set_human(struct TEST *a, int age, int gender, const char *name) {
   a->age = age;
   a->gender = gender;
   copy_str(a->name, name);
 
   return 0;
 }
-char copy_str(char *dest, char *src) {
+char copy_str(char *dest, const char *src) {
   while (*src) {
     *dest = *src;
     src++;
@@ -558,9 +558,8 @@ struct TEST {
 위와 같이 `name[20]` 이라는 멤버를 새로 추가해주었습니다.
 
 ```cpp-formatted
-int set_human(struct TEST *a, int age, int gender, char *name);
+int set_human(struct TEST *a, int age, int gender, const char *name);
 ```
-
 
 그리고 `set_human` 함수에서 `name` 멤버 역시 같이 초기화해주기 위해 인자로 `char *` 형의 `name` 이라는 인자를 추가로 받게 됩니다.
 
@@ -572,7 +571,7 @@ set_human(&human, 10, 1, "Lee");
 
 
 ```cpp-formatted
-int set_human(struct TEST *a, int age, int gender, char *name) {
+int set_human(struct TEST *a, int age, int gender, const char *name) {
   a->age = age;
   a->gender = gender;
   copy_str(a->name, name);
@@ -617,13 +616,4 @@ struct BigNum {
 
 참고로 `BigNum` 구조체를 다룰 때 중요한 점은 수의 크기가 위 배열에 들어가지 않을 정도로 클 때를 적절히 처리해 주어야 한다는 점에 있습니다.
 
-
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>>입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

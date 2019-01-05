@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - istream::get 함수
 cat_title : istream::get
 ref_title : get
+publish_date : 2012-11-07
 --------------
 
 ```warning
@@ -113,7 +114,6 @@ istream& get ( streambuf& sb, char delim );
 
 
 ```cpp-formatted
-
 /*
 
 
@@ -169,7 +169,6 @@ int main() {
 
 
 ```cpp-formatted
-
 (basic_istream<charT, traits>)
 
   typedef charT char_type;

@@ -2,10 +2,8 @@
 title : 씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>
 cat_title: 7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream
 next_page : 217
+publish_date : 2016-07-14
 --------------
-
-
-
 
 이번 강좌에서는
 
@@ -169,7 +167,6 @@ int main() {
 
 
 ```cpp-formatted
-
 in.close();
 in.open("other.txt");
 ```
@@ -361,7 +358,6 @@ in.read(&s[0], size);
 마지막으로 파일 전체에 내용을 문자열에 저장하면 됩니다.
 
 ```cpp-formatted
-
 // getline 으로 읽어들이기
 #include <fstream>
 #include <iostream>
@@ -403,7 +399,6 @@ int main() {
 `getline` 함수는 파일에서 개행문자 (\n) 이 나올 때 가지 최대 지정한 크기 만큼 읽게됩니다. 만일 파일 끝에 도달하게 된다면 `eofbit` 가 켜지면서
 
 ```cpp-formatted
-
 in.getline(buf, 100);
 ```
 
@@ -777,7 +772,6 @@ int main() {
 이번에는 거꾸로 데이터를 출력할 수 있는 `ostringstream` 이 있습니다. 위와 비슷한 방법으로 이번애는 거꾸로 숫자에서 ㅁ누자열로 바꾸는 함수를 제작할 수 있습니다.
 
 ```cpp-formatted
-
 ostringstream ss;
 ss << x;
 ```
@@ -861,12 +855,4 @@ class HTMLTable : public Table {};
 
 아마 여러분이 이 강좌에서 여태 까지 구현했던 프로그램 중에 가장 복잡할 것입니다. 많은 시간이 필요한 만큼 재미가 있을 테니 한 번 다음 강좌를 보기 전 까지 도전해보시기 바랍니다!
 
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

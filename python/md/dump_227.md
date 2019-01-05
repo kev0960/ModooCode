@@ -2,10 +2,8 @@
 title : 씹어먹는 C++ - <11 - 1. 우측값 레퍼런스와 이동 생성자>
 cat_title: 11 - 1. 우측값 레퍼런스와 이동 생성자
 next_page : 228
+publish_date : 2018-03-24
 --------------
-
-
-
 
 이번 강좌에서는
 * 복사 생략 (Copy elision)
@@ -28,7 +26,6 @@ next_page : 228
 
 아래 코드를 실행해보면 결과가 어떻게 나올까요?
 ```cpp-formatted
-
 #include <iostream>
 
 using namespace std;
@@ -69,7 +66,6 @@ int main() {
 뭔가 예상했던 것과 조금 다르지요?
 
 ```cpp-formatted
-
 // 그렇다면 이것은?
 A c(A(2));
 ```
@@ -79,7 +75,6 @@ A c(A(2));
 이 부분에서 "일반 생성자 호출!" 한번 만 출력되었습니다. 아마 정석대로 였다면,
 
 ```cpp-formatted
-
 A(2)
 ```
 
@@ -101,7 +96,6 @@ A(2)
 이전에 만들어 놓았던 `MyString` 클래스를 다시 살펴보도록 해봅시다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -209,7 +203,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 MyString str3 = str1 + str2;
 ```
 
@@ -218,7 +211,6 @@ MyString str3 = str1 + str2;
 이 부분에서 두 개의 문자열을 더한 새로운 문자열로 `str3` 를 생성하고 있습니다.
 
 ```cpp-formatted
-
 MyString MyString::operator+(const MyString &s) {
   MyString str;
   str.reserve(string_length + s.string_length);
@@ -261,7 +253,6 @@ MyString MyString::operator+(const MyString &s) {
 모든 C++ 표현식 (expression) 의 경우 두 가지 카테고리로 구분할 수 있습니다. 하나는 이 구문이 어떤 타입을 가지냐 이고, 다른 하나는 어떠한 종류의 '값' 을 가지냐 입니다. 값에 종류가 있어? 라고 생각 하실 수 있는데, 아래 예시를 살펴보도록 합시다.
 
 ```cpp-formatted
-
 int a = 3;
 ```
 
@@ -275,7 +266,6 @@ int a = 3;
 이렇게, 주소값을 취할 수 없는 값을 **우측값 (rvalue)** 라고 부릅니다. 이름에도 알 수 있듯이, 우측값은 식의 오른쪽에만 항상 와야 합니다. 좌측값이 식의 왼쪽 오른쪽 모두 올 수 있는반면, 우측값은 식의 오른쪽에만 존재해야 합니다.
 
 ```cpp-formatted
-
 int a;         // a 는 좌측값
 int& l_a = a;  // l_a 는 좌측값 레퍼런스
 
@@ -296,7 +286,6 @@ int& r_b = 3;  // 3 은 우측값. 따라서 오류
 그럼 다른 예제를 살펴보도록 합시다.
 
 ```cpp-formatted
-
 int& func1(int& a) { return a; }
 
 int func2(int b) { return b; }
@@ -328,7 +317,6 @@ ErrorC2102'&' requires l-value
 일단 `func1` 의 경우 좌측값 레퍼런스를 리턴합니다. 앞서, 좌측값 레퍼런스의 경우 좌측값에 해당하기 때문에,
 
 ```cpp-formatted
-
 func1(a) = 4;
 ```
 
@@ -341,7 +329,6 @@ func1(a) = 4;
 
 
 ```cpp-formatted
-
 a = func2(b);
 ```
 
@@ -350,7 +337,6 @@ a = func2(b);
 이 문장이 실행 될 때 잠깐 존재할 뿐 그 문장 실행이 끝나면 사라지게 됩니다. 즉, 실체가 없는 값이라는 뜻이지요. 따라서 `func2(b)` 는 우측값이 됩니다. 따라서 위와 같이 우측값이 실제 표현식의 오른쪽에 오는 경우는 가능하지만,
 
 ```cpp-formatted
-
 func2(b) = 5;
 ```
 
@@ -359,7 +345,6 @@ func2(b) = 5;
 위 문장 처럼 우측값이 왼쪽의 오는 경우는 가능하지 않습니다.
 
 ```cpp-formatted
-
 cout << &func2(b) << endl;  // 오류 2
 ```
 
@@ -371,7 +356,6 @@ cout << &func2(b) << endl;  // 오류 2
 그렇다면 앞선 예제에서
 
 ```cpp-formatted
-
 MyString str3 = str1 + str2;
 ```
 
@@ -380,7 +364,6 @@ MyString str3 = str1 + str2;
 를 다시 살펴보도록 합시다. 위 문장은
 
 ```cpp-formatted
-
 MyString str3(str1.operator+(str2));
 ```
 
@@ -389,7 +372,6 @@ MyString str3(str1.operator+(str2));
 와 동일합니다. 그런데, `operator+` 의 정의를 살펴보면,
 
 ```cpp-formatted
-
 MyString MyString::operator+(const MyString &s)
 ```
 
@@ -398,7 +380,6 @@ MyString MyString::operator+(const MyString &s)
 로 우측값을 리턴하고 있는데, 이 우측값이 어떻게 좌측값 레퍼런스를 인자로 받는,
 
 ```cpp-formatted
-
 MyString(const MyString &str);
 ```
 
@@ -407,7 +388,6 @@ MyString(const MyString &str);
 를 호출 시킬 수 있었을까요? 이는 `&` 가 좌측값 레퍼런스를 의미하지만, 예외적으로
 
 ```cpp-formatted
-
 const T&
 ```
 
@@ -440,7 +420,6 @@ const T&
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -567,7 +546,6 @@ int main() {
 먼저 우측값 레퍼런스를 사용한 이동 생성자의 정의 부분 부터 살펴봅시다.
 
 ```cpp-formatted
-
 MyString::MyString(MyString&& str) {
   cout << "이동 생성자 호출 !" << endl;
   string_length = str.string_length;
@@ -588,7 +566,6 @@ MyString::MyString(MyString&& str) {
 그렇다면 한 가지 퀴즈! 과연 `str` 자체는 우측값 일까요 좌측값 일까요? 당연히도 좌측값 입니다. 실체가 있기 때문이지요 (`str` 이라는 이름이 있잖아요). 다시 말해 `str` 은 타입이 '`MyString` 의 우측값 레퍼런스' 인 좌측값 이라 보면 됩니다. 따라서 표현식의 좌측에 올 수도 있습니다. (마지막 줄 처럼)
 
 ```cpp-formatted
-
 string_content = str.string_content;
 ```
 
@@ -597,7 +574,6 @@ string_content = str.string_content;
 이제 위와 같이 우리가 바라던 대로 임시 객체의 `string_content` 가 가리키는 메모리를 새로 생성되는 객체의 메모리로 옮겨주기만 하면 됩니다. 기존의 복사 생성자의 경우 문자열 전체를 새로 복사해야 했지만, 이동 생성자의 경우 단순히 주소값 하나만 달랑 복사해주면 끝이기 때문에 매우 간단합니다.
 
 ```cpp-formatted
-
 // 임시 객체 소멸 시에 메모리를 해제하지
 // 못하게 한다.
 str.string_content = nullptr;
@@ -611,7 +587,6 @@ str.string_content = nullptr;
 따라서 `str` 의 `string_content` 를 `nullptr` 로 바꿔줍니다. 참고로 `nullptr` 역시 C++ 11 에 새로 추가된 키워드로, 기존의 `NULL` 대체합니다. C 언어에서의 `NULL` 은 단순히 #define 으로 정의되어 있는 상수값 0 인데, 이 때문에 이 `NULL` 이 값 0 을 의미하는 것인지, 아니면 포인터 주소값 0 을 의미하는 것인지 구분할 수 가 없었습니다. 하지만 `nullptr` 로 '포인터 주소값 0' 을 정확히 명시해 준다면 미연에 발생할 실수를 줄여 줄 수 있게 됩니다.
 
 ```cpp-formatted
-
 MyString::~MyString() {
   if (string_content) delete[] string_content;
 }
@@ -625,7 +600,6 @@ MyString::~MyString() {
 일반적으로 우측값 레퍼런스는 아래와 같은 방식으로 사용할 수 있습니다.
 
 ```cpp-formatted
-
 int a;
 int& l_a = a;
 int& ll_a = 3;  // 불가능
@@ -642,7 +616,6 @@ int&& rr_b = a;  // 불가능
 우측값 레퍼런스의 재미있는 특징으로 레퍼런스 하는 임시 객체가 소멸되지 않도록 붙들고 있는다는 점입니다. 예를 들어서,
 
 ```cpp-formatted
-
 MyString&& str3 = str1 + str2;
 str3.println();
 ```
@@ -662,11 +635,4 @@ str3.println();
 
 사실 C++ 에서 값의 종류로 좌측값 우측값 만이 있는게 아니라 조금 더 세부적으로 나눠어집니다. 이에 대해 자세히 알아보고 싶으신 분들은 [여기를 참조해주세요](https://medium.com/@barryrevzin/value-categories-in-c-17-f56ae54bccbe)(난이도 : 상)
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <11 - 1. 우측값 레퍼런스와 이동 생성자>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

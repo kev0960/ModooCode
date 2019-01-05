@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - feof 함수
 cat_title :  feof
+publish_date : 2010-02-05
 --------------
 
 

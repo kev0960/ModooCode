@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios_base::imbue
 cat_title :  ios_base::imbue
+publish_date : 2011-08-20
 --------------
 
 

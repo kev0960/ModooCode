@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - time.h 헤더파일
 cat_title :  time.h
 ref_title : <time.h>
+publish_date : 2010-12-25
 --------------
 
 

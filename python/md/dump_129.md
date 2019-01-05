@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)>
 cat_title : 24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)
 next_page : 130
+publish_date : 2011-01-18
 --------------
 
 
@@ -514,7 +515,6 @@ char* Condition_String2(int condition) {
 #### 함수를 호출할 때에는 시간이 걸린다.
 
 ```cpp-formatted
-
 #include <stdio.h> void print_a();
 
 int main() {
@@ -532,7 +532,6 @@ void print_a() { printf("a"); }
 위 코드와 아래 코드를 보면 무엇이 더 빠르게 작동할까요?
 
 ```cpp-formatted
-
 #include <stdio.h>
 void print_a();
 int main() {
@@ -554,7 +553,6 @@ void print_a() {
 #### 인라인(inline) 함수를 활용하자
 
 ```cpp-formatted
-
 #include <stdio.h>
 int max(int a, int b) {
   if (a > b) return a;
@@ -579,7 +577,6 @@ int main() {
 #### 인자를 전달할 때에는 포인터를 이용해라
 
 ```cpp-formatted
-
 struct big {
   int arr[1000];
   char str[1000];
@@ -616,12 +613,4 @@ void modify(struct big *arg) { /* 무언가를 한다 */ }
  [http://www.azillionmonkeys.com/qed/optimize.html](http://www.azillionmonkeys.com/qed/optimize.html)
 
 
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

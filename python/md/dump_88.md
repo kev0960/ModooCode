@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>
 cat_title : 18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)
 next_page : 89
+publish_date : 2010-07-20
 --------------
 
 
@@ -336,7 +337,6 @@ int main() {
 이는 소스 코드에서 ‘매크로이름’ 에 해당하는 부분을 ‘값’ 으로 대체하게 되는 것입니다. 물론, 전처리기 명령이기 때문에 컴파일 이전에 정확하게 대체됩니다. 따라서,
 
 ```cpp-formatted
-
 #include <stdio.h>
 #define VAR 10
 int main() {
@@ -351,7 +351,6 @@ int main() {
 라는 문장은
 
 ```cpp-formatted
-
 #include <stdio.h>
 int main() {
   char arr[10] = {"hi"};
@@ -368,7 +367,6 @@ int main() {
 `ifdef` 와 `endif` 는 무언가 `if` 문과 관련이 있을 것 같습니다. `if` 문 처럼 특정한 조건에만 수행이 되겠지요.
 
 ```cpp-formatted
-
 /* ifdef */
 #include <stdio.h>#define A
 int main() {
@@ -443,7 +441,6 @@ printf("BBBB \n");
 그렇다면 각각 이 계산기를 위해 다음과 같이 소스를 짜야 할 것입니다.
 
 ```cpp-formatted
-
 /*
 계산기 모델 1 을 위한 코드
 calculator1.c
@@ -455,7 +452,6 @@ float var1, var2;
 
 
 ```cpp-formatted
-
 /*
 계산기 모델 2 을 위한 코드
 calculator2.c
@@ -469,7 +465,6 @@ double var1, var2;
 하지만 조건부 컴파일을 이용하면 이 두 개의 파일로 나누어서 해야 했던 작업을 다음과 같이 줄일 수 있습니다.
 
 ```cpp-formatted
-
 #define CACULATOR_MODEL_1
 
 #ifdef CALCULATOR_MODEL_1
@@ -490,7 +485,6 @@ double var1, var2;
 위 조건부 컴파일에서 #else 라는 것도 사용할 수 있는데 이는 #ifdef 의 경우 이외의 나머지 것들을 처리하는 것입니다. 이 역시 #endif 로 항상 끝을 맺어주어야 합니다. 예를 들면 아래와 같지요.
 
 ```cpp-formatted
-
 #ifdef CALC_1
 // do something
 #else
@@ -509,13 +503,4 @@ double var1, var2;
 
 헤더 파일이 두 번 중복되서 `include` 되지 않기 위해서는 헤더파일에 어떠한 조건문을 넣으면 좋을 지 생각해보세요.
 
-
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

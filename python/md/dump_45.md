@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - gets 함수
 cat_title :  gets
+publish_date : 2010-02-03
 --------------
 
 
@@ -66,7 +67,6 @@ C 형식의 문자열이 저장될 `char` 배열의 포인터 C 형식의 문자
 
 
 ```cpp-formatted
-
 /* 사용자로 부터 문자열을 입력받는다.  */
 #include <stdio.h>
 int main() {

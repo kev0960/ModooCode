@@ -2,6 +2,7 @@
 title : 씹어먹는 C 언어 - <23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)>
 cat_title : 23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)
 next_page : 129
+publish_date : 2011-01-17
 --------------
 
 
@@ -470,7 +471,6 @@ book_list[i]->book_name
 사실 저도 처음에 이렇게 썼다가 봉변을 맞았었는데 이렇게 사용하면 컴파일 시에 오류가 나지도 않고 디버깅 해도 도대체 뭐가 문제인지 알기 어렵습니다. 원래는 `(*book_list)[i].book_name` 이라고 머리 속에 생각은 하고 위와 같은 코드가 튀어 나왔지요. 그런데 이 둘은 완전히 다른 문장 입니다. 무엇이 다른지는 말그대로 전개를 시켜보면 알 수 있습니다.
 
 ```cpp-formatted
-
 (*book_list)[i].book_name == (*(*book_list + i)).book_name;
 book_list[i]->book_name == (*(*(book_list + i))).book_name;
 ```
@@ -495,12 +495,4 @@ book_list[i]->book_name == (*(*(book_list + i))).book_name;
 
 책들의 목록을 `html` 형식에 맞게 출력하여 표로 깔끔하게 보여질 수 있게 해보세요. `html` 문법은 [http://www.w3schools.com/html/default.asp](http://www.w3schools.com/html/default.asp)에서 배우실 수 있습니다. (난이도 : 上)
 
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

@@ -5,7 +5,10 @@
 #include <streambuf>
 #include <string>
 
+#ifdef USE_CHROMA
 #include "chroma.h"
+#endif
+
 #include "driver.h"
 #include "fast_syntax_highlighter.h"
 
@@ -20,7 +23,7 @@ int main(int argc, char** argv) {
   }
   md_parser::DriverConfig config;
   if (Contains(args, "-print-chroma-css")) {
-    std::cout << GetChromaCss(argv[2]);
+    std::cout << "Not supported anymore";
     return 0;
   }
   if (Contains(args, "-no_output_parsed")) {

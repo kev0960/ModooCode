@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>
 cat_title: 9 - 3. 템플릿 메타 프로그래밍 2
 next_page : 223
+publish_date : 2017-07-02
 --------------
 
 이번 강좌에서는
@@ -321,7 +322,6 @@ struct check_div<N, typename divide<N, two>::result> {
 마지막으로, 위 `is_prime` 을 사용하기 위해서는
 
 ```cpp-formatted
-
 is_prime<INT<11>>::result
 ```
 
@@ -330,7 +330,6 @@ is_prime<INT<11>>::result
 이런 식으로 사용해야 합니다. 하지만 생각해보기에서 요구한 것은 `is_prime<11>::result` 로 사용하는 것이기 때문에 이를 위해서 `is_prime` 을 다음과 같이 정의하고, 기존의 `is_prime` 을 `_is_prime` 으로 바꾸도록 하겠습니다.
 
 ```cpp-formatted
-
 template <int N>
 struct is_prime {
   static const bool result = _is_prime<INT<N>>::result;
@@ -342,7 +341,6 @@ struct is_prime {
 그렇다면 전체 코드를 살펴보겠습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <typeinfo>
 using namespace std;
@@ -441,7 +439,6 @@ C++ 코드를 작성하는 이유는 여러가지가 있겠지만, 그 중 하�
 아무튼 이렇게 단위가 붙은 데이터를 처리할 때 중요한 점은 바로 데이터를 연산할 때 항상 단위를 확인해야 된다는 점입니다. 예를 들어서, 다음과 같은 코드가 있다고 생각해봅시다.
 
 ```cpp-formatted
-
 float v1, v2;  // v1, v2 는 속도
 
 cout << v1 + v2;
@@ -454,7 +451,6 @@ cout << v1 + v2;
 
 
 ```cpp-formatted
-
 float v;        // 속도; m/s
 float a;        // 가속도; m/s^2
 cout << v + a;  // ???
@@ -479,7 +475,6 @@ cout << v + a;  // ???
 이를 위해서 다음과 같은 클래스를 생각해봅시다.
 
 ```cpp-formatted
-
 template <typename U, typename V, typename W>
 struct Dim {
   using M = U;  // kg
@@ -504,7 +499,6 @@ struct Dim {
 물론 저 `Dim` 의 경우 템플릿 인자로 타입을 받기 때문에 단순히 `Dim<0, 1, -1>` 이렇게 사용할 수 있는 것이 아닙니다. 대신에 앞서 만들었던`Ratio` 클래스를 이용해서 저 숫자들을 '타입' 으로 표현해주어야 합니다. 따라서, 실제로는
 
 ```cpp-formatted
-
 Dim<1, 1, -2>
 ```
 
@@ -513,7 +507,6 @@ Dim<1, 1, -2>
 가 아니라
 
 ```cpp-formatted
-
 Dim<Ratio<1, 1>, Ratio<1, 1>, Ratio<-2, 1>>
 ```
 
@@ -522,7 +515,6 @@ Dim<Ratio<1, 1>, Ratio<1, 1>, Ratio<-2, 1>>
 이런 식으로 정의를 해야겠지요. 그렇다면 `Dim` 끼리 더하고 빼는 템플릿 클래스도 아래와 같이 만들 수 있게 됩니다.
 
 ```cpp-formatted
-
 template <typename U, typename V>
 struct add_dim_ {
   typedef Dim<typename Ratio_add<typename U::M, typename V::M>::type,
@@ -567,7 +559,6 @@ struct quantity {
 따라서 `operator+` 와 `operator-` 는 다음과 같이 간단히 정의할 수 있습니다.
 
 ```cpp-formatted
-
 quantity operator+(quantity<T, D> quant) { return quantity<T, D>(q + quant.q); }
 
 quantity operator-(quantity<T, D> quant) { return quantity<T, D>(q - quant.q); }
@@ -764,7 +755,6 @@ quantity<T, typename subtract_dim_<D, D2>::type> operator/(
 
 ```cpp-formatted
 
-
 quantity<T, D> operator*(T scalar) { return quantity<T, D>(q * scalar); }
 
 quantity<T, D> operator/(T scalar) { return quantity<T, D>(q / scalar); }
@@ -805,7 +795,6 @@ C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 
 
 예를 들어서,
 ```cpp-formatted
-
 (??) a = 3;
 ```
 
@@ -814,7 +803,6 @@ C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 
 와 같이 썼다면 저 (??) 는 아마 `int` 를 의도한 것이겠지요. 아니면
 
 ```cpp-formatted
-
 some_class a;
 (??) b = a;
 ```
@@ -853,7 +841,6 @@ quantity<double, Dim<one, zero, zero>> kg(1);
 이와 같이 컴파일러가 타입을 정확히 알아낼 수 있는 경우 굳이 그 길고 긴 타입을 적지 않고 간단히 `auto` 로 표현할 수 있습니다. 그리고 그 `auto` 에 해당하는 타입은 컴파일 시에 컴파일러에 의해 추론됩니다. 아래 간단한 예제를 살펴볼까요.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <typeinfo>
 using namespace std;
@@ -1115,11 +1102,4 @@ int main() {
 
 컴파일러가 `auto` 키워드에 들어갈 타입을 추측하는 방법은 템플릿에서 들어갈 타입을 추측하는 방법과 같습니다. [여기를 클릭해서 읽어보세요!](http://en.cppreference.com/w/cpp/language/template_argument_deduction)
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

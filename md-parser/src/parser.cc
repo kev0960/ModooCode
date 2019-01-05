@@ -4,7 +4,10 @@
 #include <experimental/optional>
 #include <utility>
 
+#ifdef USE_CHROMA
 #include "chroma.h"
+#endif
+
 #include "content_header.h"
 #include "content_list.h"
 #include "content_math.h"
@@ -204,6 +207,8 @@ string MDParser::ConvertToHtml(
     std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
     const std::vector<string>& path_vector) {
   parser_env_.SetRefToUrl(ref_to_url, path_vector);
+  parser_env_.SetHeader(header_);
+
   string output_html;
   do {
     output_html += parser_env_.ParseCurrentContent();
@@ -258,7 +263,5 @@ size_t MDParser::ParseHeaderContent() {
   return end_of_line;
 }
 
-string MDParser::GetCss() {
-  return GetChromaCss(cstring_from_string("github").get());
-}
+string MDParser::GetCss() { return ""; }
 }  // namespace md_parser

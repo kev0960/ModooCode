@@ -2,10 +2,8 @@
 title : 씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>
 cat_title: 4 - 4. 스타크래프트를 만들자 ② (const, static)
 next_page : 198
+publish_date : 2013-05-26
 --------------
-
-
-
 
 이번 강좌에서는
 
@@ -34,7 +32,6 @@ next_page : 198
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -93,14 +90,12 @@ int main() {
 예전에 만들었던 `Marine` 클래스와 달라진 것은 딱 하나인데, 바로 생성자에서 무언가 특이한 것을 도입했다는 것입니다. 한 번 살펴보도록 할까요.
 
 ```cpp-formatted
-
 Marine::Marine() : hp(50), coord_x(0), coord_y(0), damage(5), is_dead(false) {}
 ```
 
 
 놀랍게도 함수 본체에는 아무것도 없습니다. 오직, 위에 추가된 이상한 것들이 기존의 생성자가 했던 일과 동일한 작업을 하고 있을 뿐입니다. 기존의 생성자는
 ```cpp-formatted
-
 Marine::Marine() {
   hp = 50;
   coord_x = coord_y = 0;
@@ -118,7 +113,6 @@ Marine::Marine() {
 
 
 ```cpp-formatted
-
 : hp(50), coord_x(0), coord_y(0),
 damage(5), is_dead(false) {}
 ```
@@ -129,7 +123,6 @@ damage(5), is_dead(false) {}
 
 
 ```cpp-formatted
-
 Marine::Marine(int x, int y)
     : coord_x(x), coord_y(y), hp(50), damage(5), is_dead(false) {}
 ```
@@ -142,7 +135,6 @@ Marine::Marine(int x, int y)
 멤버 초기화 리스트의 일반적인 꼴은 아래와 같습니다.
 
 ```cpp-formatted
-
 (생성자 이름) : var1(arg1), var2(arg2) {}
 ```
 
@@ -152,7 +144,6 @@ Marine::Marine(int x, int y)
 
 
 ```cpp-formatted
-
 Marine::Marine(int coord_x, int coord_y)
     : coord_x(coord_x), coord_y(coord_y), hp(50), damage(5), is_dead(false) {}
 ```
@@ -166,7 +157,6 @@ Marine::Marine(int coord_x, int coord_y)
 
 
 ```cpp-formatted
-
 Marine::Marine(int coord_x, int coord_y) {
   coord_x = coord_x;
   coord_y = coord_y;
@@ -185,7 +175,6 @@ Marine::Marine(int coord_x, int coord_y) {
 
 
 ```cpp-formatted
-
 Marine::Marine() {
   hp = 50;
   coord_x = coord_y = 0;
@@ -200,7 +189,6 @@ Marine::Marine() {
 
 
 ```cpp-formatted
-
 Marine::Marine() : hp(50), coord_x(0), coord_y(0), damage(5), is_dead(false) {}
 ```
 
@@ -209,7 +197,6 @@ Marine::Marine() : hp(50), coord_x(0), coord_y(0), damage(5), is_dead(false) {}
 반면에 초기화 리스트를 사용하지 않는다면 **생성을 먼저 하고 그 다음에 대입** 을 수행하게 됩니다. 쉽게 말하면 초기화 리스트를 사용하는 것은
 
 ```cpp-formatted
-
 int a = 10;
 ```
 
@@ -218,7 +205,6 @@ int a = 10;
 이라 하는 것과 같고, 그냥 예전 버전의 생성자를 사용하는 것은
 
 ```cpp-formatted
-
 int a;
 a = 10;
 ```
@@ -246,7 +232,6 @@ ref = c; // [http://itguru.tistory.com/141](http://itguru.tistory.com/141) 를 �
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -320,7 +305,6 @@ int main() {
 
 
 ```cpp-formatted
-
 Marine::Marine()
     : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {}
 ```
@@ -331,7 +315,6 @@ Marine::Marine()
 
 
 ```cpp-formatted
-
 Marine marine1(2, 3);
 Marine marine2(3, 5);
 
@@ -345,7 +328,6 @@ marine2.show_status();
 
 
 ```cpp-formatted
-
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 marine2.be_attacked(marine1.attack());
 ```
@@ -359,7 +341,6 @@ marine2.be_attacked(marine1.attack());
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -438,7 +419,6 @@ int main() {
 
 
 ```cpp-formatted
-
 Marine::Marine(int x, int y, int default_damage)
     : coord_x(x),
       coord_y(y),
@@ -452,7 +432,6 @@ Marine::Marine(int x, int y, int default_damage)
 이전에는 `default_damage` 에 초기화 리스트로 5 를 전달하였는데, 이 생성자의 경우 어떤 값을 전달할 지 인자로 받은 다음에 그 내용을 상수에 넣어주었습니다. 마찬가지로 이는
 
 ```cpp-formatted
-
 const int default_damage = (인자로 받은 default_damage);
 ```
 
@@ -490,7 +469,6 @@ const int default_damage = (인자로 받은 default_damage);
 또한, 이 `static` 멤버 변수의 경우, 클래스의 모든 객체들이 '공유' 하는 변수로써 각 객체 별로 따로 존재하는 멤버 변수들과는 달리 모든 객체들이 '하나의' `static` 멤버 변수를 사용하게 됩니다. 그럼 바로 아래의 예제를 살펴 보도록 합시다.
 
 ```cpp-formatted
-
 // static 멤버 변수의 사용
 
 #include <iostream>
@@ -585,14 +563,12 @@ int main() {
 
 와 같이 나오게 됩니다.
 ```cpp-formatted
-
 static int total_marine_num;
 ```
 
 먼저 위와 같이 클래스 `static` 변수를 정의하였습니다. 모든 전역 및 `static` 변수들은 정의와 동시에 값이 자동으로 0  으로 초기화 되기 때문에 이 경우 우리가 굳이 따로 초기화 하지 않아도 되지만 클래스 `static` 변수들의 경우 아래와 같은 방법으로 초기화 합니다.
 
 ```cpp-formatted
-
 int Marine::total_marine_num = 0;
 ```
 
@@ -602,7 +578,6 @@ int Marine::total_marine_num = 0;
 
 
 ```cpp-formatted
-
 class Marine {
   static int total_marine_num = 0;
 ```
@@ -611,7 +586,6 @@ class Marine {
 
 
 ```cpp-formatted
-
 class Marine {
   const static int x = 0;
 ```
@@ -623,7 +597,6 @@ class Marine {
 
 
 ```cpp-formatted
-
 Marine::Marine()
     : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
   total_marine_num++;
@@ -647,7 +620,6 @@ Marine::Marine(int x, int y, int default_damage)
 로 각 생성자 호출 시에 `total_marine_num` 을 1 씩 증가시키는 문장을 넣었고,
 
 ```cpp-formatted
-
 ~Marine() { total_marine_num--; }
 ```
 
@@ -657,7 +629,6 @@ Marine::Marine(int x, int y, int default_damage)
 
 
 ```cpp-formatted
-
 Marine marine1(2, 3, 5);
 marine1.show_status();
 
@@ -669,7 +640,6 @@ marine2.show_status();
 
 
 ```cpp-formatted
-
 void create_marine() {
   Marine marine3(10, 10, 4);
   marine3.show_status();
@@ -680,7 +650,6 @@ void create_marine() {
 
 
 ```cpp-formatted
-
 cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
 marine2.be_attacked(marine1.attack());
 
@@ -698,7 +667,6 @@ marine1.show_status();
 즉, `static` 이 아닌 멤버 함수들의 경우 객체를 만들어야지만 각 멤버 함수들을 호출할 수 있지만 `static` 함수의 경우, 객체가 없어도 그냥 클래스 자체에서 호출할 수 있게 됩니다. 그럼, 아래 예제를 살펴볼까요.
 
 ```cpp-formatted
-
 // static 함수
 
 #include <iostream>
@@ -812,7 +780,6 @@ Marine::show_total_marine();
 
 
 ```cpp-formatted
-
 void Marine::show_total_marine() {
   cout << default_damage << endl;  // default_damage 는 멤버 변수
   cout << "전체 마린 수 : " << total_marine_num << endl;
@@ -934,7 +901,6 @@ int main() {
 
 
 ```cpp-formatted
-
 Marine& Marine::be_attacked(int damage_earn) {
   hp -= damage_earn;
   if (hp <= 0) is_dead = true;
@@ -947,7 +913,6 @@ Marine& Marine::be_attacked(int damage_earn) {
 
 
 ```cpp-formatted
-
 Marine& Marine::be_attacked(int damage_earn) {
   this->hp -= damage_earn;
   if (this->hp <= 0) this->is_dead = true;
@@ -1019,7 +984,6 @@ int main() {
 
 
 ```cpp-formatted
-
 int& access_x() { return x; }
 int get_x() { return x; }
 ```
@@ -1028,7 +992,6 @@ int get_x() { return x; }
 
 
 ```cpp-formatted
-
 int& c = a.access_x();
 c = 4;
 a.show_x();
@@ -1037,7 +1000,6 @@ a.show_x();
 여기서 레퍼런스 `c` 는 `x` 의 레퍼런스, 즉 `x` 의 별명을 받았습니다. 따라서, `c` 는 `x` 의 별명으로 탄생하게 되는 것이지요.레퍼런스를 리턴하는 함수는 그 함수 부분을 원래의 변수로 치환했다고 생각해도 상관이 없습니다. 다시 말해서
 
 ```cpp-formatted
-
 int &c = x;  // 여기서 x 는 a 의 x
 ```
 
@@ -1047,7 +1009,6 @@ int &c = x;  // 여기서 x 는 a 의 x
 
 
 ```cpp-formatted
-
 int d = a.access_x();
 d = 3;
 a.show_x();
@@ -1082,7 +1043,6 @@ error C2440: 'initializing' : cannot convert from 'int' to 'int &' (int 를 int&
 
 `get_x` 의 리턴으로 인해 임시로 '복사생성' 된 `int` 는 `a.get_x()` 부분을 대체하며 위 그림의 경우
 ```cpp-formatted
-
 int &e = x'
 ```
 
@@ -1092,7 +1052,6 @@ int &e = x'
 
 
 ```cpp-formatted
-
 int f = a.get_x();
 f = 1;
 a.show_x();
@@ -1103,7 +1062,6 @@ a.show_x();
 마지막으로 위 코드는 익히 보왔던 것 처럼, 임시로 생성된 `int` 변수 (위 그림에서는 `x'`) 이 `f` 에 복사되는데, 역시 `f = 1` 한 것이 실제 객체 `a` 의 `x` 에게는 아무런 영향을 끼칠 수 없겠지요. 한 가지 재미있는 점은
 
 ```cpp-formatted
-
 a.access_x() = 3;
 ```
 
@@ -1112,7 +1070,6 @@ a.access_x() = 3;
 위 문장이 잘 작동한다는 점인데, 앞에서도 말했지만 '레퍼런스를 리턴하는 함수는 그 함수 부분을 리턴하는 원래 변수로 치환해도 됀다' 라는 말이 명확히 들어맞는 다는 점입니다. 즉, 위 문장은 결국
 
 ```cpp-formatted
-
 a.x = 3;
 ```
 
@@ -1121,7 +1078,6 @@ a.x = 3;
 과 동일한 말이 됩니다. 그 에 반면, 잘 알고 있듯이
 
 ```cpp-formatted
-
 a.get_x() = 3;
 ```
 
@@ -1134,7 +1090,6 @@ a.get_x() = 3;
 
 
 ```cpp-formatted
-
 Marine& Marine::be_attacked(int damage_earn) {
   this->hp -= damage_earn;
   if (this->hp <= 0) this->is_dead = true;
@@ -1148,7 +1103,6 @@ Marine& Marine::be_attacked(int damage_earn) {
 위 경우 `be_attacked` 함수는 `Marine&` 타입을 리턴하게 되는데, 위 경우, `*this` 를 리턴하게 됩니다. 앞에서도 말했지만 `this` 가 지금 이 함수를 호출한 객체를 가리키는 것은 기억 하시죠? 그렇기 때문에 `*this` 는 그 객체 자신을 의미하게 됩니다. 따라서,
 
 ```cpp-formatted
-
 marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 ```
 
@@ -1158,7 +1112,6 @@ marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 
 
 ```cpp-formatted
-
 MarineMarine::be_attacked(int damage_earn) {
   this->hp -= damage_earn;
   if (this->hp <= 0) this->is_dead = true;
@@ -1172,7 +1125,6 @@ MarineMarine::be_attacked(int damage_earn) {
 위로 바뀐 함수를 가지고
 
 ```cpp-formatted
-
 marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 ```
 
@@ -1193,7 +1145,6 @@ marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 
 C++ 에서는 변수들의 값을 바꾸지 않고 읽기 만 하는, 마치 상수 같 C++ 에서는 변수들의 값을 바꾸지 않고 읽기 만 하는, 마치 상수 같은멤버 함수를 '상수 함수' 로써 선언할 수 있습니다. 아래의 예제를 살펴봅시다.
 ```cpp-formatted
-
 // 상수 멤버 함수
 
 // 자기 자신을 가리키는 포인터 this
@@ -1296,7 +1247,6 @@ int main() {
 와 같이 나옵니다. 사실 위 소스는 거의 바뀐 것은 없고, 단순히 예시를 위해 아래와 같이 `attack` 함수를 살짝 바꾸었습니다.
 
 ```cpp-formatted
-
 int attack() const;  // 데미지를 리턴한다.
 ```
 
@@ -1305,7 +1255,6 @@ int attack() const;  // 데미지를 리턴한다.
 일단 상수 함수는 위와 같은 형태로 선언을 하게 됩니다. 즉,
 
 ```cpp-formatted
-
 (기존의 함수의 정의) const;
 ```
 
@@ -1315,7 +1264,6 @@ int attack() const;  // 데미지를 리턴한다.
 
 
 ```cpp-formatted
-
 int Marine::attack() const { return default_damage; }
 ```
 
@@ -1340,7 +1288,6 @@ int Marine::attack() const { return default_damage; }
 
 아래와 같은 코드에서 `copy constructor` 는 몇 번 이나 표시될까요?
 ```cpp-formatted
-
 class A {
   int x;
 
@@ -1372,12 +1319,4 @@ int main() {
 (난이도 : 上 -사실 이 글을 잘 읽었더라면 틀리게 답하는 것이 맞습니다. 컴파일러는 불필요한 복사를 막기 위해 _copy elision_ 이라는 기술을 사용하고 있는데, 이에 관해서는 추후에 이야기 하도록 하겠습니다. 정 궁금하신 분들은 [http://en.wikipedia.org/wiki/Copy_elision](http://en.wikipedia.org/wiki/Copy_elision) 를 읽어보시기 바랍니다.)
 
 
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

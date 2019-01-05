@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - istream::gcount 함수
 cat_title :  istream::gcount
 ref_title : gcount
+publish_date : 2012-11-07
 --------------
 
 ```warning
@@ -38,7 +39,6 @@ streamsize  gcount ( ) const;
 
 
 ```cpp-formatted
-
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -73,7 +73,6 @@ int main() {
 
 
 ```cpp-formatted
-
 (basic_istream<charT, traits>)streamsize gcount() const;
 ```
 

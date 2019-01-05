@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>
 cat_title: 11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)
 next_page: 230
+publish_date : 2018-03-27
 --------------
 
 
@@ -24,7 +25,6 @@ next_page: 230
 하지만, 만약에 좌측값도 이동을 시키고 싶다면 어떨까요? 예를 들어서 아래와 같이 두 변수의 값을 바꾸는 `swap` 함수를 생각해보세요.
 
 ```cpp-formatted
-
 template <typename T>
 void my_swap(T &a, T &b) {
   T tmp(a);
@@ -36,7 +36,6 @@ void my_swap(T &a, T &b) {
 위 `my_swap` 함수에서 `tmp` 라는 임시 객체를 생성한 뒤에, `b` 를 `a` 에 복사하고, `b` 에 `a` 를 복사하게 됩니다. 문제는 무려 복사를 쓸데없이 3 번이나 한다는 점입니다. 예를 들어서 `T` 가 `MyString` 인 경우를 생각해봅시다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -181,7 +180,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 template <typename T>
 void my_swap(T &a, T &b) {
   T tmp(a);
@@ -221,7 +219,6 @@ b = tmp;
 하지만 위를 `my_swap` 에서 구현하기 위해서는 여러가지 문제가 있습니다. 일단 첫번째로 `my_swap` 함수는 `generic` 한 함수 입니다. 다시 말해,
 
 ```cpp-formatted
-
 template <typename T>
 void my_swap(T &a, T &b)
 ```
@@ -231,7 +228,6 @@ void my_swap(T &a, T &b)
 위 함수가 일반적인 타입 `T` 에 대해 작동해야 한다는 의미이지요. 하지만 위 `string_content` 의 경우 `MyString` 에만 존재하는 필드이기 때문에 일반적인 타입 `T` 에 대해서는 작동하지 않습니다. 물론 그렇다고 해서 불가능 한 것은 아닙니다. 아래 처럼 템플릿 특수화를 이용하면 되기 때문이죠.
 
 ```cpp-formatted
-
 template <>
 void my_swap(MyString &a, MyString &b) {
   // ...
@@ -246,7 +242,6 @@ void my_swap(MyString &a, MyString &b) {
 위 문제를 원래의 `my_swap` 함수를 사용하면서 좀 더 깔끔하게 해결할 수 있는 방법은 없을까요?
 
 ```cpp-formatted
-
 T tmp(a);
 ```
 
@@ -265,7 +260,6 @@ T tmp(a);
 
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -393,7 +387,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 cout << "이동 후 -----" << endl;
 MyString str2(move(str1));
 ```
@@ -403,7 +396,6 @@ MyString str2(move(str1));
 부분을 살펴보도록 합시다. 놀랍게도 `str2` 의 복사 생성자가 아닌 이동 생성자가 호출되었습니다. C++ 11 에 새롭게 추가된 `move` 함수는 입력받은 좌측값을 이동 가능한 값으로 캐스팅 해줍니다.사실 `move` 함수가 수정하는 것은 아무 것도 없습니다. 다만 컴파일러가 `move` 함수가 리턴하는 값을 '이동 가능 하구나' 라고 생각하게 해주지요.
 
 ```cpp-formatted
-
 cout << "str1 : ";
 str1.println();
 cout << "str2 : ";
@@ -418,7 +410,6 @@ str2.println();
 자 이제 이 새로운 `move` 를 이용해서 위 `my_swap` 함수를 수정해보도록 합시다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -571,7 +562,6 @@ int main() {
 위에서 보시다싶이 `swap` 은 잘 되었지만, 공교롭게도 두 번의 복사를 수행하였습니다.
 
 ```cpp-formatted
-
 a = move(b);
 b = move(tmp);
 ```
@@ -581,7 +571,6 @@ b = move(tmp);
 왜냐하면 바로 위 두 줄 때문이지요. 비록 `move` 를 시키고자 하였지만, 오버로딩 된 `operator=` 가 복사를 수행하였습니다. 그 이유는 현재 정의된 `operator=` 가
 
 ```cpp-formatted
-
 MyString& MyString::operator=(const MyString& s)
 ```
 
@@ -590,7 +579,6 @@ MyString& MyString::operator=(const MyString& s)
 꼴 이므로, `s` 를 그대로 복사하기 때문이지요. 따라서 우리는 우측값에만 특이적으로 오버로딩 되는 `operator=` 를 정의해줘야만 합니다. 아래와 같이 말이지요.
 
 ```cpp-formatted
-
 MyString& MyString::operator=(MyString&& s) {
   cout << "이동!" << endl;
   string_content = s.string_content;
@@ -629,7 +617,6 @@ MyString& MyString::operator=(MyString&& s) {
 
 `C++ 11` 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다 C++ 11 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다.
 ```cpp-formatted
-
 template <typename T>
 void wrapper(T u) {
   g(u);
@@ -644,7 +631,6 @@ void wrapper(T u) {
 하지만 실제로 저러한 형태의 전달 방식이 사용되는 경우가 종종 있습니다. 예를 들어 `STL` 의 `vector` 에는 `emplace_back` 이라는 함수가 있습니다. 예를 들어서 클래스 `A` 를 원소로 가지는 벡터의 뒤에 원소를 추가하기 위해서는
 
 ```cpp-formatted
-
 vec.push_back(A(1, 2, 3));
 ```
 
@@ -653,7 +639,6 @@ vec.push_back(A(1, 2, 3));
 과 같이 객체를 생성한 뒤에 인자로 전달해줘야만 합니다. 하지만 이 과정에서 불필요한 이동 혹은 복사가 발생하게 됩니다. 그렇다면, 아예 벡터에 인자를 전달해준 다음, 벡터 내부에서 자체적으로 객체를 생성한 뒤에 벡터 뒤에 추가하면 어떨까요? 이를 가능하게 하는게 `emplace_back` 함수 입니다.
 
 ```cpp-formatted
-
 vec.emplace_back(1, 2, 3);  // 위와 동일한 작업을 수행한다.
 ```
 
@@ -665,7 +650,6 @@ vec.emplace_back(1, 2, 3);  // 위와 동일한 작업을 수행한다.
 그렇다면 문제는 `emplace_back` 함수가 받은 인자들을 `A` 의 생성자에 제대로 전달해야 합니다. 그렇지 않을 경우 사용자가 의도하지 않은 생성자가 호출될 수 있기 때문입니다. 그렇다면 위와 같은 `wrapper` 함수를 어떻게 하면 잘 정의할 수 있을까요?
 
 ```cpp-formatted
-
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -707,7 +691,6 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-
 cout << "원본 --------" << endl;
 g(a);
 g(ca);
@@ -722,7 +705,6 @@ g(A());
 이러한 일이 발생한 이유는 C++ 컴파일러가 템플릿 타입을 추론할 때,템플릿 인자 `T` 가 레퍼런스가 아닌 일반적인 타입이라면 `const` 를 무시하기 때문입니다. 다시 말해,
 
 ```cpp-formatted
-
 template <typename T>
 void wrapper(T u) {
   g(u);
@@ -735,7 +717,6 @@ void wrapper(T u) {
 
 
 ```cpp-formatted
-
 template <typename T>
 void wrapper(T& u) {
   g(u);
@@ -771,7 +752,6 @@ g(A());
 그렇다면 아예 우측값을 레퍼런스로 받을 수 있도록 `const A&` 와 `A&` 따로 만들어주는 방법이 있습니다. 아래와 같이 말이지요.
 
 ```cpp-formatted
-
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -829,7 +809,6 @@ int main() {
 뿐만이 아니라 다음과 같은 문제가 있습니다. 예를 들어서 함수 `g` 가 인자를 한 개가 아니라 2 개를 받는다고 가정합니다. 그렇다면 우리는 다음과 같은 모든 조합의 템플릿 함수들을 정의해야합니다.
 
 ```cpp-formatted
-
 template <typename T>
 void wrapper(T& u, T& v) {
   g(u, v);
@@ -857,7 +836,6 @@ void wrapper(const T& u, const T& v) {
 하지만 놀랍게도 C++ 11 에서는 이를 간단하게 해결할 수 있습니다.
 
 ```cpp-formatted
-
 #include <iostream>
 using namespace std;
 
@@ -901,7 +879,6 @@ int main() {
 
 
 ```cpp-formatted
-
 template <typename T>
 void wrapper(T&& u) {
   g(forward<T>(u));
@@ -929,7 +906,6 @@ U&& r4; // int && &&; r4 는 int&&
 즉 쉽게 생각하면 `&` 는 1 이고 `&&` 은 0 이라 둔 뒤에, `OR` 연산을 한다고 보면 됩니다. 그렇다면,
 
 ```cpp-formatted
-
 wrapper(a);
 wrapper(ca);
 ```
@@ -939,7 +915,6 @@ wrapper(ca);
 위 두 개의 호출의 경우 `T` 가 각각 `A&` 와 `const A&` 로 추론될 것이고,
 
 ```cpp-formatted
-
 wrapper(A());
 ```
 
@@ -951,7 +926,6 @@ wrapper(A());
 그런데 문제는 이제 직접 `g` 에 이 인자를 전달하는 방법입니다. 왜 그냥
 
 ```cpp-formatted
-
 g(u)
 ```
 
@@ -964,7 +938,6 @@ g(u)
 
 
 ```cpp-formatted
-
 g(forward<T>(u));
 ```
 
@@ -974,7 +947,6 @@ g(forward<T>(u));
 
 
 ```cpp-formatted
-
 template <class S>
 S&& forward(typename remove_reference<S>::type& a) noexcept {
   return static_cast<S&&>(a);
@@ -988,7 +960,6 @@ S&& forward(typename remove_reference<S>::type& a) noexcept {
 
 
 ```cpp-formatted
-
 A&&& forward(typename remove_reference<A&>::type& a) noexcept {
   return static_cast<A&&&>(a);
 }
@@ -1001,7 +972,6 @@ A&&& forward(typename remove_reference<A&>::type& a) noexcept {
 
 
 ```cpp-formatted
-
 A& forward(A& a) noexcept { return static_cast<A&>(a); }
 ```
 
@@ -1012,7 +982,6 @@ A& forward(A& a) noexcept { return static_cast<A&>(a); }
 
 
 ```cpp-formatted
-
 A&& forward(A& a) noexcept { return static_cast<A&&>(a); }
 ```
 
@@ -1033,13 +1002,4 @@ A&& forward(A& a) noexcept { return static_cast<A&&>(a); }
 
 실제로 `move` 와 `forward` 가 어떠한 방식으로 구현되어 있는지 궁금하신 분들은 [여기를 참고하시면 됩니다](https://gcc.gnu.org/onlinedocs/libstdc++/libstdc++-api-4.5/a00936_source.html) 한 번 코드를 보시고 왜 이런 방식으로 구현되어 있는지 생각해보세요. (난이도 : 중)
 
-
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

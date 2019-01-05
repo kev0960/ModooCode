@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스 - strstr 함수
 cat_title :  strstr
+publish_date : 2010-11-27
 --------------
 
 
@@ -58,9 +59,7 @@ const char * strstr ( const char * str1, const char * str2 );
 
 
 ```cpp-formatted
-
-
-/*이 소스는http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다*/
+/*이 소스는 http://www.jbox.dk/sanos/source/lib/string.c.html에서 가져왔습니다*/
 char *strstr(const char *str1, const char *str2) {
   char *cp = (char *)str1;
   char *s1, *s2;

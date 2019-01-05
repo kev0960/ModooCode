@@ -3,6 +3,7 @@
 #include <stack>
 #include <string>
 #include <unordered_map>
+#include <map>
 #include <utility>
 #include <vector>
 
@@ -58,8 +59,12 @@ class ParserEnvironment {
     ref_to_url_ = ref_to_url;
     path_vector_ = path_vector;
   }
+  void SetHeader(std::map<string, string>& header) {
+    header_ = header;
+  }
 
   string GetUrlOfReference(string* ref_name);
+  string GetPageTitle();
 
  private:
   EnumListManager enum_list_manager_;
@@ -72,5 +77,6 @@ class ParserEnvironment {
   int header_index_;
   std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url_;
   std::vector<string> path_vector_;
+  std::map<string, string> header_;
 };
 }  // namespace md_parser

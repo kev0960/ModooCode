@@ -2,6 +2,7 @@
 title : 씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>
 cat_title: 8 - 1. Excel 만들기 프로젝트 1부
 next_page : 218
+publish_date : 2016-07-18
 --------------
 
 이번 강좌에서는
@@ -72,7 +73,6 @@ class Vector {
 먼저 클래스 소스를 살펴보도록 합시다.
 
 ```cpp-formatted
-
 string* data;
 int capacity;
 int length;
@@ -83,7 +83,6 @@ int length;
 `Vector` 클래스는 위와 같이 데이터를 보관하기 위한 `data` (문자열 배열로 만들 것입니다), 현재 할당되어 있는 크기를 알려주는 `capacity,` 그리고 현재 실제로 사용하는 양인 `length` 와 같은 변수로 구성되어 있습니다.
 
 ```cpp-formatted
-
 // 생성자
 Vector(int n = 1);
 ```
@@ -93,7 +92,6 @@ Vector(int n = 1);
 한 가지 특이한 점은 생성자에서 인자가 저렇게 `int n = 1` 과 같이 지정되어 있다는 것입니다. 이는 무엇이냐면, 만일 사용자가 인자를 지정하지 않으면, 알아서 `n = 1` 이 되게 지정한다는 것입니다. 다시 말해서
 
 ```cpp-formatted
-
 Vector a() Vector a(1)
 ```
 
@@ -102,7 +100,6 @@ Vector a() Vector a(1)
 은 동일한 작업입니다. 물론 사용자가 인자를 지정하면 해당 인자가 들어가겠지요. 이렇게 해당 인자의 기본 값을 지정해 놓은 것을 **디폴트 인자 (Default argument)** 라고 합니다. 이렇게 하면 사용자가 인자를 지정하지 않아도 디폴트 값이 들어가기 때문에 문제 없이 사용할 수 있습니다.
 
 ```cpp-formatted
-
 Vector::Vector(int n) : data(new string[n]), capacity(n), length(0) {}
 ```
 
@@ -111,7 +108,6 @@ Vector::Vector(int n) : data(new string[n]), capacity(n), length(0) {}
 `Vector` 의 생성자를 살펴보면 위와 같습니다. 한 가지 흥미로운 점은 여기서는 디폴트 인자가 명시되지 않은 점입니다. 이는 C++ 규칙이기도 한데, 클래스 내부 함수 선언에서 디폴드 인자를 명시하였다면 함수 본체에서 명시하면 안되고, 반대로 함수 본체에서 명시하였다면 클래스 내부 함수 선언에 명시하면 안됩니다. 즉, 둘 중 한 곳에서만 표시해야 합니다.
 
 ```cpp-formatted
-
 void Vector::push_back(string s) {
   if (capacity <= length) {
     string* temp = new string[capacity * 2];
@@ -150,7 +146,6 @@ Vector::~Vector() {
 간단히 위 처럼 `Vector` 클래스의 함수들을 만들어 보았습니다. 이 `Vector` 클래스는 일반적으로 다른 사람들이 사용할 것이 아니라 제가 이 프로젝트에서 간단히 사용하기 위해 만들어놓은 것이므로 몇 가지 문제점들이나 구현하지 않는 함수들 (보통 `Vector` 클래스에는 중간에 원소를 추가하는 `insert` 나 검색하는 `find` 함수들도 세트로 다닙니다) 이 있습니다. 물론 이렇게 한 이유는 이 정도로도 Excel 프로젝트에는 충분하기 때문에 문제 없습니다.
 
 ```cpp-formatted
-
 void Vector::push_back(string s) {
   if (capacity <= length) {
     string* temp = new string[capacity * 2];
@@ -179,7 +174,6 @@ void Vector::push_back(string s) {
 이번에는 스택 클래스 입니다.  스택의 경우 위에서 말한 것 처럼 링크드 리스트를 사용하기 때문에 데이터를 보관하기 위해서 배열을 사용하는 것이 아니라 하나의 노드를 만들어서 노드들을 체인 처럼 엮을 것입니다. 이를 위해 아래와 같이 `Stack` 클래스 안에 `Node` 라는 구조체를 정의하였습니다.
 
 ```cpp-formatted
-
 struct Node {
   Node* prev;
   string s;
@@ -195,7 +189,6 @@ struct Node {
 
 
 ```cpp-formatted
-
 class Stack {
   struct Node {
     Node* prev;
@@ -231,7 +224,6 @@ class Stack {
 `Node` 들의 리스트를 정확하게 관리하기 위해서, `current` 와 `start` 를 만들어서 `current` 는 현재 최상위 노드를 가리키게 하고, `start` 는 맨 밑바닥을 이루는 노드, 즉 최하위 노드를 가리키게 하였습니다. `start` 노드를 둔 이유는, 마지막 노드에 도달하였을 때 그 여부를 알아야 하기 때문이지요.
 
 ```cpp-formatted
-
 Stack::Stack() : start(NULL, "") { current = &start; }
 void Stack::push(string s) {
   Node* n = new Node(current, s);
@@ -274,7 +266,6 @@ Stack::~Stack() {
 최종적으로 아래는 우리가 만든 벡터와 스택 클래스의 헤더 파일인 `utils.h` 의 전체 내용입니다.
 
 ```cpp-formatted
-
 #pragma once
 #include <string>
 using namespace std;
@@ -359,7 +350,6 @@ class NumStack {
 참고로 맨 위에 흥미로운 전처리기 하나가 있습니다.
 
 ```cpp-formatted
-
 #pragma once
 ```
 
@@ -383,7 +373,6 @@ class NumStack {
 마찬가지로 아래는 해당 헤더파일 내용을 구현한 `utility.cpp` 입니다.
 
 ```cpp-formatted
-
 #include <string>
 
 #include "utils.h"
@@ -489,7 +478,6 @@ NumStack::~NumStack() {
 
 
 ```cpp-formatted
-
 class Cell
 
 {
@@ -518,7 +506,6 @@ class Cell
 따라서 `Cell` 멤버 함수들의 정의는 아래와 같이 간단하게 나타낼 수 있습니다.
 
 ```cpp-formatted
-
 Cell::Cell(string data, int x, int y, Table* table)
     : data(data), x(x), y(y), table(table) {}
 
@@ -531,7 +518,6 @@ int Cell::to_numeric() { return 0; }
 자 그럼 `Table` 클래스의 정의를 살펴보도록 하겠습니다.
 
 ```cpp-formatted
-
 class Table {
  protected:
   // 행 및 열의 최대 크기
@@ -569,7 +555,6 @@ class Table {
 일단 `Table` 클래스는 `Cell` 객체들을 2 차원 배열로 보관하게 됩니다. 이 때, 객체 자체를 보관하는 것이 아니라, 객체는 필요할 대 마다 동적으로 생성하고, 그 객체에 대한 포인터를 2차원 배열로 보관하고 있게 됩니다.
 
 ```cpp-formatted
-
 Table::Table(int max_row_size, int max_col_size)
     : max_row_size(max_row_size), max_col_size(max_col_size) {
   data_table = new Cell**[max_row_size];
@@ -594,7 +579,6 @@ Table::Table(int max_row_size, int max_col_size)
 위 그림을 보면 쉽게 이해할 수 있듯이, 동적 할당으로 Cell* 배열을 생성한 후에, `Cell` 객체가 필요 할 때 마다 생성해서 배열의 원소들이 이를 가리킬 수 있게 하였습니다.
 
 ```cpp-formatted
-
 Table::~Table() {
   for (int i = 0; i < max_row_size; i++) {
     for (int j = 0; j < max_col_size; j++) {
@@ -613,7 +597,6 @@ Table::~Table() {
 `Table` 소멸자도 이와 비슷합니다. 일단, 동적으로 생성된 `Cell` 객체를 모두 지워야 하고 그 다음에 `Cell` 배열 (1차원) 을 지워야 하고 마지막으로 2차원 테이블 자체를 메모리에서 지워야 합니다. 3 단계에 걸쳐서 `Cell` 의 흔적으로 메모리에서 날려버릴 수 있습니다.
 
 ```cpp-formatted
-
 void Table::reg_cell(Cell* c, int row, int col) {
   if (!(row < max_row_size && col < max_col_size)) return;
 
@@ -629,7 +612,6 @@ void Table::reg_cell(Cell* c, int row, int col) {
 위는 `Table` 의 셀을 등록하는 함수 입니다. 등록하고자 하는 위치를 인자로 받는데, 만일 해당 위치에 이미 다른 셀 객체가 등록되어 있다면 해당 객체를 `delete` 한 후에 등록시켜주면 됩니다.
 
 ```cpp-formatted
-
 int Table::to_numeric(const string& s) {
   // Cell 이름으로 받는다.
   int row = s[0] - 'A';
@@ -684,7 +666,6 @@ ostream& operator<<(ostream& o, Table& table) {
 하지만 이 `Table` 클래스의 객체는 생성할 수 없습니다. 왜냐하면 아래와 같은 순수 가상 함수가 포함되어 있기 때문이지요.
 
 ```cpp-formatted
-
 virtual string print_table() = 0;
 ```
 
@@ -693,7 +674,6 @@ virtual string print_table() = 0;
 우리는 이 `Table` 클래스를 상속 받는 다른 클래스를 만들어서 이 함수를 구현해주어야만 합니다.
 
 ```cpp-formatted
-
 class TxtTable : public Table {
   string repeat_char(int n, char c);
 
@@ -713,7 +693,6 @@ class TxtTable : public Table {
 위는 `Table` 클래스를 상속 받는 `TxtTable` 클래스 입니다. 이 클래스는 `Table` 의 내용을 텍스트의 형태로 예쁘게 정리해서 출력해주는 역할을 하고 있습니다.
 
 ```cpp-formatted
-
 TxtTable::TxtTable(int row, int col) : Table(row, col) {}
 
 // 텍스트로 표를 깨끗하게 출력해준다.
@@ -800,7 +779,6 @@ string TxtTable::col_num_to_str(int n) {
 참고로 이 구현 방식에서 한 가지 중요한 것이 빠졌는데, 셀의 문자열 데이터에서 개행 문자가 있는 경우(즉 특정 셀이 여러 줄이 될 때)를 고려하지 않았습니다. 즉, 모든 셀은 최대 1 줄로만 그려지게 됩니다.  따라서 실제로는 각 행의 최대 높이 역시 열과 마찬가지로 계산해서 그려야 합니다. (이는 여러분의 몫으로 남기겠습니다)
 
 ```cpp-formatted
-
 // 생략
 int main() {
   TxtTable table(5, 5);
@@ -842,7 +820,6 @@ int main() {
 마찬가지로 저는 `CSV` 파일 형태와 `HTML` 형태로 데이터를 표현해주는 두 개의 클래스들을 더 만들었습니다.
 
 ```cpp-formatted
-
 class HtmlTable : public Table {
  public:
   HtmlTable(int row, int col);
@@ -863,7 +840,6 @@ class CSVTable : public Table {
 딱히 특별한 것은 없고, `HTML` 파일 형식이나 `CSV` 파일 형식을 잘 알고 있다면 만드는데 큰 문제가 없을 것입니다. (HTML 표 :http://aboooks.tistory.com/59 `, CSV` 파일 형식 : https://en.wikipedia.org/wiki/Comma-separated_values)
 
 ```cpp-formatted
-
 // 생략
 int main() {
   CSVTable table(5, 5);
@@ -892,7 +868,6 @@ int main() {
 그리고 그 구현 내용은 다음과 같습니다.
 
 ```cpp-formatted
-
 HtmlTable::HtmlTable(int row, int col) : Table(row, col) {}
 
 string HtmlTable::print_table() {
@@ -961,12 +936,4 @@ string CSVTable::print_table() {
 
 이상으로 간단히 엑셀 만들기 프로젝트 1 부를 마치도록 하겠습니다. 다음 강좌에서는 `Cell` 을 상속 받는 클래스들을 만들어서 마치 실제 엑셀 처럼 작동하는 엑셀을 만들어 보도록 하겠습니다.
 
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

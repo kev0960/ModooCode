@@ -1,11 +1,9 @@
 ----------------
 title : 씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>
 cat_title: 4 - 5. 내가 만드는 String 클래스
-next_page : 202
+next_page : 253
+publish_date : 2013-08-15
 --------------
-
-
-
 
 이번 강좌에서는
 
@@ -58,7 +56,6 @@ next_page : 202
 또한, 문자열 데이터의 길이를 보관하는 이유는 문자열 길이를 사용할 일이 굉장히 많은데, 그 때 마다 계속 길이를 구하는 것은 상당히 불필요한 일이기 때문입니다. 따라서 길이를 한 번 구해놓고 길이가 바뀔 때 까지 변경하지 않는 방법이 유용할 것입니다. 그럼, 위 내용을 바탕으로 한번 `MyString` 을 구성해보도록 하겠습니다.
 
 ```cpp-formatted
-
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
   int string_length;     // 문자열 길이
@@ -91,7 +88,6 @@ MyString(const MyString& str);
 C 형식의 문자열을 그대로 보관한다면, 문자열의 끝 부분을 쉽게 체크할 수 있다는 장점이 있지만 이 문제는 우리가 `string_length` 라는 변수를 같이 도입함으로써 해결할 수 있게 되었습니다. 따라서, 저희 `MyString` 클래스에서는 실제 문자에만 해당하는 내용만을 `string_content` 에 보관하도록 하겠습니다.
 
 ```cpp-formatted
-
 MyString::MyString(char c) {
   string_content = new char[1];
   string_content[0] = c;
@@ -118,7 +114,6 @@ MyString::~MyString() { delete[] string_content; }
 그럼 이제 매우 쉽게 문자열의 길이를 구하는 함수를 만들 수 있게 되었습니다. 단순히 `string_length` 만 리턴해 주면 되는 것입니다.참고로 내부 변수의 내용을 바꾸지 않거나, 상수 함수들만 호출하는 함수들은 왠만하면 이 `length` 함수 처럼 `const` 함수로 정의해 주는 것이 좋습니다.
 
 ```cpp-formatted
-
 int MyString::length() const { return string_length; }
 ```
 
@@ -127,7 +122,6 @@ int MyString::length() const { return string_length; }
 다만 이러한 방식으로 문자열의 길이를 구한다면, 문자열 조작시에 `string_length` 의 값을 올바른 값으로 설정해야만 합니다. 예를 들어서, 두 문자열을 서로 더해서 새로운 문자열을 만들 때 새로운 문자열의 `string_length` 는 두 문자열의 `string_length` 의 합이 되겠지요. 마찬가지로 부분 문자열을 추출하거나, 문자 하나를 지우는 등 모든 작업을 할 때 `string_length` 값을 정확하게 조정해야만 합니다.
 
 ```cpp-formatted
-
 void MyString::print() {
   for (int i = 0; i != string_length; i++) cout << string_content[i];
 }
@@ -242,7 +236,6 @@ MyString& assign(const char* str);
 물론 이 `assign` 함수들의 구현 자체는 매우 간단하게 할 수 있습니다. 저의 경우 다음과 같이 구현하였습니다.
 
 ```cpp-formatted
-
 MyString& MyString::assign(MyString& str) {
   if (str.string_length > string_length) {
     // 그러면 다시 할당을 해줘야만 한다.
@@ -288,7 +281,6 @@ MyString& MyString::assign(const char* str) {
 그런데 이렇나 방식으로 구현하는데에는 약간의 문제가 있습니다. 예를 들어 다음과 같은 상황을 생각해봅시다.
 
 ```cpp-formatted
-
 MyString str1("very very very long string");
 str1.assign("short string");
 str1.assign("very long string");
@@ -313,7 +305,6 @@ str1.assign("very long string");
 따라서 이러한 비효율 적인 막기 위해서는 얼마나 많은 공간이 할당되어 있는지 알 수 있는 정보를 따로 보관하는 것이 좋을 것이라 생각됩니다. 이를 위해 `memory_capacity` 라는, 현재 할당된 메모리 공간의 크기를 나타내는 새로운 변수를 추가하였습니다.
 
 ```cpp-formatted
-
 MyString& MyString::assign(MyString& str) {
   if (str.string_length > memory_capacity) {
     // 그러면 다시 할당을 해줘야만 한다.
@@ -357,7 +348,6 @@ MyString& MyString::assign(const char* str) {
 이렇게 하게 된다면, 앞선 그림에서 나타나는 상황과 같은 문제를 방지할 수 있게 됩니다. 이렇게 `capacity` 를 도입함으로써 여러가지 새로운 함수들을 추가할 수 있게 되었습니다. 예를 들어서, 할당할 문자열의 크기를 미리 예약해 놓는 `reserve` 함수와 현재 문자열의 할당된 메모리 크기를 나타내는 `capacity` 함수를 만들 수 있습니다. 이들은 다음과 같습니다.
 
 ```cpp-formatted
-
 int MyString::capacity() { return memory_capacity; }
 void MyString::reserve(int size) {
   if (size > memory_capacity) {
@@ -526,7 +516,6 @@ int main() {
 마지막으로 추가할 함수는 임의의 위치의 문자를 리턴하는 함수로, 이전 C 언어에서 `[]` 로 구현되었던 것입니다. C 문자열의 경우 구조상 배열의 범위를 벗어나는 위치에 대한 문자를 요구하여도 이를 처리할 수 밖에 없었는데 (이는 결국 심각한 오류로 이루어졌죠) C++ 의 경우 특정 위치의 문자를 얻는 것을 함수로 만들어서 올바르지 않는 위치에 대한 문제를 처리할 수 잇게 되었습니다.
 
 ```cpp-formatted
-
 char MyString::at(int i) {
   if (i >= string_length || i < 0)
     return NULL;
@@ -577,7 +566,6 @@ MyString& MyString::insert(int loc, char c);
 저는 맨 위의 `MyString` 을 인자로 받는 함수 하나만 제작할 것입니다. 왜냐하면 이 함수만 제대로 제작한다면 나머지 아래의 두 함수는
 
 ```cpp-formatted
-
 MyString& MyString::insert(int loc, const char* str) {
   MyString temp(str);
   return insert(loc, temp);
@@ -593,7 +581,6 @@ MyString& MyString::insert(int loc, char c) {
 와 같이 간단하게 처리할 수 있기 때문이지요. 따라서 우리가 제대로 만들어야 할 함수는 맨 위의 `MyString` 을 인자로 받는 함수 입니다.
 
 ```cpp-formatted
-
 MyString& MyString::insert(int loc, MyString& str) {
   // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
   // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
@@ -658,7 +645,6 @@ MyString& MyString::insert(int loc, MyString& str) {
 반면에, 메모리를 다시 할당할 필요가 없는 경우 원래의 문자열 내용을 이용하며 삽입된 문자열을 `string_content` 에 넣어야 하므로 약간의 트릭을 이용하였습니다. 바로, 자리가 바뀌는 문자열들을 먼저 뒤로 밀어버리는 것입니다. 이미 메모리의 할당된 공간은 충분하기 때문에 뒤로 미는 것을 쉽게 수행할 수 있습니다.
 
 ```cpp-formatted
-
 for (int i = string_length - 1; i >= loc; i--) {
   // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
   string_content[i + str.string_length] = string_content[i];
@@ -669,7 +655,6 @@ for (int i = string_length - 1; i >= loc; i--) {
 예를 들어서 앞서 `abc` 에서 `d` 를 삽입하는 예에서, 1 의 위치에 `d` 를 넣었으므로, 자리가 바뀌는 것들은 `bc` 가 됩니다. 따라서 먼저 `bc` 를 뒤로 밀어버린 다음, 생긴 공간에 `d` 를 집어 넣으면 되는 것입니다. 즉, 위 작업을 수행하면 `abc` 는 `abbc` 가 되고,
 
 ```cpp-formatted
-
 // 그리고 insert 되는 문자 다시 집어넣기
 for (int i = 0; i < str.string_length; i++)
   string_content[i + loc] = str.string_content[i];
@@ -897,7 +882,6 @@ int main() {
 
 
 ```cpp-formatted
-
 while (some_condition) {
   str.insert(some_location, 'a');
 }
@@ -914,7 +898,6 @@ while (some_condition) {
 
 
 ```cpp-formatted
-
 MyString& MyString::insert(int loc, MyString& str) {
   // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
   // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
@@ -1181,7 +1164,6 @@ MyString& erase(int loc, int num);
 `erase` 함수는 위와 같이 생겼고, `loc` 은 `insert` 와 동일하게 `loc` 의 해당하는 문자 '앞' 을 의미합니다. 그리고 `num` 은 지우는 문자의 수를 의미하죠. 예를 들어서 `abcd` 라는 문자열에서 `erase(1, 2);` 를 하게 된다면, 1 에 해당하는 문자 'b' 의 앞에서 부터 2 문자를 지우게 되어, `bc` 가 지워져서 `ad` 가 리턴됩니다.
 
 ```cpp-formatted
-
 MyString& MyString::erase(int loc, int num)
 
 {
@@ -1226,7 +1208,6 @@ MyString& MyString::erase(int loc, int num)
 문자열을 검색하는 알고리즘은 수 없이 많지만, 어떤 상황에 대해서도 좋은 성능을 발휘하는 알고리즘은 없습니다. (예를 들어 짧은 문자열 검색에 최적화 된 알고리즘과 긴 문자열 검색에 최적화 된 알고리즘들 같이 말입니다) 그렇기에 특별한 알고리즘을 사용하는 경우에는 그 클래스의 사용 목적이 명확해서 그 알고리즘이 좋은 성능을 발휘할 수 있는 경우에만 사용하는 것이 보통입니다. 따라서 우리의 `MyString` 의 경우, 가장 간단한 방법으로 `find` 알고리즘을 구현하기로 하였습니다.
 
 ```cpp-formatted
-
 int find(int find_from, MyString& str);
 
 int find(int find_from, const char* str);
@@ -1241,7 +1222,6 @@ int find(int find_from, char c);
 참고로 `find` 함수는 `find_from` 에서 부터 시작해서 가장 첫 번째 `str` 의 위치를 리턴하게 됩니다. 그리고 `str` 이 문자열에 포함되어 있지 않다면, -1 을 리턴하게 되지요. 이러한 방법으로, 어떤 문자열 내에 있는 모든 `str` 들을 찾을 수 있는 `for` 문을 생각할 수 도 있을 것입니다.
 
 ```cpp-formatted
-
 int MyString::find(int find_from, MyString& str) {
   int i, j;
   if (str.string_length == 0) return -1;
@@ -1262,7 +1242,6 @@ int MyString::find(int find_from, MyString& str) {
 저의 경우 위와 같이 간단한 방법으로 `find` 함수를 구현하였습니다. `find_from` 부터  시작해서 `string_content` 와 `str` 가 완벽히 일치하는 부분이 생긴다면 그 위치를 리턴하고, 찾지 못할 경우 -1 을 리턴하도록 말이지요. 그럼 잘 작동하는지 살펴보도록 합시다.
 
 ```cpp-formatted
-
 #include <string.h>
 #include <iostream>
 
@@ -1525,7 +1504,6 @@ int main() {
 마지막으로 만들 함수는 문자열 간의 크기를 비교하는 `compare` 함수 입니다. 여기서 '크기' 를 비교한다는 의미는 사전식으로 배열해서 어떤 문자열이 더 뒤에 오는지 판단한다는 의미가 됩니다. 이 함수를 이용해서 문자열 전체를 정렬하는 함수라던지, 기존의 C 언어에서 `strcmp` 함수 등으로 지원하였던 것들을 그대로 사용할 수 있게 됩니다.
 
 ```cpp-formatted
-
 int compare(MyString& str);
 ```
 
@@ -1534,7 +1512,6 @@ int compare(MyString& str);
 일단 함수의 원형은 위와 같이 `*this` 와 `str` 을 비교하는 형태로 이루어집니다.
 
 ```cpp-formatted
-
 int MyString::compare(MyString& str)
 
 {
@@ -1568,7 +1545,6 @@ int MyString::compare(MyString& str)
 참고로 말하면 `abc` 와 `abcd` 의 크기를 비교하면 `abc` 가 `abcd` 보다 사전식으로 더 앞에 오게 됩니다. 따라서 이에 대한 처리는 뒷부분에서 따로 하게 됩니다. 그리고 한 가지 더 말하자면 `min` 과 `max` 함수는 `iostream` 를 `include` 하면 사용할 수 있는 함수들 이므로, 굳이 귀찮게 만드실 필요는 없습니다.
 
 ```cpp-formatted
-
 #include <string.h>
 #include <iostream>
 
@@ -1877,11 +1853,4 @@ int main() {
 
 여러가지 검색 알고리즘(KMP, Boyer - Moore) 들을 이용하는 `find` 함수를 만들어보세요. 어떤 알고리즘의 경우 미리 계산된 테이블이 필요할 텐데, 이러한 정보들 역시 `class` 변수로 처리하셔도 됩니다. (난이도 : 上)
 
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/135)
-```
+##@ chewing-cpp-end

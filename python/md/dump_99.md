@@ -2,9 +2,8 @@
 title : 씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>
 cat_title : 21. 매크로 함수, 인라인 함수
 next_page : 103
+publish_date : 2010-11-21
 --------------
-
-
 
 이번 강좌에서는
 
@@ -306,7 +305,6 @@ int ab;
 ###  인라인 함수
 
 ```cpp-formatted
-
 /* 인라인 함수 */
 
 #include <stdio.h>
@@ -331,7 +329,6 @@ int main(int argc, char **argv) {
 
 
 ```cpp-formatted
-
 __inline int square(int a) { return a * a; }
 ```
 
@@ -472,12 +469,4 @@ __inline int some_function(int a) {
 }
 ```
 
-
-```warning
-강좌를 보다가 조금이라도 궁금한 것이나 이상한 점이 있다면꼭 댓글을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요.
-
-현재 여러분이 보신 강좌는<<씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>>> 입니다. 이번 강좌의모든 예제들의 코드를 보지 않고 짤 수준까지 강좌를 읽어 보시기 전까지 다음 강좌로 넘어가지 말아주세요
-
-
- [다음 강좌 보러가기](http://itguru.tistory.com/notice/15)
-```
+##@ chewing-c-end

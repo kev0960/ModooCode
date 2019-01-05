@@ -10,7 +10,10 @@
 #include <thread>
 #include <unordered_set>
 
+#ifdef USE_CHROMA
 #include "chroma.h"
+#endif
+
 #include "fast_cpp_syntax_highlighter.h"
 #include "fast_py_syntax_highlighter.h"
 #include "util.h"
@@ -94,6 +97,8 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
   return content.substr(fragment.link_start,
                         fragment.link_end - fragment.link_start + 1);
 }
+
+#ifdef USE_CHROMA
 [[maybe_unused]] string FormatCodeUsingChroma(const string& code,
                                               const string& lang,
                                               const string& schema) {
@@ -108,6 +113,7 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
 
   return formatted_code;
 }
+#endif
 
 string FormatCodeUsingFSH(const string& content, const string& code_type) {
   std::unique_ptr<FastSyntaxHighlighter> highlighter;

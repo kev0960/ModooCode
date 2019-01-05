@@ -18,6 +18,11 @@
         <a href="/" title="Home">모두의 코드</a><br>
         <small><%= file_info.title %></small>
       </h2>
+      <div class="additional-info">
+        <% if (file_info.publish_date) { %>
+        <small class="publish-date">작성일 : <%= file_info.publish_date %></small>
+        <% } %>
+      </div>
     </div>
   </div>
   <div class="adsense-content-top">

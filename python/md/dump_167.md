@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - ios::eof 함수
 cat_title :  ios::eof
 ref_title : eof
+publish_date : 2011-10-23
 --------------
 
 

@@ -1,6 +1,7 @@
 ----------------
 title : C 언어 레퍼런스- strcoll 함수
 cat_title :  strcoll
+publish_date : 2010-07-10
 --------------
 
 
