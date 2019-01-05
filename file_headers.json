@@ -1067,6 +1067,19 @@
 	"title" : "씹어먹는 C ++ - <4 - 6. 클래스의 explicit 과 mutable 키워드>"
 }
 ,
+	"254" : {
+	"cat_title" : "14. 함수를 객체로! (C++ std::function, std::bind)",
+	"path" : "/C++",
+	"title" : "씹어먹는 C ++ - <14. 함수를 객체로! (C++ std::function, std::bind)>"
+}
+,
+	"255" : {
+	"cat_title" : "씹어먹는 C ++ 토막글 3 -  SFINAE 와 enable_if",
+	"path" : "/C++",
+	"publish_date" : "2019-01-05",
+	"title" : "씹어먹는 C ++ 토막글 3 -  SFINAE 와 enable_if"
+}
+,
 	"26" : {
 	"cat_title" : "13 - 1. 마술 상자 함수(function)",
 	"next_page" : "27",
