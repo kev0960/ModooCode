@@ -58,6 +58,6 @@
     "ctime": "cpp",
     "string": "cpp"
   },
-  "python.pythonPath": "/anaconda3/bin/python",
+  "python.pythonPath": "/home/jaebum/anaconda3/bin/python",
   "python.linting.pylintEnabled": true
 }

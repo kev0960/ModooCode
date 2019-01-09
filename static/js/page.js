@@ -58,6 +58,8 @@ function FormatCompileError(msg, marked_lines) {
 
 let page_infos;
 let file_infos;
+let page_path;
+let our_page_in_category;
 
 function initCategory() {
   function GetPagePathFromNavId(elem) {
@@ -77,8 +79,89 @@ function initCategory() {
     return current_dir;
   }
 
+  function OpenCategory() {
+    let start_dir = page_path[0];
+    OpenCategoryRecurse($('a[name="'+ start_dir + '"'), page_path, 1);
+  }
+  function OpenCategoryRecurse(current_dom, full_path, depth) {
+    let path = full_path.slice(0, depth);
+    if (full_path.length == depth) {
+      let last_node = $('a[href="/' + full_path[depth - 1] + '"]');
+      last_node.css('background-color', 'rgba(255, 255, 255, .33)');
+      our_page_in_category = last_node;
+      our_page_in_category.get(0).scrollIntoView(true);
+      return;
+    }
+
+    current_dom.addClass('open-cat');
+    html = current_dom.html();
+    console.log("before : " , html)
+    html = html.replace(
+        '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
+        '<i class=\'xi-caret-down-min\'></i>');
+    html = html.replace(
+        '<i class="xi-plus-square"></i>',
+        '<i class=\'xi-caret-down-min\'></i>');
+    current_dom.html(html);
+    console.log("after : " , html)
+
+    // Get the directory.
+    const current_dir = GetFilesFromPath(path);
+    // Add directories.
+    const folders = Object.keys(current_dir);
+    const div = $('<div>', {class: `inner-menu${path.length}`});
+    console.log("folders : ", folders)
+    for (let i = 0; i < folders.length; i++) {
+      if (folders[i] !== 'files') {
+        const dir_folders = Object.keys(current_dir[folders[i]]);
+        let folder_html = folders[i];
+        if (dir_folders.length >= 2 ||
+            current_dir[folders[i]].files.length > 0) {
+          folder_html = `${
+                        '<i class="xi-plus-square" ' +
+              'style="font-size:0.75em;"></i>&nbsp;&nbsp;'}${folder_html}`;
+        }
+        div.append($('<a>', {
+          class: 'sidebar-nav-item dir',
+          html: folder_html,
+          name: folders[i],
+        }));
+      }
+    }
+    // Add files.
+    for (let i = 0; i < current_dir.files.length; i++) {
+      const file_id = current_dir.files[i];
+      let cat_title = file_infos[file_id].title;
+      if (file_infos[file_id].cat_title) {
+        cat_title = file_infos[file_id].cat_title;
+      }
+      console.log(file_id, cat_title)
+
+      div.append($('<a>', {
+        class: 'sidebar-nav-item file',
+        text: cat_title,
+        href: '/' + file_id,
+        name: cat_title,
+      }));
+    }
+    //console.log(current_dom.nextAll().length, div.html())
+    div.insertAfter(current_dom);
+    let children = current_dom.next().children();
+    console.log(children.length, children)
+    for (let i = 0; i < children.length; i++) {
+      console.log("Name : ", $(children[i]).attr('name'), full_path[depth])
+      if ($(children[i]).attr('name') == full_path[depth]) {
+        children = $(children[i]);
+        break;
+      }
+    }
+    OpenCategoryRecurse(children, full_path, depth + 1);
+  }
+
   page_infos = JSON.parse($('#page-infos').html());
   file_infos = JSON.parse($('#file-infos').text());
+  page_path = JSON.parse($('#page-path').text());
+
   $(document).on('click', '.sidebar-nav-item.dir', function() {
     const path = GetPagePathFromNavId($(this));
     let html = '';
@@ -100,9 +183,13 @@ function initCategory() {
       html = html.replace(
           '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
           '<i class=\'xi-caret-down-min\'></i>');
+      html = html.replace(
+          '<i class="xi-plus-square"></i>',
+          '<i class=\'xi-caret-down-min\'></i>');
       $(this).html(html);
 
       // Get the directory.
+      console.log(path)
       const current_dir = GetFilesFromPath(path);
       // Add directories.
       const folders = Object.keys(current_dir);
@@ -141,6 +228,8 @@ function initCategory() {
       div.insertAfter($(this));
     }
   });
+
+  OpenCategory();
 }
 
 function closeSidebar() {
@@ -169,14 +258,11 @@ function openSidebar() {
   localStorage.setItem('sidebar', 'opened');
   if (window.matchMedia('(max-width: 767px)').matches) {
     $('.wrap').css({'margin-left': '30%', width: '70%'});
-  } else if (window.matchMedia('(min-width: 768px) and (max-width: 992px)')
+  } else if (window.matchMedia('(min-width: 768px) and (max-width: 1200px)')
                  .matches) {
     $('.wrap').css({'margin-left': '25%', width: '75%'});
-  } else if (window.matchMedia('(min-width: 993px) and (max-width: 1200px)')
-                 .matches) {
-    $('.wrap').css({'margin-left': '20%', width: '80%'});
   } else if (window.matchMedia('(min-width: 1200px)').matches) {
-    $('.wrap').css({'margin-left': '30%', width: '70%'});
+    $('.wrap').css({'margin-left': '25%', width: '80%'});
   }
 }
 
@@ -387,29 +473,30 @@ $(() => {
     $('pre.chroma').each(function(index) {
       let code = $(this).text();
 
-      let code_language = "";
+      let code_language = '';
       if ($(this).attr('class').indexOf('py') !== -1) {
-        code_language = "<button class='code-language python'><i class='xi-file-text-o'>"
-        + "</i>&nbsp;Python</button>";
-      } else if($(this).attr('class').indexOf('cpp') !== -1) {
-        code_language = "<button class='code-language cpp'><i class='xi-file-text-o'>"
-        + "</i>&nbsp;C/C++</button>";
+        code_language =
+            '<button class=\'code-language python\'><i class=\'xi-file-text-o\'>' +
+            '</i>&nbsp;Python</button>';
+      } else if ($(this).attr('class').indexOf('cpp') !== -1) {
+        code_language =
+            '<button class=\'code-language cpp\'><i class=\'xi-file-text-o\'>' +
+            '</i>&nbsp;C/C++</button>';
       }
 
-      let code_font_change_and_lang = code_language 
-      + '<button class="shrink-btn" id=\'code-font-large-' + index +
-      '\'><i class="xi-zoom-in"></i>&nbsp;확대</button>'
-      + '<button class="shrink-btn" id=\'code-font-small-' + index +
-      '\'><i class="xi-zoom-out"></i>&nbsp;축소</button>';
+      let code_font_change_and_lang = code_language +
+          '<button class="shrink-btn" id=\'code-font-large-' + index +
+          '\'><i class="xi-zoom-in"></i>&nbsp;확대</button>' +
+          '<button class="shrink-btn" id=\'code-font-small-' + index +
+          '\'><i class="xi-zoom-out"></i>&nbsp;축소</button>';
 
       if ($(this).height() > 300) {
         $('<div><button class="shrink-btn" id=\'shrink-' + index +
-        '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button>'
-        + code_font_change_and_lang + '</div>')
-          .insertBefore($(this));
+          '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button>' +
+          code_font_change_and_lang + '</div>')
+            .insertBefore($(this));
       } else {
-        $('<div>' + code_font_change_and_lang + '</div>')
-          .insertBefore($(this));
+        $('<div>' + code_font_change_and_lang + '</div>').insertBefore($(this));
       }
 
       $('#shrink-' + index).click(function() {
@@ -419,13 +506,13 @@ $(() => {
 
       $('#code-font-large-' + index).click(function() {
         let current_font_size = parseInt($('#' + index).css('font-size'));
-        current_font_size ++;
+        current_font_size++;
         $('#' + index).css('font-size', current_font_size + 'px');
       });
 
       $('#code-font-small-' + index).click(function() {
         let current_font_size = parseInt($('#' + index).css('font-size'));
-        current_font_size --;
+        current_font_size--;
         $('#' + index).css('font-size', current_font_size + 'px');
       });
 
@@ -449,7 +536,7 @@ $(() => {
         '\'><i class=\'xi-refresh\'>' +
         '</i>&nbsp;&nbsp;실행</button></div>')
           .insertAfter($(this));
-    
+
       $('<div style="display:none;"><p class="exec-result-title">실행 결과</p>' +
         '<pre id="result-' + index + '" class="exec-result"></pre></div>')
           .insertAfter($('#' + index).next());
@@ -479,10 +566,9 @@ $(() => {
         } else {
           code = editors[id].getValue();
         }
-        gtag('event', 'execute-code', {
-          'event_category': 'code',
-          'event_label': 'cpp'
-        });
+        gtag(
+            'event', 'execute-code',
+            {'event_category': 'code', 'event_label': 'cpp'});
 
         $.ajax({
           type: 'POST',
@@ -524,20 +610,18 @@ $(() => {
                   .prev()
                   .html(
                       '실행 결과<span class=\'compile-error-title\'>컴파일 오류</span>');
-              gtag('event', 'execute-code-fail', {
-                'event_category': 'code',
-                'event_label': 'cpp'
-              });
+              gtag(
+                  'event', 'execute-code-fail',
+                  {'event_category': 'code', 'event_label': 'cpp'});
             } else {
               $('#result-' + index).text(result.exec_result);
               $('#result-' + index)
                   .prev()
                   .html(
                       '실행 결과<span class=\'run-success-title\'>실행 성공</span>');
-              gtag('event', 'execute-code-success', {
-                'event_category': 'code',
-                'event_label': 'cpp'
-              });
+              gtag(
+                  'event', 'execute-code-success',
+                  {'event_category': 'code', 'event_label': 'cpp'});
             }
             $('#result-' + index).parent().show();
           }
@@ -549,7 +633,7 @@ $(() => {
         $(this).css('top', '-=40');
         already_added = false;
       }
-    });  
+    });
   });
   initCategory();
 

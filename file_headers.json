@@ -545,6 +545,7 @@
 	"180" : {
 	"cat_title" : "ios::clear",
 	"publish_date" : "2012-03-25",
+	"ref_title" : "clear",
 	"title" : "C++ 레퍼런스 - ios::clear"
 }
 ,
@@ -1069,7 +1070,7 @@
 ,
 	"254" : {
 	"cat_title" : "14. 함수를 객체로! (C++ std::function, std::bind)",
-	"path" : "/C++",
+	"published" : "false",
 	"title" : "씹어먹는 C ++ - <14. 함수를 객체로! (C++ std::function, std::bind)>"
 }
 ,

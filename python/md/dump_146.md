@@ -31,8 +31,8 @@ publish_date : 2011-08-17
 `istream` 클래스의 대부분의 다른 멤버 함수들은 서식화된 입력을 사용하지 않는다. 즉, 입력 받은 문자들로 부터 어떠한 해석도 이루어지지 않는다는 뜻이다. 이 멤버 함수들은 입력되는 문자들의 나열에서 부터 정해진 개수의 문자만을 입력 받는다 (
  [get](http://itguru.tistory.com/191), 
  [getline](http://itguru.tistory.com/149), 
- [peek](http://itguru.tistory.com/194), `read, readsome)`. 또한 `get pointer` 을 조절하거나 (
- [ignore](http://itguru.tistory.com/193), `seekg, tellg, unget)` 마지막 서식화 되지 않았던 입력 작업의 정보를 얻어오는 함수(
+ [peek](http://itguru.tistory.com/194), `read`, `readsome`). 또한 `get pointer` 을 조절하거나 (
+ [ignore](http://itguru.tistory.com/193), `seekg`, `tellg`, `unget`) 마지막 서식화 되지 않았던 입력 작업의 정보를 얻어오는 함수(
  [gcount](http://itguru.tistory.com/192))들도 있다.
 
 
@@ -73,8 +73,7 @@ publish_date : 2011-08-17
 
 
 * 오류 상태(error state) : 내부 지시자가 현재 스트림의 오류 상태를 나타내고 있다. 객체는
- [rdstate](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고,
- [clear](http://itguru.tistory.com/180) 와
+ [rdstate](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, `clear$iostream` 와
  [setstate](http://itguru.tistory.com/179) 함수를 호출함을 통해 수정될 수 있다. 각각의 값은
  [good](http://itguru.tistory.com/164), 
  [eof](http://itguru.tistory.com/167), 
