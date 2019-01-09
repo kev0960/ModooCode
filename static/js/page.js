@@ -95,7 +95,6 @@ function initCategory() {
 
     current_dom.addClass('open-cat');
     html = current_dom.html();
-    console.log("before : " , html)
     html = html.replace(
         '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
         '<i class=\'xi-caret-down-min\'></i>');
@@ -103,14 +102,12 @@ function initCategory() {
         '<i class="xi-plus-square"></i>',
         '<i class=\'xi-caret-down-min\'></i>');
     current_dom.html(html);
-    console.log("after : " , html)
 
     // Get the directory.
     const current_dir = GetFilesFromPath(path);
     // Add directories.
     const folders = Object.keys(current_dir);
     const div = $('<div>', {class: `inner-menu${path.length}`});
-    console.log("folders : ", folders)
     for (let i = 0; i < folders.length; i++) {
       if (folders[i] !== 'files') {
         const dir_folders = Object.keys(current_dir[folders[i]]);
@@ -135,7 +132,6 @@ function initCategory() {
       if (file_infos[file_id].cat_title) {
         cat_title = file_infos[file_id].cat_title;
       }
-      console.log(file_id, cat_title)
 
       div.append($('<a>', {
         class: 'sidebar-nav-item file',
@@ -144,12 +140,9 @@ function initCategory() {
         name: cat_title,
       }));
     }
-    //console.log(current_dom.nextAll().length, div.html())
     div.insertAfter(current_dom);
     let children = current_dom.next().children();
-    console.log(children.length, children)
     for (let i = 0; i < children.length; i++) {
-      console.log("Name : ", $(children[i]).attr('name'), full_path[depth])
       if ($(children[i]).attr('name') == full_path[depth]) {
         children = $(children[i]);
         break;
@@ -189,7 +182,6 @@ function initCategory() {
       $(this).html(html);
 
       // Get the directory.
-      console.log(path)
       const current_dir = GetFilesFromPath(path);
       // Add directories.
       const folders = Object.keys(current_dir);
@@ -396,7 +388,6 @@ function postGenericComment(parent_id, content, password, name) {
               token,
             },
             success(result) {
-              console.log('Result : ', result);
               $('#adding-comment').hide();
               location.reload();
             },
@@ -428,7 +419,6 @@ function loadComment() {
       let content_new_reply = redirect_info.content_new_reply;
       addComment(redirect_info.current_comment_index);
 
-      console.log(content_new_reply, content_new_comment)
       if (content_new_comment) {
         $('#posted-comment').val(content_new_comment);
       }
@@ -589,12 +579,10 @@ $(() => {
               let marked_lines = new Set();
               formatted =
                   FormatCompileError(result.compile_error, marked_lines);
-              console.log(marked_lines)
               $('#result-' + index).text(formatted);
 
               if (is_editor) {
                 marked_lines.forEach(function(line_num) {
-                  console.log('line num ', line_num)
                   editor_deco[id] = editors[id].deltaDecorations([], [
                     {
                       range: new monaco.Range(line_num, 1, line_num, 1),
@@ -678,18 +666,15 @@ $(() => {
     selected_comment_id = $(this).parent().attr('id');
     selected_comment_id = parseInt(
         selected_comment_id.substr(selected_comment_id.lastIndexOf('-') + 1));
-    console.log(selected_comment_id);
     createReply.bind(this)();
   });
 
   function deleteComment(comment_id, password) {
-    console.log(comment_id, password);
     $.ajax({
       type: 'POST',
       url: '/delete-comment',
       data: {comment_id, password},
       success: function(data) {
-        console.log(data);
         location.reload();
       }
     });
