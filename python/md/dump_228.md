@@ -728,7 +728,6 @@ void wrapper(T& u) {
 그렇다면 위 경우는 어떨까요?
 
 ```warning
-
 error: cannot bind non-const lvalue reference of type 'A&' to an rvalue of type 'A'
   wrapper(A());
           ^~~
