@@ -404,13 +404,10 @@ a.link-code {
     width: 160px;
 }
 
-.adsense-container-top {
-    margin-bottom: 20px;
-}
-
 .adsense-column {
     float: left;
     width: 50%;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 800px) {
