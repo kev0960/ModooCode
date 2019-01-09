@@ -385,9 +385,11 @@ a.link-code {
     font-size: 95%;
 }
 
-.adsense-content-top {
+.adsense-content-bottom {
     margin-left: auto;
     margin-right: auto;
+    padding-left: 1rem;
+    margin-top: 1rem;
 }
 
 @media (max-width: 159px) {
@@ -400,6 +402,24 @@ a.link-code {
     margin-left: auto;
     margin-right: auto;
     width: 160px;
+}
+
+.adsense-container-top {
+    margin-bottom: 20px;
+}
+
+.adsense-column {
+    float: left;
+    width: 50%;
+}
+
+@media (max-width: 800px) {
+    .adsense-column-hideable {
+        display: none !important;
+    }
+    .adsense-column {
+        width: 100% !important;
+    }
 }
 
 figcaption {
@@ -452,10 +472,10 @@ figcaption {
 
 .next-lecture {
     text-align: right;
-    margin-top:15px;
+    margin-top: 15px;
 }
 
-.next-lecture > a {
+.next-lecture>a {
     color: #3c3c3c;
     font-weight: bold;
     font-size: 130%;
@@ -466,8 +486,8 @@ figcaption {
 }
 
 .publish-date {
-    font-size:65%!important;
-    padding:5px;
+    font-size: 65%!important;
+    padding: 5px;
     color: white;
     background-color: green;
     border-radius: 4px;
