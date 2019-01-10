@@ -31,6 +31,8 @@
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "googleapis": "^34.0.0",
+    "jquery": "^3.3.1",
+    "jsdom": "^13.1.0",
     "monaco-editor": "^0.14.3",
     "monaco-editor-webpack-plugin": "^1.5.1",
     "npm": "^6.5.0",

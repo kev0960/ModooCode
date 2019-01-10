@@ -1,5 +1,7 @@
 const zmq = require('zmq');
 const uuidv4 = require('uuid/v4');
+const jsdom = require('jsdom');
+const {JSDOM} = jsdom;
 
 const facebook_strategy = require('passport-facebook').Strategy;
 const google_strategy = require('passport-google-oauth2').Strategy;
@@ -102,7 +104,9 @@ class PathHierarchy {
   }
 
   searchPagePath(page_id) {
-    page_id = page_id.toString();
+    if (typeof page_id !== 'string') {
+      page_id = page_id.toString();
+    }
     if (!this.cached_search_result.get(page_id)) {
       let result = this.root_path.findPage(page_id);
       this.cached_search_result.set(page_id, result);
@@ -133,6 +137,7 @@ module.exports = class Server {
     this.file_infos = static_data.file_infos;
     this.page_infos = static_data.page_infos;
     this.path_hierarchy = new PathHierarchy(this.page_infos);
+    this.cached_category_html = new Map();
 
     // Set up the ZMQ for the remote code execution server.
     this.send_sock = zmq.socket('pub');
@@ -341,6 +346,116 @@ module.exports = class Server {
     return latest_comments.rows;
   }
 
+  buildCategoryListing(page_id) {
+    if (this.cached_category_html.get(page_id)) {
+      return this.cached_category_html.get(page_id);
+    }
+
+    let root = this.page_infos[''];
+    let root_folders = Object.keys(root);
+    let page_path = this.path_hierarchy.searchPagePath(page_id);
+    let cat_html = '';
+
+    for (let i = 0; i < root_folders.length; i++) {
+      if (root_folders[i] !== 'files') {
+        cat_html += '<a class="sidebar-nav-item dir" name="';
+        cat_html += root_folders[i] + '">';
+        if (root[root_folders[i]].files.length > 0 ||
+            Object.keys(root[root_folders[i]]).length >= 2) {
+          cat_html += '<i class="xi-plus-square"></i>&nbsp;&nbsp;';
+        }
+        cat_html += root_folders[i] + '</a>';
+      }
+    }
+    const category = new JSDOM(cat_html);
+    const {window} = category;
+    const {document} = window;
+    global.window = window;
+    global.document = document;
+
+    const $ = global.jQuery = require('jquery');
+
+    this.buildCategoryListingRecurse(
+        $('a[name="' + page_path[0] + '"]'), page_path, 1, $);
+    let category_html = document.body.innerHTML;
+
+    this.cached_category_html.set(page_id, category_html);
+    return category_html;
+  }
+
+  GetFilesFromPath(path) {
+    let current_dir = this.page_infos[''];
+    for (let i = 0; i < path.length; i++) {
+      current_dir = current_dir[path[i]];
+    }
+    return current_dir;
+  }
+
+  buildCategoryListingRecurse(current_dom, full_path, depth, $) {
+    let path = full_path.slice(0, depth);
+    if (full_path.length == depth) {
+      let last_node = $('a[href="/' + full_path[depth - 1] + '"]');
+      last_node.css('background-color', 'rgba(255, 255, 255, .33)');
+      return;
+    }
+    current_dom.addClass('open-cat');
+    let html = current_dom.html();
+    html = html.replace(
+        '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
+        '<i class=\'xi-caret-down-min\'></i>');
+    html = html.replace(
+        '<i class="xi-plus-square"></i>',
+        '<i class=\'xi-caret-down-min\'></i>');
+    current_dom.html(html);
+
+    // Get the directory.
+    const current_dir = this.GetFilesFromPath(path);
+    // Add directories.
+    const folders = Object.keys(current_dir);
+    const div = $('<div>', {class: `inner-menu${path.length}`});
+    for (let i = 0; i < folders.length; i++) {
+      if (folders[i] !== 'files') {
+        const dir_folders = Object.keys(current_dir[folders[i]]);
+        let folder_html = folders[i];
+        if (dir_folders.length >= 2 ||
+            current_dir[folders[i]].files.length > 0) {
+          folder_html = `${
+                        '<i class="xi-plus-square" ' +
+              'style="font-size:0.75em;"></i>&nbsp;&nbsp;'}${folder_html}`;
+        }
+        div.append($('<a>', {
+          class: 'sidebar-nav-item dir',
+          html: folder_html,
+          name: folders[i],
+        }));
+      }
+    }
+    // Add files.
+    for (let i = 0; i < current_dir.files.length; i++) {
+      const file_id = current_dir.files[i];
+      let cat_title = this.file_infos[file_id].title;
+      if (this.file_infos[file_id].cat_title) {
+        cat_title = this.file_infos[file_id].cat_title;
+      }
+
+      div.append($('<a>', {
+        class: 'sidebar-nav-item file',
+        text: cat_title,
+        href: '/' + file_id,
+        name: cat_title,
+      }));
+    }
+    div.insertAfter(current_dom);
+    let children = current_dom.next().children();
+    for (let i = 0; i < children.length; i++) {
+      if ($(children[i]).attr('name') == full_path[depth]) {
+        children = $(children[i]);
+        break;
+      }
+    }
+    this.buildCategoryListingRecurse(children, full_path, depth + 1, $);
+  }
+
   setRoutes() {
     // Set up all the routes.
     this.app.get('/', function(req, res) {
@@ -373,9 +488,8 @@ module.exports = class Server {
         }.bind(this));
         return;
       }
-
       console.log('Page [', getDateTime(), '] ::', page_id);
-    
+
       if (page_id <= 228) {
         if (page_id == 15) {
           return res.render('page.ejs', {
@@ -383,7 +497,7 @@ module.exports = class Server {
             file_info: this.file_infos[231],
             page_infos: this.page_infos,
             file_infos: this.file_infos,
-            path: this.path_hierarchy.searchPagePath(page_id),
+            category_html : this.buildCategoryListing(page_id),
             user
           });
         }
@@ -393,7 +507,7 @@ module.exports = class Server {
               file_info: this.file_infos[page_id],
               page_infos: this.page_infos,
               file_infos: this.file_infos,
-              path: this.path_hierarchy.searchPagePath(page_id),
+              category_html : this.buildCategoryListing(page_id),
               user
             },
             function(err, html) {
@@ -416,7 +530,7 @@ module.exports = class Server {
               file_info: this.file_infos[page_id],
               page_infos: this.page_infos,
               file_infos: this.file_infos,
-              path: this.path_hierarchy.searchPagePath(page_id),
+              category_html : this.buildCategoryListing(page_id),
               user
             },
             function(err, html) {
@@ -445,7 +559,7 @@ module.exports = class Server {
           file_info: this.file_infos[231],
           page_infos: this.page_infos,
           file_infos: this.file_infos,
-          path: this.path_hierarchy.searchPagePath("231"),
+          category_html : this.buildCategoryListing('231'),
           user
         });
       }

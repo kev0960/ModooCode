@@ -8,18 +8,7 @@
     </div>
 
     <nav class="sidebar-nav">
-        <% let root = page_infos[""]; %>
-        <% let root_folders = Object.keys(root); %>
-        <% for (let i = 0; i < root_folders.length; i++) { %>
-        <% if (root_folders[i] !== "files") { %>
-        <a class="sidebar-nav-item dir" name="<%= root_folders[i] %>">
-            <% if (root[root_folders[i]].files.length > 0 || Object.keys(root[root_folders[i]]).length >= 2) { %>
-            <i class='xi-plus-square'></i>&nbsp;&nbsp;
-            <% } %>
-            <%= root_folders[i] %>
-        </a>
-        <% } %>
-        <% } %>
+        <%- category_html %>
     </nav>
 
     <div class="sidebar-item">
@@ -47,4 +36,3 @@
 </div>
 <div id="page-infos" style="display:none"><%= JSON.stringify(page_infos) %></div>
 <div id="file-infos" style="display:none"><%= JSON.stringify(file_infos) %></div>
-<div id="page-path" style="display:none"><%= JSON.stringify(path) %></div>

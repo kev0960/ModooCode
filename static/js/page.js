@@ -58,7 +58,6 @@ function FormatCompileError(msg, marked_lines) {
 
 let page_infos;
 let file_infos;
-let page_path;
 let our_page_in_category;
 
 function initCategory() {
@@ -79,81 +78,8 @@ function initCategory() {
     return current_dir;
   }
 
-  function OpenCategory() {
-    let start_dir = page_path[0];
-    OpenCategoryRecurse($('a[name="'+ start_dir + '"'), page_path, 1);
-  }
-  function OpenCategoryRecurse(current_dom, full_path, depth) {
-    let path = full_path.slice(0, depth);
-    if (full_path.length == depth) {
-      let last_node = $('a[href="/' + full_path[depth - 1] + '"]');
-      last_node.css('background-color', 'rgba(255, 255, 255, .33)');
-      our_page_in_category = last_node;
-      our_page_in_category.get(0).scrollIntoView(true);
-      return;
-    }
-
-    current_dom.addClass('open-cat');
-    html = current_dom.html();
-    html = html.replace(
-        '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
-        '<i class=\'xi-caret-down-min\'></i>');
-    html = html.replace(
-        '<i class="xi-plus-square"></i>',
-        '<i class=\'xi-caret-down-min\'></i>');
-    current_dom.html(html);
-
-    // Get the directory.
-    const current_dir = GetFilesFromPath(path);
-    // Add directories.
-    const folders = Object.keys(current_dir);
-    const div = $('<div>', {class: `inner-menu${path.length}`});
-    for (let i = 0; i < folders.length; i++) {
-      if (folders[i] !== 'files') {
-        const dir_folders = Object.keys(current_dir[folders[i]]);
-        let folder_html = folders[i];
-        if (dir_folders.length >= 2 ||
-            current_dir[folders[i]].files.length > 0) {
-          folder_html = `${
-                        '<i class="xi-plus-square" ' +
-              'style="font-size:0.75em;"></i>&nbsp;&nbsp;'}${folder_html}`;
-        }
-        div.append($('<a>', {
-          class: 'sidebar-nav-item dir',
-          html: folder_html,
-          name: folders[i],
-        }));
-      }
-    }
-    // Add files.
-    for (let i = 0; i < current_dir.files.length; i++) {
-      const file_id = current_dir.files[i];
-      let cat_title = file_infos[file_id].title;
-      if (file_infos[file_id].cat_title) {
-        cat_title = file_infos[file_id].cat_title;
-      }
-
-      div.append($('<a>', {
-        class: 'sidebar-nav-item file',
-        text: cat_title,
-        href: '/' + file_id,
-        name: cat_title,
-      }));
-    }
-    div.insertAfter(current_dom);
-    let children = current_dom.next().children();
-    for (let i = 0; i < children.length; i++) {
-      if ($(children[i]).attr('name') == full_path[depth]) {
-        children = $(children[i]);
-        break;
-      }
-    }
-    OpenCategoryRecurse(children, full_path, depth + 1);
-  }
-
   page_infos = JSON.parse($('#page-infos').html());
   file_infos = JSON.parse($('#file-infos').text());
-  page_path = JSON.parse($('#page-path').text());
 
   $(document).on('click', '.sidebar-nav-item.dir', function() {
     const path = GetPagePathFromNavId($(this));
@@ -221,7 +147,6 @@ function initCategory() {
     }
   });
 
-  OpenCategory();
 }
 
 function closeSidebar() {
