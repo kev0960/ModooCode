@@ -367,16 +367,20 @@ module.exports = class Server {
         cat_html += root_folders[i] + '</a>';
       }
     }
-    const category = new JSDOM(cat_html);
-    const {window} = category;
-    const {document} = window;
-    global.window = window;
-    global.document = document;
+    let category = new JSDOM(cat_html);
+    let {window} = category;
+    let {document} = window;
 
-    const $ = global.jQuery = require('jquery');
+    // Due to the bug in nwmatcher, we just manually find the element.
+    let every_elements = document.querySelectorAll('a');
+    for (let i = 0; i < every_elements.length; i++) {
+      if (every_elements[i].getAttribute('name') === page_path[0]) {
+        this.buildCategoryListingRecurse(
+            every_elements[i], page_path, 1, document);
+        break;
+      }
+    }
 
-    this.buildCategoryListingRecurse(
-        $('a[name="' + page_path[0] + '"]'), page_path, 1, $);
     let category_html = document.body.innerHTML;
 
     this.cached_category_html.set(page_id, category_html);
@@ -391,28 +395,37 @@ module.exports = class Server {
     return current_dir;
   }
 
-  buildCategoryListingRecurse(current_dom, full_path, depth, $) {
+  buildCategoryListingRecurse(current_dom, full_path, depth, document) {
     let path = full_path.slice(0, depth);
     if (full_path.length == depth) {
-      let last_node = $('a[href="/' + full_path[depth - 1] + '"]');
-      last_node.css('background-color', 'rgba(255, 255, 255, .33)');
+      let last_node =
+          document.querySelector('a[href="/' + full_path[depth - 1] + '"]');
+      last_node.style.backgroundColor = 'rgba(255, 255, 255, .33)';
       return;
     }
-    current_dom.addClass('open-cat');
-    let html = current_dom.html();
+
+    if (current_dom.classList) {
+      current_dom.classList.add('open-cat');
+    } else {
+      current_dom.className += ' open-cat';
+    }
+
+    let html = current_dom.innerHTML;
     html = html.replace(
         '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
         '<i class=\'xi-caret-down-min\'></i>');
     html = html.replace(
         '<i class="xi-plus-square"></i>',
         '<i class=\'xi-caret-down-min\'></i>');
-    current_dom.html(html);
+    current_dom.innerHTML = html;
 
     // Get the directory.
     const current_dir = this.GetFilesFromPath(path);
     // Add directories.
     const folders = Object.keys(current_dir);
-    const div = $('<div>', {class: `inner-menu${path.length}`});
+    let div = document.createElement('div');
+    div.className = `inner-menu${path.length}`;
+
     for (let i = 0; i < folders.length; i++) {
       if (folders[i] !== 'files') {
         const dir_folders = Object.keys(current_dir[folders[i]]);
@@ -423,11 +436,11 @@ module.exports = class Server {
                         '<i class="xi-plus-square" ' +
               'style="font-size:0.75em;"></i>&nbsp;&nbsp;'}${folder_html}`;
         }
-        div.append($('<a>', {
-          class: 'sidebar-nav-item dir',
-          html: folder_html,
-          name: folders[i],
-        }));
+        const folder_link = document.createElement('a');
+        folder_link.className = 'sidebar-nav-item dir';
+        folder_link.setAttribute('name', folders[i]);
+        folder_link.innerHTML = folder_html;
+        div.appendChild(folder_link);
       }
     }
     // Add files.
@@ -438,22 +451,29 @@ module.exports = class Server {
         cat_title = this.file_infos[file_id].cat_title;
       }
 
-      div.append($('<a>', {
-        class: 'sidebar-nav-item file',
-        text: cat_title,
-        href: '/' + file_id,
-        name: cat_title,
-      }));
+      const file_link = document.createElement('a');
+      file_link.className = 'sidebar-nav-item file';
+      file_link.setAttribute('href', '/' + file_id);
+      file_link.setAttribute('name', cat_title);
+      file_link.textContent = cat_title;
+      div.appendChild(file_link);
     }
-    div.insertAfter(current_dom);
-    let children = current_dom.next().children();
+
+    function insertAfter(el, referenceNode) {
+      referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+    }
+    insertAfter(div, current_dom);
+
+    // div.insertAfter(current_dom);
+    let children = current_dom.nextElementSibling.children;
+    let found = null;
     for (let i = 0; i < children.length; i++) {
-      if ($(children[i]).attr('name') == full_path[depth]) {
-        children = $(children[i]);
+      if (children[i].getAttribute('name') == full_path[depth]) {
+        found = children[i];
         break;
       }
     }
-    this.buildCategoryListingRecurse(children, full_path, depth + 1, $);
+    this.buildCategoryListingRecurse(found, full_path, depth + 1, document);
   }
 
   setRoutes() {
@@ -497,7 +517,7 @@ module.exports = class Server {
             file_info: this.file_infos[231],
             page_infos: this.page_infos,
             file_infos: this.file_infos,
-            category_html : this.buildCategoryListing(page_id),
+            category_html: this.buildCategoryListing(page_id),
             user
           });
         }
@@ -507,7 +527,7 @@ module.exports = class Server {
               file_info: this.file_infos[page_id],
               page_infos: this.page_infos,
               file_infos: this.file_infos,
-              category_html : this.buildCategoryListing(page_id),
+              category_html: this.buildCategoryListing(page_id),
               user
             },
             function(err, html) {
@@ -530,7 +550,7 @@ module.exports = class Server {
               file_info: this.file_infos[page_id],
               page_infos: this.page_infos,
               file_infos: this.file_infos,
-              category_html : this.buildCategoryListing(page_id),
+              category_html: this.buildCategoryListing(page_id),
               user
             },
             function(err, html) {
@@ -559,7 +579,7 @@ module.exports = class Server {
           file_info: this.file_infos[231],
           page_infos: this.page_infos,
           file_infos: this.file_infos,
-          category_html : this.buildCategoryListing('231'),
+          category_html: this.buildCategoryListing('231'),
           user
         });
       }
