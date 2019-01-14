@@ -419,6 +419,20 @@ a.link-code {
     }
 }
 
+@media (max-width: 474px) {
+    .btn-text {
+        display: none;
+    }
+
+    .edit {
+        padding: 7px 7px 7px 7px !important;
+    }
+
+    .run {
+        padding: 7px 7px 7px 7px !important;
+    }
+}
+
 figcaption {
     text-align: center;
     color: #888888;
@@ -439,7 +453,7 @@ figcaption {
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: none;
-    padding-top: 5px;
+    padding-top: 8px;
     padding-bottom: 5px;
     margin-right: 5px;
     padding-bottom: 5px;

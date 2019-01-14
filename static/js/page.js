@@ -146,7 +146,6 @@ function initCategory() {
       div.insertAfter($(this));
     }
   });
-
 }
 
 function closeSidebar() {
@@ -446,10 +445,10 @@ $(() => {
         '\' placeholder=\'' +
         '프로그램 입력값을 여기에 입력하세요.\'>' +
         '<button class=\'edit\' id=\'edit-' + index +
-        '\'><i class=\'xi-pen\'></i>&nbsp;&nbsp;코드 수정</button>' +
+        '\'><i class=\'xi-pen\'></i><span class="btn-text">&nbsp;&nbsp;코드 수정</span></button>' +
         '<button class=\'run\' id=\'run-' + index +
         '\'><i class=\'xi-refresh\'>' +
-        '</i>&nbsp;&nbsp;실행</button></div>')
+        '</i><span class="btn-text">&nbsp;&nbsp;실행</span></button></div>')
           .insertAfter($(this));
 
       $('<div style="display:none;"><p class="exec-result-title">실행 결과</p>' +
