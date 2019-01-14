@@ -664,6 +664,8 @@ struct quantity {
   quantity operator-(quantity<T, D> quant) {
     return quantity<T, D>(q - quant.q);
   }
+
+  quantity(T q) : q(q) {}
 };
 int main() {
   using one = Ratio<1, 1>;
