@@ -86,7 +86,7 @@ int main() {
   double pi = 3.1415926535;
   char szInput[256];
   printf("Enter degrees: ");
-  gets(szInput);
+  scanf("%s", szInput);
   n = atof(szInput);
   m = sin(n * pi / 180);
   printf("The sine of %f degrees is %f\n", n, m);

@@ -102,7 +102,7 @@ int main() {
   char szInput[80];
   do {
     printf("Guess my favourite fruit? ");
-    gets(szInput);
+    scanf("%s", szInput);
   } while (strcmp(szKey, szInput) != 0);
 
   puts("Correct answer!");

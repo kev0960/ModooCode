@@ -241,7 +241,7 @@ int main() {
   pFile = fopen("myfile.txt", "w");
   for (n = 0; n < 3; n++) {
     puts("please, enter a name: ");
-    gets(name);
+    scanf("%s", name);
     fprintf(pFile, "Name %d [%-10.10s]\n", n, name);
   }
   fclose(pFile);

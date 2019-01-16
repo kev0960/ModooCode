@@ -96,7 +96,7 @@ http://www.cplusplus.com/reference/clibrary/cstring/strlen/
 int main() {
   char szInput[256];
   printf("Enter a sentence: ");
-  gets(szInput);
+  scanf("%s", szInput);
   printf("The sentence entered is %u characters long.\n", strlen(szInput));
   return 0;
 }

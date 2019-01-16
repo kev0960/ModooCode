@@ -80,10 +80,10 @@ int main() {
   size_t len1, len2;
 
   printf("Enter a sentence: ");
-  gets(str1);
+  scanf("%s", str1);
 
   printf("Enter another sentence: ");
-  gets(str2);
+  scanf("%s", str2);
 
   len1 = strlen(str1);
   len2 = strlen(str2);

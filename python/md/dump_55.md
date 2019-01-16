@@ -17,7 +17,7 @@ publish_date : 2010-02-14
 
 안녕하세요 여러분. 잘 지내셨는지요? 제가 요즘에 강좌를 올리는 틈틈히 [C 레퍼런스](http://itguru.tistory.com/category/C%20Reference)를 정리하고 있습니다. 레퍼런스라 하면, 일종의 백과사전 같은 것으로 여러분들이 궁금한 함수들이 있다면 찾아볼 수 있게 해놓았습니다. 아직 일부 함수들 밖에 올리지는 못했지만 그래도 그 양이 꽤 되니 읽어 보시는 것이 좋을 듯 합니다.
 
-특히, 화면에서 입력을 받는 함수는 아직 `scanf` 와 `getchar` 밖에 보지 못했지만 `fgets, gets` 등이 있고, 화면에 출력하는 함수는 `fputs, puts, putchar` 등등 매우 많습니다. 뿐만 아니라 우리가 `scanf` 함수나 `printf` 함수를 여태까지 써오면서 사용하지 못했던 기능이 수없이 많은데 이들 모두 [레퍼런스](http://itguru.tistory.com/category/C%20Reference)에 잘 정리되어 있으니 참조하시기 바랍니다.
+특히, 화면에서 입력을 받는 함수는 아직 `scanf` 와 `getchar` 밖에 보지 못했지만 `fgets, gets` 등이 있고, 화면에 출력하는 함수는 `fputs`, `puts`, `putchar` 등등 매우 많습니다. 뿐만 아니라 우리가 `scanf` 함수나 `printf` 함수를 여태까지 써오면서 사용하지 못했던 기능이 수없이 많은데 이들 모두 [레퍼런스](http://itguru.tistory.com/category/C%20Reference)에 잘 정리되어 있으니 참조하시기 바랍니다.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F111277144B780AC91786E6)
