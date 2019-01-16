@@ -1085,6 +1085,7 @@
 	"256" : {
 	"cat_title" : "<algorithm>",
 	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-01-16",
 	"ref_title" : "algorithm, <algorithm>",
 	"title" : "C++ 레퍼런스 - algorithm 라이브러리"
 }
@@ -1092,8 +1093,17 @@
 	"257" : {
 	"cat_title" : "all_of",
 	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-01-16",
 	"ref_title" : "all_of, std::all_of",
 	"title" : "C++ 레퍼런스 - all_of 함수"
+}
+,
+	"258" : {
+	"cat_title" : "any_of",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-01-16",
+	"ref_title" : "any_of, std::any_of",
+	"title" : "C++ 레퍼런스 - any_of 함수"
 }
 ,
 	"26" : {
