@@ -1082,6 +1082,20 @@
 	"title" : "씹어먹는 C ++ 토막글 3 -  SFINAE 와 enable_if"
 }
 ,
+	"256" : {
+	"cat_title" : "<algorithm>",
+	"path" : "/C++ Reference/algorithm",
+	"ref_title" : "algorithm, <algorithm>",
+	"title" : "C++ 레퍼런스 - algorithm 라이브러리"
+}
+,
+	"257" : {
+	"cat_title" : "all_of",
+	"path" : "/C++ Reference/algorithm",
+	"ref_title" : "all_of, std::all_of",
+	"title" : "C++ 레퍼런스 - all_of 함수"
+}
+,
 	"26" : {
 	"cat_title" : "13 - 1. 마술 상자 함수(function)",
 	"next_page" : "27",
