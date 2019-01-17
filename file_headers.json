@@ -1101,7 +1101,7 @@
 	"258" : {
 	"cat_title" : "any_of",
 	"path" : "/C++ Reference/algorithm",
-	"publish_date" : "2019-01-16",
+	"publish_date" : "2019-01-17",
 	"ref_title" : "any_of, std::any_of",
 	"title" : "C++ 레퍼런스 - any_of 함수"
 }
