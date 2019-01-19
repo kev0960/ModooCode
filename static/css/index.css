@@ -248,3 +248,15 @@ main {
   margin-left: 6px;
   color: red;
 }
+
+@media (max-width: 695px) {
+  .item:not(:first-child) {
+    margin-top: 10px !important;
+  }
+  
+  .item {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
+
+}

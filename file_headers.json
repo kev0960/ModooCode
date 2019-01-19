@@ -1106,12 +1106,36 @@
 	"title" : "C++ 레퍼런스 - any_of 함수"
 }
 ,
+	"259" : {
+	"cat_title" : "none_of",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-01-19",
+	"ref_title" : "none_of, std::none_of",
+	"title" : "C++ 레퍼런스 - none_of 함수"
+}
+,
 	"26" : {
 	"cat_title" : "13 - 1. 마술 상자 함수(function)",
 	"next_page" : "27",
 	"prev_page" : "25",
 	"publish_date" : "2009-12-14",
 	"title" : "씹어먹는 C 언어 - <13 - 1. 마술 상자 함수(function)>"
+}
+,
+	"260" : {
+	"cat_title" : "for_each",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-01-19",
+	"ref_title" : "for_each, std::for_each",
+	"title" : "C++ 레퍼런스 - for_each 함수"
+}
+,
+	"261" : {
+	"cat_title" : "find",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-01-19",
+	"ref_title" : "find, std::find",
+	"title" : "C++ 레퍼런스 - find 함수 (<algorithm>)"
 }
 ,
 	"27" : {

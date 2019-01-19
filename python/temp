@@ -1,70 +1,78 @@
 ----------------
-title : C++ 레퍼런스 - any_of 함수
-cat_title : any_of
-ref_title : any_of, std::any_of
+title : C++ 레퍼런스 - find 함수 (<algorithm>)
+cat_title : find
+ref_title : find, std::find
 path : /C++ Reference/algorithm
-publish_date : 2019-01-16
+publish_date : 2019-01-19
 ----------------
 
-#@ any_of
+#@ find
 
 `<algorithm>` 에 정의됨
 
 ```cpp
-template <class InputIterator, class UnaryPredicate>
-  bool any_of (InputIterator first, InputIterator last, UnaryPredicate pred);
+template <class InputIterator, class T>
+   InputIterator find (InputIterator first, InputIterator last, const T& val);
 ```
 
-만일 범위 내의 (first 부터 last 전 까지) 원소들에 대해 pred 가 참을 리턴하는 원소가 하나라도 있다면, any_of 역시 참을 리턴합니다. 만일 해당 원소들에 대해 pred 가 모두 거짓을 리턴한다면 any_of 도 거짓을 리턴합니다.
+범위 안에 원하는 값을 찾는다.
 
-만일 `[first, last)` 가 비어 있다면 (즉 `first == last` 일 경우) any_of 는 false 를 리턴합니다.
+범위 안 (`first` 부터 `last` 전 까지) 의 원소들 중 val 과 일치하는 첫 번째 원소를 가리키는 반복자를 리턴합니다. 만일 일치하는 원소를 찾지 못할 경우 last 를 리턴합니다.
+
+이 함수는 원소를 비교할 때 operator== 을 사용합니다.
 
 ### 인자들
 
-* `first, last` : 원소들의 시작점과 끝점을 가리키는 반복자(`InputIterator`)들. 이 때, 확인하는 범위는 `[first, last)` 로 정의됩니다. `first` 가 가리키는 원소는 포함되지만 `last` 가 가리키는 원소는 포함되지 않습니다.
-
-* `pred` : 인자를 한 개만 가지는 함수로 `bool` 로 변환 가능한 타입을 리턴해야 합니다.
+* `first, last` : 원소들의 시작과 끝을 가리키는 반복자들. 이 때 확인하는 범위는 `[first, last)` 로 정의됩니다. `first` 가 가리키는 원소는 포함되지만 `last` 가 가리키는 원소는 포함되지 않습니다.
+* val : 비교할 값. 이 때 val 의 타입 T 의 경우 operator== 가 정의되어 있어야만 합니다. 
 
 ### 리턴값
 
-만일 원소 한 개라도 pred 가 true 를 리턴했다면 true 를, 아니면 false 를 리턴합니다.
+첫 번째로 일치하는 원소를 가리키는 반복자. 일치하는 원소가 없을 경우 last 가 리턴됩니다.
 
-### 구현 예시
-
-```cpp
-template<class InputIterator, class UnaryPredicate>
-  bool any_of (InputIterator first, InputIterator last, UnaryPredicate pred)
-{
-  while (first!=last) {
-    if (pred(*first)) return true;
-    ++first;
-  }
-  return false;
-}
-```
-
-아래는 std::find_if 를 사용한 방식입니다. 참고로 std::find_if 는 조건을 만족하는 첫 번째 원소를 반환합니다.
+### 구현 예시 
 
 ```cpp
-template< class InputIt, class UnaryPredicate >
-constexpr bool any_of(InputIt first, InputIt last, UnaryPredicate p)
+template<class InputIt, class T>
+constexpr InputIt find(InputIt first, InputIt last, const T& value)
 {
-    return std::find_if(first, last, p) != last;
+    for (; first != last; ++first) {
+        if (*first == value) {
+            return first;
+        }
+    }
+    return last;
 }
 ```
 
 ### 실행 예제
 
 ```cpp
+// find example
 #include <iostream>     // std::cout
-#include <algorithm>    // std::any_of
-#include <array>        // std::array
+#include <algorithm>    // std::find
+#include <vector>       // std::vector
 
 int main () {
-  std::array<int,7> foo = {0,1,-1,3,-3,5,-5};
+  // using std::find with array and pointer:
+  int myints[] = { 10, 20, 30, 40 };
+  int * p;
 
-  if ( std::any_of(foo.begin(), foo.end(), [](int i){return i<0;}) )
-    std::cout << "범위 내에 음수가 있습니다.\n";
+  p = std::find (myints, myints+4, 30);
+  if (p != myints+4)
+    std::cout << "Element found in myints: " << *p << '\n';
+  else
+    std::cout << "Element not found in myints\n";
+
+  // using std::find with vector and iterator:
+  std::vector<int> myvector (myints,myints+4);
+  std::vector<int>::iterator it;
+
+  it = find (myvector.begin(), myvector.end(), 30);
+  if (it != myvector.end())
+    std::cout << "Element found in myvector: " << *it << '\n';
+  else
+    std::cout << "Element not found in myvector\n";
 
   return 0;
 }
@@ -73,11 +81,12 @@ int main () {
 실행 결과
 
 ```exec
-범위 내에 음수가 있습니다.
+Element found in myints: 30
+Element found in myvector: 30
 ```
 
 ### 연관된 함수
 
-* all_of : 범위 안에 모든 원소들이 조건을 만족하는지 확인한다.
-* none_of : 범위 안에 모든 원소들이 조건을 만족하지 않는지 확인한다.
-* find_if : 범위 안에 원소들 중 조건과 일치하는 원소를 찾는다.
+* `search` : 어떤 원소들의 나열을 검색한다.
+* `binary_search` : 특정 값과 일치하는 원소를 찾습니다. (이진 탐색으로)
+* `for_each` : 범위 안에 원소들에 대해 함수를 호출해준다.
