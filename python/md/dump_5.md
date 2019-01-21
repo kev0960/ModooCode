@@ -155,25 +155,15 @@ publish_date : 2009-04-16
 간단히 `Ctrl + Shift + N` 을 누르면 새 프로젝트를 만드는 창을 띄울 수 있습니다.
 
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2437B54058DC67FE25378A)
+![](/img/1.1.1.png)
 
 
-
-다음으로 프로젝트 선택 화면에서 `Win32 Console Application (Win32 콘솔 어플리케이션)` 을 선택합니다.
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2729344C58DCF43435069B)
+다음으로 프로젝트 선택 화면에서 **Windows Desktop Wizard (Windows 데스크톱 마법사)** 를 선택합니다.
 
 
+![](/img/1.1.2.png)
 
-'다음' 을 눌러줍니다.
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2528FF3558DCF4342BD1FB)
-
-
-
-빈 프로젝트에 체크해 주시면 프로젝트 생성이 완료됩니다.
+그 다음, 위와 같은 화면에서 Application type 에 **콘솔 프로그램 (Console Application)** 을 선택한 후, 아래에 **빈 프로젝트 (Empty Project)** 에 체크해줍니다. 그 후 확인을 눌러주면 프로젝트가 생성됩니다.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2325A94F58DCF4351586CA)
@@ -186,11 +176,11 @@ publish_date : 2009-04-16
 기본적으로 왼쪽에 보시면 솔루션 탐색기에서 소스 파일을 쉽게 추가할 수 있는데, 솔루션 탐색기가 안보인다면, `Ctrl + Alt + L` 을 눌러서 띄울 수 있습니다.
 
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2445D24D58DCF435315473)
+![](/img/1.1.3.png)
 
+위 화면에서 C++ 파일을 클릭한 뒤에, 이름에 `hello.c` 라고 적습니다. \sidenote{C++ 파일을 선택하였지만, 파일 확장자가 .c 이므로 비주얼 스튜디오에서 알아서 C 컴파일러로 컴파일 해줍니다.}
 
-
-이제 C 프로그래밍을 하고 싶다면 이름에 `Hello.c` 라고 적습니다. 그럼 이제 왼쪽에 만들어진 Hello.c 파일을 클릭합니다.
+그럼 이제 왼쪽에 만들어진 hello.c 파일을 클릭합니다.
 
 
 ### 내 생애 첫 프로그램
@@ -209,7 +199,7 @@ int main() {
 
 이제, 위 내용을 다 입력하였으면 `F7` 를 눌러 주어서, 또는 상단의 빌드 → 솔루션 빌드를 눌러서 컴파일 합니다. 만약 위 내용을 잘 써서 성공적으로 빌드 되었다면 아래 아래와 같은 화면을 보게 될 것입니다.
 
-![컴파일 하는 중입니다. ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1276C30F49E755BB9051F1)
+![caption=성공적으로 컴파일을 하였습니다](/img/1.1.4.png)
 
 그런데, 간혹 가다 어떤 사람들은 오류가 뜨는 사람들도 있는데, 대표적으로
 ```warning
@@ -229,11 +219,15 @@ error C2143: 구문 오류 : ')'이(가) 'return' 앞에 없습니다.
 
 이제, 드디어 이렇게 완성된 프로그램을 실행할 시간이 다가왔습니다. `Ctrl + F5` 를 눌러서 프로그램을 실행해 봅시다.
 
-![Hello, World! 가 출력되었습니다. ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1371751449E85179051D6E)
+![caption=Hello, World! 가 출력되었습니다. 밑에 나온 자질구레한 메세지는 무시해도 됩니다.](/img/1.1.5.png)
 
-만세! 현재 저는 영문판 `XP` 를 쓰고 있어서 `Hello, World!` 밑에 `Press any key to continue` 가 나오겠지만(참고로 이 강좌는 2008년에 제작되었습니다) 한글판 사용자 분들은 '아무 키나 누르세요' 가 나올 것입니다. 어쨋든, 위의 `Hello, World!` 가 출력되었으면대 성 공 입니다.
+![caption=2008년 윈도우 XP 쓰던 시절의 출력 화면](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1371751449E85179051D6E)
 
-여러분은 지금, 여러분 최초의 프로그램을 만들게 된 것입니다!
+만세! 위와 같이 Hello, World! 가 성공적으로 출력됨을 확인할 수 있습니다. 아래 나오는 자질구레한 메세지는 무시해도 됩니다. 그 부분은 여러분이 쓴 코드 때문에 나온 것이 아니라 비주얼 스튜디오 자체에서 추가한 메세지 입니다.
+
+참고로 아래 사진은 2008년 강좌를 처음 제작했을 때 나온 프로그램 결과 입니다. 10년 이 넘게 흘렀는데, 모습은 비슷하지요? 
+
+**아무튼 방금 여러분은 인생 첫 프로그램을 만들게 되었습니다!**
 
 다음 강좌에서는, 위 프로그램이 도대체 어떻게 동작하는 것인지에 대해 알아보도록 합시다.
 
