@@ -42,9 +42,7 @@ C 언어 및 강좌 관련해서 자주 질문되는 것을을 모아보았습�
 
 #### 누구세요?
 
-[Psi 입니다](http://itguru.tistory.com/notice/107)
-
-
+[이재범 입니다](http://itguru.tistory.com/251)
 
 ###  C 언어
 

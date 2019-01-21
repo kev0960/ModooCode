@@ -61,8 +61,8 @@ double difftime ( time_t time2, time_t time1 );
  * 가져왔습니다. 
  */
 #include <stdio.h>
-#include <time.h> int
-main() {
+#include <time.h>
+int main() {
   time_t start, end;
   char szInput[256];
   double dif;
