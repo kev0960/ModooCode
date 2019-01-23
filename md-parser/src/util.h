@@ -46,13 +46,25 @@ T Max(const T& a, Ts... args) {
   return a > b ? a : b;
 }
 
+template <typename T>
+T Min(const T& a, const T& b) {
+  return a < b ? a : b;
+}
+
+template <typename... Ts, typename T>
+T Min(const T& a, Ts... args) {
+  const T& b = Min(args...);
+  return a < b ? a : b;
+}
+
+
 template <template <typename...> class Container, typename K, typename V>
-bool Contains(const Container<K, V>& container, const K& key) {
+bool MapContains(const Container<K, V>& container, const K& key) {
   return container.find(key) != container.end();
 }
 
 template <template <typename...> class Container, typename V>
-bool Contains(const Container<V>& container, const V& value) {
+bool SetContains(const Container<V>& container, const V& value) {
   return container.find(value) != container.end();
 }
 

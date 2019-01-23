@@ -3,7 +3,7 @@ set(PROJECT_NAME md_parser)
 project(${PROJECT_NAME})
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-O3 -Wall")
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -57,16 +57,20 @@ if(CMAKE_VERSION VERSION_LESS 2.8.11)
     "${gtest_SOURCE_DIR}/include" "${gmock_SOURCE_DIR}/include")
 else()
   target_include_directories(gmock_main SYSTEM BEFORE INTERFACE
-    "${gtest_SOURCE_DIR}/include" "${gmock_SOURCE_DIR}/include")
+    "$<BUILD_INTERFACE:${gtest_SOURCE_DIR}/include>"
+    "$<BUILD_INTERFACE:${gmock_SOURCE_DIR}/include>")
+
+  #target_include_directories(gmock_main SYSTEM BEFORE INTERFACE
+  #  "$<{gtest_SOURCE_DIR}/include>" "$<{gmock_SOURCE_DIR}/include>")
 endif()
 
 add_executable(util_test test/util_test.cc src/util.cc)
 
 if(NOT APPLE)
-  target_link_libraries(util_test gtest_main chroma)
+  target_link_libraries(util_test gmock_main chroma)
 endif()
 if(APPLE)
-  target_link_libraries(util_test gtest_main)
+  target_link_libraries(util_test gmock_main)
 endif()
 
 add_test(NAME util_test COMMAND util_test)
@@ -85,10 +89,10 @@ add_executable(content_test
                src/parser_environment.cc)
 
 if(NOT APPLE)
-  target_link_libraries(content_test gtest_main)
+  target_link_libraries(content_test gmock_main)
 endif()
 if(APPLE)
-  target_link_libraries(content_test gtest_main)
+  target_link_libraries(content_test gmock_main)
 endif()
 add_test(NAME content_test COMMAND content_test)
 
@@ -108,10 +112,10 @@ add_executable(parser_test
                src/parser_environment.cc)
 
 if(NOT APPLE)
-  target_link_libraries(parser_test gtest_main)
+  target_link_libraries(parser_test gmock_main)
 endif()
 if(APPLE)
-  target_link_libraries(parser_test gtest_main)
+  target_link_libraries(parser_test gmock_main)
 endif()
 add_test(NAME parser_test COMMAND parser_test)
 
@@ -130,4 +134,11 @@ add_executable(path_test
                src/path.cc)
 target_link_libraries(path_test gmock_main)
 add_test(NAME path_test COMMAND path_test)
+
+add_executable(diff_test
+               test/diff_test.cc
+               src/util.cc
+               src/diff.cc)
+target_link_libraries(diff_test gmock_main)
+add_test(NAME diff_test COMMAND diff_test)
 

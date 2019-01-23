@@ -377,11 +377,11 @@ void FastPySyntaxHighlighter::AppendCurrentToken(SyntaxTokenType current_token,
   if (current_token == IDENTIFIER) {
     // Check whether it matches one of our keyword set.
     string token = code_.substr(token_start, token_end - token_start);
-    if (Contains(kPyBuiltIn, token)) {
+    if (SetContains(kPyBuiltIn, token)) {
       current_token = BUILT_IN;
-    } else if (Contains(kPyKeywords, token)) {
+    } else if (SetContains(kPyKeywords, token)) {
       current_token = KEYWORD;
-    } else if (Contains(kPyMagicFunctions, token)) {
+    } else if (SetContains(kPyMagicFunctions, token)) {
       current_token = MAGIC_FUNCTION;
     } else if (IsNumericLiteral(token)) {
       current_token = NUMERIC_LITERAL;

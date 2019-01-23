@@ -82,7 +82,7 @@ std::set<string> GetUnModifiedFiles(
       continue;
     }
     const string file_id = GetFileId(filename);
-    if (Contains(*file_id_to_stat_map, file_id) &&
+    if (MapContains(*file_id_to_stat_map, file_id) &&
 #ifdef __APPLE__
         TimeSpecEquals(file_id_to_stat_map->at(file_id),
                        file_info.st_mtimespec)) {
@@ -161,7 +161,7 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
                    std::istreambuf_iterator<char>());
 
     parsers_.emplace_back(new MDParser(content));
-    if (Contains(files_not_to_process, GetFileId(filename))) {
+    if (SetContains(files_not_to_process, GetFileId(filename))) {
       parsers_.back()->Parser(ParserConfig{true /* Only parse header */});
     } else {
       parsers_.back()->Parser(ParserConfig{});
@@ -174,10 +174,10 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
   std::unordered_map<string, string> path_defined_files;
   for (size_t i = 0; i < filenames.size(); i++) {
     const auto& header_info = parsers_[i]->GetHeaderInfo();
-    if (Contains(header_info, string("path"))) {
+    if (MapContains(header_info, string("path"))) {
       path_defined_files[GetFileId(filenames[i])] = header_info.at("path");
     }
-    if (Contains(header_info, string("next_page"))) {
+    if (MapContains(header_info, string("next_page"))) {
       next_page_map[GetFileId(filenames[i])] = header_info.at("next_page");
     }
     file_info[GetFileId(filenames[i])] = header_info;
@@ -218,7 +218,7 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     std::experimental::filesystem::create_directories("../views/new");
 
     for (const auto& filename : filenames) {
-      if (Contains(files_not_to_process, GetFileId(filename))) {
+      if (SetContains(files_not_to_process, GetFileId(filename))) {
         parser_index++;
         continue;
       }

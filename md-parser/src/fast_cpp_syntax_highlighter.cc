@@ -321,9 +321,9 @@ void FastCppSyntaxHighlighter::AppendCurrentToken(SyntaxTokenType current_token,
   if (current_token == IDENTIFIER) {
     // Check whether it matches one of our keyword set.
     string token = code_.substr(token_start, token_end - token_start);
-    if (Contains(kCppTypeKeywords, token)) {
+    if (SetContains(kCppTypeKeywords, token)) {
       current_token = TYPE_KEYWORD;
-    } else if (Contains(kCppKeywords, token)) {
+    } else if (SetContains(kCppKeywords, token)) {
       current_token = KEYWORD;
     } else if (IsNumericLiteral(token)) {
       current_token = NUMERIC_LITERAL;

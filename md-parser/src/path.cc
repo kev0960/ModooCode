@@ -154,22 +154,22 @@ void PageStructure::SortCurrentFiles(
   // Anchors are the pages that does not have previous page.
   std::vector<std::vector<string>> anchors_and_expansions;
   for (const auto& page : pages_) {
-    if (!Contains(file_info, page)) {
+    if (!MapContains(file_info, page)) {
       continue;
     }
     const auto& page_info = file_info.at(page);
-    if (!Contains(page_info, string("prev_page"))) {
+    if (!MapContains(page_info, string("prev_page"))) {
       anchors_and_expansions.push_back(std::vector<string>{page});
     }
   }
   for (auto& anchor : anchors_and_expansions) {
     while (true) {
       const string& page = anchor.back();
-      if (!Contains(file_info, page)) {
+      if (!MapContains(file_info, page)) {
         break;
       }
       const auto& info = file_info.at(page);
-      if (!Contains(info, string("next_page"))) {
+      if (!MapContains(info, string("next_page"))) {
         break;
       }
       anchor.push_back(info.at("next_page"));

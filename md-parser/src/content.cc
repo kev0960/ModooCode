@@ -79,7 +79,7 @@ int FindOneOrTwoConsecutiveChar(const string& s, size_t start, char c) {
   return 0;
 }
 
-std::unique_ptr<char[]> cstring_from_string(const string& s) {
+[[maybe_unused]] std::unique_ptr<char[]> cstring_from_string(const string& s) {
   std::unique_ptr<char[]> c_str{new char[s.size() + 1]};
   for (size_t i = 0; i < s.size(); i++) {
     c_str[i] = s.at(i);
@@ -118,7 +118,8 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
 string FormatCodeUsingFSH(const string& content, const string& code_type) {
   std::unique_ptr<FastSyntaxHighlighter> highlighter;
   if (code_type == "cpp") {
-    highlighter = std::make_unique<FastCppSyntaxHighlighter>(content, code_type);
+    highlighter =
+        std::make_unique<FastCppSyntaxHighlighter>(content, code_type);
   } else {
     highlighter = std::make_unique<FastPySyntaxHighlighter>(content, code_type);
   }
@@ -519,7 +520,7 @@ size_t Content::HandleSpecialCommands(const size_t start_pos,
   }
   const auto delimiter =
       content_.substr(start_pos + 1, delimiter_pos - (start_pos + 1));
-  if (!Contains(kSpecialCommands, delimiter)) {
+  if (!SetContains(kSpecialCommands, delimiter)) {
     return start_pos;
   }
   if (*text_start != -1) {
