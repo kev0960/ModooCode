@@ -31,7 +31,7 @@ bool IsHeaderStartOrEnd(const string& s) {
          std::all_of(s.begin(), s.end(), [](const char c) { return c == '-'; });
 }
 
-std::unique_ptr<char[]> cstring_from_string(const string& s) {
+[[maybe_unused]] std::unique_ptr<char[]> cstring_from_string(const string& s) {
   std::unique_ptr<char[]> c_str{new char[s.size() + 1]};
   for (size_t i = 0; i < s.size(); i++) {
     c_str[i] = s.at(i);

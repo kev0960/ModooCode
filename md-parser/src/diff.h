@@ -35,16 +35,29 @@ class Diff {
  public:
   Diff(const string& content1, const string& content2);
   string RunDiff();
+  string CreatePatch();
 
  private:
   std::vector<std::string_view> snippets_[2];
   std::vector<Node> found_diff_;
+  std::vector<DiffInfo> diff_info_list_;
+  std::vector<std::unique_ptr<Node>> nodes_;
 
   void RunMeyerAlgorithm();
   void FollowDiagonal(Node* const node);
-  bool CheckDiffFinished(const std::vector<std::unique_ptr<Node>>& nodes);
+  bool CheckDiffFinished();
+  void MergeDiffResults();
   string ParseDiffToString();
   int x_size_, y_size_;
 };
 
+class PatchFromDiff {
+ public:
+  PatchFromDiff(const string& original, const string& patch_str);
+  string GetPatchedString();
+
+ private:
+  std::vector<std::string_view> original_;
+  std::vector<std::string_view> patch_str_;
+};
 }  // namespace md_parser
