@@ -309,7 +309,7 @@ partial_sort(vec.begin(), vec.begin() + 3, vec.end());
 
 
 
-앞에 나타나게 되고 나머지 원소들은 그냥 랜덤하게 남아있게 됩니다. 전체 원소의 개수가 `N` 개이고, 정렬하려는 부분의 크기가 `M` 이라면 `partial_sort` 의 복잡도는 `O(N log M)` 가 됩니다.
+앞에 나타나게 되고 나머지 원소들은 그냥 랜덤하게 남아있게 됩니다. 전체 원소의 개수가 `N` 개이고, 정렬하려는 부분의 크기가 `M` 이라면 `partial_sort` 의 복잡도는 $$O(N \log M)$$ 가 됩니다.
 
 
 만약에 우리가 전체 배열을 정렬할 필요가 없을 경우, 예를 들어서 100 명의 학생 중에서 상위 10 명의 학생의 성적순을 보고 싶다, 이런 식이면 굳이 `sort` 로 전체를 정렬 할 필요 없이 `partial_sort` 로 10 개만 정렬 하는 것이 더 빠르게 됩니다.
@@ -560,10 +560,9 @@ Iterator erase(Iterator first, Iterator last);
 
 다시말해, 반복이 끝나는 위치 부터 벡터 맨 뒤 까지 제거해버리면 3 이 싹 제거된 벡터만 남게 되지요. `remove` 함수는 원소의 이동만을 수행하지 실제로 원소를 삭제하는 연산을 수행하지는 않습니다. 따라서 벡터에서 실제로 원소를 지우기 위해서는 반드시 `erase` 함수를 호출하여 실제로 원소를 지워줘야만 합니다.
 
-
-`vec.erase(remove(vec.begin(), vec.end(), 3),` vec.end());
-
-
+```cpp
+vec.erase(remove(vec.begin(), vec.end(), 3), vec.end());
+```
 
 따라서 위 처럼 `remove` 함수를 이용해서 값이 3 인 원소들을 뒤로 보내버리고, 그 원소들을 벡터에서 삭제해버리게 됩니다.
 
@@ -670,12 +669,13 @@ int main() {
 }
 ```
 
+위와 같이 실제 함수를 전달한다면 앞서 만들었던 함수 객체와 정확히 동일하게 동작합니다.
 
+#### remove_if 에 조건 추가하기
 
-위와 같이 실제 함수를 전달한다면 앞서 만들었던 함수 객체와 정확히 동일하게 동작합니다. 그렇다면 굳이 귀찮게 위와 같이 함수 객체를 사용할 이유가 있을까요? 물론 있습니다.
+우리의 `remove_if` 함수는 함수 객체가 인자를 딱 1 개 만 받는다고 가정합니다. 따라서 호출되는 `operator()` 을 통해선 원소에 대한 정보 말고는 추가적인 정보를 전달하기는 어렵습니다.
 
-
-예를 들어서 홀수인 원소들을 삭제하되 처음 2개만 삭제한다고 해봅시다. 함수 객체의 경우 사실 클래스의 객체이기 때문에 멤버 변수를 생각할 수 있습니다.
+하지만 예를 들어서 홀수인 원소들을 삭제하되 처음 2개만 삭제한다고 해봅시다. 함수 객체의 경우 사실 클래스의 객체이기 때문에 멤버 변수를 생각할 수 있습니다.
 
 ```cpp-formatted
 #include <algorithm>
@@ -732,10 +732,12 @@ int main() {
 성공적으로 컴파일 하였다면
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F23445F3D596DC7D932E721)
-
-
+```exec
+처음 vec 상태 ------
+[5] [3] [1] [2] [3] [4] 
+벡터에서 홀수인 원소 앞의 2개 제거 ---
+[2] [3] [4] 
+```
 
 와 같이 나옵니다.
 
@@ -758,14 +760,112 @@ struct is_odd {
 };
 ```
 
+예상과는 사뭇 다른 결과가 나왔습니다. 홀수 원소 2 개가 아니라 3 개가 삭제됬네요. 분명히 우리는 2개 이상 되면 `true` 를 리턴하라고 명시했는데도 말이지요.
 
+사실 C++ 표준에 따르면 `remove_if` 에 전달되는 함수 객체의 경우 이전의 호출에 의해 내부 상태가 달라지면 안됩니다. 다시 말해, 위 처럼 함수 객체 안에 인스턴스 변수 (`num_delete`) 를 넣는 것은 원칙상 안된다는 것이지요.
 
-이것이 가능한 이유는 위 처럼 `num_delete` 라는 멤버 변수를 만들어서 몇 개를 지웠는지 카운트 하기 때문이지요. 물론 함수의 경우에도 `static` 변수를 이용하면 위와 같은 효과를 낼 수 있습니다. 하지만 여러개의 벡터에 저 작업을 하게 된다면 꽤나 골치아프겠지요. (호출할 때 마다 `static` 변수의 값을 0 으로 초기화 해줘야 합니다)
+그 이유는 `remove_if` 구현에서 해당 함수 객체가 여러번 복사 될 수 있기 때문입니다. 물론, 이는 라이브러리 마다 다릅니다. 예를 들어 아래 버전을 살펴볼까요.
 
+```cpp-formatted
+template <class ForwardIterator, class UnaryPredicate>
+ForwardIterator remove_if(ForwardIterator first, ForwardIterator last,
+                          UnaryPredicate pred) {
+  ForwardIterator result = first;
+  while (first != last) {
+    if (!pred(*first)) {  // <-- 함수 객체 pred 를 실행하는 부분
+      *result = std::move(*first);
+      ++result;
+    }
+    ++first;
+  }
+  return result;
+}
+```
 
-하지만 함수 객체를 이용하면 위 처럼 함수만으로는 쉽게 하지 못했던 일들을 손쉽게 처리할 수 있게 됩니다.
+위 버전에 경우 인자로 전달된 함수 객체 `pred` 는 복사되지 않고 계속 호출됩니다. 따라서 사실 우리의 원래 코드가 위 `remove_if` 를 바탕으로 실행됬더라면 2 개만 정확히 지워질 수 있습니다.
 
+하지만 문제는 C++ 표준은 `remove_if` 함수를 어떤 방식으로 구현하라고 정해 놓지 않습니다. 어떤 라이브러리들의 경우 아래와 같은 방식으로 구현되었습니다 (사실 대부분의 라이브러리들이 아래와 비슷합니다.)
 
+```cpp-formatted
+template <class ForwardIt, class UnaryPredicate>
+ForwardIt remove_if(ForwardIt first, ForwardIt last, UnaryPredicate pred) {
+  first = std::find_if(first, last, pred);  // <- pred 한 번 복사됨
+  if (first != last)
+    // 아래 for 문은 first + 1 부터 시작한다고 봐도 된다 (++i != last)
+    for (ForwardIt i = first; ++i != last;)
+      if (!pred(*i))  // <-- pred 호출 하는 부분
+        *first++ = std::move(*i);
+  return first;
+}
+```
+
+참고로 `find_if` 함수의 경우 인자로 전달된 조건 `pred` 가 참인 첫 번째 원소를 리턴합니다. 그런데 문제는 `find_if` 가 함수 객체 `pred` 의 레퍼런스를 받는 것이 아니라, 복사 생성된 버전을 받는다는 점입니다. 따라서, `find_if` 호출 후에 아래 `for` 문에서 이미 한 개 원소를 지웠다는 정보가 소멸되게 됩니다. 후에 호출되는 `pred` 들은 이미 `num_delete` 가 1 인지 모른 채 0 부터 다시 시작하게 되죠.
+
+다시 한 번 말하자면, 함수 객체에는 절대로 특정 상태를 저장해서 이에 따라 결과가 달라지는 루틴을 짜면 안됩니다. 위 처럼 이해하기 힘든 오류가 발생할 수 도 있습니다.
+
+그렇다면 위 문제를 어떻게 하면 해결할 수 있을 까요? 한 가지 방법은 `num_delete` 를 객체 내부 변수가 아니라 외부 변수로 빼는 방법입니다.
+
+```cpp-formatted
+#include <algorithm>
+#include <functional>
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+template <typename Iter>
+void print(Iter begin, Iter end) {
+  while (begin != end) {
+    cout << "[" << *begin << "] ";
+    begin++;
+  }
+  cout << endl;
+}
+struct is_odd {
+  int* num_delete;
+
+  is_odd(int* num_delete) : num_delete(num_delete) {}
+
+  bool operator()(const int& i) {
+    if (*num_delete >= 2) return false;
+
+    if (i % 2 == 1) {
+      (*num_delete)++;
+      return true;
+    }
+
+    return false;
+  }
+};
+int main() {
+  vector<int> vec;
+  vec.push_back(5);
+  vec.push_back(3);
+  vec.push_back(1);
+  vec.push_back(2);
+  vec.push_back(3);
+  vec.push_back(4);
+
+  cout << "처음 vec 상태 ------" << endl;
+  print(vec.begin(), vec.end());
+
+  cout << "벡터에서 홀수인 원소 앞의 2개 제거 ---" << endl;
+  int num_delete = 0;
+  vec.erase(remove_if(vec.begin(), vec.end(), is_odd(&num_delete)), vec.end());
+  print(vec.begin(), vec.end());
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+처음 vec 상태 ------
+[5] [3] [1] [2] [3] [4] 
+벡터에서 홀수인 원소 앞의 2개 제거 ---
+[1] [2] [3] [4] 
+```
+
+와 같이 제대로 나옵니다. 위 경우, `num_delete` 에 관한 정보를 아예 함수 객체 밖으로 빼서 보관해버렸습니다. 물론 함수 객체에 내부 상태인 `num_delete` 의 주소값은 변하지 않으므로 문제될 것이 없습니다.
 
 그런데 한 가지 안좋은 점은 이렇게 `STL` 을 사용할 때 마다 외부에 클래스나 함수를 하나 씩 만들어줘야 된다는 점입니다. 물론 프로젝트의 크기가 작다면 크게 문제가 되지는 않겠지만 프로젝트의 크기가 커진다면, 만약 다른 사람이 코드를 읽을 때 '이 클래스는 뭐하는 거지?' 혹은 '이 함수는 뭐하는 거지?' 와 같은 궁금증이 생길 수 도 있고 심지어 잘못 사용할 수 도 있습니다.
 
@@ -778,16 +878,14 @@ vec.erase(remove_if(vec.begin(), vec.end(),
           vec.end());
 ```
 
-
-
-뭐 이런 식으로 말이지요. 문제는 위 문법이 C++ 에서 허용되지 않다는 점입니다. 하지만 놀랍게도 C++ 11 부터 위 문제를 해결할 방법이 나타났습니다.
+뭐 이런 식으로 말이지요. 문제는 위 문법이 C++ 에서 허용되지 않다는 점입니다. 하지만 놀랍게도 `C++ 11` 부터 위 문제를 해결할 방법이 나타났습니다.
 
 
 
-###  람다 함수(lambda `function)`
+###  람다 함수(lambda function)
 
 
-람다 함수는 C++ 에서는 C++ 11 에서 처음으로 도입되었습니다. 람다 함수를 통해 쉽게 이름이 없는 함수 객체를 만들수 없게 되었습니다. 그렇습니다.익명의 함수 객체 말입니다.
+람다 함수는 C++ 에서는 `C++ 11` 에서 처음으로 도입되었습니다. 람다 함수를 통해 쉽게 이름이 없는 함수 객체를 만들수 없게 되었습니다. 그렇습니다.익명의 함수 객체 말입니다.
 
 람다 함수를 사용한 예제 부터 먼저 살펴보겠습니다.
 ```cpp-formatted
@@ -893,10 +991,7 @@ auto func = [](int i) { return i % 2 == 1; };
 func(4);  // false;
 ```
 
-
-
-람다 함수로 func 이라는 함수 객체를 생성한 후에 호출할 수 도 있지요.
-
+람다 함수로 `func` 이라는 함수 객체를 생성한 후에 호출할 수 도 있지요.
 
 하지만 람다 함수도 말 그대로 함수 이기 때문에 자기 자신만의 스코프를 가집니다. 따라서 일반적인 상황이라면 함수 외부에서 정의된 변수들을 사용할 수 없겠지요. 예를 들어서 최대 2 개 원소만 지우고 싶은 경우
 
@@ -1366,10 +1461,10 @@ current = find(current, vec.end(), 3);
 다만 `find` 계열의 함수들을 사용할 때 한 가지 주의해야 할 점은, 만약에 컨테이너에서 기본적으로 `find` 함수를 지원한다면 이를 사용하는 것이 훨씬 빠릅니다. 왜냐하면 알고리즘 라이브러리에서의 `find` 함수는 그 컨테이너가 어떠한 구조를 가지고 있는지에 대한 정보가 하나도 없기 때문입니다.
 
 
-예를 들어 `set` 의 경우, `set` 에서 사용하는 `find` 함수의 경우 O(log `n)` 으로 수행될 수 있는데 그 이유는 셋 내부에서 원소들이 정렬되어 있기 때문입니다. 또 `unordered_set` 의 경우 `find` 함수가 `O(1)` 로 수행될 수 있는데 그 이유는 `unordered_set` 내부에서 자체적으로 해시 테이블을 이용해서 원소들을 빠르게 탐색해 나갈 수 있기 때문입니다.
+예를 들어 `set` 의 경우, `set` 에서 사용하는 `find` 함수의 경우 $$O(\log n)$$ 으로 수행될 수 있는데 그 이유는 셋 내부에서 원소들이 정렬되어 있기 때문입니다. 또 `unordered_set` 의 경우 `find` 함수가 $$O(1)$$ 로 수행될 수 있는데 그 이유는 `unordered_set` 내부에서 자체적으로 해시 테이블을 이용해서 원소들을 빠르게 탐색해 나갈 수 있기 때문입니다.
 
 
-하지만 그냥 알고리즘 라이브러리의 `find` 함수의 경우 이러한 추가 정보가 있는 것을 하나도 모른채 우직하게 처음 부터 하나 씩 확인해 나가므로 평범한 `O(n)` 으로 처리됩니다. 따라서 알고리즘 라이브러리의 `find` 함수를 사용할 경우 벡터와 같이 기본적으로 `find` 함수를 지원하지 않는 컨테이너에 사용하시기 바랍니다!
+하지만 그냥 알고리즘 라이브러리의 `find` 함수의 경우 이러한 추가 정보가 있는 것을 하나도 모른채 우직하게 처음 부터 하나 씩 확인해 나가므로 평범한 $$O(n)$$ 으로 처리됩니다. 따라서 알고리즘 라이브러리의 `find` 함수를 사용할 경우 벡터와 같이 기본적으로 `find` 함수를 지원하지 않는 컨테이너에 사용하시기 바랍니다!
 
 
 ```cpp-formatted
@@ -1535,8 +1630,6 @@ bool can_join_dungeon() {
 }
 ```
 
-
-
 따라서 이 파티가 어떤 던전에 참가하고 싶은 경우 모든 파티원의 레벨이 15 이상 이어야 하므로 위와 같이 `all_of` 함수를 사용해서 모든 원소들이 조건에 만족하는지 확인할 수 있습니다. 위 경우 민수가 12 레벨이여서 `false` 가 리턴되겠지요.
 
 
@@ -1547,8 +1640,6 @@ bool can_use_special_item() {
                 [](User& user) { return user.level >= 19; });
 }
 ```
-
-
 
 비슷하게도 한 명만 조건을 만족해도 되는 경우 위와 같이 `any_of` 함수를 사용하면 간단히 처리할 수 있습니다.
 
