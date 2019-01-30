@@ -575,7 +575,8 @@ int main() {
 
 ```cpp-formatted
 while (fscanf(fp, "%s", data) != EOF) {
-  if (strcmp(data, "this") == 0) ```
+  if (strcmp(data, "this") == 0)
+```
 
 이전 예제에서와 같은 방식으로 `fscanf` 들을 통해 파일에서 단어들을 입력받는데, 각각의 단어들을 `strcmp` 함수를 이용하여 `this` 와 같은지 비교를 하지요. 만일 같다면 이제 `this` 를 `that` 으로 덮어 씌우기만 하면 됩니다.
 
