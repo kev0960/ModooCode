@@ -79,6 +79,8 @@ class FastSyntaxHighlighter {
   string GenerateHighlightedHTML() const;
   void OutputColorCss(string filename) const;
 
+  virtual ~FastSyntaxHighlighter() = default;
+
  protected:
   string code_;
   std::vector<SyntaxToken> token_list_;

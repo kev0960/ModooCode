@@ -19,11 +19,11 @@ endif()
 add_executable(md-parser ${SOURCES})
 
 if(NOT APPLE)
-  target_link_libraries(md-parser chroma stdc++fs pthread)
+  target_link_libraries(md-parser chroma stdc++fs pthread crypto ssl pqxx pq)
 endif()
 
 if(APPLE)
-  target_link_libraries(md-parser stdc++fs pthread)
+  target_link_libraries(md-parser stdc++fs pthread crypto ssl pqxx pq)
 endif()
 
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
@@ -89,10 +89,10 @@ add_executable(content_test
                src/parser_environment.cc)
 
 if(NOT APPLE)
-  target_link_libraries(content_test gmock_main)
+  target_link_libraries(content_test gmock_main crypto ssl)
 endif()
 if(APPLE)
-  target_link_libraries(content_test gmock_main)
+  target_link_libraries(content_test gmock_main crypto ssl)
 endif()
 add_test(NAME content_test COMMAND content_test)
 
@@ -112,10 +112,10 @@ add_executable(parser_test
                src/parser_environment.cc)
 
 if(NOT APPLE)
-  target_link_libraries(parser_test gmock_main)
+  target_link_libraries(parser_test gmock_main crypto ssl)
 endif()
 if(APPLE)
-  target_link_libraries(parser_test gmock_main)
+  target_link_libraries(parser_test gmock_main crypto ssl)
 endif()
 add_test(NAME parser_test COMMAND parser_test)
 
@@ -141,4 +141,11 @@ add_executable(diff_test
                src/diff.cc)
 target_link_libraries(diff_test gmock_main)
 add_test(NAME diff_test COMMAND diff_test)
+
+add_executable(hash_test
+               test/hash_test.cc
+               src/hash.cc)
+
+target_link_libraries(hash_test gmock_main crypto ssl)
+add_test(NAME hash_test COMMAND hash_test)
 

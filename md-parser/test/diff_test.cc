@@ -1,5 +1,7 @@
 #include "../src/diff.h"
 
+#include <fstream>
+
 #include "../src/util.h"
 #include "gtest/gtest.h"
 
@@ -168,5 +170,20 @@ TEST(DiffTest, ExhaustivePatchMatch) {
     PatchFromDiff patch(s1_endl, patchs);
     EXPECT_EQ(s2, patch.GetPatchedString());
   } while (std::next_permutation(s1.begin(), s1.end()));
+}
+
+TEST(DiffTest, FileDiff) {
+  std::ifstream read_file("../python/md/dump_102.md");
+  string content;
+
+  read_file.seekg(0, std::ios::end);
+  content.reserve(read_file.tellg());
+  read_file.seekg(0, std::ios::beg);
+
+  content.assign((std::istreambuf_iterator<char>(read_file)),
+                 std::istreambuf_iterator<char>());
+
+  Diff diff(content, content);
+  LOG << diff.CreatePatch();
 }
 }  // namespace md_parser

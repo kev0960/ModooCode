@@ -57,10 +57,19 @@ T Min(const T& a, Ts... args) {
   return a < b ? a : b;
 }
 
-
 template <template <typename...> class Container, typename K, typename V>
 bool MapContains(const Container<K, V>& container, const K& key) {
   return container.find(key) != container.end();
+}
+
+template <template <typename...> class Container, typename K, typename V>
+bool MapContainsAndMatch(const Container<K, V>& container, const K& key,
+                         const V& val) {
+  auto itr = container.find(key);
+  if (itr == container.end()) {
+    return false;
+  }
+  return itr->second == val;
 }
 
 template <template <typename...> class Container, typename V>

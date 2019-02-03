@@ -95,7 +95,7 @@ class MDParser {
       std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
       const std::vector<string>& path_vector);
   string GetCss();
-  const std::map<string, string>& GetHeaderInfo() { return header_; }
+  const std::map<string, string>& GetHeaderInfo() const { return header_; }
 
  private:
   // Parses the header of the content file.

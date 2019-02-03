@@ -14,7 +14,7 @@ CREATE TABLE Articles (
   is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
   contents article_content [],
   /* Hex of SHA 512 of current content */
-  current_content_sha512 VARCHAR(128),
+  current_content_sha256 CHAR(64),
   /* Remembers the (next article url) -> count */
   related_articles hstore
 );

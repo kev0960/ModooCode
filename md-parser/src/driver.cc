@@ -5,6 +5,7 @@
 #include <fstream>
 #include <unordered_map>
 
+#include "db.h"
 #include "json.h"
 #include "path.h"
 #include "util.h"
@@ -123,7 +124,7 @@ void ReferenceToUrls(
 
     if (cat_title != kv.second.end()) {
       if (path_reader.IsThisFileReference(kv.first)) {
-        std::cout << kv.first << " --> " << cat_title->second << std::endl;
+        // std::cout << kv.first << " --> " << cat_title->second << std::endl;
         (*ref_to_url)[cat_title->second].push_back({path_vector, kv.first});
       }
     }
@@ -149,6 +150,7 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     files_not_to_process = GetUnModifiedFiles(filenames, &file_id_to_stat_map_);
   }
 
+  Database db;
   for (const auto& filename : filenames) {
     // Read the file.
     std::ifstream read_file(filename);
@@ -165,6 +167,12 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
       parsers_.back()->Parser(ParserConfig{true /* Only parse header */});
     } else {
       parsers_.back()->Parser(ParserConfig{});
+    }
+    // Try record the changes of the files to the database.
+    bool result = db.TryUpdateFileToDatabase(GetFileId(filename), content,
+                                             *parsers_.back());
+    if (result) {
+      std::cout << "Updated : " << GetFileId(filename) << std::endl;
     }
   }
 

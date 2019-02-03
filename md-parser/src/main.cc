@@ -35,6 +35,9 @@ int main(int argc, char** argv) {
   if (Contains(args, "-no_dump_page_path")) {
     config.no_dump_page_path = false;
   }
+  if (Contains(args, "-all")) {
+    config.force_parse_all = true;
+  }
 
   std::vector<string> filenames;
   std::vector<string> md_paths = {"../python/md"};
