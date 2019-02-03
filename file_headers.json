@@ -1138,6 +1138,38 @@
 	"title" : "C++ 레퍼런스 - find 함수 (<algorithm>)"
 }
 ,
+	"262" : {
+	"cat_title" : "count",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-02-01",
+	"ref_title" : "count, std::count",
+	"title" : "C++ 레퍼런스 - count 함수 (<algorithm>)"
+}
+,
+	"263" : {
+	"cat_title" : "find_if",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-02-04",
+	"ref_title" : "find_if, std::find_if",
+	"title" : "C++ 레퍼런스 - find_if 함수 (<algorithm>)"
+}
+,
+	"264" : {
+	"cat_title" : "find_if_not",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-02-04",
+	"ref_title" : "find_if_not, std::find_if_not",
+	"title" : "C++ 레퍼런스 - find_if_not 함수 (<algorithm>)"
+}
+,
+	"265" : {
+	"cat_title" : "find_end",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-02-04",
+	"ref_title" : "find_end, std::find_end",
+	"title" : "C++ 레퍼런스 - find_end 함수 (<algorithm>)"
+}
+,
 	"27" : {
 	"cat_title" : "13 - 2. 마술 상자 함수 2 (function)",
 	"next_page" : "28",

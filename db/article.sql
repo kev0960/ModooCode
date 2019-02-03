@@ -13,7 +13,7 @@ CREATE TABLE Articles (
   is_published BOOLEAN NOT NULL DEFAULT FALSE,
   is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
   contents article_content [],
-  /* Hex of SHA 512 of current content */
+  /* Hex of SHA 256 of current content */
   current_content_sha256 CHAR(64),
   /* Remembers the (next article url) -> count */
   related_articles hstore

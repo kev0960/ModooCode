@@ -238,30 +238,32 @@ bool Database::TryUpdateFileToDatabase(const string& article_url,
       // Calculate the diff.
       std::vector<Database::ArticleContent> prev_articles =
           RetrievePrevContents(article_url);
-      bool should_append_patch = true;
+      bool should_add_full_content = false;
       if (prev_articles.size() >= 5 && !prev_articles[0].is_diff) {
-        should_append_patch = false;
+        should_add_full_content = true;
       }
 
       // Now insert into the database.
       pqxx::work append_new_article_info(*conn_);
-      if (should_append_patch) {
-        string prev_article_content = GeneratePrevArticle(prev_articles);
-        Diff diff(prev_article_content, content);
-        string patch_str = diff.CreatePatch();
+      string prev_article_content = GeneratePrevArticle(prev_articles);
+      Diff diff(prev_article_content, content);
+      string patch_str = diff.CreatePatch();
+
+      if (should_add_full_content) {
+        append_new_article_info.exec(
+            StrCat("UPDATE articles SET contents = contents || "
+                   "row(now(), '",
+                   /* content */ append_new_article_info.esc(content), "', '",
+                   /* diff */ append_new_article_info.esc(patch_str),
+                   "', false)::article_content WHERE article_url = '",
+                   append_new_article_info.esc(article_url), "';"));
+      } else {
+        // Otherwise we only add the diff.
         append_new_article_info.exec(
             StrCat("UPDATE articles SET contents = contents || "
                    "row(now(), '', '",
                    append_new_article_info.esc(patch_str),
                    "', true)::article_content WHERE article_url = '",
-                   append_new_article_info.esc(article_url), "';"));
-      } else {
-        // Otherwise we add the original content.
-        append_new_article_info.exec(
-            StrCat("UPDATE articles SET contents = contents || "
-                   "row(now(), '",
-                   append_new_article_info.esc(content),
-                   "', '', false)::article_content WHERE article_url = '",
                    append_new_article_info.esc(article_url), "';"));
       }
       append_new_article_info.exec(
@@ -272,7 +274,6 @@ bool Database::TryUpdateFileToDatabase(const string& article_url,
       updated = true;
     }
     if (!CheckMatch(itr->second, parser)) {
-      LOG << "Else not match";
       pqxx::work modify_article_metadata(*conn_);
       const auto& article_header = parser.GetHeaderInfo();
       modify_article_metadata.exec(StrCat(
