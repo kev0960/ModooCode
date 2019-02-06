@@ -29,6 +29,7 @@
     border-radius: 3px;
     padding: 8px 0 5px 10px;
     resize: none;
+    font-size: 17px;
 }
 
 .comment-textarea:focus {
