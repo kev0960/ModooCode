@@ -198,7 +198,8 @@ module.exports = class Server {
     this.recent_articles = [];
     let current = this.max_key;
     while (current >= 0 && this.recent_articles.length < 5) {
-      if (this.file_infos[current].published != 'false') {
+      if (this.file_infos[current] &&
+          this.file_infos[current].published != 'false') {
         this.recent_articles.push(
             {url: current, info: this.file_infos[current]});
       }
