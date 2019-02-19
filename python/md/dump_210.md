@@ -636,7 +636,7 @@ class Parent {
  public:
   Parent() : s("부모") { cout << "부모 클래스" << endl; }
 
-  virtualvoid what() { cout << s << endl; }
+  virtual void what() { cout << s << endl; }
 };
 ```
 
@@ -741,11 +741,11 @@ class Employee {
   // 디폴트 생성자
   Employee() {}
 
-  virtualvoid print_info() {
+  virtual void print_info() {
     cout << name << " (" << position << " , " << age << ") ==> "
          << calculate_pay() << "만원" << endl;
   }
-  virtualint calculate_pay() { return 200 + rank * 50; }
+  virtual int calculate_pay() { return 200 + rank * 50; }
 };
 
 class Manager : public Employee {

@@ -1170,6 +1170,30 @@
 	"title" : "C++ 레퍼런스 - find_end 함수 (<algorithm>)"
 }
 ,
+	"266" : {
+	"cat_title" : "remove",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-02-18",
+	"ref_title" : "remove, std::remove",
+	"title" : "C++ 레퍼런스 - remove 함수 (<algorithm>)"
+}
+,
+	"267" : {
+	"cat_title" : "fill",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-02-18",
+	"ref_title" : "fill, std::fill",
+	"title" : "C++ 레퍼런스 - fill 함수 (<algorithm>)"
+}
+,
+	"268" : {
+	"cat_title" : "search",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-02-18",
+	"ref_title" : "search, std::search",
+	"title" : "C++ 레퍼런스 - search 함수 (<algorithm>)"
+}
+,
 	"27" : {
 	"cat_title" : "13 - 2. 마술 상자 함수 2 (function)",
 	"next_page" : "28",
