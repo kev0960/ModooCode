@@ -59,5 +59,11 @@
     "string": "cpp"
   },
   "python.pythonPath": "/home/jaebum/anaconda3/bin/python",
-  "python.linting.pylintEnabled": true
+  "python.linting.pylintEnabled": true,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  }
 }

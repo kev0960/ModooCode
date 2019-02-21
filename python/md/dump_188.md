@@ -987,7 +987,7 @@ class string {
 
  public:
   string(char c, int n);  // 문자 c 가 n 개 있는 문자열로 정의
-  string(char *s);
+  string(const char *s);
   string(const string &s);
   ~string();
 

@@ -19,9 +19,7 @@ publish_date : 2018-03-24
 
 
 
-###  복사 생략(Copy `Elision)`
-
-
+###  복사 생략(Copy Elision)
 
 
 아래 코드를 실행해보면 결과가 어떻게 나올까요?
@@ -97,6 +95,7 @@ A(2)
 
 ```cpp-formatted
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 class MyString {
@@ -416,11 +415,9 @@ const T&
 
 ###  우측값 레퍼런스
 
-
-
-
 ```cpp-formatted
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 class MyString {
