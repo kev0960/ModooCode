@@ -170,18 +170,22 @@ C++ 에서의 RAII 패턴과 `unique_ptr` 의 사용법에 대해 배웁니다.
 
 `shared_ptr`, `weak_ptr` 의 사용법에 대해 배웁니다.
 
-###@ 14 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)
+###@ [14. 함수를 객체로! (C++ std::function, std::mem_fn, std::bind)](/254)
+
+Callable 의 정의와 `std::function`, `std::mem_fn`, `std::bind` 들의 사용법을 배운다.
+
+###@ 15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)
 
 C++ thread, mutex 그리고 atomic variable.
 
-###@ 14 - 2. C++ condition_variable
+###@ 15 - 2. C++ condition_variable
 
-###@ 14 - 3. C++ future 와 promise
+###@ 15 - 3. C++ future 와 promise
 
-###@ 15 - 1. C++ 11 - 초기화자 리스트 (initializer_list)
+###@ 16 - 1. C++ 11 - 초기화자 리스트 (initializer_list)
 
-###@ 15 - 2. C++ 11 - Range 기반 for 문 (Range based for loop)
+###@ 16 - 2. C++ 11 - Range 기반 for 문 (Range based for loop)
 
-###@ 15 - 3. C++ 11 - 가변 길이 템플릿 (Variadic template)
+###@ 16 - 3. C++ 11 - 가변 길이 템플릿 (Variadic template)
 
-###@ 15 - 4. C++ 11 - 난수 생성(random)과 시간 관련 라이브러리(chrono) 소개
+###@ 16 - 4. C++ 11 - 난수 생성(random)과 시간 관련 라이브러리(chrono) 소개

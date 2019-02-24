@@ -1049,11 +1049,13 @@
 	"251" : {
 	"cat_title" : "본인 소개",
 	"path" : "/잡담/본인 소개",
+	"publish_date" : "2018-12-08",
 	"title" : "본인 소개 (2018-12-08) 업데이트"
 }
 ,
 	"252" : {
 	"cat_title" : "13 - 2. 자원을 공유할 때 - shared_ptr 와 weak_ptr",
+	"next_page" : "254",
 	"path" : "/C++",
 	"prev_page" : "229",
 	"publish_date" : "2018-12-21",
@@ -1070,9 +1072,11 @@
 }
 ,
 	"254" : {
-	"cat_title" : "14. 함수를 객체로! (C++ std::function, std::bind)",
-	"published" : "false",
-	"title" : "씹어먹는 C ++ - <14. 함수를 객체로! (C++ std::function, std::bind)>"
+	"cat_title" : "14. 함수를 객체로! (C++ std::function, std::mem_fn, std::bind)",
+	"path" : "/C++",
+	"prev_page" : "252",
+	"publish_date" : "2019-02-24",
+	"title" : "씹어먹는 C ++ - <14. 함수를 객체로! (C++ std::function, std::mem_fn, std::bind)>"
 }
 ,
 	"255" : {

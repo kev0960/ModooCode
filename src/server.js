@@ -188,23 +188,30 @@ module.exports = class Server {
     }.bind(this));
 
     this.max_key = -1
+    let entire_articles = [];
+
     Object.keys(this.file_infos).forEach(function(key) {
       if (parseInt(key) > this.max_key) {
         this.max_key = parseInt(key)
       }
+      if (!this.file_infos[key].publish_date) {
+        this.file_infos[key].publish_date = '2018-12-31';
+      }
+      entire_articles.push({
+        key, date : this.file_infos[key].publish_date
+      })
     }.bind(this));
 
+    entire_articles.sort(function (a, b) {
+      let a_t = new Date(a.date);
+      let b_t = new Date(b.date);
+      return b_t - a_t;
+    })
+
     // Find top 5 Recent articles.
-    this.recent_articles = [];
-    let current = this.max_key;
-    while (current >= 0 && this.recent_articles.length < 5) {
-      if (this.file_infos[current] &&
-          this.file_infos[current].published != 'false') {
-        this.recent_articles.push(
-            {url: current, info: this.file_infos[current]});
-      }
-      current--;
-    }
+    this.recent_articles = entire_articles.slice(0, 5).map(function(s) {
+      return {url : s.key, info : this.file_infos[s.key]};
+    }.bind(this));
 
     this.jwt = new google.auth.JWT(
         goog_key.client_email, null, goog_key.private_key,
