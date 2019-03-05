@@ -37,7 +37,7 @@ int main() {
 
   time(&seconds);
 
-  printf("1970년 부터 몇 초나 지났나 : %d 초 \n", seconds);
+  printf("1970년 부터 몇 초나 지났나 : %ld 초 \n", seconds);
 
   return 0;
 }
