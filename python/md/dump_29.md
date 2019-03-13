@@ -52,7 +52,7 @@ publish_date : 2009-12-29
 int main() {
   char null_1 = '\0';  // 이 3 개는 모두 동일하다
   char null_2 = 0;
-  char null_3 = NULL;  // 모두 대문자로 써야 한다
+  char null_3 = (char)NULL;  // 모두 대문자로 써야 한다
 
   char not_null = '0';
 
@@ -73,10 +73,12 @@ int main() {
 ```cpp-formatted
 char null_1 = '\0';  // 이 3 개는 모두 동일하다
 char null_2 = 0;
-char null_3 = NULL;
+char null_3 = (char)NULL;
 ```
 
-위 세개의 문장의 각 `char` 변수에는 모두 동일한 값, 즉 0 이 들어가게 됩니다. `null_1` 의 경우 '\0' 의 값, 즉 '\0' 의 아스키 값이 들어가는데 \0 의 아스키 값은 0 입니다. 왜 '0' 이라 안쓰고 '\0' 이라 쓰는지는 알겠죠? '0' (문자 `0)` 의 아스키값은 42 이기 때문입니다. (위에서 확인할 수 있듯이) 마찬가지로 `null_2` 에는 0 이 들어가고, `null_3` 에는 `NULL` 의 값이 들어가는데, `NULL` 은 0 이라고 정의되어 있는 상수 입니다. 따라서, `null_3` 에도 0 이 들어갑니다.
+위 세개의 문장의 각 `char` 변수에는 모두 동일한 값, 즉 0 이 들어가게 됩니다. `null_1` 의 경우 `\0` 의 값, 즉 `\0` 의 아스키 값이 들어가는데 `\0` 의 아스키 값은 0 입니다. 왜 '0' 이라 안쓰고 `\0` 이라 쓰는지는 알겠죠? '0' (문자 0) 의 아스키값은 42 이기 때문입니다.
+
+(위에서 확인할 수 있듯이) 마찬가지로 `null_2` 에는 0 이 들어가고, `null_3` 에는 `NULL` 의 값이 들어가는데, `NULL` 은 0 이라고 정의되어 있는 상수 입니다. 따라서, `null_3` 에도 0 이 들어갑니다.
 
 ```cpp-formatted
 char not_null = '0';
@@ -98,7 +100,7 @@ warning C4047: '초기화 중' : 'char'의 간접 참조 수준이 'void *'과(�
 int main() {
   char sentence_1[4] = {'P', 's', 'i', '\0'};
   char sentence_2[4] = {'P', 's', 'i', 0};
-  char sentence_3[4] = {'P', 's', 'i', NULL};
+  char sentence_3[4] = {'P', 's', 'i', (char)NULL};
   char sentence_4[4] = {"Psi"};
 
   printf("sentence_1 : %s \n", sentence_1);  // %s 를 통해서 문자열을 출력한다.

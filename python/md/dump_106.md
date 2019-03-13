@@ -97,7 +97,7 @@ int main() {
   char szInput[256];
   printf("Enter a sentence: ");
   scanf("%s", szInput);
-  printf("The sentence entered is %u characters long.\n", strlen(szInput));
+  printf("The sentence entered is %lu characters long.\n", strlen(szInput));
   return 0;
 }
 ```
