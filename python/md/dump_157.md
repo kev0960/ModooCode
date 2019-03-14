@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - ios_base::precision 함수
 cat_title :  ios_base::precision
 publish_date : 2011-08-19
+ref_title : precision
 --------------
 
 

@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - ios_base::register_callback 함수
 cat_title :  ios_base::register_callback
 publish_date : 2011-08-20
+ref_title : ios_base::register_callback, register_callback
 --------------
 
 
@@ -123,5 +124,5 @@ int main() {
 ###  연관된 것들
 
 *  [ios_base::imbue](http://itguru.tistory.com/158) :  로케일(locale) 을 설정한다.
-* ios::copyfmt  :  서식 정보를 복사한다.
-* ios_base::event  :  이벤트를 나타내기 위한 타입
+* `ios::copyfmt`  :  서식 정보를 복사한다.
+* `ios_base::event`  :  이벤트를 나타내기 위한 타입

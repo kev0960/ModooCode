@@ -328,12 +328,14 @@
 	"151" : {
 	"cat_title" : "ifstream 클래스",
 	"publish_date" : "2011-08-18",
+	"ref_title" : "ifstream",
 	"title" : "C++ 레퍼런스 - ifstream 클래스"
 }
 ,
 	"152" : {
 	"cat_title" : "ios_base::width",
 	"publish_date" : "2011-08-18",
+	"ref_title" : "ios_base::width, width",
 	"title" : "C++ 레퍼런스 - ios_base::width"
 }
 ,
@@ -368,6 +370,7 @@
 	"157" : {
 	"cat_title" : "ios_base::precision",
 	"publish_date" : "2011-08-19",
+	"ref_title" : "precision",
 	"title" : "C++ 레퍼런스 - ios_base::precision 함수"
 }
 ,
@@ -381,6 +384,7 @@
 	"159" : {
 	"cat_title" : "ios_base::register_callback",
 	"publish_date" : "2011-08-20",
+	"ref_title" : "ios_base::register_callback, register_callback",
 	"title" : "C++ 레퍼런스 - ios_base::register_callback 함수"
 }
 ,
@@ -395,24 +399,28 @@
 	"160" : {
 	"cat_title" : "ios_base::getloc",
 	"publish_date" : "2011-08-20",
+	"ref_title" : "getloc, ios_base::getloc",
 	"title" : "C++ 레퍼런스 - ios_base::getloc 함수"
 }
 ,
 	"161" : {
 	"cat_title" : "ios_base::iword",
 	"publish_date" : "2011-10-22",
+	"ref_title" : "ios_base::iword, iword",
 	"title" : "C++ 레퍼런스 - ios_base::iword"
 }
 ,
 	"162" : {
 	"cat_title" : "ios_base::xalloc",
 	"publish_date" : "2011-10-22",
+	"ref_title" : "xalloc, ios_base::xalloc",
 	"title" : "C++ 레퍼런스 - ios_base::xalloc 함수"
 }
 ,
 	"163" : {
 	"cat_title" : "ios_base::pword",
 	"publish_date" : "2011-10-22",
+	"ref_title" : "ios_base::pword, pword",
 	"title" : "C++ 레퍼런스 - ios_base::pword 함수"
 }
 ,
@@ -559,6 +567,7 @@
 	"182" : {
 	"cat_title" : "ios::rdbuf",
 	"publish_date" : "2012-03-25",
+	"ref_title" : "ios::rdbuf, rdbuf",
 	"title" : "C++ 레퍼런스 - ios::rdbuf 함수"
 }
 ,
@@ -620,6 +629,7 @@
 	"190" : {
 	"cat_title" : "ios::tie",
 	"publish_date" : "2012-11-07",
+	"ref_title" : "ios::tie, tie",
 	"title" : "C++ 레퍼런스 - ios::tie 함수"
 }
 ,
@@ -1196,6 +1206,12 @@
 	"publish_date" : "2019-02-18",
 	"ref_title" : "search, std::search",
 	"title" : "C++ 레퍼런스 - search 함수 (<algorithm>)"
+}
+,
+	"269" : {
+	"cat_title" : "15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)",
+	"published" : "false",
+	"title" : "씹어먹는 C ++ - <15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)>"
 }
 ,
 	"27" : {

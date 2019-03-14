@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - ios_base::getloc 함수
 cat_title :  ios_base::getloc
 publish_date : 2011-08-20
+ref_title : getloc, ios_base::getloc
 --------------
 
 
@@ -20,17 +21,11 @@ publish_date : 2011-08-20
 locale getloc() const;
 ```
 
-
 현재 로케일(locale) 을 알아낸다.
+
 스트림 객체의 로케일을 리턴한다.
 
-
-
-
 ###  인자
-
-
-
 
 
 없다.
@@ -41,18 +36,9 @@ locale getloc() const;
 ###  리턴값
 
 
-
-
-
 스트림의 로케일 객체를 리턴한다.
 
-
-
-
 ###  실행 예제
-
-
-
 
 ```cpp-formatted
 // 로케일 이름을 출력한다.

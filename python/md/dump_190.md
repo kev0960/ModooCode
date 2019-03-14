@@ -2,6 +2,7 @@
 title : C++ 레퍼런스 - ios::tie 함수
 cat_title :  ios::tie
 publish_date : 2012-11-07
+ref_title  : ios::tie, tie
 --------------
 
 ```warning
