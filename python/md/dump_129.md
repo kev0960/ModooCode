@@ -9,7 +9,7 @@ publish_date : 2011-01-18
 
 이번 강좌에서는
 
-* C 언어 코드의 최적화 기법에 대해 살펴본다 C 언어 코드의 최적화 기법에 대해 살펴본다.
+* C 언어 코드의 최적화 기법에 대해 살펴본다.
 
 
 ![씹어먹는 C 언어](/img/ChewingClogo.png)
@@ -199,7 +199,7 @@ if (my_status & WALKING) {
 
 1. 어떠한 정수의 특정 자리를 1 로 만들고 싶다면 그 자리만 1 이고 나머지는 0 인수와 `OR` 하면 됩니다.
 
-1. 어떠한 정수의 특정 자리가 1 인지 검사하고 싶다면 그 자리만 1 이고 나머지는 0 인 수와 `AND` 하면 됩니다.
+2. 어떠한 정수의 특정 자리가 1 인지 검사하고 싶다면 그 자리만 1 이고 나머지는 0 인 수와 `AND` 하면 됩니다.
 
 #### 비트 연산 활용하기 (2)
 
@@ -525,25 +525,17 @@ char* Condition_String1(int condition) {
 
 위 코드의 경우 꽤 괜찮지만 아래 처럼 훨씬 간단하게 만들 수 있습니다.
 
-```cpp-formatted
+```cpp
 char* Condition_String2(int condition) {
   if ((unsigned)condition >= 15) {
     return 0;
   }
-  return "EQ\0NE\0CS\0CC\0MI\0PL\0VS\0VC\0HI\0LS\0GE\0LT\0GT\0LE\0\0" +
-         3 * condition;
+  char* table[] = {
+"EQ", "NE", "CS", "CC", "MI", "PL", "VS", "VC", "HI", "LS", "GE", "LT", "GT", "LE"
+};
+  return table[condition];
 }
 ```
-
-
-
-위에서 주목할 부분은 룩업 테이블을 이용한 것인데, 위 코드에서 룩업 테이블은
-
-```cpp-formatted
-"EQ\0NE\0CS\0CC\0MI\0PL\0VS\0VC\0HI\0LS\0GE\0LT\0GT\0LE\0\0"
-```
-
-을 가리킵니다. 이 것이 룩업 테이블인 이유는 `condition` 값을 알면 바로 위 테이블에서 문자열을 찾아낼 수 있기 때문이지요. 위 `switch` 문을 룩업 테이블로 만들어 버릴 수 있었던 이유가 바로 리턴되는 문자열의 크기가 모두 동일해서 인데 이를 통해 위 룩업 테이블의 시작 주소값에서 `3 * condition` 을 더하면 우리가 원하는 문자열의 시작 주소값이 나오게 됩니다.
 
 이 때 위와 같이 룩업 테이블을 이용하면 좋은 점이 코드의 길이가 훨씬 짧아진다는 점이고 실제 프로그램의 크기도 줄어든다는 점에 있습니다.
 
