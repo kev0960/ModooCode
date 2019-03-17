@@ -348,17 +348,7 @@ int main() {
 
 #### 문제 1
 
-CPU 의 레지스터에 대해 알아보자. `EAX, EBX` 는 무엇인가? 또한 `CS, DS` 에 대해 알아보고 `ESP, EBP 에 대해 알아본다.
-
- [http://d3s.mff.cuni.cz/~ceres/sch/osy/text/ch03s02s02.php](http://d3s.mff.cuni.cz/%7Eceres/sch/osy/text/ch03s02s02.php)
- [http://www.drpaulcarter.com/pcasm/](http://www.drpaulcarter.com/pcasm/)
-
-특히 위의 두번째 링크에 들어가 `PC Assembly Language` 한국어 판을 읽어보기를 추천합니다.
-
-
-#### 문제 2
-
 스택에 대한 폭넓은 이해를 위해 아래 글을 보는 것을 추천합니다. (동적 할당 부분 전까지만)
- [http://blog.naver.com/speciallive?Redirect=Log&logNo=98372211](http://blog.naver.com/speciallive?Redirect=Log&logNo=98372211)
+ [여기](http://blog.naver.com/speciallive?Redirect=Log&logNo=98372211)
 
 ##@ chewing-c-end
