@@ -47,11 +47,11 @@ function FormatCompileError(msg, marked_lines) {
     if (isNumeric(line_number)) {
       marked_lines.add(parseInt(line_number));
       line = line.slice(1);
-      line = `줄 ${line}`;
+      line = '줄 ' + line;
     } else if (line[0] == ':') {
       line = line.slice(1);
     }
-    formatted += (`${line}\n`);
+    formatted += ('' + line + '\n');
   }
   return formatted;
 }
@@ -111,16 +111,16 @@ function initCategory() {
       const current_dir = GetFilesFromPath(path);
       // Add directories.
       const folders = Object.keys(current_dir);
-      const div = $('<div>', {class: `inner-menu${path.length}`});
+      const div = $('<div>', {class: 'inner-menu' + path.length});
       for (let i = 0; i < folders.length; i++) {
         if (folders[i] !== 'files') {
           const dir_folders = Object.keys(current_dir[folders[i]]);
           let folder_html = folders[i];
           if (dir_folders.length >= 2 ||
               current_dir[folders[i]].files.length > 0) {
-            folder_html = `${
-                          '<i class="xi-plus-square" ' +
-                'style="font-size:0.75em;"></i>&nbsp;&nbsp;'}${folder_html}`;
+            folder_html =
+                '<i class="xi-plus-square" style="font-size:0.75em;"></i>' +
+                '&nbsp;&nbsp;' + folder_html;
           }
           div.append($('<a>', {
             class: 'sidebar-nav-item dir',
@@ -235,7 +235,7 @@ function RecursiveCommentAdder(ul, comment_id) {
       $('<div>', {class: 'comment-content'}).text(current_comment.content));
 
   const div_comment_action =
-      $('<div>', {class: 'comment-action', id: `comment-id-${comment_id}`});
+      $('<div>', {class: 'comment-action', id: 'comment-id-' + comment_id});
   div_comment_action.append(
       $('<span>', {class: 'comment-upvote'}).text('추천'));
   div_comment_action.append(

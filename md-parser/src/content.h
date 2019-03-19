@@ -19,7 +19,8 @@ struct HtmlFragments {
     CODE,
     INLINE_CODE,
     SIDENOTE,
-    INLINE_MATH
+    INLINE_MATH,
+    STRIKE_THROUGH
   } type;
 
   // Start and end are inclusive.
@@ -54,7 +55,7 @@ class Content {
 
   // Continuation of the content.
   virtual void AddContent(const string& content);
-  virtual ~Content(){};
+  virtual ~Content() = default;
   virtual TokenTypes GetContentType() const { return TokenTypes::TEXT; }
   virtual string OutputHtml(ParserEnvironment* parser_env);
 
@@ -73,6 +74,7 @@ class Content {
                                std::vector<HtmlFragments>* fragments,
                                int* text_start);
   void ClangFormatEntireCode(std::vector<HtmlFragments>* fragments);
+  std::vector<HtmlFragments> GenerateFragments(ParserEnvironment* parser_env);
 };
 
 }  // namespace md_parser

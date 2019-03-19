@@ -237,6 +237,39 @@ Content::Content(const string& content) : content_(content) { return; }
 
 void Content::AddContent(const string& s) { content_ += s; }
 
+std::vector<HtmlFragments> Content::GenerateFragments(
+    ParserEnvironment* parser_env) {
+  // List of generated fragments.
+  std::vector<HtmlFragments> fragments;
+
+  // Priorities in processing content.
+  //   Inline Code ( ` )
+  //   Inline Math ( $$ )
+  // ----------------------------------
+  //   StrikeThrough (~)
+  //   Bold (**, __)
+  //   Italic (*, _)
+  //     Note that when closing, whichever came first must close first.
+
+  std::unordered_map<string, int> token_start_pos = {
+      {"**", -1}, {"*", -1},  {"__", -1}, {"_", -1},
+      {"`", -1},  {"$$", -1}, {"~", -1}};
+
+  std::vector<std::pair<string, HtmlFragments::Types>> priorities = {
+    {"`", HtmlFragments::Types::INLINE_CODE},
+    {"$$", HtmlFragments::Types::INLINE_MATH},
+    {"~", HtmlFragments::Types::STRIKE_THROUGH},
+    {"**", HtmlFragments::Types::BOLD},
+    {"__", HtmlFragments::Types::BOLD},
+    {"*", HtmlFragments::Types::ITALIC},
+    {"_", HtmlFragments::Types::ITALIC},
+  };
+
+  for (size_t i = 0; i < content_.size(); i++) {
+
+  }
+}
+
 string Content::OutputHtml(ParserEnvironment* parser_env) {
   // When both not defined :
   //  Neither of bold_start < italic_start nor bold_start > italic_start
@@ -245,8 +278,10 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
   // When both are defined :
   //  (earlier one) < (later one)
   const int int_max = std::numeric_limits<int>::max();
+
   int bold_start = int_max;
   int italic_start = int_max;
+
   int code_start = -1;
   int math_start = -1;
 
