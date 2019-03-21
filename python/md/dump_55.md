@@ -129,7 +129,7 @@ Psi.weight = 80;
 ```cpp-formatted
 /* 구조체 예제 2 */
 #include <stdio.h>
-char copy_str(char *dest, char *src);
+char copy_str(char *dest, const char *src);
 struct Books {
   /* 책 이름 */
   char name[30];
@@ -154,7 +154,7 @@ int main() {
 
   return 0;
 }
-char copy_str(char *dest, char *src) {
+char copy_str(char *dest, const char *src) {
   while (*src) {
     *dest = *src;
     src++;
