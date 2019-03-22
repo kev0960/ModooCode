@@ -52,17 +52,9 @@ add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
 # The gtest/gtest_main targets carry header search path dependencies
 # automatically when using CMake 2.8.11 or later. Otherwise we have to add them
 # here ourselves.
-if(CMAKE_VERSION VERSION_LESS 2.8.11)
-  include_directories(
-    "${gtest_SOURCE_DIR}/include" "${gmock_SOURCE_DIR}/include")
-else()
-  target_include_directories(gmock_main SYSTEM BEFORE INTERFACE
-    "$<BUILD_INTERFACE:${gtest_SOURCE_DIR}/include>"
-    "$<BUILD_INTERFACE:${gmock_SOURCE_DIR}/include>")
-
-  #target_include_directories(gmock_main SYSTEM BEFORE INTERFACE
-  #  "$<{gtest_SOURCE_DIR}/include>" "$<{gmock_SOURCE_DIR}/include>")
-endif()
+target_include_directories(gmock_main SYSTEM BEFORE INTERFACE
+  "$<BUILD_INTERFACE:${gtest_SOURCE_DIR}/include>"
+  "$<BUILD_INTERFACE:${gmock_SOURCE_DIR}/include>")
 
 add_executable(util_test test/util_test.cc src/util.cc)
 
@@ -83,6 +75,7 @@ add_executable(content_test
                src/content_list.cc
                src/content_table.cc
                src/content_quote.cc
+               src/content_box.cc
                src/fast_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc
                src/fast_py_syntax_highlighter.cc
@@ -106,6 +99,7 @@ add_executable(parser_test
                src/content_list.cc
                src/content_math.cc
                src/content_quote.cc
+               src/content_box.cc
                src/fast_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc
                src/fast_py_syntax_highlighter.cc
@@ -140,7 +134,7 @@ add_executable(diff_test
                src/util.cc
                src/diff.cc)
 target_link_libraries(diff_test gmock_main)
-add_test(NAME diff_test COMMAND diff_test)
+# add_test(NAME diff_test COMMAND diff_test)
 
 add_executable(hash_test
                test/hash_test.cc

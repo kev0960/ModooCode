@@ -68,13 +68,10 @@ class Content {
                      std::vector<HtmlFragments>* fragments, int* text_start);
   size_t HandleImages(const size_t start_pos,
                       std::vector<HtmlFragments>* fragments, int* text_start);
-  size_t HandleCodes(const size_t start_pos,
-                     std::vector<HtmlFragments>* fragments, int* text_start);
   size_t HandleSpecialCommands(const size_t start_pos,
                                std::vector<HtmlFragments>* fragments,
                                int* text_start);
-  void ClangFormatEntireCode(std::vector<HtmlFragments>* fragments);
-  std::vector<HtmlFragments> GenerateFragments(ParserEnvironment* parser_env);
+  std::vector<HtmlFragments> GenerateFragments();
 };
 
 }  // namespace md_parser

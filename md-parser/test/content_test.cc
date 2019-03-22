@@ -25,9 +25,10 @@ string CreateLinkHtml(const string& link_name, const string& link) {
   return StrCat("<a href='", link, "'>", link_name, "</a>");
 }
 
-string CreateImageHtml(const string& img_name, const string& img) {
-  return StrCat("<img class='content-img' src='", img, "' alt='", img_name,
-                "'>");
+string CreateImageHtml(const string& img_name, const string& img,
+                       const string& caption) {
+  return StrCat("<figure><img class='content-img' src='", img, "' alt='",
+                img_name, "'><figcaption>", caption, "</figcaption></figure>");
 }
 
 string SurroundP(const string& s) { return StrCat("<p>", s, "</p>"); }
@@ -43,10 +44,12 @@ TEST(ContentTest, BasicContent) {
   EXPECT_EQ(SurroundP("abcd"), plain_content.OutputHtml(&mock_parser_env));
 
   Content simple_italic("*abc*");
-  EXPECT_EQ(SurroundP(CreateItalicHtml("abc")), simple_italic.OutputHtml(&mock_parser_env));
+  EXPECT_EQ(SurroundP(CreateItalicHtml("abc")),
+            simple_italic.OutputHtml(&mock_parser_env));
 
   Content simple_bold("**abc**");
-  EXPECT_EQ(SurroundP(CreateBoldHtml("abc")), simple_bold.OutputHtml(&mock_parser_env));
+  EXPECT_EQ(SurroundP(CreateBoldHtml("abc")),
+            simple_bold.OutputHtml(&mock_parser_env));
 
   Content simple_bold_and_italic("***abc***");
   EXPECT_EQ(SurroundP(CreateBoldHtml(CreateItalicHtml("abc"))),
@@ -55,6 +58,10 @@ TEST(ContentTest, BasicContent) {
   Content simple_bold_and_italic_mixed("*__abc__*");
   EXPECT_EQ(SurroundP(CreateItalicHtml(CreateBoldHtml("abc"))),
             simple_bold_and_italic_mixed.OutputHtml(&mock_parser_env));
+
+  Content strike_through("~~strike~~");
+  EXPECT_EQ(SurroundP("<span class='font-strike'>strike</span>"),
+            strike_through.OutputHtml(&mock_parser_env));
 }
 
 TEST(ContentTest, ComplexContent) {
@@ -89,7 +96,8 @@ TEST(ContentTest, Link) {
             empty_name.OutputHtml(&mock_parser_env));
 
   Content empty_link("[link]()");
-  EXPECT_EQ(SurroundP(CreateLinkHtml("link", "")), empty_link.OutputHtml(&mock_parser_env));
+  EXPECT_EQ(SurroundP(CreateLinkHtml("link", "")),
+            empty_link.OutputHtml(&mock_parser_env));
 
   Content not_valid_link1("abc[");
   Content not_valid_link2("abc[abc]");
@@ -97,9 +105,12 @@ TEST(ContentTest, Link) {
   Content not_valid_link4("abc[abc]ab()");
 
   EXPECT_EQ(SurroundP("abc["), not_valid_link1.OutputHtml(&mock_parser_env));
-  EXPECT_EQ(SurroundP("abc[abc]"), not_valid_link2.OutputHtml(&mock_parser_env));
-  EXPECT_EQ(SurroundP("abc[abc]("), not_valid_link3.OutputHtml(&mock_parser_env));
-  EXPECT_EQ(SurroundP("abc[abc]ab()"), not_valid_link4.OutputHtml(&mock_parser_env));
+  EXPECT_EQ(SurroundP("abc[abc]"),
+            not_valid_link2.OutputHtml(&mock_parser_env));
+  EXPECT_EQ(SurroundP("abc[abc]("),
+            not_valid_link3.OutputHtml(&mock_parser_env));
+  EXPECT_EQ(SurroundP("abc[abc]ab()"),
+            not_valid_link4.OutputHtml(&mock_parser_env));
 
   Content link_in_between("this is the [link](http://google.com) thanks");
   EXPECT_EQ(
@@ -120,7 +131,7 @@ TEST(ContentTest, Link) {
 
 TEST(ContentTest, Image) {
   Content plain_image("![The Image](/img/a.png)");
-  EXPECT_EQ(CreateImageHtml("The Image", "/img/a.png"),
+  EXPECT_EQ(CreateImageHtml("The Image", "/img/a.png", ""),
             plain_image.OutputHtml(&mock_parser_env));
 
   Content excl_and_link("! [a](b)");
@@ -128,6 +139,9 @@ TEST(ContentTest, Image) {
             excl_and_link.OutputHtml(&mock_parser_env));
 }
 
+/*
+ * We no longer parse code in Content. It is moved to BoxContent.
+ *
 TEST(ContentTest, Code) {
   Content code("```cpp\nprint 'hi'```");
   EXPECT_EQ(string(kFormattedCode), code.OutputHtml(&mock_parser_env));
@@ -137,6 +151,7 @@ TEST(ContentTest, Code) {
       StrCat(SurroundP("something "), kFormattedCode, SurroundP(" and else")),
       code_in_middle.OutputHtml(&mock_parser_env));
 }
+*/
 
 TEST(ContentTest, InlineCode) {
   Content inline_code("this is `print` command");

@@ -70,6 +70,10 @@ string MakeTable(const std::vector<std::vector<string>>& table,
   return html;
 }
 
+string MakeBox(const string& type, const string& cls, const string& content) {
+  return StrCat("<", type, " class='", cls, "'>", content, "</", type, ">");
+}
+
 }  // namespace
 
 class MockMDParser : public MDParser {
@@ -152,6 +156,40 @@ TEST(ParserTest, SimpleOrderedListParser) {
                              MakeOrderedList({list_elem_b,
                                               MakeOrderedList({list_elem_c})})})
                 .content);
+}
+
+TEST(ParserTest, Box) {
+  string box_str = R"(
+  ```warning
+  This is a warning
+  ```
+)";
+
+  MockMDParser parser_box(box_str);
+  EXPECT_EQ(MakeBox("div", "warning", "<p>  This is a warning</p>"),
+            parser_box.ConvertToHtml(&ref_to_url, path_vec));
+
+  string box_code = R"(
+```cpp
+#include <iostream>
+int main() { std::cout << "hi" << std::endl; }
+```
+)";
+
+  string formatted_code =
+      "<span class='m'>#include</span><span class='w'> </span><span "
+      "class='mb'>&lt;iostream&gt;</span><span class='w'>\n</span><span "
+      "class='t'>int</span><span class='w'> </span><span "
+      "class='f'>main</span><span class='p'>() { std</span><span "
+      "class='o'>::</span><span class='i'>cout </span><span "
+      "class='o'>&lt;&lt;</span><span class='w'> </span><span "
+      "class='s'>\"hi\"</span><span class='w'> </span><span "
+      "class='o'>&lt;&lt;</span><span class='w'> std</span><span "
+      "class='o'>::</span><span class='i'>endl; }</span>";
+
+  MockMDParser parser_code(box_code);
+  EXPECT_EQ(MakeBox("pre", "chroma lang-cpp", formatted_code),
+            parser_code.ConvertToHtml(&ref_to_url, path_vec));
 }
 
 TEST(ParserTest, Table) {

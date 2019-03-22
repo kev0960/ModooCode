@@ -18,6 +18,7 @@ enum TokenTypes {
   CODE,
   NEWLINE,
   TABLE,
-  MATH
+  MATH,
+  BOX
 };
 }

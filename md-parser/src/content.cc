@@ -18,8 +18,6 @@
 #include "fast_py_syntax_highlighter.h"
 #include "util.h"
 
-static char kClangFormatName[] = "clang-format";
-static char kClangFormatConfig[] = "-style=google";
 static const std::unordered_set<string> kSpecialCommands = {"sidenote"};
 
 namespace md_parser {
@@ -47,17 +45,6 @@ void RemoveEmptyPTag(string* s) {
   }
 }
 
-// Nbsp; 0xC2 0xA0 as a utf-8 format.
-void RemoveNbsp(string* s) {
-  for (size_t i = 0; i < s->size(); i++) {
-    if (static_cast<unsigned char>(s->at(i)) == 0xc2 && i + 1 < s->size() &&
-        static_cast<unsigned char>(s->at(i + 1)) == 0xa0) {
-      s->erase(i, 2);
-      i--;
-    }
-  }
-}
-
 void EscapeHtmlString(string* s) {
   for (size_t i = 0; i < s->length(); i++) {
     if (s->at(i) == '<') {
@@ -66,17 +53,6 @@ void EscapeHtmlString(string* s) {
       s->replace(i, 1, "&gt;");
     }
   }
-}
-
-// Return how many matches.
-int FindOneOrTwoConsecutiveChar(const string& s, size_t start, char c) {
-  if (s[start] == c) {
-    if (start + 1 < s.size() && s[start + 1] == c) {
-      return 2;
-    }
-    return 1;
-  }
-  return 0;
 }
 
 [[maybe_unused]] std::unique_ptr<char[]> cstring_from_string(const string& s) {
@@ -115,19 +91,6 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
 }
 #endif
 
-string FormatCodeUsingFSH(const string& content, const string& code_type) {
-  std::unique_ptr<FastSyntaxHighlighter> highlighter;
-  if (code_type == "cpp") {
-    highlighter =
-        std::make_unique<FastCppSyntaxHighlighter>(content, code_type);
-  } else {
-    highlighter = std::make_unique<FastPySyntaxHighlighter>(content, code_type);
-  }
-  highlighter->ParseCode();
-  highlighter->ColorMerge();
-  return highlighter->GenerateHighlightedHTML();
-}
-
 void StripItguruFromLink(string* link) {
   const string itguru = "http://itguru.tistory.com";
   size_t itguru_pos = link->find(itguru);
@@ -137,98 +100,17 @@ void StripItguruFromLink(string* link) {
   link->replace(itguru_pos, itguru.length(), "");
 }
 
-string OutputLinksInBox(const string& box_str) {
-  string output_html;
-  output_html.reserve(box_str.size());
-  for (size_t i = 0; i < box_str.size(); i++) {
-    if (box_str[i] == '[') {
-      size_t end_bracket = box_str.find(']', i + 1);
-      if (end_bracket == string::npos) {
-        goto handle_normal_char;
-      }
-      size_t link_start = end_bracket + 1;
-      if (box_str[link_start] != '(') {
-        goto handle_normal_char;
-      }
-      size_t link_end = box_str.find(')', link_start + 1);
-      if (link_end == string::npos) {
-        goto handle_normal_char;
-      }
-      string link = box_str.substr(link_start + 1, link_end - (link_start + 1));
-      StripItguruFromLink(&link);
-      const string text = box_str.substr(i + 1, end_bracket - (i + 1));
-      output_html += StrCat(R"(<a href=")", link, R"(">)", text, "</a>");
-      i = link_end;
-      continue;
-    }
-  handle_normal_char:
-    output_html.push_back(box_str[i]);
-  }
-  return output_html;
-}
-
-void DoClangFormat(const string& code, string* formatted_code) {
-  int pipe_p2c[2], pipe_c2p[2];
-  if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
-    LOG << "Pipe error!";
-    return;
-  }
-  int pid = fork();
-  if (pid < 0) {
-    LOG << "Fork error!";
-    return;
-  }
-  // Parent process;
-  if (pid > 0) {
-    // Close unused pipes.
-    close(pipe_p2c[0]);
-    close(pipe_c2p[1]);
-
-    // Write the code we are trying to format.
-    int result = write(pipe_p2c[1], code.c_str(), code.size());
-    if (result == -1 || static_cast<size_t>(result) != code.size()) {
-      LOG << "Error; STDOUT to clang format has not completed succesfully";
-    }
-    close(pipe_p2c[1]);
-
-    // Retrieve the formatted code from the child process.
-    char buf[100];
-    int read_cnt;
-    while ((read_cnt = read(pipe_c2p[0], buf, 100)) > 0) {
-      auto current_size = formatted_code->size();
-      formatted_code->reserve(current_size + read_cnt + 1);
-      for (int i = 0; i < read_cnt; i++) {
-        formatted_code->push_back(buf[i]);
-      }
-    }
-    close(pipe_c2p[0]);
-    // *formatted_code = FormatCodeUsingChroma(*formatted_code, "cpp",
-    // "github");
-    *formatted_code = FormatCodeUsingFSH(*formatted_code, "cpp");
-  } else {
-    // In child process, call execve into the clang format.
-
-    // Close unused pipes.
-    close(pipe_p2c[1]);
-    close(pipe_c2p[0]);
-
-    // Bind the input and output stream to the pipe.
-    dup2(pipe_p2c[0], STDIN_FILENO);
-    dup2(pipe_c2p[1], STDOUT_FILENO);
-
-    close(pipe_p2c[0]);
-    close(pipe_c2p[0]);
-
-    char* clang_format_argv[] = {kClangFormatName, kClangFormatConfig, NULL};
-    char* env[] = {NULL};
-    int ret = execve("/usr/bin/clang-format", clang_format_argv, env);
-    LOG << "CLANG FORMAT ERROR : " << ret;
-  }
-}
 
 bool IsFileExist(const string& filename) {
   std::ifstream f(filename);
   return f.good();
+}
+
+bool CompareToken(const string& content_, int pos, const string& token) {
+  if (pos + token.size() > content_.size()) {
+    return false;
+  }
+  return content_.substr(pos, token.size()) == token;
 }
 
 }  // namespace
@@ -237,8 +119,7 @@ Content::Content(const string& content) : content_(content) { return; }
 
 void Content::AddContent(const string& s) { content_ += s; }
 
-std::vector<HtmlFragments> Content::GenerateFragments(
-    ParserEnvironment* parser_env) {
+std::vector<HtmlFragments> Content::GenerateFragments() {
   // List of generated fragments.
   std::vector<HtmlFragments> fragments;
 
@@ -253,66 +134,74 @@ std::vector<HtmlFragments> Content::GenerateFragments(
 
   std::unordered_map<string, int> token_start_pos = {
       {"**", -1}, {"*", -1},  {"__", -1}, {"_", -1},
-      {"`", -1},  {"$$", -1}, {"~", -1}};
+      {"`", -1},  {"$$", -1}, {"~~", -1}};
 
-  std::vector<std::pair<string, HtmlFragments::Types>> priorities = {
-    {"`", HtmlFragments::Types::INLINE_CODE},
-    {"$$", HtmlFragments::Types::INLINE_MATH},
-    {"~", HtmlFragments::Types::STRIKE_THROUGH},
-    {"**", HtmlFragments::Types::BOLD},
-    {"__", HtmlFragments::Types::BOLD},
-    {"*", HtmlFragments::Types::ITALIC},
-    {"_", HtmlFragments::Types::ITALIC},
-  };
+  std::unordered_map<string, HtmlFragments::Types> token_and_type = {
+      {"`", HtmlFragments::Types::INLINE_CODE},
+      {"$$", HtmlFragments::Types::INLINE_MATH},
+      {"~~", HtmlFragments::Types::STRIKE_THROUGH},
+      {"**", HtmlFragments::Types::BOLD},
+      {"__", HtmlFragments::Types::BOLD},
+      {"*", HtmlFragments::Types::ITALIC},
+      {"_", HtmlFragments::Types::ITALIC}};
 
-  for (size_t i = 0; i < content_.size(); i++) {
+  // When one of following tokens are activated, it ignores anything that
+  // comes after.
+  std::vector<string> high_priorities = {"`", "$$"};
 
-  }
-}
-
-string Content::OutputHtml(ParserEnvironment* parser_env) {
-  // When both not defined :
-  //  Neither of bold_start < italic_start nor bold_start > italic_start
-  // When only one of them are defined :
-  //  (defined one) < (not defined one)
-  // When both are defined :
-  //  (earlier one) < (later one)
-  const int int_max = std::numeric_limits<int>::max();
-
-  int bold_start = int_max;
-  int italic_start = int_max;
-
-  int code_start = -1;
-  int math_start = -1;
+  // Following tokens can come play between each other.
+  std::vector<string> low_priorities = {"~~", "**", "__", "*", "_"};
 
   int text_start = -1;
-  std::vector<HtmlFragments> fragments;
 
-  std::vector<std::function<size_t(Content*, const size_t,
-                                   std::vector<HtmlFragments>*, int*)>>
-      handlers = {&Content::HandleLinks, &Content::HandleImages,
-                  &Content::HandleCodes, &Content::HandleSpecialCommands};
-  // Any unescaped * or _ are considered as a format token.
+  // Now iterate through each character in the content and parse it.
   for (size_t i = 0; i < content_.size(); i++) {
-    // Inline code escapes everything except `.
-    if (code_start != -1) {
-      if (content_[i] == '`') {
-        fragments.emplace_back(HtmlFragments::Types::INLINE_CODE, code_start,
+    string activated_high_priority_token;
+    for (const string& token : high_priorities) {
+      if (token_start_pos.at(token) != -1) {
+        activated_high_priority_token = token;
+        break;
+      }
+    }
+
+    // When high priority token is already activated, then we do not
+    // proceed to process other token.
+    if (!activated_high_priority_token.empty()) {
+      if (CompareToken(content_, i, activated_high_priority_token)) {
+        fragments.emplace_back(token_and_type[activated_high_priority_token],
+                               token_start_pos[activated_high_priority_token] +
+                                   activated_high_priority_token.size(),
                                i - 1);
-        code_start = -1;
+        token_start_pos[activated_high_priority_token] = -1;
+        i += (activated_high_priority_token.size() - 1);
       }
       continue;
     }
-    if (math_start != -1) {
-      if (content_[i] == '$' && i + 1 < content_.size() &&
-          content_[i + 1] == '$') {
-        fragments.emplace_back(HtmlFragments::Types::INLINE_MATH, math_start,
-                               i);
-        math_start = -1;
-        i += 1;
+
+    bool token_handled = false;
+    for (const string& token : high_priorities) {
+      if (CompareToken(content_, i, token)) {
+        if (text_start != -1) {
+          fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
+          text_start = -1;
+        }
+        token_start_pos[token] = i;
+        token_handled = true;
+        i += (token.size() - 1);
+        break;
       }
+    }
+
+    if (token_handled) {
       continue;
     }
+
+    // Handle links and images.
+    std::vector<std::function<size_t(Content*, const size_t,
+                                     std::vector<HtmlFragments>*, int*)>>
+        handlers = {&Content::HandleLinks, &Content::HandleImages,
+                    &Content::HandleSpecialCommands};
+
     bool handled = false;
     for (const auto& handler : handlers) {
       size_t result = handler(this, i, &fragments, &text_start);
@@ -322,84 +211,95 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
         break;
       }
     }
-    if (handled) continue;
+    if (handled) {
+      continue;
+    }
 
-    // Handles Bold, Italic, Strikethroughs here.
-    int matches = Max(FindOneOrTwoConsecutiveChar(content_, i, '*'),
-                      FindOneOrTwoConsecutiveChar(content_, i, '_'),
-                      FindOneOrTwoConsecutiveChar(content_, i, '~'),
-                      FindOneOrTwoConsecutiveChar(content_, i, '`'),
-                      FindOneOrTwoConsecutiveChar(content_, i, '$'));
+    // Now try to process low priority tokens.
+    for (const string& token : low_priorities) {
+      if (CompareToken(content_, i, token)) {
+        token_handled = true;
 
-    if (matches == 0) {
-      if (text_start == -1) {
-        text_start = i;
-      }
-    } else {
-      // Since tilde (~) is ignored.
-      if (matches == 1 && content_[i] == '~') continue;
-      if (matches == 1 && content_[i] == '`') {
-        if (text_start != -1) {
-          fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
+        int token_start = token_start_pos[token];
+        if (token_start == -1) {
+          if (text_start != -1) {
+            fragments.emplace_back(HtmlFragments::Types::TEXT, text_start,
+                                   i - 1);
+            text_start = -1;
+          }
+          fragments.emplace_back(token_and_type[token]);
+
+          token_start_pos[token] = i;
+          i += (token.size() - 1);
+        } else {
+          // There is one edge case we have to care about.
+          // When '**' is found, it is possible that it is actually two
+          // separate '*' and '*'. The only case this is true is
+          // '**' token came before '*' is entered.
+          // E.g  **abc*c***
+          //  ==> **abc*c* **  (1)
+          //      *abc**c***
+          //  ==> *abc**c** *  (2)
+
+          if (text_start != -1) {
+            fragments.emplace_back(HtmlFragments::Types::TEXT, text_start,
+                                   i - 1);
+            text_start = -1;
+          }
+          if (token.size() == 2) {
+            string half_token = token.substr(0, 1);
+            if (token_start < token_start_pos[half_token]) {
+              // In this case we have to recognize token as a half token.
+              // Note that this is the case (1).
+              fragments.emplace_back(token_and_type[half_token]);
+              token_start_pos[half_token] = -1;
+              i += (half_token.size() - 1);
+            } else {
+              fragments.emplace_back(token_and_type[token]);
+              token_start_pos[token] = -1;
+              i += (token.size() - 1);
+            }
+          } else {
+            fragments.emplace_back(token_and_type[token]);
+            token_start_pos[token] = -1;
+            i += (token.size() - 1);
+          }
           text_start = -1;
         }
-        if (code_start == -1) {
-          code_start = i + 1;
-        } else {
-          LOG << "Inline Code Error :: code start is " << code_start;
-        }
-        continue;
-      }
-      // Inline math.
-      if (matches == 2 && content_[i] == '$') {
-        if (text_start != -1) {
-          fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
-          text_start = -1;
-        }
-        if (math_start == -1) {
-          math_start = i + 1;
-        } else {
-          LOG << "Inline Math Error :: math start is " << math_start;
-        }
-        continue;
-      }
-      // Mark the end of the text segment.
-      if (text_start != -1) {
-        fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
-        text_start = -1;
-      }
-      if (matches == 2) {
-        // If italic * is defined later than the defined italic, then we only
-        // read one *.
-        if (bold_start < italic_start && italic_start != int_max) {
-          italic_start = int_max;
-          fragments.emplace_back(HtmlFragments::Types::ITALIC);
-        } else {
-          bold_start = (bold_start == int_max ? i : int_max);
-          fragments.emplace_back(HtmlFragments::Types::BOLD);
-          i++;
-        }
-      } else if (matches == 1) {
-        italic_start = (italic_start == int_max ? i : int_max);
-        if (text_start != -1) {
-          fragments.emplace_back(HtmlFragments::Types::TEXT, text_start, i - 1);
-          text_start = -1;
-        }
-        fragments.emplace_back(HtmlFragments::Types::ITALIC);
+
+        break;
       }
     }
+
+    if (token_handled) {
+      continue;
+    }
+
+    // Otherwise, it is a simple text token.
+    if (text_start == -1) {
+      text_start = i;
+    }
   }
+
+  // Handle last chunk of text_start (if exists).
   if (text_start != -1) {
     fragments.emplace_back(HtmlFragments::Types::TEXT, text_start,
                            content_.size() - 1);
   }
 
+  return fragments;
+}
+
+string Content::OutputHtml(ParserEnvironment* parser_env) {
+  std::vector<HtmlFragments> fragments = GenerateFragments();
+
   // Now we have to generate formatted html.
 
   // First Format all the code.
-  ClangFormatEntireCode(&fragments);
   bool bold = false;
   bool italic = false;
+  bool strike_through = false;
+
   string html = "<p>";
   for (size_t i = 0; i < fragments.size(); i++) {
     if (fragments[i].type == HtmlFragments::Types::BOLD) {
@@ -416,6 +316,13 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
         html += "</span>";
       }
       italic = !italic;
+    } else if (fragments[i].type == HtmlFragments::Types::STRIKE_THROUGH) {
+      if (!strike_through) {
+        html += "<span class='font-strike'>";
+      } else {
+        html += "</span>";
+      }
+      strike_through= !strike_through;
     } else if (fragments[i].type == HtmlFragments::Types::SIDENOTE) {
       html +=
           StrCat("</p><aside class='sidenote'>",
@@ -501,8 +408,8 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
         html += StrCat("<code class='inline-code'>", inline_code, "</code>");
       }
     } else if (fragments[i].type == HtmlFragments::Types::INLINE_MATH) {
-      html += StrCat("<span class='math-latex'>",
-                     GetHtmlFragmentText(content_, fragments[i]), "</span>");
+      html += StrCat("<span class='math-latex'>$",
+                     GetHtmlFragmentText(content_, fragments[i]), "$</span>");
     } else {
       html += GetHtmlFragmentText(content_, fragments[i]);
     }
@@ -584,90 +491,6 @@ size_t Content::HandleImages(const size_t start_pos,
   // Need to change LINK to IMAGE.
   fragments->back().type = HtmlFragments::Types::IMAGE;
   return res;
-}
-
-size_t Content::HandleCodes(const size_t start_pos,
-                            std::vector<HtmlFragments>* fragments,
-                            int* text_start) {
-  if (start_pos + 2 >= content_.size() ||
-      content_.substr(start_pos, 3) != "```") {
-    return start_pos;
-  }
-  // Need to find the code style.
-  size_t first_white_space =
-      FindFirstOfAny(content_, start_pos, " \n") - content_.begin();
-  const string code_style =
-      content_.substr(start_pos + 3, first_white_space - (start_pos + 3));
-
-  size_t code_start = first_white_space + 1;
-  size_t code_end;
-  if ((code_end = content_.find("```", code_start)) == string::npos) {
-    return start_pos;
-  }
-
-  code_end--;
-  if (*text_start != -1) {
-    fragments->push_back(HtmlFragments(HtmlFragments::Types::TEXT, *text_start,
-                                       start_pos - 1, code_style));
-    *text_start = -1;
-  }
-  fragments->push_back(HtmlFragments(HtmlFragments::Types::CODE, code_start,
-                                     code_end, code_style));
-  return code_end + 3;
-}
-
-void Content::ClangFormatEntireCode(std::vector<HtmlFragments>* fragments) {
-  std::vector<std::thread> format_ops;
-
-  for (auto& fragment : *fragments) {
-    if (fragment.type == HtmlFragments::Types::CODE) {
-      if (fragment.code_style == "warning") {
-        string warning_str = content_.substr(
-            fragment.str_start, fragment.str_end - fragment.str_start);
-        EscapeHtmlString(&warning_str);
-        fragment.formatted_code = StrCat(
-            "<pre class='warning'>", OutputLinksInBox(warning_str), "</pre>");
-      } else if (fragment.code_style == "info") {
-        string info_str = content_.substr(
-            fragment.str_start, fragment.str_end - fragment.str_start);
-        EscapeHtmlString(&info_str);
-        fragment.formatted_code =
-            StrCat("<pre class='info'>", OutputLinksInBox(info_str), "</pre>");
-      } else if (fragment.code_style == "exec") {
-        string info_str = content_.substr(
-            fragment.str_start, fragment.str_end - fragment.str_start);
-        EscapeHtmlString(&info_str);
-        fragment.formatted_code = StrCat("<pre class='exec-preview'>",
-                                         OutputLinksInBox(info_str), "</pre>");
-      } else if (fragment.code_style == "cpp-formatted") {
-        string formatted_code = content_.substr(
-            fragment.str_start, fragment.str_end - fragment.str_start + 1);
-        formatted_code = FormatCodeUsingFSH(formatted_code, "cpp");
-        fragment.formatted_code = formatted_code;
-      } else if (fragment.code_style == "py") {
-        string formatted_code = content_.substr(
-            fragment.str_start, fragment.str_end - fragment.str_start + 1);
-        formatted_code = FormatCodeUsingFSH(formatted_code, "py");
-        fragment.formatted_code = formatted_code;
-      } else if (fragment.code_style == "cpp" ||
-                 fragment.code_style == "info_format") {
-        // Sometimes the code contains NBSP character. This hinders the code to
-        // be correctly formatted by the clang-format.
-        string unformatted_code = content_.substr(
-            fragment.str_start, fragment.str_end - fragment.str_start + 1);
-        RemoveNbsp(&unformatted_code);
-        format_ops.emplace_back(DoClangFormat, unformatted_code,
-                                &fragment.formatted_code);
-      } else {
-        string unformatted_code = content_.substr(
-            fragment.str_start, fragment.str_end - fragment.str_start + 1);
-        fragment.formatted_code = unformatted_code;
-      }
-    }
-  }
-  for (auto& t : format_ops) {
-    t.join();
-  }
 }
 
 }  // namespace md_parser

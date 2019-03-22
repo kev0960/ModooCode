@@ -8,6 +8,7 @@
 #include "chroma.h"
 #endif
 
+#include "content_box.h"
 #include "content_header.h"
 #include "content_list.h"
 #include "content_math.h"
@@ -119,12 +120,9 @@ void MDParser::AnalyzeLine(const std::string& line,
     if (in_code_) {
       in_code_ = false;
       newline_started_ = true;
-      parser_env_.AppendToLastContent(StrCat("\n", line));
     } else {
       in_code_ = true;
-      // For codes, we have to respect the line break. Think it as a verbatim
-      // environment.
-      parser_env_.AddNewContent(new Content(line));
+      parser_env_.AddNewContent(new BoxContent("", line.substr(3)));
     }
     return;
   } else if (in_code_) {
