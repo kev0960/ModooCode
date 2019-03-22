@@ -292,7 +292,7 @@ int main() {
 
   컴파일 하면 아래와 같이 달콤한 오류를 볼 수 있습니다.
 
-```warning
+```compiler-warning
 error C2065: 'i' : 선언되지 않은 식별자입니다.
 ```
 

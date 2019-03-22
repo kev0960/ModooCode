@@ -176,13 +176,13 @@ sum = sum + i;
 
   위 `for` 문을 보통 수식으로 풀어쓰면 아래와 같이 됩니다.
 
-```info
+```info-format
 sum = 0; // 초기 조건
 sum = sum + 0;
 sum = sum + 1; // sum = 1;
 sum = sum + 2; // sum = 3;
 sum = sum + 3; // sum = 6;
-....
+// ....
 sum = sum + 19; // sum = 190;
 ```
 

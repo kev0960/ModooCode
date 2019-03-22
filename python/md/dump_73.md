@@ -13,7 +13,7 @@ publish_date : 2010-04-24
 
 #@ fsetpos
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fsetpos ( FILE * stream, const fpos_t * pos );

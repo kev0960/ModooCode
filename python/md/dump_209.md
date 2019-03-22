@@ -876,8 +876,7 @@ class Child : public Parent {
 
 만일 컴파일 하였다면 아래와 같은 컴파일 애러를 볼 수 있습니다.
 
-```warning
-
+```compiler-warning
 error C2248: 'Parent::parent_string' : cannot access private member declared in class 'Parent'
 (Parent 의 private 멤버에 접근할 수 없습니다)
 ```
@@ -988,8 +987,7 @@ int main() {
 
 컴파일 하였다면
 
-```warning
-
+```compiler-warning
 error C2247: 'Parent::parent_string' not accessible because 'Child' uses 'private' to inherit from 'Parent'
 (Parent::parnet_string 은 'Child' 가 'Parent'  에서 private 상속을 하였기 때문에 접근이 불가능합니다.)
 ```

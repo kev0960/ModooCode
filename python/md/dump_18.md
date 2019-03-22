@@ -571,7 +571,7 @@ int main() {
 
 컴파일 해보면 아래와 같은 경고를 볼 수 있습니다.
 
-```warning
+```compiler-warning
 warning C4700: 초기화되지 않은 'arr' 지역 변수를 사용했습니다.
 ```
 
@@ -596,7 +596,7 @@ int main() {
 
   이번에는 배열의 경우를 살펴 봅시다. 상콤한 기분으로 컴파일을 했으나,
 
-```warning
+```compiler-warning
 warning C4700: 초기화되지 않은 'arr' 지역 변수를 사용했습니다.
 ```
 

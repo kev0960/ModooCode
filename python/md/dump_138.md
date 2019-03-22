@@ -44,7 +44,7 @@ int number_of_people;  // OK
 double interest_rate;  // OK
 ```
 
-```warning
+```code-warning
     int num_of_ppl; // BAD
     double intrst_rt; // BAD
 ```
@@ -62,7 +62,7 @@ int NumberOfPeople;    // Ok
 
 위 처럼 두 가지 방법을 사용하는데 하나는 이름의 띄어쓰기 부분에 `_` 를 넣는 것이고 다른 하나는 띄어쓰기 부분에 대문자로 구분하는 것인데, 저의 경우 전자의 방법을 선호합니다. 물론 이는 사람 마다 개인차가 있겠지만, 가장 중요한 것은 소스 상에서 위 둘을 같이 사용하는 것을 막는 것인데, 예를 들어서
 
-```warning
+```code-warning
     int NumberOf_People; // BAD
 ```
 

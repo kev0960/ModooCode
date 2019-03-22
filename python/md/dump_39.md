@@ -12,8 +12,7 @@ publish_date : 2010-01-29
 
 #@ fputc
 
-```info
-
+```info-format
 #include <stdio.h> //C++ 의 경우 <cstdio>
 int fputc ( int character, FILE * stream );
 ```

@@ -12,8 +12,7 @@ publish_date : 2010-02-11
 
 #@ fopen
 
-```info
-
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 FILE * fopen ( const char * filename, const char * mode );
 ```

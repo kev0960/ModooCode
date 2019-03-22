@@ -13,7 +13,7 @@ publish_date : 2011-01-05
 
 #@ strftime
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 
 size_t strftime ( char * ptr, size_t maxsize, const char * format, const struct tm * timeptr );

@@ -13,7 +13,7 @@ publish_date : 2010-08-01
 
 #@ strxfrm
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 size_t strxfrm ( char * destination, const char * source, size_t num );

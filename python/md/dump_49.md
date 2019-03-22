@@ -13,7 +13,7 @@ publish_date : 2010-02-04
 
 #@ ungetc
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int ungetc ( int character, FILE * stream );

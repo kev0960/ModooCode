@@ -13,7 +13,7 @@ publish_date : 2010-05-23
 
 #@ strncat
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 char * strncat ( char * destination, char * source, size_t num );

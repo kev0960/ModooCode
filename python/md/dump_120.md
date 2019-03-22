@@ -13,7 +13,7 @@ publish_date : 2010-12-30
 
 #@ localtime
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 
 struct tm * localtime ( const time_t * timer );

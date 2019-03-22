@@ -13,7 +13,7 @@ publish_date : 2010-12-26
 
 #@ mktime
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 
 time_t mktime ( struct tm * timeptr );

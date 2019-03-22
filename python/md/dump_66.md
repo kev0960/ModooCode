@@ -13,7 +13,7 @@ publish_date : 2010-02-22
 
 #@ sprintf
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int sprintf ( char * str, const char * format, ... );

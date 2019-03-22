@@ -277,7 +277,7 @@ class Vector {
 
 맨 위에
 
-```info
+```info-format
 template <typename T>
 ```
 
@@ -286,7 +286,7 @@ template <typename T>
 
 참고로, 간혹
 
-```info
+```info-format
 template <class T>
 ```
 
@@ -993,7 +993,7 @@ if (cont[i] > cont[j]) {
 
 에서 `size(), operator[], swap()` 등이 사용되었다는 것입니다. 만약에 `Cont` 로 전달된 타입에 저러한 것들이 정의가 되어 있지 않다면 어떨까요? 예를 들어서
 
-```info
+```info-format
 
 struct dummy
 {
@@ -1004,7 +1004,7 @@ bubble_sort(a);
 
 를 하게 된다면
 
-```warning
+```compiler-warning
 error C2039: 'size': is not a member of 'dummy'
 // 생략 ...
 ```
@@ -1027,7 +1027,7 @@ error C2039: 'size': is not a member of 'dummy'
 첫번째 방법은 C 를 배우는 단계에서나 적합한 방법입니다. 여러분은 C++ 를 배우고 있으니 더 나은 방법을 생각해야겠지요?
 두번째 방법은 여러분들이 만든 객체를 사용할 때 적용할 수 있는 방법입니다. 예를 들어서,
 
-```info
+```info-format
 
 struct customClass {
 // ..
@@ -1280,14 +1280,14 @@ bubble_sort(int_vec);
 
 실제로, C++ 표준 라이브러리의 `sort` 함수를 살펴보아도 비교 클래스를 받지 않는
 
-```info
+```info-format
 template< class RandomIt >
 void sort( RandomIt first, RandomIt last );
 ```
 
 와
 
-```info
+```info-format
 template< class RandomIt,class Compare >
 void sort( RandomIt first, RandomIt last,Compare comp );
 ```

@@ -13,9 +13,7 @@ publish_date : 2010-11-27
 
 #@ strtok
 
-
-
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 char * strtok ( char * str, const char * delimiters );
@@ -34,9 +32,6 @@ char * strtok ( char * str, const char * delimiters );
 
 
 ###  인자
-
-
-
 
 `str`
 

@@ -13,7 +13,7 @@ publish_date : 2010-05-02
 
 #@ strcpy
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 char * strcpy ( char * destination, const char * source );

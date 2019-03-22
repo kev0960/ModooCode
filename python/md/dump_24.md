@@ -88,7 +88,7 @@ int main() {
 
 컴파일 해보면 오류가 발생합니다.
 
-```warning
+```compiler-warning
 error C2166: l-value가 const 개체를 지정합니다.
 ```
 
@@ -109,7 +109,7 @@ const int* pa =
 
   결과적으로 아래의 문장은 오류를 출력합니다.
 
-```info
+```code-warning
   *pa = 3; // 올바르지 않은 문장
 ```
 
@@ -138,7 +138,7 @@ int main() {
 
 역시 컴파일 해보면
 
-```warning
+```compiler-warning
  error C2166: l-value가 const 개체를 지정합니다.
 ```
 
@@ -292,7 +292,7 @@ int main() {
 
 아마 컴파일 해보면 아래와 같은 오류를 만날 수 있습니다.
 
-```warning
+```compiler-warning
 error C2110: '+' : 두 포인터를 더할 수 없습니다.
 ```
 
@@ -506,7 +506,7 @@ int main() {
 
   컴파일 해보면 아래와 같은 오류가 뜹니다.
 
-```warning
+```compiler-warning
 error C2106: '=' : 왼쪽 피연산자는 l-value이어야 합니다.
 ```
 

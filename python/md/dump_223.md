@@ -375,7 +375,7 @@ int main() {
 
 
 
-```warning
+```code-warning
 for (; itr != end_itr; itr ++) {
 if (*itr == 20) {
 vec.erase(itr);
@@ -383,7 +383,7 @@ vec.erase(itr);
 }
 ```
 
-문제는 바로 위 코드에서 발생합니다.컨테이너에 원소를 추가하거나 제거하게 되면 기존에 사용하였던 모든 반복자들을 사용할 수 없게됩니다. 다시 말해 위 경우 `vec.erase(itr)` 을 수행하게 되면 더이상 `itr` 은 유효한 반복자가 아니게 되는 것이지요. 또한 `end_itr` 역시 무효화 됩니다.
+문제는 바로 위 코드에서 발생합니다. 컨테이너에 원소를 추가하거나 제거하게 되면 기존에 사용하였던 모든 반복자들을 사용할 수 없게됩니다. 다시 말해 위 경우 `vec.erase(itr)` 을 수행하게 되면 더이상 `itr` 은 유효한 반복자가 아니게 되는 것이지요. 또한 `end_itr` 역시 무효화 됩니다.
 
 
 따라서 `itr != end_itr` 이 영원히 성립되며 무한 루프에 빠지게되어 위와 같은 오류가 발생합니다.
@@ -391,7 +391,7 @@ vec.erase(itr);
 
 그렇다면
 
-```warning
+```code-warning
 vector<int>::iterator itr = vec.begin();
 for (; itr != vec.end(); itr ++) {
   if (*itr == 20) {
@@ -494,7 +494,7 @@ int main() {
 
 컴파일 하였다면
 
-```warning
+```compiler-warning
 'citr': you cannot assign to a variable that is const
 ```
 
@@ -625,8 +625,7 @@ itr++    // ++itr
 
 다시말해
 
-```warning
-
+```code-warning
 itr + 5 // 불가능!
 ```
 

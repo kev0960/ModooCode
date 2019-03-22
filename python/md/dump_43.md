@@ -263,7 +263,7 @@ int add_book(char (*book_name)[30], char (*auth_name)[30],
 
 와 같이 해야 하는데 마지막의 세미 콜론을 빠뜨리게 되면
 
-```warning
+```compiler-warning
 error C2085: 'main' : 정식 매개 변수 목록에 없습니다.
 error C2143: 구문 오류 : ';'이(가) '{' 앞에 없습니다.
 error C2082: 'num_total_book' 정식 매개 변수 재정의

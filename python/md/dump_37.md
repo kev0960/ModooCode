@@ -12,8 +12,7 @@ publish_date : 2010-01-28
 
 #@ fgetc
 
-```info
-
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fgetc ( FILE * stream );

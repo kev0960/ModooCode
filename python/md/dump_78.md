@@ -13,7 +13,7 @@ publish_date : 2010-04-25
 
 #@ memmove
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 void * memmove ( void * destination, const void * source, size_t num );

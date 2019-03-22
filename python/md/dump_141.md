@@ -150,7 +150,7 @@ int& ref = number;
 
 즉, `int` 타입의 변수의 레퍼런스를 만들기 위해서는 `int&` 로 하면 되고, 그 오른쪽에 참고하고 싶은 것을 써주면 되지요. 어떤 특정 타입 `T` 에 대해 참조자를 만들고 싶다면 `T&` 와 같이 정의하면 됩니다. 아무튼, 이렇게 한다면 여러분은 `number` 에 다른 이름인 `ref` 를 부여한 것이나 마찬가지 입니다. 즉 별명을 지어준 것이라 생각하세요. 참조자의 가장 중요한 특성으로 반드시 정의 시 초기화 되어야 한다 입니다. 다시 말해, 아래와 같은 문장은 존재할 수 없다는 것이지요.
 
-```warning
+```code-warning
 int &ref;
 ```
 
@@ -350,7 +350,7 @@ int main() {
 
 위와 같은 소스를 살펴봅시다. 일단 컴파일 해보면 아래와 같은 오류가 나타날 것입니다.
 
-```warning
+```compiler-warning
 error C2440: 'initializing' : cannot convert from 'int' to 'int &'
 ```
 
@@ -389,7 +389,7 @@ int& arr[2] = {a, b};
 
   그런데 말이죠. 컴파일 하기도 전에 빨간줄이 그어지네요. 아무튼 컴파일을 해보면
 
-```warning
+```compiler-warning
  error C2234: 'arr' : arrays of references are illegal
 ```
 

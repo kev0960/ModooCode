@@ -61,7 +61,7 @@ int Print_Status(struct HUMAN human) {
 
 위 코드는 이전에 구조체 단원에서 만들었던 루저-위너 구별 프로그램 입니다. 그런데 위 코드에서 한 가지 귀찮은 점이 있습니다. 바로, 구조체를 사용할 때 마다 앞에 `struct` 키워드를 붙여야 한다는 점입니다. 이게 상당히 짜증나는 일인데, 간혹 `struct` 키워드를 붙이지 않는 날에는
 
-```warning
+```compiler-warning
 error C2146: 구문 오류 : ')'이(가) 'human' 식별자 앞에 없습니다.
 error C2061: 구문 오류 : 식별자 'human'
 error C2059: 구문 오류 : ';'
@@ -479,7 +479,7 @@ int main() {
 
 컴파일 하였다면
 
-```warning
+```compiler-warning
 error C2011: 'Weird' : 'struct' 형식 재정의
  'Weird' 선언을 참조하십시오.
 ```

@@ -51,7 +51,7 @@ int main() {
   대충 직역해 보면 아래와 같은 의미 입니다.
 
 
-```warning
+```compiler-warning
 경고 C4244 : '=' ": 'double' 로 부터 'int' 로의 형 변환, 데이터의 손실이 예상됨.
 ```
 

@@ -727,13 +727,11 @@ void wrapper(T& u) {
 
 그렇다면 위 경우는 어떨까요?
 
-```warning
+```compiler-warning
 error: cannot bind non-const lvalue reference of type 'A&' to an rvalue of type 'A'
   wrapper(A());
           ^~~
 ```
-
-
 
 위와 같은 컴파일 오류가
 
@@ -888,8 +886,7 @@ void wrapper(T&& u) {
 
 일단 우리의 `wrapper` 함수는 인자로 아예 `T&&` 를 받아버리고 있습니다. 아니 이렇게 된다면 도대체 좌측값은 어떻게 받겠다는 것일까요? 사실 C++ 11 에서 템플릿 인자들 간에 다음과 같은 레퍼런스 겹침 규칙 (reference collapsing rule) 을 정하였습니다.
 
-```info
-
+```info-format
 typedef int& T;
 T& r1; // int& &; r1 은 int&
 T&& r2; // int & &&;  r2 는 int&

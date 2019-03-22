@@ -252,7 +252,7 @@ Complex operator+(const Complex& a, const Complex& b) { return a + b; }
 
 위 코드를 컴파일 시에 다음과 같은 경고 메세지를 볼 수 있을 것입니다.
 
-```warning
+```compiler-warning
 warning C4717: 'operator+' : recursive on all control paths, function will cause runtime stack overflow
 ```
 
@@ -268,7 +268,7 @@ Complex operator+(const Complex& a, const Complex& b) { return a.operator+(b); }
 
 이 역시 컴파일 되지 않습니다. 아마 오류의 내용은 다음과 같을 것입니다.
 
-```warning
+```compiler-warning
 error C2662: 'Complex::operator +' : cannot convert 'this' pointer from 'const Complex' to 'Complex &'
 ```
 

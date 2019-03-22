@@ -13,7 +13,7 @@ publish_date : 2010-12-12
 
 #@ strlen
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 size_t strlen ( const char * str );

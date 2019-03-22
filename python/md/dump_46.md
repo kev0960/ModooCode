@@ -13,10 +13,9 @@ publish_date : 2010-02-04
 
 #@ putc
 
-```info
-
-
-#include <stdio.h> // C++ 에서는 <cstdio>int putc ( int character, FILE * stream );
+```info-format
+#include <stdio.h> // C++ 에서는 <cstdio>
+int putc ( int character, FILE * stream );
 ```
 
 

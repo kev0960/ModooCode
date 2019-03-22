@@ -13,7 +13,7 @@ publish_date : 2010-02-08
 
 #@ fclose
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fclose ( FILE * stream );

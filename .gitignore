@@ -92,3 +92,5 @@ file_info_db
 auth.json
 
 .DS_Store
+.vscode/**
+**/.vscode/*/**

@@ -13,7 +13,7 @@ publish_date : 2010-04-24
 
 #@ rewind
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 void rewind ( FILE * stream );

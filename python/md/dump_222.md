@@ -33,7 +33,7 @@ publish_date : 2017-07-02
 
 
 지난번 생각해보기 문제는 아래와 같습니다.
-```info
+```info-format
 1. TMP 를 사용해서 어떤 수가 소수인지 아닌지를 판별하는 프로그램을 만들어보세요. (난이도 : 상)
 
 int main()
@@ -98,7 +98,7 @@ struct check_div<N, N / 2> {
 
 무언가 잘 짜여진 코드 같습니다. 하지만 실제로 컴파일 해보면 다음과 같은 오류가 발생합니다.
 
-```warning
+```compiler-warning
 check_div<N,N/>: non-type parameter of a partial specialization must be a simple identifier
 ```
 
@@ -117,7 +117,7 @@ struct check_div<N, N / 2> {
 
 이 부분에서 발생하는 문제 이지요. 위 오류가 발생한 문제는 템플릿 부분 특수화 시에 반드시 다른 연산자가 붙지 않고 단순한 식별자만 입력해주어야만 합니다. 따라서 C++ 컴파일러에 한계 상
 
-```warning
+```compiler-warning
 struct check_div<N, N / 2>
 ```
 
@@ -191,7 +191,7 @@ struct check_div<N, divide<N, two>::result> {
 그런데 컴파일 한다면 다음과 같은 오류를 보게 됩니다.
 
 
-```warning
+```compiler-warning
 'check_div': 'divide<N,two>::result' is not a valid template type argument for parameter 'd'
 ```
 
@@ -218,7 +218,7 @@ struct check_div<N, divide<N, two>::result> {
 
 그런데, 컴파일러에 구조상 어떠한 식별자(변수 이름이든 함수 이름이든 코드 상의 이름들 `-` 위 코드의 경우 `add, check_div,, result, one` 등등 ...) 를 보았을 때 이 식별자가 '값' 인지 '타입' 인지 결정을 해야 합니다. 왜냐하면 예를들어서
 
-```info
+```info-format
 template <typename T>
 int func() {
   T::t* p;
@@ -237,7 +237,7 @@ class B {
 
 위와 같은 템플릿 함수에서 저 문장을 해석할 때 만약에 클래스 `A` 에 대해서, `func` 함수를 특수화 한다면, `t` 가 어떠한 `int` 값이 되어서
 
-```info
+```info-format
 T::t * p;
 ```
 
@@ -248,7 +248,7 @@ T::t * p;
 
 반면에 `func` 함수가 클래스 `B` 에 대해서 특수화 된다면,
 
-```info
+```info-format
 T::t* p;
 ```
 
@@ -260,7 +260,7 @@ T::t* p;
 우리가 쓴 코드도 마찬가지로 컴파일러가 `result` 가 항상 '타입' 인지 아니면 '값' 인지 알 수 없습니다. 예컨대 만약에
 
 
-```info
+```info-format
 template <>
 struct divide <int a, int b> {
   const static int result = a + b;
@@ -687,7 +687,7 @@ int main() {
 
 컴파일 하였다면 다음과 같은 오류가 납니다.
 
-```warning
+```compiler-warning
 no operator "+" matches these operands
 binary '+': no operator found which takes a right-hand operand of type 'quantity<double,Dim<zero,one,zero>>' (or there is no acceptable conversion)
 ```
@@ -696,8 +696,7 @@ binary '+': no operator found which takes a right-hand operand of type 'quantity
 
 즉 위 `+` 에 해당하는 연산자 함수를 찾을 수 없다는 것이지요. 예상했던 대로,
 
-```warning
-
+```code-warning
 // Bad
 kg + meter;
 ```
@@ -706,8 +705,7 @@ kg + meter;
 
 위 부분에서 오류가 발생하는데, `kg` 와 `meter` 의 단위가 다르기 때문에 발생하게 됩니다. 반면에
 
-```info
-
+```info-format
 // Good
 kg + kg;
 ```

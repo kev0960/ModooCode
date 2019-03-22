@@ -13,7 +13,7 @@ publish_date : 2010-02-08
 
 #@ perror
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 void perror ( const char * str );

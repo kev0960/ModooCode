@@ -13,7 +13,7 @@ publish_date : 2010-12-25
 
 #@ clock
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 
 clock_t clock ( void );

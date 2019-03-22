@@ -13,7 +13,7 @@ publish_date : 2010-04-24
 
 #@ fseek
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fseek ( FILE * stream, long int offset, int origin );

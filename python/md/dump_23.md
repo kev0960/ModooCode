@@ -341,7 +341,7 @@ int main() {
 
 안타깝게도 `printf` 부분에서 아래와 같은 오류가 출력됩니다.
 
-```warning
+```compiler-warning
 error C2100: 간접 참조가 잘못되었습니다.
 ```
 

@@ -15,7 +15,7 @@ publish_date : 2010-04-24
 
 
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 void * memcpy ( void * destination, const void * source, size_t num );

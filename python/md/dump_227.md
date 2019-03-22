@@ -305,10 +305,9 @@ int main() {
 
 컴파일 하였다면 위 오류 `1, 2,` 줄에서 각각 다음과 같은 오류를 볼 수 있습니다.
 
-```warning
-
-ErrorC2106'=': left operand must be l-value
-ErrorC2102'&' requires l-value
+```compiler-warning
+Error C2106'=': left operand must be l-value
+Error C2102'&' requires l-value
 ```
 
 

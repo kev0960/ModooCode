@@ -13,7 +13,7 @@ publish_date : 2010-02-18
 
 #@ setvbuf
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int setvbuf ( FILE * stream, char * buffer, int mode, size_t size );

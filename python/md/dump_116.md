@@ -13,7 +13,7 @@ publish_date : 2010-12-26
 
 #@ asctime
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 
 char * asctime ( const struct tm * timeptr );

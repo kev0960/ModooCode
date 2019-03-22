@@ -13,7 +13,7 @@ publish_date : 2010-08-02
 
 #@ strpbrk
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strpbrk ( const char * str1, const char * str2 );
@@ -29,7 +29,7 @@ const char * strpbrk ( const char * str1, const char * str2 );
 
 위에 나온 두 원형은 C++ 에서만 적용된다. (C++ 에서는 함수 오버로딩이 가능하므로) 다만 C 에서는 아래와 같은 하나의 원형만을 가진다.
 
-```info
+```info-format
 char * strpbrk ( const char *, const char * );
 ```
 

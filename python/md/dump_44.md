@@ -14,9 +14,9 @@ publish_date : 2010-02-03
 #@ getchar
 
 
-```info
-
-#include <stdio.h> // C++ 의 경우 <cstdio>int getchar ( void );
+```info-format
+#include <stdio.h> // C++ 의 경우 <cstdio>
+int getchar ( void );
 ```
 
 

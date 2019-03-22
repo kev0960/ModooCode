@@ -249,8 +249,7 @@ int main() {
 
 컴파일 한다면 다음과 같은 오류 메세지를 볼 수 있습니다.
 
-```warning
-
+```compiler-warning
 error C2440: 'initializing' : cannot convert from 'Parent *' to 'Child *'
 Parent * 에서 Child * 로 변환할 수 없습니다.
 ```
@@ -307,8 +306,7 @@ int main() {
 
 컴파일 하였다면
 
-```warning
-
+```compiler-warning
 error C2440: 'initializing' : cannot convert from 'Parent *' to 'Child *'
 ```
 
@@ -653,7 +651,6 @@ p_c->what();
 위 코드를 실행시에 (런타임), 컴퓨터 입장에서;
 
 ```info
-
 "흠, p_c 는 Parent 포인터니까 Parent 의 what() 을 실행해야지"
 "어 근데 what 이 virtual 이네?"
 

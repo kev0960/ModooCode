@@ -114,7 +114,7 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-```warning
+```compiler-warning
 error C2182: 'a' : 'void' 형식을 잘못 사용했습니다.
 ```
 
@@ -178,7 +178,7 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-```warning
+```compiler-warning
 error C2100: 간접 참조가 잘못되었습니다.
 ```
 

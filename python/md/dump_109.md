@@ -14,7 +14,7 @@ publish_date : 2010-12-25
 
 #@ struct tm
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 struct tm
 {
@@ -29,7 +29,6 @@ struct tm
     int tm_isdst;
 };
 ```
-
 
 시간 구조체이다.
 

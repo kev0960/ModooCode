@@ -202,13 +202,13 @@ int main() {
 ![caption=성공적으로 컴파일을 하였습니다](/img/1.1.4.png)
 
 그런데, 간혹 가다 어떤 사람들은 오류가 뜨는 사람들도 있는데, 대표적으로
-```warning
+```compiler-warning
 error C2143: 구문 오류 : ';'이(가) 'return' 앞에 없습니다
 ```
 
 라 던지,
 
-```warning
+```compiler-warning
 error C2001: 상수에 줄 바꿈 문자가 있습니다.
 error C2143: 구문 오류 : ')'이(가) 'return' 앞에 없습니다.
 ```

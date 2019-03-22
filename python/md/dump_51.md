@@ -13,7 +13,7 @@ publish_date : 2010-02-05
 
 #@ feof
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int feof ( FILE * stream );

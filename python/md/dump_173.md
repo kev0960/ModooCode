@@ -187,7 +187,7 @@ int main() {
 
   위 소스를 컴파일 하였다면 오류가 발생함을 알 수 있습니다. 오류를 살짝 보자면
 
-```warning
+```compiler-warning
  error C2668: 'print' : ambiguous call to overloaded function
  could be 'void print(char)'
  or       'void print(int)'

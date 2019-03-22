@@ -386,7 +386,7 @@ _Check_return_opt_ _CRTIMP int __cdecl printf(
 
 이는 다음과 같은 상황을 방지할 수 있습니다.
 
-```info
+```info-format
 /* something.c */
 int A()
 {
@@ -402,7 +402,7 @@ int B()
 
 만일 `something.c` 라는 파일에 위와 같은 소스가 있다고 합시다. 이는 `100%` 오류가 발생됩니다. 왜냐하면 `A()` 함수에서 `B()` 를 호출할 때 `B` 가 무엇인지 뭔지 모르므로 오류가 발생하게 되는 것이지요. (이는 함수 단원에서 공부한 한 바 입니다) 다시 말해 `B()` 를 위에 선언 해주어야 합니다. 아래와 같이요.
 
-```info
+```info-format
 /* something.c */
 int B();
 int A()
@@ -419,7 +419,7 @@ int B()
 
 하지만 헤더파일을 배웠으니 차라리 이렇게 할 바에는 아래와 같이 하는 것이 훨씬 낫을 것이라는 거죠.
 
-```info
+```info-format
 /* something.c */
 #include "something.h"
 int A()
@@ -434,9 +434,8 @@ int B()
 ```
 
 
-```info
+```info-format
 /* something.h*/
-
 int A();
 int B();
 ```

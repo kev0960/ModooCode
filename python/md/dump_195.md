@@ -9,7 +9,7 @@ publish_date : 2013-01-05
 ```
 
 
-```info
+```info-text
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 

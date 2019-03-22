@@ -14,7 +14,7 @@ publish_date : 2011-01-09
 
 #@ atof
 
-```info
+```info-format
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 double atof ( const char * str );

@@ -8,7 +8,7 @@ publish_date : 2011-01-27
 
 #@ atoi
 
-```info
+```info-format
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 int atoi ( const char * str );

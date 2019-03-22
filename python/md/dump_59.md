@@ -7,7 +7,7 @@ publish_date : 2010-02-13
 
 #@ freopen
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 FILE * freopen ( const char * filename, const char * mode, FILE * stream );

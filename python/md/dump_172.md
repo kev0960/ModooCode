@@ -280,7 +280,7 @@ animal.view_stat();
 
 그냥 컴파일 해보면
 
-```warning
+```compiler-warning
 'Animal::set_animal' : cannot access private member declared in class 'Animal'
 ```
 

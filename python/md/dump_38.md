@@ -12,7 +12,7 @@ publish_date : 2010-01-28
 #@ fgets
 
 
-```info
+```info-format
 #include <stdio.h> // C++ 의 경우 <cstdio>
 char * fgets ( char * str, int num, FILE * stream );
 ```

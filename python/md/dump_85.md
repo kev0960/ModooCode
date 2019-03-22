@@ -13,7 +13,7 @@ publish_date : 2010-06-25
 
 #@ strcmp
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 int strcmp ( const char * str1, const char * str2 );

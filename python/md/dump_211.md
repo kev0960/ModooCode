@@ -373,8 +373,7 @@ a.speak();
 만일 `Animal` 의 객체를 생성하려고 한다면 다음과 같은 컴파일 오류를 만날 수 있습니다.
 
 
-```warning
-
+```compiler-warning
 error C2259: 'Animal' : cannot instantiate abstract class
 1>          due to following members:
 1>          'void Animal::speak(void)' : is abstract
@@ -576,14 +575,11 @@ int main() {
 
 그렇다면 만일 클래스 C 의 객체를 생성해서, 위 처럼 중복되는 멤버 변수에 접근한다면;
 
-```warning
-
+```compiler-warning
 error C2385: ambiguous access of 'a'
 1>          could be the 'a' in base 'B'
 1>          or could be the 'a' in base 'A'
 ```
-
-
 
 위 처럼 `B` 의 'a' 인지, `A` 의 'a' 인지 구분할 수 없다는 오류를 발생하게 됩니다. 마찬가지로, 클래스 `A` 와 `B` 에 같은 이름의 함수가 있다면 똑같이 어떤 함수를 호출해야 될 지 구분할 수 없겠지요. 그 외에도 다중 상속은 코드 구조를 매우 복잡하게 만드는 경향이 있기 때문에 C++ 이외에 많은 언어들 (자바, C# 등) 에서는 다중 상속 기능을 지원하고 있지 않습니다.
 

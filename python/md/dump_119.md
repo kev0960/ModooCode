@@ -13,7 +13,7 @@ publish_date : 2010-12-29
 
 #@ gmtime
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 
 struct tm * gmtime ( const time_t * timer );

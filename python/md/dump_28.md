@@ -247,7 +247,7 @@ int read_val(const int val) {
 
 컴파일 하게 되면 아래와 같은 오류를 만나게 됩니다.
 
-```warning
+```compiler-warning
  error C2166: l-value가 const 개체를 지정합니다.
 ```
 

@@ -218,13 +218,12 @@ a = 10;
 
 앞서 배운 바에 따르면 상수와 레퍼런스들은 모두 생성과 동시에 초기화가 되어야 합니다.
 
-```warning
-
+```code-warning
 const int a;
 a = 3;
 
 int& ref; // 이것이 왜 안되는지 기억이 안난다면
-ref = c; // [http://itguru.tistory.com/141](http://itguru.tistory.com/141) 를 참조
+ref = c; // 레퍼런스 강좌를 참조
 ```
 
 
@@ -1018,8 +1017,7 @@ a.show_x();
 
 이번에는 `int&` 가 아닌 그냥 `int` 변수에 'x 의 별명' 을 전달하였습니다. 만일 `d` 가 `int&` 였다면 `x` 의 별명을 받아서 `d` 역시 또 다른 `x` 의 별명이 되었겠지만, `d` 가 그냥 `int` 변수 이므로, 값의 복사가 일어나 d 에는 `x` 의 값이 들어가게 됩니다. 그리고 당연히, `d` 는 `x` 의 별명이 아닌 또 다른 독립적인 변수 이기에, `d =` 3; 을 해도 `x` 의 값은 바뀌지 않은 채, 그냥 4 가 출력되게 되죠.
 
-```warning
-
+```code-warning
 // 아래는 오류
 // int& e = a.get_x();
 // e = 2;
@@ -1030,8 +1028,7 @@ a.show_x();
 
 그럼 주석 처리된 위 예를 살펴봅시다. 주석을 풀면 컴파일이 안되므로 주석 처리 해 놓은 것인데, 실제로 주석을 풀고 컴파일을 해보면
 
-```warning
-
+```compiler-warning
 error C2440: 'initializing' : cannot convert from 'int' to 'int &' (int 를 int& 로 바꿀 수 없습니다)
 ```
 

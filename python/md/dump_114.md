@@ -13,7 +13,7 @@ publish_date : 2010-12-26
 
 #@ time
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 
 time_t time ( time_t * timer );

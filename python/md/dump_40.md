@@ -12,10 +12,9 @@ publish_date : 2010-02-02
 
 #@ fputs
 
-```info
-
-
-﻿<stdio.h> // C++ 에서는 <cstdio>﻿﻿﻿int fputs ( const char * str, FILE * stream );
+```info-format
+#include <stdio.h> // C++ 에서는 <cstdio>
+int fputs ( const char * str, FILE * stream );
 ```
 
 스트림에 문자열을 쓴다.

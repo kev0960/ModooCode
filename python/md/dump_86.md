@@ -13,7 +13,7 @@ publish_date : 2010-07-10
 
 #@ strcoll
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 int strcoll ( const char * str1, const char * str2 );

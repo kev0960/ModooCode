@@ -14,7 +14,7 @@ publish_date : 2011-05-05
 
 #@ srand
 
-```info
+```info-format
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 void srand ( unsigned int seed );

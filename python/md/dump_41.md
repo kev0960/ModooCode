@@ -9,10 +9,9 @@ publish_date : 2010-02-02
 
 
 
-```info
-
-
-﻿#include <stdio.h> // C++ 의 경우 <cstdio>﻿﻿﻿int getc ( FILE * stream );
+```info-format
+#include <stdio.h> // C++ 의 경우 <cstdio>
+int getc ( FILE * stream );
 ```
 
 스트림에서 한 문자를 읽어온다.

@@ -310,7 +310,7 @@ int main() {
 
 그런데 컴파일 하였다면 아래와 같은 오류가 발생합니다.
 
-```warning
+```compiler-warning
 binary '<': no operator found which takes a left-hand operand of type 'const Todo' (or there is no acceptable conversion)
 ```
 
@@ -454,7 +454,7 @@ Todo(1, "프로그래밍 프로젝트")
 
 를 보았을 때
 
-```info
+```info-format
 Todo(1, "농구 하기") < Todo(1, "프로그래밍 프로젝트")
 Todo(1, "프로그래밍 프로젝트") > Todo(1, "농구 하기")
 ```

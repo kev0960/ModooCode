@@ -13,7 +13,7 @@ publish_date : 2010-02-04
 
 #@ putchar
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int putchar ( int character );

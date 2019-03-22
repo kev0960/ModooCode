@@ -15,7 +15,7 @@ publish_date : 2010-02-16
 
 
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 void setbuf ( FILE * stream, char * buffer );

@@ -14,7 +14,7 @@ publish_date : 2011-01-27
 
 #@ atol
 
-```info
+```info-format
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 long int atol ( const char * str ); // long atol (const char *str) 인 경우도 있음

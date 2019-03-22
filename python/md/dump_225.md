@@ -28,7 +28,7 @@ publish_date : 2017-07-09
 
 우리는 알고리즘에 정의되어 있는 여러가지 함수들로 작업을 수행하게 됩니다. 이 때 이 함수들은 크게 아래와 같은 두 개의 형태를 가지고 있습니다.
 
-```info
+```info-format
 
 template <typename Iter>
 void do_something (Iter begin, Iter end);
@@ -38,7 +38,7 @@ void do_something (Iter begin, Iter end);
 
 거나
 
-```info
+```info-format
 
 template <typename Iter, typename Pred>
 void do_something (Iter begin, Iter end, Pred pred)
@@ -130,9 +130,8 @@ sort(l.begin(), l.end());
 
 만약에 위 처럼 리스트를 정렬하려고 했다간;
 
-```warning
-
-ErrorC2784'unknown-type std::operator -(const std::move_iterator<_RanIt> &,const std::move_iterator<_RanIt2> &)': could not deduce template argument for 'const std::move_iterator<_RanIt> &' from 'std::_List_unchecked_iterator<std::_List_val<std::_List_simple_types<int>>'
+```compiler-warning
+Error C2784'unknown-type std::operator -(const std::move_iterator<_RanIt> &,const std::move_iterator<_RanIt2> &)': could not deduce template argument for 'const std::move_iterator<_RanIt> &' from 'std::_List_unchecked_iterator<std::_List_val<std::_List_simple_types<int>>'
 ```
 
 
@@ -288,12 +287,9 @@ partial_sort(start, middle, end)
 partial_sort(vec.begin(), vec.begin() + 3, vec.end());
 ```
 
-
-
 위와 같이 `vec.begin()` 부터 `vec.end()` 까지 (즉 벡터 전체에서) 원소들 중에서, `vec.begin()` 부터 `vec.begin() + 3` 까지에 전체에서 가장 작은 애들만 순서대로 저장하고 나머지 위치는 상관 없다! 이런 식입니다. 따라서 위와 같이
 
 ```info
-
 5 3 1 6 4 7 2
 ```
 
@@ -302,7 +298,6 @@ partial_sort(vec.begin(), vec.begin() + 3, vec.end());
 에서 가장 작은 3개 원소인 `1, 2, 3` 만이 정렬되어서
 
 ```info
-
 1 2 3 6 5 7 4
 ```
 
@@ -421,7 +416,6 @@ for (int i = 0; i < 100; i++) {
 그 결과를 살펴보면 확연히 다름을 알 수 있습니다. 먼저 `sort` 의 경우
 
 ```info
-
 dh, ck, cx, ad, cw, cu, co
 ```
 
@@ -430,11 +424,8 @@ dh, ck, cx, ad, cw, cu, co
 순으로 나와 있고 (age 가 0 일 때) `stable_sort` 의 경우 `age` 가 0 일 때
 
 ```info
-
 ad, ck, co, cu, cw, cx, dh
 ```
-
-
 
 순으로 나오게 됩니다. 다시 말해 `sort` 함수의 경우 정렬 과정에서 원소들 간의 상대적 위치를 랜덤하게 바꿔버리지만 `stable_sort` 의 경우 그 순서를 처음에 넣었던 상태 그대로 유지함을 알 수 있습니다.
 
@@ -947,7 +938,6 @@ int main() {
 람다 함수는 위와 같은 꼴로 정의됩니다. 일반적인 꼴을 살펴보자면
 
 ```info
-
 [capture list] (받는 인자) -> 리턴 타입 { 함수 본체 }
 ```
 
@@ -959,7 +949,6 @@ int main() {
 리턴 타입을 생략할 경우
 
 ```info
-
 [capture list] ( 받는 인자) {함수 본체}
 ```
 
@@ -1236,7 +1225,6 @@ int main() {
 `transform` 함수는 다음과 같은 꼴로 생겼습니다.
 
 ```info
-
 transform (시작 반복자, 끝 반복자, 결과를 저장할 컨테이너의 시작 반복자, Pred)
 ```
 

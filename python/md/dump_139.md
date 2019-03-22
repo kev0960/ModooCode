@@ -12,7 +12,7 @@ publish_date : 2011-05-05
 
 #@ rand
 
-```info
+```info-format
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 int rand ( void );

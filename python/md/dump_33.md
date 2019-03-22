@@ -305,7 +305,7 @@ str = "abcdefg"; /* str 에 abcdefg 가 복사되지 않을까? */
 
   그러나 이 방법으로 컴파일을 하게 되면 아래와 같은 오류를 만나게 됩니다.
 
-```warning
+```compiler-warning
 error C2106: '=' : 왼쪽 피연산자는 l-value이어야 합니다.
 
 ```
@@ -326,7 +326,7 @@ char str[100] = "abcdefg";
 
   문자열을 합치는 함수라 하면 다음과 같은 작업을 하는 함수를 말합니다.
 
-```info
+```info-format
     char str1[100]="hello my name is ";
     char str2[]="Psi";
 
@@ -450,7 +450,7 @@ while (*src) {
 
   문자열을 비교하는 함수라 하면 다음과 같은 작업을 하는 함수를 의미합니다.
 
-```info
+```info-format
 if(compare(str1, str2))
 {
 /*

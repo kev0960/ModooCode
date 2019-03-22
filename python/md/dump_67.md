@@ -7,7 +7,7 @@ publish_date : 2011-01-03
 
 #@ sscanf
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int sscanf ( const char * str, const char * format, ...);

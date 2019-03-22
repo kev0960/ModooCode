@@ -7,7 +7,7 @@ publish_date : 2010-05-21
 
 #@ strcat
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 char * strcat ( char * destination, const char * source );

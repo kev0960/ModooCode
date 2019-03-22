@@ -13,7 +13,7 @@ publish_date : 2010-02-10
 
 #@ fflush
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fflush ( FILE * stream );

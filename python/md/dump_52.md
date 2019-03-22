@@ -11,7 +11,7 @@ publish_date : 2010-02-05
 
 #@ ferror
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 int ferror ( FILE * stream );
 ```

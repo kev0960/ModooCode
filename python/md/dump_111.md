@@ -13,7 +13,7 @@ publish_date : 2010-12-25
 
 #@ difftime
 
-```info
+```info-format
 #include <time.h> // C++ 에서는 <ctime>
 
 double difftime ( time_t time2, time_t time1 );

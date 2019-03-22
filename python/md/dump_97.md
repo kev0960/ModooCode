@@ -13,7 +13,7 @@ publish_date : 2010-11-21
 
 #@ strspn
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 size_t strspn ( const char * str1, const char * str2 );

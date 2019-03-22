@@ -13,7 +13,7 @@ publish_date : 2010-11-28
 
 #@ memset
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 void * memset ( void * ptr, int value, size_t num );

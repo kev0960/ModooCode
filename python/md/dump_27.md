@@ -323,7 +323,7 @@ int swap(int *a, int *b) {
 
   컴파일 하게 되면 아래와 같은 경고 창을 볼 수 있습니다.
 
-```warning
+```compiler-warning
 warning C4013: 'swap'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
 ```
 
@@ -413,7 +413,7 @@ int main() {
 
   그럼 컴파일 시 아래와 같은 오류를 만나게 됩니다.
 
-```warning
+```compiler-warning
  error C2198: 'swap' : 호출에 매개 변수가 너무 적습니다.
 ```
 
@@ -421,7 +421,7 @@ int main() {
 
 그렇다면 `swap(&i, &j)` 를 `swap(&i, j)` 로 바꿔보면 어떻게 될까요?
 
-```warning
+```compiler-warning
 warning C4047: '함수' : 'int *'의 간접 참조 수준이 'int'과(와) 다릅니다.
 warning C4024: 'swap' : 형식 및 실제 매개 변수 2의 형식이 서로 다릅니다.
 ```

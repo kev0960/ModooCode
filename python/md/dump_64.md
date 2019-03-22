@@ -13,7 +13,7 @@ publish_date : 2010-02-19
 
 #@ fprintf
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fprintf ( FILE * stream, const char * format, ... );

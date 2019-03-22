@@ -13,15 +13,12 @@ publish_date : 2010-11-27
 
 #@ strstr
 
-
-
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strstr ( const char * str1, const char * str2 );
       char * strstr (       char * str1, const char * str2 );
 ```
-
 
 문자열을 검색한다.
 

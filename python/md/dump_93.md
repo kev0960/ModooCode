@@ -13,7 +13,7 @@ publish_date : 2010-08-02
 
 #@ strchr
 
-```info
+```info-format
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strchr ( const char * str, int character );
@@ -27,7 +27,7 @@ const char * strchr ( const char * str, int character );
 
 이 때, C 의 경우 함수 오버로딩을 할 수 없으므로 아래와 같은 하나의 원형만 존재한다.
 
-```info
+```info-format
 char * strchr ( const char *, int );
 ```
 

@@ -13,7 +13,7 @@ publish_date : 2010-02-22
 
 #@ fscanf
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fscanf ( FILE * stream, const char * format, ... );

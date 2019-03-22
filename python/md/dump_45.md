@@ -13,7 +13,7 @@ publish_date : 2010-02-03
 
 #@ gets
 
-```info
+```info-format
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 char * gets ( char * str );
