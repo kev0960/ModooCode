@@ -5,6 +5,8 @@ const {JSDOM} = jsdom;
 
 const facebook_strategy = require('passport-facebook').Strategy;
 const google_strategy = require('passport-google-oauth2').Strategy;
+const DISCOURSE_SSO = require('discourse-sso');
+
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const request = require('request-promise-native');
@@ -12,6 +14,7 @@ const {google} = require('googleapis');
 const goog_key = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 
 const HASH_ROUNDS = parseInt(process.env.HASH_ROUNDS);
+const discourse_sso = new DISCOURSE_SSO(process.env.DISCOURSE_SSO_SECRET);
 
 class ZmqManager {
   constructor(send_sock, recv_sock) {
@@ -167,17 +170,15 @@ module.exports = class Server {
         {
           clientID: process.env.GOOG_CLIENT_ID,
           clientSecret: process.env.GOOG_CLIENT_SEC,
-          callbackURL: 'https://modoocode.com/auth/goog/callback',
+          callbackURL: 'http://localhost/auth/goog/callback',
         },
         async function(access_token, refresh_token, profile, cb) {
-          console.log('Goog ', profile);
           let user = await this.findOrCreateUser(
               'goog', profile, profile.photos[0].value);
           cb(null, user);
         }.bind(this)));
 
     passport.serializeUser(function(user, done) {
-      console.log('serial user : ', user);
       done(null, user.user_id);
     });
 
@@ -197,20 +198,19 @@ module.exports = class Server {
       if (!this.file_infos[key].publish_date) {
         this.file_infos[key].publish_date = '2018-12-31';
       }
-      entire_articles.push({
-        key, date : this.file_infos[key].publish_date
-      })
+      entire_articles.push({key, date: this.file_infos[key].publish_date})
     }.bind(this));
 
-    entire_articles.sort(function (a, b) {
-      let a_t = new Date(a.date);
-      let b_t = new Date(b.date);
-      return b_t - a_t;
-    })
+    entire_articles
+        .sort(function(a, b) {
+          let a_t = new Date(a.date);
+          let b_t = new Date(b.date);
+          return b_t - a_t;
+        })
 
-    // Find top 5 Recent articles.
-    this.recent_articles = entire_articles.slice(0, 5).map(function(s) {
-      return {url : s.key, info : this.file_infos[s.key]};
+        // Find top 5 Recent articles.
+        this.recent_articles = entire_articles.slice(0, 5).map(function(s) {
+      return {url: s.key, info: this.file_infos[s.key]};
     }.bind(this));
 
     this.jwt = new google.auth.JWT(
@@ -608,7 +608,7 @@ module.exports = class Server {
       this.zmq_manager.sendCodeToRun(code, stdin, function(result) {
         if (result.exec_result.length > 0) {
           console.log(
-              'Executed Code : \n', truncateString(code, 1024),
+              'Executed Code : \n', code,
               '\nExecution result : \n',
               truncateString(result.exec_result, 128));
         } else {
@@ -685,8 +685,13 @@ module.exports = class Server {
       return res.send({status: 'Success'});
     }.bind(this));
 
-    // Install login modules.
-    this.app.get('/auth/fb', passport.authenticate('facebook'));
+    /*******************************
+
+        Authentication Logics
+
+    *******************************/
+    this.app.get(
+        '/auth/fb', passport.authenticate('facebook', {scope: ['email']}));
     this.app.get(
         '/auth/goog',
         passport.authenticate('google', {scope: ['profile', 'email']}));
@@ -708,5 +713,69 @@ module.exports = class Server {
               'JSON.parse(window.localStorage.getItem(\'redirect-info\'))' +
               '.current_url;</script>');
         });
+
+    /**************************************************************************
+     * 
+     *                        Discourse SSO Overview
+     * 
+     * 1) User logins to the Discourse Login.
+     * 2) Discourse redirect to /auth/discourse?(payload, sig)
+     * 3) Server checks payload and sig. Also, checks user info if exists.
+     * 4) If user info does not exist, redirect user to the /auth/goog page.
+     *    * Note that upon redirection, make sure we save the callback
+     *      url to the localStorage (TODO: Use sessionStroage?)
+     * 5) Google authenticates the user and redirect user to /auth/goog/callback
+     * 6) At callback page, redirect user the correct callback url 
+     *    /auth/discourse-redir
+     * 7) Finally redirect user to discourse/session/sso_login with user info
+     *    query parameters.
+     **************************************************************************/
+    this.app.get('/auth/discourse', function(req, res) {
+      let payload = req.query.sso;
+      let sig = req.query.sig;
+
+      // Both payload and sig must be specified and valid.
+      if (!payload || !sig || !discourse_sso.validate(payload, sig)) {
+        console.log('Not valid')
+        return res.redirect('/');
+      }
+
+      let user = req.user;
+      if (!user) {
+        // If the user is not defined, return back to Google authentication
+        // (This is because FB does not provide email sometimes.)
+        return res.send(
+            '<script>'
+            + 'window.localStorage.setItem("redirect-info", JSON.stringify({'
+            + 'current_url : "/auth/discourse-redir?payload=' + payload + '"}));'
+            + 'window.location.href="/auth/goog";</script>')
+      }
+
+      let email = user.email;
+      let external_id = user.user_id;
+      let nonce = discourse_sso.getNonce(payload);
+      let name = user.name;
+
+      let q = discourse_sso.buildLoginString({nonce, external_id, email, name});
+      
+      return res.redirect('http://localhost:3000/session/sso_login?' + q);
+    });
+
+    this.app.get('/auth/discourse-redir', function(req, res) {
+      let user = req.user;
+      let payload = req.query.payload;
+
+      if (!user || !payload) {
+        return res.redirect('/')
+      }
+      
+      let email = user.email;
+      let external_id = user.user_id;
+      let nonce = discourse_sso.getNonce(payload);
+      let name = user.name;
+
+      let q = discourse_sso.buildLoginString({nonce, external_id, email, name});
+      return res.redirect('http://localhost:3000/session/sso_login?' + q);
+    })
   }
 };

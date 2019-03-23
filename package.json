@@ -24,6 +24,7 @@
     "compression": "^1.7.3",
     "cookie-parser": "^1.4.3",
     "css-loader": "^2.1.0",
+    "discourse-sso": "^1.0.3",
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "eslint-config-jquery": "^1.0.1",
@@ -50,7 +51,7 @@
     "zmq": "^2.15.3"
   },
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "webpack": "^4.29.3",
