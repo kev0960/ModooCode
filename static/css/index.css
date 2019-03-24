@@ -262,21 +262,27 @@ main {
 }
 
 .enter-community {
-  display: table-cell;
-  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #444E6E;
+  margin:46px 28px 46px 28px;
   width: 100%;
-  text-align: center;
+  border-radius: 5px;
 }
 
 .enter-community a {
   text-decoration: none;
   font-size: 180%;
-  color: white;
-  background-color: #444E6E;
+  color: #373c3e;
   padding: 20px 15px 20px 15px;
   font-weight: bold;
+  align-self: center;
+  background-color: #eed369;
+  border-radius: 5px;
 }
 
 .enter-community p {
   font-size: 90%;
+  align-self: center;
 }
