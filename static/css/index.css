@@ -260,3 +260,23 @@ main {
   }
 
 }
+
+.enter-community {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  text-align: center;
+}
+
+.enter-community a {
+  text-decoration: none;
+  font-size: 180%;
+  color: white;
+  background-color: #444E6E;
+  padding: 20px 15px 20px 15px;
+  font-weight: bold;
+}
+
+.enter-community p {
+  font-size: 90%;
+}

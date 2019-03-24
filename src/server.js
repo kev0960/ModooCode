@@ -765,7 +765,7 @@ module.exports = class Server {
       if (IS_DEV) {
         return res.redirect('http://localhost:3000/session/sso_login?' + q);
       } else {
-        return res.redirect('http://forum.modoocode.com/session/sso_login?' + q);
+        return res.redirect('https://forum.modoocode.com/session/sso_login?' + q);
       }
     });
 
@@ -787,7 +787,7 @@ module.exports = class Server {
       if (IS_DEV) {
         return res.redirect('http://localhost:3000/session/sso_login?' + q);
       } else {
-        return res.redirect('http://forum.modoocode.com/session/sso_login?' + q);
+        return res.redirect('https://forum.modoocode.com/session/sso_login?' + q);
       }
     })
   }

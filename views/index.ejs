@@ -87,23 +87,42 @@
       </div>
       <div class="row-content">
         <div class="item">
-          <div class="new-article">
-          <div class="item-text-header">
-          최근 글<span class="new-article-deco">Recent Articles</span>
+          <div class="item-img">
+            <a href="/245">
+              <picture>
+              <source type="image/webp" srcset="/img/ModooAlgo.webp">
+                <img src="/img/ModooAlgo.png"  alt="씹어먹는 C ++ 강좌 보러가기">
+              </picture>
+            </a>
           </div>
-          <% for (let i = 0; i < 4; i ++) { %>
-          <div class="new-article-entry">
-            <a href="<%= recent_articles[i].url %>"><%= recent_articles[i].info.title %></a>
-            <% if (i < 2) { %>
-            <span class="new-article-new">New</span>
+        </div>
+        <div class="item">
+          <div style="display:table;height:100%;width:100%;">
+            <div class="enter-community">
+              <a href="https://forum.modoocode.com">모두의 코드 커뮤니티 들어가기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row-content">
+        <div class="item">
+          <div class="new-article">
+            <div class="item-text-header">
+            최근 글<span class="new-article-deco">Recent Articles</span>
+            </div>
+            <% for (let i = 0; i < 4; i ++) { %>
+            <div class="new-article-entry">
+              <a href="<%= recent_articles[i].url %>"><%= recent_articles[i].info.title %></a>
+              <% if (i < 2) { %>
+              <span class="new-article-new">New</span>
+              <% } %>
+            </div>
             <% } %>
           </div>
-          <% } %>
         </div>
-        </div> 
-        <div class="item"> 
+        <div class="item">
           <div class="visitor-box">
-          <canvas id="visitors"></canvas>
+            <canvas id="visitors"></canvas>
           </div>
         </div>
       </div>
