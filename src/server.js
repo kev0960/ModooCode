@@ -15,6 +15,7 @@ const goog_key = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 
 const HASH_ROUNDS = parseInt(process.env.HASH_ROUNDS);
 const discourse_sso = new DISCOURSE_SSO(process.env.DISCOURSE_SSO_SECRET);
+const IS_DEV = (process.env.SERVER_ENV == 'DEV');
 
 class ZmqManager {
   constructor(send_sock, recv_sock) {
@@ -153,11 +154,15 @@ module.exports = class Server {
     this.app.use(passport.initialize());
     this.app.use(passport.session());
 
+    const fb_callback_url = IS_DEV ? 'http://localhost/auth/fb/callback' :
+                                     'https://modoocode.com/auth/fb/callback';
+    const goog_callback_url = IS_DEV ? 'http://localhost/auth/goog/callback' :
+                                     'https://modoocode.com/auth/goog/callback';
     passport.use(new facebook_strategy(
         {
           clientID: process.env.FB_APP_ID,
           clientSecret: process.env.FB_APP_SECRET,
-          callbackURL: 'https://modoocode.com/auth/fb/callback',
+          callbackURL: fb_callback_url,
           profileFields: ['id', 'displayName', 'photos', 'email']
         },
         async function(access_token, refresh_token, profile, cb) {
@@ -170,7 +175,7 @@ module.exports = class Server {
         {
           clientID: process.env.GOOG_CLIENT_ID,
           clientSecret: process.env.GOOG_CLIENT_SEC,
-          callbackURL: 'http://localhost/auth/goog/callback',
+          callbackURL: goog_callback_url,
         },
         async function(access_token, refresh_token, profile, cb) {
           let user = await this.findOrCreateUser(
@@ -608,8 +613,7 @@ module.exports = class Server {
       this.zmq_manager.sendCodeToRun(code, stdin, function(result) {
         if (result.exec_result.length > 0) {
           console.log(
-              'Executed Code : \n', code,
-              '\nExecution result : \n',
+              'Executed Code : \n', code, '\nExecution result : \n',
               truncateString(result.exec_result, 128));
         } else {
           console.log(
@@ -715,9 +719,9 @@ module.exports = class Server {
         });
 
     /**************************************************************************
-     * 
+     *
      *                        Discourse SSO Overview
-     * 
+     *
      * 1) User logins to the Discourse Login.
      * 2) Discourse redirect to /auth/discourse?(payload, sig)
      * 3) Server checks payload and sig. Also, checks user info if exists.
@@ -725,7 +729,7 @@ module.exports = class Server {
      *    * Note that upon redirection, make sure we save the callback
      *      url to the localStorage (TODO: Use sessionStroage?)
      * 5) Google authenticates the user and redirect user to /auth/goog/callback
-     * 6) At callback page, redirect user the correct callback url 
+     * 6) At callback page, redirect user the correct callback url
      *    /auth/discourse-redir
      * 7) Finally redirect user to discourse/session/sso_login with user info
      *    query parameters.
@@ -736,7 +740,6 @@ module.exports = class Server {
 
       // Both payload and sig must be specified and valid.
       if (!payload || !sig || !discourse_sso.validate(payload, sig)) {
-        console.log('Not valid')
         return res.redirect('/');
       }
 
@@ -745,10 +748,11 @@ module.exports = class Server {
         // If the user is not defined, return back to Google authentication
         // (This is because FB does not provide email sometimes.)
         return res.send(
-            '<script>'
-            + 'window.localStorage.setItem("redirect-info", JSON.stringify({'
-            + 'current_url : "/auth/discourse-redir?payload=' + payload + '"}));'
-            + 'window.location.href="/auth/goog";</script>')
+            '<script>' +
+            'window.localStorage.setItem("redirect-info", JSON.stringify({' +
+            'current_url : "/auth/discourse-redir?payload=' + payload +
+            '"}));' +
+            'window.location.href="/auth/goog";</script>');
       }
 
       let email = user.email;
@@ -757,8 +761,12 @@ module.exports = class Server {
       let name = user.name;
 
       let q = discourse_sso.buildLoginString({nonce, external_id, email, name});
-      
-      return res.redirect('http://localhost:3000/session/sso_login?' + q);
+
+      if (IS_DEV) {
+        return res.redirect('http://localhost:3000/session/sso_login?' + q);
+      } else {
+        return res.redirect('http://forum.modoocode.com/session/sso_login?' + q);
+      }
     });
 
     this.app.get('/auth/discourse-redir', function(req, res) {
@@ -768,14 +776,19 @@ module.exports = class Server {
       if (!user || !payload) {
         return res.redirect('/')
       }
-      
+
       let email = user.email;
       let external_id = user.user_id;
       let nonce = discourse_sso.getNonce(payload);
       let name = user.name;
 
       let q = discourse_sso.buildLoginString({nonce, external_id, email, name});
-      return res.redirect('http://localhost:3000/session/sso_login?' + q);
+
+      if (IS_DEV) {
+        return res.redirect('http://localhost:3000/session/sso_login?' + q);
+      } else {
+        return res.redirect('http://forum.modoocode.com/session/sso_login?' + q);
+      }
     })
   }
 };
