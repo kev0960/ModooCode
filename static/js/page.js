@@ -304,14 +304,14 @@ function postGenericComment(parent_id, content, password, name) {
             url: '/write-comment',
             type: 'POST',
             data: {
-              parent_id,
-              content,
-              password,
-              name,
-              article_url,
-              token,
+              parent_id : parent_id,
+              content : content,
+              password : password,
+              name : name,
+              article_url : article_url,
+              token : token,
             },
-            success(result) {
+            success : function(result) {
               $('#adding-comment').hide();
               location.reload();
             },
@@ -380,7 +380,7 @@ function createReply() {
   current_added_comment_box = reply_box;
 }
 
-$(() => {
+window.onload = function() {
   BuildTOC();
   require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
   require(['vs/editor/editor.main'], function() {
@@ -597,7 +597,7 @@ $(() => {
     $.ajax({
       type: 'POST',
       url: '/delete-comment',
-      data: {comment_id, password},
+      data: {comment_id : comment_id, password : password},
       success: function(data) {
         location.reload();
       }
@@ -655,11 +655,11 @@ $(() => {
       content_new_reply = $('#posted-reply').val();
     }
     localStorage.setItem('redirect-info', JSON.stringify({
-      current_url,
-      current_comment_index,
-      content_new_comment,
-      content_new_reply,
-      selected_comment_id
+      current_url: current_url,
+      current_comment_index: current_comment_index,
+      content_new_comment: content_new_comment,
+      content_new_reply: content_new_reply,
+      selected_comment_id: selected_comment_id
     }));
     window.location.href = '/auth/fb';
   });
@@ -672,11 +672,11 @@ $(() => {
       content_new_reply = $('#posted-reply').val();
     }
     window.localStorage.setItem('redirect-info', JSON.stringify({
-      current_url,
-      current_comment_index,
-      content_new_comment,
-      content_new_reply,
-      selected_comment_id
+      current_url: current_url,
+      current_comment_index: current_comment_index,
+      content_new_comment: content_new_comment,
+      content_new_reply: content_new_reply,
+      selected_comment_id: selected_comment_id
     }));
     window.location.href = '/auth/goog';
   });
@@ -693,7 +693,7 @@ $(() => {
       }
     })
   }
-});
+};
 
 document.addEventListener('DOMContentLoaded', function() {
   elems = document.querySelectorAll('.math-latex');
@@ -716,7 +716,7 @@ function BuildTOC() {
     if (!id) {
       return;
     }
-    toc_infos.push({id, tag, content});
+    toc_infos.push({id: id, tag: tag, content: content});
   });
   for (let i = 0; i < toc_infos.length; i++) {
     let elem =

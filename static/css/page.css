@@ -490,7 +490,7 @@ figcaption {
 }
 
 .next-lecture-box {
-    font-family: 'Noto Sans KR', monospace;
+    font-family: 'Noto Sans KR', 'Malgun Gothic';
     background-color: rgba(252, 222, 199, 1);
     border: 1px solid rgb(254, 104, 67);
     padding: 10px;

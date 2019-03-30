@@ -121,6 +121,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   overflow: scroll;
+  -ms-overflow-style: none;  /* IE 10+ */
   font-family: "Noto Sans KR", Helvetica, Arial, sans-serif;
   font-size: .875rem; /* 15px */
   color: rgba(255,255,255,.6);

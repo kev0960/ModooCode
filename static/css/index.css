@@ -57,12 +57,19 @@ main {
 
 .row-content {
   display: flex;
+  display: -ms-flexbox;
   padding-top: 20px;
   flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
 }
 
 .item {
-  flex: 1 1 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  -ms-flex-grow: 1;
+  -ms-flex-shrink: 1;
+  -ms-flex-basis: 0;
   border: 1px solid rgb(238, 238, 238);
   min-width: 320px;
 }
