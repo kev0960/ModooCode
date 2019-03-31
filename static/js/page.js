@@ -693,6 +693,10 @@ window.onload = function() {
       }
     })
   }
+
+  $('img').click(function(e) {
+    
+  });
 };
 
 document.addEventListener('DOMContentLoaded', function() {
