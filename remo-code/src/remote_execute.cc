@@ -24,6 +24,7 @@ static char kGppWarningExtra[] = "-Wextra";
 static char kGppFortify[] = "-D_FORTIFY_SOURCE=2";
 static char kGppOutputFlag[] = "-o";
 static char kGppOutputFile[] = "./tmp/";
+static char kGppLibrary[] = "-pthread";
 static char kOutputFile[] = "/";
 static char kPath[] = "PATH=/usr/bin";
 
@@ -60,7 +61,7 @@ void WeakProcessLimit() {
 }
 
 void StrictProcessLimit() {
-  // Restrict the amount of CPU time for the compilation.
+  // Restrict the amount of CPU time for the program.
   const struct rlimit cpu_limit = {5, 5};
   setrlimit(RLIMIT_CPU, &cpu_limit);
 
@@ -131,6 +132,7 @@ string RemoteExecuter::SyncCompile(const string& code, int thread_index) {
                         kDash,
                         kGppCpp17,
                         kGppFortify,
+                        kGppLibrary,
                         kGppOutputFlag,
                         output_file_name,
                         NULL};
@@ -243,6 +245,12 @@ string RemoteExecuter::SyncExecute(const string& std_input, int thread_index) {
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(fstat), 0);
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(arch_prctl), 0);
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(access), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(futex), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(set_tid_address), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(set_robust_list), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(rt_sigaction), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(prlimit64), 0);
+    seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(clone), 0);
 
     // Somewhat dangerous syscalls; Only allowed in certain criteria.
     seccomp_rule_add(ctx, SCMP_ACT_ALLOW, SCMP_SYS(openat), 1,
