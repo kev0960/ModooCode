@@ -1083,6 +1083,7 @@
 ,
 	"254" : {
 	"cat_title" : "14. 함수를 객체로! (C++ std::function, std::mem_fn, std::bind)",
+	"next_page" : "269",
 	"path" : "/C++",
 	"prev_page" : "252",
 	"publish_date" : "2019-02-24",
@@ -1210,7 +1211,9 @@
 ,
 	"269" : {
 	"cat_title" : "15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)",
-	"published" : "false",
+	"path" : "/C++",
+	"prev_page" : "254",
+	"publish_date" : "2019-04-01",
 	"title" : "씹어먹는 C ++ - <15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)>"
 }
 ,

@@ -174,13 +174,15 @@ C++ 에서의 RAII 패턴과 `unique_ptr` 의 사용법에 대해 배웁니다.
 
 Callable 의 정의와 `std::function`, `std::mem_fn`, `std::bind` 들의 사용법을 배운다.
 
-###@ 15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)
+###@ [15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)](/269)
 
-C++ thread, mutex 그리고 atomic variable.
+프로세스와 쓰레드, 왜 멀티 쓰레드 프로그래밍을 하는가. C++ thread 의 시작
 
-###@ 15 - 2. C++ condition_variable
+###@ 15 - 2. C++ 뮤텍스(mutex)와 atomic variable
 
-###@ 15 - 3. C++ future 와 promise
+###@ 15 - 3. C++ condition_variable
+
+###@ 15 - 4. C++ future 와 promise
 
 ###@ 16 - 1. C++ 11 - 초기화자 리스트 (initializer_list)
 
