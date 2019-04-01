@@ -116,6 +116,36 @@ void NewlineToBr(string* s) {
   }
 }
 
+string SplitNewlineToParagraph(const string& s) {
+  std::vector<size_t> newline_pos;
+  for (size_t i = 0; i < s.size(); i++) {
+    if (s.at(i) == '\n') {
+      newline_pos.push_back(i);
+    }
+  }
+
+  // Merge adjacent newline pos.
+  for (int i = 0; i < static_cast<int>(newline_pos.size()) - 1; i++) {
+    if (newline_pos[i] + 1 == newline_pos[i + 1]) {
+      newline_pos.erase(newline_pos.begin() + i + 1);
+      i--;
+    }
+  }
+
+  // Now Insert <p> tag.
+  string inserted_str;
+  int current = 0;
+  for (int pos : newline_pos) {
+    // Copy current ~ newline_pos - 1.
+    inserted_str.append(s.substr(current, pos - current));
+    inserted_str.append("</p><p>");
+    current = pos + 1;
+  }
+
+  inserted_str.append(s.substr(current, s.size()));
+  return inserted_str;
+}
+
 }  // namespace
 
 BoxContent::BoxContent(const string& content, const string& box_name)
@@ -140,12 +170,16 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::CODE_WARNING;
   } else if (box_name == "compiler-warning") {
     box_type_ = BOX_CONTENT_TYPES::COMPILER_WARNING;
-  } else if (box_name == "summary") {
-    box_type_ = BOX_CONTENT_TYPES::SUMMARY;
+  } else if (box_name == "lec-summary") {
+    box_type_ = BOX_CONTENT_TYPES::LEC_SUMMARY;
   }
 }
 
 string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
+  if (content_.size() == 0) {
+    return "";
+  }
+
   // Remove the non-necessary endline at front.
   if (content_[0] == '\n') {
     content_.erase(0, 1);
@@ -190,9 +224,14 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
                     "</div>");
     case EXEC:
       return StrCat("<pre class='exec-preview'>", content_, "</pre>");
-    case SUMMARY:
-      return StrCat("<div class='summary'>", Content::OutputHtml(parser_env),
-                    "</div>");
+    case LEC_SUMMARY: {
+      string output_html = Content::OutputHtml(parser_env);
+      output_html = SplitNewlineToParagraph(output_html);
+      return StrCat(
+          "<div class='lec-summary'><h3>뭘 배웠지?</h3><div "
+          "class='lec-summary-content'>",
+          output_html, "</div></div>");
+    }
     default:
       return content_;
   }

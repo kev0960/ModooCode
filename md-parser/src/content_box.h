@@ -27,7 +27,7 @@ class BoxContent : public Content {
     INFO_FORMAT,
     INFO_TEXT,
     EXEC,
-    SUMMARY
+    LEC_SUMMARY
   };
 
   BOX_CONTENT_TYPES box_type_;

@@ -518,3 +518,28 @@ figcaption {
     background-color: green;
     border-radius: 4px;
 }
+
+.lec-summary {
+    background: #f6f8f2;
+    padding: 10px 10px 5px 10px;
+    margin-bottom: 10px;
+}
+
+.lec-summary-content {
+    font-size: 16px;
+    padding-left: 12px;
+}
+
+.lec-summary-content p:before {
+    content: "»";
+    margin-right: 5px;
+}
+
+.lec-summary h3 {
+    border: none;
+    margin-top: 0px;
+    margin-bottom: 7px;
+    padding-left: 3px;
+    font-size: 18px;
+    color: rgb(68, 68, 68)
+}
