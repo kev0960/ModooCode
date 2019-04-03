@@ -136,7 +136,7 @@ C++ 에서의 파일 입출력, `stringstream` 과 그 활용에 대해 알아�
 
 ###@ [9 - 3. 템플릿 메타 프로그래밍 2 (Template Meta Programming)](http://itguru.tistory.com/222)
 
-`TMP` 마무리, 의존 타입(dependent type), `auto` 키워드
+TMP 마무리, 의존 타입(dependent type), `auto` 키워드
 
 ###@ [10 - 1. C++ 의 표준 템플릿 라이브러리 (STL) - 시퀀스 컨테이너](http://itguru.tistory.com/223)
 
@@ -178,9 +178,11 @@ Callable 의 정의와 `std::function`, `std::mem_fn`, `std::bind` 들의 사용
 
 프로세스와 쓰레드, 왜 멀티 쓰레드 프로그래밍을 하는가. C++ thread 의 시작
 
-###@ 15 - 2. C++ 뮤텍스(mutex)와 atomic variable
+###@ [15 - 2. C++ 뮤텍스(mutex) 와 조건 변수(condition variable)](/270)
 
-###@ 15 - 3. C++ condition_variable
+경쟁 상태 (Race Condition), 뮤텍스 (mutex) 와 데드락 (deadlock), 생산자 - 소비자 패턴, `condition_variable` 에 대해 다룹니다.
+
+###@ 15 - 3. 15 - 3. C++ memory order 와 atomic
 
 ###@ 15 - 4. C++ future 와 promise
 
