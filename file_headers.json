@@ -1228,6 +1228,7 @@
 ,
 	"270" : {
 	"cat_title" : "15 - 2. C++ 뮤텍스(mutex) 와 조건 변수(condition variable)",
+	"next_page" : "271",
 	"path" : "/C++",
 	"prev_page" : "269",
 	"publish_date" : "2019-04-03",
@@ -1235,9 +1236,11 @@
 }
 ,
 	"271" : {
-	"cat_title" : "15 - 3. C++ memory Order 와 atomic",
-	"published" : "false",
-	"title" : "씹어먹는 C ++ - <15 - 3. C++ memory order 와 atomic>"
+	"cat_title" : "15 - 3. C++ memory order 와 atomic 객체",
+	"path" : "/C++",
+	"prev_page" : "270",
+	"publish_date" : "2019-04-07",
+	"title" : "씹어먹는 C ++ - <15 - 3. C++ memory order 와 atomic 객체>"
 }
 ,
 	"28" : {

@@ -223,7 +223,10 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       return StrCat("<div class='info'>", Content::OutputHtml(parser_env),
                     "</div>");
     case EXEC:
-      return StrCat("<pre class='exec-preview'>", content_, "</pre>");
+      return StrCat(
+          "<p class='exec-preview-title'>실행 결과</p><pre "
+          "class='exec-preview'>",
+          content_, "</pre>");
     case LEC_SUMMARY: {
       string output_html = Content::OutputHtml(parser_env);
       output_html = SplitNewlineToParagraph(output_html);

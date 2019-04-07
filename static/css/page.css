@@ -70,6 +70,18 @@
     color: white;
     padding: 10px;
     font-size: 0.9em;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.exec-preview-title {
+    margin-bottom: 0px;
+    margin-top: 5px;
+    padding: 8px 0px 8px 15px;
+    background-color: #1b6ef3;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .edit {
