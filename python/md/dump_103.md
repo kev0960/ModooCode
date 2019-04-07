@@ -71,7 +71,7 @@ error C2059: 구문 오류 : '}'
 ```
 
 
-위와 같은 오류 테러를 맞보게 됩니다. (위 오류는 `int Print_Status(struct HUMAN human)` 대신에 `int Print_Status(HUMAN human)` 이라 썼을 때 나타나는 오류들 입니다) 상당히 짜증나는 일지요. 그렇다면 귀찮게 'struct HUMAN' 이라 길게 쓰는 대신에 짧에 쓰는 방법이 없을까요?
+위와 같은 오류 테러를 맞보게 됩니다. (위 오류는 `int Print_Status(struct HUMAN human)` 대신에 `int Print_Status(HUMAN human)` 이라 썼을 때 나타나는 오류들 입니다) 상당히 짜증일입니다. 그렇다면 매번 귀찮게 `struct HUMAN` 이라 쓰는 대신에 간단하게 쓰는 방법이 없을까요?
 
 물론 있습니다.
 

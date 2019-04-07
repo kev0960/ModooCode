@@ -807,7 +807,8 @@ MyString& MyString::insert(int loc, MyString& str) {
 
     if (memory_capacity * 2 > string_length + str.string_length)
       memory_capacity *= 2;
-    elsememory_capacity = string_length + str.string_length;
+    else
+      memory_capacity = string_length + str.string_length;
 
     char* prev_string_content = string_content;
     string_content = new char[memory_capacity];

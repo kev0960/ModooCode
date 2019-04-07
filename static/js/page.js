@@ -484,6 +484,11 @@ window.onload = function() {
             'event', 'execute-code',
             {'event_category': 'code', 'event_label': 'cpp'});
 
+        $('#result-' + index).parent().show();
+        $('#result-' + index)
+                  .prev()
+                  .html(
+                      '실행 중 <div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
         $.ajax({
           type: 'POST',
           url: '/run',
@@ -535,7 +540,6 @@ window.onload = function() {
                   'event', 'execute-code-success',
                   {'event_category': 'code', 'event_label': 'cpp'});
             }
-            $('#result-' + index).parent().show();
           }
         });
       });
