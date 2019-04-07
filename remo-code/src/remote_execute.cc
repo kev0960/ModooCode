@@ -11,6 +11,7 @@
 #include <unistd.h>
 
 #include <experimental/optional>
+#include <future>
 #include <iostream>
 
 constexpr int kOneMb = 1024 * 1024;
@@ -126,15 +127,9 @@ string RemoteExecuter::SyncCompile(const string& code, int thread_index) {
     snprintf(output_file_name, 100, "%s%d", kGppOutputFile, thread_index);
 
     // Build argv and env for execve.
-    char* gpp_argv[] = {kGppName,
-                        kGppReadFromStdin,
-                        kGppLanguage,
-                        kDash,
-                        kGppCpp17,
-                        kGppFortify,
-                        kGppLibrary,
-                        kGppOutputFlag,
-                        output_file_name,
+    char* gpp_argv[] = {kGppName,    kGppReadFromStdin, kGppLanguage,
+                        kDash,       kGppCpp17,         kGppFortify,
+                        kGppLibrary, kGppOutputFlag,    output_file_name,
                         NULL};
     char* env[] = {kPath, NULL};
 
@@ -184,6 +179,10 @@ string RemoteExecuter::SyncExecute(const string& std_input, int thread_index) {
   if (pipe(pipe_p2c) != 0 || pipe(pipe_c2p) != 0) {
     return "Pipe is broken (during Execution) :(";
   }
+
+  // Make Child to Parent pipe non blocking.
+  fcntl(pipe_c2p[0], F_SETFL, O_NONBLOCK);
+
   auto pid = fork();
 
   if (pid < 0) {
@@ -274,21 +273,45 @@ string RemoteExecuter::SyncExecute(const string& std_input, int thread_index) {
 
     char buf[1024];
     int read_cnt;
+    bool tle = false;
     string program_output;
-    while ((read_cnt = read(pipe_c2p[0], buf, 1024)) > 0) {
-      auto current_size = program_output.size();
-      program_output.reserve(current_size + read_cnt + 1);
-      for (int i = 0; i < read_cnt; i++) {
-        program_output.push_back(buf[i]);
-      }
-      if (program_output.length() > kMaxProgramOutput) {
-        // If the program output exceeds max size, then just kill the process.
-        kill(pid, SIGKILL);
 
-        program_output.append("... (too long; omitted) ...");
+    auto read_start = std::chrono::high_resolution_clock::now();
+    while ((read_cnt = read(pipe_c2p[0], buf, 1024)) != 0) {
+      if (read_cnt > 0) {
+        auto current_size = program_output.size();
+        program_output.reserve(current_size + read_cnt + 1);
+        for (int i = 0; i < read_cnt; i++) {
+          program_output.push_back(buf[i]);
+        }
+        if (program_output.length() > kMaxProgramOutput) {
+          // If the program output exceeds max size, then just kill the process.
+          kill(pid, SIGKILL);
+
+          program_output.append("... (too long; omitted) ...");
+          break;
+        }
+      }
+
+      // Check time passed.
+      auto current = std::chrono::high_resolution_clock::now();
+      if (std::chrono::duration_cast<std::chrono::milliseconds>(current -
+                                                                read_start)
+              .count() >= 5500) {
+        program_output.append("... 시간 초과 (5 초)");
+        tle = true;
         break;
       }
+      // If it did not return anything, check back couple of sec later.
+      if (read_cnt == -1) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+      }
     }
+
+    if (tle) {
+      kill(pid, SIGKILL);
+    }
+
     close(pipe_c2p[0]);
 
     int status;
