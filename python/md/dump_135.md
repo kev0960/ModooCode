@@ -182,7 +182,9 @@ Callable 의 정의와 `std::function`, `std::mem_fn`, `std::bind` 들의 사용
 
 경쟁 상태 (Race Condition), 뮤텍스 (mutex) 와 데드락 (deadlock), 생산자 - 소비자 패턴, `condition_variable` 에 대해 다룹니다.
 
-###@ 15 - 3. 15 - 3. C++ memory order 와 atomic
+###@ [15 - 3. C++ memory order 와 atomic 객체](/271)
+
+CPU 와 컴파일러에서의 명령어 재배치, `atomic`, `memory_order` 에 대해 다룹니다.
 
 ###@ 15 - 4. C++ future 와 promise
 
