@@ -2,6 +2,8 @@ const express = require('express');
 const body_parser = require('body-parser');
 const compression = require('compression');
 const init = require('./init.js')();
+const CommentManager = require('./comment.js');
+
 require('dotenv').config();
 const {Client} = require('pg');
 const client = new Client();
@@ -30,7 +32,9 @@ init.init().then(async function(static_data) {
   if (process.env.IN_WINDOWS_FOR_DEBUG !== 'true') {
     client.connect();
   }
-  const server = new Server(app, static_data, client);
+  const comment_manager = new CommentManager(client);
+  await comment_manager.init();
+  const server = new Server(app, static_data, client, comment_manager);
 
   app.listen(8080, function() {
     server.setRoutes();

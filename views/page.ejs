@@ -71,7 +71,7 @@
       </a>
     <% } %>
     <% if (file_info.next_page) { %> 
-      <a class="next-page-btn page-btn-common" href="<%= file_info.next_page %>">
+      <a class="next-page-btn page-btn-common" href="/<%= file_info.next_page %>">
         <p>다음 강좌&nbsp<i class="xi-angle-right"></i></p>
         <% if (file_infos[file_info.next_page].cat_name) { %>
           <p class="nav-page-title">
@@ -94,6 +94,14 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
   </div>
+  <div id="num-comment">
+    <i class="xi-comment-o"></i>
+    <% if (num_comment > 0 ) { %>
+    댓글이 <span><%- num_comment %></span> 개 있습니다!
+    <% } else { %>
+    첫 댓글을 달아주세요!
+    <% } %>
+  </div>
   <div id="comment-box">
     <section id="comment-post-section">
       <div class="post-box">
@@ -108,9 +116,10 @@
           <% } %>
         </div>
         <div class="text-area-wrapper">
-          <textarea id="posted-comment" class="comment-textarea"></textarea>
+          <textarea id="posted-comment" class="comment-textarea"
+          placeholder="댓글은 글쓴이에게 큰 힘이 됩니다"></textarea>
           <div class="comment-helper">
-            댓글에 글쓴이에게 큰 힘이 됩니다 <i class="em em-smile"></i>
+          강좌에 관련 없이 궁금한 내용은 <a href="https://forum.modoocode.com/">여기를 사용해주세요</a><i class="em em-smile"></i>
           </div>
         </div>
       </div>

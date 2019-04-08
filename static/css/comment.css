@@ -3,7 +3,7 @@
 }
 
 #comment-box {
-    max-width: 42rem;
+    max-width: 44rem;
     margin-right: auto;
 }
 
@@ -409,4 +409,33 @@
     40% {
         opacity: 1;
     }
+}
+
+#num-comment {
+    max-width: 44rem;
+    margin-left: 17px;
+}
+
+#num-comment span {
+    color: #EC5621;
+    font-weight: bold;
+}
+
+.comment-helper a {
+    padding-left: 0;
+}
+
+/* For smile emoji. */
+.em {
+    height: 1.5em;
+    width: 1.5em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.em-smile {
+    background-image: url(https://twemoji.maxcdn.com/2/72x72/1f604.png);
 }

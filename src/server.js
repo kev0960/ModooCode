@@ -137,7 +137,7 @@ function getDateTime() {
 }
 
 module.exports = class Server {
-  constructor(app, static_data, client) {
+  constructor(app, static_data, client, comment_manager) {
     this.file_infos = static_data.file_infos;
     this.page_infos = static_data.page_infos;
     this.path_hierarchy = new PathHierarchy(this.page_infos);
@@ -150,14 +150,16 @@ module.exports = class Server {
 
     this.app = app;
     this.client = client;
+    this.comment_manager = comment_manager;
 
     this.app.use(passport.initialize());
     this.app.use(passport.session());
 
     const fb_callback_url = IS_DEV ? 'http://localhost/auth/fb/callback' :
                                      'https://modoocode.com/auth/fb/callback';
-    const goog_callback_url = IS_DEV ? 'http://localhost/auth/goog/callback' :
-                                     'https://modoocode.com/auth/goog/callback';
+    const goog_callback_url = IS_DEV ?
+        'http://localhost/auth/goog/callback' :
+        'https://modoocode.com/auth/goog/callback';
     passport.use(new facebook_strategy(
         {
           clientID: process.env.FB_APP_ID,
@@ -309,6 +311,9 @@ module.exports = class Server {
               ' comment_id = $2',
           [new_comment_id, parent_id]);
     }
+
+    // Increase the comment count.
+    this.comment_manager.addCommentAt(article_url);
   }
 
   async deleteComment(comment_id, user, password) {
@@ -477,7 +482,6 @@ module.exports = class Server {
     }
     insertAfter(div, current_dom);
 
-    // div.insertAfter(current_dom);
     let children = current_dom.nextElementSibling.children;
     let found = null;
     for (let i = 0; i < children.length; i++) {
@@ -487,6 +491,18 @@ module.exports = class Server {
       }
     }
     this.buildCategoryListingRecurse(found, full_path, depth + 1, document);
+  }
+
+  generateInfoToPassEJS(content_url, page_id, category_id, user) {
+    return {
+      content_url,
+      file_info: this.file_infos[page_id],
+      page_infos: this.page_infos,
+      file_infos: this.file_infos,
+      category_html: this.buildCategoryListing(category_id),
+      num_comment : this.comment_manager.getNumCommentAt(page_id),
+      user
+    };
   }
 
   setRoutes() {
@@ -523,63 +539,37 @@ module.exports = class Server {
       }
       console.log('Page [', getDateTime(), '] ::', page_id);
 
+      let fallbackToIndexOnFailOrPass = function(err, html) {
+        if (err) {
+          this.getLatestComments(10).then(function(comments) {
+            res.render('./index.ejs', {
+              comments,
+              recent_articles: this.recent_articles,
+              visitor_counts: this.visitor_counts
+            });
+          }.bind(this));
+        } else {
+          res.send(html);
+        }
+      }.bind(this);
+
       if (page_id <= 228) {
         if (page_id == 15) {
-          return res.render('page.ejs', {
-            content_url: './new/231.html',
-            file_info: this.file_infos[231],
-            page_infos: this.page_infos,
-            file_infos: this.file_infos,
-            category_html: this.buildCategoryListing(page_id),
-            user
-          });
+          return res.render(
+              'page.ejs',
+              this.generateInfoToPassEJS('./new/231.html', 231, page_id, user));
         }
         res.render(
-            'page.ejs', {
-              content_url: './old/blog_' + page_id + '.html',
-              file_info: this.file_infos[page_id],
-              page_infos: this.page_infos,
-              file_infos: this.file_infos,
-              category_html: this.buildCategoryListing(page_id),
-              user
-            },
-            function(err, html) {
-              if (err) {
-                this.getLatestComments(10).then(function(comments) {
-                  res.render('./index.ejs', {
-                    comments,
-                    recent_articles: this.recent_articles,
-                    visitor_counts: this.visitor_counts
-                  });
-                }.bind(this));
-              } else {
-                res.send(html);
-              }
-            }.bind(this));
+            'page.ejs',
+            this.generateInfoToPassEJS(
+                './old/blog_' + page_id + '.html', page_id, page_id, user),
+            fallbackToIndexOnFailOrPass);
       } else {
         res.render(
-            'page.ejs', {
-              content_url: './new/' + page_id + '.html',
-              file_info: this.file_infos[page_id],
-              page_infos: this.page_infos,
-              file_infos: this.file_infos,
-              category_html: this.buildCategoryListing(page_id),
-              user
-            },
-            function(err, html) {
-              if (err) {
-                this.getLatestComments(10).then(function(comments) {
-                  res.render('./index.ejs', {
-                    comments,
-                    recent_articles: this.recent_articles,
-                    visitor_counts: this.visitor_counts
-                  });
-                }.bind(this));
-                return;
-              } else {
-                res.send(html);
-              }
-            }.bind(this));
+            'page.ejs',
+            this.generateInfoToPassEJS(
+                './new/' + page_id + '.html', page_id, page_id, user),
+            fallbackToIndexOnFailOrPass);
       }
     }.bind(this));
 
@@ -587,14 +577,9 @@ module.exports = class Server {
       let page_id = parseInt(req.params.id);
       let user = req.user;
       if (page_id == 15) {
-        res.render('page.ejs', {
-          content_url: './new/231.html',
-          file_info: this.file_infos[231],
-          page_infos: this.page_infos,
-          file_infos: this.file_infos,
-          category_html: this.buildCategoryListing('231'),
-          user
-        });
+        res.render(
+            'page.ejs',
+            this.generateInfoToPassEJS('./new/231.html', 231, '231'));
       }
     }.bind(this));
 
@@ -765,7 +750,8 @@ module.exports = class Server {
       if (IS_DEV) {
         return res.redirect('http://localhost:3000/session/sso_login?' + q);
       } else {
-        return res.redirect('https://forum.modoocode.com/session/sso_login?' + q);
+        return res.redirect(
+            'https://forum.modoocode.com/session/sso_login?' + q);
       }
     });
 
@@ -787,7 +773,8 @@ module.exports = class Server {
       if (IS_DEV) {
         return res.redirect('http://localhost:3000/session/sso_login?' + q);
       } else {
-        return res.redirect('https://forum.modoocode.com/session/sso_login?' + q);
+        return res.redirect(
+            'https://forum.modoocode.com/session/sso_login?' + q);
       }
     })
   }
