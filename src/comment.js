@@ -11,7 +11,7 @@ module.exports = class CommentManager {
     this.url_to_num_comment = {};
     for (let i = 0; i < result.rows.length; i++) {
       this.url_to_num_comment[result.rows[i].article_url] =
-          result.rows[i].count;
+          parseInt(result.rows[i].count);
     }
   }
 
