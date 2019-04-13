@@ -216,7 +216,10 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
                     "</div>");
     }
     case COMPILER_WARNING:
-      return StrCat("<pre class='warning'>", content_, "</pre>");
+      return StrCat(
+          "<p class='compiler-warning-title'><i class='xi-warning'></i>컴파일 "
+          "오류</p><pre class='compiler-warning'>",
+          content_, "</pre>");
     case INFO:
       return StrCat("<pre class='info'>", content_, "</pre>");
     case INFO_TEXT:

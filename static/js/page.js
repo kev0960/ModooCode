@@ -154,7 +154,10 @@ function closeSidebar() {
   $('#open-sidebar').show();
 
   localStorage.setItem('sidebar', 'closed');
-  if (window.matchMedia('(max-width: 767px)').matches) {
+  if (window.matchMedia('(max-width: 634px)').matches) {
+    $('.wrap').css({'margin-left': '0%'});
+  } else if (window.matchMedia('(min-width: 635px) and (max-width: 767px)')
+                 .matches) {
     $('.wrap').css({'margin-left': '0', width: '100%'});
   } else if (window.matchMedia('(min-width: 768px) and (max-width: 992px)')
                  .matches) {
@@ -172,7 +175,10 @@ function openSidebar() {
   $('#open-sidebar').hide();
 
   localStorage.setItem('sidebar', 'opened');
-  if (window.matchMedia('(max-width: 767px)').matches) {
+  if (window.matchMedia('(max-width: 634px)').matches) {
+    $('.wrap').css({'margin-left': '50%', width: '100%'});
+  } else if (window.matchMedia('(min-width: 635px) and (max-width: 767px)')
+                 .matches) {
     $('.wrap').css({'margin-left': '30%', width: '70%'});
   } else if (window.matchMedia('(min-width: 768px) and (max-width: 1200px)')
                  .matches) {
@@ -304,14 +310,14 @@ function postGenericComment(parent_id, content, password, name) {
             url: '/write-comment',
             type: 'POST',
             data: {
-              parent_id : parent_id,
-              content : content,
-              password : password,
-              name : name,
-              article_url : article_url,
-              token : token,
+              parent_id: parent_id,
+              content: content,
+              password: password,
+              name: name,
+              article_url: article_url,
+              token: token,
             },
-            success : function(result) {
+            success: function(result) {
               $('#adding-comment').hide();
               location.reload();
             },
@@ -486,9 +492,9 @@ window.onload = function() {
 
         $('#result-' + index).parent().show();
         $('#result-' + index)
-                  .prev()
-                  .html(
-                      '실행 중 <div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
+            .prev()
+            .html(
+                '실행 중 <div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
         $.ajax({
           type: 'POST',
           url: '/run',
@@ -558,7 +564,7 @@ window.onload = function() {
     localStorage.setItem('sidebar', 'opened');
   }
 
-  if (sidebar_status == 'closed') {
+  if (sidebar_status == 'closed' || window.matchMedia('(max-width: 634px)').matches) {
     $('#sidebar').hide();
     $('#open-sidebar').show();
     closeSidebar();
@@ -601,7 +607,7 @@ window.onload = function() {
     $.ajax({
       type: 'POST',
       url: '/delete-comment',
-      data: {comment_id : comment_id, password : password},
+      data: {comment_id: comment_id, password: password},
       success: function(data) {
         location.reload();
       }
@@ -685,7 +691,8 @@ window.onload = function() {
     window.location.href = '/auth/goog';
   });
 
-  window.onresize = function() {
+  window.onresize =
+      function() {
     $('.sidenote').each(function(index) {
       if ($(this).css('position') == 'absolute') {
         if (!already_added) {
@@ -698,9 +705,10 @@ window.onload = function() {
     })
   }
 
-  $('img').click(function(e) {
-    
-  });
+      $('img')
+          .click(function(e) {
+
+          });
 };
 
 document.addEventListener('DOMContentLoaded', function() {
