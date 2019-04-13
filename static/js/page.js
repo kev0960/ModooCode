@@ -275,11 +275,10 @@ function addComment(num_comment) {
     $('#button-box').hide();
   }
   /* Image fallback */
-  $(document).ready(function()
-  {
-      $(".comment-profile img").on("error", function(){
-          $(this).attr('src', './img/unknown_person.png');
-      });
+  $(document).ready(function() {
+    $('.comment-profile img').on('error', function() {
+      $(this).attr('src', './img/unknown_person.png');
+    });
   });
 }
 
@@ -571,7 +570,8 @@ window.onload = function() {
     localStorage.setItem('sidebar', 'opened');
   }
 
-  if (sidebar_status == 'closed' || window.matchMedia('(max-width: 634px)').matches) {
+  if (sidebar_status == 'closed' ||
+      window.matchMedia('(max-width: 634px)').matches) {
     $('#sidebar').hide();
     $('#open-sidebar').show();
     closeSidebar();
