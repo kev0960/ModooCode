@@ -741,3 +741,11 @@ function BuildTOC() {
     $('#toc').append(elem);
   }
 }
+
+/* Image fallback */
+$(document).ready(function()
+{
+    $(".comment-profile img").on("error", function(){
+        $(this).attr('src', './img/unknown_person.png');
+    });
+});
