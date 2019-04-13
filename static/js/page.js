@@ -366,6 +366,14 @@ function loadComment() {
             .animate({scrollTop: $('#posted-comment').offset().top - 300}, 10);
       }
       window.localStorage.removeItem('redirect-info');
+
+      /* Image fallback */
+      $(document).ready(function()
+      {
+          $(".comment-profile img").on("error", function(){
+              $(this).attr('src', './img/unknown_person.png');
+          });
+      });
     }
   });
 }
@@ -741,11 +749,3 @@ function BuildTOC() {
     $('#toc').append(elem);
   }
 }
-
-/* Image fallback */
-$(document).ready(function()
-{
-    $(".comment-profile img").on("error", function(){
-        $(this).attr('src', './img/unknown_person.png');
-    });
-});
