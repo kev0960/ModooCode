@@ -105,15 +105,19 @@ gcc -o helloworld helloworld.c
 
 위 처럼 `Hello, World!` 가 출력되었다면 대 성공 입니다. 축하합니다.
 
-참고해서 읽어 볼 만한 자료
+### 생각 해보기
 
-`VIM` 설정 및 명령어 모음
- [http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-의-명령어-모음](http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C)
- [http://www.linuxconfig.org/Vim_Tutorial](http://www.linuxconfig.org/Vim_Tutorial)
- [http://blog.interlinked.org/tutorials/vim_tutorial.html](http://blog.interlinked.org/tutorials/vim_tutorial.html)
+#### 문제 1
 
-`gcc` 및 `Makefile` 강좌
- [http://wiki.kldp.org/KoreanDoc/html/gcc_and_make/gcc_and_make-2.html](http://wiki.kldp.org/KoreanDoc/html/gcc_and_make/gcc_and_make-2.html)
+[VIM 설정 및 명령어 모음](http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C) 에 vim 에서 사용하는 명령어들을 소개하고 있습니다. 그 외에도 [여기](http://www.linuxconfig.org/Vim_Tutorial)와 [여기](http://blog.interlinked.org/tutorials/vim_tutorial.html) 를 참고하시면 좋습니다.
 
+#### 문제 2
+
+Makefile 은 매 번 컴파일 할 때 마다 귀찮게 명령어를 다시 입력하지 않고도 컴파일을 쉽게 수행할 수 있게 도와주는 파일 입니다. 특히 소스 코드 양이 늘어나면 makefile 이 필수적이지요. [여기](https://bowbowbow.tistory.com/12) 에서 그 사용법을 소개하고 있습니다.
+
+```lec-summary
+리눅스에서 gcc 를 사용해서 코드를 컴파일 하는 방법을 배웠습니다.
+vim 의 사용법을 간단히 알아보았습니다.
+```
 
 ##@ chewing-c-end
