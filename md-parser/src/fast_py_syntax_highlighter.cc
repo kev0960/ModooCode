@@ -366,7 +366,7 @@ size_t FastPySyntaxHighlighter::HandleStringLiteral(
       cur--;
     }
     token_list_.emplace_back(STRING_LITERAL, string_literal_start, cur + 1);
-    return cur;
+    return cur + 1;
   }
   return 0;
 }

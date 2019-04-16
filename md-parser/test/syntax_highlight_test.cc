@@ -347,4 +347,16 @@ TEST(PySyntaxHighlightTest, PyMagicFunction) {
                          {PARENTHESES, 17, 18},
                          {OPERATOR, 18, 19}});
 }
+
+TEST(PySyntaxHighlightTest, PyBuiltIn2) {
+  MockPySyntaxHighlighter syn("return ord('0')");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({{KEYWORD, 0, 6},
+                         {WHITESPACE, 6, 7},
+                         {BUILT_IN, 7, 10},
+                         {PARENTHESES, 10, 11},
+                         {STRING_LITERAL, 11, 14},
+                         {PARENTHESES, 14, 15}});
+}
+
 }  // namespace md_parser
