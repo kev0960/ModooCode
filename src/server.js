@@ -577,9 +577,7 @@ module.exports = class Server {
       let page_id = parseInt(req.params.id);
       let user = req.user;
       if (page_id == 15) {
-        res.render(
-            'page.ejs',
-            this.generateInfoToPassEJS('./new/231.html', 231, '231'));
+        return res.redirect('/231');
       }
     }.bind(this));
 
