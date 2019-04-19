@@ -46,7 +46,7 @@ ref_title : ifstream
  [istream](http://itguru.tistory.com/146)으로 부터 상속 받은 멤버들
 
 
-*  [operator>>](http://itguru.tistory.com/147):  서식화된 데이터를 추출(입력)한다.
+*  [istream::operator>>](http://itguru.tistory.com/147):  서식화된 데이터를 추출(입력)한다.
 
 *  [gcount](http://itguru.tistory.com/192)  :  마지막 서식화 되지 않은 입력에서 받아들였었던 문자의 개수를 구한다.
 

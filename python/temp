@@ -1,83 +1,72 @@
 ----------------
-title : C++ 레퍼런스 - istream::sentry 클래스
-cat_title : istream::sentry
-ref_title : sentry, istream::sentry
+title : C++ 레퍼런스 - istream::seekg 함수
+cat_title : istream::seekg
+ref_title : seekg, istream::seekg
 publish_date : 2019-04-19
 path : /C++ Reference/iostream
 --------------
 
-#@ istream::sentry
+#@ istream::seekg
+
+`<istream>` 에 정의됨
 
 ```cpp
-class sentry;
+basic_istream& seekg( pos_type pos ); // (1)
+basic_istream& seekg( off_type off, std::ios_base::seekdir dir); // (2)
 ```
 
-basic_istream::sentry 객체는 std::basic_istream 에서 입력을 수행하는 멤버 함수들에 의해 생성되는 객체이다. sentry 객체의 생성자는, 입력 스트림을 다음 같은 방법으로 준비한다. \sidenote{sentry 라는 단어의 원래 뜻은 보초 이다.}
+연관된 streambuf 객체의 입력 위치 지정자 값을 설정한다. 실패 시에 setstate(std::ios_base::failbit) 을 호출한다.
 
-* 스트림이 이미 fail 상태 인지 확인한다.
-* tie() 된 출력 스트림을 flush 한다.
-* noskipws 플래그가 설정되어 있지 않다면, 접두에 등장하는 공백 문자들을 무시한다.
-* 그 외에 여러가지 구현에 따라 다른 일들을 수행한다.
+처음에 seekg 를 호출하면, eofbit 을 클리어 한다.
 
-sentry 객체가 소멸 될때, 필요한 **청소** 작업을 수행하는데 이는 입력 연산 중에 예외가 발생하더라도 입력 스트림을 안전하게 마무리 짓기 위함이다.
+1. 입력 위치 지정자 값을 파일의 시작으로부터의 위치인 pos 로 설정한다. 이는 rdbuf()->pubseekpos(pos, std::ios_base::in) 를 실행한 것과 같다.
+2. 입력 위치 지정자를 dir 이 지정한 위치로 부터 off 만큼 떨어진 곳으로 설정한다. 이는 rdbuf()->pubseekoff(off, dir, std::ios_base::in) 를 실행한 것과 같다.
 
+### 인자들
 
-### 멤버 함수들
+* pos	: 입력 위치 지정자를 설정할 절대 위치.
+* off	: 입력 위치 지정차를 설정할 상대 위치
+* dir	: 상대 위치에 기준이 되는 지점. 이는 아래 3 가지 상수들 중 하나 이다.
 
-* 생성자 : sentry 객체를 생성하며, 모든 준비 작업들이 여기에서 수행된다.
+|Constant|Explanation|
+|:------:|-----------|
+|beg|스트림의 시작점|
+|end|스트림의 끝점|
+|cur|위치 지정자의 현재 위치|
 
-```cpp
-explicit sentry(std::basic_istream<CharT,Traits>& is, bool noskipws = false);
-```
+### 리턴값
 
-sentry 객체의 생성자는 위와 같은 꼴이다. 만일 is.good() 이 false 라면, is.setstate(failbit) 를 호출한 후에 리턴한다. 그 다음, is.tie() 을 확인해서 널 포인터가 아니라면, is.tie()->flush() 를 호출해서 출력 스트림과 동기화를 수행한다. 이 과정은 is.tie() 의 put area 가 0 이라면 생략된다. 
-
-그 후에 noskipws 가 0 이거나 is.flags() & ios_base::skipws 가 0 이 아니라면, 첫 공백 문자가 나타나기 전 까지 모든 공백 문자를 날려버린다. 만일 is.rdbuf()->sbumpc() 나 is.rdbuf()->sgetc() 가 traits::eof() 를 리턴한다면, setstate(failbit | eofbit) 를 호출한다.
-
-* 소멸자 : 모든 입력이 끝난 후에, 혹은 예외가 발생 하였을 때 안전하게 스트림 객체를 마무리 짓는다.
-* operator= : 지워짐; sentry 객체는 복사 생성이 불가능하다.
-* operator bool : 준비 과정이 성공적이였는지 확인한다.
+*this
 
 ### 실행 예제
 
 ```cpp
 #include <iostream>
+#include <string>
 #include <sstream>
- 
-struct Foo
-{
-   char n[5];
-};
- 
-std::istream& operator>>(std::istream& is, Foo& f)
-{
-    std::istream::sentry s(is);
-    if (s)
-        is.read(f.n, 5);
-    return is;
-}
  
 int main()
 {
-    std::string input = "   abcde";
-    std::istringstream stream(input);
-    Foo f;
-    stream >> f;
-    std::cout.write(f.n, 5);
-    std::cout << '\n';
+    std::string str = "Hello, world";
+    std::istringstream in(str);
+    std::string word1, word2;
+ 
+    in >> word1;
+    in.seekg(0); // 입력 위치 지정자를 맨 앞으로 움직인다.
+    in >> word2;
+ 
+    std::cout << "word1 = " << word1 << '\n'
+              << "word2 = " << word2 << '\n';
 }
 ```
 
 ```exec
-abcde
+word1 = Hello,
+word2 = Hello,
 ```
 
-See also
-operator>>
- 
-extracts formatted data 
-(public member function)
-operator>>(std::basic_istream)
- 
-extracts characters and character arrays 
-(function template)
+### 연관된 함수
+
+* tellg : 입력 위치 지정자의 현재 위치를 리턴한다.
+* `tellp` : 출력 위치 지정자를 리턴한다.
+* `seekp` : 출력 위치 지정자를 설정한다.
