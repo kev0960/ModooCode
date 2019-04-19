@@ -280,7 +280,7 @@
 ,
 	"143" : {
 	"publish_date" : "2011-08-17",
-	"ref_title" : "iostream",
+	"ref_title" : "iostream, <iostream>",
 	"title" : "C++ IOstream (입출력) 라이브러리"
 }
 ,
@@ -301,7 +301,7 @@
 	"146" : {
 	"cat_title" : "istream 클래스",
 	"publish_date" : "2011-08-17",
-	"ref_title" : "istream",
+	"ref_title" : "istream, <istream>",
 	"title" : "C++ 레퍼런스 - istream 클래스"
 }
 ,
@@ -655,10 +655,10 @@
 }
 ,
 	"194" : {
-	"cat_title" : "istream::peak",
+	"cat_title" : "istream::peek",
 	"publish_date" : "2012-11-09",
-	"ref_title" : "peak",
-	"title" : "C++ 레퍼런스 - istream::peak 함수"
+	"ref_title" : "peek",
+	"title" : "C++ 레퍼런스 - istream::peek 함수"
 }
 ,
 	"195" : {
@@ -1268,6 +1268,30 @@
 	"title" : "모두의 알고리즘 - 2 - 3. 비교 기반 정렬 알고리즘의 한계와 정수 정렬 알고리즘들"
 }
 ,
+	"275" : {
+	"cat_title" : "transform",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-04-19",
+	"ref_title" : "transform, std::transform",
+	"title" : "C++ 레퍼런스 - transform 함수"
+}
+,
+	"276" : {
+	"cat_title" : "istream::read",
+	"path" : "/C++ Reference/iostream",
+	"publish_date" : "2019-04-19",
+	"ref_title" : "read, istream::read",
+	"title" : "C++ 레퍼런스 - istream::read 함수"
+}
+,
+	"277" : {
+	"cat_title" : "istream::sentry",
+	"path" : "/C++ Reference/iostream",
+	"publish_date" : "2019-04-19",
+	"ref_title" : "sentry, istream::sentry",
+	"title" : "C++ 레퍼런스 - istream::sentry 클래스"
+}
+,
 	"28" : {
 	"cat_title" : "13 - 3. 마술 상자 함수 3 (function)",
 	"next_page" : "30",
@@ -1319,18 +1343,21 @@
 	"34" : {
 	"cat_title" : "stdio.h (cstdio)",
 	"publish_date" : "2010-01-25",
+	"ref_title" : "<stdio.h>, <cstdio>, stdio.h",
 	"title" : "C 언어 레퍼런스 - stdio.h (cstdio) 헤더파일"
 }
 ,
 	"35" : {
 	"cat_title" : "printf",
 	"publish_date" : "2010-11-27",
+	"ref_title" : "printf",
 	"title" : "C 언어 레퍼런스 - printf 함수"
 }
 ,
 	"36" : {
 	"cat_title" : "scanf",
 	"publish_date" : "2010-02-03",
+	"ref_title" : "printf",
 	"title" : "C 언어 레퍼런스 - scanf 함수"
 }
 ,
@@ -1464,6 +1491,7 @@
 	"58" : {
 	"cat_title" : "fopen",
 	"publish_date" : "2010-02-11",
+	"ref_title" : "fopen",
 	"title" : "C 언어 레퍼런스 - fopen 함수"
 }
 ,

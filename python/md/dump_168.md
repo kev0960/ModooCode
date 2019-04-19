@@ -4,8 +4,6 @@ cat_title :  ios::operator!
 publish_date : 2011-10-23
 --------------
 
-
-
 ```warning
 이 레퍼런스의 모든 내용은 [http://www.cplusplus.com/reference/iostream/](http://www.cplusplus.com/reference/iostream/) 의 내용을 기초로 하여, Microsoft 의 MSDN 과 Bjarne Stroustrup 의 책 *The C++ Programming Language* 를 참고로 하여 만들어졌습니다. 이는 또한 저의 개인적인 C++ 능력 향상과 ' [저의 모토인 지식 전파](http://itguru.tistory.com/notice/107)'를 위해 모든 이들에게 공개하도록 하겠습니다.
 ```
@@ -15,6 +13,8 @@ publish_date : 2011-10-23
 ```
 
 #@ ios::operator!
+
+`<istream>` 에 정의됨
 
 ```info-format
 bool operator ! ( ) const;

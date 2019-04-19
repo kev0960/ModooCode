@@ -1,7 +1,7 @@
 ----------------
-title : C++ 레퍼런스 - istream::peak 함수
-cat_title :  istream::peak
-ref_title : peak
+title : C++ 레퍼런스 - istream::peek 함수
+cat_title :  istream::peek
+ref_title : peek
 publish_date : 2012-11-09
 --------------
 

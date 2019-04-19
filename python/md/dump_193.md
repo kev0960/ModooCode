@@ -15,8 +15,9 @@ publish_date : 2012-11-07
 
 #@ istream::ignore
 
-```info-format
+`<istream>` 에 정의됨
 
+```info-format
 istream&  ignore ( streamsize n = 1, int delim = EOF );
 ```
 
@@ -27,12 +28,8 @@ istream&  ignore ( streamsize n = 1, int delim = EOF );
 
 ###  인자
 
-`n`
-추출할 최대 문자의 개수. 이는 `streamsize` 타입이다.
-`delim`
-제한 문자
-
-
+* `n` : 추출할 최대 문자의 개수. 이는 `streamsize` 타입이다.
+* `delim` : 제한 문자
 
 ###  리턴값
 
@@ -60,13 +57,11 @@ istream&  ignore ( streamsize n = 1, int delim = EOF );
 ```cpp-formatted
 /*
 
-
-이 예제는
- [http://www.cplusplus.com/reference/iostream/istream/ignore/](http://www.cplusplus.com/reference/iostream/istream/ignore/)
+이 예제는 http://www.cplusplus.com/reference/iostream/istream/ignore/ 
 에서 가져왔습니다.
 
-
 */
+
 #include <iostream>
 using namespace std;
 

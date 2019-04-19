@@ -579,6 +579,7 @@ module.exports = class Server {
       if (page_id == 15) {
         return res.redirect('/231');
       }
+      return res.redirect('/');
     }.bind(this));
 
     this.app.post('/run', function(req, res) {

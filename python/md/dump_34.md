@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - stdio.h (cstdio) 헤더파일
 cat_title :  stdio.h (cstdio)
 publish_date : 2010-01-25
+ref_title : <stdio.h>, <cstdio>, stdio.h
 --------------
 
 
