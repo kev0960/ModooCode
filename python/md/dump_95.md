@@ -128,7 +128,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 * [strcspn](http://itguru.tistory.com/94)  :  이 함수와 동일한 검색을 수행하되, 찾은 문자까지 거리를 구한다.

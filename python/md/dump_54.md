@@ -65,7 +65,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F127B681F4B702E017E42DF)
 
-###  연관된 함수
+###  참고 자료
 
 * `fopen` :  파일을 연다(open)
 * `fflush` :  스트림을 비운다(flush)

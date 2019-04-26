@@ -129,7 +129,7 @@ basic_istream& getline(char_type* s, streamsize n, char_type delim);
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [istream::get](http://itguru.tistory.com/191)  :  서식화 되지 않은 데이터를 스트림에서 가져온다.

@@ -107,7 +107,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [setbuf](http://itguru.tistory.com/61)  :  스트림 버퍼를 설정한다.
 *  [fopen](http://itguru.tistory.com/58)   :  파일을 연다.

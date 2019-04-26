@@ -114,7 +114,7 @@ char *strncat(char *s1, const char *s2, size_t count) {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [strcat](http://itguru.tistory.com/81)  :  문자열을 합친다.

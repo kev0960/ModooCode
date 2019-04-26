@@ -281,7 +281,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 포함된 정도를 구한다.

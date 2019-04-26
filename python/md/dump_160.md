@@ -60,6 +60,6 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [ios_base::imbue](http://itguru.tistory.com/158)  :  로케일을 설정한다.

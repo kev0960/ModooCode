@@ -58,7 +58,7 @@ bool bad ( ) const;
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
 *  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.

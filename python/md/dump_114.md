@@ -84,7 +84,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 * [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 바꾼다.

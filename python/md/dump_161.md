@@ -91,7 +91,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [ios_base::](http://itguru.tistory.com/162) [xalloc](http://itguru.tistory.com/162) :  내부 확장 가능 배열의 새로운 인덱스를 리턴한다.
 *  [ios_base::pword](http://itguru.tistory.com/163)  :  내부 확장 가능 배열의 포인터의 레퍼런스를 얻는다.

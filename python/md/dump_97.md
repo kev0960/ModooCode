@@ -120,7 +120,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [strcspn](http://itguru.tistory.com/94): 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴
 *  [strstr](http://itguru.tistory.com/101)  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴

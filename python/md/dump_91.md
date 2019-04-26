@@ -86,7 +86,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
 *  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부분을 비교한다.

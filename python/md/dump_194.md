@@ -116,7 +116,7 @@ int_type peek();
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [istream::get](http://itguru.tistory.com/191): 스트림에서 서식화 되지 않은 데이터를 가져온다.
 *  [istream::operator>>](http://itguru.tistory.com/147): 스트림에서 서식화 된 데이터를 가져온다.

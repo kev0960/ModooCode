@@ -84,6 +84,6 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [rand](http://itguru.tistory.com/139)  :  난수를 생성한다.

@@ -76,7 +76,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F121F7E144B6EEFA0172711)
 
-###  연관된 함수
+###  참고 자료
 
 *  [clearerr](http://itguru.tistory.com/50)  :  오류 표시자들을 초기화한다.
 *  [ferror](http://itguru.tistory.com/52)  :  오류 표시자를 검사한다.

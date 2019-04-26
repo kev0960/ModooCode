@@ -106,7 +106,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [ftell](http://itguru.tistory.com/74)  :  스트림의 현재 위치를 구한다.
 *  [fsetpos](http://itguru.tistory.com/73):  스트림의 위치 지정자를 설정한다.

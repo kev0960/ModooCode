@@ -112,7 +112,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 * [memchr](http://itguru.tistory.com/92)  :  메모리 블록에서 특정한 문자를 찾는다.
 *  [memcpy](http://itguru.tistory.com/77):  메모리 블록을 복사한다.

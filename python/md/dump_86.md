@@ -52,7 +52,7 @@ C 형식 문자열인 `str1` 과 `str2` 를 `LC_COLLATE` 에 정의되어 있는
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [strcmp](http://itguru.tistory.com/85)  :  두 문자열을 비교한다.
 * `strncmp` :  두 문자열의 일부분을 비교한다.

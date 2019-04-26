@@ -95,7 +95,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [atoi](http://itguru.tistory.com/131)  :  문자열을 정수로 변환한다.
 *  [atof](http://itguru.tistory.com/124)  :  문자열을 `double` 형으로 변환한다.

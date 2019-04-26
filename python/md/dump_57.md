@@ -94,7 +94,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [fclose](http://itguru.tistory.com/54)  :  파일을 닫는다.
 *  [fopen](http://itguru.tistory.com/58)   : 파일을 연다.

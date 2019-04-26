@@ -125,7 +125,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F201841274B8166BC620379)
 
-###  연관된 함수
+###  참고 자료
 
 *  [scanf](http://itguru.tistory.com/36)  :  표준 입력(stdin) 에서 데이터를 특정한 형식으로 읽어온다.
 * `fprintf ` :  스트림에 특정한 형식으로 데이터를 쓴다.

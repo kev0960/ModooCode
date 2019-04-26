@@ -126,7 +126,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F111039584D246E6A33FF6E)
 
-###  연관된 함수
+###  참고 자료
 
 * [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
 * [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.

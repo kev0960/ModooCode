@@ -83,7 +83,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 * [clearerr](http://itguru.tistory.com/50):  오류 표시자들을 클리어한다.
 * [ferror](http://itguru.tistory.com/52)  :  오류 표시자를 검사한다.

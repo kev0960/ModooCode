@@ -120,6 +120,6 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 * [strcspn](http://itguru.tistory.com/94)  :  특정한 문자를 찾을 때 까지의 길이를 구한다.
 * [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 특정한 문자를 찾는다.

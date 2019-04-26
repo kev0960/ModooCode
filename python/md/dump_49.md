@@ -161,7 +161,7 @@ fputs(buffer, stdout);
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 

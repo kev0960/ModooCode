@@ -93,7 +93,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 * [memmove](http://itguru.tistory.com/78)  :  메모리의 블록을 옮긴다.

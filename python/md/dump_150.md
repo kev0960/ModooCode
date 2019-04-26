@@ -108,6 +108,6 @@ iostate exceptions(iostate except);
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.

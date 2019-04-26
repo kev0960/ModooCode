@@ -271,7 +271,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [printf](http://itguru.tistory.com/35)  :  특정한 형식에 맞추어 데이터를 `stdout` 에 출력한다.

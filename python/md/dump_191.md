@@ -178,7 +178,7 @@ basic_istream& get(basic_streambuf<char_type, traits>& sb);
 basic_istream& get(basic_streambuf<char_type, traits>& sb, char_type delim);
 ```
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [istream::getline](http://itguru.tistory.com/149): 스트림에서 한 줄을 입력받는다.

@@ -93,7 +93,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [fseek](http://itguru.tistory.com/72):  스트림 위치 지정자를 설정한다.
 *  [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.

@@ -98,7 +98,7 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F177446244C558BD59B51A7)
 
 
-###  연관된 함수
+###  참고 자료
 
 
 * [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자를 검색하되, 가장 마지막으로 나타나는 위치를 구한다.

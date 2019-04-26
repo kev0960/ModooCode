@@ -120,7 +120,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [strchr](http://itguru.tistory.com/93)  :   특정한 문자가 포함되어 있는 가장 왼쪽 위치를 찾는다.
 *  [memchr](http://itguru.tistory.com/92)  :  메모리에서 특정한 문자를 찾는다.

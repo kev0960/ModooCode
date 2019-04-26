@@ -194,7 +194,7 @@ int main() {
 
 
 
-###  연관된 함수들
+###  참고 자료들
 
 * `fscanf`  :  스트림에서 특정한 형식으로 데이터를 읽어온다.
 * [printf](http://itguru.tistory.com/35)  :  `stdout` 에 특정한 형식으로 데이터를 출력한다.

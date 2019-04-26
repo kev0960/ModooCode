@@ -88,6 +88,6 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [perror](http://itguru.tistory.com/53):  오류 메세지를 출력한다.

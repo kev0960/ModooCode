@@ -75,7 +75,7 @@ int main() {
 (basic_istream<charT, traits>)streamsize gcount() const;
 ```
 
-###  연관된 함수
+###  참고 자료
 
 *  [istream::get](http://itguru.tistory.com/191): 스트림에서 서식화 되지 않은 데이터를 입력 받는다.
 *  [istream::getline](http://itguru.tistory.com/149): 스트림에서 한 줄 입력받는다.

@@ -94,7 +94,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 * ios_base::iostate  :  스트림 상태 플래그들을 위한 타입
 *  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.

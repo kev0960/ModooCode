@@ -89,7 +89,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 * [fgetpos](http://itguru.tistory.com/70)  :  스트림의 현재 위치 지정자 값을 가져온다.

@@ -92,6 +92,6 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [srand](http://itguru.tistory.com/140)  :  난순열의 초기값을 설정한다.

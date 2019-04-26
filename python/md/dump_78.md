@@ -93,7 +93,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.
 *  [memchr](http://itguru.tistory.com/92)  :  메모리 블록에 문자를 위치시킨다.

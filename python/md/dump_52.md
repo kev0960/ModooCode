@@ -64,7 +64,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [feof](http://itguru.tistory.com/51)  :  파일 끝 표시자를 검사한다.
 *  [clearerr](http://itguru.tistory.com/50):  오류 표시자들을 클리어(clear) 한다.

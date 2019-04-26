@@ -115,7 +115,7 @@ char_type fill(char_type fillch);
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 * `setfill` : 채우기 문자를 설정한다. (조작자)

@@ -143,7 +143,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [vector::push_back](http://itguru.tistory.com/185): 벡터 끝에 원소를 추가한다.

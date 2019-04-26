@@ -116,7 +116,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F193B1B1E4C24BABDAC1454)
 
-###  연관된 함수
+###  참고 자료
 
 *  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부 문자를 비교한다.
 *  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.

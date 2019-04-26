@@ -76,7 +76,7 @@ int main() {
 따라서 첫번째 `if` 문에서 *Error Writing to myfile.txt\n* 이 출력되었지만, `clearerr` 함수를 이용하여 오류 플래그를 비워버렸다. 따라서 아래 `if` 문에서 성공적으로 *No errors reading myfile.txt\n* 가 출력될 수 있었다.
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [feof](http://itguru.tistory.com/51)   :  파일 끝 표시자(EOF) 를 검사한다.
 *  [ferror](http://itguru.tistory.com/52):  오류 표시자를 검사한다.

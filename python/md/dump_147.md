@@ -229,7 +229,7 @@ basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is,
 ```
 
 
-###  연관된 함수
+###  참고 자료
 
 
 * [istream::get](http://itguru.tistory.com/191) : 서식화 되지 않는 데이터를 스트림에서 가져온다.

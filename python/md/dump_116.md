@@ -87,7 +87,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F131466354D168E052284C6)
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [ctime](http://itguru.tistory.com/118)  :  `time_t` 를 가지고 `asctime` 과 동일한 작업을 한다.

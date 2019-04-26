@@ -38,7 +38,7 @@ int xalloc ( );
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [ios_base::iword](http://itguru.tistory.com/161)  :  내부 확장 가능 배열의 정수 원소의 레퍼런스를 얻는다.
 *  [ios_base::pword](http://itguru.tistory.com/163):  내부 확장 가능 배열을 가리키는 포인터의 레퍼런스를 얻는다.

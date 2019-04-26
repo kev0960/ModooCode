@@ -103,7 +103,7 @@ char *strcat(char *dst, const char *src) {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [strcpy](http://itguru.tistory.com/79): 문자열을 복사한다.
 *  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.

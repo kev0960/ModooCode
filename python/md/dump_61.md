@@ -110,7 +110,7 @@ fputs("This is sent to an unbuffered stream\n", pFile2);
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [fopen](http://itguru.tistory.com/58)  :  파일을 연다.

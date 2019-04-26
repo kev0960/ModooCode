@@ -95,7 +95,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자를 다시 조정한다.
 *  [fgetpos](http://itguru.tistory.com/70):  스트림의 위치 지정자의 현재 위치를 구한다.

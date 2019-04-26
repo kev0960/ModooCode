@@ -94,7 +94,7 @@ int main() {
 basic_istream& ignore(streamsize n = 1, int_type delim = traits::eof());
 ```
 
-###  연관된 함수
+###  참고 자료
 
 *  [istream::peek](http://itguru.tistory.com/194): 그 다음 문자를 추출하지는 않고 읽기만 한다.
 *  [istream::get](http://itguru.tistory.com/191): 스트림에서 서식화 되지 않는 데이터를 얻는다.

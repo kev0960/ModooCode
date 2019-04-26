@@ -92,7 +92,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 *  [time](http://itguru.tistory.com/114)  :  현재 시각을 알아온다.
 *  [difftime](http://itguru.tistory.com/111)  :  두 개 시각의 차이를 구한다.

@@ -111,7 +111,7 @@ int main() {
 
 
 
-###  연관된 함수
+###  참고 자료
 
 
 *  [strcmp](http://itguru.tistory.com/85)  :  두 개의 문자열을 비교한다.

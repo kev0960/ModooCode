@@ -61,7 +61,7 @@ bool good ( ) const;
 (basic_ios<charT, traits>)bool good() const;
 ```
 
-###  연관된 함수
+###  참고 자료
 
 *  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
 *  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.

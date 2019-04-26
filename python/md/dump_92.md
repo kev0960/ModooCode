@@ -91,7 +91,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F207EAB0F4C5588E0CAACE4)
 
-###  연관된 함수
+###  참고 자료
 
 * [memcmp](http://itguru.tistory.com/84)   :  두 메모리 블록을 비교한다.
 *  [strchr](http://itguru.tistory.com/93)  :  문자열에서 특정한 문자를 검색하되 가장 먼저 나타나는 위치를 구한다.
