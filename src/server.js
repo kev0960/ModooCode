@@ -380,7 +380,7 @@ module.exports = class Server {
         cat_html += root_folders[i] + '">';
         if (root[root_folders[i]].files.length > 0 ||
             Object.keys(root[root_folders[i]]).length >= 2) {
-          cat_html += '<i class="xi-plus-square"></i>&nbsp;&nbsp;';
+          cat_html += '<i class="xi-plus-square" style="font-size:0.75em;"></i>&nbsp;&nbsp;';
         }
         cat_html += root_folders[i] + '</a>';
       }
@@ -421,24 +421,28 @@ module.exports = class Server {
       last_node.style.backgroundColor = 'rgba(255, 255, 255, .33)';
       return;
     }
-
-    if (current_dom.classList) {
-      current_dom.classList.add('open-cat');
-    } else {
-      current_dom.className += ' open-cat';
-    }
-
-    let html = current_dom.innerHTML;
-    html = html.replace(
-        '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
-        '<i class=\'xi-caret-down-min\'></i>');
-    html = html.replace(
-        '<i class="xi-plus-square"></i>',
-        '<i class=\'xi-caret-down-min\'></i>');
-    current_dom.innerHTML = html;
-
     // Get the directory.
     const current_dir = this.GetFilesFromPath(path);
+
+    if (current_dir.files.length <= 5) {
+      if (current_dom.classList) {
+        current_dom.classList.add('open-cat');
+      } else {
+        current_dom.className += ' open-cat';
+      }
+  
+      let html = current_dom.innerHTML;
+      html = html.replace(
+          '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
+          '<i class="xi-caret-down-min" style="font-size:0.75em;"></i>');
+      html = html.replace(
+          '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
+          '<i class="xi-caret-down-min" style="font-size:0.75em;"></i>');
+      current_dom.innerHTML = html;  
+    } else {
+      current_dom.style.backgroundColor = 'rgba(255, 255, 255, .33)';
+    }
+  
     // Add directories.
     const folders = Object.keys(current_dir);
     let div = document.createElement('div');
@@ -461,36 +465,38 @@ module.exports = class Server {
         div.appendChild(folder_link);
       }
     }
-    // Add files.
-    for (let i = 0; i < current_dir.files.length; i++) {
-      const file_id = current_dir.files[i];
-      let cat_title = this.file_infos[file_id].title;
-      if (this.file_infos[file_id].cat_title) {
-        cat_title = this.file_infos[file_id].cat_title;
+    // Add files if there aren't that many.
+    if (current_dir.files.length <= 5) {
+      for (let i = 0; i < current_dir.files.length; i++) {
+        const file_id = current_dir.files[i];
+        let cat_title = this.file_infos[file_id].title;
+        if (this.file_infos[file_id].cat_title) {
+          cat_title = this.file_infos[file_id].cat_title;
+        }
+  
+        const file_link = document.createElement('a');
+        file_link.className = 'sidebar-nav-item file';
+        file_link.setAttribute('href', '/' + file_id);
+        file_link.setAttribute('name', cat_title);
+        file_link.textContent = cat_title;
+        div.appendChild(file_link);
       }
-
-      const file_link = document.createElement('a');
-      file_link.className = 'sidebar-nav-item file';
-      file_link.setAttribute('href', '/' + file_id);
-      file_link.setAttribute('name', cat_title);
-      file_link.textContent = cat_title;
-      div.appendChild(file_link);
-    }
-
-    function insertAfter(el, referenceNode) {
-      referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
-    }
-    insertAfter(div, current_dom);
-
-    let children = current_dom.nextElementSibling.children;
-    let found = null;
-    for (let i = 0; i < children.length; i++) {
-      if (children[i].getAttribute('name') == full_path[depth]) {
-        found = children[i];
-        break;
+  
+      function insertAfter(el, referenceNode) {
+        referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
       }
+      insertAfter(div, current_dom);
+  
+      let children = current_dom.nextElementSibling.children;
+      let found = null;
+      for (let i = 0; i < children.length; i++) {
+        if (children[i].getAttribute('name') == full_path[depth]) {
+          found = children[i];
+          break;
+        }
+      }
+      this.buildCategoryListingRecurse(found, full_path, depth + 1, document);
     }
-    this.buildCategoryListingRecurse(found, full_path, depth + 1, document);
   }
 
   generateInfoToPassEJS(content_url, page_id, category_id, user) {

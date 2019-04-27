@@ -63,7 +63,7 @@
 	"109" : {
 	"cat_title" : "struct tm",
 	"publish_date" : "2010-12-25",
-	"ref_title" : "tm 구조체",
+	"ref_title" : "tm 구조체, tm, struct tm",
 	"title" : "C 언어 레퍼런스 - struct tm ( tm 구조체 )"
 }
 ,
@@ -1375,7 +1375,7 @@
 	"34" : {
 	"cat_title" : "stdio.h (cstdio)",
 	"publish_date" : "2010-01-25",
-	"ref_title" : "<stdio.h>, <cstdio>, stdio.h",
+	"ref_title" : "<stdio.h>, <cstdio>, stdio.h, cstdio",
 	"title" : "C 언어 레퍼런스 - stdio.h (cstdio) 헤더파일"
 }
 ,
@@ -1646,6 +1646,7 @@
 	"76" : {
 	"cat_title" : "string.h (cstring)",
 	"publish_date" : "2010-04-24",
+	"ref_title" : "<string.h>, <cstring>, string.h, cstring",
 	"title" : "C 언어 레퍼런스 - string.h (cstring) 헤더파일"
 }
 ,

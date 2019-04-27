@@ -1,11 +1,9 @@
 ----------------
 title : C 언어 레퍼런스 - struct tm ( tm 구조체 )
 cat_title :  struct tm
-ref_title : tm 구조체
+ref_title : tm 구조체, tm, struct tm
 publish_date : 2010-12-25
 --------------
-
-
 
 ```warning
 아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?

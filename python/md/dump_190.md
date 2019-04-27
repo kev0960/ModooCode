@@ -13,16 +13,10 @@ ref_title  : ios::tie, tie
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
 
-
-
-
 #@ ios::tie
 
 
-
-
 ```info-format
-
 ostream* tie ( ) const;
 ostream* tie ( ostream* tiestr );
 ```
@@ -30,32 +24,24 @@ ostream* tie ( ostream* tiestr );
 
 
 엮여진(tied) 스트림을 얻거나설정한다.
+
 첫 번째 함수는 엮여진 출력 스트림을 가리키는 포인터를 리턴한다.
-두 번째 함수는 tiestr 이 가리키는 객체와 엮고, 이전에 엮여져 있던 객체를 가리키는 포인터를 리턴한다.
 
-디폴트로, 표준 객체인인 `cin, cerr, clog` 는 `cout` 에 엮여져 있고, 그들의 `wide character` 버전인 `wcin, wcerr, wclog` 는 `wcout` 에 엮여져 있다.
+두 번째 함수는 `tiestr` 이 가리키는 객체와 엮고, 이전에 엮여져 있던 객체를 가리키는 포인터를 리턴한다.
 
-
-
+디폴트로, 표준 객체인인 `cin`, `cerr`, `clog` 는 `cout` 에 엮여져 있고, 그들의 `wide character` 버전인 `wcin`, `wcerr`, `wclog` 는 `wcout` 에 엮여져 있다.
 
 
 
 ###  인자
 
 
-
-
-`tiestr`
-엮을 출력 스트림
-
-
+`tiestr` : 엮을 출력 스트림
 
 ###  리턴값
 
 
-
-
-호출 이전에 엮여있던스트림 객체를 가리키는 포인터를 리턴한다. 만일 엮여있던 객체가 없다면 널 포인터를 리턴한다.
+호출 이전에 엮여있던 스트림 객체를 가리키는 포인터를 리턴한다. 만일 엮여있던 객체가 없다면 널 포인터를 리턴한다.
 
 
 
@@ -66,20 +52,12 @@ ostream* tie ( ostream* tiestr );
 
 ```cpp-formatted
 /*
+처음에 *cin.tie() 를 통해 cout 에 내용을 출력한 뒤, cin.tie(&ofs) 로 파일에 엮여진
+출력스트림을 변경 한 뒤, 다시 그 내용을 출력한다.
 
-
- 처음에 *cin.tie() 를 통해 cout 에 내용을 출력한 뒤, cin.tie(&ofs) 로
- 파일으로 엮여진 출력스트림을 변경 한 뒤, 다시 그 내용을 출력한다.
- 이 예제는
-
-
- [http://www.cplusplus.com/reference/iostream/ios/tie/](http://www.cplusplus.com/reference/iostream/ios/tie/)
-
-
- 에서 가져왔습니다.
-
-
+이 예제는 http://www.cplusplus.com/reference/iostream/ios/tie/  에서 가져왔습니다.
 */
+
 #include <fstream>
 #include <iostream>
 using namespace std;

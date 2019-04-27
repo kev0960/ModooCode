@@ -17,9 +17,7 @@ publish_date : 2011-08-17
 #@ ios_base
 
 
-표준 스트림 클래스의 타입과 무관한 멤버들을 포함하고 있는 기초 클래스(base `class)` 이다.
-
-
+표준 스트림 클래스의 타입과 무관한 멤버들을 포함하고 있는 기초 클래스(base class) 이다.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F18728641509A44B6183588)

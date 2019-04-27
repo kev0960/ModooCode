@@ -92,19 +92,19 @@ function initCategory() {
 
       html = $(this).html();
       html = html.replace(
-          '<i class="xi-caret-down-min"></i>',
-          '<i class="xi-plus-square"></i>');
+          '<i class="xi-caret-down-min" style="font-size:0.75em;"></i>',
+          '<i class="xi-plus-square" style="font-size:0.75em;"></i>');
       $(this).html(html);
     } else {
       // Clicked the collapsed category; Need to open it.
       $(this).addClass('open-cat');
       html = $(this).html();
       html = html.replace(
-          '<i class="xi-plus-square"></i>',
-          '<i class=\'xi-caret-down-min\'></i>');
+          '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
+          '<i class="xi-caret-down-min" style="font-size:0.75em;"></i>');
       html = html.replace(
-          '<i class="xi-plus-square"></i>',
-          '<i class=\'xi-caret-down-min\'></i>');
+          '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
+          '<i class="xi-caret-down-min" style="font-size:0.75em;"></i>');
       $(this).html(html);
 
       // Get the directory.
@@ -145,6 +145,9 @@ function initCategory() {
         }));
       }
       div.insertAfter($(this));
+
+      const elem = $('.sidebar-nav-item[href="' + window.location.pathname + '"]');
+      elem.css('background-color', 'rgba(255, 255, 255, .33)');
     }
   });
 }
