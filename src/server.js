@@ -1,4 +1,4 @@
-const zmq = require('zmq');
+const zmq = require('zeromq');
 const uuidv4 = require('uuid/v4');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
