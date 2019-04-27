@@ -109,7 +109,8 @@ function initCategory() {
 
       // Get the directory.
       const current_dir = GetFilesFromPath(path);
-      // Add directories.
+
+      // Add directories. 
       const folders = Object.keys(current_dir);
       const div = $('<div>', {class: 'inner-menu' + path.length});
       for (let i = 0; i < folders.length; i++) {

@@ -97,4 +97,4 @@ int main() {
 *  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 설정한다.
 *  [ios_base::unsetf](http://itguru.tistory.com/156)  :  특정 서식 플래그를 초기화 한다.
 *  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그의 타입
-* setiosflags  :  서식 플래그를 설정한다.
+* `setiosflags` : 서식 플래그를 설정한다.

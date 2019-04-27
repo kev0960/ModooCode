@@ -91,9 +91,9 @@ ref_title : ifstream
 
 *  [bad](http://itguru.tistory.com/166):  `bad` 비트가 설정되었는지 확인한다.
 
-*  [operator!](http://itguru.tistory.com/168):  스트림 객체에 오류 플래그(`fail` 비트나 `bad` 비트)가 설정되었는지 확인한다.
+*  [ios::operator!](http://itguru.tistory.com/168):  스트림 객체에 오류 플래그(`fail` 비트나 `bad` 비트)가 설정되었는지 확인한다.
 
-*  [operator void*](http://itguru.tistory.com/170):  포인터로 변환한다.
+*  [ios::operator void*](http://itguru.tistory.com/170):  포인터로 변환한다.
 
 *  [rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그(error state flag)를 얻어온다.
 
@@ -105,7 +105,7 @@ ref_title : ifstream
 
 *  [fill](http://itguru.tistory.com/181):  채우기 문자(fill character) 을 얻거나 설정한다.
 
-*  [exceptions](http://itguru.tistory.com/150):  예외 마스크를 얻거나 설정한다.
+*  [ios::exceptions](http://itguru.tistory.com/150):  예외 마스크를 얻거나 설정한다.
 
 * `imbue` :  로케일을 설정한다.
 

@@ -137,4 +137,4 @@ int main() {
 
 *  [ios_base::unsetf](http://itguru.tistory.com/156)  :  특정 서식 플래그를 초기화 한다.
 
-* setiosflags  :  서식 플래그들을 설정한다 (조작자)
+* `setiosflags`  :  서식 플래그들을 설정한다 (조작자)

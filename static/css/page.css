@@ -617,3 +617,18 @@ figcaption {
         transform: rotate(360deg);
     }
 }
+
+.search-box {
+    margin: 1em;
+    border: 2px solid #dedede;
+}
+
+.cse {
+    width: 99%;
+}
+
+.search-bar-text {
+    margin-top: 10px;
+    font-size: 120%;
+    font-weight: bolder;
+}

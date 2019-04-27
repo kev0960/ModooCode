@@ -54,7 +54,7 @@ publish_date : 2011-08-17
 
 
 * 오류 상태(error state) : 내부 지시자가 현재 스트림의 오류 상태를 나타내고 있다. 객체는
- [ios::rdstat](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, `ios::clear` 와
+ [ios::rdstate](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, `ios::clear` 와
  [ios::setstate](http://itguru.tistory.com/179) 함수를 호출함을 통해 수정될 수 있다. 각각의 값은
  [ios::good](http://itguru.tistory.com/164), 
  [ios::eof](http://itguru.tistory.com/167), 

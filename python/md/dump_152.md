@@ -91,7 +91,7 @@ int main() {
 ###  참고 자료
 
 
-* setw  :  필드 너비를 조절한다.
+* `setw` : 필드 너비를 조절한다.
 *  [ios_base::flags](http://itguru.tistory.com/153):  서식 플래그를 수정하거나 얻는다.
 *  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 수정한다.
 *  [ios::fill](http://itguru.tistory.com/181):  채우기 문자를 얻거나 수정한다.

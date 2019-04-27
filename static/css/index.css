@@ -293,3 +293,14 @@ main {
   font-size: 90%;
   align-self: center;
 }
+
+.cse {
+  width: 99%;
+}
+
+.search-bar-text {
+  margin-left: 15px;
+  margin-top: 10px;
+  font-size: 120%;
+  font-weight: bold;
+}
