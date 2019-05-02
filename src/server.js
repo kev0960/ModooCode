@@ -655,6 +655,9 @@ module.exports = class Server {
       let content = req.body.content;
       let password = req.body.password;
       let article_url = req.body.article_url;
+      if (article_url.indexOf("#") !== -1) {
+        article_url = article_url.substr(0, article_url.indexOf("#"));
+      }
       let name = req.body.name;
       let user = req.user;
       if (!user) {

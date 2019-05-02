@@ -1283,8 +1283,12 @@ int Marine::attack() const { return default_damage; }
 
 #### 문제 1
 
-아래와 같은 코드에서 `copy constructor` 는 몇 번 이나 표시될까요?
+아래와 같은 코드에서 *복사 생성* 은 몇 번 이나 표시될까요?
+
 ```cpp-formatted
+#include <iostream>
+using namespace std;
+
 class A {
   int x;
 
@@ -1292,7 +1296,7 @@ class A {
   A(int c) : x(c) {}
   A(const A& a) {
     x = a.x;
-    cout << "복사생성" << endl;
+    cout << "복사 생성" << endl;
   }
 };
 
@@ -1302,11 +1306,16 @@ class B {
  public:
   B(int c) : a(c) {}
   B(const B& b) : a(b.a) {}
-  A get_A() { return a; }
+  A get_A() {
+    A temp(a);
+    return temp;
+  }
 };
 
 int main() {
   B b(10);
+
+  cout << "---------" << endl;
   A a1 = b.get_A();
 }
 ```
