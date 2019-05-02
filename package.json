@@ -36,7 +36,7 @@
     "jsdom": "^13.2.0",
     "monaco-editor": "^0.15.6",
     "monaco-editor-webpack-plugin": "^1.7.0",
-    "npm": "^6.7.0",
+    "npm": "^6.9.0",
     "npm-check-updates": "^2.15.0",
     "passport": "^0.4.0",
     "passport-facebook": "^3.0.0",
