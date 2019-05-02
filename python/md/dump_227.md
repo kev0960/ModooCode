@@ -1,6 +1,6 @@
 ----------------
-title : 씹어먹는 C++ - <11 - 1. 우측값 레퍼런스와 이동 생성자>
-cat_title: 11 - 1. 우측값 레퍼런스와 이동 생성자
+title : 씹어먹는 C++ - <12 - 1. 우측값 레퍼런스와 이동 생성자>
+cat_title: 12 - 1. 우측값 레퍼런스와 이동 생성자
 next_page : 228
 publish_date : 2018-03-24
 --------------
@@ -127,7 +127,7 @@ MyString::MyString() {
   cout << "생성자 호출 ! " << endl;
   string_length = 0;
   memory_capacity = 0;
-  string_content = NULL;
+  string_content = nullptr;
 }
 
 MyString::MyString(const char *str) {
@@ -157,7 +157,7 @@ void MyString::reserve(int size) {
     for (int i = 0; i != string_length; i++)
       string_content[i] = prev_string_content[i];
 
-    if (prev_string_content != NULL) delete[] prev_string_content;
+    if (prev_string_content != nullptr) delete[] prev_string_content;
   }
 }
 MyString MyString::operator+(const MyString &s) {
@@ -201,11 +201,20 @@ int main() {
 
 와 같이 나옵니다.
 
+```cpp
+  string_content = nullptr;
+```
+
+`nullptr` 는 C++ 11 에 새로 추가된 키워드로, 기존의 `NULL` 대체합니다. 
+
+C 언어에서의 `NULL` 은 단순히 `#define` 으로 정의되어 있는 상수값 0 인데, 이 때문에 `NULL` 이 값 0 을 의미하는 것인지, 아니면 포인터 주소값 0 을 의미하는 것인지 구분할 수 가 없었습니다.
+
+하지만 `nullptr` 로 '포인터 주소값 0' 을 정확히 명시해 준다면 미연에 발생할 실수를 줄여 줄 수 있게 됩니다.
+
+
 ```cpp-formatted
 MyString str3 = str1 + str2;
 ```
-
-
 
 이 부분에서 두 개의 문자열을 더한 새로운 문자열로 `str3` 를 생성하고 있습니다.
 
@@ -405,7 +414,7 @@ const T&
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F99DC5E435AB639BF0D7DD5)
 위와 같이 간단합니다. `str3` 생성 시에 임시로 생성된 객체의 `string_content` 가리키는 문자열의 주소값을 `str3` 의 `string_content` 로 해주면 됩니다.
 
-문제는 이렇게 하게 되면, 임시 객체가 소멸 시에 `string_content` 를 메모리에서 해제하게 되는데, 그렇게 되면 `str3` 가 가리키고 있던 문자열이 메모리에서 소멸되게 됩니다. 따라서 이를 방지 하기 위해서는, 임시 생성된 객체의 `string_content` 를 `NULL` 로 바꿔주고, 소멸자에서 `string_content` 가 `NULL` 이면 소멸하지 않도록 해주면 됩니다. 매우 간단하지요?
+문제는 이렇게 하게 되면, 임시 객체가 소멸 시에 `string_content` 를 메모리에서 해제하게 되는데, 그렇게 되면 `str3` 가 가리키고 있던 문자열이 메모리에서 소멸되게 됩니다. 따라서 이를 방지 하기 위해서는, 임시 생성된 객체의 `string_content` 를 `nullptr` 로 바꿔주고, 소멸자에서 `string_content` 가 `nullptr` 이면 소멸하지 않도록 해주면 됩니다. 매우 간단하지요?
 
 하지만, 이 방법은 기존의 복사 생성자에서 사용할 수 없습니다. 왜냐하면 우리는 인자를 `const MyString&` 으로 받았기 때문에, 인자의 값을 변경할 수 없게 되지요. 즉 임시 객체의 `string_content` 값을 수정할 수 없기에 문제가 됩니다.
 
@@ -451,7 +460,7 @@ MyString::MyString() {
   cout << "생성자 호출 ! " << endl;
   string_length = 0;
   memory_capacity = 0;
-  string_content = NULL;
+  string_content = nullptr;
 }
 
 MyString::MyString(const char *str) {
@@ -493,7 +502,7 @@ void MyString::reserve(int size) {
     for (int i = 0; i != string_length; i++)
       string_content[i] = prev_string_content[i];
 
-    if (prev_string_content != NULL) delete[] prev_string_content;
+    if (prev_string_content != nullptr) delete[] prev_string_content;
   }
 }
 MyString MyString::operator+(const MyString &s) {
@@ -579,16 +588,13 @@ str.string_content = nullptr;
 
 한 가지 중요한 부분은 인자로 받은 임시 객체가 소멸되면서 자신이 가리키고 있던 문자열을 `delete` 하지 못하게 해야 합니다. 만약에 그 문자열을 지우게 된다면, 새롭게 생성된 문자열 `str3` 도 같은 메모리를 가리키고 있기 때문에 `str3` 의 문자열도 같이 사라지는 셈이 되기 때문입니다.
 
-
-따라서 `str` 의 `string_content` 를 `nullptr` 로 바꿔줍니다. 참고로 `nullptr` 역시 C++ 11 에 새로 추가된 키워드로, 기존의 `NULL` 대체합니다. C 언어에서의 `NULL` 은 단순히 #define 으로 정의되어 있는 상수값 0 인데, 이 때문에 이 `NULL` 이 값 0 을 의미하는 것인지, 아니면 포인터 주소값 0 을 의미하는 것인지 구분할 수 가 없었습니다. 하지만 `nullptr` 로 '포인터 주소값 0' 을 정확히 명시해 준다면 미연에 발생할 실수를 줄여 줄 수 있게 됩니다.
+따라서 `str` 의 `string_content` 를 `nullptr` 로 바꿔줍니다. 
 
 ```cpp-formatted
 MyString::~MyString() {
   if (string_content) delete[] string_content;
 }
 ```
-
-
 
 그리고 물론 소멸자 역시 바꿔줘야만 합니다. `string_content` 가 `nullptr` 가 아닐 때 에만 `delete` 를 하도록 말이죠.
 
@@ -619,6 +625,218 @@ str3.println();
 
 
 의 경우 `str3` 이 `str1 + str2` 에서 리턴되는 임시 객체의 레퍼런스가 되면서 그 임시 객체가 소멸되지 않도록 합니다. 실제로, 아래 `println` 함수에서 더해진 문자열이 잘 보여집니다.
+
+### 이동 생성자 작성 시 주의할 점
+
+만약에 여러분이 `MyString` 을 C++ 컨테이너들, 예를 들어 `vector` 에 넣기 위해서는 한 가지 주의할 점이 있습니다. 바로 이동 생성자를 반드시 `noexcept` 로 명시해야 한다는 점입니다.
+
+`vector` 를 예를 들어서 생각해봅시다. `vector` 는 새로운 원소를 추가 할 때, 할당해놓은 메모리가 부족하다면, 새로운 메모리를 할당한 후에, 기존에 있던 원소들을 새로운 메모리로 옮기게 됩니다.
+
+![](/img/cpp/12.1.1.png)
+
+복사 생성자를 사용 하였을 경우 위와 같이 원소가 하나씩 하나씩 복사 됩니다. 그런데 만약에 이 복사 생성하는 과정에서 예외가 발생하였다고 해봅시다. 
+
+해결책은 간단합니다. 새로 할당해놓은 메모리를 소멸시켜 버린 후, 사용자에게 예외를 전달하면 됩니다. 새로 할당한 메모리를 소멸 시켜 버리는 과정에서 이미 복사된 원소들도 소멸 되버리므로 자원이 낭비되는 일도 없을 것입니다.
+
+![](/img/cpp/12.1.2.png)
+
+반면에 이동 생성자를 사용하였을 경우는 어떨까요? 이동 생성하는 과정에서 예외가 발생했더라면, 꽤나 골치아파집니다. 복사 생성을 하였을 경우 새로 할당한 메모리를 소멸시켜 버려도, 기존의 메모리에 원소들이 존재하기 때문에 상관 없지만, 이동 생성의 경우 기존의 메모리에 원소들이 모두 이동되어서 사라져버렸기에, 새로 할당한 메모리를 섯불리 해제해버릴 수 없기 때문입니다.
+
+따라서 `vector` 의 경우 이동 생성자에서 예외가 발생하였을 때 이를 제대로 처리할 수 없습니다. 이는 C++ 의 다른 컨테이너들도 동일합니다. 
+
+이 때문에 `vector` 는 이동 생성자가 `noexcept` 가 아닌 이상 이동 생성자를 사용하지 않습니다.
+
+아래 실제 예제를 통해 살펴보겠습니다.
+
+```cpp-formatted
+#include <iostream>
+#include <cstring>
+#include <vector>
+using namespace std;
+
+class MyString {
+  char *string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
+
+  int memory_capacity;  // 현재 할당된 용량
+
+ public:
+  MyString();
+
+  // 문자열로 부터 생성
+  MyString(const char *str);
+
+  // 복사 생성자
+  MyString(const MyString &str);
+
+  // 이동 생성자
+  MyString(MyString &&str);
+
+  ~MyString();
+};
+
+MyString::MyString() {
+  cout << "생성자 호출 ! " << endl;
+  string_length = 0;
+  memory_capacity = 0;
+  string_content = nullptr;
+}
+
+MyString::MyString(const char *str) {
+  cout << "생성자 호출 ! " << endl;
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
+
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
+}
+MyString::MyString(const MyString &str) {
+  cout << "복사 생성자 호출 ! " << endl;
+  string_length = str.string_length;
+  string_content = new char[string_length];
+
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
+}
+MyString::MyString(MyString &&str) {
+  cout << "이동 생성자 호출 !" << endl;
+  string_length = str.string_length;
+  string_content = str.string_content;
+  memory_capacity = str.memory_capacity;
+
+  // 임시 객체 소멸 시에 메모리를 해제하지
+  // 못하게 한다.
+  str.string_content = nullptr;
+}
+MyString::~MyString() {
+  if (string_content) delete[] string_content;
+}
+
+int main() {
+  MyString s("abc");
+  vector<MyString> vec;
+  vec.resize(0);
+
+  cout << "첫 번째 추가 ---" << endl;
+  vec.push_back(s);
+  cout << "두 번째 추가 ---" << endl;
+  vec.push_back(s);
+  cout << "세 번째 추가 ---" << endl;
+  vec.push_back(s);
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+생성자 호출 ! 
+첫 번째 추가 ---
+복사 생성자 호출 ! 
+두 번째 추가 ---
+복사 생성자 호출 ! 
+복사 생성자 호출 ! 
+세 번째 추가 ---
+복사 생성자 호출 ! 
+복사 생성자 호출 ! 
+복사 생성자 호출 !
+```
+
+위와 같이 기껏 이동 생성자를 만들어놓았는데, `vector` 가 확장할 때 마다 복사 생성자를 이용하는 것을 볼 수 있습니다. 하지만 이동 생성자에 `noexcept` 를 추가하면 어떨까요.
+
+```cpp-formatted
+#include <iostream>
+#include <cstring>
+#include <vector>
+using namespace std;
+
+class MyString {
+  char *string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
+
+  int memory_capacity;  // 현재 할당된 용량
+
+ public:
+  MyString();
+
+  // 문자열로 부터 생성
+  MyString(const char *str);
+
+  // 복사 생성자
+  MyString(const MyString &str);
+
+  // 이동 생성자
+  MyString(MyString &&str) noexcept;
+
+  ~MyString();
+};
+
+MyString::MyString() {
+  cout << "생성자 호출 ! " << endl;
+  string_length = 0;
+  memory_capacity = 0;
+  string_content = NULL;
+}
+
+MyString::MyString(const char *str) {
+  cout << "생성자 호출 ! " << endl;
+  string_length = strlen(str);
+  memory_capacity = string_length;
+  string_content = new char[string_length];
+
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
+}
+MyString::MyString(const MyString &str) {
+  cout << "복사 생성자 호출 ! " << endl;
+  string_length = str.string_length;
+  string_content = new char[string_length];
+
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
+}
+MyString::MyString(MyString &&str) noexcept {
+  cout << "이동 생성자 호출 !" << endl;
+  string_length = str.string_length;
+  string_content = str.string_content;
+  memory_capacity = str.memory_capacity;
+
+  // 임시 객체 소멸 시에 메모리를 해제하지
+  // 못하게 한다.
+  str.string_content = nullptr;
+}
+MyString::~MyString() {
+  if (string_content) delete[] string_content;
+}
+
+int main() {
+  MyString s("abc");
+  vector<MyString> vec;
+  vec.resize(0);
+
+  cout << "첫 번째 추가 ---" << endl;
+  vec.push_back(s);
+  cout << "두 번째 추가 ---" << endl;
+  vec.push_back(s);
+  cout << "세 번째 추가 ---" << endl;
+  vec.push_back(s);
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+생성자 호출 ! 
+첫 번째 추가 ---
+복사 생성자 호출 ! 
+두 번째 추가 ---
+복사 생성자 호출 ! 
+이동 생성자 호출 !
+세 번째 추가 ---
+복사 생성자 호출 ! 
+이동 생성자 호출 !
+이동 생성자 호출 !
+```
+
+와 같이 제대로 이동 생성자를 호출함을 알 수 있습니다.
 
 
 자 이것으로 이번 강좌는 여기서 마치도록 하겠습니다. 다음 강좌에서는 C++ 11 에 우측값 레퍼런스와 함께 새로 추가된 `move` 에 대해 살펴보도록 하겠습니다.

@@ -1,7 +1,7 @@
 ----------------
 title : 씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>
 cat_title: 10 - 3. C++ STL - 알고리즘(algorithm)
-next_page : 227
+next_page : 230
 publish_date : 2017-07-09
 --------------
 
@@ -457,7 +457,7 @@ vec.erase(vec.begin() + 3);
 ```cpp-formatted
 vector<int>::iterator itr = vec.begin();
 
-for (; itr != vec.end(); itr++) {
+for (; itr != vec.end(); ++itr) {
   if (*itr == 20) {
     vec.erase(itr);
     itr = vec.begin();

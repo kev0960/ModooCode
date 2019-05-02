@@ -116,6 +116,13 @@ void NewlineToBr(string* s) {
   }
 }
 
+void NewlineToBrBr(string* s) {
+  size_t double_new_line = 0;
+  while ((double_new_line = s->find("\n\n")) != string::npos) {
+    s->replace(double_new_line, 2, "<br><br>\n");
+  }
+}
+
 string SplitNewlineToParagraph(const string& s) {
   std::vector<size_t> newline_pos;
   for (size_t i = 0; i < s.size(); i++) {
@@ -170,6 +177,8 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::CODE_WARNING;
   } else if (box_name == "compiler-warning") {
     box_type_ = BOX_CONTENT_TYPES::COMPILER_WARNING;
+  } else if (box_name == "lec-warning") {
+    box_type_ = BOX_CONTENT_TYPES::LEC_WARNING;
   } else if (box_name == "lec-summary") {
     box_type_ = BOX_CONTENT_TYPES::LEC_SUMMARY;
   }
@@ -230,6 +239,14 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
           "<p class='exec-preview-title'>실행 결과</p><pre "
           "class='exec-preview'>",
           content_, "</pre>");
+    case LEC_WARNING: {
+      string output_html = Content::OutputHtml(parser_env);
+      NewlineToBrBr(&output_html);
+      return StrCat(
+          "<p class='compiler-warning-title'><i class='xi-warning'></i>주의 "
+          "사항</p><div class='lec-warning'>",
+          output_html, "</div>");
+    }
     case LEC_SUMMARY: {
       string output_html = Content::OutputHtml(parser_env);
       output_html = SplitNewlineToParagraph(output_html);

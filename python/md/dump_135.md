@@ -140,7 +140,7 @@ TMP 마무리, 의존 타입(dependent type), `auto` 키워드
 
 ###@ [10 - 1. C++ 의 표준 템플릿 라이브러리 (STL) - 시퀀스 컨테이너](http://itguru.tistory.com/223)
 
-시퀀스 컨테이너 (`vector`, `list`, `deque`) 와 반복자(iterator)
+시퀀스 컨테이너 (`vector`, `list`, `deque`), 반복자(iterator), 범위 기반 for 문 (range based for)
 
 ###@ [10 - 2. C++ 의 표준 템플릿 라이브러리 (STL) - 연관 컨테이너](http://itguru.tistory.com/224)
 
@@ -150,17 +150,17 @@ TMP 마무리, 의존 타입(dependent type), `auto` 키워드
 
 STL 알고리즘 라이브러리, 람다 함수, `sort`, `partial_sort`, `stable_sort`, `find`, `erase`, `erase_if`, `any_of`, `all_of`
 
-###@ [11 - 1. 우측값 레퍼런스와 이동 생성자](http://itguru.tistory.com/227)
+###@ [11. C++ 에서의 예외 처리](/230)
+
+`try .. catch` 와 `throw` 를 사용한 C++ 스타일의 예외 처리 방식에 대해 배운다.
+
+###@ [12 - 1. 우측값 레퍼런스와 이동 생성자](http://itguru.tistory.com/227)
 
 복사 생략 (copy elision), C++ 11 에 추가된 우측값 레퍼런스 (rvalue reference)와 이동 생성자 (move constructor)
 
-###@ [11 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)](http://itguru.tistory.com/228)
+###@ [12 - 2. Move 문법 (move semantics) 과 완벽한 전달 (perfect forwarding)](http://itguru.tistory.com/228)
 
 move semantics, 완벽한 전달 (perfect forwarding), 레퍼런스 접힘 규칙 (reference collapsing rule)
-
-###@ [12. C++ 에서의 예외 처리](/230)
-
-`try .. catch` 와 `throw` 를 사용한 C++ 스타일의 예외 처리 방식에 대해 배운다.
 
 ###@ [13 - 1. 객체의 유일한 소유권 (unique_ptr)](/229)
 

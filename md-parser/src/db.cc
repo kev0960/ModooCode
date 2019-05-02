@@ -173,7 +173,7 @@ string GeneratePrevArticle(std::vector<Database::ArticleContent> contents) {
   // Given the list of article_content, reconstruct the original article.
   std::vector<string> patch_strings;
   string full_content;
-  for (auto itr = contents.rbegin(); itr != contents.rend(); itr++) {
+  for (auto itr = contents.rbegin(); itr != contents.rend(); ++itr) {
     if (itr->is_diff) {
       patch_strings.push_back(itr->content_or_diff);
     } else {
@@ -211,7 +211,7 @@ Database::Database() {
       "SELECT article_url, current_content_sha256, creation_date, "
       "is_published, is_deleted FROM Articles;");
   for (auto itr = recent_articles.begin(); itr != recent_articles.end();
-       itr++) {
+       ++itr) {
     recent_articles_[itr[0].as<string>()] = {
         itr[1].as<string>(), itr[2].as<string>(),
         PostgresBoolToString(itr[3].as<string>()),
@@ -338,7 +338,7 @@ std::vector<Database::ArticleContent> Database::RetrievePrevContents(
 
   std::vector<Database::ArticleContent> recent_article_contents;
   for (auto itr = recent_articles.begin(); itr != recent_articles.end();
-       itr++) {
+       ++itr) {
     recent_article_contents.push_back(
         ParsePostgresArticleContent(itr[0].as<string>()));
   }

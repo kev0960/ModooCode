@@ -84,6 +84,14 @@
     border-bottom-right-radius: 8px;
 }
 
+.lec-warning {
+    background-color:  #fdf3f2;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
 .exec-preview {
     font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: #2d2a2e;

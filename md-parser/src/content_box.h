@@ -23,6 +23,7 @@ class BoxContent : public Content {
     WARNING,
     CODE_WARNING,
     COMPILER_WARNING,
+    LEC_WARNING,
     INFO,
     INFO_FORMAT,
     INFO_TEXT,

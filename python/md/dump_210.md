@@ -377,18 +377,15 @@ int main() {
 와 같은 런타임 오류가 발생하게 됩니다.
 
 
-이러한 강제적으로 다운 캐스팅을 하는 경우, 컴파일 타임에서 오류를 찾아내기 매우 힘들기 때문에 다운 캐스팅은 작동이 보장되지 않는 한매우매우 추천하지 않는 바입니다.
-
-
+이러한 강제적으로 다운 캐스팅을 하는 경우, 컴파일 타임에서 오류를 찾아내기 매우 힘들기 때문에 다운 캐스팅은 작동이 보장되지 않는 한 매우매우 권장하지 않는 바입니다.
 
 
 
 ###  EmployeeList 다시 보기
 
 
-
-
 자, 그럼 이제 위에서 다룬 내용을 가지고 EmployeeList 를 어떻게 하면 좀 더 간단하게 만들 수 있을 지 생각해봅시다.
+
 ```cpp-formatted
 class EmployeeList {
   int alloc_employee;  // 할당한 총 직원 수
@@ -557,30 +554,25 @@ int main() {
 
 ###  virtual 키워드
 
-
-
-
 `EmployeeList` 문제를 해결하기 전에 좀 더 간단한 예시로 살펴보겠습니다.
+
 ```cpp-formatted
 #include <iostream>
-#include <string>
 using namespace std;
 
 class Parent {
-  string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Parent() { cout << "부모 클래스" << endl; }
 
-  virtual void what() { cout << s << endl; }
+  virtual void what() { cout << "부모 클래스의 what()" << endl; }
 };
 class Child : public Parent {
-  string s;
 
  public:
-  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
+  Child() : Parent() { cout << "자식 클래스" << endl; }
 
-  void what() { cout << s << endl; }
+  void what() { cout << "자식 클래스의 what()" << endl; }
 };
 int main() {
   Parent p;
@@ -599,11 +591,17 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F261B5D4B53389F6D0C4748)
 
+```exec
+부모 클래스
+부모 클래스
+자식 클래스
+ == 실제 객체는 Parent == 
+부모 클래스의 what()
+ == 실제 객체는 Child == 
+자식 클래스의 what()
+```
 
 
 어라? 위 결과를 보셨다면 놀라움을 금치 못하셨을 것입니다.
@@ -629,24 +627,19 @@ p_c->what();
 
 ```cpp-formatted
 class Parent {
-  string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Parent() { cout << "부모 클래스" << endl; }
 
-  virtual void what() { cout << s << endl; }
+  virtual void what() { cout << "부모 클래스의 what()" << endl; }
 };
 ```
-
-
 
 이 `virtual` 키워드 하나 때문입니다. 이 `virtual` 키워드는, 다음과 같은 역할을 합니다.
 
 ```cpp-formatted
 p_c->what();
 ```
-
-
 
 위 코드를 실행시에 (런타임), 컴퓨터 입장에서;
 
@@ -657,8 +650,6 @@ p_c->what();
 "잠깐. 이거 실제 Parent 객체 맞어? 아니네 Child 객체네"
 "그럼 Child 의 what 을 실행해야지"
 ```
-
-
 
 반면에
 
@@ -671,7 +662,6 @@ p_p->what();
 였을 경우에는
 
 ```info
-
 "흠, p_c 는 Parent 포인터니까 Parent 의 what() 을 실행해야지"
 "어 근데 what 이 virtual 이네?"
 
@@ -679,15 +669,11 @@ p_p->what();
 "Parent 의 what 을 실행하자"
 ```
 
-
-
 이렇게 컴파일 시에 어떤 함수가 실행될 지 정해지지 않고 런타임 시에 정해지는 일을 가리켜서 **동적 바인딩(dynamic binding)** 이라고 부릅니다. 즉,
 
 ```cpp-formatted
 p_c->what();
 ```
-
-
 
 에서 `Child` 의 `what` 을 실행할지, `Parent` 의 `what` 을 실행하지 결정은 런타임에 이루어지게 됩니다. 물론 위 코드에선 컴파일 시에 무조건 `p_c->what()` 이 `Child` 의 `what` 이 실행되도록 정해진 거 아니냐고 물을 수 있지만 다음과 같은 상황을 생각해보세요.
 
@@ -701,12 +687,199 @@ if (i == 1) {
 p_p->what();
 ```
 
-
-
 이렇게 된다면 `p_p->what()` 이 어떤 `what` 일지에는 런타임에 정해지겠지요? 물론 동적 바인딩의 반대말로 **정적 바인딩(static binding)** 이란 말도 있습니다. 이는 컴파일 타임에 어떤 함수가 호출될 지 정해지는 것으로 여태까지 여러분이 알고 오셨던 함수에 해당합니다.
 
-덧붙여서, `virtual` 키워드가 붙은 함수를 **가상 함수(virtual function)** 라고 부릅니다.
+덧붙여서, `virtual` 키워드가 붙은 함수를 **가상 함수(virtual function)** 라고 부릅니다. 이렇게 자식 클래스의 함수가 부모 클래스의 함수를 오버라이드 하기 위해서는 두 함수의 꼴이 정확히 같아야 합니다.
 
+### override 키워드
+
+```cpp-formatted
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Parent {
+  string s;
+
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+
+  virtual void what() { cout << s << endl; }
+};
+class Child : public Parent {
+  string s;
+
+ public:
+  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
+
+  void what() override { cout << s << endl; }
+};
+```
+
+C++ 11 에서는 자식 클래스에서 부모 클래스의 가상 함수를 오버라이드 하는 경우, `override` 키워드를 통해서 명시적으로 나타낼 수 있습니다. 
+
+```cpp
+  void what() override { cout << s << endl; }
+```
+
+위 경우 `Child` 클래스의 `what` 함수는 `Parent` 클래스의 `what` 함수를 오버라이드 하므로, `override` 키워드를 통해 이를 알려주고 있습니다.
+
+`override` 키워드를 사용하게 되면, 실수로 오버라이드를 하지 않는 경우를 막을 수 있습니다. 예를 들어서;
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Parent {
+  string s;
+
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+
+  virtual void incorrect() { cout << "부모 클래스 " << endl; }
+};
+class Child : public Parent {
+  string s;
+
+ public:
+  Child() : Parent(), s("자식") {}
+
+  void incorrect() const { cout << "자식 클래스 " << endl; }
+};
+int main() {
+  Parent p;
+  Child c;
+
+  Parent* p_c = &c;
+  Parent* p_p = &p;
+
+  cout << " == 실제 객체는 Parent == " << endl;
+  p_p->incorrect();
+
+  cout << " == 실제 객체는 Child == " << endl;
+  p_c->incorrect();
+  return 0;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+부모 클래스
+부모 클래스
+ == 실제 객체는 Parent == 
+부모 클래스 
+ == 실제 객체는 Child == 
+부모 클래스 
+```
+
+와 같이 `incorrect` 함수가 제대로 오버라이드 되지 않았음을 알 수 있습니다. 그 이유는 `Parent` 의 `incorrect` 함수와 `Child` 의 `incorrect` 함수는 거의 똑같이 생기기는 했지만 사실 다르기 때문입니다. 왜냐하면 `Child` 의 `incorrect` 함수는 상수 함수 이고, `Parent` 의 `incorrect` 는 아니기 때문이지요.
+
+따라서 컴파일러 입장에서 두 함수는 다른 함수로 간주되므로, `p_c->incorrect()` 를 하였을 때 `Child` 의 `incorrect` 함수가 `Parent` 의 `incorrect` 함수를 오버라이드 하는 것이 아니라, 그냥 `Parent` 의 `incorrect` 함수를 호출하는 셈이 됩니다.
+
+만약에 여러분의 의도가 `Child` 의 `incorrect` 함수가 부모 클래스를 오버라이드 하는 것이였다면 큰 문제가 될 것입니다. 이 버그는 컴파일 타임에 잡을 수 없게 되니까요.
+
+하지만, 실제로 `Child` 의 `incorrect` 함수를 부모 클래스의 `incorrect` 함수를 오버라이드 하기 위해서 만들었다면, `override` 키워드를 써야겠지요.
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Parent {
+  string s;
+
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+
+  virtual void incorrect() { cout << "부모 클래스 " << endl; }
+};
+class Child : public Parent {
+  string s;
+
+ public:
+  Child() : Parent(), s("자식") {}
+
+  void incorrect() const override { cout << "자식 클래스 " << endl; }
+};
+int main() {
+  Parent p;
+  Child c;
+
+  Parent* p_c = &c;
+  Parent* p_p = &p;
+
+  cout << " == 실제 객체는 Parent == " << endl;
+  p_p->incorrect();
+
+  cout << " == 실제 객체는 Child == " << endl;
+  p_c->incorrect();
+  return 0;
+}
+```
+
+컴파일 하였다면
+
+```compiler-warning
+test.cc:19:8: error: ‘void Child::incorrect() const’ marked ‘override’, but does not override
+   void incorrect() const override { cout << "자식 클래스 " << endl; }
+        ^~~~~~~~~
+```
+
+위와 같이 `Child` 의 `incorrect` 함수가 `override` 한다고 써있지만, 실제로는 아무것도 오버라이드 하지 않는다고 오류가 발생하게 됩니다. 만일 `const` 키워드를 지워준다면
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Parent {
+  string s;
+
+ public:
+  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+
+  virtual void incorrect() { cout << "부모 클래스 " << endl; }
+};
+class Child : public Parent {
+  string s;
+
+ public:
+  Child() : Parent(), s("자식") {}
+
+  void incorrect() override { cout << "자식 클래스 " << endl; }
+};
+int main() {
+  Parent p;
+  Child c;
+
+  Parent* p_c = &c;
+  Parent* p_p = &p;
+
+  cout << " == 실제 객체는 Parent == " << endl;
+  p_p->incorrect();
+
+  cout << " == 실제 객체는 Child == " << endl;
+  p_c->incorrect();
+  return 0;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+부모 클래스
+부모 클래스
+ == 실제 객체는 Parent == 
+부모 클래스 
+ == 실제 객체는 Child == 
+자식 클래스  
+```
+
+제대로 실행됨을 알 수 있습니다.
+
+### 그렇다면 Employee 문제를 어떻게 해결할까
 
 이제 여러분은 그동안 골머리를 썩여왔던 `EmployeeList` 문제도 해결할 수 있게 되었습니다. 단순히 `Employee` 클래스의 `calculate_pay` 함수와 `print_info` 함수 앞에 `virtual` 만 붙여주면 깔끔하게 정리 되지요.
 
@@ -752,8 +925,8 @@ class Manager : public Employee {
   Manager(string name, int age, string position, int rank, int year_of_service)
       : year_of_service(year_of_service), Employee(name, age, position, rank) {}
 
-  int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
-  void print_info() {
+  int calculate_pay() override { return 200 + rank * 50 + 5 * year_of_service; }
+  void print_info() override {
     cout << name << " (" << position << " , " << age << ", " << year_of_service
          << "년차) ==> " << calculate_pay() << "만원" << endl;
   }

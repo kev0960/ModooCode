@@ -5,15 +5,17 @@ next_page : 225
 publish_date : 2017-07-08
 --------------
 
-이번 강좌에서는* `set, map, multiset, multimap`
-* `unordered_set, unordered_map`
+이번 강좌에서는
+
+* `set`, `map`, `multiset`, `multimap`
+* `unordered_set`, `unordered_map`
 * 커스텀 클래스 객체를 `set/map` 혹은 `unordered_set/map` 에 추가하기
 
 에 대해 다룹니다.
 
 ![](/img/ChewingCpplogo.png)
 
-안녕하세요 여러분! 지난 강좌에서 시퀀스 컨테이너들 (`vector, list, deque`) 에 대해서 다루어보았습니다. 시퀀스 컨테이너들은 말 그대로 '원소' 자체를 보관하는 컨테이너들 입니다.
+안녕하세요 여러분! 지난 강좌에서 시퀀스 컨테이너들 (`vector`, `list`, `deque`) 에 대해서 다루어보았습니다. 시퀀스 컨테이너들은 말 그대로 '원소' 자체를 보관하는 컨테이너들 입니다.
 
 
 이번 강좌에서는 다른 종류의 컨테이너인 **연관 컨테이너(associative container)** 에 대해서 다루어볼 것입니다. 연관 컨테이너는 시퀀스 컨테이너와는 다르게 키(key) - 값(value) 구조를 가집니다. 다시 말해 특정한 키를 넣으면 이에 대응되는 값을 돌려준다는 것이지요. 물론 템플릿 라이브러리 이기 때문이 키와 값 모두 임의의 타입의 객체가 될 수 있습니다.
@@ -49,7 +51,7 @@ template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
   cout << "[ ";
-  for (typename set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
+  for (typename set<T>::iterator itr = s.begin(); itr != s.end(); ++itr) {
     cout << *itr << " ";
   }
   cout << " ] " << endl;
@@ -112,7 +114,7 @@ template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
   cout << "[ ";
-  for (typename set<int>::iterator itr = s.begin(); itr != s.end(); itr++) {
+  for (typename set<int>::iterator itr = s.begin(); itr != s.end(); ++itr) {
     cout << *itr << " ";
   }
   cout << " ] " << endl;
@@ -123,10 +125,7 @@ void print_set(set<T>& s) {
 
 셋 역시 셋에 저장되어 있는 원소들에 접근하기 위해 반복자를 제공하며, 이 반복자는 `BidirectionalIterator` 입니다. 즉, 시퀀스 컨테이너의 리스트 처럼 임의의 위치에 있는 원소에 접근하는 것은 불가능 하고 순차적으로 하나 씩 접근하는 것 밖에 불가능 합니다.
 
-
 한 가지 흥미로운 점은 우리 셋에 원소를 넣었을 때 `10 -> 50 -> 20 -> 40 -> 30` 으로 넣었지만 실제로 반복자로 원소들을 모두 출력했을 때 나온 순서는 `10 -> 20 -> 30 -> 40 -> 50` 순으로 나왔다는 점입니다.다시 말해 셋의 경우 내부에 원소를 추가할 때 정렬된 상태를 유지하며 추가합니다.
-
-
 
 앞서 셋을 큰 상자라 생각하고 그 안에 원소들을 쑤셔 넣은 것이라 했는데, 실제로 마구 쑤셔넣지는 않고 순서를 지키면서 쑤셔 넣습니다. 이 때문에 시퀀스 컨테이너와는 다르게 원소를 추가하는 작업이 $$O(log N)$$ 으로 진행됩니다.
 
@@ -169,8 +168,6 @@ if (itr != s.end()) {
 * 왼쪽에 오는 모든 노드들은 나보다 작다
 * 오른쪽에 있는 모든 노드들은 나보다 크다
 
-
-
 예를 들어 오른쪽의 30 을 살펴볼까요 (위 그림에서 점선으로 표시한 부분). 30 왼쪽에 오는 노드는 25 로 30 보다 작고, 오른쪽에 오는 노드들은 33, 45, 60 으로 모두 30 보다 큽니다. 어떤 노드들을 살펴보아도 이러한 규칙을 지키고 있음을 알 수 있습니다.
 
 
@@ -206,7 +203,7 @@ if (itr != s.end()) {
 어쩌다 보니 트리가 위 처럼 되버렸다면 사실상 시퀀스 컨테이너와 검색 속도가 동일할 것입니다. 위와 같이 한쪽으로 아예 치우쳐버린 트리를 군형잡히지 않은 트리 (unbalanced tree) 라고 부릅니다. 실제 셋의 구현을 보면 위와 같은 상황이 발생하지 않도록 앞서 말한 두 개의 단순한 규칙 보다 더 많은 규칙들을 도입해서 트리를 항상 균형 잡히도록 유지하고 있습니다.
 
 
-따라서 셋의 구현 상$$O(log N)$$ 으로 원소를 검색할 수 있다는 것이 보장됩니다. (궁금하신 분들만! [대부분의 셋 구현에서 사용하고 있는 트리 구조는 여기서 볼 수 있습니다](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)`)`
+따라서 셋의 구현 상$$O(log N)$$ 으로 원소를 검색할 수 있다는 것이 보장됩니다. (궁금하신 분들만! [대부분의 셋 구현에서 사용하고 있는 트리 구조는 여기서 볼 수 있습니다](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree))
 
 
 
@@ -222,8 +219,8 @@ template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
   cout << "[ ";
-  for (auto itr = s.begin(); itr != s.end(); itr++) {
-    cout << *itr << " ";
+  for (const auto& elem : s) {
+    cout << elem << " " << endl;
   }
   cout << " ] " << endl;
 }
@@ -239,8 +236,6 @@ int main() {
   print_set(s);
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -259,21 +254,18 @@ s.insert(20);
 s.insert(10);
 ```
 
-
-
 위와 같이 10 과 20 을 두 번씩 넣었지만 실제로는 한 번씩 밖에 나오지 않습니다. 이는 셋 자체적으로 이미 같은 원소가 있다면 이를 `insert` 하지 않기 때문입니다. 따라서 마지막 두 `insert` 작업은 무시되었을 것입니다.
 
+참고로 시퀀스 컨테이너들과 마찬가지로 `set` 역시 범위 기반 for 문을 지원합니다. 원소들의 접근 순서는 반복자를 이용해서 접근하였을 때와 동일합니다.
 
 만약에 중복된 원소를 허락하고 싶다면 멀티셋(multiset) 을 사용하면 되는데, 이는 후술 하겠습니다.
-
 
 
 ###  여러분이 만든 클래스 객체를 셋에 넣고 싶을 때
 
 
-
-
 위와 같이 기본 타입들 말고, 여러분이 만든 클래스의 객체를 셋의 원소로 사용할 때 한 가지 주의해야 할 점이 있습니다. 아래는 할 일 (Todo) 목록을 저장하기 위해 셋을 사용하는 예시 입니다. `Todo` 클래스는 2 개를 멤버 변수로 가지는데 하나는 할 일의 중요도이고, 하나는 해야할 일의 설명 입니다.
+
 ```cpp-formatted
 #include <iostream>
 #include <set>
@@ -284,8 +276,8 @@ template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
   cout << "[ ";
-  for (typename set<T>::iterator itr = s.begin(); itr != s.end(); itr++) {
-    cout << *itr << " ";
+  for (const auto& elem : s) {
+    cout << elem << " " << endl;
   }
   cout << " ] " << endl;
 }
@@ -328,8 +320,8 @@ using namespace std;
 template <typename T>
 void print_set(set<T>& s) {
   // 셋의 모든 원소들을 출력하기
-  for (auto itr = s.begin(); itr != s.end(); itr++) {
-    cout << *itr << " " << endl;
+  for (const auto& elem : s) {
+    cout << elem << " " << endl;
   }
 }
 class Todo {
@@ -417,7 +409,7 @@ return job_desc < t.job_desc;
 로 비교해서 `job_desc` 가 사전상에서 먼저 오는것이 먼저 나오게 됩니다.
 
 
-한 가지 유의해야 할 점은 셋 내부에서 두 개의 원소가 같냐 다르냐를 판별하기 위해서 `==` 를 이용하지 않는다는 점입니다. 두 원소 `A` 와 `B` 가 셋 내부에서 같다는 의미는 `A.operator<(B)` 와 `B.operator<(A)` 가 모두 `false` 라는 뜻입니다. (예를 들어서 `int a = b=` 2; 이라고 하면 `a < b` 가 `false` 이고 `b < a` 도 `false` 이므로 `a == b` 이라 생각함)
+한 가지 유의해야 할 점은 셋 내부에서 두 개의 원소가 같냐 다르냐를 판별하기 위해서 `==` 를 이용하지 않는다는 점입니다. 두 원소 `A` 와 `B` 가 셋 내부에서 같다는 의미는 `A.operator<(B)` 와 `B.operator<(A)` 가 모두 `false` 라는 뜻입니다. (예를 들어서 `a` 와 `b` 가 값이 같다고 하면 `a < b` 가 `false` 이고 `b < a` 도 `false` 이므로 `a == b` 이라 생각함)
 
 
 만약에 우리가 중요도가 같을 때 따로 처리하지 않고 그냥
@@ -494,8 +486,8 @@ using namespace std;
 template <typename T, typename C>
 void print_set(set<T, C>& s) {
   // 셋의 모든 원소들을 출력하기
-  for (auto itr = s.begin(); itr != s.end(); itr++) {
-    cout << *itr << " " << endl;
+  for (const auto& elem : s) {
+    cout << elem << " " << endl;
   }
 }
 class Todo {
@@ -586,7 +578,7 @@ class set;
 와 같이 생겼는데, 두 번째 인자로 `Compare` 를 받는 다는 것을 알 수 있습니다. (템플릿 디폴트 인자로 `std::less<Key>` 가 들어있는데 이는 `Key` 클래스의 `operator<` 를 사용한다는 의미와 같습니다. `Compare` 타입을 전달하지 않으면 그냥 `Key` 클래스의 `operator<` 로 비교를 수행합니다.)
 
 
-결과적으로 셋은 원소의 삽입과 삭제를 `O(log N),` 원소의 탐색도 $$O(log N)$$ 에 수행하는 자료 구조 입니다.
+결과적으로 셋은 원소의 삽입과 삭제를 $$O(log N)$$ 원소의 탐색도 $$O(log N)$$ 에 수행하는 자료 구조 입니다.
 
 
 
@@ -606,7 +598,7 @@ using namespace std;
 template <typename K, typename V>
 void print_map(map<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
+  for (auto itr = m.begin(); itr != m.end(); ++itr) {
     cout << itr->first << " " << itr->second << endl;
   }
 }
@@ -701,13 +693,27 @@ pitcher_list["켈리"] = 3.90;
 template <typename K, typename V>
 void print_map(map<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
+  for (auto itr = m.begin(); itr != m.end(); ++itr) {
     cout << itr->first << " " << itr->second << endl;
   }
 }
 ```
 
 맵의 경우도 셋과 마찬가지로 반복자를 이용해서 순차적으로 맵에 저장되어 있는 원소들을 탐색할 수 있습니다. 참고로 셋의 경우 `*itr` 가 저장된 원소를 바로 가리켰는데, 맵의 경우 반복자가 맵에 저장되어 있는 `pair` 객체를 가리키게 됩니다. 따라서 `itr->first` 를 하면 해당 원소의 키를, `itr->second` 를 하면 해당 원소의 값을 알 수 있습니다.
+
+참고로 해당 `for` 문을 범위 기반 `for` 문으로 바꿔본다면 아래와 같습니다.
+
+```cpp
+template <typename K, typename V>
+void print_map(map<K, V>& m) {
+  // kv 에는 맵의 key 와 value 가 pair 로 들어갑니다.
+  for (const auto& kv : m) {
+    cout << kv.first << " " << kv.second << endl;
+  }
+}
+```
+
+반복자를 이용한 버전과 매우 유사하게, 맵의 키와 대응되는 원소를 `first` 와 `second` 를 이용해서 참조할 수 있습니다. 이 역시 반복자를 사용한 형태보다 더 간단하므로 권장됩니다.
 
 ```cpp-formatted
 cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
@@ -726,10 +732,10 @@ cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 using namespace std;
 
 template <typename K, typename V>
-void print_map(map<K, V>& m) {
-  // 맵의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
-    cout << itr->first << " " << itr->second << endl;
+void print_map(const map<K, V>& m) {
+  // kv 에는 맵의 key 와 value 가 pair 로 들어갑니다.
+  for (const auto& kv : m) {
+    cout << kv.first << " " << kv.second << endl;
   }
 }
 
@@ -783,10 +789,10 @@ cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
 using namespace std;
 
 template <typename K, typename V>
-void print_map(map<K, V>& m) {
-  // 맵의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
-    cout << itr->first << " " << itr->second << endl;
+void print_map(const map<K, V>& m) {
+  // kv 에는 맵의 key 와 value 가 pair 로 들어갑니다.
+  for (const auto& kv : m) {
+    cout << kv.first << " " << kv.second << endl;
   }
 }
 
@@ -828,7 +834,7 @@ int main() {
 
 ```cpp-formatted
 template <typename K, typename V>
-void search_and_print(map<K, V>& m, K key) {
+void search_and_print(const map<K, V>& m, K key) {
   auto itr = m.find(key);
   if (itr != m.end()) {
     cout << key << " --> " << itr->second << endl;
@@ -854,10 +860,10 @@ void search_and_print(map<K, V>& m, K key) {
 using namespace std;
 
 template <typename K, typename V>
-void print_map(map<K, V>& m) {
-  // 맵의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
-    cout << itr->first << " " << itr->second << endl;
+void print_map(const map<K, V>& m) {
+  // kv 에는 맵의 key 와 value 가 pair 로 들어갑니다.
+  for (const auto& kv : m) {
+    cout << kv.first << " " << kv.second << endl;
   }
 }
 
@@ -898,10 +904,10 @@ int main() {
 using namespace std;
 
 template <typename K>
-void print_set(multiset<K>& s) {
+void print_set(const multiset<K>& s) {
   // 셋의의 모든 원소들을 출력하기
-  for (auto itr = s.begin(); itr != s.end(); itr++) {
-    cout << *itr << endl;
+  for (const auto& elem : s) {
+    cout << elem << endl;
   }
 }
 
@@ -918,8 +924,6 @@ int main() {
   print_set(s);
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -938,10 +942,10 @@ int main() {
 using namespace std;
 
 template <typename K, typename V>
-void print_map(multimap<K, V>& m) {
+void print_map(const multimap<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
-    cout << itr->first << " " << itr->second << endl;
+  for (const auto& kv : m) {
+    cout << kv.first << " " << kv.second << endl;
   }
 }
 
@@ -1003,10 +1007,10 @@ cout << m.find(1)->second << endl;
 using namespace std;
 
 template <typename K, typename V>
-void print_map(multimap<K, V>& m) {
+void print_map(const multimap<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
-    cout << itr->first << " " << itr->second << endl;
+  for (const auto& kv : m) {
+    cout << kv.first << " " << kv.second << endl;
   }
 }
 
@@ -1025,7 +1029,7 @@ int main() {
   // 1 을 키로 가지는 반복자들의 시작과 끝을
   // pair 로 만들어서 리턴한다.
   auto range = m.equal_range(1);
-  for (auto itr = range.first; itr != range.second; itr++) {
+  for (auto itr = range.first; itr != range.second; ++itr) {
     cout << itr->first << " : " << itr->second << " " << endl;
   }
 }
@@ -1049,7 +1053,7 @@ auto range = m.equal_range(1);
 `equal_range` 함수의 경우 인자로 멀티맵의 키를 받은 뒤에, 이 키에 대응되는 원소들의 반복자들 중에서시작과 끝 바로 다음을 가리키는 반복자를 `pair` 객체로 만들어서 리턴합니다. 즉, `begin()` 과 `end()` 를 `pair` 로 만들어서 세트로 리턴한다고 볼 수 있겠지요. 다만, `first` 로 시작점을, `second` 로 끝점 바로 뒤를 알 수 있습니다. 왜 끝점 바로 뒤를 가리키는 반복자를 리턴하는지는 굳이 설명 안해도 알겠죠?
 
 ```cpp-formatted
-for (auto itr = range.first; itr != range.second; itr++) {
+for (auto itr = range.first; itr != range.second; ++itr) {
   cout << itr->first << " : " << itr->second << " " << endl;
 }
 ```
@@ -1065,6 +1069,7 @@ for (auto itr = range.first; itr != range.second; itr++) {
 
 
 `unordered_set` 과 `unordered_map` (한글로 하면 너무 길어서 그냥 영문으로 표기하겠습니다) 은 C++ 11 에 추가된 비교적 최근 나온 컨테이너들 입니다 (위에것들은 모두 C++ 98 에 추가되었었죠).
+
 이 두 개의 컨테이너는 이름에서도 알 수 있듯이 원소들이 정렬되어 있지 않습니다.
 
 이 말이 무슨 말이냐면, 셋이나 맵의 경우 원소들이 순서대로 정렬되어서 내부에 저장되지만, `unordered_set` 과 `unordered_map` 의 경우 원소들이 순서대로 정렬되서 들어가지 않는다는 뜻입니다. 따라서 반복자로 원소들을 하나씩 출력해보면 거의 랜덤한 순서로 나오는 것을 볼 수 있습니다.
@@ -1076,10 +1081,10 @@ for (auto itr = range.first; itr != range.second; itr++) {
 using namespace std;
 
 template <typename K>
-void print_unordered_set(unordered_set<K>& m) {
+void print_unordered_set(const unordered_set<K>& m) {
   // 셋의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
-    cout << *itr << endl;
+  for (const auto& elem : m) {
+    cout << elem << endl;
   }
 }
 
@@ -1114,7 +1119,7 @@ int main() {
 실제로 `unordered_set` 의 모든 원소들을 반복자로 출력해보면 딱히 순서대로 나오는 것 같지는 않습니다. 원소를 넣은 순서도 아니고, `string` 문자열 순서도 아니고 그냥 랜덤한 순서 입니다.
 
 
-그런데 이 `unordered_set` 에 한 가지 놀라운 점이 있습니다. 바로 `insert`, `erase`, `find` 모두가 $$O(1)$$ 으로 수행된다는 점입니다! 셋이나 맵의 경우 `O(log n)` 이었지만, `unordered_set` 과 `unordered_map` 의 경우 상수 시간에 원소를 삽입하고, 검색할 수 있습니다. 
+그런데 이 `unordered_set` 에 한 가지 놀라운 점이 있습니다. 바로 `insert`, `erase`, `find` 모두가 $$O(1)$$ 으로 수행된다는 점입니다! 셋이나 맵의 경우 $$O(log n)$$ 이었지만, `unordered_set` 과 `unordered_map` 의 경우 상수 시간에 원소를 삽입하고, 검색할 수 있습니다. 
 
 이 놀라운 일이 어떻게 가능한건지 `unordered_set` 과 `unordered_map` 이 어떻게 구현되었는지 살펴보면 알 수 있습니다.
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F265AE73859607D5303C92C)
@@ -1154,10 +1159,10 @@ int main() {
 using namespace std;
 
 template <typename K>
-void print_unordered_set(unordered_set<K>& m) {
+void print_unordered_set(const unordered_set<K>& m) {
   // 셋의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
-    cout << *itr << endl;
+  for (const auto& elem : m) {
+    cout << elem << endl;
   }
 }
 
@@ -1257,8 +1262,7 @@ size_t hash_val = hash_fn(str);  // str 의 해시값 계산
 ```
 
 
-
-위와 같이 수행하게 되는 것이지요. `string` 을 템플릿 인자로 받는 `hash_fn` 객체를 만든 뒤에, ( [Functor](http://itguru.tistory.com/219) [이죠](http://itguru.tistory.com/219)`!)` 마치 함수를 사용하는 것처럼 사용하면 됩니다.
+위와 같이 수행하게 되는 것이지요. `string` 을 템플릿 인자로 받는 `hash_fn` 객체를 만든 뒤에, ([Functor](http://itguru.tistory.com/219) 입니다) 마치 함수를 사용하는 것처럼 사용하면 됩니다.
 
 
 따라서 `Todo` 함수의 해시 함수를 계산하는 함수 객체를 만들기 위해 다음과 같이 `hash` 클래스의 `Todo` 특수화 버전을 만들어줘야 합니다.
@@ -1283,10 +1287,10 @@ struct hash<Todo> {
 using namespace std;
 
 template <typename K>
-void print_unordered_set(unordered_set<K>& m) {
+void print_unordered_set(const unordered_set<K>& m) {
   // 셋의 모든 원소들을 출력하기
-  for (auto itr = m.begin(); itr != m.end(); itr++) {
-    cout << *itr << endl;
+  for (const auto& elem : m) {
+    cout << elem << endl;
   }
 }
 
@@ -1346,21 +1350,13 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2366874C59609AB8266ABE)
 
-
-
 와 같이 나옵니다.
 
-
 먼저 `Todo` 를 위해 정의한 해시 함수를 살펴보도록 하겠습니다.
-
-
 
 ```cpp-formatted
 // Todo 해시 함수를 위한 함수객체(Functor)
@@ -1377,13 +1373,11 @@ struct hash<Todo> {
 }  // namespace std
 ```
 
-다행이도 `C++ STL` 에서는 기본적인 타입들 (`int, string` 등등) 에 대한 해시 함수를 제공하기 때문에 우리의 `Todo` 클래스의 해시 함수는 이들을 잘 사용해서 짬뽕만 시키면 됩니다. 일단 `priority` 는 `int` 값 이므로 그냥 해시값 자체로 쓰기로 하고, `string` 의 해시값은 `hash_func` 객체로 이용해서 계산하면 됩니다
-
+다행이도 C++ STL 에서는 기본적인 타입들 (`int, string` 등등) 에 대한 해시 함수를 제공하기 때문에 우리의 `Todo` 클래스의 해시 함수는 이들을 잘 사용해서 짬뽕만 시키면 됩니다. 일단 `priority` 는 `int` 값 이므로 그냥 해시값 자체로 쓰기로 하고, `string` 의 해시값은 `hash_func` 객체로 이용해서 계산하면 됩니다
 
 결과적으로 두 해시값을 짬뽕 시키기 위해서 `XOR` 연산을 이용하였습니다.
 
-
-참고로 왜 `hash` 클래스가 `namespace std` 안에 정의되어 있냐면 (이미 위에서 `using namespace std` 를 했음에도 불구하고), `std` 의 경우만 예외적으로 `std namespace` 안에 새로운 클래스/함수를 추가하기 위해서는 위처럼 명시적으로 `namespace std` 를 써줘야만 합니다. ( [여기를 참고](https://stackoverflow.com/questions/2282349/specialization-of-templateclass-tp-struct-stdless-in-different-namespace))
+참고로 왜 `hash` 클래스가 `namespace std` 안에 정의되어 있냐면 (이미 위에서 `using namespace std` 를 했음에도 불구하고), 특정 `namespace` 안에 새로운 클래스/함수를 추가하기 위해서는 위처럼 명시적으로 `namespace (이름)` 를 써줘야만 합니다. ([여기를 참고](https://stackoverflow.com/questions/2282349/specialization-of-templateclass-tp-struct-stdless-in-different-namespace))
 
 
 그리고 마지막으로 아래와 같이 간단히 `==` 연산자를 추가해주면 됩니다.
@@ -1396,11 +1390,15 @@ bool operator==(const Todo& t) const {
 }
 ```
 
-
-
 그럼 위 처럼 `Todo` 객체를 마음껏 `unordered_set` 에서 사용할 수 있게 됩니다!
 
+```lec-warning
+해시 함수를 직접 제작하는 일은 꽤나 어렵습니다. 가장 큰 이유로, `unordered_set` 이나 `unordered_map` 이 제대로 된 성능을 발휘하기 위해서는 해시 함수가 입력 받은 키를 잘 **흝뿌려야** 합니다. 
 
+만일 해시 함수의 결과가 특정 범위의 값에게만 집중되어 있다면, 해시 함수를 이용한 컨테이너의 성능이 그냥 `map` 이나 `set` 보다 훨씬 못하니만이 되게 됩니다. 특히 악의적인 사용자가 해당 허점을 이용해서 프로그램의 성능을 저하시킬 수도 있겠지요.
+
+따라서 가장 권장하는 방식은 [여기](https://en.cppreference.com/w/cpp/utility/hash) 에 나온 기본 타입들의 대한 해시 함수들을 사용할 것이고, 해시 함수의 성능을 정확히 검증할 수 없다면, `map` 이나 `set` 을 사용하는 것이 나을 것입니다.
+```
 
 ###  그렇다면 뭘 써야되?
 
@@ -1408,19 +1406,14 @@ bool operator==(const Todo& t) const {
 아래와 같이 간단히 생각하시면 됩니다.
 
 * 데이터의 존재 유무 만 궁금할 경우 → `set`
-* 중복 데이터를 허락할 경우 → `multiset`
-
-(`insert, erase, find` 모두 $$O(\log N)$$. 최악의 경우에도 $$O(\log N)$$)
+* 중복 데이터를 허락할 경우 → `multiset` (`insert, erase, find` 모두 $$O(\log N)$$. 최악의 경우에도 $$O(\log N)$$)
 
 * 데이터에 대응되는 데이터를 저장하고 싶은 경우 → `map`
-* 중복 키를 허락할 경우 → `multimap`
+* 중복 키를 허락할 경우 → `multimap` (`insert, erase, find` 모두 $$O(\log N)$$. 최악의 경우에도 $$O(\log N)$$)
 
-(`insert, erase, find` 모두 $$O(\log N)$$. 최악의 경우에도 O(\log N)$$)
+* 속도가 매우매우 중요해서 최적화를 해야하는 경우 → `unordered_set`, `unordered_map` 
+(`insert`, `erase`, `find` 모두 $$O(1)$$. 최악의 경우엔 $$O(N)$$ 그러므로 해시함수와 상자 개수를 잘 설정해야 한다!)
 
-* 속도가 매우매우 중요해서 최적화를 해야하는 경우 → `unordered_set, unordered_map`
+그렇다면 이번 강좌는 여기에서 마치도록 하겠습니다. 다음 강좌에서는 STL 알고리즘을 이용한 여러가지 작업들에 대해 알아보도록 하겠습니다!
 
-(insert, erase, find 모두 $$O(1)$$. 최악의 경우엔 $$O(N)$$ 그러므로 해시함수와 상자 개수를 잘 설정해야 한다!)
-
-그렇다면 이번 강좌는 여기에서 마치도록 하겠습니다. 다음 강좌에서는 `STL` 알고리즘을 이용한 여러가지 작업들에 대해 알아보도록 하겠습니다!
-
-##@ chewing-cpp-endw
+##@ chewing-cpp-end

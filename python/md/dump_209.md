@@ -627,9 +627,7 @@ int main() {
 일단은 바로 `Employee` 와 `Manager` 클래스에 적용하기 전에 간단한 클래스를 먼저 만들어서 어떻게 C++ 에서 상속이라는 기능이 사용되는지 알아보도록 하겠습니다 . 일단은 바로 `Employee` 와 `Manager` 클래스에 적용하기 전에 간단한 클래스를 먼저 만들어서 어떻게 C++ 에서 상속이라는 기능이 사용되는지 알아보도록 하겠습니다.
 
 ```cpp-formatted
-class Parent
-
-{
+class Parent {
   string s;
 
  public:
@@ -838,7 +836,6 @@ int main() {
 
 
 \sidenote{간혹 함수의 오버로딩(overloading) 과 혼동하시는 분들이 많은데, 오버로딩은 같은 이름의 함수를 인자를 달리 하여 정의하는 것을 의미하는 것입니다. 상속에서의 오버라이딩과는 전혀 다른 이야기 입니다}
-
 
 
 ###  새로운 친구 protected

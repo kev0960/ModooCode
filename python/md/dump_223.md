@@ -11,16 +11,17 @@ publish_date : 2017-07-04
 * C++ 표준 템플릿 라이브러리 개요
 * 시퀀스 컨테이너(sequence container)
 * 반복자 (iterator)
+* 범위 기반 for 문 (Range-based for loop)
 
 에 대해 배웁니다.
 
 ![](/img/ChewingCpplogo.png)
 
 
-안녕하세요 여러분! 지난번 템플릿 메타프로그래밍 강좌는 어떠셨나요? `TMP` 를 활용해서 프로그래밍을 하는 것은 엄청 머리아픈 일이지만 적당히 잘 쓰면 꽤 괜찮은 도구입니다.
+안녕하세요 여러분! 지난번 템플릿 메타프로그래밍 강좌는 어떠셨나요? TMP 를 활용해서 프로그래밍을 하는 것은 엄청 머리아픈 일이지만 적당히 잘 쓰면 꽤 괜찮은 도구입니다.
 
 
-하지만 이번 강좌는 조금 다룹니다. 이번 강좌에서 배우게 될 C++ 의 표준 템플릿 라이브러리 (STL) 은 사용하는 것도 엄청 간단한데, 여러분이 하는 프로그래밍 능률을 `100%` 향상 시킬 수 있는 엄청난 도구 입니다. 사실 이 STL 의 도입으로 C++ 이 한발 더 도약한 것도 과언이 아니라 볼 수 있습니다.
+하지만 이번 강좌는 조금 다룹니다. 이번 강좌에서 배우게 될 C++ 의 표준 템플릿 라이브러리 (STL) 은 사용하는 것도 엄청 간단한데, 여러분이 하는 프로그래밍 능률을 `100%` 향상 시킬 수 있는 엄청난 도구 입니다. 사실 이 `STL` 의 도입으로 C++ 이 한발 더 도약한 것도 과언이 아니라 볼 수 있습니다.
 
 
 
@@ -37,7 +38,6 @@ publish_date : 2017-07-04
 
 
 한 가지 주목할 만한 점은
-
 
 * 임의 타입의 객체를 보관할 수 있는 컨테이너 (container)
 
@@ -59,7 +59,7 @@ publish_date : 2017-07-04
 
 사실 '매우 빠르다' 라는 말은 주관적일 수 밖에 없습니다. 따라서 어떠한 작업의 수행 속도를 나타내기 위해선 수학적으로 나타내야 합니다.
 
-컴퓨터 공학에선 어떠한 작업의 처리 속도를 **복잡도(complexity)** 라고 부르고, 그 복잡도를 Big $$O$$ 표기법이라는 것으로 나타냅니다. 이 표기법은, $$N$$ 개의 데이터가 주어져 있을 때 그 작업을 수행하기 위해 몇 번의 작업을 필요로 하는지 $$N$$ 에 대한 식으로 표현하는 방식입니다. (즉 복잡도가 클 수록 작업이 수행되는데 걸리는 시간이 늘어나겠지요)
+컴퓨터 공학에선 어떠한 작업의 처리 속도를 **복잡도(complexity)** 라고 부르고, 그 복잡도를 `Big` $$O$$ 표기법이라는 것으로 나타냅니다. 이 표기법은, $$N$$ 개의 데이터가 주어져 있을 때 그 작업을 수행하기 위해 몇 번의 작업을 필요로 하는지 $$N$$ 에 대한 식으로 표현하는 방식입니다. (즉 복잡도가 클 수록 작업이 수행되는데 걸리는 시간이 늘어나겠지요)
 
 예를 들어 가장 기초적인 버블 정렬을 생각해봅시다. 버블 정렬의 코드는 간단히 보자면 아래와 같습니다.
 
@@ -85,11 +85,11 @@ $$ O(\frac{N(N-1)}{2})$$
 
 $$O(N^2)$$
 
-라고 볼 수 있습니다. 일반적으로 어떠한 알고리즘이 $$O(N^2)$$ 꼴이면 그닥 좋은 편은 아닙니다. 왜냐하면 $$N$$ 이 10000 만 되더라도, 10의 8 번의 작업을 처리해야 하기 때문이죠. 다행이도 정렬 알고리즘의 경우 퀵소트(Quicksort) 라는 알고리즘을 활용하면 아래와 같은 복잡도로 연산을 처리할 수 있습니다.
+라고 볼 수 있습니다. 일반적으로 어떠한 알고리즘이 $$O(N^2)$$ 꼴이면 그닥 좋은 편은 아닙니다. 왜냐하면 $$N$$ 이 `10000` 만 되더라도, `10`의 8 번의 작업을 처리해야 하기 때문이죠. 다행이도 정렬 알고리즘의 경우 퀵소트(Quicksort) 라는 알고리즘을 활용하면 아래와 같은 복잡도로 연산을 처리할 수 있습니다.
 
 $$O(N\log N) $$
 
-물론 퀵소트 알고리즘을 사용했을 때 항상 버블 정렬 방식 보다 빠르게 정렬할 수 있다는 의미는 아닙니다. 왜냐하면 저 항 앞에 어떠한 계수가 붙어있는지 알 수 없기 때문이지요. 만약에 버블 정렬이 $$O(N^2)$$ 이고 퀵소트가 $$O(100000 N \log N)$$ 이였다면 $$N$$ 이 1000 일 때 버블 정렬이 더 빠르게 수행됩니다.  (물론 이렇게 극단적이지 않습니다. 퀵소트가 거의 대부분 더 빠르게 됩니다!)
+물론 퀵소트 알고리즘을 사용했을 때 항상 버블 정렬 방식 보다 빠르게 정렬할 수 있다는 의미는 아닙니다. 왜냐하면 저 항 앞에 어떠한 계수가 붙어있는지 알 수 없기 때문이지요. 만약에 버블 정렬이 $$O(N^2)$$ 이고 퀵소트가 $$O(100000 N \log N)$$ 이였다면 $$N$$ 이 `1000` 일 때 버블 정렬이 더 빠르게 수행됩니다.  (물론 이렇게 극단적이지 않습니다. 퀵소트가 거의 대부분 더 빠르게 됩니다!)
 
 
 하지만, $$N$$ 이 정말 커진다면 언젠가는 퀵소트가 버블 정렬보다 더 빨리 수행되는 때가 발생합니다.
@@ -145,10 +145,10 @@ int main() {
 참고로 맨 뒤에 원소를 추가하는 작업은 엄밀히 말하자면 **amortized** $$O(1)$$ 이라고 합니다. (amortized 의 뜻은 분할상환이란 뜻인데, 아마 아래 설명을 읽으시면 왜 그런 이름을 붙였는지 이해하실 수 있을 것입니다)
 
 
-왜냐면 보통은 `vector` 의 경우 현재 가지고 있는 원소의 개수 보다 더 많은 공간을 할당해 놓고 있습니다. 예를 들어 현재 `vector` 에 있는 원소의 개수가 10 개라면 이미 20개를 저장할 수 있는 공간을 미리 할당해놓게됩니다. 따라서 만약에 뒤에 새로운 원소를 추가하게 된다면 새롭게 메모리를 할당할 필요가 없이, 그냥 이미 할당된 공간에 그 원소를 쓰기만 하면 됩니다. 따라서 대부분의 경우 $$O(1)$$ 으로 `vector` 맨 뒤에 새로운 원소를 추가하거나 지울 수 있습니다.
+왜냐면 보통은 `vector` 의 경우 현재 가지고 있는 원소의 개수 보다 더 많은 공간을 할당해 놓고 있습니다. 예를 들어 현재 `vector` 에 있는 원소의 개수가 `10` 개라면 이미 20개를 저장할 수 있는 공간을 미리 할당해놓게됩니다. 따라서 만약에 뒤에 새로운 원소를 추가하게 된다면 새롭게 메모리를 할당할 필요가 없이, 그냥 이미 할당된 공간에 그 원소를 쓰기만 하면 됩니다. 따라서 대부분의 경우 $$O(1)$$ 으로 `vector` 맨 뒤에 새로운 원소를 추가하거나 지울 수 있습니다.
 
 
-문제가 되는 상황은 할당된 공간을 다 채웠을 때 입니다. 이 때는 어쩔 수 없이, 새로운 큰 공간을 다시 할당하고, 기존의 원소들을 복사하는 수 밖에 없습니다. 따라서 이 경우 $$n$$ 개의 원소를 모두 복사해야 하기 때문에 $$O(n)$$ 으로 수행됩니다. 하지만 이 $$O(n)$$ 으로 수행되는 경우가 매우 드물기 때문에, 전체적으로 평균을 내보았을 때 $$O(1)$$ 으로 수행됨을 알 수 있습니다. 이렇기에 amortized $$O(1)$$ 이라고 부르게 됩니다. 아래 그림에서 자세히 설명하고 있습니다.
+문제가 되는 상황은 할당된 공간을 다 채웠을 때 입니다. 이 때는 어쩔 수 없이, 새로운 큰 공간을 다시 할당하고, 기존의 원소들을 복사하는 수 밖에 없습니다. 따라서 이 경우 $$n$$ 개의 원소를 모두 복사해야 하기 때문에 $$O(n)$$ 으로 수행됩니다. 하지만 이 $$O(n)$$ 으로 수행되는 경우가 매우 드물기 때문에, 전체적으로 평균을 내보았을 때 $$O(1)$$ 으로 수행됨을 알 수 있습니다. 이렇기에 `amortized` $$O(1)$$ 이라고 부르게 됩니다. 아래 그림에서 자세히 설명하고 있습니다.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F2124A44B595A137D239739)
@@ -172,7 +172,7 @@ int main() {
 
 앞서 반복자는 컨테이너에 원소에 접근할 수 있는 포인터와 같은 객체라고 하였습니다. 물론 벡터의 경우 `[ ]` 를 이용해서 정수형 변수로 마치 배열 처럼 임의의 위치에 접근할 수 있지만, 반복자를 사용해서도 마찬가지 작업을 수행할 수 있습니다. 특히 후에 배울 알고리즘 라이브러리의 경우 대부분이 반복자를 인자로 받아서 알고리즘을 수행합니다.
 
-반복자는 컨테이너에 `iterator` 멤버 타입으로 정의되어 있습니다. vector 의 경우 반복자를 얻기 위해서는 `begin()` 함수와 `end()` 함수를 사용할 수 있는데 이는 다음과 같은 위치를 리턴합니다.
+반복자는 컨테이너에 `iterator` 멤버 타입으로 정의되어 있습니다. `vector` 의 경우 반복자를 얻기 위해서는 `begin()` 함수와 `end()` 함수를 사용할 수 있는데 이는 다음과 같은 위치를 리턴합니다.
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F2165E44C595A970A1676B5)
 
@@ -194,7 +194,7 @@ int main() {
   vec.push_back(40);
 
   // 전체 벡터를 출력하기
-  for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+  for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
     cout << *itr << endl;
   }
 
@@ -222,7 +222,7 @@ int main() {
 
 ```cpp-formatted
 // 전체 벡터를 출력하기
-for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+for (vector<int>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
   cout << *itr << endl;
 }
 ```
@@ -257,7 +257,7 @@ template <typename T>
 void print_vector(vector<T>& vec) {
   // 전체 벡터를 출력하기
   for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end();
-       itr++) {
+       ++itr) {
     cout << *itr << endl;
   }
 }
@@ -300,7 +300,7 @@ int main() {
 참고로 템플릿 버전의 경우,
 
 ```cpp-formatted
-for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 ```
 
 와 같이 앞에 `typename` 을 추가해줘야만 합니다. 그 이유는, `iterator` 가 `vector<T>` 의 의존 타입이기 때문입니다. [의존 타입이 무엇인지 기억 안나시는 분은 이 강좌를 참조하시기 바랍니다](http://itguru.tistory.com/222?category=361027)`. .
@@ -310,18 +310,18 @@ for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
 vec.insert(vec.begin() + 2, 15);
 ```
 
-앞서 `insert` 함수를 소개하였는데, 위 처럼 인자로 반복자를 받고, 그 반복자 앞에 원소를 추가해줍니다. 위 경우 `vec.begin() + 2` 앞에 15 를 추가하므로 `10, 20, 30, 40` 에서 `10, 20, 15, 30, 40` 이 됩니다.
+앞서 `insert` 함수를 소개하였는데, 위 처럼 인자로 반복자를 받고, 그 반복자 앞에 원소를 추가해줍니다. 위 경우 `vec.begin() + 2` 앞에 `15` 를 추가하므로 `10, 20, 30, 40` 에서 `10, 20, 15, 30, 40` 이 됩니다.
 
 ```cpp-formatted
 vec.erase(vec.begin() + 3);
 print_vector(vec);
 ```
 
-또 아까전에 언급하였던 `erase` 도 인자로 반복자를 받고, 그 반복자가 가리키는 원소를 제거합니다. 위 경우 4번째 원소인 30이 지워지겠지요. 물론 `insert` 과 `erase` 함수 모두 `O(n)` 으로 느린편입니다.
+또 아까전에 언급하였던 `erase` 도 인자로 반복자를 받고, 그 반복자가 가리키는 원소를 제거합니다. 위 경우 4 번째 원소인 30 이 지워지겠지요. 물론 `insert` 과 `erase` 함수 모두 `O(n)` 으로 느린편입니다.
 
 참고로 `vector` 에서 반복자로 `erase` 나 `insert` 함수를 사용할 때 주의해야할 점이 있습니다.
 
-```cpp
+```cpp-formatted
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -330,7 +330,8 @@ template <typename T>
 void print_vector(vector<T>& vec) {
   // 전체 벡터를 출력하기
   cout << "[ ";
-  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end();
+       ++itr) {
     cout << *itr << " ";
   }
   cout << "]";
@@ -349,7 +350,7 @@ int main() {
   vector<int>::iterator itr = vec.begin();
   vector<int>::iterator end_itr = vec.end();
 
-  for (; itr != end_itr; itr++) {
+  for (; itr != end_itr; ++itr) {
     if (*itr == 20) {
       vec.erase(itr);
     }
@@ -405,7 +406,7 @@ for (; itr != vec.end(); itr ++) {
 ```cpp-formatted
 vector<int>::iterator itr = vec.begin();
 
-for (; itr != vec.end(); itr++) {
+for (; itr != vec.end(); ++itr) {
   if (*itr == 20) {
     vec.erase(itr);
     itr = vec.begin();
@@ -452,7 +453,7 @@ vec.erase(vec.begin() + i);
 
 `vector` 에서 지원하는 반복자로 `const_iterator` 가 있습니다. 이는 마치 `const` 포인터를 생각하시면 됩니다. 즉, `const_iterator` 의 경우 가리키고 있는 원소의 값을 바꿀 수 없습니다. 예를 들어서
 
-```cpp
+```cpp-formatted
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -460,7 +461,8 @@ using namespace std;
 template <typename T>
 void print_vector(vector<T>& vec) {
   // 전체 벡터를 출력하기
-  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end();
+       ++itr) {
     cout << *itr << endl;
   }
 }
@@ -510,8 +512,7 @@ vector<int>::const_iterator citr = vec.cbegin() + 2;
 `vector` 에서 지원하는 반복자 중 마지막 종류로 역반복자 (reverse iterator) 가 있습니다. 이는 반복자와 똑같지만 벡터 뒤에서 부터 앞으로 거꾸로 간다는 특징이 있습니다. 아래 예제를 살펴볼까요.
 
 
-```cpp
-
+```cpp-formatted
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -519,7 +520,8 @@ using namespace std;
 template <typename T>
 void print_vector(vector<T>& vec) {
   // 전체 벡터를 출력하기
-  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end(); itr++) {
+  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end();
+       ++itr) {
     cout << *itr << endl;
   }
 }
@@ -562,11 +564,181 @@ int main() {
 
 또 반복자가 상수 반복자가 있는 것 처럼 역반복자 역시 상수 역반복자가 있습니다. 그 타입은 `const_reverse_iterator` 타입이고, `crbegin(), crend()` 로 얻을 수 있습니다.
 
-앞서 설명한 함수들 말고도 `vector` 에는 수 많은 함수들이 있고, 또 오버로드 되는 여러가지 버전들이 있습니다. 예를 들어 `insert` 함수만 해도 5 개의 오버로드 되는 버전들이 있습니다 (물론 하는 역할은 똑같지만 편의를 위해 여러가지 방식으로 사용할 수 있게 만들어 놓은것입니다). 이 모든 것들을 강좌에서 소개하는 것은 시간 낭비이고, [C++ 레퍼런스를 보면 잘 정리](http://en.cppreference.com/w/cpp/container/vector)되어 있으니 이를 참조하시기 바랍니다.
+역반복자를 사용하는 것은 매우 중요합니다. 아래와 같은 코드를 살펴볼까요.
+
+```cpp-formatted
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+  vector<int> vec;
+  vec.push_back(1);
+  vec.push_back(2);
+  vec.push_back(3);
+
+  // 끝에서 부터 출력하기
+  for (vector<int>::size_type i = vec.size() - 1; i >= 0; i--) {
+    cout << vec[i] << endl;
+  }
+
+  return 0;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+3
+2
+1
+// ... (생략) ...
+0
+0
+0
+1
+0
+593
+0
+0
+[1]    22180 segmentation fault (core dumped)  ./test
+```
+
+와 같이 오류가 발생하게 됩니다. 맨 뒤의 원소 부터 제대로 출력하는 코드 같은데 왜 이런 문제가 발생하였을까요? 그 이유는 `vector` 의 `index` 를 담당하는 타입이 **부호 없는 정수** 이기 때문입니다. 따라서 `i` 가 0 일 때 `i --` 를 하게 된다면 -1 이 되는 것이 아니라, 해당 타입에서 가장 큰 정수가 되버리게 됩니다.
+
+따라서 `for` 문이 영원히 종료할 수 없게 되죠.
+
+이 문제를 해결하기 위해서는 부호 있는 정수로 선언해야 하는데, 이 경우 `vector` 의 `index` 타입과 일치하지 않아서 타입 캐스팅을 해야 한다는 문제가 발생하게 됩니다.
+
+따라서 가장 현명한 선택으로는 역으로 원소를 참조하고 싶다면, 역반복자를 사용하는 것입니다.
+
+### 범위 기반 for 문 (range based for loop)
+
+위와 같이 컨테이너의 원소를 `for` 문 으로 접근하는 패턴은 매우 많이 등장하는데, `C++ 11` 에서 부터는 이와 같은 패턴을 매우 간단하게 나타낼 수 있는 방식을 제공하고 있습니다. 바로 **범위 기반(range-based) for 문** 이라 불리는 것입니다.
+
+```cpp-formatted
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+  vector<int> vec;
+  vec.push_back(1);
+  vec.push_back(2);
+  vec.push_back(3);
+
+  // range-based for 문
+  for (int elem : vec) {
+    cout << "원소 : " << elem << endl;
+  }
+
+  return 0;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+원소 : 1
+원소 : 2
+원소 : 3
+```
+
+와 같이 나옵니다. 범위 기반 `for` 문의 경우 아래와 같은 형태로 써주시면 됩니다.
+
+```info-code
+for (/* 원소를 받는 변수 정의 */ : /* 컨테이너 */) {
+
+}
+```
+
+위 경우
+
+```cpp-formatted
+for (int elem : vec) {
+  cout << "원소 : " << elem << endl;
+}
+```
+
+의 형태로 썼을 경우, `elem` 에 `vec` 의 원소들이 매 루프 마다 복사되서 들어가게 됩니다. 마치
+
+```cpp-formatted
+elem = vec[i];
+```
+
+를 한 것과 말이지요. 만약에 복사 하기 보다는 레퍼런스를 받고 싶다면 어떨까요? 매우 간단합니다. 단순히 레퍼런스 타입으로 바꿔버리면 되죠. 예를 들어서 기존의 `print_vec` 함수를 범위 기반 for 문을 사용해서 어떻게 바꿀 수 있는지 살펴봅시다.
 
 
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
 
-###  리스트 `- list`
+template <typename T>
+void print_vector(vector<T>& vec) {
+  // 전체 벡터를 출력하기
+  for (typename vector<T>::iterator itr = vec.begin(); itr != vec.end();
+       ++itr) {
+    cout << *itr << endl;
+  }
+}
+
+template <typename T>
+void print_vector_range_based(vector<T>& vec) {
+  // 전체 벡터를 출력하기
+  for (const auto& elem : vec) {
+    cout << elem << endl;
+  }
+}
+
+int main() {
+  vector<int> vec;
+  vec.push_back(1);
+  vec.push_back(2);
+  vec.push_back(3);
+  vec.push_back(4);
+
+  cout << "print_vector" << endl;
+  print_vector(vec);
+  cout << "print_vector_range_based" << endl;
+  print_vector_range_based(vec);
+
+
+  return 0;
+}
+```
+
+```exec
+print_vector
+1
+2
+3
+4
+print_vector_range_based
+1
+2
+3
+4
+```
+
+와 같이 동일하게 나타남을 알 수 있습니다.
+
+```cpp
+  for (const auto& elem : vec) {
+    cout << elem << endl;
+  }
+```
+
+위와 같이 `const auto&` 로 `elem` 을 선언하였으므로, `elem` 은 `vec` 의 원소들을 상수 레퍼런스로 접근하게 됩니다. 
+
+이와 같이 범위 기반 for 문을 활용한다면 코드를 직관적으로 나타낼 수 있어서 매우 편리합니다.
+
+참고로 앞서 설명한 함수들 말고도 `vector` 에는 수 많은 함수들이 있고, 또 오버로드 되는 여러가지 버전들이 있습니다.
+
+예를 들어 `insert` 함수만 해도 5 개의 오버로드 되는 버전들이 있습니다 (물론 하는 역할은 똑같지만 편의를 위해 여러가지 방식으로 사용할 수 있게 만들어 놓은것입니다). 이 모든 것들을 강좌에서 소개하는 것은 시간 낭비이고, [C++ 레퍼런스를 보면 잘 정리](http://en.cppreference.com/w/cpp/container/vector)되어 있으니 이를 참조하시기 바랍니다.
+
+
+###  리스트 (list)
 
 리스트(`list`) 의 경우 양방향 연결 구조를 가진 자료형이라 볼 수 있습니다.
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F246A0A4B595B396939AF3D)
@@ -575,7 +747,7 @@ int main() {
 
 그래서 리스트에는 아예 `[]` 나 `at` 함수가 아예 정의되어 있지 않습니다.
 
-물론 리스트의 장점이 없는 것은 아닙니다. `vector` 의 경우 맨 뒤를 제외하고는 임의의 위치에 원소를 추가하거나 제거하는 작업이 `O(n)` 이였지만 리스트의 경우 `O(1)` 으로 매우 빠르게 수행될 수 있습니다. 왜냐하면 원하는 위치 앞과 뒤에 있는 링크값만 바꿔주면 되기 때문입니다.
+물론 리스트의 장점이 없는 것은 아닙니다. `vector` 의 경우 맨 뒤를 제외하고는 임의의 위치에 원소를 추가하거나 제거하는 작업이 $$O(n)$$ 이였지만 리스트의 경우 $$O(1)$$ 으로 매우 빠르게 수행될 수 있습니다. 왜냐하면 원하는 위치 앞과 뒤에 있는 링크값만 바꿔주면 되기 때문입니다.
 
 ```cpp-formatted
 #include <iostream>
@@ -590,7 +762,7 @@ int main() {
   lst.push_back(30);
   lst.push_back(40);
 
-  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); ++itr) {
     cout << *itr << endl;
   }
 }
@@ -612,7 +784,7 @@ int main() {
 한 가지 재미있는점은 리스트의 반복자의 경우 다음과 같은 연산밖에 수행할 수 없습니다.
 
 ```cpp-formatted
-itr++    // ++itr
+  itr++    // itr ++
   itr--  // --itr 도 됩니다.
 ```
 
@@ -626,7 +798,9 @@ itr + 5 // 불가능!
 
 
 
-와 같이임의의 위치에 있는 원소를 가리킬 수 없다는 것입니다. 반복자는 오직 한 칸 씩 밖에 움직일 수 없습니다. 이와 같은 이유는 `list` 의 구조를 생각해보면 알 수 있습니다. 앞서 말했듯이 리스트는 왼쪽 혹은 오른쪽을 가리키고 있는 원소들의 모임으로 이루어져 있기 때문에, 한 번에 한 칸 씩 밖에 이동할 수 없습니다. 즉, 메모리 상에서 원소들이 연속적으로 존재하지 않을 수 있다는 뜻입니다. 반면에 벡터의 경우 메모리 상에서 연속적으로 존재하기 때문에 쉽게 임의의 위치에 있는 원소를 참조할 수 있습니다.
+와 같이 임의의 위치에 있는 원소를 가리킬 수 없다는 것입니다. 반복자는 오직 한 칸 씩 밖에 움직일 수 없습니다.
+
+이와 같은 이유는 `list` 의 구조를 생각해보면 알 수 있습니다. 앞서 말했듯이 리스트는 왼쪽 혹은 오른쪽을 가리키고 있는 원소들의 모임으로 이루어져 있기 때문에, 한 번에 한 칸 씩 밖에 이동할 수 없습니다. 즉, 메모리 상에서 원소들이 연속적으로 존재하지 않을 수 있다는 뜻입니다. 반면에 벡터의 경우 메모리 상에서 연속적으로 존재하기 때문에 쉽게 임의의 위치에 있는 원소를 참조할 수 있습니다.
 
 
 이렇게 리스트 에서 정의되는 반복자의 타입을 보면 `BidirectionalIterator` 타입임을 알 수 있습니다. 이름에서도 알 수 있듯이 양방향으로 이동할 수 있되, 한 칸 씩 밖에 이동할 수 없습니다. 반면에 벡터에서 정의되는 반복자의 타입은 `RandomAccessIterator` 타입 입니다.
@@ -640,10 +814,10 @@ using namespace std;
 
 template <typename T>
 void print_list(list<T>& lst) {
-  cout << "[";
-  // 전체 리스트를 출력하기
-  for (list<T>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
-    cout << *itr << " ";
+  cout << "[ ";
+  // 전체 리스트를 출력하기 (이 역시 범위 기반 for 문을 쓸 수 있습니다)
+  for (const auto& elem : lst) {
+    cout << elem << " ";
   }
   cout << "]" << endl;
 }
@@ -658,7 +832,7 @@ int main() {
   cout << "처음 리스트의 상태 " << endl;
   print_list(lst);
 
-  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); ++itr) {
     // 만일 현재 원소가 20 이라면
     // 그 앞에 50 을 집어넣는다.
     if (*itr == 20) {
@@ -666,10 +840,10 @@ int main() {
     }
   }
 
-  cout << "값이 20 인 원소 앞에 50을 추가 " << endl;
+  cout << "값이 20 인 원소 앞에 50 을 추가 " << endl;
   print_list(lst);
 
-  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+  for (list<int>::iterator itr = lst.begin(); itr != lst.end(); ++itr) {
     // 값이 30 인 원소를 삭제한다.
     if (*itr == 30) {
       lst.erase(itr);
@@ -682,20 +856,21 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F27012E3A595B49D938EB89)
-
-
+```exec
+처음 리스트의 상태 
+[ 10 20 30 40 ]
+값이 20 인 원소 앞에 50 을 추가 
+[ 10 50 20 30 40 ]
+값이 30 인 원소를 제거한다
+[ 10 50 20 40 ]
+```
 
 와 같이 잘 나옵니다.
 
 ```cpp-formatted
-for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+for (list<int>::iterator itr = lst.begin(); itr != lst.end(); ++itr) {
   // 만일 현재 원소가 20 이라면
   // 그 앞에 50 을 집어넣는다.
   if (*itr == 20) {
@@ -704,12 +879,10 @@ for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
 }
 ```
 
-
-
 앞서 설명하였지만 리스트의 반복자는 `BidirectionalIterator` 이기 때문에 `++` 과 `--` 연산만 사용 가능합니다. 따라서 위 처럼 `for` 문으로 하나 하나 원소를 확인해보는것은 가능하지요. `vector` 와는 다르게 `insert` 작업은 `O(1)` 으로 매우 빠르게 실행됩니다.
 
 ```cpp-formatted
-for (list<int>::iterator itr = lst.begin(); itr != lst.end(); itr++) {
+for (list<int>::iterator itr = lst.begin(); itr != lst.end(); ++itr) {
   // 값이 30 인 원소를 삭제한다.
   if (*itr == 30) {
     lst.erase(itr);
@@ -757,7 +930,7 @@ template <typename T>
 void print_deque(deque<T>& dq) {
   // 전체 덱을 출력하기
   cout << "[ ";
-  for (deque<T>::iterator itr = dq.begin(); itr != dq.end(); itr++) {
+  for (const auto& elem : dq) {
     cout << *itr << " ";
   }
   cout << " ] " << endl;
@@ -816,21 +989,15 @@ dq.pop_front();
 
 ###  그래서 어떤 컨테이너를 사용해야돼?
 
-
-
-
 어떠한 컨테이너를 사용할지는 전적으로 이 컨테이너를 가지고 어떠한 작업들을 많이 하냐에 달려있습니다.
 
 * 일반적인 상황에서는 그냥 벡터를 사용한다 (거의 만능이다!)
-* 만약에 맨 끝이 아닌 중간에 원소들을 추가하거나 제거하는 일을 많이 하고,
-원소들을 순차적으로만 접근
-한다면 리스트를 사용한다.
+* 만약에 맨 끝이 아닌 중간에 원소들을 추가하거나 제거하는 일을 많이 하고, 원소들을 순차적으로만 접근 한다면 리스트를 사용한다.
 * 만약에 맨 처음과 끝 모두에 원소들을 추가하는 작업을 많이하면 덱을 사용한다.
 
-
+참고적으로 $$O(1)$$ 으로 작동한다는 것은 언제나 이론적인 결과일 뿐이며 실제로 프로그램을 짜게 된다면, $$O(\log n)$$ 이나 $$O(n)$$ 보다도 느릴 수 있습니다. ($$n$$ 의 크기에 따라서) 따라서 속도가 중요한 환경이라면 적절한 벤치마크를 통해서 성능을 가늠해 보는것도 좋습니다.
 
 자 이번 강좌는 이것으로 마치도록 하겠습니다. 다음 강좌에서는 다른 종류의 컨테이너인 연관 컨테이너에 대해서 배웁니다.
-
 
 
 ###  생각 해보기
