@@ -1155,11 +1155,11 @@
 }
 ,
 	"262" : {
-	"cat_title" : "count",
+	"cat_title" : "count, count_if",
 	"path" : "/C++ Reference/algorithm",
 	"publish_date" : "2019-02-01",
-	"ref_title" : "count, std::count",
-	"title" : "C++ 레퍼런스 - count 함수 (<algorithm>)"
+	"ref_title" : "count, std::count, count_if, std::count_if",
+	"title" : "C++ 레퍼런스 - count 와 count_if 함수 (<algorithm>)"
 }
 ,
 	"263" : {
@@ -1187,11 +1187,11 @@
 }
 ,
 	"266" : {
-	"cat_title" : "remove",
+	"cat_title" : "remove, remove_if",
 	"path" : "/C++ Reference/algorithm",
 	"publish_date" : "2019-02-18",
-	"ref_title" : "remove, std::remove",
-	"title" : "C++ 레퍼런스 - remove 함수 (<algorithm>)"
+	"ref_title" : "remove, std::remove, remove_if, std::remove_if",
+	"title" : "C++ 레퍼런스 - remove 와 remove_if 함수 (<algorithm>)"
 }
 ,
 	"267" : {

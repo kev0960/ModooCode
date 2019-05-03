@@ -81,6 +81,8 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
       StripMarkdown(&page_title);
       EscapeHtmlString(&page_title);
       return StrCat(s, page_title, t);
+    } else if (content_ == "cpp-ref-start") {
+      string s = R"(<div class='cpp-ref-start'>이 레퍼런스의 모든 내용은 <a href="https://cppreference.com">여기</a>에서 가져왔습니다.</div>)";
     }
   } else if (header_type == NORMAL_HEADER) {
     start_header =
