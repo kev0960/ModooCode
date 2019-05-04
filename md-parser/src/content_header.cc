@@ -68,8 +68,7 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
       StripMarkdown(&page_title);
       EscapeHtmlString(&page_title);
       return StrCat(s, page_title, t);
-    }
-    else if (content_ == "chewing-cpp-end") {
+    } else if (content_ == "chewing-cpp-end") {
       string s = R"(
 <div class='next-lecture-box'>강좌를 보다가 조금이라도 <span class='font-weight-bold'>궁금한 것이나 이상한 점이 있다면 꼭 댓글</span>을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. <br><br>
 현재 여러분이 보신 강좌는 <span class='font-italic lecture-title'>&lt;)";
@@ -82,7 +81,12 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
       EscapeHtmlString(&page_title);
       return StrCat(s, page_title, t);
     } else if (content_ == "cpp-ref-start") {
-      string s = R"(<div class='cpp-ref-start'>이 레퍼런스의 모든 내용은 <a href="https://cppreference.com">여기</a>에서 가져왔습니다.</div>)";
+      string s =
+          R"(<div class='cpp-ref-start'><p class='cpp-ref-link'>이 레퍼런스의 모든 내용은
+             <a href="https://cppreference.com">여기</a>를 기초로 하여 작성하였습니다.</p>)";
+      string t =
+          R"(<p class='cpp-lec-introduce'>아직 C++ 에 친숙하지 않다면 <a href="https://modoocode.com/135">씹어먹는 C++</a> 은 어때요?</p></div>)";
+      return StrCat(s, t);
     }
   } else if (header_type == NORMAL_HEADER) {
     start_header =

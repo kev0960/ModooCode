@@ -640,3 +640,31 @@ figcaption {
     font-size: 120%;
     font-weight: bolder;
 }
+
+.cpp-ref-link a {
+    color: #155724;
+    font-weight: bold;
+}
+
+.cpp-ref-link {
+    border: 1px solid transparent;
+    padding: 0.75rem 1.25rem;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    border-radius: 0.25rem;
+    color : #155724;
+}
+
+.cpp-lec-introduce {
+    border-color : #f5c6cb;
+    background-color: #f8d7da;
+    border: 1px solid transparent;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    color: #721c24;
+}
+
+.cpp-lec-introduce a {
+    color: #721c24;
+    font-weight: bold;
+}
