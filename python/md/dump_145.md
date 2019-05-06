@@ -1,7 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios 클래스
 cat_title : ios 클래스
-ref_title : ios
+ref_title : ios, <ios>
 publish_date : 2011-08-17
 --------------
 
