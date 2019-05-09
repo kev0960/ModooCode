@@ -291,7 +291,7 @@ bool Database::TryUpdateFileToDatabase(const string& article_url,
           /* is_deleted */
           DefaultBooleanWhenEmpty(
               FindOrReturnEmpty(article_header, "is_deleted"), false),
-          "');"));
+          ");"));
       modify_article_metadata.commit();
       updated = true;
     }

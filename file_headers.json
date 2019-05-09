@@ -1241,7 +1241,7 @@
 	"path" : "/C++",
 	"prev_page" : "270",
 	"publish_date" : "2019-04-07",
-	"title" : "씹어먹는 C ++ - <15 - 3. C++ memory order 와 atomic 객체>"
+	"title" : "씹어먹는 C++ - <15 - 3. C++ memory order 와 atomic 객체>"
 }
 ,
 	"272" : {
@@ -1350,9 +1350,8 @@
 ,
 	"284" : {
 	"cat_title" : "15 - 4. future 와 promise",
-	"path" : "/C++",
-	"publish_date" : "2019-05-05",
-	"title" : "씹어먹는 C ++ - <15 - 4. C++ future 와 promise>"
+	"is_published" : "false",
+	"title" : "씹어먹는 C++ - <15 - 4. C++ future 와 promise>"
 }
 ,
 	"29" : {

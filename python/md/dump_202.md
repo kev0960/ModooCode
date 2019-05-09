@@ -92,30 +92,16 @@ class MyString {
 
   ~MyString();
 
-  int length();
-  int capacity();
+  int length() const;
+  int capacity() const;
   void reserve(int size);
 
-  void print();
-  void println();
+  void print() const;
+  void println() const;
 
-  MyString& assign(MyString& str);
-  MyString& assign(const char* str);
-
-  char at(int i);
-
-  MyString& insert(int loc, MyString& str);
-  MyString& insert(int loc, const char* str);
-  MyString& insert(int loc, char c);
-
-  MyString& erase(int loc, int num);
-
-  int find(int find_from, MyString& str);
-  int find(int find_from, const char* str);
-  int find(int find_from, char c);
+  char at(int i) const;
 
   int compare(MyString& str);
-
   bool operator==(MyString& str);
 };
 
@@ -140,53 +126,16 @@ MyString::MyString(const MyString& str) {
     string_content[i] = str.string_content[i];
 }
 MyString::~MyString() { delete[] string_content; }
-int MyString::length() { return string_length; }
-void MyString::print() {
+int MyString::length() const { return string_length; }
+void MyString::print() const {
   for (int i = 0; i != string_length; i++) cout << string_content[i];
 }
-void MyString::println() {
+void MyString::println() const {
   for (int i = 0; i != string_length; i++) cout << string_content[i];
 
   cout << endl;
 }
-
-MyString& MyString::assign(MyString& str) {
-  if (str.string_length > memory_capacity) {
-    // 그러면 다시 할당을 해줘야만 한다.
-    delete[] string_content;
-
-    string_content = new char[str.string_length];
-    memory_capacity = str.string_length;
-  }
-  for (int i = 0; i != str.string_length; i++) {
-    string_content[i] = str.string_content[i];
-  }
-
-  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
-
-  string_length = str.string_length;
-
-  return *this;
-}
-MyString& MyString::assign(const char* str) {
-  int str_length = strlen(str);
-  if (str_length > memory_capacity) {
-    // 그러면 다시 할당을 해줘야만 한다.
-    delete[] string_content;
-
-    string_content = new char[str_length];
-    memory_capacity = str_length;
-  }
-  for (int i = 0; i != str_length; i++) {
-    string_content[i] = str[i];
-  }
-
-  string_length = str_length;
-
-  return *this;
-}
-int MyString::capacity() { return memory_capacity; }
+int MyString::capacity() const { return memory_capacity; }
 void MyString::reserve(int size) {
   if (size > memory_capacity) {
     char* prev_string_content = string_content;
@@ -203,109 +152,11 @@ void MyString::reserve(int size) {
   // 만일 예약하려는 size 가 현재 capacity 보다 작다면
   // 아무것도 안해도 된다.
 }
-char MyString::at(int i) {
+char MyString::at(int i) const {
   if (i >= string_length || i < 0)
     return 0;
   else
     return string_content[i];
-}
-MyString& MyString::insert(int loc, MyString& str) {
-  // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
-  // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
-
-  // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-  if (loc < 0 || loc > string_length) return *this;
-
-  if (string_length + str.string_length > memory_capacity) {
-    // 이제 새롭게 동적으로 할당을 해야 한다.
-
-    if (memory_capacity * 2 > string_length + str.string_length)
-      memory_capacity *= 2;
-    else
-      memory_capacity = string_length + str.string_length;
-
-    char* prev_string_content = string_content;
-    string_content = new char[memory_capacity];
-
-    // 일단 insert 되는 부분 직전까지의 내용을 복사한다.
-    int i;
-    for (i = 0; i < loc; i++) {
-      string_content[i] = prev_string_content[i];
-    }
-
-    // 그리고 새롭에 insert 되는 문자열을 넣는다.
-    for (int j = 0; j != str.string_length; j++) {
-      string_content[i + j] = str.string_content[j];
-    }
-
-    // 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
-    for (; i < string_length; i++) {
-      string_content[str.string_length + i] = prev_string_content[i];
-    }
-
-    delete[] prev_string_content;
-
-    string_length = string_length + str.string_length;
-    return *this;
-  }
-
-  // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
-  // 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
-
-  for (int i = string_length - 1; i >= loc; i--) {
-    // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
-    string_content[i + str.string_length] = string_content[i];
-  }
-  // 그리고 insert 되는 문자 다시 집어넣기
-  for (int i = 0; i < str.string_length; i++)
-    string_content[i + loc] = str.string_content[i];
-
-  string_length = string_length + str.string_length;
-  return *this;
-}
-MyString& MyString::insert(int loc, const char* str) {
-  MyString temp(str);
-  return insert(loc, temp);
-}
-MyString& MyString::insert(int loc, char c) {
-  MyString temp(c);
-  return insert(loc, temp);
-}
-
-MyString& MyString::erase(int loc, int num) {
-  // loc 의 앞 부터 시작해서 num 문자를 지운다.
-  if (num < 0 || loc < 0 || loc > string_length) return *this;
-
-  // 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
-  // 생각하면 됩니다.
-
-  for (int i = loc + num; i < string_length; i++) {
-    string_content[i - num] = string_content[i];
-  }
-
-  string_length -= num;
-  return *this;
-}
-int MyString::find(int find_from, MyString& str) {
-  int i, j;
-  if (str.string_length == 0) return -1;
-  for (i = find_from; i < string_length - str.string_length; i++) {
-    for (j = 0; j < str.string_length; j++) {
-      if (string_content[i + j] != str.string_content[j]) break;
-    }
-
-    if (j == str.string_length) return i;
-  }
-
-  return -1;  // 찾지 못했음
-}
-int MyString::find(int find_from, const char* str) {
-  MyString temp(str);
-  return find(find_from, temp);
-}
-int MyString::find(int find_from, char c) {
-  MyString temp(c);
-  return find(find_from, temp);
 }
 int MyString::compare(MyString& str) {
   // (*this) - (str) 을 수행해서 그 1, 0, -1 로 그 결과를 리턴한다
@@ -340,25 +191,23 @@ int main() {
   MyString str3("sentence");
 
   if (str1 == str2)
-    cout << "str1 and str2 are same" << endl;
+    cout << "str1 와 str2 는 다르다" << endl;
   else
-    cout << "st1 and str2 are different" << endl;
+    cout << "st1 와 str2 는 같다." << endl;
 
   if (str2 == str3)
-    cout << "str2 and str3 are same" << endl;
+    cout << "str2 와 str3 는 같다." << endl;
   else
-    cout << "st2 and str3 are different" << endl;
+    cout << "st2 와 str3 는 다르다" << endl;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F245A6D4B520CF2291D03B6)
-
+```exec
+st1 와 str2 는 같다.
+str2 와 str3 는 같다.
+```
 
 
 와 같이 잘 나옵니다. 위 코드에서도 쉽게 알 수 있지만 `str1` 과 `str2` 은 다르고, `str2` 와 `str3` 는 같기 때문에 위와 같이 제대로 처리되고 있음을 알 수 있습니다.
@@ -458,7 +307,9 @@ a.plus(b.divide(c)).plus(d);
 
 
 
-와 같이 복잡한 함수식을 이용해서 표현해야만 합니다. 이는, 가독성이 떨어질 뿐더러 위 식을 딱 보고 도대체 무슨 작업을 하려고 하는지도 쉽게 알 수 없습니다. 하지만 연산자 오버로딩을 이용해서 `plus` 를 `operator+` 로, `divide` 를 `operator/` 로, 등등 바꿔준다면 단순히 프로그래머가`a + b/c +` d; 게 쓴다고 해도, 컴파일러가a.operator+(b.operator/(c)).operator+(d); 로 알아서 변환시켜서 처리하기 때문에 속도나 다른 면의 어떠한 차이 없이 뛰어난 가독성과 편리함을 얻을 수 있게 됩니다.
+와 같이 복잡한 함수식을 이용해서 표현해야만 합니다. 이는, 가독성이 떨어질 뿐더러 위 식을 딱 보고 도대체 무슨 작업을 하려고 하는지도 쉽게 알 수 없습니다.
+
+하지만 연산자 오버로딩을 이용해서 `plus` 를 `operator+` 로, `divide` 를 `operator/` 로, 등등 바꿔준다면 단순히 프로그래머가`a + b/c + d;` 게 쓴다고 해도, 컴파일러가 `a.operator+(b.operator/(c)).operator+(d);` 로 알아서 변환시켜서 처리하기 때문에 속도나 다른 면의 어떠한 차이 없이 뛰어난 가독성과 편리함을 얻을 수 있게 됩니다.
 
 
 이를 바탕으로 간단히 `Complex` 클래스를 만들어본다면
@@ -543,25 +394,27 @@ Complex& operator+(const Complex& c) {
 ```
 
 로 잘못 생각하는 경우도 있습니다. 물론 이렇게 설계하였을 경우, `Complex` 를 리턴하는 연산자 함수는 값의 복사가 일어나기 때문에 속도  저하가 발생하지만 위 처럼 레퍼런스를 리턴하게 되면 값의 복사 대신 레퍼런스만 복사하는 것이므로 큰 속도의 저하는 나타나지 않습니다. 하지만, 위와 같이 `operator+` 를 정의할 경우 다음과 같은 문장이 어떻게 처리되는지 생각해봅시다.
+
 ```cpp-formatted
 Complex a = b + c + b;
 ```
 
+아마도 위 문장을 쓴 사람 입장에서는 결과적으로 `a = 2 * b + c;` 를 의도하였을 것입니다. 
+
+하지만, 실제로 처리되는 것을 보자면, `(b.plus(c)).plus(b)` 가 되는데, `b.plus(c)` 를 하면서 `b` 에는 `(b + c)` 가 들어가고, 거기에 다시 `plus(b)` 를 하게 된다면 값 자체만 보자면 `(b + c) + (b + c)` 가 되서 (왜냐하면 현재 `b` 에는 `b + c` 가 들어가 있으니까) `a = 2 * b + 2 * c` 가 되기 때문입니다. 이러한 문제를 막기 위해서는 반드시 사칙 연산의 경우 반드시 값을 리턴해야 만 합니다.
 
 
-아마도 위 문장을 쓴 사람 입장에서는 결과적으로 `a = 2 * b +` c; 를 의도하였을 것입니다. 하지만, 실제로 처리되는 것을 보자면, (b.plus(c)).plus(b) 가 되는데, `b.plus(c)` 를 하면서 `b` 에는 (b + c) 가 들어가고, 거기에 다시 `plus(b)` 를 하게 된다면 값 자체만 보자면 (b + c) `+ (b + c)` 가 되서 (왜냐하면 현재 `b` 에는 `b + c` 가 들어가 있으니까) `a = 2 * b + 2 * c` 가 되기 때문입니다. 이러한 문제를 막기 위해서는 반드시 사칙 연산의 경우 반드시 값을 리턴해야 만 합니다.
+또한 함수 내부에서 **읽기**만 수행되고 값이 바뀌지 않는 인자들에 대해서는 `const` 키워드를 붙여주는 것이 바람직합니다. `operator+` 의 경우, `c` 의 값을 읽기만 하지 `c` 의 값에 어떠한 변화도 주지 않으므로 `const Complex&` 타입으로 인자를 받았습니다.
 
-
-또한 함수 내부에서 '읽기' 만 수행되고 값이 바뀌지 않는 인자들에 대해서는 `const` 키워드를 붙여주는 것이 바람직합니다. `operator+` 의 경우, `c` 의 값을 읽기만 하지 `c` 의 값에 어떠한 변화도 주지 않으므로 `const Complex&` 타입으로 인자를 받았습니다.
-
-```warning
-인자의 값이 함수 내부에서 바뀌지 않는 다고 확신할 때에는 반드시 const 키워드를 붙여주시기 바랍니다.
+```lec-warning
+인자의 값이 함수 내부에서 바뀌지 않는 다고 확신할 때에는 `const` 키워드를 붙여주시기 바랍니다. 이는 나중에 발생할 수 있는 실수들을 줄여줍니다.
 ```
 
 ###  대입 연산자 함수
 
 
 아마 `Complex` 클래스를 구현하면서 한 가지 빠뜨렸다고 생각하고 있는 것이 있을 것입니다. 바로, 대입 연산자  (=) 이지요. 아마도, 대입 연산자야 말로 가장 먼저 구현했어야 할 연산자 함수가 아니였을까 합니다.
+
 ```cpp-formatted
 Complex& operator=(const Complex& c);
 ```

@@ -367,17 +367,10 @@ class B {
 
 와 같이 할 경우, `A` 는 `B` 를 `friend` 로 지정하게 된 것입니다. 한 가지 주의할 사실은, 우리가 흔히 생각하는 friend 관계와는 다르게, C++ 에서 friend 는 짝사랑과 비슷합니다. 즉, `A` 는 자기 생각에 `B` 가 `friend` 라고 생각하는 것이므로, `B` 에게 `A` 의 모든 것을 공개합니다.
 
-즉 클래스 `B` 에서 `A` 의 `private` 변수인 `x` 에 접근할 수 있게 됩니다. 하지만 `B` 에는 `A` 가 `friend` 라고 지정하지 않았으므로, `B` 의 입장에서는 `A` 에게 어떠한 내용도 공개하지 않습니다 (public 변수들 빼고). 따라서 `A` 는 `B` 의 `private` 변수인 `int y` 에 접근할 수 없게 됩니다.
-
-
-
-
+즉 클래스 `B` 에서 `A` 의 `private` 변수인 `x` 에 접근할 수 있게 됩니다. 하지만 `B` 에는 `A` 가 `friend` 라고 지정하지 않았으므로, `B` 의 입장에서는 `A` 에게 어떠한 내용도 공개하지 않습니다 (`public` 변수들 빼고). 따라서 `A` 는 `B` 의 `private` 변수인 `int y` 에 접근할 수 없게 됩니다.
 
 
 ###  입출력 연산자 오버로딩 하기
-
-
-
 
 아마도, 눈치를 채신 분들이 있겠지만 우리가
 
@@ -658,6 +651,7 @@ char& MyString::operator[](const int index) { return string_content[index]; }
 
 ```cpp-formatted
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 class MyString {
@@ -679,29 +673,11 @@ class MyString {
   ~MyString();
 
   int length();
-  int capacity();
-  void reserve(int size);
 
-  void print();
-  void println();
+  void print() const;
+  void println() const;
 
-  MyString& assign(MyString& str);
-  MyString& assign(const char* str);
-
-  char at(int i);
   char& operator[](const int index);
-
-  MyString& insert(int loc, MyString& str);
-  MyString& insert(int loc, const char* str);
-  MyString& insert(int loc, char c);
-
-  MyString& erase(int loc, int num);
-
-  int find(int find_from, MyString& str);
-  int find(int find_from, const char* str);
-  int find(int find_from, char c);
-
-  int compare(MyString& str);
 };
 
 MyString::MyString(char c) {
@@ -726,197 +702,20 @@ MyString::MyString(const MyString& str) {
 }
 MyString::~MyString() { delete[] string_content; }
 int MyString::length() { return string_length; }
-void MyString::print() {
-  for (int i = 0; i != string_length; i++) cout << string_content[i];
+void MyString::print() const {
+  for (int i = 0; i != string_length; i++) {
+    cout << string_content[i];
+  }
 }
-void MyString::println() {
-  for (int i = 0; i != string_length; i++) cout << string_content[i];
-
+void MyString::println() const {
+  for (int i = 0; i != string_length; i++) {
+    cout << string_content[i];
+  }
   cout << endl;
 }
 
-MyString& MyString::assign(MyString& str) {
-  if (str.string_length > memory_capacity) {
-    // 그러면 다시 할당을 해줘야만 한다.
-    delete[] string_content;
-
-    string_content = new char[str.string_length];
-    memory_capacity = str.string_length;
-  }
-  for (int i = 0; i != str.string_length; i++) {
-    string_content[i] = str.string_content[i];
-  }
-
-  // 그리고 굳이 str.string_length + 1 ~ string_length 부분은 초기화
-  // 시킬 필요는 없다. 왜냐하면 거기 까지는 읽어들이지 않기 때문이다.
-
-  string_length = str.string_length;
-
-  return *this;
-}
-MyString& MyString::assign(const char* str) {
-  int str_length = strlen(str);
-  if (str_length > memory_capacity) {
-    // 그러면 다시 할당을 해줘야만 한다.
-    delete[] string_content;
-
-    string_content = new char[str_length];
-    memory_capacity = str_length;
-  }
-  for (int i = 0; i != str_length; i++) {
-    string_content[i] = str[i];
-  }
-
-  string_length = str_length;
-
-  return *this;
-}
-int MyString::capacity() { return memory_capacity; }
-void MyString::reserve(int size) {
-  if (size > memory_capacity) {
-    char* prev_string_content = string_content;
-
-    string_content = new char[size];
-    memory_capacity = size;
-
-    for (int i = 0; i != string_length; i++)
-      string_content[i] = prev_string_content[i];
-
-    delete[] prev_string_content;
-  }
-
-  // 만일 예약하려는 size 가 현재 capacity 보다 작다면
-  // 아무것도 안해도 된다.
-}
-char MyString::at(int i) {
-  if (i >= string_length || i < 0)
-    return NULL;
-  else
-    return string_content[i];
-}
 char& MyString::operator[](const int index) { return string_content[index]; }
-MyString& MyString::insert(int loc, MyString& str) {
-  // 이는 i 의 위치 바로 앞에 문자를 삽입하게 된다. 예를 들어서
-  // abc 라는 문자열에 insert(1, "d") 를 하게 된다면 adbc 가 된다.
 
-  // 범위를 벗어나는 입력에 대해서는 삽입을 수행하지 않는다.
-  if (loc < 0 || loc > string_length) return *this;
-
-  if (string_length + str.string_length > memory_capacity) {
-    // 이제 새롭게 동적으로 할당을 해야 한다.
-
-    if (memory_capacity * 2 > string_length + str.string_length)
-      memory_capacity *= 2;
-    else
-      memory_capacity = string_length + str.string_length;
-
-    char* prev_string_content = string_content;
-    string_content = new char[memory_capacity];
-
-    // 일단 insert 되는 부분 직전까지의 내용을 복사한다.
-    int i;
-    for (i = 0; i < loc; i++) {
-      string_content[i] = prev_string_content[i];
-    }
-
-    // 그리고 새롭에 insert 되는 문자열을 넣는다.
-    for (int j = 0; j != str.string_length; j++) {
-      string_content[i + j] = str.string_content[j];
-    }
-
-    // 이제 다시 원 문자열의 나머지 뒷부분을 복사한다.
-    for (; i < string_length; i++) {
-      string_content[str.string_length + i] = prev_string_content[i];
-    }
-
-    delete[] prev_string_content;
-
-    string_length = string_length + str.string_length;
-    return *this;
-  }
-
-  // 만일 초과하지 않는 경우 굳이 동적할당을 할 필요가 없게 된다.
-  // 효율적으로 insert 하기 위해, 밀리는 부분을 먼저 뒤로 밀어버린다.
-
-  for (int i = string_length - 1; i >= loc; i--) {
-    // 뒤로 밀기. 이 때 원래의 문자열 데이터가 사라지지 않게 함
-    string_content[i + str.string_length] = string_content[i];
-  }
-  // 그리고 insert 되는 문자 다시 집어넣기
-  for (int i = 0; i < str.string_length; i++)
-    string_content[i + loc] = str.string_content[i];
-
-  string_length = string_length + str.string_length;
-  return *this;
-}
-MyString& MyString::insert(int loc, const char* str) {
-  MyString temp(str);
-  return insert(loc, temp);
-}
-MyString& MyString::insert(int loc, char c) {
-  MyString temp(c);
-  return insert(loc, temp);
-}
-
-MyString& MyString::erase(int loc, int num) {
-  // loc 의 앞 부터 시작해서 num 문자를 지운다.
-  if (num < 0 || loc < 0 || loc > string_length) return *this;
-
-  // 지운다는 것은 단순히 뒤의 문자들을 앞으로 끌고 온다고
-  // 생각하면 됩니다.
-
-  for (int i = loc + num; i < string_length; i++) {
-    string_content[i - num] = string_content[i];
-  }
-
-  string_length -= num;
-  return *this;
-}
-int MyString::find(int find_from, MyString& str) {
-  int i, j;
-  if (str.string_length == 0) return -1;
-  for (i = find_from; i < string_length - str.string_length; i++) {
-    for (j = 0; j < str.string_length; j++) {
-      if (string_content[i + j] != str.string_content[j]) break;
-    }
-
-    if (j == str.string_length) return i;
-  }
-
-  return -1;  // 찾지 못했음
-}
-int MyString::find(int find_from, const char* str) {
-  MyString temp(str);
-  return find(find_from, temp);
-}
-int MyString::find(int find_from, char c) {
-  MyString temp(c);
-  return find(find_from, temp);
-}
-int MyString::compare(MyString& str) {
-  // (*this) - (str) 을 수행해서 그 1, 0, -1 로 그 결과를 리턴한다
-  // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
-  // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
-
-  for (int i = 0; i < min(string_length, str.string_length); i++) {
-    if (string_content[i] > str.string_content[i])
-      return 1;
-
-    else if (string_content[i] < str.string_content[i])
-      return -1;
-  }
-
-  // 여기 까지 했는데 끝나지 않았다면 앞 부분 까지 모두 똑같은 것이 된다.
-  // 만일 문자열 길이가 같다면 두 문자열은 아예 같은 문자열이 된다.
-
-  if (string_length == str.string_length) return 0;
-
-  // 참고로 abc 와 abcd 의 크기 비교는 abcd 가 더 뒤에 오게 된다.
-  else if (string_length > str.string_length)
-    return 1;
-
-  return -1;
-}
 int main() {
   MyString str("abcdef");
   str[3] = 'c';
@@ -943,7 +742,7 @@ int main() {
 
 
 
-###  int `Wrapper` 클래스 - 타입 변환 연산자
+###  int Wrapper 클래스 - 타입 변환 연산자
 
 
 
@@ -1055,56 +854,81 @@ int main() {
 
 
 마지막으로 살펴볼 연산자로 우리가 흔히 `++, --` 로 사용하는 전위/후위 증감 연산자들 입니다. 아마, 이 연산자를 오버로딩 하기 전에 한 가지 궁금증이 드셨을 텐데요, 과연 C++ 컴파일러는 전위/후위 증감을 구분 해서 오버로딩 시켜주냐 입니다. 다시 말해;
+
 ```cpp-formatted
 a++;
 ++a;
 ```
 
-위 두 `++` 연산자들을 구분해서 오버로딩을 시켜주냐 이말이죠. 사실 우리가 흔히 생각하기에 `++` 연산자는 그냥 1 증가 시켜주는 1 개의 연산자라고 볼 수 있겠지만 놀랍게도 C++ 에서는 `++` 연산자를 전위와 후위를 구분해서 오버로딩 할 수 있도록 제공하고 있습니다. 그렇다면요, 이 둘을 도대체 어떻게 구분할 수 있을까요?
-
+위 두 `++` 연산자들을 구분해서 오버로딩을 시켜주냐 이말이죠. 두 연산자 모두 `operator++` 이기 때문입니다. 
 
 C++ 언어에서는 다음과 같은 재미있는 방법으로 구분합니다. 일단 C++ 언어에서는 다음과 같은 재미있는 방법으로 구분합니다. 일단;
 
 ```cpp-formatted
-operator++() operator--()
+operator++();
+operator--();
 ```
 
-은 전위 증감 연산자 (++x, --x) 를 오버로딩 하게 됩니다. 그렇다면 후위 증감 연산자 (x ++, x--) 는 어떨까요. 바로
+은 전위 증감 연산자 (`++x, --x`) 를 오버로딩 하게 됩니다. 그렇다면 후위 증감 연산자 (`x++, x--`) 는 어떨까요. 바로
 
 ```cpp-formatted
-operator++(int x) operator--(int x)
+operator++(int x);
+operator--(int x);
 ```
 
+로 구현하게 됩니다. 물론 인자 `x` 는 아무런 의미가 없습니다. 단순히 컴파일러 상에서 전위와 후위를 구별하기 위해 `int` 인자를 넣어주는 것이지요.
 
-로 구현하게 됩니다. 물론 인자 `x` 에는 0 이 들어가게 됩니다. 즉 단순히 전위와 후위를 구별하기 위해 인자로 `x` 를 넣어주는 것이지요. 실제로 `++` 을 구현하면서 인자로 들어가는 값을 사용하는 경우는 없습니다.
-
-한 가지 주목할 점은 많은 경우 전위 증감이 후위 증감 보다 더 빠르기 때문에 (물론, 엄청나게 빠르다는 것이 아니라 후위 증감 자체가 약간의 연산을 더 수행하게 됩니다) 후위/전위 증감 중 무엇을 사용하던 상관이 없는 경우 (예를 들어서 `for` 문에서 `i ++` 을 한 다던지) 되도록이면 전위 증감을 사용하는 것이 바람직 합니다만, 클래스를 사용하는 사용자의 입장에서는 두 개 모두 지원해야 하므로 우리는 둘 다 만들어야 하겠지요.
-
-
-따라서 아래와 같은 테스트 클래스를 제작하였습니다.
+실제로 `++` 을 구현하면서 인자로 들어가는 값을 사용하는 경우는 없습니다. 따라서 그냥 
 
 ```cpp-formatted
-class Test
-
-{
-  int x;
-
- public:
-  Test(int x) : x(x) {}
-  Test& operator++() {
-    x++;
-    cout << "전위 증감 연산자" << endl;
-    return *this;
-  }
-  Test& operator++(int s) {
-    x++;
-    cout << "후위 증감 연산자" << endl;
-    return *this;
-  }
-};
+operator++(int);
+operator--(int);
 ```
 
+와 같이 해도 무방합니다.
 
+한 가지 중요한 점은, 전위 증감 연산의 경우 **값이 바뀐 자기 자신** 을 리턴해야 하고, 후위 증감의 경우 **값이 바뀌기 이전의 객체** 를 리턴해야 된다는 점입니다.
+
+왜냐하면 전위와 후위 연산자가 어떻게 다른지 생각해봤을 때
+
+```cpp
+int x = 1;
+func(++x);
+```
+
+를 하게 되면 `func` 에는 2 가 인자로 전달되지만,
+
+```cpp
+int x = 1;
+func(x++);
+```
+
+의 경우 `func` 에 1 이 인자로 전달되고, 나중에 `x++` 이 실행되어서 `x` 가 2 가 되기 때문이지요.
+
+따라서 이를 감안한다면 아래와 같은 꼴이 됩니다.
+
+```cpp
+A& operator++() {
+  // A ++ 을 수행한다.
+  return *this;
+}
+```
+
+전위 연산자는 간단히 `++` 에 해당하는 연산을 수행한 후에 자기 자신을 반환해야 합니다. 반면에 후위 연산자의 경우
+
+```cpp
+A operator++(int) {
+  A temp(A);
+  // A++ 을 수행한다.
+  return temp;
+}
+```
+
+`++` 을 하기 전에 객체를 반환해야 하므로, `temp` 객체를 만들어서 이전 상태를 기록한 후에, `++` 을 수행한 뒤에 `temp` 객체를 반환하게 됩니다.
+
+따라서 **후위 증감 연산의 경우 추가적으로 복사 생성자를 호출하기 때문에 전위 증감 연산보다 더 느립**니다!
+
+그렇다면 아래와 같이 예제를 살펴봅시다.
 
 클래스 자체에는 별거 없지만 전위와 후위가 호출될 때를 구별하기 위해 메세지를 출력하도록 하였습니다.
 
@@ -1117,39 +941,52 @@ class Test {
 
  public:
   Test(int x) : x(x) {}
+  Test(const Test& t) : x(t.x) {}
+
   Test& operator++() {
     x++;
     cout << "전위 증감 연산자" << endl;
     return *this;
   }
-  Test& operator++(int s) {
+
+  // 전위 증감과 후위 증감에 차이를 두기 위해 후위 증감의 경우 인자로 int 를
+  // 받지만 실제로는 아무것도 전달되지 않는다.
+  Test operator++(int) {
+    Test temp(*this);
     x++;
     cout << "후위 증감 연산자" << endl;
-    return *this;
+    return temp;
+  }
+
+  int get_x() const {
+    return x;
   }
 };
-int main() {
-  Test x(3);
 
-  x++;
-  ++x;
+void func(const Test& t) {
+  cout << "x : " << t.get_x() << endl;
+}
+
+int main() {
+  Test t(3);
+
+  func(++t); // 4
+  func(t++); // 4 가 출력됨
+  cout << "x : " << t.get_x() << endl;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2775AA35521E26D0278F37)
-
-
+```exec
+전위 증감 연산자
+x : 4
+후위 증감 연산자
+x : 4
+x : 5
+```
 
 와 같이 제대로 골라서 실행되고 있음을 알 수 있습니다.
-
-
 
 
 
