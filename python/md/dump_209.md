@@ -620,37 +620,39 @@ int main() {
 ###  상속 (Inheritance)
 
 
-여러분도 느꼈겠지만, `Manager` 클래스를 추가하면서 Ctrl + C, Ctrl + V 신공을 참 여러번 반복한다고 느꼈을 것입니다. 이게 어쩔 수 없는 이유가 `Manager` 의 코드 자체가 `Employee` 의 대부분을 포함하고 있기 때문이지요.그런데 놀랍게도 C++ 에서는 이와 같은 일을 가능토록 해줍니다. 바로 '상속' 이라는 것을 통해 말이지요.
+여러분도 느꼈겠지만, `Manager` 클래스를 추가하면서 복사 붙여넣기 신공을 참 여러번 반복한다고 느꼈을 것입니다. 이게 어쩔 수 없는 이유가 `Manager` 의 코드 자체가 `Employee` 의 대부분을 포함하고 있기 때문이지요. C++ 에서는 이와 같은 경우, 다른 클래스의 내용을 그대로 포함할 수 있는 작업을 가능토록 해줍니다. 바로 **상속** 이라는 것을 통해 말이지요.
 
-사실 상속이라는 단어 속에 무언가를 '물려' 받아서 사용한다는 의미가 있습니다. 즉C++ 에서 상속을 통해 다른 클래스의 정보를 물려 받아서 사용할 수 있습니 C++ 에서 상속을 통해 다른 클래스의 정보를 물려 받아서 사용할 수 있습니다.
+사실 상속이라는 단어 속에 무언가를 물려 받아서 사용한다는 의미가 있습니다. 즉, C++ 에서 상속을 통해 다른 클래스의 정보를 물려 받아서 사용할 수 있습니다.
 
-일단은 바로 `Employee` 와 `Manager` 클래스에 적용하기 전에 간단한 클래스를 먼저 만들어서 어떻게 C++ 에서 상속이라는 기능이 사용되는지 알아보도록 하겠습니다 . 일단은 바로 `Employee` 와 `Manager` 클래스에 적용하기 전에 간단한 클래스를 먼저 만들어서 어떻게 C++ 에서 상속이라는 기능이 사용되는지 알아보도록 하겠습니다.
+일단은 바로 `Employee` 와 `Manager` 클래스에 적용하기 전에 간단한 클래스를 먼저 만들어서 어떻게 C++ 에서 상속이라는 기능이 사용되는지 알아보도록 하겠습니다.
 
 ```cpp-formatted
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
 ```
 
+위는 우리의 설명을 도와줄 기반 클래스 입니다. 그리고, 아래는 기반 클래스(`Base`)를 물려받은 파생(`Derived`) 클래스의 모습 입니다.
 
-
-위는 우리의 설명을 도와줄 부모 클래스 입니다. 그리고, 아래는 `Parent` 를 물려받은 `Child` 클래스 입니다.
+```lec-warning
+보통 부모 - 자식 클래스라고도 이야기 많이 합니다. 다만 **자식** 이란 단어 속에서 한 개의 부모만 가지는 의미가 담겨 있는데 (엄마가 2 명일 수는 없자나요), C++ 의 경우 여러 명의 **부모** 를 가질 수 있기에, 부모, 자식 클래스라 하기 보단, **기반, 파생 클래스라 부르는 것이 낫다고 생각합니다.**
+```
 
 ```cpp-formatted
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : Parent(), s("자식") {
-    cout << "자식 클래스" << endl;
+  Derived() : Base(), s("파생") {
+    cout << "파생 클래스" << endl;
 
-    // Parent 에서 what() 을 물려 받았으므로
-    // Child 에서 당연히 호출 가능하다
+    // Base 에서 what() 을 물려 받았으므로
+    // Derived 에서 당연히 호출 가능하다
     what();
   }
 };
@@ -661,157 +663,159 @@ class Child : public Parent {
 가장 먼저 눈에 띄는 부분은 바로 맨 위 `class` 의 정의 부분으로
 
 ```cpp-formatted
-class Child : public Parent
+class Derived : public Base
 ```
 
 
 
-와 같이 되어 있습니다. 이는 `Child` 가 `Parent` 를 `public` 형식으로 상속을 받겠다는 의미가 됩니다. `public` 형식으로 상속받는게 무엇인지에 대해서는 좀 있다가 이야기를 하도록 하고, 아무튼 위 처럼 상속을 받은 후에 `Child` 는 다음과 같은 모습이 됩니다.
+와 같이 되어 있습니다. 이는 `Derived` 가 `Base` 를 `public` 형식으로 상속을 받겠다는 의미가 됩니다. `public` 형식으로 상속받는게 무엇인지에 대해서는 좀 있다가 이야기를 하도록 하고, 아무튼 위 처럼 상속을 받은 후에 `Derived` 는 다음과 같은 모습이 됩니다.
 
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F21638C3C53373CF20D7DBF)
+![](/img/cpp/6.1.1.png)
 
 
 
-마치 `Child` 클래스 안에 `Parent` 클래스의 코드가 그대로 들어가 있는 것 처럼 말이지요. 따라서 아래 처럼 `Child` 클래스에서 `Parent` 클래스의 `what` 함수를 호출 할 수 있게 됩니다.
+마치 `Derived` 클래스 안에 `Base` 클래스의 코드가 그대로 들어가 있는 것 처럼 말이지요. 따라서 아래 처럼 `Derived` 클래스에서 `Base` 클래스의 `what` 함수를 호출 할 수 있게 됩니다.
 
 ```cpp-formatted
-Child() : Parent(), s("자식") {
-  cout << "자식 클래스" << endl;
+Derived() : Base(), s("파생") {
+  cout << "파생 클래스" << endl;
 
-  // Parent 에서 what() 을 물려 받았으므로
-  // Child 에서 당연히 호출 가능하다
+  // Base 에서 what() 을 물려 받았으므로
+  // Derived 에서 당연히 호출 가능하다
   what();
 }
 ```
 
 
 
-그리고 또 하나 눈여겨 봐야 할 점은 `Child` 의 생성자 호출 부분 입니다. `Child` 의 생성자는 반드시 위 처럼 초기화자 리스트에서 부모의 생성자를 호출해서 부모의 생성을 먼저 처리 한 다음에, `Child` 의 생성자가 실행되어야 합니다 (마치 부모가 태어나야지 자식들이 태어날 수 있는 것 처럼 말이지요). 따라서 아래 처럼
+그리고 또 하나 눈여겨 봐야 할 점은 `Derived` 의 생성자 호출 부분 입니다. `Derived` 의 생성자는 반드시 위 처럼 초기화자 리스트에서 기반의 생성자를 호출해서 기반의 생성을 먼저 처리 한 다음에, `Derived` 의 생성자가 실행되어야 합니다 (마치 기반가 태어나야지 파생들이 태어날 수 있는 것 처럼 말이지요). 따라서 아래 처럼
 
 ```cpp-formatted
-Child() : Parent(), s("자식")
+Derived() : Base(), s("파생")
 ```
 
-초기화 리스트에서 `Parent` 를 통해 부모의 생성자를 먼저 호출하게 됩니다. 그렇다면 아래의 코드를 살펴보도록 합시다.
+초기화 리스트에서 `Base` 를 통해 기반의 생성자를 먼저 호출하게 됩니다. 그렇다면 아래의 코드를 살펴보도록 합시다.
 
 ```cpp-formatted
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : Parent(), s("자식") {
-    cout << "자식 클래스" << endl;
+  Derived() : Base(), s("파생") {
+    cout << "파생 클래스" << endl;
 
-    // Parent 에서 what() 을 물려 받았으므로
-    // Child 에서 당연히 호출 가능하다
+    // Base 에서 what() 을 물려 받았으므로
+    // Derived 에서 당연히 호출 가능하다
     what();
   }
 };
 int main() {
-  cout << " === 부모 클래스 생성 ===" << endl;
-  Parent p;
+  cout << " === 기반 클래스 생성 ===" << endl;
+  Base p;
 
-  cout << " === 자식 클래스 생성 ===" << endl;
-  Child c;
+  cout << " === 파생 클래스 생성 ===" << endl;
+  Derived c;
 
   return 0;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F235A5E4353374D390E22FF)
-
+```exec
+ === 기반 클래스 생성 ===
+기반 클래스
+ === 파생 클래스 생성 ===
+기반 클래스
+파생 클래스
+기반
+```
 
 
 와 같이 나옴을 알 수 있습니다.
 
 
-일단 여러분은 부모 클래스 생성에서 왜 저런식으로 출력되는지는 당연히 알고 계실 것입니다. `Parent` 의 생성자에서 '부모 클래스' 를 출력을 하게 되지요. 그렇다면 이번에는 `Child` 객체를 만들 때 왜 저런식으로 출력되는지 살펴보도록 합시다.
+일단 여러분은 기반 클래스 생성에서 왜 저런식으로 출력되는지는 당연히 알고 계실 것입니다. `Base` 의 생성자에서 '기반 클래스' 를 출력을 하게 되지요. 그렇다면 이번에는 `Derived` 객체를 만들 때 왜 저런식으로 출력되는지 살펴보도록 합시다.
 
 ```cpp-formatted
-cout << " === 자식 클래스 생성 ===" << endl;
-Child c;
+cout << " === 파생 클래스 생성 ===" << endl;
+Derived c;
 ```
 
 
 
-일단 위와 같이 `Child` 의 인자가 없는 생성자를 호출하게 됩니다.
+일단 위와 같이 `Derived` 의 인자가 없는 생성자를 호출하게 됩니다.
 
 ```cpp-formatted
-Child() : Parent(), s("자식") {
-  cout << "자식 클래스" << endl;
+Derived() : Base(), s("파생") {
+  cout << "파생 클래스" << endl;
 
-  // Parent 에서 what() 을 물려 받았으므로
-  // Child 에서 당연히 호출 가능하다
+  // Base 에서 what() 을 물려 받았으므로
+  // Derived 에서 당연히 호출 가능하다
   what();
 }
 ```
 
-이제 위에서 `Child` 의 `s` 에 "자식" 을 넣게 되고, `Child` 생성자의 내부를 실행하기 전에 `Parent` 의 생성자를 먼저 호출하게 됩니다. 따라서, '자식 클래스 생성' 바로 아래에 '자식 클래스' 가 출력하기 이전에 `Parent` 의 생성자가 호출되어서 '부모 클래스' 가 먼저 출력하게 되는 것이지요.
+이제 위에서 `Derived` 의 `s` 에 "파생" 을 넣게 되고, `Derived` 생성자의 내부를 실행하기 전에 `Base` 의 생성자를 먼저 호출하게 됩니다. 따라서, '파생 클래스 생성' 바로 아래에 '파생 클래스' 가 출력하기 이전에 `Base` 의 생성자가 호출되어서 '기반 클래스' 가 먼저 출력하게 되는 것이지요.
 
 
-그렇다면 이제 `what()` 함수를 호출하는 부분을 살펴봅시다. `Child` 에서 정의되어 있지 않는 `what` 을 어떻게 호출할 수 있냐면, 당연하게도, `Parent` 의 모든 정보를 상속 받았기 때문에 `Child` 에서도 `what` 을 호출 할 수 있게 되는 것입니다.
-
-
-
-그런데, `what` 함수를 호출했을 때, "자식" 이 아니라 "부모" 라고 출력이 되었는데, `what` 함수를 보면 `s` 의 값을 출력하도록 되어 있습니다. 이러한 일이 발생한 이유는, what 함수는 `Parent` 에 정의가 되어 있기 때문에 `Child` 의 `s` 가 아니라 `Parent` 의 `s` 가 출력되어 "부모" 라고 나오게 되는 것입니다.
+그렇다면 이제 `what()` 함수를 호출하는 부분을 살펴봅시다. `Derived` 에서 정의되어 있지 않는 `what` 을 어떻게 호출할 수 있냐면, 당연하게도, `Base` 의 모든 정보를 상속 받았기 때문에 `Derived` 에서도 `what` 을 호출 할 수 있게 되는 것입니다.
 
 
 
-그렇다면 만일 `Child` 에도 `what` 함수를 정의해주면 어떨까요.
+그런데, `what` 함수를 호출했을 때, "파생" 이 아니라 "기반" 라고 출력이 되었는데, `what` 함수를 보면 `s` 의 값을 출력하도록 되어 있습니다. 이러한 일이 발생한 이유는, what 함수는 `Base` 에 정의가 되어 있기 때문에 `Derived` 의 `s` 가 아니라 `Base` 의 `s` 가 출력되어 "기반" 라고 나오게 되는 것입니다.
+
+
+
+그렇다면 만일 `Derived` 에도 `what` 함수를 정의해주면 어떨까요.
 
 ```cpp-formatted
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : Parent(), s("자식") {
-    cout << "자식 클래스" << endl;
+  Derived() : Base(), s("파생") {
+    cout << "파생 클래스" << endl;
 
-    // Parent 에서 what() 을 물려 받았으므로
-    // Child 에서 당연히 호출 가능하다
+    // Base 에서 what() 을 물려 받았으므로
+    // Derived 에서 당연히 호출 가능하다
     what();
   }
 
   void what() { cout << s << endl; }
 };
 int main() {
-  cout << " === 부모 클래스 생성 ===" << endl;
-  Parent p;
+  cout << " === 기반 클래스 생성 ===" << endl;
+  Base p;
 
-  cout << " === 자식 클래스 생성 ===" << endl;
-  Child c;
+  cout << " === 파생 클래스 생성 ===" << endl;
+  Derived c;
 
   return 0;
 }
@@ -821,18 +825,22 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F222F0242533752B9191DBF)
-
-
-
-이번에는 `Child` 와 `Parent` 에 둘다 `what()` 함수가 정의되어 있습니다. 이 경우, `Child` 에서 아래처럼 `what` 을 호출하게 되면 무엇이 호출 될까요? 어떤 분들은 컴파일 상에서 문제가 발생하지 않을까 라고 생각할 수 도 있는데, 사실 두 함수는 같은 이름이지만 (심지어 인자들도 같지만), 다른 클래스에 정의되어 있는 것이기 때문에 다른 함수로 취급됩니다. (물론, `Child` 안에 `what` 에 두 개 정의되어 있다면 문제가 되었겠지요)
-
-
-위 경우에는 `Child` 에 `what` 함수가 정의되어 있기 때문에 `Child` 의 생성자에서 `what` 을 호출 할 때 (굳이) 멀리 `Parent` 의 함수들 까지 뒤지지 않고, 바로 앞에 있는 `Child` 의 `what` 함수를 호출하게 됩니다.
+```exec
+기반 클래스
+ === 파생 클래스 생성 ===
+기반 클래스
+파생 클래스
+파생
+```
 
 
-이런 것을 가리켜 **오버라이딩(overriding)**이라고 합니다. 즉, `Child` 의 `what` 함수가 `Parent` 의 `what` 함수를 오버라이딩 한 것이지요.
+이번에는 `Derived` 와 `Base` 에 둘다 `what()` 함수가 정의되어 있습니다. 이 경우, `Derived` 에서 아래처럼 `what` 을 호출하게 되면 무엇이 호출 될까요? 어떤 분들은 컴파일 상에서 문제가 발생하지 않을까 라고 생각할 수 도 있는데, 사실 두 함수는 같은 이름이지만 (심지어 인자들도 같지만), 다른 클래스에 정의되어 있는 것이기 때문에 다른 함수로 취급됩니다. (물론, `Derived` 안에 `what` 에 두 개 정의되어 있다면 문제가 되었겠지요)
+
+
+위 경우에는 `Derived` 에 `what` 함수가 정의되어 있기 때문에 `Derived` 의 생성자에서 `what` 을 호출 할 때 (굳이) 멀리 `Base` 의 함수들 까지 뒤지지 않고, 바로 앞에 있는 `Derived` 의 `what` 함수를 호출하게 됩니다.
+
+
+이런 것을 가리켜 **오버라이딩(overriding)**이라고 합니다. 즉, `Derived` 의 `what` 함수가 `Base` 의 `what` 함수를 오버라이딩 한 것이지요.
 
 
 \sidenote{간혹 함수의 오버로딩(overloading) 과 혼동하시는 분들이 많은데, 오버로딩은 같은 이름의 함수를 인자를 달리 하여 정의하는 것을 의미하는 것입니다. 상속에서의 오버라이딩과는 전혀 다른 이야기 입니다}
@@ -845,22 +853,22 @@ int main() {
 다음과 같은 코드를 생각해봅시다.
 
 ```cpp-formatted
-class Parent {
+class Base {
   string parent_string;
 
  public:
-  Parent() : parent_string("부모") { cout << "부모 클래스" << endl; }
+  Base() : parent_string("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << parent_string << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string child_string;
 
  public:
-  Child() : child_string("자식"), Parent() {
-    cout << "자식 클래스" << endl;
+  Derived() : child_string("파생"), Base() {
+    cout << "파생 클래스" << endl;
 
-    // 그렇다면 현재 private 인 Parent 의
+    // 그렇다면 현재 private 인 Base 의
     // parent_string 에 접근할 수 있을까?
     parent_string = "바꾸기";
   }
@@ -874,43 +882,43 @@ class Child : public Parent {
 만일 컴파일 하였다면 아래와 같은 컴파일 애러를 볼 수 있습니다.
 
 ```compiler-warning
-error C2248: 'Parent::parent_string' : cannot access private member declared in class 'Parent'
-(Parent 의 private 멤버에 접근할 수 없습니다)
+error C2248: 'Base::parent_string' : cannot access private member declared in class 'Base'
+(Base 의 private 멤버에 접근할 수 없습니다)
 ```
 
 
 
-아니 이게 도대체 무슨 말인가요! 기껏 상속 받았더니, 접근할 수 없다니요. 하지만 사실 `private` 멤버 변수들은 그 어떠한 경우에서도 자기 클래스 말고는 접근할 수 없습니다. 하지만, 종종 파생 클래스(상속 받는 클래스 - 위 경우 `Child` 클래스)에서 원래 부모의 클래스 (즉 여기서 `Parent)` 의 데이터에 직접 접근할 필요성이 있습니다. 예를 들어서 우리의 예시의 경우 `Employee` 클래스를 부모 클래스로 해서 `Manager` 클래스가 상속 받았을 때, `name` 이나 `age` 에 접근할 필요성이 있겠지요.하지만 이들은 private 으로 되어 있기 때문에 접근이 불가합니다.
+아니 이게 도대체 무슨 말인가요! 기껏 상속 받았더니, 접근할 수 없다니요. 하지만 사실 `private` 멤버 변수들은 그 어떠한 경우에서도 자기 클래스 말고는 접근할 수 없습니다. 하지만, 종종 파생 클래스(상속 받는 클래스 - 위 경우 `Derived` 클래스)에서 원래 기반의 클래스 (즉 여기서 `Base)` 의 데이터에 직접 접근할 필요성이 있습니다. 예를 들어서 우리의 예시의 경우 `Employee` 클래스를 기반 클래스로 해서 `Manager` 클래스가 상속 받았을 때, `name` 이나 `age` 에 접근할 필요성이 있겠지요.하지만 이들은 private 으로 되어 있기 때문에 접근이 불가합니다.
 
 
-다행이도 C++ 에서는 `protected` 라는 `public` 과 `private` 에 중간 위치에 있는 접근 지시자를 지원합니다. 이 키워드는, '상속받는 클래스에서는 접근 가능하고 그 외의 기타 정보는 접근 불가능' 이라고 보시면 됩니다. 실제 부모와 자식 사이로 쉽게 비유하자면
+다행이도 C++ 에서는 `protected` 라는 `public` 과 `private` 에 중간 위치에 있는 접근 지시자를 지원합니다. 이 키워드는, '상속받는 클래스에서는 접근 가능하고 그 외의 기타 정보는 접근 불가능' 이라고 보시면 됩니다. 실제 기반와 파생 사이로 쉽게 비유하자면
 
-* `private` : (자식들한테 안가르쳐 주는) 부모님 자신 주민번호
-* `protected` : 집 현관문 비밀번호 (자식들과 부모들만 알지만 그 외의 사람들은 접근불가)
-* `public` : 집 주소 (부모 자식 뿐만이 아니라 다른 사람들도 알 수 있다)
+* `private` : (파생들한테 안가르쳐 주는) 기반님 자신 주민번호
+* `protected` : 집 현관문 비밀번호 (파생들과 기반들만 알지만 그 외의 사람들은 접근불가)
+* `public` : 집 주소 (기반 파생 뿐만이 아니라 다른 사람들도 알 수 있다)
 
 
 
 이렇게 3 단계로 멤버의 접근 허용 범위를 지정할 수 있습니다. 그렇다면 실제로 `private` 을 `protected` 로 바꾼다면 잘 실행됨을 알 수 있습니다.
 
 ```cpp-formatted
-class Parent {
+class Base {
  protected:
   string parent_string;
 
  public:
-  Parent() : parent_string("부모") { cout << "부모 클래스" << endl; }
+  Base() : parent_string("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << parent_string << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string child_string;
 
  public:
-  Child() : Parent(), child_string("자식") {
-    cout << "자식 클래스" << endl;
+  Derived() : Base(), child_string("파생") {
+    cout << "파생 클래스" << endl;
 
-    // 그렇다면 현재 private 인 Parent 의
+    // 그렇다면 현재 private 인 Base 의
     // parent_string 에 접근할 수 있을까?
     parent_string = "바꾸기";
   }
@@ -927,14 +935,14 @@ class Child : public Parent {
 그렇다면 이제
 
 ```cpp-formatted
-class Child : public Parent
+class Derived : public Base
 ```
 
 
 
-에서 이 `public` 키워드의 의미를 밝힐 때가 됐군요. 사실 저 키워드가 `public` 이냐 `protected` 냐 `private` 이냐에 따라 상속 받는 클래스에서 부모 클래스의 멤버들이 실제로 어떻게 작동하는지 영향을 줍니다. 이게 무슨 말이냐면;
+에서 이 `public` 키워드의 의미를 밝힐 때가 됐군요. 사실 저 키워드가 `public` 이냐 `protected` 냐 `private` 이냐에 따라 상속 받는 클래스에서 기반 클래스의 멤버들이 실제로 어떻게 작동하는지 영향을 줍니다. 이게 무슨 말이냐면;
 
-* 만일 위처럼 `public` 형태로 상속 하였다면 부모 클래스의 접근 지시자들에 영향 없이 그대로 작동합니다. 즉 파생 클래스 입장에서 `public` 은 그대로 `public` 이고, `protected` 는 그대로 `protected` 이고, `private` 은 그대로 `private` 입니다.
+* 만일 위처럼 `public` 형태로 상속 하였다면 기반 클래스의 접근 지시자들에 영향 없이 그대로 작동합니다. 즉 파생 클래스 입장에서 `public` 은 그대로 `public` 이고, `protected` 는 그대로 `protected` 이고, `private` 은 그대로 `private` 입니다.
 * 만일 `protected` 로 상속하였다면 파생 클래스 입장에서 `public` 은 `protected` 로 바뀌고 나머지는 그대로 유지됩니다.
 * 만일 `private` 으로 상속하였다면 파생 클래스 입장에서 모든 접근 지시자들이 `private` 가 됩니다.
 
@@ -948,30 +956,30 @@ class Child : public Parent
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
  public:
   string parent_string;
 
-  Parent() : parent_string("부모") { cout << "부모 클래스" << endl; }
+  Base() : parent_string("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << parent_string << endl; }
 };
-class Child : private Parent {
+class Derived : private Base {
   string child_string;
 
  public:
-  Child() : child_string("자식"), Parent() { cout << "자식 클래스" << endl; }
+  Derived() : child_string("파생"), Base() { cout << "파생 클래스" << endl; }
 
   void what() { cout << child_string << endl; }
 };
 int main() {
-  Parent p;
-  // Parent 에서는 parent_string 이 public 이므로
+  Base p;
+  // Base 에서는 parent_string 이 public 이므로
   // 외부에서 당연히 접근 가능하다.
   cout << p.parent_string << endl;
 
-  Child c;
-  // 반면에 Child 에서는 parent_string 이
+  Derived c;
+  // 반면에 Derived 에서는 parent_string 이
   // (private 상속을 받았기 때문에) private 이
   // 되어서 외부에서 접근이 불가능하다.
   cout << c.parent_string << endl;
@@ -985,13 +993,16 @@ int main() {
 컴파일 하였다면
 
 ```compiler-warning
-error C2247: 'Parent::parent_string' not accessible because 'Child' uses 'private' to inherit from 'Parent'
-(Parent::parnet_string 은 'Child' 가 'Parent'  에서 private 상속을 하였기 때문에 접근이 불가능합니다.)
+test.cc: In function ‘int main()’:
+test.cc:31:13: error: ‘std::__cxx11::string Base::parent_string’ is inaccessible within this context
+   cout << c.parent_string << endl;
+             ^~~~~~~~~~~~~
+test.cc:7:10: note: declared here
+   string parent_string;
+          ^~~~~~~~~~~~~
 ```
 
-
-
-위에 코드 주석에 잘 설명되어 있지만 `Parent` 객체에서 `parent_string` 을 접근한다면 `public` 이므로 `main` 함수에서도 잘 접근할 수 있지만 `Child` 에서 `parent_string` 을 접근하려고 한다면, `private` 상속을 받았기 때문에 비록 `Parent` 에서 `public` 이더라도, `Child` 에서는 `private` 으로 처리됩니다. 따라서 접근할 수 없지요.
+위에 코드 주석에 잘 설명되어 있지만 `Base` 객체에서 `parent_string` 을 접근한다면 `public` 이므로 `main` 함수에서도 잘 접근할 수 있지만 `Derived` 에서 `parent_string` 을 접근하려고 한다면, `private` 상속을 받았기 때문에 비록 `Base` 에서 `public` 이더라도, `Derived` 에서는 `private` 으로 처리됩니다. 따라서 접근할 수 없지요.
 
 
 ###  사원 관리 프로그램에 적용해보기
@@ -1038,7 +1049,7 @@ class Manager {
 
 
 
-이제 이를 바꿔보도록 합시다. 참고로, 한 가지 중요한 점은 `Manager` 의 `calculate_pay` 함수나 `print_info` 함수 등에서 `Parent` 의 `name, position` 등을 참조하고 있기 때문에 `Parent` 의 이 멤버 변수들을 `private` 속성으로 놔두면 안되고 `protected` 로 바꿔주어야만 합니다.
+이제 이를 바꿔보도록 합시다. 참고로, 한 가지 중요한 점은 `Manager` 의 `calculate_pay` 함수나 `print_info` 함수 등에서 `Base` 의 `name, position` 등을 참조하고 있기 때문에 `Base` 의 이 멤버 변수들을 `private` 속성으로 놔두면 안되고 `protected` 로 바꿔주어야만 합니다.
 
 
 아무튼, `Employee` 를 상속받는 버전으로 바꾼 아래의 `Manager` 클래스 입니다.
@@ -1071,7 +1082,7 @@ class Manager : public Employee {
 
 
 
-먼저  Employee 와 중복되었던 멤버 변수들이 Employee 를 상속함으로써 사라진 것을 볼 수 있습니다. 그리고 `Manager` 의 생성자들이 '부모 클래스의 생성자를 먼저 호출한다' 라는 원칙에 맞게 아래 처럼 바뀐 것을 볼 수 있습니다.
+먼저  Employee 와 중복되었던 멤버 변수들이 `Employee` 를 상속함으로써 사라진 것을 볼 수 있습니다. 그리고 `Manager` 의 생성자들이 **기반 클래스의 생성자를 먼저 호출한다** 라는 원칙에 맞게 아래 처럼 바뀐 것을 볼 수 있습니다.
 
 
 ```cpp-formatted
@@ -1090,7 +1101,7 @@ Manager() : Employee() {}
 
 
 
-위에 굵은 글씨로 표시한 것이 모두 `Manage` 의 생성자에서 부모 클래스인 `Employee` 의 생성자를 먼저 호출하는 모습입니다. 상속을 통해서 귀찮게 복사 `+` 붙여 넣기를 하던 코드를 훨씬 간결하고 알아보기 쉽게 바꿀 수 있게 되었습니다. 전체 코드는 아래와 같습니다.
+위에 굵은 글씨로 표시한 것이 모두 `Manage` 의 생성자에서 기반 클래스인 `Employee` 의 생성자를 먼저 호출하는 모습입니다. 상속을 통해서 귀찮게 복사 `+` 붙여 넣기를 하던 코드를 훨씬 간결하고 알아보기 쉽게 바꿀 수 있게 되었습니다. 전체 코드는 아래와 같습니다.
 
 
 ```cpp-formatted

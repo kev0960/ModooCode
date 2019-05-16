@@ -44,7 +44,7 @@ class Manager : public Employee
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F223ADD465337C5D02236C5)
 
-프로그램 설계 시에 클래스들 간의 상속 관계를 도표로 나타내는 경우가 종종 있는데, 많은 경우 파생 클래스가 부모 클래스를 화살표로 가리키게 그립니다.
+프로그램 설계 시에 클래스들 간의 상속 관계를 도표로 나타내는 경우가 종종 있는데, 많은 경우 파생 클래스가 기반 클래스를 화살표로 가리키게 그립니다.
 
 실제 세상에서 `is a` 관계로 이루어진 것들은 수 없이 많습니다. 예를 들어, '사람' 이라는 클래스가 있다면, '프로그래머는 사람이다 (A programmer is a human)' 이므로, 만일 우리가 프로그래머 클래스를 만든다면 사람 이라는 클래스를 상속 받을 수 있도록 구성할 수 있습니다.
 
@@ -54,7 +54,7 @@ class Manager : public Employee
 
 이를 통해서 상속의 또 하나의 중요한 특징을 알 수 있습니다. 바로 클래스가 파생되면 파생될 수 록 좀 더 **특수화 (구체화;specialize)** 된다는 의미 입니다. 즉, `Employee` 클래스가 일반적인 사원을 위한 클래스 였다면 `Manager` 클래스 들은 그 일반적인 사원들 중에서도 좀 더 특수한 부류의 사원들을 의미하게 됩니다.
 
-또, `BankAccount` 도 일반적인 은행 계좌를 위한 클래스 였다면, 이를 상속 받는 `CheckingAccount, SavingsAccount` 들은 좀 더 구체적인 클래스가 되지요. 반대로, 부모 클래스로 거슬러 올라가면 올라갈 수 록 좀 더 **일반화 (generalize)** 된다고 말합니다.
+또, `BankAccount` 도 일반적인 은행 계좌를 위한 클래스 였다면, 이를 상속 받는 `CheckingAccount, SavingsAccount` 들은 좀 더 구체적인 클래스가 되지요. 반대로, 기반 클래스로 거슬러 올라가면 올라갈 수 록 좀 더 **일반화 (generalize)** 된다고 말합니다.
 
 그렇다면 모든 클래스들의 관계를 `is - a` 로만 표현할 수 있을까요? 당연히 그렇지 않습니다. 어떤 클래스들 사이에서는 `is - a` 대신에 `has - a` 관계가 성립하기도 합니다. 예를 들어서, 간단히 자동차 클래스를 생각해봅시다. 자동차 클래스를 구성하기 위해서는 엔진 클래스, 브레이크 클래스, 오디오 클래스 등 수 많은 클래스들이 필요합니다. 그렇다고 이들 사이에 `is a` 관계를 도입 할 수 없습니다. (자동차 `is a` 엔진? 자동차 `is a` 브레이크?) 그 대신, 이들 사이는 `has - a` 관계로 쉽게 표현할 수 있습니다.
 
@@ -92,30 +92,30 @@ class EmployeeList {
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
+  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
 int main() {
-  cout << " === 부모 클래스 생성 ===" << endl;
-  Parent p;
+  cout << " === 기반 클래스 생성 ===" << endl;
+  Base p;
 
   p.what();
 
-  cout << " === 자식 클래스 생성 ===" << endl;
-  Child c;
+  cout << " === 파생 클래스 생성 ===" << endl;
+  Derived c;
 
   c.what();
 
@@ -127,14 +127,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
+ === 기반 클래스 생성 ===
+기반 클래스
+기반
+ === 파생 클래스 생성 ===
+기반 클래스
+파생 클래스
+파생
+```
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F2624F04153385CF40AA08E)
-
-
-
-이미 저번 강좌에서도 이야기 했었지만, `Parent` 에서 `what` 을 호출하면 당연히 `Parent` 의 `what` 이 실행되어서 '부모' 라고 나오고, `Parent` 를 상속받는 `Child` 클래스에서 `what` 을 호출하면, `Child` 의 `what` 이 `Parent` 의 `what` 을 오버라이드 해서 `Child` 의 `what` 이 호출되게 됩니다.
+이미 저번 강좌에서도 이야기 했었지만, `Base` 에서 `what` 을 호출하면 당연히 `Base` 의 `what` 이 실행되어서 '기반' 라고 나오고, `Base` 를 상속받는 `Derived` 클래스에서 `what` 을 호출하면, `Derived` 의 `what` 이 `Base` 의 `what` 을 오버라이드 해서 `Derived` 의 `what` 이 호출되게 됩니다.
 
 
 이번에는 코드를 약간 변형해보도록 하겠습니다.
@@ -144,71 +148,68 @@ int main() {
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
+  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
 int main() {
-  Parent p;
-  Child c;
+  Base p;
+  Derived c;
 
   cout << "=== 포인터 버전 ===" << endl;
-  Parent* p_c = &c;
+  Base* p_c = &c;
   p_c->what();
 
   return 0;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
+```exec
+기반 클래스
+기반 클래스
+파생 클래스
+=== 포인터 버전 ===
+기반
+```
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2504E04353385F071BA9B4)
-
-
-
-
-
-이번에는 `Child` 의 객체 `c` 를 `Parent` 객체를 가리키는 포인터에 넣었습니다.
+이번에는 `Derived` 의 객체 `c` 를 `Base` 객체를 가리키는 포인터에 넣었습니다.
 
 ```cpp-formatted
-Parent* p_c = &c;
+Base* p_c = &c;
 ```
 
 
 
-어떤 분들은 이와 같은 대입이 가능하냐고 물을 수 있습니다. `Parent` 와 `Child` 는 다른 클래스 이니까요. 하지만, 그 분들이 간과하고 있는 점은 `Child` 가 `Parent` 를 상속 받고 있다는 점입니다.상속 받는다면 뭐죠? `==> Child is a Parent`
+어떤 분들은 이와 같은 대입이 가능하냐고 물을 수 있습니다. `Base` 와 `Derived` 는 다른 클래스 이니까요. 하지만, 그 분들이 간과하고 있는 점은 `Derived` 가 `Base` 를 상속 받고 있다는 점입니다. 상속 받는다면 뭐죠? **Derived is a Base**
 
 
-즉 (말이 조금 이상하지만) `Child` 객체 `c` 도 어떻게 보면 `Parent` 객체이기 때문에 `Parent` 객체를 가리키는 포인터가 `c` 를 가리켜도 무방하다는 것입니다. 이를 그림으로 표현한다면 아래와 같습니다.
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F275E9E4F533861B0087DC4)
+즉 (말이 조금 이상하지만) `Derived` 객체 `c` 도 어떻게 보면 `Base` 객체이기 때문에 `Base` 객체를 가리키는 포인터가 `c` 를 가리켜도 무방하다는 것입니다. 이를 그림으로 표현한다면 아래와 같습니다.
 
-그 대신 `p` 는 엄연한 `Parent` 객체를 가리키는 포인터 입니다. 따라서, `p` 의 `what` 을 실행한다면 `p` 는 당연히 '아 `Parent` 의 `what` 을 실행해 주어야 겠구나' 하고, `Parent` 의 `what` 을 실행해서, `Parent` 의 `what` 은 `Parent` 의 `s` 를 출력 하게 됩니다. 따라서 위 처럼 '부모' 가 출력됩니다.
+![](/img/cpp/6.2.1.png)
+
+그 대신 `p` 는 엄연한 `Base` 객체를 가리키는 포인터 입니다. 따라서, `p` 의 `what` 을 실행한다면 `p` 는 당연히 '아 `Base` 의 `what` 을 실행해 주어야 겠구나' 하고, `Base` 의 `what` 을 실행해서, `Base` 의 `what` 은 `Base` 의 `s` 를 출력 하게 됩니다. 따라서 위 처럼 '기반' 가 출력됩니다.
 
 
+이러한 형태의 캐스팅을 (즉 파생 클래스에서 기반 클래스로 캐스팅 하는 것) 을 업 캐스팅 이라고 부릅니다.
 
-이러한 형태의 캐스팅을 (즉 파생 클래스에서 부모 클래스로 캐스팅 하는 것) 을 업 캐스팅 이라고 부릅니다.
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F25457D33533862EF15CF29)
+![](/img/cpp/6.2.2.png)
 
 위 그림을 보면 왜 업 캐스팅이라 부르는지 이해가 확 되지요.
-
-
 
 그렇다면 업 캐스팅의 반대인 다운 캐스팅도 있을까요?
 
@@ -217,28 +218,28 @@ Parent* p_c = &c;
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
+  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
 int main() {
-  Parent p;
-  Child c;
+  Base p;
+  Derived c;
 
   cout << "=== 포인터 버전 ===" << endl;
-  Child* p_p = &p;
+  Derived* p_p = &p;
   p_p->what();
 
   return 0;
@@ -250,18 +251,15 @@ int main() {
 컴파일 한다면 다음과 같은 오류 메세지를 볼 수 있습니다.
 
 ```compiler-warning
-error C2440: 'initializing' : cannot convert from 'Parent *' to 'Child *'
-Parent * 에서 Child * 로 변환할 수 없습니다.
+error C2440: 'initializing' : cannot convert from 'Base *' to 'Derived *'
+Base * 에서 Derived * 로 변환할 수 없습니다.
 ```
-
-
 
 사실 위와 같은 오류가 발생한 이유는 간단합니다.
 
+![](/img/cpp/6.2.3.png)
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F2611D54D53387E4E2FFBBC)
-
-만일 `Child*` 포인터가 `Parent` 객체를 가리킨다고 해봅시다. 그렇다면 `p_p->what()` 하게 된다면 `Child` 의 `what` 함수가 호출되어야만 하는데, 이는 불가능 합니다. (왜냐하면 `p_p` 가 가리키는 객체는 `Parent` 객체 이므로 `Child` 에 대한 정보가 없습니다). 따라서, 이와 같은 문제를 막기 위해서 컴파일러 상에서 함부로 다운 캐스팅 하는 것을 금지하고 있습니다.
+만일 `Derived*` 포인터가 `Base` 객체를 가리킨다고 해봅시다. 그렇다면 `p_p->what()` 하게 된다면 `Derived` 의 `what` 함수가 호출되어야만 하는데, 이는 불가능 합니다. (왜냐하면 `p_p` 가 가리키는 객체는 `Base` 객체 이므로 `Derived` 에 대한 정보가 없습니다). 따라서, 이와 같은 문제를 막기 위해서 컴파일러 상에서 함부로 다운 캐스팅 하는 것을 금지하고 있습니다.
 
 
 
@@ -272,30 +270,30 @@ Parent * 에서 Child * 로 변환할 수 없습니다.
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
+  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
 int main() {
-  Parent p;
-  Child c;
+  Base p;
+  Derived c;
 
   cout << "=== 포인터 버전 ===" << endl;
-  Parent* p_p = &c;
+  Base* p_p = &c;
 
-  Child* p_c = p_p;
+  Derived* p_c = p_p;
   p_c->what();
 
   return 0;
@@ -307,15 +305,15 @@ int main() {
 컴파일 하였다면
 
 ```compiler-warning
-error C2440: 'initializing' : cannot convert from 'Parent *' to 'Child *'
+error C2440: 'initializing' : cannot convert from 'Base *' to 'Derived *'
 ```
 
 
 
-`Child* p_c` 에 `Parent *` 를 대입하면 안된다는 똑같은 오류가 발생합니다. 하지만 우리는 `p_p` 가 가리키는 것이 `Parent` 객체가 아니라 `Child` 객체라는 사실을 알고 있습니다. 그렇기 때문에 비록 `Parent *` 포인터를 다운 캐스팅 함에도 불구하고 `p_p` 가 실제로는 `Child` 객체를 가리키기 때문에
+`Derived* p_c` 에 `Base *` 를 대입하면 안된다는 똑같은 오류가 발생합니다. 하지만 우리는 `p_p` 가 가리키는 것이 `Base` 객체가 아니라 `Derived` 객체라는 사실을 알고 있습니다. 그렇기 때문에 비록 `Base *` 포인터를 다운 캐스팅 함에도 불구하고 `p_p` 가 실제로는 `Derived` 객체를 가리키기 때문에
 
 ```cpp-formatted
-Child* p_c = p_p;
+Derived* p_c = p_p;
 ```
 
 
@@ -323,42 +321,42 @@ Child* p_c = p_p;
 를 해도 전혀 문제가 없습니다. 이를 위해서는 아래 처럼 강제적으로 타입 변환을 하면 됩니다.
 
 ```cpp-formatted
-Child* p_c = static_cast<Child*>(p_p);
+Derived* p_c = static_cast<Derived*>(p_p);
 ```
 
 
 
-비록 약간은 위험하지만 (만일 `p_p` 가 사실은 `Child` 객체를 가리키지 않는다면?) 컴파일 오류를 발생시키지 않고 성공적으로 컴파일 할 수 있습니다. 그렇다면 만일 `p_p` 가 사실 `Parent` 객체를 가리키는데 강제적으로 타입 변환을 해서 `what` 을 실행한다면 어떨까요?
+비록 약간은 위험하지만 (만일 `p_p` 가 사실은 `Derived` 객체를 가리키지 않는다면?) 컴파일 오류를 발생시키지 않고 성공적으로 컴파일 할 수 있습니다. 그렇다면 만일 `p_p` 가 사실 `Base` 객체를 가리키는데 강제적으로 타입 변환을 해서 `what` 을 실행한다면 어떨까요?
 
 ```cpp-formatted
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
+  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
 
   void what() { cout << s << endl; }
 };
 int main() {
-  Parent p;
-  Child c;
+  Base p;
+  Derived c;
 
   cout << "=== 포인터 버전 ===" << endl;
-  Parent* p_p = &p;
+  Base* p_p = &p;
 
-  Child* p_c = static_cast<Child*>(p_p);
+  Derived* p_c = static_cast<Derived*>(p_p);
   p_c->what();
 
   return 0;
@@ -560,31 +558,31 @@ int main() {
 #include <iostream>
 using namespace std;
 
-class Parent {
+class Base {
 
  public:
-  Parent() { cout << "부모 클래스" << endl; }
+  Base() { cout << "기반 클래스" << endl; }
 
-  virtual void what() { cout << "부모 클래스의 what()" << endl; }
+  virtual void what() { cout << "기반 클래스의 what()" << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
 
  public:
-  Child() : Parent() { cout << "자식 클래스" << endl; }
+  Derived() : Base() { cout << "파생 클래스" << endl; }
 
-  void what() { cout << "자식 클래스의 what()" << endl; }
+  void what() { cout << "파생 클래스의 what()" << endl; }
 };
 int main() {
-  Parent p;
-  Child c;
+  Base p;
+  Derived c;
 
-  Parent* p_c = &c;
-  Parent* p_p = &p;
+  Base* p_c = &c;
+  Base* p_p = &p;
 
-  cout << " == 실제 객체는 Parent == " << endl;
+  cout << " == 실제 객체는 Base == " << endl;
   p_p->what();
 
-  cout << " == 실제 객체는 Child == " << endl;
+  cout << " == 실제 객체는 Derived == " << endl;
   p_c->what();
 
   return 0;
@@ -594,44 +592,44 @@ int main() {
 성공적으로 컴파일 하였다면
 
 ```exec
-부모 클래스
-부모 클래스
-자식 클래스
- == 실제 객체는 Parent == 
-부모 클래스의 what()
- == 실제 객체는 Child == 
-자식 클래스의 what()
+기반 클래스
+기반 클래스
+파생 클래스
+ == 실제 객체는 Base == 
+기반 클래스의 what()
+ == 실제 객체는 Derived == 
+파생 클래스의 what()
 ```
 
 
 어라? 위 결과를 보셨다면 놀라움을 금치 못하셨을 것입니다.
 ```cpp-formatted
-Parent* p_c = &c;
-Parent* p_p = &p;
+Base* p_c = &c;
+Base* p_p = &p;
 
-cout << " == 실제 객체는 Parent == " << endl;
+cout << " == 실제 객체는 Base == " << endl;
 p_p->what();
 
-cout << " == 실제 객체는 Child == " << endl;
+cout << " == 실제 객체는 Derived == " << endl;
 p_c->what();
 ```
 
 
 
-분명히 여기서 `p_p` 와 `p_c` 모두 `Parent` 객체를 가리키는 포인터 입니다. 따라서, `p_p->what()` 와 `p_c->what()` 을 하면 모두 `Parent` 객체의 `what()` 함수가 실행되서 둘 다 '부모' 라고 출력이 되어야만 했습니다.
+분명히 여기서 `p_p` 와 `p_c` 모두 `Base` 객체를 가리키는 포인터 입니다. 따라서, `p_p->what()` 와 `p_c->what()` 을 하면 모두 `Base` 객체의 `what()` 함수가 실행되서 둘 다 '기반' 라고 출력이 되어야만 했습니다.
 
-그런데, 놀랍게도, 실제 `p_p` 와 `p_c` 가 무엇과 결합해 있는지 아는 것 처럼 (`p_p` 는 `Parent` 객체를 가리키고, `p_c` 는 `Child` 객체를 가리킴) 이에 따른 적절한 `what` 함수를 호출해준 것입니다.
+그런데, 놀랍게도, 실제 `p_p` 와 `p_c` 가 무엇과 결합해 있는지 아는 것 처럼 (`p_p` 는 `Base` 객체를 가리키고, `p_c` 는 `Derived` 객체를 가리킴) 이에 따른 적절한 `what` 함수를 호출해준 것입니다.
 
 
 이와 같은 일이 가능해진 이유는 바로;
 
 ```cpp-formatted
-class Parent {
+class Base {
 
  public:
-  Parent() { cout << "부모 클래스" << endl; }
+  Base() { cout << "기반 클래스" << endl; }
 
-  virtual void what() { cout << "부모 클래스의 what()" << endl; }
+  virtual void what() { cout << "기반 클래스의 what()" << endl; }
 };
 ```
 
@@ -644,11 +642,11 @@ p_c->what();
 위 코드를 실행시에 (런타임), 컴퓨터 입장에서;
 
 ```info
-"흠, p_c 는 Parent 포인터니까 Parent 의 what() 을 실행해야지"
+"흠, p_c 는 Base 포인터니까 Base 의 what() 을 실행해야지"
 "어 근데 what 이 virtual 이네?"
 
-"잠깐. 이거 실제 Parent 객체 맞어? 아니네 Child 객체네"
-"그럼 Child 의 what 을 실행해야지"
+"잠깐. 이거 실제 Base 객체 맞어? 아니네 Derived 객체네"
+"그럼 Derived 의 what 을 실행해야지"
 ```
 
 반면에
@@ -662,11 +660,11 @@ p_p->what();
 였을 경우에는
 
 ```info
-"흠, p_c 는 Parent 포인터니까 Parent 의 what() 을 실행해야지"
+"흠, p_c 는 Base 포인터니까 Base 의 what() 을 실행해야지"
 "어 근데 what 이 virtual 이네?"
 
-"잠깐. 이거 실제 Parent 객체 맞어? 어 맞네."
-"Parent 의 what 을 실행하자"
+"잠깐. 이거 실제 Base 객체 맞어? 어 맞네."
+"Base 의 what 을 실행하자"
 ```
 
 이렇게 컴파일 시에 어떤 함수가 실행될 지 정해지지 않고 런타임 시에 정해지는 일을 가리켜서 **동적 바인딩(dynamic binding)** 이라고 부릅니다. 즉,
@@ -675,7 +673,7 @@ p_p->what();
 p_c->what();
 ```
 
-에서 `Child` 의 `what` 을 실행할지, `Parent` 의 `what` 을 실행하지 결정은 런타임에 이루어지게 됩니다. 물론 위 코드에선 컴파일 시에 무조건 `p_c->what()` 이 `Child` 의 `what` 이 실행되도록 정해진 거 아니냐고 물을 수 있지만 다음과 같은 상황을 생각해보세요.
+에서 `Derived` 의 `what` 을 실행할지, `Base` 의 `what` 을 실행하지 결정은 런타임에 이루어지게 됩니다. 물론 위 코드에선 컴파일 시에 무조건 `p_c->what()` 이 `Derived` 의 `what` 이 실행되도록 정해진 거 아니냐고 물을 수 있지만 다음과 같은 상황을 생각해보세요.
 
 ```cpp-formatted
 // i 는 사용자로부터 입력받는 변수
@@ -689,7 +687,7 @@ p_p->what();
 
 이렇게 된다면 `p_p->what()` 이 어떤 `what` 일지에는 런타임에 정해지겠지요? 물론 동적 바인딩의 반대말로 **정적 바인딩(static binding)** 이란 말도 있습니다. 이는 컴파일 타임에 어떤 함수가 호출될 지 정해지는 것으로 여태까지 여러분이 알고 오셨던 함수에 해당합니다.
 
-덧붙여서, `virtual` 키워드가 붙은 함수를 **가상 함수(virtual function)** 라고 부릅니다. 이렇게 자식 클래스의 함수가 부모 클래스의 함수를 오버라이드 하기 위해서는 두 함수의 꼴이 정확히 같아야 합니다.
+덧붙여서, `virtual` 키워드가 붙은 함수를 **가상 함수(virtual function)** 라고 부릅니다. 이렇게 파생 클래스의 함수가 기반 클래스의 함수를 오버라이드 하기 위해서는 두 함수의 꼴이 정확히 같아야 합니다.
 
 ### override 키워드
 
@@ -698,31 +696,31 @@ p_p->what();
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
   virtual void what() { cout << s << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : s("자식"), Parent() { cout << "자식 클래스" << endl; }
+  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
 
   void what() override { cout << s << endl; }
 };
 ```
 
-C++ 11 에서는 자식 클래스에서 부모 클래스의 가상 함수를 오버라이드 하는 경우, `override` 키워드를 통해서 명시적으로 나타낼 수 있습니다. 
+C++ 11 에서는 파생 클래스에서 기반 클래스의 가상 함수를 오버라이드 하는 경우, `override` 키워드를 통해서 명시적으로 나타낼 수 있습니다. 
 
 ```cpp
   void what() override { cout << s << endl; }
 ```
 
-위 경우 `Child` 클래스의 `what` 함수는 `Parent` 클래스의 `what` 함수를 오버라이드 하므로, `override` 키워드를 통해 이를 알려주고 있습니다.
+위 경우 `Derived` 클래스의 `what` 함수는 `Base` 클래스의 `what` 함수를 오버라이드 하므로, `override` 키워드를 통해 이를 알려주고 있습니다.
 
 `override` 키워드를 사용하게 되면, 실수로 오버라이드를 하지 않는 경우를 막을 수 있습니다. 예를 들어서;
 
@@ -731,33 +729,33 @@ C++ 11 에서는 자식 클래스에서 부모 클래스의 가상 함수를 오
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
-  virtual void incorrect() { cout << "부모 클래스 " << endl; }
+  virtual void incorrect() { cout << "기반 클래스 " << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : Parent(), s("자식") {}
+  Derived() : Base(), s("파생") {}
 
-  void incorrect() const { cout << "자식 클래스 " << endl; }
+  void incorrect() const { cout << "파생 클래스 " << endl; }
 };
 int main() {
-  Parent p;
-  Child c;
+  Base p;
+  Derived c;
 
-  Parent* p_c = &c;
-  Parent* p_p = &p;
+  Base* p_c = &c;
+  Base* p_p = &p;
 
-  cout << " == 실제 객체는 Parent == " << endl;
+  cout << " == 실제 객체는 Base == " << endl;
   p_p->incorrect();
 
-  cout << " == 실제 객체는 Child == " << endl;
+  cout << " == 실제 객체는 Derived == " << endl;
   p_c->incorrect();
   return 0;
 }
@@ -766,54 +764,54 @@ int main() {
 성공적으로 컴파일 하였다면
 
 ```exec
-부모 클래스
-부모 클래스
- == 실제 객체는 Parent == 
-부모 클래스 
- == 실제 객체는 Child == 
-부모 클래스 
+기반 클래스
+기반 클래스
+ == 실제 객체는 Base == 
+기반 클래스 
+ == 실제 객체는 Derived == 
+기반 클래스 
 ```
 
-와 같이 `incorrect` 함수가 제대로 오버라이드 되지 않았음을 알 수 있습니다. 그 이유는 `Parent` 의 `incorrect` 함수와 `Child` 의 `incorrect` 함수는 거의 똑같이 생기기는 했지만 사실 다르기 때문입니다. 왜냐하면 `Child` 의 `incorrect` 함수는 상수 함수 이고, `Parent` 의 `incorrect` 는 아니기 때문이지요.
+와 같이 `incorrect` 함수가 제대로 오버라이드 되지 않았음을 알 수 있습니다. 그 이유는 `Base` 의 `incorrect` 함수와 `Derived` 의 `incorrect` 함수는 거의 똑같이 생기기는 했지만 사실 다르기 때문입니다. 왜냐하면 `Derived` 의 `incorrect` 함수는 상수 함수 이고, `Base` 의 `incorrect` 는 아니기 때문이지요.
 
-따라서 컴파일러 입장에서 두 함수는 다른 함수로 간주되므로, `p_c->incorrect()` 를 하였을 때 `Child` 의 `incorrect` 함수가 `Parent` 의 `incorrect` 함수를 오버라이드 하는 것이 아니라, 그냥 `Parent` 의 `incorrect` 함수를 호출하는 셈이 됩니다.
+따라서 컴파일러 입장에서 두 함수는 다른 함수로 간주되므로, `p_c->incorrect()` 를 하였을 때 `Derived` 의 `incorrect` 함수가 `Base` 의 `incorrect` 함수를 오버라이드 하는 것이 아니라, 그냥 `Base` 의 `incorrect` 함수를 호출하는 셈이 됩니다.
 
-만약에 여러분의 의도가 `Child` 의 `incorrect` 함수가 부모 클래스를 오버라이드 하는 것이였다면 큰 문제가 될 것입니다. 이 버그는 컴파일 타임에 잡을 수 없게 되니까요.
+만약에 여러분의 의도가 `Derived` 의 `incorrect` 함수가 기반 클래스를 오버라이드 하는 것이였다면 큰 문제가 될 것입니다. 이 버그는 컴파일 타임에 잡을 수 없게 되니까요.
 
-하지만, 실제로 `Child` 의 `incorrect` 함수를 부모 클래스의 `incorrect` 함수를 오버라이드 하기 위해서 만들었다면, `override` 키워드를 써야겠지요.
+하지만, 실제로 `Derived` 의 `incorrect` 함수를 기반 클래스의 `incorrect` 함수를 오버라이드 하기 위해서 만들었다면, `override` 키워드를 써야겠지요.
 
 ```cpp
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
-  virtual void incorrect() { cout << "부모 클래스 " << endl; }
+  virtual void incorrect() { cout << "기반 클래스 " << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : Parent(), s("자식") {}
+  Derived() : Base(), s("파생") {}
 
-  void incorrect() const override { cout << "자식 클래스 " << endl; }
+  void incorrect() const override { cout << "파생 클래스 " << endl; }
 };
 int main() {
-  Parent p;
-  Child c;
+  Base p;
+  Derived c;
 
-  Parent* p_c = &c;
-  Parent* p_p = &p;
+  Base* p_c = &c;
+  Base* p_p = &p;
 
-  cout << " == 실제 객체는 Parent == " << endl;
+  cout << " == 실제 객체는 Base == " << endl;
   p_p->incorrect();
 
-  cout << " == 실제 객체는 Child == " << endl;
+  cout << " == 실제 객체는 Derived == " << endl;
   p_c->incorrect();
   return 0;
 }
@@ -822,45 +820,45 @@ int main() {
 컴파일 하였다면
 
 ```compiler-warning
-test.cc:19:8: error: ‘void Child::incorrect() const’ marked ‘override’, but does not override
-   void incorrect() const override { cout << "자식 클래스 " << endl; }
+test.cc:19:8: error: ‘void Derived::incorrect() const’ marked ‘override’, but does not override
+   void incorrect() const override { cout << "파생 클래스 " << endl; }
         ^~~~~~~~~
 ```
 
-위와 같이 `Child` 의 `incorrect` 함수가 `override` 한다고 써있지만, 실제로는 아무것도 오버라이드 하지 않는다고 오류가 발생하게 됩니다. 만일 `const` 키워드를 지워준다면
+위와 같이 `Derived` 의 `incorrect` 함수가 `override` 한다고 써있지만, 실제로는 아무것도 오버라이드 하지 않는다고 오류가 발생하게 됩니다. 만일 `const` 키워드를 지워준다면
 
 ```cpp
 #include <iostream>
 #include <string>
 using namespace std;
 
-class Parent {
+class Base {
   string s;
 
  public:
-  Parent() : s("부모") { cout << "부모 클래스" << endl; }
+  Base() : s("기반") { cout << "기반 클래스" << endl; }
 
-  virtual void incorrect() { cout << "부모 클래스 " << endl; }
+  virtual void incorrect() { cout << "기반 클래스 " << endl; }
 };
-class Child : public Parent {
+class Derived : public Base {
   string s;
 
  public:
-  Child() : Parent(), s("자식") {}
+  Derived() : Base(), s("파생") {}
 
-  void incorrect() override { cout << "자식 클래스 " << endl; }
+  void incorrect() override { cout << "파생 클래스 " << endl; }
 };
 int main() {
-  Parent p;
-  Child c;
+  Base p;
+  Derived c;
 
-  Parent* p_c = &c;
-  Parent* p_p = &p;
+  Base* p_c = &c;
+  Base* p_p = &p;
 
-  cout << " == 실제 객체는 Parent == " << endl;
+  cout << " == 실제 객체는 Base == " << endl;
   p_p->incorrect();
 
-  cout << " == 실제 객체는 Child == " << endl;
+  cout << " == 실제 객체는 Derived == " << endl;
   p_c->incorrect();
   return 0;
 }
@@ -869,12 +867,12 @@ int main() {
 성공적으로 컴파일 하였다면
 
 ```exec
-부모 클래스
-부모 클래스
- == 실제 객체는 Parent == 
-부모 클래스 
- == 실제 객체는 Child == 
-자식 클래스  
+기반 클래스
+기반 클래스
+ == 실제 객체는 Base == 
+기반 클래스 
+ == 실제 객체는 Derived == 
+파생 클래스  
 ```
 
 제대로 실행됨을 알 수 있습니다.

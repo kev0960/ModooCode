@@ -93,4 +93,4 @@ basic_streambuf<charT, traits>* rdbuf(basic_streambuf<charT, traits> sb);
 
 ###  연관된 자료
 
-* `streambuf` :  스트림의 부모(base) 버퍼 클래스
+* `streambuf` :  스트림의 기반(base) 버퍼 클래스
