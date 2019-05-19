@@ -1351,10 +1351,19 @@
 ,
 	"284" : {
 	"cat_title" : "15 - 4. C++ future, promise, packaged_task, async",
+	"next_page" : "285",
 	"path" : "/C++",
 	"prev_page" : "271",
 	"publish_date" : "2019-05-18",
 	"title" : "씹어먹는 C++ - <15 - 4. C++ future, promise, packaged_task, async>"
+}
+,
+	"285" : {
+	"cat_title" : "15 - 5. C++ 쓰레드풀(ThreadPool) 만들기",
+	"path" : "/C++",
+	"prev_page" : "284",
+	"publish_date" : "2019-05-19",
+	"title" : "씹어먹는 C++ - <15 - 5. C++ 쓰레드풀(ThreadPool) 만들기>"
 }
 ,
 	"29" : {

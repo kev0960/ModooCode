@@ -190,7 +190,9 @@ CPU 와 컴파일러에서의 명령어 재배치, `atomic`, `memory_order` 에 
 
 비동기적 작업을 쉽게 할 수 있도록 도와주는 `future`, `promise`, `packaged_task`, `async` 들의 사용법에 대해 다룹니다.
 
-###@ 15 - 5. C++ 쓰레드풀 (ThreadPool) 만들기
+###@ [15 - 5. C++ 쓰레드풀 (ThreadPool) 만들기](/285)
+
+여태 까지 배운 내용들을 활용해서 쓰레드풀(ThreadPool) 클래스를 만듧니다.
 
 ###@ 16 - 1. C++ 11 - 초기화자 리스트 (initializer_list)
 
