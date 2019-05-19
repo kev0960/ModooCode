@@ -186,7 +186,7 @@ Callable 의 정의와 `std::function`, `std::mem_fn`, `std::bind` 들의 사용
 
 CPU 와 컴파일러에서의 명령어 재배치, `atomic`, `memory_order` 에 대해 다룹니다.
 
-###@ 15 - 4. C++ future 와 promise
+###@ [15 - 4. C++ future, promise, packaged_task, async](/284)
 
 ###@ 16 - 1. C++ 11 - 초기화자 리스트 (initializer_list)
 

@@ -1238,6 +1238,7 @@
 ,
 	"271" : {
 	"cat_title" : "15 - 3. C++ memory order 와 atomic 객체",
+	"next_page" : "284",
 	"path" : "/C++",
 	"prev_page" : "270",
 	"publish_date" : "2019-04-07",
@@ -1349,9 +1350,11 @@
 }
 ,
 	"284" : {
-	"cat_title" : "15 - 4. future 와 promise",
-	"is_published" : "false",
-	"title" : "씹어먹는 C++ - <15 - 4. C++ future 와 promise>"
+	"cat_title" : "15 - 4. C++ future, promise, packaged_task, async",
+	"path" : "/C++",
+	"prev_page" : "271",
+	"publish_date" : "2019-05-18",
+	"title" : "씹어먹는 C++ - <15 - 4. C++ future, promise, packaged_task, async>"
 }
 ,
 	"29" : {
