@@ -188,10 +188,14 @@ CPU 와 컴파일러에서의 명령어 재배치, `atomic`, `memory_order` 에 
 
 ###@ [15 - 4. C++ future, promise, packaged_task, async](/284)
 
+비동기적 작업을 쉽게 할 수 있도록 도와주는 `future`, `promise`, `packaged_task`, `async` 들의 사용법에 대해 다룹니다.
+
+###@ 15 - 5. C++ 쓰레드풀 (ThreadPool) 만들기
+
 ###@ 16 - 1. C++ 11 - 초기화자 리스트 (initializer_list)
 
-###@ 16 - 2. C++ 11 - Range 기반 for 문 (Range based for loop)
+###@ 16 - 2. C++ 11 - 가변 길이 템플릿 (Variadic template)
 
-###@ 16 - 3. C++ 11 - 가변 길이 템플릿 (Variadic template)
+###@ 16 - 3. C++ 11 - 난수 생성(random)과 시간 관련 라이브러리(chrono) 소개
 
-###@ 16 - 4. C++ 11 - 난수 생성(random)과 시간 관련 라이브러리(chrono) 소개
+###@ 16 - 4. C++ 17 - 파일시스템(filesystem) 라이브러리 소개
