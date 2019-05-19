@@ -276,22 +276,21 @@ bool Database::TryUpdateFileToDatabase(const string& article_url,
     if (!CheckMatch(itr->second, parser)) {
       pqxx::work modify_article_metadata(*conn_);
       const auto& article_header = parser.GetHeaderInfo();
-      modify_article_metadata.exec(StrCat(
-          "INSERT INTO articles(article_url, creation_date, is_published, "
-          "is_deleted) VALUES ('",
-          modify_article_metadata.esc(article_url), "', '",
-          /* creation_date */
-          DefaultDateWhenEmpty(
-              FindOrReturnEmpty(article_header, "publish_date")),
-          "', ",
-          /* is_published */
-          DefaultBooleanWhenEmpty(
-              FindOrReturnEmpty(article_header, "is_published"), true),
-          ", ",
-          /* is_deleted */
-          DefaultBooleanWhenEmpty(
-              FindOrReturnEmpty(article_header, "is_deleted"), false),
-          ");"));
+      modify_article_metadata.exec(
+          StrCat("UPDATE articles SET creation_date='",
+                 /* creation_date */
+                 DefaultDateWhenEmpty(
+                     FindOrReturnEmpty(article_header, "publish_date")),
+                 "', is_published=",
+                 /* is_published */
+                 DefaultBooleanWhenEmpty(
+                     FindOrReturnEmpty(article_header, "is_published"), true),
+                 ", is_deleted=",
+                 /* is_deleted */
+                 DefaultBooleanWhenEmpty(
+                     FindOrReturnEmpty(article_header, "is_deleted"), false),
+                 " WHERE article_url = '",
+                 modify_article_metadata.esc(article_url), "';"));
       modify_article_metadata.commit();
       updated = true;
     }
