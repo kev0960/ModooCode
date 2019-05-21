@@ -25,18 +25,18 @@ publish_date : 2017-04-07
 
 ```cpp-formatted
 class Vector {
-  string* data;
+  std::string* data;
   int capacity;
   int length;
 
  public:
   // 생성자
-  Vector(int n = 1) : data(new string[n]), capacity(n), length(0) {}
+  Vector(int n = 1) : data(new std::string[n]), capacity(n), length(0) {}
 
   // 맨 뒤에 새로운 원소를 추가한다.
-  void push_back(string s) {
+  void push_back(std::string s) {
     if (capacity <= length) {
-      string* temp = new string[capacity * 2];
+      std::string* temp = new std::string[capacity * 2];
       for (int i = 0; i < length; i++) {
         temp[i] = data[i];
       }
@@ -51,7 +51,7 @@ class Vector {
   }
 
   // 임의의 위치의 원소에 접근한다.
-  string operator[](int i) { return data[i]; }
+  std::string operator[](int i) { return data[i]; }
 
   // x 번째 위치한 원소를 제거한다.
   void remove(int x) {
@@ -189,7 +189,6 @@ C++ 에서도 정확히 같은 의미로 사용되고 있습니다. 사용자 (�
 // 템플릿 첫 활용
 #include <iostream>
 #include <string>
-using namespace std;
 
 template <typename T>
 class Vector {
@@ -244,16 +243,16 @@ int main() {
   int_vec.push_back(3);
   int_vec.push_back(2);
 
-  cout << "-------- int vector ----------" << endl;
-  cout << "첫번째 원소 : " << int_vec[0] << endl;
-  cout << "두번째 원소 : " << int_vec[1] << endl;
+  std::cout << "-------- int vector ----------" << std::endl;
+  std::cout << "첫번째 원소 : " << int_vec[0] << std::endl;
+  std::cout << "두번째 원소 : " << int_vec[1] << std::endl;
 
-  Vector<string> str_vec;
+  Vector<std::string> str_vec;
   str_vec.push_back("hello");
   str_vec.push_back("world");
-  cout << "-------- string vector -------" << endl;
-  cout << "첫번째 원소 : " << str_vec[0] << endl;
-  cout << "두번째 원소 : " << str_vec[1] << endl;
+  std::cout << "-------- std::string vector -------" << std::endl;
+  std::cout << "첫번째 원소 : " << str_vec[0] << std::endl;
+  std::cout << "두번째 원소 : " << str_vec[1] << std::endl;
 }
 ```
 
@@ -292,15 +291,15 @@ template <class T>
 
 
 
-라고 쓰는 경우도 있는데, 이는 정확히 `typename T` 와 동일한 것 입니다. `class T` 라고 해서 `T` 자리에 꼭 클래스가 와야 하는 것이 아닙니다. 똑같이 `int, char` 등이 올 수 있습니다. 다시말해;
+라고 쓰는 경우도 있는데, 이는 정확히 `typename T` 와 동일한 것 입니다. `class T` 라고 해서 `T` 자리에 꼭 클래스가 와야 하는 것이 아닙니다. 똑같이 `int, char` 등이 올 수 있습니다. 
 
-```info
-template <typename T> 와 template <class T> 는 같습니다.
+```lec-warning
+`template <typename T>` 와 `template <class T>` 는 정확히 같은 의미를 같지만 되도록이면 `typename` 키워드를 사용하기를 권장합니다.
 ```
 
+왜 똑같은 템플릿에 두 개의 키워드를 정의하였냐였는지는 C++ 의 역사와 관련이 있습니다. C++ 을 처음 만들었던 Bjarne Stroustrup 은 처음에 `template` 의 인자로 `class` 키워드를 사용하였는데, 굳이 새로운 키워드를 만들고 싶지 않아서 였기 때문입니다.
 
-
-왜 똑같은 템플릿에 두 개의 키워드를 정의하였냐였는지는 C++ 의 역사와 관련이 있습니다. C++ 을 처음 만들었던 `Bjarne Stroustrup` 은 처음에 `template` 의 인자로 `class` 키워드를 사용하였는데, 굳이 새로운 키워드를 만들고 싶지 않아서 였기 때문입니다. 하지만, 시간이 흘러서 C++ 위원회는 이로 인한 혼동을 막기 위해 (왜냐하면 `class T` 라 하면 `T` 자리에 꼭 클래스만 와야 하는 것 처럼 느껴지니까) `typename` 이라는 이름을 사용하기로 하였습니다. 물론, 이전 코드와의 호환을 위해 `class` 는 그대로 남겨 놓았지요. (자세한 내막은 http://stackoverflow.com/questions/213121/use-class-or-typename-for-template-parameters 참조)
+하지만, 시간이 흘러서 C++ 위원회는 이로 인한 혼동을 막기 위해 (왜냐하면 `class T` 라 하면 `T` 자리에 꼭 클래스만 와야 하는 것 처럼 느껴지니까) `typename` 이라는 이름을 사용하기로 하였습니다. 물론, 이전 코드와의 호환을 위해 `class` 는 그대로 남겨 놓았지요. (자세한 내막은 [여기](http://stackoverflow.com/questions/213121/use-class-or-typename-for-template-parameters) 참조)
 
 
 이렇게 정의한 템플릿의 인자에 값을 전달하기 위해서는
@@ -310,19 +309,15 @@ Vector<int> int_vec;
 ```
 
 
-
-와 같이, `<>` 안에 전달하려는 것을 명시해주면 됩니다.  우리의 `Vector` 템플릿은 템플릿 인자로 타입을 받게 되는데, 위 경우 T 에 `int` 가 전달되게 됩니다.
+와 같이, `<>` 안에 전달하려는 것을 명시해주면 됩니다.  우리의 `Vector` 템플릿은 템플릿 인자로 타입을 받게 되는데, 위 경우 `T` 에 `int` 가 전달되게 됩니다.
 
 
 여태까지는 인자로 특정한 '값' 혹은 '객체' 를 전달해왔지만 '타입' 그 자체를 전달한 적은 없었습니다. 하지만 템플릿을 통해 타입을 전달할 수 있게 됩니다.
 
 ```cpp-formatted
 Vector<int>  // 혹은
-
-  Vector<string>
+Vector<std::string>
 ```
-
-
 
 위와 같이 `Vector` 의 템플릿의 인자에 타입을 전달하게 되면, 컴파일러는 이것을 보고 실제 코드를 생성하게 됩니다. 예를 들어서, `Vector <int>` 의 경우
 
@@ -376,7 +371,8 @@ class Vector {
   }
 };
 ```
-`T` 가 정확히 `int` 로 치환된 위와 같은 코드를 찍어내겠지요. `Vector<string>` 의 경우 마찬가지로 `T` 가 `string` 으로 치환된 코드를 생성하게 됩니다.
+
+`T` 가 정확히 `int` 로 치환된 위와 같은 코드를 찍어내겠지요. `Vector<std::string>` 의 경우 마찬가지로 `T` 가 `string` 으로 치환된 코드를 생성하게 됩니다.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F231FA84A58E4D77C0594AF)
@@ -387,7 +383,7 @@ class Vector {
 Vector<int> int_vec;
 ```
 
-따라서 위 코드는 `Vector` 의 `T` 가 `int` 로 치환된 클래스의 객체 `int_vec` 을 생성하게 되는 것이지요. 위와 같이 클래스 템플릿에 인자를 전달해서 실제 코드를 생성하는 것을 클래스 템플릿 인스턴스화 (class template instantiation) 라고 합니다.
+따라서 위 코드는 `Vector` 의 `T` 가 `int` 로 치환된 클래스의 객체 `int_vec` 을 생성하게 되는 것이지요. 위와 같이 **클래스 템플릿에 인자를 전달해서 실제 코드를 생성하는 것을 클래스 템플릿 인스턴스화 (class template instantiation)** 라고 합니다.
 
 
 템플릿이 인스턴스화 되지 않고 덩그러니 있다면 컴파일 시에 아무런 코드로 변환되지 않습니다. 템플릿은 반드시 인스턴스화 되어야지만 비로소 컴파일러가 실제 코드를 생성하게 되지요. 마치 틀 자체로는 아무런 의미가 없지만, 그 틀에 채워넣어 나오는 물건에 관심이 있는 것 처럼 말이지요.
@@ -400,18 +396,13 @@ Vector<int> int_vec;
 Vector<bool> int_vec;
 ```
 
-
-
 사실 쉽게 생각해보면 그냥 위 처럼 템플릿 인자에 `bool` 을 전달하여 `bool` 을 저장하는 벡터로 사용할 수 도 있을 것입니다. 하지만 문제가 하나 있는데, C++ 에서 기본으로 처리하는 단위가 `1 byte` 라는 점입니다.
 
 
-다시 말해 사실 `bool` 데이터 형은 1개 비트 만으로도 충분히 저장할 수 있지만, 8 비트를 사용해서 1개 `bool` 값을 저장해야 된다는 뜻이지요. 이는 엄청난 메모리 낭비가 아닐 수 없습니다. 따라서 우리는 `Vector<bool>` 에 대해서는 특별히 따로 처리해줘야만 합니다. '
-
+다시 말해 사실 `bool` 데이터 형은 1개 비트 만으로도 충분히 저장할 수 있지만, 8 비트를 사용해서 1개 `bool` 값을 저장해야 된다는 뜻이지요. 이는 엄청난 메모리 낭비가 아닐 수 없습니다. 따라서 우리는 `Vector<bool>` 에 대해서는 특별히 따로 처리해줘야만 합니다.
 
 
 ###  템플릿 특수화 (template specialization)
-
-
 
 
 이와 같이 일부 경우에 대해서 따로 처리하는 것을 템플릿 특수화 라고 합니다. 템플릿 특수화는 다음과 같이 수행할 수 있습니다. 예를 들어서
@@ -421,7 +412,7 @@ template <typename A, typename B, typename C>
 class test {};
 ```
 
-위와 같은 클래스 템플릿이 정의되어 있을 때, "아 나는 `A` 가 `int` 고 C 가 `double` 일 때 따로 처리하고 싶어!" 면,
+위와 같은 클래스 템플릿이 정의되어 있을 때, "아 나는 `A` 가 `int` 고 `C` 가 `double` 일 때 따로 처리하고 싶어!" 면,
 
 
 ```cpp-formatted
@@ -429,18 +420,12 @@ template <typename B>
 class test<int, B, double> {};
 ```
 
-
-
-
 와 같이 특수화 하고 싶은 부분에 원하는 타입을 전달하고 위에는 일반적인 템플릿을 쓰면 되겟지요. 만약에 `B` 조차도 특수화 하고 싶다면,
 
 ```cpp-formatted
 template <>
 class test<int, int, double> {};
 ```
-
-
-
 
 와 같이 써주면 됩니다. 한 가지 중요한 점은, 전달하는 템플릿 인자가 없더라도 특수화 하고 싶다면 `template<>` 라도 남겨줘야 된다는 점입니다. 그렇다면 우리의 `bool` 벡터의 경우;
 
@@ -469,7 +454,6 @@ class Vector<bool> {
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 template <typename T>
 class Vector {
@@ -601,16 +585,16 @@ int main() {
   int_vec.push_back(3);
   int_vec.push_back(2);
 
-  cout << "-------- int vector ----------" << endl;
-  cout << "첫번째 원소 : " << int_vec[0] << endl;
-  cout << "두번째 원소 : " << int_vec[1] << endl;
+  std::cout << "-------- int vector ----------" << std::endl;
+  std::cout << "첫번째 원소 : " << int_vec[0] << std::endl;
+  std::cout << "두번째 원소 : " << int_vec[1] << std::endl;
 
-  Vector<string> str_vec;
+  Vector<std::string> str_vec;
   str_vec.push_back("hello");
   str_vec.push_back("world");
-  cout << "-------- string vector -------" << endl;
-  cout << "첫번째 원소 : " << str_vec[0] << endl;
-  cout << "두번째 원소 : " << str_vec[1] << endl;
+  std::cout << "-------- std::string vector -------" << std::endl;
+  std::cout << "첫번째 원소 : " << str_vec[0] << std::endl;
+  std::cout << "두번째 원소 : " << str_vec[1] << std::endl;
 
   Vector<bool> bool_vec;
   bool_vec.push_back(true);
@@ -631,11 +615,11 @@ int main() {
   bool_vec.push_back(true);
   bool_vec.push_back(false);
 
-  cout << "-------- bool vector ---------" << endl;
+  std::cout << "-------- bool vector ---------" << std::endl;
   for (int i = 0; i < bool_vec.size(); i++) {
-    cout << bool_vec[i];
+    std::cout << bool_vec[i];
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 ```
 
@@ -689,8 +673,6 @@ if (s) {
   data[length / 32] |= (1 << (length % 32));
 }
 ```
-
-
 
 따라서 위 처럼 만일 `true` 를 추가하였을 때에만 해당 비트를 `true` 로 바꿔주면 됩니다. 어떤 비트에 1 을 `OR` 연산하게 되면 그 비트는 무조건 1 이 됩니다. 그리고 0 을 `OR` 연산하게 되면 그 비트의 값은 그대로 보존이 되지요. 따라서 `OR` 연산은 특정 비트에만 선택적으로 1로 바꾸는데 매우 좋은 연산입니다. 아래 그림을 보면 이해가 잘 되실 것입니다. 주변 나머지 비트들의 값은 보존하면서 특정 비트만 1 로 바꿔줍니다.
 
@@ -785,7 +767,6 @@ all_ones_except_prev ^= (1 << (prev % 32));
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 template <typename T>
 T max(T& a, T& b) {
@@ -794,10 +775,10 @@ T max(T& a, T& b) {
 
 int main() {
   int a = 1, b = 2;
-  cout << "Max (" << a << "," << b << ") ? : " << max(a, b) << endl;
+  std::cout << "Max (" << a << "," << b << ") ? : " << max(a, b) << std::endl;
 
-  string s = "hello", t = "world";
-  cout << "Max (" << s << "," << t << ") ? : " << max(s, t) << endl;
+  std::string s = "hello", t = "world";
+  std::cout << "Max (" << s << "," << t << ") ? : " << max(s, t) << std::endl;
 }
 ```
 
@@ -817,7 +798,7 @@ T max(T& a, T& b) {
 위 부분에서 템플릿 함수를 정의하고 있습니다. 클래스 템플릿과 마찬가지로, 위 함수도 인스턴스화 되기 전 까지는 컴파일 시에 아무런 코드로 변환되지 않습니다.
 
 ```cpp-formatted
-cout << "Max (" << a << "," << b << ") ? : " << max(a, b) << endl;
+std::cout << "Max (" << a << "," << b << ") ? : " << max(a, b) << std::endl;
 ```
 
 실제로 위 템플릿 함수가 인스턴스화 되는 부분은 바로 위 코드에서 `max(a, b)` 가 호출되는 부분입니다. 신기하게도, 클래스를 인스턴스화 했을 때 와는 다르게 `<>` 하는 부분이 없습니다. 원래 대로라면
@@ -829,7 +810,7 @@ max<int>(a, b)
 이렇게 했었겠지요. 하지만 C++ 컴파일러는 생각보다 똑똑해서, `a` 와 `b` 의 타입을 보고 알아서 `max (a, b)` 를 `max<int>(a, b)` 로 인스턴스화 해줍니다.
 
 ```cpp-formatted
-cout << "Max (" << s << "," << t << ") ? : " << max(s, t) << endl;
+std::cout << "Max (" << s << "," << t << ") ? : " << max(s, t) << std::endl;
 ```
 
 `string` 의 경우도 마찬가지 입니다. C++ 컴파일러가 알아서 `max<string>(s, t)` 로 생각해서 인스턴스화 해줍니다.
@@ -855,8 +836,6 @@ void bubble_sort(Cont& cont) {
 
 ```cpp-formatted
 #include <iostream>
-#include <string>
-using namespace std;
 
 template <typename T>
 class Vector {
@@ -935,17 +914,17 @@ int main() {
   int_vec.push_back(5);
   int_vec.push_back(3);
 
-  cout << "정렬 이전 ---- " << endl;
+  std::cout << "정렬 이전 ---- " << std::endl;
   for (int i = 0; i < int_vec.size(); i++) {
-    cout << int_vec[i] << " ";
+    std::cout << int_vec[i] << " ";
   }
 
-  cout << endl << "정렬 이후 ---- " << endl;
+  std::cout << std::endl << "정렬 이후 ---- " << std::endl;
   bubble_sort(int_vec);
   for (int i = 0; i < int_vec.size(); i++) {
-    cout << int_vec[i] << " ";
+    std::cout << int_vec[i] << " ";
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 ```
 
@@ -994,7 +973,6 @@ if (cont[i] > cont[j]) {
 에서 `size(), operator[], swap()` 등이 사용되었다는 것입니다. 만약에 `Cont` 로 전달된 타입에 저러한 것들이 정의가 되어 있지 않다면 어떨까요? 예를 들어서
 
 ```info-format
-
 struct dummy
 {
 };
@@ -1012,7 +990,7 @@ error C2039: 'size': is not a member of 'dummy'
 컴파일 시에, 위와 같은 저 클래스에서 멤버 함수나 변수들을 찾을 수 없다는 오류들을 뿜어내게 됩니다. 당연한 이야기지만 이와 같이 템플릿으로 발생되는 오류는 프로그램이 실행되었을 때가 아니라 컴파일 할 때 발생한 다는 사실입니다. 왜냐하면 컴파일 시에 모든 템플릿을 실제 코드로 변환하여 실행하기 때문이지요.
 
 
-재미있게도, 이와 같이 컴파일 시에 모든 템플릿들이 인스턴스화 되다는 사실을 가지고 또 여러가지 흥미로운 코드를 짤 수 있는데 이러한 방식을 템플릿 메타프로그래밍 (template metaprogramming) 이라고 합니다. 자세한 내용은 나중 강좌들에서 다루도록 하겠습니다.
+재미있게도, 이와 같이 컴파일 시에 모든 템플릿들이 인스턴스화 되다는 사실을 가지고 또 여러가지 흥미로운 코드를 짤 수 있는데 이러한 방식을 **템플릿 메타프로그래밍 (template metaprogramming)** 이라고 합니다. 자세한 내용은 나중 강좌들에서 다루도록 하겠습니다.
 
 
 
@@ -1068,21 +1046,19 @@ void bubble_sort(Cont& cont, Comp& comp) {
 ```
 
 
-
 위 함수는 기존의 `bubble_sort` 와는 달리 아예 `Comp` 라는 클래스를 템플릿 인자로 받고, 함수 자체도 `Comp` 객체를 따로 받습니다. 그렇다면 이 `comp` 객체가 무슨 일을 하냐면;
 
 ```cpp-formatted
 if (!comp(cont[i], cont[j])) {
 ```
 
+이 `if` 문에서 마치 함수를 호출하는 것 처럼 사용되는데, `cont[i]` 와 `cont[j]` 를 받아서 내부적으로 크기 비교를 수행한 뒤에 그 결과를 리턴하고 있습니다.
 
-
-이 `if` 문에서 마치 함수를 호출하는 것 처럼 사용되는데, `cont[i]` 와 `cont[j]` 를 받아서 내부적으로 크기 비교를 수행한 뒤에 그 결과를 리턴하고 있습니다. 한 가지 중요한 사실은 `comp` 는 함수가 아니라 객체 이고, `Comp` 클래스에서 () 연산자를 오버로딩한 버전입니다. 자세한 내용은 아래 전체 코드를 보면서 설명하겠습니다.
+한 가지 중요한 사실은 `comp` 는 함수가 아니라 객체 이고, `Comp` 클래스에서 `()` 연산자를 오버로딩한 버전입니다. 자세한 내용은 아래 전체 코드를 보면서 설명하겠습니다.
 
 ```cpp-formatted
 #include <iostream>
-#include <string>
-using namespace std;
+
 template <typename T>
 class Vector {
   T* data;
@@ -1179,36 +1155,32 @@ int main() {
   int_vec.push_back(5);
   int_vec.push_back(3);
 
-  cout << "정렬 이전 ---- " << endl;
+  std::cout << "정렬 이전 ---- " << std::endl;
   for (int i = 0; i < int_vec.size(); i++) {
-    cout << int_vec[i] << " ";
+    std::cout << int_vec[i] << " ";
   }
 
   Comp1 comp1;
   bubble_sort(int_vec, comp1);
 
-  cout << endl << endl << "내림차순 정렬 이후 ---- " << endl;
+  std::cout << std::endl << std::endl << "내림차순 정렬 이후 ---- " << std::endl;
   for (int i = 0; i < int_vec.size(); i++) {
-    cout << int_vec[i] << " ";
+    std::cout << int_vec[i] << " ";
   }
-  cout << endl;
+  std::cout << std::endl;
 
   Comp2 comp2;
   bubble_sort(int_vec, comp2);
 
-  cout << endl << "오름차순 정렬 이후 ---- " << endl;
+  std::cout << std::endl << "오름차순 정렬 이후 ---- " << std::endl;
   for (int i = 0; i < int_vec.size(); i++) {
-    cout << int_vec[i] << " ";
+    std::cout << int_vec[i] << " ";
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F27495C4458E6BF2C188F1C)
 
@@ -1226,17 +1198,13 @@ struct Comp2 {
 };
 ```
 
-
-
 일단 위 두 클래스를 살펴보도록 합시다. `Comp1` 과 `Comp2` 모두 아무 것도 하지 않고 단순히 `operator()` 만 정의하고 있습니다. 그리고 이 `Comp1` 과 `Comp2` 객체들은 `bubble_sort` 함수 안에서
 
 ```cpp-formatted
 if (!comp(cont[i], cont[j])) {
 ```
 
-
-
-마치 함수인양 사용되지요. 이렇게, 함수는 아니지만 함수 인 척을 하는 객체를 함수 객체 (Function Object), 혹은 줄여서 `Functor` 라고 부릅니다. 이 `Functor` 덕분에, `bubble_sort` 함수 내에서 두 객체간의 비교를 사용자가 원하는 대로 할 수 있게 되지요.
+마치 함수인양 사용되지요. 이렇게, **함수는 아니지만 함수 인 척을 하는 객체를 함수 객체 (Function Object), 혹은 줄여서 `Functor` 라고 부릅니다.** 이 `Functor` 덕분에, `bubble_sort` 함수 내에서 두 객체간의 비교를 사용자가 원하는 대로 할 수 있게 되지요.
 
 
 따라서 사용자들은 입맛에 맞게, 보통의 `<` 연산자로 비교를 수행하는
@@ -1246,16 +1214,12 @@ template <typename Cont>
 void bubble_sort(Cont& cont)
 ```
 
-
-
 위 `bubble_sort` 함수를 사용하거나;
 
 ```cpp-formatted
 template <typename Cont, typename Comp>
 void bubble_sort(Cont& cont, Comp& comp)
 ```
-
-
 
 특수한 경우에 따로 비교 하는 것을 직접 수행하고 싶은 경우에 `Comp` 객체를 받아서 비교를 수행하는 새로운 `bubble_sort` 함수를 사용할 수 있습니다.
 
@@ -1296,7 +1260,7 @@ void sort( RandomIt first, RandomIt last,Compare comp );
 
 비교 클래스를 받는 위 버전으로 구성되어 있습니다. (저 함수의 인자들에 대해서는 나중 강좌에서 자세히 다룰 테니 지금은 넘어가셔도 됩니다!)
 
-이와 같이 비교 클래스를 받아서 원하는 비교 작업을 수행할 수 있게 됩니다. 만약에 C 였다면 위 `sort` 함수를 어떻게 만들었을 지 생각해봅시다. 일단 원하는 클래스를 받는 다는 생각 자체가 불가능하기 때문에 (template 이 없으니까) `functor` 는 꿈도 못 꾸었겠지요. 대신에, 비교 작업을 수행하는 함수의 포인터를 받아서 이를 처리하였을 것입니다.
+이와 같이 비교 클래스를 받아서 원하는 비교 작업을 수행할 수 있게 됩니다. 만약에 C 였다면 위 `sort` 함수를 어떻게 만들었을 지 생각해봅시다. 일단 원하는 클래스를 받는 다는 생각 자체가 불가능하기 때문에 (`template` 이 없으니까) `functor` 는 꿈도 못 꾸었겠지요. 대신에, 비교 작업을 수행하는 함수의 포인터를 받아서 이를 처리하였을 것입니다.
 
 
 그렇다면 뭐가 더 나은 방법일까요? `Functor?` 아니면 구닥다리 함수 포인터?

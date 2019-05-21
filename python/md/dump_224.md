@@ -45,42 +45,41 @@ C++ 에서는 위 두 가지 작업을 처리할 수 있 C++ 에서는 위 두 �
 ```cpp-formatted
 #include <iostream>
 #include <set>
-using namespace std;
 
 template <typename T>
-void print_set(set<T>& s) {
+void print_set(std::set<T>& s) {
   // 셋의 모든 원소들을 출력하기
-  cout << "[ ";
-  for (typename set<T>::iterator itr = s.begin(); itr != s.end(); ++itr) {
-    cout << *itr << " ";
+  std::cout << "[ ";
+  for (typename std::set<T>::iterator itr = s.begin(); itr != s.end(); ++itr) {
+    std::cout << *itr << " ";
   }
-  cout << " ] " << endl;
+  std::cout << " ] " << std::endl;
 }
 int main() {
-  set<int> s;
+  std::set<int> s;
   s.insert(10);
   s.insert(50);
   s.insert(20);
   s.insert(40);
   s.insert(30);
 
-  cout << "순서대로 정렬되서 나온다" << endl;
+  std::cout << "순서대로 정렬되서 나온다" << std::endl;
   print_set(s);
 
-  cout << "20 이 s 의 원소인가요? :: ";
+  std::cout << "20 이 s 의 원소인가요? :: ";
   auto itr = s.find(20);
   if (itr != s.end()) {
-    cout << "Yes" << endl;
+    std::cout << "Yes" << std::endl;
   } else {
-    cout << "No" << endl;
+    std::cout << "No" << std::endl;
   }
 
-  cout << "25 가 s 의 원소인가요? :: ";
+  std::cout << "25 가 s 의 원소인가요? :: ";
   itr = s.find(25);
   if (itr != s.end()) {
-    cout << "Yes" << endl;
+    std::cout << "Yes" << std::endl;
   } else {
-    cout << "No" << endl;
+    std::cout << "No" << std::endl;
   }
 }
 ```
@@ -109,15 +108,15 @@ s.insert(30);
 
 셋에 원소를 추가하거나 지우는 작업은 $$O(log N)$$ 에 처리됩니다. 시퀀스 컨테이너의 경우 임의의 원소를 지우는 작업이 $$O(N)$$ 으로 수행되었다는 점을 생각하면 훨씬 빠르다고 볼 수 있습니다.
 
-```cpp-formatted
+```cpp
 template <typename T>
-void print_set(set<T>& s) {
+void print_set(std::set<T>& s) {
   // 셋의 모든 원소들을 출력하기
-  cout << "[ ";
-  for (typename set<int>::iterator itr = s.begin(); itr != s.end(); ++itr) {
-    cout << *itr << " ";
+  std::cout << "[ ";
+  for (typename std::set<int>::iterator itr = s.begin(); itr != s.end(); ++itr) {
+    std::cout << *itr << " ";
   }
-  cout << " ] " << endl;
+  std::cout << " ] " << std::endl;
 }
 ```
 
@@ -133,18 +132,18 @@ void print_set(set<T>& s) {
 또한 셋의 진가는 앞서 말했듯이 원소가 있냐 없냐를 확인할 때 드러납니다.
 
 ```cpp-formatted
-cout << "20 이 s 의 원소인가요? :: ";
+std::cout << "20 이 s 의 원소인가요? :: ";
 auto itr = s.find(20);
 if (itr != s.end()) {
-  cout << "Yes" << endl;
+  std::cout << "Yes" << std::endl;
 } else {
-  cout << "No" << endl;
+  std::cout << "No" << std::endl;
 }
 ```
 
 
 
-셋에는 `find` 함수가 제공되며, 이 `find` 함수를 통해 이 셋에 원소가 존재하는지 아닌지 확인할 수 있습니다. 만일 해당하는 원소가 존재한다면 이를 가리키는 반복자를 리턴하고 (`set<>::iterator` 타입입니다) 만일 존재하지 않는다면 `s.end()` 를 리턴하게 되지요.
+셋에는 `find` 함수가 제공되며, 이 `find` 함수를 통해 이 셋에 원소가 존재하는지 아닌지 확인할 수 있습니다. 만일 해당하는 원소가 존재한다면 이를 가리키는 반복자를 리턴하고 (`std::set<>::iterator` 타입입니다) 만일 존재하지 않는다면 `s.end()` 를 리턴하게 되지요.
 
 
 만일 벡터였다면 원소가 존재하는지 아닌지 확인하기 위해 벡터의 처음 부터 끝 까지 하나씩 비교해가면서 찾았어야 했겠죠. 만일 원소가 없었더라면 벡터에 있는 모든 원소를 확인하였을 것입니다 (즉 벡터에서 `find` 는 $$O(N)$$ 이라 볼 수 있습니다).
@@ -212,21 +211,19 @@ if (itr != s.end()) {
 ```cpp-formatted
 #include <iostream>
 #include <set>
-#include <string>
-using namespace std;
 
 template <typename T>
-void print_set(set<T>& s) {
+void print_set(std::set<T>& s) {
   // 셋의 모든 원소들을 출력하기
-  cout << "[ ";
+  std::cout << "[ ";
   for (const auto& elem : s) {
-    cout << elem << " " << endl;
+    std::cout << elem << " ";
   }
-  cout << " ] " << endl;
+  std::cout << " ] " << std::endl;
 }
 
 int main() {
-  set<int> s;
+  std::set<int> s;
   s.insert(10);
   s.insert(20);
   s.insert(30);
@@ -270,27 +267,26 @@ s.insert(10);
 #include <iostream>
 #include <set>
 #include <string>
-using namespace std;
 
 template <typename T>
-void print_set(set<T>& s) {
+void print_set(std::set<T>& s) {
   // 셋의 모든 원소들을 출력하기
-  cout << "[ ";
+  std::cout << "[ ";
   for (const auto& elem : s) {
-    cout << elem << " " << endl;
+    std::cout << elem << " " << std::endl;
   }
-  cout << " ] " << endl;
+  std::cout << " ] " << std::endl;
 }
 class Todo {
   int priority;  // 중요도. 높을 수록 급한것!
-  string job_desc;
+  std::string job_desc;
 
  public:
-  Todo(int priority, string job_desc)
+  Todo(int priority, std::string job_desc)
       : priority(priority), job_desc(job_desc) {}
 };
 int main() {
-  set<Todo> todos;
+  std::set<Todo> todos;
 
   todos.insert(Todo(1, "농구 하기"));
   todos.insert(Todo(2, "수학 숙제 하기"));
@@ -315,21 +311,20 @@ binary '<': no operator found which takes a left-hand operand of type 'const Tod
 #include <iostream>
 #include <set>
 #include <string>
-using namespace std;
 
 template <typename T>
-void print_set(set<T>& s) {
+void print_set(std::set<T>& s) {
   // 셋의 모든 원소들을 출력하기
   for (const auto& elem : s) {
-    cout << elem << " " << endl;
+    std::cout << elem << " " << std::endl;
   }
 }
 class Todo {
   int priority;
-  string job_desc;
+  std::string job_desc;
 
  public:
-  Todo(int priority, string job_desc)
+  Todo(int priority, std::string job_desc)
       : priority(priority), job_desc(job_desc) {}
 
   bool operator<(const Todo& t) const {
@@ -339,15 +334,15 @@ class Todo {
     return priority > t.priority;
   }
 
-  friend ostream& operator<<(ostream& o, const Todo& td);
+  friend std::ostream& operator<<(std::ostream& o, const Todo& td);
 };
 
-ostream& operator<<(ostream& o, const Todo& td) {
+std::ostream& operator<<(std::ostream& o, const Todo& td) {
   o << "[ 중요도: " << td.priority << "] " << td.job_desc;
   return o;
 }
 int main() {
-  set<Todo> todos;
+  std::set<Todo> todos;
 
   todos.insert(Todo(1, "농구 하기"));
   todos.insert(Todo(2, "수학 숙제 하기"));
@@ -357,8 +352,8 @@ int main() {
 
   print_set(todos);
 
-  cout << "-------------" << endl;
-  cout << "숙제를 끝냈다면!" << endl;
+  std::cout << "-------------" << std::endl;
+  std::cout << "숙제를 끝냈다면!" << std::endl;
   todos.erase(todos.find(Todo(2, "수학 숙제 하기")));
   print_set(todos);
 }
@@ -481,26 +476,25 @@ Todo(1, "프로그래밍 프로젝트") > Todo(1, "농구 하기")
 #include <iostream>
 #include <set>
 #include <string>
-using namespace std;
 
 template <typename T, typename C>
-void print_set(set<T, C>& s) {
+void print_set(std::set<T, C>& s) {
   // 셋의 모든 원소들을 출력하기
   for (const auto& elem : s) {
-    cout << elem << " " << endl;
+    std::cout << elem << " " << std::endl;
   }
 }
 class Todo {
   int priority;
-  string job_desc;
+  std::string job_desc;
 
  public:
-  Todo(int priority, string job_desc)
+  Todo(int priority, std::string job_desc)
       : priority(priority), job_desc(job_desc) {}
 
   friend struct TodoCmp;
 
-  friend ostream& operator<<(ostream& o, const Todo& td);
+  friend std::ostream& operator<<(std::ostream& o, const Todo& td);
 };
 struct TodoCmp {
   bool operator()(const Todo& t1, const Todo& t2) const {
@@ -511,12 +505,12 @@ struct TodoCmp {
   }
 };
 
-ostream& operator<<(ostream& o, const Todo& td) {
+std::ostream& operator<<(std::ostream& o, const Todo& td) {
   o << "[ 중요도: " << td.priority << "] " << td.job_desc;
   return o;
 }
 int main() {
-  set<Todo, TodoCmp> todos;
+  std::set<Todo, TodoCmp> todos;
 
   todos.insert(Todo(1, "농구 하기"));
   todos.insert(Todo(2, "수학 숙제 하기"));
@@ -526,8 +520,8 @@ int main() {
 
   print_set(todos);
 
-  cout << "-------------" << endl;
-  cout << "숙제를 끝냈다면!" << endl;
+  std::cout << "-------------" << std::endl;
+  std::cout << "숙제를 끝냈다면!" << std::endl;
   todos.erase(todos.find(Todo(2, "수학 숙제 하기")));
   print_set(todos);
 }
@@ -556,12 +550,10 @@ struct TodoCmp {
 };
 ```
 
-
-
 앞서 템플릿 첫 강좌에서 함수 객체를 배운 것이 기억 나시나요? 위 클래스는 정확히 함수 객체를 나타내고 있습니다. 이 `TodoCmp` 타입을
 
 ```cpp-formatted
-set<Todo, TodoCmp> todos;
+std::set<Todo, TodoCmp> todos;
 ```
 
 위 처럼 `set` 에 두번째 인자로 넘겨주게 되면 셋은 이를 받아서 `TodoCmp` 클래스에 정의된 함수 객체를 바탕으로 모든 비교를 수행하게 됩니다. 실제로 `set` 클래스의 정의를 살펴보면;
@@ -572,8 +564,6 @@ template <class Key, class Compare = std::less<Key>,
           >
 class set;
 ```
-
-
 
 와 같이 생겼는데, 두 번째 인자로 `Compare` 를 받는 다는 것을 알 수 있습니다. (템플릿 디폴트 인자로 `std::less<Key>` 가 들어있는데 이는 `Key` 클래스의 `operator<` 를 사용한다는 의미와 같습니다. `Compare` 타입을 전달하지 않으면 그냥 `Key` 클래스의 `operator<` 로 비교를 수행합니다.)
 
@@ -589,36 +579,33 @@ class set;
 
 ```cpp-formatted
 #include <iostream>
-
 #include <map>
 #include <string>
 
-using namespace std;
-
 template <typename K, typename V>
-void print_map(map<K, V>& m) {
+void print_map(std::map<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
   for (auto itr = m.begin(); itr != m.end(); ++itr) {
-    cout << itr->first << " " << itr->second << endl;
+    std::cout << itr->first << " " << itr->second << std::endl;
   }
 }
 
 int main() {
-  map<string, double> pitcher_list;
+  std::map<std::string, double> pitcher_list;
 
   // 참고로 2017년 7월 4일 현재 투수 방어율 순위입니다.
 
   // 맵의 insert 함수는 pair 객체를 인자로 받습니다.
-  pitcher_list.insert(pair<string, double>("박세웅", 2.23));
-  pitcher_list.insert(pair<string, double>("해커 ", 2.93));
+  pitcher_list.insert(std::pair<std::string, double>("박세웅", 2.23));
+  pitcher_list.insert(std::pair<std::string, double>("해커 ", 2.93));
 
-  pitcher_list.insert(pair<string, double>("피어밴드 ", 2.95));
+  pitcher_list.insert(std::pair<std::string, double>("피어밴드 ", 2.95));
 
-  // 타입을 지정하지 않아도 간단히 make_pair 함수로
-  // pair 객체를 만들 수 도 있습니다.
-  pitcher_list.insert(make_pair("차우찬", 3.04));
-  pitcher_list.insert(make_pair("장원준 ", 3.05));
-  pitcher_list.insert(make_pair("헥터 ", 3.09));
+  // 타입을 지정하지 않아도 간단히 std::make_pair 함수로
+  // std::pair 객체를 만들 수 도 있습니다.
+  pitcher_list.insert(std::make_pair("차우찬", 3.04));
+  pitcher_list.insert(std::make_pair("장원준 ", 3.05));
+  pitcher_list.insert(std::make_pair("헥터 ", 3.09));
 
   // 혹은 insert 를 안쓰더라도 [] 로 바로
   // 원소를 추가할 수 있습니다.
@@ -628,11 +615,9 @@ int main() {
 
   print_map(pitcher_list);
 
-  cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
+  std::cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << std::endl;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -645,36 +630,36 @@ int main() {
 
 
 ```cpp-formatted
-map<string, double> pitcher_list;
+std::map<std::string, double> pitcher_list;
 ```
 
 맵의 경우 템플릿 인자로 2 개를 가지는데, 첫번째는 키의 타입이고, 두 번째는 값의 타입입니다. 우리는 투수 이름을 키로 가지고 대응되는 값을 그 투수의 방어율로 하는 맵을 만들 예정입니다.
 
 ```cpp-formatted
-pitcher_list.insert(pair<string, double>("박세웅", 2.23));
-pitcher_list.insert(pair<string, double>("해커 ", 2.93));
-pitcher_list.insert(pair<string, double>("피어밴드 ", 2.95));
+pitcher_list.insert(std::pair<std::string, double>("박세웅", 2.23));
+pitcher_list.insert(std::pair<std::string, double>("해커 ", 2.93));
+pitcher_list.insert(std::pair<std::string, double>("피어밴드 ", 2.95));
 ```
 
-맵에 원소를 넣기 위해서는 반드시 `pair` 객체를 전달해야 합니다. `pair` 객체는 별다른게 아니고,
+맵에 원소를 넣기 위해서는 반드시 `std::pair` 객체를 전달해야 합니다. `std::pair` 객체는 별다른게 아니고,
 
 ```cpp-formatted
 template <class T1, class T2>
-struct pair {
+struct std::pair {
   T1 first;
   T2 second;
 };
 ```
 
-로 생긴 단순히 2 개의 객체를 멤버로 가지는 객체 입니다. 문제는 `pair` 객체를 사용할 때 마다 위 처럼 템플릿 인자를 초기화 해야 하는데 꽤나 귀찮습니다. 그래서 `STL` 에서는 `make_pair` 함수를 제공해주는데,
+로 생긴 단순히 2 개의 객체를 멤버로 가지는 객체 입니다. 문제는 `std::pair` 객체를 사용할 때 마다 위 처럼 템플릿 인자를 초기화 해야 하는데 꽤나 귀찮습니다. 그래서 `STL` 에서는 `std::make_pair` 함수를 제공해주는데,
 
 ```cpp-formatted
-pitcher_list.insert(make_pair("차우찬", 3.04));
-pitcher_list.insert(make_pair("장원준 ", 3.05));
-pitcher_list.insert(make_pair("헥터 ", 3.09));
+pitcher_list.insert(std::make_pair("차우찬", 3.04));
+pitcher_list.insert(std::make_pair("장원준 ", 3.05));
+pitcher_list.insert(std::make_pair("헥터 ", 3.09));
 ```
 
-이 함수는 인자로 들어오는 객체를 보고 타입을 추측해서 알아서 `pair` 객체를 만들어서 리턴해줍니다. 따라서 굳이 귀찮게 타입을 명시해줄 필요가 없습니다.
+이 함수는 인자로 들어오는 객체를 보고 타입을 추측해서 알아서 `std::pair` 객체를 만들어서 리턴해줍니다. 따라서 굳이 귀찮게 타입을 명시해줄 필요가 없습니다.
 
 
 한 가지 재미있는 점은
@@ -691,24 +676,24 @@ pitcher_list["켈리"] = 3.90;
 
 ```cpp-formatted
 template <typename K, typename V>
-void print_map(map<K, V>& m) {
+void print_map(std::map<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
   for (auto itr = m.begin(); itr != m.end(); ++itr) {
-    cout << itr->first << " " << itr->second << endl;
+    std::cout << itr->first << " " << itr->second << std::endl;
   }
 }
 ```
 
-맵의 경우도 셋과 마찬가지로 반복자를 이용해서 순차적으로 맵에 저장되어 있는 원소들을 탐색할 수 있습니다. 참고로 셋의 경우 `*itr` 가 저장된 원소를 바로 가리켰는데, 맵의 경우 반복자가 맵에 저장되어 있는 `pair` 객체를 가리키게 됩니다. 따라서 `itr->first` 를 하면 해당 원소의 키를, `itr->second` 를 하면 해당 원소의 값을 알 수 있습니다.
+맵의 경우도 셋과 마찬가지로 반복자를 이용해서 순차적으로 맵에 저장되어 있는 원소들을 탐색할 수 있습니다. 참고로 셋의 경우 `*itr` 가 저장된 원소를 바로 가리켰는데, 맵의 경우 반복자가 맵에 저장되어 있는 `std::pair` 객체를 가리키게 됩니다. 따라서 `itr->first` 를 하면 해당 원소의 키를, `itr->second` 를 하면 해당 원소의 값을 알 수 있습니다.
 
 참고로 해당 `for` 문을 범위 기반 `for` 문으로 바꿔본다면 아래와 같습니다.
 
 ```cpp
 template <typename K, typename V>
-void print_map(map<K, V>& m) {
-  // kv 에는 맵의 key 와 value 가 pair 로 들어갑니다.
+void print_map(std::map<K, V>& m) {
+  // kv 에는 맵의 key 와 value 가 std::pair 로 들어갑니다.
   for (const auto& kv : m) {
-    cout << kv.first << " " << kv.second << endl;
+    std::cout << kv.first << " " << kv.second << std::endl;
   }
 }
 ```
@@ -716,7 +701,7 @@ void print_map(map<K, V>& m) {
 반복자를 이용한 버전과 매우 유사하게, 맵의 키와 대응되는 원소를 `first` 와 `second` 를 이용해서 참조할 수 있습니다. 이 역시 반복자를 사용한 형태보다 더 간단하므로 권장됩니다.
 
 ```cpp-formatted
-cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
+std::cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << std::endl;
 ```
 
 만약에 맵에 저장된 값을 찾고 싶다면 간단히 `[]` 연산자를 이용하면 됩니다. `[]` 연산자는 인자로 키를 받아서 이를 맵에서 찾아서 대응되는 값을 돌려줍니다.
@@ -729,28 +714,24 @@ cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
 #include <map>
 #include <string>
 
-using namespace std;
-
 template <typename K, typename V>
-void print_map(const map<K, V>& m) {
-  // kv 에는 맵의 key 와 value 가 pair 로 들어갑니다.
+void print_map(const std::map<K, V>& m) {
+  // kv 에는 맵의 key 와 value 가 std::pair 로 들어갑니다.
   for (const auto& kv : m) {
-    cout << kv.first << " " << kv.second << endl;
+    std::cout << kv.first << " " << kv.second << std::endl;
   }
 }
 
 int main() {
-  map<string, double> pitcher_list;
+  std::map<std::string, double> pitcher_list;
 
   pitcher_list["오승환"] = 3.58;
-  cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
+  std::cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << std::endl;
 
-  cout << "-----------------" << endl;
+  std::cout << "-----------------" << std::endl;
   print_map(pitcher_list);
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -765,12 +746,10 @@ int main() {
 pitcher_list["오승환"] = 3.58;
 ```
 
-
-
 일단 위와 같이 `pitcher_list` 에 오승환의 방어율만 추가하였기 때문에 류현진의 방어율을 검색하면 아무것도 나오지 않는게 정상입니다. 그런데,
 
 ```cpp-formatted
-cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
+std::cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << std::endl;
 ```
 
 
@@ -786,40 +765,36 @@ cout << "류현진 방어율은? :: " << pitcher_list["류현진"] << endl;
 #include <map>
 #include <string>
 
-using namespace std;
-
 template <typename K, typename V>
-void print_map(const map<K, V>& m) {
-  // kv 에는 맵의 key 와 value 가 pair 로 들어갑니다.
+void print_map(const std::map<K, V>& m) {
+  // kv 에는 맵의 key 와 value 가 std::pair 로 들어갑니다.
   for (const auto& kv : m) {
-    cout << kv.first << " " << kv.second << endl;
+    std::cout << kv.first << " " << kv.second << std::endl;
   }
 }
 
 template <typename K, typename V>
-void search_and_print(map<K, V>& m, K key) {
+void search_and_print(std::map<K, V>& m, K key) {
   auto itr = m.find(key);
   if (itr != m.end()) {
-    cout << key << " --> " << itr->second << endl;
+    std::cout << key << " --> " << itr->second << std::endl;
   } else {
-    cout << key << "은(는) 목록에 없습니다" << endl;
+    std::cout << key << "은(는) 목록에 없습니다" << std::endl;
   }
 }
 
 int main() {
-  map<string, double> pitcher_list;
+  std::map<std::string, double> pitcher_list;
 
   pitcher_list["오승환"] = 3.58;
 
   print_map(pitcher_list);
-  cout << "-----------------" << endl;
+  std::cout << "-----------------" << std::endl;
 
-  search_and_print(pitcher_list, string("오승환"));
-  search_and_print(pitcher_list, string("류현진"));
+  search_and_print(pitcher_list, std::string("오승환"));
+  search_and_print(pitcher_list, std::string("류현진"));
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -834,17 +809,15 @@ int main() {
 
 ```cpp-formatted
 template <typename K, typename V>
-void search_and_print(const map<K, V>& m, K key) {
+void search_and_print(const std::map<K, V>& m, K key) {
   auto itr = m.find(key);
   if (itr != m.end()) {
-    cout << key << " --> " << itr->second << endl;
+    std::cout << key << " --> " << itr->second << std::endl;
   } else {
-    cout << key << "은(는) 목록에 없습니다" << endl;
+    std::cout << key << "은(는) 목록에 없습니다" << std::endl;
   }
 }
 ```
-
-
 
 위 처럼 `find` 함수는 맵에서 해당하는 키를 찾아서 이를 가리키는 반복자를 리턴합니다. 만약에, 키가 존재하지 않는다면 `end()` 를 리턴합니다.
 
@@ -857,31 +830,27 @@ void search_and_print(const map<K, V>& m, K key) {
 #include <map>
 #include <string>
 
-using namespace std;
-
 template <typename K, typename V>
-void print_map(const map<K, V>& m) {
-  // kv 에는 맵의 key 와 value 가 pair 로 들어갑니다.
+void print_map(const std::map<K, V>& m) {
+  // kv 에는 맵의 key 와 value 가 std::pair 로 들어갑니다.
   for (const auto& kv : m) {
-    cout << kv.first << " " << kv.second << endl;
+    std::cout << kv.first << " " << kv.second << std::endl;
   }
 }
 
 int main() {
-  map<string, double> pitcher_list;
+  std::map<std::string, double> pitcher_list;
 
-  // 맵의 insert 함수는 pair 객체를 인자로 받습니다.
-  pitcher_list.insert(pair<string, double>("박세웅", 2.23));
-  pitcher_list.insert(pair<string, double>("박세웅", 2.93));
+  // 맵의 insert 함수는 std::pair 객체를 인자로 받습니다.
+  pitcher_list.insert(std::pair<std::string, double>("박세웅", 2.23));
+  pitcher_list.insert(std::pair<std::string, double>("박세웅", 2.93));
 
   print_map(pitcher_list);
 
   // 2.23 이 나올까 2.93 이 나올까?
-  cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << endl;
+  std::cout << "박세웅 방어율은? :: " << pitcher_list["박세웅"] << std::endl;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -901,18 +870,17 @@ int main() {
 #include <iostream>
 #include <set>
 #include <string>
-using namespace std;
 
 template <typename K>
-void print_set(const multiset<K>& s) {
-  // 셋의의 모든 원소들을 출력하기
+void print_set(const std::multiset<K>& s) {
+  // 셋의 모든 원소들을 출력하기
   for (const auto& elem : s) {
-    cout << elem << endl;
+    std::cout << elem << std::endl;
   }
 }
 
 int main() {
-  multiset<string> s;
+  std::multiset<std::string> s;
 
   s.insert("a");
   s.insert("b");
@@ -939,40 +907,36 @@ int main() {
 #include <iostream>
 #include <map>
 #include <string>
-using namespace std;
 
 template <typename K, typename V>
-void print_map(const multimap<K, V>& m) {
+void print_map(const std::multimap<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
   for (const auto& kv : m) {
-    cout << kv.first << " " << kv.second << endl;
+    std::cout << kv.first << " " << kv.second << std::endl;
   }
 }
 
 int main() {
-  multimap<int, string> m;
-  m.insert(make_pair(1, "hello"));
-  m.insert(make_pair(1, "hi"));
-  m.insert(make_pair(1, "ahihi"));
-  m.insert(make_pair(2, "bye"));
-  m.insert(make_pair(2, "baba"));
+  std::multimap<int, std::string> m;
+  m.insert(std::make_pair(1, "hello"));
+  m.insert(std::make_pair(1, "hi"));
+  m.insert(std::make_pair(1, "ahihi"));
+  m.insert(std::make_pair(2, "bye"));
+  m.insert(std::make_pair(2, "baba"));
 
   print_map(m);
 
   // 뭐가 나올까요?
-  cout << "--------------------" << endl;
-  cout << m.find(1)->second << endl;
+  std::cout << "--------------------" << std::endl;
+  std::cout << m.find(1)->second << std::endl;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F261D663E59605B062415DA)
-
 
 
 와 같이 나옵니다.
@@ -990,7 +954,7 @@ m[1]
 을 했을 때 "hello" 를 리턴해야할지, 아니면 "hi" 를 리턴해야 할 지 알 수 없기 때문이지요. 따라서 멀티맵의 경우 아예 `[]` 연산자를 제공하지 않습니다. 그렇다면
 
 ```cpp-formatted
-cout << m.find(1)->second << endl;
+std::cout << m.find(1)->second << std::endl;
 ```
 
 위 처럼 `find` 함수를 사용했을 때 무엇을 리턴할까요? 일단 해당하는 키가 없으면 `m.end()` 를 리턴합니다. 그렇다면 위 경우 1 이라는 키에 3 개의 문자열이 대응되어 있는데 어떤거를 리턴해야 할까요? 제일 먼저 `insert` 한것? 아니면 문자열 중에서 사전 순으로 가장 먼저 오는 것?
@@ -1004,38 +968,35 @@ cout << m.find(1)->second << endl;
 #include <iostream>
 #include <map>
 #include <string>
-using namespace std;
 
 template <typename K, typename V>
-void print_map(const multimap<K, V>& m) {
+void print_map(const std::multimap<K, V>& m) {
   // 맵의 모든 원소들을 출력하기
   for (const auto& kv : m) {
-    cout << kv.first << " " << kv.second << endl;
+    std::cout << kv.first << " " << kv.second << std::endl;
   }
 }
 
 int main() {
-  multimap<int, string> m;
-  m.insert(make_pair(1, "hello"));
-  m.insert(make_pair(1, "hi"));
-  m.insert(make_pair(1, "ahihi"));
-  m.insert(make_pair(2, "bye"));
-  m.insert(make_pair(2, "baba"));
+  std::multimap<int, std::string> m;
+  m.insert(std::make_pair(1, "hello"));
+  m.insert(std::make_pair(1, "hi"));
+  m.insert(std::make_pair(1, "ahihi"));
+  m.insert(std::make_pair(2, "bye"));
+  m.insert(std::make_pair(2, "baba"));
 
   print_map(m);
 
-  cout << "--------------------" << endl;
+  std::cout << "--------------------" << std::endl;
 
   // 1 을 키로 가지는 반복자들의 시작과 끝을
-  // pair 로 만들어서 리턴한다.
+  // std::pair 로 만들어서 리턴한다.
   auto range = m.equal_range(1);
   for (auto itr = range.first; itr != range.second; ++itr) {
-    cout << itr->first << " : " << itr->second << " " << endl;
+    std::cout << itr->first << " : " << itr->second << " " << std::endl;
   }
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -1050,22 +1011,19 @@ int main() {
 auto range = m.equal_range(1);
 ```
 
-`equal_range` 함수의 경우 인자로 멀티맵의 키를 받은 뒤에, 이 키에 대응되는 원소들의 반복자들 중에서시작과 끝 바로 다음을 가리키는 반복자를 `pair` 객체로 만들어서 리턴합니다. 즉, `begin()` 과 `end()` 를 `pair` 로 만들어서 세트로 리턴한다고 볼 수 있겠지요. 다만, `first` 로 시작점을, `second` 로 끝점 바로 뒤를 알 수 있습니다. 왜 끝점 바로 뒤를 가리키는 반복자를 리턴하는지는 굳이 설명 안해도 알겠죠?
+`equal_range` 함수의 경우 인자로 멀티맵의 키를 받은 뒤에, 이 키에 대응되는 원소들의 반복자들 중에서시작과 끝 바로 다음을 가리키는 반복자를 `std::pair` 객체로 만들어서 리턴합니다. 즉, `begin()` 과 `end()` 를 `std::pair` 로 만들어서 세트로 리턴한다고 볼 수 있겠지요. 다만, `first` 로 시작점을, `second` 로 끝점 바로 뒤를 알 수 있습니다. 왜 끝점 바로 뒤를 가리키는 반복자를 리턴하는지는 굳이 설명 안해도 알겠죠?
 
 ```cpp-formatted
 for (auto itr = range.first; itr != range.second; ++itr) {
-  cout << itr->first << " : " << itr->second << " " << endl;
+  std::cout << itr->first << " : " << itr->second << " " << std::endl;
 }
 ```
-
-
 
 따라서 위 처럼 1 에 대응되는 모든 원소들을 볼 수 있게 됩니다.
 
 
 
 ###  정렬되지 않은 셋과 맵 (unordered_set, unordered_map)
-
 
 
 `unordered_set` 과 `unordered_map` (한글로 하면 너무 길어서 그냥 영문으로 표기하겠습니다) 은 C++ 11 에 추가된 비교적 최근 나온 컨테이너들 입니다 (위에것들은 모두 C++ 98 에 추가되었었죠).
@@ -1078,18 +1036,17 @@ for (auto itr = range.first; itr != range.second; ++itr) {
 #include <iostream>
 #include <string>
 #include <unordered_set>
-using namespace std;
 
 template <typename K>
-void print_unordered_set(const unordered_set<K>& m) {
+void print_unordered_set(const std::unordered_set<K>& m) {
   // 셋의 모든 원소들을 출력하기
   for (const auto& elem : m) {
-    cout << elem << endl;
+    std::cout << elem << std::endl;
   }
 }
 
 int main() {
-  unordered_set<string> s;
+  std::unordered_set<std::string> s;
 
   s.insert("hi");
   s.insert("my");
@@ -1122,6 +1079,7 @@ int main() {
 그런데 이 `unordered_set` 에 한 가지 놀라운 점이 있습니다. 바로 `insert`, `erase`, `find` 모두가 $$O(1)$$ 으로 수행된다는 점입니다! 셋이나 맵의 경우 $$O(log n)$$ 이었지만, `unordered_set` 과 `unordered_map` 의 경우 상수 시간에 원소를 삽입하고, 검색할 수 있습니다. 
 
 이 놀라운 일이 어떻게 가능한건지 `unordered_set` 과 `unordered_map` 이 어떻게 구현되었는지 살펴보면 알 수 있습니다.
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F265AE73859607D5303C92C)
 
 #### 해시 함수(Hash function)
@@ -1148,7 +1106,7 @@ int main() {
 
 따라서 `unordered_set` 과 `unordered_map` 의 경우 평균적으로 $$O(1)$$ 시간으로 원소의 삽입/탐색을 수행할 수 있지만 최악의 경우 $$O(N)$$ 으로 수행될 수 있습니다. (그냥 `set` 과 `map` 의 경우 평균도 $$O(log N)$$ 최악의 경우에도 $$O(log N)$$ 으로 실행됩니다)
 
-이 때문에 보통의 경우에는 그냥 안전하게 맵이나 셋을 사용하고, 만약에 최적화가 매우 필요한 작업일 경우에만 해시 함수를 잘 설계해서 `unordered_set` 과 `unordered_map` 을 사용하는 것이 좋습니다. \sidenote{기본 타입들(int, double 등등) 과 string 의 경우 라이브러리 자체적으로 해시 함수가 내장되어 있으므로, 그냥 사용하셔도 됩니다}
+이 때문에 보통의 경우에는 그냥 안전하게 맵이나 셋을 사용하고, 만약에 최적화가 매우 필요한 작업일 경우에만 해시 함수를 잘 설계해서 `unordered_set` 과 `unordered_map` 을 사용하는 것이 좋습니다. \sidenote{기본 타입들(int, double 등등) 과 std::string 의 경우 라이브러리 자체적으로 해시 함수가 내장되어 있으므로, 그냥 사용하셔도 됩니다}
 
 또한 처음부터 많은 개수의 상자를 사용할 수 없기 때문에 (메모리를 낭비할 순 없으므로..) 상자의 개수는 삽입되는 원소가 많아짐에 따라 점진적으로 늘어나게 됩니다. 문제는 상자의 개수가 늘어나면 해시 함수를 바꿔야 하기 때문에 (더 많은 값들을 해시값으로 반환할 수 있도록) 모든 원소들을 처음부터 끝 까지 다시 `insert` 해야 합니다. 이를 `rehash` 라 하며 $$O(N)$$ 만큼의 시간이 걸립니다.
 
@@ -1156,27 +1114,26 @@ int main() {
 #include <iostream>
 #include <string>
 #include <unordered_set>
-using namespace std;
 
 template <typename K>
-void print_unordered_set(const unordered_set<K>& m) {
+void print_unordered_set(const std::unordered_set<K>& m) {
   // 셋의 모든 원소들을 출력하기
   for (const auto& elem : m) {
-    cout << elem << endl;
+    std::cout << elem << std::endl;
   }
 }
 
 template <typename K>
-void is_exist(unordered_set<K>& s, K key) {
+void is_exist(std::unordered_set<K>& s, K key) {
   auto itr = s.find(key);
   if (itr != s.end()) {
-    cout << key << " 가 존재!" << endl;
+    std::cout << key << " 가 존재!" << std::endl;
   } else {
-    cout << key << " 가 없다" << endl;
+    std::cout << key << " 가 없다" << std::endl;
   }
 }
 int main() {
-  unordered_set<string> s;
+  std::unordered_set<std::string> s;
 
   s.insert("hi");
   s.insert("my");
@@ -1188,14 +1145,14 @@ int main() {
   s.insert("c++");
 
   print_unordered_set(s);
-  cout << "----------------" << endl;
-  is_exist(s, string("c++"));
-  is_exist(s, string("c"));
+  std::cout << "----------------" << std::endl;
+  is_exist(s, std::string("c++"));
+  is_exist(s, std::string("c"));
 
-  cout << "----------------" << endl;
-  cout << "'hi' 를 삭제" << endl;
+  std::cout << "----------------" << std::endl;
+  std::cout << "'hi' 를 삭제" << std::endl;
   s.erase(s.find("hi"));
-  is_exist(s, string("hi"));
+  is_exist(s, std::string("hi"));
 }
 ```
 
@@ -1210,12 +1167,12 @@ int main() {
 
 ```cpp-formatted
 template <typename K>
-void is_exist(unordered_set<K>& s, K key) {
+void is_exist(std::unordered_set<K>& s, K key) {
   auto itr = s.find(key);
   if (itr != s.end()) {
-    cout << key << " 가 존재!" << endl;
+    std::cout << key << " 가 존재!" << std::endl;
   } else {
-    cout << key << " 가 없다" << endl;
+    std::cout << key << " 가 없다" << std::endl;
   }
 }
 ```
@@ -1224,7 +1181,7 @@ void is_exist(unordered_set<K>& s, K key) {
 
 ```cpp-formatted
 s.erase(s.find("hi"));
-is_exist(s, string("hi"));
+is_exist(s, std::string("hi"));
 ```
 
 또한 원소를 제거하고 싶다면 간단히 `find` 함수로 원소를 가리키는 반복자를 찾은 뒤에, 이를 전달하면 됩니다.
@@ -1241,15 +1198,13 @@ is_exist(s, string("hi"));
 ```cpp-formatted
 class Todo {
   int priority;  // 중요도. 높을 수록 급한것!
-  string job_desc;
+  std::string job_desc;
 
  public:
-  Todo(int priority, string job_desc)
+  Todo(int priority, std::string job_desc)
       : priority(priority), job_desc(job_desc) {}
 };
 ```
-
-
 
 그렇다면 위 `Todo` 클래스의 해시 함수를 만들어보겠습니다. 기본적으로 `unordered_set` 과 `unordered_map` 은 해시 함수 계산을 위해 hash 함수 객체를 사용합니다. `hash` 함수 객체는 아래와 같이 생겼습니다.
 
@@ -1284,31 +1239,30 @@ struct hash<Todo> {
 #include <iostream>
 #include <string>
 #include <unordered_set>
-using namespace std;
 
 template <typename K>
-void print_unordered_set(const unordered_set<K>& m) {
+void print_unordered_set(const std::unordered_set<K>& m) {
   // 셋의 모든 원소들을 출력하기
   for (const auto& elem : m) {
-    cout << elem << endl;
+    std::cout << elem << std::endl;
   }
 }
 
 template <typename K>
-void is_exist(unordered_set<K>& s, K key) {
+void is_exist(std::unordered_set<K>& s, K key) {
   auto itr = s.find(key);
   if (itr != s.end()) {
-    cout << key << " 가 존재!" << endl;
+    std::cout << key << " 가 존재!" << std::endl;
   } else {
-    cout << key << " 가 없다" << endl;
+    std::cout << key << " 가 없다" << std::endl;
   }
 }
 class Todo {
   int priority;  // 중요도. 높을 수록 급한것!
-  string job_desc;
+  std::string job_desc;
 
  public:
-  Todo(int priority, string job_desc)
+  Todo(int priority, std::string job_desc)
       : priority(priority), job_desc(job_desc) {}
 
   bool operator==(const Todo& t) const {
@@ -1316,8 +1270,8 @@ class Todo {
     return false;
   }
 
-  friend ostream& operator<<(ostream& o, const Todo& t);
-  friend struct hash<Todo>;
+  friend std::ostream& operator<<(std::ostream& o, const Todo& t);
+  friend struct std::hash<Todo>;
 };
 
 // Todo 해시 함수를 위한 함수객체(Functor)
@@ -1332,13 +1286,13 @@ struct hash<Todo> {
   }
 };
 }  // namespace std
-ostream& operator<<(ostream& o, const Todo& t) {
+std::ostream& operator<<(std::ostream& o, const Todo& t) {
   o << "[중요도 : " << t.priority << " ] " << t.job_desc;
   return o;
 }
 
 int main() {
-  unordered_set<Todo> todos;
+  std::unordered_set<Todo> todos;
 
   todos.insert(Todo(1, "농구 하기"));
   todos.insert(Todo(2, "수학 숙제 하기"));
@@ -1346,7 +1300,7 @@ int main() {
   todos.insert(Todo(3, "친구 만나기"));
   todos.insert(Todo(2, "영화 보기"));
   print_unordered_set(todos);
-  cout << "----------------" << endl;
+  std::cout << "----------------" << std::endl;
 }
 ```
 
@@ -1373,7 +1327,7 @@ struct hash<Todo> {
 }  // namespace std
 ```
 
-다행이도 C++ STL 에서는 기본적인 타입들 (`int, string` 등등) 에 대한 해시 함수를 제공하기 때문에 우리의 `Todo` 클래스의 해시 함수는 이들을 잘 사용해서 짬뽕만 시키면 됩니다. 일단 `priority` 는 `int` 값 이므로 그냥 해시값 자체로 쓰기로 하고, `string` 의 해시값은 `hash_func` 객체로 이용해서 계산하면 됩니다
+다행이도 C++ STL 에서는 기본적인 타입들 (`int, std::string` 등등) 에 대한 해시 함수를 제공하기 때문에 우리의 `Todo` 클래스의 해시 함수는 이들을 잘 사용해서 짬뽕만 시키면 됩니다. 일단 `priority` 는 `int` 값 이므로 그냥 해시값 자체로 쓰기로 하고, `string` 의 해시값은 `hash_func` 객체로 이용해서 계산하면 됩니다
 
 결과적으로 두 해시값을 짬뽕 시키기 위해서 `XOR` 연산을 이용하였습니다.
 

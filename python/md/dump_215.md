@@ -1,6 +1,6 @@
 ----------------
-title : 씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>
-cat_title: 7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream
+title : 씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream>
+cat_title: 7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream
 next_page : 217
 publish_date : 2016-07-14
 --------------
@@ -9,7 +9,7 @@ publish_date : 2016-07-14
 
 * `ifstream` 을 이용한 파일 입력
 * `ofstream` 을 이용한 파일 출력
-* 문자열 스트림 (stringstream) 을 이용한 간편한 문자열 간의 변환
+* 문자열 스트림 (std::stringstream) 을 이용한 간편한 문자열 간의 변환
 
 에 대해서 알아봅니다.
 
@@ -31,30 +31,25 @@ publish_date : 2016-07-14
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
   // 파일 읽기 준비
-  ifstream in("test.txt");
-  string s;
+  std::ifstream in("test.txt");
+  std::string s;
 
   if (in.is_open()) {
     in >> s;
-    cout << "입력 받은 문자열 :: " << s << endl;
+    std::cout << "입력 받은 문자열 :: " << s << std::endl;
   } else {
-    cout << "파일을 찾을 수 없습니다!" << endl;
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
   }
   return 0;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
+
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2356764657838A5001A219)
-
-
-
 
 
 와 같이 나옵니다. 참고로 `test.txt` 파일에는 다음과 같이 써 있었습니다.
@@ -68,8 +63,6 @@ int main() {
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F2568EF4257838AF41801E1)
-
-
 
 
 
@@ -87,12 +80,8 @@ int main() {
 
 ```cpp-formatted
 // 파일 읽기 준비
-ifstream in("test.txt");
+std::ifstream in("test.txt");
 ```
-
-
-
-
 
 기존에 `cout` 이나 `cin` 을 사용했을 때에는 이미 표준 입출력에 연동이 되어 있는 상황이었지만, 파일 입출력에 경우 어느 파일에 입출력을 해야 할 지 지정 해야 하는데, 이를 `ifstream` 객체에 생성자에 연동하고자 하는 파일의 경로 ("C:\\a\\b\\c.txt" 와 같이) 를 전달하면 됩니다. 위 경우 편의상 경로를 저렇게 썻지만 (이 경우 실행 파일과 같은 경로에 있는 파일을 찾게 됩니다. 다만 비주얼 스튜디오 상에서 실행할 경우에는 소스 파일과 같은 경로에 있는 것을 찾습니다)
 
@@ -103,15 +92,11 @@ ifstream in("test.txt");
 if (in.is_open()) {
 ```
 
-
-
 `is_open` 은 기존의 `istream` 에는 없고 `ifstream` 에서 상속 받으면서 추가된 함수 입니다. 파일이 열렸는지의 유무를 리턴합니다. 만일 해당 경로에 있는 파일이 존재하지 않는다면 `false` 를 리턴하겠지요.
 
 ```cpp-formatted
 in >> s;
 ```
-
-
 
 마지막으로 마치 `cin` 을 사용 하는 것 처럼 `in` 객체를 이용해서 파일로 부터 읽을 수 있습니다. (`cin` 에서 >> 로 읽을 때 공백 문자가 나올 까지 읽었던 것처럼 여기도 동일합니다)
 
@@ -125,18 +110,17 @@ in >> s;
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
   // 파일 읽기 준비
-  ifstream in("test.txt");
-  string s;
+  std::ifstream in("test.txt");
+  std::string s;
 
   if (in.is_open()) {
     in >> s;
-    cout << "입력 받은 문자열 :: " << s << endl;
+    std::cout << "입력 받은 문자열 :: " << s << std::endl;
   } else {
-    cout << "파일을 찾을 수 없습니다!" << endl;
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
   }
 
   in.close();
@@ -144,16 +128,14 @@ int main() {
 
   if (in.is_open()) {
     in >> s;
-    cout << "입력 받은 문자열 :: " << s << endl;
+    std::cout << "입력 받은 문자열 :: " << s << std::endl;
   } else {
-    cout << "파일을 찾을 수 없습니다!" << endl;
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
   }
 
   return 0;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -161,17 +143,12 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F243340355783AB3F274C61)
 
 
-
 와 같이 나옵니다.
-
-
 
 ```cpp-formatted
 in.close();
 in.open("other.txt");
 ```
-
-
 
 위 처럼 새로운 파일에서 같은 객체가 입력을 받기 위해서는 기존 파일 스트림과의 연결을 종료하고, 새로운 파일과 연결을 시켜주면 됩니다. 기존 파일과의 스트림 종료는 `close` 함수가, 새로운 파일과의 연결은 `open` 함수가 수행하고 있습니다. `open` 함수가 있기에 굳이 `ifstream` 객체 생성자에서 파일 경로를 바로 지정해줄 필요는 없고, 나중에 `open` 으로 원하는 파일을 열어도 상관 없습니다.
 
@@ -180,34 +157,28 @@ in.open("other.txt");
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
   // 파일 읽기 준비
-  ifstream in("test.txt", ios::binary);
-  string s;
+  std::ifstream in("test.txt", std::ios::binary);
+  std::string s;
 
   int x;
   if (in.is_open()) {
     in.read((char*)(&x), 4);
-    cout << hex << x << endl;
+    std::cout << std::hex << x << std::endl;
   } else {
-    cout << "파일을 찾을 수 없습니다!" << endl;
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
   }
 
   return 0;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F2775BF425783D39F068ABA)
-
-
-
 
 
 와 같이 나옵니다.
@@ -229,9 +200,8 @@ int main() {
 라고 생각하시는 분들은 엔디안을 간과한 것인데, 우리가 쓰는 `CPU` 의 경우 리틀 엔디안이라 해서, 높은 주소값에 높은 자리수가 온다고 생각하면 됩니다, 따라서 각각의 바이트가 `EF / BB / BF / EC` 가 거꾸로 `EC / BF / BB / EF` 이렇게 `int` 변수에 기록이 된 것입니다. (이에 대한 내용은 C 강좌에서도 다루었습니다)
 
 ```cpp-formatted
-ifstream in("test.txt", ios::binary);
+std::ifstream in("test.txt", std::ios::binary);
 ```
-
 
 
 일단 위와 같이 `ifstream` 객체를 생성할 때 생성자에 옵션으로 `binary` 형태로 받겠다고 명시할 수 있습니다. 이 말은 문제열 데이터를 받는게 아니라 그냥 이진 그대로의 값을 받아내겠다는 의미 입니다. 만일 아무것도 명시 하지 않는다면 위에서 보았던 것 처럼 문자열 형태로 데이터를 받습니다.
@@ -244,7 +214,6 @@ in.read((char*)(&x), 4);
 ```
 
 
-
 `read` 함수는 말 그대로, 4 바이트의 내용을 읽으라는 의미로, 첫 번째 인자에 해당하는 버퍼를 전달해주어야 합니다. 우리의 경우 `int` 변수를 마치 4 바이트 짜리 `char` 배열이라 생각하게 해서이를 전달하였습니다. 두 번째 인자로 반드시 몇 바이트를 읽을 지 전달해야 합니다.
 
 ```cpp-formatted
@@ -252,17 +221,11 @@ char x[10];
 in.read(x, 10);
 ```
 
-
-
 실제로 예시 코드 처럼 `int` 공간에 저장하는 경우는 없고, 위 처럼 그냥 `char` 배열에 크기를 지정해서 읽어들이면 됩니다.
 
-
-
 ```cpp-formatted
-cout << hex << x << endl;
+std::cout << std::hex << x << std::endl;
 ```
-
-
 
 참고로 `cout` 에서 사용한 `hex` 역시 지난 강좌에서 `cin` 에서 사용한 `hex` 와 비슷한 부류로 16 진수로 정수 데이터를 표시해줍니다.
 
@@ -270,24 +233,19 @@ cout << hex << x << endl;
 
 ###  파일 전체 읽기
 
-
-
-
-
 ```cpp-formatted
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
   // 파일 읽기 준비
-  ifstream in("test.txt");
-  string s;
+  std::ifstream in("test.txt");
+  std::string s;
 
   if (in.is_open()) {
     // 위치 지정자를 파일 끝으로 옮긴다.
-    in.seekg(0, ios::end);
+    in.seekg(0, std::ios::end);
 
     // 그리고 그 위치를 읽는다. (파일의 크기)
     int size = in.tellg();
@@ -296,13 +254,13 @@ int main() {
     s.resize(size);
 
     // 위치 지정자를 다시 파일 맨 앞으로 옮긴다.
-    in.seekg(0, ios::beg);
+    in.seekg(0, std::ios::beg);
 
     // 파일 전체 내용을 읽어서 문자열에 저장한다.
     in.read(&s[0], size);
-    cout << s << endl;
+    std::cout << s << std::endl;
   } else {
-    cout << "파일을 찾을 수 없습니다!" << endl;
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
   }
 
   return 0;
@@ -324,7 +282,7 @@ int main() {
 
 ```cpp-formatted
 // 위치 지정자를 파일 끝으로 옮긴다.
-in.seekg(0, ios::end);
+in.seekg(0, std::ios::end);
 ```
 
 
@@ -344,7 +302,7 @@ int size = in.tellg();
 
 ```cpp-formatted
 // 위치 지정자를 다시 파일 맨 앞으로 옮긴다.
-in.seekg(0, ios::beg);
+in.seekg(0, std::ios::beg);
 ```
 
 
@@ -362,28 +320,25 @@ in.read(&s[0], size);
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
   // 파일 읽기 준비
-  ifstream in("test.txt");
+  std::ifstream in("test.txt");
   char buf[100];
 
   if (in.is_open()) {
     while (!in.eof()) {
       // 한 줄 씩 최대 100 자 까지 읽어들인다.
       in.getline(buf, 100);
-      cout << buf << endl;
+      std::cout << buf << std::endl;
     }
   } else {
-    cout << "파일을 찾을 수 없습니다!" << endl;
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
   }
 
   return 0;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -391,9 +346,7 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F265016345784EBD7035F86)
 
 
-
 와 같이 나옵니다.
-
 
 
 `getline` 함수는 파일에서 개행문자 (\n) 이 나올 때 가지 최대 지정한 크기 만큼 읽게됩니다. 만일 파일 끝에 도달하게 된다면 `eofbit` 가 켜지면서
@@ -410,8 +363,6 @@ in.getline(buf, 100);
 in.getline(buf, 100, '.');
 ```
 
-
-
 이런식으로 하면 마침표가 나올 때 까지 입력받게 됩니다.
 
 
@@ -420,26 +371,24 @@ in.getline(buf, 100, '.');
 따라서 버퍼의 크기를 너무 작게 만든다면 정상적으로 데이터를 받을 수 없게 됩니다. `getline` 을 사용하기 전에 이와 같은 조건을 꼭 확인해야 합니다.
 
 
-
 ```cpp-formatted
-// string 에 정의된 getline 사용
+// std::string 에 정의된 getline 사용
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
   // 파일 읽기 준비
-  ifstream in("test.txt");
+  std::ifstream in("test.txt");
 
-  string s;
+  std::string s;
   if (in.is_open()) {
     while (!in.eof()) {
-      getline(in, s);
-      cout << s << endl;
+      std::getline(in, s);
+      std::cout << s << std::endl;
     }
   } else {
-    cout << "파일을 찾을 수 없습니다!" << endl;
+    std::cout << "파일을 찾을 수 없습니다!" << std::endl;
   }
 
   return 0;
@@ -460,30 +409,26 @@ int main() {
 와 같이 나옵니다.
 
 
-이 `getline` 함수는 `ifstream` 에 정의되어 있는 것이 아니라, `string` 에 정의되어 있는 함수로, 첫 번째 인자로 `istream` 객체를 받고, 두 번째 인자로 입력 받은 문자열을 저장할 `string` 객체를 받게 됩니다.
+이 `getline` 함수는 `ifstream` 에 정의되어 있는 것이 아니라, `std::string` 에 정의되어 있는 함수로, 첫 번째 인자로 `istream` 객체를 받고, 두 번째 인자로 입력 받은 문자열을 저장할 `std::string` 객체를 받게 됩니다.
 
 
-기존에 `ifstream` 의 `getline` 을 활용할 때 보다 훨신 편리한 것이, 굳이 버퍼의 크기를 지정하지 않아도 알아서 `string` 의 크기를 조정해서 개행문자 혹은 파일에 끝이 나올 때 까지 입력받게 됩니다.
+기존에 `ifstream` 의 `getline` 을 활용할 때 보다 훨신 편리한 것이, 굳이 버퍼의 크기를 지정하지 않아도 알아서 `std::string` 의 크기를 조정해서 개행문자 혹은 파일에 끝이 나올 때 까지 입력받게 됩니다.
 
 
 
 ###  파일에 쓰기
 
 
-
-
 ```cpp-formatted
 #include <iostream>
-
 #include <fstream>
 #include <string>
-using namespace std;
 
 int main() {
   // 파일 쓰기 준비
-  ofstream out("test.txt");
+  std::ofstream out("test.txt");
 
-  string s;
+  std::string s;
   if (out.is_open()) {
     out << "이걸 쓰자~~";
   }
@@ -510,13 +455,12 @@ int main() {
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
   // 파일 쓰기준비
-  ofstream out("test.txt", ios::app);
+  std::ofstream out("test.txt", std::ios::app);
 
-  string s;
+  std::string s;
   if (out.is_open()) {
     out << "덧붙이기";
   }
@@ -525,14 +469,10 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F2447743D5785BB37083826)
-
-
 
 
 
@@ -546,7 +486,7 @@ int main() {
 
 * `ios::ate` : 자동으로 파일 끝에서 부터 읽기와 쓰기를 실시합니다. (즉 파일을 열 때 위치 지정자가 파일 끝을 가리키고 있게 됩니다)
 * `ios::trunc` : 파일 스트림을 열면 기존에 있던 내용들이 모두 지워집니다. 기본적으로 `ofstream` 객체를 생성할 때 이와 같은 설정으로 만들어집니다.
-* `ios::in, ios::out` : 파일에 입력을 할 지 출력을 할 지 지정하며, `ifstream` 과 `ofstream` 객체를 생성할 때 각각은 이미 설정되어 있습니다.
+* `ios::in, std::ios::out` : 파일에 입력을 할 지 출력을 할 지 지정하며, `ifstream` 과 `ofstream` 객체를 생성할 때 각각은 이미 설정되어 있습니다.
 
 참고로 `ios::ate` 와 `ios::app` 은 비슷해 보이지만 차이가 있다면 `ios::app` 의 경우 원본 파일의 내용을 무조건 적으로 보장하지만, `ate` 는 위치 지정자를 그 이전으로 옮길 수 있습니다.즉 `app` 의 경우 파일 위치 지정자가 기존 파일의 끝이 시작점이라 생각하여 움직이며 `ate` 의 경우 기존 파일을 포함해서 움직입니다 (사실 `ate` 의 경우 사용할 일이 거의 없을 것입니다).
 
@@ -558,15 +498,14 @@ int main() {
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
   // 두 파일에는 모두 abc 라고 써 있었습니다.
-  ofstream out("test.txt", ios::app);
-  ofstream out2("test2.txt", ios::ate);
+  std::ofstream out("test.txt", std::ios::app);
+  std::ofstream out2("test2.txt", std::ios::ate);
 
-  out.seekp(3, ios::beg);
-  out2.seekp(3, ios::beg);
+  out.seekp(3, std::ios::beg);
+  out2.seekp(3, std::ios::beg);
 
   out << "추가";
   out2 << "추가";
@@ -599,7 +538,7 @@ int main() {
 
 
 
-###  ofstream 연산자 오버로딩 하기
+###  std::ofstream 연산자 오버로딩 하기
 
 
 
@@ -609,31 +548,30 @@ int main() {
 #include <fstream>
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Human {
-  string name;
+  std::string name;
   int age;
 
  public:
-  Human(const string& name, int age) : name(name), age(age) {}
-  string get_info() {
-    return "Name :: " + name + " / Age :: " + to_string(age);
+  Human(const std::string& name, int age) : name(name), age(age) {}
+  std::string get_info() {
+    return "Name :: " + name + " / Age :: " + std::to_string(age);
   }
 
-  friend ofstream& operator<<(ofstream& o, Human& h);
+  friend std::ofstream& operator<<(std::ofstream& o, Human& h);
 };
 
-ofstream& operator<<(ofstream& o, Human& h) {
+std::ofstream& operator<<(std::ofstream& o, Human& h) {
   o << h.get_info();
   return o;
 }
 int main() {
   // 파일 쓰기 준비
-  ofstream out("test.txt");
+  std::ofstream out("test.txt");
 
   Human h("이재범", 60);
-  out << h << endl;
+  out << h << std::endl;
 
   return 0;
 }
@@ -654,20 +592,19 @@ int main() {
 
 
 
-###  문자열 스트림 (stringstream)
-
+###  문자열 스트림 (std::stringstream)
 
 
 ```cpp-formatted
 #include <iostream>
 #include <sstream>
-using namespace std;
+
 int main() {
-  istringstream ss("123");
+  std::istringstream ss("123");
   int x;
   ss >> x;
 
-  cout << "입력 받은 데이터 :: " << x << endl;
+  std::cout << "입력 받은 데이터 :: " << x << std::endl;
 
   return 0;
 }
@@ -685,12 +622,11 @@ int main() {
 와 같이 나옵니다.
 
 
-`sstream` 에는 `stringstream` 이 정의되어 있는데 이는 마치 문자열을 하나의 스트림이라 생각하게 해주는 가상화 장치라고 보시면 됩니다.
+`sstream` 에는 `std::istringstream` 이 정의되어 있는데 이는 마치 문자열을 하나의 스트림이라 생각하게 해주는 가상화 장치라고 보시면 됩니다.
 
 ```cpp-formatted
-istringstream ss("123");
+std::istringstream ss("123");
 ```
-
 
 
 예를 들어서 우리는 위를 통해서 문자열 "123" 이 기록되어 있는 입력 스트림을 생성하였습니다. 마치 파일에 123 이라 기록해놓고 거기서 입력 받는 것과 동일하다고 생각하면 됩니다.
@@ -701,8 +637,7 @@ ss >> x;
 ```
 
 
-
-그래서 마치 파일에서 숫자를 읽어내는 것 처럼 `stringstream` 을 통해서 123 을 읽어낼 수 있습니다.
+그래서 마치 파일에서 숫자를 읽어내는 것 처럼 `std::istringstream` 을 통해서 123 을 읽어낼 수 있습니다.
 
 
 이를 활용하면 `atoi` 와 같은 함수를 사용할 필요 없이 간편하게 문자열에서 숫자로 변환하는 함수를 만들 수 있습니다.
@@ -711,22 +646,20 @@ ss >> x;
 #include <iostream>
 #include <sstream>
 #include <string>
-using namespace std;
 
-double to_number(string s) {
-  istringstream ss(s);
+double to_number(std::string s) {
+  std::istringstream ss(s);
   double x;
 
   ss >> x;
   return x;
 }
 int main() {
-  cout << "변환:: 1 + 2 = " << to_number("1") + to_number("2") << endl;
+  std::cout << "변환:: 1 + 2 = " << to_number("1") + to_number("2") << std::endl;
 
   return 0;
 }
 ```
-
 
 
 성공적으로 컴파일 하였다면
@@ -742,16 +675,15 @@ int main() {
 #include <iostream>
 #include <sstream>
 #include <string>
-using namespace std;
 
-string to_str(int x) {
-  ostringstream ss;
+std::string to_str(int x) {
+  std::ostringstream ss;
   ss << x;
 
   return ss.str();
 }
 int main() {
-  cout << "문자열로 변환:: 1 + 2 = " << to_str(1 + 2) << endl;
+  std::cout << "문자열로 변환:: 1 + 2 = " << to_str(1 + 2) << std::endl;
 
   return 0;
 }
@@ -769,10 +701,10 @@ int main() {
 와 같이 나옵니다.
 
 
-이번에는 거꾸로 데이터를 출력할 수 있는 `ostringstream` 이 있습니다. 위와 비슷한 방법으로 이번애는 거꾸로 숫자에서 ㅁ누자열로 바꾸는 함수를 제작할 수 있습니다.
+이번에는 거꾸로 데이터를 출력할 수 있는 `std::ostringstream` 이 있습니다. 위와 비슷한 방법으로 이번애는 거꾸로 숫자에서 문자열로 바꾸는 함수를 제작할 수 있습니다.
 
 ```cpp-formatted
-ostringstream ss;
+std::ostringstream ss;
 ss << x;
 ```
 
@@ -784,9 +716,7 @@ ss << x;
 return ss.str();
 ```
 
-
-
-이제  str 함수로 현재 문자열 스트림에 쓰여 있는 값을 불러오기만 하면 끝납니다.
+이제 `str` 함수로 현재 문자열 스트림에 쓰여 있는 값을 불러오기만 하면 끝납니다.
 
 
 이상으로 이번 강좌를 마치도록 하겠습니다. 다음 강좌에서는 여태 까지 배운 내용들을 총 종합하여 큰 프로젝트 하나를 만들도록 하겠습니다. 다음 강좌에서 제작하기 전에, 아래 생각해보기를 통해서 먼저 여러분 스스로 구현해 보는 것도 좋을 것 같습니다.
@@ -800,29 +730,27 @@ return ss.str();
 
 #### 문제 1 (난이도 :中)
 
-일단 엑셀의 셀들의 정보 (일단 단순한 `string` 이라고 생각합시다) 에 대한 `Cell` 클래스가 있고 이 `Cell` 객체들을 모아두는 `Table` 클래스가 있습니다. `Table` 클래스에는 2차원 배열로 `Cell` 객체들에 대한 정보 (참고로 `Cell` 객체가 생성 될 때 마다 동적으로 `Cell` 객체를 생성합니다.) 가 보관되어 있습니다. 또한 `Table` 클래스에 전체 데이터를 출력하는 `print_table` 함수가 가상으로 정의되어 있습니다.
+일단 엑셀의 셀들의 정보 (일단 단순한 `std::string` 이라고 생각합시다) 에 대한 `Cell` 클래스가 있고 이 `Cell` 객체들을 모아두는 `Table` 클래스가 있습니다. `Table` 클래스에는 2차원 배열로 `Cell` 객체들에 대한 정보 (참고로 `Cell` 객체가 생성 될 때 마다 동적으로 `Cell` 객체를 생성합니다.) 가 보관되어 있습니다. 또한 `Table` 클래스에 전체 데이터를 출력하는 `print_table` 함수가 가상으로 정의되어 있습니다.
 
 여러분은 `Table` 클래스를 상속 받는 `TextTable, CSVTable, HTMLTable` 클래스를 만들어서 `print_table` 함수를 오버라이드 할 함수들을 제작할 것입니다. 예를 들어 `TextTable` 클래스의 `print_table` 함수는 텍스트 형식으로, `CSVTable` 은 `CSV` 파일 형식으로 등등 만들어야 겠지요?
 제가 아래 대충 프로그램의 골격을 잡아 놓았으니 여러분들은 이를 채우기만 하면 됩니다.
 
 ```cpp-formatted
 class Table;
-class Cell어
-
-{
+class Cell {
   Table* table;  // 어느 테이블에 속해있는지
-  string data;
+  std::string data;
   int x, y;  // 테이블 에서의 위치
  public:
-  Cell(const string& data) : data(data){};
+  Cell(const std::string& data) : data(data){};
 };
 class Table {
   Cell*** data_base;  // 왜 3중 포인터 인지 잘 생각해보세요!
  public:
   Cell();
-  virtual string print_table() = 0;
+  virtual std::string print_table() = 0;
   void reg_cell(Cell* c, int row, int col);  // Cell 을 등록한다
-  string get_cell_string(int row,
+  std::string get_cell_std::string(int row,
                          int col);  // 해당 위치의 Cell 데이터를 얻는다.
   ~Table();
 };
@@ -841,7 +769,7 @@ class HTMLTable : public Table {};
 하지만 실제 엑셀의 경우 셀이 문자열 데이터만 들어가는 것이 아니라, 숫자나 날짜 심지어 수식 까지도 들어갈 수 있습니다. 따라서 우리는 `Cell` 을 상속 받는 4 개의 `StringCell. NumberCell, DateCell, ExprCell` 클래스들을 만들어야 합니다.
 
 
-또한 `Cell` 클래스에 `to_numeric` (데이터를 숫자로 바꾼다)과 `stringify` (데이터를 문자열로 바꾼다) 함수들을 가상으로 정의하고, 4개의 클래스들이 이를 상속 받아서 구현할 수 있게 해야 합니다. (참고로 문자열을 숫자로 변환하면 그냥 0 이 되게 하면 됩니다)
+또한 `Cell` 클래스에 `to_numeric` (데이터를 숫자로 바꾼다)과 `std::stringify` (데이터를 문자열로 바꾼다) 함수들을 가상으로 정의하고, 4개의 클래스들이 이를 상속 받아서 구현할 수 있게 해야 합니다. (참고로 문자열을 숫자로 변환하면 그냥 0 이 되게 하면 됩니다)
 
 
 또한 `ExprCell` 의 경우 간단한 수식에 대한 정보를 가지는 객체로, `Cell` 들 간의 연산을 사용할 수 있습니다. 에를 들어서 `A1+B2+C6-6` 와 같은 데이터가 들어 있는 `ExprCell` 에 `to_numeric` 함수를 호출하면`A1, B2, C6` 의 값을 더하고 (각 셀에 `to_numeric` 을 해서), 6 을 빼준 결과값이 나와야 합니다.

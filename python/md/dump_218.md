@@ -34,9 +34,7 @@ publish_date : 2016-07-19
 
 앞서 말했듯이, `Cell` 클래스에는 `string` 데이터만 저장할 수 있기 때문에 이를 상속 받는 클래스들을 만들어서 셀에 다양한 데이터들을 보관할 수 있게 할 것입니다.
 ```cpp-formatted
-class Cell
-
-{
+class Cell {
  protected:
   int x, y;
   Table* table;
@@ -208,12 +206,9 @@ class ExprCell : public Cell {
 
 ###  수식 계산하기 `-` 중위 표기법과 후위 표기법
 
-
-
-
 우리는 흔히 수식을 나타내기 위해 다음과 같이 써 왔습니다.
-```info
 
+```info
 3 + 4 * 5 + 4 * (7 - 2)
 ```
 
@@ -222,7 +217,7 @@ class ExprCell : public Cell {
 이렇게 표기하는 방식을 중위 표기법이라고 합니다. 사실 우리는 위 방식에 익숙해서 어떠한 순서로 계산하는지 쉽게 알 수 있지만 컴퓨터에 경우 이를 계산하는데 조금 어려울 수 있습니다. 일단 고려해야할 점들이 먼저 괄호를 우선으로 계산하고, 그 다음에 `*` 와 `/ ,` 그리고 `+` 와 `-` 의 우선 순위로 나누어서 계산해야 합니다.
 
 
-쉽게 말해 위 수식의 경우 비록 맨 앞에 `3 + 4` 이 있지만 사실은 4 `* 5` 를 먼저 계산해야 됩니다. 즉, 컴퓨터가 이 수식을 계산하기 위해서는계산하는 위치를 우선 순위에 맞게 이러 저리 옮겨다녀야 합니다.
+쉽게 말해 위 수식의 경우 비록 맨 앞에 `3 + 4` 이 있지만 사실은 `4 * 5` 를 먼저 계산해야 됩니다. 즉, 컴퓨터가 이 수식을 계산하기 위해서는계산하는 위치를 우선 순위에 맞게 이러 저리 옮겨다녀야 합니다.
 
 
 
@@ -233,13 +228,12 @@ class ExprCell : public Cell {
 
 
 ```info
-
 3 4 5 * + 4 7 2 - * +
 ```
 
 
 
-우리가 흔히 생각하는 수식의 모습이랑 사뭇 다릅니다. 사실 위 수식은 앞서 말한 수식과 정확히 동일한 수식인데, 그 표현 방식이 다를 뿐입니다.이러한 형태로 수식을 표현하는 방식을 후위 표기법(postfix notation)이라고 합니다. 자세히 보자면 이전 수식과 다른 점을 두 가지 찾을 수 있는데, 하나는 이전과는 달리 연산자들이 피연산자 뒤쪽에 위치해 있다는 점과, 또 하나는 괄호가 사라졌다는 점입니다.
+우리가 흔히 생각하는 수식의 모습이랑 사뭇 다릅니다. 사실 위 수식은 앞서 말한 수식과 정확히 동일한 수식인데, 그 표현 방식이 다를 뿐입니다. 이러한 형태로 수식을 표현하는 방식을 후위 표기법(postfix notation)이라고 합니다. 자세히 보자면 이전 수식과 다른 점을 두 가지 찾을 수 있는데, 하나는 이전과는 달리 연산자들이 피연산자 뒤쪽에 위치해 있다는 점과, 또 하나는 괄호가 사라졌다는 점입니다.
 
 
 괄호가 사라졌다는 것이 무슨 의미가 있을까요?
@@ -263,7 +257,7 @@ class ExprCell : public Cell {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F24246334578EC0EE1DABA0)
 
-실제로 `3 + 4 * 5 +` 4 * (7 - 2) 을 계산 했을 때와 그 결과가 같음을 알 수 있습니다.
+실제로 `3 + 4 * 5 + 4 * (7 - 2)` 을 계산 했을 때와 그 결과가 같음을 알 수 있습니다.
 
 
 이를 바탕으로 후위 표기법으로 된 수식을 계산하는 `is_numeric` 함수를 살펴보도록 하겠습니다.
@@ -329,10 +323,6 @@ else if (isdigit(s[0])) {
 }
 ```
 
-
-
-
-
 그리고 각각의 토큰에 대해서, 셀 이름 (A3, B2 이렇게) 이나 숫자일 경우 스택에 `push` 하게 됩니다.
 
 ```cpp-formatted
@@ -355,8 +345,6 @@ else {
   }
 }
 ```
-
-
 
 아니면 연산자를 만날 경우 스택에서 두 번 `pop` 을 해서 해당하는 피연산자들에 해당 연산자를 적용해서 다시 스택에 `push` 하게 됩니다.
 
@@ -381,11 +369,12 @@ return stack.pop();
 중위 표기법을 후위 표기법으로 변환하는 것은 다음의 방식을 따릅니다.
 
 1. 피연산자 (셀 이름이나 숫자) 일 경우 그냥 `exp_vec` 에 넣습니다.
-1. 여는 괄호( (, [, { 와 같은 것들 ) 을 만날 경우 스택에 `push` 합니다.
+1. 여는 괄호( `(, [, {` 와 같은 것들 ) 을 만날 경우 스택에 `push` 합니다.
 1. 닫는 괄호( `), ], }` 와 같은 것들 `)` 을 만날 경우 여는 괄호가 `pop` 될 때 까지 `pop` 되는 연산자들을 `exp_vec` 에 넣습니다.
 1. 연산자일 경우 자기 보다 우선순위가 낮은 연산자가 스택 최상단에 올 때 까지 (혹은 스택이 빌 때 까지) 스택을 `pop` 하고 (낮은 것은 `pop` 하지 않습니다), `pop` 된 연산자들을 `exp_vec` 에 넣습니다. 그리고 마지막에 자신을 스택에 `push` 합니다.
 
 그리고 연산자들의 우선 순위는 아래의 함수에 의해 정의됩니다.
+
 ```cpp-formatted
 int ExprCell::precedence(char c) {
   switch (c) {
@@ -405,11 +394,10 @@ int ExprCell::precedence(char c) {
 ```
 
 
-
 괄호들이 가장 낮고, 그 다음이 `+` 와 `-,` 그리고 최상위 우선순위가 `*` 와 `/` 입니다.
 
 
-그렇다면 `3 + 4 * 5 +` 4 * (7 - 2) 가 어떻게 변환되는지 그림으로 살펴보도록 하겠습니다.
+그렇다면 `3 + 4 * 5 + 4 * (7 - 2)` 가 어떻게 변환되는지 그림으로 살펴보도록 하겠습니다.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F2779ED44578F2D81123CD3)
@@ -466,8 +454,6 @@ if (isalpha(data[i])) {  // 셀 이름의 경우 첫 번째 글자가 알파벳�
 }
 ```
 
-
-
 일단 피연산자를 만날 경우 `exp_vec` 에 무조건 집어넣으면 됩니다.
 
 ```cpp-formatted
@@ -483,8 +469,6 @@ else if (data[i] == ')' || data[i] == ']' || data[i] == '}') {
 }
 ```
 
-
-
 반면에 괄호의 경우 여는 괄호를 만나면 스택에 `push` 하고, 닫는 괄호를 만나면 위 처럼 여는 괄호가 스택에서 나올 때 까지 `pop` 하고, 그 `pop` 한 연산자들을 벡터에 넣으면 됩니다. 주의할 점은 `pop` 한 연산자가 괄호일 경우 넣지 않는다는 점입니다.
 
 ```cpp-formatted
@@ -496,8 +480,6 @@ else if (data[i] == '+' || data[i] == '-' || data[i] == '*' || data[i] == '/') {
   stack.push(data.substr(i, 1));
 }
 ```
-
-
 
 마지막으로 연산자일 경우를 살펴봅시다. `peek` 의 경우 스택의 최상단 원소를 `pop` 하지는 않고 무엇인지만 살펴보는 것입니다. 만일 최상단 원소의 우선 순위가 현재 연산자의 우선순위 보다 높다면 이를 스택에서 `pop` 하고 이를 `exp_vec` 에 넣어야 겠지요. 위 `while` 문은 그 과정을 나타내고 있습니다.
 
@@ -524,7 +506,7 @@ data.push_back(')');
 ```cpp-formatted
 // 생략
 int main() {
-  TxtTable table(5, 5);
+  MyExcel::TxtTable table(5, 5);
   table.reg_cell(new NumberCell(2, 1, 1, &table), 1, 1);
   table.reg_cell(new NumberCell(3, 1, 2, &table), 1, 2);
 
@@ -534,7 +516,7 @@ int main() {
   table.reg_cell(new StringCell("B2 + B3 * ( C2 + C3 - 2 ) = ", 3, 2, &table),
                  3, 1);
 
-  cout << table;
+  std::cout << table;
 }
 ```
 
@@ -562,9 +544,7 @@ int main() {
 그렇다면 이제 실제로 사용자의 입력을 받아서 비록 마우스는 쓸 수 없더라도 키보드로 명령을 처리하는 엑셀 프로그램을 만들어보도록 하겠습니다.
 
 ```cpp-formatted
-class Excel
-
-{
+class Excel {
   Table* current_table;
 
  public:
@@ -648,7 +628,7 @@ int Excel::parse_user_input(string s) {
   } else if (command == "out") {
     ofstream out(to);
     out << *current_table;
-    cout << to << " 에 내용이 저장되었습니다" << endl;
+    std::cout << to << " 에 내용이 저장되었습니다" << std::endl;
   } else if (command == "exit") {
     return 0;
   }
@@ -688,22 +668,27 @@ sets B2 hello world!
 ```cpp-formatted
 void Excel::command_line() {
   string s;
-  getline(cin, s);
+  std::getline(cin, s);
 
   while (parse_user_input(s)) {
-    cout << *current_table << endl << ">> ";
+    std::cout << *current_table << std::endl << ">> ";
     getline(cin, s);
   }
 }
+```
+
+따라서 `main` 함수 에서는
+
+```cpp
 int main() {
-  cout << "테이블 (타입) (최대 행 크기) (최대 열 크기) 를 순서대로 입력해주세요"
-       << endl;
-  cout << "* 참고 * " << endl;
-  cout << "1 : 텍스트 테이블, 2 : CSV 테이블, 3 : HTML 테이블" << endl;
+  std::cout << "테이블 (타입) (최대 행 크기) (최대 열 크기) 를 순서대로 입력해주세요"
+       << std::endl;
+  std::cout << "* 참고 * " << std::endl;
+  std::cout << "1 : 텍스트 테이블, 2 : CSV 테이블, 3 : HTML 테이블" << std::endl;
 
   int type, max_row, max_col;
-  cin >> type >> max_row >> max_col;
-  Excel m(max_row, max_col, type - 1);
+  std::cin >> type >> max_row >> max_col;
+  MyExcel::Excel m(max_row, max_col, type - 1);
   m.command_line();
 }
 ```

@@ -90,31 +90,30 @@ class EmployeeList {
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
-  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
+  Derived() : s("파생"), Base() { std::cout << "파생 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 int main() {
-  cout << " === 기반 클래스 생성 ===" << endl;
+  std::cout << " === 기반 클래스 생성 ===" << std::endl;
   Base p;
 
   p.what();
 
-  cout << " === 파생 클래스 생성 ===" << endl;
+  std::cout << " === 파생 클래스 생성 ===" << std::endl;
   Derived c;
 
   c.what();
@@ -146,29 +145,28 @@ int main() {
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
-  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
+  Derived() : s("파생"), Base() { std::cout << "파생 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 int main() {
   Base p;
   Derived c;
 
-  cout << "=== 포인터 버전 ===" << endl;
+  std::cout << "=== 포인터 버전 ===" << std::endl;
   Base* p_c = &c;
   p_c->what();
 
@@ -193,8 +191,6 @@ int main() {
 Base* p_c = &c;
 ```
 
-
-
 어떤 분들은 이와 같은 대입이 가능하냐고 물을 수 있습니다. `Base` 와 `Derived` 는 다른 클래스 이니까요. 하지만, 그 분들이 간과하고 있는 점은 `Derived` 가 `Base` 를 상속 받고 있다는 점입니다. 상속 받는다면 뭐죠? **Derived is a Base**
 
 
@@ -216,37 +212,34 @@ Base* p_c = &c;
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
-  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
+  Derived() : s("파생"), Base() { std::cout << "파생 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 int main() {
   Base p;
   Derived c;
 
-  cout << "=== 포인터 버전 ===" << endl;
+  std::cout << "=== 포인터 버전 ===" << std::endl;
   Derived* p_p = &p;
   p_p->what();
 
   return 0;
 }
 ```
-
-
 
 컴파일 한다면 다음과 같은 오류 메세지를 볼 수 있습니다.
 
@@ -262,35 +255,33 @@ Base * 에서 Derived * 로 변환할 수 없습니다.
 만일 `Derived*` 포인터가 `Base` 객체를 가리킨다고 해봅시다. 그렇다면 `p_p->what()` 하게 된다면 `Derived` 의 `what` 함수가 호출되어야만 하는데, 이는 불가능 합니다. (왜냐하면 `p_p` 가 가리키는 객체는 `Base` 객체 이므로 `Derived` 에 대한 정보가 없습니다). 따라서, 이와 같은 문제를 막기 위해서 컴파일러 상에서 함부로 다운 캐스팅 하는 것을 금지하고 있습니다.
 
 
-
 하지만 다음과 같은 상황은 어떨까요.
 
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
-  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
+  Derived() : s("파생"), Base() { std::cout << "파생 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 int main() {
   Base p;
   Derived c;
 
-  cout << "=== 포인터 버전 ===" << endl;
+  std::cout << "=== 포인터 버전 ===" << std::endl;
   Base* p_p = &c;
 
   Derived* p_c = p_p;
@@ -300,15 +291,11 @@ int main() {
 }
 ```
 
-
-
 컴파일 하였다면
 
 ```compiler-warning
 error C2440: 'initializing' : cannot convert from 'Base *' to 'Derived *'
 ```
-
-
 
 `Derived* p_c` 에 `Base *` 를 대입하면 안된다는 똑같은 오류가 발생합니다. 하지만 우리는 `p_p` 가 가리키는 것이 `Base` 객체가 아니라 `Derived` 객체라는 사실을 알고 있습니다. 그렇기 때문에 비록 `Base *` 포인터를 다운 캐스팅 함에도 불구하고 `p_p` 가 실제로는 `Derived` 객체를 가리키기 때문에
 
@@ -316,44 +303,39 @@ error C2440: 'initializing' : cannot convert from 'Base *' to 'Derived *'
 Derived* p_c = p_p;
 ```
 
-
-
 를 해도 전혀 문제가 없습니다. 이를 위해서는 아래 처럼 강제적으로 타입 변환을 하면 됩니다.
 
 ```cpp-formatted
 Derived* p_c = static_cast<Derived*>(p_p);
 ```
 
-
-
 비록 약간은 위험하지만 (만일 `p_p` 가 사실은 `Derived` 객체를 가리키지 않는다면?) 컴파일 오류를 발생시키지 않고 성공적으로 컴파일 할 수 있습니다. 그렇다면 만일 `p_p` 가 사실 `Base` 객체를 가리키는데 강제적으로 타입 변환을 해서 `what` 을 실행한다면 어떨까요?
 
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
-  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
+  Derived() : s("파생"), Base() { std::cout << "파생 클래스" << std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() { std::cout << s << std::endl; }
 };
 int main() {
   Base p;
   Derived c;
 
-  cout << "=== 포인터 버전 ===" << endl;
+  std::cout << "=== 포인터 버전 ===" << std::endl;
   Base* p_p = &p;
 
   Derived* p_c = static_cast<Derived*>(p_p);
@@ -363,26 +345,38 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F27029238533880F714CFAC)
 
 
-
 와 같은 런타임 오류가 발생하게 됩니다.
-
 
 이러한 강제적으로 다운 캐스팅을 하는 경우, 컴파일 타임에서 오류를 찾아내기 매우 힘들기 때문에 다운 캐스팅은 작동이 보장되지 않는 한 매우매우 권장하지 않는 바입니다.
 
+### dyanmic_cast
 
+이러한 캐스팅에 따른 오류를 미연에 방지하기 위해서, C++ 에서는 상속 관계에 있는 두 포인터들 간에 캐스팅을 해주는 `dynamic_cast` 라는 것을 지원합니다. 이를 사용하는 방법은 `static_cast` 와 거의 동일합니다.
+
+```cpp
+  Derived* p_c = dyanmic_cast<Derived*>(p_p);
+```
+
+하지만 위의 경우 컴파일 하게 된다면
+
+```compiler-warning
+test.cc: In function ‘int main()’:
+test.cc:27:44: error: cannot dynamic_cast ‘p_p’ (of type ‘class Base*’) to type ‘class Derived*’ (source type is not polymorphic)
+   Derived* p_c = dynamic_cast<Derived*>(p_p);
+```
+
+와 같이 캐스팅 할 수 없다는 컴파일 오류가 발생하게 됩니다. 
 
 ###  EmployeeList 다시 보기
 
 
-자, 그럼 이제 위에서 다룬 내용을 가지고 EmployeeList 를 어떻게 하면 좀 더 간단하게 만들 수 있을 지 생각해봅시다.
+자, 그럼 이제 위에서 다룬 내용을 가지고 `EmployeeList` 를 어떻게 하면 좀 더 간단하게 만들 수 있을 지 생각해봅시다.
 
 ```cpp-formatted
 class EmployeeList {
@@ -412,8 +406,6 @@ void print_employee_info() {
   ...
 ```
 
-
-
 바로 여기서, `employee_list[i]->print_info()` 를 하게 되면 무조건 `Employee` 클래스의 `print_info` 함수가 호출된다는 것입니다. 왜냐하면 위에서도 이야기 하였듯이, `employee_list[i]` 는 `Employee` 객체를 가리키는 포인터 이기 때문에 자신이 가리키는 객체가 `Employee` 객체라고 생각합니다.
 
 
@@ -425,21 +417,20 @@ void print_employee_info() {
 실제로,
 
 
-```cpp-formatted
+```cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Employee {
  protected:
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
 
  public:
-  Employee(string name, int age, string position, int rank)
+  Employee(std::string name, int age, std::string position, int rank)
       : name(name), age(age), position(position), rank(rank) {}
 
   // 복사 생성자
@@ -454,8 +445,8 @@ class Employee {
   Employee() {}
 
   void print_info() {
-    cout << name << " (" << position << " , " << age << ") ==> "
-         << calculate_pay() << "만원" << endl;
+    std::cout << name << " (" << position << " , " << age << ") ==> "
+         << calculate_pay() << "만원" << std::endl;
   }
   int calculate_pay() { return 200 + rank * 50; }
 };
@@ -464,7 +455,7 @@ class Manager : public Employee {
   int year_of_service;
 
  public:
-  Manager(string name, int age, string position, int rank, int year_of_service)
+  Manager(std::string name, int age, std::string position, int rank, int year_of_service)
       : year_of_service(year_of_service), Employee(name, age, position, rank) {}
 
   // 복사 생성자
@@ -478,8 +469,8 @@ class Manager : public Employee {
 
   int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
   void print_info() {
-    cout << name << " (" << position << " , " << age << ", " << year_of_service
-         << "년차) ==> " << calculate_pay() << "만원" << endl;
+    std::cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" << std::endl;
   }
 };
 class EmployeeList {
@@ -510,7 +501,7 @@ class EmployeeList {
       employee_list[i]->print_info();
       total_pay += employee_list[i]->calculate_pay();
     }
-    cout << "총 비용 : " << total_pay << "만원 " << endl;
+    std::cout << "총 비용 : " << total_pay << "만원 " << std::endl;
   }
   ~EmployeeList() {
     for (int i = 0; i < current_employee; i++) {
@@ -533,11 +524,7 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2276DA3F53389A592E48BC)
 
@@ -549,28 +536,26 @@ int main() {
 그런데 놀랍게도 이러한 문제를 5초 만에 해결할 수 있는 방법이 있습니다.
 
 
-
 ###  virtual 키워드
 
 `EmployeeList` 문제를 해결하기 전에 좀 더 간단한 예시로 살펴보겠습니다.
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class Base {
 
  public:
-  Base() { cout << "기반 클래스" << endl; }
+  Base() { std::cout << "기반 클래스" << std::endl; }
 
-  virtual void what() { cout << "기반 클래스의 what()" << endl; }
+  virtual void what() { std::cout << "기반 클래스의 what()" << std::endl; }
 };
 class Derived : public Base {
 
  public:
-  Derived() : Base() { cout << "파생 클래스" << endl; }
+  Derived() : Base() { std::cout << "파생 클래스" << std::endl; }
 
-  void what() { cout << "파생 클래스의 what()" << endl; }
+  void what() { std::cout << "파생 클래스의 what()" << std::endl; }
 };
 int main() {
   Base p;
@@ -579,10 +564,10 @@ int main() {
   Base* p_c = &c;
   Base* p_p = &p;
 
-  cout << " == 실제 객체는 Base == " << endl;
+  std::cout << " == 실제 객체는 Base == " << std::endl;
   p_p->what();
 
-  cout << " == 실제 객체는 Derived == " << endl;
+  std::cout << " == 실제 객체는 Derived == " << std::endl;
   p_c->what();
 
   return 0;
@@ -607,14 +592,12 @@ int main() {
 Base* p_c = &c;
 Base* p_p = &p;
 
-cout << " == 실제 객체는 Base == " << endl;
+std::cout << " == 실제 객체는 Base == " << std::endl;
 p_p->what();
 
-cout << " == 실제 객체는 Derived == " << endl;
+std::cout << " == 실제 객체는 Derived == " << std::endl;
 p_c->what();
 ```
-
-
 
 분명히 여기서 `p_p` 와 `p_c` 모두 `Base` 객체를 가리키는 포인터 입니다. 따라서, `p_p->what()` 와 `p_c->what()` 을 하면 모두 `Base` 객체의 `what()` 함수가 실행되서 둘 다 '기반' 라고 출력이 되어야만 했습니다.
 
@@ -627,9 +610,9 @@ p_c->what();
 class Base {
 
  public:
-  Base() { cout << "기반 클래스" << endl; }
+  Base() { std::cout << "기반 클래스" << std::endl; }
 
-  virtual void what() { cout << "기반 클래스의 what()" << endl; }
+  virtual void what() { std::cout << "기반 클래스의 what()" << std::endl; }
 };
 ```
 
@@ -654,8 +637,6 @@ p_c->what();
 ```cpp-formatted
 p_p->what();
 ```
-
-
 
 였을 경우에는
 
@@ -694,30 +675,29 @@ p_p->what();
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  virtual void what() { cout << s << endl; }
+  virtual void what() { std::cout << s << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
-  Derived() : s("파생"), Base() { cout << "파생 클래스" << endl; }
+  Derived() : s("파생"), Base() { std::cout << "파생 클래스" << std::endl; }
 
-  void what() override { cout << s << endl; }
+  void what() override { std::cout << s << std::endl; }
 };
 ```
 
 C++ 11 에서는 파생 클래스에서 기반 클래스의 가상 함수를 오버라이드 하는 경우, `override` 키워드를 통해서 명시적으로 나타낼 수 있습니다. 
 
 ```cpp
-  void what() override { cout << s << endl; }
+  void what() override { std::cout << s << std::endl; }
 ```
 
 위 경우 `Derived` 클래스의 `what` 함수는 `Base` 클래스의 `what` 함수를 오버라이드 하므로, `override` 키워드를 통해 이를 알려주고 있습니다.
@@ -727,23 +707,22 @@ C++ 11 에서는 파생 클래스에서 기반 클래스의 가상 함수를 오
 ```cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  virtual void incorrect() { cout << "기반 클래스 " << endl; }
+  virtual void incorrect() { std::cout << "기반 클래스 " << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
   Derived() : Base(), s("파생") {}
 
-  void incorrect() const { cout << "파생 클래스 " << endl; }
+  void incorrect() const { std::cout << "파생 클래스 " << std::endl; }
 };
 int main() {
   Base p;
@@ -752,10 +731,10 @@ int main() {
   Base* p_c = &c;
   Base* p_p = &p;
 
-  cout << " == 실제 객체는 Base == " << endl;
+  std::cout << " == 실제 객체는 Base == " << std::endl;
   p_p->incorrect();
 
-  cout << " == 실제 객체는 Derived == " << endl;
+  std::cout << " == 실제 객체는 Derived == " << std::endl;
   p_c->incorrect();
   return 0;
 }
@@ -783,23 +762,22 @@ int main() {
 ```cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  virtual void incorrect() { cout << "기반 클래스 " << endl; }
+  virtual void incorrect() { std::cout << "기반 클래스 " << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
   Derived() : Base(), s("파생") {}
 
-  void incorrect() const override { cout << "파생 클래스 " << endl; }
+  void incorrect() const override { std::cout << "파생 클래스 " << std::endl; }
 };
 int main() {
   Base p;
@@ -808,10 +786,10 @@ int main() {
   Base* p_c = &c;
   Base* p_p = &p;
 
-  cout << " == 실제 객체는 Base == " << endl;
+  std::cout << " == 실제 객체는 Base == " << std::endl;
   p_p->incorrect();
 
-  cout << " == 실제 객체는 Derived == " << endl;
+  std::cout << " == 실제 객체는 Derived == " << std::endl;
   p_c->incorrect();
   return 0;
 }
@@ -821,7 +799,7 @@ int main() {
 
 ```compiler-warning
 test.cc:19:8: error: ‘void Derived::incorrect() const’ marked ‘override’, but does not override
-   void incorrect() const override { cout << "파생 클래스 " << endl; }
+   void incorrect() const override { std::cout << "파생 클래스 " << std::endl; }
         ^~~~~~~~~
 ```
 
@@ -830,23 +808,22 @@ test.cc:19:8: error: ‘void Derived::incorrect() const’ marked ‘override’
 ```cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") { std::cout << "기반 클래스" << std::endl; }
 
-  virtual void incorrect() { cout << "기반 클래스 " << endl; }
+  virtual void incorrect() { std::cout << "기반 클래스 " << std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
   Derived() : Base(), s("파생") {}
 
-  void incorrect() override { cout << "파생 클래스 " << endl; }
+  void incorrect() override { std::cout << "파생 클래스 " << std::endl; }
 };
 int main() {
   Base p;
@@ -855,10 +832,10 @@ int main() {
   Base* p_c = &c;
   Base* p_p = &p;
 
-  cout << " == 실제 객체는 Base == " << endl;
+  std::cout << " == 실제 객체는 Base == " << std::endl;
   p_p->incorrect();
 
-  cout << " == 실제 객체는 Derived == " << endl;
+  std::cout << " == 실제 객체는 Derived == " << std::endl;
   p_c->incorrect();
   return 0;
 }
@@ -881,21 +858,20 @@ int main() {
 
 이제 여러분은 그동안 골머리를 썩여왔던 `EmployeeList` 문제도 해결할 수 있게 되었습니다. 단순히 `Employee` 클래스의 `calculate_pay` 함수와 `print_info` 함수 앞에 `virtual` 만 붙여주면 깔끔하게 정리 되지요.
 
-```cpp-formatted
+```cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Employee {
  protected:
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
 
  public:
-  Employee(string name, int age, string position, int rank)
+  Employee(std::string name, int age, std::string position, int rank)
       : name(name), age(age), position(position), rank(rank) {}
 
   // 복사 생성자
@@ -910,8 +886,8 @@ class Employee {
   Employee() {}
 
   virtual void print_info() {
-    cout << name << " (" << position << " , " << age << ") ==> "
-         << calculate_pay() << "만원" << endl;
+    std::cout << name << " (" << position << " , " << age << ") ==> "
+         << calculate_pay() << "만원" << std::endl;
   }
   virtual int calculate_pay() { return 200 + rank * 50; }
 };
@@ -920,13 +896,13 @@ class Manager : public Employee {
   int year_of_service;
 
  public:
-  Manager(string name, int age, string position, int rank, int year_of_service)
+  Manager(std::string name, int age, std::string position, int rank, int year_of_service)
       : year_of_service(year_of_service), Employee(name, age, position, rank) {}
 
   int calculate_pay() override { return 200 + rank * 50 + 5 * year_of_service; }
   void print_info() override {
-    cout << name << " (" << position << " , " << age << ", " << year_of_service
-         << "년차) ==> " << calculate_pay() << "만원" << endl;
+    std::cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" << std::endl;
   }
 };
 class EmployeeList {
@@ -957,7 +933,7 @@ class EmployeeList {
       total_pay += employee_list[i]->calculate_pay();
     }
 
-    cout << "총 비용 : " << total_pay << "만원 " << endl;
+    std::cout << "총 비용 : " << total_pay << "만원 " << std::endl;
   }
   ~EmployeeList() {
     for (int i = 0; i < current_employee; i++) {
@@ -981,8 +957,6 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
@@ -996,8 +970,6 @@ int main() {
 employee_list[i]->print_info();
 total_pay += employee_list[i]->calculate_pay();
 ```
-
-
 
 이 두 부분은 `employee_list[i]` 가 `Employee` 냐 `Manager` 에 따라서 다르게 동작하게 됩니다. 이렇게 같은 `print_info` 함수를 호출했음에도 불구하고 어떤 경우는 `Employee` 의 것이, 어떤 경우는 `Manager` 의 것이 호출되는 일; 즉 하나의 메소드를 호출했음에도 불구하고 여러가지 다른 작업들을 하는 것을 바로 **다형성(polymorphism)** 이라고 부릅니다.
 

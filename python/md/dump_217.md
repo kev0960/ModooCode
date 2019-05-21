@@ -266,10 +266,13 @@ Stack::~Stack() {
 최종적으로 아래는 우리가 만든 벡터와 스택 클래스의 헤더 파일인 `utils.h` 의 전체 내용입니다.
 
 ```cpp-formatted
-#pragma once
-#include <string>
-using namespace std;
+#ifndef UTILS_H
+#define UTILS_H
 
+#include <string>
+using std::string
+
+namespace MyExcel {
 class Vector {
   string* data;
   int capacity;
@@ -342,43 +345,16 @@ class NumStack {
 
   ~NumStack();
 };
-```
-
-
-
-
-참고로 맨 위에 흥미로운 전처리기 하나가 있습니다.
-
-```cpp-formatted
-#pragma once
-```
-
-
-
-아직 C++ 표준에 정식으로 들어간 것은 아니지만, 그래도 대부분의 주요 컴파일러 `Visual Studio, gcc, clang` 등등에서 지원하고 있는 것으로 이 헤더파일이 중복되서 포함되지 않도록 합니다. 물론 기존에
-
-```info
-
-#ifndef A
-#define A
-// 헤더파일 내용
+}
 #endif
 ```
-
-
-
-이런 형태로 사용하기도 하였지만 이를 위의 한 줄로 단순화 시킨 것입니다. #pragma `once` 를 명시하게 되면, 설사 다른 소스파일에서 이 헤더파일을 두 번 이상 `include` 해도 알아서 컴파일러 차원에서 한 번만 `include` 하게 해줍니다.
-
 
 마찬가지로 아래는 해당 헤더파일 내용을 구현한 `utility.cpp` 입니다.
 
 ```cpp-formatted
-#include <string>
-
 #include "utils.h"
-using namespace std;
 
-// default argument must go only once
+namespace MyExcel {
 Vector::Vector(int n) : data(new string[n]), capacity(n), length(0) {}
 void Vector::push_back(string s) {
   if (capacity <= length) {
@@ -464,23 +440,15 @@ NumStack::~NumStack() {
     delete prev;
   }
 }
+}
 ```
 
-
-
-
-
+참고로 우리의 Excel 관련한 모든 코드는 `MyExcel` 이라는 이름 공간에 담겨 있을 것입니다.
 
 ###  본격적인 `Cell` 과 `Table` 클래스
 
-
-
-
-
 ```cpp-formatted
-class Cell
-
-{
+class Cell {
  protected:
   int x, y;
   Table* table;
@@ -494,8 +462,6 @@ class Cell
   Cell(string data, int x, int y, Table* table);
 };
 ```
-
-
 
 `Cell` 클래스는 큰 테이블에서 한 칸을 의미하는 객체로, 해당 내용을 보관하는 문자열 `data` 와 어느 테이블에 위치해 있는지에 관련한 정보를 가지고 있는 `table` 과 그 위치 `x, y` 로 구성되어 있습니다.
 
@@ -512,8 +478,6 @@ Cell::Cell(string data, int x, int y, Table* table)
 string Cell::stringify() { return data; }
 int Cell::to_numeric() { return 0; }
 ```
-
-
 
 자 그럼 `Table` 클래스의 정의를 살펴보도록 하겠습니다.
 
@@ -648,7 +612,7 @@ string Table::stringify(int row, int col) {
   }
   return "";
 }
-ostream& operator<<(ostream& o, Table& table) {
+std::ostream& operator<<(std::ostream& o, Table& table) {
   o << table.print_table();
   return o;
 }
@@ -781,34 +745,27 @@ string TxtTable::col_num_to_str(int n) {
 ```cpp-formatted
 // 생략
 int main() {
-  TxtTable table(5, 5);
-  ofstream out("test.txt");
+  MyExcel::TxtTable table(5, 5);
+  std::ofstream out("test.txt");
 
   table.reg_cell(new Cell("Hello~", 0, 0, &table), 0, 0);
   table.reg_cell(new Cell("C++", 0, 1, &table), 0, 1);
 
   table.reg_cell(new Cell("Programming", 1, 1, &table), 1, 1);
-  cout << endl << table;
+  std::cout << std::endl << table;
   out << table;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F2730FA3A578C93C81EB1DF)
-
 
 
 와 같이 잘 나오게 됩니다.
 
 
 또한 `test.txt` 파일에도 역시
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2506113B578C94130C2F95)
 
@@ -842,8 +799,8 @@ class CSVTable : public Table {
 ```cpp-formatted
 // 생략
 int main() {
-  CSVTable table(5, 5);
-  ofstream out("test.csv");
+  MyExcel::CSVTable table(5, 5);
+  std::ofstream out("test.csv");
 
   table.reg_cell(new Cell("Hello~", 0, 0, &table), 0, 0);
   table.reg_cell(new Cell("C++", 0, 1, &table), 0, 1);
@@ -851,8 +808,8 @@ int main() {
   table.reg_cell(new Cell("Programming", 1, 1, &table), 1, 1);
   out << table;
 
-  HtmlTable table2(5, 5);
-  ofstream out2("test.html");
+  MyExcel::HtmlTable table2(5, 5);
+  std::ofstream out2("test.html");
 
   table2.reg_cell(new Cell("Hello~", 0, 0, &table), 0, 0);
   table2.reg_cell(new Cell("C++", 0, 1, &table), 0, 1);
@@ -860,9 +817,6 @@ int main() {
   out2 << table2;
 }
 ```
-
-
-
 
 
 그리고 그 구현 내용은 다음과 같습니다.

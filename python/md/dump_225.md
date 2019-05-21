@@ -24,7 +24,7 @@ publish_date : 2017-07-09
 그냥 C++ 의 `<algorithm>` 라이브러리의 함수들 목록을 보고 싶다면 [여기를 클릭해주세요](/256)
 ```
 
-안녕하세요 여러분! 이번 강좌에서는 STL 의 알고리즘(algorithm) 라이브러리에 대해서 알아보도록 하겠습니다. 알고리즘 라이브러리는 앞선 강좌에서 이야기 했었던 대로, 컨테이너에 반복자들을 가지고 이런 저런 작업을 쉽게 수행할 수 있도록 도와주는 라이브러리 입니다.
+안녕하세요 여러분! 이번 강좌에서는 C++ 표준 라이브러리의 알고리즘(algorithm) 라이브러리에 대해서 알아보도록 하겠습니다. 알고리즘 라이브러리는 앞선 강좌에서 이야기 했었던 대로, 컨테이너에 반복자들을 가지고 이런 저런 작업을 쉽게 수행할 수 있도록 도와주는 라이브러리 입니다.
 
 
 여기서 말하는 이런 저런 작업이란, 정렬이나 검색과 같이 단순한 작업들 말고도, '이런 조건이 만족하면 컨테이너에서 지워줘' 나 '이런 조건이 만족하면 1 을 더해' 와 같은 복잡한 명령의 작업들도 알고리즘 라이브러리를 통해 수행할 수 있습니다.
@@ -37,8 +37,6 @@ publish_date : 2017-07-09
 template <typename Iter>
 void do_something (Iter begin, Iter end);
 ```
-
-
 
 거나
 
@@ -68,27 +66,23 @@ void do_something (Iter begin, Iter end, Pred pred)
 * `partial_sort` : 배열의 일부분만 정렬합니다 (아래 자세히 설명하겠습니다)
 
 
-
-
 그렇다면 각각의 함수들을 사용해보도록 하겠습니다!
-
 
 ```cpp-formatted
 #include <algorithm>
 #include <iostream>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << *begin << " ";
+    std::cout << *begin << " ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -97,16 +91,14 @@ int main() {
   vec.push_back(7);
   vec.push_back(2);
 
-  cout << "정렬 전 ----" << endl;
+  std::cout << "정렬 전 ----" << std::endl;
   print(vec.begin(), vec.end());
-  sort(vec.begin(), vec.end());
+  std::sort(vec.begin(), vec.end());
 
-  cout << "정렬 후 ----" << endl;
+  std::cout << "정렬 후 ----" << std::endl;
   print(vec.begin(), vec.end());
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -121,8 +113,6 @@ int main() {
 sort(vec.begin(), vec.end());
 ```
 
-
-
 `sort` 함수는 위와 같이 정렬할 원소의 시작 위치와, 마지막 위치 바로 뒤를 반복자로 받습니다. 참고로 `sort` 에 들어가는 반복자의 경우 반드시 임의접근 반복자(RandomAccessIterator) 타입을 만족해야 하므로, 우리가 봐왔던 컨테이너들 중에서 벡터와 데크만 가능하고 나머지 컨테이너는 `sort` 함수를 적용할 수 었습니다. (예를 들어 리스트의 경우 반복자 타입이 양방향 반복자(BidirectionalIterator) 이므로 안됩니다)
 
 ```cpp-formatted
@@ -130,17 +120,13 @@ list<int> l;
 sort(l.begin(), l.end());
 ```
 
-
-
 만약에 위 처럼 리스트를 정렬하려고 했다간;
 
 ```compiler-warning
 Error C2784'unknown-type std::operator -(const std::move_iterator<_RanIt> &,const std::move_iterator<_RanIt2> &)': could not deduce template argument for 'const std::move_iterator<_RanIt> &' from 'std::_List_unchecked_iterator<std::_List_val<std::_List_simple_types<int>>'
 ```
 
-
-
-위와 같은 무지막지한 컴파일 오류를 맛보게 될 것입니다!
+위와 같은 무시무시한 컴파일 오류를 맛보게 될 것입니다!
 
 
 `sort` 함수는 기본적으로 오름차순으로 정렬을 해줍니다. 그렇다면 만약에 내림 차순으로 정렬하고 싶다면 어떻게 할까요? 만약에 여러분이 직접 만든 타입이였다면 단순히 `operator<` 를 반대로 바꿔준다면 오름차순에서 내림차순이 되었겠지만, 이 경우 `int` 이기 때문에 이는 불가능 합니다.
@@ -152,21 +138,20 @@ Error C2784'unknown-type std::operator -(const std::move_iterator<_RanIt> &,cons
 #include <algorithm>
 #include <iostream>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << *begin << " ";
+    std::cout << *begin << " ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 struct int_compare {
   bool operator()(const int& a, const int& b) const { return a > b; }
 };
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -175,16 +160,14 @@ int main() {
   vec.push_back(7);
   vec.push_back(2);
 
-  cout << "정렬 전 ----" << endl;
+  std::cout << "정렬 전 ----" << std::endl;
   print(vec.begin(), vec.end());
-  sort(vec.begin(), vec.end(), int_compare());
+  std::sort(vec.begin(), vec.end(), int_compare());
 
-  cout << "정렬 후 ----" << endl;
+  std::cout << "정렬 후 ----" << std::endl;
   print(vec.begin(), vec.end());
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -206,7 +189,7 @@ struct int_compare {
 일단 위와 같이 함수 객체를 위한 구조체를 정의해주시고, 그 안에 `operator()` 함수를 만들어주면 함수 객체 준비는 땡입니다.
 
 ```cpp-formatted
-sort(vec.begin(), vec.end(), int_compare());
+std::sort(vec.begin(), vec.end(), int_compare());
 ```
 
 
@@ -225,7 +208,7 @@ struct greater_comp {
 요런게 있어서 굳이 귀찮게 `int` 따로 `string` 따로 만들 필요가 없을 것 같습니다. 다행이도 `functional` 해더에 다음과 같은 템플릿 클래스가 존재합니다.
 
 ```cpp-formatted
-sort(vec.begin(), vec.end(), greater<int>());
+std::sort(vec.begin(), vec.end(), greater<int>());
 ```
 
 
@@ -239,18 +222,17 @@ sort(vec.begin(), vec.end(), greater<int>());
 #include <algorithm>
 #include <iostream>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << *begin << " ";
+    std::cout << *begin << " ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -259,11 +241,11 @@ int main() {
   vec.push_back(7);
   vec.push_back(2);
 
-  cout << "정렬 전 ----" << endl;
+  std::cout << "정렬 전 ----" << std::endl;
   print(vec.begin(), vec.end());
-  partial_sort(vec.begin(), vec.begin() + 3, vec.end());
+  std::partial_sort(vec.begin(), vec.begin() + 3, vec.end());
 
-  cout << "정렬 후 ----" << endl;
+  std::cout << "정렬 후 ----" << std::endl;
   print(vec.begin(), vec.end());
 }
 ```
@@ -280,15 +262,13 @@ int main() {
 와 같이 나옵니다. 앞서 `partial_sort` 함수는 일부만 정렬하는 함수라고 하였습니다. `partial_sort` 는 인자를 아래와 같이 3 개를 기본으로 받습니다.
 
 ```cpp-formatted
-partial_sort(start, middle, end)
+std::partial_sort(start, middle, end)
 ```
-
-
 
 이 때 정렬을 `[stard, end)` 전체 원소들 중에서 `[start, middle)` 까지 원소들이 전체 원소들 중에서 제일 작은애들 순으로 정렬 시킵니다. 예를 들어서 위 경우
 
 ```cpp-formatted
-partial_sort(vec.begin(), vec.begin() + 3, vec.end());
+std::partial_sort(vec.begin(), vec.begin() + 3, vec.end());
 ```
 
 위와 같이 `vec.begin()` 부터 `vec.end()` 까지 (즉 벡터 전체에서) 원소들 중에서, `vec.begin()` 부터 `vec.begin() + 3` 까지에 전체에서 가장 작은 애들만 순서대로 저장하고 나머지 위치는 상관 없다! 이런 식입니다. 따라서 위와 같이
@@ -306,12 +286,10 @@ partial_sort(vec.begin(), vec.begin() + 3, vec.end());
 ```
 
 
-
-
 앞에 나타나게 되고 나머지 원소들은 그냥 랜덤하게 남아있게 됩니다. 전체 원소의 개수가 `N` 개이고, 정렬하려는 부분의 크기가 `M` 이라면 `partial_sort` 의 복잡도는 $$O(N \log M)$$ 가 됩니다.
 
 
-만약에 우리가 전체 배열을 정렬할 필요가 없을 경우, 예를 들어서 100 명의 학생 중에서 상위 10 명의 학생의 성적순을 보고 싶다, 이런 식이면 굳이 `sort` 로 전체를 정렬 할 필요 없이 `partial_sort` 로 10 개만 정렬 하는 것이 더 빠르게 됩니다.
+만약에 우리가 전체 배열을 정렬할 필요가 없을 경우, 예를 들어서 `100` 명의 학생 중에서 상위 `10` 명의 학생의 성적순을 보고 싶다, 이런 식이면 굳이 `sort` 로 전체를 정렬 할 필요 없이 `partial_sort` 로 `10` 개만 정렬 하는 것이 더 빠르게 됩니다.
 
 
 마지막으로 `stable_sort` 에 대해 살펴보도록 하겠습니다.
@@ -322,50 +300,50 @@ partial_sort(vec.begin(), vec.begin() + 3, vec.end());
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 struct User {
-  string name;
+  std::string name;
   int age;
 
-  User(string name, int age) : name(name), age(age) {}
+  User(std::string name, int age) : name(name), age(age) {}
 
   bool operator<(const User& u) const { return age < u.age; }
 };
 
-ostream& operator<<(ostream& o, const User& u) {
+std::ostream& operator<<(std::ostream& o, const User& u) {
   o << u.name << " , " << u.age;
   return o;
 }
+
 int main() {
-  vector<User> vec;
+  std::vector<User> vec;
   for (int i = 0; i < 100; i++) {
-    string name = "";
+    std::string name = "";
     name.push_back('a' + i / 26);
     name.push_back('a' + i % 26);
     vec.push_back(User(name, static_cast<int>(rand() % 10)));
   }
 
-  vector<User> vec2 = vec;
+  std::vector<User> vec2 = vec;
 
-  cout << "정렬 전 ----" << endl;
+  std::cout << "정렬 전 ----" << std::endl;
   print(vec.begin(), vec.end());
 
-  sort(vec.begin(), vec.end());
+  std::sort(vec.begin(), vec.end());
 
-  cout << "정렬 후 ----" << endl;
+  std::cout << "정렬 후 ----" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "stable_sort 의 경우 ---" << endl;
-  stable_sort(vec2.begin(), vec2.end());
+  std::cout << "stable_sort 의 경우 ---" << std::endl;
+  std::stable_sort(vec2.begin(), vec2.end());
   print(vec2.begin(), vec2.end());
 }
 ```
@@ -387,10 +365,10 @@ int main() {
 
 ```cpp-formatted
 struct User {
-  string name;
+  std::string name;
   int age;
 
-  User(string name, int age) : name(name), age(age) {}
+  User(std::string name, int age) : name(name), age(age) {}
 
   bool operator<(const User& u) const { return age < u.age; }
 };
@@ -402,7 +380,7 @@ struct User {
 
 ```cpp-formatted
 for (int i = 0; i < 100; i++) {
-  string name = "";
+  std::string name = "";
   name.push_back('a' + i / 26);
   name.push_back('a' + i % 26);
   vec.push_back(User(name, static_cast<int>(rand() % 10)));
@@ -411,7 +389,7 @@ for (int i = 0; i < 100; i++) {
 
 
 
-처음에 벡터에 원소들을 쭈르륵 삽입하는 부분인데, 이름은 `aa, ab, ac, ...` 순으로 하되 `age` 의 경우 0 부터 10 사이의 랜덤한 값을 부여하였습니다. 즉 `name` 의 경우 `string` 순서대로 되어있고, `age` 의 경우 랜덤한 순서로 되어 있습니다.
+처음에 벡터에 원소들을 쭈르륵 삽입하는 부분인데, 이름은 `aa, ab, ac, ...` 순으로 하되 `age` 의 경우 0 부터 `10` 사이의 랜덤한 값을 부여하였습니다. 즉 `name` 의 경우 `string` 순서대로 되어있고, `age` 의 경우 랜덤한 순서로 되어 있습니다.
 
 
 앞서 말했듯이 `stable_sort` 는 삽입되어 있던 원소들 간의 순서를 보존한다고 하였습니다. 따라서 같은 `age` 라면 반드시 삽입된 순서, 즉 `name` 순으로 나올 것입니다. (왜냐하면 애초에 `name` 순으로 넣었기 때문!)
@@ -441,11 +419,9 @@ ad, ck, co, cu, cw, cx, dh
 ###  원소 제거 (remove, remove_if)
 
 
-
-
 다음으로 살펴볼 함수는 원소를 제거하는 함수 입니다. 사실 이미 대부분의 컨테이너에서는 원소를 제거하는 함수를 지원하고 있습니다. 예를 들어서,
 ```cpp-formatted
-vector<int> vec;
+std::vector<int> vec;
 // ....
 vec.erase(vec.begin() + 3);
 ```
@@ -459,7 +435,7 @@ vec.erase(vec.begin() + 3);
 그런데 사실 이 함수 하나로는 많은 작업들을 처리하기에 부족합니다. 예를 들어서 벡터에서 값이 3 인 원소를 제거하려면 어떻게 해야 할까요? 이전 강좌에서 다루었지만 아마 아래와 같이 할 수 있을 것입니다.
 
 ```cpp-formatted
-vector<int>::iterator itr = vec.begin();
+std::vector<int>::iterator itr = vec.begin();
 
 for (; itr != vec.end(); ++itr) {
   if (*itr == 20) {
@@ -482,18 +458,17 @@ for (; itr != vec.end(); ++itr) {
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -501,11 +476,11 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  cout << "처음 vec 상태 ------" << endl;
+  std::cout << "처음 vec 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "벡터에서 값이 3 인 원소 제거 ---" << endl;
-  vec.erase(remove(vec.begin(), vec.end(), 3), vec.end());
+  std::cout << "벡터에서 값이 3 인 원소 제거 ---" << std::endl;
+  vec.erase(std::remove(vec.begin(), vec.end(), 3), vec.end());
   print(vec.begin(), vec.end());
 }
 ```
@@ -555,7 +530,7 @@ Iterator erase(Iterator first, Iterator last);
 
 다시말해, 반복이 끝나는 위치 부터 벡터 맨 뒤 까지 제거해버리면 3 이 싹 제거된 벡터만 남게 되지요. `remove` 함수는 원소의 이동만을 수행하지 실제로 원소를 삭제하는 연산을 수행하지는 않습니다. 따라서 벡터에서 실제로 원소를 지우기 위해서는 반드시 `erase` 함수를 호출하여 실제로 원소를 지워줘야만 합니다.
 
-```cpp
+```cpp-formatted
 vec.erase(remove(vec.begin(), vec.end(), 3), vec.end());
 ```
 
@@ -573,21 +548,20 @@ vec.erase(remove(vec.begin(), vec.end(), 3), vec.end());
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 struct is_odd {
   bool operator()(const int& i) { return i % 2 == 1; }
 };
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -595,20 +569,16 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  cout << "처음 vec 상태 ------" << endl;
+  std::cout << "처음 vec 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "벡터에서 홀수 인 원소 제거 ---" << endl;
-  vec.erase(remove_if(vec.begin(), vec.end(), is_odd()), vec.end());
+  std::cout << "벡터에서 홀수 인 원소 제거 ---" << std::endl;
+  vec.erase(std::remove_if(vec.begin(), vec.end(), is_odd()), vec.end());
   print(vec.begin(), vec.end());
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F270A7D4F596DC13035CC07)
@@ -647,7 +617,7 @@ remove_if(Iter first, Iter last, Pred pred)
 ```cpp-formatted
 bool odd(const int& i) { return i % 2 == 1; }
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -655,11 +625,11 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  cout << "처음 vec 상태 ------" << endl;
+  std::cout << "처음 vec 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "벡터에서 홀수 인 원소 제거 ---" << endl;
-  vec.erase(remove_if(vec.begin(), vec.end(), odd), vec.end());
+  std::cout << "벡터에서 홀수 인 원소 제거 ---" << std::endl;
+  vec.erase(std::remove_if(vec.begin(), vec.end(), odd), vec.end());
   print(vec.begin(), vec.end());
 }
 ```
@@ -678,15 +648,15 @@ int main() {
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
+
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 struct is_odd {
   int num_delete;
@@ -705,7 +675,7 @@ struct is_odd {
   }
 };
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -713,11 +683,11 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  cout << "처음 vec 상태 ------" << endl;
+  std::cout << "처음 vec 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "벡터에서 홀수인 원소 앞의 2개 제거 ---" << endl;
-  vec.erase(remove_if(vec.begin(), vec.end(), is_odd()), vec.end());
+  std::cout << "벡터에서 홀수인 원소 앞의 2개 제거 ---" << std::endl;
+  vec.erase(std::remove_if(vec.begin(), vec.end(), is_odd()), vec.end());
   print(vec.begin(), vec.end());
 }
 ```
@@ -806,15 +776,14 @@ ForwardIt remove_if(ForwardIt first, ForwardIt last, UnaryPredicate pred) {
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 struct is_odd {
   int* num_delete;
@@ -833,7 +802,7 @@ struct is_odd {
   }
 };
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -841,12 +810,13 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  cout << "처음 vec 상태 ------" << endl;
+  std::cout << "처음 vec 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "벡터에서 홀수인 원소 앞의 2개 제거 ---" << endl;
+  std::cout << "벡터에서 홀수인 원소 앞의 2개 제거 ---" << std::endl;
   int num_delete = 0;
-  vec.erase(remove_if(vec.begin(), vec.end(), is_odd(&num_delete)), vec.end());
+  vec.erase(std::remove_if(vec.begin(), vec.end(), is_odd(&num_delete)),
+            vec.end());
   print(vec.begin(), vec.end());
 }
 ```
@@ -868,8 +838,8 @@ int main() {
 따라서 가장 이상적인 방법은 `STL` 알고리즘을 사용할 때 그 안에 직접 써놓는 것입니다. 마치
 
 ```cpp-formatted
-vec.erase(remove_if(vec.begin(), vec.end(),
-                    bool is_odd(int i) { return i % 2 == 1; }),
+vec.erase(std::remove_if(vec.begin(), vec.end(),
+                         bool is_odd(int i) { return i % 2 == 1; }),
           vec.end());
 ```
 
@@ -883,24 +853,24 @@ vec.erase(remove_if(vec.begin(), vec.end(),
 람다 함수는 C++ 에서는 `C++ 11` 에서 처음으로 도입되었습니다. 람다 함수를 통해 쉽게 이름이 없는 함수 객체를 만들수 없게 되었습니다. 그렇습니다.익명의 함수 객체 말입니다.
 
 람다 함수를 사용한 예제 부터 먼저 살펴보겠습니다.
+
 ```cpp-formatted
 #include <algorithm>
 #include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -908,22 +878,18 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  cout << "처음 vec 상태 ------" << endl;
+  std::cout << "처음 vec 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "벡터에서 홀수인 원소 제거 ---" << endl;
-  vec.erase(
-    remove_if(vec.begin(), vec.end(), [](int i) -> bool { return i % 2 == 1; }),
-    vec.end());
+  std::cout << "벡터에서 홀수인 원소 제거 ---" << std::endl;
+  vec.erase(std::remove_if(vec.begin(), vec.end(),
+                           [](int i) -> bool { return i % 2 == 1; }),
+            vec.end());
   print(vec.begin(), vec.end());
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F2577DF3359703AE92B620A)
 
@@ -944,8 +910,6 @@ int main() {
 ```info
 [capture list] (받는 인자) -> 리턴 타입 { 함수 본체 }
 ```
-
-
 
 와 같은 형태 입니다. `capture_list` 가 뭔지는 아래에서 설명하도록 하고, 위 함수 꼴을 살펴보자면 인자로 `int i` 를 받고, `bool` 을 리턴하는 람다 함수를 정의한 것입니다. 리턴 타입을 생략한다면 컴파일러가 알아서 함수 본체에서 `return` 문을 보고 리턴 타입을 추측해줍니다. (만약에 `return` 경로가 여러군데여서 추측할 수 없다면 컴파일 오류가 발생하지요)
 
@@ -989,18 +953,18 @@ func(4);  // false;
 하지만 람다 함수도 말 그대로 함수 이기 때문에 자기 자신만의 스코프를 가집니다. 따라서 일반적인 상황이라면 함수 외부에서 정의된 변수들을 사용할 수 없겠지요. 예를 들어서 최대 2 개 원소만 지우고 싶은 경우
 
 ```cpp-formatted
-cout << "벡터에서 홀수인 원소 최대 2 개 제거 ---" << endl;
+std::cout << "벡터에서 홀수인 원소 최대 2 개 제거 ---" << std::endl;
 int num_erased = 0;
-vec.erase(remove_if(vec.begin(), vec.end(),
-                    [](int i) {
-                      if (num_erased >= 2)
-                        return false;
-                      else if (i % 2 == 1) {
-                        num_erased++;
-                        return true;
-                      }
-                      return false;
-                    }),
+vec.erase(std::remove_if(vec.begin(), vec.end(),
+                         [](int i) {
+                           if (num_erased >= 2)
+                             return false;
+                           else if (i % 2 == 1) {
+                             num_erased++;
+                             return true;
+                           }
+                           return false;
+                         }),
           vec.end());
 print(vec.begin(), vec.end());
 ```
@@ -1015,18 +979,17 @@ print(vec.begin(), vec.end());
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -1034,12 +997,12 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  cout << "처음 vec 상태 ------" << endl;
+  std::cout << "처음 vec 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "벡터에서 홀수인 원소 ---" << endl;
+  std::cout << "벡터에서 홀수인 원소 ---" << std::endl;
   int num_erased = 0;
-  vec.erase(remove_if(vec.begin(), vec.end(),
+  vec.erase(std::remove_if(vec.begin(), vec.end(),
                       [&num_erased](int i) {
                         if (num_erased >= 2)
                           return false;
@@ -1101,7 +1064,7 @@ int main() {
 
 ```cpp-formatted
 class SomeClass {
-  vector<int> vec;
+  std::vector<int> vec;
 
   int num_erased;
 
@@ -1116,16 +1079,16 @@ class SomeClass {
 
     num_erased = 1;
 
-    vec.erase(remove_if(vec.begin(), vec.end(),
-                        [&num_erased](int i) {
-                          if (num_erased >= 2)
-                            return false;
-                          else if (i % 2 == 1) {
-                            num_erased++;
-                            return true;
-                          }
-                          return false;
-                        }),
+    vec.erase(std::remove_if(vec.begin(), vec.end(),
+                             [&num_erased](int i) {
+                               if (num_erased >= 2)
+                                 return false;
+                               else if (i % 2 == 1) {
+                                 num_erased++;
+                                 return true;
+                               }
+                               return false;
+                             }),
               vec.end());
   }
 };
@@ -1141,16 +1104,16 @@ class SomeClass {
 ```cpp-formatted
 num_erased = 0;
 
-vec.erase(remove_if(vec.begin(), vec.end(),
-                    [this](int i) {
-                      if (this->num_erased >= 2)
-                        return false;
-                      else if (i % 2 == 1) {
-                        this->num_erased++;
-                        return true;
-                      }
-                      return false;
-                    }),
+vec.erase(std::remove_if(vec.begin(), vec.end(),
+                         [this](int i) {
+                           if (this->num_erased >= 2)
+                             return false;
+                           else if (i % 2 == 1) {
+                             this->num_erased++;
+                             return true;
+                           }
+                           return false;
+                         }),
           vec.end());
 ```
 
@@ -1177,26 +1140,26 @@ vec.erase(remove_if(vec.begin(), vec.end(),
 
 
 
-다음으로 살펴볼 함수는 원소들을 수정하는 함수들 입니다. 많은 경우 컨테이너 전체 혹은 일부를 순회하면서 값들을 수정하는 작업을 많이 할 것입니다. 예를 들어서 벡터의 모든 원소에 1 씩 더한다던지와 같은 작업들을 말이지요. 이러한 작업을 도와주는 함수는 바로 `transform` 함수 입니다.
+다음으로 살펴볼 함수는 원소들을 수정하는 함수들 입니다. 많은 경우 컨테이너 전체 혹은 일부를 순회하면서 값들을 수정하는 작업을 많이 할 것입니다. 예를 들어서 벡터의 모든 원소에 1 씩 더한다와 같은 작업들을 말이지요. 이러한 작업을 도와주는 함수는 바로 `transform` 함수 입니다.
+
 ```cpp-formatted
 #include <algorithm>
 #include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -1204,11 +1167,12 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  cout << "처음 vec 상태 ------" << endl;
+  std::cout << "처음 vec 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
 
-  cout << "벡터 전체에 1 을 더한다" << endl;
-  transform(vec.begin(), vec.end(), vec.begin(), [](int i) { return i + 1; });
+  std::cout << "벡터 전체에 1 을 더한다" << std::endl;
+  std::transform(vec.begin(), vec.end(), vec.begin(),
+                 [](int i) { return i + 1; });
   print(vec.begin(), vec.end());
 }
 ```
@@ -1245,7 +1209,8 @@ transform(vec.begin(), vec.end(), vec.begin(), [](int i) { return i + 1; });
 로 하였으므로 `vec` 의 시작(begin) 부터 끝(end) 까지 각 원소에 `[] (int i) {return i + 1}` 함수를 적용시킨 결과를 `vec.begin()` 부터 저장하게 됩니다. 즉 결과적으로 각 원소에 1 을 더한 결과로 덮어 씌우게 되는 것이지요. 상당히 간단합니다. 한 가지 주의할 점은 값을 저장하는 컨테이너의 크기가 원래의 컨테이너보다 최소한 같거나 커야 된다는 점입니다. 예를 들어서 단순하게
 
 ```cpp-formatted
-transform(vec.begin(), vec.end(), vec.begin() + 1, [](int i) { return i + 1; });
+std::transform(vec.begin(), vec.end(), vec.begin() + 1,
+               [](int i) { return i + 1; });
 ```
 
 
@@ -1266,19 +1231,18 @@ transform(vec.begin(), vec.end(), vec.begin() + 1, [](int i) { return i + 1; });
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -1287,14 +1251,15 @@ int main() {
   vec.push_back(4);
 
   // vec2 에는 6 개의 0 으로 초기화 한다.
-  vector<int> vec2(6, 0);
+  std::vector<int> vec2(6, 0);
 
-  cout << "처음 vec 과 vec2 상태 ------" << endl;
+  std::cout << "처음 vec 과 vec2 상태 ------" << std::endl;
   print(vec.begin(), vec.end());
   print(vec2.begin(), vec2.end());
 
-  cout << "vec 전체에 1 을 더한 것을 vec2 에 저장 -- " << endl;
-  transform(vec.begin(), vec.end(), vec2.begin(), [](int i) { return i + 1; });
+  std::cout << "vec 전체에 1 을 더한 것을 vec2 에 저장 -- " << std::endl;
+  std::transform(vec.begin(), vec.end(), vec2.begin(),
+                 [](int i) { return i + 1; });
   print(vec.begin(), vec.end());
   print(vec2.begin(), vec2.end());
 }
@@ -1314,42 +1279,36 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-transform(vec.begin(), vec.end(), vec2.begin(), [](int i) { return i + 1; });
+std::transform(vec.begin(), vec.end(), vec2.begin(),
+               [](int i) { return i + 1; });
 ```
 
 
 
 위와 같이 `vec` 의 처음 부터 끝 까지 읽으면서 1 씩 더한 결과를 `vec2` 에 저장하게 됩니다. 간단하지요! 물론 저 `transform` 함수 하나 덕분에 귀찮에 `for` 문을 쓸 필요도 없어질 뿐더러, 내가 이 코드에서 무슨 일을 하는지 더 간단 명료하게 나타낼 수 도 있습니다.
 
-
-
-
-
 ###  원소를 탐색하는 함수(find, `find_if, any_of, all_of` 등등)
 
-
-
-
 마지막으로 살펴볼 함수들은 원소들을 탐색하는 계열의 함수들 입니다.
+
 ```cpp-formatted
 #include <algorithm>
 #include <functional>
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -1357,16 +1316,13 @@ int main() {
   vec.push_back(3);
   vec.push_back(4);
 
-  auto result = find(vec.begin(), vec.end(), 3);
-  cout << "3 은 " << distance(vec.begin(), result) + 1 << " 번째 원소" << endl;
+  auto result = std::find(vec.begin(), vec.end(), 3);
+  std::cout << "3 은 " << std::distance(vec.begin(), result) + 1 << " 번째 원소"
+            << std::endl;
 }
 ```
 
-
-
 성공적으로 컴파일 하였으면
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2403B13A5973A8441A3B1E)
 
@@ -1382,12 +1338,11 @@ InputIt find(InputIt first, InputIt last, const T& value)
 
 
 
-와 같이 생겼는데, `first` 부터 `last` 까지 쭈르륵 순회하면서 `value` 와 같은 원소가 있는지 확인하고 있으면 이를 가리키는 반복자를 리턴합니다.  위 경우
+와 같이 생겼는데, `first` 부터 `last` 까지 쭈르륵 순회하면서 `value` 와 같은 원소가 있는지 확인하고 있으면 이를 가리키는 반복자를 리턴합니다. 위 경우
+
 ```cpp-formatted
-auto result = find(vec.begin(), vec.end(), 3);
+auto result = std::find(vec.begin(), vec.end(), 3);
 ```
-
-
 
 `vec` 에서 값이 3 과 같은 원소를 찾아서 리턴하게 되지요. 반복자에 따라서 `forward_iterator` 면 앞에서 부터 찾고, `reverse_iterator` 이면 뒤에서 부터 거꾸로 찾게 됩니다. 물론 컨테이너에 중복되는 값이 있더라도 가장 먼저 찾은 것을 리턴합니다. 만약에 위 `vec` 에서 모든 3 을 찾고 싶다면 아래와 같이 하면 됩니다.
 
@@ -1398,19 +1353,18 @@ auto result = find(vec.begin(), vec.end(), 3);
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -1420,22 +1374,16 @@ int main() {
 
   auto current = vec.begin();
   while (true) {
-    current = find(current, vec.end(), 3);
+    current = std::find(current, vec.end(), 3);
     if (current == vec.end()) break;
-    cout << "3 은 " << distance(vec.begin(), current) + 1 << " 번째 원소"
-         << endl;
+    std::cout << "3 은 " << std::distance(vec.begin(), current) + 1
+              << " 번째 원소" << std::endl;
     current++;
   }
 }
 ```
 
-
-
-
-
 성공적으로 컴파일 하였다면
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F244C3D335973AC8A107754)
 
@@ -1465,19 +1413,18 @@ current = find(current, vec.end(), 3);
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
 int main() {
-  vector<int> vec;
+  std::vector<int> vec;
   vec.push_back(5);
   vec.push_back(3);
   vec.push_back(1);
@@ -1487,20 +1434,17 @@ int main() {
 
   auto current = vec.begin();
   while (true) {
-    current = find_if(current, vec.end(), [](int i) { return i % 3 == 2; });
+    current =
+      std::find_if(current, vec.end(), [](int i) { return i % 3 == 2; });
     if (current == vec.end()) break;
-    cout << "3 으로 나눈 나머지가 2 인 원소는 : " << *current << " 이다 "
-         << endl;
+    std::cout << "3 으로 나눈 나머지가 2 인 원소는 : " << *current << " 이다 "
+              << std::endl;
     current++;
   }
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2474D4335973AF631A1737)
 
@@ -1509,10 +1453,8 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-current = find_if(current, vec.end(), [](int i) { return i % 3 == 2; });
+current = std::find_if(current, vec.end(), [](int i) { return i % 3 == 2; });
 ```
-
-
 
 `find` 함수가 단순한 값을 받았다면 `find_if` 함수의 경우 함수 객체를 인자로 받아서 그 결과가 참인 원소들을 찾게 됩니다. 위 경우 3 으로 나눈 나머지가 2 인 원소들을 컨테이너에서 탐색하였습니다. 람다 함수로 사용하니 엄청 간결하지요?
 
@@ -1523,22 +1465,21 @@ current = find_if(current, vec.end(), [](int i) { return i % 3 == 2; });
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
 
 template <typename Iter>
 void print(Iter begin, Iter end) {
   while (begin != end) {
-    cout << "[" << *begin << "] ";
+    std::cout << "[" << *begin << "] ";
     begin++;
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
 struct User {
-  string name;
+  std::string name;
   int level;
 
-  User(string name, int level) : name(name), level(level) {}
+  User(std::string name, int level) : name(name), level(level) {}
   bool operator==(const User& user) const {
     if (name == user.name && level == user.level) return true;
     return false;
@@ -1546,12 +1487,12 @@ struct User {
 };
 
 class Party {
-  vector<User> users;
+  std::vector<User> users;
 
  public:
-  bool add_user(string name, int level) {
+  bool add_user(std::string name, int level) {
     User new_user(name, level);
-    if (find(users.begin(), users.end(), new_user) != users.end()) {
+    if (std::find(users.begin(), users.end(), new_user) != users.end()) {
       return false;
     }
     users.push_back(new_user);
@@ -1566,8 +1507,8 @@ class Party {
 
   // 파티원 중 한명 이라도 19렙 이상이면 특별 아이템 사용 가능
   bool can_use_special_item() {
-    return any_of(users.begin(), users.end(),
-                  [](User& user) { return user.level >= 19; });
+    return std::any_of(users.begin(), users.end(),
+                       [](User& user) { return user.level >= 19; });
   }
 };
 int main() {
@@ -1577,9 +1518,10 @@ int main() {
   party.add_user("민수", 12);
   party.add_user("수빈", 19);
 
-  cout << boolalpha;
-  cout << "던전 입장 가능 ? " << party.can_join_dungeon() << endl;
-  cout << "특별 아이템 사용 가능 ? " << party.can_use_special_item() << endl;
+  std::cout << std::boolalpha;
+  std::cout << "던전 입장 가능 ? " << party.can_join_dungeon() << std::endl;
+  std::cout << "특별 아이템 사용 가능 ? " << party.can_use_special_item()
+            << std::endl;
 }
 ```
 
@@ -1599,9 +1541,9 @@ int main() {
 
 
 ```cpp-formatted
-bool add_user(string name, int level) {
+bool add_user(std::string name, int level) {
   User new_user(name, level);
-  if (find(users.begin(), users.end(), new_user) != users.end()) {
+  if (std::find(users.begin(), users.end(), new_user) != users.end()) {
     return false;
   }
   users.push_back(new_user);
@@ -1617,19 +1559,19 @@ bool add_user(string name, int level) {
 ```cpp-formatted
 // 파티원 모두가 15 레벨 이상이여야지 던전 입장 가능
 bool can_join_dungeon() {
-  return all_of(users.begin(), users.end(),
-                [](User& user) { return user.level >= 15; });
+  return std::all_of(users.begin(), users.end(),
+                     [](User& user) { return user.level >= 15; });
 }
 ```
 
-따라서 이 파티가 어떤 던전에 참가하고 싶은 경우 모든 파티원의 레벨이 15 이상 이어야 하므로 위와 같이 `all_of` 함수를 사용해서 모든 원소들이 조건에 만족하는지 확인할 수 있습니다. 위 경우 민수가 12 레벨이여서 `false` 가 리턴되겠지요.
+따라서 이 파티가 어떤 던전에 참가하고 싶은 경우 모든 파티원의 레벨이 `15` 이상 이어야 하므로 위와 같이 `all_of` 함수를 사용해서 모든 원소들이 조건에 만족하는지 확인할 수 있습니다. 위 경우 민수가 `12` 레벨이여서 `false` 가 리턴되겠지요.
 
 
 ```cpp-formatted
 // 파티원 중 한명 이라도 19렙 이상이면 특별 아이템 사용 가능
 bool can_use_special_item() {
-  return any_of(users.begin(), users.end(),
-                [](User& user) { return user.level >= 19; });
+  return std::any_of(users.begin(), users.end(),
+                     [](User& user) { return user.level >= 19; });
 }
 ```
 

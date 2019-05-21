@@ -780,11 +780,11 @@
 }
 ,
 	"215" : {
-	"cat_title" : "7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream",
+	"cat_title" : "7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream",
 	"next_page" : "217",
 	"prev_page" : "213",
 	"publish_date" : "2016-07-14",
-	"title" : "씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - ifstream. ofstream, stringstream>"
+	"title" : "씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream>"
 }
 ,
 	"217" : {
@@ -835,11 +835,11 @@
 }
 ,
 	"223" : {
-	"cat_title" : "10 - 1. C++ STL - 벡터(vector), 리스트(list), 데크(deque)",
+	"cat_title" : "10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)",
 	"next_page" : "224",
 	"prev_page" : "222",
 	"publish_date" : "2017-07-04",
-	"title" : "씹어먹는 C++ - <10 - 1. C++ STL - 벡터(vector), 리스트(list), 데크(deque)>"
+	"title" : "씹어먹는 C++ - <10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)>"
 }
 ,
 	"224" : {

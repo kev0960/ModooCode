@@ -23,7 +23,6 @@ publish_date : 2017-06-26
 ```cpp-formatted
 /* 템플릿 인자로 값을 받기 */
 #include <iostream>
-using namespace std;
 
 template <typename T, unsigned int N>
 class Array {
@@ -43,9 +42,9 @@ class Array {
 
   void print_all() {
     for (int i = 0; i < N; i++) {
-      cout << data[i] << ", ";
+      std::cout << data[i] << ", ";
     }
-    cout << endl;
+    std::cout << std::endl;
   }
 };
 
@@ -74,8 +73,6 @@ int main() {
 template <typename T, int N>
 ```
 
-
-
 템플릿 정의 부분을 살펴보면 바로 알겠지만, 템플릿 역시 마치 함수의 인자에 값을 받는 것 처럼 템플릿에도 값을 전달 할 수 있습니다. 다만 함수 처럼 임의의 객체를 인자로 받을 수 있는 것은 아니고, 위 처럼 정수 타입이나, 레퍼런스 혹은 포인터 만을 받을 수 있습니다.
 
 그 이유는 잘 생각해보면 당연한데, 템플릿이 인스턴스화 되는 과정은 컴파일 시에 일어나는데, 만약에 객체를 직접 받는다면, 컴파일을 하기 전에 컴파일을 해야되는 모순적인 상황이 발생하게 되기 때문이지요.
@@ -89,16 +86,11 @@ Array<int, 3> arr_w(arr);
 ```
 
 
-
-
-
 위와 같이 템플릿 인스턴스화를 하게 되면, 템플릿에 `T` 자리에는 `int` 가, `N` 자리에는 3 이 들어가겠지요. 그렇다면 컴파일러는
 
 ```cpp-formatted
 T data[N];
 ```
-
-
 
 를
 
@@ -106,8 +98,6 @@ T data[N];
 ```cpp-formatted
 int data[3];
 ```
-
-
 
 으로 대체해서 코드를 생성하게 되고, 마찬가지로
 
@@ -120,8 +110,6 @@ Array(T (&arr)[N]) {
 }
 ```
 
-
-
 생성자 역시
 
 ```cpp-formatted
@@ -132,8 +120,6 @@ Array(int (&arr)[3]) {
   }
 }
 ```
-
-
 
 로 아예 코드가 생성되어 실행됩니다. 참고로 이 처럼 배열을 감싸는 `wrapper` 클래스를 만들어서 마치 배열 처럼 사용한다면 (물론 그러기 위해서는 `[]` 연산자도 오버로드 해야겠죠?) 배열을 사용함으로써 발생하는 문제들을 많이 해결할 수 있게 됩니다.
 
@@ -146,21 +132,16 @@ Array(int (&arr)[3]) {
 Array<int, 5> Array<int, 3>
 ```
 
-
-
 간단히 아래 코드로 확인해 볼 수 있습니다.
 
 ```cpp-formatted
-cout << (typeid(Array<int, 3>) == typeid(Array<int, 5>)) << endl;
+std::cout << (typeid(Array<int, 3>) == typeid(Array<int, 5>)) << std::endl;
 ```
-
-
 
 참고로 `typeid` 를 사용하려면 `<typeinfo>` 헤더파일을 추가해주시면 됩니다. 그 결과는 당연하게도
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2649724B594CB13D2F1774)
-
 
 
 와 같이 다르다고 나옵니다. 왜 다르냐면 당연히, 다른 템플릿 인자로 인스턴스화 되었기 때문이지요. 컴파일러는 `Array<int, 5>` 와 `Array<int, 3>` 를 위해 각기 다른 코드를 생성하며 다른 클래스의 객체들을 만들게 됩니다.
@@ -175,8 +156,6 @@ struct Int {
 };
 ```
 
-
-
 이 클래스는 템플릿 인자로 `int` 값을 받습니다. 참고로, 왜 `static const` 에 값을 저장하냐면, 첫 번째로 C++ 클래스 멤버 중에서 클래스 자체에서 저런 식으로 초기화를 할 수 있는 멤버의 타입은 `static const` 밖에 없고, 두 번째로 `static const` 야 말로 '이 클래스는 이 것이다' 라는 의미를 가장 잘 나타내기 때문입니다.
 
 왜냐하면 `static` 타입 멤버의 특성 상, 이 클래스가 생성한 객체들 사이에서 공유되는 값이기 때문에'이 타입이면 이 값을 나타낸다'라고 볼 수 있습니다. 또한 `const` 이므로, 그 나타내는 값이 변하지 않게 됩니다.
@@ -190,9 +169,6 @@ typedef Int<2> two;
 ```
 
 
-
-
-
 그렇다면 저 `one` 타입과 `two` 타입은 1 과 2 의 값을 나타내는 타입이 됩니다. (`one` 과 `two` 는 객체가 아닙니다!)
 
 
@@ -201,7 +177,6 @@ typedef Int<2> two;
 ```cpp-formatted
 #include <iostream>
 #include <typeinfo>
-using namespace std;
 
 template <int N>
 struct Int {
@@ -219,11 +194,9 @@ int main() {
 
   typedef add<one, two>::result three;
 
-  cout << "Addtion result : " << three::num << endl;
+  std::cout << "Addtion result : " << three::num << std::endl;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -244,8 +217,6 @@ struct add {
 };
 ```
 
-
-
 위 `add` 클래스의 템플릿은 인자로 두 개의 타입을 받아서 그 타입의 `num` 멤버를 더해서 새로운 타입인 `result` 를 만들어 내게 됩니다.
 
 
@@ -254,14 +225,13 @@ typedef add<one, two>::result three;
 ```
 
 
-
 위 부분은 실제 덧셈을 수행하는 부분입니다. `add` 클래스를 함수라고 생각한다면 그 계산 결과를 내부 `result` 타입으로 반환한다고 보면 됩니다. 아무튼 `one` 과 `two` 를 더한 것을 나타내는 타입이 result 로 정의되고, 이를 `three` 라고 부르겠습니다.
 
 
 실제로, 그 결과를 보면
 
 ```cpp-formatted
-cout << "Addtion result : " << three::num << endl;
+std::cout << "Addtion result : " << three::num << std::endl;
 ```
 
 
@@ -289,11 +259,9 @@ cout << "Addtion result : " << three::num << endl;
 또한 타입은 반드시 컴파일 타임에 확정되어야 하므로, 컴파일 타임에 모든 연산이 끝나게 됩니다.
 이렇게 타입을 가지고컴파일 타임에 생성되는 '코드'로 프로그래밍을 하는 것을 **메타 프로그래밍(meta programming)** 이라고 합니다. C++ 의 경우 템플릿을 가지고 이러한 작업을 하기 때문에 **템플릿 메타 프로그래밍**, 줄여서  **TMP** 라고 부릅니다.
 
-```cpp-formatted
+```cpp
 /* 컴파일 타임 팩토리얼 계산 */
 #include <iostream>
-using namespace std;
-
 template <int N>
 struct Factorial {
   static const int result = N * Factorial<N - 1>::result;
@@ -304,7 +272,7 @@ struct Factorial<1> {
   static const int result = 1;
 };
 
-int main() { cout << "6! = 1*2*3*4*5*6 = " << Factorial<6>::result << endl; }
+int main() { std::cout << "6! = 1*2*3*4*5*6 = " << Factorial<6>::result << std::endl; }
 ```
 
 
@@ -354,7 +322,7 @@ struct Factorial<1> {
 컴파일러는 `Factorial<1>` 타입의 경우만 따로 `result = 1` 로 만들어주게 되어서 재귀적 구조가 끝날 수 있게 해줍니다.
 
 
-위 예제에서 볼 수 있듯이, 저기서 실질적으로 값을 가지는 객체는 아무 것도 없습니다. 즉, '720' 이라는 값을 가지고 있는 변수는 메모리 상에서 없다는 뜻입니다 (물론 `cout` 에서 출력 할 때 빼고). 저 화면에 나타나는 720 이라는 값은, 단순히 컴파일러가 만들어낸 `Factorial<6>` 이라는 타입을 나타내고 있을 뿐입니다.
+위 예제에서 볼 수 있듯이, 저기서 실질적으로 값을 가지는 객체는 아무 것도 없습니다. 즉, '720' 이라는 값을 가지고 있는 변수는 메모리 상에서 없다는 뜻입니다 (물론 `std::cout` 에서 출력 할 때 빼고). 저 화면에 나타나는 720 이라는 값은, 단순히 컴파일러가 만들어낸 `Factorial<6>` 이라는 타입을 나타내고 있을 뿐입니다.
 
 
 
@@ -392,9 +360,8 @@ int gcd(int a, int b) {
 
 따라서 이를 그대로 `TMP` 로 바꿔보면 아래와 같습니다. (여러분도 직접 해보세요!)
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
 
 template <int X, int Y>
 struct GCD {
@@ -406,10 +373,8 @@ struct GCD<X, 0> {
   static const int value = X;
 };
 
-int main() { cout << "gcd (36, 24) :: " << GCD<36, 24>::value << endl; }
+int main() { std::cout << "gcd (36, 24) :: " << GCD<36, 24>::value << std::endl; }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -487,7 +452,7 @@ struct Ratio_add : _Ratio_add<R1, R2>::type {};
 ```cpp-formatted
 #include <iostream>
 #include <typeinfo>
-using namespace std;
+
 
 template <int X, int Y>
 struct GCD {
@@ -518,7 +483,7 @@ int main() {
   typedef Ratio<3, 2> rat2;
   typedef Ratio_add<rat, rat2> rat3;
 
-  cout << rat3::num << " / " << rat3::den << endl;
+  std::cout << rat3::num << " / " << rat3::den << std::endl;
 
   return 0;
 }
@@ -573,7 +538,7 @@ int main() {
   using rat2 = Ratio<3, 2>;
 
   using rat3 = Ratio_add<rat, rat2>;
-  cout << rat3::num << " / " << rat3::den << endl;
+  std::cout << rat3::num << " / " << rat3::den << std::endl;
 
   return 0;
 }
@@ -589,7 +554,6 @@ int main() {
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 template <int X, int Y>
 struct GCD {
@@ -648,10 +612,10 @@ int main() {
   using r2 = Ratio<3, 2>;
 
   using r3 = Ratio_add<r1, r2>;
-  cout << "2/3 + 3/2 = " << r3::num << " / " << r3::den << endl;
+  std::cout << "2/3 + 3/2 = " << r3::num << " / " << r3::den << std::endl;
 
   using r4 = Ratio_multiply<r1, r3>;
-  cout << "13 / 6 * 2 /3 = " << r4::num << " / " << r4::den << endl;
+  std::cout << "13 / 6 * 2 /3 = " << r4::num << " / " << r4::den << std::endl;
 }
 ```
 
@@ -688,7 +652,7 @@ int main() {
 
 ```cpp-formatted
 int main() {
-  cout << "5 번째 피보나치 수 :: " << fib<5>::result << endl;  // 5
+  std::cout << "5 번째 피보나치 수 :: " << fib<5>::result << std::endl;  // 5
 }
 ```
 
@@ -699,12 +663,12 @@ int main() {
 
 ```cpp-formatted
 int main() {
-  cout << boolalpha;
-  cout << "Is prime ? :: " << is_prime<2>::result << endl;   // true
-  cout << "Is prime ? :: " << is_prime<10>::result << endl;  // false
+  std::cout << boolalpha;
+  std::cout << "Is prime ? :: " << is_prime<2>::result << std::endl;   // true
+  std::cout << "Is prime ? :: " << is_prime<10>::result << std::endl;  // false
 
-  cout << "Is prime ? :: " << is_prime<11>::result << endl;  // true
-  cout << "Is prime ? :: " << is_prime<61>::result << endl;  // true
+  std::cout << "Is prime ? :: " << is_prime<11>::result << std::endl;  // true
+  std::cout << "Is prime ? :: " << is_prime<61>::result << std::endl;  // true
 }
 ```
 

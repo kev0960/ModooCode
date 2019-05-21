@@ -43,22 +43,21 @@ c->f();
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class Parent {
  public:
-  Parent() { cout << "Parent 생성자 호출" << endl; }
-  ~Parent() { cout << "Parent 소멸자 호출" << endl; }
+  Parent() { std::cout << "Parent 생성자 호출" << std::endl; }
+  ~Parent() { std::cout << "Parent 소멸자 호출" << std::endl; }
 };
 class Child : public Parent {
  public:
-  Child() : Parent() { cout << "Child 생성자 호출" << endl; }
-  ~Child() { cout << "Child 소멸자 호출" << endl; }
+  Child() : Parent() { std::cout << "Child 생성자 호출" << std::endl; }
+  ~Child() { std::cout << "Child 소멸자 호출" << std::endl; }
 };
 int main() {
-  cout << "--- 평범한 Child 만들었을 때 ---" << endl;
+  std::cout << "--- 평범한 Child 만들었을 때 ---" << std::endl;
   { Child c; }
-  cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
+  std::cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << std::endl;
   {
     Parent *p = new Child();
     delete p;
@@ -81,11 +80,9 @@ int main() {
 일단 평범하게 `Child` 객체를 만든 부분을 살펴봅시다.
 
 ```cpp-formatted
-cout << "--- 평범한 Child 만들었을 때 ---" << endl;
+std::cout << "--- 평범한 Child 만들었을 때 ---" << std::endl;
 { Child c; }
 ```
-
-
 
 생성자와 소멸자의 호출 순서를 살펴보자면, `Parent` 생성자 → `Child` 생성자 → `Child` 소멸자 → `Parent` 소멸자 순으로 호출됨을 알 수 있습니다. 이와 같은 과정이 당연한 이유는 객체를 만들고 소멸시키는 일을 집을 짓고 철거하는 일로 비유할 수 있습니다.
 
@@ -95,7 +92,7 @@ cout << "--- 평범한 Child 만들었을 때 ---" << endl;
 그런데 문제는 그 아래 `Parent` 포인터가 `Child` 객체를 가리킬 때 입니다.
 
 ```cpp-formatted
-cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
+std::cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << std::endl;
 {
   Parent *p = new Child();
   delete p;
@@ -111,30 +108,30 @@ cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class Parent {
  public:
-  Parent() { cout << "Parent 생성자 호출" << endl; }
-  virtual ~Parent() { cout << "Parent 소멸자 호출" << endl; }
+  Parent() { std::cout << "Parent 생성자 호출" << std::endl; }
+  virtual ~Parent() { std::cout << "Parent 소멸자 호출" << std::endl; }
 };
 class Child : public Parent {
  public:
-  Child() : Parent() { cout << "Child 생성자 호출" << endl; }
-  ~Child() { cout << "Child 소멸자 호출" << endl; }
+  Child() : Parent() { std::cout << "Child 생성자 호출" << std::endl; }
+  ~Child() { std::cout << "Child 소멸자 호출" << std::endl; }
 };
 int main() {
-  cout << "--- 평범한 Child 만들었을 때 ---" << endl;
-  { Child c; }
-  cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << endl;
+  std::cout << "--- 평범한 Child 만들었을 때 ---" << std::endl;
+  { 
+    // 이 {} 를 빠져나가면 c 가 소멸된다.
+    Child c; 
+  }
+  std::cout << "--- Parent 포인터로 Child 가리켰을 때 ---" << std::endl;
   {
     Parent *p = new Child();
     delete p;
   }
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -163,15 +160,14 @@ int main() {
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class A {
  public:
-  virtual void show() { cout << "Parent !" << endl; }
+  virtual void show() { std::cout << "Parent !" << std::endl; }
 };
 class B : public A {
  public:
-  void show() override { cout << "Child!" << endl; }
+  void show() override { std::cout << "Child!" << std::endl; }
 };
 
 void test(A& a) { a.show(); }
@@ -185,13 +181,10 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F25547A42578C8E63118312)
-
 
 
 와 같이 나옵니다.
@@ -208,14 +201,10 @@ void test(A& a) { a.show(); }
 test(b);
 ```
 
-
-
 를 통해서 `B` 클래스의 객체를 전달하였는데도 잘 작동하였습니다. 이는, `B` 클래스가 `A` 클래스를 상속 받고 있기 때문입니다. 즉, 함수에 타입이 기반 클래스여도 그 파생 클래스는 타입 변환되어 전달 할 수 있습니다.
 
 
 따라서 `test` 함수에서 `show()` 를 호출하였을 때 인자로 `b` 를 전달하였다면, 비록 전달된 인자가A의 객체라고 표현되어 있지만 `show` 함수가 `virtual` 으로 정의되어 있기 때문에 알아서 `B` 의 `show` 함수를 찾아내서 호출하게 됩니다. 물론 `test` 에 `a` 를 전달하였을 때에는 `A` 의 `show` 함수가 호출되겠지요.
-
-
 
 
 
@@ -246,8 +235,6 @@ class Child : public Parent {
 };
 ```
 
-
-
 C++ 컴파일러는 가상 함수가 하나라도 존재하는 클래스에 대해서, **가상 함수 테이블(virtual function table; vtable)**을 만들게 됩니다. 가상 함수 테이블은 전화 번호부라고 생각하시면 됩니다.
 
 함수의 이름(전화번호부의 가게명) 과 실제로 어떤 함수 (그 가게의 전화번호) 가 대응되는지 테이블로 저장하고 있는 것입니다 
@@ -266,8 +253,6 @@ Parent* p = Parent();
 p->func1();
 ```
 
-
-
 을 해봅시다. 그러면, 컴파일러는
 
 
@@ -284,8 +269,6 @@ Parent* c = Child();
 c->func1();
 ```
 
-
-
 위 처럼 똑같이 프로그램 실행시에 가상 함수 테이블에서 `func1()` 에 해당하는 함수를 호출하게 되는데, 이번에는 `p` 가 실제로는 `Child` 객체를 가리키고 있으므로, `Child` 객체의 가상 함수 테이블을 참조하여, `Child::func1()` 을 호출하게 됩니다. 따라서 성공적으로 `Parent::func1()` 를 오버라이드 할 수 있습니다.
 
 
@@ -298,7 +281,6 @@ c->func1();
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class Animal {
  public:
@@ -310,13 +292,13 @@ class Animal {
 class Dog : public Animal {
  public:
   Dog() : Animal() {}
-  void speak() override { cout << "왈왈" << endl; }
+  void speak() override { std::cout << "왈왈" << std::endl; }
 };
 
 class Cat : public Animal {
  public:
   Cat() : Animal() {}
-  void speak() override { cout << "야옹야옹" << endl; }
+  void speak() override { std::cout << "야옹야옹" << std::endl; }
 };
 
 int main() {
@@ -327,8 +309,6 @@ int main() {
   cat->speak();
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -344,8 +324,6 @@ class Animal {
   virtual void speak() = 0;
 };
 ```
-
-
 
 `Animal` 클래스의 `speak` 함수를 살펴봅시다. 다른 함수들과는 달리, 함수의 몸통이 정의되어 있지 않고 단순히 `= 0;` 으로 처리되어 있는 가상 함수 입니다.
 
@@ -373,8 +351,6 @@ error C2259: 'Animal' : cannot instantiate abstract class
 1>          'void Animal::speak(void)' : is abstract
 ```
 
-
-
 따라서 `Animal` 처럼,순수 가상 함수를 최소 한 개 이상 포함하고 있는 클래스는 객체를 생성할 수 없으며, 인스턴스화 시키기 위해서는 이 클래스를 상속 받는 클래스를 만들어서 모든 순수 가상 함수를 오버라이딩 해주어야만 합니다.
 
 이렇게 순수 가상 함수를 최소 한개 포함하고 있는- 반드시 상속 되어야 하는 클래스를 가리켜 **추상 클래스 (abstract class)**라고 부릅니다. (참고로, 이러한 이유 때문에 순수 가상 함수는 반드시 `public` 이나 `protected` 가 되어야 합니다. `private` 으로 정의될 경우 오버라이드 될 수 가 없기 때문이지요.)
@@ -382,16 +358,13 @@ error C2259: 'Animal' : cannot instantiate abstract class
 
 따라서;
 
-
 ```cpp-formatted
 class Dog : public Animal {
  public:
   Dog() : Animal() {}
-  void speak() override { cout << "왈왈" << endl; }
+  void speak() override { std::cout << "왈왈" << std::endl; }
 };
 ```
-
-
 
 위 처럼 `speak ()` 를 오버라이딩 함으로써 (- 정확히 말하면 `Animal` 의 모든 순수 가상 함수를 오버라이딩 함으로써) `Dog` 클래스의 객체를 생성할 수 있게 됩니다. `Cat` 클래스도 마찬가지 이지요.
 
@@ -412,8 +385,6 @@ class Animal {
 };
 ```
 
-
-
 동물들이 소리를 내는 것은 맞으므로 `Animal` 클래스에 `speak` 함수가 필요합니다. 하지만어떤 소리를 내는지는 동물 마다 다르기 때문에 `speak` 함수를 가상 함수로 만들기는 불가능 합니다. 따라서 `speak` 함수를 순수 가상 함수로 만들게 되면 모든 `Animal` 들은 `speak()` 한다라는 의미 전달과 함께, 사용자가 `Animal` 클래스를 상속 받아서  (위 경우 `Dog` 와 `Cat) speak()` 를 상황에 맞게 구현하면 됩니다.
 
 추상 클래스의 또 한가지 특징은 비록 객체는 생성할 수 없지만, 추상 클래스를 가리키는 포인터는 문제 없이 만들 수 있다는 점입니다. 위 예에서도 살펴보았듯이, 아무런 문제 없이 `Animal*` 의 변수를 생성하였습니다.
@@ -427,7 +398,6 @@ cat->speak();
 ```
 
 
-
 그리고 `dog` 와 `cat` 의 `speak` 함수를 호출하였는데, 앞에서도 배웠듯이, 비록 `dog` 와 `cat` 이 `Animal*` 타입 이지만, `Animal` 의 `speak` 함수가 오버라이드 되어서, `Dog` 와 `Cat` 클래스의 `speak` 함수로 대체되서 실행이 됩니다.
 
 
@@ -437,9 +407,7 @@ cat->speak();
 마지막으로 C++ 에서의 상속의 또 다른 특징인 다중 상속에 대해 알아보도록 합시다. C++ 에서는 한 클래스가 다른 여러 개의 클래스들을 상속 받는 것을 허용합니다. 이를 가리켜서 **다중 상속 (multiple inheritance)** 라고 부릅니다.
 
 ```cpp-formatted
-class A
-
-{
+class A {
  public:
   int a;
 };
@@ -469,37 +437,33 @@ c.b = 2;
 c.c = 4;
 ```
 
-
-
 와 같은 것이 가능하게 되는 것이지요. 다중 상속에서 한 가지 재미있는 점은 생성자들의 호출 순서 입니다. 여러분은 과연 위 예에서 `A` 의 생성자가 먼저 호출될지, `B` 의 생성자가 먼저 호출될 지 궁금할 것입니다. 한 번 확인을 해보도록 하겠습니다.
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class A {
  public:
   int a;
 
-  A() { cout << "A 생성자 호출" << endl; }
+  A() { std::cout << "A 생성자 호출" << std::endl; }
 };
 
 class B {
  public:
   int b;
 
-  B() { cout << "B 생성자 호출" << endl; }
+  B() { std::cout << "B 생성자 호출" << std::endl; }
 };
 
 class C : public A, public B {
  public:
   int c;
 
-  C() : A(), B() { cout << "C 생성자 호출" << endl; }
+  C() : A(), B() { std::cout << "C 생성자 호출" << std::endl; }
 };
 int main() { C c; }
 ```
-
 
 
 성공적으로 컴파일 하였다면
@@ -515,8 +479,6 @@ int main() { C c; }
 class C : public A, public B
 ```
 
-
-
 에서
 
 ```cpp-formatted
@@ -524,12 +486,10 @@ class C : public B, public A
 ```
 
 
-
 로 바꾸고 컴파일을 해보세요. 재미있게도;
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F2176983F53DD2FCC2A52E0)
-
 
 
 로 이번에는 `B` 의 생성자가 `A` 보다 먼저 호출됨을 알 수 있습니다. 몇 번 더 실험을 해보면 이 순서는 다른 것들에 의해 좌우되지 않고 오직 상속하는 순서에만 좌우 됨을 알 수 있습니다.
@@ -564,7 +524,6 @@ int main() {
   c.a = 3;
 }
 ```
-
 
 
 그렇다면 만일 클래스 C 의 객체를 생성해서, 위 처럼 중복되는 멤버 변수에 접근한다면;
@@ -627,8 +586,6 @@ class Me : public HandsomeHuman, public SmartHuman {
   // ...
 };
 ```
-
-
 
 이러한 형태로 `Human` 을 `virtual` 로 상속 받는다면, `Me` 에서 다중 상속 시에도, 컴파일러가 언제나 `Human` 을 한 번만 포함하도록 지정할 수 있게 됩니다. 참고로, 가상 상속 시에, `Me` 의 생성자에서 `HandsomeHuman` 과 `SmartHuman` 의 생성자를 호출함은 당연하고, `Human` 의 생성자 또한 호출해주어야만 합니다.
 

@@ -38,11 +38,11 @@ publish_date : 2017-07-02
 
 int main()
 {
-  cout << boolalpha;
-  cout << "Is prime ? :: " << is_prime<2>::result << endl; // true
-  cout << "Is prime ? :: " << is_prime<10>::result << endl; // false
-  cout << "Is prime ? :: " << is_prime<11>::result << endl; // true
-  cout << "Is prime ? :: " << is_prime<61>::result << endl; // true
+  std::cout << std::boolalpha;
+  std::cout << "Is prime ? :: " << is_prime<2>::result << std::endl; // true
+  std::cout << "Is prime ? :: " << is_prime<10>::result << std::endl; // false
+  std::cout << "Is prime ? :: " << is_prime<11>::result << std::endl; // true
+  std::cout << "Is prime ? :: " << is_prime<61>::result << std::endl; // true
 }
 ```
 
@@ -278,9 +278,7 @@ struct divide <int a, int b> {
 struct check_div<N, typename divide<N, two>::result> {
 ```
 
-
-
-'typename' 키워드를 붙여주면 됩니다.마찬가지로
+`typename` 키워드를 붙여주면 됩니다.마찬가지로
 
 ```cpp-formatted
 (N::num % d::num == 0) || check_div<N, add<d, one>::result>::result;
@@ -336,14 +334,10 @@ struct is_prime {
 };
 ```
 
-
-
 그렇다면 전체 코드를 살펴보겠습니다.
 
 ```cpp-formatted
 #include <iostream>
-#include <typeinfo>
-using namespace std;
 
 template <int N>
 struct INT {
@@ -397,16 +391,13 @@ struct is_prime {
 };
 
 int main() {
-  cout << boolalpha;
-  cout << "Is 2 prime ? :: " << is_prime<2>::result << endl;
-  cout << "Is 10 prime ? :: " << is_prime<10>::result << endl;
-
-  cout << "Is 11 prime ? :: " << is_prime<11>::result << endl;
-  cout << "Is 61 prime ? :: " << is_prime<61>::result << endl;
+  std::cout << boolalpha;
+  std::cout << "Is 2 prime ? :: " << is_prime<2>::result << std::endl;
+  std::cout << "Is 10 prime ? :: " << is_prime<10>::result << std::endl;
+  std::cout << "Is 11 prime ? :: " << is_prime<11>::result << std::endl;
+  std::cout << "Is 61 prime ? :: " << is_prime<61>::result << std::endl;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -440,12 +431,8 @@ C++ 코드를 작성하는 이유는 여러가지가 있겠지만, 그 중 하�
 
 ```cpp-formatted
 float v1, v2;  // v1, v2 는 속도
-
-cout << v1 + v2;
+std::cout << v1 + v2;
 ```
-
-
-
 
 당연히 `v1` 과 `v2` 는 속도 값을 나타내므로 같은 단위이기 때문에 더할 수 있습니다. (여기서 더할 수 있다는 말은 물리적으로 더한 값이 말이 된다는 의미 입니다). 반면에;
 
@@ -453,9 +440,8 @@ cout << v1 + v2;
 ```cpp-formatted
 float v;        // 속도; m/s
 float a;        // 가속도; m/s^2
-cout << v + a;  // ???
+std::cout << v + a;  // ???
 ```
-
 
 
 만약에 `v` 가 속도를 나타내는 값이고, `a` 가 가속도를 나타내는 값이라면, `v + a` 는 불가능한 연산입니다. 만약에 프로그래머가 저러한 코드를 썻다면 분명히 실수일 것입니다. 물론 C++ 컴파일러 입장에서는 그냥 두 개의 `float` 변수를 더한 것이기 때문에 문제 없이 컴파일 됩니다. 하지만 프로그램을 돌리게 된다면 골치아픈 문제가 발생하겠지요.
@@ -492,7 +478,6 @@ struct Dim {
 예를 들어서 속도의 경우 *m/s* 이므로, 저 `Dim` 클래스로 표현하자면 `Dim<0, 1, -1>` 로 나타낼 수 있습니다. 왜냐하면 *m/s = kg^0 m^1 s^-1* 이기 때문이지요.
 
 
-
 마찬가지로 힘의 경우 단위가 *kg m /s^2* 이므로 `Dim` 클래스로 표현하자면 `Dim<1, 1, -2>` 가 됩니다.
 
 
@@ -502,15 +487,11 @@ struct Dim {
 Dim<1, 1, -2>
 ```
 
-
-
 가 아니라
 
 ```cpp-formatted
 Dim<Ratio<1, 1>, Ratio<1, 1>, Ratio<-2, 1>>
 ```
-
-
 
 이런 식으로 정의를 해야겠지요. 그렇다면 `Dim` 끼리 더하고 빼는 템플릿 클래스도 아래와 같이 만들 수 있게 됩니다.
 
@@ -547,20 +528,15 @@ struct quantity {
 };
 ```
 
-
-
 일단 위 처럼 `q` 라는 멤버 변수에 데이터를 담고, (데이터의 타입은 `T` 가 되겠지요), `dim_type` 에 차원 정보를 담게 됩니다. 차원 정보는 데이터와는 다르게 'Dim 타입' 그 자체로 표현됩니다.
 
 
 자 이제, 실제로 `quantity` 객체를 가지고 연산을 수행하기 위해서는 우리가 연산자들을 오버로드 해줘야만 합니다. 일단 간단히 `+` 와 `-` 연산자를 어떻게 오버로드 할 지 생각해봅시다. 앞서 말했듯이, 두 개의 데이터를 더하거나 빼기 위해서는 반드시 단위가 일치해야 합니다. 이 말은, `dim_type` 이 같은 타입이어야만 하다는 것이지요.
 
-
-
 따라서 `operator+` 와 `operator-` 는 다음과 같이 간단히 정의할 수 있습니다.
 
 ```cpp-formatted
 quantity operator+(quantity<T, D> quant) { return quantity<T, D>(q + quant.q); }
-
 quantity operator-(quantity<T, D> quant) { return quantity<T, D>(q - quant.q); }
 ```
 
@@ -573,7 +549,6 @@ quantity operator-(quantity<T, D> quant) { return quantity<T, D>(q - quant.q); }
 
 ```cpp
 #include <iostream>
-using namespace std;
 
 template <int X, int Y>
 struct GCD {
@@ -683,16 +658,12 @@ int main() {
 }
 ```
 
-
-
 컴파일 하였다면 다음과 같은 오류가 납니다.
 
 ```compiler-warning
 no operator "+" matches these operands
 binary '+': no operator found which takes a right-hand operand of type 'quantity<double,Dim<zero,one,zero>>' (or there is no acceptable conversion)
 ```
-
-
 
 즉 위 `+` 에 해당하는 연산자 함수를 찾을 수 없다는 것이지요. 예상했던 대로,
 
@@ -701,16 +672,12 @@ binary '+': no operator found which takes a right-hand operand of type 'quantity
 kg + meter;
 ```
 
-
-
 위 부분에서 오류가 발생하는데, `kg` 와 `meter` 의 단위가 다르기 때문에 발생하게 됩니다. 반면에
 
 ```info-format
 // Good
 kg + kg;
 ```
-
-
 
 는 잘 컴파일되지요.
 
@@ -723,8 +690,6 @@ kg + kg;
 ```cpp-formatted
 meter / (second * second)
 ```
-
-
 
 이렇게 해주면 됩니다. 다만 새로운 차원의 데이터 (`Dim<zero, one, minus_two>`) 가 탄생할 뿐이지요. 따라서, `operator*` 와 `operator/` 의 경우 두 개의 다른 차원의 값을 받아도 처리할 수 있어야 합니다. 따라서 `opreator*` 와 `/` 를 정의해보자면 아래와 같습니다.
 
@@ -741,26 +706,18 @@ quantity<T, typename subtract_dim_<D, D2>::type> operator/(
 }
 ```
 
-
-
 새로 만들어지는 타입의 차원은 당연히도 `add_dim_<D, D2>::type` 이 되겠고 (`opreator*` 의 경우), 그 값은 그냥 실제 값을 곱해주면 됩니다. 이와 더불어서
 
 ```cpp-formatted
 3 * kg
 ```
 
-
-
 과 같은 곱도 처리해야 하기 때문에, 아래와 같은 함수들도 정의해줘야 합니다.
 
 ```cpp-formatted
-
 quantity<T, D> operator*(T scalar) { return quantity<T, D>(q * scalar); }
-
 quantity<T, D> operator/(T scalar) { return quantity<T, D>(q / scalar); }
 ```
-
-
 
 이는 위 처럼 일반적인 차원이 없는 값 과의 곱도 지원해줍니다. 그렇다면 예를 들어서 아래와 같이 정의된 `F` 의 타입은 어떻게 될까요?
 
@@ -770,22 +727,16 @@ quantity<T, D> operator/(T scalar) { return quantity<T, D>(q / scalar); }
 F = kg * meter / (second * second);
 ```
 
-
-
 일단 `F` 의 차원은 계산해보면 (1, 1, -2) 이렇게 나올 것 입니다. 따라서, `F` 의 `dim` 타입은 `<Ratio<1, 1>, Ratio<1, 1>, Ratio<-2, 1>>` 가 되겠지요. 다시 말해, `F` 를 다음과 같이 나타낼 수 있습니다.
 
-```cpp-formatted
-quantity<double, Dim<one, one, Ratio<-2, 1>>> F =
-  kg * meter / (second * second);
+```cpp
+quantity<double, Dim<one, one, Ratio<-2, 1>>> F = kg * meter / (second * second);
 ```
-
-
 
 그런데, 매번 변수를 정의할 때 마다 저렇게 길고 긴 타입을 써주는 것은 매우 귀찮은 일입니다. 저 `kg * meter / (second * second)` 를 계산해서 나오는 객체의 타입이 저렇게 된다는 사실은 저도 알고 컴파일러도 알고 있습니다. 컴파일러가 쉽게 알아낼 수 있는 타입을 굳이 우리가 써주어야 할까요? 똑똑한 컴파일러가 타입을 알아서 생각하도록 하면 안될까요?
 
 
 물론 가능합니다.
-
 
 
 ###  타입을 알아서 추측해라! `- auto` 키워드
@@ -797,8 +748,6 @@ C++ 코드를 많이 짜면서 느꼈겠지만, 객체를 생성할 때, 많은 
 ```cpp-formatted
 (??) a = 3;
 ```
-
-
 
 와 같이 썼다면 저 (??) 는 아마 `int` 를 의도한 것이겠지요. 아니면
 
@@ -816,8 +765,6 @@ some_class a;
 ```cpp-formatted
 quantity<double, Dim<one, zero, zero>> kg(1);
 ```
-
-
 
 의 경우 만약에 저 타입 부분을 가리고
 
@@ -843,7 +790,6 @@ quantity<double, Dim<one, zero, zero>> kg(1);
 ```cpp-formatted
 #include <iostream>
 #include <typeinfo>
-using namespace std;
 
 int sum(int a, int b) { return a + b; }
 
@@ -864,14 +810,12 @@ int main() {
 
   auto some3(10);  // SomeClass 객체를 만들까요?
 
-  cout << "c 의 타입은? :: " << typeid(c).name() << endl;
-  cout << "num 의 타입은? :: " << typeid(num).name() << endl;
-  cout << "some2 의 타입은? :: " << typeid(some2).name() << endl;
-  cout << "some3 의 타입은? :: " << typeid(some3).name() << endl;
+  std::cout << "c 의 타입은? :: " << typeid(c).name() << std::endl;
+  std::cout << "num 의 타입은? :: " << typeid(num).name() << std::endl;
+  std::cout << "some2 의 타입은? :: " << typeid(some2).name() << std::endl;
+  std::cout << "some3 의 타입은? :: " << typeid(some3).name() << std::endl;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -883,12 +827,10 @@ int main() {
 와 같이 나옵니다.
 
 ```cpp-formatted
-cout << "c 의 타입은? :: " << typeid(c).name() << endl;
-cout << "num 의 타입은? :: " << typeid(num).name() << endl;
-cout << "some2 의 타입은? :: " << typeid(some2).name() << endl;
+std::cout << "c 의 타입은? :: " << typeid(c).name() << std::endl;
+std::cout << "num 의 타입은? :: " << typeid(num).name() << std::endl;
+std::cout << "some2 의 타입은? :: " << typeid(some2).name() << std::endl;
 ```
-
-
 
 일단 위 3줄은 우리의 예상대로 `auto` 키워드가 잘 타입을 추론해줍니다. `c` 의 경우 함수의 리턴 타입으로 부터 `int` 타입이라는 것을 알 수 있고, `num` 의 경우 `1.0 + 2.0` 의 결과가 `double` 이므로 `num` 역시 `double` 타입 변수로 초기화 됩니다. 마지막으로 `some2` 의 경우 `SomeClass` 타입인 `some` 으로 부터 복사 생성 되므로 `SomeClass` 타입이 되지요.
 
@@ -898,8 +840,6 @@ cout << "some2 의 타입은? :: " << typeid(some2).name() << endl;
 ```cpp-formatted
 auto some3(10);  // SomeClass 객체를 만들까요?
 ```
-
-
 
 이전에 `some` 을 만들 때 `SomeClass some(10)` 으로 만들었기 때문에 저 `some3` 도 혹시 `SomeClass` 타입으로 추론하지 않을까 생각할 수 있습니다. 하지만 컴파일러는 최대한 단순하게 가능한 방법으로 추론하기 때문에 (실제로 `auto` 타입을 추론하는 방법은 템플릿에 들어갈 타입을 추론하는 것과 동일합니다), 그냥 `int` 변수로 만들어 버립니다.
 
@@ -911,15 +851,13 @@ auto some3(10);  // SomeClass 객체를 만들까요?
 auto F = kg * meter / (second * second);
 ```
 
-
-
 위와 같이 `auto` 키워드를 이용하면 됩니다.
 
 
 참고로 편의를 위해 `quantity` 를 `ostream` 으로 출력해주는 함수인
 ```cpp-formatted
 template <typename T, typename D>
-ostream& operator<<(ostream& out, const quantity<T, D>& q) {
+std::ostream& operator<<(std::ostream& out, const quantity<T, D>& q) {
   out << q.q << "kg^" << D::M::num / D::M::den << "m^" << D::L::num / D::L::den
       << "s^" << D::T::num / D::T::den;
 
@@ -927,14 +865,11 @@ ostream& operator<<(ostream& out, const quantity<T, D>& q) {
 }
 ```
 
-
-
 를 제작하였습니다. 따라서 전체 코드를 살펴보면 다음과 같습니다.
 
-```cpp-formatted
+```cpp
 #include <iostream>
 #include <typeinfo>
-using namespace std;
 
 template <int X, int Y>
 struct GCD {
@@ -1046,7 +981,7 @@ struct quantity {
 };
 
 template <typename T, typename D>
-ostream& operator<<(ostream& out, const quantity<T, D>& q) {
+std::ostream& operator<<(std::ostream& out, const quantity<T, D>& q) {
   out << q.q << "kg^" << D::M::num / D::M::den << "m^" << D::L::num / D::L::den
       << "s^" << D::T::num / D::T::den;
 
@@ -1063,7 +998,7 @@ int main() {
 
   // F 의 타입은 굳이 알필요 없다!
   auto F = kg * meter / (second * second);
-  cout << "2 kg 물체를 3m/s^2 의 가속도로 밀기 위한 힘의 크기는? " << F << endl;
+  std::cout << "2 kg 물체를 3m/s^2 의 가속도로 밀기 위한 힘의 크기는? " << F << std::endl;
 }
 ```
 
@@ -1080,7 +1015,6 @@ int main() {
 
 
 `auto` 키워드는 템플릿의 사용으로 복잡해진 타입 이름들을 간단하게 나타낼 수 있는 획기적인 방법입니다. 물론 짧은 이름의 타입일 경우 그냥 써주는 것이 좋지만 (왜냐면 그 코드를 읽는 사람에 입장에서 한눈에 타입을 알 수 있으면 좋기 때문에), 위 경우 처럼 복잡한 타입 이름의 경우, 그 타입을 쉽게 추측할 수 있다면 `auto` 키워드를 활용하는 것도 좋습니다.
-
 
 
 이것으로 템플릿 메타프로그래밍에 대한 강좌를 마치도록 하겠습니다. 사실 실제 현업에서 템플릿 메타 프로그래밍을 활용하는 경우는 그다지 많지 않습니다. 왜냐하면 일단 `TMP` 의 특성상복잡하고, 머리를 매우 많이 써야되고, 무엇보다도 버그가 발생하였을 때 찾는 것이 매우 힘듧니다.
