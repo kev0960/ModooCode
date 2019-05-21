@@ -27,9 +27,8 @@ publish_date : 2013-01-06
 
 스타크래프트라는 거대한 프로젝트를 진행하기에 앞서서 일단, 유닛 하나 부터 만들어 보도록 할 것입니다. 위에 조그만 사진에 있는 총들고 서 잇는 사람은 스타크래프트의 마린 이라는 유닛 입니다. (테란 유저로써 제가 가장 사랑하는 유닛 중 하나라고 볼 수 있죠) 위 유닛은 스타크래프트 유닛 중에서 가장 단순하고 기본이 되는 유닛이라고 할 수 있습니다. 그렇다면 한 번, 이 마린을 코드 상에서 구현해보도록 합시다.
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
 
 class Marine {
   int hp;                // 마린 체력
@@ -70,9 +69,9 @@ void Marine::be_attacked(int damage_earn) {
   if (hp <= 0) is_dead = true;
 }
 void Marine::show_status() {
-  cout << " *** Marine *** " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << " *** Marine *** " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 
 int main() {
@@ -82,7 +81,7 @@ int main() {
   marine1.show_status();
   marine2.show_status();
 
-  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
   marine2.be_attacked(marine1.attack());
 
   marine1.show_status();
@@ -93,8 +92,6 @@ int main() {
 
 
 성공적으로 컴파일 하였다면
-
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F253FDC4E50E8394E27FA58)
@@ -142,13 +139,11 @@ marine1.show_status();
 marine2.show_status();
 ```
 
-
-
 이제 위 함수들을 통해서 각각의 마린의 상태를 출력한 뒤에,
 
 
 ```cpp-formatted
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
 marine2.be_attacked(marine1.attack());
 ```
 
@@ -172,7 +167,7 @@ int main() {
   marines[0]->show_status();
   marines[1]->show_status();
 
-  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
 
   marines[0]->be_attacked(marines[1]->attack());
 
@@ -184,20 +179,9 @@ int main() {
 }
 ```
 
-
-
-
 성공적으로 컴파일 하였다면
 
-
-
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F253FDC4E50E8394E27FA58)
-
-
-
-
-
 
 로 동일하게 나옵니다.
 
@@ -242,11 +226,10 @@ delete marines[1];
 
 알고 보니 각각의 마린에도 이름을 지정할 수 있었습니다. 그래서, 우리는 만들어놓은 `Marine` 클래스에 `name` 이라는 이름을 저장할 수 있는 또다른 인스턴스 변수를 추가하도록 합시다.
 
-```cpp-formatted
+```cpp
 // 마린의 이름 만들기
 #include <string.h>
 #include <iostream>
-using namespace std;
 
 class Marine {
   int hp;                // 마린 체력
@@ -301,9 +284,9 @@ void Marine::be_attacked(int damage_earn) {
   if (hp <= 0) is_dead = true;
 }
 void Marine::show_status() {
-  cout << " *** Marine : " << name << " ***" << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << " *** Marine : " << name << " ***" << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 
 int main() {
@@ -315,7 +298,7 @@ int main() {
   marines[0]->show_status();
   marines[1]->show_status();
 
-  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
 
   marines[0]->be_attacked(marines[1]->attack());
 
@@ -327,20 +310,11 @@ int main() {
 }
 ```
 
-
-
-
 성공적으로 컴파일 하였다면
-
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1568333450E8668B0D88C5)
 
-
-
 와 같이 나옴을 알 수 있습니다.
-
 
 그런데 사실, 위 코드에는 또다른 문제점이 있습니다.
 
@@ -364,10 +338,9 @@ Marine::Marine(int x, int y, const char* marine_name) {
 그렇다면, 만일 `main` 함수 끝에서 `Marine` 이 `delete` 될 때, 즉 우리가 생성했던 객체가 소멸 될 때 자동으로 호출되는 함수 - 마치 객체가 생성될 때 자동으로 호출 되었던 생성자 처럼 소멸 될 때 자동으로 호출되는 함수가 있다면 얼마나 좋을까요? 놀랍게도 이미 C++ 에서는 이 기능을 지원하고 있습니다. 바로 **소멸자(Destructor)** 이죠.
 
 
-```cpp-formatted
+```cpp
 #include <string.h>
 #include <iostream>
-using namespace std;
 
 class Marine {
   int hp;                // 마린 체력
@@ -423,12 +396,12 @@ void Marine::be_attacked(int damage_earn) {
   if (hp <= 0) is_dead = true;
 }
 void Marine::show_status() {
-  cout << " *** Marine : " << name << " ***" << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << " *** Marine : " << name << " ***" << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 Marine::~Marine() {
-  cout << name << " 의 소멸자 호출 ! " << endl;
+  std::cout << name << " 의 소멸자 호출 ! " << std::endl;
   if (name != NULL) {
     delete[] name;
   }
@@ -442,7 +415,7 @@ int main() {
   marines[0]->show_status();
   marines[1]->show_status();
 
-  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
 
   marines[0]->be_attacked(marines[1]->attack());
 
@@ -458,17 +431,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F1845C14550E8690807C5D5)
 
-
-
 와 같이 나오게 됩니다.
-
-
-
 
 생성자가 클래스 이름과 똑같이 생겼다면 소멸자는 그 앞에 `~` 만 붙여주시면 됩니다.
 
@@ -494,7 +459,7 @@ int main() {
 
 ```cpp-formatted
 Marine::~Marine() {
-  cout << name << " 의 소멸자 호출 ! " << endl;
+  std::cout << name << " 의 소멸자 호출 ! " << std::endl;
   if (name != NULL) {
     delete[] name;
   }
@@ -514,7 +479,6 @@ delete marines[1];
 // 소멸자 호출 확인하기
 #include <string.h>
 #include <iostream>
-using namespace std;
 
 class Test {
   char c;
@@ -522,9 +486,9 @@ class Test {
  public:
   Test(char _c) {
     c = _c;
-    cout << "생성자 호출 " << c << endl;
+    std::cout << "생성자 호출 " << c << std::endl;
   }
-  ~Test() { cout << "소멸자 호출 " << c << endl; }
+  ~Test() { std::cout << "소멸자 호출 " << c << std::endl; }
 };
 void simple_function() { Test b('b'); }
 int main() {
@@ -546,9 +510,9 @@ class Test {
  public:
   Test(char _c) {
     c = _c;
-    cout << "생성자 호출 " << c << endl;
+    std::cout << "생성자 호출 " << c << std::endl;
   }
-  ~Test() { cout << "소멸자 호출 " << c << endl; }
+  ~Test() { std::cout << "소멸자 호출 " << c << std::endl; }
 };
 ```
 
@@ -601,11 +565,10 @@ int main() {
 
 사실 위에 나타나 있는 포토캐논의 모습은 한 개가 아니라 수십 개의 포토캐논이 서로 겹친 모습입니다. 다시 말해 같은 포토캐논들이 수 백개 '복사' 되었다고 볼 수 있지요. 위와 같이 동일한 포토캐논을 만들어 내는 방법은 각각의 포토캐논을 일일히 생성자로 생성 할 수 도 있지만, 1 개만 생성해 놓고, 그 한 개를 가지고 나머지 포토캐논들은 '복사 생성' 할 수 도 있는 것입니다.
 
-```cpp-formatted
+```cpp
 // 포토캐논
 #include <string.h>
 #include <iostream>
-using namespace std;
 
 class Photon_Cannon {
   int hp, shield;
@@ -619,7 +582,7 @@ class Photon_Cannon {
   void show_status();
 };
 Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
-  cout << "복사 생성자 호출 !" << endl;
+  std::cout << "복사 생성자 호출 !" << std::endl;
   hp = pc.hp;
   shield = pc.shield;
   coord_x = pc.coord_x;
@@ -627,16 +590,16 @@ Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
   damage = pc.damage;
 }
 Photon_Cannon::Photon_Cannon(int x, int y) {
-  cout << "생성자 호출 !" << endl;
+  std::cout << "생성자 호출 !" << std::endl;
   hp = shield = 100;
   coord_x = x;
   coord_y = y;
   damage = 20;
 }
 void Photon_Cannon::show_status() {
-  cout << "Photon Cannon " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << "Photon Cannon " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 int main() {
   Photon_Cannon pc1(3, 3);
@@ -669,12 +632,12 @@ Photon_Cannon(const Photon_Cannon& pc);
 T(const T& a);
 ```
 
-라고 정의됩니다. 즉, 다른 `T` 의 객체 `a` 를상수 레퍼런스로 받는 다는 이야기 입니다. 여기서 `a` 가 `const` 이기 때문에 우리는 복사 생성자 내부에서 `a` 의 데이터를 변경할 수 없고, 오직 새롭게 초기화 되는 인스턴스 변수들에게 '복사' 만 할 수 있게 됩니다. 다시 말해,
+라고 정의됩니다. 즉, 다른 `T` 의 객체 `a` 를 상수 레퍼런스로 받는 다는 이야기 입니다. 여기서 `a` 가 `const` 이기 때문에 우리는 복사 생성자 내부에서 `a` 의 데이터를 변경할 수 없고, 오직 새롭게 초기화 되는 인스턴스 변수들에게 '복사' 만 할 수 있게 됩니다. 다시 말해,
 
 
 ```cpp-formatted
 Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
-  cout << "복사 생성자 호출 !" << endl;
+  std::cout << "복사 생성자 호출 !" << std::endl;
   hp = pc.hp;
   shield = pc.shield;
   coord_x = pc.coord_x;
@@ -695,8 +658,8 @@ pc.coord_x = 3;
 한 가지 중요한 점은 함수 내부에서 받은 인자의 값을 변화시키는 일이 없다면 꼭 `const` 를 붙여주시기 바랍니다. 위와 같이 복사 생성자의 경우도, 인자로 받은 `pc` 의 값을 변경할 일이 없기 때문에 아예 처음부터 `const` 인자로 받았지요. 이렇게 된다면 후에 발생 할 수 있는   실수들을 효과적으로 막을 수 있습니다. (예를 들어 `pc.coord_x = coord_x` 로 쓴다던지)
 
 
-```warning
-인자로 받는 변수의 내용을 함수 내부에서 바꾸지 않는다면 앞에 const 를 붙여 주는 것이 바람직합니다.
+```lec-warning
+인자로 받는 변수의 내용을 함수 내부에서 바꾸지 않는다면 앞에 `const` 를 붙여 주는 것이 바람직합니다.
 ```
 
 
@@ -771,11 +734,10 @@ Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
 
 이번에도 위의 마린 처럼 포토 캐논의 이름을 지어줄 수 있다는 사실을 알고 클래스 `Photon_Cannon` 에 `char *name` 을 추가 해주었습니다. 그리고, 복사 생성자는 그냥 위에서 처럼 디폴트 복사 생성자를 사용하기로 했죠. 그 코드는 아래와 같습니다.
 
-```cpp-formatted
+```cpp
 // 디폴트 복사 생성자의 한계
 #include <string.h>
 #include <iostream>
-using namespace std;
 
 class Photon_Cannon {
   int hp, shield;
@@ -820,9 +782,9 @@ Photon_Cannon::~Photon_Cannon() {
   if (name) delete[] name;
 }
 void Photon_Cannon::show_status() {
-  cout << "Photon Cannon :: " << name << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << "Photon Cannon :: " << name << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 int main() {
   Photon_Cannon pc1(3, 3, "Cannon");
@@ -840,7 +802,9 @@ int main() {
 
 
 
-이럴 수가. 오래간만에 보는 런타임 오류입니다. 왜 이런 오류가 발생하였을까요? 분명히 디폴트 복사 생성자는 1 대 1 로 원소들 간의 정확한 복사를 수행해 준다고 했었는데 말이죠. 그럼 일단, 여기서 우리의 디폴트 복사 생성자가 어떻게 생겼는지 살펴보도록 합시다. 아마두 추정컨대, 컴파일러는 솔직하게 1 대 1 복사를 해주는 디폴트 복사 생성자를 아래와 같이 만들어 주었을 것입니다.
+이럴 수가. 오래간만에 보는 런타임 오류입니다. 왜 이런 오류가 발생하였을까요? 분명히 디폴트 복사 생성자는 1 대 1 로 원소들 간의 정확한 복사를 수행해 준다고 했었는데 말이죠.
+
+그럼 일단, 여기서 우리의 디폴트 복사 생성자가 어떻게 생겼는지 살펴보도록 합시다. 아마도 추정컨대, 컴파일러는 솔직하게 1 대 1 복사를 해주는 디폴트 복사 생성자를 아래와 같이 만들어 주었을 것입니다.
 
 ```cpp-formatted
 Photon_Cannon::Photon_Cannon(const Photon_Cannon& pc) {
@@ -890,11 +854,10 @@ Photon_Cannon::~Photon_Cannon() {
 
 위 과정을 그림으로 설명하자면 복사 생성자에서 `hp, shield` 와 같은 변수 들은 얕은 복사를 하지만, `name` 의 경우 따로 메모리를 할당해서 그 내용만 복사하는 깊은 복사를 수행하게 되는 것이지요. 그러면 소멸자에서도 메모리 해제시 각기 다른 메모리를 해제하는 것이기 때문에 전혀 문제가 발생하지 않습니다. 이를 바탕으로 복사 생성자를 만들어보면 아래와 같습니다.
 
-```cpp-formatted
+```cpp
 // 복사 생성자의 중요성
 #include <string.h>
 #include <iostream>
-using namespace std;
 
 class Photon_Cannon {
   int hp, shield;
@@ -920,7 +883,7 @@ Photon_Cannon::Photon_Cannon(int x, int y) {
   name = NULL;
 }
 Photon_Cannon::Photon_Cannon(const Photon_Cannon &pc) {
-  cout << "복사 생성자 호출! " << endl;
+  std::cout << "복사 생성자 호출! " << std::endl;
   hp = pc.hp;
   shield = pc.shield;
   coord_x = pc.coord_x;
@@ -943,9 +906,9 @@ Photon_Cannon::~Photon_Cannon() {
   if (name) delete[] name;
 }
 void Photon_Cannon::show_status() {
-  cout << "Photon Cannon :: " << name << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << "Photon Cannon :: " << name << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 int main() {
   Photon_Cannon pc1(3, 3, "Cannon");
@@ -956,12 +919,7 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F1760A34550EA643721382F)
 
@@ -969,10 +927,11 @@ int main() {
 
 와 같이 제대로 작동하는 것을 볼 수 있습니다.
 
-
-
 자, 이것으로 이번 강좌는 마치도록 하겠습니다. 사실 이 강좌에서 스타크래프트의 0.01% 도 구현 하지 못한 것이지만, 차츰 우리는 그 뼈대를 만들어 나갈 것입니다. 자, 모두 화이팅!
 
+```lec-warning
+혹시 이 강좌만 보고 뒤의 강좌를 안보시는 분들을 위해 노파심에 이야기 하지만, C++ 에서 문자열을 다룰 때 C 언어 처럼 널 종료 `char` 배열로 다루는 것을 **매우 매우 매우** 비추합니다. C++ 표준 라이브러리에서 `std::string` 이라는 훌륭한 문자열 클래스를 제공하니까, 뒤의 강좌들도 꼭 읽어서 사용법을 숙지하시기 바랍니다.
+```
 
 ###  생각해보기
 

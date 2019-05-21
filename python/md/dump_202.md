@@ -37,11 +37,9 @@ publish_date : 2013-08-25
 ###  MyString 의 `==` 연산자 오버로딩
 
 
-
-
 일단 연산자 오버로딩을 사용하기 위해서는, 다음과 같이 오버로딩을 원하는 연산자 함수를 제작하면 됩니다.
-```info
 
+```info
 (리턴 타입) operator(연산자) (연산자가 받는 인자)
 ```
 
@@ -50,11 +48,8 @@ publish_date : 2013-08-25
 (※ 참고적으로 위 방법 외에는 함수 이름으로 연산자를 절대 넣을 수 없습니다) 예를 들어서 우리가 `==` 를 오버로딩 하고 싶다면, `==` 연산자는 그 결과값이 언제나 `bool` 이고, 인자로는 `==` 로 비교하는 것 하나만 받게 됩니다. 따라서 다음과 같이 함수를 정의하면 됩니다.
 
 ```info-format
-
 bool operator== (MyString& str);
 ```
-
-
 
 이제, 우리가 `str1 == str2` 라는 명령을 한다면 이는 `str1.operator==(str2)` 로 내부적으로 변환되서 처리됩니다. 그리고 그 결과값을 리턴하게 되겠지요. 사실 `operator==` 를 만드는 것 자체는 별로 어려운 일은 아닙니다. 왜냐하면 이미 `MyString` 에서 `compare` 라는 좋은 함수를 제공하고 있기 때문이지요. 간단하게 만들어 보면 다음과 같습니다.
 
@@ -71,8 +66,6 @@ bool MyString::operator==(MyString& str) {
 ```cpp-formatted
 #include <string.h>
 #include <iostream>
-
-using namespace std;
 
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
@@ -128,12 +121,12 @@ MyString::MyString(const MyString& str) {
 MyString::~MyString() { delete[] string_content; }
 int MyString::length() const { return string_length; }
 void MyString::print() const {
-  for (int i = 0; i != string_length; i++) cout << string_content[i];
+  for (int i = 0; i != string_length; i++) std::cout << string_content[i];
 }
 void MyString::println() const {
-  for (int i = 0; i != string_length; i++) cout << string_content[i];
+  for (int i = 0; i != string_length; i++) std::cout << string_content[i];
 
-  cout << endl;
+  std::cout << std::endl;
 }
 int MyString::capacity() const { return memory_capacity; }
 void MyString::reserve(int size) {
@@ -191,14 +184,14 @@ int main() {
   MyString str3("sentence");
 
   if (str1 == str2)
-    cout << "str1 와 str2 는 다르다" << endl;
+    std::cout << "str1 와 str2 는 다르다" << std::endl;
   else
-    cout << "st1 와 str2 는 같다." << endl;
+    std::cout << "st1 와 str2 는 같다." << std::endl;
 
   if (str2 == str3)
-    cout << "str2 와 str3 는 같다." << endl;
+    std::cout << "str2 와 str3 는 같다." << std::endl;
   else
-    cout << "st2 와 str3 는 다르다" << endl;
+    std::cout << "st2 와 str3 는 다르다" << std::endl;
 }
 ```
 
@@ -211,9 +204,6 @@ str2 와 str3 는 같다.
 
 
 와 같이 잘 나옵니다. 위 코드에서도 쉽게 알 수 있지만 `str1` 과 `str2` 은 다르고, `str2` 와 `str3` 는 같기 때문에 위와 같이 제대로 처리되고 있음을 알 수 있습니다.
-
-
-
 
 
 
@@ -309,8 +299,6 @@ a + b / c + d;
 a.plus(b.divide(c)).plus(d);
 ```
 
-
-
 와 같이 복잡한 함수식을 이용해서 표현해야만 합니다. 이는, 가독성이 떨어질 뿐더러 위 식을 딱 보고 도대체 무슨 작업을 하려고 하는지도 쉽게 알 수 없습니다.
 
 하지만 연산자 오버로딩을 이용해서 `plus` 를 `operator+` 로, `divide` 를 `operator/` 로, 등등 바꿔준다면 단순히 프로그래머가`a + b/c + d;` 게 쓴다고 해도, 컴파일러가 `a.operator+(b.operator/(c)).operator+(d);` 로 알아서 변환시켜서 처리하기 때문에 속도나 다른 면의 어떠한 차이 없이 뛰어난 가독성과 편리함을 얻을 수 있게 됩니다.
@@ -321,7 +309,6 @@ a.plus(b.divide(c)).plus(d);
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class Complex {
  private:
@@ -336,7 +323,7 @@ class Complex {
   Complex operator*(const Complex& c);
   Complex operator/(const Complex& c);
 
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 
 Complex Complex::operator+(const Complex& c) {
@@ -384,8 +371,6 @@ Complex operator*(const Complex& c);
 Complex operator/(const Complex& c);
 ```
 
-
-
 위 4 개의 연산자 함수 모두 `Complex&` 가 아닌 `Complex` 를 리턴하고 있습니다. 간혹가다,
 
 
@@ -423,8 +408,6 @@ Complex a = b + c + b;
 Complex& operator=(const Complex& c);
 ```
 
-
-
 기본적으로 대입 연산자 함수는, 기존의 사칙연산 연산자 함수와는 다르게, `Complex&` 타입을 리턴합니다. 사실 대입 연산자 자체의 의미를 생각해 볼 때 리턴값을 `void` 로 해도 무방하지만, 프로그래머들은 종종 `if((i = x) < y)` 와 같은 문장을 사용하기 때문에 리턴값을 주는 것이 인터페이스 차원에서 더 낫다고 생각합니다.
 
 
@@ -443,13 +426,10 @@ Complex& Complex::operator=(const Complex& c)
 }
 ```
 
-
-
 그럼 제대로 작동하는지 확인해보면
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class Complex {
  private:
@@ -465,7 +445,7 @@ class Complex {
   Complex operator/(const Complex& c);
 
   Complex& operator=(const Complex& c);
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 
 Complex Complex::operator+(const Complex& c) {
@@ -501,12 +481,7 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2648ED34520D12320A734A)
 
@@ -528,16 +503,12 @@ int main() {
 Some_Class a = b;  // ①
 ```
 
-
-
 와
 
 ```cpp-formatted
 Some_Class a;  // ②
 a = b;
 ```
-
-
 
 말이지요. 이전에 이에 대해서 이야기 하였을 때 연산자 오버로딩을 배우지 못하였기 때문에 대충 두루뭉실하게 넘어갔지만 이제는 제대로 이해할 수 있습니다.① 의 경우, 아예 `a` 의 '복사 생성자' 가 호출되는 것이고,② 의 경우 `a` 의 그냥 기본 생성자가 호출 된 다음, 다음 문장에서 대입 연산자 함수가 실행되는 것입니다. 위 두 문장은 비록 비슷해 보이기는 해도 아예 다른 것이지요.
 
@@ -548,11 +519,8 @@ a = b;
 Complex& operator+=(const Complex& c);
 Complex& operator-=(const Complex& c);
 Complex& operator*=(const Complex& c);
-
 Complex& operator/=(const Complex& c);
 ```
-
-
 
 그 내부 구현은 간단히 미리 만들어 놓은 `operator+, operator-` 등을 이용해서 처리하면 됩니다.
 
@@ -579,9 +547,8 @@ Complex& Complex::operator/=(const Complex& c) {
 
 와 같이 말이지요. 전체 소스를 살펴보자면;
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
 
 class Complex {
  private:
@@ -601,7 +568,7 @@ class Complex {
   Complex& operator*=(const Complex& c);
   Complex& operator/=(const Complex& c);
 
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 
 Complex Complex::operator+(const Complex& c) {
@@ -652,8 +619,6 @@ int main() {
 성공적으로 컴파일 하였다면
 
 
-
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F26065741520D14F3047A36)
 
 
@@ -665,16 +630,11 @@ int main() {
 참고로, 연산자 오버로딩을 사용하게 된다면 `a+= b` 와 `a = a +` b; 가같다고 보장되지 않는다는 점을 명심해야 합니다. 컴파일러는 `operator+` 와 `operator=` 를 정의해놓았다고 해서 `a+=b` 를 자동으로 `a = a +` b; 로 바꾸어 주지 않습니다. 반드시 `operator+=` 를 따로 만들어야지 `+=` 를 사용할 수 있게 됩니다. 이와 같은 사실은 `++` 을 `+= 1` 로 바꾸어 주지 않는다던지, `--` 를 `-= 1` 로 바꾸어 주지 않는 다는 사실과 일맥상통합니다. 즉, 연산자 오버로딩을 하게 된다면 여러분이 생각하는 모든 연산자들에 대해 개별적인 정의가 필요합니다.
 
 
-
-
-
-
 ###  문자열로 `Complex` 수와 덧셈하기
 
 
-
-
 이번에는 `operator+` 를 개량해서, 꼭 `Complex` 수를 더하는 것이 아니라, 문자열로도 덧셈을 할 수 있도록 `operator+` 함수를 만드려 보려고 합니다. 다시 말해서,
+
 ```cpp-formatted
 y = z + "3+i2";
 ```
@@ -684,13 +644,12 @@ y = z + "3+i2";
 이런 문장을 사용하였을 경우 성공적으로 처리할 수 있게 된다는 의미이지요. 참고로, 문자열로 복소수를 어떻게 표현해야 할 지에 대해서는 모종의 약속이 필요한데, 우리 `Complex` 클래스의 경우 다음과 같은 꼴로 표현하도록 정합시다.
 
 ```info
-
 (부호) (실수부) (부호) i (허수부)
 ```
 
+예를 들어서 "2+i3" 은 `Complex` 수 (2 , 3) 을 나타낸 것이라 생각합니다. 또한, "2-i3" 은 (2, -3 ) 을 나타낸 것이 되겠지요.
 
-
-예를 들어서 "2+i3" 은 `Complex` 수 (2 , 3) 을 나타낸 것이라 생각합니다. 또한, "2-i3" 은 (2, -3 ) 을 나타낸 것이 되겠지요. 만일 실수부나 허수부의 값이 0 이라면 굳이 안써주어도 되는데, 예를 들어서 그냥 "3" 은 (3 , 0) 을 나타내며, "-5i" 는 (0, -5) 를 나타내게 됩니다. 참고로 우리의 실수부와 허수부는 `double` 변수 이기 때문에 문자열로 입력 받을 때 단순히 정수 부분만 받는 것이 아니라 소수점 아래 부분도 처리해 주어야만 할 것입니다. 이를 바탕으로 `operator+` 함수를 만들어 보도록 합시다.
+만일 실수부나 허수부의 값이 0 이라면 굳이 안써주어도 되는데, 예를 들어서 그냥 "3" 은 (3 , 0) 을 나타내며, "-5i" 는 (0, -5) 를 나타내게 됩니다. 참고로 우리의 실수부와 허수부는 `double` 변수 이기 때문에 문자열로 입력 받을 때 단순히 정수 부분만 받는 것이 아니라 소수점 아래 부분도 처리해 주어야만 할 것입니다. 이를 바탕으로 `operator+` 함수를 만들어 보도록 합시다.
 
 ```cpp-formatted
 Complex Complex::operator+(const char* str) {
@@ -730,8 +689,6 @@ Complex Complex::operator+(const char* str) {
 ```
 
 
-
-
 일단 문자열을 덧셈의 피연산자로 사용하게 되므로, `operator+` 의 인자는 `Complex &` 가 아니라 `const char *` 가 됩니다. 저의 경우, 이제 입력 받은 '문자열 복소수' 를 분석하기 위해서 가장 중요한 'i' 의 위치를 먼저 찾도록 하였습니다. 왜냐하면 이 'i' 를 기준으로 복소수의 실수부와 허수부가 나뉘어지기 때문이지요.
 
 ```cpp-formatted
@@ -762,7 +719,11 @@ if (pos_i == -1) {
 
 
 
-참고로 우리가 사용하는 `get_number` 함수는 특정 문자열에서 수 부분을 `double` 값으로 반환하는 함수 입니다. 사실 C 언어 표준 라이브러리인 `stdlib.h` 에서 `atof` 라는 함수를 제공해서 우리의 `get_number` 함수와 정확히 똑같은 작업을 하는 함수를 사용할 수 있지만, 한 번 이 함수를 직접 만들어보는 것도 나쁘지 않을 것이라 생각해서 `Complex` 클래스 내의 멤버 함수로 포함시켰습니다. 다만, 이 `get_number` 의 경우 `operator+` 함수의 내부적으로 사용되는 함수이지, 굳이 인터페이스로 제공할 필요는 없기 때문에 `private` 으로 설정하였습니다.
+참고로 우리가 사용하는 `get_number` 함수는 특정 문자열에서 수 부분을 `double` 값으로 반환하는 함수 입니다.
+
+사실 C 언어 표준 라이브러리인 `stdlib.h` 에서 `atof` 라는 함수를 제공해서 우리의 `get_number` 함수와 정확히 똑같은 작업을 하는 함수를 사용할 수 있지만, 한 번 이 함수를 직접 만들어보는 것도 나쁘지 않을 것이라 생각해서 `Complex` 클래스 내의 멤버 함수로 포함시켰습니다. 
+
+다만, 이 `get_number` 의 경우 `operator+` 함수의 내부적으로 사용되는 함수이지, 굳이 인터페이스로 제공할 필요는 없기 때문에 `private` 으로 설정하였습니다.
 
 ```cpp-formatted
 // 만일 'i' 가 있다면,  실수부와 허수부를 나누어서 처리하면 된다.
@@ -770,15 +731,11 @@ str_real = get_number(str, begin, pos_i - 1);
 str_img = get_number(str, pos_i + 1, end - 1);
 ```
 
-
-
 자 이제, 다시 `operator+` 함수를 돌아와서 살펴보자면 만일 `i` 가 포함되어 있다면 `i` 를 기준으로 왼쪽의 실수부와 오른쪽의 허수부로 나뉘게 됩니다. 이 때 `str_real` 은 `get_number` 함수를 이용해서 정확히 실수 값을 얻을 수 있습니다. (왜냐하면 맨 뒤에 숫자 뒤에 딸려오는 문자들은 `get_number` 에서 알아서 무시된다) 하지만 `str_img` 의 경우 `i` 앞의 부호 부분이 잘리기 때문에 정확한 실수 값을 얻을 수 없기 때문에 따로
 
 ```cpp-formatted
 if (pos_i >= 1 && str[pos_i - 1] == '-') str_img *= -1.0;
 ```
-
-
 
 로 해서 `str_img` 의 정확한 부호를 처리하도록 하였습니다.
 
@@ -814,9 +771,9 @@ double Complex::get_number(const char *str, int from, int to) {
 }
 ```
 
+저의 경우 `get_number` 함수를 위와 같이 구현하였습니다. 만일 `from` 이 `to` 보다 크다면 당연히, 올바르지 않는 입력으로 0 을 반환하도록 하였습니다. (사실 이렇게 모든 예외적인 경우를 세세하게 처리하는 일도 매우 중요합니다) 
 
-
-저의 경우 `get_number` 함수를 위와 같이 구현하였습니다. 만일 `from` 이 `to` 보다 크다면 당연히, 올바르지 않는 입력으로 0 을 반환하도록 하였습니다. (사실 이렇게 모든 예외적인 경우를 세세하게 처리하는 일도 매우 중요합니다) 그리고, 특별히 부호를 처리하기 위해서 `minus` 라는 `bool` 변수를 도입해서 마지막에 `minus` 가 `true` 일 경우에 부호를 음수로 바꾸도록 하였습니다.
+그리고, 특별히 부호를 처리하기 위해서 `minus` 라는 `bool` 변수를 도입해서 마지막에 `minus` 가 `true` 일 경우에 부호를 음수로 바꾸도록 하였습니다.
 
 ```cpp-formatted
 if (str[from] == '-' || str[from] == '+') from++;
@@ -843,7 +800,6 @@ for (int i = from; i <= to; i++) {
 ```
 
 
-
 `double` 형 변수로 입력받은 문자열을 처리할 때 유의할 점은, `for` 문에서 맨 앞자리 수 부터 읽는 다는 점입니다. 예를 들어서 `123.456` 이라면 `1,2,3...` 순으로 값을 입력 받게 되는데 이 때문에 소수점 앞 부분과 뒷 부분의 처리를 다르게 해야만 합니다. 소수점 앞 부분을 입력받을 때 (즉, `integer_part` 변수가 `true` 일 때) 에는 간단히
 
 
@@ -851,8 +807,6 @@ for (int i = from; i <= to; i++) {
 num *= 10.0;
 num += (str[i] - '0');
 ```
-
-
 
 를 해서 문자열 부분의 값을 읽어들일 수 있습니다. 즉 `1 -> 12 -> 123` 이 되겠지요. 참고로 `str[i] -` '0' 을 하는 기법은 상당히 자주 쓰이는데, `ASCII` 테이블 상에서 0 부터 9 까지 숫자들이 크기 순으로 연속적으로 배열되어 있기 때문에 단순히 '0' 을 빼버리면 그 숫자에 해당하는 실제 정수 값을 구할 수 있게 됩니다.
 
@@ -863,13 +817,11 @@ else if (isdigit(str[i]) && !integer_part) {
 }
 ```
 
-
-
 그리고 이번에는 소수점 뒷 부분을 읽어들일 차례 입니다. 소수점 뒷 부분의 경우 `decimal` 이란 새로운 변수를 도입하여서, 현재 읽어들이는 위치에 해당하는 값을 구할 수 있게 되는데요, 예를 들어 `123.456` 에서 4 의 경우 `decimal` 은 `0.1, 5` 는 `0.01` 등이 되겠지요. 이와 같은 방식으로 해서 우리는 원래의 문자열을 `double` 값으로 바꿀 수 있게 됩니다.
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
+#include <cstring>
 
 class Complex {
  private:
@@ -895,7 +847,7 @@ class Complex {
 
   Complex& operator=(const Complex& c);
 
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 
 Complex Complex::operator+(const Complex& c) {
@@ -1007,11 +959,7 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2579DD3B521706FF295ABE)
@@ -1020,10 +968,7 @@ int main() {
 
 와 같이 잘 실행되는 것을 알 수 있습니다.
 
-
-
 그런데, `+` 뿐만이 아니라, `-, *` 등의 모든 연산자들에 대해 이 기능을 지원하기 위해서 각각의 코드를 반복적으로 쓰는 것은 매우 귀찮은 일이 아닐 수 없습니다. 이와 같은 완전 불편한 작업을 막기 위해 아예 `const char *` 로 오버로딩되는 `Complex` 생성자를 추가하는 것도 나쁘지 않다고 생각 됩니다.
-
 
 그렇게 된다면 길고 복잡했었던 `operator+ (const char * str)` 부분을 다음과 같이 간단하게 줄일 수 있기 때문이지요.
 
@@ -1033,8 +978,6 @@ Complex Complex::operator+(const char* str) {
   return (*this) + temp;
 }
 ```
-
-
 
 그렇다면, 간단히 `Complex(const char* str)` 을 만들어본다면 아래와 같습니다.
 
@@ -1072,7 +1015,6 @@ Complex::Complex(const char* str) {
 ```
 
 
-
 그렇게 된다면, 나머지 함수들도,
 
 ```cpp-formatted
@@ -1090,13 +1032,11 @@ Complex Complex::operator/(const char* str) {
 }
 ```
 
-
-
 로 간단하게 구현할 수 있게 됩니다.
 
-```cpp-formatted
+```cpp
+#include <cstring>
 #include <iostream>
-using namespace std;
 
 class Complex {
  private:
@@ -1126,7 +1066,7 @@ class Complex {
 
   Complex& operator=(const Complex& c);
 
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 Complex::Complex(const char* str) {
   // 입력 받은 문자열을 분석하여 real 부분과 img 부분을 찾아야 한다.
@@ -1255,12 +1195,7 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F2746124A5217107A221C06)
 
@@ -1268,13 +1203,11 @@ int main() {
 
 와 같이 제대로 계산됨을 알 수 있습니다.
 
-
-
 한 가지 재미 있는 점은, `Complex(const char *str)` 생성자만 남겨놓고, `operator+(const char *str)` 계열들을 모두 지워보시고 컴파일 해보세요. 다시 말해서;
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
+#include <cstring>
 
 class Complex {
  private:
@@ -1299,7 +1232,7 @@ class Complex {
 
   Complex& operator=(const Complex& c);
 
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 Complex::Complex(const char* str) {
   // 입력 받은 문자열을 분석하여 real 부분과 img 부분을 찾아야 한다.
@@ -1413,12 +1346,7 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F2746124A5217107A221C06)
 
@@ -1434,23 +1362,17 @@ Complex operator*(const char *str);
 Complex operator/(const char *str);
 ```
 
-
-
 들을 모두 만들어 주었더니, 결과적으로 생성자 하나만 만들면 충분하다는 것이였나요? 놀랍게도, 우리의 컴파일러는 매우 똑똑하기 때문에 이와 같은 일이 가능합니다. 우리가
 
 ```cpp-formatted
 a = a + "-1.1 + i3.923";
 ```
 
-
-
 와 같은 문장을 사용하였을 때, 앞에서 이야기 해왔듯이 컴파일러가 위 문장을
 
 ```cpp-formatted
 a = a.operator+("-1.1 + i3.923");
 ```
-
-
 
 로 바꿔줍니다. 하지만, 우리에게는 `operator+(const char *str)` 이 없고, `operator+(const Complex& c)` 밖에 없기 때문에 직접적으로 오버로딩 되지는 않습니다. 그렇지만, 컴파일러는 매우 똑똑하기 때문에 그 다음 순위로 오버로딩 될 수 있는 함수들이 있는지 없는 지 확인해봅니다. 그런데 놀랍게도, 우리에게는 `const char *` 에서 `Complex` 를 생성할 수 있는 생성자
 
@@ -1466,8 +1388,6 @@ Complex(const char* str);
 a = a.operator+(Complex("-1.1 + i3.923"));
 ```
 
-
-
 그럼 이제 `const Complex` 에 인자로 전달할 수 있게 되어서 제대로 프로그램이 작동을 하게 되지요. 여기서 한 가지 짚고 넘어가야 할 점은, 만일 우리가 `operator+` 함수의 인자가 `const Complex& c` 가 아니라 그냥 `Complex& c` 로 받도록 하였다면 위와 같은 변환은 이루어지지 않습니다. 왜냐하면 `-1.1 + i3.923` 자체가 문자열 리터럴 이므로, 이를 바탕으로 생성된 객체 역시 상수 여야 하기 때문입니다. 따라서여러 모로 함수 인자의 값을 변형하지 않는다고 확신이 들면 무조건 `const` 인자로 받도록 하는 것이 좋습니다.
 
 
@@ -1477,15 +1397,11 @@ a = a.operator+(Complex("-1.1 + i3.923"));
 a = "-1.1 + i3.923" + a;
 ```
 
-
-
 사실 이 문장이나, 원래의
 
 ```cpp-formatted
 a = a + "-1.1 + i3.923";
 ```
-
-
 
 문장이나 정확히 동일한 식입니다. 왜냐하면 `+` 연산자는 교환 법칙이 성립해야만 하기 때문이죠. 하지만 여러분도 이미 짐작하셨겠지만 전자의 경우에는 성공적으로 컴파일 되지 않습니다. 왜냐하면 `a + "-1.1+i3.923"` 의 경우 이 문장이 `a.operator+("-1.1+i3.923")` 으로 변환되어서 정확히 수행될 수 있지만 `"-1.1 + i3.923" + a` 의 경우에는 이 같은 변환이 불가능 하기 때문입니다.
 
@@ -1494,8 +1410,6 @@ a = a + "-1.1 + i3.923";
 
 
 이에 대해서는 다음 시간에 다루어 보도록 하겠습니다.
-
-
 
 
 ###  생각해보기

@@ -39,7 +39,6 @@ a = "-1.1 + i3.923" + a;  // ②
 ```
 
 
-
 는 컴파일 되지 않습니다. 왜냐하면, ① 의 경우 `a.operator+("i3.923");` 으로 변환될 수 있지만 ② 는 그렇지 못하기 때문이죠. 하지만, 원칙적으로  클래스를 사용하는 사용자의 입장에서① 이 된다면 당연히② 도 수행될 수 있어야 연산자 오버로딩을 하는 명분이 생깁니다. 다행 스럽게도, 사실 컴파일러는 이항 연산자 (피연산자를 두 개를 취하는 연산자 `-` 예를 들어서 `+, -, *, /, ->, =` 등이 이항 연산자 이다) 를 다음과 같은 두 개의 방식으로 해석합니다.
 
 
@@ -63,15 +62,11 @@ Complex operator+(const Complex& a, const Complex& b) {
 }
 ```
 
-
-
 우리의 또 다른 `operator+` 는 두 개의 `const Complex&` 타입의 인자 `a,b` 를 받게 됩니다. 앞에서도 말했지만 컴파일러는 정확히 일치 하지 않는 경우, 가장 가까운 '가능한' 오버로딩 되는 함수를 찾게 되는데, 마침 우리에게는 `Complex(const char *)` 타입의 생성자가 있으므로,
 
 ```cpp-formatted
 "-1.1 + i3.923" + a;
 ```
-
-
 
 는
 
@@ -79,13 +74,11 @@ Complex operator+(const Complex& a, const Complex& b) {
 operator+(Complex("-1.1 + i3.923"), a);
 ```
 
-
-
 가 되어서 잘 실행되게 됩니다. 실제로 컴파일 해보면
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
+#include <cstring>
 
 class Complex {
  private:
@@ -110,7 +103,7 @@ class Complex {
 
   Complex& operator=(const Complex& c);
 
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 Complex operator+(const Complex& a, const Complex& b) {
   Complex temp(a);
@@ -289,7 +282,7 @@ error C2662: 'Complex::operator +' : cannot convert 'this' pointer from 'const C
 아마 이 글을 읽는 독자 여러분들은 자신의 모든 것을 아낌없이 털어놓을 수 있는 절친한 친구 한 두 명 쯤은 있을 것입니다. 그 친구와 나 사이에는 어떠한 정보도 열람할 수 있는 관계가 되지요.
 그런데 재미있는 사실에는 비슷한 역할을 하는 키워드가 C++ 에도 있다는 점입니다. 그 이름도 역시 **friend** 입니다.
 
-```cpp-formatted
+```cpp
 class Complex {
  private:
   double real, img;
@@ -315,18 +308,15 @@ class Complex {
 
   friend Complex operator+(const Complex& a, const Complex& b);
 
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 ```
-
-
 
 위와 같이 `Complex` 클래스 안에서
 
 ```cpp-formatted
 friend Complex operator+(const Complex& a, const Complex& b);
 ```
-
 
 라 같이 쓰면 우리의`Complex operator+(const Complex& a, const Complex& b);`  함수는 이제 `Complex` 의 `friend` 가 됩니다. 즉, `Complex` 클래스의 입장에서는 자신의 새로운 친구인 `operator+` 에게 마음의 문을 열고 모든 정보에 접근할 수 있도록 허가하는 것입니다.
 
@@ -341,8 +331,6 @@ Complex operator+(const Complex& a, const Complex& b) {
   return temp;
 }
 ```
-
-
 
 이제 이 `operator+` 함수는 마치 `Complex` 클래스의 멤버 변수인양, 객체들의 정보에 접근할 수 있게 됩니다. `real` 변수는 `private` 이지만, `a.real` 을 해도 무방하지요. 이렇게 된다면, 이전의 `operator+` 에서 불필요하게 `temp` 객체를 생성했던 것 과는 달리 필요한 것만 사용하면 됩니다.
 
@@ -363,8 +351,6 @@ class B {
 };
 ```
 
-
-
 와 같이 할 경우, `A` 는 `B` 를 `friend` 로 지정하게 된 것입니다. 한 가지 주의할 사실은, 우리가 흔히 생각하는 friend 관계와는 다르게, C++ 에서 friend 는 짝사랑과 비슷합니다. 즉, `A` 는 자기 생각에 `B` 가 `friend` 라고 생각하는 것이므로, `B` 에게 `A` 의 모든 것을 공개합니다.
 
 즉 클래스 `B` 에서 `A` 의 `private` 변수인 `x` 에 접근할 수 있게 됩니다. 하지만 `B` 에는 `A` 가 `friend` 라고 지정하지 않았으므로, `B` 의 입장에서는 `A` 에게 어떠한 내용도 공개하지 않습니다 (`public` 변수들 빼고). 따라서 `A` 는 `B` 의 `private` 변수인 `int y` 에 접근할 수 없게 됩니다.
@@ -375,12 +361,10 @@ class B {
 아마도, 눈치를 채신 분들이 있겠지만 우리가
 
 ```cpp-formatted
-cout << a;
+std::cout << a;
 ```
 
-
-
-라고 하는 것은 사실 `cout.operator<<(a)` 를 하는 것과 동일한 명령이었습니다. 즉, 어떤 `cout` 이라는 객체에 멤버 함수 `operator<<` 가 정의되어 있어서 `a` 를 호출하게 되는 것이지요. 그런데, `cout` 이 `int` 나 `double` 변수, 심지어 문자열 까지 자유 자재로 `operator<<` 하나로 출력할 수 있었던 이유는 그 많은 수의 `operator<<` 함수들이 오버로딩 되어 있다는 뜻입니다.
+라고 하는 것은 사실 `std::cout.operator<<(a)` 를 하는 것과 동일한 명령이었습니다. 즉, 어떤 `std::cout` 이라는 객체에 멤버 함수 `operator<<` 가 정의되어 있어서 `a` 를 호출하게 되는 것이지요. 그런데, `std::cout` 이 `int` 나 `double` 변수, 심지어 문자열 까지 자유 자재로 `operator<<` 하나로 출력할 수 있었던 이유는 그 많은 수의 `operator<<` 함수들이 오버로딩 되어 있다는 뜻입니다.
 
 
 실제로 우리가 `include` 하던 `iostream` 의 헤더파일의 내용을 살펴보면 (실제로는 `ostream` 에 정의되어 있습니다. 다만 `iostream` 이 `ostream` 을 `include` 하고 있음) `ostream` 클래스에
@@ -408,9 +392,8 @@ ostream& operator<<(void* val);
 
 ```cpp-formatted
 Complex c;
-cout << c;
+std::cout << c;
 ```
-
 
 
 를 하게 되면 마치
@@ -428,7 +411,7 @@ c.println();
 그 대신에, 여태 까지 배운 내용에 따르면 아예 `operator<<` 전역 함수 하나를 정해서 `Complex` 의 `friend` 로 지정한 다음에 사용할 수 있습니다. 그 함수는 아마 다음과 같이 생겼겟지요.
 
 ```cpp-formatted
-ostream& operator<<(ostream& os, const Complex& c) {
+std::ostream& operator<<(std::ostream& os, const Complex& c) {
   os << "( " << c.real << " , " << c.img << " ) ";
   return os;
 }
@@ -436,15 +419,15 @@ ostream& operator<<(ostream& os, const Complex& c) {
 
 
 
-여기서 왜 `cout` 이 아니고 `os` 라고 의문을 가질 수 도 있는데, `cout` 자체가 `iostream` 에서 하나 만들어 놓은 `ostream` 객체 입니다. 따라서 `ostream&` 타입으로 `cout` 객체를 받아서 이를 출력하면 됩니다. 마찬가지로, `Complex` 클래스 내부에서 `friend` 선언을 해주시면 됩니다. 참고로 `opreator<<` 에서 `ostream&` 타입을 리턴하는 이유는 다음과 같은 문장을 처리할 수 있기 위해서입니다.
+여기서 왜 `std::cout` 이 아니고 `os` 라고 의문을 가질 수 도 있는데, `std::cout` 자체가 `iostream` 에서 하나 만들어 놓은 `ostream` 객체 입니다. 따라서 `ostream&` 타입으로 `std::cout` 객체를 받아서 이를 출력하면 됩니다. 마찬가지로, `Complex` 클래스 내부에서 `friend` 선언을 해주시면 됩니다. 참고로 `opreator<<` 에서 `ostream&` 타입을 리턴하는 이유는 다음과 같은 문장을 처리할 수 있기 위해서입니다.
 
 ```cpp-formatted
-cout << "a 의 값은 : " << a << " 이다. " << endl;
+std::cout << "a 의 값은 : " << a << " 이다. " << std::endl;
 ```
 
 
 
-`<<` 연산자는 왼쪽 부터 오른쪽 순으로 실행되기 때문에 가장 먼저 `cout.operator<<("a 의 값은?")` 이 실행되고, 그 자리에 `cout` 이 다시 리턴됩니다. 그 다음에는 `cout.operator<<(a);` 가 되서 쭉쭉 이어질 수 있도록 이와 같이 `ostream&` 를 리턴하게 되는 것입니다. 참고로, `Complex` 클래스 내부에는
+`<<` 연산자는 왼쪽 부터 오른쪽 순으로 실행되기 때문에 가장 먼저 `std::cout.operator<<("a 의 값은?")` 이 실행되고, 그 자리에 `std::cout` 이 다시 리턴됩니다. 그 다음에는 `std::cout.operator<<(a);` 가 되서 쭉쭉 이어질 수 있도록 이와 같이 `ostream&` 를 리턴하게 되는 것입니다. 참고로, `Complex` 클래스 내부에는
 
 ```cpp-formatted
 friend ostream& operator<<(ostream& os, const Complex& c);
@@ -454,9 +437,10 @@ friend ostream& operator<<(ostream& os, const Complex& c);
 
 위와 같이 `friend` 선언을 해주시면 됩니다. 비슷한 방법으로 `Complex` 객체 `c` 에 대해 `cin >>` c; 와 같은 작업을 할 수 있습니다. 다만, 이번에는 `cin` 은 `istream` 객체이고, `opreator>>` 를 오버로딩 해야 된다는 점이 다를 뿐이지요.
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
+#include <cstring>
+
 class Complex {
  private:
   double real, img;
@@ -481,11 +465,11 @@ class Complex {
   Complex& operator=(const Complex& c);
 
   friend Complex operator+(const Complex& a, const Complex& b);
-  friend ostream& operator<<(ostream& os, const Complex& c);
+  friend std::ostream& operator<<(std::ostream& os, const Complex& c);
 
-  void println() { cout << "( " << real << " , " << img << " ) " << endl; }
+  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
-ostream& operator<<(ostream& os, const Complex& c) {
+std::ostream& operator<<(std::ostream& os, const Complex& c) {
   os << "( " << c.real << " , " << c.img << " ) ";
   return os;
 }
@@ -595,7 +579,7 @@ Complex& Complex::operator=(const Complex& c) {
 int main() {
   Complex a(0, 0);
   a = "-1.1 + i3.923" + a;
-  cout << "a 의 값은 : " << a << " 이다. " << endl;
+  std::cout << "a 의 값은 : " << a << " 이다. " << std::endl;
 }
 ```
 
@@ -611,9 +595,6 @@ int main() {
 
 
 와 같이 잘 실행됨을 알 수 있습니다.
-
-
-
 
 
 
@@ -646,13 +627,11 @@ char& MyString::operator[](const int index) { return string_content[index]; }
 ```
 
 
-
 위와 같이 `index` 번째의 `string_content` 를 리턴해서, `operator[]` 를 사용하는 사용자가, 이의 레퍼런스를 가질 수 있게 되지요. 그렇다면, 전체 소스를 한 번 살펴보도록 합시다.
 
 ```cpp-formatted
 #include <iostream>
 #include <cstring>
-using namespace std;
 
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
@@ -704,14 +683,14 @@ MyString::~MyString() { delete[] string_content; }
 int MyString::length() { return string_length; }
 void MyString::print() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 }
 void MyString::println() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
-  cout << endl;
+  std::cout << std::endl;
 }
 
 char& MyString::operator[](const int index) { return string_content[index]; }
@@ -724,15 +703,10 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
-
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F214AAE41521E0EB60BE46C)
-
 
 
 와 같이 제대로 `str[3]` 의 'd' 를 'c' 로 잘 바꾸었음을 알 수 있습니다.
@@ -744,15 +718,12 @@ int main() {
 
 ###  int Wrapper 클래스 - 타입 변환 연산자
 
-
-
 `Wrapper` 라는 것은 원래 우리가 흔히 음식을 포장할 때 '랩(wrap)으로 싼다' 라고 하는 것 처럼, '포장지' 라는 의미의 단어 입니다. 즉 `Wrapper` 클래스는 무언가를 포장하는 클래스라는 의미인데, C++ 에서 프로그래밍을 할 때 어떤 경우에 기본 자료형들을 객체로써 다루어야 할 때가 있습니다. 이럴 때, 기본 자료형들 (`int, float` 등등) 을 클래스로 포장해서 각각의 자료형을 객체로 사용하는 것을 `Wrapper` 클래스를 이용한다는 뜻 입니다.
 
 즉, `int` 자료형을 감싸는 int Wrapper 클래스 `Int` 는 다음과 같이 구성할 수 있습니다.
 
 ```cpp-formatted
 class Int
-
 {
   int data;
   // some other data
@@ -763,16 +734,12 @@ class Int
 };
 ```
 
-
-
 위 `Int` 클래스에 `int` 형 자료형을 보관하는 `data` 라는 변수를 정의해 놓았는데, 이렇게 한다면 `int` 형 데이터를 저장하는 객체로 `Int` 클래스를 사용할 수 있을 것입니다. 우리는 이 `Int` 객체가 `int` 의 `Wrapper` 클래스의 객체인 만큼, `int` 와 정확히 똑같이 작동하도록 만들고 싶습니다. 다시 말해서 다음과 같은 명령을 내려도 아무 하자 없이 잘 실행될 수 있도록 말이지요.
 
 ```cpp-formatted
 Int x = 3;      // Wrapper 객체
 int a = x + 4;  // 그냥 평범한 int 형 변수 a
 ```
-
-
 
 이를 잘 수행하기 위해서라면, 여태까지 연산자 오버로딩을 열심히 배워오신 여러분 생각이라면
 
@@ -816,7 +783,6 @@ operator int() { return data; }
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class Int {
   int data;
@@ -833,15 +799,11 @@ int main() {
   int a = x + 4;
 
   x = a * 2 + x + 4;
-  cout << x << endl;
+  std::cout << x << std::endl;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F23729548521E20860F2135)
@@ -934,7 +896,7 @@ A operator++(int) {
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
+
 
 class Test {
   int x;
@@ -945,7 +907,7 @@ class Test {
 
   Test& operator++() {
     x++;
-    cout << "전위 증감 연산자" << endl;
+    std::cout << "전위 증감 연산자" << std::endl;
     return *this;
   }
 
@@ -954,7 +916,7 @@ class Test {
   Test operator++(int) {
     Test temp(*this);
     x++;
-    cout << "후위 증감 연산자" << endl;
+    std::cout << "후위 증감 연산자" << std::endl;
     return temp;
   }
 
@@ -964,7 +926,7 @@ class Test {
 };
 
 void func(const Test& t) {
-  cout << "x : " << t.get_x() << endl;
+  std::cout << "x : " << t.get_x() << std::endl;
 }
 
 int main() {
@@ -972,7 +934,7 @@ int main() {
 
   func(++t); // 4
   func(t++); // 4 가 출력됨
-  cout << "x : " << t.get_x() << endl;
+  std::cout << "x : " << t.get_x() << std::endl;
 }
 ```
 
@@ -989,11 +951,7 @@ x : 5
 와 같이 제대로 골라서 실행되고 있음을 알 수 있습니다.
 
 
-
-
 ###  정리
-
-
 
 
 연산자 오버로딩에 대해 다루면서 몇 가지 중요한 포인트 들만 따로 정리해보자면;

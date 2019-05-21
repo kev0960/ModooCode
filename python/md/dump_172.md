@@ -8,12 +8,7 @@ publish_date : 2012-02-29
 
 이번 강좌에서는
 * 객체 지향 프로그래밍의 도래
-
-
 * 객체란 무엇인가, 클래스란 무엇인가
-
-
-
 * 접근 지시자 (public, private)
 
 ![](/img/ChewingCpplogo.png)
@@ -149,7 +144,6 @@ animal.weight += 10;
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class Animal {
  private:
@@ -166,8 +160,8 @@ class Animal {
     weight += (inc / 3);
   }
   void view_stat() {
-    cout << "이 동물의 food   : " << food << endl;
-    cout << "이 동물의 weight : " << weight << endl;
+    std::cout << "이 동물의 food   : " << food << std::endl;
+    std::cout << "이 동물의 weight : " << weight << std::endl;
   }
 };  // 세미콜론 잊지 말자!
 
@@ -211,8 +205,8 @@ class Animal {
     weight += (inc / 3);
   }
   void view_stat() {
-    cout << "이 동물의 food   : " << food << endl;
-    cout << "이 동물의 weight : " << weight << endl;
+    std::cout << "이 동물의 food   : " << food << std::endl;
+    std::cout << "이 동물의 weight : " << weight << std::endl;
   }
 };
 ```
@@ -261,8 +255,8 @@ void increase_food(int inc) {
   weight += (inc / 3);
 }
 void view_stat() {
-  cout << "이 동물의 food   : " << food << endl;
-  cout << "이 동물의 weight : " << weight << endl;
+  std::cout << "이 동물의 food   : " << food << std::endl;
+  std::cout << "이 동물의 weight : " << weight << std::endl;
 }
 ```
 

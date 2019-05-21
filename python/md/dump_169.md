@@ -27,20 +27,17 @@ C 언어에서는 `malloc` 과 `free` 함수를 지원하여 힙 상에서의 �
 ```cpp-formatted
 /* new 와 delete 의 사용 */
 #include <iostream>
-using namespace std;
 
 int main() {
   int* p = new int;
   *p = 10;
 
-  cout << *p << endl;
+  std::cout << *p << std::endl;
 
   delete p;
   return 0;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -80,7 +77,6 @@ delete p;
 ```cpp-formatted
 /* 지역 변수 delete 하기 */
 #include <iostream>
-using namespace std;
 
 int main() {
   int a = 5;
@@ -104,21 +100,21 @@ int main() {
 ###  new 로 배열 할당하기
 
 
-```cpp-formatted
+```cpp
 /* new 로 배열 할당하기 */
 
 #include <iostream>
-using namespace std;
+
 int main() {
   int arr_size;
-  cout << "array size : ";
-  cin >> arr_size;
+  std::cout << "array size : ";
+  std::cin >> arr_size;
   int *list = new int[arr_size];
   for (int i = 0; i < arr_size; i++) {
-    cin >> list[i];
+    std::cin >> list[i];
   }
   for (int i = 0; i < arr_size; i++) {
-    cout << i << "th element of list : " << list[i] << endl;
+    std::cout << i << "th element of list : " << list[i] << std::endl;
   }
   delete[] list;
   return 0;
@@ -136,8 +132,8 @@ int main() {
 ```cpp-formatted
 int arr_size;
 
-cout << "array size : ";
-cin >> arr_size;
+std::cout << "array size : ";
+std::cin >> arr_size;
 
 int *list = new int[arr_size];
 ```
@@ -156,10 +152,10 @@ T* pointer = new T[size];
 // 생략
 {
   int a = 4;
-  cout << "안에서 a : " << a;
+  std::cout << "안에서 a : " << a;
 }
 
-cout << "밖에서 a : " << a;
+std::cout << "밖에서 a : " << a;
 ```
 
 
@@ -168,12 +164,12 @@ cout << "밖에서 a : " << a;
 ```cpp-formatted
 int a = 4;
 {
-  cout << "외부의 변수 1" << a << endl;
+  std::cout << "외부의 변수 1" << a << std::endl;
   int a = 3;
-  cout << "내부의 변수 " << a << endl;
+  std::cout << "내부의 변수 " << a << std::endl;
 }
 
-cout << "외부의 변수 2" << a << endl;
+std::cout << "외부의 변수 2" << a << std::endl;
 ```
 
 
@@ -198,10 +194,10 @@ cout << "외부의 변수 2" << a << endl;
 
 ```cpp-formatted
 for (int i = 0; i < arr_size; i++) {
-  cin >> list[i];
+  std::cin >> list[i];
 }
 for (int i = 0; i < arr_size; i++) {
-  cout << i << "th element of list : " << list[i] << endl;
+  std::cout << i << "th element of list : " << list[i] << std::endl;
 }
 ```
 
@@ -237,7 +233,7 @@ delete[] list;
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
+
 
 typedef struct Animal {
   char name[30];  // 이름
@@ -249,11 +245,11 @@ typedef struct Animal {
 } Animal;
 
 void create_animal(Animal *animal) {
-  cout << "동물의 이름? ";
-  cin >> animal->name;
+  std::cout << "동물의 이름? ";
+  std::cin >> animal->name;
 
-  cout << "동물의 나이? ";
-  cin >> animal->age;
+  std::cout << "동물의 나이? ";
+  std::cin >> animal->age;
 
   animal->health = 100;
   animal->food = 100;
@@ -272,22 +268,22 @@ void one_day_pass(Animal *animal) {
   animal->clean -= 20;
 }
 void show_stat(Animal *animal) {
-  cout << animal->name << "의 상태" << endl;
-  cout << "체력    : " << animal->health << endl;
-  cout << "배부름 : " << animal->food << endl;
-  cout << "청결    : " << animal->clean << endl;
+  std::cout << animal->name << "의 상태" << std::endl;
+  std::cout << "체력    : " << animal->health << std::endl;
+  std::cout << "배부름 : " << animal->food << std::endl;
+  std::cout << "청결    : " << animal->clean << std::endl;
 }
 int main() {
   Animal *list[10];
   int animal_num = 0;
 
   for (;;) {
-    cout << "1. 동물 추가하기" << endl;
-    cout << "2. 놀기 " << endl;
-    cout << "3. 상태 보기 " << endl;
+    std::cout << "1. 동물 추가하기" << std::endl;
+    std::cout << "2. 놀기 " << std::endl;
+    std::cout << "3. 상태 보기 " << std::endl;
 
     int input;
-    cin >> input;
+    std::cin >> input;
 
     switch (input) {
       int play_with;
@@ -298,16 +294,16 @@ int main() {
         animal_num++;
         break;
       case 2:
-        cout << "누구랑 놀게? : ";
-        cin >> play_with;
+        std::cout << "누구랑 놀게? : ";
+        std::cin >> play_with;
 
         if (play_with < animal_num) play(list[play_with]);
 
         break;
 
       case 3:
-        cout << "누구껄 보게? : ";
-        cin >> play_with;
+        std::cout << "누구껄 보게? : ";
+        std::cin >> play_with;
         if (play_with < animal_num) show_stat(list[play_with]);
         break;
     }

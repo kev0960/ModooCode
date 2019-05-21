@@ -238,4 +238,4 @@ class InlineCoder:
 if __name__ == "__main__":
   if len(sys.argv) > 1:
     file_name = sys.argv[1]
-    coder = InlineCoder('../md/' + file_name)
+    coder = InlineCoder('./md/' + file_name)

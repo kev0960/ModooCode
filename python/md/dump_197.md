@@ -28,12 +28,11 @@ publish_date : 2013-05-26
 
 
 
-###  생성자의 초기화 리스트(initializer `list)`
+###  생성자의 초기화 리스트(initializer list)
 
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
 
 class Marine {
   int hp;                // 마린 체력
@@ -67,9 +66,9 @@ void Marine::be_attacked(int damage_earn) {
   if (hp <= 0) is_dead = true;
 }
 void Marine::show_status() {
-  cout << " *** Marine *** " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << " *** Marine *** " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 
 int main() {
@@ -138,8 +137,6 @@ Marine::Marine(int x, int y)
 (생성자 이름) : var1(arg1), var2(arg2) {}
 ```
 
-
-
 여기서 `var` 들은 클래스의 멤버 변수들을 지칭하고, `arg` 는 그 멤버 변수들을 무엇으로 초기화 할 지 지칭하는 역할을 합니다. 한 가지 흥미로운 점은 `var1` 과 `arg1` 의 이름이 같아도 되는데, 실제로 아래의 예제는
 
 
@@ -147,8 +144,6 @@ Marine::Marine(int x, int y)
 Marine::Marine(int coord_x, int coord_y)
     : coord_x(coord_x), coord_y(coord_y), hp(50), damage(5), is_dead(false) {}
 ```
-
-
 
 정상적으로 작동합니다. 왜냐하면 `coord_x ( coord_x )` 에서 바깥쪽의 `coord_x` 는 무조건 멤버 변수를 지칭하게 되는데, 이 경우 `coord_x` 를 지칭하는 것이고, 괄호 안의 `coord_x` 는 원칙상 `Marine` 이 인자로 받은 `coord_x` 를 우선적으로 지칭하는 것이기 때문입니다.
 
@@ -166,10 +161,7 @@ Marine::Marine(int coord_x, int coord_y) {
 }
 ```
 
-
-
 컴파일러가 두 `coord_x` 모두 인자로 받은 `coord_x` 로 구분해서 오류가 나겠지요.
-
 
 그렇다면, 왜 도대체 초기화 리스트를 사용해야 되냐고 물을 수 있습니다. 왜냐하면
 
@@ -183,10 +175,7 @@ Marine::Marine() {
 }
 ```
 
-
-
 나
-
 
 ```cpp-formatted
 Marine::Marine() : hp(50), coord_x(0), coord_y(0), damage(5), is_dead(false) {}
@@ -200,8 +189,6 @@ Marine::Marine() : hp(50), coord_x(0), coord_y(0), damage(5), is_dead(false) {}
 int a = 10;
 ```
 
-
-
 이라 하는 것과 같고, 그냥 예전 버전의 생성자를 사용하는 것은
 
 ```cpp-formatted
@@ -209,11 +196,9 @@ int a;
 a = 10;
 ```
 
+이라 하는 것과 동일하다는 것입니다. 만약에 `int` 가 대신에 클래스 였다면, **전자의 경우 복사 생성자 가 호출되는데, 후자의 경우 디폴트 생성자가 호출된 뒤 대입이 수행**된다는 이야기 이겠지요.
 
-
-이라 하는 것과 동일하다는 것입니다. 만약에 `int` 가 대신에 클래스 였다면, 전자의 경우 '복사 생성자' 가 호출되는데, 후자의 경우 '디폴트 생성자' 가 호출된 뒤 대입이 수행된다는 이야기 이겠지요.
-
-딱 보아도 후자가 조금 더 하는 작업이 많게 됩니다. 따라서 초기화 리스트를 사용하는 것이조금 더 효율적인 작업이라는 사실을 알 수 있지요. 그 뿐만 아니라, 우리 경험상 반드시 '생성과 동시에 초기화 되어야 하는 것들' 이 몇 가지 있었습니다. 대표적으로 레퍼런스와 상수가  있지요.
+딱 보아도 후자가 조금 더 하는 작업이 많게 됩니다. 따라서 초기화 리스트를 사용하는 것이조금 더 효율적인 작업이라는 사실을 알 수 있지요. 그 뿐만 아니라, 우리 경험상 반드시 '생성과 동시에 초기화 되어야 하는 것들' 이 몇 가지 있었습니다. 대표적으로 레퍼런스와 상수가 있지요.
 
 
 앞서 배운 바에 따르면 상수와 레퍼런스들은 모두 생성과 동시에 초기화가 되어야 합니다.
@@ -230,9 +215,9 @@ ref = c; // 레퍼런스 강좌를 참조
 모두 컴파일 오류가 나겠지요. 따라서 만약에 클래스 내부에 레퍼런스 변수나 상수를 넣고 싶다면 이들을 생성자에서 무조건 초기화 리스트를 사용해서 초기화 시켜주어야만 합니다.
 
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
+
 
 class Marine {
   int hp;                // 마린 체력
@@ -267,9 +252,9 @@ void Marine::be_attacked(int damage_earn) {
   if (hp <= 0) is_dead = true;
 }
 void Marine::show_status() {
-  cout << " *** Marine *** " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << " *** Marine *** " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 
 int main() {
@@ -279,7 +264,7 @@ int main() {
   marine1.show_status();
   marine2.show_status();
 
-  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
   marine2.be_attacked(marine1.attack());
 
   marine1.show_status();
@@ -287,14 +272,9 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F122A983A50EFB93B1314D5)
-
 
 
 이 됩니다.
@@ -307,8 +287,6 @@ int main() {
 Marine::Marine()
     : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {}
 ```
-
-
 
 와 같이, `default_damage` 를 생성과 동시에 초기화 할 수 있도록 하였습니다. 따라서 우리는 상수인 `default_damage` 를 5 로 초기화 할 수 있고, 이 값은 영원히 바뀌지 않게 됩니다.
 
@@ -327,21 +305,17 @@ marine2.show_status();
 
 
 ```cpp-formatted
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
 marine2.be_attacked(marine1.attack());
 ```
 
-
-
 마찬가지로 `Marine` 객체들이 서로 공격하는 과정도 잘 실행되고 있음을 알 수 있습니다.
-
 
 위와 같이 중요한 값들을 상수로 처리하는 것은 매우 유용한 일입니다. 다른 프로그래머가 이 클래스를 사용하면서 실수로 `marine` 의 `default_damage` 를 변경하는 명령을 집어 넣더라고 컴파일 오류가 발생하기 때문에 프로그램을 실행해서 지루한 디버깅 과정을 거쳐서 알아 내는 것 보다 훨씬 효율적으로 오류를 발견할 수 있겠지요.
 
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
 
 class Marine {
   int hp;                // 마린 체력
@@ -384,9 +358,9 @@ void Marine::be_attacked(int damage_earn) {
   if (hp <= 0) is_dead = true;
 }
 void Marine::show_status() {
-  cout << " *** Marine *** " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
+  std::cout << " *** Marine *** " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
 }
 
 int main() {
@@ -396,7 +370,7 @@ int main() {
   marine1.show_status();
   marine2.show_status();
 
-  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
   marine2.be_attacked(marine1.attack());
 
   marine1.show_status();
@@ -439,13 +413,7 @@ const int default_damage = (인자로 받은 default_damage);
 를 실행한 것과 마찬가지 이기 때문에 잘 작동됨을 알 수 있습니다. 그리고, 실제로 5 가 아닌 10 의 `HP` 가 깎였음을 `show_status` 를 통해 확인 할 수 있습니다.
 
 
-
-
-
 ###  생성된 총 `Marine` 수 세기 (static 변수)
-
-
-
 
 
 자, 이번에는 여태까지 만들어지는 총 `Marine` 의 수를 알아내기 위해 코드를 짠다고 생각해봅시다. 이를 위해서는 많은 방법이 있겠지만 가장 단순한 두 방식을 생각해본다면
@@ -467,11 +435,10 @@ const int default_damage = (인자로 받은 default_damage);
 
 또한, 이 `static` 멤버 변수의 경우, 클래스의 모든 객체들이 '공유' 하는 변수로써 각 객체 별로 따로 존재하는 멤버 변수들과는 달리 모든 객체들이 '하나의' `static` 멤버 변수를 사용하게 됩니다. 그럼 바로 아래의 예제를 살펴 보도록 합시다.
 
-```cpp-formatted
+```cpp
 // static 멤버 변수의 사용
 
 #include <iostream>
-using namespace std;
 
 class Marine {
   static int total_marine_num;
@@ -526,10 +493,10 @@ void Marine::be_attacked(int damage_earn) {
   if (hp <= 0) is_dead = true;
 }
 void Marine::show_status() {
-  cout << " *** Marine *** " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
-  cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+  std::cout << " *** Marine *** " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
+  std::cout << " 현재 총 마린 수 : " << total_marine_num << std::endl;
 }
 
 void create_marine() {
@@ -545,15 +512,13 @@ int main() {
 
   create_marine();
 
-  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
   marine2.be_attacked(marine1.attack());
 
   marine1.show_status();
   marine2.show_status();
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -570,8 +535,6 @@ static int total_marine_num;
 ```cpp-formatted
 int Marine::total_marine_num = 0;
 ```
-
-
 
 간혹 어떤 사람들의 경우 클래스 내부에서
 
@@ -649,7 +612,7 @@ void create_marine() {
 
 
 ```cpp-formatted
-cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
 marine2.be_attacked(marine1.attack());
 
 marine1.show_status();
@@ -665,11 +628,9 @@ marine1.show_status();
 
 즉, `static` 이 아닌 멤버 함수들의 경우 객체를 만들어야지만 각 멤버 함수들을 호출할 수 있지만 `static` 함수의 경우, 객체가 없어도 그냥 클래스 자체에서 호출할 수 있게 됩니다. 그럼, 아래 예제를 살펴볼까요.
 
-```cpp-formatted
+```cpp
 // static 함수
-
 #include <iostream>
-using namespace std;
 
 class Marine {
   static int total_marine_num;
@@ -696,7 +657,7 @@ class Marine {
 };
 int Marine::total_marine_num = 0;
 void Marine::show_total_marine() {
-  cout << "전체 마린 수 : " << total_marine_num << endl;
+  std::cout << "전체 마린 수 : " << total_marine_num << std::endl;
 }
 Marine::Marine()
     : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
@@ -727,10 +688,10 @@ void Marine::be_attacked(int damage_earn) {
   if (hp <= 0) is_dead = true;
 }
 void Marine::show_status() {
-  cout << " *** Marine *** " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
-  cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+  std::cout << " *** Marine *** " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
+  std::cout << " 현재 총 마린 수 : " << total_marine_num << std::endl;
 }
 
 void create_marine() {
@@ -746,7 +707,7 @@ int main() {
 
   create_marine();
 
-  cout << endl << "마린 1 이 마린 2 를 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 공격! " << std::endl;
   marine2.be_attacked(marine1.attack());
 
   marine1.show_status();
@@ -780,8 +741,8 @@ Marine::show_total_marine();
 
 ```cpp-formatted
 void Marine::show_total_marine() {
-  cout << default_damage << endl;  // default_damage 는 멤버 변수
-  cout << "전체 마린 수 : " << total_marine_num << endl;
+  std::cout << default_damage << std::endl;  // default_damage 는 멤버 변수
+  std::cout << "전체 마린 수 : " << total_marine_num << std::endl;
 }
 ```
 
@@ -793,11 +754,9 @@ void Marine::show_total_marine() {
 
 ###  this
 
-
-```cpp-formatted
+```cpp
 // 자기 자신을 가리키는 포인터 this
 #include <iostream>
-using namespace std;
 
 class Marine {
   static int total_marine_num;
@@ -824,7 +783,7 @@ class Marine {
 };
 int Marine::total_marine_num = 0;
 void Marine::show_total_marine() {
-  cout << "전체 마린 수 : " << total_marine_num << endl;
+  std::cout << "전체 마린 수 : " << total_marine_num << std::endl;
 }
 Marine::Marine()
     : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
@@ -862,10 +821,10 @@ Marine& Marine::be_attacked(int damage_earn) {
   return *this;
 }
 void Marine::show_status() {
-  cout << " *** Marine *** " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
-  cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+  std::cout << " *** Marine *** " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
+  std::cout << " 현재 총 마린 수 : " << total_marine_num << std::endl;
 }
 
 int main() {
@@ -875,7 +834,7 @@ int main() {
   Marine marine2(3, 5, 10);
   marine2.show_status();
 
-  cout << endl << "마린 1 이 마린 2 를 두 번 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 두 번 공격! " << std::endl;
   marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 
   marine1.show_status();
@@ -883,14 +842,10 @@ int main() {
 }
 ```
 
-
-
-
 성공적으로 컴파일 하였다면
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F257CA24D51A1684431CF90)
-
 
 
 와 같이 나옵니다.
@@ -920,8 +875,6 @@ Marine& Marine::be_attacked(int damage_earn) {
 }
 ```
 
-
-
 과 동일한 의미가 됩니다. (구조체 포인터 변수에서 `->` 를 이용해서 구조체 원소들에 접근했던 것을 상기해보세요) 실제로 모든 멤버 함수 내에서는 `this` 키워드가 정의되어 있으며 클래스 안에서 정의된 함수 중에서 `this` 키워드가 없는 함수는 (당연하게도) `static` 함수 뿐입니다.
 
 
@@ -936,7 +889,6 @@ Marine& Marine::be_attacked(int damage_earn) {
 ```cpp-formatted
 // 레퍼런스를 리턴하는 함수
 #include <iostream>
-using namespace std;
 
 class A {
   int x;
@@ -946,7 +898,7 @@ class A {
 
   int& access_x() { return x; }
   int get_x() { return x; }
-  void show_x() { cout << x << endl; }
+  void show_x() { std::cout << x << std::endl; }
 };
 
 int main() {
@@ -1002,8 +954,6 @@ a.show_x();
 int &c = x;  // 여기서 x 는 a 의 x
 ```
 
-
-
 와 동일한 말이라는 것입니다. 따라서 `c` 의 값을 바꾸는 것은 `a` 의 `x` 의 값을 바꾸는 것과 동일한 의미이므로 (c 는 단순히 x 에 다른 이름을 붙여준 것일뿐!) `show_x` 를 실행 시에 `x` 의 값이 5 에서 4 로 바뀌었음을 알 수 있습니다. 그렇다면 아래 예도 살펴볼까요.
 
 
@@ -1012,8 +962,6 @@ int d = a.access_x();
 d = 3;
 a.show_x();
 ```
-
-
 
 이번에는 `int&` 가 아닌 그냥 `int` 변수에 'x 의 별명' 을 전달하였습니다. 만일 `d` 가 `int&` 였다면 `x` 의 별명을 받아서 `d` 역시 또 다른 `x` 의 별명이 되었겠지만, `d` 가 그냥 `int` 변수 이므로, 값의 복사가 일어나 d 에는 `x` 의 값이 들어가게 됩니다. 그리고 당연히, `d` 는 `x` 의 별명이 아닌 또 다른 독립적인 변수 이기에, `d =` 3; 을 해도 `x` 의 값은 바뀌지 않은 채, 그냥 4 가 출력되게 되죠.
 
@@ -1024,15 +972,11 @@ a.show_x();
 // a.show_x();
 ```
 
-
-
 그럼 주석 처리된 위 예를 살펴봅시다. 주석을 풀면 컴파일이 안되므로 주석 처리 해 놓은 것인데, 실제로 주석을 풀고 컴파일을 해보면
 
 ```compiler-warning
 error C2440: 'initializing' : cannot convert from 'int' to 'int &' (int 를 int& 로 바꿀 수 없습니다)
 ```
-
-
 
 아래와 같은 오류가 발생합니다. 그 이유는 레퍼런스가 아닌 타입을 리턴하는 경우는 '값' 의 복사가 이루어지기 때문에 임시 객체가 생성되는데, 임시객체의 레퍼런스를 가질 수 없기 때문입니다. (임시객체는 문장이 끝나게 되면 소멸됩니다) 이 과정을 그림으로 그려보면 아래와 같습니다.
 
@@ -1045,7 +989,9 @@ int &e = x'
 
 
 
-과 같이 되는데, x' 은 문장이 끝날 때 자동으로 소멸되는 임시 객체 이기 때문에 레퍼런스를 만들 수 없습니다. 설사 레퍼런스를 만들었다고 해도 '이미 존재하지 않는 것에 대한 별명' 이 되므로 이 레퍼런스에 접근하는 것은 오류이겠지요. 아무튼 이러한 이유로 `int` 를 리턴하는 `a.get_x` 에 대해서는 레퍼런스를 만들 수 없습니다. (정확한 설명을 하자면 `int&` 는 좌측값에 대한 레퍼런스 이고, `a.get_x()` 는 우측값 이기 때문에 레퍼런스를 만들 수 없습니다. 좌측값, 우측값 내용은 나중에 더 자세히 다루겠지만 [궁금하신 분들은 이 글을 읽어보세요](http://itguru.tistory.com/189)`!)`
+과 같이 되는데, x' 은 문장이 끝날 때 자동으로 소멸되는 임시 객체 이기 때문에 레퍼런스를 만들 수 없습니다. 설사 레퍼런스를 만들었다고 해도 '이미 존재하지 않는 것에 대한 별명' 이 되므로 이 레퍼런스에 접근하는 것은 오류이겠지요.
+
+아무튼 이러한 이유로 `int` 를 리턴하는 `a.get_x` 에 대해서는 레퍼런스를 만들 수 없습니다. (정확한 설명을 하자면 `int&` 는 좌측값에 대한 레퍼런스 이고, `a.get_x()` 는 우측값 이기 때문에 레퍼런스를 만들 수 없습니다. 좌측값, 우측값 내용은 나중에 더 자세히 다루겠지만 [궁금하신 분들은 이 글을 읽어보세요](http://itguru.tistory.com/189)`!)`
 
 
 ```cpp-formatted
@@ -1054,15 +1000,11 @@ f = 1;
 a.show_x();
 ```
 
-
-
 마지막으로 위 코드는 익히 보왔던 것 처럼, 임시로 생성된 `int` 변수 (위 그림에서는 `x'`) 이 `f` 에 복사되는데, 역시 `f = 1` 한 것이 실제 객체 `a` 의 `x` 에게는 아무런 영향을 끼칠 수 없겠지요. 한 가지 재미있는 점은
 
 ```cpp-formatted
 a.access_x() = 3;
 ```
-
-
 
 위 문장이 잘 작동한다는 점인데, 앞에서도 말했지만 '레퍼런스를 리턴하는 함수는 그 함수 부분을 리턴하는 원래 변수로 치환해도 됀다' 라는 말이 명확히 들어맞는 다는 점입니다. 즉, 위 문장은 결국
 
@@ -1070,17 +1012,13 @@ a.access_x() = 3;
 a.x = 3;
 ```
 
-
-
 과 동일한 말이 됩니다. 그 에 반면, 잘 알고 있듯이
 
 ```cpp-formatted
 a.get_x() = 3;
 ```
 
-
-
-은 역시 오류가 나게 되는데, 왜냐하면  a.get_x() 는 `get_x()` 가 리턴하면서 생성되는 임시 객체 (x') 으로 치환되며 임시객체에 대입을 하게 되는 모순적인 상황이 발생하게 됩니다.
+은 역시 오류가 나게 되는데, 왜냐하면 `a.get_x()` 는 `get_x()` 가 리턴하면서 생성되는 임시 객체 (x') 으로 치환되며 임시객체에 대입을 하게 되는 모순적인 상황이 발생하게 됩니다.
 
 
 그럼 이제 다시 예전의 `Marine` 예제로 돌아가보도록 합시다.
@@ -1104,8 +1042,9 @@ marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 ```
 
 
+문장의 경우, 먼저 `marine2.be_attacked(marine1.attack())` 이 먼저 실행되고 리턴되는 것이 다시 `marine2` 이므로 그 다음에 또 한 번`marine2.be_attacked(marine1.attack`()) 가 실행된다고 생각할 수 있습니다.
 
-문장의 경우, 먼저 `marine2.be_attacked(marine1.attack())` 이 먼저 실행되고 리턴되는 것이 다시 `marine2` 이므로 그 다음에 또 한 번`marine2.be_attacked(marine1.attack`()) 가 실행된다고 생각할 수 있습니다. 간단하죠? 만일, `be_attacked` 함수의 리턴 타입이 `Marine&` 이 아니라 그냥 `Marine` 이라고 해봅시다. 즉, 만일 `be_attacked` 함수가 아래와 같이 바뀌었다고 가정한다면
+간단하죠? 만일, `be_attacked` 함수의 리턴 타입이 `Marine&` 이 아니라 그냥 `Marine` 이라고 해봅시다. 즉, 만일 `be_attacked` 함수가 아래와 같이 바뀌었다고 가정한다면
 
 
 ```cpp-formatted
@@ -1133,20 +1072,14 @@ marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 
 
 
-
-
 ###  const 함수
 
 
-
-
 C++ 에서는 변수들의 값을 바꾸지 않고 읽기 만 하는, 마치 상수 같 C++ 에서는 변수들의 값을 바꾸지 않고 읽기 만 하는, 마치 상수 같은멤버 함수를 '상수 함수' 로써 선언할 수 있습니다. 아래의 예제를 살펴봅시다.
-```cpp-formatted
-// 상수 멤버 함수
 
-// 자기 자신을 가리키는 포인터 this
+```cpp
+// 상수 멤버 함수
 #include <iostream>
-using namespace std;
 
 class Marine {
   static int total_marine_num;
@@ -1173,7 +1106,7 @@ class Marine {
 };
 int Marine::total_marine_num = 0;
 void Marine::show_total_marine() {
-  cout << "전체 마린 수 : " << total_marine_num << endl;
+  std::cout << "전체 마린 수 : " << total_marine_num << std::endl;
 }
 Marine::Marine()
     : hp(50), coord_x(0), coord_y(0), default_damage(5), is_dead(false) {
@@ -1211,10 +1144,10 @@ Marine& Marine::be_attacked(int damage_earn) {
   return *this;
 }
 void Marine::show_status() {
-  cout << " *** Marine *** " << endl;
-  cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << endl;
-  cout << " HP : " << hp << endl;
-  cout << " 현재 총 마린 수 : " << total_marine_num << endl;
+  std::cout << " *** Marine *** " << std::endl;
+  std::cout << " Location : ( " << coord_x << " , " << coord_y << " ) " << std::endl;
+  std::cout << " HP : " << hp << std::endl;
+  std::cout << " 현재 총 마린 수 : " << total_marine_num << std::endl;
 }
 
 int main() {
@@ -1224,15 +1157,13 @@ int main() {
   Marine marine2(3, 5, 10);
   marine2.show_status();
 
-  cout << endl << "마린 1 이 마린 2 를 두 번 공격! " << endl;
+  std::cout << std::endl << "마린 1 이 마린 2 를 두 번 공격! " << std::endl;
   marine2.be_attacked(marine1.attack()).be_attacked(marine1.attack());
 
   marine1.show_status();
   marine2.show_status();
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -1248,13 +1179,11 @@ int attack() const;  // 데미지를 리턴한다.
 ```
 
 
-
 일단 상수 함수는 위와 같은 형태로 선언을 하게 됩니다. 즉,
 
 ```cpp-formatted
 (기존의 함수의 정의) const;
 ```
-
 
 
 그리고 함수의 정의 역시 `const` 키워드를 꼭 넣어주어야 하는데, 아래와 같이 말이지요.
@@ -1263,8 +1192,6 @@ int attack() const;  // 데미지를 리턴한다.
 ```cpp-formatted
 int Marine::attack() const { return default_damage; }
 ```
-
-
 
 그렇게 하였으면 위 `attack` 함수는 '상수 멤버 함수' 로 정의된 것입니다. 우리는 상수 함수로 이 함수를 정의함으로써, 이 함수는 다른 변수의 값을 바꾸지 않는 함수라고 다른 프로그래머에게 명시 시킬 수 있습니다. 당연하게도, 상수 함수 내에서는 객체들의 '읽기' 만이 수행되며, 상수 함수 내에서 호출 할 수 있는 함수로는 다른 상수 함수 밖에 없습니다.
 
@@ -1276,9 +1203,6 @@ int Marine::attack() const { return default_damage; }
 
 
 
-
-
-
 ###  생각해보기
 
 #### 문제 1
@@ -1287,7 +1211,6 @@ int Marine::attack() const { return default_damage; }
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 class A {
   int x;
@@ -1296,7 +1219,7 @@ class A {
   A(int c) : x(c) {}
   A(const A& a) {
     x = a.x;
-    cout << "복사 생성" << endl;
+    std::cout << "복사 생성" << std::endl;
   }
 };
 
@@ -1315,7 +1238,7 @@ class B {
 int main() {
   B b(10);
 
-  cout << "---------" << endl;
+  std::cout << "---------" << std::endl;
   A a1 = b.get_A();
 }
 ```

@@ -22,10 +22,9 @@ publish_date : 2011-03-06
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
 
 int main() {
-  cout << "Hello, World!!" << endl;
+  std::cout << "Hello, World!!" << std::endl;
   return 0;
 }
 ```
@@ -45,26 +44,25 @@ int main() {
 ```
 
 
- 을 보면 '아하! `iostream` 이라는 헤더파일을 `include` 하고 있구나!' 라는 생각이 머리속에 번뜩이셔야 합니다. 그렇지 않다면 C 언어를 다시 공부하도록 하세요 ㅎ ([이 강좌를 보시면 됩니다](http://itguru.tistory.com/87))
+을 보면 '아하! `iostream` 이라는 헤더파일을 `include` 하고 있구나!' 라는 생각이 머리속에 번뜩이셔야 합니다. 그렇지 않다면 C 언어를 다시 공부하도록 하세요 ㅎ ([이 강좌를 보시면 됩니다](http://itguru.tistory.com/87))
 
-`iostream` 헤더 파일은 C++ 에서 표준 입출력에 필요한 것들을 포함하고 있습니다. 예를 들면 아래에서 사용되는 `cout` 이나 `endl` 과 같은 것들을 말이지요. C 언어에서의 `stdio.h` 와 비슷하다고 보시면 됩니다. (그리고 C 와 하나 다른 점은 헤더 파일 이름 뒤에 `.h` 가 붙지 않습니다!)
-
-그 다음 줄의 `using ...` 을 보면 잘 모르겠네요. 일단 넘어도록 합시다. 그 아래를 보게 되면 다시 어디서 많이 보던 것이 나왔죠?
+`iostream` 헤더 파일은 C++ 에서 표준 입출력에 필요한 것들을 포함하고 있습니다. 예를 들면 아래에서 사용되는 `std::cout` 이나 `std::endl` 과 같은 것들을 말이지요. C 언어에서의 `stdio.h` 와 비슷하다고 보시면 됩니다. (그리고 C 와 하나 다른 점은 헤더 파일 이름 뒤에 `.h` 가 붙지 않습니다!)
 
 ```cpp-formatted
 int main()
 ```
 
+네. `main` 함수를 정의하는 부분 입니다. C 와 마찬가지로 C++ 에서의 `main` 함수는 프로그램이 실행될 때 가장 먼저 실행되는 함수 입니다.
 
-네. `main` 함수를 정의하는 부분 입니다. 그리고 그 함수의 몸체를 보면
+그리고 그 함수의 몸체를 보면
 
 ```cpp-formatted
-cout << "Hello, World!!" << endl;
+std::cout << "Hello, World!!" << std::endl;
 return 0;
 ```
 
 
-와 같은 내용이 있네요. 화면에 대충 출력된 것을 보아 `cout` 은 화면에 무언가 출력시켜주는 것 같은데, `printf` 와 다르게 사용된 것을 보니 함수 같지는 않네요. 그리고 화면에 출력된 것을 대충 보면 "계속하려면 아무 키나 누르세요" 가 한 줄 개행되어서 나온 것을 보니 `endl` 은 한 줄 엔터를 쳐서 나타내라는 표시 같습니다.
+와 같은 내용이 있네요. 화면에 대충 출력된 것을 보아 `std::cout` 은 화면에 무언가 출력시켜주는 것 같은데, `printf` 와 다르게 사용된 것을 보니 함수 같지는 않네요. 그리고 화면에 출력된 것을 대충 보면 "계속하려면 아무 키나 누르세요" 가 한 줄 개행되어서 나온 것을 보니 `std::endl` 은 한 줄 엔터를 쳐서 나타내라는 표시 같습니다.
 
 그리고 마찬가지로 `main` 함수에서도 `return` 을 해주고요. 이렇게 대략 살펴보면 기존의 C 언어와 크게 다른 점은 없는 것 같습니다.
 
@@ -72,25 +70,21 @@ return 0;
 
 ### 이름 공간 (namespace)
 
+먼저 `cout` 앞에 붙어 있는 `std` 의 정체부터 알아봅시다. `std` 는 C++ 표준 라이브러리의 모든 함수, 객체 등이 정의된 **이름 공간(namespace)** 입니다. \sidenote{"표준 라이브러리" 나 "객체" 가 무엇인지 아직 몰라도 괜찮습니다. 그냥 쉽게 생각하자면 stdio.h 가 C 에서 제공하는 라이브러리듯이 iostream 도 C++ 에서 제공하는 출력을 위한 표준 라이브러리 입니다.}
+
+그렇다면 이름 공간이란 것이 정확히 무엇일까요? 이름 공간은 말그대로 어떤 정의된 객체에 대해 **어디 소속인지** 지정해주는 것과 동일합니다.
+
+코드의 크기가 늘어남에 따라, 혹은 다른 사람들이 쓴 코드를 가져다 쓰는 경우가 많아지면서 중복된 이름을 가진 함수들이 많아졌습니다. 따라서 C++ 에서는 이를 구분하기 위해, 같은 이름이라도, 소속된 **이름 공간** 이 다르면 다른 것으로 취급하게 되었습니다.
+
+예를 들어서 같은 철수라고 해도, 서울 사는 철수와 부산 사는 철수와 다르듯이 말이지요.
+
 ```cpp-formatted
-using namespace std;
+std::cout
 ```
 
+위의 경우 `std` 라는 이름 공간에 정의되어 있는 `cout` 을 의미 합니다. 만약에 `std::` 없이 그냥 `cout` 이라고 한다면 컴파일러가 `cout` 을 찾지 못합니다. 서울에 사는 철수인지 부산에 사는 철수 인지 알 길이 없기 때문이지요.
 
-위 문장을 직역해보면 `std` 라는 **이름 공간(namespace)** 를 사용하겠다 라는 의미가 됩니다. 그렇다면 이름 공간이란 것이 정확히 무엇일까요? 이름 공간은 말그대로 어떤 정의된 객체에 대해 **어디 소속인지** 지정해주는 것과 동일합니다.
-
-예를 들어서 같은 철수라고 해도, 서울 사는 철수와 부산 사는 철수와 다르듯이 말이지요. 
-
-```cpp-formatted
-#include "header1.h"
-#include "header2.h"
-
-int main() { foo(); }
-```
-
-이름 공간이 등장한 이유는 당연합니다. 예를 들어서 위와 같은 코드를 작성했다고 합시다. 그런데 문제는 `header1.h` 에도 `foo` 가 정의되어 있고, `header2.h` 에도 이름만 똑같지, 다른 일을 하는 `foo` 가 정의되어 있는 것입니다. 
-
-보통 C 언어에서는 이러한 문제를 해결하기 위해 우리에게 주어진 선택권은 오직 하나, 함수의 이름을 바꾸는 것 밖에 없었습니다. 하지만 C++ 에서는 이름 공간을 도입한 덕분에 이 문제를 유연하게 해결할 수 있었습니다. 바로 각 헤더파일에서 `foo` 를 다른 이름 공간 안에 정의하는 것이지요. 
+이름 공간을 정의하는 방법은 아래와 같습니다. 예를 들어서 두 헤더파일 `header1.h` 와 `header2.h` 를 생각해봅시다.
 
 ```cpp-formatted
 // header1.h 의 내용
@@ -109,26 +103,45 @@ void bar();
 }
 ```
 
+위 코드에서 `header1` 에 있는 `foo` 는 `header1` 라는 이름 공간에 살고 있는 `foo` 가 되고, `header2` 에 있는 `foo` 의 경우 `header2` 라는 이름 공간에 살고 있는 `foo` 가 됩니다.
 
-위 둘은 각각 다른 `header` 들의 내용 입니다. 각각의 함수들은 다른 `namespace` 에 존재합니다. 
+자기 자신이 포함되어 있는 이름 공간 안에서는 굳이 앞에 이름 공간을 명시하지 않고 자유롭게 부를 수 있습니다. 예를 들어서
 
-`header1` 에 있는 `foo` 의 경우 `header1` 라는 이름 공간에 살고 있는 `foo` 가 되고, `header2` 에 있는 `foo` 의 경우 `header2` 라는 이름 공간에 살고 있는 `foo` 가 됩니다.
+```cpp-formatted
+#include "header1.h"
 
-만약에 어떤 파일에서 `header1.h` 과 `header2.h` 를 같이 include 하였다면, 각기 다른 헤더파일에 정의된 `foo` 을 구분할 수 없었지만 C++ 에서는 서로 존재하는 이름 공간이 다르므로 손쉽게 구분할 수 있게 됩니다.
+namespace header1 {
+int func() {
+  foo();  // 알아서 header1::foo() 가 실행된다.
+}
+}  // namespace header1
+```
 
-실제로 `main` 함수에서 사용할 때는
+`header1` 이름 공간안에서 `foo` 를 부른다면 알아서 `header1::foo()` 를 호출하게 됩니다. 그렇다고 해서 `header1` 의 이름 공간 안에서 `header2` 의 `foo` 를 못 호출하는 것은 아닌데 그냥 아래와 같이 간단하게
 
+```cpp-formatted
+#include "header1.h"
+
+namespace header1 {
+int func() {
+  foo();           // 알아서 header1::foo() 가 실행된다.
+  header2::foo();  // header2::foo() 가 실행된다.
+}
+}  // namespace header1
+```
+
+반면에 어떠한 이름 공간에도 소속되지 않는 경우라면 아래와 같이 명시적으로 이름 공간을 지정해야 합니다.
 
 ```cpp-formatted
 #include "header1.h"
 #include "header2.h"
 
-int main() {
+int func() {
   header1::foo();  // header1 이란 이름 공간에 있는 foo 를 호출
 }
 ```
 
-위와 같이 어떠한 `foo` 를 호출할지 지정해서 사용할 수 잇게 됩니다. 하지만 만일 위 같은 `foo` 을 여러번 반복적으로 호출하게 되는 경우 어떨까요. 앞에 `header1::` 을 붙이기가 상당히 귀찮을 수도 있습니다.
+하지만 만일 위 같은 `foo` 을 여러번 반복적으로 호출하게 되는 경우 앞에 매번 `header1::` 을 붙이기가 상당히 귀찮을 것입니다.
 
 그래서 아래와 같이 '나는 앞으로 `header1` 이란 이름 공간에 들어있는 `foo` 만 쓸거다!' 라고 선언할 수 있습니다.
 
@@ -142,7 +155,7 @@ int main() {
 }
 ```
 
-뿐만 아니라, 그냥 기본적으로 header1 이름 공간안에 정의된 모든 것들을 header1:: 없이 사용하고 싶다면
+뿐만 아니라, 그냥 기본적으로 `header1` 이름 공간안에 정의된 모든 것들을 `header1::` 없이 사용하고 싶다면
 
 ```cpp-formatted
 #include "header1.h"
@@ -157,7 +170,7 @@ int main() {
 
 아예 위와 같이 `using namespace header1` 과 같이 명시하면 됩니다.
 
-물론 그렇다고 해서 `header2` 에 있는 함수를 못 사용하는 것은 아니고 다음과 같이 지정해서 써주면 됩니다.
+물론 이 경우 역시 `header2` 에 있는 함수를 못 사용하는 것은 아니고 다음과 같이 명시적으로 써주면 됩니다.
 
 ```cpp-formatted
 #include "header1.h"
@@ -174,6 +187,16 @@ int main() {
 그렇다면 다시 원래 예제를 살펴보도록 합시다.
 
 ```cpp-formatted
+int main() {
+  std::cout << "Hello, World!!" << std""endl;
+  return 0;
+}
+```
+
+여기서 `cout` 과 `endl` 은 모두 `iostream` 헤더파일의 `std` 라는 이름 공간에 정의되어 있는 것들입니다. `std` 를 붙이기 귀찮은 사람의 경우에는 그냥
+
+```cpp-formatted
+#include <iostream>
 using namespace std;
 
 int main() {
@@ -182,17 +205,7 @@ int main() {
 }
 ```
 
-
-여기서 `cout` 과 `endl` 은 모두 `iostream` 헤더파일의 `std` 라는 이름 공간에 정의되어 있는 것들입니다. 따라서 만일 `using namespace std;` 를 붙여주지 않았더라면
-
-```cpp-formatted
-int main() {
-  std::cout << "Hello, World!!" << std::endl;
-  return 0;
-}
-```
-
-로 써주어야 했었을 것입니다.
+로 써도 됩니다.
 
 ```lec-warning
 참고로 `using namespace std;` 와 같이 어떠한 이름 공간을 사용하겠다라고 선언하는 것은 권장되지 않습니다. 왜냐하면 `std` 에 이름이 겹치는 함수를 만들게 된다면, 오류가 발생하기 때문이지요.
@@ -207,13 +220,13 @@ int main() {
 무슨 말인지 모르겠다고요? 괜찮습니다. 이 것이 정확히 무슨 의미인지는 나중 강좌에서 알아보도록 하겠고, 그냥 다음과 같이 쓴다는 것만 알아두시면 됩니다.
 
 ```cpp-formatted
-cout << /* 출력할 것 */ << /* 출력할 것 */ << ... << /* 출력할 것 */;
+std::cout << /* 출력할 것 */ << /* 출력할 것 */ << ... << /* 출력할 것 */;
 ```
 
 그리고 `endl` 은 화면에 출력해주는 '함수' 입니다. 놀라셨지요? 하지만 그냥
 
 ```cpp-formatted
-cout << endl;
+std::cout << endl;
 ```
 
 이라 쓰면 화면에 엔터를 하나 출력해주는 것으로 기억하시면 됩니다. 물론 `endl` 에 대해서도 나중에 다루어 보도록 하겠습니다 :)
@@ -224,19 +237,17 @@ cout << endl;
 
 이 경우 해당 이름 공간에 정의된 것들은 해당 파일 안에서만 접근할 수 있게 됩니다. 이 경우 마치 `static` 키워드를 사용한 것과 같은 효과를 냅니다.
 
-```cpp
+```cpp-formatted
 #include <iostream>
 
 namespace {
-  // 이 함수는 이 파일 안에서만 사용할 수 있습니다.
-  // 이는 마치 static int OnlyInThisFile() 과 동일합니다.
-  int OnlyInThisFile() {
-  }
+// 이 함수는 이 파일 안에서만 사용할 수 있습니다.
+// 이는 마치 static int OnlyInThisFile() 과 동일합니다.
+int OnlyInThisFile() {}
 
-  // 이 변수 역시 static int x 와 동일합니다.
-  int only_in_this_file = 0;
-}
-
+// 이 변수 역시 static int x 와 동일합니다.
+int only_in_this_file = 0;
+}  // namespace
 
 int main() {
   OnlyInThisFile();
@@ -257,9 +268,9 @@ int main() {
 아래 문장은 화면에 어떻게 출력될까요?
 
 ```cpp-formatted
-cout << "hi" << endl
-     << "my name is "
-     << "Psi" << endl;
+std::cout << "hi" << endl
+          << "my name is "
+          << "Psi" << endl;
 ```
 
 ##@ chewing-cpp-end

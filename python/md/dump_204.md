@@ -33,9 +33,6 @@ publish_date : 2013-09-04
 
 ###  C++ 스타일의 캐스팅
 
-
-
-
 기존의 C 언어에서는, 캐스팅은 크게 2 가지 방법으로 발생하였습니다. 하나는 그냥 컴파일러에서 알아서 캐스팅 하는 **암시적(implicit) 캐스팅**과, 우리가 직접 이러이러 하게 캐스팅 하라고 지정하는 **명시적(explicit)** 캐스팅이 있었지요. 
 
 암시적 캐스팅의 경우 `int` 와 `double` 변수와의 덧셈을 수행할 때, `int` 형 변수가 자동으로 `double` 변수로 캐스팅 되는 것과 같은 것을 말하고, 명시적 캐스팅의 경우 예를 들어 `void *` 타입의 주소를 특정 구조체 포인터 타입의 주소로 바꾼다던지 등의 캐스팅이 있습니다.
@@ -640,11 +637,11 @@ operator int() {
 
 자 그럼, 실제 전체 코드를 살펴보도록 합시다.
 
-```cpp-formatted
+```cpp
 // 대망의 Array 배열
 #include <iostream>
-using namespace std;
 
+namespace MyArray {
 class Array;
 class Int;
 
@@ -753,9 +750,10 @@ class Int {
 Int Array::operator[](const int index) {
   return Int(index, 1, static_cast<void*>(top), this);
 }
+}
 int main() {
   int size[] = {2, 3, 4};
-  Array arr(3, size);
+  MyArray::Array arr(3, size);
 
   for (int i = 0; i < 2; i++) {
     for (int j = 0; j < 3; j++) {
@@ -767,14 +765,12 @@ int main() {
   for (int i = 0; i < 2; i++) {
     for (int j = 0; j < 3; j++) {
       for (int k = 0; k < 4; k++) {
-        cout << i << " " << j << " " << k << " " << arr[i][j][k] << endl;
+        std::cout << i << " " << j << " " << k << " " << arr[i][j][k] << std::endl;
       }
     }
   }
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -788,22 +784,20 @@ int main() {
 와 같이 제대로 실행됨을 볼 수 있습니다.
 
 
-한 가지 중요하게 살펴볼 점은, 두 개의 클래스를 한 파일에서 사용하기 때문에 클래스의 정의 순서가 매우 중요하다는 점입니다. 소스 상단에
+한 가지 중요하게 살펴볼 점은, 전체 클래스를 `MyArray` 라는 이름 공간으로 감쌌다는 점입니다. 이를 통해 혹여라도 다른 라이브러리에서 `Array` 라는 클래스를 정의하더라도 문제 없을 것입니다.
+
+또한 주목할 점은, 두 개의 클래스를 한 파일에서 사용하기 때문에 클래스의 정의 순서가 매우 중요하다는 점입니다. 소스 상단에
 
 ```cpp-formatted
 class Array;
 class Int;
 ```
 
-
-
 와 같이 클래스를 '선언' 하였습니다. 클래스를 선언하지 않는다면, 아래 `Array` 클래스에서
 
 ```cpp-formatted
 friend Int;
 ```
-
-
 
 를 할 수 없게 됩니다. 왜냐하면 컴파일러 입장에서 `Int` 가 뭔지 알 턱이 없기 때문입니다. 따라서 `friend` 선언을 하기 전에, 이와 같이 `class Int` 를 먼저 맨 위에 선언해서 사용할 수 있도록 해야 합니다. 그럼에도 불구하고, 맨 밑에
 
@@ -968,17 +962,14 @@ Iterator end() {
 
 
 ```cpp-formatted
-// 대망의 N 차원 배열
 #include <iostream>
-using namespace std;
 
+namespace MyArray {
 class Array;
 class Int;
-class Iterator;
 
 class Array {
   friend Int;
-  friend Iterator;
 
   const int dim;  // 몇 차원 배열 인지
   int* size;  // size[0] * size[1] * ... * size[dim - 1] 짜리 배열이다.
@@ -1054,6 +1045,8 @@ class Array {
     }
     Int operator*();
   };
+
+  friend Iterator;
   Array(int dim, int* array_size) : dim(dim) {
     size = new int[dim];
     for (int i = 0; i < dim; i++) size[i] = array_size[i];
@@ -1134,13 +1127,13 @@ class Int {
     }
     if (level == array->dim) {
       // 이제 data 에 우리의 int 자료형을 저장하도록 해야 한다.
-      data = static_cast<void*>(
-        (static_cast<int*>(static_cast<Array::Address*>(data)->next) + index));
+      data = static_cast<void*>((
+          static_cast<int*>(static_cast<Array::Address*>(data)->next) + index));
     } else {
       // 그렇지 않을 경우 data 에 그냥 다음 addr 을 넣어준다.
-      data = static_cast<void*>(
-        static_cast<Array::Address*>(static_cast<Array::Address*>(data)->next) +
-        index);
+      data = static_cast<void*>(static_cast<Array::Address*>(
+                                    static_cast<Array::Address*>(data)->next) +
+                                index);
     }
   };
 
@@ -1170,13 +1163,15 @@ Int Array::Iterator::operator*() {
   }
   return start;
 }
+}  // namespace MyArray
 int main() {
   int size[] = {2, 3, 4};
-  Array arr(3, size);
+  MyArray::Array arr(3, size);
 
-  Array::Iterator itr = arr.begin();
+  MyArray::Array::Iterator itr = arr.begin();
   for (int i = 0; itr != arr.end(); itr++, i++) (*itr) = i;
-  for (itr = arr.begin(); itr != arr.end(); itr++) cout << *itr << endl;
+  for (itr = arr.begin(); itr != arr.end(); itr++)
+    std::cout << *itr << std::endl;
 
   for (int i = 0; i < 2; i++) {
     for (int j = 0; j < 3; j++) {
@@ -1188,7 +1183,8 @@ int main() {
   for (int i = 0; i < 2; i++) {
     for (int j = 0; j < 3; j++) {
       for (int k = 0; k < 4; k++) {
-        cout << i << " " << j << " " << k << " " << arr[i][j][k] << endl;
+        std::cout << i << " " << j << " " << k << " " << arr[i][j][k]
+                  << std::endl;
       }
     }
   }
@@ -1210,7 +1206,7 @@ int main() {
 
 
 ```cpp-formatted
-Array::Iterator itr = arr.begin();
+MyArray::Array::Iterator itr = arr.begin();
 for (int i = 0; itr != arr.end(); itr++, i++) (*itr) = i;
 ```
 

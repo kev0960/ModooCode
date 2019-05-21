@@ -8,7 +8,7 @@ publish_date : 2014-03-30
 
 이번 강좌에서는
 
-* C++ 표준 문자열 (string)
+* C++ 표준 문자열 (std::string)
 * 상속 (inheritance)
 * 오버라이딩(overriding)
 * `protected` 키워드
@@ -30,18 +30,18 @@ publish_date : 2014-03-30
 
 사실 우리가 예전에 만든 `MyString` 클래스도 문자열 처리를 꽤나 훌륭하게 하지만, 실제로 속도가 매우 중요한 환경에서 그대로 쓰기에는 부족한 점이 많습니다. 하지만 많은 프로그래머들의 노력 끝에 `string` 이라는 빠르고, 안전하고 사용하기 매우 간단한 문자열 클래스가 표준으로 채택이 됩니다.
 
-(이 `string` 에 들어가 있는 몇 가지 기술을 소개해보자면, 짧은 문자열에 대해서는 동적으로 메모리를 할당하지 않고 그냥 지역 변수로 보관을 하고, 문자열을 복사를 할 때 그 복사된 문자열의 내용이 바뀌지 않는 한 실제로 데이터를 복사하는 것이 아니라 원래 문자열을 가리키기만 한다 등등 속도를 향상시키기 위한 여러 노력이 접목되어 있습니다) \sidenote{물론 이는 string 구현 방식에 따라 다릅니다. 여러분이 어떤 라이브러리를 사용함에 따라 아닐 수도 있습니다.}
+(이 `string` 에 들어가 있는 몇 가지 기술을 소개해보자면, 짧은 문자열에 대해서는 동적으로 메모리를 할당하지 않고 그냥 지역 변수로 보관을 하고, 문자열을 복사를 할 때 그 복사된 문자열의 내용이 바뀌지 않는 한 실제로 데이터를 복사하는 것이 아니라 원래 문자열을 가리키기만 한다 등등 속도를 향상시키기 위한 여러 노력이 접목되어 있습니다) \sidenote{물론 이는 std::string 구현 방식에 따라 다릅니다. 여러분이 어떤 라이브러리를 사용함에 따라 아닐 수도 있습니다.}
 
 
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;  // 표준이므로 std 안에 string 이 정의되어 있습니다.
 
 int main() {
-  string s = "abc";
+  // 표준이므로 std 안에string 이 정의되어 있습니다.
+  std::string s = "abc";
 
-  cout << s << endl;
+   std::cout << s <<  std::endl;
 
   return 0;
 }
@@ -67,20 +67,19 @@ int main() {
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 int main() {
-  string s = "abc";
-  string t = "def";
+  std::string s = "abc";
+  std::string t = "def";
 
-  cout << s << " 의 길이 : " << s.length() << endl;
-  cout << s << " 뒤에 " << t << " 를 붙이면 : " << s + t << endl;
+   std::cout << s << " 의 길이 : " << s.length() <<  std::endl;
+   std::cout << s << " 뒤에 " << t << " 를 붙이면 : " << s + t <<  std::endl;
 
   if (s == s2) {
-    cout << s << " 와 " << s2 << " 는 같다 " << endl;
+     std::cout << s << " 와 " << s2 << " 는 같다 " <<  std::endl;
   }
   if (s != t) {
-    cout << s << " 와 " << t << " 는 다르다 " << endl;
+     std::cout << s << " 와 " << t << " 는 다르다 " <<  std::endl;
   }
   return 0;
 }
@@ -99,8 +98,8 @@ int main() {
 특히 편리한 점으로 C 형식 문자열이였을 경우 문자열을 비교하기 위해서 `strcmp` 함수를 사용했어야 하고,
 
 ```cpp-formatted
-if (s == s2) cout << s << " 와 " << s2 << " 는 같다 " << endl;
-if (s != t) cout << s << " 와 " << t << " 는 다르다 " << endl;
+if (s == s2)  std::cout << s << " 와 " << s2 << " 는 같다 " <<  std::endl;
+if (s != t)  std::cout << s << " 와 " << t << " 는 다르다 " <<  std::endl;
 ```
 
 
@@ -122,16 +121,17 @@ if (s != t) cout << s << " 와 " << t << " 는 다르다 " << endl;
 우리가 만들어야 할 프로그램의 목적은 회사의 사원들의 월급을 계산해서 한달에 총 얼마나 되는 돈을 월급으로 지출해야 하는지 알려주는 단순한 프로그램 입니다. 그렇다면 일단 여러분은 각 사원들에 정보를 클래스로 만들어서 데이터를 보관하도록 하겠지요.
 
 사원들의 필요한 데이터는 이름, 나이, 직책과 직책의 순위에 해당하는 숫자값 (예를 들어 평사원이면 1, 대리면 2 이런 식으로) 정도 입니다. 이를 바탕으로 간단히 클래스를 구성해본다면 다음과 같이 짤 수 있을 것입니다.
-```cpp-formatted
+
+```cpp
 class Employee {
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
 
  public:
-  Employee(string name, int age, string position, int rank)
+  Employee(std::string name, int age, std::string position, int rank)
       : name(name), age(age), position(position), rank(rank) {}
 
   // 복사 생성자
@@ -146,8 +146,8 @@ class Employee {
   Employee() {}
 
   void print_info() {
-    cout << name << " (" << position << " , " << age << ") ==> "
-         << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ") ==> "
+         << calculate_pay() << "만원" <<  std::endl;
   }
   int calculate_pay() { return 200 + rank * 50; }
 };
@@ -181,8 +181,6 @@ EmployeeList(int alloc_employee) : alloc_employee(alloc_employee) {
   current_employee = 0;
 }
 ```
-
-
 
 그리고 사원을 추가하는 함수는 아래처럼 단순하게 구성할 수 있습니다.
 
@@ -232,7 +230,7 @@ class EmployeeList {
       total_pay += employee_list[i]->calculate_pay();
     }
 
-    cout << "총 비용 : " << total_pay << "만원 " << endl;
+     std::cout << "총 비용 : " << total_pay << "만원 " <<  std::endl;
   }
   ~EmployeeList() {
     for (int i = 0; i < current_employee; i++) {
@@ -252,20 +250,19 @@ class EmployeeList {
 
 따라서 전체 코드는 다음과 같습니다.
 
-```cpp-formatted
+```cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Employee {
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
 
  public:
-  Employee(string name, int age, string position, int rank)
+  Employee(std::string name, int age, std::string position, int rank)
       : name(name), age(age), position(position), rank(rank) {}
 
   // 복사 생성자
@@ -280,8 +277,8 @@ class Employee {
   Employee() {}
 
   void print_info() {
-    cout << name << " (" << position << " , " << age << ") ==> "
-         << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ") ==> "
+         << calculate_pay() << "만원" <<  std::endl;
   }
   int calculate_pay() { return 200 + rank * 50; }
 };
@@ -314,7 +311,7 @@ class EmployeeList {
       total_pay += employee_list[i]->calculate_pay();
     }
 
-    cout << "총 비용 : " << total_pay << "만원 " << endl;
+     std::cout << "총 비용 : " << total_pay << "만원 " <<  std::endl;
   }
   ~EmployeeList() {
     for (int i = 0; i < current_employee; i++) {
@@ -351,17 +348,17 @@ int main() {
 
 아 이렇게 사원 관리 프로그램을 잘 만들어서 제출해달라는 찰나, 무한 상사로 부터 연락을 한 통 받습니다. 차장 이상 급들은 관리데이터에 근속 년수를 포함시켜서 월급에 추가해달라고 말이지요. 그래서 저는 울며가며 겨자먹기로 `Manager` 클래스를 추가하였습니다. 사실 `Employee` 클래스랑 거의 똑같지만, 어쩔 수 없지요. 더 짜증나는 부분은 `EmployeeList` 클래스에서도 `Employee` 와 `Manager` 를 따로 처리해야 된다는 점입니다. 아무튼, 일단 `Manager` 클래스를 구성해봅시다.
 
-```cpp-formatted
+```cpp
 class Manager {
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
   int year_of_service;
 
  public:
-  Manager(string name, int age, string position, int rank, int year_of_service)
+  Manager(std::string name, int age, std::string position, int rank, int year_of_service)
       : year_of_service(year_of_service),
         name(name),
         age(age),
@@ -382,8 +379,8 @@ class Manager {
 
   int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
   void print_info() {
-    cout << name << " (" << position << " , " << age << ", " << year_of_service
-         << "년차) ==> " << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" <<  std::endl;
   }
 };
 ```
@@ -407,7 +404,7 @@ Manager **manager_list;    // 매니저 데이터
 
 와 같이 바꿔주어야 합니다. (여기서 또한 간단하게 처리하기 위해서 각 배열에 할당한 크기는 모두 동일하다고 생각합니다). 그리고 무엇보다도 `EmployeeList` 클래스의 나머지 부분을 바꿔주면
 
-```cpp-formatted
+```cpp
 class EmployeeList {
   int alloc_employee;  // 할당한 총 직원 수
 
@@ -450,7 +447,7 @@ class EmployeeList {
       manager_list[i]->print_info();
       total_pay += manager_list[i]->calculate_pay();
     }
-    cout << "총 비용 : " << total_pay << "만원 " << endl;
+     std::cout << "총 비용 : " << total_pay << "만원 " <<  std::endl;
   }
   ~EmployeeList() {
     for (int i = 0; i < current_employee; i++) {
@@ -470,17 +467,16 @@ class EmployeeList {
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Employee {
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
 
  public:
-  Employee(string name, int age, string position, int rank)
+  Employee(std::string name, int age, std::string position, int rank)
       : name(name), age(age), position(position), rank(rank) {}
 
   // 복사 생성자
@@ -495,22 +491,22 @@ class Employee {
   Employee() {}
 
   void print_info() {
-    cout << name << " (" << position << " , " << age << ") ==> "
-         << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ") ==> "
+         << calculate_pay() << "만원" <<  std::endl;
   }
   int calculate_pay() { return 200 + rank * 50; }
 };
 
 class Manager {
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
   int year_of_service;
 
  public:
-  Manager(string name, int age, string position, int rank, int year_of_service)
+  Manager(std::string name, int age, std::string position, int rank, int year_of_service)
       : year_of_service(year_of_service),
         name(name),
         age(age),
@@ -531,8 +527,8 @@ class Manager {
 
   int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
   void print_info() {
-    cout << name << " (" << position << " , " << age << ", " << year_of_service
-         << "년차) ==> " << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" <<  std::endl;
   }
 };
 class EmployeeList {
@@ -577,7 +573,7 @@ class EmployeeList {
       manager_list[i]->print_info();
       total_pay += manager_list[i]->calculate_pay();
     }
-    cout << "총 비용 : " << total_pay << "만원 " << endl;
+     std::cout << "총 비용 : " << total_pay << "만원 " <<  std::endl;
   }
   ~EmployeeList() {
     for (int i = 0; i < current_employee; i++) {
@@ -632,12 +628,12 @@ int main() {
 
 ```cpp-formatted
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") {  std::cout << "기반 클래스" <<  std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() {  std::cout << s <<  std::endl; }
 };
 ```
 
@@ -649,11 +645,11 @@ class Base {
 
 ```cpp-formatted
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
   Derived() : Base(), s("파생") {
-    cout << "파생 클래스" << endl;
+     std::cout << "파생 클래스" <<  std::endl;
 
     // Base 에서 what() 을 물려 받았으므로
     // Derived 에서 당연히 호출 가능하다
@@ -662,15 +658,11 @@ class Derived : public Base {
 };
 ```
 
-
-
 가장 먼저 눈에 띄는 부분은 바로 맨 위 `class` 의 정의 부분으로
 
 ```cpp-formatted
 class Derived : public Base
 ```
-
-
 
 와 같이 되어 있습니다. 이는 `Derived` 가 `Base` 를 `public` 형식으로 상속을 받겠다는 의미가 됩니다. `public` 형식으로 상속받는게 무엇인지에 대해서는 좀 있다가 이야기를 하도록 하고, 아무튼 위 처럼 상속을 받은 후에 `Derived` 는 다음과 같은 모습이 됩니다.
 
@@ -683,15 +675,13 @@ class Derived : public Base
 
 ```cpp-formatted
 Derived() : Base(), s("파생") {
-  cout << "파생 클래스" << endl;
+   std::cout << "파생 클래스" <<  std::endl;
 
   // Base 에서 what() 을 물려 받았으므로
   // Derived 에서 당연히 호출 가능하다
   what();
 }
 ```
-
-
 
 그리고 또 하나 눈여겨 봐야 할 점은 `Derived` 의 생성자 호출 부분 입니다. `Derived` 의 생성자는 반드시 위 처럼 초기화자 리스트에서 기반의 생성자를 호출해서 기반의 생성을 먼저 처리 한 다음에, `Derived` 의 생성자가 실행되어야 합니다 (마치 기반가 태어나야지 파생들이 태어날 수 있는 것 처럼 말이지요). 따라서 아래 처럼
 
@@ -704,22 +694,21 @@ Derived() : Base(), s("파생")
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") {  std::cout << "기반 클래스" <<  std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() {  std::cout << s <<  std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
   Derived() : Base(), s("파생") {
-    cout << "파생 클래스" << endl;
+     std::cout << "파생 클래스" <<  std::endl;
 
     // Base 에서 what() 을 물려 받았으므로
     // Derived 에서 당연히 호출 가능하다
@@ -727,10 +716,10 @@ class Derived : public Base {
   }
 };
 int main() {
-  cout << " === 기반 클래스 생성 ===" << endl;
+   std::cout << " === 기반 클래스 생성 ===" <<  std::endl;
   Base p;
 
-  cout << " === 파생 클래스 생성 ===" << endl;
+   std::cout << " === 파생 클래스 생성 ===" <<  std::endl;
   Derived c;
 
   return 0;
@@ -756,17 +745,15 @@ int main() {
 일단 여러분은 기반 클래스 생성에서 왜 저런식으로 출력되는지는 당연히 알고 계실 것입니다. `Base` 의 생성자에서 '기반 클래스' 를 출력을 하게 되지요. 그렇다면 이번에는 `Derived` 객체를 만들 때 왜 저런식으로 출력되는지 살펴보도록 합시다.
 
 ```cpp-formatted
-cout << " === 파생 클래스 생성 ===" << endl;
+ std::cout << " === 파생 클래스 생성 ===" <<  std::endl;
 Derived c;
 ```
-
-
 
 일단 위와 같이 `Derived` 의 인자가 없는 생성자를 호출하게 됩니다.
 
 ```cpp-formatted
 Derived() : Base(), s("파생") {
-  cout << "파생 클래스" << endl;
+   std::cout << "파생 클래스" <<  std::endl;
 
   // Base 에서 what() 을 물려 받았으므로
   // Derived 에서 당연히 호출 가능하다
@@ -790,35 +777,34 @@ Derived() : Base(), s("파생") {
 ```cpp-formatted
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
-  string s;
+  std::string s;
 
  public:
-  Base() : s("기반") { cout << "기반 클래스" << endl; }
+  Base() : s("기반") {  std::cout << "기반 클래스" <<  std::endl; }
 
-  void what() { cout << s << endl; }
+  void what() {  std::cout << s <<  std::endl; }
 };
 class Derived : public Base {
-  string s;
+  std::string s;
 
  public:
   Derived() : Base(), s("파생") {
-    cout << "파생 클래스" << endl;
+     std::cout << "파생 클래스" <<  std::endl;
 
     // Base 에서 what() 을 물려 받았으므로
     // Derived 에서 당연히 호출 가능하다
     what();
   }
 
-  void what() { cout << s << endl; }
+  void what() {  std::cout << s <<  std::endl; }
 };
 int main() {
-  cout << " === 기반 클래스 생성 ===" << endl;
+   std::cout << " === 기반 클래스 생성 ===" <<  std::endl;
   Base p;
 
-  cout << " === 파생 클래스 생성 ===" << endl;
+   std::cout << " === 파생 클래스 생성 ===" <<  std::endl;
   Derived c;
 
   return 0;
@@ -860,26 +846,26 @@ int main() {
 
 ```cpp-formatted
 class Base {
-  string parent_string;
+  std::string parent_string;
 
  public:
-  Base() : parent_string("기반") { cout << "기반 클래스" << endl; }
+  Base() : parent_string("기반") {  std::cout << "기반 클래스" <<  std::endl; }
 
-  void what() { cout << parent_string << endl; }
+  void what() {  std::cout << parent_string <<  std::endl; }
 };
 class Derived : public Base {
-  string child_string;
+  std::string child_string;
 
  public:
   Derived() : child_string("파생"), Base() {
-    cout << "파생 클래스" << endl;
+     std::cout << "파생 클래스" <<  std::endl;
 
     // 그렇다면 현재 private 인 Base 의
     // parent_string 에 접근할 수 있을까?
     parent_string = "바꾸기";
   }
 
-  void what() { cout << child_string << endl; }
+  void what() {  std::cout << child_string <<  std::endl; }
 };
 ```
 
@@ -912,26 +898,26 @@ error C2248: 'Base::parent_string' : cannot access private member declared in cl
 ```cpp-formatted
 class Base {
  protected:
-  string parent_string;
+  std::string parent_string;
 
  public:
-  Base() : parent_string("기반") { cout << "기반 클래스" << endl; }
+  Base() : parent_string("기반") {  std::cout << "기반 클래스" <<  std::endl; }
 
-  void what() { cout << parent_string << endl; }
+  void what() {  std::cout << parent_string <<  std::endl; }
 };
 class Derived : public Base {
-  string child_string;
+  std::string child_string;
 
  public:
   Derived() : Base(), child_string("파생") {
-    cout << "파생 클래스" << endl;
+     std::cout << "파생 클래스" <<  std::endl;
 
     // 그렇다면 현재 private 인 Base 의
     // parent_string 에 접근할 수 있을까?
     parent_string = "바꾸기";
   }
 
-  void what() { cout << child_string << endl; }
+  void what() {  std::cout << child_string <<  std::endl; }
 };
 ```
 
@@ -959,38 +945,37 @@ class Derived : public Base
 실제로 아래와 같은 예제를 살펴봅시다.
 
 
-```cpp-formatted
+```cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Base {
  public:
-  string parent_string;
+  std::string parent_string;
 
-  Base() : parent_string("기반") { cout << "기반 클래스" << endl; }
+  Base() : parent_string("기반") {  std::cout << "기반 클래스" <<  std::endl; }
 
-  void what() { cout << parent_string << endl; }
+  void what() {  std::cout << parent_string <<  std::endl; }
 };
 class Derived : private Base {
-  string child_string;
+  std::string child_string;
 
  public:
-  Derived() : child_string("파생"), Base() { cout << "파생 클래스" << endl; }
+  Derived() : child_string("파생"), Base() {  std::cout << "파생 클래스" <<  std::endl; }
 
-  void what() { cout << child_string << endl; }
+  void what() {  std::cout << child_string <<  std::endl; }
 };
 int main() {
   Base p;
   // Base 에서는 parent_string 이 public 이므로
   // 외부에서 당연히 접근 가능하다.
-  cout << p.parent_string << endl;
+   std::cout << p.parent_string <<  std::endl;
 
   Derived c;
   // 반면에 Derived 에서는 parent_string 이
   // (private 상속을 받았기 때문에) private 이
   // 되어서 외부에서 접근이 불가능하다.
-  cout << c.parent_string << endl;
+   std::cout << c.parent_string <<  std::endl;
 
   return 0;
 }
@@ -1003,7 +988,7 @@ int main() {
 ```compiler-warning
 test.cc: In function ‘int main()’:
 test.cc:31:13: error: ‘std::__cxx11::string Base::parent_string’ is inaccessible within this context
-   cout << c.parent_string << endl;
+    std::cout << c.parent_string <<  std::endl;
              ^~~~~~~~~~~~~
 test.cc:7:10: note: declared here
    string parent_string;
@@ -1018,17 +1003,17 @@ test.cc:7:10: note: declared here
 
 그렇다면 이제 우리가 새롭게 습득한 도구인 '상속' 을 `Manager` 와 `Employee` 클래스 사이에 적용해보도록 합시다. 아래는 기존 `Manager` 클래스를 그대로 가져온 것인데, 원래의 `Employee` 클래스와 중복되는 부분을 굵은 글씨로 나타내보았습니다.
 
-```cpp-formatted
+```cpp
 class Manager {
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
   int year_of_service;
 
  public:
-  Manager(string name, int age, string position, int rank, int year_of_service)
+  Manager(std::string name, int age, std::string position, int rank, int year_of_service)
       : name(name),
         age(age),
         position(position),
@@ -1049,8 +1034,8 @@ class Manager {
 
   int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
   void print_info() {
-    cout << name << " (" << position << " , " << age << ", " << year_of_service
-         << "년차) ==> " << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" <<  std::endl;
   }
 };
 ```
@@ -1063,12 +1048,12 @@ class Manager {
 아무튼, `Employee` 를 상속받는 버전으로 바꾼 아래의 `Manager` 클래스 입니다.
 
 
-```cpp-formatted
+```cpp
 class Manager : public Employee {
   int year_of_service;
 
  public:
-  Manager(string name, int age, string position, int rank, int year_of_service)
+  Manager(std::string name, int age, std::string position, int rank, int year_of_service)
       : year_of_service(year_of_service), Employee(name, age, position, rank) {}
 
   // 복사 생성자
@@ -1082,8 +1067,8 @@ class Manager : public Employee {
 
   int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
   void print_info() {
-    cout << name << " (" << position << " , " << age << ", " << year_of_service
-         << "년차) ==> " << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" <<  std::endl;
   }
 };
 ```
@@ -1093,8 +1078,8 @@ class Manager : public Employee {
 먼저  Employee 와 중복되었던 멤버 변수들이 `Employee` 를 상속함으로써 사라진 것을 볼 수 있습니다. 그리고 `Manager` 의 생성자들이 **기반 클래스의 생성자를 먼저 호출한다** 라는 원칙에 맞게 아래 처럼 바뀐 것을 볼 수 있습니다.
 
 
-```cpp-formatted
-Manager(string name, int age, string position, int rank, int year_of_service)
+```cpp
+Manager(std::string name, int age, std::string position, int rank, int year_of_service)
     : year_of_service(year_of_service), Employee(name, age, position, rank) {}
 
 // 복사 생성자
@@ -1112,21 +1097,20 @@ Manager() : Employee() {}
 위에 굵은 글씨로 표시한 것이 모두 `Manage` 의 생성자에서 기반 클래스인 `Employee` 의 생성자를 먼저 호출하는 모습입니다. 상속을 통해서 귀찮게 복사 `+` 붙여 넣기를 하던 코드를 훨씬 간결하고 알아보기 쉽게 바꿀 수 있게 되었습니다. 전체 코드는 아래와 같습니다.
 
 
-```cpp-formatted
+```cpp
 #include <iostream>
 #include <string>
-using namespace std;
 
 class Employee {
  protected:
-  string name;
+  std::string name;
   int age;
 
-  string position;  // 직책 (이름)
+  std::string position;  // 직책 (이름)
   int rank;         // 순위 (값이 클 수록 높은 순위)
 
  public:
-  Employee(string name, int age, string position, int rank)
+  Employee(std::string name, int age, std::string position, int rank)
       : name(name), age(age), position(position), rank(rank) {}
 
   // 복사 생성자
@@ -1141,8 +1125,8 @@ class Employee {
   Employee() {}
 
   void print_info() {
-    cout << name << " (" << position << " , " << age << ") ==> "
-         << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ") ==> "
+         << calculate_pay() << "만원" <<  std::endl;
   }
   int calculate_pay() { return 200 + rank * 50; }
 };
@@ -1151,7 +1135,7 @@ class Manager : public Employee {
   int year_of_service;
 
  public:
-  Manager(string name, int age, string position, int rank, int year_of_service)
+  Manager(std::string name, int age, std::string position, int rank, int year_of_service)
       : Employee(name, age, position, rank), year_of_service(year_of_service) {}
 
   // 복사 생성자
@@ -1165,8 +1149,8 @@ class Manager : public Employee {
 
   int calculate_pay() { return 200 + rank * 50 + 5 * year_of_service; }
   void print_info() {
-    cout << name << " (" << position << " , " << age << ", " << year_of_service
-         << "년차) ==> " << calculate_pay() << "만원" << endl;
+     std::cout << name << " (" << position << " , " << age << ", " << year_of_service
+         << "년차) ==> " << calculate_pay() << "만원" <<  std::endl;
   }
 };
 class EmployeeList {
@@ -1211,7 +1195,7 @@ class EmployeeList {
       manager_list[i]->print_info();
       total_pay += manager_list[i]->calculate_pay();
     }
-    cout << "총 비용 : " << total_pay << "만원 " << endl;
+     std::cout << "총 비용 : " << total_pay << "만원 " <<  std::endl;
   }
   ~EmployeeList() {
     for (int i = 0; i < current_employee; i++) {

@@ -6,8 +6,6 @@ publish_date : 2012-08-04
 --------------
 
 
-
-
 이번 강좌에서는* 함수의 오버로딩 (function overloading)
 * 생성자 (constructor)
 * 디폴트 생성자 (default constructor)
@@ -40,11 +38,11 @@ publish_date : 2012-08-04
 ```cpp-formatted
 /* 함수의 오버로딩 */
 #include <iostream>
-using namespace std;
 
-void print(int x) { cout << "int : " << x << endl; }
-void print(char x) { cout << "char : " << x << endl; }
-void print(double x) { cout << "double : " << x << endl; }
+void print(int x) { std::cout << "int : " << x << std::endl; }
+void print(char x) { std::cout << "char : " << x << std::endl; }
+void print(double x) { std::cout << "double : " << x << std::endl; }
+
 int main() {
   int a = 1;
   char b = 'c';
@@ -70,10 +68,10 @@ int main() {
 일단 위 소스를 보게 된다면 이름이 'print' 인 함수 3 개가 정의가 되었음을 알 수 있습니다. 고전적인 C 컴파일러에서는 오류가 발생했겠지만 C++ 에서는 '함수의 이름이 같더라도 인자가 다르면 다른 함수' 라고 판단하기 때문에 오류가 발생하지 않는 것입니다.
 
 ```cpp-formatted
-void print(int x) void print(char x) void print(double x)
+void print(int x);
+void print(char x);
+void print(double x);
 ```
-
-
 
 위와 같이 정의된 함수들을 `main` 에서 아래와 같이 호출하게 됩니다.
 
@@ -93,13 +91,12 @@ print(c);
 
 C 언어였을 경우 `int, char, double` 타입에 따라 함수의 이름을 제각각 다르게 만들어서 호출해 주어야 했던 반면에 C++ 에서는 컴파일러가 알아서 '적합한 인자를 가지는 함수' 를 찾아서 호출해 주게 됩니다 C 언어였을 경우 `int, char, double` 타입에 따라 함수의 이름을 제각각 다르게 만들어서 호출해 주어야 했던 반면에 C++ 에서는 컴파일러가 알아서 '적합한 인자를 가지는 함수' 를 찾아서 호출해 주게 됩니다.
 
-```cpp-formatted
+```cpp
 /* 함수의 오버로딩 */
 #include <iostream>
-using namespace std;
 
-void print(int x) { cout << "int : " << x << endl; }
-void print(double x) { cout << "double : " << x << endl; }
+void print(int x) { std::cout << "int : " << x << std::endl; }
+void print(double x) { std::cout << "double : " << x << std::endl; }
 
 int main() {
   int a = 1;
@@ -132,23 +129,31 @@ void print(double x)
 
 C++ 컴파일러에서 함수를 오버로딩하는 과정은 다음과 같습니다.
 
-1 단계 : 자신과 타입이 정확히 일치하는 함수를 찾는다.
+#### 1 단계
 
-2 단계 : 정확히 일치하는 타입이 없는 경우 아래와 같은 형변환을 통해서 일치하는 함수를 찾아본다.
+자신과 타입이 정확히 일치하는 함수를 찾는다.
+
+#### 2 단계
+
+정확히 일치하는 타입이 없는 경우 아래와 같은 형변환을 통해서 일치하는 함수를 찾아본다.
+
 * `Char, unsigned char, short` 는 `int` 로 변환된다.
 * `Unsigned short` 는 `int` 의 크기에 따라 `int` 혹은 `unsigned int` 로 변환된다.
 * `Float` 은 `double` 로 변환된다.
 * `Enum` 은 `int` 로 변환된다.
 
+#### 3 단계 
 
-3 단계 : 위와 같이 변환해도 일치하는 것이 없다면 아래의 좀더 포괄적인 형변환을 통해 일치하는 함수를 찾는다.
+위와 같이 변환해도 일치하는 것이 없다면 아래의 좀더 포괄적인 형변환을 통해 일치하는 함수를 찾는다.
 
 * 임의의 숫자(numeric) 타입은 다른 숫자 타입으로 변환된다. (예를 들어 `float -> int)`
 * `Enum` 도 임의의 숫자 타입으로 변환된다 (예를 들어 `Enum -> double)`
 * `0` 은 포인터 타입이나 숫자 타입으로 변환된 0 은 포인터 타입이나 숫자 타입으로 변환된다
 * 포인터는 `void` 포인터로 변환된다.
 
-4 단계 : 유저 정의된 타입 변환으로 일치하는 것을 찾는다 (이 부분에 대해선 나중에 설명!)
+#### 4 단계 
+
+유저 정의된 타입 변환으로 일치하는 것을 찾는다 (이 부분에 대해선 나중에 설명!)
 (출처 : [http://www.learncpp.com/cpp-tutorial/76-function-overloading/](http://www.learncpp.com/cpp-tutorial/76-function-overloading/))
 
 
@@ -163,14 +168,12 @@ print(b);
 
 는 어떻게 될까요. 1 단계에서는 명백하게도 `char` 타입의 인자를 가진 `print` 가 없기에 2 단계로 넘어오게 됩니다. 그런데 2 단계에서는 `char` 이 `int` 로 변환된다면 `print (int x)` 를 호출할 수 있기 때문에 결국 `print (int x)` 가 호출되게 되는 것이지요.
 
-```cpp-formatted
+```cpp
 // 모호한 오버로딩
-
 #include <iostream>
-using namespace std;
 
-void print(int x) { cout << "int : " << x << endl; }
-void print(char x) { cout << "double : " << x << endl; }
+void print(int x) { std::cout << "int : " << x << std::endl; }
+void print(char x) { std::cout << "double : " << x << std::endl; }
 
 int main() {
   int a = 1;
@@ -195,7 +198,9 @@ while trying to match the argument list '(double)'
 ```
 
 
-와 같이 나오는데요, 왜 오류가 발생하였는지 살펴보도록 합시다. 일단 위 소스에서는 함수가 `print (int x)` 와 `print (char x)` 밖에 없으므로 관건은 `print(c);` 를 했을 때 어떠한 함수가 호출되어야 하는지 결정하는 것인데요, `print(c)` 를 했을 때 1 단계에서는 명백하게 일치하는 것이 없습니다. 2 단계에서는 마찬가지로 `double` 의 캐스팅에 관련한 내용이 없기에 일치하는 것이 없고 비로소 3 단계로 넘어오게 됩니다. 3 단계에서는 '임의의 숫자 타입이 임의의 숫자 타입' 으로 변환되서 생각되기 때문에 `double` 은 `char` 도, `int` 도 변환 될 수 있게 되는 것입니다.
+와 같이 나오는데요, 왜 오류가 발생하였는지 살펴보도록 합시다. 일단 위 소스에서는 함수가 `print (int x)` 와 `print (char x)` 밖에 없으므로 관건은 `print(c);` 를 했을 때 어떠한 함수가 호출되어야 하는지 결정하는 것인데요, `print(c)` 를 했을 때 1 단계에서는 명백하게 일치하는 것이 없습니다.
+
+2 단계에서는 마찬가지로 `double` 의 캐스팅에 관련한 내용이 없기에 일치하는 것이 없고 비로소 3 단계로 넘어오게 됩니다. 3 단계에서는 '임의의 숫자 타입이 임의의 숫자 타입' 으로 변환되서 생각되기 때문에 `double` 은 `char` 도, `int` 도 변환 될 수 있게 되는 것입니다.
 
 
 따라서 같은 단계에 두 개 이상의 가능한 일치가 존재하므로 오류가 발생하게 되는 것이지요.
@@ -206,10 +211,9 @@ while trying to match the argument list '(double)'
 ###  Date 클래스
 
 
-```cpp-formatted
+```cpp
 #include <iostream>
 
-using namespace std;
 class Date {
   int year;
   int month;
@@ -273,8 +277,8 @@ void Date::add_month(int inc) {
 void Date::add_year(int inc) { year += inc; }
 
 void Date::show_date() {
-  cout << "오늘은 " << year << " 년 " << month << " 월 " << day << " 일 입니다 "
-       << endl;
+  std::cout << "오늘은 " << year << " 년 " << month << " 월 " << day << " 일 입니다 "
+       << std::endl;
 }
 int main() {
   Date day;
@@ -287,7 +291,7 @@ int main() {
 }
 ```
 
- 성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
 
 
@@ -306,8 +310,6 @@ void add_year(int inc);
 void show_date();
 ```
 
-
-
 함수의 정의만 나와 있고, 함수 전체 몸통은
 
 ```cpp-formatted
@@ -317,8 +319,6 @@ void Date::set_date(int _year, int _month, int _day) {
   day = _day;
 }
 ```
-
-
 
 처럼 밖에 나와 있습니다. `Date::` 을 함수 이름 앞에 붙여주게 되면 이 함수가 "`Date` 클래스의 정의된 함수" 라는 의미를 부여하게 됩니다. 만일 그냥
 
@@ -358,7 +358,7 @@ day.show_date();
 
 ```cpp-formatted
 #include <iostream>
-using namespace std;
+
 class Date {
   int year;
   int month;
@@ -402,14 +402,11 @@ int main() {
 생성자는 기본적으로 "객체 생성시 자동으로 호출되는 함수" 라고 볼 수 있습니다. 이 때 자동으로 호출 되면서 객체를 초기화 해주는 역할을 담당하게 됩니다. 생성자는 아래와 같이 정의합니다.
 
 ```info
-
 // 객체를 초기화 하는 역할을 하기 때문에 리턴값이 없다!
 (클래스 이름) ( 인자 )
 {
 }
 ```
-
-
 
 예를 들어서 위 경우 저는 아래와 같이 `Date` 의 생성자를 정의하였습니다.
 
@@ -417,14 +414,11 @@ int main() {
 Date(int _year, int _month, int _day)
 ```
 
-
-
 이렇게 정의가 된 생성자는 객체를 생성할 때 다음과 같이 위 함수에서 정의한 인자에 맞게마치 함수를 호출하듯이써준다면 위 생성자를 호출하며 객체를 생성할 수 있게 됩니다. 즉, 우리의 경우 아래와 같이 객체를 생성하였지요.
 
 ```cpp-formatted
 Date day(2011, 3, 1);
 ```
-
 
 이는 곧 "`Date` 클래스의 `day` 객체를 만들면서 생성자 `Date(int _year, int _month, int _day)` 를 호출한다" 라는 의미가 됩니다. 따라서 `Date` 의 객체를 생성할 때 생성자의 인자 `_year, _month, _day` 에 각각 `2011, 3, 1` 을 전달하며 객체를 생성하게 되는 것이지요. 매우 간단한 원리 입니다. 그러한 맥락에서 볼 때 아래와 같이 객체를 생성하는 것도 동일한 의미 입니다.
 
@@ -439,8 +433,6 @@ Date day = Date(2012, 3, 1);
 Date day(2011, 3, 1);         // 암시적 방법 (implicit)
 Date day = Date(2012, 3, 1);  // 명시적 방법 (explicit)
 ```
-
-
 
 마치 함수를 호출하듯이 사용하는 것이 암시적 방법, 명시적으로 생성자를 호출한다는 것을 보여주는 것이 명시적 방법 인데 많은 경우 암시적 방법으로 축약해서 쓸 수 있으므로 이를 선호하는 편입니다.
 
@@ -462,9 +454,8 @@ Date day;
 
 ```cpp-formatted
 // 디폴트 생성자 정의해보기
-
 #include <iostream>
-using namespace std;
+
 class Date {
   int year;
   int month;
@@ -496,10 +487,7 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1233FC35501D1C6A0CA47B)
@@ -516,26 +504,18 @@ Date() {
 }
 ```
 
-
-
 즉 `year` 에는 `2012, month` 에는 `7, day` 에는 2 를 집어넣게 되지요.
-
-
 
 ```cpp-formatted
 Date day = Date();
 Date day2;
 ```
 
-
-
 그래서 사용하게 되면 위와 같이 디폴트 생성자를 이용해서 `day` 와 `day2` 를 추가할 수 있게 되는 것입니다. 한 가지 주의할 점은 위에서 인자가 있는 생성자에서 적용했던 것 처럼
 
 ```cpp-formatted
 Date day3();
 ```
-
-
 
 와 하면 `day3` 객체를 디폴트 생성자를 이용해서 초기화 하는 것이 아니라,리턴값이 `Date` 이고 인자가 없는 함수 `day3` 을 정의하게 된 것으로 인식합니다. 이는 암시적 표현으로 객체를 선언할 때 반드시 염두해 두어야 할 사항입니다.
 
@@ -545,9 +525,9 @@ Date day3();
 
 앞서 함수의 오버로딩에 대해 설명을 하였는데요, 생성자 역시 같은 함수이기에 오버로딩이 가능합니다.
 
-```cpp-formatted
+```cpp
 #include <iostream>
-using namespace std;
+
 class Date {
   int year;
   int month;
@@ -561,13 +541,13 @@ class Date {
   void show_date();
 
   Date() {
-    cout << "기본 생성자 호출!" << endl;
+    std::cout << "기본 생성자 호출!" << std::endl;
     year = 2012;
     month = 7;
     day = 12;
   }
   Date(int _year, int _month, int _day) {
-    cout << "인자 3 개인 생성자 호출!" << endl;
+    std::cout << "인자 3 개인 생성자 호출!" << std::endl;
     year = _year;
     month = _month;
     day = _day;
@@ -576,8 +556,8 @@ class Date {
 
 // 생략
 void Date::show_date() {
-  cout << "오늘은 " << year << " 년 " << month << " 월 " << day << " 일 입니다 "
-       << endl;
+  std::cout << "오늘은 " << year << " 년 " << month << " 월 " << day << " 일 입니다 "
+       << std::endl;
 }
 int main() {
   Date day = Date();

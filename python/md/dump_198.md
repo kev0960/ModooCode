@@ -39,7 +39,7 @@ publish_date : 2013-08-15
 ###  문자열 클래스를 만들자
 
 
-기존 [C 언어에서는 문자열을 나타내기 위해 널 종료 문자열(Null-terminating string)](http://itguru.tistory.com/29)이라는 개념을 도입해서 문자열 끝에 `NULL` 문자를 붙여 문자열을 나타내는 방식을 사용하였습니다.
+기존 [C 언어에서는 문자열을 나타내기 위해 널 종료 문자열(Null-terstd::minating string)](http://itguru.tistory.com/29)이라는 개념을 도입해서 문자열 끝에 `NULL` 문자를 붙여 문자열을 나타내는 방식을 사용하였습니다.
 
 하지만 C 언어 문자열을 사용하는데에는 번거로움이 많았는데, 예를 들어서 만들어진 문자열의 크기를 바꾼다던지, 문자열 뒤에 다른 문자열을 붙인다던지 등의 작업들은 상당히 프로그래머 입장에서는 귀찮을 수 밖에 없습니다. 이와 같은 작업들을 문자열 클래스를 따로 만들어서 클래스 차원에서 지원해주면 상당히 편할 텐데 말이지요. 그래서 우리는 직접 문자열 클래스를 만들고자 합니다.
 
@@ -133,11 +133,10 @@ int MyString::length() const { return string_length; }
 ```cpp-formatted
 void MyString::print() {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 }
 ```
-
 
 그리고 마지막으로, 우리의 `MyString` 클래스의 내용을 보기 위해서, 문자열을 출력하는 함수 `print` 와 `println` 을 만들었습니다. (단지 마지막에 개행을 하느냐 안하느냐의 차이) 마찬가지로 `print` 와 `println` 모두 문자열을 읽기만 하므로 상수 함수로 만들었습니다.
 
@@ -149,7 +148,6 @@ void MyString::print() {
 // string.h 는 strlen 때문에 include 했는데, 사실 여러분이 직접 strlen
 // 과 같은 함수를 만들어서 써도 됩니다.
 #include <string.h>
-using namespace std;
 
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
@@ -197,15 +195,15 @@ int MyString::length() const { return string_length; }
 
 void MyString::print() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 }
 void MyString::println() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 
-  cout << endl;
+  std::cout << std::endl;
 }
 int main() {
   MyString str1("hello world!");
@@ -388,7 +386,6 @@ void MyString::reserve(int size) {
 // string.h 는 strlen 때문에 include 했는데, 사실 여러분이 직접 strlen
 // 과 같은 함수를 만들어서 써도 됩니다.
 #include <string.h>
-using namespace std;
 
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
@@ -449,15 +446,15 @@ int MyString::length() const { return string_length; }
 
 void MyString::print() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 }
 void MyString::println() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 
-  cout << endl;
+  std::cout << std::endl;
 }
 
 MyString& MyString::assign(const MyString& str) {
@@ -517,8 +514,8 @@ int main() {
   MyString str1("very very very long string");
   str1.reserve(30);
 
-  cout << "Capacity : " << str1.capacity() << endl;
-  cout << "String length : " << str1.length() << endl;
+  std::cout << "Capacity : " << str1.capacity() << std::endl;
+  std::cout << "String length : " << str1.length() << std::endl;
   str1.println();
 }
 ```
@@ -686,7 +683,6 @@ for (int i = 0; i < str.string_length; i++)
 // string.h 는 strlen 때문에 include 했는데, 사실 여러분이 직접 strlen
 // 과 같은 함수를 만들어서 써도 됩니다.
 #include <string.h>
-using namespace std;
 
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
@@ -753,15 +749,15 @@ int MyString::length() const { return string_length; }
 
 void MyString::print() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 }
 void MyString::println() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 
-  cout << endl;
+  std::cout << std::endl;
 }
 
 MyString& MyString::assign(const MyString& str) {
@@ -889,8 +885,8 @@ int main() {
   MyString str2("<some string inserted between>");
   str1.reserve(30);
 
-  cout << "Capacity : " << str1.capacity() << endl;
-  cout << "String length : " << str1.length() << endl;
+  std::cout << "Capacity : " << str1.capacity() << std::endl;
+  std::cout << "String length : " << str1.length() << std::endl;
   str1.println();
 
   str1.insert(5, str2);
@@ -966,7 +962,6 @@ MyString& MyString::insert(int loc, const MyString& str) {
 // string.h 는 strlen 때문에 include 했는데, 사실 여러분이 직접 strlen
 // 과 같은 함수를 만들어서 써도 됩니다.
 #include <string.h>
-using namespace std;
 
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
@@ -1033,15 +1028,15 @@ int MyString::length() const { return string_length; }
 
 void MyString::print() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 }
 void MyString::println() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 
-  cout << endl;
+  std::cout << std::endl;
 }
 
 MyString& MyString::assign(const MyString& str) {
@@ -1171,15 +1166,15 @@ int main() {
   MyString str2("<some string inserted between>");
   str1.reserve(30);
 
-  cout << "Capacity : " << str1.capacity() << endl;
-  cout << "String length : " << str1.length() << endl;
+  std::cout << "Capacity : " << str1.capacity() << std::endl;
+  std::cout << "String length : " << str1.length() << std::endl;
   str1.println();
 
   str1.insert(5, str2);
   str1.println();
 
-  cout << "Capacity : " << str1.capacity() << endl;
-  cout << "String length : " << str1.length() << endl;
+  std::cout << "Capacity : " << str1.capacity() << std::endl;
+  std::cout << "String length : " << str1.length() << std::endl;
   str1.println();
 }
 ```
@@ -1289,7 +1284,6 @@ int MyString::find(int find_from, MyString& str) const {
 // string.h 는 strlen 때문에 include 했는데, 사실 여러분이 직접 strlen
 // 과 같은 함수를 만들어서 써도 됩니다.
 #include <string.h>
-using namespace std;
 
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
@@ -1362,15 +1356,15 @@ int MyString::length() const { return string_length; }
 
 void MyString::print() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 }
 void MyString::println() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 
-  cout << endl;
+  std::cout << std::endl;
 }
 
 MyString& MyString::assign(const MyString& str) {
@@ -1533,10 +1527,10 @@ int MyString::find(int find_from, char c) const {
 }
 int main() {
   MyString str1("this is a very very long string");
-  cout << "Location of first <very> in the string : " << str1.find(0, "very")
-       << endl;
-  cout << "Location of second <very> in the string : "
-       << str1.find(str1.find(0, "very") + 1, "very") << endl;
+  std::cout << "Location of first <very> in the string : " << str1.find(0, "very")
+       << std::endl;
+  std::cout << "Location of second <very> in the string : "
+       << str1.find(str1.find(0, "very") + 1, "very") << std::endl;
 }
 ```
 
@@ -1570,7 +1564,7 @@ int MyString::compare(const MyString& str) const {
   // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
   // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
 
-  for (int i = 0; i < min(string_length, str.string_length); i++) {
+  for (int i = 0; i < std::min(string_length, str.string_length); i++) {
     if (string_content[i] > str.string_content[i])
       return 1;
 
@@ -1593,7 +1587,7 @@ int MyString::compare(const MyString& str) const {
 
 
 
-참고로 말하면 `abc` 와 `abcd` 의 크기를 비교하면 `abc` 가 `abcd` 보다 사전식으로 더 앞에 오게 됩니다. 따라서 이에 대한 처리는 뒷부분에서 따로 하게 됩니다. 그리고 한 가지 더 말하자면 `min` 과 `max` 함수는 `iostream` 를 `include` 하면 사용할 수 있는 함수들 이므로, 굳이 귀찮게 만드실 필요는 없습니다.
+참고로 말하면 `abc` 와 `abcd` 의 크기를 비교하면 `abc` 가 `abcd` 보다 사전식으로 더 앞에 오게 됩니다. 따라서 이에 대한 처리는 뒷부분에서 따로 하게 됩니다. 그리고 한 가지 더 말하자면 `std::min` 과 `std::max` 함수는 `iostream` 를 `include` 하면 사용할 수 있는 함수들 이므로, 굳이 귀찮게 만드실 필요는 없습니다.
 
 ```cpp-formatted
 #include <iostream>
@@ -1601,7 +1595,6 @@ int MyString::compare(const MyString& str) const {
 // string.h 는 strlen 때문에 include 했는데, 사실 여러분이 직접 strlen
 // 과 같은 함수를 만들어서 써도 됩니다.
 #include <string.h>
-using namespace std;
 
 class MyString {
   char* string_content;  // 문자열 데이터를 가리키는 포인터
@@ -1676,15 +1669,15 @@ int MyString::length() const { return string_length; }
 
 void MyString::print() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 }
 void MyString::println() const {
   for (int i = 0; i != string_length; i++) {
-    cout << string_content[i];
+    std::cout << string_content[i];
   }
 
-  cout << endl;
+  std::cout << std::endl;
 }
 
 MyString& MyString::assign(const MyString& str) {
@@ -1850,7 +1843,7 @@ int MyString::compare(const MyString& str) const {
   // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
   // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
 
-  for (int i = 0; i < min(string_length, str.string_length); i++) {
+  for (int i = 0; i < std::min(string_length, str.string_length); i++) {
     if (string_content[i] > str.string_content[i])
       return 1;
 
@@ -1873,7 +1866,7 @@ int main() {
   MyString str1("abcdef");
   MyString str2("abcde");
 
-  cout << "str1 and str2 compare : " << str1.compare(str2) << endl;
+  std::cout << "str1 and str2 compare : " << str1.compare(str2) << std::endl;
 }
 ```
 
