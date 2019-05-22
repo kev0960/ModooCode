@@ -26,17 +26,15 @@ publish_date : 2018-03-24
 ```cpp-formatted
 #include <iostream>
 
-using namespace std;
-
 class A {
   int data_;
 
  public:
-  A(int data) : data_(data) { cout << "일반 생성자 호출!" << endl; }
+  A(int data) : data_(data) { std::cout << "일반 생성자 호출!" << std::endl; }
 
   A(const A& a) : data_(a.data_) {
     data_ = a.data_;
-    cout << "복사 생성자 호출!" << endl;
+    std::cout << "복사 생성자 호출!" << std::endl;
   }
 };
 
@@ -76,8 +74,6 @@ A c(A(2));
 A(2)
 ```
 
-
-
 를 만들면서 "일반 생성자 호출!" 이 한 번 출력되어야 되고, 생성된 임시 객체로 `c` 가 복사 생성되면서 "복사 생성자 호출!" 이 될 것이기 때문이지요. 그런데 왜 "일반 생성자 호출!" 한 번 밖에 출력되지 않았을 까요? 복사 생성자가 왜 불리지 않았을까요?
 
 
@@ -96,7 +92,6 @@ A(2)
 ```cpp-formatted
 #include <iostream>
 #include <cstring>
-using namespace std;
 
 class MyString {
   char *string_content;  // 문자열 데이터를 가리키는 포인터
@@ -124,14 +119,14 @@ class MyString {
 };
 
 MyString::MyString() {
-  cout << "생성자 호출 ! " << endl;
+  std::cout << "생성자 호출 ! " << std::endl;
   string_length = 0;
   memory_capacity = 0;
   string_content = nullptr;
 }
 
 MyString::MyString(const char *str) {
-  cout << "생성자 호출 ! " << endl;
+  std::cout << "생성자 호출 ! " << std::endl;
   string_length = strlen(str);
   memory_capacity = string_length;
   string_content = new char[string_length];
@@ -139,7 +134,7 @@ MyString::MyString(const char *str) {
   for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
 MyString::MyString(const MyString &str) {
-  cout << "복사 생성자 호출 ! " << endl;
+  std::cout << "복사 생성자 호출 ! " << std::endl;
   string_length = str.string_length;
   string_content = new char[string_length];
 
@@ -172,27 +167,24 @@ MyString MyString::operator+(const MyString &s) {
 }
 int MyString::length() const { return string_length; }
 void MyString::print() {
-  for (int i = 0; i != string_length; i++) cout << string_content[i];
+  for (int i = 0; i != string_length; i++) std::cout << string_content[i];
 }
 void MyString::println() {
-  for (int i = 0; i != string_length; i++) cout << string_content[i];
+  for (int i = 0; i != string_length; i++) std::cout << string_content[i];
 
-  cout << endl;
+  std::cout << std::endl;
 }
 
 int main() {
   MyString str1("abc");
   MyString str2("def");
-  cout << "-------------" << endl;
+  std::cout << "-------------" << std::endl;
   MyString str3 = str1 + str2;
   str3.println();
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F99E2F6505AB50C7A30ED98)
@@ -231,13 +223,10 @@ MyString MyString::operator+(const MyString &s) {
 }
 ```
 
-
-
 위 함수가 `str1 + str2` 를 실행 시에 호출되는데, 먼저 빈 `MyString` 객체인 `str` 을 생성합니다. (생성자 호출! 출력됨) 그 후에, `reserve` 함수를 이용해서 공간을 할당하고, `str1` 과 `str2` 를 더한 문자열을 복사하게 됩니다.
 
 
 이렇게 리턴된 `str` 은 `str3` 을 생성하는데 전달되어서, `str3` 의 복사 생성자가 호출 됩니다.
-
 
 
 하지만, 이미 예상했겠지만, 굳이 `str3` 의 복사 생성자를 또 호출할 필요가 없습니다. 왜냐하면, 어차피 똑같이 복사해서 생성할 것이면, 이미 생성된 `(str1 + str2)` 가 리턴한 객체를 `str3` 셈 치고 사용하면 되기 때문이지요. 이전의 예제에서는 컴파일러가 불필요한 복사 생성자 호출을 복사 생략을 통해 수행하지 않았지만, 이 예제의 경우, 컴파일러가 복사 생략 최적화를 수행하지 않았습니다.
@@ -263,8 +252,6 @@ MyString MyString::operator+(const MyString &s) {
 ```cpp-formatted
 int a = 3;
 ```
-
-
 
 위 표현식에서 먼저 'a' 를 살펴보도록 합시다. 우리는 `a` 가 메모리 상에서 존재하는 변수 임을 알고 있습니다. 즉 'a' 의 주소값을 `&` 연산자를 통해 알아 낼 수 있다는 것입니다. 우리는 보통 이렇게 주소값을 취할 수 있는 값을 **좌측값 (lvalue)** 라고 부릅니다. 그리고 좌측값은 어떠한 표현식의 왼쪽 오른쪽 모두에 올 수 있습니다 (왼쪽에만 와야 하는게 아닙니다).
 
@@ -295,23 +282,19 @@ int& r_b = 3;  // 3 은 우측값. 따라서 오류
 
 ```cpp-formatted
 int& func1(int& a) { return a; }
-
 int func2(int b) { return b; }
 
 int main() {
   int a = 3;
   func1(a) = 4;
-  cout << &func1(a) << endl;
+  std::cout << &func1(a) << std::endl;
 
   int b = 2;
   a = func2(b);               // 가능
   func2(b) = 5;               // 오류 1
-  cout << &func2(b) << endl;  // 오류 2
+  std::cout << &func2(b) << std::endl;  // 오류 2
 }
 ```
-
-
-
 컴파일 하였다면 위 오류 `1, 2,` 줄에서 각각 다음과 같은 오류를 볼 수 있습니다.
 
 ```compiler-warning
@@ -319,15 +302,11 @@ Error C2106'=': left operand must be l-value
 Error C2102'&' requires l-value
 ```
 
-
-
 일단 `func1` 의 경우 좌측값 레퍼런스를 리턴합니다. 앞서, 좌측값 레퍼런스의 경우 좌측값에 해당하기 때문에,
 
 ```cpp-formatted
 func1(a) = 4;
 ```
-
-
 
 의 경우 '`func(a)` 가 리턴하는 레퍼런스의 값을 4' 로 해라 라는 의미로, 실제로 변수 `a` 의 값이 바뀌게 됩니다. 또한, `func1(a)` 가 좌측값 레퍼런스를 리턴하므로, 그 리턴값의 주소값 역시 취할 수 있습니다.
 
@@ -339,23 +318,17 @@ func1(a) = 4;
 a = func2(b);
 ```
 
-
-
 이 문장이 실행 될 때 잠깐 존재할 뿐 그 문장 실행이 끝나면 사라지게 됩니다. 즉, 실체가 없는 값이라는 뜻이지요. 따라서 `func2(b)` 는 우측값이 됩니다. 따라서 위와 같이 우측값이 실제 표현식의 오른쪽에 오는 경우는 가능하지만,
 
 ```cpp-formatted
 func2(b) = 5;
 ```
 
-
-
 위 문장 처럼 우측값이 왼쪽의 오는 경우는 가능하지 않습니다.
 
 ```cpp-formatted
-cout << &func2(b) << endl;  // 오류 2
+std::cout << &func2(b) << std::endl;  // 오류 2
 ```
-
-
 
 마찬가지로 우측값의 주소값을 취할 수 없기 때문에 위 문장은 허용되지 않습니다.
 
@@ -366,15 +339,11 @@ cout << &func2(b) << endl;  // 오류 2
 MyString str3 = str1 + str2;
 ```
 
-
-
 를 다시 살펴보도록 합시다. 위 문장은
 
 ```cpp-formatted
 MyString str3(str1.operator+(str2));
 ```
-
-
 
 와 동일합니다. 그런데, `operator+` 의 정의를 살펴보면,
 
@@ -382,23 +351,17 @@ MyString str3(str1.operator+(str2));
 MyString MyString::operator+(const MyString &s)
 ```
 
-
-
 로 우측값을 리턴하고 있는데, 이 우측값이 어떻게 좌측값 레퍼런스를 인자로 받는,
 
 ```cpp-formatted
 MyString(const MyString &str);
 ```
 
-
-
 를 호출 시킬 수 있었을까요? 이는 `&` 가 좌측값 레퍼런스를 의미하지만, 예외적으로
 
 ```cpp-formatted
 const T&
 ```
-
-
 
 의 타입의 한해서만, 우측값도 레퍼런스로 받을 수 있습니다. 그 이유는 `const` 레퍼런스 이기 때문에 임시로 존재하는 객체의 값을 참조만 할 뿐 이를 변경할 수 없기 때문입니다.
 
@@ -407,18 +370,17 @@ const T&
 ###  그렇다면 이동은 어떻게?
 
 
-
-
 그렇다면 앞서 `MyString` 에서 지적한 문제를 해결할 생성자의 경우 어떠한 방식으로 작동해야 할까요?
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F99DC5E435AB639BF0D7DD5)
+
 위와 같이 간단합니다. `str3` 생성 시에 임시로 생성된 객체의 `string_content` 가리키는 문자열의 주소값을 `str3` 의 `string_content` 로 해주면 됩니다.
 
 문제는 이렇게 하게 되면, 임시 객체가 소멸 시에 `string_content` 를 메모리에서 해제하게 되는데, 그렇게 되면 `str3` 가 가리키고 있던 문자열이 메모리에서 소멸되게 됩니다. 따라서 이를 방지 하기 위해서는, 임시 생성된 객체의 `string_content` 를 `nullptr` 로 바꿔주고, 소멸자에서 `string_content` 가 `nullptr` 이면 소멸하지 않도록 해주면 됩니다. 매우 간단하지요?
 
 하지만, 이 방법은 기존의 복사 생성자에서 사용할 수 없습니다. 왜냐하면 우리는 인자를 `const MyString&` 으로 받았기 때문에, 인자의 값을 변경할 수 없게 되지요. 즉 임시 객체의 `string_content` 값을 수정할 수 없기에 문제가 됩니다.
 
-이와 같은 문제가 발생한 이유는 `const MyString&` 이 좌측값과 우측값 모두 받을 수 있다는 점에서 비롯되었습니다. 그렇다면, 좌측값 말고 우측값만 특이적으로 받을 수 있는 방법은 없을까요? 바로 C++ 11 부터 제공하는 우측값 레퍼런스를 이용하면 됩니다. (참고로 C++ 11 가 기본으로 설정되어 있지 않는 컴파일러는 사용 불가능 합니다. 비주얼 스튜디오 2017 버전의 경우 자동으로 `on` 되어 있으니 걱정하실 필요 없습니다.)
+이와 같은 문제가 발생한 이유는 `const MyString&` 이 좌측값과 우측값 모두 받을 수 있다는 점에서 비롯되었습니다. 그렇다면, 좌측값 말고 우측값만 특이적으로 받을 수 있는 방법은 없을까요? 바로 C++ 11 부터 제공하는 우측값 레퍼런스를 이용하면 됩니다. (참고로 C++ 11 가 기본으로 설정되어 있지 않는 컴파일러는 사용 불가능 합니다. 비주얼 스튜디오 2017 버전의 경우 자동으로 사용 가능하게 설정 되어 있으니 걱정하실 필요 없습니다.)
 
 
 ###  우측값 레퍼런스
@@ -426,7 +388,6 @@ const T&
 ```cpp-formatted
 #include <iostream>
 #include <cstring>
-using namespace std;
 
 class MyString {
   char *string_content;  // 문자열 데이터를 가리키는 포인터
@@ -457,14 +418,14 @@ class MyString {
 };
 
 MyString::MyString() {
-  cout << "생성자 호출 ! " << endl;
+  std::cout << "생성자 호출 ! " << std::endl;
   string_length = 0;
   memory_capacity = 0;
   string_content = nullptr;
 }
 
 MyString::MyString(const char *str) {
-  cout << "생성자 호출 ! " << endl;
+  std::cout << "생성자 호출 ! " << std::endl;
   string_length = strlen(str);
   memory_capacity = string_length;
   string_content = new char[string_length];
@@ -472,7 +433,7 @@ MyString::MyString(const char *str) {
   for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
 MyString::MyString(const MyString &str) {
-  cout << "복사 생성자 호출 ! " << endl;
+  std::cout << "복사 생성자 호출 ! " << std::endl;
   string_length = str.string_length;
   string_content = new char[string_length];
 
@@ -480,7 +441,7 @@ MyString::MyString(const MyString &str) {
     string_content[i] = str.string_content[i];
 }
 MyString::MyString(MyString &&str) {
-  cout << "이동 생성자 호출 !" << endl;
+  std::cout << "이동 생성자 호출 !" << std::endl;
   string_length = str.string_length;
   string_content = str.string_content;
   memory_capacity = str.memory_capacity;
@@ -517,25 +478,23 @@ MyString MyString::operator+(const MyString &s) {
 }
 int MyString::length() const { return string_length; }
 void MyString::print() {
-  for (int i = 0; i != string_length; i++) cout << string_content[i];
+  for (int i = 0; i != string_length; i++) std::cout << string_content[i];
 }
 void MyString::println() {
-  for (int i = 0; i != string_length; i++) cout << string_content[i];
+  for (int i = 0; i != string_length; i++) std::cout << string_content[i];
 
-  cout << endl;
+  std::cout << std::endl;
 }
 
 int main() {
   MyString str1("abc");
   MyString str2("def");
 
-  cout << "-------------" << endl;
+  std::cout << "-------------" << std::endl;
   MyString str3 = str1 + str2;
   str3.println();
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -544,15 +503,13 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F995166505AB63D112FF31F)
 
 
-
 와 같이 나옵니다.
-
 
 먼저 우측값 레퍼런스를 사용한 이동 생성자의 정의 부분 부터 살펴봅시다.
 
 ```cpp-formatted
 MyString::MyString(MyString&& str) {
-  cout << "이동 생성자 호출 !" << endl;
+  std::cout << "이동 생성자 호출 !" << std::endl;
   string_length = str.string_length;
   string_content = str.string_content;
   memory_capacity = str.memory_capacity;
@@ -563,18 +520,13 @@ MyString::MyString(MyString&& str) {
 }
 ```
 
-
-
 우측값의 레퍼런스를 정의하기 위해서는 좌측값과는 달리 `&` 를 두 개 사용해서 정의해야 합니다. 즉, 위 생성자의 경우 `MyString` 타입의 우측값을 인자로 받고 있습니다.
-
 
 그렇다면 한 가지 퀴즈! 과연 `str` 자체는 우측값 일까요 좌측값 일까요? 당연히도 좌측값 입니다. 실체가 있기 때문이지요 (`str` 이라는 이름이 있잖아요). 다시 말해 `str` 은 타입이 '`MyString` 의 우측값 레퍼런스' 인 좌측값 이라 보면 됩니다. 따라서 표현식의 좌측에 올 수도 있습니다. (마지막 줄 처럼)
 
 ```cpp-formatted
 string_content = str.string_content;
 ```
-
-
 
 이제 위와 같이 우리가 바라던 대로 임시 객체의 `string_content` 가 가리키는 메모리를 새로 생성되는 객체의 메모리로 옮겨주기만 하면 됩니다. 기존의 복사 생성자의 경우 문자열 전체를 새로 복사해야 했지만, 이동 생성자의 경우 단순히 주소값 하나만 달랑 복사해주면 끝이기 때문에 매우 간단합니다.
 
@@ -583,8 +535,6 @@ string_content = str.string_content;
 // 못하게 한다.
 str.string_content = nullptr;
 ```
-
-
 
 한 가지 중요한 부분은 인자로 받은 임시 객체가 소멸되면서 자신이 가리키고 있던 문자열을 `delete` 하지 못하게 해야 합니다. 만약에 그 문자열을 지우게 된다면, 새롭게 생성된 문자열 `str3` 도 같은 메모리를 가리키고 있기 때문에 `str3` 의 문자열도 같이 사라지는 셈이 되기 때문입니다.
 
@@ -598,7 +548,6 @@ MyString::~MyString() {
 
 그리고 물론 소멸자 역시 바꿔줘야만 합니다. `string_content` 가 `nullptr` 가 아닐 때 에만 `delete` 를 하도록 말이죠.
 
-
 일반적으로 우측값 레퍼런스는 아래와 같은 방식으로 사용할 수 있습니다.
 
 ```cpp-formatted
@@ -610,10 +559,7 @@ int&& r_b = 3;
 int&& rr_b = a;  // 불가능
 ```
 
-
-
 일단 우측값 레퍼런스의 경우 반드시 우측값의 레퍼런스만 가능합니다. 따라서, `r_b` 의 경우 우측값 '3' 의 레퍼런스가 될 수 있겠지만, `rr_b` 의 경우 `a` 가 좌측값이기 때문에 컴파일 되지 않습니다.
-
 
 우측값 레퍼런스의 재미있는 특징으로 레퍼런스 하는 임시 객체가 소멸되지 않도록 붙들고 있는다는 점입니다. 예를 들어서,
 
@@ -621,8 +567,6 @@ int&& rr_b = a;  // 불가능
 MyString&& str3 = str1 + str2;
 str3.println();
 ```
-
-
 
 의 경우 `str3` 이 `str1 + str2` 에서 리턴되는 임시 객체의 레퍼런스가 되면서 그 임시 객체가 소멸되지 않도록 합니다. 실제로, 아래 `println` 함수에서 더해진 문자열이 잘 보여집니다.
 
@@ -652,7 +596,6 @@ str3.println();
 #include <iostream>
 #include <cstring>
 #include <vector>
-using namespace std;
 
 class MyString {
   char *string_content;  // 문자열 데이터를 가리키는 포인터
@@ -676,14 +619,14 @@ class MyString {
 };
 
 MyString::MyString() {
-  cout << "생성자 호출 ! " << endl;
+  std::cout << "생성자 호출 ! " << std::endl;
   string_length = 0;
   memory_capacity = 0;
   string_content = nullptr;
 }
 
 MyString::MyString(const char *str) {
-  cout << "생성자 호출 ! " << endl;
+  std::cout << "생성자 호출 ! " << std::endl;
   string_length = strlen(str);
   memory_capacity = string_length;
   string_content = new char[string_length];
@@ -691,7 +634,7 @@ MyString::MyString(const char *str) {
   for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
 MyString::MyString(const MyString &str) {
-  cout << "복사 생성자 호출 ! " << endl;
+  std::cout << "복사 생성자 호출 ! " << std::endl;
   string_length = str.string_length;
   string_content = new char[string_length];
 
@@ -699,7 +642,7 @@ MyString::MyString(const MyString &str) {
     string_content[i] = str.string_content[i];
 }
 MyString::MyString(MyString &&str) {
-  cout << "이동 생성자 호출 !" << endl;
+  std::cout << "이동 생성자 호출 !" << std::endl;
   string_length = str.string_length;
   string_content = str.string_content;
   memory_capacity = str.memory_capacity;
@@ -714,14 +657,14 @@ MyString::~MyString() {
 
 int main() {
   MyString s("abc");
-  vector<MyString> vec;
+  std::vector<MyString> vec;
   vec.resize(0);
 
-  cout << "첫 번째 추가 ---" << endl;
+  std::cout << "첫 번째 추가 ---" << std::endl;
   vec.push_back(s);
-  cout << "두 번째 추가 ---" << endl;
+  std::cout << "두 번째 추가 ---" << std::endl;
   vec.push_back(s);
-  cout << "세 번째 추가 ---" << endl;
+  std::cout << "세 번째 추가 ---" << std::endl;
   vec.push_back(s);
 }
 ```
@@ -747,7 +690,6 @@ int main() {
 #include <iostream>
 #include <cstring>
 #include <vector>
-using namespace std;
 
 class MyString {
   char *string_content;  // 문자열 데이터를 가리키는 포인터
@@ -771,14 +713,14 @@ class MyString {
 };
 
 MyString::MyString() {
-  cout << "생성자 호출 ! " << endl;
+  std::cout << "생성자 호출 ! " << std::endl;
   string_length = 0;
   memory_capacity = 0;
   string_content = NULL;
 }
 
 MyString::MyString(const char *str) {
-  cout << "생성자 호출 ! " << endl;
+  std::cout << "생성자 호출 ! " << std::endl;
   string_length = strlen(str);
   memory_capacity = string_length;
   string_content = new char[string_length];
@@ -786,7 +728,7 @@ MyString::MyString(const char *str) {
   for (int i = 0; i != string_length; i++) string_content[i] = str[i];
 }
 MyString::MyString(const MyString &str) {
-  cout << "복사 생성자 호출 ! " << endl;
+  std::cout << "복사 생성자 호출 ! " << std::endl;
   string_length = str.string_length;
   string_content = new char[string_length];
 
@@ -794,7 +736,7 @@ MyString::MyString(const MyString &str) {
     string_content[i] = str.string_content[i];
 }
 MyString::MyString(MyString &&str) noexcept {
-  cout << "이동 생성자 호출 !" << endl;
+  std::cout << "이동 생성자 호출 !" << std::endl;
   string_length = str.string_length;
   string_content = str.string_content;
   memory_capacity = str.memory_capacity;
@@ -809,14 +751,14 @@ MyString::~MyString() {
 
 int main() {
   MyString s("abc");
-  vector<MyString> vec;
+  std::vector<MyString> vec;
   vec.resize(0);
 
-  cout << "첫 번째 추가 ---" << endl;
+  std::cout << "첫 번째 추가 ---" << std::endl;
   vec.push_back(s);
-  cout << "두 번째 추가 ---" << endl;
+  std::cout << "두 번째 추가 ---" << std::endl;
   vec.push_back(s);
-  cout << "세 번째 추가 ---" << endl;
+  std::cout << "세 번째 추가 ---" << std::endl;
   vec.push_back(s);
 }
 ```
