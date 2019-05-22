@@ -137,7 +137,7 @@ function getDateTime() {
 }
 
 module.exports = class Server {
-  constructor(app, static_data, client, comment_manager) {
+  constructor(app, static_data, client, comment_manager, pageview_manager) {
     this.file_infos = static_data.file_infos;
     this.page_infos = static_data.page_infos;
     this.path_hierarchy = new PathHierarchy(this.page_infos);
@@ -151,6 +151,12 @@ module.exports = class Server {
     this.app = app;
     this.client = client;
     this.comment_manager = comment_manager;
+    this.pageview_manager = pageview_manager;
+
+    // Flush Page View Cnt every minute.
+    setInterval(function() {
+      this.pageview_manager.flushPageViewCnt();
+    }.bind(this), 1000 * 60);
 
     this.app.use(passport.initialize());
     this.app.use(passport.session());
@@ -507,6 +513,7 @@ module.exports = class Server {
       file_infos: this.file_infos,
       category_html: this.buildCategoryListing(category_id),
       num_comment : this.comment_manager.getNumCommentAt(page_id),
+      view_cnt : this.pageview_manager.getPageViewCnt(page_id),
       user
     };
   }
@@ -558,19 +565,22 @@ module.exports = class Server {
           res.send(html);
         }
       }.bind(this);
-
+      
       if (page_id <= 228) {
         if (page_id == 15) {
+          this.pageview_manager.addPageViewCnt('231');
           return res.render(
               'page.ejs',
               this.generateInfoToPassEJS('./new/231.html', 231, page_id, user));
         }
+        this.pageview_manager.addPageViewCnt(page_id);
         res.render(
             'page.ejs',
             this.generateInfoToPassEJS(
                 './old/blog_' + page_id + '.html', page_id, page_id, user),
             fallbackToIndexOnFailOrPass);
       } else {
+        this.pageview_manager.addPageViewCnt(page_id);
         res.render(
             'page.ejs',
             this.generateInfoToPassEJS(

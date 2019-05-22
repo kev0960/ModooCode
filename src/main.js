@@ -3,6 +3,7 @@ const body_parser = require('body-parser');
 const compression = require('compression');
 const init = require('./init.js')();
 const CommentManager = require('./comment.js');
+const PageViewManager = require('./page_view.js');
 
 require('dotenv').config();
 const {Client} = require('pg');
@@ -34,7 +35,11 @@ init.init().then(async function(static_data) {
   }
   const comment_manager = new CommentManager(client);
   await comment_manager.init();
-  const server = new Server(app, static_data, client, comment_manager);
+
+  const pageview_manager = new PageViewManager(client);
+  await pageview_manager.init();
+
+  const server = new Server(app, static_data, client, comment_manager, pageview_manager);
 
   app.listen(8080, function() {
     server.setRoutes();

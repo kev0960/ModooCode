@@ -19,6 +19,9 @@
         <% if (file_info.publish_date) { %>
         <small class="publish-date">작성일 : <%= file_info.publish_date %></small>
         <% } %>
+        <% if (view_cnt) { %>
+        <small class="view-cnt">이 글은 <%= view_cnt %> 번 읽혔습니다. </small>
+        <% } %>
       </div>
     </div>
   </div>

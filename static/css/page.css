@@ -559,6 +559,14 @@ figcaption {
     border-radius: 4px;
 }
 
+.view-cnt {
+    font-size: 65%!important;
+    padding: 5px;
+    color: white;
+    background-color: #bd4979;
+    border-radius: 4px;
+}
+
 .lec-summary {
     background: #f6f8f2;
     padding: 10px 10px 5px 10px;
