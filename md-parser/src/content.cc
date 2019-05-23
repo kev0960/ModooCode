@@ -55,6 +55,25 @@ void EscapeHtmlString(string* s) {
   }
 }
 
+string EscapeLatexString(const string& s) {
+  // These characters must be escaped in Latex.
+  std::unordered_set<char> special_chars = {'&', '%', '$', '#', '_',
+                                            '{', '}', '~', '^', '\\'};
+  string escaped_str;
+  escaped_str.reserve(s.size());
+
+  for (char c : s) {
+    if (SetContains(special_chars, c)) {
+      escaped_str.push_back('\\');
+      escaped_str.push_back(c);
+    } else {
+      escaped_str.push_back(c);
+    }
+  }
+
+  return escaped_str;
+}
+
 [[maybe_unused]] std::unique_ptr<char[]> cstring_from_string(const string& s) {
   std::unique_ptr<char[]> c_str{new char[s.size() + 1]};
   for (size_t i = 0; i < s.size(); i++) {
@@ -69,6 +88,16 @@ string GetHtmlFragmentText(const string& content, const HtmlFragments& fragment,
   if (is_str) {
     return content.substr(fragment.str_start,
                           fragment.str_end - fragment.str_start + 1);
+  }
+  return content.substr(fragment.link_start,
+                        fragment.link_end - fragment.link_start + 1);
+}
+
+string GetLatexFragmentText(const string& content,
+                            const HtmlFragments& fragment, bool is_str = true) {
+  if (is_str) {
+    return EscapeLatexString(content.substr(
+        fragment.str_start, fragment.str_end - fragment.str_start + 1));
   }
   return content.substr(fragment.link_start,
                         fragment.link_end - fragment.link_start + 1);
@@ -99,7 +128,6 @@ void StripItguruFromLink(string* link) {
   }
   link->replace(itguru_pos, itguru.length(), "");
 }
-
 
 bool IsFileExist(const string& filename) {
   std::ifstream f(filename);
@@ -322,7 +350,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       } else {
         html += "</span>";
       }
-      strike_through= !strike_through;
+      strike_through = !strike_through;
     } else if (fragments[i].type == HtmlFragments::Types::SIDENOTE) {
       html +=
           StrCat("</p><aside class='sidenote'>",
@@ -417,6 +445,112 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
   html += "</p>";
   RemoveEmptyPTag(&html);
   return html;
+}
+
+string Content::OutputLatex(ParserEnvironment* parser_env) {
+  std::vector<HtmlFragments> fragments = GenerateFragments();
+
+  // Now we have to generate formatted latex.
+
+  // First Format all the code.
+  bool bold = false;
+  bool italic = false;
+  bool strike_through = false;
+
+  string latex;
+  for (size_t i = 0; i < fragments.size(); i++) {
+    if (fragments[i].type == HtmlFragments::Types::BOLD) {
+      if (!bold) {
+        latex += "\\textbf{";
+      } else {
+        latex += "}";
+      }
+      bold = !bold;
+    } else if (fragments[i].type == HtmlFragments::Types::ITALIC) {
+      if (!italic) {
+        latex += "\\emph{";
+      } else {
+        latex += "}";
+      }
+      italic = !italic;
+    } else if (fragments[i].type == HtmlFragments::Types::STRIKE_THROUGH) {
+      if (!strike_through) {
+        // \usepackage[normalem]{ulem}
+        latex += "\\sout{";
+      } else {
+        latex += "}";
+      }
+      strike_through = !strike_through;
+    } else if (fragments[i].type == HtmlFragments::Types::SIDENOTE) {
+      // \usepackage{marginnote}
+      latex += StrCat("\\marginnote{",
+                      GetLatexFragmentText(content_, fragments[i]), "}");
+    } else if (fragments[i].type == HtmlFragments::Types::LINK) {
+      // \usepackage{hyperref}
+      string url = GetLatexFragmentText(content_, fragments[i], false);
+      StripItguruFromLink(&url);
+      // If the link does not contain "http://", then this is a link that goes
+      // back to our website.
+      string link_text = GetLatexFragmentText(content_, fragments[i]);
+      if (url.find("http") == string::npos) {
+        string url = parser_env->GetUrlOfReference(&link_text);
+        if (!url.empty()) {
+          latex += StrCat("\\href{", url, "}{", link_text, "}");
+          continue;
+        }
+      }
+      latex += StrCat("\\href{", url, "}{", link_text, "}");
+    } else if (fragments[i].type == HtmlFragments::Types::IMAGE) {
+      string img_src = GetLatexFragmentText(content_, fragments[i], false);
+
+      // (alt) caption= (caption)
+      string alt_and_caption = GetLatexFragmentText(content_, fragments[i]);
+      string caption, alt;
+      auto caption_pos = alt_and_caption.find("caption=");
+      if (caption_pos != string::npos) {
+        caption = alt_and_caption.substr(caption_pos + 8);
+        alt = alt_and_caption.substr(caption_pos);
+      } else {
+        alt = alt_and_caption;
+      }
+
+      // If this image is from old tistory dump, then we have to switch to the
+      // local iamge.
+      if (img_src.find("http://img1.daumcdn.net") != string::npos) {
+        auto id_start = img_src.find("image%2F");
+        if (id_start == string::npos) {
+          LOG << "Daum Image URL is weird";
+        } else {
+          id_start += 8;
+          const string image_name = img_src.substr(id_start);
+          std::vector<string> file_ext_candidate = {".png", ".jpg", ".jpeg",
+                                                    ".gif"};
+          for (const auto& ext : file_ext_candidate) {
+            if (IsFileExist(StrCat("../static/img/", image_name, ext))) {
+              img_src = StrCat("/img/", image_name, ext);
+              break;
+            }
+          }
+        }
+      }
+      if (caption.empty()) {
+        latex += StrCat("\\begin{figure}\n\\includegraphics{", img_src,
+                        "}\n\\end{figure}");
+      } else {
+        latex += StrCat("\\begin{figure}\n\\includegraphics{", img_src,
+                        "}\n\\caption{", caption, "}\n\\end{figure}");
+      }
+    } else if (fragments[i].type == HtmlFragments::Types::INLINE_CODE) {
+      string inline_code = GetLatexFragmentText(content_, fragments[i]);
+      latex += StrCat("\\texttt{", inline_code, "}");
+    } else if (fragments[i].type == HtmlFragments::Types::INLINE_MATH) {
+      // Should use unescaped fragment text.
+      latex += StrCat("$", GetHtmlFragmentText(content_, fragments[i]), "$");
+    } else {
+      latex += GetLatexFragmentText(content_, fragments[i]);
+    }
+  }
+  return latex;
 }
 
 size_t Content::HandleLinks(const size_t start_pos,

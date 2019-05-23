@@ -12,6 +12,7 @@ class BoxContent : public Content {
   // Content does not include the ###s.
   BoxContent(const string& content, const string& box_name);
   string OutputHtml(ParserEnvironment* parser_env) override;
+  string OutputLatex(ParserEnvironment* parser_env) override;
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::BOX; }
 

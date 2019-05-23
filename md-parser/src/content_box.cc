@@ -261,5 +261,79 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
   return "";
 }
 
+string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
+  if (content_.size() == 0) {
+    return "";
+  }
+
+  // Remove the non-necessary endline at front.
+  if (content_[0] == '\n') {
+    content_.erase(0, 1);
+  }
+
+  // If the type of the box is code, then we do not parse it as
+  // a Markdown text.
+  switch (box_type_) {
+    case CPP_CODE:
+    case INFO_FORMAT:
+    case CODE_WARNING:
+      RemoveNbsp(&content_);
+      DoClangFormat(content_, &content_);
+    case CPP_FORMATTED_CODE:
+      content_ = FormatCodeUsingFSH(content_, "cpp");
+      break;
+    case PY_CODE:
+      content_ = FormatCodeUsingFSH(content_, "py");
+      break;
+    case COMPILER_WARNING:
+    case INFO:
+    case EXEC:
+      EscapeHtmlString(&content_);
+      break;
+    default:
+      break;
+  }
+
+  switch (box_type_) {
+    case WARNING: {
+      string output_html = Content::OutputHtml(parser_env);
+      NewlineToBr(&output_html);
+      return StrCat("<div class='warning warning-text'>", output_html,
+                    "</div>");
+    }
+    case COMPILER_WARNING:
+      return StrCat(
+          "<p class='compiler-warning-title'><i class='xi-warning'></i>컴파일 "
+          "오류</p><pre class='compiler-warning'>",
+          content_, "</pre>");
+    case INFO:
+      return StrCat("<pre class='info'>", content_, "</pre>");
+    case INFO_TEXT:
+      return StrCat("<div class='info'>", Content::OutputHtml(parser_env),
+                    "</div>");
+    case EXEC:
+      return StrCat("\\begin{mdprogout}\n\\begin{verbatim}", content_,
+                    "\\end{verbatim}\n\\end{mdprogout}\n");
+    case LEC_WARNING: {
+      string output_html = Content::OutputHtml(parser_env);
+      NewlineToBrBr(&output_html);
+      return StrCat(
+          "<p class='compiler-warning-title'><i class='xi-warning'></i>주의 "
+          "사항</p><div class='lec-warning'>",
+          output_html, "</div>");
+    }
+    case LEC_SUMMARY: {
+      string output_html = Content::OutputHtml(parser_env);
+      output_html = SplitNewlineToParagraph(output_html);
+      return StrCat(
+          "<div class='lec-summary'><h3>뭘 배웠지?</h3><div "
+          "class='lec-summary-content'>",
+          output_html, "</div></div>");
+    }
+    default:
+      return content_;
+  }
+  return "";
+}
 void BoxContent::AddContent(const string& content) { content_ += content; }
 }  // namespace md_parser

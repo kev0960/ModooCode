@@ -58,6 +58,7 @@ class Content {
   virtual ~Content() = default;
   virtual TokenTypes GetContentType() const { return TokenTypes::TEXT; }
   virtual string OutputHtml(ParserEnvironment* parser_env);
+  virtual string OutputLatex(ParserEnvironment* parser_env);
 
  protected:
   string content_;
