@@ -46,6 +46,7 @@ class TableContent : public Content {
   std::vector<ColumnStyle> column_styles_;
 
   std::vector<std::vector<Content>> table_;
+  bool already_preprocessed_;
 };
 
 }  // namespace md_parser

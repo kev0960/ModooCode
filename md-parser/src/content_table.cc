@@ -99,7 +99,7 @@ string GenerateLatexTableRow(std::vector<Content>* row,
     }
     cnt++;
   }
-  latex += "\\\\\n\\hline\n";
+  latex += " \\\\ \\hline\n";
   return latex;
 }
 
@@ -128,7 +128,8 @@ string GenerateTable(std::vector<std::vector<Content>>* table,
 }
 
 }  // namespace
-TableContent::TableContent(const string& line) : Content("") {
+TableContent::TableContent(const string& line)
+    : Content(""), already_preprocessed_(false) {
   table_rows_.push_back(line);
 }
 
@@ -137,6 +138,11 @@ void TableContent::AddContent(const string& line) {
 }
 
 void TableContent::Preprocess(ParserEnvironment* parser_env) {
+  if (already_preprocessed_) {
+    return;
+  }
+  already_preprocessed_ = true;
+
   table_.reserve(table_rows_.size());
 
   // Parse the header.
@@ -171,14 +177,15 @@ string TableContent::OutputLatex(ParserEnvironment* parser_env) {
       if (cnt > 0) {
         latex += "|";
       }
-      latex += style.GetClass();
+      latex += style.GetAlignName();
+      cnt++;
     }
     latex += "|}\n\\hline\n";
     for (auto& row : table_) {
       latex += GenerateLatexTableRow(&row, parser_env);
     }
   }
-  latex += "\n\\end{tabular}\n";
+  latex += "\\end{tabular}\n";
 
   return latex;
 }

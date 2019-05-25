@@ -1,9 +1,9 @@
 #pragma once
+#include <map>
 #include <memory>
 #include <stack>
 #include <string>
 #include <unordered_map>
-#include <map>
 #include <utility>
 #include <vector>
 
@@ -47,7 +47,10 @@ class ParserEnvironment {
   std::pair<int, int> GetCurrentEnum(const TokenTypes list_type) const;
   const std::vector<std::unique_ptr<Content>>& GetContentList() const;
   string ParseCurrentContent();
+  string ParseCurrentContentToLatex();
+
   bool AdvanceToNextContent();
+  void ResetContentPointer();
   bool ShouldStartNewListTag();
 
   // Return How many end tags should it return.
@@ -59,9 +62,7 @@ class ParserEnvironment {
     ref_to_url_ = ref_to_url;
     path_vector_ = path_vector;
   }
-  void SetHeader(std::map<string, string>& header) {
-    header_ = header;
-  }
+  void SetHeader(std::map<string, string>& header) { header_ = header; }
 
   string GetUrlOfReference(string* ref_name);
   string GetPageTitle();

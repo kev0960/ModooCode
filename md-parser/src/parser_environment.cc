@@ -124,6 +124,15 @@ string ParserEnvironment::ParseCurrentContent() {
   return html;
 }
 
+string ParserEnvironment::ParseCurrentContentToLatex() {
+  if (current_content_ >= content_list_.size()) return "";
+
+  std::unique_ptr<Content>& content = content_list_[current_content_];
+  content->Preprocess(this);
+  string latex = content->OutputLatex(this);
+  return latex;
+}
+
 bool ParserEnvironment::ShouldStartNewListTag() {
   if (current_content_ == 0) return true;
   auto* current_content = content_list_[current_content_].get();
@@ -275,4 +284,6 @@ bool ParserEnvironment::AdvanceToNextContent() {
   current_content_++;
   return current_content_ < content_list_.size();
 }
+
+void ParserEnvironment::ResetContentPointer() { current_content_ = 0; }
 }  // namespace md_parser

@@ -42,6 +42,19 @@ ListOrElem MakeOrderedList(std::vector<ListOrElem> list) {
   return ListOrElem(output, true);
 }
 
+ListOrElem MakeOrderedListLatex(std::vector<ListOrElem> list) {
+  string output = "\n\\begin{enumerate}";
+  for (const auto& s : list) {
+    if (s.is_list) {
+      output += s.content;
+    } else {
+      output += StrCat("\n\\item ", s.content);
+    }
+  }
+  output += "\n\\end{enumerate}\n";
+  return ListOrElem(output, true);
+}
+
 string MakeTable(const std::vector<std::vector<string>>& table,
                  const std::vector<string>& column_class) {
   string html = "<table>";
@@ -144,6 +157,18 @@ TEST(ParserTest, SimpleOrderedListParser) {
                              list_elem_a})
                 .content);
 
+  const auto list_elem_a_tex = ListOrElem(" a");
+  const auto list_elem_b_tex = ListOrElem(" b");
+  const auto list_elem_c_tex = ListOrElem(" c");
+  EXPECT_EQ(
+      parser_enum_list.ConvertToLatex(&ref_to_url, path_vec),
+      MakeOrderedListLatex(
+          {list_elem_a_tex, list_elem_a_tex,
+           MakeOrderedListLatex({list_elem_b_tex, list_elem_b_tex,
+                                 MakeOrderedListLatex({list_elem_c_tex})}),
+           list_elem_a_tex})
+          .content);
+
   string enum_list2 = R"(
     1. a
         1. c
@@ -156,6 +181,13 @@ TEST(ParserTest, SimpleOrderedListParser) {
                              MakeOrderedList({list_elem_b,
                                               MakeOrderedList({list_elem_c})})})
                 .content);
+  EXPECT_EQ(
+      parser_enum_list2.ConvertToLatex(&ref_to_url, path_vec),
+      MakeOrderedListLatex(
+          {list_elem_a_tex, MakeOrderedListLatex({list_elem_c_tex}),
+           MakeOrderedListLatex(
+               {list_elem_b_tex, MakeOrderedListLatex({list_elem_c_tex})})})
+          .content);
 }
 
 TEST(ParserTest, Box) {
@@ -166,8 +198,14 @@ TEST(ParserTest, Box) {
 )";
 
   MockMDParser parser_box(box_str);
-  EXPECT_EQ(MakeBox("div", "warning warning-text", "<p>  This is a warning</p>"),
-            parser_box.ConvertToHtml(&ref_to_url, path_vec));
+  EXPECT_EQ(
+      MakeBox("div", "warning warning-text", "<p>  This is a warning</p>"),
+      parser_box.ConvertToHtml(&ref_to_url, path_vec));
+  EXPECT_EQ(
+      StrCat(
+          "\n\\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black]\n",
+          "  This is a warning\n", "\\end{tcolorbox}\n"),
+      parser_box.ConvertToLatex(&ref_to_url, path_vec));
 
   string box_code = R"(
 ```cpp
@@ -190,6 +228,11 @@ int main() { std::cout << "hi" << std::endl; }
   MockMDParser parser_code(box_code);
   EXPECT_EQ(MakeBox("pre", "chroma lang-cpp", formatted_code),
             parser_code.ConvertToHtml(&ref_to_url, path_vec));
+  EXPECT_EQ(StrCat("\\begin{minted}{cpp}\n",
+                   "#include <iostream>\nint main() { std::cout << \"hi\" << "
+                   "std::endl; }\n",
+                   "\\end{minted}\n"),
+            parser_code.ConvertToLatex(&ref_to_url, path_vec));
 }
 
 TEST(ParserTest, Table) {
@@ -205,6 +248,16 @@ TEST(ParserTest, Table) {
                        {"row b1", "row b2", "row b3"}},
                       {"td-align-center", "", "td-align-right"}),
             parser_table.ConvertToHtml(&ref_to_url, path_vec));
+
+  string table_tex = R"(
+\begin{tabular}{|c|l|r|}
+\hline
+col 1 & col 2 & col 3 \\ \hline
+row a1 & row a2 & row a3 \\ \hline
+row b1 & row b2 & row b3 \\ \hline
+\end{tabular}
+)";
+  EXPECT_EQ(table_tex, parser_table.ConvertToLatex(&ref_to_url, path_vec));
 }
 
 TEST(ParserTest, Math) {

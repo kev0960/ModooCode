@@ -22,7 +22,7 @@ class ListContent : public Content {
 class EnumListContent : public ListContent {
  public:
   EnumListContent(const string& content, int enum_depth)
-      : ListContent(content, enum_depth) {}
+      : ListContent(content, enum_depth), already_preprocessed_(false) {}
 
   string OutputHtml(ParserEnvironment* parser_env) override;
   string OutputLatex(ParserEnvironment* parser_env) override;
@@ -31,12 +31,14 @@ class EnumListContent : public ListContent {
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::LIST_ENUM; }
 
+ private:
+  bool already_preprocessed_;
 };
 
 class UnorderedListContent : public ListContent {
  public:
   UnorderedListContent(const string& content, int list_depth)
-      : ListContent(content, list_depth) {}
+      : ListContent(content, list_depth), already_preprocessed_(false) {}
 
   string OutputHtml(ParserEnvironment* parser_env) override;
   string OutputLatex(ParserEnvironment* parser_env) override;
@@ -46,5 +48,8 @@ class UnorderedListContent : public ListContent {
   TokenTypes GetContentType() const override {
     return TokenTypes::LIST_UNORDER;
   }
+
+ private:
+  bool already_preprocessed_;
 };
 }  // namespace md_parser

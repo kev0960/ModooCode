@@ -100,14 +100,20 @@ void RemoveNbsp(string* s) {
   }
 }
 
-void EscapeHtmlString(string* s) {
-  for (size_t i = 0; i < s->length(); i++) {
-    if (s->at(i) == '<') {
-      s->replace(i, 1, "&lt;");
-    } else if (s->at(i) == '>') {
-      s->replace(i, 1, "&gt;");
+string EscapeHtmlString(const string& s) {
+  string temp;
+  temp.reserve(s.size());
+
+  for (char c : s) {
+    if (c == '<') {
+      temp.append("&lt;");
+    } else if (c == '>') {
+      temp.append("&gt;");
+    } else {
+      temp.push_back(c);
     }
   }
+  return temp;
 }
 
 void NewlineToBr(string* s) {
@@ -240,14 +246,14 @@ void BoxContent::Preprocess(ParserEnvironment* parser_env) {
 string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
   // If the type of the box is code, then we do not parse it as
   // a Markdown text.
+  string escaped_html;
+  string formatted_html;
+
   switch (box_type_) {
-    case CPP_CODE:
-    case INFO_FORMAT:
-    case CODE_WARNING:
     case COMPILER_WARNING:
     case INFO:
     case EXEC:
-      EscapeHtmlString(&content_);
+      escaped_html = EscapeHtmlString(content_);
       break;
     default:
       break;
@@ -265,9 +271,9 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       return StrCat(
           "<p class='compiler-warning-title'><i class='xi-warning'></i>컴파일 "
           "오류</p><pre class='compiler-warning'>",
-          content_, "</pre>");
+          escaped_html, "</pre>");
     case INFO:
-      return StrCat("<pre class='info'>", content_, "</pre>");
+      return StrCat("<pre class='info'>", escaped_html, "</pre>");
     case INFO_TEXT:
       Content::Preprocess(parser_env);
       return StrCat("<div class='info'>", Content::OutputHtml(parser_env),
@@ -276,7 +282,7 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       return StrCat(
           "<p class='exec-preview-title'>실행 결과</p><pre "
           "class='exec-preview'>",
-          content_, "</pre>");
+          escaped_html, "</pre>");
     case LEC_WARNING: {
       Content::Preprocess(parser_env);
       string output_html = Content::OutputHtml(parser_env);
@@ -295,6 +301,14 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
           "class='lec-summary-content'>",
           output_html, "</div></div>");
     }
+
+    case CPP_CODE:
+    case INFO_FORMAT:
+    case CODE_WARNING:
+      return FormatCodeUsingFSH(content_, "cpp");
+    case PY_CODE:
+      return FormatCodeUsingFSH(content_, "py");
+
     default:
       return content_;
   }
@@ -302,26 +316,6 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
 }
 
 string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
-  switch (box_type_) {
-    case CPP_CODE:
-    case INFO_FORMAT:
-    case CODE_WARNING:
-      RemoveNbsp(&content_);
-      DoClangFormat(content_, &content_);
-    case CPP_FORMATTED_CODE:
-      content_ = FormatCodeUsingFSH(content_, "cpp");
-      break;
-    case PY_CODE:
-      content_ = FormatCodeUsingFSH(content_, "py");
-      break;
-    case COMPILER_WARNING:
-    case INFO:
-    case EXEC:
-      break;
-    default:
-      break;
-  }
-
   switch (box_type_) {
     case CPP_CODE:
     case CPP_FORMATTED_CODE:

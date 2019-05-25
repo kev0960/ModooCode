@@ -94,6 +94,9 @@ class MDParser {
   string ConvertToHtml(
       std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
       const std::vector<string>& path_vector);
+  string ConvertToLatex(
+      std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
+      const std::vector<string>& path_vector);
   string GetCss();
   const std::map<string, string>& GetHeaderInfo() const { return header_; }
 

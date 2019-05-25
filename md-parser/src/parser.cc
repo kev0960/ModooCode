@@ -206,6 +206,7 @@ string MDParser::ConvertToHtml(
     const std::vector<string>& path_vector) {
   parser_env_.SetRefToUrl(ref_to_url, path_vector);
   parser_env_.SetHeader(header_);
+  parser_env_.ResetContentPointer();
 
   string output_html;
   do {
@@ -213,6 +214,21 @@ string MDParser::ConvertToHtml(
   } while (parser_env_.AdvanceToNextContent());
   return output_html;
 }
+
+string MDParser::ConvertToLatex(
+    std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
+    const std::vector<string>& path_vector) {
+  parser_env_.SetRefToUrl(ref_to_url, path_vector);
+  parser_env_.SetHeader(header_);
+  parser_env_.ResetContentPointer();
+
+  string output_tex;
+  do {
+    output_tex += parser_env_.ParseCurrentContentToLatex();
+  } while (parser_env_.AdvanceToNextContent());
+  return output_tex;
+}
+
 
 // The header content is defined as follows.
 // -------------------- (Arbitrary length of - s; Should be more than 3)
