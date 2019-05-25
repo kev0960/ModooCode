@@ -16,6 +16,7 @@ class BoxContent : public Content {
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::BOX; }
 
+  void Preprocess(ParserEnvironment* parser_env) override;
  private:
   enum BOX_CONTENT_TYPES {
     CPP_CODE,

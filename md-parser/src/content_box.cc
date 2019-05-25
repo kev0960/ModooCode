@@ -7,6 +7,7 @@
 
 #include "fast_cpp_syntax_highlighter.h"
 #include "fast_py_syntax_highlighter.h"
+#include "tex_util.h"
 #include "util.h"
 
 static char kClangFormatName[] = "clang-format";
@@ -153,6 +154,37 @@ string SplitNewlineToParagraph(const string& s) {
   return inserted_str;
 }
 
+string SplitNewlineToItemize(const string& s) {
+  std::vector<size_t> newline_pos;
+  for (size_t i = 0; i < s.size(); i++) {
+    if (s.at(i) == '\n') {
+      newline_pos.push_back(i);
+    }
+  }
+
+  // Merge adjacent newline pos.
+  for (int i = 0; i < static_cast<int>(newline_pos.size()) - 1; i++) {
+    if (newline_pos[i] + 1 == newline_pos[i + 1]) {
+      newline_pos.erase(newline_pos.begin() + i + 1);
+      i--;
+    }
+  }
+
+  // Now Insert <p> tag.
+  string inserted_str = "\n\\begin{itemize}\n";
+  int current = 0;
+  for (int pos : newline_pos) {
+    // Copy current ~ newline_pos - 1.
+    inserted_str.append("\n\\item ");
+    inserted_str.append(s.substr(current, pos - current));
+    current = pos + 1;
+  }
+
+  inserted_str.append(s.substr(current, s.size()));
+  inserted_str.append("\n\\end{itemize}\n");
+  return inserted_str;
+}
+
 }  // namespace
 
 BoxContent::BoxContent(const string& content, const string& box_name)
@@ -184,9 +216,9 @@ BoxContent::BoxContent(const string& content, const string& box_name)
   }
 }
 
-string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
+void BoxContent::Preprocess(ParserEnvironment* parser_env) {
   if (content_.size() == 0) {
-    return "";
+    return;
   }
 
   // Remove the non-necessary endline at front.
@@ -194,20 +226,24 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
     content_.erase(0, 1);
   }
 
-  // If the type of the box is code, then we do not parse it as
-  // a Markdown text.
   switch (box_type_) {
     case CPP_CODE:
     case INFO_FORMAT:
     case CODE_WARNING:
       RemoveNbsp(&content_);
       DoClangFormat(content_, &content_);
-    case CPP_FORMATTED_CODE:
-      content_ = FormatCodeUsingFSH(content_, "cpp");
+    default:
       break;
-    case PY_CODE:
-      content_ = FormatCodeUsingFSH(content_, "py");
-      break;
+  }
+}
+
+string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
+  // If the type of the box is code, then we do not parse it as
+  // a Markdown text.
+  switch (box_type_) {
+    case CPP_CODE:
+    case INFO_FORMAT:
+    case CODE_WARNING:
     case COMPILER_WARNING:
     case INFO:
     case EXEC:
@@ -219,6 +255,7 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
 
   switch (box_type_) {
     case WARNING: {
+      Content::Preprocess(parser_env);
       string output_html = Content::OutputHtml(parser_env);
       NewlineToBr(&output_html);
       return StrCat("<div class='warning warning-text'>", output_html,
@@ -232,6 +269,7 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
     case INFO:
       return StrCat("<pre class='info'>", content_, "</pre>");
     case INFO_TEXT:
+      Content::Preprocess(parser_env);
       return StrCat("<div class='info'>", Content::OutputHtml(parser_env),
                     "</div>");
     case EXEC:
@@ -240,6 +278,7 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
           "class='exec-preview'>",
           content_, "</pre>");
     case LEC_WARNING: {
+      Content::Preprocess(parser_env);
       string output_html = Content::OutputHtml(parser_env);
       NewlineToBrBr(&output_html);
       return StrCat(
@@ -248,6 +287,7 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
           output_html, "</div>");
     }
     case LEC_SUMMARY: {
+      Content::Preprocess(parser_env);
       string output_html = Content::OutputHtml(parser_env);
       output_html = SplitNewlineToParagraph(output_html);
       return StrCat(
@@ -262,17 +302,6 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
 }
 
 string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
-  if (content_.size() == 0) {
-    return "";
-  }
-
-  // Remove the non-necessary endline at front.
-  if (content_[0] == '\n') {
-    content_.erase(0, 1);
-  }
-
-  // If the type of the box is code, then we do not parse it as
-  // a Markdown text.
   switch (box_type_) {
     case CPP_CODE:
     case INFO_FORMAT:
@@ -288,50 +317,52 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
     case COMPILER_WARNING:
     case INFO:
     case EXEC:
-      EscapeHtmlString(&content_);
       break;
     default:
       break;
   }
 
   switch (box_type_) {
+    case CPP_CODE:
+    case CPP_FORMATTED_CODE:
+      return StrCat("\\begin{minted}{cpp}\n", content_, "\n\\end{minted}\n");
+    case PY_CODE:
+      return StrCat("\\begin{minted}{python}\n", content_, "\n\\end{minted}\n");
     case WARNING: {
-      string output_html = Content::OutputHtml(parser_env);
-      NewlineToBr(&output_html);
-      return StrCat("<div class='warning warning-text'>", output_html,
-                    "</div>");
+      Content::Preprocess(parser_env);
+      string output_tex = Content::OutputLatex(parser_env);
+      return CreateTColorBox(output_tex, "red");
     }
-    case COMPILER_WARNING:
-      return StrCat(
-          "<p class='compiler-warning-title'><i class='xi-warning'></i>컴파일 "
-          "오류</p><pre class='compiler-warning'>",
-          content_, "</pre>");
-    case INFO:
-      return StrCat("<pre class='info'>", content_, "</pre>");
-    case INFO_TEXT:
-      return StrCat("<div class='info'>", Content::OutputHtml(parser_env),
-                    "</div>");
+    case COMPILER_WARNING: {
+      Content::Preprocess(parser_env);
+      string output_tex = EscapeLatexString(content_);
+      return CreateTColorBox(output_tex, "red", "컴파일 오류");
+    }
+    case INFO: {
+      Content::Preprocess(parser_env);
+      string output_tex = EscapeLatexString(content_);
+      return CreateTColorBox(output_tex, "green");
+    }
+    case INFO_TEXT: {
+      Content::Preprocess(parser_env);
+      return CreateTColorBox(Content::OutputLatex(parser_env), "green");
+    }
     case EXEC:
       return StrCat("\\begin{mdprogout}\n\\begin{verbatim}", content_,
                     "\\end{verbatim}\n\\end{mdprogout}\n");
     case LEC_WARNING: {
-      string output_html = Content::OutputHtml(parser_env);
-      NewlineToBrBr(&output_html);
-      return StrCat(
-          "<p class='compiler-warning-title'><i class='xi-warning'></i>주의 "
-          "사항</p><div class='lec-warning'>",
-          output_html, "</div>");
+      Content::Preprocess(parser_env);
+      string output_tex = Content::OutputLatex(parser_env);
+      return CreateTColorBox(output_tex, "red", "주의 사항");
     }
     case LEC_SUMMARY: {
-      string output_html = Content::OutputHtml(parser_env);
-      output_html = SplitNewlineToParagraph(output_html);
-      return StrCat(
-          "<div class='lec-summary'><h3>뭘 배웠지?</h3><div "
-          "class='lec-summary-content'>",
-          output_html, "</div></div>");
+      Content::Preprocess(parser_env);
+      string output_tex = Content::OutputLatex(parser_env);
+      return CreateTColorBox(SplitNewlineToItemize(output_tex), "blue",
+                             "뭘 배웠지?");
     }
     default:
-      return content_;
+      return EscapeLatexString(content_);
   }
   return "";
 }

@@ -15,6 +15,8 @@ class ListContent : public Content {
 
  protected:
   int depth_;
+  bool should_start_new_list_tag_;
+  int close_tag_count_;
 };
 
 class EnumListContent : public ListContent {
@@ -23,8 +25,12 @@ class EnumListContent : public ListContent {
       : ListContent(content, enum_depth) {}
 
   string OutputHtml(ParserEnvironment* parser_env) override;
+  string OutputLatex(ParserEnvironment* parser_env) override;
+  void Preprocess(ParserEnvironment* parser_env) override;
+
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::LIST_ENUM; }
+
 };
 
 class UnorderedListContent : public ListContent {
@@ -33,6 +39,9 @@ class UnorderedListContent : public ListContent {
       : ListContent(content, list_depth) {}
 
   string OutputHtml(ParserEnvironment* parser_env) override;
+  string OutputLatex(ParserEnvironment* parser_env) override;
+  void Preprocess(ParserEnvironment* parser_env) override;
+
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override {
     return TokenTypes::LIST_UNORDER;

@@ -19,12 +19,24 @@ struct ColumnStyle {
     }
     return class_names;
   }
+
+  string GetAlignName() const {
+    if (align == LEFT) {
+      return "l";
+    } else if (align == MIDDLE) {
+      return "c";
+    } else {
+      return "r";
+    }
+  }
 };
 
 class TableContent : public Content {
  public:
   TableContent(const string& line);
   string OutputHtml(ParserEnvironment* parser_env) override;
+  string OutputLatex(ParserEnvironment* parser_env) override;
+  void Preprocess(ParserEnvironment* parser_env) override;
 
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::TABLE; }
@@ -32,6 +44,8 @@ class TableContent : public Content {
  private:
   std::vector<string> table_rows_;
   std::vector<ColumnStyle> column_styles_;
+
+  std::vector<std::vector<Content>> table_;
 };
 
 }  // namespace md_parser

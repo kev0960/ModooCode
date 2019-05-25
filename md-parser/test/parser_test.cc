@@ -166,7 +166,7 @@ TEST(ParserTest, Box) {
 )";
 
   MockMDParser parser_box(box_str);
-  EXPECT_EQ(MakeBox("div", "warning", "<p>  This is a warning</p>"),
+  EXPECT_EQ(MakeBox("div", "warning warning-text", "<p>  This is a warning</p>"),
             parser_box.ConvertToHtml(&ref_to_url, path_vec));
 
   string box_code = R"(

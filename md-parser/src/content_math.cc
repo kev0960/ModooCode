@@ -14,4 +14,8 @@ string MathContent::OutputHtml(ParserEnvironment* parser_env) {
   return StrCat("<p class='math-latex'>$$", content_, "</p>");
 }
 
+string MathContent::OutputLatex(ParserEnvironment* parser_env) {
+  return StrCat("\n\\[\n", content_, "\n\\]\n");
+}
+
 }

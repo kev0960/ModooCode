@@ -119,6 +119,7 @@ string ParserEnvironment::ParseCurrentContent() {
   if (current_content_ >= content_list_.size()) return "";
 
   std::unique_ptr<Content>& content = content_list_[current_content_];
+  content->Preprocess(this);
   string html = content->OutputHtml(this);
   return html;
 }

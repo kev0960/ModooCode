@@ -20,9 +20,11 @@ class HeaderContent : public Content {
   HeaderContent(const string& content, const string& header_token,
                 int header_index);
   string OutputHtml(ParserEnvironment* parser_env) override;
+  string OutputLatex(ParserEnvironment* parser_env) override;
   void AddContent(const string& content) override;
   TokenTypes GetContentType() const override { return TokenTypes::HEADER; }
 
+  void Preprocess(ParserEnvironment* parser_env) override;
  private:
   const string header_token_;
   int header_index_;

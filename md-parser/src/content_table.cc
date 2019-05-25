@@ -72,15 +72,35 @@ string GenerateTableRow(std::vector<Content>* row,
       column_class = column_styles[column_index].GetClass();
     }
     if (!column_class.empty()) {
+      content.Preprocess(parser_env);
       html += StrCat(R"(<td class=")", column_class,
                      R"(">)", content.OutputHtml(parser_env), "</td>");
     } else {
+      content.Preprocess(parser_env);
       html += StrCat("<td>", content.OutputHtml(parser_env), "</td>");
     }
     column_index++;
   }
   html += "</tr>";
   return html;
+}
+
+string GenerateLatexTableRow(std::vector<Content>* row,
+                             ParserEnvironment* parser_env) {
+  string latex;
+  int cnt = 0;
+  for (auto& content : *row) {
+    if (cnt == 0) {
+      content.Preprocess(parser_env);
+      latex += content.OutputLatex(parser_env);
+    } else {
+      content.Preprocess(parser_env);
+      latex += StrCat(" & ", content.OutputLatex(parser_env));
+    }
+    cnt++;
+  }
+  latex += "\\\\\n\\hline\n";
+  return latex;
 }
 
 string GenerateTable(std::vector<std::vector<Content>>* table,
@@ -116,27 +136,51 @@ void TableContent::AddContent(const string& line) {
   table_rows_.push_back(line);
 }
 
-string TableContent::OutputHtml(ParserEnvironment* parser_env) {
-  std::vector<std::vector<Content>> table;
-  table.reserve(table_rows_.size());
+void TableContent::Preprocess(ParserEnvironment* parser_env) {
+  table_.reserve(table_rows_.size());
 
   // Parse the header.
-  table.push_back(std::vector<Content>());
-  ParseTableRow(table_rows_[0], &table.back());
+  table_.push_back(std::vector<Content>());
+  ParseTableRow(table_rows_[0], &table_.back());
 
   if (table_rows_.size() < 2) {
-    return GenerateTable(&table, column_styles_, parser_env);
+    return;
   }
   std::vector<string> column_style_row;
   ParseTableRow(table_rows_[1], &column_style_row);
   ParseColumnStyle(column_style_row, &column_styles_);
 
   for (size_t i = 2; i < table_rows_.size(); i++) {
-    table.push_back(std::vector<Content>());
-    ParseTableRow(table_rows_[i], &table.back());
+    table_.push_back(std::vector<Content>());
+    ParseTableRow(table_rows_[i], &table_.back());
   }
+}
 
-  return GenerateTable(&table, column_styles_, parser_env);
+string TableContent::OutputHtml(ParserEnvironment* parser_env) {
+  return GenerateTable(&table_, column_styles_, parser_env);
+}
+
+string TableContent::OutputLatex(ParserEnvironment* parser_env) {
+  string latex = "\n\\begin{tabular}";
+  if (column_styles_.empty()) {
+    latex += GenerateLatexTableRow(&table_.at(0), parser_env);
+  } else {
+    latex += "{|";
+    int cnt = 0;
+    for (const auto& style : column_styles_) {
+      if (cnt > 0) {
+        latex += "|";
+      }
+      latex += style.GetClass();
+    }
+    latex += "|}\n\\hline\n";
+    for (auto& row : table_) {
+      latex += GenerateLatexTableRow(&row, parser_env);
+    }
+  }
+  latex += "\n\\end{tabular}\n";
+
+  return latex;
 }
 
 }  // namespace md_parser

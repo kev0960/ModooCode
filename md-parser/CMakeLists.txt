@@ -71,6 +71,7 @@ add_executable(content_test
                test/content_test.cc
                src/content.cc
                src/util.cc
+               src/tex_util.cc
                src/content_header.cc
                src/content_list.cc
                src/content_table.cc
@@ -93,6 +94,7 @@ add_executable(parser_test
                test/parser_test.cc
                src/content.cc
                src/util.cc
+               src/tex_util.cc
                src/parser.cc
                src/content_header.cc
                src/content_table.cc

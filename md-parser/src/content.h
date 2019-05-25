@@ -9,7 +9,7 @@ using std::string;
 
 namespace md_parser {
 
-struct HtmlFragments {
+struct Fragments {
   enum Types {
     BOLD,
     ITALIC,
@@ -32,15 +32,15 @@ struct HtmlFragments {
   string formatted_code;
   string code_style;
 
-  HtmlFragments(Types t, int start, int end, const string& style)
+  Fragments(Types t, int start, int end, const string& style)
       : type(t),
         str_start(start),
         str_end(end),
         link_start(0),
         link_end(0),
         code_style(style) {}
-  HtmlFragments(Types t, int start = 0, int end = 0, int link_start = 0,
-                int link_end = 0)
+  Fragments(Types t, int start = 0, int end = 0, int link_start = 0,
+            int link_end = 0)
       : type(t),
         str_start(start),
         str_end(end),
@@ -57,6 +57,8 @@ class Content {
   virtual void AddContent(const string& content);
   virtual ~Content() = default;
   virtual TokenTypes GetContentType() const { return TokenTypes::TEXT; }
+
+  virtual void Preprocess(ParserEnvironment* parser_env);
   virtual string OutputHtml(ParserEnvironment* parser_env);
   virtual string OutputLatex(ParserEnvironment* parser_env);
 
@@ -65,14 +67,14 @@ class Content {
 
  private:
   // Returns start_pos again if nothing is handled.
-  size_t HandleLinks(const size_t start_pos,
-                     std::vector<HtmlFragments>* fragments, int* text_start);
-  size_t HandleImages(const size_t start_pos,
-                      std::vector<HtmlFragments>* fragments, int* text_start);
-  size_t HandleSpecialCommands(const size_t start_pos,
-                               std::vector<HtmlFragments>* fragments,
-                               int* text_start);
-  std::vector<HtmlFragments> GenerateFragments();
+  size_t HandleLinks(const size_t start_pos, int* text_start);
+  size_t HandleImages(const size_t start_pos, int* text_start);
+  size_t HandleSpecialCommands(const size_t start_pos, int* text_start);
+
+  std::vector<Fragments> fragments_;
+  void GenerateFragments();
+
+  bool already_preprocessed_ = false;
 };
 
 }  // namespace md_parser
