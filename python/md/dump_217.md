@@ -540,7 +540,7 @@ Table::Table(int max_row_size, int max_col_size)
 
 
 
-위 그림을 보면 쉽게 이해할 수 있듯이, 동적 할당으로 Cell* 배열을 생성한 후에, `Cell` 객체가 필요 할 때 마다 생성해서 배열의 원소들이 이를 가리킬 수 있게 하였습니다.
+위 그림을 보면 쉽게 이해할 수 있듯이, 동적 할당으로 `Cell*` 배열을 생성한 후에, `Cell` 객체가 필요 할 때 마다 생성해서 배열의 원소들이 이를 가리킬 수 있게 하였습니다.
 
 ```cpp-formatted
 Table::~Table() {
@@ -794,7 +794,7 @@ class CSVTable : public Table {
 
 
 
-딱히 특별한 것은 없고, `HTML` 파일 형식이나 `CSV` 파일 형식을 잘 알고 있다면 만드는데 큰 문제가 없을 것입니다. (HTML 표 :http://aboooks.tistory.com/59 `, CSV` 파일 형식 : https://en.wikipedia.org/wiki/Comma-separated_values)
+딱히 특별한 것은 없고, `HTML` 파일 형식이나 `CSV` 파일 형식을 잘 알고 있다면 만드는데 큰 문제가 없을 것입니다. ([HTML 표](http://aboooks.tistory.com/59), [CSV 파일 형식](https://en.wikipedia.org/wiki/Comma-separated_values))
 
 ```cpp-formatted
 // 생략

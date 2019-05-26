@@ -15,8 +15,16 @@ string EscapeLatexString(const string& s) {
 
   for (char c : s) {
     if (SetContains(special_chars, c)) {
-      escaped_str.push_back('\\');
-      escaped_str.push_back(c);
+      if (c == '~') {
+        escaped_str += "$\\sim$";
+      } else if (c == '^') {
+        escaped_str += "$\\hat{}$";
+      } else if (c == '\\') {
+        escaped_str += "\\textbackslash ";
+      } else {
+        escaped_str.push_back('\\');
+        escaped_str.push_back(c);
+      }
     } else {
       escaped_str.push_back(c);
     }

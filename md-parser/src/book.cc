@@ -105,15 +105,20 @@ BookManager::BookManager(
 
 void BookManager::GenerateMainTex() {
   string tex = "\\documentclass[a4paper, 10pt]{memoir}\n";
-  std::vector<Package> package_list = {{"lmodern"},
-                                       {"minted", "cache=false,outputdir=."},
+  std::vector<Package> package_list = {{"inputenc", "utf8"},
+                                       {"lmodern"},
+                                       {"minted"},
+                                       {"ulem", "normalem"},
                                        {"kotex"},
+                                       {"amsmath"},
+                                       {"amssymb"},
                                        {"geometry"},
                                        {"listings"},
                                        {"xspace"},
                                        {"epigraph"},
                                        {"xcolor"},
                                        {"graphicx"},
+                                       {"grffile"},
                                        {"pygmentize"},
                                        {"tcolorbox"},
                                        {"csquotes"},
@@ -126,15 +131,48 @@ void BookManager::GenerateMainTex() {
                                        {"marginnote"},
                                        {"mdframed", "framemethod=TikZ"},
                                        {"fontenc", "T1"},
+                                       {"adjustbox", "export"},
                                        {"beramono"}};
   tex += AddBunchOfPackages(package_list);
 
+  // Relative path for all image files.
+  tex += "\\graphicspath {{../../static/}}\n";
+
+  // Define mdprogout
+  tex += R"(
+\newmdenv[%
+    backgroundcolor=black!5,
+    frametitlebackgroundcolor=black!10,
+    roundcorner=5pt,
+    skipabove=\topskip,
+    innertopmargin=\topskip,
+    splittopskip=\topskip,
+    frametitle={실행 결과},
+    frametitlerule=true,
+    nobreak=false,
+    usetwoside=false
+]{mdprogout}
+)";
+
+  tex += R"(
+\setminted[cpp]{
+    frame=lines,
+    framesep=2mm,
+    baselinestretch=1.2,
+    tabsize=2
+}
+)";
+
+  tex += "\\begin{document}\n";
   // Add \include{filename}
   tex += AddFancyComment("List of book files.");
   for (const string& file_name : book_list_) {
     tex += StrCat("\\include{", file_name, "}\n");
   }
 
+  tex += "\\end{document}";
+
+  // Generate main.tex
   std::ofstream tex_out(
       StrCat("../book/", BookTypeToDirName(book_type_), "/main.tex"));
   tex_out << tex;
@@ -147,8 +185,6 @@ bool BookManager::IsBookFile(const string& filename) {
   return false;
 }
 
-string BookManager::GetBookType() {
-  return BookTypeToDirName(book_type_);
-}
+string BookManager::GetBookType() { return BookTypeToDirName(book_type_); }
 
 }  // namespace md_parser

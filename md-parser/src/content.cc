@@ -76,10 +76,15 @@ string GetHtmlFragmentText(const string& content, const Fragments& fragment,
 }
 
 string GetLatexFragmentText(const string& content, const Fragments& fragment,
-                            bool is_str = true) {
+                            bool is_str = true, bool no_escape = false) {
   if (is_str) {
-    return EscapeLatexString(content.substr(
-        fragment.str_start, fragment.str_end - fragment.str_start + 1));
+    if (!no_escape) {
+      return EscapeLatexString(content.substr(
+          fragment.str_start, fragment.str_end - fragment.str_start + 1));
+    } else {
+      return content.substr(fragment.str_start,
+                            fragment.str_end - fragment.str_start + 1);
+    }
   }
   return content.substr(fragment.link_start,
                         fragment.link_end - fragment.link_start + 1);
@@ -508,12 +513,21 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
           }
         }
       }
+      if (img_src.substr(img_src.size() - 3) == "gif") {
+        img_src.erase(img_src.size() - 3);
+        img_src.append("png");
+      }
+
       if (caption.empty()) {
-        latex += StrCat("\n\\begin{figure}\n\\includegraphics{", img_src,
-                        "}\n\\end{figure}\n");
+        latex += StrCat(
+            "\n\\begin{figure}\n\\centering\n\\includegraphics[max width="
+            "0.7\\linewidth]{",
+            img_src, "}\n\\end{figure}\n");
       } else {
-        latex += StrCat("\n\\begin{figure}\n\\includegraphics{", img_src,
-                        "}\n\\caption{", caption, "}\n\\end{figure}\n");
+        latex += StrCat(
+            "\n\\begin{figure}\n\\centering\n\\includegraphics[max width="
+            "0.7\\linewidth]{",
+            img_src, "}\n\\caption{", caption, "}\n\\end{figure}\n");
       }
     } else if (fragment.type == Fragments::Types::INLINE_CODE) {
       string inline_code = GetLatexFragmentText(content_, fragment);

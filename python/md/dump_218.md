@@ -308,9 +308,7 @@ int ExprCell::to_numeric() {
 string s = exp_vec[i];
 ```
 
-
-
-따라서 위와 같이 `for` 문을 통해 각각의 토큰(exp_vec 의 각 원소들)에 접근할 수 있습니다.
+따라서 위와 같이 `for` 문을 통해 각각의 토큰(`exp_vec` 의 각 원소들)에 접근할 수 있습니다.
 
 ```cpp-formatted
 // 셀 일 경우

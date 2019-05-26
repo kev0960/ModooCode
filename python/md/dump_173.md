@@ -6,7 +6,7 @@ publish_date : 2012-08-04
 --------------
 
 
-이번 강좌에서는* 함수의 오버로딩 (function overloading)
+이번 강좌에서는 함수의 오버로딩 (function overloading)
 * 생성자 (constructor)
 * 디폴트 생성자 (default constructor)
 
