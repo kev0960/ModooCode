@@ -509,11 +509,11 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
         }
       }
       if (caption.empty()) {
-        latex += StrCat("\\begin{figure}\n\\includegraphics{", img_src,
-                        "}\n\\end{figure}");
+        latex += StrCat("\n\\begin{figure}\n\\includegraphics{", img_src,
+                        "}\n\\end{figure}\n");
       } else {
-        latex += StrCat("\\begin{figure}\n\\includegraphics{", img_src,
-                        "}\n\\caption{", caption, "}\n\\end{figure}");
+        latex += StrCat("\n\\begin{figure}\n\\includegraphics{", img_src,
+                        "}\n\\caption{", caption, "}\n\\end{figure}\n");
       }
     } else if (fragment.type == Fragments::Types::INLINE_CODE) {
       string inline_code = GetLatexFragmentText(content_, fragment);

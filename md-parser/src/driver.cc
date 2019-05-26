@@ -5,6 +5,7 @@
 #include <fstream>
 #include <unordered_map>
 
+#include "book.h"
 #include "db.h"
 #include "json.h"
 #include "path.h"
@@ -30,6 +31,16 @@ string GetOutputFile(const string& s) {
     output_dir_name = "../views/new/";
   }
   return StrCat(output_dir_name, filename_without_ext, ".html");
+}
+
+string GetLatexOutputFile(const string& s, const string& dir) {
+  string filename = s.substr(s.find_last_of("/") + 1);
+  string filename_without_ext = filename.substr(0, filename.find_last_of("."));
+
+  if (filename_without_ext.find("dump_") != string::npos) {
+    filename_without_ext= filename_without_ext.substr(5);
+  }
+  return StrCat("../book/", dir, "/", filename_without_ext, ".tex");
 }
 
 string GetFileId(const string& filename) {
@@ -235,6 +246,36 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
       std::ofstream output_file(GetOutputFile(filename));
       output_file << parsers_[parser_index]->ConvertToHtml(
           &ref_to_url, file_id_to_path_vec[GetFileId(filename)]);
+      parser_index++;
+    }
+  }
+
+  if (config_.create_book) {
+    std::experimental::filesystem::create_directories("../book/c/");
+    std::experimental::filesystem::create_directories("../book/cpp/");
+
+    BookManager c_book(BookType::C, &file_info);
+    c_book.GenerateMainTex();
+
+    BookManager cpp_book(BookType::CPP, &file_info);
+    cpp_book.GenerateMainTex();
+
+    std::vector<BookManager> book_managers = {c_book, cpp_book};
+
+    int parser_index = 0;
+    for (const auto& filename : filenames) {
+      if (SetContains(files_not_to_process, GetFileId(filename))) {
+        parser_index++;
+        continue;
+      }
+      for (auto& book_manager : book_managers) {
+        if (book_manager.IsBookFile(GetFileId(filename))) {
+          std::ofstream output_file(
+              GetLatexOutputFile(filename, book_manager.GetBookType()));
+          output_file << parsers_[parser_index]->ConvertToLatex(
+              &ref_to_url, file_id_to_path_vec[GetFileId(filename)]);
+        }
+      }
       parser_index++;
     }
   }

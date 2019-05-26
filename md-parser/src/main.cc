@@ -38,6 +38,9 @@ int main(int argc, char** argv) {
   if (Contains(args, "-all")) {
     config.force_parse_all = true;
   }
+  if (Contains(args, "-book")) {
+    config.create_book = true;
+  }
 
   std::vector<string> filenames;
   std::vector<string> md_paths = {"../python/md"};

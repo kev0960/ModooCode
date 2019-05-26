@@ -71,7 +71,7 @@ struct Something *arr;
 ```
 
 
-일단 1 차원 구조체 배열을 가리키기 위한 `arr` 을 선언하였습니다. `int` 형 배열을 만들기 위해 `int` *arr; 이라 했던 것과 정확히 일치 합니다.
+일단 1 차원 구조체 배열을 가리키기 위한 `arr` 을 선언하였습니다. `int` 형 배열을 만들기 위해 `int *arr;` 이라 했던 것과 정확히 일치 합니다.
 
 ```cpp-formatted
 arr = (struct Something *)malloc(sizeof(struct Something) * size);

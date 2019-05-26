@@ -225,6 +225,7 @@ string MDParser::ConvertToLatex(
   string output_tex;
   do {
     output_tex += parser_env_.ParseCurrentContentToLatex();
+    output_tex += "\n\n";
   } while (parser_env_.AdvanceToNextContent());
   return output_tex;
 }

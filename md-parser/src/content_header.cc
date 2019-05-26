@@ -48,9 +48,11 @@ HeaderContent::HeaderContent(const string& content, const string& header_token,
       header_token_(header_token),
       header_index_(header_index) {}
 
-void HeaderContent::Preprocess(ParserEnvironment* parser_env) {}
+void HeaderContent::Preprocess(ParserEnvironment* parser_env) {
+}
 
 string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
+  Content::Preprocess(parser_env);
   auto output_html = Content::OutputHtml(parser_env);
   if (output_html.empty()) {
     return "";
@@ -115,18 +117,20 @@ string HeaderContent::OutputLatex(ParserEnvironment* parser_env) {
   string start_header, end_header;
   auto header_type = GetHeaderType(header_token_);
   if (header_type == NORMAL_HEADER) {
-    if (header_index_ == 3) {
-      start_header = "\\subsection{";
-    } else if (header_index_ == 4) {
-      start_header = "\\subsubsection{";
+    if (header_token_.size() == 3) {
+      start_header = "\n\\subsection{";
+    } else if (header_token_.size() == 4) {
+      start_header = "\n\\subsubsection{";
     }
-    end_header = "}";
+    end_header = "}\n";
   } else {
     return "";
   }
 
   StripMarkdown(&content_);
   string tex = EscapeLatexString(content_);
+  Trim(&tex);
+
   return StrCat(start_header, tex, end_header);
 }
 void HeaderContent::AddContent(const string& content) { content_ += content; }

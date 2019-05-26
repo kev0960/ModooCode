@@ -303,6 +303,7 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
     }
 
     case CPP_CODE:
+    case CPP_FORMATTED_CODE:
     case INFO_FORMAT:
     case CODE_WARNING:
       return FormatCodeUsingFSH(content_, "cpp");
