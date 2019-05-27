@@ -330,9 +330,9 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       return CreateTColorBox(output_tex, "red");
     }
     case COMPILER_WARNING: {
-      return CreateTColorBox(
-          StrCat("\n\\begin{Verbatim}\n", content_, "\n\\end{Verbatim}"), "red",
-          "컴파일 오류");
+      return CreateTColorBox(StrCat("\n\\begin{Verbatim}[fontsize=\\small]\n",
+                                    content_, "\n\\end{Verbatim}"),
+                             "red", "컴파일 오류");
     }
     case INFO: {
       Content::Preprocess(parser_env);
@@ -344,8 +344,8 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       return CreateTColorBox(Content::OutputLatex(parser_env), "green");
     }
     case EXEC:
-      return StrCat("\\begin{mdprogout}\n\\begin{verbatim}", content_,
-                    "\\end{verbatim}\n\\end{mdprogout}\n");
+      return StrCat("\\begin{mdprogout}\n\\begin{Verbatim}\n", content_,
+                    "\n\\end{Verbatim}\n\\end{mdprogout}\n");
     case LEC_WARNING: {
       Content::Preprocess(parser_env);
       string output_tex = Content::OutputLatex(parser_env);
