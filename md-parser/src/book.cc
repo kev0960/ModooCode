@@ -44,8 +44,8 @@ string BookTypeToDirName(BookType type) {
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 // % some tex comment comes here %
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-string AddFancyComment(const string& comment) {
-  string long_tex_comment(45, '%');
+string AddFancyComment(const string& comment, const int comment_width = 55) {
+  string long_tex_comment(comment_width, '%');
   long_tex_comment += "\n";
 
   string tex = "\n";
@@ -58,19 +58,21 @@ string AddFancyComment(const string& comment) {
     current_line_len++;
 
     if (c == '\n') {
-      tex.append(StrCat(string(43 - current_line_len, ' '), "%\n"));
+      tex.append(
+          StrCat(string(comment_width - 2 - current_line_len, ' '), "%\n"));
       tex.append("% ");
       current_line_len = 0;
     } else {
       tex.push_back(c);
-      if (current_line_len % 41 == 0) {
+      if (current_line_len % (comment_width - 4) == 0) {
         tex.append(" %\n% ");
         current_line_len = 0;
       }
     }
   }
   if (current_line_len > 0) {
-    tex.append(StrCat(string(42 - current_line_len, ' '), "%\n"));
+    tex.append(
+        StrCat(string((comment_width - 3) - current_line_len, ' '), "%\n"));
   }
   tex += long_tex_comment;
   return tex;
@@ -132,8 +134,16 @@ void BookManager::GenerateMainTex() {
                                        {"mdframed", "framemethod=TikZ"},
                                        {"fontenc", "T1"},
                                        {"adjustbox", "export"},
-                                       {"beramono"}};
+                                       {"svg"},
+                                       {"color"},
+                                       {"beramono"},
+                                       {"sourcecodepro"}};
   tex += AddBunchOfPackages(package_list);
+
+  // Add note for generating pygmentize.sty
+  tex += AddFancyComment(
+      "Note: To generate pygmentize.sty, use \npygmentize -S default -f tex > "
+      "pygments.sty");
 
   // Relative path for all image files.
   tex += "\\graphicspath {{../../static/}}\n";
@@ -141,29 +151,60 @@ void BookManager::GenerateMainTex() {
   // Define mdprogout
   tex += R"(
 \newmdenv[%
-    backgroundcolor=black!5,
-    frametitlebackgroundcolor=black!10,
-    roundcorner=5pt,
-    skipabove=\topskip,
-    innertopmargin=\topskip,
-    splittopskip=\topskip,
-    frametitle={실행 결과},
-    frametitlerule=true,
-    nobreak=false,
-    usetwoside=false
+  backgroundcolor=black!5,
+  frametitlebackgroundcolor=black!10,
+  roundcorner=5pt,
+  skipabove=\topskip,
+  innertopmargin=\topskip,
+  splittopskip=\topskip,
+  frametitle={실행 결과},
+  frametitlerule=true,
+  nobreak=false,
+  usetwoside=false
 ]{mdprogout}
 )";
 
   tex += R"(
 \setminted[cpp]{
-    frame=lines,
-    framesep=2mm,
-    baselinestretch=1.2,
-    tabsize=2
+  frame=single,
+  framesep=2mm,
+  baselinestretch=1.2,
+  tabsize=2,
+  fontsize=\small
 }
 )";
 
+  // Set Paragraph indent size and paragraph skip size.
+  tex += R"(
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+)";
+
+  // Geometry
+  tex += R"(
+\geometry {
+  bottom=30mm
+}
+\semiisopage[12]
+)";
+
+  // Spacing between lines.
+  tex += R"(
+\renewcommand{\baselinestretch}{1.3}
+)";
+
+  // Fixing minted spacing issue.
+  tex += R"(
+\setlength\partopsep{-\topsep}
+\addtolength\partopsep{-\parskip}
+\addtolength\partopsep{0.3cm}
+)";
+
   tex += "\\begin{document}\n";
+
+  // Choose English font
+  tex += R"(\fontfamily{cmss}\selectfont)";
+
   // Add \include{filename}
   tex += AddFancyComment("List of book files.");
   for (const string& file_name : book_list_) {

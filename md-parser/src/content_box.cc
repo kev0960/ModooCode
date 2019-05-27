@@ -320,6 +320,7 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
   switch (box_type_) {
     case CPP_CODE:
     case CPP_FORMATTED_CODE:
+    case CODE_WARNING:
       return StrCat("\\begin{minted}{cpp}\n", content_, "\n\\end{minted}\n");
     case PY_CODE:
       return StrCat("\\begin{minted}{python}\n", content_, "\n\\end{minted}\n");

@@ -462,7 +462,6 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
       }
       strike_through = !strike_through;
     } else if (fragment.type == Fragments::Types::SIDENOTE) {
-      // \usepackage{marginnote}
       latex += StrCat("\\marginnote{", GetLatexFragmentText(content_, fragment),
                       "}");
     } else if (fragment.type == Fragments::Types::LINK) {
@@ -513,19 +512,19 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
           }
         }
       }
-      if (img_src.substr(img_src.size() - 3) == "gif") {
+      string ext = img_src.substr(img_src.size() - 3);
+      if (ext == "gif" || ext == "svg") {
         img_src.erase(img_src.size() - 3);
         img_src.append("png");
       }
-
       if (caption.empty()) {
         latex += StrCat(
-            "\n\\begin{figure}\n\\centering\n\\includegraphics[max width="
+            "\n\\begin{figure}[H]\n\\centering\n\\includegraphics[max width="
             "0.7\\linewidth]{",
             img_src, "}\n\\end{figure}\n");
       } else {
         latex += StrCat(
-            "\n\\begin{figure}\n\\centering\n\\includegraphics[max width="
+            "\n\\begin{figure}[H]\n\\centering\n\\includegraphics[max width="
             "0.7\\linewidth]{",
             img_src, "}\n\\caption{", caption, "}\n\\end{figure}\n");
       }

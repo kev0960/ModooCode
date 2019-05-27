@@ -57,10 +57,7 @@ publish_date : 2011-03-06
 
 2008 하고 2010 의 버전 차이는 하늘과 땅 차인데, 무엇보다도 코딩 하기가 매우 편리해 져서 여러분들이게 설치하기를 강력 추천 합니다. (왠지 이 강좌를 끝낼 즘에 2012 버전이 곧 나올 듯한 안좋은 느낌이 드네요ㅎ)
 
-일단 [여기](http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-cpp-express)
-
-로 들어갑니다.
-
+일단 [여기](http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-cpp-express) 로 들어갑니다.
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1157F0514D731DC51F6D47)
 
@@ -70,7 +67,6 @@ publish_date : 2011-03-06
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F157C1E524D731E9B1A62B3)
 
 다음을 누르시고,
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F130354524D731E9B117976)
 
