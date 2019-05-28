@@ -390,7 +390,7 @@ int& arr[2] = {a, b};
   그런데 말이죠. 컴파일 하기도 전에 빨간줄이 그어지네요. 아무튼 컴파일을 해보면
 
 ```compiler-warning
- error C2234: 'arr' : arrays of references are illegal
+error C2234: 'arr' : arrays of references are illegal
 ```
 
 

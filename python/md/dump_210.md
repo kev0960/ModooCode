@@ -246,7 +246,6 @@ int main() {
 
 ```compiler-warning
 error C2440: 'initializing' : cannot convert from 'Base *' to 'Derived *'
-Base * 에서 Derived * 로 변환할 수 없습니다.
 ```
 
 사실 위와 같은 오류가 발생한 이유는 간단합니다.
@@ -367,8 +366,8 @@ int main() {
 하지만 위의 경우 컴파일 하게 된다면
 
 ```compiler-warning
-test.cc: In function ‘int main()’:
-test.cc:27:44: error: cannot dynamic_cast ‘p_p’ (of type ‘class Base*’) to type ‘class Derived*’ (source type is not polymorphic)
+test.cc: In function 'int main()':
+test.cc:27:44: error: cannot dynamic_cast 'p_p' (of type 'class Base*') to type 'class Derived*' (source type is not polymorphic)
    Derived* p_c = dynamic_cast<Derived*>(p_p);
 ```
 
@@ -806,9 +805,7 @@ int main() {
 컴파일 하였다면
 
 ```compiler-warning
-test.cc:19:8: error: ‘void Derived::incorrect() const’ marked ‘override’, but does not override
-   void incorrect() const override { std::cout << "파생 클래스 " << std::endl; }
-        ^~~~~~~~~
+test.cc:19:8: error: 'void Derived::incorrect() const' marked 'override', but does not override
 ```
 
 위와 같이 `Derived` 의 `incorrect` 함수가 `override` 한다고 써있지만, 실제로는 아무것도 오버라이드 하지 않는다고 오류가 발생하게 됩니다. 만일 `const` 키워드를 지워준다면

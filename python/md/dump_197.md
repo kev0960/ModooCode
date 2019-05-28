@@ -1058,7 +1058,7 @@ a.show_x();
 그럼 주석 처리된 위 예를 살펴봅시다. 주석을 풀면 컴파일이 안되므로 주석 처리 해 놓은 것인데, 실제로 주석을 풀고 컴파일을 해보면
 
 ```compiler-warning
-error C2440: 'initializing' : cannot convert from 'int' to 'int &' (int 를 int& 로 바꿀 수 없습니다)
+error C2440: 'initializing' : cannot convert from 'int' to 'int &'
 ```
 
 아래와 같은 오류가 발생합니다. 그 이유는 레퍼런스가 아닌 타입을 리턴하는 경우는 '값' 의 복사가 이루어지기 때문에 임시 객체가 생성되는데, 임시객체의 레퍼런스를 가질 수 없기 때문입니다. (임시객체는 문장이 끝나게 되면 소멸됩니다) 이 과정을 그림으로 그려보면 아래와 같습니다.

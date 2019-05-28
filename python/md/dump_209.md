@@ -883,7 +883,6 @@ class Derived : public Base {
 
 ```compiler-warning
 error C2248: 'Base::parent_string' : cannot access private member declared in class 'Base'
-(Base 의 private 멤버에 접근할 수 없습니다)
 ```
 
 
@@ -994,8 +993,8 @@ int main() {
 컴파일 하였다면
 
 ```compiler-warning
-test.cc: In function ‘int main()’:
-test.cc:31:13: error: ‘std::__cxx11::string Base::parent_string’ is inaccessible within this context
+test.cc: In function 'int main()':
+test.cc:31:13: error: 'std::__cxx11::string Base::parent_string' is inaccessible within this context
     std::cout << c.parent_string <<  std::endl;
              ^~~~~~~~~~~~~
 test.cc:7:10: note: declared here

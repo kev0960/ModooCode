@@ -34,9 +34,10 @@ tex_title : 템플릿 메타프로그래밍 2 부
 
 
 지난번 생각해보기 문제는 아래와 같습니다.
-```info-format
-1. TMP 를 사용해서 어떤 수가 소수인지 아닌지를 판별하는 프로그램을 만들어보세요. (난이도 : 상)
 
+TMP 를 사용해서 어떤 수가 소수인지 아닌지를 판별하는 프로그램을 만들어보세요. (난이도 : 상)
+
+```cpp-formatted
 int main()
 {
   std::cout << std::boolalpha;
@@ -46,8 +47,6 @@ int main()
   std::cout << "Is prime ? :: " << is_prime<61>::result << std::endl; // true
 }
 ```
-
-
 
 사실 처음에 딱 보았을 때 도대체 어떻게 `TMP` 로 구현할 것인지 감이 안잡혔을 것입니다. 하지만 만약에 소수 인지 아닌지 판별하라는 '함수' 를 작성하게 하였다면 잘 작성하였겠지요. 아마 여러분은 아래와 같은 코드를 쓰셨을 것입니다.
 
@@ -102,8 +101,6 @@ struct check_div<N, N / 2> {
 ```compiler-warning
 check_div<N,N/>: non-type parameter of a partial specialization must be a simple identifier
 ```
-
-
 
 바로
 
