@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>
 cat_title: 4 - 1. 이 세상은 객체로 이루어져 있다
 next_page : 173
 publish_date : 2012-02-29
+chapter : 객체지향프로그래밍의 시작
 --------------
 
 
@@ -178,10 +179,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F1324C5384F4D9B8B374245)
+```exec
+이 동물의 food   : 130
+이 동물의 weight : 60
+```
 
-
- 와 같이 나오게 됩니다. 새로운 개념들이 왕창 많이 등장했으니 코드를 천천히 살펴봅시다.
+와 같이 나오게 됩니다. 새로운 개념들이 왕창 많이 등장했으니 코드를 천천히 살펴봅시다.
 
 ```cpp-formatted
 Animal animal;

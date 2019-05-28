@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>
 cat_title: 9 - 3. 템플릿 메타 프로그래밍 2
 next_page : 223
 publish_date : 2017-07-02
+tex_title : 템플릿 메타프로그래밍 2 부
 --------------
 
 이번 강좌에서는
@@ -391,7 +392,7 @@ struct is_prime {
 };
 
 int main() {
-  std::cout << boolalpha;
+  std::cout << std::boolalpha;
   std::cout << "Is 2 prime ? :: " << is_prime<2>::result << std::endl;
   std::cout << "Is 10 prime ? :: " << is_prime<10>::result << std::endl;
   std::cout << "Is 11 prime ? :: " << is_prime<11>::result << std::endl;
@@ -401,10 +402,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F246E4050595360293409F3)
-
-
+```exec
+Is 2 prime ? :: true
+Is 10 prime ? :: false
+Is 11 prime ? :: true
+Is 61 prime ? :: true
+```
 
 와 같이 제대로 판별함을 알 수 있습니다.
 
@@ -819,10 +822,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F212DD2445958AD6337F074)
-
-
+```exec
+c 의 타입은? :: i
+num 의 타입은? :: d
+some2 의 타입은? :: 9SomeClass
+some3 의 타입은? :: i
+```
 
 와 같이 나옵니다.
 
@@ -1002,13 +1007,11 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2104A74C5958A785159302)
-
+```exec
+2 kg 물체를 3m/s^2 의 가속도로 밀기 위한 힘의 크기는? 6kg^1m^1s^-2
+```
 
 
 와 같이 잘 나옵니다.

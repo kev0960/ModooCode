@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>
 cat_title: 2 - 2. C++ 은 C 친구일까?
 next_page : 169
 publish_date : 2012-01-01
+tex_title : C++ 의 참조자 (레퍼런스)
 --------------
 
 이번 강좌에서는
@@ -33,7 +34,7 @@ int main() {
   int i;
 
   std::cout << "제곱할 수 ? : ";
-  cin >> i;
+  std::cin >> i;
 
   print_square(i);
 
@@ -45,11 +46,13 @@ void print_square(int arg) {
 }
 ```
 
-
 성공적으로 컴파일 하였다면
 
+```exec
+제곱할 수 ? : 12
+전달된 인자 : 144
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F11301F3F4E50A72113DE49)
 와 같이 나옵니다.
 
 위 소스를 보면, 사실 굳이 설명이 필요 없이 이해가 잘 되실 것입니다. C++ 에서 C 와 입출력 방법이 다를 뿐 다 똑같습니다. 일단, 아래의 코드에서 우리는 `void` 형의 (리턴값이 없는) 함수 `print_square` 을 선언합니다.
@@ -78,7 +81,6 @@ print_square(i);
 
 
 ```cpp-formatted
-
 #include <iostream>
 
 int change_val(int *p) {
@@ -98,16 +100,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
+5
+3
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F1669824B4EFEA22010493C)
- 와 같이 나옵니다.
+와 같이 나옵니다.
 
 위 소스 코드 역시 저의 C 언어 강좌를 잘 따라오신 분이라면 무리없이 이해하실 수 있는 코드 입니다. 즉 `change_val` 함수의 인자 `p` 에 `number` 의 주소값을 전달하여, `*p` 를 통해 `number` 를 참조하여 `number` 의 값을 3 으로 바꾸었습니다. 그런데, 말이죠. 여러분 모두 `&` 키를 입력 하시는데에 진물이 나셨을 것입니다.
 
 이런 분들 위해서 C++ 에서 새롭게 생겨난 개념이 있습니다. 바로 **레퍼런스** 입니다.
 
 ```cpp-formatted
-
 #include <iostream>
 
 int change_val(int &p) {
@@ -127,8 +131,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F1669824B4EFEA22010493C)
+```exec
+5
+3
+```
 
 앞선 결과와 동일하게 나오는 것을 알 수 있습니다. 위 소스코드를 찬찬히  살펴보자면 일단 `change_val` 함수에서 `number` 앞에 `&` 를 붙이지 않았습니다. 그리고, `change_val` 함수에서도 `*p = 3;` 대신에 `p = 3;` 으로 바뀌었습니다. 그 대신에 `change_val` 에서 인자로 `int &p` 를 받고 있습니다. 이것이 바로 **레퍼런스** 입니다.
 
@@ -247,9 +253,13 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
+x : 1 y : 1 z : 1
+x : 2 y : 2 z : 2
+x : 3 y : 3 z : 3
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1246B0454EFEAB480EE198)
-  사실 위 소스를 타이핑 하면서 고개를 갸우뚱 하시는 분들이 있을 지도 모릅니다. 왜냐하면 여러분들은 그간 C 언어의 '악마의 포인터 세계' 에서 사셨기 때문이지요. 하지만 여기서 강조하지만, 포인터와 레퍼런스는 비슷하면서도 다른 녀석들입니다. 먼저 다음과 같은 부분은 쉽게 이해하셨겠지요.
+사실 위 소스를 타이핑 하면서 고개를 갸우뚱 하시는 분들이 있을 지도 모릅니다. 왜냐하면 여러분들은 그간 C 언어의 '악마의 포인터 세계' 에서 사셨기 때문이지요. 하지만 여기서 강조하지만, 포인터와 레퍼런스는 비슷하면서도 다른 녀석들입니다. 먼저 다음과 같은 부분은 쉽게 이해하셨겠지요.
 
 
 ```cpp-formatted
@@ -421,9 +431,11 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F152AC9354EFFC5EC1771F8)
+```exec
+231
+```
 
 먼저 가장 중요한 첫 두줄을 살펴봅시다.
 
@@ -481,9 +493,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F222F1A4C58E54E22199A13)
+```exec
+1
+x :: 2
+```
 
 아주 깔끔하게 잘 나옵니다.
 놀라운 점은, `x` 의 값이 바뀌었다는 점입니다. 그 이유는 `fn2` 을 살펴보면 알 수 있습니다.

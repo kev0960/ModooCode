@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>
 cat_title: 1 - 2. 첫 C++ 프로그램 분석하기
 next_page : 138
 publish_date : 2011-03-06
+tex_title : 첫 C++ 프로그램 분석하기
 --------------
 
 
@@ -34,8 +35,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1526FF484D7B572829CC38)
+```exec
+Hello, World!!
+```
 
 와 같이 나옵니다.
 

@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <2 - 1. C++ 은 C 친구 - C 와 공통점>
 cat_title: 2 - 1. C++ 은 C 친구 - C 와 공통점
 next_page : 141
 publish_date : 2011-05-15
+chapter : C++ 와 C 언어
 --------------
 
 
@@ -115,8 +116,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F1342C9454D857C7D29DDCF)
+```exec
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
 
 와우! 정말로 똑같습니다. C 언어 때와 `for` 문은 달라진 것이 없군요. 그렇다면 C++ 에서 `for` 문을 이용해 1 부터 10 까지 더하는 문장은 어떻게 만들까요.
 
@@ -137,10 +148,11 @@ int main() {
 ```
 
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1744AB3E4D8581790CB209)
+```exec
+합은 : 55
+```
 
 역시 기존의 C 언어 때와 동일합니다.
 
@@ -172,11 +184,11 @@ int main() {
 }
 ```
 
-
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1744AB3E4D8581790CB209)
+```exec
+합은 : 55
+```
 
 로 동일한 결과를 보입니다.
 그렇다면 `while` 문은 어떨까요. 역시 동일합니다
@@ -201,8 +213,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1744AB3E4D8581790CB209)
+```exec
+합은 : 55
+```
 
 와 같이 우리가 기존에 알고 있었던 `while` 문과 동일한 결과를 나타냅니다.
 
@@ -232,10 +245,18 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
+```exec
+내 비밀 수를 맞추어 보세요~
+입력 : 5
+다시 생각해보세요~
+입력 : 6
+다시 생각해보세요~
+입력 : 3
+맞추셨습니다~~
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1636CA3F4DCD5438225045)
 
 와 같이 역시 우리가 C 에서 생각했던 대로 동일하게 나옵니다. 위 코드에서 살펴볼 부분은 바로
 
@@ -300,15 +321,18 @@ int main() {
 }
 ```
 
+성공적으로 컴파일 하였다면
 
-  성공적으로 컴파일 하였다면
+```exec
+저의 정보를 표시해줍니다
+1. 이름 
+2. 나이 
+3. 성별 
+1
+Psi ! 
+```
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F181E9D454DCF3D540FB6F4)
-
-
- 으로 `switch` 문이 잘 작동하는 것을 보실 수 있습니다.
+으로 `switch` 문이 잘 작동하는 것을 보실 수 있습니다.
 
 ```cpp-formatted
 switch (user_input) {

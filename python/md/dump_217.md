@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>
 cat_title: 8 - 1. Excel 만들기 프로젝트 1부
 next_page : 218
 publish_date : 2016-07-18
+chapter : 엑셀 만들기 프로젝트
 --------------
 
 이번 강좌에서는

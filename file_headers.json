@@ -215,6 +215,7 @@
 ,
 	"134" : {
 	"cat_title" : "1. 자~ C++ 의 세계로",
+	"chapter" : "C++ 시작하기",
 	"next_page" : "136",
 	"prev_page" : "135",
 	"publish_date" : "2011-03-06",
@@ -232,11 +233,13 @@
 	"next_page" : "138",
 	"prev_page" : "134",
 	"publish_date" : "2011-03-06",
+	"tex_title" : "첫 C++ 프로그램 분석하기",
 	"title" : "씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>"
 }
 ,
 	"138" : {
 	"cat_title" : "2 - 1. C++ 은 C 친구 - C 와 공통점",
+	"chapter" : "C++ 와 C 언어",
 	"next_page" : "141",
 	"prev_page" : "136",
 	"publish_date" : "2011-05-15",
@@ -270,6 +273,7 @@
 	"next_page" : "169",
 	"prev_page" : "138",
 	"publish_date" : "2012-01-01",
+	"tex_title" : "C++ 의 참조자 (레퍼런스)",
 	"title" : "씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>"
 }
 ,
@@ -460,6 +464,7 @@
 ,
 	"169" : {
 	"cat_title" : "3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)",
+	"chapter" : "C++ 의 세계로",
 	"next_page" : "172",
 	"prev_page" : "141",
 	"publish_date" : "2012-01-01",
@@ -489,6 +494,7 @@
 ,
 	"172" : {
 	"cat_title" : "4 - 1. 이 세상은 객체로 이루어져 있다",
+	"chapter" : "객체지향프로그래밍의 시작",
 	"next_page" : "173",
 	"prev_page" : "169",
 	"publish_date" : "2012-02-29",
@@ -500,6 +506,7 @@
 	"next_page" : "188",
 	"prev_page" : "172",
 	"publish_date" : "2012-08-04",
+	"tex_title" : "생성자와 함수의 오버로딩",
 	"title" : "씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자)>"
 }
 ,
@@ -610,6 +617,7 @@
 	"next_page" : "197",
 	"prev_page" : "173",
 	"publish_date" : "2013-01-06",
+	"tex_title" : "복사 생성자와 소멸자",
 	"title" : "씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>"
 }
 ,
@@ -676,6 +684,7 @@
 	"next_page" : "198",
 	"prev_page" : "188",
 	"publish_date" : "2013-05-26",
+	"tex_title" : "const, const, const!",
 	"title" : "씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>"
 }
 ,
@@ -684,6 +693,7 @@
 	"next_page" : "253",
 	"prev_page" : "197",
 	"publish_date" : "2013-08-15",
+	"tex_title" : "내가 만들어보는 문자열 클래스",
 	"title" : "씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>"
 }
 ,
@@ -707,6 +717,7 @@
 ,
 	"202" : {
 	"cat_title" : "5 - 1. 내가 만든 연산자 - 연산자 오버로딩",
+	"chapter" : "연산자 오버로딩(overloading)",
 	"next_page" : "203",
 	"prev_page" : "253",
 	"publish_date" : "2013-08-25",
@@ -718,6 +729,7 @@
 	"next_page" : "204",
 	"prev_page" : "202",
 	"publish_date" : "2013-08-29",
+	"tex_title" : "잡다한 연산자들의 오버로딩",
 	"title" : "씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>"
 }
 ,
@@ -726,6 +738,7 @@
 	"next_page" : "209",
 	"prev_page" : "203",
 	"publish_date" : "2013-09-04",
+	"tex_title" : "N 차원 배열 만들기 프로젝트",
 	"title" : "씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>"
 }
 ,
@@ -736,6 +749,7 @@
 ,
 	"209" : {
 	"cat_title" : "6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속",
+	"chapter" : "클래스의 상속",
 	"next_page" : "210",
 	"prev_page" : "204",
 	"publish_date" : "2014-03-30",
@@ -755,6 +769,7 @@
 	"next_page" : "211",
 	"prev_page" : "209",
 	"publish_date" : "2014-03-31",
+	"tex_title" : "가상 함수와 다형성",
 	"title" : "씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>"
 }
 ,
@@ -763,11 +778,13 @@
 	"next_page" : "213",
 	"prev_page" : "210",
 	"publish_date" : "2014-04-13",
+	"tex_title" : "상속에 관련된 잡다한 내용들",
 	"title" : "씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한 내용들>"
 }
 ,
 	"213" : {
 	"cat_title" : "7 - 1. C++ 에서의 입출력 (istream, ostream)",
+	"chapter" : "C++ 표준 입출력 라이브러리",
 	"next_page" : "215",
 	"prev_page" : "211",
 	"publish_date" : "2015-05-04",
@@ -784,11 +801,13 @@
 	"next_page" : "217",
 	"prev_page" : "213",
 	"publish_date" : "2016-07-14",
+	"tex_title" : "C++ 파일 입출력",
 	"title" : "씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream>"
 }
 ,
 	"217" : {
 	"cat_title" : "8 - 1. Excel 만들기 프로젝트 1부",
+	"chapter" : "엑셀 만들기 프로젝트",
 	"next_page" : "218",
 	"prev_page" : "215",
 	"publish_date" : "2016-07-18",
@@ -800,11 +819,13 @@
 	"next_page" : "219",
 	"prev_page" : "217",
 	"publish_date" : "2016-07-19",
+	"tex_title" : "엑셀 만들기 프로젝트 2부",
 	"title" : "씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>"
 }
 ,
 	"219" : {
 	"cat_title" : "9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)",
+	"chapter" : "C++ 템플릿",
 	"next_page" : "221",
 	"prev_page" : "218",
 	"publish_date" : "2017-04-07",
@@ -823,6 +844,7 @@
 	"next_page" : "222",
 	"prev_page" : "219",
 	"publish_date" : "2017-06-26",
+	"tex_title" : "템플릿 메타프로그래밍 1 부",
 	"title" : "씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>"
 }
 ,
@@ -831,14 +853,17 @@
 	"next_page" : "223",
 	"prev_page" : "221",
 	"publish_date" : "2017-07-02",
+	"tex_title" : "템플릿 메타프로그래밍 2 부",
 	"title" : "씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>"
 }
 ,
 	"223" : {
 	"cat_title" : "10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)",
+	"chapter" : "C++ 표준 라이브러리 (컨테이너와 알고리즘)",
 	"next_page" : "224",
 	"prev_page" : "222",
 	"publish_date" : "2017-07-04",
+	"tex_title" : "C++ 표준 컨테이너",
 	"title" : "씹어먹는 C++ - <10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)>"
 }
 ,
@@ -847,6 +872,7 @@
 	"next_page" : "225",
 	"prev_page" : "223",
 	"publish_date" : "2017-07-08",
+	"tex_title" : "C++ 의 표준 연관 컨테이너들",
 	"title" : "씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map>"
 }
 ,
@@ -855,14 +881,17 @@
 	"next_page" : "230",
 	"prev_page" : "224",
 	"publish_date" : "2017-07-09",
+	"tex_title" : "C++ 표준 알고리즘 라이브러리",
 	"title" : "씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>"
 }
 ,
 	"227" : {
 	"cat_title" : "12 - 1. 우측값 레퍼런스와 이동 생성자",
+	"chapter" : "우측값과 이동 연산",
 	"next_page" : "228",
 	"prev_page" : "230",
 	"publish_date" : "2018-03-24",
+	"tex_title" : "우측값 레퍼런스와 이동 생성자",
 	"title" : "씹어먹는 C++ - <12 - 1. 우측값 레퍼런스와 이동 생성자>"
 }
 ,
@@ -871,11 +900,13 @@
 	"next_page" : "229",
 	"prev_page" : "227",
 	"publish_date" : "2018-03-27",
+	"tex_title" : "move 문법과 완벽한 전달",
 	"title" : "씹어먹는 C++ - <12 - 2. Move 문법 (std::move semantics) 과 완벽한 전달 (perfect forwarding)>"
 }
 ,
 	"229" : {
 	"cat_title" : "13 - 1. 객체의 유일한 소유권 - unique_ptr",
+	"chapter" : "스마트 포인터",
 	"next_page" : "252",
 	"path" : "/C++",
 	"prev_page" : "228",
@@ -893,10 +924,10 @@
 ,
 	"230" : {
 	"cat_title" : "11. C++ 에서 예외 처리",
+	"chapter" : "C++ 에서의 예외 처리",
 	"next_page" : "227",
 	"path" : "/C++",
 	"prev_page" : "225",
-	"published" : "false",
 	"title" : "씹어먹는 C ++ - <11. C++ 에서 예외 처리>",
 	"updated_date" : "09/17/2018"
 }
@@ -1070,6 +1101,7 @@
 	"path" : "/C++",
 	"prev_page" : "229",
 	"publish_date" : "2018-12-21",
+	"tex_title" : "여러 객체가 소유할 수 있는 포인터",
 	"title" : "씹어먹는 C ++ - <13 - 2. 자원을 공유할 때 - shared_ptr 와 weak_ptr>"
 }
 ,
@@ -1079,11 +1111,13 @@
 	"path" : "/C++",
 	"prev_page" : "198",
 	"publish_date" : "2018-12-26",
+	"tex_title" : "클래스의 explicit 과 mutable 키워드",
 	"title" : "씹어먹는 C ++ - <4 - 6. 클래스의 explicit 과 mutable 키워드>"
 }
 ,
 	"254" : {
 	"cat_title" : "14. 함수를 객체로! (C++ std::function, std::mem_fn, std::bind)",
+	"chapter" : "함수 객체",
 	"next_page" : "269",
 	"path" : "/C++",
 	"prev_page" : "252",
@@ -1212,6 +1246,7 @@
 ,
 	"269" : {
 	"cat_title" : "15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)",
+	"chapter" : "C++ 쓰레드",
 	"next_page" : "270",
 	"path" : "/C++",
 	"prev_page" : "254",
@@ -1233,6 +1268,7 @@
 	"path" : "/C++",
 	"prev_page" : "269",
 	"publish_date" : "2019-04-03",
+	"tex_title" : "뮤텍스와 조건변수",
 	"title" : "씹어먹는 C ++ - <15 - 2. C++ 뮤텍스(mutex) 와 조건 변수(condition variable)>"
 }
 ,
@@ -1242,6 +1278,7 @@
 	"path" : "/C++",
 	"prev_page" : "270",
 	"publish_date" : "2019-04-07",
+	"tex_title" : "atomic 객체와 명령어 재배치",
 	"title" : "씹어먹는 C++ - <15 - 3. C++ memory order 와 atomic 객체>"
 }
 ,
@@ -1355,6 +1392,7 @@
 	"path" : "/C++",
 	"prev_page" : "271",
 	"publish_date" : "2019-05-18",
+	"tex_title" : "비동기 연산을 위한 도구들",
 	"title" : "씹어먹는 C++ - <15 - 4. C++ future, promise, packaged_task, async>"
 }
 ,
@@ -1363,6 +1401,7 @@
 	"path" : "/C++",
 	"prev_page" : "284",
 	"publish_date" : "2019-05-19",
+	"tex_title" : "ThreadPool 만들기",
 	"title" : "씹어먹는 C++ - <15 - 5. C++ 쓰레드풀(ThreadPool) 만들기>"
 }
 ,

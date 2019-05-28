@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set,
 cat_title: 10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map
 next_page : 225
 publish_date : 2017-07-08
+tex_title : C++ 의 표준 연관 컨테이너들
 --------------
 
 이번 강좌에서는
@@ -88,10 +89,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F23527038595C0AFD1E4645)
-
-
+```exec
+순서대로 정렬되서 나온다
+[ 10 20 30 40 50  ] 
+20 이 s 의 원소인가요? :: Yes
+25 가 s 의 원소인가요? :: No
+```
 
 와 같이 나옵니다.
 
@@ -236,10 +239,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F224D6A4E595C37E3337F98)
-
-
+```exec
+[ 10 20 30  ] 
+```
 
 와 같이 나옵니다. 분명히
 
@@ -363,9 +365,19 @@ int main() {
 
 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F217D3D41595C3A441DDAC9)
-
-
+```exec
+[ 중요도: 3] 친구 만나기 
+[ 중요도: 2] 수학 숙제 하기 
+[ 중요도: 2] 영화 보기 
+[ 중요도: 1] 농구 하기 
+[ 중요도: 1] 프로그래밍 프로젝트 
+-------------
+숙제를 끝냈다면!
+[ 중요도: 3] 친구 만나기 
+[ 중요도: 2] 영화 보기 
+[ 중요도: 1] 농구 하기 
+[ 중요도: 1] 프로그래밍 프로젝트 
+```
 
 와 같이 잘 실행됩니다.
 
@@ -531,10 +543,19 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F217D3D41595C3A441DDAC9)
-
-
+```exec
+[ 중요도: 3] 친구 만나기 
+[ 중요도: 2] 수학 숙제 하기 
+[ 중요도: 2] 영화 보기 
+[ 중요도: 1] 농구 하기 
+[ 중요도: 1] 프로그래밍 프로젝트 
+-------------
+숙제를 끝냈다면!
+[ 중요도: 3] 친구 만나기 
+[ 중요도: 2] 영화 보기 
+[ 중요도: 1] 농구 하기 
+[ 중요도: 1] 프로그래밍 프로젝트 
+```
 
 와 같이 나옵니다. 달라진 점은 일단 `Todo` 클래스에서 `operator<` 가 삭제되었습니다. 하지만 셋을 사용하기 위해 반드시 `Todo` 객체간의 비교를 수행해야 하기 때문에 다음과 같은 클래스를 만들었습니다.
 
@@ -621,10 +642,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F276D7B4E595C7A1C0B0EC7)
-
-
+```exec
+니퍼트 3.56
+박세웅 2.23
+박종훈 3.76
+장원준  3.05
+차우찬 3.04
+켈리 3.9
+피어밴드  2.95
+해커  2.93
+헥터  3.09
+박세웅 방어율은? :: 2.23
+```
 
 와 같이 나옵니다.
 
@@ -735,10 +764,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2266ED33595DE49812027A)
-
+```exec
+류현진 방어율은? :: 0
+-----------------
+류현진 0
+오승환 3.58
+```
 
 와 같이 나옵니다.
 
@@ -798,10 +829,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F240B223E595DEA2625333E)
-
+```exec
+오승환 3.58
+-----------------
+오승환 --> 3.58
+류현진은(는) 목록에 없습니다
+```
 
 
 와 같이 나옵니다.
@@ -854,9 +887,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F276C924F595DFC5D184B3C)
-
-
+```exec
+박세웅 2.23
+박세웅 방어율은? :: 2.23
+```
 
 와 같이 먼저 `insert` 된 원소가 나오게 됩니다. 즉, 이미 같은 키를 가지는 원소가 있다면 그 `insert` 작업은 무시됩니다. 만약에, 원소에 대응되는 값을 바꾸고 싶다면 `insert` 를 하지 말고, `[]` 연산자로 대응되는 값을 바꿔주면 됩니다.
 
@@ -895,10 +929,14 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F2152BF42595DFC5D1478E8)
-
-
+```exec
+a
+a
+b
+c
+c
+d
+```
 
 와 같이 나옵니다. 만약에 기존의 `set` 이였다면 그냥 `a,b,c,d` 이렇게 나왔어야 하지만, 멀티셋의 경우 중복된 원소를 허락하기 때문에 `insert` 한 모든 원소들이 쭈르륵 나오게 됩니다.
 
@@ -934,10 +972,15 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F261D663E59605B062415DA)
-
+```exec
+1 hello
+1 hi
+1 ahihi
+2 bye
+2 baba
+--------------------
+hello
+```
 
 와 같이 나옵니다.
 
@@ -1000,10 +1043,17 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F26246048596063613761EA)
-
-
+```exec
+1 hello
+1 hi
+1 ahihi
+2 bye
+2 baba
+--------------------
+1 : hello 
+1 : hi 
+1 : ahihi 
+```
 
 와 같이 나옵니다.
 
@@ -1065,10 +1115,16 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F2546B049596074021F4118)
-
-
+```exec
+c++
+to
+my
+name
+hi
+is
+psi
+welcome
+```
 
 와 같이 나옵니다.
 
@@ -1158,9 +1214,22 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F256E833D5960848D228BE9)
-
+```exec
+c++
+to
+my
+name
+hi
+is
+psi
+welcome
+----------------
+c++ 가 존재!
+c 가 없다
+----------------
+'hi' 를 삭제
+hi 가 없다
+```
 
 
 와 같이 나옵니다.
@@ -1306,7 +1375,14 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2366874C59609AB8266ABE)
+```exec
+[중요도 : 2 ] 영화 보기
+[중요도 : 1 ] 프로그래밍 프로젝트
+[중요도 : 3 ] 친구 만나기
+[중요도 : 1 ] 농구 하기
+[중요도 : 2 ] 수학 숙제 하기
+----------------
+```
 
 와 같이 나옵니다.
 

@@ -137,6 +137,7 @@ void BookManager::GenerateMainTex() {
                                        {"svg"},
                                        {"color"},
                                        {"beramono"},
+                                       {"letltxmacro"},
                                        {"sourcecodepro"}};
   tex += AddBunchOfPackages(package_list);
 
@@ -148,7 +149,7 @@ void BookManager::GenerateMainTex() {
   // Relative path for all image files.
   tex += "\\graphicspath {{../../static/}}\n";
 
-  // Define mdprogout
+  // Define mdprogout and sidenote box.
   tex += R"(
 \newmdenv[%
   backgroundcolor=black!5,
@@ -162,6 +163,8 @@ void BookManager::GenerateMainTex() {
   nobreak=false,
   usetwoside=false
 ]{mdprogout}
+
+\newmdenv[leftline=false,rightline=false,font=\footnotesize]{sidenotebox}
 )";
 
   tex += R"(
@@ -200,15 +203,45 @@ void BookManager::GenerateMainTex() {
 \addtolength\partopsep{0.3cm}
 )";
 
+  // TOC only shows up to the subsection.
+  tex += R"(
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+)";
+
   tex += "\\begin{document}\n";
 
   // Choose English font
   tex += R"(\fontfamily{cmss}\selectfont)";
 
+  // Introduction page.
+  tex += AddFancyComment("Introduction Page");
+  tex += R"(
+\thispagestyle{empty}
+~\vfill
+\noindent Copyright \textcopyright\  2017 이재범
+
+\noindent
+이 책은 \textbf{모두의 코드}에 연재된 씹어먹는 C++ 강좌를 책으로 옮긴 것입니다.해당 강좌는 자세한 내용은
+\url{https://modoocode.com} 에서 볼 수 있습니다
+\newpage
+)";
+
+  tex += "\\tableofcontents\n\\mainmatter\n";
   // Add \include{filename}
   tex += AddFancyComment("List of book files.");
   for (const string& file_name : book_list_) {
-    tex += StrCat("\\include{", file_name, "}\n");
+    auto chapter_itr = file_info_->at(file_name).find("chapter");
+    if (chapter_itr != file_info_->at(file_name).end()) {
+      string chapter = chapter_itr->second;
+      tex += StrCat("\n\\chapter{", chapter, "}\n");
+    }
+    auto title_itr = file_info_->at(file_name).find("tex_title");
+    if (title_itr != file_info_->at(file_name).end()) {
+      string title = title_itr->second;
+      tex += StrCat("\n\\section*{", title, "}\n");
+    }
+    tex += StrCat("\\input{", file_name, "}\n");
   }
 
   tex += "\\end{document}";

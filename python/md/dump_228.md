@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <12 - 2. Move 문법 (std::move semantics) 과 완벽
 cat_title: 12 - 2. Move 문법 (std::move semantics) 과 완벽한 전달 (perfect forwarding)
 next_page: 229
 publish_date : 2018-03-27
+tex_title : move 문법과 완벽한 전달
 --------------
 
 
@@ -170,7 +171,19 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F99115F3E5AB8FD86061B59)
+```exec
+생성자 호출 ! 
+생성자 호출 ! 
+Swap 전 -----
+abc
+def
+Swap 후 -----
+복사 생성자 호출 ! 
+복사!
+복사!
+def
+abc
+```
 
 와 같이 나옵니다.
 
@@ -358,8 +371,15 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F99BE55345AB99D231E151B)
-
+```exec
+생성자 호출 ! 
+이동 전 -----
+str1 : abc
+이동 후 -----
+이동 생성자 호출 !
+str1 : 
+str2 : abc
+```
 
 와 같이 나옵니다.
 
@@ -524,9 +544,19 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F99BA0F435AB9A114146E55)
-
+```exec
+생성자 호출 ! 
+생성자 호출 ! 
+Swap 전 -----
+str1 : abc
+str2 : def
+Swap 후 -----
+이동 생성자 호출 !
+복사!
+복사!
+str1 : def
+str2 : abc
+```
 
 와 같이 나옵니다.
 
@@ -564,9 +594,19 @@ MyString& MyString::operator=(MyString&& s) {
 
 그리고 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F99ABCE4F5AB9A225263122)
-
+```exec
+생성자 호출 ! 
+생성자 호출 ! 
+Swap 전 -----
+str1 : abc
+str2 : def
+Swap 후 -----
+이동 생성자 호출 !
+이동!
+이동!
+str1 : def
+str2 : abc
+```
 
 와 같이 제대로 이동을 시키고 있음을 알 수 있습니다.
 
@@ -639,7 +679,16 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F99ADBC435AB9C1621B4011)
+```exec
+원본 --------
+좌측값 레퍼런스 호출
+좌측값 상수 레퍼런스 호출
+우측값 레퍼런스 호출
+Wrapper -----
+좌측값 레퍼런스 호출
+좌측값 레퍼런스 호출
+좌측값 레퍼런스 호출
+```
 
 와 같이 나옵니다.
 
@@ -730,10 +779,19 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F99DB5A3A5ABA0364292293)
-
-
+```exec
+원본 --------
+좌측값 레퍼런스 호출
+좌측값 상수 레퍼런스 호출
+우측값 레퍼런스 호출
+Wrapper -----
+T& 로 추론됨
+좌측값 레퍼런스 호출
+const T& 로 추론됨
+좌측값 상수 레퍼런스 호출
+const T& 로 추론됨
+좌측값 상수 레퍼런스 호출
+```
 
 와 같이 나옵니다.
 
@@ -798,7 +856,16 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F99772B4C5ABA05F832FD06)
+```exec
+원본 --------
+좌측값 레퍼런스 호출
+좌측값 상수 레퍼런스 호출
+우측값 레퍼런스 호출
+Wrapper -----
+좌측값 레퍼런스 호출
+좌측값 상수 레퍼런스 호출
+우측값 레퍼런스 호출
+```
 
 
 와 같이 잘 작동함을 알 수 있습니다.

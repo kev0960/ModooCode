@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>
 cat_title: 10 - 3. C++ STL - 알고리즘(algorithm)
 next_page : 230
 publish_date : 2017-07-09
+tex_title : C++ 표준 알고리즘 라이브러리
 --------------
 
 
@@ -102,10 +103,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F247F2434596A50D706E894)
-
-
+```exec
+정렬 전 ----
+5 3 1 6 4 7 2 
+정렬 후 ----
+1 2 3 4 5 6 7 
+```
 
 위와 같이 잘 정렬되서 나옴을 알 수 있습니다.
 
@@ -171,10 +174,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F26787847596A53AF08DEF7)
-
-
+```exec
+정렬 전 ----
+5 3 1 6 4 7 2 
+정렬 후 ----
+7 6 5 4 3 2 1 
+```
 
 와 같이 내림 차순으로 정렬되서 나옵니다.
 
@@ -254,10 +259,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F2303CE37596AC6E10EF012)
-
-
+```exec
+정렬 전 ----
+5 3 1 6 4 7 2 
+정렬 후 ----
+1 2 3 6 5 7 4 
+```
 
 와 같이 나옵니다. 앞서 `partial_sort` 함수는 일부만 정렬하는 함수라고 하였습니다. `partial_sort` 는 인자를 아래와 같이 3 개를 기본으로 받습니다.
 
@@ -485,16 +492,14 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F24655B33596D9F901A91A1)
-
-
-
+```exec
+처음 vec 상태 ------
+[5] [3] [1] [2] [3] [4] 
+벡터에서 값이 3 인 원소 제거 ---
+[5] [1] [2] [4] 
+```
 
 와 같이 나옵니다.
 
@@ -580,10 +585,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F270A7D4F596DC13035CC07)
-
-
+```exec
+처음 vec 상태 ------
+[5] [3] [1] [2] [3] [4] 
+벡터에서 홀수 인 원소 제거 ---
+[2] [4] 
+```
 
 와 같이 나옵니다.
 
@@ -891,7 +898,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F2577DF3359703AE92B620A)
+```exec
+처음 vec 상태 ------
+[5] [3] [1] [2] [3] [4] 
+벡터에서 홀수인 원소 제거 ---
+[2] [4] 
+```
 
 와 같이 나옵니다.
 
@@ -1022,8 +1034,12 @@ int main() {
 성공적으로 컴파일 하였다면
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F2205F5485970470C1C5FA7)
+```exec
+처음 vec 상태 ------
+[5] [3] [1] [2] [3] [4] 
+벡터에서 홀수인 원소 ---
+[1] [2] [3] [4] 
+```
 
 와 같이 잘 됨을 알 수 있습니다.
 
@@ -1181,11 +1197,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F2423F74D5971875012B157)
-
-
+```exec
+처음 vec 상태 ------
+[5] [3] [1] [2] [3] [4] 
+벡터 전체에 1 을 더한다
+[6] [4] [2] [3] [4] [5] 
+```
 
 와 같이 나옵니다.
 
@@ -1270,11 +1287,14 @@ int main() {
 성공적으로 컴파일 하였으면
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2128514F59718DC02F2950)
-
-
-
+```exec
+처음 vec 과 vec2 상태 ------
+[5] [3] [1] [2] [3] [4] 
+[0] [0] [0] [0] [0] [0] 
+vec 전체에 1 을 더한 것을 vec2 에 저장 -- 
+[5] [3] [1] [2] [3] [4] 
+[6] [4] [2] [3] [4] [5] 
+```
 
 와 같이 나옵니다.
 
@@ -1324,7 +1344,9 @@ int main() {
 
 성공적으로 컴파일 하였으면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2403B13A5973A8441A3B1E)
+```exec
+3 은 2 번째 원소
+```
 
 와 같이 나옵니다.
 
@@ -1385,7 +1407,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F244C3D335973AC8A107754)
+```exec
+3 은 2 번째 원소
+3 은 5 번째 원소
+```
 
 위와 같이 나옵니다.
 
@@ -1446,9 +1471,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2474D4335973AF631A1737)
-
-
+```exec
+3 으로 나눈 나머지가 2 인 원소는 : 5 이다 
+3 으로 나눈 나머지가 2 인 원소는 : 2 이다 
+```
 
 와 같이 나옵니다.
 
@@ -1529,10 +1555,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F2581B7335973B48811EF46)
-
+```exec
+던전 입장 가능 ? false
+특별 아이템 사용 가능 ? true
+```
 
 와 같이 나옵니다.
 

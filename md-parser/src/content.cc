@@ -462,8 +462,9 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
       }
       strike_through = !strike_through;
     } else if (fragment.type == Fragments::Types::SIDENOTE) {
-      latex += StrCat("\\marginnote{", GetLatexFragmentText(content_, fragment),
-                      "}");
+      latex += StrCat("\n\\begin{sidenotebox}\n",
+                      GetLatexFragmentText(content_, fragment),
+                      "\n\\end{sidenotebox}\n");
     } else if (fragment.type == Fragments::Types::LINK) {
       // \usepackage{hyperref}
       string url = GetLatexFragmentText(content_, fragment, false);
@@ -526,7 +527,7 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
         latex += StrCat(
             "\n\\begin{figure}[H]\n\\centering\n\\includegraphics[max width="
             "0.7\\linewidth]{",
-            img_src, "}\n\\caption{", caption, "}\n\\end{figure}\n");
+            img_src, "}\n\\caption*{", caption, "}\n\\end{figure}\n");
       }
     } else if (fragment.type == Fragments::Types::INLINE_CODE) {
       string inline_code = GetLatexFragmentText(content_, fragment);

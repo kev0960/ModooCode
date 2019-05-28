@@ -133,6 +133,10 @@ string ParserEnvironment::ParseCurrentContentToLatex() {
   return latex;
 }
 
+const Content& ParserEnvironment::GetCurrentContent() const {
+  return *content_list_[current_content_];
+}
+
 bool ParserEnvironment::ShouldStartNewListTag() {
   if (current_content_ == 0) return true;
   auto* current_content = content_list_[current_content_].get();

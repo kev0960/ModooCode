@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, s
 cat_title: 4 - 4. 스타크래프트를 만들자 ② (const, static)
 next_page : 198
 publish_date : 2013-05-26
+tex_title : const, const, const!
 --------------
 
 이번 강좌에서는
@@ -82,7 +83,14 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1277033A50EFAD3713AECF)
+```exec
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 50
+```
 
 와 같이 됩니다.
 
@@ -274,8 +282,22 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F122A983A50EFB93B1314D5)
+```exec
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 50
 
+마린 1 이 마린 2 를 공격! 
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 45
+```
 
 이 됩니다.
 
@@ -378,15 +400,24 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
+```exec
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 50
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F22711E4451A0F8170A9E8A)
-
-
+마린 1 이 마린 2 를 공격! 
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 40
+```
 
 이 예제에서는 생성자 하나를 새로 더 추가하였는데 한 번 살펴보도록 합시다.
 
@@ -522,8 +553,30 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ 현재 총 마린 수 : 1
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 50
+ 현재 총 마린 수 : 2
+ *** Marine *** 
+ Location : ( 10 , 10 ) 
+ HP : 50
+ 현재 총 마린 수 : 3
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F23493B3451A0FC9111D803)
+마린 1 이 마린 2 를 공격! 
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ 현재 총 마린 수 : 2
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 45
+ 현재 총 마린 수 : 2
+```
 
 와 같이 나오게 됩니다.
 ```cpp-formatted
@@ -715,14 +768,23 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
+```exec
+전체 마린 수 : 1
+전체 마린 수 : 2
+전체 마린 수 : 3
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F0225E15051A162F122F9E0)
-
-
+마린 1 이 마린 2 를 공격! 
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ 현재 총 마린 수 : 2
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 45
+ 현재 총 마린 수 : 2
+```
 
 와 같이 나옵니다.
 
@@ -844,9 +906,26 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ 현재 총 마린 수 : 1
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 50
+ 현재 총 마린 수 : 2
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F257CA24D51A1684431CF90)
-
+마린 1 이 마린 2 를 두 번 공격! 
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ 현재 총 마린 수 : 2
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 40
+ 현재 총 마린 수 : 2
+```
 
 와 같이 나옵니다.
 
@@ -927,8 +1006,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F011F503951A175F824DDF6)
+```exec
+5
+4
+4
+4
+```
 
 와 같이 나옵니다.
 일단 위 클래스 `A` 는 아래와 같이 `int` 와 `int` 의 레퍼런스를 리턴하는 두 개의 함수를 가지고 있습니다.
@@ -1167,10 +1250,26 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ 현재 총 마린 수 : 1
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 50
+ 현재 총 마린 수 : 2
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F257CA24D51A1684431CF90)
-
-
+마린 1 이 마린 2 를 두 번 공격! 
+ *** Marine *** 
+ Location : ( 2 , 3 ) 
+ HP : 50
+ 현재 총 마린 수 : 2
+ *** Marine *** 
+ Location : ( 3 , 5 ) 
+ HP : 40
+ 현재 총 마린 수 : 2
+```
 
 와 같이 나옵니다. 사실 위 소스는 거의 바뀐 것은 없고, 단순히 예시를 위해 아래와 같이 `attack` 함수를 살짝 바꾸었습니다.
 

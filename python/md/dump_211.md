@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한
 cat_title: 6 - 3. 가상함수와 상속에 관련한 잡다한 내용들
 next_page : 213
 publish_date : 2014-04-13
+tex_title : 상속에 관련된 잡다한 내용들
 --------------
 
 이번 강좌에서는
@@ -65,14 +66,19 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F2372D04753D905142692F7)
-
-
+```exec
+--- 평범한 Child 만들었을 때 ---
+Parent 생성자 호출
+Child 생성자 호출
+Child 소멸자 호출
+Parent 소멸자 호출
+--- Parent 포인터로 Child 가리켰을 때 ---
+Parent 생성자 호출
+Child 생성자 호출
+Parent 소멸자 호출
+```
 
 와 같이 나옵니다.
 
@@ -135,11 +141,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2267FE4553D916BC0B6C3C)
-
-
+```exec
+--- 평범한 Child 만들었을 때 ---
+Parent 생성자 호출
+Child 생성자 호출
+Child 소멸자 호출
+Parent 소멸자 호출
+--- Parent 포인터로 Child 가리켰을 때 ---
+Parent 생성자 호출
+Child 생성자 호출
+Child 소멸자 호출
+Parent 소멸자 호출
+```
 
 와 같이 제대로 `Child` 소멸자가 호출됨을 알 수 있습니다.
 
@@ -183,9 +196,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F25547A42578C8E63118312)
-
+```exec
+Parent !
+Child!
+```
 
 와 같이 나옵니다.
 
@@ -312,8 +326,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F226A0B4253DB346C046970)
+```exec
+왈왈
+야옹야옹
+```
 
 위 코드를 보면서 한 가지 특이한 점을 눈치 채셨을 것입니다.
 ```cpp-formatted
@@ -468,10 +484,11 @@ int main() { C c; }
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F2622683553DD2ED529CDF2)
-
-
+```exec
+A 생성자 호출
+B 생성자 호출
+C 생성자 호출
+```
 
 위 처럼 `A -> B -> C` 순으로 호출됨을 알 수 있습니다. 그렇다면 이번에는,
 
@@ -488,8 +505,11 @@ class C : public B, public A
 
 로 바꾸고 컴파일을 해보세요. 재미있게도;
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F2176983F53DD2FCC2A52E0)
+```exec
+B 생성자 호출
+A 생성자 호출
+C 생성자 호출
+```
 
 
 로 이번에는 `B` 의 생성자가 `A` 보다 먼저 호출됨을 알 수 있습니다. 몇 번 더 실험을 해보면 이 순서는 다른 것들에 의해 좌우되지 않고 오직 상속하는 순서에만 좌우 됨을 알 수 있습니다.
@@ -590,7 +610,9 @@ class Me : public HandsomeHuman, public SmartHuman {
 이러한 형태로 `Human` 을 `virtual` 로 상속 받는다면, `Me` 에서 다중 상속 시에도, 컴파일러가 언제나 `Human` 을 한 번만 포함하도록 지정할 수 있게 됩니다. 참고로, 가상 상속 시에, `Me` 의 생성자에서 `HandsomeHuman` 과 `SmartHuman` 의 생성자를 호출함은 당연하고, `Human` 의 생성자 또한 호출해주어야만 합니다.
 
 
-앞에서도 이야기 하였지만 반드시 필요한 경우가 아니라면 다중 상속을 피하는 것이 좋습니다. 왜냐하면 다중 상속을 사용하게 되면 프로그램의 구조가 매우 복잡해질 뿐더러 예상치 못한 오류를 발생할 가능성이 매우 높기 때문이지요. 실제로 다중 상속을 이용해서 해결해야 될 것 같은 문제도 알고보면 단일 상속을 통해 해결할 수 있는 경우가 매우 많습니다 (어떤 사람들은 `100%` 라고 주장하기도 하지요) 다중 상속에 좀 더 자세히 알고 싶은 분들은 이 글을 읽는 것이 많은 도움이 될 것입니다. [http://www.drdobbs.com/cpp/multiple-inheritance-considered-useful/184402074](http://www.drdobbs.com/cpp/multiple-inheritance-considered-useful/184402074)
+앞에서도 이야기 하였지만 반드시 필요한 경우가 아니라면 다중 상속을 피하는 것이 좋습니다. 왜냐하면 다중 상속을 사용하게 되면 프로그램의 구조가 매우 복잡해질 뿐더러 예상치 못한 오류를 발생할 가능성이 매우 높기 때문이지요.
+
+실제로 다중 상속을 이용해서 해결해야 될 것 같은 문제도 알고보면 단일 상속을 통해 해결할 수 있는 경우가 매우 많습니다 (어떤 사람들은 100% 라고 주장하기도 합니다) 다중 상속에 좀 더 자세히 알고 싶은 분들은 [이 글](http://www.drdobbs.com/cpp/multiple-inheritance-considered-useful/184402074)을 읽는 것이 많은 도움이 될 것입니다.
 
 
 

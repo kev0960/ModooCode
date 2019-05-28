@@ -3,6 +3,8 @@ title : 씹어먹는 C++ - <12 - 1. 우측값 레퍼런스와 이동 생성자>
 cat_title: 12 - 1. 우측값 레퍼런스와 이동 생성자
 next_page : 228
 publish_date : 2018-03-24
+chapter : 우측값과 이동 연산
+tex_title : 우측값 레퍼런스와 이동 생성자
 --------------
 
 이번 강좌에서는
@@ -51,10 +53,11 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F9936A83359A3A1A72E5EDB)
-
-
+```exec
+일반 생성자 호출!
+복사 생성자 호출!
+일반 생성자 호출!
+```
 
 와 같이 나옵니다.
 

@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <7 - 1. C++ 에서의 입출력 (istream, ostream)>
 cat_title: 7 - 1. C++ 에서의 입출력 (istream, ostream)
 next_page : 215
 publish_date : 2015-05-04
+chapter : C++ 표준 입출력 라이브러리
 --------------
 
 
@@ -135,9 +136,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F2330864554A0F4663941FA)
-
+```exec
+this is a long sentence
+word : this
+word : is
+word : a
+word : long
+word : sentence
+ABCD EFGH IJKL
+word : ABCD
+word : EFGH
+word : IJKL
+```
 
 
 와 같이 문장을 입력하더라도, 공백문자에 따라서 각각을 분리해서 입력받게 되는 것입니다.
@@ -146,7 +156,7 @@ int main() {
 ```cpp-formatted
 // 주의할 점
 #include <iostream>
-usingnamespace std;
+using namespace std;
 int main() {
   int t;
   while (true) {
@@ -161,10 +171,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2714DC4054A0F54E1E1225)
-
-
+```exec
+3
+입력 :: 3
+4
+입력 :: 4
+5
+입력 :: 5
+6
+입력 :: 6
+7
+입력 :: 7
+```
 
 그냥 평범하게 숫자를 잘 입력 받는 프로그램 입니다. 만일 사용자가 숫자만 꼬박 꼬박 잘 입력하면 정말 좋겠지만 문제는 그렇지 않는다는 것입니다. 프로그래머는 언제나 사용자의 기괴한 행동들에 대해서 모두 대응할 수 있어야만 합니다. 만일 사용자가, 숫자가 아니라 문자를 입력했다고 합시다. 그렇다면;
 
@@ -215,12 +233,13 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F271D064B54A0FA2911A2A5)
-
-
-
+```exec
+4
+입력 :: 4
+3
+입력 :: 3
+s
+```
 
 위와 같이 무한 루프에 빠지지 않고 제대로 처리됨을 알 수 있습니다. 어떻게 가능한 것일까요? 일단, `while` 문의 조건에 들어가 있는 저 식의 의미 부터 이해를 해봅시다.
 
@@ -257,12 +276,12 @@ int main() {
 ```
 
 
-
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F2520414754A0FCFC15F20C)
-
+```exec
+s
+fail 비트가 켜진 상태이므로, 입력받지 않는다
+```
 
 
 그렇다면 이 문제를 어떻게 해결 할 수 있을까요?
@@ -343,13 +362,15 @@ this is a very bad input\n
 
 
 앞서 `ios_base` 클래스에서, 스트림의 입출력 형식을 바꿀 수 있다고 하였습니다. 예를들어서, 여태까지 수를 입력하면 10진수로 처리되었지만, 이번에는 16진수로 처리할 수 있는 법입니다. 이를 어떻게 가능하게 하는지 아래의 예제로 보여드리겠습니다.
-```cpp-formatted
+
+```cpp
 #include <string>
+#include <iostream>
 
 int main() {
   int t;
   while (true) {
-    std::cin.setf(ios_base::hex, ios_base::basefield);
+    std::cin.setf(std::ios_base::hex, std::ios_base::basefield);
     std::cin >> t;
     std::cout << "입력 :: " << t << std::endl;
     if (std::cin.fail()) {
@@ -363,8 +384,17 @@ int main() {
 ```
 
 성공적으로 컴파일 하였다면
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F272CC74454A10BD31ADFCB)
 
+```exec
+ff
+입력 :: 255
+0xFF
+입력 :: 255
+123
+입력 :: 291
+ABCDE 
+입력 :: 703710
+```
 
 위와 같이 16진수 입력을 잘 받는 다는 것을 볼 수 있습니다. (출력 형식은 바꾸지 않았으므로, 10진수로 출력됩니다) 이 처럼 입력 받는 형식을 16진수로 바꿔준 함수는 보시다 싶이, 아래와 같은 스트림의 설정을 바꾸는 `setf` 함수 덕분입니다.
 
@@ -390,7 +420,7 @@ std::cin.setf(ios_base::hex, ios_base::basefield);
 int main() {
   int t;
   while (true) {
-    std::cin >> hex >> t;
+    std::cin >> std::hex >> t;
     std::cout << "입력 :: " << t << std::endl;
     if (std::cin.fail()) {
       std::cout << "제대로 입력해주세요" << std::endl;
@@ -406,14 +436,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
+ff
+입력 :: 255
+0xFF
+입력 :: 255
+123
+입력 :: 291
+ABCDE 
+입력 :: 703710
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F272CC74454A10BD31ADFCB)
-
-
-
-
-
-위와 같이 16진수를 잘 입력받는다는 사실을 알 수 있습니다. 이게 어떻게 된 일 일까요?
+위 경우 역시 16진수를 잘 입력받는다는 사실을 알 수 있습니다. 이게 어떻게 된 일 일까요?
 
 ```cpp-formatted
 std::cin >> hex >> t;
@@ -499,10 +533,11 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F246E6D4D554635332B1532)
-
-
+```cpp
+hello world
+두 번째 단어 맨 앞글자 : w
+다시 읽으면 : world
+```
 
 위와 같이 나옴을 알 수 있습니다.
 

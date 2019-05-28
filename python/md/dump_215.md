@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - std::ifstream. 
 cat_title: 7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream
 next_page : 217
 publish_date : 2016-07-14
+tex_title : C++ 파일 입출력
 --------------
 
 이번 강좌에서는
@@ -614,10 +615,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2271F14B5786637E06C381)
-
-
+```exec
+입력 받은 데이터 :: 123
+```
 
 와 같이 나옵니다.
 
@@ -664,9 +664,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2633F437578664AD224FAD)
-
+```exec
+변환:: 1 + 2 = 3
+```
 
 
 위와 같이 간편하게 문자열을 숫자로 변환할 수 있습니다.
@@ -693,10 +693,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F256F583B5786655F245518)
-
-
+```exec
+문자열로 변환:: 1 + 2 = 3
+```
 
 와 같이 나옵니다.
 

@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로
 cat_title: 5 - 1. 내가 만든 연산자 - 연산자 오버로딩
 next_page : 203
 publish_date : 2013-08-25
+chapter : 연산자 오버로딩(overloading)
 --------------
 
 이번 강좌에서는
@@ -355,12 +356,11 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F2160643D520CFD6F1D18E1)
+```exec
+( 7 , 4 ) 
+```
 
 와 같이 잘 나옴을 알 수 있습니다. 여기서 가장 중요하게 봐야 할 부분은 바로, 사칙연산 연산자 함수들의 리턴 타입 입니다.
 
@@ -483,9 +483,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2648ED34520D12320A734A)
-
-
+```exec
+( 10.9231 , 4.61538 ) 
+```
 
 와 같이 잘 작동함을 알 수 있습니다.
 
@@ -618,10 +618,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F26065741520D14F3047A36)
-
-
+```exec
+( 4 , 0 ) 
+( 3 , -2 ) 
+```
 
 와 같이 잘 출력됨을 알 수 있습니다. `a` 의 값만 바뀐 채 `b` 에는 아무런 영향이 없지요.
 
@@ -961,10 +961,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F2579DD3B521706FF295ABE)
-
-
+```exec
+( -1.1 , 3.923 ) 
+```
 
 와 같이 잘 실행되는 것을 알 수 있습니다.
 
@@ -1197,9 +1196,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F2746124A5217107A221C06)
-
-
+```exec
+( -1.1 , 3.923 ) 
+( -2.3 , 5.746 ) 
+( -131.702 , -37.3842 ) 
+( -0.150113 , 2.42733 ) 
+```
 
 와 같이 제대로 계산됨을 알 수 있습니다.
 
@@ -1348,9 +1350,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F2746124A5217107A221C06)
-
-
+```exec
+( -1.1 , 3.923 ) 
+( -2.3 , 5.746 ) 
+( -131.702 , -37.3842 ) 
+( -0.150113 , 2.42733 ) 
+```
 
 놀랍게도 정확히 동일하게 나옵니다. 아니 이게 뭔가요. 고생 고생을 해서
 

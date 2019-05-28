@@ -52,6 +52,7 @@ class ParserEnvironment {
   bool AdvanceToNextContent();
   void ResetContentPointer();
   bool ShouldStartNewListTag();
+  const Content& GetCurrentContent() const;
 
   // Return How many end tags should it return.
   int ShouldEndListTag();

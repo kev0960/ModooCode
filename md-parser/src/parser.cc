@@ -222,9 +222,20 @@ string MDParser::ConvertToLatex(
   parser_env_.SetHeader(header_);
   parser_env_.ResetContentPointer();
 
+  bool ignore_intro = true;
+
   string output_tex;
   do {
-    output_tex += parser_env_.ParseCurrentContentToLatex();
+    string output = parser_env_.ParseCurrentContentToLatex();
+    // Ignore until ChewingCPP logo.
+    if (ignore_intro) {
+      if (output.find("/img/Chewing") != string::npos) {
+        ignore_intro = false;
+        continue;
+      }
+      continue;
+    }
+    output_tex += output;
     output_tex += "\n\n";
   } while (parser_env_.AdvanceToNextContent());
   return output_tex;

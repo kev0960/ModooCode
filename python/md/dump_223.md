@@ -3,6 +3,8 @@ title : 씹어먹는 C++ - <10 - 1. C++ STL - 벡터(std::vector), 리스트(lis
 cat_title: 10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)
 next_page : 224
 publish_date : 2017-07-04
+chapter : C++ 표준 라이브러리 (컨테이너와 알고리즘)
+tex_title : C++ 표준 컨테이너
 --------------
 
 
@@ -128,11 +130,12 @@ int main() {
 
 성공적으로 컴파일 하였으면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F246C303C595A08BC167DA0)
-
-
+```exec
+vec 의 1 번째 원소 :: 10
+vec 의 2 번째 원소 :: 20
+vec 의 3 번째 원소 :: 30
+vec 의 4 번째 원소 :: 40
+```
 
 와 같이 우리가 넣은 순서대로 잘 나옴을 알 수 있습니다.
 
@@ -205,16 +208,16 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F26198938595A9B06322904)
-
-
-
+```exec
+10
+20
+30
+40
+3 번째 원소 :: 30
+```
 
 와 같이 잘 수행됨을 알 수 있습니다.
 
@@ -285,9 +288,24 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F277A2D4D595B000F1BBEBF)
-
+```exec
+처음 벡터 상태
+10
+20
+30
+40
+----------------------------
+10
+20
+15
+30
+40
+----------------------------
+10
+20
+15
+40
+```
 
 와 같이 잘 나옵니다.
 
@@ -526,7 +544,18 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F216F123F595B2E522A9968)
+```exec
+초기 vec 상태
+10
+20
+30
+40
+역으로 vec 출력하기!
+40
+30
+20
+10
+```
 
 와 같이 역으로 벡터의 원소들을 출력할 수 있습니다.
 
@@ -739,8 +768,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F26612B43595B40EF10724A)
-
+```exec
+10
+20
+30
+40
+```
 
 와 같이 잘 나옵니다.
 
@@ -915,10 +948,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F22224A3B595B66C807172A)
-
-
+```exec
+초기 dq 상태
+[ 40 30 10 20  ] 
+맨 앞의 원소 제거
+[ 30 10 20  ]
+```
 
 와 같이 잘 수행됩니다.
 

@@ -5,8 +5,6 @@ ref_title : flags
 publish_date : 2011-08-19
 --------------
 
-
-
 ##@ cpp-ref-start
 
 #@ ios_base::flags
@@ -29,31 +27,16 @@ fmtflags flags(fmtflags fmtfl);
 
 ###  인자
 
-
-
-
-
 `fmtfl`
 
   스트림에서 사용되는 서식 플래그. 이 값은 [ios_base::fmtflags](http://itguru.tistory.com/154)형이다.
 
 
-
-
 ###  리턴값
-
-
 
 함수 호출 직전의 서식 플래그
 
-
-
-
-
-
 ###  실행 예제
-
-
 
 ```cpp-formatted
 /*

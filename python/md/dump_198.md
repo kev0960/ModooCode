@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>
 cat_title: 4 - 5. 내가 만드는 String 클래스
 next_page : 253
 publish_date : 2013-08-15
+tex_title : 내가 만들어보는 문자열 클래스
 --------------
 
 이번 강좌에서는
@@ -213,8 +214,6 @@ int main() {
   str2.println();
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -646,8 +645,6 @@ MyString& MyString::insert(int loc, const MyString& str) {
 }
 ```
 
-
-
 제가 만든 `insert` 함수는, 이전의 `assign` 함수 처럼 새로 메모리를 할당해야 할 경우와, 굳이 할당할 필요가 없는 경우를 나누어서 처리하도록 하였습니다. 만일 원 문자열의 길이 `+` 새로 삽입되는 문자열의 길이가, 현재의 할당된 메모리의 크기 보다 크다면 반드시 메모리를 새로 할당해야 하겠지만, 작은 경우에는, 굳이 메모리를 해제하고 재할당하는데 시간을 낭비할 필요가 없게 됩니다.
 
 
@@ -672,8 +669,6 @@ for (int i = string_length - 1; i >= loc; i--) {
 for (int i = 0; i < str.string_length; i++)
   string_content[i + loc] = str.string_content[i];
 ```
-
-
 
 를 수행하면, `insert` 되는 문자가 밀린 문자열 공간에 들어가면서 `abbc` 에서 `adbc` 가 됩니다. 실제로 실행해보면 아래와 같이 잘 작동함을 알 수 있습니다.
 
@@ -916,8 +911,6 @@ while (some_condition) {
   str.insert(some_location, 'a');
 }
 ```
-
-
 
 마치 위와 같은 명령 말이지요. 이미 `str` 가 `capacity` 한계에 도달했다고 가정했으므로, 매 `insert` 마다 메모리를 해제하고, 1 만큼 큰 메모리를 할당하는 작업을 반복하게 될 것입니다. 이는 `str` 의 크기가 크다면 엄청난 작업의 낭비가 아닐 수 없습니다.
 

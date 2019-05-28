@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(te
 cat_title: 9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)
 next_page : 221
 publish_date : 2017-04-07
+chapter : C++ 템플릿
 --------------
 
 이번 강좌에서는
@@ -258,7 +259,14 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F256BAA3958E4332F1E0C9C)
+```exec
+-------- int vector ----------
+첫번째 원소 : 3
+두번째 원소 : 2
+-------- std::string vector -------
+첫번째 원소 : hello
+두번째 원소 : world
+```
 
 와 같이 나옵니다.
 
@@ -625,8 +633,16 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F232DED3658E4D77B3029B9)
-
+```exec
+-------- int vector ----------
+첫번째 원소 : 3
+두번째 원소 : 2
+-------- std::string vector -------
+첫번째 원소 : hello
+두번째 원소 : world
+-------- bool vector ---------
+11000101010101010
+```
 
 와 같이 나옵니다.
 
@@ -784,7 +800,10 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F26380B3E58E573D731A5E5)
+```exec
+Max (1,2) ? : 2
+Max (hello,world) ? : world
+```
 
 와 같이 나옵니다.
 
@@ -930,8 +949,12 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F235F7B3358E5A6571B312A)
+```exec
+정렬 이전 ---- 
+3 1 2 8 5 3 
+정렬 이후 ---- 
+1 2 3 3 5 8 
+```
 
 와 같이 나옵니다.
 
@@ -1182,9 +1205,16 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F27495C4458E6BF2C188F1C)
+```exec
+정렬 이전 ---- 
+3 1 2 8 5 3 
 
+내림차순 정렬 이후 ---- 
+8 5 3 3 2 1 
 
+오름차순 정렬 이후 ---- 
+1 2 3 3 5 8 
+```
 
 와 같이 나옵니다.
 
@@ -1282,6 +1312,6 @@ void sort( RandomIt first, RandomIt last,Compare comp );
 
 #### 문제 3
 
-위에서 컴파일러가 마법 처럼 템플릿 인자에 타입을 정해준다고 하지만 사실은 어떤 타입으로 추측할지 결정하는 일련의 규칙들이 있습니다. [자세한 내용은 여기](http://en.cppreference.com/w/cpp/language/template_argument_deduction) [를 참고해주세요](http://en.cppreference.com/w/cpp/language/template_argument_deduction)`!`
+위에서 컴파일러가 마법 처럼 템플릿 인자에 타입을 정해준다고 하지만 사실은 어떤 타입으로 추측할지 결정하는 일련의 규칙들이 있습니다. [자세한 내용은 여기를 참고해주세요](http://en.cppreference.com/w/cpp/language/template_argument_deduction)
 
 ##@ chewing-cpp-end

@@ -3,6 +3,7 @@ title : 씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Me
 cat_title: 9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)
 next_page : 222
 publish_date : 2017-06-26
+tex_title : 템플릿 메타프로그래밍 1 부
 --------------
 
 이번 강좌에서는
@@ -62,10 +63,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F27754F3B594C979F2AF4C4)
-
-
+```exec
+1, 2, 3, 
+```
 
 와 같이 나옵니다.
 
@@ -200,10 +200,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F215FB037594F3E06197C17)
-
-
+```exec
+Addtion result : 3
+```
 
 와 같이 실제 계산 결과가 잘 나오게 됩니다.
 
@@ -275,12 +274,11 @@ struct Factorial<1> {
 int main() { std::cout << "6! = 1*2*3*4*5*6 = " << Factorial<6>::result << std::endl; }
 ```
 
-
-
 성공적으로 컴파일 하였다면
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F24481E4F595009FA13AE76)
 
-
+```exec
+6! = 1*2*3*4*5*6 = 720
+```
 
 와 같이 잘 나옵니다.
 
@@ -378,10 +376,9 @@ int main() { std::cout << "gcd (36, 24) :: " << GCD<36, 24>::value << std::endl;
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F23373A49595058531B9B43)
-
-
+```exec
+gcd (36, 24) :: 12
+```
 
 와 같이 잘 계산됩니다.
 
@@ -489,18 +486,11 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2776165059506A812E3256)
-
-
-
-
+```exec
+13 / 6
+```
 
 와 같이 잘 계산되서 나옵니다.
 
@@ -619,16 +609,12 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F237B10405950A66E12890D)
-
-
+```exec
+2/3 + 3/2 = 13 / 6
+13 / 6 * 2 /3 = 13 / 9
+```
 
 와 같이 나옵니다.
 
