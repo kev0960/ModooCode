@@ -332,8 +332,8 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
     case COMPILER_WARNING: {
       return CreateTColorBox(
           StrCat(
-              "\n\\begin{lstlisting}[basicstyle=\\footnotesize,breaklines]\n",
-              content_, "\n\\end{lstlisting}"),
+              "\n\\begin{minted}{text}\n",
+              content_, "\n\\end{minted}"),
           "red", "컴파일 오류");
     }
     case INFO: {

@@ -111,7 +111,7 @@ void BookManager::GenerateMainTex() {
                                        {"lmodern"},
                                        {"minted"},
                                        {"ulem", "normalem"},
-                                       {"kotex"},
+                                       {"kotex", "hangul,nonfrench"},
                                        {"amsmath"},
                                        {"amssymb"},
                                        {"geometry"},
@@ -183,6 +183,11 @@ void BookManager::GenerateMainTex() {
 \setlength{\parskip}{0.5em}
 )";
 
+  // Adjust margin between lstlisting and tcolorbox.
+  tex += R"(
+\lstset{aboveskip=-0.5em,belowskip=-0.5em,basicstyle=\footnotesize\ttfamily,breaklines=true}
+)";
+
   // Geometry
   tex += R"(
 \geometry {
@@ -203,10 +208,21 @@ void BookManager::GenerateMainTex() {
 \addtolength\partopsep{0.3cm}
 )";
 
+  // Link color setup.
+  tex += R"(
+\hypersetup {colorlinks, linkcolor=red}
+)";
+
   // TOC only shows up to the subsection.
   tex += R"(
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
+)";
+
+  // Korean support.
+  tex += R"(
+\renewcommand{\chaptername}{제}
+\renewcommand*{\afterchapternum}{ 장 \par\vspace{0.8cm}}
 )";
 
   tex += "\\begin{document}\n";
