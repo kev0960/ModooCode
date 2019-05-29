@@ -14,7 +14,7 @@ publish_date : 2011-03-06
 
 다시 말해 구질 구질하게 기초적인 `for` 문 사용법, 포인터와 같은 것들은 C++ 강좌에서 다루지 않겠다는 의미 입니다.
 
-간혹 C++ 이 C 언어 확장팩(?) 개념이라고 생각하시는 분들이 있는데 이건 역시 사실이 아닙니다. 물론 초기에는 C++ 이름이 `C with classes` 였을 정도로 그냥 C 언어에 몇 가지 정도를 더 얹은 정도였습니다. 하지만 이제는 C++ 과 C 언어가 '둘이 같은 언어야?' 라고 말할 수 있을 정도로 매우 달라졌습니다.
+간혹 C++ 이 C 언어 확장팩(?) 개념이라고 생각하시는 분들이 있는데 이건 역시 사실이 아닙니다. 물론 초기에는 C++ 이름이 *C with classes* 였을 정도로 그냥 C 언어에 몇 가지 정도를 더 얹은 정도였습니다. 하지만 이제는 C++ 과 C 언어가 '둘이 같은 언어야?' 라고 말할 수 있을 정도로 매우 달라졌습니다.
 
 
 ###  강좌 수칙
@@ -30,10 +30,11 @@ publish_date : 2011-03-06
 
 입니다. 위 수칙 중에서 무엇보다도 중요한 것은 바로 모르는 내용은 꼭 답글을 다는 것입니다 :)
 세상에서 어리석은 질문은 없습니다. 여러분들이 궁금하거나 이상한 내용, 마음에 와닿지 않는 내용들을 질문하지 않고 다음강좌로 넘어가는 한 여러분의 실력은 결코 향상될 수 없을 것입니다.
-꼭 궁금한 것들은 댓글로 남겨주시고, 공개적으로 남기기 꺼리면 비밀글로 남기거나 정 그렇다면 `mail` 로 보내주시면 감사하겠습니다. 그러면 제가 확인하는대로 최대한 빨리 답글로 보내드릴께요 ㅎ
+
+꼭 궁금한 것들은 댓글로 남겨주시고, 공개적으로 남기기 꺼리면 비밀글로 남기거나 정 그렇다면 제 메일로 보내주시면 감사하겠습니다. 그러면 제가 확인하는대로 최대한 빨리 답글로 보내드릴께요 ㅎ
 
 ```warning
- [참고로 이 강좌는 Visual Studio 2017 커뮤니티 버전을 사용하고 있습니다. 여기를 클릭해서 사용법을 미리 숙지하는게 좋겠습니다.](http://itguru.tistory.com/220)
+[참고로 이 강좌는 Visual Studio 2017 커뮤니티 버전을 사용하고 있습니다. 여기를 클릭해서 사용법을 미리 숙지하는게 좋겠습니다.](http://itguru.tistory.com/220)
 ```
 
 
@@ -52,7 +53,7 @@ publish_date : 2011-03-06
 
 ###@ [2 - 1. C++ 은 C 친구 - C 와 공통점](http://itguru.tistory.com/138)
 
-기초적인 변수의 정의, `if, else, switch for, while,` 배열 등등
+기초적인 변수의 정의, `if`, `else`, `switch`, `for`, `while`, 배열 등등
 
 ###@ [2 - 2. C++ 은 C 친구일까?](http://itguru.tistory.com/141)
 
@@ -60,7 +61,7 @@ publish_date : 2011-03-06
 
 ###@ [3. C++ 의 세계로 오신 것을 환영합니다(new, delete)](http://itguru.tistory.com/169)
 
-`new, delete,` 그리고 왜 객체 지향 프로그래밍을 해야 하는가?
+`new`, `delete`, 그리고 왜 객체 지향 프로그래밍을 해야 하는가?
 
 ###@ [4 - 1. 이 세상은 객체로 이루어져 있다](http://itguru.tistory.com/172)
 
@@ -76,7 +77,7 @@ publish_date : 2011-03-06
 
 ###@ [4 - 4. 스타크래프트를 만들자 ② (const, static)](http://itguru.tistory.com/197)
 
-생성자 초기화 리스트(initializer list), `const, static` 멤버 변수, 레퍼런스를 리턴하는 함수, `this` 포인터, `const` 멤버함수
+생성자 초기화 리스트(initializer list), `const`, `static` 멤버 변수, 레퍼런스를 리턴하는 함수, `this` 포인터, `const` 멤버함수
 
 ###@ [4 - 5. 내가 만드는 String 클래스](http://itguru.tistory.com/198)
 
@@ -96,7 +97,7 @@ publish_date : 2011-03-06
  
 ###@ [5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열](http://itguru.tistory.com/204)
 
-C++ 스타일의 캐스팅, 디폴트 인자(default argument), 반복자(iterator), 그리고 `N` 차원 배열 제작에 대해 알아본다 C++ 스타일의 캐스팅, 디폴트 인자(default argument), 반복자(iterator), 그리고 `N` 차원 배열 제작에 대해 알아본다.
+C++ 스타일의 캐스팅, 디폴트 인자(default argument), 반복자(iterator), 그리고 N 차원 배열 제작에 대해 알아본다.
 
 ###@ [6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속](http://itguru.tistory.com/209)
 
@@ -112,7 +113,7 @@ C++ 표준 문자열, 상속 (inheritance), `protected` 키워드에 대해 알�
 
 ###@ [7 - 1. C++ 에서의 입출력 (istream, ostream)](http://itguru.tistory.com/213)
 
-C++ 입출력 라이브러리, `istream, ostream, streambuf` 에 대해 알아본다 C++ 입출력 라이브러리, `istream, ostream, streambuf` 에 대해 알아본다.
+C++ 입출력 라이브러리, `istream`, `ostream`, `streambuf` 에 대해 알아본다 C++ 입출력 라이브러리, `istream`, `ostream`, `streambuf` 에 대해 알아본다.
 
 ###@ [7 - 2. C++ 파일 입출력 (ifstream, ofstream, stringstream)](http://itguru.tistory.com/215)
 
