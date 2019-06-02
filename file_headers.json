@@ -1405,6 +1405,14 @@
 	"title" : "씹어먹는 C++ - <15 - 5. C++ 쓰레드풀(ThreadPool) 만들기>"
 }
 ,
+	"286" : {
+	"cat_title" : "15 - 5. C++ 쓰레드풀(ThreadPool) 만들기",
+	"is_published" : "false",
+	"publish_date" : "2019-05-23",
+	"tex_title" : "C++ Uniform Initialization",
+	"title" : "씹어먹는 C++ - <16 - 1. C++ 유니폼 초기화(Uniform Initialization)>"
+}
+,
 	"29" : {
 	"cat_title" : "15 - 1. 일로와봐, 문자열(string)",
 	"next_page" : "32",
