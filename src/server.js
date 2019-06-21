@@ -211,6 +211,9 @@ module.exports = class Server {
       if (!this.file_infos[key].publish_date) {
         this.file_infos[key].publish_date = '2018-12-31';
       }
+      if (this.file_infos[key].is_published === 'false') {
+        return;
+      }
       entire_articles.push({key, date: this.file_infos[key].publish_date})
     }.bind(this));
 

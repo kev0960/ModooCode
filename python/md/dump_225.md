@@ -116,7 +116,9 @@ int main() {
 sort(vec.begin(), vec.end());
 ```
 
-`sort` 함수는 위와 같이 정렬할 원소의 시작 위치와, 마지막 위치 바로 뒤를 반복자로 받습니다. 참고로 `sort` 에 들어가는 반복자의 경우 반드시 임의접근 반복자(RandomAccessIterator) 타입을 만족해야 하므로, 우리가 봐왔던 컨테이너들 중에서 벡터와 데크만 가능하고 나머지 컨테이너는 `sort` 함수를 적용할 수 었습니다. (예를 들어 리스트의 경우 반복자 타입이 양방향 반복자(BidirectionalIterator) 이므로 안됩니다)
+`sort` 함수는 위와 같이 정렬할 원소의 시작 위치와, 마지막 위치 바로 뒤를 반복자로 받습니다. 
+
+참고로 `sort` 에 들어가는 반복자의 경우 반드시 임의접근 반복자(RandomAccessIterator) 타입을 만족해야 하므로, 우리가 봐왔던 컨테이너들 중에선 벡터와 데크만 가능하고 나머지 컨테이너는 `sort` 함수를 적용할 수 없습니다. (예를 들어 리스트의 경우 반복자 타입이 양방향 반복자(BidirectionalIterator) 이므로 안됩니다)
 
 ```cpp-formatted
 list<int> l;
@@ -445,7 +447,7 @@ vec.erase(vec.begin() + 3);
 std::vector<int>::iterator itr = vec.begin();
 
 for (; itr != vec.end(); ++itr) {
-  if (*itr == 20) {
+  if (*itr == 3) {
     vec.erase(itr);
     itr = vec.begin();
   }

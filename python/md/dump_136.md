@@ -271,9 +271,9 @@ int main() {
 아래 문장은 화면에 어떻게 출력될까요?
 
 ```cpp-formatted
-std::cout << "hi" << endl
+std::cout << "hi" << std::endl
           << "my name is "
-          << "Psi" << endl;
+          << "Psi" << std::endl;
 ```
 
 ##@ chewing-cpp-end
