@@ -5,14 +5,11 @@ publish_date : 2013-01-05
 
 ```warning
 아직 C 언어와 친숙하지 않다면, [씹어먹는 C 언어 강좌](http://itguru.tistory.com/notice/15)를 보는 것이 어떻까요?
-
 ```
-
 
 ```info-text
 아직 C++ 에 친숙하지 않다면 [씹어먹는 C++ 강좌](http://itguru.tistory.com/135)는 어때요?
 ```
-
 
 안녕하세요 여러분! 제가 [첫 씹어먹는 C 언어 강좌](http://itguru.tistory.com/5)를 올렷을 때가 벌써 2009년 초 일때, 그러니까 한창 마이크로소프트에서 `Visual Studio 2008 Express` 버전을 공개해서 시끌시끌 했을 때 였습니다. 그 후로 시간이 무려 4년 이나 흘렀네요. 이제는 `Visual Studio 2008` 이 아니라, `Visual Studio 2012` 를 바라볼 시간이 되었습니다.
 
@@ -20,16 +17,12 @@ publish_date : 2013-01-05
 하지만 안타까운 일은 `Visual Studio 2012 Express` 버전이 애석하게도윈도우 8 에서만 돌아간다는 점 윈도우 7 이상에서만 돌아간다는 점입니다. 아마도 이 글을 읽고 계신 여러분 대부분은 윈도우 8 을 설치하지 않으셨을 텐데요, 하지만 걱정하지는 마세요. 저희에게는 `Visual Studio 2012` 만큼이나 강력한 `Visual Studio 2010 Express` 버전이 있으니까요. 적어도 C++ 컴파일러로써의 역할로는 두 소프트웨어가 거의 비슷하다고 볼 수 있습니다. 그렇기에, 혹시라도 '헉 2년이나 전 버전을 쓰는게 꿀리는거 아니야?' 라는 생각은 버려두세요.
 
 
-제가 이 강좌를 쓰는 이유는 씹어먹는 C 언어 첫 강좌에서 비주얼 스튜디오 2008 버전을 설치하는 것으로 시작하였는데 많은 여러분들이 링크가 깨졌고 너무 오래된 것 아니냐라는 문의가 계속 들어와서 새롭게 업데이트를 하기로 하였습니다. (참고로 2008 버전은 [여기서 다운 받을 수 있습니다](http://www.microsoft.com/en-us/download/details.aspx?id=6506)`. )`
+제가 이 강좌를 쓰는 이유는 씹어먹는 C 언어 첫 강좌에서 비주얼 스튜디오 2008 버전을 설치하는 것으로 시작하였는데 많은 여러분들이 링크가 깨졌고 너무 오래된 것 아니냐라는 문의가 계속 들어와서 새롭게 업데이트를 하기로 하였습니다. (참고로 2008 버전은 [여기서 다운 받을 수 있습니다](http://www.microsoft.com/en-us/download/details.aspx?id=6506)
 
 
 일단 다음 [링크를 클릭하셔서 들어가시기 바랍니다.](http://www.microsoft.com/visualstudio/eng/downloads)
- [http://www.microsoft.com/visualstudio/eng/downloads](http://www.microsoft.com/visualstudio/eng/downloads)
-
 
 아래로 조금 스크롤 하다보면
-
-
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F193DED3850E7D22524EF0E)
