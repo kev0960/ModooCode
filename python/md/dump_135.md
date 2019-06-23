@@ -195,7 +195,9 @@ CPU 와 컴파일러에서의 명령어 재배치, `atomic`, `memory_order` 에 
 
 여태 까지 배운 내용들을 활용해서 쓰레드풀(ThreadPool) 클래스를 만듧니다.
 
-###@ 16 - 1. C++ 11 - 초기화자 리스트 (initializer_list)
+###@ [16 - 1. C++ 유니폼 초기화(Uniform Initialization)](/286)
+
+C++ 11 에 도입된 uniform initialization 과 초기화자 리스트 (`initializer_list`) 의 사용법에 대해 다룹니다.
 
 ###@ 16 - 2. C++ 11 - 가변 길이 템플릿 (Variadic template)
 

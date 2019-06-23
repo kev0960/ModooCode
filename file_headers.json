@@ -1398,6 +1398,7 @@
 ,
 	"285" : {
 	"cat_title" : "15 - 5. C++ 쓰레드풀(ThreadPool) 만들기",
+	"next_page" : "286",
 	"path" : "/C++",
 	"prev_page" : "284",
 	"publish_date" : "2019-05-19",
@@ -1407,8 +1408,9 @@
 ,
 	"286" : {
 	"cat_title" : "16 - 1. C++ 유니폼 초기화(Uniform Initialization)",
-	"is_published" : "false",
-	"publish_date" : "2019-05-23",
+	"path" : "/C++",
+	"prev_page" : "285",
+	"publish_date" : "2019-06-23",
 	"tex_title" : "C++ Uniform Initialization",
 	"title" : "씹어먹는 C++ - <16 - 1. C++ 유니폼 초기화(Uniform Initialization)>"
 }
