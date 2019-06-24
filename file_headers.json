@@ -1415,6 +1415,12 @@
 	"title" : "씹어먹는 C++ - <16 - 1. C++ 유니폼 초기화(Uniform Initialization)>"
 }
 ,
+	"287" : {
+	"cat_title" : "2 - 4. k 번째 원소를 찾는 알고리즘 - QuickSelect",
+	"is_published" : "false",
+	"title" : "모두의 알고리즘 - 2 - 4. k 번째 원소를 찾는 알고리즘 - QuickSelect"
+}
+,
 	"29" : {
 	"cat_title" : "15 - 1. 일로와봐, 문자열(string)",
 	"next_page" : "32",

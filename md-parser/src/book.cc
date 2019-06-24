@@ -238,8 +238,8 @@ void BookManager::GenerateMainTex() {
 \noindent Copyright \textcopyright\  2017 이재범
 
 \noindent
-이 책은 \textbf{모두의 코드}에 연재된 씹어먹는 C++ 강좌를 책으로 옮긴 것입니다.해당 강좌는 자세한 내용은
-\url{https://modoocode.com} 에서 볼 수 있습니다
+이 책은 \textbf{모두의 코드}에 연재된 씹어먹는 C++ 강좌를 책으로 옮긴 것입니다. 해당 강좌는
+ \url{https://modoocode.com} 에서 볼 수 있습니다.
 \newpage
 )";
 
