@@ -19,7 +19,7 @@
 #include "tex_util.h"
 #include "util.h"
 
-static const std::unordered_set<string> kSpecialCommands = {"sidenote"};
+static const std::unordered_set<string> kSpecialCommands = {"sidenote", "sc"};
 
 namespace md_parser {
 
@@ -340,6 +340,9 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       html +=
           StrCat("</p><aside class='sidenote'>",
                  GetHtmlFragmentText(content_, fragments_[i]), "</aside><p>");
+    } else if (fragments_[i].type == Fragments::Types::SMALL_CAPS) {
+      html += StrCat("<span class='font-smallcaps'>",
+                     GetHtmlFragmentText(content_, fragments_[i]), "</span>");
     } else if (fragments_[i].type == Fragments::Types::LINK) {
       string url = GetHtmlFragmentText(content_, fragments_[i], false);
       StripItguruFromLink(&url);
@@ -465,6 +468,9 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
       latex += StrCat("\n\\begin{sidenotebox}\n",
                       GetLatexFragmentText(content_, fragment),
                       "\n\\end{sidenotebox}\n");
+    } else if (fragment.type == Fragments::Types::SMALL_CAPS) {
+      latex +=
+          StrCat("\\textsc{", GetLatexFragmentText(content_, fragment), "}");
     } else if (fragment.type == Fragments::Types::LINK) {
       // \usepackage{hyperref}
       string url = GetLatexFragmentText(content_, fragment, false);
@@ -588,6 +594,10 @@ size_t Content::HandleSpecialCommands(const size_t start_pos, int* text_start) {
   }
   if (delimiter == "sidenote") {
     fragments_.emplace_back(Fragments::Types::SIDENOTE, delimiter_pos + 1,
+                            body_end - 1);
+    return body_end;
+  } else if (delimiter == "sc") {
+    fragments_.emplace_back(Fragments::Types::SMALL_CAPS, delimiter_pos + 1,
                             body_end - 1);
     return body_end;
   }

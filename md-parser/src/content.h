@@ -20,7 +20,8 @@ struct Fragments {
     INLINE_CODE,
     SIDENOTE,
     INLINE_MATH,
-    STRIKE_THROUGH
+    STRIKE_THROUGH,
+    SMALL_CAPS
   } type;
 
   // Start and end are inclusive.
