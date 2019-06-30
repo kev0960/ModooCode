@@ -1300,6 +1300,7 @@
 ,
 	"274" : {
 	"cat_title" : "2 - 3. 비교 기반 정렬 알고리즘의 한계와 정수 정렬 알고리즘들",
+	"next_page" : "287",
 	"path" : "/알고리즘",
 	"prev_page" : "248",
 	"publish_date" : "2019-04-17",
@@ -1416,9 +1417,11 @@
 }
 ,
 	"287" : {
-	"cat_title" : "2 - 4. k 번째 원소를 찾는 알고리즘 - QuickSelect",
-	"is_published" : "false",
-	"title" : "모두의 알고리즘 - 2 - 4. k 번째 원소를 찾는 알고리즘 - QuickSelect"
+	"cat_title" : "2 - 4. k 번째 원소를 찾는 알고리즘 - \sc{QuickSelect}",
+	"path" : "/알고리즘",
+	"prev_page" : "274",
+	"publish_date" : "2019-06-28",
+	"title" : "모두의 알고리즘 - 2 - 4. k 번째 원소를 찾는 알고리즘 - \sc{QuickSelect}"
 }
 ,
 	"29" : {

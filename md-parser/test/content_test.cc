@@ -238,6 +238,15 @@ TEST(ContentTest, Sidenote) {
             sidenote.OutputHtml(&mock_parser_env));
 }
 
+TEST(ContentTest, SmallCaps) {
+  Content sidenote(R"(some \sc{SmallCaps} thing)");
+  sidenote.Preprocess(&mock_parser_env);
+
+  EXPECT_EQ(
+      SurroundP("some <span class='font-smallcaps'>SmallCaps</span> thing"),
+      sidenote.OutputHtml(&mock_parser_env));
+}
+
 TEST(ContentTest, BasicContentLatex) {
   Content plain_content("abcd");
   plain_content.Preprocess(&mock_parser_env);
@@ -401,7 +410,18 @@ TEST(ContentTest, SidenoteLatex) {
   Content sidenote(R"(some \sidenote{this is a sidenote} thing)");
   sidenote.Preprocess(&mock_parser_env);
 
-  EXPECT_EQ(StrCat("some ", "\\marginnote{this is a sidenote}", " thing"),
+  EXPECT_EQ(
+      StrCat("some ",
+             "\n\\begin{sidenotebox}\nthis is a sidenote\n\\end{sidenotebox}\n",
+             " thing"),
+      sidenote.OutputLatex(&mock_parser_env));
+}
+
+TEST(ContentTest, SmallCapsLatex) {
+  Content sidenote(R"(some \sc{SmallCaps} thing)");
+  sidenote.Preprocess(&mock_parser_env);
+
+  EXPECT_EQ(StrCat("some \\textsc{SmallCaps} thing"),
             sidenote.OutputLatex(&mock_parser_env));
 }
 }  // namespace md_parser
