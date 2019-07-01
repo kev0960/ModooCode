@@ -1417,11 +1417,19 @@
 }
 ,
 	"287" : {
-	"cat_title" : "2 - 4. k 번째 원소를 찾는 알고리즘 - \sc{QuickSelect}",
+	"cat_title" : "2 - 4. k 번째 원소를 찾는 알고리즘 - QuickSelect",
 	"path" : "/알고리즘",
 	"prev_page" : "274",
 	"publish_date" : "2019-06-28",
-	"title" : "모두의 알고리즘 - 2 - 4. k 번째 원소를 찾는 알고리즘 - \sc{QuickSelect}"
+	"title" : "모두의 알고리즘 - 2 - 4. k 번째 원소를 찾는 알고리즘 - QuickSelect"
+}
+,
+	"288" : {
+	"cat_title" : "iter_swap",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-06-30",
+	"ref_title" : "iter_swap, std::iter_swap",
+	"title" : "C++ 레퍼런스 - iter_swap 함수 (<algorithm>)"
 }
 ,
 	"29" : {
