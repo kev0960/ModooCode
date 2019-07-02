@@ -129,7 +129,7 @@ C++ 에서의 파일 입출력, `stringstream` 과 그 활용에 대해 알아�
 
 ###@ [9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(Template)](http://itguru.tistory.com/219)
 
-템플릿이란 무엇인가?, 함수 템플릿, 클래스 템플릿. 템플릿 인스턴스화, 템플릿 특수화. 함수 객체 (Functor)
+템플릿이란 무엇인가?, 함수 템플릿, 클래스 템플릿. 템플릿 인스턴스화, 템플릿 특수화. 함수 객체 (Functor), 타입이 아닌 템플릿 인자, 디폴트 템플릿 인자
 
 ###@ [9 - 2. 템플릿 메타 프로그래밍 (Template Meta Programming)](http://itguru.tistory.com/221)
 

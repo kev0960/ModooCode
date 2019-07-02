@@ -1448,6 +1448,14 @@
 	"title" : "씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>"
 }
 ,
+	"290" : {
+	"cat_title" : "9 - 2. 가변 길이 템플릿 (Variadic template)",
+	"is_published" : "false",
+	"publish_date" : "2019-07-02",
+	"tex_title" : "가변 길이 템플릿",
+	"title" : "씹어먹는 C++ - <9 - 2. 가변 길이 템플릿 (Variadic template)>"
+}
+,
 	"30" : {
 	"cat_title" : "13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)",
 	"next_page" : "31",

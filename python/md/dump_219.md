@@ -12,6 +12,8 @@ chapter : C++ 템플릿
 * 클래스 템플릿과 함수 템플릿
 * 템플릿 인스턴스화와 템플릿 특수화
 * 함수 객체 (Functor)
+* 타입이 아닌 템플릿 인자
+* 디폴트 템플릿 인지
 
 에 대해서 배웁니다.
 
@@ -1049,8 +1051,7 @@ bubble_sort(a);
 그렇다면 3 번째 방법은 어떨까요?
 
 
-
-###  함수 객체(Function `Object - Functor)` 의 도입
+###  함수 객체(Function Object - Functor) 의 도입
 
 
 그럼 다음과 같은 함수를 생각해봅시다.
@@ -1298,7 +1299,292 @@ void sort( RandomIt first, RandomIt last,Compare comp );
 
 이미 예상하셨겠지만, `Functor` 를 사용하는것이 여러 모로 훨씬 편리한 점이 많습니다. 일단, 클래스 자체에 여러가지 내부 `state` 를 저장해서 비교 자체가 복잡한 경우에도 손쉽게 사용자가 원하는 방식으로 만들어낼 수 있습니다. 뿐만 아니라, 함수포인터로 함수를 받아서 처리한다면 컴파일러가 최적화를 할 수 없지만, `Functor` 를 넘기게 된다면 컴파일러가 `operator()` 자체를 인라인화 시켜서 매우 빠르게 작업을 수행할 수 있습니다. \sidenote{실제로 C 의 qsort 와 C++ 의 표준 sort 함수를 비교한다면 C++ 버전이 훨씬 빠릅니다. 왜냐하면 C 의 qsort 는 비교를 수행하기 위해 매번 함수를 호출시켜야 하지만, C++ 버전의 경우 그 함수를 인라인화 시켜버리면 되기 때문이지요. (함수 호출 필요 없음)}
 
-이상으로 C++ 템플릿 첫 번째 강좌를 마치도록 하겠습니다. 다음 강좌에서는 템플릿이 C++ 에게 하사한 새로운 패러다임의 세계로 떠나볼 것입니다.
+### 타입이 아닌 템플릿 인자 (non-type template arguments)
+
+한 가지 재미있는 점은 템플릿 인자로 타입만 받을 수 있는 것이 아닙니다. 예를 들어 아래와 같은 코드를 보실까요.
+
+```cpp
+#include <iostream>
+
+template<typename T, int num>
+T add_num(T t) {
+  return t + num;
+}
+
+int main() {
+  int x = 3;
+  std::cout << "x : " << add_num<int, 5>(x) << std::endl;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+x : 8
+```
+
+와 같이 나옵니다. 먼저 `add_num` 함수의 정의 부분 부터 살펴봅시다.
+
+```cpp
+template<typename T, int num>
+T add_num(T t) {
+  return t + num;
+}
+```
+
+`template` 의 인자로 `T` 를 받고, 추가적으로 마치 함수의 인자 처럼 `int num` 을 또 받고 있습니다. 해당 템플릿 인자들은 `add_num` 함수를 호출할 때 `<>` 를 통해 전달하는 인자들이 들어가게 됩니다. 우리의 예제의 경우
+
+```cpp
+add_num<int, 5>(x)
+```
+
+위와 같이 `T` 에 `int` 를, `num` 에 5 를 전달하였으므로 생성되는 `add_num` 함수는 아래와 같습니다.
+
+```cpp
+int add_num(int t) {
+  return t + 5;
+}
+```
+
+참고로 만약에 `add_num` 에 템플릿 인자 `<>` 를 지정하지 않았더라면 아래와 같은 컴파일 타임 오류가 발생하게 됩니다.
+
+```compiler-warning
+test2.cc: In function ‘int main()’:
+test2.cc:10:35: error: no matching function for call to ‘add_num(int&)’
+   std::cout << "x : " << add_num(x) << std::endl;
+                                   ^
+test2.cc:4:3: note: candidate: template<class T, int num> T add_num(T)
+ T add_num(T t) {
+   ^~~~~~~
+test2.cc:4:3: note:   template argument deduction/substitution failed:
+test2.cc:10:35: note:   couldn't deduce template parameter ‘num’
+   std::cout << "x : " << add_num(x) << std::endl;
+```
+
+왜냐하면 상식적으로 컴파일러가 `num` 에 뭐가 들어가는지 알길이 없이 때문이죠. 따라서 위 처럼 `num` 의 값을 결정할 수 없다고 불만을 제시하는 오류가 발생하게 됩니다.
+
+한 가지 중요한 점은 템플릿 인자로 전달할 수 있는 타입들이 아래와 같이 제한적입니다. (자세한 내용은 [여기](https://en.cppreference.com/w/cpp/language/template_parameters) 참조)
+
+* 정수 타입들 (`bool`, `char`, `int`, `long` 등등). 당연히 `float` 과 `double` 은 제외
+* 포인터 타입
+* `enum` 타입
+* `std::nullptr_t` (널 포인터)
+
+\sidenote{C++ 20 부터 이 제한이 좀 더 완화되었습니다.}
+
+타입이 아닌 템플릿 인자를 가장 많이 활용하는 예시는 컴파일 타입에 값들이 정해져야 하는 것들이 되겠습니다. 대표적인 예시로 배열을 들 수 있겠지요. C 에서의 배열의 가장 큰 문제점은 함수에 배열을 전달할 때 배열의 크기에 대한 정보를 잃어버린다는 점입니다.
+
+하지만 템플릿 인자로 배열의 크기를 명시한다면 (어차피 배열의 크기는 컴파일 타임에 정해지는 것이니까), 이 문제를 완벽하게 해결 할 수 있습니다. 이와 같은 기능을 가진 배열을 C++ 11 부터 제공되는 `std::array` 를 통해 사용할 수 있습니다.
+
+```cpp
+#include <iostream>
+#include <array>
+
+int main() {
+  // 마치 C 에서의 배열 처럼 {} 을 통해 배열을 정의할 수 있다.
+  // {} 문법은 16 - 1 강에서 자세히 다루므로 여기서는 그냥 이렇게
+  // 쓰면 되는구나 하고 이해하고 넘어가면 됩니다.
+  std::array<int, 5> arr = {1, 2, 3, 4, 5};
+  // int arr[5] = {1, 2, 3, 4, 5}; 와 동일
+
+  for (int i = 0; i < arr.size(); i ++) {
+    std::cout << arr[i] << " ";
+  }
+  std::cout << std::endl;
+}
+```
+
+성공적으로 컴파일 하였으면
+
+```exec
+1 2 3 4 5 
+```
+
+와 같이 나옵니다. 사용법은 C 에서의 배열과 동일합니다.
+
+```cpp
+  std::array<int, 5> arr = {1, 2, 3, 4, 5};
+```
+
+위 처럼 배열의 원소들의 타입과 (`int`) 크기 (5) 를 템플릿 인자로 명시한 뒤에, 초기화만 해주면 됩니다. 그리고 마치 C 에서 배열을 정의할 때 처럼 `{}` 를 이용해서 생성하면 됩니다. 참고로 `{}` 는 유니폼 초기화(uniform initialization) 이라 불리는 C++ 11 에서 추가된 개념인데, 지금은 그냥 `std::array` 의 생성자를 호출하는 또 하나의 방법이라 생각하시면 되고 나중에 [16 - 1 강에서 좀 더 자세히 다룹니다](/286).
+
+한 가지 재미있는 점은 이 `arr` 은 런타임에서 동적으로 크기가 할당되는 것이 아니라는 점입니다. 마치 배열 처럼 컴파일 시에 `int` 5 개를 가지는 메모리를 가지고 **스택** 에 할당됩니다.
+
+또한 중요한 점으로 이 배열을 함수에 전달하기 위해서는 그냥 `std::array` 를 받는 함수를 만들면 안됩니다. `std::array<int, 5>` 자체가 하나의 타입이기 때문에;
+
+```cpp
+#include <iostream>
+#include <array>
+
+void print_array(const std::array<int, 5>& arr) {
+  for (int i = 0; i < arr.size(); i ++) {
+    std::cout << arr[i] << " ";
+  }
+  std::cout << std::endl;
+}
+
+int main() {
+  std::array<int, 5> arr = {1, 2, 3, 4, 5};
+
+  print_array(arr);
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+1 2 3 4 5 
+```
+
+와 같이 나옵니다.
+
+```cpp
+void print_array(const std::array<int, 5>& arr) {
+```
+
+문제는 각 `array` 크기 별로 함수를 만들어줘야 합니다. 하지만 우리는 알고 있지요. 여기서도 역시 템플릿을 쓸 수 있다는 것을 말이죠. 따라서 그냥
+
+```cpp
+#include <iostream>
+#include <array>
+
+template<typename T>
+void print_array(const T& arr) {
+  for (int i = 0; i < arr.size(); i ++) {
+    std::cout << arr[i] << " ";
+  }
+  std::cout << std::endl;
+}
+
+int main() {
+  std::array<int, 5> arr = {1, 2, 3, 4, 5};
+  std::array<int, 7> arr2 = {1, 2, 3, 4, 5, 6, 7};
+  std::array<int, 3> arr3 = {1, 2, 3};
+
+  print_array(arr);
+  print_array(arr2);
+  print_array(arr3);
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+1 2 3 4 5 
+1 2 3 4 5 6 7 
+1 2 3 
+```
+
+와 같이 잘 나옵니다.
+
+### 디폴트 템플릿 인자
+
+마지막으로 살펴볼 점은 함수에 디폴트 인자를 지정할 수 있는 것처럼 템플릿도 디폴트 인자를 지정할 수 있습니다. 예를 들어서 이전에 만들었던 `add_num` 함수를 다시 살펴봅시다.
+
+```cpp
+#include <iostream>
+
+template <typename T, int num = 5>
+T add_num(T t) {
+  return t + num;
+}
+
+int main() {
+  int x = 3;
+  std::cout << "x : " << add_num(x) << std::endl;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+x : 8
+```
+
+와 같이 나옵니다. 템플릿 디폴트 인자는 함수 디폴트 인자랑 똑같이 인자 뒤에 `= (디폴트 값)` 을 넣어주면 됩니다.
+
+```cpp
+template <typename T, int num = 5>
+```
+
+위 경우 `num` 에 디폴트로 5 가 전달됩니다. 따라서
+
+```cpp
+  std::cout << "x : " << add_num(x) << std::endl;
+```
+
+위 문장은 마치 `add_num<int, 5>` 를 한 것과 동일합니다. (참고로 `int` 는 컴파일러가 자동으로 추론해주었습니다.)
+
+타입 역시 디폴트로 지정이 가능합니다. 예를 들어서 아래와 같은 `min` 함수를 생각해봅시다.
+
+```cpp
+template<typename T, typename Comp>
+T Min(T a, T b) {
+  Comp comp;
+  if (comp(a, b)) {
+    return a;
+  }
+  return b;
+}
+```
+
+`Min` 함수는 임의의 두 원소를 받아서 작은 원소를 리턴합니다. 이 때 이 원소들을 어떻게 비교할지는 `Comp` 라는 객체가 이를 수행합니다.
+
+물론 우리는 `int` 와 같이 간단한 애들은 그냥 `<` 를 사용해서 대소 비교를 하면 되지만 일반적인 객체들에 대해서도 모두 동작하게 하려면 따로 두 원소를 비교하는 `Comp` 라는 클래스가 필요합니다.
+
+예를 들어서 `int` 간의 대소 비교를 위해서는
+
+```cpp
+template <typename T>
+struct Compare {
+  bool operator()(const T& a, const T& b) const { return a < b; }
+};
+
+int a = 3, b = 4;
+std::cout << "min : " << Min<int, Compare<int>>(a, b);
+```
+
+와 같이 `Compare` 타입을 굳이 써서 전달해줘야 하지요. 하지만 디폴트 생성자를 이용하면 아래 처럼 매우 간단하게 사용할 수 있게 됩니다.
+
+
+```cpp
+#include <iostream>
+#include <string>
+
+template <typename T>
+struct Compare {
+  bool operator()(const T& a, const T& b) const { return a < b; }
+};
+
+template <typename T, typename Comp = Compare<T>>
+T Min(T a, T b) {
+  Comp comp;
+  if (comp(a, b)) {
+    return a;
+  }
+  return b;
+}
+
+int main() {
+  int a = 3, b = 5;
+  std::cout << "Min " << a << " , " << b << " :: " << Min(a, b) << std::endl;
+
+  std::string s1 = "abc", s2 = "def";
+  std::cout << "Min " << s1 << " , " << s2 << " :: " << Min(s1, s2)
+            << std::endl;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+Min 3 , 5 :: 3
+Min abc , def :: abc
+```
+
+와 같이 잘 나옵니다. 이들 모두 `Comp` 로 디폴트 타입인 `Compare<T>` 가 전달되어서 `<` 를 통해 비교를 수행하였습니다.
+
+이번 강좌는 내용이 상당히 길었는데요, 이상으로 C++ 템플릿 첫 번째 강좌를 마치도록 하겠습니다. 그 만큼 템플릿의 위력이 강력하다는 뜻이지요. 다음 강좌에서는 템플릿이 C++ 에게 하사한 새로운 패러다임의 세계로 떠나볼 것입니다.
 
 ###  생각 해보기
 
