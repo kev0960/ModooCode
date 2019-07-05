@@ -1456,6 +1456,14 @@
 	"title" : "씹어먹는 C++ - <9 - 2. 가변 길이 템플릿 (Variadic template)>"
 }
 ,
+	"291" : {
+	"cat_title" : "nth_element",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2019-07-05",
+	"ref_title" : "nth_element, std::nth_element",
+	"title" : "C++ 레퍼런스 - nth_element 함수 (<algorithm>)"
+}
+,
 	"30" : {
 	"cat_title" : "13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)",
 	"next_page" : "31",
