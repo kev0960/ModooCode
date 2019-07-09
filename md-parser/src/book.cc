@@ -194,9 +194,13 @@ void BookManager::GenerateMainTex() {
 \geometry {
   bottom=30mm
 }
-% \semiisopage
 \setlrmarginsandblock{2cm}{5.5cm}{*}
 \checkandfixthelayout
+)";
+
+  // Chapter Style
+  tex += R"(
+\chapterstyle{ell}
 )";
 
   // Spacing between lines.
@@ -223,13 +227,15 @@ void BookManager::GenerateMainTex() {
 )";
 
   // Korean support.
+  /*
   tex += R"(
 \renewcommand{\chaptername}{제}
 \renewcommand*{\afterchapternum}{ 장 \par\vspace{0.8cm}}
 )";
-
-  // marginnote font size
+*/
+  // Font sizes
   tex += R"(
+\setsecheadstyle{\bfseries\huge}
 \renewcommand*{\marginfont}{\footnotesize}
 )";
 

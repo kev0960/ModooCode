@@ -26,6 +26,11 @@ std::unordered_set<string> kCppTypeKeywords = {
     "bool",   "int",  "long", "float", "short", "double", "char",    "unsigned",
     "signed", "void", "int8", "int16", "int32", "int64",  "wchar_t", "string"};
 
+std::unordered_set<string> kMacroWithOneExpression = {"#if", "#ifdef", "#ifndef",
+                                                      "#elif"};
+
+std::unordered_set<string> kMacroWithNoExpression = {"#else", "#endif"};
+
 // Check whether the character is allowed in the identifier.
 bool IsIdenfierAllowedChar(char c) {
   if ('0' <= c && c <= '9') {
@@ -287,6 +292,13 @@ size_t FastCppSyntaxHighlighter::HandleMacro(size_t macro_start) {
   if (delimiter_pos == string::npos) {
     return code_.length();
   }
+
+  // Check the macro token.
+  string macro = code_.substr(macro_start, header_token_end - macro_start);
+  if (SetContains(kMacroWithNoExpression, macro)) {
+    return delimiter_pos;
+  }
+
   size_t body_start = delimiter_pos + 1;
   if (code_[delimiter_pos] == ' ') {
     size_t whitespace_start = delimiter_pos;

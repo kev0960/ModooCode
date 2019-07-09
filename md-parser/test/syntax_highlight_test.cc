@@ -115,6 +115,19 @@ TEST(SyntaxHighlightTest, CppMacro) {
                           {WHITESPACE, 30, 31}});
 }
 
+TEST(SyntaxHighlightTest, CppMacroComplex) {
+  MockSyntaxHighlighter syn2("#ifdef AAAA\nhi;\n#endif");
+  syn2.ParseCode();
+  syn2.CheckSyntaxTokens({{MACRO_HEAD, 0, 6},
+                          {WHITESPACE, 6, 7},
+                          {MACRO_BODY, 7, 11},
+                          {WHITESPACE, 11, 12},
+                          {IDENTIFIER, 12, 14},
+                          {PUNCTUATION, 14, 15},
+                          {WHITESPACE, 15, 16},
+                          {MACRO_HEAD, 16, 22}});
+}
+
 TEST(SyntaxHighlightTest, StringLiterals) {
   MockSyntaxHighlighter syn("'a';'b';");
   syn.ParseCode();
