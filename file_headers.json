@@ -826,7 +826,7 @@
 	"219" : {
 	"cat_title" : "9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)",
 	"chapter" : "C++ 템플릿",
-	"next_page" : "221",
+	"next_page" : "290",
 	"prev_page" : "218",
 	"publish_date" : "2017-04-07",
 	"title" : "씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>"
@@ -840,21 +840,21 @@
 }
 ,
 	"221" : {
-	"cat_title" : "9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)",
+	"cat_title" : "9 - 3. 템플릿 메타 프로그래밍 (Template Meta programming)",
 	"next_page" : "222",
-	"prev_page" : "219",
+	"prev_page" : "290",
 	"publish_date" : "2017-06-26",
 	"tex_title" : "템플릿 메타프로그래밍 1 부",
-	"title" : "씹어먹는 C++ - <9 - 2. 템플릿 메타 프로그래밍 (Template Meta programming)>"
+	"title" : "씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 (Template Meta programming)>"
 }
 ,
 	"222" : {
-	"cat_title" : "9 - 3. 템플릿 메타 프로그래밍 2",
+	"cat_title" : "9 - 4. 템플릿 메타 프로그래밍 2",
 	"next_page" : "223",
 	"prev_page" : "221",
 	"publish_date" : "2017-07-02",
 	"tex_title" : "템플릿 메타프로그래밍 2 부",
-	"title" : "씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 2>"
+	"title" : "씹어먹는 C++ - <9 - 4. 템플릿 메타 프로그래밍 2>"
 }
 ,
 	"223" : {
@@ -1450,8 +1450,10 @@
 ,
 	"290" : {
 	"cat_title" : "9 - 2. 가변 길이 템플릿 (Variadic template)",
-	"is_published" : "false",
-	"publish_date" : "2019-07-02",
+	"next_page" : "221",
+	"path" : "/C++",
+	"prev_page" : "219",
+	"publish_date" : "2019-07-08",
 	"tex_title" : "가변 길이 템플릿",
 	"title" : "씹어먹는 C++ - <9 - 2. 가변 길이 템플릿 (Variadic template)>"
 }

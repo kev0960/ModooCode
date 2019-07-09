@@ -1,7 +1,7 @@
 ----------------
 title : 씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>
 cat_title: 9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)
-next_page : 221
+next_page : 290
 publish_date : 2017-04-07
 chapter : C++ 템플릿
 --------------

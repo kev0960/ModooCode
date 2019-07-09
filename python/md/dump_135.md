@@ -131,11 +131,15 @@ C++ 에서의 파일 입출력, `stringstream` 과 그 활용에 대해 알아�
 
 템플릿이란 무엇인가?, 함수 템플릿, 클래스 템플릿. 템플릿 인스턴스화, 템플릿 특수화. 함수 객체 (Functor), 타입이 아닌 템플릿 인자, 디폴트 템플릿 인자
 
-###@ [9 - 2. 템플릿 메타 프로그래밍 (Template Meta Programming)](http://itguru.tistory.com/221)
+###@ [9 - 2. 가변 길이 템플릿 (Variadic template)](/290)
+
+가변 길이 템플릿, 템플릿 파라미터 팩(parameter pack), fold expression
+
+###@ [9 - 3. 템플릿 메타 프로그래밍 (Template Meta Programming)](http://itguru.tistory.com/221)
 
 타입이 아닌 인자를 받는 템플릿, 템플릿 메타 프로그래밍
 
-###@ [9 - 3. 템플릿 메타 프로그래밍 2 (Template Meta Programming)](http://itguru.tistory.com/222)
+###@ [9 - 4. 템플릿 메타 프로그래밍 2 (Template Meta Programming)](http://itguru.tistory.com/222)
 
 TMP 마무리, 의존 타입(dependent type), `auto` 키워드
 
@@ -199,8 +203,6 @@ CPU 와 컴파일러에서의 명령어 재배치, `atomic`, `memory_order` 에 
 
 C++ 11 에 도입된 uniform initialization 과 초기화자 리스트 (`initializer_list`) 의 사용법에 대해 다룹니다.
 
-###@ 16 - 2. C++ 11 - 가변 길이 템플릿 (Variadic template)
+###@ 16 - 2. C++ 11 - 난수 생성(random)과 시간 관련 라이브러리(chrono) 소개
 
-###@ 16 - 3. C++ 11 - 난수 생성(random)과 시간 관련 라이브러리(chrono) 소개
-
-###@ 16 - 4. C++ 17 - 파일시스템(filesystem) 라이브러리 소개
+###@ 16 - 3. C++ 17 - 파일시스템(filesystem) 라이브러리 소개

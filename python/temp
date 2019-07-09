@@ -1,109 +1,609 @@
 ----------------
-title : C++ 레퍼런스 - nth_element 함수 (<algorithm>)
-cat_title : nth_element
-ref_title : nth_element, std::nth_element
-path : /C++ Reference/algorithm
-publish_date : 2019-07-05
-----------------
+title : 씹어먹는 C++ - <9 - 2. 가변 길이 템플릿 (Variadic template)>
+cat_title: 9 - 2. 가변 길이 템플릿 (Variadic template)
+next_page : 221
+publish_date : 2019-07-02
+tex_title : 가변 길이 템플릿
+--------------
 
-##@ cpp-ref-start
+이번 강좌에서는
 
-#@ nth_element
+* 가변 길이 템플릿 (variadic template)
+* 파라미터 팩(parameter pack)
+* Fold 형식 (Fold expression)
 
-`<algorithm>` 에 정의됨
+에 대해 다룹니다.
 
-```cpp
-// C++ 20 까지 (1)
-template< class RandomIt >
-void nth_element( RandomIt first, RandomIt nth, RandomIt last );
+![](/img/ChewingCpplogo.png)
 
-// C++ 20 부터 (1)
-template< class RandomIt >
-constexpr void nth_element( RandomIt first, RandomIt nth, RandomIt last );
+안녕하세요 여러분. 지난번 강좌에서 다룬 템플릿은 어떠셨나요? 템플릿을 잘 사용한다면 써야 되는 코드의 양을 비약적으로 줄일 수 있습니다. 이번 강좌는 그 연장선으로써, **템플릿을 사용해서 임의의 개수의 인자를 받는 방법**에 대해서 이야기 해보도록 할 것입니다.
 
-// C++ 17 부터 (2)
-template< class ExecutionPolicy, class RandomIt >
-void nth_element( ExecutionPolicy&& policy,
-                  RandomIt first, RandomIt nth, RandomIt last );
+### 가변 길이 템플릿
 
-// C++ 20 까지 (3)
-template< class RandomIt, class Compare >
-void nth_element( RandomIt first, RandomIt nth, RandomIt last,
-                  Compare comp );
+파이썬을 써보신 분들은 아시겠지만 파이썬의 경우 아래와 같이 print 함수를 이용하면 인자로 전달된 것들을 모두 출력할 수 있습니다.
 
-// C++ 20 부터 (3)
-template< class RandomIt, class Compare >
-constexpr void nth_element( RandomIt first, RandomIt nth, RandomIt last,
-                            Compare comp );
-
-// C++ 17 부터 (4)
-template< class ExecutionPolicy, class RandomIt, class Compare >
-void nth_element( ExecutionPolicy&& policy, 
-                  RandomIt first, RandomIt nth, RandomIt last,
-                  Compare comp );
+```py
+print(1, 3.1, "abc")
+print("adfasf", var) 
 ```
 
-`nth_element` 는 first 부터 last 전 까지의 원소들을 부분적으로 정렬합니다. 이 때, 정렬하는 방식은 다음과 같습니다.
-
-* nth 가 가리키고 있는 원소는 first 부터 last 전 까지의 모든 원소들을 정렬하였을 때 자리할 원소로 바뀝니다.
-* 새로운 nth 가 가리키고 있는 원소 앞에 오는 원소들은 nth 가 가리키는 원소 뒤에 오는 원소들보다 작거나 같습니다.
-
-엄밀히 말하자면 모든 $$i \in [\text{first}, \text{n})$$ 와 $$j \in [\text{n}, last)$$ 인 $$i, j$$ 에 대해서 `!(*j < * i)` (혹은 `comp(*j, *i) == false`) 를 만족하게 해줍니다.
-
-* (1) 의 경우 operator< 를 통해 비교합니다.
-* (3) 의 경우 이항 함수인 comp 를 통해 비교합니다.
-* (2), (4) 의 경우 각각 (1), (3) 과 동일하지만, ExecutionPolicy 에 따라 연산을 수행합니다. 
-
-### 인자들
-
-* first, last	: 원소들을 가리키는 반복자
-* nth	: n 번째 위치를 가리키는 반복자
-* policy : 어떠한 ExecutionPolicy 를 사용할 것인지
-* comp : 두 원소를 비교할 함수 객체로 첫 번째 인자로 전달된 원소가 두 번째 인자로 전달된 원소 보다 작다면 true 를 리턴한다.
-
-comp 함수는 아래와 같은 형태를 취해야 한다.
-
-```cpp
- bool cmp(const Type1 &a, const Type2 &b);
-```
-
-참고로 comp 함수는 const& 로 인자를 꼭 받을 필요는 없지만, 전달된 원소들을 수정하면 안된다.
-
-### 리턴값
-
-없음
-
-### 시간 복잡도
-
-std::distance(first, last) 에 선형으로 비례한다.
-
-### 실행 예제
+그렇다면 C++ 에서도 이와 같은 기능을 구현할 수 있을까요? 재미있게도 C++ 템플릿을 이용하면 임의의 개수의 인자를 받는 함수를 구현할 수 있습니다. 바로 아래 예제를 보시지요.
 
 ```cpp
 #include <iostream>
-#include <vector>
-#include <algorithm>
-#include <functional>
- 
-int main()
-{
-    std::vector<int> v{5, 6, 4, 3, 2, 6, 7, 9, 3};
- 
-    std::nth_element(v.begin(), v.begin() + v.size()/2, v.end());
-    std::cout << "중간값은 " << v[v.size()/2] << '\n';
- 
-    std::nth_element(v.begin(), v.begin()+1, v.end(), std::greater<int>());
-    std::cout << "두 번째로 큰 원소는 " << v[1] << '\n';
+
+template <typename T>
+void print(T arg) {
+  std::cout << arg << std::endl;
+}
+
+template <typename T, typename... Types>
+void print(T arg, Types... args) {
+  std::cout << arg << ", ";
+  print(args...);
+}
+
+int main() {
+  print(1, 3.1, "abc");
+  print(1, 2, 3, 4, 5, 6, 7);
 }
 ```
 
+성공적으로 컴파일 하였다면
+
 ```exec
-중간값은 5
-두 번째로 큰 원소는 7
+1, 3.1, abc
+1, 2, 3, 4, 5, 6, 7
 ```
 
-### 참고 자료
+와 같이 잘 나옵니다. 그렇다면 위 코드가 어떻게 작동하는지 살펴보겠습니다.
 
-* partial_sort_copy : 범위 내의 원소들을 부분적으로 정렬한 뒤 복사한다.
-* stable_sort : 안정 정렬을 수행한다.
-* sort : 정렬을 수행한다.
+```cpp
+template <typename T, typename... Types>
+```
+
+먼저 위와 같이 typename 뒤에 ... 으로 오는 것을 **템플릿 파리미터 팩(parameter pack)** 이라고 부릅니다. 템플릿 파라미터 팩의 경우 0 개 이상의 템플릿 인자들을 나타냅니다.
+
+```cpp
+void print(T arg, Types... args) {
+```
+
+마찬가지로 함수에 인자로 ... 로 오는 것을 **함수 파라미터 팩** 이라고 부르며, 0 개 이상의 함수 인자를 나타냅니다. 템플릿 파라미터 팩과 함수 파라미터 팩의 차이점은 템플릿의 경우 타입 **앞** 에 ... 이 오고, 함수의 경우 타입 **뒤** 에 ... 가 온다는 점입니다.
+
+파라미터 팩은 추론된 인자를 제외한 나머지 인자들을 나타내게 됩니다. 예를 들어서 
+
+```cpp
+  print(1, 3.1, "abc");
+```
+
+위와 같은 print 함수 호출을 살펴보도록 합시다. C++ 컴파일러는 이 두 개의 print 함수 정의를 살펴보면서 어느 것을 택해야 할지 정해야 합니다. 첫 번째 print 의 경우 인자로 단 1 개만 받기 때문에 후보에서 제외되고 두 번째 print 가 택해집니다.
+
+```cpp
+template <typename T, typename... Types>
+void print(T arg, Types... args) {
+  std::cout << arg << ", ";
+  print(args...);
+}
+```
+
+print 의 첫 번째 인자는 1 이므로 T 는 int 로 추론되고, arg 에는 1 이 오게 됩니다. 그리고 args 에는 나머지 3.1 과 "abc" 가 오게 됩니다.
+
+```cpp
+  print(args...);
+```
+
+따라서 위 args... 에는 print 에 전달되었던 나머지 인자들이 쭈르륵 오게 되겠지요. 따라서 위 코드는 마치 
+
+```cpp
+void print(int arg, double arg2, const char* arg3) {
+  std::cout << arg << ", ";
+  print(arg2, arg3);
+}
+```
+
+을 한 것과 마찬가지로 됩니다. 자 그럼 이제 재귀적으로 다시 인자 2 개를 받는 print 를 호출하였습니다. 역시나 첫 번째 후보는 탈락하고, 두 번째 후보인 파라미터 팩을 받는 함수가 채택되어서 T 에는 double 이고 나머지 Types... 부분에는 const char* 이 들어가겠지요.
+
+따라서 이를 통해 생성된 print 함수는 
+
+```cpp
+void print(double arg, const char* arg2) {
+  std::cout << arg << ", ";
+  print(arg2);
+}
+```
+
+와 같이 생겼을 것입니다. 
+
+```cpp
+  print(arg2);
+```
+
+자 그럼 이제 어떤 print 가 오버로드 될까요? 앞서 말했듯이 파라미터 팩은 0 개 이상의 인자들을 나타낸다고 하였습니다. 따라서  
+
+```cpp
+template <typename T, typename... Types>
+void print(T arg, Types... args);
+```
+
+위 함수도 가능하고 (이 경우 args... 에 아무것도 전달되지 않습니다. 즉 print() 가 호출됩니다.)
+
+```cpp
+template <typename T>
+void print(T arg);
+```
+
+위도 가능합니다. 결론적으로 말하자면, 첫 번째 print 가 호출됩니다. 이는 C++ 규칙 상, 파라미터 팩이 없는 함수의 우선순위가 높기 때문입니다. 아무튼 덕분에 마지막에 endl 이 출력될 수 있었습니다.
+
+#### 순서를 바꾼다면?
+
+한 가지 재밌는 점은 두 print 함수의 위치를 바꿔서 쓴다면 컴파일 오류가 발생한다는 점입니다. 
+
+```cpp
+#include <iostream>
+
+template <typename T, typename... Types>
+void print(T arg, Types... args) {
+  std::cout << arg << ", ";
+  print(args...);
+}
+
+template <typename T>
+void print(T arg) {
+  std::cout << arg << std::endl;
+}
+
+int main() {
+  print(1, 3.1, "abc");
+  print(1, 2, 3, 4, 5, 6, 7);
+}
+```
+
+컴파일 하였다면
+
+```compiler-warning
+test3.cc: In instantiation of ‘void print(T, Types ...) [with T = const char*; Types = {}]’:
+test3.cc:7:8:   recursively required from ‘void print(T, Types ...) [with T = double; Types = {const char*}]’
+test3.cc:7:8:   required from ‘void print(T, Types ...) [with T = int; Types = {double, const char*}]’
+test3.cc:16:22:   required from here
+test3.cc:7:8: error: no matching function for call to ‘print()’
+   print(args...);
+   ~~~~~^~~~~~~~~
+test3.cc:5:6: note: candidate: template<class T, class ... Types> void print(T, Types ...)
+ void print(T arg, Types... args) {
+      ^~~~~
+test3.cc:5:6: note:   template argument deduction/substitution failed:
+test3.cc:7:8: note:   candidate expects at least 1 argument, 0 provided
+   print(args...);
+   ~~~~~^~~~~~~~~
+```
+
+위와 같은 오류가 발생하게 되지요. 그 이유는 **C++ 컴파일러는 함수를 컴파일 시에, 자신의 앞에 정의되어 있는 함수들 밖에 보지 못하기 때문**입니다. 따라서 `void print(T arg, Types... args)` 이 함수를 컴파일 할 때, `void print(T arg)` 이 함수가 존재함을 모르는 셈이지요.
+
+그렇게 된다면, 마지막에 `print("abc")` 의 오버로딩을 찾을 때, 파라미터 팩이 있는 함수를 택하게 되는데, 그 경우 그 함수 안에서 `print()` 가 호출이 됩니다. 하지만 우리는 `print()` 를 정의하지 않았기에 컴파일러가 이 함수를 찾을 수 없다고 오류를 뿜뿜 하게 되는 것입니다.
+
+따라서 항상 템플릿 함수를 작성할 때 그 순서에 유의해서 써야 합니다.
+
+
+### 임의의 개수의 문자열을 합치는 함수
+
+가변 길이 템플릿을 활용한 또 다른 예시로 임의의 길이의 문자열을 합쳐주는 함수를 들 수 있습니다. 예를 들어서 std::string 에서 문자열을 합치기 위해서는
+
+```cpp
+concat = s1 + s2 + s3;
+```
+
+과 같이 해야 했는데, 잘 알다 시피 위는 사실
+
+```cpp
+concat = s1.operator+(s2).operator+(s3);
+```
+
+와 같습니다. 문제는 s2 를 더할 때 메모리 할당이 발생하고, s3 을 더할 때 메모리 할당이 또 한번 발생할 수 있다는 뜻입니다. 합쳐진 문자열의 크기는 미리 알 수 있으니가 차라리 한 번에 필요한 만큼 메모리를 할당해버리는 것이 훨씬 낫습니다. \sidenote{메모리 할당/해제는 매우 느린 작업 중 하나 입니다.}
+
+```cpp
+std::string concat;
+concat.reserve(s1.size() + s2.size() + s3.size()); // 여기서 할당 1 번 수행
+concat.append(s1);
+concat.append(s2);
+concat.append(s3);
+```
+
+를 하게 된다면 깔끔하게 메모리 할당 1 번으로 끝낼 수 있습니다. 그렇다면 위와 같은 작업을 도와주는 함수를 만든다면 어떨까요? 아래 처럼 말이지요.
+
+```cpp
+std::string concat = StrCat(s1, "abc", s2, s3);
+```
+
+을 한다면 깔끔하게 concat 에 s1 + "abc" + s2 + s3 한 문자열이 들어가게 됩니다. 물론 불필요한 메모리 할당이 없이 말이지요. 하지만 문제는 StrCat 함수가 임의의 개수의 인자를 받아야 된다는 것이지요. 여기서 바로 가변 길이 템플릿을 사용하면 됩니다.
+
+#### 첫 번째 시도
+
+```cpp
+#include <iostream>
+#include <string>
+
+template <typename String>
+std::string StrCat(const String& s) {
+  return std::string(s);
+}
+
+template <typename String, typename... Strings>
+std::string StrCat(const String& s, Strings... strs) {
+  return std::string(s) + StrCat(strs...);
+}
+
+int main() {
+  // std::string 과 const char* 을 혼합해서 사용 가능하다.
+  std::cout << StrCat(std::string("this"), " ", "is", " ", std::string("a"),
+                       " ", std::string("sentence"));
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+this is a sentence
+```
+
+와 같이 나옵니다. 위에서 파라미터 팩이 어떻게 작동하는지 이해하신 분들은 위 코드를 이해하기 쉬우실 것입니다. 우리의 StrCat 은 재귀적으로 정의되어 있는데;
+
+```cpp
+  return std::string(s) + StrCat(strs...);
+```
+
+위에서 나머지 인자들을 합친 문자열과 현재 문자열(`s`) 를 더해주게 됩니다. 그리고 당연히도 재귀 호출의 베이스 케이스인 
+
+```cpp
+template <typename String>
+std::string StrCat(const String& s) {
+  return std::string(s);
+}
+```
+
+를 호출해야 하겠지요. `s` 는 std::string 으로 매번 감싸는 이유는 `s` 가 꼭 std::string 일 필요는 없기 때문이죠 (예컨대 `const char*` 일 수 도 있음)
+
+하지만 위 구현은 문제가 있습니다. 위에서도 이야기 했듯이 결과적으로 std::string 의 operator+ 를 매번 호출하는 셈이기 때문이지요. 따라서 StrCat 에 전달된 인자가 5 개라면 메모리 할당이 최대 5 번씩이나 일어날 수 있게되는 셈입니다.
+
+효율적으로 StrCat 을 구현하기 위해서는 합쳐진 문자열의 길이를 먼저 계산한 뒤에, 메모리를 할당하고, 그 다음에 문자열을 붙이는 것이 좋을 것입니다.
+
+#### 두 번째 시도
+
+그렇다면 먼저 합쳐진 문자열의 길이를 먼저 구하는 함수를 만들어야 할 것입니다. 물론 이 역시 가변 길이 템플릿을 사용하면 매우 간단합니다.
+
+```cpp
+size_t GetStringSize(const char* s) { return strlen(s); }
+
+size_t GetStringSize(const std::string& s) { return s.size(); }
+
+template <typename String, typename... Strings>
+size_t GetStringSize(const String& s, Strings... strs) {
+  return GetStringSize(s) + GetStringSize(strs...);
+}
+```
+
+GetStringSize 함수는 그냥 임의의 개수의 문자열을 받아서 각각의 길이를 더한 것들을 리턴하게 됩니다. 참고로 const char* 과 std::string 모두 잘 작동하게 하기 위해서 인자 1 개만 받는 GetStringSize 의 오버로드를 각각의 경우에 대해 준비하였습니다.
+
+그렇다면 수정된 StrCat 의 모습은 아래와 같을 것입니다.
+
+```cpp
+template <typename String, typename... Strings>
+std::string StrCat(const String& s, Strings... strs) {
+  // 먼저 합쳐질 문자열의 총 길이를 구한다.
+  size_t total_size = GetStringSize(s, strs...);
+
+  // reserve 를 통해 미리 공간을 할당해 놓는다.
+  std::string concat_str;
+  concat_str.reserve(total_size);
+
+  concat_str = s;
+
+  // concat_str 에 문자열들을 붙인다.
+  AppendToString(&concat_str, strs...);
+
+  return concat_str;
+}
+```
+
+먼저 GetStringSize() 를 통해서 합쳐진 문자열의 총 길이를 계산한 뒤에, 합쳐진 문자열을 보관할 concat_str 이라는 변수를 만들었습니다. 그리고 reserve 함수를 통해서 **필요한 만큼 미리 공간을 할당해 놓죠**.
+
+그 다음에는 이제 concat_str 뒤에 나머지 문자열들을 가져다 붙여야 합니다. 이 과정을 수행하는 함수를 AppendToString 이라고 해봅시다. 그렇다면 AppendToString 은 아래와 같이 구성할 수 있을 것입니다.
+
+```cpp
+void AppendToString(std::string* concat_str) { return; }
+
+template <typename String, typename... Strings>
+void AppendToString(std::string* concat_str, const String& s, Strings... strs) {
+  concat_str->append(s);
+  AppendToString(concat_str, strs...);
+}
+```
+
+AppendToString 의 첫 번째 인자로는 합쳐진 문자열을 보관할 문자열을 계속 전달하고, 그 뒤로 합칠 문자열들을 인자로 전달하게 됩니다. 그리고 재귀 호출의 맨 마지막 단계로 strs... 가 아무 인자도 없을 때 까지 진행하므로, 재귀 호출을 끝내기 위해선 `AppendToString(std::string* concat_str)` 을 만들어줘야 겠지요.
+
+전체 완성된 코드를 보면 아래와 같습니다.
+
+```cpp
+#include <cstring>
+#include <iostream>
+#include <string>
+
+size_t GetStringSize(const char* s) { return strlen(s); }
+
+size_t GetStringSize(const std::string& s) { return s.size(); }
+
+template <typename String, typename... Strings>
+size_t GetStringSize(const String& s, Strings... strs) {
+  return GetStringSize(s) + GetStringSize(strs...);
+}
+
+void AppendToString(std::string* concat_str) { return; }
+
+template <typename String, typename... Strings>
+void AppendToString(std::string* concat_str, const String& s, Strings... strs) {
+  concat_str->append(s);
+  AppendToString(concat_str, strs...);
+}
+
+template <typename String, typename... Strings>
+std::string StrCat(const String& s, Strings... strs) {
+  // 먼저 합쳐질 문자열의 총 길이를 구한다.
+  size_t total_size = GetStringSize(s, strs...);
+
+  // reserve 를 통해 미리 공간을 할당해 놓는다.
+  std::string concat_str;
+  concat_str.reserve(total_size);
+
+  concat_str = s;
+  AppendToString(&concat_str, strs...);
+
+  return concat_str;
+}
+
+int main() {
+  // std::string 과 const char* 을 혼합해서 사용 가능하다.
+  std::cout << StrCat(std::string("this"), " ", "is", " ", std::string("a"),
+                      " ", std::string("sentence"));
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+this is a sentence
+```
+
+와 같이 잘 나옵니다.
+
+### sizeof... 
+
+sizeof 연산자는 인자의 크기를 리턴하지만 파라미터 팩에 sizeof... 을 사용할 경우 전체 인자의 개수를 리턴하게 됩니다. 예를 들어서 원소들의 평균을 구하는 함수를 생각해봅시다.
+
+```cpp
+#include <iostream>
+#include <iostream>
+
+// 재귀 호출 종료를 위한 베이스 케이스
+int sum_all() { return 0; }
+
+template <typename... Ints>
+int sum_all(int num, Ints... nums) {
+  return num + sum_all(nums...);
+}
+
+template <typename... Ints>
+double average(Ints... nums) {
+  return static_cast<double>(sum_all(nums...)) / sizeof...(nums);
+}
+
+int main() {
+  // (1 + 4 + 2 + 3 + 10) / 5
+  std::cout << average(1, 4, 2, 3, 10) << std::endl;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+4
+```
+
+와 같이 잘 구합니다. 코드를 살펴보자면;
+
+```cpp
+int sum_all() { return 0; }
+
+template <typename... Ints>
+int sum_all(int num, Ints... nums) {
+  return num + sum_all(nums...);
+}
+```
+
+sum_all 함수는 전달된 인자들의 합을 리턴하는 함수 입니다. 파라미터 팩을 이해하셨더라면 위 코드를 이해하는데 큰 문제가 없을 것입니다.
+
+```cpp
+template <typename... Ints>
+double average(Ints... nums) {
+  return static_cast<double>(sum_all(nums...)) / sizeof...(nums);
+}
+```
+
+한편, average 함수의 경우 전달된 전체 인자 개수로 합을 나눠줘야만 합니다. 여기서 sizeof... 연산자가 활용됩니다. sizeof... 에 파라미터 팩 (`nums`) 를 전달하면 `nums` 에 해당하는 실제 인자의 개수를 리턴해줍니다. 우리의 경우 인자를 5 개 전달하였으므로 5 가 되었겠지요.
+
+
+### Fold Expression
+
+C++ 11 에서 도입된 가변 길이 템플릿은 매우 편리하지만 한 가지 단점이 있어야 합니다. 재귀 함수 형태로 구성해야 하기 때문에, 반드시 재귀 호출 종료를 위한 함수를 따로 만들어야 한다는 것이지요. 
+
+예를 들어서 위에서 만들었던 sum_all 함수를 다시 살펴보자면;
+
+```cpp
+// 재귀 호출 종료를 위한 베이스 케이스
+int sum_all() { return 0; }
+```
+
+위와 같이 재귀 함수 호출을 종료하기 위해 베이스 케이스를 꼭 만들어줘야 한다는 점입니다. 이는 코드의 복잡도를 쓸데없이 늘리게 됩니다. 
+
+하지만 C++ 17 에 새로 도입된 Fold 형식을 사용한다면 이를 훨씬 간단하게 표현할 수 있습니다.
+
+```cpp
+#include <iostream>
+
+template <typename... Ints>
+int sum_all(Ints... nums) {
+  return (... + nums);
+}
+
+int main() {
+  // 1 + 4 + 2 + 3 + 10
+  std::cout << sum_all(1, 4, 2, 3, 10) << std::endl;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+20
+```
+
+과 같이 나옵니다.
+
+```cpp
+  return (... + nums);
+```
+
+위 문장이 바로 C++ 17 에 추가된 Fold 형식으로, 위는 아래와 같이 컴파일러에서 해석됩니다.
+
+```cpp
+  return ((((1 + 4) + 2) + 3) + 10);
+```
+
+위와 같은 형태를 단항 좌측 Fold (Unary left fold)라고 부릅니다. C++ 17 에서 지원하는 fold 방식의 종류로 아래 표와 같이 총 4 가지가 있습니다. 참고로 `I` 는 초기값을 의미하며 파라미터 팩이 아닙니다.
+
+|이름|Fold 방식|실제 전개 형태|
+|---|--------|-----------|
+| `(E op ...)`|단항 우측 Fold|$$(E_1 \text{ op } (...\text{ op } (E_{N-1} \text{ op } E_N))) $$|
+| `(... op E)`|단항 좌측 Fold|$$(((E_1 \text{ op } E_2) \text{ op } ...) \text{ op } E_N) $$|
+| `(E op ... op I)`|이항 우측 Fold|$$(E_1\text{ op } (...\text{ op } (E_{N-1}\text{ op } (E_{N}\text{ op } I))))$$|
+| `(I op ... op E)`|이항 좌측 Fold|$$((((I\text{ op } E_1)\text{ op } E_2)\text{ op } ...)\text{ op } E_N$$|
+
+여기서 `op` 자리에는 대부분의 이항 연산자들이 포함될 수 있습니다. 예를 들어서 `+`, `-`, `<`, `<<`, `->`, `,` 등등이 있습니다. 전체 목록은 [여기](https://en.cppreference.com/w/cpp/language/fold) 를 참조하시면 됩니다.
+
+한 가지 중요한 점은 Fold 식을 쓸 때 꼭 () 로 감싸줘야 한다는 점입니다. 위 경우
+
+```cpp
+  return (... + nums);
+```
+
+대신에 
+
+```cpp
+  return ... + nums;
+```
+
+로 컴파일 하게 된다면 
+
+```compiler-warning
+test2.cc:6:10: error: expected primary-expression before ‘...’ token
+   return ... + nums;
+          ^~~
+test2.cc:6:10: error: expected ‘;’ before ‘...’ token
+test2.cc:6:10: error: expected primary-expression before ‘...’ token
+```
+
+위와 같은 오류가 발생하게 됩니다. (위 표에 () 가 Fold 식에 포함 되어 있는 것입니다!)
+
+이항 Fold 의 경우 아래와 같은 예시를 들 수 있습니다. 
+
+```cpp
+#include <iostream>
+
+template <typename Int, typename... Ints>
+Int diff_from(Int start, Ints... nums) {
+  return (start - ... - nums);
+}
+
+int main() {
+  // 100 - 1 - 4 - 2 - 3 - 10
+  std::cout << diff_from(100, 1, 4, 2, 3, 10) << std::endl;
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+80
+```
+
+와 같이 나옵니다. 
+
+```cpp
+  return (start - ... - nums);
+```
+
+위 식은 위 표에 따르면 이항 좌측 Fold 입니다. 왜냐하면 start 가 초기값이고 nums 가 파라미터 팩 부분이기 때문이지요. 따라서 위 식은 실제로는 아래와 같이 컴파일 됩니다.
+
+```cpp
+  return (((((100 - 1) - 4) - 2) - 3) - 10); 
+```
+
+따라서 위 처럼 80 이라는 결과를 얻을 수 있겠지요.
+
+한 가지 더 재미있는 점은 `,` 연산자를 사용하면 각각의 인자들에 대해 원하는 식을 실행할 수 있습니다. 
+
+```cpp
+#include <iostream>
+
+class A {
+ public:
+  void do_something(int x) const {
+    std::cout << "Do something with " << x << std::endl;
+  }
+};
+
+template <typename T, typename... Ints>
+void do_many_things(const T& t, Ints... nums) {
+  // 각각의 인자들에 대해 do_something 함수들을 호출한다.
+  (t.do_something(nums), ...);
+}
+int main() {
+  A a;
+  do_many_things(a, 1, 3, 2, 4);
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+Do something with 1
+Do something with 3
+Do something with 2
+Do something with 4
+```
+
+와 같이 나옵니다.
+
+```cpp
+  (t.do_something(nums), ...);
+```
+
+위는 사실상 모든 인자들에 대해서 각각 t.do_something(arg) 를 실행한 것과 같습니다. 즉 실제 컴파일 되는 코드는
+
+```cpp
+  t.do_something(1);
+  t.do_something(3);
+  t.do_something(2);
+  t.do_something(4);
+```
+
+가 되겠지요.
+
+
+자 그럼 이것으로 이번 강좌를 마치도록 하겠습니다. 다음 강좌에서는 템플릿 메타프로그래밍이라는, 템플릿을 통해 생성된 코드로 프로그래밍을 하는 새로운 패러다임에 대해서 다룰 것입니다. 
+
+```lec-summary
+파라미터 팩(`...`)을 사용해서 임의의 개수의 인자를 받는 템플릿을 작성할 수 있습니다.
+C++ 17 에 새로 추가된 Fold 형식에 대해 배웠습니다.
+```
+
+##@ chewing-cpp-end
+
