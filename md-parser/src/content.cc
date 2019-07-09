@@ -465,9 +465,14 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
       }
       strike_through = !strike_through;
     } else if (fragment.type == Fragments::Types::SIDENOTE) {
+      /*
       latex += StrCat("\n\\begin{sidenotebox}\n",
                       GetLatexFragmentText(content_, fragment),
                       "\n\\end{sidenotebox}\n");
+                      */
+      latex += StrCat(" \\marginnote{",
+                      GetLatexFragmentText(content_, fragment),
+                      "}\n");
     } else if (fragment.type == Fragments::Types::SMALL_CAPS) {
       latex +=
           StrCat("\\textsc{", GetLatexFragmentText(content_, fragment), "}");

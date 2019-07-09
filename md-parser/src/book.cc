@@ -170,10 +170,11 @@ void BookManager::GenerateMainTex() {
   tex += R"(
 \setminted[cpp]{
   frame=single,
-  framesep=2mm,
+  framesep=1mm,
   baselinestretch=1.2,
   tabsize=2,
-  fontsize=\small
+  fontsize=\footnotesize,
+  breaklines
 }
 )";
 
@@ -193,7 +194,9 @@ void BookManager::GenerateMainTex() {
 \geometry {
   bottom=30mm
 }
-\semiisopage[12]
+% \semiisopage
+\setlrmarginsandblock{2cm}{5.5cm}{*}
+\checkandfixthelayout
 )";
 
   // Spacing between lines.
@@ -225,6 +228,26 @@ void BookManager::GenerateMainTex() {
 \renewcommand*{\afterchapternum}{ 장 \par\vspace{0.8cm}}
 )";
 
+  // marginnote font size
+  tex += R"(
+\renewcommand*{\marginfont}{\footnotesize}
+)";
+
+  // compiler-warning
+  tex += R"(
+\tcbuselibrary{minted, skins}
+\newtcblisting{compilerwarning}[1][] {
+  listing engine=minted,
+  colback=red!5!,
+  colframe=red!75!black,
+  title=컴파일 오류,
+  left=3pt,
+  right=3pt,
+  listing only,
+  minted language=text,
+  minted options={breaklines, fontsize=\footnotesize}
+})";
+
   tex += "\\begin{document}\n";
 
   // Choose English font
@@ -235,7 +258,7 @@ void BookManager::GenerateMainTex() {
   tex += R"(
 \thispagestyle{empty}
 ~\vfill
-\noindent Copyright \textcopyright\  2017 이재범
+\noindent Copyright \textcopyright\  2019 이재범
 
 \noindent
 이 책은 \textbf{모두의 코드}에 연재된 씹어먹는 C++ 강좌를 책으로 옮긴 것입니다. 해당 강좌는

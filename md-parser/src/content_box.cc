@@ -330,11 +330,8 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       return CreateTColorBox(output_tex, "red");
     }
     case COMPILER_WARNING: {
-      return CreateTColorBox(
-          StrCat(
-              "\n\\begin{minted}{text}\n",
-              content_, "\n\\end{minted}"),
-          "red", "컴파일 오류");
+      return StrCat("\n\\begin{compilerwarning}\n", content_,
+                    "\n\\end{compilerwarning}\n");
     }
     case INFO: {
       Content::Preprocess(parser_env);
@@ -346,8 +343,8 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       return CreateTColorBox(Content::OutputLatex(parser_env), "green");
     }
     case EXEC:
-      return StrCat("\\begin{mdprogout}\n\\begin{Verbatim}\n", content_,
-                    "\n\\end{Verbatim}\n\\end{mdprogout}\n");
+      return StrCat("\\begin{mdprogout}\n\\begin{Verbatim}[breaklines=true]\n",
+                    content_, "\n\\end{Verbatim}\n\\end{mdprogout}\n");
     case LEC_WARNING: {
       Content::Preprocess(parser_env);
       string output_tex = Content::OutputLatex(parser_env);
