@@ -10,7 +10,7 @@ tex_title : C++ 파일 입출력
 
 * `ifstream` 을 이용한 파일 입력
 * `ofstream` 을 이용한 파일 출력
-* 문자열 스트림 (std::stringstream) 을 이용한 간편한 문자열 간의 변환
+* 문자열 스트림 (`std::stringstream`) 을 이용한 간편한 문자열 간의 변환
 
 에 대해서 알아봅니다.
 
@@ -234,6 +234,8 @@ std::cout << std::hex << x << std::endl;
 
 ###  파일 전체 읽기
 
+#### 파일 전체를 한 번에 읽기
+
 ```cpp-formatted
 #include <fstream>
 #include <iostream>
@@ -316,6 +318,9 @@ in.read(&s[0], size);
 
 마지막으로 파일 전체에 내용을 문자열에 저장하면 됩니다.
 
+#### 파일 전체를 한 줄씩 읽기
+
+
 ```cpp-formatted
 // getline 으로 읽어들이기
 #include <fstream>
@@ -327,14 +332,14 @@ int main() {
   std::ifstream in("test.txt");
   char buf[100];
 
-  if (in.is_open()) {
-    while (!in.eof()) {
-      // 한 줄 씩 최대 100 자 까지 읽어들인다.
-      in.getline(buf, 100);
-      std::cout << buf << std::endl;
-    }
-  } else {
+  if (!in.is_open()) {
     std::cout << "파일을 찾을 수 없습니다!" << std::endl;
+    return 0;
+  }
+
+  while (in) {
+    in.getline(buf, 100);
+    std::cout << buf << std::endl;
   }
 
   return 0;
@@ -349,16 +354,9 @@ int main() {
 
 와 같이 나옵니다.
 
+위 `ifstream` 객체의 멤버 함수로 존재하는 `getline` 함수는 파일에서 개행문자 (`\n`) 이 나올 때 가지 **최대 지정한 크기 - 1** 만큼 읽게됩니다. 왜 하나 적게 읽냐면, `buf` 의 맨 마지막 문자로 널 종료 문자를 넣어줘야 하기 때문이지요. 
 
-`getline` 함수는 파일에서 개행문자 (\n) 이 나올 때 가지 최대 지정한 크기 만큼 읽게됩니다. 만일 파일 끝에 도달하게 된다면 `eofbit` 가 켜지면서
-
-```cpp-formatted
-in.getline(buf, 100);
-```
-
-
-
-위 경우 `buf` 에 최대 100 글자 까지 입력 받습니다. 물론 개행 문자가 나올 때 까지 입력 받는 다는 것은 디폴트 이고, 추가 인자로 지정해주면 해당 문자가 나올 때 가지 입력 받습니다. 예를 들어서
+위 경우 `buf` 에 최대 99 글자 까지 입력 받습니다. 물론 개행 문자 말고도 여러분이 지정한 문자가 나올 때 까지 읽는 것으로 바꿀 수 도 있습니다. 이 경우 원하는 문자를 인자로 전달해주면 해당 문자가 나올 때 까지 입력 받습니다. 예를 들어서
 
 ```cpp-formatted
 in.getline(buf, 100, '.');
@@ -366,11 +364,15 @@ in.getline(buf, 100, '.');
 
 이런식으로 하면 마침표가 나올 때 까지 입력받게 됩니다.
 
+```cpp
+  while (in) {
+```
 
-한 가지 주의할 점은 `getline` 함수는 개행 문자 (혹은 지정한 문자) 가 나오기 전에 지정한 버퍼의 크기가 다 차게 된다면 `failbit` 를 키게 됩니다.
+`ifstream` 에는 자기 자신을 `bool` 로 캐스팅 할 수 있는 캐스팅 연산자(`operator bool()`)가 오버로딩 되어 있습니다. 따라서 위와 같이 `while` 문 조건에 `in` 을 전달한다면 `bool` 로 캐스팅 하는 연산자 함수가 호출됩니다. 이 때 `in` 이 `true` 이기 위해서는 **다음 입력 작업이 성공적어야만** 하고 현재 스트림에 오류 플래그가 켜져 있지 않아야만 합니다. 
 
-따라서 버퍼의 크기를 너무 작게 만든다면 정상적으로 데이터를 받을 수 없게 됩니다. `getline` 을 사용하기 전에 이와 같은 조건을 꼭 확인해야 합니다.
+하지만 `getline` 함수는 개행 문자 (혹은 지정한 문자) 가 나오기 전에 지정한 버퍼의 크기가 다 차게 된다면 `failbit` 를 키게 되므로 버퍼의 크기를 너무 작게 만든다면 정상적으로 데이터를 받을 수 없습니다. 따라서 `getline` 을 사용하기 전에 이와 같은 조건을 꼭 확인해야 합니다.
 
+이와 같은 한계점을 극복하기 위해서 `std::string` 에서 `getline` 함수를 제공하고 있습니다.
 
 ```cpp-formatted
 // std::string 에 정의된 getline 사용
@@ -382,21 +384,20 @@ int main() {
   // 파일 읽기 준비
   std::ifstream in("test.txt");
 
-  std::string s;
-  if (in.is_open()) {
-    while (!in.eof()) {
-      std::getline(in, s);
-      std::cout << s << std::endl;
-    }
-  } else {
+  if (!in.is_open()) {
     std::cout << "파일을 찾을 수 없습니다!" << std::endl;
+    return 0;
+  }
+
+  std::string s;
+  while (in) {
+    getline(in, s);
+    std::cout << s << std::endl;
   }
 
   return 0;
 }
 ```
-
-
 
 성공적으로 컴파일 하였다면
 
@@ -404,18 +405,22 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F265016345784EBD7035F86)
 
 
-
-
-
 와 같이 나옵니다.
 
 
-이 `getline` 함수는 `ifstream` 에 정의되어 있는 것이 아니라, `std::string` 에 정의되어 있는 함수로, 첫 번째 인자로 `istream` 객체를 받고, 두 번째 인자로 입력 받은 문자열을 저장할 `std::string` 객체를 받게 됩니다.
+이 `getline` 함수는 `ifstream` 에 정의되어 있는 것이 아니라, `std::string` 에 정의되어 있는 함수로, 첫 번째 인자로 `istream` 객체를 받고, 두 번째 인자로 입력 받은 문자열을 저장할 `string` 객체를 받게 됩니다.
 
 
-기존에 `ifstream` 의 `getline` 을 활용할 때 보다 훨신 편리한 것이, 굳이 버퍼의 크기를 지정하지 않아도 알아서 `std::string` 의 크기를 조정해서 개행문자 혹은 파일에 끝이 나올 때 까지 입력받게 됩니다.
+기존에 `ifstream` 의 `getline` 을 활용할 때 보다 훨신 편리한 것이, 굳이 버퍼의 크기를 지정하지 않아도 알아서 개행문자 혹은 파일에 끝이 나올 때 까지 입력받게 됩니다.
 
 
+```lec-warning
+한 가지 주의할 사항으로 `while` 문 조건으로 **절대 `in.eof()` 를 사용하면 안됩니다**. 이러한 코드를 사용했다면 99 퍼센트의 확률로 잘못된 코드 입니다. 왜냐하면 `eof` 함수는 파일 위치 지시자가 파일에 끝에 도달한 **이후** 에 `true` 를 리턴하기 때문입니다. 
+
+예를 들어서 `while` 문 안에서 파일을 쭈르륵 읽다가 파일 끝(EOF) 바로 직전까지 읽었다고 해봅시다. 그렇다면 아직 EOF 를 읽지 않았으므로 `in.eof()` 는 참인 상태일 것입니다. 그 상태에서 예컨대 `in >> data` 를 하게 된다면 `data` 에는 아무것도 들어가지 않게 됩니다. 즉 초기화가 되지 않은 상태로 남아있는 것입니다!
+
+다시 말해 `in.eof()` 는 `while` 문 안에서 **파일 읽기가 안전하다 라는 것을 보장하지 않습니다**. 정확한 사용법은 그냥 `while(in)` 처럼 스트림 객체 자체를 전달하는 것입니다. 앞에서도 말했듯이 `istream` 객체는 다음 읽기가 안전할 때만 `true` 로 캐스팅됩니다.
+```
 
 ###  파일에 쓰기
 
