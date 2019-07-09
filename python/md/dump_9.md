@@ -46,16 +46,17 @@ int main() {
 
 위 소스를 성공적으로 컴파일 했다면
 
+```exec
+a 의 값과 들어 있는 문자는? 값 : 97 , 문자 : a 
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1162B30F49F569F8AC3654)
-
-  위와 같이 나옵니다. 일단, 소스를 분석해 보겠습니다.
+위와 같이 나옵니다. 일단, 소스를 분석해 보겠습니다.
 
 ```cpp-formatted
 char a;
 ```
 
-  이 부분은 `char` 형 변수를 선언하는 부분입니다. 기억이 안나시는 분들은 [3강](http://itguru.tistory.com/?page=2)을 참조하세요.
+이 부분은 `char` 형 변수를 선언하는 부분입니다. 기억이 안나시는 분들은 [3강](http://itguru.tistory.com/?page=2)을 참조하세요.
 
 ```cpp-formatted
 a = 'a';

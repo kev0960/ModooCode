@@ -67,8 +67,28 @@ int main() {
 
 위 소스를 성공적으로 컴파일 하였다면,
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1266D6234A33D95B9F2C54)
+```exec
+숫자 : 0 
+숫자 : 1 
+숫자 : 2 
+숫자 : 3 
+숫자 : 4 
+숫자 : 5 
+숫자 : 6 
+숫자 : 7 
+숫자 : 8 
+숫자 : 9 
+숫자 : 10 
+숫자 : 11 
+숫자 : 12 
+숫자 : 13 
+숫자 : 14 
+숫자 : 15 
+숫자 : 16 
+숫자 : 17 
+숫자 : 18 
+숫자 : 19 
+```
 
 와 같이 나옵니다.
 `for` 문은 다음과 같은 기본 구조를 가지고 있습니다.
@@ -151,8 +171,9 @@ int main() {
 
 위 소스를 성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F161BE8274A3527D570F4EE)
+```exec
+1 부터 19 까지의 합 : 190
+```
 
 와 같이 나옵니다.
 
@@ -204,8 +225,9 @@ int main() {
 
 그 결과는
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F14694D204A352F3FBBB98A)
+```exec
+1 부터 10000 까지의 합 : 50005000 
+```
 
 와 같네요. 결국 Psi 는 친구와의 우정을 지킬 수 있었습니다. ㅎㅎ
 
@@ -235,8 +257,16 @@ int main() {
 
 위 소스를 성공적으로 컴파일 하였다면
 
+```exec
+몇 개의 과목 점수를 입력 받을 것인가요?4
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2044D40D4A44EF7DC1A1DE)
+ 각 과목의 점수를 입력해 주세요 
+과목 1 : 100
+과목 2 : 99 
+과목 3 : 89
+과목 4 : 76
+전체 과목의 평균은 : 91.00 
+```
 
 음, 여러 과목을 입력해 보면서 실제 시험 성적 평균을 내보시기 바랍니다. 아무튼, 위 소스를 살펴 봅시다. 일단, 가장 중요한 부분인 `for` 문 부분 부터 보자면...
 
@@ -302,10 +332,21 @@ int main() {
 
 성공적으로 실행했다면 아래와 같이 나오게 됩니다.
 
+```exec
+컴퓨터가 생각한 숫자를 맞추어 보세요! 
+5
+틀렸어요! 
+6
+틀렸어요! 
+7
+틀렸어요! 
+8
+틀렸어요! 
+3
+맞추셨군요! 
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F182522284A4C86A47FDAE5)
-
-`3` 이 입력 될 때 까지 계속 물어보다가 3 을 입력하게 되면 프로그램이 종료됩니다 3 이 입력 될 때 까지 계속 물어보다가 3 을 입력하게 되면 프로그램이 종료됩니다.
+3 이 입력 될 때 까지 계속 물어보다가 3 을 입력하게 되면 프로그램이 종료됩니다 3 이 입력 될 때 까지 계속 물어보다가 3 을 입력하게 되면 프로그램이 종료됩니다.
 
 ```cpp-formatted
 for (;;) {
@@ -319,7 +360,7 @@ for (;;) {
 }
 ```
 
-일단, `for` 문을 잠시 살펴 봅시다. 그런데, 한 가지 이상한 점이 있죠? 초기식, 조건식, 증감식이 모두 없습니다! 그렇다면 이 `for` 문은 얼마나 실행 되야 되는 것인가요? 답은, `for` 문의 조건식이 명시되지 않는다면 항상 '참' 이라 인식 되기 때문에 이 `for` 문은 언제나 참이됩니다. 다시 말해, 무한히 중괄호 속의 내용을 실행한다는 것이지요. 그래서, 만약
+일단, `for` 문을 잠시 살펴 봅시다. 그런데, 한 가지 이상한 점이 있죠? 초기식, 조건식, 증감식이 모두 없습니다! 그렇다면 이 `for` 문은 얼마나 실행 되야 되는 것인가요? 답은, `for` 문의 조건식이 명시되지 않는다면 항상 **참** 이라 인식 되기 때문에 이 `for` 문은 언제나 참이됩니다. 다시 말해, 무한히 중괄호 속의 내용을 실행한다는 것이지요. 그래서, 만약
 
 ```cpp-formatted
 #include <stdio.h>
@@ -333,8 +374,9 @@ int main() {
 
 와 같은 프로그램을 만든다면, `for` 문이 무한번 실행되므로 (프로그램 자체가 강제적으로 종료되기 전 까지)
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F142F65274A4C878BBBF8A1)
+```exec
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...
+```
 
 와 같이 나오게 됩니다.
 
@@ -425,10 +467,11 @@ int main() {
 
 성공적으로 실행하면
 
+```exec
+1 2 3 4 6 7 8 9 11 12 13 14 16 17 18 19 21 22 23 24 26 27 28 29 31 32 33 34 36 37 38 39 41 42 43 44 46 47 48 49 51 52 53 54 56 57 58 59 61 62 63 64 66 67 68 69 71 72 73 74 76 77 78 79 81 82 83 84 86 87 88 89 91 92 93 94 96 97 98 99
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1622651C4A5DF04541B283)
-
-   와 같이 나오게 됩니다. 보시다 싶이, 5 의 배수를 제외한 0 이상, 100 미만의 모든 수들이 출력 되었습니다.
+와 같이 나오게 됩니다. 보시다 싶이, 5 의 배수를 제외한 0 이상, 100 미만의 모든 수들이 출력 되었습니다.
 
 
 ```cpp-formatted
@@ -439,9 +482,11 @@ for (i = 0; i < 100; i++) {
 }
 ```
 
-일단, `for` 문을 살펴보면 `i` 가 0 부터 100 미만의 값을 가지게 됩니다. 이 때, `if` 문을 살펴 보면 `i` 를 5로 나눈 나머지 (i % 5) 가 0 일 때 (== 0) `continue` 를 실행함을 볼 수 있습니다. `continue` 는 `break` 문 처럼 아래 모든 내용을 무시한다는 점에서 동일하지만, `break` 문은 루프를 빠져나가는데 반면 `continue` 는 다시 조건 점검부로 점프하게 됩니다. `continue` 는 마치 카드 게임에서 스킵과 같은 역할을 하게 됩니다. (break 문이 카드게임에서 퇴출 되는 것이라면...)
+일단, `for` 문을 살펴보면 `i` 가 0 부터 100 미만의 값을 가지게 됩니다. 이 때, `if` 문을 살펴 보면 `i` 를 5 로 나눈 나머지 (`i % 5`) 가 0 일 때 (`== 0`), `continue` 를 실행함을 볼 수 있습니다.
 
-  따라서, `i` 의 값이 5 의 배수인 경우에만 printf("%d", `i)` 가 실행이 되지 않게 되는 것이지요.
+`continue` 는 `break` 문 처럼 아래 모든 내용을 무시한다는 점에서 동일하지만, `break` 문은 루프를 빠져나가는데 반면 `continue` 는 다시 조건 점검부로 점프하게 됩니다. `continue` 는 마치 카드 게임에서 스킵과 같은 역할을 하게 됩니다. (`break` 문이 카드게임에서 퇴출 되는 것이라면...)
+
+따라서, `i` 의 값이 5 의 배수인 경우에만 `printf("%d", i)` 가 실행이 되지 않게 되는 것이지요.
 
 문득 `for` 문을 배우면서 이러한 생각은 들지 않았나요? `if` 문 안에 `if` 문을 넣을 수 있는 것 처럼 `for` 문 안에도 `for` 문을 넣을 수 있을까? 네, 물론 넣을 수 있습니다. 아래 예제를 참조하세요.
 
@@ -463,10 +508,29 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F16564C154A63CF5D290175)
-
-
+```exec
+.... (생략) ...
+ 7 x 8 = 56 
+ 7 x 9 = 63 
+ 8 x 1 = 8 
+ 8 x 2 = 16 
+ 8 x 3 = 24 
+ 8 x 4 = 32 
+ 8 x 5 = 40 
+ 8 x 6 = 48 
+ 8 x 7 = 56 
+ 8 x 8 = 64 
+ 8 x 9 = 72 
+ 9 x 1 = 9 
+ 9 x 2 = 18 
+ 9 x 3 = 27 
+ 9 x 4 = 36 
+ 9 x 5 = 45 
+ 9 x 6 = 54 
+ 9 x 7 = 63 
+ 9 x 8 = 72 
+ 9 x 9 = 81 
+```
 
 와 같이 근사한 구구단 표가 출력됩니다.
 
@@ -521,8 +585,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1333971A4A63D9053A7C73)
+```exec
+1 1 2 1 2 3 1 2 3 4 1 2 3 4 5 1 2 3 4 5 6 1 2 3 4 5 6 7 1 2 3 4 5 6 7 8 % 
+```
 
 가 나오게 됩니다. 아마 위에서 `for` 문에 대해 잘 이해하신 분들은 금방 이해 할 수 있겠지요.
 
@@ -535,6 +600,8 @@ for (i = 1; i < 10; i++) {
 ```
 
 이 부분에서 `i` 가 1 이면, `j` 가 출력되지 않고, `i` 가 2 가 되면 `j` 가 1 부터 1 까지, `i` 가 3 이 되면 `j` 는 1 부터 2 까지 순차적으로 출력되어 `i` 가 9 일 때, `j` 는 1 부터 8 까지 출력되어 위와 같은 모습을 보이게 됩니다. 어때요? 간단하지요?
+
+### while 문
 
 아마 이 쯤 하셨다면 `for` 문에 대해 질렸을 것 같으니 `for` 문과 비스므리하면서도 다른 반복문인 `while` 문에 대해 살펴 보도록 해봅시다.
 
@@ -557,8 +624,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F172DC70E4A7ABE672D72D0)
+```exec
+1 부터 100 까지의 합 : 5050 
+```
 
 와 같이 1 부터 100 까지 숫자들의 합이 출력됩니다.
 
@@ -586,6 +654,8 @@ while (i <= 100) {
 
 따라서, 만약 `i < 1` 이 조건식이라면 `while` 문 내부의 내용은 하나도 실행되지 않고 종료되게 됩니다.
 
+### do-while 문
+
 ```cpp-formatted
 #include <stdio.h>
 int main() {
@@ -604,12 +674,13 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F193ED11B4A7AC0CB6CCA3C)
+```exec
+ sum : 1 
+```
 
 와 같이 나오게 됩니다.
 
-`do - while` 문의 구조는 아래와 같습니다.
+`do-while` 문의 구조는 아래와 같습니다.
 
 ```cpp-formatted
 do {
@@ -619,7 +690,9 @@ do {
 } while (/* 조건식 */);
 ```
 
-`do - while` 문은 사실 `while` 문과 거의 비슷합니다. 한 가지 차이점은 앞서 말했듯이 `while` 문은 명령을 실행하기 전에 조건식이 참 인지 먼저 검사 합니다. 따라서, 조건식이 처음부터 참이 아니라면 `while` 문 안의 내용은 결코 실행 될 수 없겠지요. 그런데, `do - while` 은 먼저 명령을 실행 한 뒤에 조건식을 검사합니다. 따라서, 처음부터 조건식이 참이 아니라도 명령을 먼저 실행한 다음 조건식을 검사하기 때문에 최소한 한 번은 실행되게 됩니다.
+`do - while` 문은 사실 `while` 문과 거의 비슷합니다. 한 가지 차이점은 앞서 말했듯이 `while` 문은 명령을 실행하기 전에 조건식이 참 인지 먼저 검사 합니다. 따라서, 조건식이 처음부터 참이 아니라면 `while` 문 안의 내용은 결코 실행 될 수 없겠지요. 
+
+그런데, `do - while` 은 먼저 명령을 실행 한 뒤에 조건식을 검사합니다. 따라서, 처음부터 조건식이 참이 아니라도 명령을 먼저 실행한 다음 조건식을 검사하기 때문에 최소한 한 번은 실행되게 됩니다.
 
 ```cpp-formatted
 do {
@@ -630,7 +703,7 @@ do {
 ```
 
 
-따라서, 위 경우 `i` 가 1 로 `i < 1` 이 였지만 조건식을 나중에 검사하기 때문에 일단 `sum + = i` ; 와 `i ++` 을 실행 한 다음에 `i < 1` 이 검사되어 `sum` 의 값이 1 이 출력될 수 있었던 것이지요. 어때요, 간단하죠?
+따라서, 위 경우 `i` 가 1 로 `i < 1` 이 였지만 조건식을 나중에 검사하기 때문에 일단 `sum + = i;` 와 `i ++` 을 실행 한 다음에 `i < 1` 이 검사되어 `sum` 의 값이 1 이 출력될 수 있었던 것이지요. 어때요, 간단하죠?
 
 
 그렇다면 이제 반복문에 대해 대충 감을 잡았을 것으로 기대합니다. 하지만 사실 반복문을 익숙하게 사용할 때 까지 많은 연습이 필요하기 때문에 제가 아래 반복문 사용법을 연습할 수 있는 몇 개 문제들을 준비하였습니다. 처음에는 문법 자체가 어색하므로 시간이 좀 걸리겠지만, 스스로 해보시길 바랍니다! 
