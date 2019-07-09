@@ -196,14 +196,16 @@ int main() {
 
   a = &b;
 
-  printf("%lf", *(double *)a) return 0;
+  printf("%lf", *(double *)a);
+  return 0;
 }
 ```
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F13654C1A4C500DBD6D8F6F)
+```exec
+123.300000
+```
 
 와 같이 잘 출력됨을 알 수 있습니다.
 
@@ -237,32 +239,36 @@ int read_char(void *p, int byte) {
     printf("%x \n", *(char *)p);
     byte--;
 
-  } while (((char *)p)++ && byte);
+    p = (char *)p + 1;
+  } while (p && byte);
 
   return 0;
 }
 ```
 
-
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F1328E9274C5656B5A01A3C)
+```exec
+12345678 
+78 
+56 
+34 
+12 
+```
 
 `read_char` 함수를 살펴봅시다. 무언가 여태까지 해온 것 보다 코딩 실력이 업그레이드 된 것 같은데 찬찬히 살펴 보면
 
 ```cpp-formatted
 do {
-  printf("%x \n", *(char *)p);
-  byte--;
+    printf("%x \n", *(char *)p);
+    byte--;
 
-} while (((char *)p)++ && byte);
+    p = (char *)p + 1;
+  } while (p && byte);
 ```
 
 
-먼저 `((char *)p) ++` 의 뜻 부터 생각해봅시다. `(char *)p` 는 '이 `p` 에 들어있는 값을 `char` 형 변수의 주소값이라 생각해!' 라는 의미 이지요. 그런데, 거기에 `++` 을 했으므로 포인터의 덧셈이 행해지는데 컴퓨터는 `p` 를 '`char` 형 변수의 주소값' 이라 생각하고 있으므로 `p` 에 1 을 더하게 되면 주소값이 `char` 의 크기, 즉 1 만큼 늘어납니다.
-
-참고로 `(char *)p ++` 이라 안하고 `((char *)p)++` 이라 한 이유는 우선순위 문제 때문인데, 전자의 경우 `p++` 이 먼저 실행되어 문제가 생기기 때문입니다.
+먼저 `p = (char *)p + 1;` 의 뜻 부터 생각해봅시다. `(char *)p` 는 '이 `p` 에 들어있는 값을 `char` 형 변수의 주소값이라 생각해!' 라는 의미 이지요. 그런데, 거기에 `+= 1` 을 했으므로 포인터의 덧셈이 행해지는데 컴퓨터는 `p` 를 '`char` 형 변수의 주소값' 이라 생각하고 있으므로 `p` 에 1 을 더하게 되면 주소값이 `char` 의 크기, 즉 1 만큼 늘어납니다.
 
 아무튼 이와 같은 방법으로 `p` 의 주소값을 계속 1 씩 증가시키는데, 이 때 `byte` 의 값이 0 이되거나 (`(char *)p)` 의 값이 0 (즉 `NULL` 일 때) `while` 문이 종료됩니다. 제가 `do while` 을 이용한 이유는 만일 동일한 조건문으로 `while` 문을 만들게 된다면 처음에 `((char *)p)++` 이 먼저 실행되기 때문에 `p` 부터 읽지 않고 `p + 1` 부터 읽게되는 불상사가 발생하기 때문에 이를 막기 위해 `do while` 문을 이용했습니다.
 
@@ -290,7 +296,6 @@ int main(int argc, char **argv) {
 ```
 
 성공적으로 컴파일 했다면
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F19601A1D4C566103A4699E)
 

@@ -50,7 +50,10 @@ int main() {
 
 성공적으로 컴파일 했다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F18181F034B7D593F6DD7A5)
+```exec
+t.c : 0 
+t.c : 1 
+```
 
 만일 지난번의 강좌를 어렴풋이 나마 기억하고 있는 분들이라면 별로 어려운 내용은 아닐 듯 싶습니다.
 
@@ -124,10 +127,12 @@ int main() {
 }
 ```
 
-
 성공적으로 컴파일 했다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F19492E144B7D5C5B2117C3)
+```exec
+i : 3 
+i : 4 
+```
 
 아마 위 예제만 제대로 이해하신 다면 더이상 구조체 포인터 가지고 혼동하는 일은 없을 듯 합니다.
 먼저, `TEST` 구조체의 멤버들 부터 살펴봅시다.
@@ -214,7 +219,10 @@ int add_one(int *a) {
 
 성공적으로 컴파일 했다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F146925104B7D5EF68E44B1)
+```exec
+t.c : 1 
+t.c : 2
+```
 
 이제, 마지막으로 구조체 포인터 연습을 해볼깔 합니다.
 
@@ -271,10 +279,12 @@ int main() {
 }
 ```
 
+성공적으로 컴파일 했다면
 
-  성공적으로 컴파일 했다면
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F203B51194B815A09E19D54)
+```exec
+st2.i : 1 
+st2.c : c 
+```
 
 여러분은 아마도 위 소스 코드를 한눈에 이해하셨을 수 있을 것입니다.
 
@@ -342,8 +352,10 @@ char copy_str(char *dest, char *src) {
 
 성공적으로 컴파일 했다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F1433CC154B83C9B880ADCB)
-
+```exec
+a.str : hello, world 
+a.i : 3 
+```
 
 위 코드 역시 구조체의 대입이 무엇인지 잘 이해만 했다면 별 무리 없이 이해하실 수 있으리라 생각 합니다.
 
@@ -402,7 +414,7 @@ int set_human(struct TEST a, int age, int gender) {
 ```
 
 
-  성공적으로 컴파일 하였다면 다음과 같은 오류를 만날 수 있으셨을 것입니다.
+성공적으로 컴파일 하였다면 다음과 같은 오류를 만날 수 있으셨을 것입니다.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F18631B174BAEA99F7C78E4)
@@ -467,12 +479,11 @@ int set_human(struct TEST *a, int age, int gender) {
 }
 ```
 
-
-
 성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1848DC1B4BAEB19D56553A)
+```exec
+AGE : 10 // Gender : 1 
+```
 
 위와 같이 `human` 구조체 변수의 멤버의 값들이 제대로 변경되었음을 알 수 있습니다.
 
@@ -541,8 +552,9 @@ char copy_str(char *dest, const char *src) {
 
 성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F125F3F264BAEB62683A187)
+```exec
+AGE : 10 // Gender : 1 // Name : Lee 
+```
 
 기본적으로 이전의 예제와는 동일하지만 멤버를 하나 더 추가했습니다.
 

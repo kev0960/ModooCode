@@ -78,8 +78,12 @@ int main() {
 
 성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F117079184B703C597BB598)
+```exec
+Psi 에 대한 정보 
+나이   : 99 
+키     : 185 
+몸무게 : 80 
+```
 
 아마 여러분은 위 소스 코드에서 여러가지 새로운 것들을 보실 수 있으셨을 겁니다. 아마 이 강좌가 끝날 즈음에는 위 사실들을 자유롭게 다룰 수 있게 되니 크게 걱정 안하셔도 됩니다. 일단 구조체를 정의한 부분 부터 살펴 봅시다. 직관적으로 아래의 부분과 같다는 사실을 알 수 있습니다.
 
@@ -168,10 +172,13 @@ char copy_str(char *dest, const char *src) {
 ```
 
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F181952154B757D69B2D89C)
+```exec
+책 이름 : Harry Potter 
+저자 이름 : J.K. Rolling 
+출판사 이름 : Scholastic 
+```
 
 일단, 저는 [지지난 강좌](http://itguru.tistory.com/33)에서 만들었던 `copy_str` 함수를 가져왔습니다. 이 함수는 문자열을 `src` 에서 `dest` 로 복사하는 함수이지요. 이렇게 이미 썼던 것을 활용하는 것은 상당히 시간도 절약되고 편리한 방법 중에 하나 입니다.
 
@@ -287,10 +294,28 @@ int main() {
 ```
 
 
-  성공적으로 컴파일 되었다면
+성공적으로 컴파일 되었다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1953ED1F4B77FE083B4039)
+```exec
+책 0 정보 입력 : ChewingC Psi itguru
+책 1 정보 입력 : ChewingCPP Psi ModooCode
+책 2 정보 입력 : asdf asdf as
+------------------------------- 
+책 ChewingC 의 정보
+저자 : Psi 
+출판사 : itguru 
+안 빌려짐
+------------------------------- 
+책 ChewingCPP 의 정보
+저자 : Psi 
+출판사 : ModooCode 
+안 빌려짐
+------------------------------- 
+책 asdf 의 정보
+저자 : asdf 
+출판사 : as 
+안 빌려짐
+```
 
 먼저 구조체의 정의에 대한 부분은 생략하고 바로 `main` 함수 부터 이야기 하겠습니다.
 
@@ -359,10 +384,12 @@ int main() {
 ```
 
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F126D58234B7802D8028612)
+```exec
+st 의 a 멤버 : 1 
+st 의 b 멤버 : 2 
+```
 
 먼저 구조체 포인터에 대해 이야기 하기 전에 확실히 짚고 넘어가야 할 것이 있습니다. 여태까지 누누히 이야기 하였지만 `struct test` 역시 하나의 형 (타입) 이라는 것입니다. 위의 예제들의 `struct Human` 이나 `struct Book` 역시 하나의 타입이였지요.
 
@@ -440,10 +467,12 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F124CD7204B7808081A8128)
+```exec
+st 의 a 멤버 : 1 
+st 의 b 멤버 : 2 
+```
 
 여기서 새로 등장한 기호는 제가 가장 좋아하는 기호입니다.
 

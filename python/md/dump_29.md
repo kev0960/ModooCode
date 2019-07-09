@@ -63,10 +63,12 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 한다면
+성공적으로 컴파일 한다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F14383A0C4B39C28A05E150)
+```exec
+NULL 의 정수(아스키)값 : 0, 0, 0 
+'0' 의 정수(아스키)값 : 48 
+```
 
 와우. `NULL` 의 정수값은 모두 0 이 출력되었고, 문자 '0' 의 정수값은 48 이 출력되었습니다.
 
@@ -112,12 +114,16 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
+```exec
+sentence_1 : Psi 
+sentence_2 : Psi 
+sentence_3 : Psi 
+sentence_4 : Psi 
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1131DF044B39C11B2AF364)
-
-  오오오. 모두 Psi 가 성공적으로 출력되었습니다. 일단, 각 문자열을 정의하는 것 부터 살펴보도록 합시다.
+오오오. 모두 Psi 가 성공적으로 출력되었습니다. 일단, 각 문자열을 정의하는 것 부터 살펴보도록 합시다.
 
 ```cpp-formatted
 char sentence_1[4] = {'P', 's', 'i',
@@ -170,10 +176,11 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F13600D054B4C0BC713146E)
+```exec
+long sentence 
+```
 
 위 예제는 사실 단순합니다. 우리가 이전에 배운 내용에 따르면 `char*` 을 이용해서 `char` 배열을 가리킬 수 있다고 하였습니다. 위는 이를 그대로 적용 시킨 것으로 `str` 이라는 `char` 을 가리키는 포인터가 배열 `word` 를 가리키고 있습니다. 따라서,
 
@@ -202,12 +209,14 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
+```exec
+조작 이전 : long sentence 
+조작 이후 : abcd sentence 
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F12290F044B4C0C9F013CBC)
-
-  사실 위 과정도 매우 단순합니다. 일단, 첫번째로 문자열을 정의하는 부분부터 살펴봅시다.
+사실 위 과정도 매우 단순합니다. 일단, 첫번째로 문자열을 정의하는 부분부터 살펴봅시다.
 
 ```cpp-formatted
 char word[] = {"long sentence"};
@@ -253,12 +262,13 @@ int str_length(char *str) {
 ```
 
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
+```exec
+이 문자열의 길이 : 18 
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F191B931F4B4FBBAF4C3629)
-
-  소스 코드가 머리에 잘 다가오면 좋겠지만 일단 중요한 부분만 설명하고자 합니다.
+소스 코드가 머리에 잘 다가오면 좋겠지만 일단 중요한 부분만 설명하고자 합니다.
 
 ```cpp-formatted
 int str_length(char *str) {
@@ -303,9 +313,10 @@ int main() {
 }
 ```
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F14678F224B4C128F0D82A6)
-
+```exec
+30 자 이내의 문자열을 입력해주세요! :  WhySoSerious?
+문자열 : WhySoSerious? 
+```
 
 이번에는 문자열을 입력 받는 방법에 대해 이야기 하고자 합니다. 이전에 5 강에서 문자를 입력받는 방법에 대해 이야기한 적이 있는데 기억이 나실련지요? 문자열을 입력 받는 것도 그다지 다를 바 없습니다.
 
@@ -331,8 +342,10 @@ scanf("%c", &c);
 
 `scanf` 함수는 잘 아시다싶이 엔터가 나올 때 까지 입력을 받습니다. 그런데 말이죠. 우리가 문자열을 적는데 띄어쓰기를 한다면 아래와 같이 이상한 일이 발생한다는 사실을 알 수 있습니다.
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F126D81194B4FBDA13E777C)
+```exec
+30 자 이내의 문자열을 입력해주세요! : what is your name
+문자열 : what 
+```
 
 분명히 `scanf` 는 엔터가 나오면 입력을 종료하는데 왜 `what is your name?` 에서 `what` 부분만 입력이 되었냐죠. 사실 이 부분에 대해서 설명하면 이번 강좌가 너무너무 길어지기 때문에 다음 강좌로 미루도록 합시다. 아무튼. 다음 강좌가 나올 때 까지 인터넷으로 조사 좀 해보세요. 그럼 이번 강좌는 여기에서 마칩니다.
 

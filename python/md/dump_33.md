@@ -37,25 +37,29 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
+str : sentence 
+pstr : sentence
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F11100D0D4B5C7D143D8049)
+와 같이 나옵니다.
 
 ```cpp-formatted
 char str[] = "sentence";
 char *pstr = "sentence";
 ```
 
-일단, 여러분들은 당연하게도 위 두 개의 문장을 보고 이상하다고 생각하셨을 것입니다. 일단 첫번째 문장은 평범한 문장 입니다. `sentence` 라는 문자열을 `str` 이라는 배열에 집어 넣고 있지요. 그런데 두 번째 문장은 말이죠. 상당히 이상합니다. 왜냐하면 일단 "sentence" 는 문자열이고, 어떤 변수의 주소값이 아닙니다. `pstr` 는 `char` 형을 가리키는 포인터 이므로 `char` 형 변수의 주소값이 들어가야되기 때문이죠.
+일단, 여러분들은 당연하게도 위 두 개의 문장을 보고 이상하다고 생각하셨을 것입니다. 일단 첫번째 문장은 평범한 문장 입니다. `sentence` 라는 문자열을 `str` 이라는 배열에 집어 넣고 있지요. 그런데 두 번째 문장은 말이죠. 상당히 이상합니다. 왜냐하면 일단 *"sentence"* 는 문자열이고, 어떤 변수의 주소값이 아닙니다. `pstr` 는 `char` 형을 가리키는 포인터 이므로 `char` 형 변수의 주소값이 들어가야되기 때문이죠.
 
-그런데 우리는 마치 "sentence" 를 특정한 주소값 마냥 사용하고 있습니다. 그런데, 말이죠. "sentence" 는 주소값 맞습니다. 그렇다면 무엇의 주소값이죠? 바로, "sentence" 라는 문자열이 저장된 주소값 (시작 주소값) 을 말합니다. 정말로 놀랍지 않습니까? 사실 저도 잘 믿기지 않습니다. 만일 믿기지 않는다면 아래 문장을 넣어 실행해 보세요.
+그런데 우리는 마치 *"sentence"* 를 특정한 주소값 마냥 사용하고 있습니다. 그런데, 말이죠. *"sentence"* 는 주소값 맞습니다. 그렇다면 무엇의 주소값이죠? 바로, *"sentence"* 라는 문자열이 저장된 주소값 (시작 주소값) 을 말합니다. 정말로 놀랍지 않습니까? 사실 저도 잘 믿기지 않습니다. 만일 믿기지 않는다면 아래 문장을 넣어 실행해 보세요.
 
 ```cpp-formatted
 printf("%d \n", "sentence");
 ```
 
-정말로, 특정한 수가 출력됨을 알 수 있습니다. 그렇다면 이 "sentence" 는 도대체 뭘까요?
+정말로, 특정한 수가 출력됨을 알 수 있습니다. 그렇다면 이 *"sentence"* 는 도대체 뭘까요?
 
-일단, "sentence" 의 정체를 먼저 파악하기 전에 다음의 소스 코드를 실행해보시기 바랍니다.
+일단, *"sentence"* 의 정체를 먼저 파악하기 전에 다음의 소스 코드를 실행해보시기 바랍니다.
 
 ```cpp-formatted
 /* 문자열 */
@@ -269,10 +273,12 @@ char copy_str(char *dest, char *src) {
 }
 ```
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F173D41124B5F0F2B065F6E)
+```exec
+복사 이전 : hello 
+복사 이후 : hi 
+```
 
 현재 여러분 정도의 수준이 되었다면 위 `copy_str` 함수 정도는 손쉽게 분석할 수 있으리라 믿지만 그래도 만약을 위해서 한 번 설명 해보도록 하겠습니다.
 
@@ -415,10 +421,12 @@ char stradd(char *dest, char *src) {
 }
 ```
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F164FD7164B6053842AAC39)
+```exec
+합치기 이전 : hello my name is  
+합친 이후 : hello my name is Psi 
+```
 
 역시. 제대로 출력이 됩니다. 일단 `stradd` 의 구조는 단순합니다. `dest` 의 끝에 문자열을 덧붙이기 위해서는 먼저 `dest` 문자열의 끝 부분을 찾아야겠죠? 따라서
 
@@ -532,9 +540,13 @@ char compare(char *str1, char *str2) {
 
 성공적으로 컴파일 했다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F157547154B66543065C1EF)
+```exec
+hello every1 와 hello everyone 는 다르다 
+hello every1 와 hello every1 hi 는 다르다 
+hello every1 와 hello every1 는 같다 
+```
 
-   `compare` 함수가 어떻게 작동하는지 알아보도록 합시다,.
+`compare` 함수가 어떻게 작동하는지 알아보도록 합시다,.
 
 ```cpp-formatted
 while (*str1) {

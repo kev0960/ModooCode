@@ -145,10 +145,14 @@ int main() {
 
 
 상당히 간단합니다. 이는 우리가 파일을 잘 나누었기 때문입니다. 좋은 프로그램일 수 록 `main` 함수에서 하는 일이 적어집니다.
+
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1845010D4C45CCA868064E)
+```exec
+Name : Lee
+Age : 40
+Gender : Male
+```
 
 위에서 소스를 설명하면서 다 말했기 때문에 굳이 설명할 부분은 없습니다만, 만일 위 소스에서 하나라도 이해가 되지 않는 부분이 있다면 반드시 이전 강의를 복습해주시기 바랍니다.
 
@@ -206,8 +210,9 @@ char copy_str(char *dest, char *src) {
 
 성공적으로 컴파일 했다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F1770D4364C45CE608F659A)
+```exec
+str1 : hello every1
+```
 
 일단 위와 같이 잘 복사되었음을 알 수 있습니다. 하지만 이는 정말로 귀찮은 일이 아닐 수 없습니다. 문자열을 복사하는 과정은 정말로 많이 쓰이는 것입니다. 이렇게 문자열 복사가 필요할 때 마다 `copy_str` 함수를 만들어서 쓴다면 참으로 귀찮은 일이 아닐 수 없습니다. 하지만 정말 다행스럽게도, 사람들은 이 역할을 하는 함수를 '미리' 만들어 놓았습니다.
 
@@ -230,8 +235,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F1770D4364C45CE608F659A)
+```exec
+str1 : hello every1
+```
 
 와 같이 위와 똑같이 나옵니다.
 
@@ -239,7 +245,7 @@ int main() {
 #include <string.h>
 ```
 
-위 명령은 "string.h" 파일에 있는 내용을 모두 가져다 붙인다 라는 의미를 가지고 있습니다. 그런데 이 `string.h` 파일에는 '문자열을 처리하는데 관련된 함수들의 원형' 모음이 있습니다. 따라서 우리는 이 파일을 `include` 시킴으로써 문자열을 처리하는 여러가지 편리한 함수들을 사용할 수 있게 됩니다. 우리가 `str.h` 를 `include` 해서 `copy_str` 을 사용할 수 있었던 것과 일맥 상통합니다. 우리는 여기서 'strcpy' 라는 함수를 사용했습니다.
+위 명령은 `string.h` 파일에 있는 내용을 모두 가져다 붙인다 라는 의미를 가지고 있습니다. 그런데 이 `string.h` 파일에는 '문자열을 처리하는데 관련된 함수들의 원형' 모음이 있습니다. 따라서 우리는 이 파일을 `include` 시킴으로써 문자열을 처리하는 여러가지 편리한 함수들을 사용할 수 있게 됩니다. 우리가 `str.h` 를 `include` 해서 `copy_str` 을 사용할 수 있었던 것과 일맥 상통합니다. 우리는 여기서 `strcpy` 라는 함수를 사용했습니다.
 
 ```cpp-formatted
 strcpy(str1, str2);
@@ -278,10 +284,10 @@ int main() {
 
 성공적으로 살펴 보았다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F152F3D264C45D10A38A0EF)
-
-
+```exec
+hi and hello every1 is NOT equal 
+hi and hi is equal 
+```
 
 이번에 사용해본 함수는 `strcmp` 함수 입니다.
 
@@ -316,12 +322,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1153F6234C4E846069CEC3)
-
-
-
+```exec
+hi
+```
 
 여러분은 아마도 배열을 정의하는데 대괄호 안어에 수가 아닌 값이 들어왔는데도 컴파일이 어떻게 잘되고 실형 역시 잘되었는지 놀랐었을 수 도 있습니다. 배열을 정의할 때 대괄호 안에는 언제가 수가 와야 합니다. 심지어 상수 조차 올 수 없습니다. 하지만 위 경우 어떻게 된 것일까요?
 
@@ -346,8 +349,6 @@ int main() {
 }
 ```
 
-
-
 라는 문장은
 
 ```cpp-formatted
@@ -368,42 +369,39 @@ int main() {
 
 ```cpp-formatted
 /* ifdef */
-#include <stdio.h>#define A
+#include <stdio.h>
+#define A
 int main() {
-#ifdef A printf("AAAA \n"); #endif
-#ifdef B printf("BBBB \n"); #endif
+#ifdef A
+printf("AAAA \n");
+#endif
+#ifdef B
+printf("BBBB \n");
+#endif
   return 0;
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
+```exec
+AAAA 
+```
 
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F206F8D204C4E8453AB502D)
+만일, `#define` 부분을 `#define A` 에서 `#define B` 로 바꿔보면
 
-
-
-만일, #define 부분을 #define `A` 에서 #define `B` 로 바꿔보면
-
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1932ED234C4E846003ADD5)
-
+```exec
+BBBB
+```
 
 와 같이 나옵니다.
 상당히 재미있지요. 일단 `ifdef` 는 다음과 같은 형식으로 사용됩니다.
 
-```info
-
-#ifdef 매크로이름
-
-// '매크로' 가 정의되었다면 이 부분이 코드에 포함되고 그렇지 않다면 코드에 포함되지 않는다.
-코드
-
+```cpp
+#ifdef /* 매크로 이름 */
+/* (매크로 이름)이 정의되었다면 이 부분이 코드에 포함되고 그렇지 않다면 코드에 포함되지 않는다. */
 #endif
 ```
-
 
 
 언제나 `ifdef` 는 `endif` 와 짝을 지어서 사용하는데, `ifdef` 에서 지정한 매크로가 정의되어 있다면 `ifdef` 와 `endif` 속에 있는 코드가 포함되고 그렇지 않다면 코드에 포함되지 않는 것으로 간주 됩니다. `#define A` 를 통해 `A` 가 정의 되어 있다면

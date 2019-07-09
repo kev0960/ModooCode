@@ -43,13 +43,16 @@ int main() {
 }
 ```
 
-
 왜 `main` 함수 안에서 정의된 `i` 의 값이 바뀌지 않는지는 잘 아시겠지만 그래도 한 번 확인해봅시다.
 
+```exec
+호출 이전 i 의 값 : 0 
+호출 이후 i 의 값 : 0 
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F17797D264B2784B213E5BE)
+`i` 의 값이 전혀 바뀌지 않았음을 알 수 있습니다. 그 이유는 함수 `change_val` 을 호출 할 때, `change_val` 함수 안에서 정의된 변수 `i` 는 `main` 함수의 `i` 의 값을 전달 받은 후에, `change_val` 함수 안에서 정의된 변수 `i` 의 값을 3 으로 변경하게 됩니다.
 
-`i` 의 값이 전혀 바뀌지 않았음을 알 수 있습니다. 그 이유는 함수 `change_val` 을 호출 할 때, `change_val` 함수 안에서 정의된 변수 `i` 는 `main` 함수의 `i` 의 값을 전달 받은 후에, `change_val` 함수 안에서 정의된 변수 `i` 의 값을 3 으로 변경하게 됩니다. 여기서 중요한 점은 'main 함수의 `i` 가 아닌 `change_val` 함수 안에서 정의된 변수 `i` 의 값이 3 으로 변경' 된다는 것이지요. 결론적으로 `main` 함수의 `i` 의 값에는 아무런 영향도 미치지 못하고 위와 같은 현상이 벌어지는 것입니다.
+여기서 중요한 점은 'main 함수의 `i` 가 아닌 `change_val` 함수 안에서 정의된 변수 `i` 의 값이 3 으로 변경' 된다는 것이지요. 결론적으로 `main` 함수의 `i` 의 값에는 아무런 영향도 미치지 못하고 위와 같은 현상이 벌어지는 것입니다.
 
 위 과정을 그림으로 표현하면 아래와 같습니다.
 
@@ -65,7 +68,7 @@ int main() {
 #include <stdio.h>
 int change_val(int *pi) {
   printf("----- chage_val 함수 안에서 -----\n");
-  printf("pi 의 값 : %d \n", pi);
+  printf("pi 의 값 : %p \n", pi);
   printf("pi 가 가리키는 것의 값 : %d \n", *pi);
 
   *pi = 3;
@@ -76,7 +79,7 @@ int change_val(int *pi) {
 int main() {
   int i = 0;
 
-  printf("i 변수의 주소값 : %d \n", &i);
+  printf("i 변수의 주소값 : %p \n", &i);
   printf("호출 이전 i 의 값 : %d \n", i);
   change_val(&i);
   printf("호출 이후 i 의 값 : %d \n", i);
@@ -86,10 +89,17 @@ int main() {
 ```
 
 
-  성공적으로 컴파일 하면
+성공적으로 컴파일 하면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1811EC054B278ADA18779C)
+```exec
+i 변수의 주소값 : 0x7ffd3928afc4 
+호출 이전 i 의 값 : 0 
+----- chage_val 함수 안에서 -----
+pi 의 값 : 0x7ffd3928afc4 
+pi 가 가리키는 것의 값 : 0 
+----- change_val 함수 끝~~ -----
+호출 이후 i 의 값 : 3 
+```
 
 여러분의 출력결과와 다를 수 있습니다.
 
@@ -111,7 +121,7 @@ change_val(&i);
 ```cpp-formatted
 {
   printf("----- chage_val 함수 안에서 -----\n");
-  printf("pi 의 값 : %d \n", pi);
+  printf("pi 의 값 : %p \n", pi);
   printf("pi 가 가리키는 것의 값 : %d \n", *pi);
 
   *pi = 3;
@@ -135,6 +145,8 @@ printf("호출 이후 i 의 값 : %d \n", i);
 
 
 ![main 함수에 변수 i 가 있다. change_val 에 i 의 주소값을 전달한다. change_val 은 포인터 pi 에 전달 받은 i 의 주소값이 들어가 있다. 이제, pi 가 가리키는 것의 값을 3 으로 바꾸면, pi 가 가리키는 것이 main 의 변수 i 였으므로 실제로 return 후 확인해 보면 main 의 변수 i 의 값이 바뀐다.](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1836411A4B279039965794)
+
+#### 두 변수의 값을 교환하는 함수
 
 ```cpp-formatted
 /* 두 변수의 값을 교환하는 함수 */
@@ -165,8 +177,10 @@ int main() {
 
   성공적으로 컴파일 했으면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1155830F4B2791D864F629)
+```exec
+SWAP 이전 : i : 3, j : 5 
+SWAP 이후 : i : 3, j : 5 
+```
 
 흠. 일단 우리가 원하던 결과가 나오지 않았습니다. 소스 상단의 주석에서도 볼 수 있듯이 `swap` 함수는 두 변수의 값을 교환해 주는 함수 입니다. 우리가 원하던 것은 `SWAP` 이후에  `i` 에는 5 가 `j` 에는 3 이 들어 있는 것인데 전혀 바뀌지 않았습니다. 이에 대해 이야기 하기 전에 소스 코드에서 보이는 새로운 것들에 대해 이야기 해봅시다.
 
@@ -208,7 +222,7 @@ printf("SWAP 이후 : i : %d, j : %d \n", i, j);
 
 이는 마치 아래의 작업을 한 것과 같습니다.
 
-```info
+```cpp
     int i, j;
     int temp, a, b;
     /* 함수를 호출하여 함수의 인자를 전달하는 부분 */
@@ -254,10 +268,12 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 하면
+성공적으로 컴파일 하면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F181E71014B2879A8A8E568)
+```exec
+SWAP 이전 : i : 3, j : 5 
+SWAP 이후 : i : 5, j : 3 
+```
 
 오오오.. 드디어 우리가 원하던 것이 이루어졌습니다. 바로 `i` 와 `j` 의 값이 서로 뒤바뀐(swap) 것이지요. 아.. 정말 기쁩니다. 그런데, 이전에 이야기 하였던 내용을 잘 숙지하였더라면 위 함수가 왜 제대로 호출하는지 쉽게 알 수 있습니다.
 
@@ -337,7 +353,7 @@ warning C4013: 'swap'이(가) 정의되지 않았습니다. extern은 int형을 
 위 코드의 함수 호출 부분을
 
 ```cpp-formatted
-`swap(&i,` &j);
+swap(&i, &j);
 ```
 
 에서
@@ -388,10 +404,12 @@ int swap(int *a, int *b) {
 }
 ```
 
-  성공적으로 컴파일 하면
+성공적으로 컴파일 하면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1450EB274B28F80D374EDF)
+```exec
+SWAP 이전 : i : 3, j : 5 
+SWAP 이후 : i : 5, j : 3 
+```
 
 오, 역시 잘 출력됩니다. 이번에는 컴파일시 경고나 오류의 흔적 조차 찾아볼 수 없었습니다.
 
@@ -407,7 +425,7 @@ int main() {
 
 소스 코드의 제일 윗부분을 보면 위와 같이 한 줄이 추가된 것을 볼 수 있습니다. 이는 바로 '함수의 원형' 이라 부르는 것입니다. 이는 사실 함수의 정의 부분을 한 번 더 써준 것 뿐입니다 (주의할 점은 함수의 원형에는 정의와는 달리 뒤에 ; 를 붙인 다는 것입니다). 그런데, 이 한줄이 컴파일러에게 다음과 같은 사실을 알려줍니다.
 
-  "야, 이 소스코드에 이러 이러한 함수가 정의되어 있으니까 잘 살펴봐"
+> 야, 이 소스코드에 이러 이러한 함수가 정의되어 있으니까 잘 살펴봐
 
 다시말해, 컴파일러에게 이 소스코드에 사용되는 함수에 대한 정보를 제공하는 것입니다. 다시 말해 실제 프로그램에는 전혀 반영되지 않는 정보지요. 그렇지만, 우리가 앞서 하였던 실수들을 하지 않도록 도와줍니다. 만일, 위와 같이 함수의 원형을 삽입한 상태에서 인자를 `&i` 하나로 지워 봅시다. 즉, `swap(&i, &j)` 를 `swap(&i);` 로 변경해봅시다.
 
@@ -466,8 +484,12 @@ int add_number(int *parr) {
 
   성공적으로 컴파일 했으면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F143DB51F4B29C0FE38D124)
+```exec
+10
+11
+15
+배열의 각 원소 : 11, 12, 16
+```
 
 음, 역시 함수가 잘 작동하는 군요. 우리가 `10, 11, 15` 를 입력했을 때, 함수를 통해서 각 원소가 1 씩 증가하여 `11, 12, 16` 이 되었습니다. 일단, `add_number` 함수 부터 살펴 보도록 하죠.
 
@@ -528,10 +550,12 @@ int max_number(int *parr) {
 }
 ```
 
-  성공적으로 컴파일 한다면
+성공적으로 컴파일 한다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F141500234B29C0F0734344)
+```exec
+100 50 102 300 900 700 550 400 800 600
+입력한 배열 중 가장 큰 수 : 900 
+```
 
 이번 예제는 사용자들로 부터 정수 10 개를 입력 받아서, 그 수들 중 가장 큰 수를 뽑아내는 프로그램 입니다. 먼저 `max_number` 함수 부터 살펴봅시다.
 

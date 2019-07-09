@@ -58,13 +58,19 @@ int main() {
 
 성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F121D49344D209B37546E36)
-
+```exec
+원하시는 구조체 배열의 크기 : 2
+arr[0].a : 1
+arr[0].b : 2
+arr[1].a : 3
+arr[1].b : 4
+arr[0].a : 1 , arr[0].b : 2 
+arr[1].a : 3 , arr[1].b : 4 
+```
 
 와 같이 나옵니다.
 
-저의 구조체 강좌를 여태까지 잘 보신 분들은 잘 아시겠지만 '구조체' 역시 특별하게 생각해야 될 것이 아니라 '사용자가 만든 하나의 데이터 타입' 이라고 보시면 된다고 했습니다. 다시 말해 구조체도 `int` 처럼 사용할 수 있다는 것이지요. 따라서 구조체 배열을 `malloc` 을 이용하여 지지고 볶는 일은 전혀 이상할 것이 없는 행동 입니다.
+저의 구조체 강좌를 여태까지 잘 보신 분들은 잘 아시겠지만 구조체 역시 특별하게 생각해야 될 것이 아니라 '사용자가 만든 하나의 데이터 타입' 이라고 보시면 된다고 했습니다. 다시 말해 구조체도 `int` 처럼 사용할 수 있다는 것이지요. 따라서 구조체 배열을 `malloc` 을 이용하여 지지고 볶는 일은 전혀 이상할 것이 없는 행동 입니다.
 
 ```cpp-formatted
 struct Something *arr;
@@ -332,19 +338,16 @@ struct Node* CreateNode(int data) {
 }
 ```
 
-
-
-
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F11474E154C8DFAC13AA03C)
-
+```exec
+노드의 데이터 : 100 
+노드의 데이터 : 200 
+노드의 데이터 : 400 
+노드의 데이터 : 300 
+```
 
 와 같이 잘 나옵니다.
-
-
 
 ```cpp-formatted
 void PrintNodeFrom(struct Node *from) {
@@ -356,9 +359,6 @@ void PrintNodeFrom(struct Node *from) {
   }
 }
 ```
-
-
-
 
 일단 추가적으로 위와 같이 `from` 이후의 모든 노드의 값을 출력하는 함수인 `PrintNodeFrom` 이라는 함수를 정의하였습니다.
 
@@ -421,15 +421,13 @@ int main() {
 ```
 
 
-
-
-
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile7.uf.tistory.com%2Fimage%2F1477090B4C8E0E432F5108)
-
+```exec
+I love Chewing C hahaha 
+I love Chewing C hahaha 
+hello 
+```
 
 와 같이 나옵니다.
 
@@ -476,16 +474,13 @@ int main() {
 }
 ```
 
-
-
-
-
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F14653A2F4C8E10BF619E3B)
-
+```exec
+I love Chewing C hahaha 
+memmove 이후 
+I love Chewing C hahahahahaha
+```
 
 와 같이 나옵니다.
 
@@ -521,13 +516,11 @@ int main() {
 }
 ```
 
-
 성공적으로 컴파일 하였다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F164D9B1F4C8E1ED414C774)
-
+```exec
+arr 과 arr2 는 일치! 
+```
 
 와 같이 나옵니다.
 

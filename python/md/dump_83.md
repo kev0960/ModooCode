@@ -37,9 +37,7 @@ int main() {
 }
 ```
 
-
-  컴파일 하였다면
-
+컴파일 하였다면
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1145B3014C1E1E1454D7DA)
 
@@ -80,10 +78,11 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F12224E0D4C1E20C882FA32)
+```exec
+11
+```
 
 이번에는 어느 함수에도 속하지 않는 변수가 등장하였습니다. 이와 같이 함수 '외부' 에 선언되어 있는 변수를 바로 **전역 변수(global variable)** 이라 합니다. 얘는 정말 이름대로 글로벌 한 녀석인데 아까 지역 변수가 자신이 정의되어 있는 함수 내부에서는 접근할 수 있었더라면 이 변수의 경우 모든 함수에서 접근할 수 있습니다. 마치 몇 개 국어를 자유롭게 구사하는 사람 처럼 말이죠.
 
@@ -117,11 +116,11 @@ int main() {
 }
 ```
 
+성공적으로 컴파일 했다면
 
-  성공적으로 컴파일 했다면
-
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F1351B40F4C1E22A6662374)
+```exec
+1 
+```
 
 위와 같이 1 이 출력됨을 알 수 있습니다. 만일 `global` 이 지역 변수 같았더라면 일단 컴파일 시에 `global` 변수가 초기화 되지 않고 사용되었습니다 라는 경고를 보았을 테고, 설사 실행했다고 해도 맨 위에서 보았던 상콤한 오류 창을 보았을 텐데요.
 
@@ -149,10 +148,14 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1602720E4C1E243678DB27)
+```exec
+called : 1 
+called : 2 
+called : 3 
+called : 4 
+```
 
 위 프로그램에서는 `function` 이라는 변수가 몇 번 호출 되는지 알려줍니다. `How_Many_Times_This_Function_Called` 라는 변수는 `function` 함수를 몇 번 이나 호출했는데 카운트 해줍니다. 만일 `How_Many_Times_This_Function_Called` 를 `function` 함수의 지역 변수로 만들었다면 함수 종료 후 파괴 되므로 정보를 보관할 수 없었겠죠.
 
@@ -191,19 +194,27 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F16595B1B4C1E24EE998ECD)
+```exec
+function called : 1 
+function 2 called : 1 
+function called : 2 
+function 2 called : 2 
+function 2 called : 3 
+function 2 called : 4 
+function called : 3 
+function called : 4 
+function 2 called : 5 
+```
 
 이번에는 또 다른 함수 `function2` 의 호출 회수도 세는 변수를 지정하였습니다. 전역 변수는 모든 함수에서 접근할 수 있기 때문에 이를 위해 다른 변수 `How_Many_Times_This_Function_Called2` 를 도입하게 되었습니다. 그렇다면 이렇게 10 개의 함수에 대해 각각 호출 회수를 세기 위해서는 아마도 10 개의 전역 변수가 필요하게 됩니다.
 
 이는 심각한 문제가 아닐 수 있습니다. 전역 변수는 모든 함수에서 접근할 수 있기 때문에 전역 변수에 조금 이라도 문제가 생기면 전체 함수에 영향을 미치게 됩니다. 따라서 전역 변수는 매우 조심 스럽게 사용해야 하는데 이렇게 '위험한' 전역 변수를 수십개 선언 하다 보면 필연적으로 문제가 생기게 마련입니다.
 
-```warning
-참고로 대부분의 프로그래머들은 많은 수의 전역 변수를 선언하지 않는 것을 권고합니다.
+```lec-warning
+많은 수의 전역 변수를 선언하지 않는 것을 권장합니다.
 ```
 
-
-아마도 여러분은 이쯤 부터 "그럼, 함수가 종료되어도 값이 변경되지 않는 지역변수 는 없을까?" 라는 생각을 하게 됩니다. 다행이도 있습니다. 물론 지역 변수는 아니지요. 이를 **정적 변수 (static variable)** 이라 합니다.
+아마도 여러분은 이쯤 부터 *그럼, 함수가 종료되어도 값이 변경되지 않는 지역변수 는 없을까?* 라는 생각을 하게 됩니다. 다행이도 있습니다. 물론 지역 변수는 아니지요. 이를 **정적 변수 (static variable)** 이라 합니다.
 
 
 
@@ -247,8 +258,17 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F16595B1B4C1E24EE998ECD)
+```exec
+function called : 1 
+function 2 called : 1 
+function called : 2 
+function 2 called : 2 
+function 2 called : 3 
+function 2 called : 4 
+function called : 3 
+function called : 4 
+function 2 called : 5 
+```
 
 와 같이 동일하게 작동함을 알 수 있습니다. 정적 변수는 보통 아래와 같이 정의합니다.
 
@@ -280,6 +300,7 @@ How_Many_Times_This_Function_Called++;
 ```
 
 를 통해 함수의 호출 횟수를 셀 수 있습니다. 그렇다면 `main` 함수 에서 `How_Many_Times_This_Function_Called` 의 값을 볼 수 있는 방법이 있을까요? 답은 '없습니다' 입니다. 맨 위의 예제에서 지역 변수 `a` 값을 참조 할 수 없었던 것 처럼 `How_Many_Times_This_Function_Called` 는 '함수가 종료 될 때 파괴되지 않는다' 라는 점 빼고는 지역 변수와 하는 짓이 동일합니다.
+
 다만 정적 변수의 경우 전역 변수 처럼 '데이터 영역' 에 저장되고 프로그램이 종료될 때 파괴됩니다. 또한 전역 변수 처럼 정적 변수도 정의시 특별한 값을 지정해 주지 않는 한 0 으로 자동 초기화 됩니다.
 
 
@@ -313,10 +334,10 @@ int main() {
   char *str = "Hello, Baby";
   char arr[20] = "WHATTHEHECK";
 
-  printf("global : %x \n", &global);
-  printf("i : %x \n", &i);
-  printf("str : %x \n", str);
-  printf("arr : %x \n", arr);
+  printf("global : %p \n", &global);
+  printf("i : %p \n", &i);
+  printf("str : %p \n", str);
+  printf("arr : %p \n", arr);
 }
 ```
 

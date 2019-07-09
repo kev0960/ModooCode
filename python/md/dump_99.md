@@ -38,8 +38,9 @@ int main(int argc, char **argv) {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F1574AB204C597BDD8BE6F9)
+```exec
+square(3) : 9 
+```
 
 와 같이 나옵니다.
 
@@ -102,8 +103,9 @@ int main(int argc, char **argv) {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F112AFA224C8F0EC197F54B)
+```exec
+square(3) : 7 
+```
 
 흠. 조금 놀라운 결과가 나왔습니다.
 
@@ -156,10 +158,11 @@ int main(int argc, char **argv) {
 }
 ```
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F1904F7164C8F12790B161E)
+```exec
+5 rad 는 : 286.475000 도
+```
 
 아마 위 소스 코드의 내용 보다 라디안(radian) 이 무엇인지 모르는 분들이 더 많을 듯 한데, 그냥 말하자면 원주의 길이와 반지름의 길이의 비를 이용해 각도를 나타내는 단위로 자세한 내용은 생략하고 여기서는 단순히 `1 rad` 는 `57.295` 도 라는 것만 아시면 됩니다.
 
@@ -217,8 +220,9 @@ int main(int argc, char **argv) {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F140BEE1D4C8F14514649BF)
+```exec
+a
+```
 
 와 같이 잘 나옵니다.
 
@@ -268,10 +272,11 @@ int main(int argc, char **argv) {
 }
 ```
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F114F850C4C8F1D4D15BA94)
+```exec
+3 
+```
 
 와 같이 나옵니다.
 
@@ -316,17 +321,13 @@ int main(int argc, char **argv) {
 }
 ```
 
-
-
-
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F12778B224C8F233008B8C8)
-
+```exec
+9
+```
 
 음. 일단 내용만을 보아서는 크게 어렵지 않습니다.
-
 
 ```cpp-formatted
 __inline int square(int a) { return a * a; }
@@ -424,12 +425,11 @@ int main(int argc, char **argv) {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F11402F164CE8823F55E151)
-
+```exec
+3 과 2 중 최대값은 : 3
+```
 
 와 같이 나옵니다.
 
@@ -461,7 +461,7 @@ int main(int argc, char **argv) {
 
 #### 문제 1
 
-다음과 같은 인라인 함수를 여러분이 컴파일러라면 어떻게 하나의 문장으로 바꿀 수 있는지 생각해보세요.
+다음과 같은 인라인 함수를 하나의 문장으로 바꿀 수 있는지 생각해보세요.
 
 ```cpp-formatted
 __inline int some_function(int a) {

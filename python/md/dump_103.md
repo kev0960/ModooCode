@@ -119,8 +119,15 @@ int Print_Status(Human human) {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F157220264CF104BC288A84)
+```exec
+MALE 
+AGE : 31 / Height : 182 / Weight : 75 
+HE IS A WINNER!! 
+------------------------------------------- 
+FEMALE 
+AGE : 27 / Height : 166 / Weight : 48 
+------------------------------------------- 
+```
 
 와 같이 나옵니다.
 
@@ -183,8 +190,17 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F2057E0564D0D58391AEC1F)
+```exec
+--- 계산기 --- 
+1. 덧셈 
+2. 뺄셈 
+3. 종료 
+1
+두 수 : 123
+124 
+123 와 124 의 합 : 247 
+--- 계산기 --- 
+```
 
 와 같이 계산기 프로그램이 잘 실행됩니다. 만일 이 프로그램을 실제 계산기에 사용한다고 합시다. 그런데, 우리가 이 프로그램을 사용할 계산기는 안타깝게도 `CPU` 에서 32 비트 정수의 연산을 할 수 없습니다. 오직 16 비트 이하만 연산할 수 있다고 합시다. 그렇다면 이 계산기에서 `int` 형을 사용하는 것은 불가능 하고 `short` 나 `char` 형의 변수들만 선언해야 겠죠.
 
@@ -252,9 +268,11 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F20513A4E4D0D5B96266941)
-
+```exec
+a : 10 
+arr[3] : 4 
+add(3, 5) : 8 
+```
 
 가장 먼저 소스 코드에서 아래 문장 부터 살펴봅시다.
 
@@ -296,11 +314,7 @@ Arrays arr;
 
 ### `volatile` 키워드
 
-
-
-
-
-`volatile` 은 아주 아주 특수한 상황이 아니고서는 사용하지 않는 키워드 입니다. 사실 저도 그렇게 흔하게  사용하지 않고요. `volatile` 키워드를 사용하는 경우는 대부분 외부 하드웨어와 통신할 때 사용하게 됩니다. 이 말이 무슨 말이냐면, 아래 예제를 보시면 알게 될 것입니다.
+`volatile` 은 아주 아주 특수한 상황이 아니고서는 사용하지 않는 키워드 입니다. 사실 저도 그렇게 자주 사용하지 않고요. `volatile` 키워드를 사용하는 경우는 대부분 외부 하드웨어와 통신할 때 사용하게 됩니다. 이 말이 무슨 말이냐면, 아래 예제를 보시면 알게 될 것입니다.
 
 만일 여러분이 특정한 외부 센서와 소통하는 프로그램을 만든다고 합시다. 이 센서는 RAM 의 특정 영역을 이용하는데, 만일 센서에 값이 감지되지 않으면 그 곳의 값이 0 이 되어 무언가가 감지되면 그 부분의 값을 1 로 한다고 합시다. 그렇다면 여러분은 십중팔구 아래와 같은 코드를 작성할 것입니다.
 
@@ -386,11 +400,11 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 했다면
 
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F160848524D1491DA137DB7)
+```exec
+size of a : 8
+```
 
 와 같이 나옵니다.
 
@@ -422,7 +436,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F180710424D14A4D401D28E)
+```exec
+size of a : 6 
+```
 
 와 같이 나옵니다.
 
@@ -453,13 +469,11 @@ int main() {
 ```
 
 
-
 성공적으로 컴파일 했다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F186C4F424D14A4D42684F7)
-
-
-
+```exec
+Weird 구조체의 a.i : 3
+```
 
 와 같이 나옵니다.
 
@@ -539,10 +553,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F186C4F424D14A4D42684F7)
-
-
-
+```exec
+Weird 구조체의 a.i : 3
+```
 
 와 같이 잘 실행됩니다. 일단 왜 오류가 나지 않는지 살펴 봅시다. 우리가 전처리기라고 한다면 맨 처음에 첫번째 `#include "weird.h"` 를 만났을 때 `WEIRD_H` 가 정의되어 있지 않으므로 `#ifndef` 가 참이 되어 아래 `#define` `WEIRD_H` 가 수행되어 `WEIRD_H` 라는 것이 정의됩니다. (값은 모르지만 아무튼, 이러한 이름이 정의되었다고 합시다)
 
@@ -558,9 +571,6 @@ struct Weird {
   int i;
 };
 ```
-
-
-
 
 ```cpp-formatted
 /* test.c*/
@@ -578,8 +588,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F186C4F424D14A4D42684F7)
-
+```exec
+Weird 구조체의 a.i : 3
+```
 
 와 같이 잘 나옵니다. 이 명령은 컴파일러로 하여금 이 파일이 오직 딱 한 번만 `include` 될 수 있다는 것을 말해주는데, 이는 위에서 `#ifndef` 를 이용하여 복잡하게 하였던 작업들을 단순하게 한 문장으로 끝낼 수 있게 됩니다.
 
@@ -623,8 +634,6 @@ int main() {
 #pragma once
 #endif
 ```
-
-
 
 를 보면 `_MSC_VER` 이 1000 보다 크면 `#pragma once` 키워드를 사용하라고 되어있습니다. `_MSC_VER` 은 마이크로소프트 사의 전처리기에 의해 기본적으로 정의되어 있는 상수로 컴파일러의 버전을 나타내는데, `Visual C++` 의 경우 `_MSC_VER` 값이 1000 부터 시작 하여 현재 2008 버전은 1500 의 값을 가지고 있습니다. 즉, 현재 버전의 컴파일러의 경우 `_MSV_VER > 1000` 이 참이 되므로 `#pragma once` 키워드를 이용하게 됩니다. 구 버전의 컴파일러는 그 아래
 

@@ -52,8 +52,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
+```exec
 
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F161E6D564D18890D0BB74A)
+```
 
 와 같이 아무것도 나오지 않습니다. 왜냐하면 화면에 출력하는 문장이 아무것도 없거든요. 대신, 소스 파일이 위치한 곳으로 들어가봅시다. 저의 경우 다음과 같은 경로에 소스파일이 위치해있습니다.
 
@@ -87,10 +88,6 @@ fp = fopen("a.txt", "w");
 
 
 ### 스트림
-
-
-
-
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F154733414D1894062D76CF)
 
@@ -152,18 +149,17 @@ fputs("Hello World!!! \n", fp);
 fputs("Hello World!!! \n", stdout);
 ```
 
+을 해보면
 
-  을 해보면
+```exec
+Hello World!!!
+```
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F203F1E334D18A92C17EEE9)
-
-  와 같이 실제로 잘 나오는 것을 알 수 있습니다. 아무튼
+와 같이 실제로 잘 나오는 것을 알 수 있습니다. 아무튼
 
 ```cpp-formatted
 fputs("Hello World!!! \n", fp);
 ```
-
 
 를 통해 파일에 `"Hello World!!! \n"` 을 기록하게 됩니다. 이제 마지막으로
 
@@ -185,14 +181,12 @@ int main() {
 }
 ```
 
-
 으로 표준 출력 스트림을 닫아버리면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F19389B334D18A9E6285A11)
+```exec
+```
 
 와 같이 `printf` 를 해도 아무것도 나오지 않는 재미있는 일이 발생합니다.
-
 
 
 ### 파일에서 입력 받기
@@ -217,10 +211,11 @@ int main() {
 ```
 
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F185FFD594D18B0B00A6393)
+```exec
+Hello World!!
+```
 
 한 번 소스코드를 살펴봅시다.
 
@@ -274,8 +269,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F127AD7414D18B6512277B4)
+```exec
+Hello World!!
+```
 
 와 같이 나옵니다.
 
@@ -314,9 +310,9 @@ int main() {
 
 성공적으로 컴파일 했다면
 
-
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F147962594D18BCE501D55E)
+```exec
+이 파일의 크기는 : 14 bytes
+```
 
 와 같이 잘 나옵니다.
 
@@ -325,9 +321,6 @@ int main() {
 
 
 ### 파일 위치 지정자
-
-
-
 
 
 여태까지 파일에서 입력을 받을 때 언제나 파일의 시작 부분에서 끝 부분으로 입력을 쭉 받아 나갔습니다. 즉, 이전에 입력 받았던 데이터는 다시 입력 받지 않았다는 것이지요. 이것이 가능하게 된 이유는 **파일 위치 지정자** 때문 입니다. 영어로 **Position Indicator** 라고 합니다.
@@ -357,11 +350,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F155FDA344D18C94901D0C3)
-
-
+```exec
+다시 파일 처음에서 입력 받는다면 : a
+```
 
 와 같이 `a` 가 다시 잘 나오는 것을 보실 수 있습니다.
 
@@ -396,15 +387,9 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였을 때, `a.txt` 의 모습을 보면
 
-
-
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F1664BD404D18CBC1051A2E)
-
-
 
 
 로 나타납니다. 사실 이번 예제도 상당히 쉬운데, 먼저 `fputs` 로
@@ -414,15 +399,13 @@ fputs("Psi is an excellent C programmer", fp);
 ```
 
 
-`Psi is an excellent C programmer` 을 넣었고, 이 때 파일을 열어보았더라면 이와 같은 문장이 들어 있었을 것입니다. 그런데,
+*Psi is an excellent C programmer* 을 넣었고, 이 때 파일을 열어보았더라면 이와 같은 문장이 들어 있었을 것입니다. 그런데,
 
 ```cpp-formatted
 fseek(fp, 0, SEEK_SET);
 ```
 
-
-
-로 파일 위치지정자를 맨 처음으로 돌려서 다시 `fputs` 를 했을 때, 파일 앞에 내용이 끼워져 들어가는 것이 아니라 이전의 내용에 덮어쓰기 하면서 기록이 되므로 맨 처음 'Psi is' 를 'is Psi' 로 내용을 바꿔버립니다. 따라서 결국에는 `is Psi an excellent C programmer` 라는 문장이 파일에 남아 있게 됩니다.
+로 파일 위치지정자를 맨 처음으로 돌려서 다시 `fputs` 를 했을 때, 파일 앞에 내용이 끼워져 들어가는 것이 아니라 이전의 내용에 덮어쓰기 하면서 기록이 되므로 맨 처음 *Psi is* 를 *is Psi* 로 내용을 바꿔버립니다. 따라서 결국에는 *is Psi an excellent C programmer* 라는 문장이 파일에 남아 있게 됩니다.
 
 이번 강좌에서는 이렇게 대략적으로 파일 입출력을 어떻게 하는 것인지, 그리고 파일 위치지정자가 무엇인지 소개했습니다. 사실 파일 입출력의 백미는 다음 강좌에서 부터 시작이라 보시면 됩니다 :)
 

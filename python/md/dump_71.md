@@ -19,12 +19,7 @@ publish_date : 2010-06-13
 
 안녕하세요 여러분! 또 오래간만 입니다. (저 아직 죽지 않고 살아있어요) 구조체를 향한 강좌도 끝을 향해 달려가고 있습니다. 물론 이번 강좌에서는 구조체만을 다루는 것이 아니라 C 언어에서 사용 비중이 그렇게 크지는 않지만 어쨋든 알기는 알아야 하는 기능들에 대해서 배워볼 차례 입니다. 다시말해, 큰 산들은 다 넘었고 이제 우리 앞에는 조그마한 언덕만이 남아 있을 뿐이라는 것이죠 :)
 
-
-
 ###  구조체 안의 구조체
-
-
-
 
 ```cpp-formatted
 /* 구조체 안의 구조체*/
@@ -52,8 +47,10 @@ int main() {
 
 성공적으로 컴파일 했다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1701851E4BCAB179451724)
+```exec
+Kim's age : 31 
+Kim's salary : 3000000$/year 
+```
 
 먼저 `employee` 구조체를 살펴 봅시다.
 
@@ -125,8 +122,9 @@ struct AA function(int j) {
 
 성공적으로 컴파일 했다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F202E540D4C14C54CAA7088)
+```exec
+a.i : 10 
+```
 
 먼저 `AA` 라는 구조체를 정의하였습니다. 편의상 멤버는 `int` i  로 하나만 가진다고 합시다.
 
@@ -216,8 +214,12 @@ char copy_str(char *dest, char *src) {
 
 성공적으로 컴파일 했다면
 
+```exec
+Location of RED BALL 
+( 3 , 4 ) 
+```
 
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F195FEB0C4C14C8D901E478)
+와 같이 나옵니다.
 
 ```cpp-formatted
 struct obj {
@@ -226,7 +228,7 @@ struct obj {
 } Ball;
 ```
 
-저는 위와 같이 "sturct obj" 라는 구조체를 정의하였고 멤버는 위와 같습니다. 그런데, 맨 아래 `Ball` 은 무엇인가요? 이는 바로 그냥 `sturct obj` 형의 `Ball` 이란 구조체 변수를 정의하라는 뜻입니다. 사실 우리가 `main` 함수 내부에서
+저는 위와 같이 `sturct obj` 라는 구조체를 정의하였고 멤버는 위와 같습니다. 그런데, 맨 아래 `Ball` 은 무엇인가요? 이는 바로 그냥 `sturct obj` 형의 `Ball` 이란 구조체 변수를 정의하라는 뜻입니다. 사실 우리가 `main` 함수 내부에서
 
 ```cpp-formatted
 struct obj Ball;
@@ -279,8 +281,15 @@ int Print_Status(struct HUMAN human) {
 
 성공적으로 컴파일 했다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1814FB0C4C14CB0DD0DE6E)
+```exec
+MALE 
+AGE : 31 / Height : 182 / Weight : 75 
+HE IS A WINNER!! 
+------------------------------------------- 
+FEMALE 
+AGE : 27 / Height : 166 / Weight : 48 
+------------------------------------------- 
+```
 
 위 예제도 역시 구조체의 잡다한 기능 중 하나를 보여주고 있습니다. 바로 멤버를 초기화 하는 방식 인데요, 우리가 이전까지 멤버를 초기화 해온 방법 보다 더 쉽게 할 수 있습니다.
 
@@ -365,15 +374,11 @@ int main() {
 }
 ```
 
-
-
-
 성공적으로 컴파일 했다면
 
-
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F1868AA0C4C14DC6A84F982)
-
+```exec
+78
+```
 
 
 음. 과연 우리는 `a` 의 `j` 멤버 값을 전혀 설정해 주지 않았음에도 불구하고 `i` 에 `0x12345678` 을 대입하자 `j` 의 값이 78 로 잘 나왔습니다. 그런데 이상한 점이 듭니다. 왜 78 이 나왔을 까요? `0x12` 가 나와야 되는 것 아닌가요? 분명히 `i` 와 `j` 에 동일한 주소값에 위치해 있고 `i` 가 `0x12345678` 로 메모리 상에 있다면 `j` 는 처음 두 개인 `0x12` 가 되어야 되는 것 아닌가요? 물론, 여러분의 생각은 옳습니다. 하지만 컴퓨터에서는 수를 이렇게 보관하지 않습니다. 적어도 여러분의 컴퓨터에서는요.
@@ -408,14 +413,11 @@ int main() {
 }
 ```
 
-
-
-
 성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F1868700C4C14DC6B7EB212)
-
+```exec
+5678
+```
 
 로 `0x5678` 이 나오게 됩니다.
 
@@ -480,15 +482,11 @@ int main() {
 }
 ```
 
-
-
-
 성공적으로 컴파일 했다면
 
-
-![](http://)
-
-
+```exec
+palette : RED 
+```
 
 일단, 열거형을 정의한 부분 부터 살펴 봅시다.
 
@@ -530,10 +528,9 @@ int main() {
 
 성공적으로 컴파일 했다면
 
-
-![](http://)
-
-
+```exec
+6 
+```
 
 열거형에서 처음 수를 0 으로 시작하기 싫다면 어떨까요. 단순히 원하는 수로 해주면 됩니다. 예를 들어 위와 같이
 
@@ -558,9 +555,7 @@ enum { RED = 3, BLUE, WHITE = 3, BLACK }
 
 #### 문제 1
 
-공용체는 도대체 어디에 써먹을 수 있을까요? 아래 글을 읽어보세요
-
-http://www.go4expert.com/forums/showthread.php?t=15
+공용체는 도대체 어디에 써먹을 수 있을까요? [이 글](http://www.go4expert.com/forums/showthread.php?t=15)을 읽어보세요.
 
 
 ##@ chewing-c-end

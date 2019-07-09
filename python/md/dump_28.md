@@ -40,26 +40,26 @@ int main() {
   pa = &a;
   pb = &b;
 
-  printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
-  printf("pa 의 주소값 : %x \n \n", &pa);
-  printf("pb 가 가리키는 변수의 주소값 : %x \n", pb);
-  printf("pb 의 주소값 : %x \n", &pb);
+  printf("pa 가 가리키는 변수의 주소값 : %p \n", pa);
+  printf("pa 의 주소값 : %p \n \n", &pa);
+  printf("pb 가 가리키는 변수의 주소값 : %p \n", pb);
+  printf("pb 의 주소값 : %p \n", &pb);
 
   printf(" ------------- 호출 -------------- \n");
   pswap(&pa, &pb);
   printf(" ------------- 호출끝 -------------- \n");
 
-  printf("pa 가 가리키는 변수의 주소값 : %x \n", pa);
-  printf("pa 의 주소값 : %x \n \n", &pa);
-  printf("pb 가 가리키는 변수의 주소값 : %x \n", pb);
-  printf("pb 의 주소값 : %x \n", &pb);
+  printf("pa 가 가리키는 변수의 주소값 : %p \n", pa);
+  printf("pa 의 주소값 : %p \n \n", &pa);
+  printf("pb 가 가리키는 변수의 주소값 : %p \n", pb);
+  printf("pb 의 주소값 : %p \n", &pb);
   return 0;
 }
 int pswap(int **ppa, int **ppb) {
   int *temp = *ppa;
 
-  printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-  printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
+  printf("ppa 가 가리키는 변수의 주소값 : %p \n", ppa);
+  printf("ppb 가 가리키는 변수의 주소값 : %p \n", ppb);
 
   *ppa = *ppb;
   *ppb = temp;
@@ -68,13 +68,28 @@ int pswap(int **ppa, int **ppb) {
 }
 ```
 
-  성공적으로 컴파일 하면
+성공적으로 컴파일 하면
 
+```exec
+pa 가 가리키는 변수의 주소값 : 0x7ffc5ffd7520 
+pa 의 주소값 : 0x7ffc5ffd7528 
+ 
+pb 가 가리키는 변수의 주소값 : 0x7ffc5ffd7524 
+pb 의 주소값 : 0x7ffc5ffd7530 
+ ------------- 호출 -------------- 
+ppa 가 가리키는 변수의 주소값 : 0x7ffc5ffd7528 
+ppb 가 가리키는 변수의 주소값 : 0x7ffc5ffd7530 
+ ------------- 호출끝 -------------- 
+pa 가 가리키는 변수의 주소값 : 0x7ffc5ffd7524 
+pa 의 주소값 : 0x7ffc5ffd7528 
+ 
+pb 가 가리키는 변수의 주소값 : 0x7ffc5ffd7520 
+pb 의 주소값 : 0x7ffc5ffd7530
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F114B5C164B2CAA6E6CA90F)
 여러분의 출력결과는 위 사진과 다를 수 있습니다.
 
-일단, 붉은색으로 박스 친 부분을 잘 살펴보기 바랍니다. `pa` 가 가리키는 변수의 주소값은 (즉, `pa` 의 값이지요) `31FBCC` 였습니다. 물론, 여러분이 실행했을 때 에는 결과가 다르게 나올 것입니다. (거의 99% 확률로 다르게 나옵니다) `pb` 가 가리키는 변수의 주소값은 `31FBC0` 이였습니다. 그런데 말이죠. `pswap` 함수를 호출하고 나니, `pa` 가 가리키는 변수의 주소값은 `31FBC0` 이 되고, `pb` 가 가리키는 변수의 주소값은 `31FBCC` 가 되었습니다. 즉, 두 포인터가 가리키는 변수가 서로 뒤바뀐 것이지요.
+`pa` 가 가리키는 변수의 주소값은 (즉, `pa` 의 값이지요) `0x7520` 였습니다. (편의상 앞에 공통된 `0x7ffc5ffd` 는 생략합시다) `pb` 가 가리키는 변수의 주소값은 `0x7524` 이였습니다. 그런데 말이죠. `pswap` 함수를 호출하고 나니, `pa` 가 가리키는 변수의 주소값은 `0x7524` 이 되고, `pb` 가 가리키는 변수의 주소값은 `0x7520` 가 되었습니다. 즉, 두 포인터가 가리키는 변수가 서로 뒤바뀐 것이지요.
 
 이 때, 우리는 이와 같은 함수를 만들기 위해서, 인자를 어떤 형식으로 취해야 될까요? 앞서 말했듯이, 특정한 타입의 변수의 값을 바꾸려면, 특정한 타입을 가리키는 포인터로 인자를 취해야 된다고 했습니다. 그런데, 이 예제의 경우, 특정한 타입은 `int*` 타입입니다. 그렇다면 `int*` 타입을 가리키는 포인터의 타입은? 음. 강좌를 잘 복습하였다면 `int**` 타입 이라고 말할 수 있겠지요. (잘 모르겠다면 [12-3 강, 포인터는 영희이다!](http://itguru.tistory.com/25)를 보세요)
 
@@ -90,8 +105,8 @@ int pswap(int **ppa, int **ppb)
 int pswap(int **ppa, int **ppb) {
   int *temp = *ppa;
 
-  printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-  printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
+  printf("ppa 가 가리키는 변수의 주소값 : %p \n", ppa);
+  printf("ppb 가 가리키는 변수의 주소값 : %p \n", ppb);
 
   *ppa = *ppb;
   *ppb = temp;
@@ -105,8 +120,8 @@ int pswap(int **ppa, int **ppb) {
 만일 우리가 위 예제 처럼 `pswap` 함수를 호출하였다고 하면, `ppa` 는 `pa` 를 가리키고 있고, `ppb` 는 `pb` 를 가리키고 있겠지요. 따라서, `*ppa` 라 하면 `pa` 의 값을 이야기 합니다. 그런데, `pa` 는 `int*` 형이므로, `pa` 의 값을 보관하는 변수는 반드시 `int*` 이여야 되겠지요. 따라서, 우리는 `int*` 형의 `temp` 변수를 정의하였습니다. 그 아래의 내용은 이전에 만들어 보았던 `swap` 함수와 동일합니다.
 
 ```cpp-formatted
-printf("ppa 가 가리키는 변수의 주소값 : %x \n", ppa);
-printf("ppb 가 가리키는 변수의 주소값 : %x \n", ppb);
+printf("ppa 가 가리키는 변수의 주소값 : %p \n", ppa);
+printf("ppb 가 가리키는 변수의 주소값 : %p \n", ppb);
 ```
 
 그렇다면 우리는 위 두개의 `printf` 문장에서 어떤 결과가 출력될 지 예측 가능합니다. 위 예제에서 `ppa` 가 `pa` 를 가리키고 있으므로 `ppa` 의 값을 출력하면 `pa` 의 주소값이 나오고, `ppb` 도 마찬가지로 나오겠죠. 위 출력결과에서 실제로 같다는 것을 확인할 수 있습니다. 어때요. `pswap` 함수가 이해가 되나요?
@@ -155,10 +170,17 @@ int add1_element(int (*arr)[2], int row) {
 }
 ```
 
-  성공적으로 컴파일 하였다면
+성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F1739B8224B2CB4F71E3A75)
+```exec
+1 2 3 4 5 6
+arr[0][0] : 2 
+arr[0][1] : 3 
+arr[1][0] : 4 
+arr[1][1] : 5 
+arr[2][0] : 6 
+arr[2][1] : 7 
+```
 
 역시 잘 실행되는군요. 일단, 함수의 정의부분 부터 살펴봅시다.
 
@@ -291,7 +313,11 @@ int max(int a, int b) {
 
 성공적으로 컴파일 했다면
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F177417244B3072794C0316)
+```exec
+10 15
+max(a,b) : 15 
+pmax(a,b) : 15 
+```
 
 역시 우리가 예상했던 데로 잘 흘러가는 것 같습니다. 함수 포인터는 어떻게 정의하는지 살펴봅시다.
 
@@ -363,10 +389,15 @@ int max(int a, int b) {
 int donothing(int c, int k) { return 1; }
 ```
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile5.uf.tistory.com%2Fimage%2F1427D7224B3075AA319947)
+```exec
+10 123
+max(a,b) : 123 
+pfunc(a,b) : 123 
+donothing(1,1) : 1 
+pfunc(1,1) : 1 
+```
 
 일단, 우리는 이전의 예제와 동일한 형태의 함수 포인터 `pfunc` 을 정의하였습니다.
 

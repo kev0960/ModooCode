@@ -128,7 +128,7 @@ $$m = qn + r, (0 \le r < q), \text{gcd}(m, n) = \text{gcd}(qn + r, n) = \text{gc
 ```cpp-formatted
 #include <stdio.h>
 int recursive(int n) {
-  printf("난 인자가 %d 에요! \n");
+  printf("난 인자가 %d 에요! \n", n);
   if (n <= 0) return 0;
 
   recursive(0);
@@ -139,12 +139,14 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
+```exec
+난 인자가 3 에요! 
+난 인자가 0 에요! 
+```
 
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1903D2284B36263D76E85B)
-
-  흠. 어느 정도 예측 가능했던 결과입니다. 그렇다면, 아래의 코드는 어떨까요?
+흠. 어느 정도 예측 가능했던 결과입니다. 그렇다면, 아래의 코드는 어떨까요?
 
 ```cpp-formatted
 #include <stdio.h>
@@ -162,10 +164,13 @@ int main() {
 }
 ```
 
-  성공적으로 컴파일 했다면
+성공적으로 컴파일 했다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F176283254B362678AE89BF)
+```exec
+난 인자가 3 에요! 
+난 인자가 2 에요! 
+난 인자가 1 에요! 
+난 인자가 0 에요! 
 
 일단, 컴퓨터 상에서 위 코드는 아래의 순서로 실행됩니다.
 

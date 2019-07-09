@@ -103,9 +103,11 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F123D4E494D3405F70A846B)
-
+```exec
+정수를 입력하세요 : 120
+120 를 32 로 나누면 : 3 
+120 를 5 칸 쉬프트 하면 : 3 
+```
 
 두 결과가 일치함을 보실 수 있습니다.
 
@@ -163,9 +165,11 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F203281334D3409E03A15C4)
-
+```exec
+I am ALIVE!! 
+I am WALKING!! 
+I am EATING!! 
+```
 
 와 같이 단순히 하나의 `int` 변수에 위 모든 데이터를 나타낼 수 있었습니다. 그 이유는 아래와 같이
 
@@ -248,9 +252,9 @@ int main() {
 
 성공적으로 컴파일 하였다면
 
-
-![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1938A6594D34119938AE3D)
-
+```exec
+33 는 홀수 입니다 
+```
 
 ### 루프(loop) 관련
 
