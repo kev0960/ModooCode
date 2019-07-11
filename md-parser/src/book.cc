@@ -127,7 +127,7 @@ void BookManager::GenerateMainTex() {
                                        {"caption"},
                                        {"fancyvrb"},
                                        {"hyperref", "pdfencoding=auto"},
-                                       {"titlesec"},
+                                       //{"titlesec"},
                                        {"verbatim"},
                                        {"spverbatim"},
                                        {"marginnote"},
@@ -137,7 +137,7 @@ void BookManager::GenerateMainTex() {
                                        {"svg"},
                                        {"color"},
                                        {"beramono"},
-                                       {"letltxmacro"},
+//                                       {"letltxmacro"},
                                        {"sourcecodepro"}};
   tex += AddBunchOfPackages(package_list);
 
@@ -200,7 +200,7 @@ void BookManager::GenerateMainTex() {
 
   // Chapter Style
   tex += R"(
-\chapterstyle{demo}
+\chapterstyle{ell}
 )";
 
   // Spacing between lines.
@@ -282,12 +282,12 @@ void BookManager::GenerateMainTex() {
     auto chapter_itr = file_info_->at(file_name).find("chapter");
     if (chapter_itr != file_info_->at(file_name).end()) {
       string chapter = chapter_itr->second;
-      tex += StrCat("\n\\chap{", chapter, "}\n");
+      tex += StrCat("\n\\newpage\\chap{", chapter, "}\n");
     }
     auto title_itr = file_info_->at(file_name).find("tex_title");
     if (title_itr != file_info_->at(file_name).end()) {
       string title = title_itr->second;
-      tex += StrCat("\n\\section*{", title, "}\n");
+      tex += StrCat("\n\\newpage\\section*{", title, "}\n");
     }
     tex += StrCat("\\input{", file_name, "}\n");
   }
