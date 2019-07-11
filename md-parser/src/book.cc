@@ -106,7 +106,7 @@ BookManager::BookManager(
 }
 
 void BookManager::GenerateMainTex() {
-  string tex = "\\documentclass[a4paper, 10pt]{memoir}\n";
+  string tex = "\\documentclass[letter, 10pt]{memoir}\n";
   std::vector<Package> package_list = {{"inputenc", "utf8"},
                                        {"lmodern"},
                                        {"minted"},
@@ -134,10 +134,8 @@ void BookManager::GenerateMainTex() {
                                        {"mdframed", "framemethod=TikZ"},
                                        {"fontenc", "T1"},
                                        {"adjustbox", "export"},
-                                       {"svg"},
                                        {"color"},
                                        {"beramono"},
-//                                       {"letltxmacro"},
                                        {"sourcecodepro"}};
   tex += AddBunchOfPackages(package_list);
 
@@ -200,7 +198,17 @@ void BookManager::GenerateMainTex() {
 
   // Chapter Style
   tex += R"(
-\chapterstyle{ell}
+%\chapterstyle{ell}
+\renewcommand*{\chapterheadstart}{}
+\renewcommand*{\printchapternum}{
+  \chapnumfont 제 \thechapter ~장
+}
+\renewcommand*{\chapnumfont}{\normalfont\large\sffamily}
+\renewcommand*{\chaptitlefont}{\normalfont\Huge\sffamily}
+\renewcommand*{\midchapskip}{0.5cm}
+\renewcommand*{\printchaptertitle}[1] {%
+ \hrule \vspace{0.7cm} \chaptitlefont #1 \vspace{0.7cm} \hrule}
+\renewcommand*{\printchaptername}{}
 )";
 
   // Spacing between lines.
@@ -282,7 +290,7 @@ void BookManager::GenerateMainTex() {
     auto chapter_itr = file_info_->at(file_name).find("chapter");
     if (chapter_itr != file_info_->at(file_name).end()) {
       string chapter = chapter_itr->second;
-      tex += StrCat("\n\\newpage\\chap{", chapter, "}\n");
+      tex += StrCat("\n\\newpage\\chapter{", chapter, "}\n");
     }
     auto title_itr = file_info_->at(file_name).find("tex_title");
     if (title_itr != file_info_->at(file_name).end()) {

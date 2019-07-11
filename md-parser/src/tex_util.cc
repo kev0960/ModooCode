@@ -42,7 +42,8 @@ string CreateTColorBox(const string& content, const string& color,
   } else {
     return StrCat("\n\\begin{tcolorbox}[colback=", color, "!5!", font_color,
                   ",colframe=", color, "!75!black,title=", title,
-                  ",left=3pt,right=3pt]\n", content, "\n\\end{tcolorbox}\n");
+                  ",left=3pt,right=3pt,fonttitle=\\sffamily]\n", content,
+                  "\n\\end{tcolorbox}\n");
   }
 }
 }  // namespace md_parser
