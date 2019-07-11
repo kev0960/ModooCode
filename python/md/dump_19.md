@@ -3,6 +3,7 @@ title : 씹어먹는 C 언어 - <2 - 2. 주석(Comment)에 대한 이해>
 cat_title : 2 - 2. 주석(Comment)에 대한 이해
 next_page : 21
 publish_date : 2009-09-24
+tex_title : 주석(Comment)
 --------------
 
 

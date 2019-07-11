@@ -3,6 +3,7 @@ title : 씹어먹는 C 언어 - <13 - 1. 마술 상자 함수(function)>
 cat_title : 13 - 1. 마술 상자 함수(function)
 next_page : 27
 publish_date : 2009-12-14
+chapter : 함수 (function)
 --------------
 
 

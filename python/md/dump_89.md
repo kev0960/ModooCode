@@ -3,6 +3,7 @@ title : 씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>
 cat_title : 19. main 함수의 인자, 텅 빈 void 형
 next_page : 98
 publish_date : 2010-08-02
+chapter : void 타입과 main 함수에 대한 이해
 --------------
 
 

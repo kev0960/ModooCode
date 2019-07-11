@@ -4,6 +4,7 @@ next_page : 6
 cat_title : 1. C 언어가 뭐야?
 updated_date : 09/12/2018
 publish_date : 2009-04-16
+chapter : C 언어의 세계로
 --------------
 
 저의 강의는 미엘리키 님의 C++ 필기 노트를 보고 깊은 감명을 받고 시작한 것입니다.

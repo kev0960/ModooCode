@@ -169,7 +169,7 @@ void BookManager::GenerateMainTex() {
 
   tex += R"(
 \setminted[cpp]{
-  frame=single,
+  frame=lines,
   framesep=1mm,
   baselinestretch=1.2,
   tabsize=2,
@@ -194,13 +194,13 @@ void BookManager::GenerateMainTex() {
 \geometry {
   bottom=30mm
 }
-\setlrmarginsandblock{2cm}{5.5cm}{*}
+\setlrmarginsandblock{1.3cm}{5cm}{*}
 \checkandfixthelayout
 )";
 
   // Chapter Style
   tex += R"(
-\chapterstyle{ell}
+\chapterstyle{demo}
 )";
 
   // Spacing between lines.
@@ -222,8 +222,11 @@ void BookManager::GenerateMainTex() {
 
   // TOC only shows up to the subsection.
   tex += R"(
-\setcounter{tocdepth}{4}
-\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+\newcommand\chap[1]{%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}}
 )";
 
   // Korean support.
@@ -251,7 +254,7 @@ void BookManager::GenerateMainTex() {
   right=3pt,
   listing only,
   minted language=text,
-  minted options={breaklines, fontsize=\footnotesize}
+  minted options={breaklines, fontsize=\footnotesize, breaksymbolleft=}
 })";
 
   tex += "\\begin{document}\n";
@@ -279,7 +282,7 @@ void BookManager::GenerateMainTex() {
     auto chapter_itr = file_info_->at(file_name).find("chapter");
     if (chapter_itr != file_info_->at(file_name).end()) {
       string chapter = chapter_itr->second;
-      tex += StrCat("\n\\chapter{", chapter, "}\n");
+      tex += StrCat("\n\\chap{", chapter, "}\n");
     }
     auto title_itr = file_info_->at(file_name).find("tex_title");
     if (title_itr != file_info_->at(file_name).end()) {

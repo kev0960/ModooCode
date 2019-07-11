@@ -3,6 +3,7 @@ title : 씹어먹는 C 언어 - <13 - 2. 마술 상자 함수 2 (function)>
 cat_title : 13 - 2. 마술 상자 함수 2 (function)
 next_page : 28
 publish_date : 2009-12-19
+tex_title : 포인터로 받는 인자
 --------------
 
 

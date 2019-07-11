@@ -1,6 +1,7 @@
 {
 	"10" : {
 	"cat_title" : "6. 만약에... (if 문)",
+	"chapter" : "만약에... (조건문)",
 	"next_page" : "12",
 	"prev_page" : "9",
 	"publish_date" : "2009-04-28",
@@ -12,6 +13,7 @@
 	"next_page" : "99",
 	"prev_page" : "98",
 	"publish_date" : "2010-09-13",
+	"tex_title" : "구조체의 동적 할당과 메모리 관리 함수",
 	"title" : "씹어먹는 C 언어 - <20 - 2. 메모리 동적할당 + 메모리 갖고 놀기>"
 }
 ,
@@ -29,6 +31,7 @@
 ,
 	"103" : {
 	"cat_title" : "22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)",
+	"chapter" : "그 밖에 키워드들",
 	"next_page" : "117",
 	"prev_page" : "99",
 	"publish_date" : "2010-12-25",
@@ -111,6 +114,7 @@
 ,
 	"117" : {
 	"cat_title" : "23 - 1. 파일 하고 이야기 하기 (파일 입출력에 대한 기본적 이해)",
+	"chapter" : "파일 입출력",
 	"next_page" : "123",
 	"prev_page" : "103",
 	"publish_date" : "2010-12-28",
@@ -131,6 +135,7 @@
 ,
 	"12" : {
 	"cat_title" : "7. 뱅글 뱅글 (for, while)",
+	"chapter" : "반복문 (for, while)",
 	"next_page" : "14",
 	"prev_page" : "10",
 	"publish_date" : "2009-08-06",
@@ -162,6 +167,7 @@
 	"next_page" : "125",
 	"prev_page" : "117",
 	"publish_date" : "2011-01-10",
+	"tex_title" : "파일 안에서 이동하기",
 	"title" : "씹어먹는 C 언어 - <23 - 2. 파일 하고 이야기 하기 (파일 입출력)>"
 }
 ,
@@ -177,11 +183,13 @@
 	"next_page" : "129",
 	"prev_page" : "123",
 	"publish_date" : "2011-01-17",
+	"tex_title" : "도서 관리 프로그램의 완성",
 	"title" : "씹어먹는 C 언어 - <23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)>"
 }
 ,
 	"129" : {
 	"cat_title" : "24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)",
+	"chapter" : "C 코드 최적화",
 	"next_page" : "130",
 	"prev_page" : "125",
 	"publish_date" : "2011-01-18",
@@ -258,6 +266,7 @@
 	"next_page" : "16",
 	"prev_page" : "12",
 	"publish_date" : "2009-08-06",
+	"tex_title" : "리눅스에서 C 프로그래밍 하기",
 	"title" : "씹어 먹는 C 언어 - <8. 우분투 리눅스에서 C 프로그래밍 하기>"
 }
 ,
@@ -395,6 +404,7 @@
 ,
 	"16" : {
 	"cat_title" : "9. 만약에... 2탄 (switch 문)",
+	"chapter" : "switch 문",
 	"next_page" : "17",
 	"prev_page" : "14",
 	"publish_date" : "2009-08-15",
@@ -474,6 +484,7 @@
 ,
 	"17" : {
 	"cat_title" : "10. 연예인 캐스팅(?) (C 언어에서의 형 변환)",
+	"chapter" : "형 변환 (타입 캐스팅)",
 	"next_page" : "18",
 	"prev_page" : "16",
 	"publish_date" : "2009-08-15",
@@ -553,6 +564,7 @@
 ,
 	"18" : {
 	"cat_title" : "11 - 1. C 언어의 아파트 (배열), 상수",
+	"chapter" : "C 언어의 아파트 - 배열",
 	"next_page" : "20",
 	"prev_page" : "17",
 	"publish_date" : "2009-11-14",
@@ -632,6 +644,7 @@
 	"next_page" : "21",
 	"prev_page" : "6",
 	"publish_date" : "2009-09-24",
+	"tex_title" : "주석(Comment)",
 	"title" : "씹어먹는 C 언어 - <2 - 2. 주석(Comment)에 대한 이해>"
 }
 ,
@@ -708,6 +721,7 @@
 	"next_page" : "23",
 	"prev_page" : "18",
 	"publish_date" : "2009-10-29",
+	"tex_title" : "다차원 배열",
 	"title" : "씹어먹는 C 언어 - <11 - 2. C 언어의 아파트2 (고차원의 배열)>"
 }
 ,
@@ -762,6 +776,7 @@
 	"next_page" : "7",
 	"prev_page" : "19",
 	"publish_date" : "2009-10-12",
+	"tex_title" : "컴퓨터에서 수를 표현하는 방법",
 	"title" : "씹어먹는 C 언어 - <2 - 3. 수를 표현하는 방법(기수법)>"
 }
 ,
@@ -917,6 +932,7 @@
 ,
 	"23" : {
 	"cat_title" : "12 - 1. 포인터는 영희이다! (포인터)",
+	"chapter" : "포인터",
 	"next_page" : "24",
 	"prev_page" : "20",
 	"publish_date" : "2009-11-09",
@@ -998,6 +1014,7 @@
 	"next_page" : "25",
 	"prev_page" : "23",
 	"publish_date" : "2009-11-14",
+	"tex_title" : "상수 포인터, 포인터의 덧셈 뺄셈, 배열과 포인터",
 	"title" : "씹어먹는 C 언어 - <12 - 2. 포인터는 영희이다! (포인터)>"
 }
 ,
@@ -1079,6 +1096,7 @@
 	"next_page" : "26",
 	"prev_page" : "24",
 	"publish_date" : "2009-11-26",
+	"tex_title" : "포인터의 포인터",
 	"title" : "씹어먹는 C 언어 - <12 - 3. 포인터는 영희이다! (포인터)>"
 }
 ,
@@ -1167,6 +1185,7 @@
 ,
 	"26" : {
 	"cat_title" : "13 - 1. 마술 상자 함수(function)",
+	"chapter" : "함수 (function)",
 	"next_page" : "27",
 	"prev_page" : "25",
 	"publish_date" : "2009-12-14",
@@ -1260,6 +1279,7 @@
 	"next_page" : "28",
 	"prev_page" : "26",
 	"publish_date" : "2009-12-19",
+	"tex_title" : "포인터로 받는 인자",
 	"title" : "씹어먹는 C 언어 - <13 - 2. 마술 상자 함수 2 (function)>"
 }
 ,
@@ -1353,6 +1373,7 @@
 	"next_page" : "30",
 	"prev_page" : "27",
 	"publish_date" : "2009-12-22",
+	"tex_title" : "여러가지 인자들",
 	"title" : "씹어먹는 C 언어 - <13 - 3. 마술 상자 함수 3 (function)>"
 }
 ,
@@ -1443,6 +1464,7 @@
 ,
 	"29" : {
 	"cat_title" : "15 - 1. 일로와봐, 문자열(string)",
+	"chapter" : "문자열 (string)",
 	"next_page" : "32",
 	"prev_page" : "31",
 	"publish_date" : "2009-12-29",
@@ -1472,11 +1494,13 @@
 	"next_page" : "31",
 	"prev_page" : "28",
 	"publish_date" : "2009-12-27",
+	"tex_title" : "생각해볼 문제에 대한 아이디어",
 	"title" : "씹어먹는 C 언어 - <13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)>"
 }
 ,
 	"31" : {
 	"cat_title" : "14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)",
+	"chapter" : "디버깅(Debugging)",
 	"next_page" : "29",
 	"prev_page" : "30",
 	"publish_date" : "2009-12-29",
@@ -1488,6 +1512,7 @@
 	"next_page" : "33",
 	"prev_page" : "29",
 	"publish_date" : "2010-01-25",
+	"tex_title" : "버퍼에 대한 이해",
 	"title" : "씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>"
 }
 ,
@@ -1496,6 +1521,7 @@
 	"next_page" : "43",
 	"prev_page" : "32",
 	"publish_date" : "2010-02-01",
+	"tex_title" : "문자열 리터럴에 대한 이해",
 	"title" : "씹어먹는 C 언어 - <15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴>"
 }
 ,
@@ -1555,6 +1581,7 @@
 	"next_page" : "55",
 	"prev_page" : "33",
 	"publish_date" : "2010-02-08",
+	"tex_title" : "도서 관리 프로젝트",
 	"title" : "씹어먹는 C 언어 - <15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트>"
 }
 ,
@@ -1596,6 +1623,7 @@
 ,
 	"5" : {
 	"cat_title" : "1. C 언어가 뭐야?",
+	"chapter" : "C 언어의 세계로",
 	"next_page" : "6",
 	"prev_page" : "231",
 	"publish_date" : "2009-04-16",
@@ -1635,6 +1663,7 @@
 ,
 	"55" : {
 	"cat_title" : "16 - 1. 모아 모아 구조체(struct)",
+	"chapter" : "구조체 (struct)",
 	"next_page" : "60",
 	"prev_page" : "43",
 	"publish_date" : "2010-02-14",
@@ -1665,6 +1694,7 @@
 	"next_page" : "19",
 	"prev_page" : "5",
 	"publish_date" : "2009-04-17",
+	"tex_title" : "C 언어 본격 맛보기",
 	"title" : "씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>"
 }
 ,
@@ -1673,6 +1703,7 @@
 	"next_page" : "71",
 	"prev_page" : "55",
 	"publish_date" : "2010-04-11",
+	"tex_title" : "구조체를 인자로 받는 함수",
 	"title" : "씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>"
 }
 ,
@@ -1726,6 +1757,7 @@
 ,
 	"7" : {
 	"cat_title" : "3. 변수가 뭐지?",
+	"chapter" : "변수 (variable)",
 	"next_page" : "8",
 	"prev_page" : "21",
 	"publish_date" : "2009-04-22",
@@ -1743,6 +1775,7 @@
 	"next_page" : "83",
 	"prev_page" : "60",
 	"publish_date" : "2010-06-13",
+	"tex_title" : "공용체(union)와 열거형(enum)",
 	"title" : "씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>"
 }
 ,
@@ -1797,6 +1830,7 @@
 ,
 	"8" : {
 	"cat_title" : "4. 계산하리",
+	"chapter" : "계산 하기",
 	"next_page" : "9",
 	"prev_page" : "7",
 	"publish_date" : "2009-04-24",
@@ -1823,6 +1857,7 @@
 ,
 	"83" : {
 	"cat_title" : "17. 변수의 생존 조건 및 데이터 세그먼트의 구조",
+	"chapter" : "변수의 생존 조건과 데이터 세그먼트의 구조",
 	"next_page" : "87",
 	"prev_page" : "71",
 	"publish_date" : "2010-06-19",
@@ -1849,6 +1884,7 @@
 ,
 	"87" : {
 	"cat_title" : "18 - 1. 파일 뽀개기 (헤더파일과 #include)",
+	"chapter" : "여러 파일로 나누기",
 	"next_page" : "88",
 	"prev_page" : "83",
 	"publish_date" : "2010-07-16",
@@ -1860,11 +1896,13 @@
 	"next_page" : "89",
 	"prev_page" : "87",
 	"publish_date" : "2010-07-20",
+	"tex_title" : "여러 전처리기 구문과 라이브러리 사용법",
 	"title" : "씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>"
 }
 ,
 	"89" : {
 	"cat_title" : "19. main 함수의 인자, 텅 빈 void 형",
+	"chapter" : "void 타입과 main 함수에 대한 이해",
 	"next_page" : "98",
 	"prev_page" : "88",
 	"publish_date" : "2010-08-02",
@@ -1873,6 +1911,7 @@
 ,
 	"9" : {
 	"cat_title" : "5. 문자 입력 받기",
+	"chapter" : "문자 입력 받기",
 	"next_page" : "10",
 	"prev_page" : "8",
 	"publish_date" : "2009-04-27",
@@ -1929,6 +1968,7 @@
 ,
 	"98" : {
 	"cat_title" : "20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)",
+	"chapter" : "동적 메모리 할당 (dynamic memory allocation)",
 	"next_page" : "100",
 	"prev_page" : "89",
 	"publish_date" : "2010-08-03",
@@ -1937,6 +1977,7 @@
 ,
 	"99" : {
 	"cat_title" : "21. 매크로 함수, 인라인 함수",
+	"chapter" : "매크로 함수, 인라인 함수",
 	"next_page" : "103",
 	"prev_page" : "100",
 	"publish_date" : "2010-11-21",

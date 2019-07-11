@@ -3,6 +3,7 @@ title : 씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>
 cat_title: 9. 만약에... 2탄 (switch 문)
 next_page : 17
 publish_date : 2009-08-15
+chapter : switch 문
 --------------
 
 * `switch` 문에 대한 이해, 내부적 처리에 대한 간단한 설명

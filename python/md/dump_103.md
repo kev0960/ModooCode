@@ -3,6 +3,7 @@ title : 씹어먹는 C 언어 - <22. C 언어의 잡다한 키워드들 (typedef
 cat_title : 22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)
 next_page : 117
 publish_date : 2010-12-25
+chapter : 그 밖에 키워드들
 --------------
 
 
