@@ -226,12 +226,12 @@ str1 = str2;
 ```cpp-formatted
 /*
 
-char copy_str(char *dest, char *src);
+int copy_str(char *dest, char *src);
 
 src 의 문자열을 dest 로 복사한다. 단, dest 의 크기가 반드시 src 보다 커야 한다.
 
 */
-char copy_str(char *dest, char *src) {
+int copy_str(char *dest, char *src) {
   while (*src) {
     *dest = *src;
     src++;  // 그 다음 문자를 가리킨다.
@@ -248,7 +248,7 @@ char copy_str(char *dest, char *src) {
 ```cpp-formatted
 /* copy_str 사용 예제 */
 #include <stdio.h>
-char copy_str(char *src, char *dest);
+int copy_str(char *src, char *dest);
 int main() {
   char str1[] = "hello";
   char str2[] = "hi";
@@ -261,7 +261,7 @@ int main() {
 
   return 0;
 }
-char copy_str(char *dest, char *src) {
+int copy_str(char *dest, char *src) {
   while (*src) {
     *dest = *src;
     src++;
@@ -356,7 +356,7 @@ dest 에 src 문자열을 끝에 붙인다.
 있어야 한다.
 
 */
-char stradd(char *dest, char *src) {
+int stradd(char *dest, char *src) {
   /* dest 의 끝 부분을 찾는다.*/
   while (*dest) {
     dest++;
@@ -385,7 +385,7 @@ char stradd(char *dest, char *src) {
 
 ```cpp-formatted
 #include <stdio.h>
-char stradd(char *dest, char *src);
+int stradd(char *dest, char *src);
 int main() {
   char str1[100] = "hello my name is ";
   char str2[] = "Psi";
@@ -398,7 +398,7 @@ int main() {
 
   return 0;
 }
-char stradd(char *dest, char *src) {
+int stradd(char *dest, char *src) {
   /* dest 의 끝 부분을 찾는다.*/
   while (*dest) {
     dest++;
@@ -475,7 +475,7 @@ if(compare(str1, str2))
 완성된 소스는 아래와 같습니다.
 
 ```cpp-formatted
-char compare(char *str1, char *str2) {
+int compare(char *str1, char *str2) {
   while (*str1) {
     if (*str1 != *str2) {
       return 0;
@@ -496,7 +496,7 @@ char compare(char *str1, char *str2) {
 
 ```cpp-formatted
 #include <stdio.h>
-char compare(char *str1, char *str2);
+int compare(char *str1, char *str2);
 int main() {
   char str[20] = "hello every1";
   char str2[20] = "hello everyone";
@@ -523,7 +523,7 @@ int main() {
 
   return 0;
 }
-char compare(char *str1, char *str2) {
+int compare(char *str1, char *str2) {
   while (*str1) {
     if (*str1 != *str2) {
       return 0;

@@ -1551,7 +1551,7 @@ int compare(const MyString& str) const;
 int MyString::compare(const MyString& str) const {
   // (*this) - (str) 을 수행해서 그 1, 0, -1 로 그 결과를 리턴한다
   // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
-  // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
+  // 이 같다는 의미, -1 은 (*this) 가 사전식으로 더 앞에 온다는 의미이다.
 
   for (int i = 0; i < std::min(string_length, str.string_length); i++) {
     if (string_content[i] > str.string_content[i])
@@ -1830,7 +1830,7 @@ int MyString::find(int find_from, char c) const {
 int MyString::compare(const MyString& str) const {
   // (*this) - (str) 을 수행해서 그 1, 0, -1 로 그 결과를 리턴한다
   // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
-  // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
+  // 이 같다는 의미, -1 은 (*this) 가 사전식으로 더 앞에 온다는 의미이다.
 
   for (int i = 0; i < std::min(string_length, str.string_length); i++) {
     if (string_content[i] > str.string_content[i])

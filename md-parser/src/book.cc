@@ -168,7 +168,7 @@ void BookManager::GenerateMainTex() {
   tex += R"(
 \setminted[cpp]{
   frame=lines,
-  framesep=1mm,
+  framesep=2.5mm,
   baselinestretch=1.2,
   tabsize=2,
   fontsize=\footnotesize,
@@ -231,7 +231,7 @@ void BookManager::GenerateMainTex() {
   // TOC only shows up to the subsection.
   tex += R"(
 \setcounter{tocdepth}{2}
-\setcounter{secnumdepth}{2}
+%\setcounter{secnumdepth}{2}
 \newcommand\chap[1]{%
   \chapter*{#1}%
   \addcontentsline{toc}{chapter}{#1}}

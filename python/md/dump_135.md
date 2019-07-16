@@ -17,7 +17,7 @@ publish_date : 2011-03-06
 간혹 C++ 이 C 언어 확장팩(?) 개념이라고 생각하시는 분들이 있는데 이건 역시 사실이 아닙니다. 물론 초기에는 C++ 이름이 *C with classes* 였을 정도로 그냥 C 언어에 몇 가지 정도를 더 얹은 정도였습니다. 하지만 이제는 C++ 과 C 언어가 '둘이 같은 언어야?' 라고 말할 수 있을 정도로 매우 달라졌습니다.
 
 
-###  강좌 수칙
+### 강좌 수칙
 
 
 제 강좌를 들으시면서 지켜야 할 수칙들은 다음과 같습니다.
@@ -41,7 +41,7 @@ publish_date : 2011-03-06
 그렇다면 이제 강좌를 보러갈 시간이 되었네요~
 
 
-###  C++ 강좌 총 목록
+### C++ 강좌 총 목록
 
 ###@ [1 - 1. 자~ C++ 의 세계로](http://itguru.tistory.com/134)
 
@@ -77,7 +77,7 @@ publish_date : 2011-03-06
 
 ###@ [4 - 4. 스타크래프트를 만들자 ② (const, static)](http://itguru.tistory.com/197)
 
-생성자 초기화 리스트(initializer list), `const`, `static` 멤버 변수, 레퍼런스를 리턴하는 함수, `this` 포인터, `const` 멤버함수
+생성자 초기화자 리스트(initializer list), `const`, `static` 멤버 변수, 레퍼런스를 리턴하는 함수, `this` 포인터, `const` 멤버함수
 
 ###@ [4 - 5. 내가 만드는 String 클래스](http://itguru.tistory.com/198)
 
@@ -154,6 +154,8 @@ TMP 마무리, 의존 타입(dependent type), `auto` 키워드
 ###@ [10 - 3. C++ STL - 알고리즘(algorithm)](http://itguru.tistory.com/225)
 
 STL 알고리즘 라이브러리, 람다 함수, `sort`, `partial_sort`, `stable_sort`, `find`, `erase`, `erase_if`, `any_of`, `all_of`
+
+###@ 10 - 4. C++ 문자열의 모든 것 (string 과 string_view)
 
 ###@ [11. C++ 에서의 예외 처리](/230)
 
