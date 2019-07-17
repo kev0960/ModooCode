@@ -207,7 +207,7 @@ CPU 와 컴파일러에서의 명령어 재배치, `atomic`, `memory_order` 에 
 
 ###@ [16 - 1. C++ 유니폼 초기화(Uniform Initialization)](/286)
 
-C++ 11 에 도입된 uniform initialization 과 초기화자 리스트 (`initializer_list`) 의 사용법에 대해 다룹니다.
+C++ 11 에 도입된 유니폼 초기화(uniform initialization)와 초기화자 리스트 (`initializer_list`) 의 사용법에 대해 다룹니다.
 
 ###@ 16 - 2. C++ 11 - 정규 표현식(<regex>) 라이브러리 소개
 

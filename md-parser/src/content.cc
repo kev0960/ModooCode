@@ -427,7 +427,9 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
       html += StrCat("<span class='math-latex'>$",
                      GetHtmlFragmentText(content_, fragments_[i]), "$</span>");
     } else {
-      html += GetHtmlFragmentText(content_, fragments_[i]);
+      string text = GetHtmlFragmentText(content_, fragments_[i]);
+      EscapeHtmlString(&text);
+      html += text;
     }
   }
   html += "</p>";
