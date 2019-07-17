@@ -894,7 +894,7 @@
 ,
 	"225" : {
 	"cat_title" : "10 - 3. C++ STL - 알고리즘(algorithm)",
-	"next_page" : "230",
+	"next_page" : "292",
 	"prev_page" : "224",
 	"publish_date" : "2017-07-09",
 	"tex_title" : "C++ 표준 알고리즘 라이브러리",
@@ -944,7 +944,7 @@
 	"chapter" : "C++ 에서의 예외 처리",
 	"next_page" : "227",
 	"path" : "/C++",
-	"prev_page" : "225",
+	"prev_page" : "292",
 	"title" : "씹어먹는 C ++ - <11. C++ 에서 예외 처리>",
 	"updated_date" : "09/17/2018"
 }
@@ -1491,7 +1491,10 @@
 ,
 	"292" : {
 	"cat_title" : "10 - 4. C++ 문자열의 모든 것 (string 과 string_view)",
-	"is_published" : "false",
+	"next_page" : "230",
+	"path" : "/C++",
+	"prev_page" : "225",
+	"publish_date" : "2019-07-17",
 	"tex_title" : "C++ 문자열의 모든 것 (string 과 string_view)",
 	"title" : "씹어먹는 C++ - <10 - 4. C++ 문자열의 모든 것 (string 과 string_view)>"
 }

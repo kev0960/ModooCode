@@ -145,7 +145,7 @@ TMP 마무리, 의존 타입(dependent type), `auto` 키워드
 
 ###@ [10 - 1. C++ 의 표준 템플릿 라이브러리 (STL) - 시퀀스 컨테이너](http://itguru.tistory.com/223)
 
-시퀀스 컨테이너 (`vector`, `list`, `deque`), 반복자(iterator), 범위 기반 for 문 (range based for)
+시퀀스 컨테이너 (`vector`, `list`, `deque`), 반복자(`iterator`), 범위 기반 `for` 문 (range based for)
 
 ###@ [10 - 2. C++ 의 표준 템플릿 라이브러리 (STL) - 연관 컨테이너](http://itguru.tistory.com/224)
 
@@ -155,7 +155,9 @@ TMP 마무리, 의존 타입(dependent type), `auto` 키워드
 
 STL 알고리즘 라이브러리, 람다 함수, `sort`, `partial_sort`, `stable_sort`, `find`, `erase`, `erase_if`, `any_of`, `all_of`
 
-###@ 10 - 4. C++ 문자열의 모든 것 (string 과 string_view)
+###@ [10 - 4. C++ 문자열의 모든 것 (string 과 string_view)](/292)
+
+C++ 의 표준 문자열 라이브러리인 `basic_string` 과 여러가지 문자열 리터럴 정의 방식과 인코딩 방식, 그리고 `string_view` 의 사용법에 대해 다룬다.
 
 ###@ [11. C++ 에서의 예외 처리](/230)
 
@@ -183,7 +185,7 @@ Callable 의 정의와 `std::function`, `std::mem_fn`, `std::bind` 들의 사용
 
 ###@ [15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)](/269)
 
-프로세스와 쓰레드, 왜 멀티 쓰레드 프로그래밍을 하는가. C++ thread 의 시작
+프로세스와 쓰레드, 왜 멀티 쓰레드 프로그래밍을 하는가. C++ `thread` 의 시작
 
 ###@ [15 - 2. C++ 뮤텍스(mutex) 와 조건 변수(condition variable)](/270)
 
@@ -201,10 +203,16 @@ CPU 와 컴파일러에서의 명령어 재배치, `atomic`, `memory_order` 에 
 
 여태 까지 배운 내용들을 활용해서 쓰레드풀(ThreadPool) 클래스를 만듧니다.
 
+###@ 15 - 6. C++ 17 의 병렬 알고리즘 사용하기
+
 ###@ [16 - 1. C++ 유니폼 초기화(Uniform Initialization)](/286)
 
 C++ 11 에 도입된 uniform initialization 과 초기화자 리스트 (`initializer_list`) 의 사용법에 대해 다룹니다.
 
-###@ 16 - 2. C++ 11 - 난수 생성(random)과 시간 관련 라이브러리(chrono) 소개
+###@ 16 - 2. C++ 11 - 정규 표현식(<regex>) 라이브러리 소개
 
-###@ 16 - 3. C++ 17 - 파일시스템(filesystem) 라이브러리 소개
+###@ 16 - 3. C++ 11 - 난수 생성(<random>)과 시간 관련 라이브러리(<chrono>) 소개
+
+###@ 16 - 4. C++ 17 - 파일시스템(<filesystem>) 라이브러리 소개
+
+###@ 16 - 5. C++ 17 의 <utility> 라이브러리 살펴보기
