@@ -42,6 +42,19 @@ ListOrElem MakeOrderedList(std::vector<ListOrElem> list) {
   return ListOrElem(output, true);
 }
 
+ListOrElem MakeUnorderedList(std::vector<ListOrElem> list) {
+  string output = "<ul>";
+  for (const auto& s : list) {
+    if (s.is_list) {
+      output += s.content;
+    } else {
+      output += StrCat("<li>", s.content, "</li>");
+    }
+  }
+  output += "</ul>";
+  return ListOrElem(output, true);
+}
+
 ListOrElem MakeOrderedListLatex(std::vector<ListOrElem> list) {
   string output = "\n\\begin{enumerate}";
   for (const auto& s : list) {
@@ -95,7 +108,7 @@ class MockMDParser : public MDParser {
     return MDParser::GetContentList();
   }
 
-  MockMDParser(const string& content) : MDParser(content) {
+  MockMDParser(const string& content) : MDParser(content, false) {
     Parser(ParserConfig{});
   }
 };
@@ -168,26 +181,43 @@ TEST(ParserTest, SimpleOrderedListParser) {
                                  MakeOrderedListLatex({list_elem_c_tex})}),
            list_elem_a_tex})
           .content);
+}
 
-  string enum_list2 = R"(
+TEST(ParserTest, ComplexListParser) {
+  string enum_list = R"(
     1. a
-        1. c
       1. b
         1. c
+        * c
+      1. b
+      * b
+    1. a
   )";
-  MockMDParser parser_enum_list2(enum_list2);
-  EXPECT_EQ(parser_enum_list2.ConvertToHtml(&ref_to_url, path_vec),
-            MakeOrderedList({list_elem_a, MakeOrderedList({list_elem_c}),
-                             MakeOrderedList({list_elem_b,
-                                              MakeOrderedList({list_elem_c})})})
-                .content);
+  MockMDParser parser_enum_list(enum_list);
+  const auto list_elem_a = ListOrElem("<p> a</p>");
+  const auto list_elem_b = ListOrElem("<p> b</p>");
+  const auto list_elem_c = ListOrElem("<p> c</p>");
   EXPECT_EQ(
-      parser_enum_list2.ConvertToLatex(&ref_to_url, path_vec),
-      MakeOrderedListLatex(
-          {list_elem_a_tex, MakeOrderedListLatex({list_elem_c_tex}),
-           MakeOrderedListLatex(
-               {list_elem_b_tex, MakeOrderedListLatex({list_elem_c_tex})})})
+      parser_enum_list.ConvertToHtml(&ref_to_url, path_vec),
+      MakeOrderedList(
+          {list_elem_a,
+           MakeOrderedList({list_elem_b, MakeOrderedList({list_elem_c}),
+                            MakeUnorderedList({list_elem_c}), list_elem_b}),
+           MakeUnorderedList({list_elem_b}), list_elem_a})
           .content);
+
+  string unordered_list_with_text = R"(
+    1. a
+      1. b
+
+this is a text
+)";
+
+  MockMDParser parser_unordered_list_with_text(unordered_list_with_text);
+  EXPECT_EQ(
+      parser_unordered_list_with_text.ConvertToHtml(&ref_to_url, path_vec),
+      MakeOrderedList({list_elem_a, MakeOrderedList({list_elem_b})}).content +
+          "<p>this is a text</p>");
 }
 
 TEST(ParserTest, Box) {

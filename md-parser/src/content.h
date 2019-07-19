@@ -21,7 +21,8 @@ struct Fragments {
     SIDENOTE,
     INLINE_MATH,
     STRIKE_THROUGH,
-    SMALL_CAPS
+    SMALL_CAPS,
+    FORCE_NEWLINE
   } type;
 
   // Start and end are inclusive.

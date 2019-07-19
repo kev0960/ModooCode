@@ -681,3 +681,9 @@ figcaption {
     color: #721c24;
     font-weight: bold;
 }
+
+li p br {
+    display: block;
+    content: "";
+    margin-top: 11px;
+}

@@ -47,8 +47,11 @@ string space_from_space_and_tab(std::pair<int, int> space_and_tab) {
 
 }  // namespace
 
-MDParser::MDParser(std::string content)
-    : content_(content), newline_started_(true), in_code_(false) {}
+MDParser::MDParser(std::string content, bool ignore_intro)
+    : content_(content),
+      newline_started_(true),
+      in_code_(false),
+      ignore_intro_(ignore_intro) {}
 
 TokenTypes MDParser::GetTokenInfo(const string& token) {
   if (token.empty()) return NEWLINE;
@@ -131,6 +134,7 @@ void MDParser::AnalyzeLine(const std::string& line,
       LOG << "(ERROR) Code parsing error!";
     }
   } else if (first_token_info == NEWLINE) {
+    parser_env_.MarkEndOfList();
     newline_started_ = true;
   } else if (first_token_info == TEXT) {
     // Then we have to continue whatever has done previously.
@@ -161,17 +165,15 @@ void MDParser::AnalyzeLine(const std::string& line,
         parser_env_.AddNewContent(new MathContent(line.substr(2)));
         break;
       case LIST_ENUM: {
-        parser_env_.AddNextList(LIST_ENUM, space_and_tab);
-        auto depth_and_enum = parser_env_.GetCurrentEnum(LIST_ENUM);
+        size_t index = parser_env_.AddNextList(LIST_ENUM, space_and_tab);
         parser_env_.AddNewContent(
-            new EnumListContent(line_except_first_token, depth_and_enum.first));
+            new EnumListContent(line_except_first_token, index));
         break;
       }
       case LIST_UNORDER: {
-        parser_env_.AddNextList(LIST_UNORDER, space_and_tab);
-        auto depth_and_enum = parser_env_.GetCurrentEnum(LIST_UNORDER);
-        parser_env_.AddNewContent(new UnorderedListContent(
-            line_except_first_token, depth_and_enum.first));
+        size_t index = parser_env_.AddNextList(LIST_UNORDER, space_and_tab);
+        parser_env_.AddNewContent(
+            new UnorderedListContent(line_except_first_token, index));
         break;
       }
       default:
@@ -195,6 +197,8 @@ void MDParser::Parser(ParserConfig parse_config) {
     start_pos = end_of_line + 1;
     end_of_line = ReadUntilEndOfLine(content_, start_pos);
   }
+
+  parser_env_.ParseDone();
 }
 
 const std::vector<std::unique_ptr<Content>>& MDParser::GetContentList() const {
@@ -222,15 +226,13 @@ string MDParser::ConvertToLatex(
   parser_env_.SetHeader(header_);
   parser_env_.ResetContentPointer();
 
-  bool ignore_intro = true;
-
   string output_tex;
   do {
     string output = parser_env_.ParseCurrentContentToLatex();
     // Ignore until ChewingCPP logo.
-    if (ignore_intro) {
+    if (ignore_intro_) {
       if (output.find("/img/Chewing") != string::npos) {
-        ignore_intro = false;
+        ignore_intro_ = false;
         continue;
       }
       continue;
@@ -240,7 +242,6 @@ string MDParser::ConvertToLatex(
   } while (parser_env_.AdvanceToNextContent());
   return output_tex;
 }
-
 
 // The header content is defined as follows.
 // -------------------- (Arbitrary length of - s; Should be more than 3)

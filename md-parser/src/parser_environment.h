@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include <memory>
+#include <set>
 #include <stack>
 #include <string>
 #include <unordered_map>
@@ -15,16 +16,42 @@ namespace md_parser {
 // Forward declaration.
 class Content;
 
-class EnumListManager {
+class ListManager {
  public:
-  EnumListManager();
+  struct Box {
+    size_t box_start;  // Index of the first bullet included in the box.
+    size_t box_end;    // Index of the last bullet included in the box.
 
-  void AddNextList(const std::pair<int, int>& space_and_tab);
-  std::pair<int, int> GetCurrentEnum() const;
+    Box(size_t box_start, size_t box_end)
+        : box_start(box_start), box_end(box_end) {}
+  };
+
+  ListManager();
+
+  // Returns the location of currently added depth info.
+  // type : 0 (Enum), 1 (Unordered)
+  size_t AddNextList(const std::pair<int, int>& space_and_tab, int type);
+
+  void MarkEndOfList();
+  void Compute();
+
+  bool ShouldStartNewListTag(size_t index) const;
+
+  // 0 : Enum ; 1 : Unordered
+  std::vector<int> GetEndListTag(size_t index) const;
 
  private:
   static const int spaces_per_indent = 2;
-  std::stack<std::pair</* depth */ int, /* enum */ int>> state_;
+
+  // Pair of depth, type
+  std::vector<std::pair<int, int>> depths_;
+
+  // Index to end tag string (</ul>, </ol>)
+  std::map<size_t, std::vector<int>> end_tags_;
+  std::set<size_t> start_tags_;
+
+  // depth to list of boxes with same depth.
+  std::map<int, std::vector<Box>> boxes_;
 };
 
 struct ReferenceInfo {
@@ -42,8 +69,8 @@ class ParserEnvironment {
   void AddNewContent(Content* content);
   bool AppendToLastContent(const string& content);
   void AppendOrCreateContent(Content* content, const string& line);
-  void AddNextList(const TokenTypes type,
-                   const std::pair<int, int>& space_and_tab);
+  size_t AddNextList(const TokenTypes type,
+                     const std::pair<int, int>& space_and_tab);
   std::pair<int, int> GetCurrentEnum(const TokenTypes list_type) const;
   const std::vector<std::unique_ptr<Content>>& GetContentList() const;
   string ParseCurrentContent();
@@ -51,11 +78,10 @@ class ParserEnvironment {
 
   bool AdvanceToNextContent();
   void ResetContentPointer();
-  bool ShouldStartNewListTag();
+  bool ShouldStartNewListTag(size_t index);
   const Content& GetCurrentContent() const;
+  std::vector<int> GetEndListTag(size_t index);
 
-  // Return How many end tags should it return.
-  int ShouldEndListTag();
   int GetHeaderIndex() { return ++header_index_; }
   void SetRefToUrl(
       std::unordered_map<string, std::vector<ReferenceInfo>>* ref_to_url,
@@ -64,13 +90,14 @@ class ParserEnvironment {
     path_vector_ = path_vector;
   }
   void SetHeader(std::map<string, string>& header) { header_ = header; }
+  void MarkEndOfList();
+  void ParseDone();
 
   string GetUrlOfReference(string* ref_name);
   string GetPageTitle();
 
  private:
-  EnumListManager enum_list_manager_;
-  EnumListManager unordered_list_manager_;
+  ListManager list_manager_;
 
   // List of parsed contents of MD file.
   std::vector<std::unique_ptr<Content>> content_list_;

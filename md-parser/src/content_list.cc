@@ -6,96 +6,100 @@
 #include "util.h"
 
 namespace md_parser {
+namespace {
+string BuildEndTags(const std::vector<int>& end_tags) {
+  string html;
+  for (int tag : end_tags) {
+    if (tag == 0) {
+      html += "</ol>";
+    } else if (tag == 1) {
+      html += "</ul>";
+    }
+  }
+  return html;
+}
 
-void EnumListContent::Preprocess(ParserEnvironment* parser_env) {
+string BuildEndLatex(const std::vector<int>& end_tags) {
+  string html;
+  for (int tag : end_tags) {
+    if (tag == 0) {
+      html += "\n\\end{enumerate}\n";
+    } else if (tag == 1) {
+      html += "\n\\end{itemize}\n";
+    }
+  }
+  return html;
+}
+}  // namespace
+
+void ListContent::Preprocess(ParserEnvironment* parser_env) {
   // We just remember the choices.
   if (already_preprocessed_) {
     return;
   }
   already_preprocessed_ = true;
 
-  should_start_new_list_tag_ = parser_env->ShouldStartNewListTag();
-  close_tag_count_ = parser_env->ShouldEndListTag();
+  should_start_new_list_tag_ = parser_env->ShouldStartNewListTag(index_);
+  end_tags_ = parser_env->GetEndListTag(index_);
+}
+
+void ListContent::AddContent(const string& content) {
+  // For newline inside of the list, it will enforce \newline
+  content_ += ("\\newline{}" + content);
 }
 
 string EnumListContent::OutputHtml(ParserEnvironment* parser_env) {
   string output_html;
+  Content::Preprocess(parser_env);
+
   // Decide whether to start with a new <ul>.
   if (should_start_new_list_tag_) {
     output_html += "<ol>";
   }
-  Content::Preprocess(parser_env);
+
   output_html += StrCat("<li>", Content::OutputHtml(parser_env), "</li>");
-  int close_tag_count = close_tag_count_;
-  while (close_tag_count) {
-    output_html += "</ol>";
-    close_tag_count--;
-  }
+  output_html += BuildEndTags(end_tags_);
+
   return output_html;
 }
 
 string EnumListContent::OutputLatex(ParserEnvironment* parser_env) {
   string output_tex;
+  Content::Preprocess(parser_env);
+
   // Decide whether to start with a new <ul>.
   if (should_start_new_list_tag_) {
     output_tex += "\n\\begin{enumerate}";
   }
-  Content::Preprocess(parser_env);
   output_tex += StrCat("\n\\item ", Content::OutputLatex(parser_env));
-  int close_tag_count = close_tag_count_;
-  while (close_tag_count) {
-    output_tex += "\n\\end{enumerate}\n";
-    close_tag_count--;
-  }
+  output_tex += BuildEndLatex(end_tags_);
   return output_tex;
-}
-
-void EnumListContent::AddContent(const string& content) { content_ += content; }
-
-void UnorderedListContent::Preprocess(ParserEnvironment* parser_env) {
-  // We just remember the choices.
-  if (already_preprocessed_) {
-    return;
-  }
-  already_preprocessed_ = true;
-
-  should_start_new_list_tag_ = parser_env->ShouldStartNewListTag();
-  close_tag_count_ = parser_env->ShouldEndListTag();
 }
 
 string UnorderedListContent::OutputHtml(ParserEnvironment* parser_env) {
   string output_html;
+  Content::Preprocess(parser_env);
+
   // Decide whether to start with a new <ul>.
   if (should_start_new_list_tag_) {
     output_html += "<ul>";
   }
-  Content::Preprocess(parser_env);
   output_html += StrCat("<li>", Content::OutputHtml(parser_env), "</li>");
-  int close_tag_count = close_tag_count_;
-  while (close_tag_count) {
-    output_html += "</ul>";
-    close_tag_count--;
-  }
+  output_html += BuildEndTags(end_tags_);
   return output_html;
 }
 
 string UnorderedListContent::OutputLatex(ParserEnvironment* parser_env) {
   string output_tex;
+  Content::Preprocess(parser_env);
+
   // Decide whether to start with a new <ul>.
   if (should_start_new_list_tag_) {
     output_tex += "\n\\begin{itemize}";
   }
-  Content::Preprocess(parser_env);
   output_tex += StrCat("\n\\item ", Content::OutputLatex(parser_env));
-  int close_tag_count = close_tag_count_;
-  while (close_tag_count) {
-    output_tex += "\n\\end{itemize}\n";
-    close_tag_count--;
-  }
+  output_tex += BuildEndLatex(end_tags_);
   return output_tex;
 }
 
-void UnorderedListContent::AddContent(const string& content) {
-  content_ += content;
-}
 }  // namespace md_parser

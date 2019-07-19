@@ -10,80 +10,99 @@ namespace {
 int IndentSize(std::pair<int, int> space_and_tab) {
   return space_and_tab.first + 2 * space_and_tab.second;
 }
-
-bool IsList(TokenTypes list_type) {
-  switch (list_type) {
-    case LIST_ENUM:
-    case LIST_UNORDER:
-      return true;
-    default:
-      return false;
-  }
-  return false;
-}
 }  // namespace
 
-EnumListManager::EnumListManager() {}
+ListManager::ListManager() { depths_.push_back(std::make_pair(-1, -1)); }
 
-void EnumListManager::AddNextList(const std::pair<int, int>& space_and_tab) {
+size_t ListManager::AddNextList(const std::pair<int, int>& space_and_tab,
+                                int type) {
   int indent_size = IndentSize(space_and_tab);
 
   // 2 spaces ==> One indent.
   int depth = indent_size / spaces_per_indent;
 
-  while (!state_.empty()) {
-    auto& depth_and_enum = state_.top();
-    if (depth_and_enum.first == depth) {
-      depth_and_enum.second += 1;
-      return;
-    } else if (depth_and_enum.first > depth) {
-      state_.push(std::make_pair(depth, 0));
-      break;
-    }
+  depths_.push_back(std::make_pair(depth, type));
 
-    state_.pop();
-  }
-  state_.push(std::make_pair(depth, 0));
+  return depths_.size() - 1;
 }
 
-std::pair<int, int> EnumListManager::GetCurrentEnum() const {
-  return state_.top();
+void ListManager::MarkEndOfList() {
+  if (depths_.back().first != -1) {
+    depths_.emplace_back(-1, -1);
+  }
+}
+
+void ListManager::Compute() {
+  // First we have to compute the size of the box for every lists.
+  for (size_t index = 0; index < depths_.size(); index++) {
+    if (depths_[index].second == -1) {
+      continue;
+    }
+
+    int current_depth = depths_[index].first;
+    int current_type = depths_[index].second;
+
+    // Creates a new box when current bullet is not included in any
+    // box with same depth yet.
+    bool found_box = false;
+    if (MapContains(boxes_, current_depth)) {
+      auto& boxes_on_same_depth = boxes_[current_depth];
+      for (const auto& box : boxes_on_same_depth) {
+        if (box.box_start <= index && index <= box.box_end) {
+          found_box = true;
+          break;
+        }
+      }
+    }
+
+    if (!found_box) {
+      // Find the end of the box. The box ends when
+      //  1) Met higher level
+      //  2) Same depth with different type.
+
+      start_tags_.insert(index);
+      for (size_t j = index + 1; j < depths_.size(); j++) {
+        if (depths_[j].first < current_depth ||
+            (depths_[j].second != current_type &&
+             depths_[j].first == current_depth)) {
+          boxes_[current_depth].emplace_back(index, j - 1);
+
+          // Everytime we add a new box, we have to add the end tag.
+          end_tags_[j - 1].insert(end_tags_[j - 1].begin(), current_type);
+          break;
+        }
+      }
+    }
+  }
+}
+
+bool ListManager::ShouldStartNewListTag(size_t index) const {
+  return SetContains(start_tags_, index);
+}
+
+std::vector<int> ListManager::GetEndListTag(size_t index) const {
+  if (MapContains(end_tags_, index)) {
+    return end_tags_.at(index);
+  }
+  return {};
 }
 
 ParserEnvironment::ParserEnvironment()
     : current_content_(0), header_index_(0), ref_to_url_(nullptr) {}
 
-std::pair<int, int> ParserEnvironment::GetCurrentListInfo(
-    const TokenTypes type) const {
+size_t ParserEnvironment::AddNextList(
+    const TokenTypes type, const std::pair<int, int>& space_and_tab) {
   switch (type) {
     case LIST_ENUM:
-      return enum_list_manager_.GetCurrentEnum();
-    case LIST_UNORDER:
-      return unordered_list_manager_.GetCurrentEnum();
-    default:
-      break;
-  }
-  return std::make_pair(0, 0);
-}
-
-std::pair<int, int> ParserEnvironment::GetCurrentEnum(
-    const TokenTypes list_type) const {
-  if (list_type == LIST_ENUM) return enum_list_manager_.GetCurrentEnum();
-  return unordered_list_manager_.GetCurrentEnum();
-}
-
-void ParserEnvironment::AddNextList(const TokenTypes type,
-                                    const std::pair<int, int>& space_and_tab) {
-  switch (type) {
-    case LIST_ENUM:
-      enum_list_manager_.AddNextList(space_and_tab);
+      return list_manager_.AddNextList(space_and_tab, 0);
       break;
     case LIST_UNORDER:
-      unordered_list_manager_.AddNextList(space_and_tab);
+      return list_manager_.AddNextList(space_and_tab, 1);
       break;
     default:
       break;
   }
+  return -1;
 }
 
 void ParserEnvironment::AddNewContent(Content* content) {
@@ -137,84 +156,14 @@ const Content& ParserEnvironment::GetCurrentContent() const {
   return *content_list_[current_content_];
 }
 
-bool ParserEnvironment::ShouldStartNewListTag() {
-  if (current_content_ == 0) return true;
-  auto* current_content = content_list_[current_content_].get();
-  int current_depth = dynamic_cast<ListContent*>(current_content)->GetDepth();
-  int current = current_content_ - 1;
-  while (true) {
-    auto* previous_content = content_list_[current].get();
-    if (IsList(previous_content->GetContentType())) {
-      if (previous_content->GetContentType() ==
-          current_content->GetContentType()) {
-        // If they are in same list type, then check whether the indentation is
-        // identical. If they are identical, then there is no reason to start a
-        // new list tag.
-        auto* prev_list = dynamic_cast<ListContent*>(previous_content);
-        if (prev_list->GetDepth() < current_depth) {
-          return true;
-        } else if (prev_list->GetDepth() == current_depth) {
-          return false;
-        }
-        if (current == 0) return true;
-        current--;
-        continue;
-      } else {
-        return true;
-      }
-    }
-    return true;
-  }
-
-  return false;
+bool ParserEnvironment::ShouldStartNewListTag(size_t index) {
+  return list_manager_.ShouldStartNewListTag(index);
 }
 
-int ParserEnvironment::ShouldEndListTag() {
-  auto* current_content = content_list_[current_content_].get();
-  int next_depth = 0;
-  int current_depth = dynamic_cast<ListContent*>(current_content)->GetDepth();
-  // First need to check there is need to close the tag.
-  if (current_content_ < content_list_.size() - 1) {
-    auto* next_content = content_list_[current_content_ + 1].get();
-    if (IsList(next_content->GetContentType())) {
-      if (next_content->GetContentType() == current_content->GetContentType()) {
-        auto* next_list = dynamic_cast<ListContent*>(next_content);
-        if (current_depth <= next_list->GetDepth()) {
-          return 0;
-        }
-        next_depth = next_list->GetDepth();
-      }
-    }
-  }
-  // This means that we are just closing the first tag.
-  if (current_content_ == 0) {
-    return 1;
-  }
-  // Now we have to trace back from where we should close the tag.
-  size_t current = current_content_ - 1;
-  int closing_tag_count = 1;
-  int current_least_depth = current_depth;
-  while (true) {
-    auto* prev_content = content_list_[current].get();
-    if (IsList(prev_content->GetContentType())) {
-      if (prev_content->GetContentType() == current_content->GetContentType()) {
-        auto* prev_list = dynamic_cast<ListContent*>(prev_content);
-        // Found the first parent list.
-        if (prev_list->GetDepth() > next_depth) {
-          if (prev_list->GetDepth() < current_least_depth) {
-            current_least_depth = prev_list->GetDepth();
-            closing_tag_count++;
-          }
-          if (current == 0) break;
-          current--;
-          continue;
-        }
-      }
-    }
-    break;
-  }
-  return closing_tag_count;
+std::vector<int> ParserEnvironment::GetEndListTag(size_t index) {
+  return list_manager_.GetEndListTag(index);
 }
+
 // Return the url string if the ref_name is a entry of the reference.
 // Otherwise, return an empty string.
 string ParserEnvironment::GetUrlOfReference(string* ref_name) {
@@ -290,4 +239,12 @@ bool ParserEnvironment::AdvanceToNextContent() {
 }
 
 void ParserEnvironment::ResetContentPointer() { current_content_ = 0; }
+
+void ParserEnvironment::MarkEndOfList() { list_manager_.MarkEndOfList(); }
+
+void ParserEnvironment::ParseDone() {
+  list_manager_.MarkEndOfList();
+  list_manager_.Compute();
+}
+
 }  // namespace md_parser

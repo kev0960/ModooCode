@@ -87,7 +87,7 @@ struct ParserState {
 
 class MDParser {
  public:
-  MDParser(std::string content);
+  MDParser(std::string content, bool ignore_intro = true);
   void Parser(ParserConfig parse_config);
   void AnalyzeLine(const std::string& line, std::pair<int, int> space_and_tab);
   TokenTypes GetTokenInfo(const std::string& token);
@@ -108,6 +108,7 @@ class MDParser {
   std::string content_;
   bool newline_started_;
   bool in_code_;
+  bool ignore_intro_;
   ParserEnvironment parser_env_;
 
  protected:
