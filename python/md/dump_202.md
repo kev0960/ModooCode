@@ -185,9 +185,9 @@ int main() {
   MyString str3("sentence");
 
   if (str1 == str2)
-    std::cout << "str1 와 str2 는 다르다" << std::endl;
+    std::cout << "str1 와 str2 같다." << std::endl;
   else
-    std::cout << "st1 와 str2 는 같다." << std::endl;
+    std::cout << "st1 와 str2 는 다르다." << std::endl;
 
   if (str2 == str3)
     std::cout << "str2 와 str3 는 같다." << std::endl;
@@ -199,7 +199,7 @@ int main() {
 성공적으로 컴파일 하였다면
 
 ```exec
-st1 와 str2 는 같다.
+st1 와 str2 는 다르다.
 str2 와 str3 는 같다.
 ```
 

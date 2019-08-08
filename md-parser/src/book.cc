@@ -3,6 +3,7 @@
 #include <fstream>
 
 #include "util.h"
+#include "tex_util.h"
 
 namespace md_parser {
 namespace {
@@ -290,11 +291,13 @@ void BookManager::GenerateMainTex() {
     auto chapter_itr = file_info_->at(file_name).find("chapter");
     if (chapter_itr != file_info_->at(file_name).end()) {
       string chapter = chapter_itr->second;
+      chapter = EscapeLatexString(chapter);
       tex += StrCat("\n\\newpage\\chapter{", chapter, "}\n");
     }
     auto title_itr = file_info_->at(file_name).find("tex_title");
     if (title_itr != file_info_->at(file_name).end()) {
       string title = title_itr->second;
+      title= EscapeLatexString(title);
       tex += StrCat("\n\\newpage\\section*{", title, "}\n");
     }
     tex += StrCat("\\input{", file_name, "}\n");
