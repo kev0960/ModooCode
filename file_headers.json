@@ -1431,6 +1431,7 @@
 ,
 	"286" : {
 	"cat_title" : "16 - 1. C++ 유니폼 초기화(Uniform Initialization)",
+	"next_page" : "293",
 	"path" : "/C++",
 	"prev_page" : "285",
 	"publish_date" : "2019-06-23",
@@ -1497,6 +1498,15 @@
 	"publish_date" : "2019-07-17",
 	"tex_title" : "C++ 문자열의 모든 것 (string 과 string_view)",
 	"title" : "씹어먹는 C++ - <10 - 4. C++ 문자열의 모든 것 (string 과 string_view)>"
+}
+,
+	"293" : {
+	"cat_title" : "16 - 2. constexpr 와 함께라면 컴파일 타임 상수는 문제없어",
+	"path" : "/C++",
+	"prev_page" : "286",
+	"publish_date" : "2019-08-18",
+	"tex_title" : "컴파일 타임 상수 constexpr",
+	"title" : "씹어먹는 C++ - <16 - 2. constexpr 와 함께라면 컴파일 타임 상수는 문제없어>"
 }
 ,
 	"30" : {

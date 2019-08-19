@@ -66,6 +66,12 @@ class InlineCoder:
     return '\n'.join(result)
 
   def process_line(self, line):
+    print (line)
+    # Ignore preceding spaces
+    chunk_start = 0
+    while chunk_start < len(line) and line[chunk_start] == ' ':
+      chunk_start += 1
+    line = line[chunk_start:]
     if len(line) > 0 and line[0] == '#':
       # Header
       return line
@@ -90,13 +96,12 @@ class InlineCoder:
     self.in_table = False
     if len(line) > 0 and line[0] == '*' and line[1] == ' ':
       right = self.process_chunk(line[1:])
-      return '*' + right
+      return ' ' * chunk_start + '*' + right
     elif len(line) > 3 and line[:1].isdigit(
     ) and line[1] == '.' and line[2] == ' ':
       enum = line[:3]
       right = self.process_chunk(line[3:])
       return enum + right
-
     return self.process_chunk(line)
 
   def process_chunk(self, chunk):
