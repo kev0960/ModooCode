@@ -1,5 +1,8 @@
 const zmq = require('zeromq');
-const uuidv4 = require('uuid/v4');
+const {ZmqManager} = require('./zmq_manager.js');
+const {PathHierarchy} = require('./path_hierarchy.js');
+const util = require('./util.js');
+
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
@@ -17,124 +20,7 @@ const HASH_ROUNDS = parseInt(process.env.HASH_ROUNDS);
 const discourse_sso = new DISCOURSE_SSO(process.env.DISCOURSE_SSO_SECRET);
 const IS_DEV = (process.env.SERVER_ENV == 'DEV');
 
-class ZmqManager {
-  constructor(send_sock, recv_sock) {
-    this.requested_codes = new Map();
-    this.send_sock = send_sock;
-    this.recv_sock = recv_sock;
 
-    this.send_sock.bindSync('tcp://127.0.0.1:3001');
-    this.recv_sock.connect('tcp://127.0.0.1:3002');
-    this.recv_sock.subscribe('');
-
-    this.recv_sock.on('message', function(message) {
-      message = message.toString();
-      let delimiter = message.indexOf(':');
-      let next_delimiter = message.indexOf(':', delimiter + 1);
-
-      let compile_error = '', exec_result = '';
-      // There was no compile error.
-      if (next_delimiter === delimiter + 1) {
-        exec_result = message.substr(next_delimiter + 1);
-      } else {
-        compile_error = message.substr(delimiter + 1);
-      }
-
-      let id = message.substr(0, delimiter);
-      let cb = this.requested_codes.get(id);
-      if (cb) {
-        cb({exec_result, compile_error});
-      }
-    }.bind(this));
-  }
-
-  getNewId() {
-    return uuidv4();
-  }
-
-  sendCodeToRun(code, stdin, cb) {
-    let id = this.getNewId();
-    this.requested_codes.set(id, cb);
-    this.send_sock.send([id + ':' + stdin + id + code]);
-  }
-}
-
-class PagePath {
-  constructor(files, name) {
-    this.files = new Set();
-    this.name = name;
-
-    for (let i = 0; i < files.length; i++) {
-      this.files.add(files[i]);
-    }
-
-    this.directories = []
-  }
-
-  addDirectory(directory) {
-    this.directories.push(directory);
-  }
-
-  findPage(page) {
-    if (this.files.has(page)) {
-      return [page];
-    }
-    for (let i = 0; i < this.directories.length; i++) {
-      let result = this.directories[i].findPage(page);
-      if (result.length != 0) {
-        return [this.directories[i].name].concat(result);
-      }
-    }
-    return [];
-  }
-};
-
-class PathHierarchy {
-  constructor(path_json) {
-    this.root_path = new PagePath([], '');
-    this.recursiveAddPath(this.root_path, path_json['']);
-    this.cached_search_result = new Map();
-  }
-
-  recursiveAddPath(current_page_path, path_json) {
-    for (let dir_name in path_json) {
-      if (dir_name == 'files') {
-        continue;
-      }
-      let child_page_path = new PagePath(path_json[dir_name].files, dir_name);
-      this.recursiveAddPath(child_page_path, path_json[dir_name]);
-      current_page_path.addDirectory(child_page_path);
-    }
-  }
-
-  searchPagePath(page_id) {
-    if (typeof page_id !== 'string') {
-      page_id = page_id.toString();
-    }
-    if (!this.cached_search_result.get(page_id)) {
-      let result = this.root_path.findPage(page_id);
-      this.cached_search_result.set(page_id, result);
-      return result;
-    }
-    return this.cached_search_result.get(page_id);
-  }
-}
-
-function getDateTime() {
-  let date = new Date();
-  let hour = date.getHours();
-  hour = (hour < 10 ? '0' : '') + hour;
-  let min = date.getMinutes();
-  min = (min < 10 ? '0' : '') + min;
-  let sec = date.getSeconds();
-  sec = (sec < 10 ? '0' : '') + sec;
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  month = (month < 10 ? '0' : '') + month;
-  let day = date.getDate();
-  day = (day < 10 ? '0' : '') + day;
-  return year + ':' + month + ':' + day + ':' + hour + ':' + min + ':' + sec;
-}
 
 module.exports = class Server {
   constructor(app, static_data, client, comment_manager, pageview_manager) {
@@ -295,84 +181,6 @@ module.exports = class Server {
     return result.rows[0];
   }
 
-  async addComment(parent_id, article_url, user, content, password) {
-    let current_time = new Date();
-    // (Note) Fixing comment_comment_id_seq sync error;
-    // SELECT setval('comment_comment_id_seq', max(comment_id)) FROM comment;
-    // (Note) Removing specific reply (5829 : reply comment)
-    // update comment set reply_ids = array_remove(reply_ids, 5829) where
-    // comment_id = 4108;
-    let result = await this.client.query(
-        'INSERT INTO comment(article_url, reply_ids, vote_up, vote_down,' +
-            'comment_date, modified_date, author_name, author_email, image_link,' +
-            'content, password, author_id, is_md) VALUES ($1, $2, $3, $4, $5, $6, $7,' +
-            ' $8, $9, $10, $11, $12, $13) RETURNING *',
-        [
-          article_url, [], 0, 0, current_time, current_time, user.name,
-          user.email, user.image, content, password, user.user_id, true
-        ]);
-    let new_comment = result.rows[0];
-    let new_comment_id = new_comment.comment_id;
-
-    if (parent_id !== -1) {
-      await this.client.query(
-          'UPDATE comment SET reply_ids = array_append(reply_ids, $1) WHERE' +
-              ' comment_id = $2',
-          [new_comment_id, parent_id]);
-    }
-
-    // Increase the comment count.
-    this.comment_manager.addCommentAt(article_url);
-  }
-
-  async deleteComment(comment_id, user, password) {
-    let comment = await this.client.query(
-        'SELECT comment_id, author_id, password' +
-            ' FROM comment WHERE comment_id = $1',
-        [comment_id]);
-    if (comment.rows.length == 0) {
-      return {status: false, msg: 'Fatal error'};
-    }
-    comment = comment.rows[0];
-    if (comment.author_id != user.user_id) {
-      // Then check whether email and the password matches.
-      const match = await bcrypt.compare(password, comment.password);
-      if (!match) {
-        return {status: false, msg: 'Password does not match'};
-      }
-    }
-
-    await this.client.query(
-        'UPDATE comment SET is_deleted = TRUE, ' +
-            'content = \'삭제된 댓글입니다\' WHERE comment_id = $1',
-        [comment_id]);
-    return {status: true};
-  }
-
-  async getLatestComments(num_comment) {
-    if (process.env.IN_WINDOWS_FOR_DEBUG === 'true') {
-      return [];
-    }
-
-    let latest_comments = await this.client.query(
-        'SELECT content, comment_date, article_url, author_name FROM ' +
-            'comment WHERE is_deleted = FALSE ORDER BY comment_date DESC LIMIT $1',
-        [num_comment]);
-    for (let i = 0; i < latest_comments.rows.length; i++) {
-      let d = new Date(latest_comments.rows[i].comment_date);
-      let month = '' + (d.getMonth() + 1);
-      let day = '' + d.getDate();
-      if (month.length < 2) {
-        month = '0' + month;
-      }
-      if (day.length < 2) {
-        day = '0' + day;
-      }
-      latest_comments.rows[i].comment_date = month + '.' + day;
-    }
-    return latest_comments.rows;
-  }
-
   buildCategoryListing(page_id) {
     if (this.cached_category_html.get(page_id)) {
       return this.cached_category_html.get(page_id);
@@ -389,7 +197,8 @@ module.exports = class Server {
         cat_html += root_folders[i] + '">';
         if (root[root_folders[i]].files.length > 0 ||
             Object.keys(root[root_folders[i]]).length >= 2) {
-          cat_html += '<i class="xi-plus-square" style="font-size:0.75em;"></i>&nbsp;&nbsp;';
+          cat_html +=
+              '<i class="xi-plus-square" style="font-size:0.75em;"></i>&nbsp;&nbsp;';
         }
         cat_html += root_folders[i] + '</a>';
       }
@@ -439,7 +248,7 @@ module.exports = class Server {
       } else {
         current_dom.className += ' open-cat';
       }
-  
+
       let html = current_dom.innerHTML;
       html = html.replace(
           '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
@@ -447,11 +256,11 @@ module.exports = class Server {
       html = html.replace(
           '<i class="xi-plus-square" style="font-size:0.75em;"></i>',
           '<i class="xi-caret-down-min" style="font-size:0.75em;"></i>');
-      current_dom.innerHTML = html;  
+      current_dom.innerHTML = html;
     } else {
       current_dom.style.backgroundColor = 'rgba(255, 255, 255, .33)';
     }
-  
+
     // Add directories.
     const folders = Object.keys(current_dir);
     let div = document.createElement('div');
@@ -482,7 +291,7 @@ module.exports = class Server {
         if (this.file_infos[file_id].cat_title) {
           cat_title = this.file_infos[file_id].cat_title;
         }
-  
+
         const file_link = document.createElement('a');
         file_link.className = 'sidebar-nav-item file';
         file_link.setAttribute('href', '/' + file_id);
@@ -490,12 +299,12 @@ module.exports = class Server {
         file_link.textContent = cat_title;
         div.appendChild(file_link);
       }
-  
+
       function insertAfter(el, referenceNode) {
         referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
       }
       insertAfter(div, current_dom);
-  
+
       let children = current_dom.nextElementSibling.children;
       let found = null;
       for (let i = 0; i < children.length; i++) {
@@ -515,8 +324,8 @@ module.exports = class Server {
       page_infos: this.page_infos,
       file_infos: this.file_infos,
       category_html: this.buildCategoryListing(category_id),
-      num_comment : this.comment_manager.getNumCommentAt(page_id),
-      view_cnt : this.pageview_manager.getPageViewCnt(page_id),
+      num_comment: this.comment_manager.getNumCommentAt(page_id),
+      view_cnt: this.pageview_manager.getPageViewCnt(page_id),
       user
     };
   }
@@ -524,7 +333,7 @@ module.exports = class Server {
   setRoutes() {
     // Set up all the routes.
     this.app.get('/', function(req, res) {
-      this.getLatestComments(10).then(function(comments) {
+      this.comment_manager.getLatestComments(10).then(function(comments) {
         res.render('./index.ejs', {
           comments,
           recent_articles: this.recent_articles,
@@ -553,7 +362,7 @@ module.exports = class Server {
         }.bind(this));
         return;
       }
-      console.log('Page [', getDateTime(), '] ::', page_id);
+      console.log('Page [', util.getDateTime(), '] ::', page_id);
 
       let fallbackToIndexOnFailOrPass = function(err, html) {
         if (err) {
@@ -568,7 +377,7 @@ module.exports = class Server {
           res.send(html);
         }
       }.bind(this);
-      
+
       if (page_id <= 228) {
         if (page_id == 15) {
           this.pageview_manager.addPageViewCnt('231');
@@ -647,29 +456,32 @@ module.exports = class Server {
         user = {user_id: -1};
       }
       console.log(user, comment_id, password);
-      let result = await this.deleteComment(comment_id, user, password);
+      let result =
+          await this.comment_manager.deleteComment(comment_id, user, password);
       return res.send(result);
     }.bind(this));
 
     this.app.post('/write-comment', async function(req, res) {
-      const response = await request.post({
-        url: 'https://www.google.com/recaptcha/api/siteverify',
-        resolveWithFullResponse: true,
-        form: {
-          secret: '6LeE_nYUAAAAABelPPovV9f9DOAJSzqpTQTA4bt7',
-          response: req.body.token
+      if (process.env.SERVER_ENV != 'DEV') {
+        const response = await request.post({
+          url: 'https://www.google.com/recaptcha/api/siteverify',
+          resolveWithFullResponse: true,
+          form: {
+            secret: '6LeE_nYUAAAAABelPPovV9f9DOAJSzqpTQTA4bt7',
+            response: req.body.token
+          }
+        });
+        if (!JSON.parse(response.body).success) {
+          return res.send({status: 'Failed', reason: 'Failed CaptCha'});
         }
-      });
-      if (!JSON.parse(response.body).success) {
-        return res.send({status: 'Failed', reason: 'Failed CaptCha'});
       }
 
       let parent_id = parseInt(req.body.parent_id);
       let content = req.body.content;
       let password = req.body.password;
       let article_url = req.body.article_url;
-      if (article_url.indexOf("#") !== -1) {
-        article_url = article_url.substr(0, article_url.indexOf("#"));
+      if (article_url.indexOf('#') !== -1) {
+        article_url = article_url.substr(0, article_url.indexOf('#'));
       }
       let name = req.body.name;
       let user = req.user;
@@ -691,7 +503,8 @@ module.exports = class Server {
       if (!parent_id || !content) {
         return res.send({status: 'Failed', reason: 'Missing params'});
       }
-      await this.addComment(parent_id, article_url, user, content, password);
+      await this.comment_manager.addComment(
+          parent_id, article_url, user, content, password);
       return res.send({status: 'Success'});
     }.bind(this));
 
