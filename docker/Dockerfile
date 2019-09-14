@@ -12,7 +12,7 @@ RUN apt-get install -y clang-format
 RUN apt-get install -y wget
 RUN apt-get install -y libzmq3-dev
 
-RUN git clone https://github.com/kev0960/modoocode --depth=5
+RUN git clone https://github.com/kev0960/modoocode --depth=1
 
 # Use /bin/bash as a default shell
 SHELL ["/bin/bash", "-c"]
@@ -44,3 +44,10 @@ ENV HASH_ROUNDS 8
 ENV SESSION_SECRET do_num_run_on_prod_server 
 ENV SERVER_ENV DEBUG 
 ENV IN_WINDOWS_FOR_DEBUG true
+ENV FB_APP_ID 246316612722598
+ENV FB_APP_SECRET 7824388e18aed88431d529e9c042f08c
+ENV GOOG_CLIENT_ID 746982907013-3g8co6l6lsrtkspt0bm5l3dv1t97kvrc.apps.googleusercontent.com
+ENV GOOG_CLIENT_SEC 51_dbgDAkrWIIUpWTTsnJBys
+ENV GOOGLE_APPLICATION_CREDENTIALS ../auth.json
+
+COPY auth.json /modoocode/auth.json
