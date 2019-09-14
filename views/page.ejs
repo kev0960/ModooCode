@@ -53,10 +53,12 @@
       </script>
     </div>
   </div>
-  <div class="container content">
-    <div style="display:inline-block"></div>
-    <%- include(content_url) %>
-  </div>
+  <article>
+    <div class="container content">
+      <div style="display:inline-block"></div>
+      <%- include(content_url) %>
+    </div>
+  </article>
   <nav class="page-nav-btns">
     <% if (file_info.prev_page) { %> 
       <a class="prev-page-btn page-btn-common" href="<%= file_info.prev_page %>">
