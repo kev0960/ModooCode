@@ -38,7 +38,7 @@ string GetLatexOutputFile(const string& s, const string& dir) {
   string filename_without_ext = filename.substr(0, filename.find_last_of("."));
 
   if (filename_without_ext.find("dump_") != string::npos) {
-    filename_without_ext= filename_without_ext.substr(5);
+    filename_without_ext = filename_without_ext.substr(5);
   }
   return StrCat("../book/", dir, "/", filename_without_ext, ".tex");
 }
@@ -161,7 +161,10 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     files_not_to_process = GetUnModifiedFiles(filenames, &file_id_to_stat_map_);
   }
 
-  Database db;
+  std::unique_ptr<Database> db;
+  if (!config_.no_db_dump) {
+    db = std::make_unique<Database>();
+  }
   for (const auto& filename : filenames) {
     // Read the file.
     std::ifstream read_file(filename);
@@ -181,8 +184,8 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     }
     if (!config_.no_db_dump) {
       // Try record the changes of the files to the database.
-      bool result = db.TryUpdateFileToDatabase(GetFileId(filename), content,
-                                               *parsers_.back());
+      bool result = db->TryUpdateFileToDatabase(GetFileId(filename), content,
+                                                *parsers_.back());
       if (result) {
         std::cout << "Updated : " << GetFileId(filename) << std::endl;
       }
