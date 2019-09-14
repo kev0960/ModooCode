@@ -179,11 +179,13 @@ bool Driver::ProcessFiles(const std::vector<string>& filenames) {
     } else {
       parsers_.back()->Parser(ParserConfig{});
     }
-    // Try record the changes of the files to the database.
-    bool result = db.TryUpdateFileToDatabase(GetFileId(filename), content,
-                                             *parsers_.back());
-    if (result) {
-      std::cout << "Updated : " << GetFileId(filename) << std::endl;
+    if (!config_.no_db_dump) {
+      // Try record the changes of the files to the database.
+      bool result = db.TryUpdateFileToDatabase(GetFileId(filename), content,
+                                               *parsers_.back());
+      if (result) {
+        std::cout << "Updated : " << GetFileId(filename) << std::endl;
+      }
     }
   }
 

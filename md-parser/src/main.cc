@@ -41,6 +41,9 @@ int main(int argc, char** argv) {
   if (Contains(args, "-book")) {
     config.create_book = true;
   }
+  if (Contains(args, "-no_db_dump")) {
+    config.no_db_dump = true;
+  }
 
   std::vector<string> filenames;
   std::vector<string> md_paths = {"../python/md"};

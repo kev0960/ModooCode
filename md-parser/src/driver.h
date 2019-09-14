@@ -13,15 +13,17 @@ struct DriverConfig {
   bool no_dump_page_path;
   bool force_parse_all;
   bool create_book;
+  bool no_db_dump;
 
   DriverConfig(bool no_output_parsed = false, bool no_dump_file_info = false,
                bool no_dump_page_path = false, bool force_parse_all = false,
-               bool create_book = false)
+               bool create_book = false, bool no_db_dump = false)
       : no_output_parsed(no_output_parsed),
         no_dump_file_info(no_dump_file_info),
         no_dump_page_path(no_dump_page_path),
         force_parse_all(force_parse_all),
-        create_book(create_book) {}
+        create_book(create_book),
+        no_db_dump(no_db_dump) {}
 };
 
 class Driver {
