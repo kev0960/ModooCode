@@ -49,4 +49,6 @@ init.init().then(async function(static_data) {
     console.log('| Listening on port 8080 |');
     console.log('-------------------------');
   });
+}).catch(function(error) {
+  console.log(error);
 });
