@@ -1,9 +1,14 @@
 module.exports = class PageViewManager {
   constructor(client) {
     this.client = client;
+    this.no_db_access = (process.env.IN_WINDOWS_FOR_DEBUG === 'true');
   }
 
   async init() {
+    if (this.no_db_access) {
+      return;
+    }
+
     // Get the initial number of comments.
     let result =
         await this.client.query('select article_url, view_cnt from Articles;');
@@ -39,6 +44,10 @@ module.exports = class PageViewManager {
   }
 
   flushPageViewCnt() {
+    if (this.no_db_access) {
+      return;
+    }
+    
     this.changed_pages.forEach(function(url) {
       this.client
           .query(

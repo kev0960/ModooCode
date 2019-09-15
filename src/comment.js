@@ -1,9 +1,13 @@
 module.exports = class CommentManager {
   constructor(client) {
     this.client = client;
+    this.no_db_access = (process.env.IN_WINDOWS_FOR_DEBUG === 'true');
   }
 
   async init() {
+    if (this.no_db_access) {
+      return;
+    }
     // Get the initial number of comments.
     let result = await this.client.query(
         'select article_url, count(comment_id) from comment where is_deleted = FALSE group by article_url;');
@@ -31,6 +35,10 @@ module.exports = class CommentManager {
   }
 
   async addComment(parent_id, article_url, user, content, password) {
+    if (this.no_db_access) {
+      return;
+    }
+    
     let current_time = new Date();
     // (Note) Fixing comment_comment_id_seq sync error;
     // SELECT setval('comment_comment_id_seq', max(comment_id)) FROM comment;
