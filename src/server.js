@@ -20,8 +20,6 @@ const HASH_ROUNDS = parseInt(process.env.HASH_ROUNDS);
 const discourse_sso = new DISCOURSE_SSO(process.env.DISCOURSE_SSO_SECRET);
 const IS_DEV = (process.env.SERVER_ENV == 'DEV');
 
-
-
 module.exports = class Server {
   constructor(app, static_data, client, comment_manager, pageview_manager) {
     this.file_infos = static_data.file_infos;
@@ -353,7 +351,7 @@ module.exports = class Server {
       let page_id = parseInt(req.params.id);
       let user = req.user;
       if (!page_id) {
-        this.getLatestComments(10).then(function(comments) {
+        this.comment_manager.getLatestComments(10).then(function(comments) {
           res.render('./index.ejs', {
             comments,
             recent_articles: this.recent_articles,
@@ -366,7 +364,7 @@ module.exports = class Server {
 
       let fallbackToIndexOnFailOrPass = function(err, html) {
         if (err) {
-          this.getLatestComments(10).then(function(comments) {
+          this.comment_manager.getLatestComments(10).then(function(comments) {
             res.render('./index.ejs', {
               comments,
               recent_articles: this.recent_articles,

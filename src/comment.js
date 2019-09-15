@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 module.exports = class CommentManager {
   constructor(client) {
     this.client = client;
@@ -77,14 +79,19 @@ module.exports = class CommentManager {
       return {status: false, msg: 'Fatal error'};
     }
     comment = comment.rows[0];
-    if (comment.author_id != user.user_id) {
-      // Then check whether email and the password matches.
-      const match = await bcrypt.compare(password, comment.password);
-      if (!match) {
-        return {status: false, msg: 'Password does not match'};
+
+    // Admin user privilege.
+    if (!(user.user_id == 1 || user.user_id == 2)) {
+      if (comment.author_id != user.user_id) {
+        // Then check whether email and the password matches.
+        const match = await bcrypt.compare(password, comment.password);
+        if (!match) {
+          return {status: false, msg: 'Password does not match'};
+        }
       }
     }
 
+    console.log("Delete comment : ", comment_id, user.user_id);
     await this.client.query(
         'UPDATE comment SET is_deleted = TRUE, ' +
             'content = \'삭제된 댓글입니다\' WHERE comment_id = $1',
