@@ -1502,6 +1502,7 @@
 ,
 	"293" : {
 	"cat_title" : "16 - 2. constexpr 와 함께라면 컴파일 타임 상수는 문제없어",
+	"next_page" : "294",
 	"path" : "/C++",
 	"prev_page" : "286",
 	"publish_date" : "2019-08-18",
@@ -1510,9 +1511,12 @@
 }
 ,
 	"294" : {
-	"cat_title" : "16 - 3. 타입을 알려주는 키워드 - decltype 와 declval",
-	"is_published" : "false",
-	"title" : "씹어먹는 C++ - <16 - 3. 타입을 알려주는 키워드 - decltype 와 declval>"
+	"cat_title" : "16 - 3. 타입을 알려주는 키워드 decltype 와 친구 std::declval",
+	"path" : "/C++",
+	"prev_page" : "293",
+	"publish_date" : "2019-09-15",
+	"tex_title" : "decltype 와 std::declval",
+	"title" : "씹어먹는 C++ - <16 - 3. 타입을 알려주는 키워드 decltype 와 친구 std::declval>"
 }
 ,
 	"295" : {

@@ -20,7 +20,7 @@
 #include "util.h"
 
 static const std::unordered_set<string> kSpecialCommands = {"sidenote", "sc",
-                                                            "newline"};
+                                                            "newline", "serif"};
 
 namespace md_parser {
 
@@ -344,6 +344,9 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     } else if (fragments_[i].type == Fragments::Types::SMALL_CAPS) {
       html += StrCat("<span class='font-smallcaps'>",
                      GetHtmlFragmentText(content_, fragments_[i]), "</span>");
+    } else if (fragments_[i].type == Fragments::Types::SERIF) {
+      html += StrCat("<span class='font-serif-italic'>",
+                     GetHtmlFragmentText(content_, fragments_[i]), "</span>");
     } else if (fragments_[i].type == Fragments::Types::FORCE_NEWLINE) {
       html += "<br>";
     } else if (fragments_[i].type == Fragments::Types::LINK) {
@@ -480,6 +483,9 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
     } else if (fragment.type == Fragments::Types::SMALL_CAPS) {
       latex +=
           StrCat("\\textsc{", GetLatexFragmentText(content_, fragment), "}");
+    } else if (fragment.type == Fragments::Types::SERIF) {
+      latex +=
+          StrCat("\\emph{", GetLatexFragmentText(content_, fragment), "}");
     } else if (fragment.type == Fragments::Types::FORCE_NEWLINE) {
       latex += "\\newline";
     } else if (fragment.type == Fragments::Types::LINK) {
@@ -615,7 +621,12 @@ size_t Content::HandleSpecialCommands(const size_t start_pos, int* text_start) {
     fragments_.emplace_back(Fragments::Types::FORCE_NEWLINE, delimiter_pos + 1,
                             body_end - 1);
     return body_end;
+  } else if (delimiter == "serif") {
+    fragments_.emplace_back(Fragments::Types::SERIF, delimiter_pos + 1,
+                            body_end - 1);
+    return body_end;
   }
+
   return start_pos;
 }
 

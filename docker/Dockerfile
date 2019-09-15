@@ -27,7 +27,7 @@ RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | 
 RUN source $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
-    && nvm use default 
+    && nvm use default
 
 # add node and npm to path so the commands are available
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
@@ -41,8 +41,8 @@ WORKDIR /modoocode
 RUN npm install
 
 ENV HASH_ROUNDS 8
-ENV SESSION_SECRET do_num_run_on_prod_server 
-ENV SERVER_ENV DEBUG 
+ENV SESSION_SECRET do_num_run_on_prod_server
+ENV SERVER_ENV DEBUG
 ENV IN_WINDOWS_FOR_DEBUG true
 ENV FB_APP_ID redacted
 ENV FB_APP_SECRET redacted
@@ -52,3 +52,5 @@ ENV GOOGLE_APPLICATION_CREDENTIALS ../auth.json
 
 COPY auth.json /modoocode/auth.json
 COPY .env /modoocode/.env
+
+EXPOSE 8080:9090

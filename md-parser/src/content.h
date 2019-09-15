@@ -22,7 +22,8 @@ struct Fragments {
     INLINE_MATH,
     STRIKE_THROUGH,
     SMALL_CAPS,
-    FORCE_NEWLINE
+    FORCE_NEWLINE,
+    SERIF,
   } type;
 
   // Start and end are inclusive.

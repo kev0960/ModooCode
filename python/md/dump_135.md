@@ -213,6 +213,10 @@ C++ 11 에 도입된 유니폼 초기화(uniform initialization)와 초기화자
 
 `constexpr` 키워드를 이용해서 컴파일 타임 상수 생성을 알아본다. 
 
+###@ [16 - 3. 타입을 알려주는 키워드 decltype 와 친구 std::declval](/294)
+
+C++ 11 에 추가된 `decltype` 와 C++ 의 값 카테고리 (\serif{lvalue, prvalue, xvalue, glvalue, rvalue}), `std::declval` 함수에 대해 다룬다.
+
 ###@ 17 - 1. C++ 11 - C++ 타입 라이브러리(<type_traits>) 소개 
 
 ###@ 17 - 2. C++ 11 - 정규 표현식(<regex>) 라이브러리 소개

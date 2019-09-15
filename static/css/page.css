@@ -20,7 +20,12 @@
 
 .font-smallcaps {
     font-variant: small-caps;
-    font-family: Verdana
+    font-family: Verdana;
+}
+
+.font-serif-italic {
+    font-family: "serif";
+    font-style: italic;
 }
 
 .wrap h3 {

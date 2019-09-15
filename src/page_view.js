@@ -2,6 +2,8 @@ module.exports = class PageViewManager {
   constructor(client) {
     this.client = client;
     this.no_db_access = (process.env.IN_WINDOWS_FOR_DEBUG === 'true');
+    this.page_to_view_cnt = {};
+    this.changed_pages = new Set();
   }
 
   async init() {
@@ -13,13 +15,11 @@ module.exports = class PageViewManager {
     let result =
         await this.client.query('select article_url, view_cnt from Articles;');
 
-    this.page_to_view_cnt = {};
     for (let i = 0; i < result.rows.length; i++) {
       this.page_to_view_cnt[result.rows[i].article_url] =
           result.rows[i].view_cnt;
     }
 
-    this.changed_pages = new Set();
   }
 
   addPageViewCnt(url) {

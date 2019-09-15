@@ -2,6 +2,7 @@ module.exports = class CommentManager {
   constructor(client) {
     this.client = client;
     this.no_db_access = (process.env.IN_WINDOWS_FOR_DEBUG === 'true');
+    this.url_to_num_comment = {};
   }
 
   async init() {
@@ -12,7 +13,6 @@ module.exports = class CommentManager {
     let result = await this.client.query(
         'select article_url, count(comment_id) from comment where is_deleted = FALSE group by article_url;');
 
-    this.url_to_num_comment = {};
     for (let i = 0; i < result.rows.length; i++) {
       this.url_to_num_comment[result.rows[i].article_url] =
           parseInt(result.rows[i].count);
