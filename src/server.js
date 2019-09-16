@@ -347,6 +347,10 @@ module.exports = class Server {
       res.send('name');
     });
 
+    this.app.get('/new-page/:id', function(req, res) {
+      res.render('new_page.ejs', {content_url : './old/blog_219.html'});
+    });
+
     this.app.get('/:id', function(req, res) {
       let page_id = parseInt(req.params.id);
       let user = req.user;

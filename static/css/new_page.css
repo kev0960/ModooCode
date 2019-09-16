@@ -1,0 +1,241 @@
+html, body {
+  margin: 0;
+  font-family: "Noto Sans KR";
+  overflow-x: hidden;
+  display: block;
+  font-size: 16px;
+  text-size-adjust: 100%;
+}
+
+/* (TODO) Move these css to different file. */
+img {
+  max-width: 100%;
+  margin: 0 0 1rem;
+  border-radius: 1px;
+}
+
+pre {
+  margin-top: 0;
+}
+
+/* Header */
+
+.top-static-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
+  margin-left: 0px;
+}
+
+.top-static-header-row {
+  height: 48px;
+  display: flex;
+  padding: 0 24px 0 24px;
+}
+
+.top-static-header-main {
+  border-bottom: 1px solid #bdbdbd;
+}
+
+.modoocode-name {
+  color: #505050;
+  font-size: 22.5px;
+  font-weight: bold;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 15px;
+}
+
+/* Category */
+.header-category {
+  width: 100%;
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.header-catogry-list {
+  list-style-type: none;
+  display: block;
+  width: 100%;
+  padding: 0 0 3px 0;
+  margin: 0;
+}
+
+.category-item {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 24px 0 24px;
+  height: 100%;
+  font-size: 17px;
+  color: rgb(117, 117, 117);
+  position: relative;
+}
+
+.category-item:hover {
+  color: #212121;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.category-item-active {
+  border-bottom: 3px solid black;
+  color: black;
+  font-weight: bold;
+}
+
+.header-category-dropdown {
+  display: none;
+  position: absolute;
+  top: 45px;
+  background: white;
+  border-bottom: 1px solid #bdbdbd;
+  z-index: 1;
+  padding-top: 3px;
+  padding-left: 0px;
+}
+
+.category-item:hover > .header-category-dropdown,
+.header-category-dropdown:hover {
+  display: block;
+}
+
+.header-category-dropdown-item {
+  list-style: none;
+  font-weight: normal;
+  padding: 5px 20px 5px 10px;
+  border-top: 1px solid #bdbdbd;
+}
+
+.header-category-dropdown-item:hover {
+  background-color: #eaeaea;
+}
+
+
+/* Google Custom Search */
+
+.google-custom-search {
+  margin-left: auto;
+}
+
+.google-custom-search .gsc-control-cse {
+  padding: 10px !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.google-custom-search .gsc-control-cse button.gsc-search-button {
+  padding: 6px 13px 6px 13px !important;
+}
+
+/* Top Login Button */
+
+.login-button-div {
+  padding-top: 10px;
+  margin-left: 10px;
+}
+
+.login-button {
+  font-size: 15px;
+  border: none;
+  background-color: transparent;
+  color: #4D90FE;
+  cursor: pointer;
+}
+
+/* Sidebar */
+
+.sidebar-wrap {
+  margin-top: 96px;
+  position: fixed;
+  height: 100%;
+  width: 256px;
+  float: left;
+}
+
+div.sidebar-box-header {
+  font-size: 110%;
+  color: #505050;
+  margin: 0 0 10px 10px;
+  border: none;
+}
+
+/* TOC */
+
+div.toc-header {
+  font-size: 110%;
+  color: #505050;
+  margin: 0 0 10px 10px;
+  border: none;
+}
+
+.sidebar-box {
+  margin-left: 15px;
+  padding: 10px;
+  background-color: #fbfbfc;
+  margin-top: 20px;
+}
+
+.toc-container {
+  margin-top: 20px;
+}
+
+.toc-container>.toc-list {
+  position: relative;
+  overflow: hidden;
+}
+
+.toc-list {
+  padding-left: 13px;
+  margin: 0;
+}
+
+.toc-list-item {
+  list-style: none;
+  padding-bottom: 5px;
+  line-height: 29px;
+}
+
+.toc-item-link {
+  text-decoration: none;
+  color: black;
+  height: 100%;
+}
+
+.toc-item-link::before {
+  background-color: #eee;
+  content: ' ';
+  display: inline-block;
+  left: 0;
+  margin-top: -1px;
+  position: absolute;
+  width: 3px;
+  height: inherit;
+}
+
+.toc-active-item::before {
+  background-color: #54BC4B !important;
+}
+
+.toc-item-link:hover {
+  font-weight: bold;
+}
+
+.toc-item-link:hover:before {
+  background-color: #54BC4B;
+}
+
+/* Article */
+
+.article-content-wrap {
+  margin-top: 96px;
+  margin-left: 276px; /* 256 + 20 margin */
+  width: 70%;
+  float: left;
+}
+
+.article-content {
+  max-width: 45em;
+}
