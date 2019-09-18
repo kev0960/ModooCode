@@ -245,3 +245,8 @@ div.toc-header {
 .article-content {
   max-width: 45em;
 }
+
+.anchor-offset:target {
+  padding-top: 100px;
+  display: block;
+}

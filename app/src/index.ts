@@ -1,26 +1,5 @@
 import * as Util from './util';
 
-/*
-interface PageLink {
-  page_name: string;
-  page_link: string;
-}
-
-interface CategoryPath {
-  header_categories: CategoryLevel[];
-}
-
-interface CategoryLevel {
-  category_name: string;
-  sub_category: CategoryLevel[];
-  pages: PageLink[];
-}
-
-function BuildCategoryHeader(category_header_json: string) {
-  const category_path = JSON.parse(category_header_json);
-
-} */
-
 module TOCModule {
   interface TOCHeader {
     header_name: string;
@@ -139,7 +118,12 @@ module TOCModule {
         } else if (
             this.toc_headers_[i].header_pos <= scroll_pos &&
             scroll_pos < this.toc_headers_[i + 1].header_pos) {
-          return i;
+          if (scroll_pos - this.toc_headers_[i].header_pos <
+              this.toc_headers_[i + 1].header_pos - scroll_pos) {
+            return i;
+          } else {
+            return i + 1;
+          }
         }
       }
       return i;
@@ -155,7 +139,7 @@ module TOCModule {
     element.className = 'toc-list-item';
 
     let link = document.createElement('a') as HTMLAnchorElement;
-    link.href = '#' + header.header_id;
+    link.href = '#' + header.header_id + '-hash';
     link.className = 'toc-item-link toc-item-h' + header.header_tag;
     link.textContent = header.header_name;
 
