@@ -48,8 +48,7 @@ HeaderContent::HeaderContent(const string& content, const string& header_token,
       header_token_(header_token),
       header_index_(header_index) {}
 
-void HeaderContent::Preprocess(ParserEnvironment* parser_env) {
-}
+void HeaderContent::Preprocess(ParserEnvironment* parser_env) {}
 
 string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
   Content::Preprocess(parser_env);
@@ -96,15 +95,16 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
   } else if (header_type == NORMAL_HEADER) {
     start_header =
         StrCat("<h", std::to_string(header_token_.size()), " id='page-heading-",
-               std::to_string(header_index_), "'>");
+               std::to_string(header_index_), "' class='header-general'>");
     end_header = StrCat("</h", std::to_string(header_token_.size()), ">");
   } else if (header_type == FANCY_HEADER_FOR_REF) {
     start_header = StrCat(R"(<h2 class="ref-header" )", "id='page-heading-",
                           std::to_string(header_index_), "'>");
     end_header = R"(</h2>)";
   } else if (header_type == LECTURE_HEADER) {
-    start_header = StrCat(R"(<h3 class="lecture-header" )", "id='page-heading-",
-                          std::to_string(header_index_), "'>");
+    start_header =
+        StrCat(R"(<h3 class="lecture-header" )", "id='page-heading-",
+               std::to_string(header_index_), "' class='header-general'>");
     end_header = R"(</h3>)";
     return StrCat(start_header, Content::OutputHtml(parser_env), end_header);
   }

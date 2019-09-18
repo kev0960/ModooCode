@@ -8,6 +8,7 @@ html, body {
 }
 
 /* (TODO) Move these css to different file. */
+
 img {
   max-width: 100%;
   margin: 0 0 1rem;
@@ -49,6 +50,7 @@ pre {
 }
 
 /* Category */
+
 .header-category {
   width: 100%;
   display: flex;
@@ -95,10 +97,13 @@ pre {
   z-index: 1;
   padding-top: 3px;
   padding-left: 0px;
+
+  -moz-box-shadow: 0px 4px 4px rgba(0, 0, 0, .14);
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, .14);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, .14);
 }
 
-.category-item:hover > .header-category-dropdown,
-.header-category-dropdown:hover {
+.category-item:hover>.header-category-dropdown, .header-category-dropdown:hover {
   display: block;
 }
 
@@ -107,12 +112,12 @@ pre {
   font-weight: normal;
   padding: 5px 20px 5px 10px;
   border-top: 1px solid #bdbdbd;
+  font-family: monospace
 }
 
 .header-category-dropdown-item:hover {
   background-color: #eaeaea;
 }
-
 
 /* Google Custom Search */
 
@@ -231,7 +236,8 @@ div.toc-header {
 
 .article-content-wrap {
   margin-top: 96px;
-  margin-left: 276px; /* 256 + 20 margin */
+  margin-left: 276px;
+  /* 256 + 20 margin */
   width: 70%;
   float: left;
 }
