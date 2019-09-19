@@ -98,17 +98,15 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
     }
   } else if (header_type == NORMAL_HEADER) {
     start_header = StrCat("<h", std::to_string(header_token_.size()), header_id,
-                          "class='header-general'><a class='anchor-offset'",
-                          header_id_anchor, ">");
-    end_header = StrCat("</a></h", std::to_string(header_token_.size()), ">");
+                          "class='header-general'>");
+    end_header = StrCat("</h", std::to_string(header_token_.size()), ">");
   } else if (header_type == FANCY_HEADER_FOR_REF) {
     start_header = StrCat(R"(<h2 class="ref-header" )", header_id, ">");
     end_header = R"(</h2>)";
   } else if (header_type == LECTURE_HEADER) {
     start_header = StrCat(R"(<h3 class="lecture-header" )", header_id,
-                          "class='header-general'><a class='anchor-offset'",
-                          header_id_anchor, ">");
-    end_header = R"(</a></h3>)";
+                          "class='header-general'>");
+    end_header = R"(</h3>)";
     return StrCat(start_header, Content::OutputHtml(parser_env), end_header);
   }
   StripMarkdown(&content_);

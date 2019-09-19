@@ -207,6 +207,7 @@ div.toc-header {
   text-decoration: none;
   color: black;
   height: 100%;
+  cursor: pointer;
 }
 
 .toc-item-link::before {
@@ -244,9 +245,10 @@ div.toc-header {
 
 .article-content {
   max-width: 45em;
+  margin-top: 20px;
 }
 
 .anchor-offset:target {
-  padding-top: 100px;
+  padding-top: 105px;
   display: block;
 }

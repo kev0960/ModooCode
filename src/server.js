@@ -348,7 +348,7 @@ module.exports = class Server {
     });
 
     this.app.get('/new-page/:id', function(req, res) {
-      res.render('new_page.ejs', {content_url : './old/blog_219.html'});
+      res.render('new_page.ejs', {content_url : './old/blog_' + req.params.id +'.html'});
     });
 
     this.app.get('/:id', function(req, res) {
