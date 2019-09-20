@@ -180,7 +180,7 @@ int main() {
   scanf("%lf", &du);
 
   printf("char : %c , short : %d , int : %d ", ch, sh, i);
-  printf("long : %d , float : %f, double : %f \n", lo, fl, du);
+  printf("long : %ld , float : %f, double : %f \n", lo, fl, du);
   return 0;
 }
 ```
