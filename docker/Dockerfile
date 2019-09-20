@@ -12,8 +12,6 @@ RUN apt-get install -y clang-format
 RUN apt-get install -y wget
 RUN apt-get install -y libzmq3-dev
 
-RUN git clone https://github.com/kev0960/modoocode --depth=1
-
 # Use /bin/bash as a default shell
 SHELL ["/bin/bash", "-c"]
 
@@ -37,7 +35,9 @@ ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 RUN node -v
 RUN npm -v
 
+RUN git clone https://github.com/kev0960/modoocode --depth=1
 WORKDIR /modoocode
+
 RUN npm install
 
 ENV HASH_ROUNDS 8
@@ -53,4 +53,4 @@ ENV GOOGLE_APPLICATION_CREDENTIALS ../auth.json
 COPY auth.json /modoocode/auth.json
 COPY .env /modoocode/.env
 
-EXPOSE 8080:9090
+EXPOSE 8080
