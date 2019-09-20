@@ -28,6 +28,7 @@ pre {
   background-color: #fff;
   box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
   margin-left: 0px;
+  z-index: 9999;
 }
 
 .top-static-header-row {

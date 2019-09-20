@@ -122,11 +122,13 @@ class TOC {
       } else if (
           this.toc_headers_[i].header_pos <= scroll_pos &&
           scroll_pos < this.toc_headers_[i + 1].header_pos) {
-        if (scroll_pos - this.toc_headers_[i].header_pos <
-            this.toc_headers_[i + 1].header_pos - scroll_pos) {
-          return i;
-        } else {
+        if (scroll_pos - this.toc_headers_[i].header_pos >
+                this.toc_headers_[i + 1].header_pos - scroll_pos &&
+            Util.IsElementInViewPort(
+                this.toc_headers_[i + 1].header_elem_link)) {
           return i + 1;
+        } else {
+          return i;
         }
       }
     }

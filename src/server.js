@@ -348,8 +348,45 @@ module.exports = class Server {
     });
 
     this.app.get('/new-page/:id', function(req, res) {
-      res.render('new_page.ejs', {content_url : './old/blog_' + req.params.id +'.html'});
-    });
+      let page_id = parseInt(req.params.id);
+      let user = req.user;
+      
+      let fallbackToIndexOnFailOrPass = function(err, html) {
+        if (err) {
+          this.comment_manager.getLatestComments(10).then(function(comments) {
+            res.render('./index.ejs', {
+              comments,
+              recent_articles: this.recent_articles,
+              visitor_counts: this.visitor_counts
+            });
+          }.bind(this));
+        } else {
+          res.send(html);
+        }
+      }.bind(this);
+
+      if (page_id <= 228) {
+        if (page_id == 15) {
+          this.pageview_manager.addPageViewCnt('231');
+          return res.render(
+              'new_page.ejs',
+              this.generateInfoToPassEJS('./new/231.html', 231, page_id, user));
+        }
+        this.pageview_manager.addPageViewCnt(page_id);
+        res.render(
+            'new_page.ejs',
+            this.generateInfoToPassEJS(
+                './old/blog_' + page_id + '.html', page_id, page_id, user),
+            fallbackToIndexOnFailOrPass);
+      } else {
+        this.pageview_manager.addPageViewCnt(page_id);
+        res.render(
+            'new_page.ejs',
+            this.generateInfoToPassEJS(
+                './new/' + page_id + '.html', page_id, page_id, user),
+            fallbackToIndexOnFailOrPass);
+      }
+    }.bind(this));
 
     this.app.get('/:id', function(req, res) {
       let page_id = parseInt(req.params.id);
