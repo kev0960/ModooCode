@@ -452,6 +452,11 @@ a.link-code {
     font-size: 95%;
 }
 
+.adsense-container-top {
+    display: flex;
+    display: -ms-flexbox;
+}
+
 .adsense-content-bottom {
     margin-left: auto;
     margin-right: auto;
