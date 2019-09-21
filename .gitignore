@@ -95,3 +95,6 @@ auth.json
 .DS_Store
 .vscode/**
 **/.vscode/*/**
+
+/python/temp
+python/temp
