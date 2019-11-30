@@ -58,7 +58,7 @@ pre {
   flex: 1 1 auto;
 }
 
-.header-catogry-list {
+.header-category-list {
   list-style-type: none;
   display: block;
   width: 100%;
@@ -118,6 +118,11 @@ pre {
 
 .header-category-dropdown-item:hover {
   background-color: #eaeaea;
+}
+
+.category-item-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Google Custom Search */

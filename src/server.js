@@ -1,6 +1,7 @@
 const zmq = require('zeromq');
 const {ZmqManager} = require('./zmq_manager.js');
 const {PathHierarchy} = require('./path_hierarchy.js');
+const HeaderCategory = require('./header_category.js');
 const util = require('./util.js');
 
 const jsdom = require('jsdom');
@@ -25,6 +26,7 @@ module.exports = class Server {
     this.file_infos = static_data.file_infos;
     this.page_infos = static_data.page_infos;
     this.path_hierarchy = new PathHierarchy(this.page_infos);
+    this.header_category = new HeaderCategory(this.path_hierarchy.root_path);
     this.cached_category_html = new Map();
 
     // Set up the ZMQ for the remote code execution server.
@@ -324,6 +326,7 @@ module.exports = class Server {
       category_html: this.buildCategoryListing(category_id),
       num_comment: this.comment_manager.getNumCommentAt(page_id),
       view_cnt: this.pageview_manager.getPageViewCnt(page_id),
+      header_category: this.header_category.BuildPageHeader(),
       user
     };
   }
@@ -353,6 +356,7 @@ module.exports = class Server {
       
       let fallbackToIndexOnFailOrPass = function(err, html) {
         if (err) {
+          console.log(err)
           this.comment_manager.getLatestComments(10).then(function(comments) {
             res.render('./index.ejs', {
               comments,
