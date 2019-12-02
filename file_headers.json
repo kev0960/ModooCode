@@ -1512,6 +1512,7 @@
 ,
 	"294" : {
 	"cat_title" : "16 - 3. 타입을 알려주는 키워드 decltype 와 친구 std::declval",
+	"next_page" : "295",
 	"path" : "/C++",
 	"prev_page" : "293",
 	"publish_date" : "2019-09-15",
@@ -1520,9 +1521,12 @@
 }
 ,
 	"295" : {
-	"cat_title" : "17 - 1. type_traits 라이브러리 소개",
-	"is_published" : "false",
-	"title" : "씹어먹는 C++ - <17 - 1. type_traits 라이브러리 소개>"
+	"cat_title" : "17 - 1. type_traits 라이브러리, SFINAE, enable_if",
+	"path" : "/C++",
+	"prev_page" : "294",
+	"publish_date" : "2019-12-2",
+	"tex_title" : "type_traits 라이브러리, SFINAE, enable_if",
+	"title" : "씹어먹는 C++ - <17 - 1. type_traits 라이브러리, SFINAE, enable_if>"
 }
 ,
 	"296" : {
