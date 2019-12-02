@@ -217,7 +217,9 @@ C++ 11 에 도입된 유니폼 초기화(uniform initialization)와 초기화자
 
 C++ 11 에 추가된 `decltype` 와 C++ 의 값 카테고리 (\serif{lvalue, prvalue, xvalue, glvalue, rvalue}), `std::declval` 함수에 대해 다룬다.
 
-###@ 17 - 1. C++ 11 - C++ 타입 라이브러리(<type_traits>) 소개 
+###@ [17 - 1. type_traits 라이브러리, SFIANE, enable_if](/295) 
+
+`type_traits` 라이브러리의 여러가지 메타 함수들 (`enable_if` 와 `void_t`) 에 대해 살펴보면서 SFINAE 를 통해 원하는 타입만을 받는 함수들을 만들어본다.
 
 ###@ 17 - 2. C++ 11 - 정규 표현식(<regex>) 라이브러리 소개
 
