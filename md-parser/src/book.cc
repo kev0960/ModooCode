@@ -255,6 +255,8 @@ void BookManager::GenerateMainTex() {
   tex += R"(
 \tcbuselibrary{minted, skins}
 \newtcblisting{compilerwarning}[1][] {
+  enhanded,
+  breakable,
   listing engine=minted,
   colback=red!5!,
   colframe=red!75!black,
