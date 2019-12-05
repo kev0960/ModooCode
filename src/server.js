@@ -57,7 +57,7 @@ module.exports = class Server {
           clientID: process.env.FB_APP_ID,
           clientSecret: process.env.FB_APP_SECRET,
           callbackURL: fb_callback_url,
-          profileFields: ['id', 'displayName', 'photos', 'email']
+          profileFields: ['id', 'displayName', 'photos', 'emails']
         },
         async function(access_token, refresh_token, profile, cb) {
           let user = await this.findOrCreateUser(
@@ -155,6 +155,11 @@ module.exports = class Server {
   }
 
   async findOrCreateUser(auth_type, profile, image_url) {
+    let email = "";
+    if (profile.emails && profile.emails.length >= 1) {
+      email = profile.emails[0].value;
+    }
+    
     let id = profile.id;
     let result = await this.client.query(
         'SELECT * FROM users WHERE auth_type = $1::text AND auth_id = $2::text',
@@ -165,7 +170,7 @@ module.exports = class Server {
           'INSERT INTO users(auth_id, name, image, email, auth_type)' +
               ' VALUES ($1::text, $2::text, $3::text, $4::text, $5::text) RETURNING *',
           [
-            profile.id, profile.displayName, image_url, profile.email, auth_type
+            profile.id, profile.displayName, image_url, email, auth_type
           ]);
     } else if (result.rows[0].image != image_url) {
       result = await this.client.query(
