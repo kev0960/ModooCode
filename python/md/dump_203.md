@@ -425,7 +425,7 @@ std::cout << "a 의 값은 : " << a << " 이다. " << std::endl;
 
 
 
-`<<` 연산자는 왼쪽 부터 오른쪽 순으로 실행되기 때문에 가장 먼저 `std::cout.operator<<("a 의 값은?")` 이 실행되고, 그 자리에 `std::cout` 이 다시 리턴됩니다. 그 다음에는 `std::cout.operator<<(a);` 가 되서 쭉쭉 이어질 수 있도록 이와 같이 `ostream&` 를 리턴하게 되는 것입니다. 참고로, `Complex` 클래스 내부에는
+`<<` 연산자는 왼쪽 부터 오른쪽 순으로 실행되기 때문에 가장 먼저 `std::cout.operator<<("a 의 값은?")` 이 실행되고, 그 자리에 `std::cout` 이 다시 리턴됩니다. 그 다음에는 `operator<<(std::cout, a);` 가 되서 쭉쭉 이어질 수 있도록 이와 같이 `ostream&` 를 리턴하게 되는 것입니다. 참고로, `Complex` 클래스 내부에는
 
 ```cpp-formatted
 friend ostream& operator<<(ostream& os, const Complex& c);

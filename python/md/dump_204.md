@@ -104,7 +104,7 @@ static_cast<int>(float_variable);
 ```cpp-formatted
 int** arr;
 arr = new int*[x1];
-for (int i = 0; i < x1; i++) arr[x1] = new int[x2];
+for (int i = 0; i < x1; i++) arr[i] = new int[x2];
 ```
 
 

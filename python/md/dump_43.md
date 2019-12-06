@@ -337,7 +337,7 @@ int search_book(char (*book_name)[30], char (*auth_name)[30],
 그럼, 지난번 강좌에서 문자열 비교 함수 코드를 복사해오겠습니다.
 
 ```cpp-formatted
-char compare(char *str1, char *str2) {
+int compare(char *str1, char *str2) {
   while (*str1) {
     if (*str1 != *str2) {
       return 0;
@@ -468,7 +468,7 @@ int add_book(char (*book_name)[30], char (*auth_name)[30],
 int search_book(char (*book_name)[30], char (*auth_name)[30],
                 char (*publ_name)[30], int num_total_book);
 
-char compare(char *str1, char *str2);
+int compare(char *str1, char *str2);
 
 int main() {
   int user_choice;        /* 유저가 선택한 메뉴 */
@@ -590,7 +590,7 @@ int search_book(char (*book_name)[30], char (*auth_name)[30],
 
   return 0;
 }
-char compare(char *str1, char *str2) {
+int compare(char *str1, char *str2) {
   while (*str1) {
     if (*str1 != *str2) {
       return 0;
@@ -678,7 +678,7 @@ int add_book(char (*book_name)[30], char (*auth_name)[30],
 int search_book(char (*book_name)[30], char (*auth_name)[30],
                 char (*publ_name)[30], int num_total_book);
 
-char compare(char *str1, char *str2);
+int compare(char *str1, char *str2);
 int borrow_book(int *borrowed);
 
 int main() {
@@ -802,7 +802,7 @@ int search_book(char (*book_name)[30], char (*auth_name)[30],
 
   return 0;
 }
-char compare(char *str1, char *str2) {
+int compare(char *str1, char *str2) {
   while (*str1) {
     if (*str1 != *str2) {
       return 0;
@@ -893,7 +893,7 @@ int add_book(char (*book_name)[30], char (*auth_name)[30],
 int search_book(char (*book_name)[30], char (*auth_name)[30],
                 char (*publ_name)[30], int num_total_book);
 
-char compare(char *str1, char *str2);
+int compare(char *str1, char *str2);
 int borrow_book(int *borrowed);
 int return_book(int *borrowed);
 
@@ -1019,7 +1019,7 @@ int search_book(char (*book_name)[30], char (*auth_name)[30],
 
   return 0;
 }
-char compare(char *str1, char *str2) {
+int compare(char *str1, char *str2) {
   while (*str1) {
     if (*str1 != *str2) {
       return 0;
