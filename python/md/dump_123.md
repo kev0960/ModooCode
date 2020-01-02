@@ -9,7 +9,7 @@ tex_title : 파일 안에서 이동하기
 이번 강좌에서는
 
 
-* 파일 위치 지시자(File `Position Indicator)` 에 대한 이해
+* 파일 위치 지시자(File Position Indicator) 에 대한 이해
 
 * `fseek` 함수 다루기
 
@@ -594,10 +594,7 @@ fflush(fp);
 
 일단 아래는 입출력 기능을 적용시키기 전 단계의 도서 관리 프로그램으로 여태까지 배운 새로운 기술들을 이용하여 작성하였습니다.
 
-
-
-
-```cpp-formatted
+```cpp
 /*
 지난번에 만들었었던 도서 관리 프로그램으로 우리가 여태까지 배운 최신 C 언어
 기술들(!!) 을 이용하여 새롭게 만들었습니다.어떻게 보면
@@ -605,6 +602,7 @@ http://itguru.tistory.com/60 의 생각해 볼 문제의 두번째 문제의 해
 하겠군요*/
 #include <stdio.h>
 #include <stdlib.h>
+
 struct BOOK {
   char book_name[30];
   char auth_name[30];
@@ -612,11 +610,13 @@ struct BOOK {
   int borrowed;
 };
 typedef struct BOOK BOOK;
-char compare(char *str1, char *str2);
-int register_book(BOOK *book_list, int *nth);
+
+char compare(char* str1, char* str2);
+int register_book(BOOK 02*book_list, int *nth);
 int search_book(BOOK *book_list, int total_num_book);
 int borrow_book(BOOK *book_list);
 int return_book(BOOK *book_list);
+
 int main() {
   int user_choice;        /* 유저가 선택한 메뉴 */
   int num_total_book = 0; /* 현재 책의 수 */
@@ -649,7 +649,7 @@ int main() {
   free(book_list);
   return 0;
 } /* 책을 추가하는 함수*/
-int register_book(BOOK *book_list, int *nth) {
+int register_book(BOOK* book_list, int *nth) {
   printf("책의 이름 : ");
   scanf("%s", book_list[*nth].book_name);
   printf("책의 저자 : ");
@@ -660,7 +660,7 @@ int register_book(BOOK *book_list, int *nth) {
   (*nth)++;
   return 0;
 } /* 책을 검색하는 함수 */
-int search_book(BOOK *book_list, int total_num_book) {
+int search_book(BOOK* book_list, int total_num_book) {
   int user_input; /* 사용자의 입력을 받는다. */
   int i;
   char user_search[30];
@@ -672,9 +672,8 @@ int search_book(BOOK *book_list, int total_num_book) {
   printf("검색할 단어를 입력해주세요 : ");
   scanf("%s", user_search);
   printf("검색 결과 \n");
-  if (user_input ==
-      1) { /*        i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을
-              사용자가 입력한 검색어와 비교하고 있다.        */
+  if (user_input == 1) { 
+    /* i 가 0 부터 num_total_book 까지 가면서 각각의 책 제목을 사용자가 입력한 검색어와 비교하고 있다. */
     for (i = 0; i < total_num_book; i++) {
       if (compare(book_list[i].book_name, user_search)) {
         printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n", i,
@@ -682,9 +681,8 @@ int search_book(BOOK *book_list, int total_num_book) {
                book_list[i].publ_name);
       }
     }
-  } else if (user_input ==
-             2) { /*        i 가 0 부터 num_total_book 까지 가면서 각각의 지은이
-                     이름을        사용자가 입력한 검색어와 비교하고 있다. */
+  } else if (user_input == 2) {
+    /* i 가 0 부터 num_total_book 까지 가면서 각각의 지은이 이름을 사용자가 입력한 검색어와 비교하고 있다. */
     for (i = 0; i < total_num_book; i++) {
       if (compare(book_list[i].auth_name, user_search)) {
         printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n", i,
@@ -692,9 +690,8 @@ int search_book(BOOK *book_list, int total_num_book) {
                book_list[i].publ_name);
       }
     }
-  } else if (user_input == 3) { /*        i 가 0 부터 num_total_book 까지 가면서
-                                   각각의 출판사를        사용자가 입력한
-                                   검색어와 비교하고 있다.        */
+  } else if (user_input == 3) {
+    /* i 가 0 부터 num_total_book 까지 가면서 각각의 출판사를 사용자가 입력한 검색어와 비교하고 있다. */
     for (i = 0; i < total_num_book; i++) {
       if (compare(book_list[i].publ_name, user_search)) {
         printf("번호 : %d // 책 이름 : %s // 지은이 : %s // 출판사 : %s \n", i,
@@ -716,7 +713,7 @@ char compare(char *str1, char *str2) {
   if (*str2 == '\0') return 1;
   return 0;
 }
-int borrow_book(BOOK *book_list) { /* 사용자로 부터 책번호를 받을 변수*/
+int borrow_book(BOOK *book_list) { /* 사용자로 부터 책 번호를 받을 변수 */
   int book_num;
   printf("빌릴 책의 번호를 말해주세요 \n");
   printf("책 번호 : ");
@@ -765,7 +762,7 @@ struct BOOK {
 typedef struct BOOK BOOK;
 ```
 
-을 통해서 귀찮게 'struct BOOK' 이라고 매번 써야 하는 대신에 'BOOK' 이라고 해도 'struct BOOK' 의 의미를 지니게 하였습니다. 참고적으로 위 문장들은
+`typedef` 를 통해서 귀찮게 `struct BOOK` 이라고 매번 써야 하는 대신에 `BOOK` 이라고 해도 `struct BOOK` 의 의미를 지니게 하였습니다. 참고적으로 위 문장들은
 
 ```cpp-formatted
 typedef struct BOOK {
@@ -778,7 +775,7 @@ typedef struct BOOK {
 
 와 같이 써도 동일한 의미를 지닙니다.
 
-또한 재미있는 부분은로 다음과 같이 동적할당을 이용하였는데
+또한 재미있는 부분으로 다음과 같이 동적할당을 이용하였는데
 
 ```cpp-formatted
 printf("도서관의 최대 보관 장서 수를 설정해주세요 : ");
@@ -809,7 +806,7 @@ int return_book(BOOK *book_list);
 
 구조체를 써서 훨씬 간단해진 함수들의 모습 입니다.
 
-  아무튼 위 소스에 대한 설명은 이정도로 마치도록 하고 (나머지 부분은 여러분이 스스로 분석/개량 해보세요!) 이제 본격적으로 파일 입출력을 도서 관리 프로그램에 적용시켜 봅시다. 먼저 우리가 하고 싶은 일은 현재 도서관에 등록된 장서들의 목록을 예쁘게 파일에 출력시키는 것입니다. 사실 이는 간단하므로 여러분들도 만들어보시기 바랍니다.
+아무튼 위 소스에 대한 설명은 이정도로 마치도록 하고 (나머지 부분은 여러분이 스스로 분석/개량 해보세요!) 이제 본격적으로 파일 입출력을 도서 관리 프로그램에 적용시켜 봅시다. 먼저 우리가 하고 싶은 일은 현재 도서관에 등록된 장서들의 목록을 예쁘게 파일에 출력시키는 것입니다. 사실 이는 간단하므로 여러분들도 만들어보시기 바랍니다.
 
 ```cpp-formatted
 int register_book(BOOK *book_list, int *nth);

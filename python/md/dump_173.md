@@ -213,81 +213,91 @@ while trying to match the argument list '(double)'
 
 
 ```cpp
-#include <iostream>
+include <iostream>
 
 class Date {
-  int year;
-  int month;
-  int day;
+  int year_;
+  int month_;  // 1 부터 12 까지.
+  int day_;    // 1 부터 31 까지.
 
  public:
-  void set_date(int _year, int _month, int _date);
-  void add_day(int inc);
-  void add_month(int inc);
-  void add_year(int inc);
-  void show_date();
+  void SetDate(int year, int month, int date);
+  void AddDay(int inc);
+  void AddMonth(int inc);
+  void AddYear(int inc);
+
+  // 해당 월의 총 일 수를 구한다.
+  int GetCurrentMonthTotalDays(int year, int month);
+
+  void ShowDate();
 };
 
-void Date::set_date(int _year, int _month, int _day) {
-  year = _year;
-  month = _month;
-  day = _day;
+void Date::SetDate(int year, int month, int day) {
+  year_ = year;
+  month_ = month;
+  day_ = day;
 }
 
-void Date::add_day(int inc) {
-  int month_day[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-  int i = month;
-
-  if (month_day[i - 1] - day >= inc) {
-    day += inc;
-    return;
+int Date::GetCurrentMonthTotalDays(int year, int month) {
+  static int month_day[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  if (month != 2) {
+    return month_day[month - 1];
+  } else if (year % 4 == 0 && year % 100 != 0) {
+    return 29;  // 윤년
   } else {
-    add_month(1);
-    day = 1;
-
-    inc = inc - (month_day[i - 1] - day) - 1;
-    i++;
+    return 28;
   }
+}
+
+void Date::AddDay(int inc) {
   while (true) {
-    if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-      month_day[1] = 29;  // 윤년
+    // 현재 달의 총 일 수
+    int current_month_total_days = GetCurrentMonthTotalDays(year_, month_);
+
+    // 같은 달 안에 들어온다면;
+    if (day_ + inc <= current_month_total_days) {
+      day_ += inc;
+      return;
     } else {
-      month_day[1] = 28;
+      // 다음달로 넘어가야 한다.
+      inc -= (current_month_total_days - day_ + 1);
+      day_ = 1;
+      AddMonth(1);
     }
-
-    // 만약에 그 달을 추가할 수 있다면
-    if (inc - month_day[i - 1] >= 0) {
-      add_month(1);
-      inc = inc - month_day[i - 1];
-    } else if (inc - month_day[i - 1] < 0) {
-      day = day + inc;
-      break;
-    }
-
-    i++;
-    if (i > 12) i = i - 12;
   }
 }
 
-void Date::add_month(int inc) {
-  add_year((inc + month - 1) / 12);
-  month = month + inc % 12;
-  month = (month == 12 ? 12 : month % 12);
+void Date::AddMonth(int inc) {
+  AddYear((inc + month_ - 1) / 12);
+  month_ = month_ + inc % 12;
+  month_ = (month_ == 12 ? 12 : month_ % 12);
 }
 
-void Date::add_year(int inc) { year += inc; }
+void Date::AddYear(int inc) { year_ += inc; }
 
-void Date::show_date() {
-  std::cout << "오늘은 " << year << " 년 " << month << " 월 " << day << " 일 입니다 "
-       << std::endl;
+void Date::ShowDate() {
+  std::cout << "오늘은 " << year_ << " 년 " << month_ << " 월 " << day_
+            << " 일 입니다 " << std::endl;
 }
+
 int main() {
   Date day;
-  day.set_date(2011, 3, 1);
-  day.show_date();
+  day.SetDate(2011, 3, 1);
+  day.ShowDate();
 
-  day.add_year(10);
-  day.show_date();
+  day.AddDay(30);
+  day.ShowDate();
+
+  day.AddDay(2000);
+  day.ShowDate();
+
+  day.SetDate(2012, 1, 31);  // 윤년
+  day.AddDay(29);
+  day.ShowDate();
+
+  day.SetDate(2012, 8, 4);
+  day.AddDay(2500);
+  day.ShowDate();
   return 0;
 }
 ```
@@ -295,63 +305,63 @@ int main() {
 성공적으로 컴파일 하였다면
 
 ```exec
-오늘은 2011 년 3 월 1 일 입니다 
-오늘은 2021 년 3 월 1 일 입니다 
+오늘은 2011 년 3 월 1 일 입니다
+오늘은 2011 년 3 월 31 일 입니다
+오늘은 2016 년 9 월 20 일 입니다
+오늘은 2012 년 2 월 29 일 입니다
+오늘은 2019 년 6 월 9 일 입니다
 ```
 
-위의 코드는 간단한 것들 (`add_year, set_date, show_date`) 만 만들어 놓은 상태입니다. 그런데, 이상한 것이 있죠? `class` 내부에는 아래 코드와 같이
+위의 코드는 간단히 만들어본 `Date` 클래스 입니다. 그런데, 이상한 것이 있죠? 클래스 내부에 아래 코드와 같이
 
 ```cpp-formatted
-public:
-void set_date(int _year, int _month, int _date);
-void add_day(int inc);
-void add_month(int inc);
-void add_year(int inc);
-void show_date();
+  void SetDate(int year, int month, int date);
+  void AddDay(int inc);
+  void AddMonth(int inc);
+  void AddYear(int inc);
+
+  // 해당 월의 총 일 수를 구한다.
+  int GetCurrentMonthTotalDays(int year, int month);
+
+  void ShowDate();
 ```
 
 함수의 정의만 나와 있고, 함수 전체 몸통은
 
 ```cpp-formatted
-void Date::set_date(int _year, int _month, int _day) {
-  year = _year;
-  month = _month;
-  day = _day;
+void Date::ShowDate() {
+  std::cout << "오늘은 " << year_ << " 년 " << month_ << " 월 " << day_
+            << " 일 입니다 " << std::endl;
 }
 ```
 
 처럼 밖에 나와 있습니다. `Date::` 을 함수 이름 앞에 붙여주게 되면 이 함수가 "`Date` 클래스의 정의된 함수" 라는 의미를 부여하게 됩니다. 만일 그냥
 
 ```cpp-formatted
-void set_date(int _year, int _month, int _day) {
-  // 생략
+void ShowDate() { // ...
 ```
 
-했다면이 함수는 아예 다른 함수가 되는 것이지요. 보통 간단한 함수를 제외하면 대부분의 함수들은 클래스 바깥에서 위와 같이 정의하게 됩니다. 왜냐하면 클래스 내부에 쓸 경우 클래스 크기가 너무 길어져서 보기 좋지 않기 때문이죠.
-
-특히 나중에 클래스 자체만 따로 헤더파일로 뺄 수 도 있는데, 이 때 클래스 코드 길이가 너무 길면 불편하겠지요 . 보통 간단한 함수를 제외하면 대부분의 함수들은 클래스 바깥에서 위와 같이 정의하게 됩니다. 왜냐하면 클래스 내부에 쓸 경우 클래스 크기가 너무 길어져서 보기 좋지 않기 때문이죠. 특히 나중에 클래스 자체만 따로 헤더파일로 뺄 수 도 있는데, 이 때 클래스 코드 길이가 너무 길면 불편하겠지요.
+와 같이 작성하였다면 위 함수는 클래스의 멤버 함수가 아니라 그냥 일반적인 함수가 됩니다. 보통 간단한 함수를 제외하면 대부분의 함수들은 클래스 바깥에서 위와 같이 정의하게 됩니다. 왜냐하면 클래스 내부에 쓸 경우 클래스 크기가 너무 길어져서 보기 좋지 않기 때문이죠. \sidenote{다만 예외적으로 나중에 배울 템플릿 클래스의 경우 모두 클래스 내부에 작성하게 됩니다.}
 
 ```cpp-formatted
-Date day;
-day.set_date(2011, 3, 1);
-day.show_date();
+  Date day;
+  day.SetDate(2011, 3, 1);
+  day.ShowDate();
 
-day.add_year(10);
-day.show_date();
+  day.AddDay(30);
+  day.ShowDate();
 ```
 
 
-그럼 이제 `main` 함수를 살펴 봅시다. 위 처럼 `day` 인스턴스를 생성해서 `set_date` 로 초기화 한 다음에 `show_date` 로 내용을 한 번 보여주고, 또 `add_year` 을 해서 10 년을 증가 시킨뒤 다시 새로운 날짜를 출력하도록 하였습니다. 여기서 가장 중요한 부분은 무엇일까요? 당연하게도, 처음의 `set_date` 부분 입니다. 만일 `set_date` 를 하지 않았더라면 초기화 되지 않은 값들에 덧셈 과 출력 명령이 내려져서
+그럼 이제 `main` 함수를 살펴 봅시다. 위 처럼 `day` 인스턴스를 생성해서 `SetDate` 로 초기화 한 다음에 `ShowDate` 로 내용을 한 번 보여주고, 또 `AddDay` 을 해서 30일을 증가 시킨뒤 다시 새로운 날짜를 출력하도록 하였습니다. 여기서 가장 중요한 부분은 무엇일까요? 당연하게도, 처음의 `SetDate` 부분 입니다. 만일 `SetDate` 를 하지 않았더라면 초기화 되지 않은 값들에 덧셈 과 출력 명령이 내려져서
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F1479614F4F4F099D33A88E)
 
 
-위 처럼 이상한 쓰레기 값이 출력되게 되거든요. 그런데 문제는 이렇게 `set_date` 함수를 사람들이 꼭 뒤에 써주지 않는 다는 말입니다. 물론 훌륭한 프로그래머들은 '생성 → 초기화' 단계를 명확하게 머리속에 박아 넣고 있겠지만 간혹 실수로 초기화를 하지 않는다면 끔찍한 일이 벌어지게 됩니다.
+위 처럼 이상한 쓰레기 값이 출력되게 되거든요. 그런데 문제는 이렇게 `SetDate` 함수를 사람들이 꼭 뒤에 써주지 않는 다는 말입니다. 물론 훌륭한 프로그래머들은 **생성 후 초기화** 를 항상 숙지하고 있겠지만 간혹 실수로 생성한 객체를 초기화 하는 과정을 빠트린다면 끔찍한 일이 벌어지게 됩니다.
 
 다행이도 C++ 에서는 이를 언어 차원에서 도와주는 장치가 있는데 바로 **생성자(constructor)** 입니다.
-
-
 
 ###  생성자 (Constructor)
 
@@ -360,36 +370,43 @@ day.show_date();
 #include <iostream>
 
 class Date {
-  int year;
-  int month;
-  int day;
+  int year_;
+  int month_;  // 1 부터 12 까지.
+  int day_;    // 1 부터 31 까지.
 
  public:
-  void set_date(int _year, int _month, int _date);
-  void add_day(int inc);
-  void add_month(int inc);
-  void add_year(int inc);
-  void show_date();
+  void SetDate(int year, int month, int date);
+  void AddDay(int inc);
+  void AddMonth(int inc);
+  void AddYear(int inc);
 
-  Date(int _year, int _month, int _day) {
-    year = _year;
-    month = _month;
-    day = _day;
+  // 해당 월의 총 일 수를 구한다.
+  int GetCurrentMonthTotalDays(int year, int month);
+
+  void ShowDate();
+
+  Date(int year, int month, int day) {
+    year_ = year;
+    month_ = month;
+    day_ = day;
   }
 };
 
 // 생략
-void Date::show_date() {
-  std::cout << "오늘은 " << year << " 년 " << month << " 월 " << day << " 일 입니다 "
-       << std::endl;
-}
 
+void Date::AddYear(int inc) { year_ += inc; }
+
+void Date::ShowDate() {
+  std::cout << "오늘은 " << year_ << " 년 " << month_ << " 월 " << day_
+            << " 일 입니다 " << std::endl;
+}
 int main() {
   Date day(2011, 3, 1);
-  day.show_date();
+  day.ShowDate();
 
-  day.add_year(10);
-  day.show_date();
+  day.AddYear(10);
+  day.ShowDate();
+
   return 0;
 }
 ```
@@ -408,15 +425,14 @@ int main() {
 
 ```cpp
 // 객체를 초기화 하는 역할을 하기 때문에 리턴값이 없다!
-/*클래스 이름*/ ( /* 인자 */ )
-{
+/* 클래스 이름 */ (/* 인자 */) {
 }
 ```
 
 예를 들어서 위 경우 저는 아래와 같이 `Date` 의 생성자를 정의하였습니다.
 
 ```cpp-formatted
-Date(int _year, int _month, int _day)
+  Date(int year, int month, int day) 
 ```
 
 이렇게 정의가 된 생성자는 객체를 생성할 때 다음과 같이 위 함수에서 정의한 인자에 맞게마치 함수를 호출하듯이써준다면 위 생성자를 호출하며 객체를 생성할 수 있게 됩니다. 즉, 우리의 경우 아래와 같이 객체를 생성하였지요.
@@ -425,14 +441,13 @@ Date(int _year, int _month, int _day)
 Date day(2011, 3, 1);
 ```
 
-이는 곧 "`Date` 클래스의 `day` 객체를 만들면서 생성자 `Date(int _year, int _month, int _day)` 를 호출한다" 라는 의미가 됩니다. 따라서 `Date` 의 객체를 생성할 때 생성자의 인자 `_year, _month, _day` 에 각각 `2011, 3, 1` 을 전달하며 객체를 생성하게 되는 것이지요. 매우 간단한 원리 입니다. 그러한 맥락에서 볼 때 아래와 같이 객체를 생성하는 것도 동일한 의미 입니다.
+이는 곧 **`Date` 클래스의 `day` 객체를 만들면서 생성자 `Date(int year, int month, int day)` 를 호출한다** 라는 의미가 됩니다. 따라서 `Date` 의 객체를 생성할 때 생성자의 인자 `year, month, day` 에 각각 `2011, 3, 1` 을 전달하며 객체를 생성하게 되는 것이지요. 참고로
 
 ```cpp-formatted
 Date day = Date(2012, 3, 1);
 ```
 
-
-이는 역시 `day` 객체를 생성하고, 이 때 생성자 `Date(2012, 3, 1)` 을 호출해서 이를 토대로 객체를 생성하라는 의미가 됩니다. 사실 객체를 정의하는 두 방식에는 각각 이름이 붙어 있는데,
+위 문장 역시 생성자 `Date(2012, 3, 1)` 을 호출해서 이를 토대로 객체를 생성하라는 의미입니다. 각각의 방식에 대해 이름이 붙어 있는데,
 
 ```cpp-formatted
 Date day(2011, 3, 1);         // 암시적 방법 (implicit)
@@ -444,15 +459,14 @@ Date day = Date(2012, 3, 1);  // 명시적 방법 (explicit)
 
 ###  디폴트 생성자 (Default constructor)
 
-
-그런데 한 가지 궁금증이 생겼습니다. 맨 처음에 단순히 `set_date` 함수를 이용해서 객체를 초기화 하였을 때 우리는 생성자를 명시하지 않았습니다. 즉 처음에 생성자 정의를 하지 않은 채 (`set_date` 함수를 사용했던 코드)
+그런데 한 가지 궁금증이 생겼습니다. 맨 처음에 단순히 `SetDate` 함수를 이용해서 객체를 초기화 하였을 때 우리는 생성자를 명시하지 않았습니다. 즉 처음에 생성자 정의를 하지 않은 채 (`SetDate` 함수를 사용했던 코드)
 
 ```cpp-formatted
 Date day;
 ```
 
 로 했을 때 과연 생성자가 호출 될 까요? 답은 Yes 입니다. 생성자가 호출됩니다. 그런데, 우리가 생성자를 정의하지도 않았는데 어떤 생성자가 호출이 될까요? 바로 **디폴트 생성자(Default Constructor)** 입니다. 디폴트 생성자는 인자를 하나도 가지지 않는 생성자인데, 클래스에서 사용자가 어떠한 생성자도 명시적으로 정의하지 않았을 경우에 컴파일러가 자동으로 추가해주는 생성자입니다. 
-\sidenote{사용자가 어떤 다른 생성자를 추가한 순간 컴파일러는 자동으로 디폴트 생성자를 삽입하지 않는 다는 것을 명심하세요!} 물론 컴파일러가 자동으로 생성할 때에는 아무런 일도 하지 않게 되지요. 그렇기에 맨 처음에 `set_date` 를 하지 않았을 때 쓰레기 값이 나왔던 것입니다.
+\sidenote{사용자가 어떤 다른 생성자를 추가한 순간 컴파일러는 자동으로 디폴트 생성자를 삽입하지 않는 다는 것을 명심하세요!} 물론 컴파일러가 자동으로 생성할 때에는 아무런 일도 하지 않게 되지요. 그렇기에 맨 처음에 `SetDate` 를 하지 않았을 때 쓰레기 값이 나왔던 것입니다.
 
 
 물론 여러분이 직접 디폴트 생성자를 정의할 수 도 있습니다. 아래와 같이요.
@@ -462,36 +476,32 @@ Date day;
 #include <iostream>
 
 class Date {
-  int year;
-  int month;
-  int day;
+  int year_;
+  int month_;  // 1 부터 12 까지.
+  int day_;    // 1 부터 31 까지.
 
  public:
-  void set_date(int _year, int _month, int _date);
-  void add_day(int inc);
-  void add_month(int inc);
-  void add_year(int inc);
-  void show_date();
+  void ShowDate();
 
   Date() {
-    year = 2012;
-    month = 7;
-    day = 12;
+    year_ = 2012;
+    month_ = 7;
+    day_ = 12;
   }
 };
 
-// 생략
-void Date::show_date() {
-  std::cout << "오늘은 " << year << " 년 " << month << " 월 " << day << " 일 입니다 "
-       << std::endl;
+void Date::ShowDate() {
+  std::cout << "오늘은 " << year_ << " 년 " << month_ << " 월 " << day_
+            << " 일 입니다 " << std::endl;
 }
 
 int main() {
   Date day = Date();
   Date day2;
 
-  day.show_date();
-  day2.show_date();
+  day.ShowDate();
+  day2.ShowDate();
+
   return 0;
 }
 ```
@@ -514,7 +524,7 @@ Date() {
 }
 ```
 
-즉 `year` 에는 `2012, month` 에는 `7, day` 에는 2 를 집어넣게 되지요.
+즉 `year` 에는 2012, `month` 에는 7, `day` 에는 2 를 대입합니다.
 
 ```cpp-formatted
 Date day = Date();
@@ -527,54 +537,68 @@ Date day2;
 Date day3();
 ```
 
-와 하면 `day3` 객체를 디폴트 생성자를 이용해서 초기화 하는 것이 아니라,리턴값이 `Date` 이고 인자가 없는 함수 `day3` 을 정의하게 된 것으로 인식합니다. 이는 암시적 표현으로 객체를 선언할 때 반드시 염두해 두어야 할 사항입니다.
+와 하면 `day3` 객체를 디폴트 생성자를 이용해서 초기화 하는 것이 아니라, **리턴값이 `Date` 이고 인자가 없는 함수 `day3` 을 정의하게 된 것으로 인식합니다. 이는 암시적 표현으로 객체를 선언할 때 반드시 주의해 두어야 할 사항입니다.**
 
+```warning
+절대로 인자가 없는 생성자를 호출하기 위해서 `A a()` 처럼 하면 안됩니다. 해당 문장은 `A` 를 리턴하는 함수 `a` 를 정의한 문장 입니다. 반드시 그냥 `A a` 와 같이 써야 합니다.  
+```
+
+#### 명시적으로 디폴트 생성자 사용하기
+
+C++ 11 이전에는 디폴트 생성자를 사용하고 싶을 경우 그냥 생성자를 정의하지 않는 방법 밖에 없었습니다. 하지만 이 때문에 그 코드를 읽는 사용자 입장에서 개발자가 깜빡 잊고 생성자를 정의를 안한 것인지, 아니면 정말 디폴트 생성자를 사용하고파서 이런 것인지 알길이 없겠죠.
+
+다행이도 C++ 11 부터 명시적으로 디폴트 생성자를 사용하도록 명시할 수 있습니다.
+
+```cpp
+class Test {
+  public:
+    Test() = default; // 디폴트 생성자를 정의해라
+};
+```
+
+바로 위처럼 생성자의 선언 바로 뒤에 `= default` 를 붙여준다면, `Test` 의 디폴트 생성자를 정의하라고 컴파일러에게 명시적으로 알려줄 수 있습니다. 
 
 ###  생성자 오버로딩
 
-
-앞서 함수의 오버로딩에 대해 설명을 하였는데요, 생성자 역시 같은 함수이기에 오버로딩이 가능합니다.
+앞서 함수의 오버로딩에 대해 잠깐 짚고 넘어갔는데, 생성자 역시 함수 이기 때문에 마찬가지로 함수의 오버로딩이 적용될 수 있습니다. 쉽게 말해 해당 클래스의 객체를 여러가지 방식으로 생성할 수 있게 되겠지요.
 
 ```cpp
 #include <iostream>
 
 class Date {
-  int year;
-  int month;
-  int day;
+  int year_;
+  int month_;  // 1 부터 12 까지.
+  int day_;    // 1 부터 31 까지.
 
  public:
-  void set_date(int _year, int _month, int _date);
-  void add_day(int inc);
-  void add_month(int inc);
-  void add_year(int inc);
-  void show_date();
+  void ShowDate();
 
   Date() {
     std::cout << "기본 생성자 호출!" << std::endl;
-    year = 2012;
-    month = 7;
-    day = 12;
+    year_ = 2012;
+    month_ = 7;
+    day_ = 12;
   }
-  Date(int _year, int _month, int _day) {
+
+  Date(int year, int month, int day) {
     std::cout << "인자 3 개인 생성자 호출!" << std::endl;
-    year = _year;
-    month = _month;
-    day = _day;
+    year_ = year;
+    month_ = month;
+    day_ = day;
   }
 };
 
-// 생략
-void Date::show_date() {
-  std::cout << "오늘은 " << year << " 년 " << month << " 월 " << day << " 일 입니다 "
-       << std::endl;
+void Date::ShowDate() {
+  std::cout << "오늘은 " << year_ << " 년 " << month_ << " 월 " << day_
+            << " 일 입니다 " << std::endl;
 }
 int main() {
   Date day = Date();
   Date day2(2012, 10, 31);
 
-  day.show_date();
-  day2.show_date();
+  day.ShowDate();
+  day2.ShowDate();
+
   return 0;
 }
 ```
@@ -587,10 +611,9 @@ int main() {
 오늘은 2012 년 10 월 31 일 입니다 
 ```
 
-
 와 같이 적절히 오버로딩이 되서 사용자가 원하는 생성자를 호출할 수 있게 됩니다.
 
-이것으로 생성자에 대해 간단히 설명을 마치겠습니다. 물론 아직 생성자에 대해 이야기 할 거리는 무궁무진하게 남아 있지만 일단 오늘은 함수의 오버로딩과 생성자에 대한 입문으로 충분히 여러분의 머리가 지끈지끈 달아 올랐을 테니 '생각해 보기'를 통해 머리를 식히도롭 합시다!
+이것으로 생성자에 대해 간단히 설명을 마치겠습니다. 물론 아직 생성자에 대해 이야기 할 거리는 무궁무진하게 남아 있지만 일단 오늘은 함수의 오버로딩과 생성자에 대한 입문으로 충분히 머리가 아플 테니 *생각해 보기*를 통해 머리를 식히도롭 합시다!
 
 
 ### 생각 해보기
@@ -611,26 +634,25 @@ class Point {
  public:
   Point(int pos_x, int pos_y);
 };
+
 class Geometry {
-  Point **point_array;
-  // 현재 공간에 대한 점들의 정보를 담고 있는 배열
-  // 물론 배열의 크기는 생성자에서 초기화 하고 충분히
-  // 크게 잡도록 합시다 (점 100 개 정도?)
+  // 점 100 개를 보관하는 배열.
+  Point* point_array[100];
 
  public:
   Geometry(Point **point_list);
   Geometry();
 
-  void Add_Point(const Point &point);
+  void AddPoint(const Point &point);
 
   // 모든 점들 간의 거리를 출력하는 함수 입니다.
-  void Print_Distance();
+  void PrintDistance();
 
   // 모든 점들을 잇는 직선들 간의 교점의 수를 출력해주는 함수 입니다.
   // 참고적으로 임의의 두 점을 잇는 직선의 방정식을 f(x,y) = ax+by+c = 0
   // 이라고 할 때 임의의 다른 두 점 (x1, y1) 과 (x2, y2) 가 f(x,y)=0 을 기준으로
   // 서로 다른 부분에 있을 조건은 f(x1, y1) * f(x2, y2) <= 0 이면 됩니다.
-  void Print_Num_Meets();
+  void PrintNumMeets();
 };
 ```
 
