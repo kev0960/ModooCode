@@ -937,7 +937,7 @@ T& r1; // int& &; r1 은 int&
 T&& r2; // int & &&;  r2 는 int&
 
 
-typedef int&& U
+typedef int&& U;
 U& r3; // int && &; r3 는 int&
 U&& r4; // int && &&; r4 는 int&&
 ```
