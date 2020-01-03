@@ -37,7 +37,7 @@ int main() {
 
 물론 변수 명 이름 작성 규칙도 바뀐 것이 없습니다. 변수명도 C 언어 때와 마찬가지로 알파벳과 `_` 기호, 숫자들를 사용할 수 있고 그 외의 것들은 사용할 수 없습니다. \sidenote{컴파일러에 따라서 한글 변수명도 사용 가능하지만 권장하지 않습니다.} 또한 변수 이름의 맨 앞부분에는 숫자가 오면 안됩니다.
 
-Google 의 C++ 변수 이름 짓기 가이드에 따르면 [여기](http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#General_Naming_Rules)에서 보실 수 있습니다. 변수 이름을 지을 때 아래와 같은 점들을 고민하는 것을 권장합니다.
+Google 의 C++ 변수 이름 짓기 가이드에 따르면 [여기](https://google.github.io/styleguide/cppguide.html#Variable_Names)에서 보실 수 있습니다. 변수 이름을 지을 때 아래와 같은 점들을 고민하는 것을 권장합니다.
 
 먼저 변수의 이름은 변수의 이름만을 딱 보았을 때 무엇을 하는지 확실히 알 수 있어야 합니다.
 
