@@ -12,7 +12,7 @@ publish_date : 2012-11-07
 `<istream>` 에 정의됨
 
 ```info-format
-streamsize  gcount ( ) const;
+streamsize  gcount () const;
 ```
 
 마지막 서식화 되지 않은 (unformatted) 입력 작업에서 읽어들인 문자의 개수를 리턴한다.
@@ -74,5 +74,5 @@ int main() {
 *  [istream::get](http://itguru.tistory.com/191): 스트림에서 서식화 되지 않은 데이터를 입력 받는다.
 *  [istream::getline](http://itguru.tistory.com/149): 스트림에서 한 줄 입력받는다.
 *  [istream::ignore](http://itguru.tistory.com/193): 스트림에서 문자를 받고 버린다.
-* istream::read : 한 데이터 블록을 읽는다.
-* istream::readsome : 버퍼에 가능한 데이터 블록을 읽는다.
+* `istream::read` : 한 데이터 블록을 읽는다.
+* `istream::readsome` : 버퍼에 가능한 데이터 블록을 읽는다.
