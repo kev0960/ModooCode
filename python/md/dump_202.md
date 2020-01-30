@@ -157,7 +157,7 @@ int MyString::compare(MyString& str) {
   // 1 은 (*this) 가 사전식으로 더 뒤에 온다는 의미. 0 은 두 문자열
   // 이 같다는 의미, -1 은 (*this) 사 사전식으러 더 앞에 온다는 의미이다.
 
-  for (int i = 0; i < min(string_length, str.string_length); i++) {
+  for (int i = 0; i < std::min(string_length, str.string_length); i++) {
     if (string_content[i] > str.string_content[i])
       return 1;
 

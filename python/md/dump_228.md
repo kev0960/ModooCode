@@ -937,7 +937,7 @@ T& r1; // int& &; r1 은 int&
 T&& r2; // int & &&;  r2 는 int&
 
 
-typedef int&& U
+typedef int&& U;
 U& r3; // int && &; r3 는 int&
 U&& r4; // int && &&; r4 는 int&&
 ```
@@ -979,7 +979,7 @@ g(forward<T>(u));
 
 ```cpp-formatted
 template <class S>
-S&& forward(typename td::remove_reference<S>::type& a) noexcept {
+S&& forward(typename std::remove_reference<S>::type& a) noexcept {
   return static_cast<S&&>(a);
 }
 ```
@@ -998,7 +998,7 @@ A&&& forward(typename std::remove_reference<A&>::type& a) noexcept {
 A& forward(A& a) noexcept { return static_cast<A&>(a); }
 ```
 
-가 되버리고, `S` 가 그냥 `A` 라면, (퀴즈! 여기서 왜 `forward` 의 인자가 `A&&` 가 아니라 A& 일까요?)
+가 되버리고, `S` 가 `A&&` 라면, (퀴즈! 여기서 왜 `forward` 의 인자가 `A&&` 가 아니라 `A&` 일까요?)
 
 ```cpp-formatted
 A&& forward(A& a) noexcept { return static_cast<A&&>(a); }

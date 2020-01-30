@@ -926,13 +926,12 @@ if (location[i] >= arr->size[i] && i >= 1) {
 참고로, 전위 증가 연산자를 만들었으므로 후위 증가 연산자도 만드는 것을 잊지 마세요.
 
 ```cpp-formatted
-Iterator& operator++(int) {
+Iterator operator++(int) {
+  Iterator itr(*this);
   ++(*this);
-  return (*this);
+  return itr;
 }
 ```
-
-
 
 그렇다면 가장 중요한 `*` 연산자는 어떨까요. (`*itr`) 을 통해 실제 데이터에 접근해야 하므로, `Int` 를 리턴하게 됩니다. 따라서 그 모양은 다음과 같겠지요.
 
@@ -1053,9 +1052,10 @@ class Array {
 
       return (*this);
     }
-    Iterator& operator++(int) {
+    Iterator operator++(int) {
+      Iterator itr(*this);
       ++(*this);
-      return (*this);
+      return itr;
     }
     bool operator!=(const Iterator& itr) {
       if (itr.arr->dim != arr->dim) return true;
