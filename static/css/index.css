@@ -1,10 +1,10 @@
 body {
-  font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은고딕';
+  font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은고딕', sans-serif;
   margin: 0;
   background-color: rgb(234, 234, 234);
 }
 head {
-  font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은고딕';
+  font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은고딕', sans-serif;
 }
 
 .text-bold {
