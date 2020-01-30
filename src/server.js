@@ -323,8 +323,10 @@ module.exports = class Server {
   }
 
   generateInfoToPassEJS(content_url, page_id, category_id, user) {
+    let canonical_url = 'https://modoocode.com/' + page_id;
     return {
       content_url,
+      canonical_url,
       file_info: this.file_infos[page_id],
       page_infos: this.page_infos,
       file_infos: this.file_infos,

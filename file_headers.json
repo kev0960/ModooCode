@@ -1593,6 +1593,19 @@
 	"title" : "C++ 레퍼런스 - std::forward 함수"
 }
 ,
+	"303" : {
+	"cat_title" : "17 - 2. C++ 정규 표현식(<regex>) 라이브러리 소개",
+	"title" : "씹어먹는 C++ - <17 - 2. C++ 정규 표현식(<regex>) 라이브러리 소개>"
+}
+,
+	"304" : {
+	"cat_title" : "copy, copy_if",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2020-01-30",
+	"ref_title" : "copy, copy_if, std::copy, std::copy_if",
+	"title" : "C++ 레퍼런스 - std::copy 와 copy_if (<algorithm>)"
+}
+,
 	"31" : {
 	"cat_title" : "14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)",
 	"chapter" : "디버깅(Debugging)",
