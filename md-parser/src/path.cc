@@ -208,7 +208,7 @@ string PagePath::GenerateSiteMap() {
   const string urlset_open =
       R"(<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">)";
   const string url_close = R"(</urlset>)";
-  const string root_address = R"(https://www.modoocode.com/)";
+  const string root_address = R"(https://modoocode.com/)";
 
   sitemap = StrCat(sitemap_header, "\n", urlset_open, "\n");
   // Iterate through the page structure.
