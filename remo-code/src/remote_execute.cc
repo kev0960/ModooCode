@@ -53,11 +53,11 @@ void WeakProcessLimit() {
   setrlimit(RLIMIT_CPU, &cpu_limit);
 
   // Restrict the virtual memory size.
-  const struct rlimit mem_limit = {128 * kOneMb, 128 * kOneMb};
+  const struct rlimit mem_limit = {256 * kOneMb, 256 * kOneMb};
   setrlimit(RLIMIT_AS, &mem_limit);
 
   // Restrict the output file size.
-  const struct rlimit fs_limit = {2 * kOneMb, 2 * kOneMb};
+  const struct rlimit fs_limit = {5 * kOneMb, 5 * kOneMb};
   setrlimit(RLIMIT_FSIZE, &fs_limit);
 }
 
@@ -122,6 +122,15 @@ string RemoteExecuter::SyncCompile(const string& code, int thread_index) {
     dup2(pipe_c2p[1], STDERR_FILENO);
     close(pipe_p2c[0]);
 
+    // Drop its privlieges.
+    if (getuid() == 0) {
+      if (setgid(1000) != 0) {
+        return "Something went wrong :(";
+      }
+      if (setuid(1000) != 0) {
+        return "Something went wrong :(";
+      }
+    }
     // Build a output file name.
     char output_file_name[100];
     snprintf(output_file_name, 100, "%s%d", kGppOutputFile, thread_index);
