@@ -396,177 +396,178 @@ function createReply() {
   current_added_comment_box = reply_box;
 }
 
-window.onload = function() {
-  BuildTOC();
-  require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
-  require(['vs/editor/editor.main'], function() {
-    $('pre.chroma').each(function(index) {
-      let code = $(this).text();
+function createCodeExecute(elem, index) {
+  let code = elem.text();
 
-      let code_language = '';
-      if ($(this).attr('class').indexOf('py') !== -1) {
-        code_language =
-            '<button class=\'code-language python\'><i class=\'xi-file-text-o\'>' +
-            '</i>&nbsp;Python</button>';
-      } else if ($(this).attr('class').indexOf('cpp') !== -1) {
-        code_language =
-            '<button class=\'code-language cpp\'><i class=\'xi-file-text-o\'>' +
-            '</i>&nbsp;C/C++</button>';
-      }
+  let code_language = '';
+  if (elem.attr('class').indexOf('py') !== -1) {
+    code_language =
+        '<button class=\'code-language python\'><i class=\'xi-file-text-o\'>' +
+        '</i>&nbsp;Python</button>';
+  } else if (elem.attr('class').indexOf('cpp') !== -1) {
+    code_language =
+        '<button class=\'code-language cpp\'><i class=\'xi-file-text-o\'>' +
+        '</i>&nbsp;C/C++</button>';
+  }
 
-      let code_font_change_and_lang = code_language +
-          '<button class="shrink-btn" id=\'code-font-large-' + index +
-          '\'><i class="xi-zoom-in"></i>&nbsp;확대</button>' +
-          '<button class="shrink-btn" id=\'code-font-small-' + index +
-          '\'><i class="xi-zoom-out"></i>&nbsp;축소</button>';
+  let code_font_change_and_lang = code_language +
+      '<button class="shrink-btn" id=\'code-font-large-' + index +
+      '\'><i class="xi-zoom-in"></i>&nbsp;확대</button>' +
+      '<button class="shrink-btn" id=\'code-font-small-' + index +
+      '\'><i class="xi-zoom-out"></i>&nbsp;축소</button>';
 
-      if ($(this).height() > 300) {
-        $('<div><button class="shrink-btn" id=\'shrink-' + index +
-          '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button>' +
-          code_font_change_and_lang + '</div>')
-            .insertBefore($(this));
-      } else {
-        $('<div>' + code_font_change_and_lang + '</div>').insertBefore($(this));
-      }
+  if (elem.height() > 300) {
+    $('<div><button class="shrink-btn" id=\'shrink-' + index +
+      '\'><i class="xi-angle-up"></i>&nbsp;코드 크기 줄이기</button>' +
+      code_font_change_and_lang + '</div>')
+        .insertBefore(elem);
+  } else {
+    $('<div>' + code_font_change_and_lang + '</div>').insertBefore(elem);
+  }
 
-      $('#shrink-' + index).click(function() {
-        let height = min($('#' + index).height(), 300);
-        $('#' + index).height(height);
-      });
+  $('#shrink-' + index).click(function() {
+    let height = min($('#' + index).height(), 300);
+    $('#' + index).height(height);
+  });
 
-      $('#code-font-large-' + index).click(function() {
-        let current_font_size = parseInt($('#' + index).css('font-size'));
-        current_font_size++;
-        $('#' + index).css('font-size', current_font_size + 'px');
-      });
+  $('#code-font-large-' + index).click(function() {
+    let current_font_size = parseInt($('#' + index).css('font-size'));
+    current_font_size++;
+    $('#' + index).css('font-size', current_font_size + 'px');
+  });
 
-      $('#code-font-small-' + index).click(function() {
-        let current_font_size = parseInt($('#' + index).css('font-size'));
-        current_font_size--;
-        $('#' + index).css('font-size', current_font_size + 'px');
-      });
+  $('#code-font-small-' + index).click(function() {
+    let current_font_size = parseInt($('#' + index).css('font-size'));
+    current_font_size--;
+    $('#' + index).css('font-size', current_font_size + 'px');
+  });
 
-      $(this).attr('id', index);
+  elem.attr('id', index);
 
-      // Check whether the code starts with #include. If it is, then it is
-      // probably executable.
-      if ((code[0] != '#' && code[0] != '/') || code.indexOf('main') == -1) {
-        return;
-      }
+  // Check whether the code starts with #include. If it is, then it is
+  // probably executable.
+  if ((code[0] != '#' && code[0] != '/') || code.indexOf('main') == -1) {
+    return;
+  }
 
-      $(this).addClass('plain-code')
-      $('<div class=\'button-group\'><label class=\'stdin-label\' for=\'stdin-' +
-        index + '\'>입력</label><input type=\'text\' class=\'stdin\' ' +
-        'id=\'stdin-' + index + '\' name=\'stdin-' + index +
-        '\' placeholder=\'' +
-        '프로그램 입력값을 여기에 입력하세요.\'>' +
-        '<button class=\'edit\' id=\'edit-' + index +
-        '\'><i class=\'xi-pen\'></i><span class="btn-text">&nbsp;&nbsp;코드 수정</span></button>' +
-        '<button class=\'run\' id=\'run-' + index +
-        '\'><i class=\'xi-refresh\'>' +
-        '</i><span class="btn-text">&nbsp;&nbsp;실행</span></button></div>')
-          .insertAfter($(this));
+  elem.addClass('plain-code')
+  $('<div class=\'button-group\'><label class=\'stdin-label\' for=\'stdin-' +
+    index + '\'>입력</label><input type=\'text\' class=\'stdin\' ' +
+    'id=\'stdin-' + index + '\' name=\'stdin-' + index +
+    '\' placeholder=\'' +
+    '프로그램 입력값을 여기에 입력하세요.\'>' +
+    '<button class=\'edit\' id=\'edit-' + index +
+    '\'><i class=\'xi-pen\'></i><span class="btn-text">&nbsp;&nbsp;코드 수정</span></button>' +
+    '<button class=\'run\' id=\'run-' + index +
+    '\'><i class=\'xi-refresh\'>' +
+    '</i><span class="btn-text">&nbsp;&nbsp;실행</span></button></div>')
+      .insertAfter(elem);
 
-      $('<div style="display:none;"><p class="exec-result-title">실행 결과</p>' +
-        '<pre id="result-' + index + '" class="exec-result"></pre></div>')
-          .insertAfter($('#' + index).next());
+  $('<div style="display:none;"><p class="exec-result-title">실행 결과</p>' +
+    '<pre id="result-' + index + '" class="exec-result"></pre></div>')
+      .insertAfter($('#' + index).next());
 
-      $('#edit-' + index).click(function() {
-        let previous_height = countLine(code);
-        let current_code_box = '#' + index;
-        $(current_code_box).empty();
-        $(current_code_box).height(16 * previous_height + 60);
-        let new_div =
-            $('<div id=\'div-' + index + '\' class=\'monaco-container\'></div>')
-                .height(16 * previous_height + 15);
-        $(current_code_box).append(new_div);
-        editors[index] = monaco.editor.create(
-            document.getElementById('div-' + index),
-            {value: code, language: 'cpp'});
-        $('#' + index).removeClass('plain-code');
-      });
+  $('#edit-' + index).click(function() {
+    require(['vs/editor/editor.main'], function() {
+      let previous_height = countLine(code);
+      let current_code_box = '#' + index;
+      console.log("current code box ", $(current_code_box), $(current_code_box).height());
 
-      $(this).css({'margin-bottom': '3px'});
-
-      $('#run-' + index).click(function() {
-        let id = parseInt($(this).attr('id').split('-')[1]);
-        let code = '';
-        if ($('#' + id).hasClass('plain-code')) {
-          code = $('#' + id).text();
-        } else {
-          code = editors[id].getValue();
-        }
-        gtag(
-            'event', 'execute-code',
-            {'event_category': 'code', 'event_label': 'cpp'});
-
-        $('#result-' + index).parent().show();
-        $('#result-' + index)
-            .prev()
-            .html(
-                '실행 중 <div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
-        $.ajax({
-          type: 'POST',
-          url: '/run',
-          data: {code: code, stdin: $('#stdin-' + id).val()},
-          success: function(result) {
-            let is_editor = !$('#' + id).hasClass('plain-code');
-
-            if (is_editor) {
-              let deco = editors[id].getModel().getAllDecorations();
-              for (var i = 0; i < deco.length; i++) {
-                deco[i].options = {linesDecorationsClassName: ''};
-              }
-              editor_deco[id] = editors[id].deltaDecorations([], deco);
-            }
-
-            if (result.compile_error.length > 0) {
-              let marked_lines = new Set();
-              formatted =
-                  FormatCompileError(result.compile_error, marked_lines);
-              $('#result-' + index).text(formatted);
-
-              if (is_editor) {
-                marked_lines.forEach(function(line_num) {
-                  editor_deco[id] = editors[id].deltaDecorations([], [
-                    {
-                      range: new monaco.Range(line_num, 1, line_num, 1),
-                      options: {
-                        isWholeLine: true,
-                        linesDecorationsClassName: 'compiler-error-line'
-                      }
-                    },
-                  ]);
-                });
-              }
-              $('#result-' + index)
-                  .prev()
-                  .html(
-                      '실행 결과<span class=\'compile-error-title\'>컴파일 오류</span>');
-              gtag(
-                  'event', 'execute-code-fail',
-                  {'event_category': 'code', 'event_label': 'cpp'});
-            } else {
-              $('#result-' + index).text(result.exec_result);
-              $('#result-' + index)
-                  .prev()
-                  .html(
-                      '실행 결과<span class=\'run-success-title\'>실행 성공</span>');
-              gtag(
-                  'event', 'execute-code-success',
-                  {'event_category': 'code', 'event_label': 'cpp'});
-            }
-          }
-        });
-      });
+      $(current_code_box).empty();
+      $(current_code_box).height(19 * previous_height + 30);
+      $(current_code_box).css("padding", "5px");
+      let new_div =
+          $('<div id=\'div-' + index + '\' class=\'monaco-container\'></div>')
+              .height(19 * previous_height + 30);
+      $(current_code_box).append(new_div);
+      editors[index] = monaco.editor.create(
+          document.getElementById('div-' + index),
+          {value: code, language: 'cpp'});
+      $('#' + index).removeClass('plain-code');
     });
-    $('.sidenote').each(function(index) {
-      if ($(this).css('position') == 'absolute') {
-        $(this).css('top', '-=40');
-        already_added = false;
+  });
+
+  elem.css({'margin-bottom': '3px'});
+
+  $('#run-' + index).click(function() {
+    let id = parseInt(elem.attr('id'));
+    let code = '';
+    if ($('#' + id).hasClass('plain-code')) {
+      code = $('#' + id).text();
+    } else {
+      code = editors[id].getValue();
+    }
+    gtag(
+        'event', 'execute-code',
+        {'event_category': 'code', 'event_label': 'cpp'});
+
+    $('#result-' + index).parent().show();
+    $('#result-' + index)
+        .prev()
+        .html(
+            '실행 중 <div class="lds-ring"><div></div><div></div><div></div><div></div></div>');
+    $.ajax({
+      type: 'POST',
+      url: '/run',
+      data: {code: code, stdin: $('#stdin-' + id).val()},
+      success: function(result) {
+        let is_editor = !$('#' + id).hasClass('plain-code');
+
+        if (is_editor) {
+          let deco = editors[id].getModel().getAllDecorations();
+          for (var i = 0; i < deco.length; i++) {
+            deco[i].options = {linesDecorationsClassName: ''};
+          }
+          editor_deco[id] = editors[id].deltaDecorations([], deco);
+        }
+
+        if (result.compile_error.length > 0) {
+          let marked_lines = new Set();
+          formatted =
+              FormatCompileError(result.compile_error, marked_lines);
+          $('#result-' + index).text(formatted);
+
+          if (is_editor) {
+            marked_lines.forEach(function(line_num) {
+              editor_deco[id] = editors[id].deltaDecorations([], [
+                {
+                  range: new monaco.Range(line_num, 1, line_num, 1),
+                  options: {
+                    isWholeLine: true,
+                    linesDecorationsClassName: 'compiler-error-line'
+                  }
+                },
+              ]);
+            });
+          }
+          $('#result-' + index)
+              .prev()
+              .html(
+                  '실행 결과<span class=\'compile-error-title\'>컴파일 오류</span>');
+          gtag(
+              'event', 'execute-code-fail',
+              {'event_category': 'code', 'event_label': 'cpp'});
+        } else {
+          $('#result-' + index).text(result.exec_result);
+          $('#result-' + index)
+              .prev()
+              .html(
+                  '실행 결과<span class=\'run-success-title\'>실행 성공</span>');
+          gtag(
+              'event', 'execute-code-success',
+              {'event_category': 'code', 'event_label': 'cpp'});
+        }
       }
     });
   });
+}
+
+window.onload = function() {
+  BuildTOC();
+  $('pre.chroma').each(function(index) {
+    createCodeExecute($(this), index);
+  });
+  require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
   initCategory();
 
   let sidebar_status = localStorage.getItem('sidebar');
