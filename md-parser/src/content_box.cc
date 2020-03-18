@@ -207,6 +207,8 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::INFO_FORMAT;
   } else if (box_name == "info-text") {
     box_type_ = BOX_CONTENT_TYPES::INFO_TEXT;
+  } else if (box_name == "info-term") {
+    box_type_ = BOX_CONTENT_TYPES::INFO_TERMINAL;
   } else if (box_name == "exec") {
     box_type_ = BOX_CONTENT_TYPES::EXEC;
   } else if (box_name == "warning") {
@@ -253,6 +255,7 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
     case COMPILER_WARNING:
     case INFO:
     case EXEC:
+    case INFO_TERMINAL:
       escaped_html = EscapeHtmlString(content_);
       break;
     default:
@@ -278,6 +281,8 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       Content::Preprocess(parser_env);
       return StrCat("<div class='info'>", Content::OutputHtml(parser_env),
                     "</div>");
+    case INFO_TERMINAL:
+      return StrCat(R"(<pre class='info-term'>)", escaped_html, "</pre>");
     case EXEC:
       return StrCat(
           "<p class='exec-preview-title'>실행 결과</p><pre "

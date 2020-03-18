@@ -9,8 +9,7 @@ tex_title : 리눅스에서 C 프로그래밍 하기
 
 이번 강좌에서는...
 
-* 우분투
-에서 `GCC` 설치
+* 우분투에서 `GCC` 설치
 
 * 기초적인 `VIM` 사용법
 
@@ -36,7 +35,7 @@ tex_title : 리눅스에서 C 프로그래밍 하기
 이럴 때 에는 다음과 같이 입력합니다.
 
 
-```info
+```info-term
 sudo su
 ```
 
@@ -45,9 +44,9 @@ sudo su
 
 ![sudo su 를 입력합니다. ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1761FA254A43A7F2BEA041)
 
-**(사용자 이름)@(컴퓨터이름)** 에서 **root@(컴퓨터이름)** 으로 바뀐 것을 볼 수 있습니다. 이제, 여러분은 아래의 명령어를 입력해서 `gcc` 를 설치하시면 됩니다.
+**(사용자 이름)@(컴퓨터이름)** 에서 **root@(컴퓨터이름)** 으로 바뀐 것을 볼 수 있습니다. 이제, 여러분은 아래의 명령어를 입력해서 `gcc` 를 설치하시면 됩니다. \sidenote{아니면 그냥 위 과정을 합쳐서 sudo apt-get install gcc 해도 됩니다.}
 
-```info
+```info-term
 apt-get install gcc
 ```
 
@@ -84,7 +83,7 @@ apt-get install gcc
 
 프로그램을 빠져 나갔다면 이제 `gcc` 를 통해 프로그램을 컴파일 `+` 링크 해야 겠군요.
 
-```info
+```info-term
 gcc -o helloworld helloworld.c
 ```
 
@@ -95,7 +94,7 @@ gcc -o helloworld helloworld.c
 
 위 명령어를 입력 한 후 , 아무 내용이 뜨지 않는다면 애러없이 성공적으로 컴파일 된 것입니다.  이제,
 
-```info
+```info-term
 ./helloworld
 ```
 
