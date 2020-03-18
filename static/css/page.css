@@ -66,8 +66,10 @@
     font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     background-color: rgb(231, 253, 181);
     border: 1px solid rgb(159, 211, 49);
-    padding: 10px;
-    font-size: 0.75em;
+    padding: 15px;
+    font-size: 1em;
+    color: #404040;
+    border-radius: 4px;
 }
 
 .info p {
