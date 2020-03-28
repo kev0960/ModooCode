@@ -155,11 +155,11 @@ module.exports = class Server {
   }
 
   async findOrCreateUser(auth_type, profile, image_url) {
-    let email = "";
+    let email = '';
     if (profile.emails && profile.emails.length >= 1) {
       email = profile.emails[0].value;
     }
-    
+
     let id = profile.id;
     let result = await this.client.query(
         'SELECT * FROM users WHERE auth_type = $1::text AND auth_id = $2::text',
@@ -169,9 +169,7 @@ module.exports = class Server {
       result = await this.client.query(
           'INSERT INTO users(auth_id, name, image, email, auth_type)' +
               ' VALUES ($1::text, $2::text, $3::text, $4::text, $5::text) RETURNING *',
-          [
-            profile.id, profile.displayName, image_url, email, auth_type
-          ]);
+          [profile.id, profile.displayName, image_url, email, auth_type]);
     } else if (result.rows[0].image != image_url) {
       result = await this.client.query(
           'UPDATE users SET image = $1::text WHERE auth_id = $2 RETURNING *',
@@ -360,10 +358,10 @@ module.exports = class Server {
     this.app.get('/new-page/:id', function(req, res) {
       let page_id = parseInt(req.params.id);
       let user = req.user;
-      
+
       let fallbackToIndexOnFailOrPass = function(err, html) {
         if (err) {
-          console.log(err)
+          console.log(err);
           this.comment_manager.getLatestComments(10).then(function(comments) {
             res.render('./index.ejs', {
               comments,
@@ -397,6 +395,15 @@ module.exports = class Server {
                 './new/' + page_id + '.html', page_id, page_id, user),
             fallbackToIndexOnFailOrPass);
       }
+    }.bind(this));
+
+
+    this.app.get('/comments', async function(req, res) {
+      this.comment_manager.getLatestComments(150).then(function(comments) {
+        res.render('./comments.ejs', {
+          comments,
+        });
+      }.bind(this));
     }.bind(this));
 
     this.app.get('/:id', function(req, res) {
@@ -530,9 +537,15 @@ module.exports = class Server {
       let content = req.body.content;
       let password = req.body.password;
       let article_url = req.body.article_url;
+
+      // Remove #.. and ?.. from URL.
       if (article_url.indexOf('#') !== -1) {
         article_url = article_url.substr(0, article_url.indexOf('#'));
       }
+      if (article_url.indexOf('?') !== -1) {
+        article_url = article_url.substr(0, article_url.indexOf('?'));
+      }
+
       let name = req.body.name;
       let user = req.user;
       if (!user) {
