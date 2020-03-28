@@ -1251,7 +1251,7 @@ int find(int find_from, char c) const;
 int MyString::find(int find_from, MyString& str) const {
   int i, j;
   if (str.string_length == 0) return -1;
-  for (i = find_from; i < string_length - str.string_length; i++) {
+  for (i = find_from; i <= string_length - str.string_length; i++) {
     for (j = 0; j < str.string_length; j++) {
       if (string_content[i + j] != str.string_content[j]) break;
     }
@@ -1262,8 +1262,6 @@ int MyString::find(int find_from, MyString& str) const {
   return -1;  // 찾지 못했음
 }
 ```
-
-
 
 저의 경우 위와 같이 간단한 방법으로 `find` 함수를 구현하였습니다. `find_from` 부터  시작해서 `string_content` 와 `str` 가 완벽히 일치하는 부분이 생긴다면 그 위치를 리턴하고, 찾지 못할 경우 -1 을 리턴하도록 말이지요. 그럼 잘 작동하는지 살펴보도록 합시다.
 
@@ -1496,7 +1494,7 @@ MyString& MyString::erase(int loc, int num) {
 int MyString::find(int find_from, const MyString& str) const {
   int i, j;
   if (str.string_length == 0) return -1;
-  for (i = find_from; i < string_length - str.string_length; i++) {
+  for (i = find_from; i <= string_length - str.string_length; i++) {
     for (j = 0; j < str.string_length; j++) {
       if (string_content[i + j] != str.string_content[j]) break;
     }
@@ -1809,7 +1807,7 @@ MyString& MyString::erase(int loc, int num) {
 int MyString::find(int find_from, const MyString& str) const {
   int i, j;
   if (str.string_length == 0) return -1;
-  for (i = find_from; i < string_length - str.string_length; i++) {
+  for (i = find_from; i <= string_length - str.string_length; i++) {
     for (j = 0; j < str.string_length; j++) {
       if (string_content[i + j] != str.string_content[j]) break;
     }
@@ -1890,6 +1888,10 @@ str1 and str2 compare : 1
 ###  생각해보기
 
 #### 문제 1
+
+사실 위 `erase` 함수에는 한 가지 버그 있습니다. 바로 사용자가 실수로 문자열의 실제 길이 보다 더 많이 지울 때 인데요, 이 문제는 한 번 고쳐보세요. 이 버그는 **김민성** 님이 댓글로 제보 해주셨습니다 :) (난이도 : 하)
+
+#### 문제 2
 
 여러가지 검색 알고리즘(KMP, Boyer - Moore) 들을 이용하는 `find` 함수를 만들어보세요. 어떤 알고리즘의 경우 미리 계산된 테이블이 필요할 텐데, 이러한 정보들 역시 `class` 변수로 처리하셔도 됩니다. (난이도 : 上)
 
