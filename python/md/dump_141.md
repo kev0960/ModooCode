@@ -66,7 +66,7 @@ void print_square(int arg);
 void print_square(int arg) { std::cout << "전달된 인자 : " << arg * arg << std::endl; }
 ```
 
-와 같은 작업을 수행하지요. 즉 `arg* arg` 를 출력하는 것입니다. 그리고 `main` 함수에서 인자로 `i` 를 전달했지요.
+와 같은 작업을 수행하지요. 즉 `arg * arg` 를 출력하는 것입니다. 그리고 `main` 함수에서 인자로 `i` 를 전달했지요.
 
 ```cpp-formatted
 print_square(i);
@@ -75,9 +75,7 @@ print_square(i);
 따라서 `arg` 에 `i` 의 값이 들어가서 `i * i` 인, 우리의 실행 결과의 경우 12 를 전달해서 144 가 출력되게 되는 것이지요. 매우 간단합니다. 사실 C 하고 전혀 다를 바가 없어요!
 
 
-
 ###  레퍼런스의 도입
-
 
 ```cpp-formatted
 #include <iostream>

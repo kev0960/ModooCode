@@ -17,13 +17,9 @@ tex_title : C++ 파일 입출력
 
 ![](/img/ChewingCpplogo.png)
 
-
 안녕하세요 여러분! 지난 강좌에서 C++ 에서 표준 스트림과의 입출력에 대해 간단히 다루어보았습니다. 이번에는 이를 이용해서 파일 스트림과의 입출력을 다루어 보도록 하겠습니다. 사실, 파일 입출력은 표준 스트림에서 입출력 하는 것과 크게 다른 점은 없습니다. 다만, 스트림이 화면 혹은 키보드에서 파일로 바뀌었을 뿐이지요.
 
-
-
 ###  fstream
-
 
 파일 스트림은 기본적인 `istream` 이나 `ostream` 클래스 보다 더 지원하는 기능이 더 많기 때문에 이를 상속 받아서 작성되었으며, 각각을 상속 받은 것이 `ifstream` 과 `ofstream` 입니다. 이들 클래스를 모두 포함하는 라이브러리로 `fstream` 을 사용하면 됩니다.
 
@@ -672,8 +668,6 @@ int main() {
 ```exec
 변환:: 1 + 2 = 3
 ```
-
-
 위와 같이 간편하게 문자열을 숫자로 변환할 수 있습니다.
 
 ```cpp-formatted
@@ -694,8 +688,6 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 ```exec
@@ -712,8 +704,6 @@ std::ostringstream ss;
 ss << x;
 ```
 
-
-
 위와 같이 `int` 변수 `x` 의 값을 문자열 스트림에 출력하였습니다. 이 과정에서 자동으로 숫자에서 문자열로의 변환이 있겠지요.
 
 ```cpp-formatted
@@ -722,10 +712,7 @@ return ss.str();
 
 이제 `str` 함수로 현재 문자열 스트림에 쓰여 있는 값을 불러오기만 하면 끝납니다.
 
-
 이상으로 이번 강좌를 마치도록 하겠습니다. 다음 강좌에서는 여태 까지 배운 내용들을 총 종합하여 큰 프로젝트 하나를 만들도록 하겠습니다. 다음 강좌에서 제작하기 전에, 아래 생각해보기를 통해서 먼저 여러분 스스로 구현해 보는 것도 좋을 것 같습니다.
-
-
 
 ###  생각 해보기
 
@@ -748,16 +735,18 @@ class Cell {
  public:
   Cell(const std::string& data) : data(data){};
 };
+
 class Table {
   Cell*** data_base;  // 왜 3중 포인터 인지 잘 생각해보세요!
  public:
-  Cell();
+  Table();
   virtual std::string print_table() = 0;
   void reg_cell(Cell* c, int row, int col);  // Cell 을 등록한다
   std::string get_cell_std::string(int row,
                          int col);  // 해당 위치의 Cell 데이터를 얻는다.
   ~Table();
 };
+
 ostream& operator<<(ostream& o, Table& t) {
   o << t.print_table();
   return o;

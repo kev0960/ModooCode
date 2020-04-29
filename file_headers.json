@@ -1639,6 +1639,15 @@
 	"title" : "C++ 레퍼런스 - string 의 append 함수"
 }
 ,
+	"308" : {
+	"cat_title" : "4 - 2. 컴퓨터가 수를 표현하는 방법 (2의 보수)",
+	"next_page" : "9",
+	"path" : "/C",
+	"prev_page" : "8",
+	"publish_date" : "2020-04-29",
+	"title" : "씹어먹는 C 언어 - <4 - 2. 컴퓨터가 음수를 표현하는 방법 (2의 보수)>"
+}
+,
 	"31" : {
 	"cat_title" : "14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)",
 	"chapter" : "디버깅(Debugging)",
@@ -1970,12 +1979,12 @@
 }
 ,
 	"8" : {
-	"cat_title" : "4. 계산하리",
+	"cat_title" : "4 - 1. 계산하리",
 	"chapter" : "계산 하기",
-	"next_page" : "9",
+	"next_page" : "308",
 	"prev_page" : "7",
 	"publish_date" : "2009-04-24",
-	"title" : "씹어먹는 C 언어 - <4. 계산하리 >"
+	"title" : "씹어먹는 C 언어 - <4 - 1. 계산하리>"
 }
 ,
 	"80" : {
@@ -2054,7 +2063,7 @@
 	"cat_title" : "5. 문자 입력 받기",
 	"chapter" : "문자 입력 받기",
 	"next_page" : "10",
-	"prev_page" : "8",
+	"prev_page" : "308",
 	"publish_date" : "2009-04-27",
 	"title" : "씹어먹는 C 언어 - <5. 문자 입력 받기>"
 }
