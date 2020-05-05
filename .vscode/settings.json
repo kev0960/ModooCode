@@ -56,7 +56,8 @@
     "cstddef": "cpp",
     "cstring": "cpp",
     "ctime": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "variant": "cpp"
   },
   "python.pythonPath": "/home/jaebum/anaconda3/bin/python",
   "python.linting.pylintEnabled": true,

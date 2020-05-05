@@ -27,10 +27,7 @@ C 형식 문자열인 `str1` 의 처음 `num` 개의 문자를 다른 C 형식 �
 이 함수는 처음 문자들 부터 비교를 수행하되, 다른 문자가 나타나거나 `NULL` 에 도달하거나, `num` 개의 문자들을 비교할 때 까지 비교를 수행하게 된다.
 
 
-
 ###  인자
-
-
 
 
 `str1`
@@ -91,9 +88,6 @@ int main() {
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F11111F374C54DB6A68C480)
-
-
-
 
 
 ###  참고 자료
