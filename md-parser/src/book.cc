@@ -2,8 +2,8 @@
 
 #include <fstream>
 
-#include "util.h"
 #include "tex_util.h"
+#include "util.h"
 
 namespace md_parser {
 namespace {
@@ -128,7 +128,7 @@ void BookManager::GenerateMainTex() {
                                        {"caption"},
                                        {"fancyvrb"},
                                        {"hyperref", "pdfencoding=auto"},
-                                       //{"titlesec"},
+                                       {"titlesec"},
                                        {"verbatim"},
                                        {"spverbatim"},
                                        {"marginnote"},
@@ -137,7 +137,11 @@ void BookManager::GenerateMainTex() {
                                        {"adjustbox", "export"},
                                        {"color"},
                                        {"beramono"},
-                                       {"sourcecodepro"}};
+                                       {"sourcecodepro"},
+                                       {"hyphenat", "htt"},
+                                       {"fancyhdr"},
+                                       {"tocloft"}};
+
   tex += AddBunchOfPackages(package_list);
 
   // Add note for generating pygmentize.sty
@@ -153,6 +157,7 @@ void BookManager::GenerateMainTex() {
 \newmdenv[%
   backgroundcolor=black!5,
   frametitlebackgroundcolor=black!10,
+  frametitlefont={\normalfont\sffamily\color{black}},
   roundcorner=5pt,
   skipabove=\topskip,
   innertopmargin=\topskip,
@@ -163,13 +168,27 @@ void BookManager::GenerateMainTex() {
   usetwoside=false
 ]{mdprogout}
 
+\newmdenv[%
+  backgroundcolor=red!5!,
+  frametitlebackgroundcolor=red!75!white,
+  frametitlefont={\normalfont\sffamily\color{white}},
+  roundcorner=5pt,
+  skipabove=\topskip,
+  innertopmargin=\topskip,
+  splittopskip=\topskip,
+  frametitle={컴파일 오류},
+  frametitlerule=true,
+  nobreak=false,
+  usetwoside=false
+]{mdcompilerwarning}
+
 \newmdenv[leftline=false,rightline=false,font=\footnotesize]{sidenotebox}
 )";
 
   tex += R"(
 \setminted[cpp]{
-  frame=lines,
-  framesep=2.5mm,
+  %frame=lines,
+  framesep=1.5mm,
   baselinestretch=1.2,
   tabsize=2,
   fontsize=\footnotesize,
@@ -188,12 +207,24 @@ void BookManager::GenerateMainTex() {
 \lstset{aboveskip=-0.5em,belowskip=-0.5em,basicstyle=\footnotesize\ttfamily,breaklines=true}
 )";
 
+  // Set header
+  tex += R"(
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\small\sffamily\nouppercase\leftmark}
+\fancyhead[RO]{\small\sffamily\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\chaptername}{}
+)";
+
   // Geometry
   tex += R"(
-\geometry {
-  bottom=30mm
-}
-\setlrmarginsandblock{1.3cm}{5cm}{*}
+\setlrmarginsandblock{1.2cm}{50mm}{*}
+\setulmarginsandblock{20mm}{15mm}{*}
+
+\sideparmargin{outer}
+\setmarginnotes{5mm}{40mm}{10mm}
+
 \checkandfixthelayout
 )";
 
@@ -212,6 +243,13 @@ void BookManager::GenerateMainTex() {
 \renewcommand*{\printchaptername}{}
 )";
 
+  // Section and subsection styles.
+  tex += R"(
+\titleformat*{\section}{\normalfont\Huge\sffamily}
+\titleformat*{\subsection}{\normalfont\bfseries\huge\sffamily}
+\titleformat*{\subsubsection}{\normalfont\bfseries\large\sffamily}
+)";
+
   // Spacing between lines.
   tex += R"(
 \renewcommand{\baselinestretch}{1.3}
@@ -219,9 +257,9 @@ void BookManager::GenerateMainTex() {
 
   // Fixing minted spacing issue.
   tex += R"(
-\setlength\partopsep{-\topsep}
-\addtolength\partopsep{-\parskip}
-\addtolength\partopsep{0.3cm}
+%\setlength\partopsep{-\topsep}
+%\addtolength\partopsep{-\parskip}
+%\addtolength\partopsep{0.3cm}
 )";
 
   // Link color setup.
@@ -231,11 +269,13 @@ void BookManager::GenerateMainTex() {
 
   // TOC only shows up to the subsection.
   tex += R"(
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{3}
 %\setcounter{secnumdepth}{2}
 \newcommand\chap[1]{%
   \chapter*{#1}%
   \addcontentsline{toc}{chapter}{#1}}
+\setlength{\cftsubsecindent}{2cm}
+\setlength{\cftsubsubsecindent}{4cm}
 )";
 
   // Korean support.
@@ -266,7 +306,8 @@ void BookManager::GenerateMainTex() {
   listing only,
   minted language=text,
   minted options={breaklines, fontsize=\footnotesize, breaksymbolleft=}
-})";
+}
+)";
 
   tex += "\\begin{document}\n";
 
@@ -299,7 +340,7 @@ void BookManager::GenerateMainTex() {
     auto title_itr = file_info_->at(file_name).find("tex_title");
     if (title_itr != file_info_->at(file_name).end()) {
       string title = title_itr->second;
-      title= EscapeLatexString(title);
+      title = EscapeLatexString(title);
       tex += StrCat("\n\\newpage\\section*{", title, "}\n");
     }
     tex += StrCat("\\input{", file_name, "}\n");

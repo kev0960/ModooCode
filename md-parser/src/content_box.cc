@@ -335,8 +335,9 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       return CreateTColorBox(output_tex, "red");
     }
     case COMPILER_WARNING: {
-      return StrCat("\n\\begin{compilerwarning}\n", content_,
-                    "\n\\end{compilerwarning}\n");
+      return StrCat(
+          "\n\\begin{mdcompilerwarning}\n\\begin{Verbatim}[breaklines=true]\n",
+          content_, "\n\\end{Verbatim}\n\\end{mdcompilerwarning}\n");
     }
     case INFO: {
       Content::Preprocess(parser_env);

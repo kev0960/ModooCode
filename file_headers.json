@@ -283,7 +283,7 @@
 	"prev_page" : "138",
 	"publish_date" : "2012-01-01",
 	"tex_title" : "C++ 의 참조자 (레퍼런스)",
-	"title" : "씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까?>"
+	"title" : "씹어먹는 C++ - <2 - 2. C++ 은 C 친구일까? - 참조자(레퍼런스)의 도입>"
 }
 ,
 	"142" : {
@@ -1431,6 +1431,7 @@
 ,
 	"286" : {
 	"cat_title" : "16 - 1. C++ 유니폼 초기화(Uniform Initialization)",
+	"chapter" : "C++ 유니폼 초기화",
 	"next_page" : "293",
 	"path" : "/C++",
 	"prev_page" : "285",
@@ -1502,6 +1503,7 @@
 ,
 	"293" : {
 	"cat_title" : "16 - 2. constexpr 와 함께라면 컴파일 타임 상수는 문제없어",
+	"chapter" : "컴파일 타임 상수 constexpr",
 	"next_page" : "294",
 	"path" : "/C++",
 	"prev_page" : "286",
@@ -1512,6 +1514,7 @@
 ,
 	"294" : {
 	"cat_title" : "16 - 3. 타입을 알려주는 키워드 decltype 와 친구 std::declval",
+	"chapter" : "decltype 와 std::decval",
 	"next_page" : "295",
 	"path" : "/C++",
 	"prev_page" : "293",
@@ -1522,6 +1525,7 @@
 ,
 	"295" : {
 	"cat_title" : "17 - 1. type_traits 라이브러리, SFINAE, enable_if",
+	"chapter" : "다양한 C++ 표준 라이브러리 소개",
 	"next_page" : "303",
 	"path" : "/C++",
 	"prev_page" : "294",

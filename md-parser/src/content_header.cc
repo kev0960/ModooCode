@@ -16,14 +16,17 @@ void StripMarkdown(string* html) {
               html->end());
 }
 
-void EscapeHtmlString(string* s) {
-  for (size_t i = 0; i < s->length(); i++) {
-    if (s->at(i) == '<') {
-      s->replace(i, 1, "&lt;");
-    } else if (s->at(i) == '>') {
-      s->replace(i, 1, "&gt;");
+string EscapeHtmlString(const string& s) {
+  string temp = s;
+  for (size_t i = 0; i < temp.length(); i++) {
+    if (temp.at(i) == '<') {
+      temp.replace(i, 1, "&lt;");
+    } else if (temp.at(i) == '>') {
+      temp.replace(i, 1, "&gt;");
     }
   }
+
+  return temp;
 }
 
 HeaderType GetHeaderType(const string& header_token) {
@@ -74,8 +77,8 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
       )";
       string page_title = parser_env->GetPageTitle();
       StripMarkdown(&page_title);
-      EscapeHtmlString(&page_title);
-      return StrCat(s, page_title, t);
+      string escaped = EscapeHtmlString(page_title);
+      return StrCat(s, escaped, t);
     } else if (content_ == "chewing-cpp-end") {
       string s = R"(
 <div class='next-lecture-box'>강좌를 보다가 조금이라도 <span class='font-weight-bold'>궁금한 것이나 이상한 점이 있다면 꼭 댓글</span>을 남겨주시기 바랍니다. 그 외에도 강좌에 관련된 것이라면 어떠한 것도 질문해 주셔도 상관 없습니다. 생각해 볼 문제도 정 모르겠다면 댓글을 달아주세요. <br><br>
@@ -86,8 +89,8 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
       )";
       string page_title = parser_env->GetPageTitle();
       StripMarkdown(&page_title);
-      EscapeHtmlString(&page_title);
-      return StrCat(s, page_title, t);
+      string escaped = EscapeHtmlString(page_title);
+      return StrCat(s, escaped, t);
     } else if (content_ == "cpp-ref-start") {
       string s =
           R"(<div class='cpp-ref-start'><p class='cpp-ref-link'>이 레퍼런스의 모든 내용은
@@ -110,8 +113,8 @@ string HeaderContent::OutputHtml(ParserEnvironment* parser_env) {
     return StrCat(start_header, Content::OutputHtml(parser_env), end_header);
   }
   StripMarkdown(&content_);
-  EscapeHtmlString(&content_);
-  return StrCat(start_header, content_, end_header);
+  std::string escaped = EscapeHtmlString(content_);
+  return StrCat(start_header, escaped, end_header);
 }
 
 string HeaderContent::OutputLatex(ParserEnvironment* parser_env) {
