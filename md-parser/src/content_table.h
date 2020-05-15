@@ -21,13 +21,15 @@ struct ColumnStyle {
   }
 
   string GetAlignName() const {
+    return "X";
+    /*
     if (align == LEFT) {
       return "l";
     } else if (align == MIDDLE) {
       return "c";
     } else {
       return "r";
-    }
+    }*/
   }
 };
 

@@ -186,6 +186,7 @@ string SplitNewlineToItemize(const string& s) {
     current = pos + 1;
   }
 
+  inserted_str.append("\n\\item ");
   inserted_str.append(s.substr(current, s.size()));
   inserted_str.append("\n\\end{itemize}\n");
   return inserted_str;

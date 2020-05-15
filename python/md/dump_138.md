@@ -1,9 +1,9 @@
 ----------------
-title : 씹어먹는 C++ - <2 - 1. C++ 은 C 친구 - C 와 공통점>
-cat_title: 2 - 1. C++ 은 C 친구 - C 와 공통점
+title : 씹어먹는 C++ - <1 - 3. C++ 은 C 친구 - C 와 공통점>
+cat_title: 1 - 3. C++ 은 C 친구 - C 와 공통점
 next_page : 141
 publish_date : 2011-05-15
-chapter : C++ 와 C 언어
+tex_title : C++ 와 C 언어의 공통 문법 구조
 --------------
 
 

@@ -59,8 +59,6 @@ class MyString {
   // 이동 생성자
   MyString(MyString &&str);
 
-  void reserve(int size);
-  MyString operator+(const MyString &s);
   MyString &operator=(const MyString &s);
   ~MyString();
 
@@ -105,29 +103,7 @@ MyString::MyString(MyString &&str) {
 MyString::~MyString() {
   if (string_content) delete[] string_content;
 }
-void MyString::reserve(int size) {
-  if (size > memory_capacity) {
-    char *prev_string_content = string_content;
 
-    string_content = new char[size];
-    memory_capacity = size;
-
-    for (int i = 0; i != string_length; i++)
-      string_content[i] = prev_string_content[i];
-
-    if (prev_string_content != NULL) delete[] prev_string_content;
-  }
-}
-MyString MyString::operator+(const MyString &s) {
-  MyString str;
-  str.reserve(string_length + s.string_length);
-  for (int i = 0; i < string_length; i++)
-    str.string_content[i] = string_content[i];
-  for (int i = 0; i < s.string_length; i++)
-    str.string_content[string_length + i] = s.string_content[i];
-  str.string_length = string_length + s.string_length;
-  return str;
-}
 MyString &MyString::operator=(const MyString &s) {
   std::cout << "복사!" << std::endl;
   if (s.string_length > memory_capacity) {
@@ -218,7 +194,7 @@ b = tmp;
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F997263435AB96BB9085570)
 
 
-하지만 위를 `my_swap` 에서 구현하기 위해서는 여러가지 문제가 있습니다. 일단 첫번째로 `my_swap` 함수는 `generic` 한 함수 입니다. 다시 말해,
+하지만 위를 `my_swap` 에서 구현하기 위해서는 여러가지 문제가 있습니다. 일단 첫번째로 `my_swap` 함수는 임의의 타입을 받는 함수 (Generic) 입니다. 다시 말해,
 
 ```cpp-formatted
 template <typename T>
@@ -242,172 +218,81 @@ void my_swap(MyString &a, MyString &b) {
 T tmp(a);
 ```
 
+먼저 기존의 `my_swap` 함수를 다시 살펴봅시다. 우리는 위 문장이 복사 생성자 대신에, 이동 생성자가 되기를 원합니다. 왜냐하면 `tmp` 를 복사생성 할 필요 없이, 단순히 `a` 를 잠깐 옮겨놓기만 하면 되기 때문이지요. 하지만 문제는 `a` 가 좌측값이라는 점입니다 (`a` 라는 실체가 있으므로). 따라서 지금 이 상태로는 우리가 무얼 해도 이동 생성자는 오버로딩 되지 않습니다.
 
+그렇다면, 좌측값이 우측값으로 취급될 수 있게 바꿔주는 함수 같은 것이 있을까요? 
 
-먼저 기존의 `my_swap` 함수를 다시 살펴봅시다. 우리는 위 문장이 복사 생성자 대신에, 이동 생성자가 되기를 원합니다. 왜냐하면 `tmp` 를 복사생성 할 필요 없이, 단순히 `a` 를 잠깐 옮겨놓기만 하면 되기 때문이지요. 하지만 문제는 `a` 가 좌측값이라는 점입니다 ('a' 라는 실체가 있으므로). 따라서 지금 이 상태로는 우리가 무얼 해도 이동 생성자는 오버로딩 되지 않습니다.
+###  move 함수 (move semantics)
 
+다행이도 C++ 11 부터 `<utility>` 라이브러리에서 좌측값을 우측값으로 바꾸어주는 `move` 함수를 제공하고 있습니다. 아래 예시를 통해서 간단히 사용하는 방법을 살펴봅시다.
 
-그렇다면, 좌측값이 우측값으로 취급될 수 있게 바꿔주는 함수 같은 것이 있을까요? 즉, 어떠한 좌측값이 이동 될 수 있도록 말이죠.
-
-
-
-###  move 문법 (move semantics)
-
-
-```cpp-formatted
+```cpp
 #include <iostream>
-#include <cstring>
+#include <utility>
 
-class MyString {
-  char *string_content;  // 문자열 데이터를 가리키는 포인터
-  int string_length;     // 문자열 길이
-
-  int memory_capacity;  // 현재 할당된 용량
-
+class A {
  public:
-  MyString();
-
-  // 문자열로 부터 생성
-  MyString(const char *str);
-
-  // 복사 생성자
-  MyString(const MyString &str);
-
-  // 이동 생성자
-  MyString(MyString &&str);
-
-  void reserve(int size);
-  MyString operator+(const MyString &s);
-  MyString &operator=(const MyString &s);
-  ~MyString();
-
-  int length() const;
-
-  void println();
+  A() { std::cout << "일반 생성자 호출!" << std::endl; }
+  A(const A& a) { std::cout << "복사 생성자 호출!" << std::endl; }
+  A(A&& a) { std::cout << "이동 생성자 호출!" << std::endl; }
 };
 
-MyString::MyString() {
-  std::cout << "생성자 호출 ! " << std::endl;
-  string_length = 0;
-  memory_capacity = 0;
-  string_content = NULL;
-}
-
-MyString::MyString(const char *str) {
-  std::cout << "생성자 호출 ! " << std::endl;
-  string_length = strlen(str);
-  memory_capacity = string_length;
-  string_content = new char[string_length];
-
-  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
-}
-MyString::MyString(const MyString &str) {
-  std::cout << "복사 생성자 호출 ! " << std::endl;
-  string_length = str.string_length;
-  string_content = new char[string_length];
-
-  for (int i = 0; i != string_length; i++)
-    string_content[i] = str.string_content[i];
-}
-MyString::MyString(MyString &&str) {
-  std::cout << "이동 생성자 호출 !" << std::endl;
-  string_length = str.string_length;
-  string_content = str.string_content;
-  memory_capacity = str.memory_capacity;
-
-  // 임시 객체 소멸 시에 메모리를 해제하지
-  // 못하게 한다.
-  str.string_content = nullptr;
-  str.string_length = 0;
-  str.memory_capacity = 0;
-}
-MyString::~MyString() {
-  if (string_content) delete[] string_content;
-}
-void MyString::reserve(int size) {
-  if (size > memory_capacity) {
-    char *prev_string_content = string_content;
-
-    string_content = new char[size];
-    memory_capacity = size;
-
-    for (int i = 0; i != string_length; i++)
-      string_content[i] = prev_string_content[i];
-
-    if (prev_string_content != NULL) delete[] prev_string_content;
-  }
-}
-MyString MyString::operator+(const MyString &s) {
-  MyString str;
-  str.reserve(string_length + s.string_length);
-  for (int i = 0; i < string_length; i++)
-    str.string_content[i] = string_content[i];
-  for (int i = 0; i < s.string_length; i++)
-    str.string_content[string_length + i] = s.string_content[i];
-  str.string_length = string_length + s.string_length;
-  return str;
-}
-int MyString::length() const { return string_length; }
-void MyString::println() {
-  for (int i = 0; i != string_length; i++) std::cout << string_content[i];
-
-  std::cout << std::endl;
-}
-
 int main() {
-  MyString str1("abc");
-  std::cout << "이동 전 -----" << std::endl;
-  std::cout << "str1 : ";
-  str1.println();
+  A a;
 
-  std::cout << "이동 후 -----" << std::endl;
-  MyString str2(std::move(str1));
-  std::cout << "str1 : ";
-  str1.println();
-  std::cout << "str2 : ";
-  str2.println();
+  std::cout << "---------" << std::endl;
+  A b(a);
+
+  std::cout << "---------" << std::endl;
+  A c(std::move(a));
 }
 ```
 
 성공적으로 컴파일 하였다면
 
 ```exec
-생성자 호출 ! 
-이동 전 -----
-str1 : abc
-이동 후 -----
-이동 생성자 호출 !
-str1 : 
-str2 : abc
+일반 생성자 호출!
+---------
+복사 생성자 호출!
+---------
+이동 생성자 호출!
 ```
 
-와 같이 나옵니다.
+와 같이 나옵니다. 
 
-```cpp-formatted
-std::cout << "이동 후 -----" << std::endl;
-MyString str2(std::move(str1));
+일단 먼저 `A` 클래스에 아래와 같이 3 가지 형태의 생성자들을 정의하였습니다.
+
+```cpp
+ public:
+  A() { std::cout << "일반 생성자 호출!" << std::endl; }
+  A(const A& a) { std::cout << "복사 생성자 호출!" << std::endl; }
+  A(A&& a) { std::cout << "이동 생성자 호출!" << std::endl; }
 ```
 
+그리고 이들 생성자를 호출하는 부분을 살펴봅시다.
 
+```cpp
+  A a;
 
-부분을 살펴보도록 합시다. 놀랍게도 `str2` 의 복사 생성자가 아닌 이동 생성자가 호출되었습니다.
-
-C++ 11 에 새롭게 추가된 `move` 함수는 입력받은 좌측값을 이동 가능한 값으로 캐스팅 해줍니다. 그 뿐입니다. `move` 함수가 수정하는 것은 아무 것도 없습니다. 다만 컴파일러가 `move` 함수가 리턴하는 값을 **이동 가능 하구나** 라고 생각하게 해줍니다. \sidenote{C++ 의 원저자 중 한명인 Bjarne Stroustroup 은 move 라고 이름을 지은 것을 후회했다고 합니다. 정확히 말하면 move 함수는 move 를 수행하지 않고 그냥 우측값으로 캐스팅만 하기 때문이죠! 더 적절한 이름은 rvalue 와 같은 것이 되겠습니다.}
-
-```cpp-formatted
-std::cout << "str1 : ";
-str1.println();
-std::cout << "str2 : ";
-str2.println();
+  std::cout << "---------" << std::endl;
+  A b(a);
 ```
 
-그렇게 이동 된 후에 문자열들을 출력해보면 `str1` 에는 빈 문자열이, `str2` 에는 원래의 `str1` 의 문자열이 들어있음을 알 수 있습니다. 이 과정에서 문자열 전체 복사는 한 번도 발생하지 않고 단순히 `string_content` 의 값만 복사되었을 뿐입니다.
+먼저 여태까지 강좌를 잘 따라오신 분들이라면 위 부분에서 일반 생성자와 복사 생성자가 각각 호출되었음을 알 수 있습니다. 그 이유는 `b(a)` 를 했을 때 `a` 가 이름이 있는 **좌측값** 이므로 좌측값 레퍼런스가 참조하기 때문이죠.
+
+그렇다면 바로 그 다음 줄을 볼까요?
+
+```cpp
+  A c(std::move(a));
+```
+
+놀랍게도 이번에는 이동 생성자가 호출되었습니다. 그 이유는 `std::move` 함수가 **인자로 받은 객체를 우측값으로 변환해서 리턴**해주기 때문입니다. 사실 이름만 보면 무언가 이동 시킬 것 같지만 실제로는 단순한 **타입 변환** 만 수행할 뿐입니다.  \sidenote{C++ 의 원저자인 Bjarne Stroustroup 은 move 라고 이름을 지은 것을 후회했다고 합니다. 정확히 말하면 move 함수는 move 를 수행하지 않고 그냥 우측값으로 캐스팅만 하기 때문이죠! 더 적절한 이름은 rvalue 와 같은 것이 되겠습니다.}
 
 ```lec-warning
-사실 객체를 `move` 한 이후에 다시 접근하면 **절대** 안됩니다. 이는 정의되지 않은 작업(undefined behavior) 입니다. 
+`std::move` 함수는 이동을 수행하지 않는다. 그냥 인자로 받은 객체를 우측값으로 변환할 뿐이다.
 ```
 
-자 이제 이 새로운 `move` 를 이용해서 위 `my_swap` 함수를 수정해보도록 합시다.
+하지만 `std::move` 덕분에 강제적으로 우측값 레퍼런스를 인자로 받는 이동 생성자를 호출할 수 있었습니다. 그렇다민 이 아이디어를 바탕으로 우리의 `MyString` 에 어떻게 적용할 수 있을지 살펴봅시다.
 
 ```cpp-formatted
 #include <iostream>
@@ -431,9 +316,12 @@ class MyString {
   // 이동 생성자
   MyString(MyString &&str);
 
-  void reserve(int size);
-  MyString operator+(const MyString &s);
+  // 일반적인 대입 연산자
   MyString &operator=(const MyString &s);
+
+  // 이동 대입 연산자
+  MyString& operator=(MyString&& s);
+
   ~MyString();
 
   int length() const;
@@ -478,29 +366,6 @@ MyString::MyString(MyString &&str) {
 }
 MyString::~MyString() {
   if (string_content) delete[] string_content;
-}
-void MyString::reserve(int size) {
-  if (size > memory_capacity) {
-    char *prev_string_content = string_content;
-
-    string_content = new char[size];
-    memory_capacity = size;
-
-    for (int i = 0; i != string_length; i++)
-      string_content[i] = prev_string_content[i];
-
-    if (prev_string_content != NULL) delete[] prev_string_content;
-  }
-}
-MyString MyString::operator+(const MyString &s) {
-  MyString str;
-  str.reserve(string_length + s.string_length);
-  for (int i = 0; i < string_length; i++)
-    str.string_content[i] = string_content[i];
-  for (int i = 0; i < s.string_length; i++)
-    str.string_content[string_length + i] = s.string_content[i];
-  str.string_length = string_length + s.string_length;
-  return str;
 }
 MyString &MyString::operator=(const MyString &s) {
   std::cout << "복사!" << std::endl;
@@ -514,6 +379,17 @@ MyString &MyString::operator=(const MyString &s) {
     string_content[i] = s.string_content[i];
   }
 
+  return *this;
+}
+MyString& MyString::operator=(MyString&& s) {
+  std::cout << "이동!" << std::endl;
+  string_content = s.string_content;
+  memory_capacity = s.memory_capacity;
+  string_length = s.string_length;
+
+  s.string_content = nullptr;
+  s.memory_capacity = 0;
+  s.string_length = 0;
   return *this;
 }
 int MyString::length() const { return string_length; }
@@ -557,31 +433,39 @@ str1 : abc
 str2 : def
 Swap 후 -----
 이동 생성자 호출 !
-복사!
-복사!
+이동!
+이동!
 str1 : def
 str2 : abc
 ```
 
 와 같이 나옵니다.
 
+먼저 우리의 `my_swap` 함수 부터 살펴봅시다.
 
-위에서 보시다시피 `swap` 은 잘 되었지만, 공교롭게도 두 번의 복사를 수행하였습니다.
-
-```cpp-formatted
-a = std::move(b);
-b = std::move(tmp);
+```cpp
+template <typename T>
+void my_swap(T &a, T &b) {
+  T tmp(std::move(a));
+  a = std::move(b);
+  b = std::move(tmp);
+}
 ```
 
+먼저 
 
-왜냐하면 바로 위 두 줄 때문이지요. 비록 `move` 를 시키고자 하였지만, 오버로딩 된 `operator=` 가 복사를 수행하였습니다. 그 이유는 현재 정의된 `operator=` 가
-
-```cpp-formatted
-MyString& MyString::operator=(const MyString& s)
+```cpp
+  T tmp(std::move(a));
 ```
 
+를 통해서 `tmp` 라는 임시 객체를 `a` 로 부터 이동 생성하였습니다. **이동** 생성이기 때문에 기존에 복사 생성하는 것 보다 훨씬 빠르게 수행됩니다. 
 
-꼴 이므로, `s` 를 그대로 복사하기 때문이지요. 따라서 우리는 우측값에만 특이적으로 오버로딩 되는 `operator=` 를 정의해줘야만 합니다. 아래와 같이 말이지요.
+```cpp
+  a = std::move(b);
+  b = std::move(tmp);
+```
+
+그 다음에 `a` 에 `b` 를 이동 시켰고, `b` 에 다시 `tmp` 를 이동시킴으로써 swap 을 수행하게 됩니다. 왜 여기서 일반적인 대입이 아니라 **이동** 이 되는 것이냐면 우리가 아래와 같이 이동 대입 연산자를 정의하였기 때문입니다.
 
 ```cpp-formatted
 MyString& MyString::operator=(MyString&& s) {
@@ -597,7 +481,11 @@ MyString& MyString::operator=(MyString&& s) {
 }
 ```
 
-그리고 성공적으로 컴파일 하였다면
+이동 대입 연산자 역시 이동 생성자와 비슷하게 매우 간단합니다. 전체 문자열을 복사할 필요 없이 그냥 기존의 문자열을 가리키고 있던 `string_content` 만 복사하면 되기 때문이니까요.
+
+여기서 알 수 있는 한 가지 사실은 실제로 데이터가 **이동** 되는 과정은 위와 같이 정의한 **이동 생성자나 이동 대입 연산자를 호출할 때 수행** 되는 것이지 `std::move` 를 한 시점에서 수행되는 것이 아니라는 점입니다. 
+
+만일 여러분이 `MyString& MyString::operator=(MyString&& s)` 를 정의하지 않았더라면 일반적인 대입 연산자가 오버로딩 되서 매우 느린 복사가 수행됩니다. 실제로 이동 대입 연산자를 지워보고 실행하면 
 
 ```exec
 생성자 호출 ! 
@@ -607,21 +495,21 @@ str1 : abc
 str2 : def
 Swap 후 -----
 이동 생성자 호출 !
-이동!
-이동!
+복사!
+복사!
 str1 : def
 str2 : abc
 ```
 
-와 같이 제대로 이동을 시키고 있음을 알 수 있습니다.
+와 같이 그냥 일반적인 복사가 수행됩니다.
 
-
-새롭게 정의한 `operator=` 를 살펴보면 매우 간단합니다. 굳이 문자열 전체를 복사할 필요가 없이, 단순히 `string_content` 값만 복사해주면 되기 때문이지요. 물론 s 에 있던 문자열은 사라지게 됩니다. 하지만 상관 없습니다. 어차피 우측값 이니까요!
+```lec-warning
+다시 한번 강조하지만 이동 자체는 `std::move` 를 실행함으로써 발생하는 것이 아니라 우측값을 받는 함수들이 오버로딩 되면서 수행되는 것입니다.
+```
 
 ###  완벽한 전달 (perfect forwarding)
 
-
-C++ 11 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다 C++ 11 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다.
+우측값 레퍼런스를 도입함으로써 해결할 수 있었던 또 다른 문제가 있습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다 C++ 11 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다.
 
 ```cpp-formatted
 template <typename T>
@@ -630,7 +518,7 @@ void wrapper(T u) {
 }
 ```
 
-이 함수는 인자로 받은 `u` 를 그대로 `g` 라는 함수에 인자로 '전달' 해줍니다. 물론 왜 저런 함수가 필요하나고 생각할 수 있습니다. 그냥 저런 `wrapper` 함수를 만들지 말고 그냥 `g(u)` 를 호출하면 되잖아요?
+이 함수는 인자로 받은 `u` 를 그대로 `g` 라는 함수에 인자로 *전달* 해줍니다. 물론 왜 저런 함수가 필요하나고 생각할 수 있습니다. 그냥 저런 `wrapper` 함수를 만들지 말고 그냥 `g(u)` 를 호출하면 되잖아요?
 
 
 하지만 실제로 저러한 형태의 전달 방식이 사용되는 경우가 종종 있습니다. 예를 들어 `vector` 에는 `emplace_back` 이라는 함수가 있습니다. 이 함수는 객체의 생성자에 전달하고 싶은 인자들을 함수에 전달하면, 알아서 생성해서 `vector` 맨 뒤에 추가해줍니다.

@@ -140,7 +140,8 @@ void BookManager::GenerateMainTex() {
                                        {"sourcecodepro"},
                                        {"hyphenat", "htt"},
                                        {"fancyhdr"},
-                                       {"tocloft"}};
+                                       {"tocloft"},
+                                       {"tabularx"}};
 
   tex += AddBunchOfPackages(package_list);
 
@@ -342,6 +343,7 @@ void BookManager::GenerateMainTex() {
       string title = title_itr->second;
       title = EscapeLatexString(title);
       tex += StrCat("\n\\newpage\\section*{", title, "}\n");
+      tex += StrCat("\\addcontentsline{toc}{section}{", title, "}\n");
     }
     tex += StrCat("\\input{", file_name, "}\n");
   }

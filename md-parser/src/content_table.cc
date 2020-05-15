@@ -73,8 +73,8 @@ string GenerateTableRow(std::vector<Content>* row,
     }
     if (!column_class.empty()) {
       content.Preprocess(parser_env);
-      html += StrCat(R"(<td class=")", column_class,
-                     R"(">)", content.OutputHtml(parser_env), "</td>");
+      html += StrCat(R"(<td class=")", column_class, R"(">)",
+                     content.OutputHtml(parser_env), "</td>");
     } else {
       content.Preprocess(parser_env);
       html += StrCat("<td>", content.OutputHtml(parser_env), "</td>");
@@ -167,7 +167,7 @@ string TableContent::OutputHtml(ParserEnvironment* parser_env) {
 }
 
 string TableContent::OutputLatex(ParserEnvironment* parser_env) {
-  string latex = "\n\\begin{tabular}";
+  string latex = "\n\\begin{tabularx}{\\textwidth}";
   if (column_styles_.empty()) {
     latex += GenerateLatexTableRow(&table_.at(0), parser_env);
   } else {
@@ -185,7 +185,7 @@ string TableContent::OutputLatex(ParserEnvironment* parser_env) {
       latex += GenerateLatexTableRow(&row, parser_env);
     }
   }
-  latex += "\\end{tabular}\n";
+  latex += "\\end{tabularx}\n";
 
   return latex;
 }
