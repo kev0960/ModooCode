@@ -845,7 +845,7 @@ wrapper(ca);
 wrapper(A());
 ```
 
-의 경우에는 `T` 가 단순히 `A&&` 로 추론되겠지요.
+의 경우에는 `T` 가 단순히 `A` 로 추론되겠지요.
 
 
 그런데 문제는 이제 직접 `g` 에 이 인자를 전달하는 방법입니다. 왜 그냥
@@ -886,10 +886,10 @@ A&&& forward(typename std::remove_reference<A&>::type& a) noexcept {
 A& forward(A& a) noexcept { return static_cast<A&>(a); }
 ```
 
-가 되버리고, `S` 가 `A&&` 라면, (퀴즈! 여기서 왜 `forward` 의 인자가 `A&&` 가 아니라 `A&` 일까요?)
+가 되버리고, `S` 가 `A` 라면, (퀴즈! 여기서 왜 `forward` 의 인자가 `A&&` 가 아니라 `A&` 일까요?)
 
 ```cpp-formatted
-A&& forward(A& a) noexcept { return static_cast<A&&>(a); }
+A&& forward(A& a) noexcept { return static_cast<A>(a); }
 ```
 
 가 되어 성공적으로 우측값으로 캐스팅해줍니다. 따라서 결과적으로 위 그림 처럼 원본과 `Wrapper` 을 사용했을 때 모두 호출되는 함수가 동일함을 알 수 있습니다. 성공적으로 인자를 전달한 것이지요!
