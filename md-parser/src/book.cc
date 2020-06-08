@@ -88,7 +88,7 @@ BookManager::BookManager(
   if (book_type_ == BookType::C) {
     book_list_.push_back("5");
   } else if (book_type_ == BookType::CPP) {
-    book_list_.push_back("134");
+    book_list_.push_back("135");
   }
 
   // Create the list of included file names.
