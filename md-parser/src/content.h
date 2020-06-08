@@ -24,6 +24,8 @@ struct Fragments {
     SMALL_CAPS,
     FORCE_NEWLINE,
     SERIF,
+    HTML_ONLY,
+    LATEX_ONLY
   } type;
 
   // Start and end are inclusive.

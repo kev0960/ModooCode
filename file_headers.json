@@ -1436,7 +1436,6 @@
 	"path" : "/C++",
 	"prev_page" : "285",
 	"publish_date" : "2019-06-23",
-	"tex_title" : "C++ Uniform Initialization",
 	"title" : "씹어먹는 C++ - <16 - 1. C++ 유니폼 초기화(Uniform Initialization)>"
 }
 ,
@@ -1508,7 +1507,6 @@
 	"path" : "/C++",
 	"prev_page" : "286",
 	"publish_date" : "2019-08-18",
-	"tex_title" : "컴파일 타임 상수 constexpr",
 	"title" : "씹어먹는 C++ - <16 - 2. constexpr 와 함께라면 컴파일 타임 상수는 문제없어>"
 }
 ,
@@ -1519,7 +1517,6 @@
 	"path" : "/C++",
 	"prev_page" : "293",
 	"publish_date" : "2019-09-15",
-	"tex_title" : "decltype 와 std::declval",
 	"title" : "씹어먹는 C++ - <16 - 3. 타입을 알려주는 키워드 decltype 와 친구 std::declval>"
 }
 ,
@@ -1530,7 +1527,6 @@
 	"path" : "/C++",
 	"prev_page" : "294",
 	"publish_date" : "2019-12-2",
-	"tex_title" : "type_traits 라이브러리, SFINAE, enable_if",
 	"title" : "씹어먹는 C++ - <17 - 1. type_traits 라이브러리, SFINAE, enable_if>"
 }
 ,

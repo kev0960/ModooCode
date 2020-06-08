@@ -255,8 +255,12 @@ class ExprCell : public Cell {
 
 이와 같은 방식으로 위 수식을 계산해보도록 하겠습니다.
 
-
+```html-only
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F24246334578EC0EE1DABA0)
+```
+```latex-only
+![](/img/cpp/8.2.1.png)
+```
 
 실제로 `3 + 4 * 5 + 4 * (7 - 2)` 을 계산 했을 때와 그 결과가 같음을 알 수 있습니다.
 
@@ -398,8 +402,12 @@ int ExprCell::precedence(char c) {
 
 그렇다면 `3 + 4 * 5 + 4 * (7 - 2)` 가 어떻게 변환되는지 그림으로 살펴보도록 하겠습니다.
 
-
+```html-only
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F2779ED44578F2D81123CD3)
+```
+```latex-only
+![](/img/cpp/8.2.2.png)
+```
 
 이제 위 방식으로 그대로 코드로만 옮기면 됩니다. 여기서는  코딩의 편의를 위해서 사용자가 입력하는 숫자는 1 자리 정수이고, 셀 이름 역시 2자 로 제한하였습니다. 이를 확장하는 것은 크게 어렵지 않으니 여러분들이 직접 해보시기 바랍니다.
 

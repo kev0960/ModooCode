@@ -16,6 +16,13 @@ void StripMarkdown(string* html) {
               html->end());
 }
 
+void StripPrecedingNbsp(string* html) {
+  while (html->size() >= 2 && (uint8_t)html->at(0) == 0xC2 &&
+         (uint8_t)html->at(1) == 0xA0) {
+    html->erase(0, 2);
+  }
+}
+
 string EscapeHtmlString(const string& s) {
   string temp = s;
   for (size_t i = 0; i < temp.length(); i++) {
@@ -122,7 +129,7 @@ string HeaderContent::OutputLatex(ParserEnvironment* parser_env) {
   auto header_type = GetHeaderType(header_token_);
   if (header_type == NORMAL_HEADER) {
     if (header_token_.size() == 3) {
-      start_header = "\n\\subsection{";
+      start_header = "\n\\subsection*{";
     } else if (header_token_.size() == 4) {
       start_header = "\n\\subsubsection{";
     }
@@ -134,6 +141,7 @@ string HeaderContent::OutputLatex(ParserEnvironment* parser_env) {
   StripMarkdown(&content_);
   string tex = EscapeLatexString(content_);
   Trim(&tex);
+  StripPrecedingNbsp(&tex);
 
   return StrCat(start_header, tex, end_header);
 }

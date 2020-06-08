@@ -19,8 +19,8 @@
 #include "tex_util.h"
 #include "util.h"
 
-static const std::unordered_set<string> kSpecialCommands = {"sidenote", "sc",
-                                                            "newline", "serif"};
+static const std::unordered_set<string> kSpecialCommands = {
+    "sidenote", "sc", "newline", "serif", "htmlonly", "latexonly"};
 
 namespace md_parser {
 
@@ -347,6 +347,8 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     } else if (fragments_[i].type == Fragments::Types::SERIF) {
       html += StrCat("<span class='font-serif-italic'>",
                      GetHtmlFragmentText(content_, fragments_[i]), "</span>");
+    } else if (fragments_[i].type == Fragments::Types::HTML_ONLY) {
+      html += GetHtmlFragmentText(content_, fragments_[i]);
     } else if (fragments_[i].type == Fragments::Types::FORCE_NEWLINE) {
       html += "<br>";
     } else if (fragments_[i].type == Fragments::Types::LINK) {
@@ -407,8 +409,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
           html += StrCat(
               R"(</p><figure><picture><source type="image/webp" srcset=")",
               webp_image_name, R"("><img class="content-img" src=")", img_src,
-              R"(" alt=")", alt,
-              R"("></picture><figcaption>)", caption,
+              R"(" alt=")", alt, R"("></picture><figcaption>)", caption,
               R"(</figcaption></figure><p>)");
           continue;
         }
@@ -432,7 +433,7 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     } else if (fragments_[i].type == Fragments::Types::INLINE_MATH) {
       html += StrCat("<span class='math-latex'>$",
                      GetHtmlFragmentText(content_, fragments_[i]), "$</span>");
-    } else {
+    } else if (fragments_[i].type != Fragments::Types::LATEX_ONLY) {
       string text = GetHtmlFragmentText(content_, fragments_[i]);
       EscapeHtmlString(&text);
       html += text;
@@ -484,8 +485,9 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
       latex +=
           StrCat("\\textsc{", GetLatexFragmentText(content_, fragment), "}");
     } else if (fragment.type == Fragments::Types::SERIF) {
-      latex +=
-          StrCat("\\emph{", GetLatexFragmentText(content_, fragment), "}");
+      latex += StrCat("\\emph{", GetLatexFragmentText(content_, fragment), "}");
+    } else if (fragment.type == Fragments::Types::LATEX_ONLY) {
+      latex += GetLatexFragmentText(content_, fragment);
     } else if (fragment.type == Fragments::Types::FORCE_NEWLINE) {
       latex += "\\newline";
     } else if (fragment.type == Fragments::Types::LINK) {
@@ -558,7 +560,7 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
     } else if (fragment.type == Fragments::Types::INLINE_MATH) {
       // Should use unescaped fragment text.
       latex += StrCat("$", GetHtmlFragmentText(content_, fragment), "$");
-    } else {
+    } else if (fragment.type != Fragments::Types::HTML_ONLY) {
       latex += GetLatexFragmentText(content_, fragment);
     }
   }
@@ -623,6 +625,14 @@ size_t Content::HandleSpecialCommands(const size_t start_pos, int* text_start) {
     return body_end;
   } else if (delimiter == "serif") {
     fragments_.emplace_back(Fragments::Types::SERIF, delimiter_pos + 1,
+                            body_end - 1);
+    return body_end;
+  } else if (delimiter == "latexonly") {
+    fragments_.emplace_back(Fragments::Types::LATEX_ONLY, delimiter_pos + 1,
+                            body_end - 1);
+    return body_end;
+  } else if (delimiter == "htmlonly") {
+    fragments_.emplace_back(Fragments::Types::HTML_ONLY, delimiter_pos + 1,
                             body_end - 1);
     return body_end;
   }

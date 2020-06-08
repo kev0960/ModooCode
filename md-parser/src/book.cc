@@ -107,9 +107,8 @@ BookManager::BookManager(
 }
 
 void BookManager::GenerateMainTex() {
-  string tex = "\\documentclass[letter, 10pt]{memoir}\n";
-  std::vector<Package> package_list = {{"inputenc", "utf8"},
-                                       {"lmodern"},
+  string tex = "\\documentclass[letterpaper, 11pt, oneside, chapter, nanum]{oblivoir}\n";
+  std::vector<Package> package_list = {{"lmodern"},
                                        {"minted"},
                                        {"ulem", "normalem"},
                                        {"kotex", "hangul,nonfrench"},
@@ -144,6 +143,14 @@ void BookManager::GenerateMainTex() {
                                        {"tabularx"}};
 
   tex += AddBunchOfPackages(package_list);
+
+  // Set Fonts.
+  // Check whether the font exists by luaotfload-tool --find="Nanum Gothic"
+  tex += R"(
+%\setkomainfont(Nanum Myeongjo)
+%\setsansfont{Nanum Gothic}
+\setmonofont{Source Code Pro}
+)";
 
   // Add note for generating pygmentize.sty
   tex += AddFancyComment(
@@ -212,6 +219,7 @@ void BookManager::GenerateMainTex() {
   tex += R"(
 \pagestyle{fancy}
 \fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
 \fancyhead[LO]{\small\sffamily\nouppercase\leftmark}
 \fancyhead[RO]{\small\sffamily\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -230,6 +238,7 @@ void BookManager::GenerateMainTex() {
 )";
 
   // Chapter Style
+  /*
   tex += R"(
 %\chapterstyle{ell}
 \renewcommand*{\chapterheadstart}{}
@@ -243,12 +252,13 @@ void BookManager::GenerateMainTex() {
  \hrule \vspace{0.7cm} \chaptitlefont #1 \vspace{0.7cm} \hrule}
 \renewcommand*{\printchaptername}{}
 )";
+*/
 
   // Section and subsection styles.
   tex += R"(
-\titleformat*{\section}{\normalfont\Huge\sffamily}
-\titleformat*{\subsection}{\normalfont\bfseries\huge\sffamily}
-\titleformat*{\subsubsection}{\normalfont\bfseries\large\sffamily}
+\titleformat*{\section}{\Huge\sffamily}
+\titleformat*{\subsection}{\bfseries\huge\sffamily}
+\titleformat*{\subsubsection}{\bfseries\large\sffamily}
 )";
 
   // Spacing between lines.
@@ -270,8 +280,6 @@ void BookManager::GenerateMainTex() {
 
   // TOC only shows up to the subsection.
   tex += R"(
-\setcounter{tocdepth}{3}
-%\setcounter{secnumdepth}{2}
 \newcommand\chap[1]{%
   \chapter*{#1}%
   \addcontentsline{toc}{chapter}{#1}}
@@ -310,17 +318,41 @@ void BookManager::GenerateMainTex() {
 }
 )";
 
-  tex += "\\begin{document}\n";
+  // Set chapter style.
+  tex += R"(
+\makechapterstyle{obmadsen}{% requires graphicx package
+  \chapterstyle{default}
+%  \renewcommand*{\chapnamefont}{%
+%    \normalfont\Large\scshape\raggedleft}
+  \renewcommand*{\prechapternum}{\normalfont\Large\scshape\raggedleft}
+  \renewcommand*{\postchapternum}{}
+  \renewcommand*{\chaptitlefont}{%
+    \normalfont\Huge\bfseries\sffamily\raggedleft}
+  \renewcommand*{\chapternamenum}{}
+  \renewcommand*{\printchapternum}{%
+    \makebox[0pt][l]{\hspace{0.4em}
+      \resizebox{!}{4ex}{%
+        \chapnamefont\bfseries\sffamily\thechapter}
+    }%
+  }%
+  \renewcommand*{\printchapternonum}{%
+    \chapnamefont \phantom{\printchaptername \chapternamenum \printchapternum}
+    \afterchapternum %
+  }%
+  \renewcommand*{\afterchapternum}{%
+    \par\hspace{1.5cm}\hrule\vskip\midchapskip}}
 
-  // Choose English font
-  tex += R"(\fontfamily{cmss}\selectfont)";
+\chapterstyle{obmadsen}
+)";
+
+  tex += "\\begin{document}\n";
 
   // Introduction page.
   tex += AddFancyComment("Introduction Page");
   tex += R"(
 \thispagestyle{empty}
 ~\vfill
-\noindent Copyright \textcopyright\  2019 이재범
+\noindent Copyright \textcopyright\  2019-2020 이재범
 
 \noindent
 이 책은 \textbf{모두의 코드}에 연재된 씹어먹는 C++ 강좌를 책으로 옮긴 것입니다. 해당 강좌는

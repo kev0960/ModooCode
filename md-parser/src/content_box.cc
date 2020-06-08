@@ -222,6 +222,10 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::LEC_WARNING;
   } else if (box_name == "lec-summary") {
     box_type_ = BOX_CONTENT_TYPES::LEC_SUMMARY;
+  } else if (box_name == "html-only") {
+    box_type_ = BOX_CONTENT_TYPES::HTML_ONLY;
+  } else if (box_name == "latex-only") {
+    box_type_ = BOX_CONTENT_TYPES::LATEX_ONLY;
   }
 }
 
@@ -315,7 +319,12 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       return FormatCodeUsingFSH(content_, "cpp");
     case PY_CODE:
       return FormatCodeUsingFSH(content_, "py");
-
+    case HTML_ONLY: {
+      Content::Preprocess(parser_env);
+      return Content::OutputHtml(parser_env);
+    }
+    case LATEX_ONLY:  // Ignore for LATEX_ONLY.
+      return "";
     default:
       return content_;
   }
@@ -362,6 +371,13 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       string output_tex = Content::OutputLatex(parser_env);
       return CreateTColorBox(SplitNewlineToItemize(output_tex), "blue",
                              "뭘 배웠지?");
+    }
+    case HTML_ONLY:
+      return "";
+    case LATEX_ONLY: {
+      Content::Preprocess(parser_env);
+      string output_tex = Content::OutputLatex(parser_env);
+      return output_tex;
     }
     default:
       return EscapeLatexString(content_);
