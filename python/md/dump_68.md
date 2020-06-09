@@ -27,7 +27,7 @@ size_t fread(void* ptr, size_t size, size_t count, FILE* stream);
 
 
 
-###  인자
+###  인자
 
 
 
@@ -47,7 +47,7 @@ size_t fread(void* ptr, size_t size, size_t count, FILE* stream);
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -58,7 +58,7 @@ size_t fread(void* ptr, size_t size, size_t count, FILE* stream);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -118,7 +118,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F154D38104BA61B89A274D0)
 
-###  참고 자료
+###  참고 자료
 
 * `fwrite` : 스트림에 데이터 블록을 쓴다.
 *  [fgetc](http://itguru.tistory.com/37): 스트림에서 한 문자를 가져온다.

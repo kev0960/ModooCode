@@ -47,7 +47,7 @@ i = atoi(input);
 
 
 
-###  인자
+###  인자
 
 
 
@@ -59,7 +59,7 @@ i = atoi(input);
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -71,7 +71,7 @@ i = atoi(input);
 
 
 
-###  구현 예
+###  구현 예
 
 
 ```cpp-formatted
@@ -100,7 +100,7 @@ int atoi(char s[]) {
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -137,9 +137,9 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-* atol  :  문자열을 `long` 형 정수로 변환한다.
-*  [atof](http://itguru.tistory.com/124)  :  문자열을 `double` 형으로 변환한다.
-* strtol  :  문자열을 `long` 형 정수로 변환한다.
+* atol  :  문자열을 `long` 형 정수로 변환한다.
+*  [atof](http://itguru.tistory.com/124)  :  문자열을 `double` 형으로 변환한다.
+* strtol  :  문자열을 `long` 형 정수로 변환한다.

@@ -36,11 +36,11 @@ void exceptions(iostate except);
 `goodbit`
 오류가 없다`. .
 
-  한 개 이상의 상태 플래그를 `OR` 연산자로 조합하여 하나의 비트 마스크(bit mask)를 만들 수 있게 된다. 기본값로 스트림 객체는 `goodbit` 예외 마스크를 가지고 있는데, 이 말은 어떠한 상태 플래그가 설정 되어도 예외를 던지지 않는다는 의미 이다.
+  한 개 이상의 상태 플래그를 `OR` 연산자로 조합하여 하나의 비트 마스크(bit mask)를 만들 수 있게 된다. 기본값로 스트림 객체는 `goodbit` 예외 마스크를 가지고 있는데, 이 말은 어떠한 상태 플래그가 설정 되어도 예외를 던지지 않는다는 의미 이다.
 
 
 
-###  인자
+###  인자
 
 
 
@@ -50,11 +50,11 @@ void exceptions(iostate except);
 `ios_base::iostate` 형의 비트 마스크 값으로 오류 상태 플래그 비트들(`badbit, eofbit, failbit)` 의 조합에 의해 설정된다.
 
 
-###  리턴값
+###  리턴값
 
 `ios_base::iostate` 타입의 비트 마스크로 이 함수를 호출하기 직전의 예외 마스크를 리턴한다.
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -87,7 +87,7 @@ int main() {
 
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 
@@ -102,6 +102,6 @@ iostate exceptions(iostate except);
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.
+*  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.

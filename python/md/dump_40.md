@@ -24,7 +24,7 @@ int fputs ( const char * str, FILE * stream );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -39,7 +39,7 @@ int fputs ( const char * str, FILE * stream );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -49,7 +49,7 @@ int fputs ( const char * str, FILE * stream );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -110,17 +110,17 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [puts](http://itguru.tistory.com/39)   : `stdout` 에 문자열을 쓴다.
+*  [puts](http://itguru.tistory.com/39)   : `stdout` 에 문자열을 쓴다.
 
-*  [fgets](http://itguru.tistory.com/38)  : 스트림에서 문자열을 받아온다.
+*  [fgets](http://itguru.tistory.com/38)  : 스트림에서 문자열을 받아온다.
 
-*  [fputc](http://itguru.tistory.com/39)  : 스트림에 한 문자를 쓴다.
+*  [fputc](http://itguru.tistory.com/39)  : 스트림에 한 문자를 쓴다.
 
 *  [fprintf](http://itguru.tistory.com/64): 특정한 형식으로 스트림에 쓴다.
 

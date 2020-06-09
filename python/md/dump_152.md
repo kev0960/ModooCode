@@ -30,7 +30,7 @@ streamsize width(streamsize wide);
 또한 필드 너비는 인자가 있는 조작자인 `setw` 를 통해서도 수정될 수 있다.
 
 
-###  인자
+###  인자
 
 
 `wide`
@@ -39,14 +39,14 @@ streamsize width(streamsize wide);
 
 
 
-###  리턴값
+###  리턴값
 
 
-  함수 호출 직전의 필드 너비 값
+  함수 호출 직전의 필드 너비 값
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -82,10 +82,10 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 * `setw` : 필드 너비를 조절한다.
-*  [ios_base::flags](http://itguru.tistory.com/153):  서식 플래그를 수정하거나 얻는다.
-*  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 수정한다.
-*  [ios::fill](http://itguru.tistory.com/181):  채우기 문자를 얻거나 수정한다.
+*  [ios_base::flags](http://itguru.tistory.com/153):  서식 플래그를 수정하거나 얻는다.
+*  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 수정한다.
+*  [ios::fill](http://itguru.tistory.com/181):  채우기 문자를 얻거나 수정한다.

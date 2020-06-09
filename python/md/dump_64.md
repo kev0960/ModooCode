@@ -26,7 +26,7 @@ int fprintf ( FILE * stream, const char * format, ... );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -213,7 +213,7 @@ int main() {
 
 
 
-###  리턴값
+###  리턴값
 
 
 출력 성공시, 화면에 출력된 총 문자의 개수를 반환한다.
@@ -221,7 +221,7 @@ int main() {
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -271,13 +271,13 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [printf](http://itguru.tistory.com/35)  :  특정한 형식에 맞추어 데이터를 `stdout` 에 출력한다.
+*  [printf](http://itguru.tistory.com/35)  :  특정한 형식에 맞추어 데이터를 `stdout` 에 출력한다.
 
-*  [fscanf](http://itguru.tistory.com/65)  :  특정한 형식에 맞추어 스트림에서 데이터를 읽어온다.
+*  [fscanf](http://itguru.tistory.com/65)  :  특정한 형식에 맞추어 스트림에서 데이터를 읽어온다.
 
-*  [fwrite](http://itguru.tistory.com/69)  :  스트림에 데이터 블록을 쓴다.
+*  [fwrite](http://itguru.tistory.com/69)  :  스트림에 데이터 블록을 쓴다.
 
-*  [fputs](http://itguru.tistory.com/40)  :  스트림에 문자열을 쓴다.
+*  [fputs](http://itguru.tistory.com/40)  :  스트림에 문자열을 쓴다.

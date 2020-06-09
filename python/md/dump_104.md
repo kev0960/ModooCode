@@ -25,7 +25,7 @@ void * memset ( void * ptr, int value, size_t num );
 
 
 
-###  인자
+###  인자
 
 
 `ptr`
@@ -42,7 +42,7 @@ void * memset ( void * ptr, int value, size_t num );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -51,7 +51,7 @@ void * memset ( void * ptr, int value, size_t num );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -82,12 +82,12 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [memcpy](http://itguru.tistory.com/77)  :   메모리 블록을 복사한다.
-*  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
-*  [memcmp](http://itguru.tistory.com/84):  두 개의 메모리 블록을 비교한다.
+*  [memcpy](http://itguru.tistory.com/77)  :   메모리 블록을 복사한다.
+*  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
+*  [memcmp](http://itguru.tistory.com/84):  두 개의 메모리 블록을 비교한다.

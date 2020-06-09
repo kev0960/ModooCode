@@ -29,7 +29,7 @@ int putc ( int character, FILE * stream );
 
 
 
-###  putc
+###  putc
 
 
 
@@ -44,7 +44,7 @@ int putc ( int character, FILE * stream );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -54,7 +54,7 @@ int putc ( int character, FILE * stream );
 
 
 
-###  예제
+###  예제
 
 
 
@@ -107,26 +107,26 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-* putchar  :   표준 출력(stdout) 에 문자를 쓴다.
+* putchar  :   표준 출력(stdout) 에 문자를 쓴다.
 
 
 
-*  [fputc](http://itguru.tistory.com/39)  :  스트림에 문자를 쓴다.
+*  [fputc](http://itguru.tistory.com/39)  :  스트림에 문자를 쓴다.
 
 
 
-*  [getc](http://itguru.tistory.com/41)   :  스트림에서 문자를 받는다.
+*  [getc](http://itguru.tistory.com/41)   :  스트림에서 문자를 받는다.
 
 
 
-*  [fwrite](http://itguru.tistory.com/69)  :  스트림에 데이터 블록을 쓴다.
+*  [fwrite](http://itguru.tistory.com/69)  :  스트림에 데이터 블록을 쓴다.
 
 
 
-*  [fprintf](http://itguru.tistory.com/64)  :  스트림에 형식에 맞춘 데이터를 쓴다.
+*  [fprintf](http://itguru.tistory.com/64)  :  스트림에 형식에 맞춘 데이터를 쓴다.

@@ -34,7 +34,7 @@ char * gets ( char * str );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -45,7 +45,7 @@ C 형식의 문자열이 저장될 `char` 배열의 포인터 C 형식의 문자
 
 
 
-###  리턴값
+###  리턴값
 
 
 성공적으로 읽어 들였다면 `str` 을 리턴한다.
@@ -61,7 +61,7 @@ C 형식의 문자열이 저장될 `char` 배열의 포인터 C 형식의 문자
 
 최근의 C 표준 (2011) 에서 이 함수는 라이브러리에서 삭제되었습니다.
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 /* 사용자로 부터 문자열을 입력받는다.  */
@@ -83,14 +83,14 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [fgets](http://itguru.tistory.com/38)  :  스트림에서 문자열을 읽어온다.
+*  [fgets](http://itguru.tistory.com/38)  :  스트림에서 문자열을 읽어온다.
 
-*  [getchar](http://itguru.tistory.com/44)  :  표준 입력(stdin)에서 문자를 읽어온다.
+*  [getchar](http://itguru.tistory.com/44)  :  표준 입력(stdin)에서 문자를 읽어온다.
 
-*  [scanf](http://itguru.tistory.com/36)  :  표준 입력에서 데이터를 형식에 맞추어 읽어온다.
+*  [scanf](http://itguru.tistory.com/36)  :  표준 입력에서 데이터를 형식에 맞추어 읽어온다.

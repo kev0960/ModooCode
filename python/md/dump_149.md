@@ -34,7 +34,7 @@ istream& getline (char* s, streamsize n, char delim );
 
 
 
-###  인자
+###  인자
 
 
 * `s` : C 형식 문자열을 저장할 배열을 가리키는 포인터
@@ -43,7 +43,7 @@ istream& getline (char* s, streamsize n, char delim );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -61,7 +61,7 @@ istream& getline (char* s, streamsize n, char delim );
 `ios::exceptions` 를 통해 적절한 플래그가 설정되어 있을 경우 위와 같은 상황이 발생시 `ios_base::failure` 이 `throw` 된다.
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -100,7 +100,7 @@ int main() {
 
 
 
-###  템플릿 멤버 선언
+###  템플릿 멤버 선언
 
 
 
@@ -115,9 +115,9 @@ basic_istream& getline(char_type* s, streamsize n, char_type delim);
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [istream::get](http://itguru.tistory.com/191)  :  서식화 되지 않은 데이터를 스트림에서 가져온다.
-*  [istream::ignore](http://itguru.tistory.com/193)  :  문자를 추출하고 버린다.
+*  [istream::get](http://itguru.tistory.com/191)  :  서식화 되지 않은 데이터를 스트림에서 가져온다.
+*  [istream::ignore](http://itguru.tistory.com/193)  :  문자를 추출하고 버린다.
 *  [istream::gcount](http://itguru.tistory.com/192): 이전의 서식화 되지 않았던 입력 작업서 추출하였던 문자의 개수를 얻어온다.

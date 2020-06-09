@@ -29,7 +29,7 @@ long int ftell ( FILE * stream );
 
 
 
-###  인자
+###  인자
 
 
 `stream`
@@ -38,7 +38,7 @@ long int ftell ( FILE * stream );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -48,7 +48,7 @@ long int ftell ( FILE * stream );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -95,8 +95,8 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자를 다시 조정한다.
-*  [fgetpos](http://itguru.tistory.com/70):  스트림의 위치 지정자의 현재 위치를 구한다.
-*  [rewind](http://itguru.tistory.com/75)  :  스트림 위치 지정자를 맨 처음으로 설정한다.
+*  [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자를 다시 조정한다.
+*  [fgetpos](http://itguru.tistory.com/70):  스트림의 위치 지정자의 현재 위치를 구한다.
+*  [rewind](http://itguru.tistory.com/75)  :  스트림 위치 지정자를 맨 처음으로 설정한다.

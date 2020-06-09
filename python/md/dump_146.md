@@ -26,7 +26,7 @@ publish_date : 2011-08-17
  [get](http://itguru.tistory.com/191), 
  [getline](http://itguru.tistory.com/149), 
  [peek](http://itguru.tistory.com/194), `read`, `readsome`). 또한 `get pointer` 을 조절하거나 (
- [ignore](http://itguru.tistory.com/193), `seekg`, `tellg`, `unget`) 마지막 서식화 되지 않았던 입력 작업의 정보를 얻어오는 함수(
+ [ignore](http://itguru.tistory.com/193), `seekg`, `tellg`, `unget`) 마지막 서식화 되지 않았던 입력 작업의 정보를 얻어오는 함수(
  [gcount](http://itguru.tistory.com/192))들도 있다.
 
 
@@ -49,7 +49,7 @@ publish_date : 2011-08-17
 
 
 
-* 채우기 문자(fill character) : 필드의 너비를 맞추기 위해 부가적으로 채워지는 문자. 이는
+* 채우기 문자(fill character) : 필드의 너비를 맞추기 위해 부가적으로 채워지는 문자. 이는
  [fill](http://itguru.tistory.com/181)함수를 호출하거나, 인자가 있는 조작자인 `setfill` 을 사용하므로써 얻어지거나 수정될 수 있다.
 
 * 출력 정밀도(display precision) : 부동 소수점 데이터를 출력시 어떠한 정밀도로 표시할 것인지를 나타낸다. 이 값은 [precision](http://itguru.tistory.com/157)함수나 인자 있는 조작자인 `setprecision` 을 통해 얻어지거나 수정될 수 있다.
@@ -101,7 +101,7 @@ publish_date : 2011-08-17
 * `sentry` : 입력 연산 전에 스트림을 준비 및 마무리 한다.
 
 
-###  Public 멤버들
+###  Public 멤버들
 
 
 * 생성자
@@ -127,11 +127,11 @@ publish_date : 2011-08-17
 
 *  [peek](http://itguru.tistory.com/194): 그 다음으로 추출될 문자를 얻어온다.
 
-* `read` : 데이터 블록을 읽는다.
+* `read` : 데이터 블록을 읽는다.
 
 * `readsome` : 버퍼에서 읽기 가능한 데이터 블록을 읽어온다.
 
-* `putback` : 문자를 다시 집어넣는다.
+* `putback` : 문자를 다시 집어넣는다.
 
 
 * `unget` : `get pointer` 을 감소 시킨다.
@@ -186,7 +186,7 @@ publish_date : 2011-08-17
 
 *  [rdbuf](http://itguru.tistory.com/182) : 연관된 스트림 버퍼를 얻거나 설정한다.
 
-* `narrow` : 표준 `char` 형으로 문자를 변환한다.
+* `narrow` : 표준 `char` 형으로 문자를 변환한다.
 
 * `widen` : 표준 `wchar_t` 형으로 문자를 변환한다.
 

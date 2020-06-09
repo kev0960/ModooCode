@@ -19,7 +19,7 @@ publish_date : 2010-08-02
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strrchr ( const char * str, int character );
-      char * strrchr (       char * str, int character );
+      char * strrchr (       char * str, int character );
 ```
 
 
@@ -35,7 +35,7 @@ char * strrchr ( const char *, int );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -50,7 +50,7 @@ C 문자 C 문자열
 
 
 
-###  리턴값
+###  리턴값
 
 
 `str` 에서 찾은 문자의 위치를 리턴한다. 만일 찾지 못한다면 널을 리턴한다.
@@ -59,7 +59,7 @@ C 문자 C 문자열
 
 
 
-###  함수의 구현
+###  함수의 구현
 
 
 ```cpp-formatted
@@ -85,7 +85,7 @@ char *strrchr(const char *s, int ch) {
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -120,8 +120,8 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [strchr](http://itguru.tistory.com/93)  :   특정한 문자가 포함되어 있는 가장 왼쪽 위치를 찾는다.
-*  [memchr](http://itguru.tistory.com/92)  :  메모리에서 특정한 문자를 찾는다.
-*  [strpbrk](http://itguru.tistory.com/95)  :  다른 문자들의 문자를 검색어로 삼아 특정한 문자열의 문자들을 찾는다.
+*  [strchr](http://itguru.tistory.com/93)  :   특정한 문자가 포함되어 있는 가장 왼쪽 위치를 찾는다.
+*  [memchr](http://itguru.tistory.com/92)  :  메모리에서 특정한 문자를 찾는다.
+*  [strpbrk](http://itguru.tistory.com/95)  :  다른 문자들의 문자를 검색어로 삼아 특정한 문자열의 문자들을 찾는다.

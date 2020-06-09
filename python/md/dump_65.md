@@ -26,7 +26,7 @@ int fscanf ( FILE * stream, const char * format, ... );
 
 
 
-###  인자
+###  인자
 
 `stream`
 
@@ -36,7 +36,7 @@ int fscanf ( FILE * stream, const char * format, ... );
 
 C 형식 문자열로 다음의 것들을 포함하고 있 C 형식 문자열로 다음의 것들을 포함하고 있다
 
-* 공백 문자 (Whitespace character 이라 부르며, 개행 문자(\n), 탭 문자, 띄어쓰기(' ') 이다)  : `fscanf` 함수는 비-공백 문자를 읽어들이기 전까지 읽혀지는 모든 공백 문자들을 무시한다.
+* 공백 문자 (Whitespace character 이라 부르며, 개행 문자(\n), 탭 문자, 띄어쓰기(' ') 이다)  : `fscanf` 함수는 비-공백 문자를 읽어들이기 전까지 읽혀지는 모든 공백 문자들을 무시한다.
 
 * 비-공백 문자 (Non whitespcae character), 단 `%` 를 제외한다 : 공백 문자가 아니거나 형식 지정자에 포함되지 않는 것들은 함수로 하여금 다음 문자를 스트림에서 읽어 들이고 이와 이 비-공백 문자와 비교하여 같다면 버리고 다음 문자와 형식으로 진행한다. 만일 다르다면 함수가 종료되고, 스트림에서 읽혀지지 않은 다른 문자들은 모두 남아있게 된다.
 
@@ -78,14 +78,14 @@ int i;
 fscanf(fp, "%d", &i); /* 꼭 주소값을 전달해야 된다는 점에 유의! */
 ```
 
-###  리턴값
+###  리턴값
 
 성공할 경우, `fscanf` 함수는 읽어들인 데이터의 수를 리턴한다. 만일 어떠한 데이터도 형식 지정자와 일치하는 것이 없다면 0 이 될 수 도 있다.
 
 만일 어떠한 데이터도 성공적으로 읽어들이기 전에 입력이 실패한다면 `EOF` 가 리턴된다.
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -125,9 +125,9 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F201841274B8166BC620379)
 
-###  참고 자료
+###  참고 자료
 
-*  [scanf](http://itguru.tistory.com/36)  :  표준 입력(stdin) 에서 데이터를 특정한 형식으로 읽어온다.
-* `fprintf ` :  스트림에 특정한 형식으로 데이터를 쓴다.
-* `fread ` :  스트림에서 데이터 블록을 읽어온다.
-*  [fgets](http://itguru.tistory.com/38)  :  스트림에서 문자열을 읽어온다.
+*  [scanf](http://itguru.tistory.com/36)  :  표준 입력(stdin) 에서 데이터를 특정한 형식으로 읽어온다.
+* `fprintf ` :  스트림에 특정한 형식으로 데이터를 쓴다.
+* `fread ` :  스트림에서 데이터 블록을 읽어온다.
+*  [fgets](http://itguru.tistory.com/38)  :  스트림에서 문자열을 읽어온다.

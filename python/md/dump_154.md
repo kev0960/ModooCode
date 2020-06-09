@@ -13,7 +13,7 @@ publish_date : 2011-08-19
 
 **스트림 서식 플래그(format flag) 를 위한 타입**
 
-스트림 서식 플래그를 나타내기 위한 비트 마스크(bit mask) 형태의 타입이다.  이 타입은 [flags](http://itguru.tistory.com/153), [setf](http://itguru.tistory.com/155), [unsetf](http://itguru.tistory.com/156)와 같은 함수들의 인자 혹은 리턴 타입에 사용된다. 이들 함수에 전달되는 값들은 아래와 같은 멤버 상수들의 조합(OR 연산) 으로 이루어진다.
+스트림 서식 플래그를 나타내기 위한 비트 마스크(bit mask) 형태의 타입이다.  이 타입은 [flags](http://itguru.tistory.com/153), [setf](http://itguru.tistory.com/155), [unsetf](http://itguru.tistory.com/156)와 같은 함수들의 인자 혹은 리턴 타입에 사용된다. 이들 함수에 전달되는 값들은 아래와 같은 멤버 상수들의 조합(OR 연산) 으로 이루어진다.
 
 
 |필드|멤버 상수|하는 일|
@@ -61,7 +61,7 @@ ios_base::skipws  // ios_base::fmtflags 타입의 상수
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -119,16 +119,16 @@ int main() {
 
 
 
-###  연관된 것들
+###  연관된 것들
 
 
 
 
 
-*  [ios_base::flags](http://itguru.tistory.com/153):  서식 플래그를 설정하거나 얻는다.
+*  [ios_base::flags](http://itguru.tistory.com/153):  서식 플래그를 설정하거나 얻는다.
 
-*  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 설정한다.
+*  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 설정한다.
 
-*  [ios_base::unsetf](http://itguru.tistory.com/156)  :  특정 서식 플래그를 초기화 한다.
+*  [ios_base::unsetf](http://itguru.tistory.com/156)  :  특정 서식 플래그를 초기화 한다.
 
-* `setiosflags`  :  서식 플래그들을 설정한다 (조작자)
+* `setiosflags`  :  서식 플래그들을 설정한다 (조작자)

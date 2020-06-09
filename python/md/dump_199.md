@@ -26,7 +26,7 @@ publish_date : 2013-08-04
 이 문서는 크게 세 장으로 나뉘어 있는데, 첫 번째 장에서는 부동소수점에서 가장 중요한 부분인 반올림과, 오차를 계산하는 방법에 대해 알아봅니다. 그리고 두 번째 장에서는 `IEEE` 부동 소수점 표준에 대해 알아볼 것이고, 마지막 장에서는 이러한 부동 소수점에 관련된 정보를 시스템 적 측면에서 알아볼것입니다.
 
 
-이 문서의 주요 키워드들은 다음과 같습니다 : 비정규화 수 (Denormalized number), 예외 (Exception), 부동 소수점 (Floating-point), 부동 소수점 표준 (Floating-point standard), 점진적 언더플로우(Gradual underflow), 보호 숫자 (Guard digit), `NaN,` 오버플로우 (Overflow), 상대 오차(Relative error), 반올림 오차 (Rounding error), 반올림 모드 (Rounding mode), `Ulps,` 언더 플로우 (Underflow)
+이 문서의 주요 키워드들은 다음과 같습니다 : 비정규화 수 (Denormalized number), 예외 (Exception), 부동 소수점 (Floating-point), 부동 소수점 표준 (Floating-point standard), 점진적 언더플로우(Gradual underflow), 보호 숫자 (Guard digit), `NaN,` 오버플로우 (Overflow), 상대 오차(Relative error), 반올림 오차 (Rounding error), 반올림 모드 (Rounding mode), `Ulps,` 언더 플로우 (Underflow)
 
 
 아마 이 문서를 한 번 정도만 꼼꼼하게 정독하시면, 여러분이 프로그래밍을 하면서 필요한 부동 소수점 관련 지식은 거의 얻을 수 있을것입니다.

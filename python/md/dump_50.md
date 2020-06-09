@@ -28,17 +28,17 @@ void clearerr ( FILE * stream );
 
 
 
-###  인자
+###  인자
 
 `stream`
 
 작업을 수행할 스트림의 `FILE` 객체를 가리키는 포인터
 
-###  리턴값
+###  리턴값
 
 없음
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 /* 인위적으로 오류를 발생시킨 뒤 이 오류가 clearerr 에 의해 어떻게 처리되는지
@@ -76,8 +76,8 @@ int main() {
 따라서 첫번째 `if` 문에서 *Error Writing to myfile.txt\n* 이 출력되었지만, `clearerr` 함수를 이용하여 오류 플래그를 비워버렸다. 따라서 아래 `if` 문에서 성공적으로 *No errors reading myfile.txt\n* 가 출력될 수 있었다.
 
 
-###  참고 자료
+###  참고 자료
 
-*  [feof](http://itguru.tistory.com/51)   :  파일 끝 표시자(EOF) 를 검사한다.
-*  [ferror](http://itguru.tistory.com/52):  오류 표시자를 검사한다.
-* `rewind ` :  위치 표시자를 처음으로 되돌린다.
+*  [feof](http://itguru.tistory.com/51)   :  파일 끝 표시자(EOF) 를 검사한다.
+*  [ferror](http://itguru.tistory.com/52):  오류 표시자를 검사한다.
+* `rewind ` :  위치 표시자를 처음으로 되돌린다.

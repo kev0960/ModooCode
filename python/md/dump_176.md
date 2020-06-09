@@ -27,7 +27,7 @@ publish_date : 2012-03-24
 
 다른 순차 컨테이너 처럼 데크에서도 데이터는 선형으로 메모리 상에 위치하게 된다.데크는 라이브러리 마다 다른 방식으로 구현되겠지만, 어떤 경우라도 각각의 원소는 임의 접근 반복자를 통해 접근할 수 있고, 크기 할당 역시 자동으로 수행되게 된다.
 
-  데크는 아래과 같은 장점이 있다.
+  데크는 아래과 같은 장점이 있다.
 
 
 * 개개의 원소들은 각자의 인덱스 값을 통해 접근할 수 있다.
@@ -42,9 +42,9 @@ publish_date : 2012-03-24
 
 [벡터](http://itguru.tistory.com/175)와 데크 모두 비슷한 인터페이스를 제공하고 있지만, 내부적으로는 다르게 처리된다. [벡터](http://itguru.tistory.com/175)의 경우 `capacity` 가 꽉 찼을 경우 새롭게 크게 한 덩어리의 메모리를 할당하게 되지만, 데크의 경우메모리 상에서 잘게 쪼개어서 보관하게 된다. 물론, 데크 객체 자체에서 메모리에 쪼개져서 보관되는 덩어리들의 위치를 기억하고, 각각의 원소에 대해 접근할 수 있는 인터페이스를 제공해준다. 따라서 데크는 내부적으로 [벡터](http://itguru.tistory.com/175)의 비해 조금 더 복잡하게 구현되어 있지만 그 덕분에 [벡터](http://itguru.tistory.com/175)와는 달리 메모리 공간을 효율적으로 사용할 수 있게 된다. 뿐만 아니라 엄청나게 큰 데이터의 경우, 데크는 [벡터](http://itguru.tistory.com/175)와는 다르게 많은 양의 메모리 재할당을 하지 않기 때문에 좀더 빠르다고 볼 수 있다.
 
-  처음과 끝 말고 중간에 원소의 삽입과 삭제를 빈번하게 사용한다면 데크 보다는 [리스트(list)](http://itguru.tistory.com/177)를 사용하는 것을 추천한다.
+  처음과 끝 말고 중간에 원소의 삽입과 삭제를 빈번하게 사용한다면 데크 보다는 [리스트(list)](http://itguru.tistory.com/177)를 사용하는 것을 추천한다.
 
-  C++ 표준 템플릿 라이브러리에서는 데크는 다음과 같은 두 개의 템플릿 인자를 받는다.
+  C++ 표준 템플릿 라이브러리에서는 데크는 다음과 같은 두 개의 템플릿 인자를 받는다.
 
 ```cpp-formatted
 template <class T, class Allocator = allocator<T> >
@@ -62,7 +62,7 @@ class deque;
 
 
 
-###  멤버 함수
+###  멤버 함수
 
 
 
@@ -150,16 +150,16 @@ class deque;
 
 
 
-###  멤버 변수들
+###  멤버 변수들
 
 
 * `reference` : `Allocator::reference`
 
 
-* `const_reference` :  `Allocator::const_reference`
+* `const_reference` :  `Allocator::const_reference`
 
 
-* `iterator` :  임의 접근 반복자(random access iterator)
+* `iterator` :  임의 접근 반복자(random access iterator)
 
 
 
@@ -185,6 +185,6 @@ class deque;
 
 * `const_pointer` : 상수 포인터 (`Allocator::const_pointer`)
 
-* `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
+* `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
 
-* `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)
+* `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)

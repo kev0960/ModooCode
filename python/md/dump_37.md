@@ -26,7 +26,7 @@ int fgetc ( FILE * stream );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -36,7 +36,7 @@ int fgetc ( FILE * stream );
 
 
 
-###  리턴값
+###  리턴값
 
 읽어들인 문자는 `int` 값으로 리턴된다.
 
@@ -46,7 +46,7 @@ int fgetc ( FILE * stream );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -66,7 +66,7 @@ int main() {
 }
 ```
 
-  실행 결과
+  실행 결과
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F1521E9184B60618605A0D0)
@@ -109,14 +109,14 @@ int main() {
 
 
 
-###  관련된 함수들
+###  관련된 함수들
 
 
 
-*  [getc](http://itguru.tistory.com/41)   :  스트림에서 문자 한 개를 읽어온다.
+*  [getc](http://itguru.tistory.com/41)   :  스트림에서 문자 한 개를 읽어온다.
 
-*  [fputc](http://itguru.tistory.com/39)  :  스트림에 문자 한 개를 쓴다.
+*  [fputc](http://itguru.tistory.com/39)  :  스트림에 문자 한 개를 쓴다.
 
-*  [fread](http://itguru.tistory.com/68)  :  스트림에서 데이타 한 블록을 읽어온다.
+*  [fread](http://itguru.tistory.com/68)  :  스트림에서 데이타 한 블록을 읽어온다.
 
-*  [fscanf](http://itguru.tistory.com/65)  : 스트림에서 형식화 된 데이터를 읽어온다.
+*  [fscanf](http://itguru.tistory.com/65)  : 스트림에서 형식화 된 데이터를 읽어온다.

@@ -31,7 +31,7 @@ int  scanf ( const char * format, ... );
 
 
 
-###  인자
+###  인자
 
 #### 형식(format) 문자열
 
@@ -75,7 +75,7 @@ int  scanf ( const char * format, ... );
 
 
 
-###  리턴값
+###  리턴값
 
 
 입력이 성공적이였다면 함수는 성공적으로 읽어들인 인자의 개수를 리턴한다.
@@ -85,7 +85,7 @@ int  scanf ( const char * format, ... );
 
 만일 성공적으로 읽어보기도 전에 읽기 오류가 발생한다면 `EOF` 가 리턴된다.
 
-###  scanf 함수의 고질적인 문제 및 해결책
+###  scanf 함수의 고질적인 문제 및 해결책
 
 
 `scanf` 함수를 사용하다 보면 다음과 같이 입력을 받지 않고 넘어가는 경우가 종종 있다.
@@ -113,7 +113,7 @@ scanf("%*c%c", &c);
 하지만 이러한 문제를 가장 잘 해결하는 방법은 [fgets](http://itguru.tistory.com/38)함수를 이용하는 것이다.
 
 
-###  scanf 함수 사용시 주의할 점
+###  scanf 함수 사용시 주의할 점
 
 
 `scanf` 함수는 문자열 입력시 입력받을 문자열의 최대 개수를 제한을 두지 않으므로버퍼 오버플로우가 발생할 여지가 충분히 있다. 이를 해결하기 위해서는 역시 [fgets](http://itguru.tistory.com/38)함수를 이용하거나 폭을 지정해 주면 된다.예를 들어서
@@ -133,7 +133,7 @@ scanf("%9s%*s", str);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -194,10 +194,10 @@ int main() {
 
 
 
-###  참고 자료들
+###  참고 자료들
 
-* `fscanf`  :  스트림에서 특정한 형식으로 데이터를 읽어온다.
-* [printf](http://itguru.tistory.com/35)  :  `stdout` 에 특정한 형식으로 데이터를 출력한다.
+* `fscanf`  :  스트림에서 특정한 형식으로 데이터를 읽어온다.
+* [printf](http://itguru.tistory.com/35)  :  `stdout` 에 특정한 형식으로 데이터를 출력한다.
 
-* [gets](http://itguru.tistory.com/45)    :  `stdin` 에서 문자열을 가져온다.
-* `fopen`  :  파일을 연다
+* [gets](http://itguru.tistory.com/45)    :  `stdin` 에서 문자열을 가져온다.
+* `fopen`  :  파일을 연다

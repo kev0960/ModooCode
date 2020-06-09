@@ -38,7 +38,7 @@ C 형식 문자열을 `long` 형 정수로 변환하여 변환된 값을 리턴�
 
 
 
-###  인자
+###  인자
 
 
 `str`
@@ -47,7 +47,7 @@ C 형식 문자열을 `long` 형 정수로 변환하여 변환된 값을 리턴�
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -58,7 +58,7 @@ C 형식 문자열을 `long` 형 정수로 변환하여 변환된 값을 리턴�
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -95,8 +95,8 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [atoi](http://itguru.tistory.com/131)  :  문자열을 정수로 변환한다.
-*  [atof](http://itguru.tistory.com/124)  :  문자열을 `double` 형으로 변환한다.
-* strtol  :  문자열을 `long` 형으로 변환한다.
+*  [atoi](http://itguru.tistory.com/131)  :  문자열을 정수로 변환한다.
+*  [atof](http://itguru.tistory.com/124)  :  문자열을 `double` 형으로 변환한다.
+* strtol  :  문자열을 `long` 형으로 변환한다.

@@ -25,7 +25,7 @@ size_t strspn ( const char * str1, const char * str2 );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -40,7 +40,7 @@ size_t strspn ( const char * str1, const char * str2 );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -49,7 +49,7 @@ size_t strspn ( const char * str1, const char * str2 );
 
 
 
-###  구현 예
+###  구현 예
 
 
 ```cpp-formatted
@@ -88,7 +88,7 @@ size_t strspn(const char *string, const char *control) {
 
 
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 /*
@@ -120,8 +120,8 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 *  [strcspn](http://itguru.tistory.com/94): 특정한 문자열을 키로 하여 다른 문자열을 검색하되 첫번째로 검색된 곳의 거리를 리턴
-*  [strstr](http://itguru.tistory.com/101)  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴
-*  [strncmp](http://itguru.tistory.com/90)  :   두 문자열의 일부분을 비교한다.
+*  [strstr](http://itguru.tistory.com/101)  :    특정한 문자열을 키로 하여 다른 문자열에서 '키' 의 위치를 리턴
+*  [strncmp](http://itguru.tistory.com/90)  :   두 문자열의 일부분을 비교한다.

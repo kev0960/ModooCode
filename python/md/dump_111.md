@@ -25,22 +25,22 @@ double difftime ( time_t time2, time_t time1 );
 
 
 
-###  인자
+###  인자
 
 
 
 
 `time2`
 
-  `time_t` 형 변수로 나중 시각을 나타낸다.
+  `time_t` 형 변수로 나중 시각을 나타낸다.
 
 `time1`
 
-  `time_t` 형 변수로 이전 시각을 나타낸다.
+  `time_t` 형 변수로 이전 시각을 나타낸다.
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -49,7 +49,7 @@ double difftime ( time_t time2, time_t time1 );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -85,10 +85,10 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [asctime](http://itguru.tistory.com/116):  `tm` 구조체를 문자열로 변환한다.
-*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 를 `tm` 으로 바꾸되 `UTC` 형식 시간으로 바꾼다.
-*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 를 `tm` 으로 바꾸되 지역 시간으로 바꾼다.
-*  [time](http://itguru.tistory.com/114)  :  현재 시각을 구한다.
+*  [asctime](http://itguru.tistory.com/116):  `tm` 구조체를 문자열로 변환한다.
+*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 를 `tm` 으로 바꾸되 `UTC` 형식 시간으로 바꾼다.
+*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 를 `tm` 으로 바꾸되 지역 시간으로 바꾼다.
+*  [time](http://itguru.tistory.com/114)  :  현재 시각을 구한다.

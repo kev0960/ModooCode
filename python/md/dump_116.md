@@ -33,7 +33,7 @@ char * asctime ( const struct tm * timeptr );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -44,7 +44,7 @@ char * asctime ( const struct tm * timeptr );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -53,7 +53,7 @@ char * asctime ( const struct tm * timeptr );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -87,10 +87,10 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F131466354D168E052284C6)
 
-###  참고 자료
+###  참고 자료
 
 
-*  [ctime](http://itguru.tistory.com/118)  :  `time_t` 를 가지고 `asctime` 과 동일한 작업을 한다.
-*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 변수를 `UTC` 시간의 `tm` 구조체로 바꾼다.
-*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 변수를 지역 시간의 `tm` 구조체로 바꾼다.
-*  [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.
+*  [ctime](http://itguru.tistory.com/118)  :  `time_t` 를 가지고 `asctime` 과 동일한 작업을 한다.
+*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 변수를 `UTC` 시간의 `tm` 구조체로 바꾼다.
+*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 변수를 지역 시간의 `tm` 구조체로 바꾼다.
+*  [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.

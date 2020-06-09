@@ -25,7 +25,7 @@ char * fgets ( char * str, int num, FILE * stream );
 
 
 
-###  인자
+###  인자
 
 
 `str`
@@ -42,7 +42,7 @@ char * fgets ( char * str, int num, FILE * stream );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -57,7 +57,7 @@ char * fgets ( char * str, int num, FILE * stream );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -112,14 +112,14 @@ int main() {
 
 
 
-###  관련된 함수들
+###  관련된 함수들
 
 
 
 
 
-*  [fputs](http://itguru.tistory.com/40):   스트림에 문자열을 쓴다.
+*  [fputs](http://itguru.tistory.com/40):   스트림에 문자열을 쓴다.
 
-*  [fgetc](http://itguru.tistory.com/37):   스트림에서 문자 하나를 읽어온다.
+*  [fgetc](http://itguru.tistory.com/37):   스트림에서 문자 하나를 읽어온다.
 
-*  [gets](http://itguru.tistory.com/45)  :  표준 입력(stdin) 에서 문자열을 읽어온다.
+*  [gets](http://itguru.tistory.com/45)  :  표준 입력(stdin) 에서 문자열을 읽어온다.

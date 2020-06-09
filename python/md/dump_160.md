@@ -19,7 +19,7 @@ locale getloc() const;
 
 스트림 객체의 로케일을 리턴한다.
 
-###  인자
+###  인자
 
 
 없다.
@@ -27,12 +27,12 @@ locale getloc() const;
 
 
 
-###  리턴값
+###  리턴값
 
 
 스트림의 로케일 객체를 리턴한다.
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 // 로케일 이름을 출력한다.
@@ -54,6 +54,6 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [ios_base::imbue](http://itguru.tistory.com/158)  :  로케일을 설정한다.
+*  [ios_base::imbue](http://itguru.tistory.com/158)  :  로케일을 설정한다.

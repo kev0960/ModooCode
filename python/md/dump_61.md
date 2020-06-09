@@ -37,7 +37,7 @@ unbuffered 스트림의 경우, 데이터는 fully buffered 스트림과는 달�
 
 만일 스트림을 line buffered 스트림으로 바꾸고 싶다면 `setvbuf` 함수를 사용하면 된다.
 
-###  인자
+###  인자
 
 
 `stream`
@@ -50,7 +50,7 @@ unbuffered 스트림의 경우, 데이터는 fully buffered 스트림과는 달�
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -59,7 +59,7 @@ unbuffered 스트림의 경우, 데이터는 fully buffered 스트림과는 달�
 
 
 
-###  예제
+###  예제
 
 
 ```cpp-formatted
@@ -110,9 +110,9 @@ fputs("This is sent to an unbuffered stream\n", pFile2);
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [fopen](http://itguru.tistory.com/58)  :  파일을 연다.
-*  [fflush](http://itguru.tistory.com/57):  스트림을 비운다.
-*  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼링 방식을 설정한다.
+*  [fopen](http://itguru.tistory.com/58)  :  파일을 연다.
+*  [fflush](http://itguru.tistory.com/57):  스트림을 비운다.
+*  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼링 방식을 설정한다.

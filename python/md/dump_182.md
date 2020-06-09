@@ -23,7 +23,7 @@ streambuf* rdbuf ( streambuf* sb );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -35,7 +35,7 @@ streambuf* rdbuf ( streambuf* sb );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -44,7 +44,7 @@ streambuf* rdbuf ( streambuf* sb );
 
 
 
-###  실행 결과
+###  실행 결과
 
 
 
@@ -75,7 +75,7 @@ int main() {
 
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 
@@ -91,6 +91,6 @@ basic_streambuf<charT, traits>* rdbuf(basic_streambuf<charT, traits> sb);
 
 
 
-###  연관된 자료
+###  연관된 자료
 
-* `streambuf` :  스트림의 기반(base) 버퍼 클래스
+* `streambuf` :  스트림의 기반(base) 버퍼 클래스

@@ -28,7 +28,7 @@ time_t time ( time_t * timer );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -40,7 +40,7 @@ time_t time ( time_t * timer );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -49,7 +49,7 @@ time_t time ( time_t * timer );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -84,9 +84,9 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-* [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 바꾼다.
-*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 를 `UTC` 시간에 따라 `tm` 구조체로 바꾼다.
-*  [localtime](http://itguru.tistory.com/120)  : `time_t` 를 지역 시간에 따라 `tm` 구조체로 바꾼다.
+* [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 바꾼다.
+*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 를 `UTC` 시간에 따라 `tm` 구조체로 바꾼다.
+*  [localtime](http://itguru.tistory.com/120)  : `time_t` 를 지역 시간에 따라 `tm` 구조체로 바꾼다.

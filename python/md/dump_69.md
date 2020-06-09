@@ -29,7 +29,7 @@ size_t fwrite(const void* ptr, size_t size, size_t count, FILE* stream);
 
 
 
-###  인자
+###  인자
 
 
 
@@ -52,7 +52,7 @@ size_t fwrite(const void* ptr, size_t size, size_t count, FILE* stream);
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -61,7 +61,7 @@ size_t fwrite(const void* ptr, size_t size, size_t count, FILE* stream);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -101,18 +101,18 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [fread](http://itguru.tistory.com/68)  :  스트림에서 데이터 블록을 읽어온다.
+*  [fread](http://itguru.tistory.com/68)  :  스트림에서 데이터 블록을 읽어온다.
 
 
 
 *  [fprintf](http://itguru.tistory.com/64): 스트림에 형식에 맞추어 출력한다.
 
-*  [putc](http://itguru.tistory.com/46):  스트릠에 문자를 쓴다.
+*  [putc](http://itguru.tistory.com/46):  스트릠에 문자를 쓴다.
 
-*  [fputc](http://itguru.tistory.com/39)  : 스트림에 문자를 쓴다.
+*  [fputc](http://itguru.tistory.com/39)  : 스트림에 문자를 쓴다.

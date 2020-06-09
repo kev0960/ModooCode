@@ -17,7 +17,7 @@ publish_date : 2010-08-02
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strpbrk ( const char * str1, const char * str2 );
-      char * strpbrk (       char * str1, const char * str2 );
+      char * strpbrk (       char * str1, const char * str2 );
 ```
 
 
@@ -37,7 +37,7 @@ char * strpbrk ( const char *, const char * );
 
 
 
-###  인자
+###  인자
 
 
 `str1`
@@ -50,14 +50,14 @@ char * strpbrk ( const char *, const char * );
 
 
 
-###  리턴값
+###  리턴값
 
 
 `str2` 의 문자들 중 `str1` 의 문자들과 첫번째로 일치하는 문자를 가리키게 된다. 만일 `str1` 의 널 문자 이전 까지 일치하는 것이 없다면 널을 리턴한다.
 
 
 
-###  함수의 구현
+###  함수의 구현
 
 
 ```cpp-formatted
@@ -86,7 +86,7 @@ char *strpbrk(const char *string, const char *control) {
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -128,10 +128,10 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-* [strcspn](http://itguru.tistory.com/94)  :  이 함수와 동일한 검색을 수행하되, 찾은 문자까지 거리를 구한다.
-*  [strchr](http://itguru.tistory.com/93):  특정한 문자를 검색하는데 가장 먼저 나타나는 위치를 찾는다.
-* strrchr  :  특정한 문자를 검색하는데 가장 마지막으로 나타나는 위치를 찾는다.
-*  [memchr](http://itguru.tistory.com/92)  :  메모리에서 특정한 문자를 찾는다.
+* [strcspn](http://itguru.tistory.com/94)  :  이 함수와 동일한 검색을 수행하되, 찾은 문자까지 거리를 구한다.
+*  [strchr](http://itguru.tistory.com/93):  특정한 문자를 검색하는데 가장 먼저 나타나는 위치를 찾는다.
+* strrchr  :  특정한 문자를 검색하는데 가장 마지막으로 나타나는 위치를 찾는다.
+*  [memchr](http://itguru.tistory.com/92)  :  메모리에서 특정한 문자를 찾는다.

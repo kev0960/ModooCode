@@ -19,7 +19,7 @@ C 언어에서 입출력 작업은 **표준 입출력 라이브러리 (Standard 
 
 
 
-###  스트림의 특징
+###  스트림의 특징
 
 스트림의 속성 중에는 "어떠한 함수들 만이 스트림을 사용할 수 있다" 와 "이 스트림이 어떠한 방식으로 데이터를 입출력 하느냐" 가 있다. 이러한 속성들은 `fopen` 함수를 통해 스트림이 파일과 어떠한 방식으로 연관되어 있는지에 따라 달라지게 된다.
 
@@ -44,7 +44,7 @@ fully buffered 스트림의 경우, 데이터는 버퍼가 꽉 찰 경우 데이
 기본적으로 `stdin` 은 fully bufferd, stderr 은 unbuffered, stdout 은 터미널일 경우 line buffered, 아니면 fully buffered 상태로 설정되어 있다.
 
 
-###  스트림 상태 표시자(indicator)
+###  스트림 상태 표시자(indicator)
 
 스트림은 현재의 상태를 나타내기 위해 특정한 표시자가 있으며, 이는 스트림의 입출력 형태에 영향을 줄 수 있다.
 
@@ -61,7 +61,7 @@ fully buffered 스트림의 경우, 데이터는 버퍼가 꽉 찰 경우 데이
 이는 포인터로 스트림이 입출력 연산에서 다음으로 읽거나 쓸 문자를 가리킨다. 이 표시자가 가리키는 값은 [ftell](http://itguru.tistory.com/74)이나 `fgetpos` 함수를 통해 알아낼 수 있으며 역시 [rewind](http://itguru.tistory.com/75), [fseek](http://itguru.tistory.com/72), [fsetpos](http://itguru.tistory.com/73)함수를 이용해서 표시자의 값을 바꿀 수 있다.
 
 
-###  stdio.h 에 정의된 함수들
+###  stdio.h 에 정의된 함수들
 
 
 #### 파일 작업 관련:
@@ -135,7 +135,7 @@ fully buffered 스트림의 경우, 데이터는 버퍼가 꽉 찰 경우 데이
 
 *  [getchar](http://itguru.tistory.com/44): `stdin` 에서 문자를 받는다.
 
-*  [gets](http://itguru.tistory.com/45):  `stdin` 에서 문자열을 받는다.
+*  [gets](http://itguru.tistory.com/45):  `stdin` 에서 문자열을 받는다.
 
 
 
@@ -186,7 +186,7 @@ fully buffered 스트림의 경우, 데이터는 버퍼가 꽉 찰 경우 데이
 
 
 
-###  매크로
+###  매크로
 
 * `EOF` : 파일 끝(end of file)
 
@@ -201,7 +201,7 @@ fully buffered 스트림의 경우, 데이터는 버퍼가 꽉 찰 경우 데이
 이 외에도 `_IOFBF, _IOLBF, _IONBF, BUFSIZ, FOPEN_MAX, L_tmpnam, SEEK_CUR, SEEK_END, SEEK_SET` 이 있는데 이는 이들을 이용하는 함수들에 설명되어 있다.
 
 
-###  타입 (형)
+###  타입 (형)
 
 
 * `FILE` : 스트림을 제어하는 정보를 가지고 있는 객체

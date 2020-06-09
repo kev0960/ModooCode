@@ -31,7 +31,7 @@ char * strtok ( char * str, const char * delimiters );
 
 
 
-###  인자
+###  인자
 
 `str`
 
@@ -43,7 +43,7 @@ char * strtok ( char * str, const char * delimiters );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -52,7 +52,7 @@ char * strtok ( char * str, const char * delimiters );
 
 
 
-###  구현 예
+###  구현 예
 
 
 ```cpp-formatted
@@ -88,7 +88,7 @@ char *__cdecl strtok(char *s1, const char *delimit) {
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -120,6 +120,6 @@ int main() {
 
 
 
-###  참고 자료
-* [strcspn](http://itguru.tistory.com/94)  :  특정한 문자를 찾을 때 까지의 길이를 구한다.
-* [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 특정한 문자를 찾는다.
+###  참고 자료
+* [strcspn](http://itguru.tistory.com/94)  :  특정한 문자를 찾을 때 까지의 길이를 구한다.
+* [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 특정한 문자를 찾는다.

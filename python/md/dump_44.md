@@ -27,11 +27,11 @@ int getchar ( void );
 
 
 
-###  인자
+###  인자
 
 없음
 
-###  리턴값
+###  리턴값
 
 읽어들인 문자를 `int` 값으로 리턴한다.
 
@@ -39,7 +39,7 @@ int getchar ( void );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -121,12 +121,12 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
-*  [getc](http://itguru.tistory.com/41)  : 스트림에서 한 문자를 가져온다.
+*  [getc](http://itguru.tistory.com/41)  : 스트림에서 한 문자를 가져온다.
 
-* `putchar ` : `stdout` 에 한 문자를 쓴다.
+* `putchar ` : `stdout` 에 한 문자를 쓴다.
 
-*  [scanf](http://itguru.tistory.com/36)  :  형식 문자열에 정의된 방법에 따라 데이터를 `stdin` 에서 읽는다.
+*  [scanf](http://itguru.tistory.com/36)  :  형식 문자열에 정의된 방법에 따라 데이터를 `stdin` 에서 읽는다.

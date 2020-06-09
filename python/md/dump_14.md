@@ -20,7 +20,7 @@ tex_title : 리눅스에서 C 프로그래밍 하기
 
 안녕하세요, 여러분. 이번 강좌에서는 우분투 리눅스 상에서 C 프로그래밍을 하는 법에 대해서 알아 봅시다. 일단, 우분투 리눅스 상에서 C 프로그래밍을 하는 법을 안다면, 다른 배포판에서도 비슷한 방법으로 따라 할 수 있으므로 도움이 될 것입니다.
 
-일단, C 프로그래밍을 하려면 컴파일러가 있어야 되는데, 아시다 시피 리눅스 상에서는 `Visual Studio` 계열을 사용할 수 없습니다. 왜냐하면 그것들은 모두 `Microsoft` 사의 제품이기 때문이죠. 하지만, 훌륭한 오픈 소스 개발자들이 리눅스 용 컴파일러를 개발하였는데, 그 이름하여 유명한 `GCC (GNU Compiler Collection)` 입니다. 사실, 초기의 `GCC` 는 `GNU C Compiler` 의 약자로, C 언어 컴파일만 지원하였으나, 후에 `Ada, C++, JAVA, Fotran, Objective-C` 와 같은 언어들도 컴파일 할 수 있게 되여 현재의 이름으로 바뀌었습니다.
+일단, C 프로그래밍을 하려면 컴파일러가 있어야 되는데, 아시다 시피 리눅스 상에서는 `Visual Studio` 계열을 사용할 수 없습니다. 왜냐하면 그것들은 모두 `Microsoft` 사의 제품이기 때문이죠. 하지만, 훌륭한 오픈 소스 개발자들이 리눅스 용 컴파일러를 개발하였는데, 그 이름하여 유명한 `GCC (GNU Compiler Collection)` 입니다. 사실, 초기의 `GCC` 는 `GNU C Compiler` 의 약자로, C 언어 컴파일만 지원하였으나, 후에 `Ada, C++, JAVA, Fotran, Objective-C` 와 같은 언어들도 컴파일 할 수 있게 되여 현재의 이름으로 바뀌었습니다.
 
 대부분의 우분투 배포판에는 기본적으로 `GCC` 가 설치되어 있습니다. 터미널을 열어서 `gcc` 를 쳐보세요
 
@@ -72,7 +72,7 @@ apt-get install gcc
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F151CAF164A43AC108A523C)
 
-이제, 드디어 글을 입력할 수 있습니다.  그냥 보통 편집기 처럼 프로그램을 작성하면 됩니다. 한 가지 유의해야 할 점은 `Visual Stdio` 처럼 자동으로 `indentation` 을 해주는 것이 아닙니다. (물론 `vim` 설정파일에서 `autoindent` 로 설정하면 가능하지만 여기서는 짧은 프로그램이므로 손으로 직접 해도 상관 없습니다. 자세한 내용은 다음 사이트를 참조하세요 : [http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C](http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C%20))
+이제, 드디어 글을 입력할 수 있습니다.  그냥 보통 편집기 처럼 프로그램을 작성하면 됩니다. 한 가지 유의해야 할 점은 `Visual Stdio` 처럼 자동으로 `indentation` 을 해주는 것이 아닙니다. (물론 `vim` 설정파일에서 `autoindent` 로 설정하면 가능하지만 여기서는 짧은 프로그램이므로 손으로 직접 해도 상관 없습니다. 자세한 내용은 다음 사이트를 참조하세요 : [http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C](http://kevin0960.tistory.com/entry/VIM-Vi-iMproved-%EC%9D%98-%EB%AA%85%EB%A0%B9%EC%96%B4-%EB%AA%A8%EC%9D%8C%20))
 
 다 입력한다면 아래와 같은 모습이 됩니다.
 
@@ -92,7 +92,7 @@ gcc -o helloworld helloworld.c
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile1.uf.tistory.com%2Fimage%2F183F86194A43AE1E757BAE)
 
-위 명령어를 입력 한 후 , 아무 내용이 뜨지 않는다면 애러없이 성공적으로 컴파일 된 것입니다.  이제,
+위 명령어를 입력 한 후 , 아무 내용이 뜨지 않는다면 애러없이 성공적으로 컴파일 된 것입니다.  이제,
 
 ```info-term
 ./helloworld

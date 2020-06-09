@@ -25,7 +25,7 @@ struct tm * gmtime ( const time_t * timer );
 
 
 
-###  인자
+###  인자
 
 
 `timer`
@@ -34,7 +34,7 @@ struct tm * gmtime ( const time_t * timer );
 
 
 
-###  리턴값
+###  리턴값
 
 인자로 받은 [time_t](http://itguru.tistory.com/113) 형 변수의 값을 토대로 멤버가 초기화 된 [tm 구조체](http://itguru.tistory.com/109) 변수를 가리키는 포인터가 리턴된다.
 
@@ -42,7 +42,7 @@ struct tm * gmtime ( const time_t * timer );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -93,11 +93,11 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
-*  [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.
-*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 값을 토대로 `tm` 구조체를 지역 시간으로 설정한다.
-* [mktime](http://itguru.tistory.com/112)  :  `tm` 구조체 내용을 토대로 `time_t` 형 값을 계산한다.
-*  [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.
+*  [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
+*  [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.
+*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 값을 토대로 `tm` 구조체를 지역 시간으로 설정한다.
+* [mktime](http://itguru.tistory.com/112)  :  `tm` 구조체 내용을 토대로 `time_t` 형 값을 계산한다.
+*  [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.

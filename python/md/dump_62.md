@@ -42,7 +42,7 @@ int setvbuf ( FILE * stream, char * buffer, int mode, size_t size );
 
 
 
-###  인자
+###  인자
 
 `stream`
 
@@ -69,7 +69,7 @@ int setvbuf ( FILE * stream, char * buffer, int mode, size_t size );
 
 
 
-###  리턴값
+###  리턴값
 
 만일 버퍼가 성공적으로 지정 되었다면 0 이 리턴된다.
 
@@ -77,7 +77,7 @@ int setvbuf ( FILE * stream, char * buffer, int mode, size_t size );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -107,8 +107,8 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [setbuf](http://itguru.tistory.com/61)  :  스트림 버퍼를 설정한다.
-*  [fopen](http://itguru.tistory.com/58)   :  파일을 연다.
-*  [fflush](http://itguru.tistory.com/57)   :  스트림을 비운다.
+*  [setbuf](http://itguru.tistory.com/61)  :  스트림 버퍼를 설정한다.
+*  [fopen](http://itguru.tistory.com/58)   :  파일을 연다.
+*  [fflush](http://itguru.tistory.com/57)   :  스트림을 비운다.

@@ -17,7 +17,7 @@ publish_date : 2010-08-02
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strchr ( const char * str, int character );
-      char * strchr (       char * str, int character );
+      char * strchr (       char * str, int character );
 
 ```
 
@@ -36,7 +36,7 @@ char * strchr ( const char *, int );
 
 
 
-###  인자
+###  인자
 
 
 `str`
@@ -49,7 +49,7 @@ C 형식 문자열
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -58,7 +58,7 @@ C 형식 문자열
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -98,9 +98,9 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile9.uf.tistory.com%2Fimage%2F177446244C558BD59B51A7)
 
 
-###  참고 자료
+###  참고 자료
 
 
-* [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자를 검색하되, 가장 마지막으로 나타나는 위치를 구한다.
-*  [memchr](http://itguru.tistory.com/92) :  메모리 블록에서 특정한 문자를 검색한다.
-*  [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 다른 문자열에 포함된 문자들 중 일치하는 문자를 검색한다.
+* [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자를 검색하되, 가장 마지막으로 나타나는 위치를 구한다.
+*  [memchr](http://itguru.tistory.com/92) :  메모리 블록에서 특정한 문자를 검색한다.
+*  [strpbrk](http://itguru.tistory.com/95)  :  문자열에서 다른 문자열에 포함된 문자들 중 일치하는 문자를 검색한다.

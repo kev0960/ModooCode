@@ -31,7 +31,7 @@ int fseek ( FILE * stream, long int offset, int origin );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -55,7 +55,7 @@ int fseek ( FILE * stream, long int offset, int origin );
 |`SEEK_END`|파일의 끝|
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -64,7 +64,7 @@ int fseek ( FILE * stream, long int offset, int origin );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -106,8 +106,8 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [ftell](http://itguru.tistory.com/74)  :  스트림의 현재 위치를 구한다.
-*  [fsetpos](http://itguru.tistory.com/73):  스트림의 위치 지정자를 설정한다.
-*  [rewind](http://itguru.tistory.com/75)  :  스트림의 위치 지정자를 맨 처음으로 설정한다.
+*  [ftell](http://itguru.tistory.com/74)  :  스트림의 현재 위치를 구한다.
+*  [fsetpos](http://itguru.tistory.com/73):  스트림의 위치 지정자를 설정한다.
+*  [rewind](http://itguru.tistory.com/75)  :  스트림의 위치 지정자를 맨 처음으로 설정한다.

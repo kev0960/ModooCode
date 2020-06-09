@@ -14,7 +14,7 @@ publish_date : 2012-03-25
 
 ```info-format
 template <class InputIterator>
-  void assign ( InputIterator first, InputIterator last );
+  void assign ( InputIterator first, InputIterator last );
 void assign ( size_type n, const T& u );
 
 ```
@@ -28,7 +28,7 @@ void assign ( size_type n, const T& u );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -48,14 +48,14 @@ void assign ( size_type n, const T& u );
 
 
 
-###  리턴값
+###  리턴값
 
 
 없다
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -102,6 +102,6 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 * vector::operator= : 벡터 내용을 복사한다.

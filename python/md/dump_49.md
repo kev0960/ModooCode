@@ -70,7 +70,7 @@ ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
 
 만일 `unget` 함수의 `character` 인자로 전달된 값이 `EOF` 라면 입력 스트림에는 아무런 변화가 없게된다.
 
-###  인자
+###  인자
 
 
 
@@ -85,7 +85,7 @@ ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -95,7 +95,7 @@ ch = getc(fp);  //  ch 에는 test.txt 의 두 번째 문자가 들어간다.
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -161,16 +161,16 @@ fputs(buffer, stdout);
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [getc](http://itguru.tistory.com/41):  스트림에서 문자를 받는다.
+*  [getc](http://itguru.tistory.com/41):  스트림에서 문자를 받는다.
 
 
 
-*  [fgetc](http://itguru.tistory.com/37):  스트림에서 문자를 받는다.
+*  [fgetc](http://itguru.tistory.com/37):  스트림에서 문자를 받는다.
 
-*  [putc](http://itguru.tistory.com/46)  :  스트림에 문자를 쓴다.
+*  [putc](http://itguru.tistory.com/46)  :  스트림에 문자를 쓴다.

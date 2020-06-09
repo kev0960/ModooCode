@@ -26,7 +26,7 @@ FILE * fopen ( const char * filename, const char * mode );
 
 
 
-###  인자
+###  인자
 
 
 * `filename` : C 문자열로 열을 파일의 이름이다. 이 인자는 각 실행 환경에서 지정하는 파일 이름 형식을 따라야 하며, 만일 시스템에서 경로 설정이 지원된다면 경로도 포함할 수 있다 C 문자열로 열을 파일의 이름이다. 이 인자는 각 실행 환경에서 지정하는 파일 이름 형식을 따라야 하며, 만일 시스템에서 경로 설정이 지원된다면 경로도 포함할 수 있다.
@@ -52,12 +52,12 @@ FILE * fopen ( const char * filename, const char * mode );
 
 
 
-###  리턴값
+###  리턴값
 
 만일 파일이 성공적으로 열렸다면 `fopen` 함수는 `FILE` 객체에 대한 포인터를 리턴할 것이다. 이 포인터는 나중에 스트림 관련 작업시에 스트림을 구분하기 위해 자주 사용된다. 그렇지 않을 경우 널 포인터가 리턴된다.
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -98,14 +98,14 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
-*  [fclose](http://itguru.tistory.com/54)   :  파일을 닫는다.
+*  [fclose](http://itguru.tistory.com/54)   :  파일을 닫는다.
 
-*  [setbuf](http://itguru.tistory.com/61)   :  스트림 버퍼를 설정한다.
+*  [setbuf](http://itguru.tistory.com/61)   :  스트림 버퍼를 설정한다.
 
-*  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼의 모드를 설정한다.
-* `tmpfile`   :  임시 파일을 연다.
-* `tmpnam`  : 임시 파일 이름을 생성한다.
+*  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼의 모드를 설정한다.
+* `tmpfile`   :  임시 파일을 연다.
+* `tmpnam`  : 임시 파일 이름을 생성한다.

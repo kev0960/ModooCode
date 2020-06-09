@@ -22,7 +22,7 @@ bool eof ( ) const;
 
 
 
-###  인자
+###  인자
 
 
 
@@ -31,7 +31,7 @@ bool eof ( ) const;
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -40,7 +40,7 @@ bool eof ( ) const;
 
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 
@@ -52,10 +52,10 @@ bool eof ( ) const;
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
-*  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.
-*  [ios::clear](http://itguru.tistory.com/180)  :  오류 상태 플래그를 설정한다.
+*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
+*  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.
+*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+*  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.
+*  [ios::clear](http://itguru.tistory.com/180)  :  오류 상태 플래그를 설정한다.

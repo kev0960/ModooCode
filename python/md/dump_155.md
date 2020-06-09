@@ -42,7 +42,7 @@ fmtflags setf(fmtflags fmtfl, fmtflags mask);
 
 
 
-###  인자
+###  인자
 
 
 `fmtfl`
@@ -54,16 +54,16 @@ fmtflags setf(fmtflags fmtfl, fmtflags mask);
 수정할 플래그를 포함하고 있는 비트마스크
 
 
-###  리턴값
+###  리턴값
 
 
 
 
-  함수 호출 이전 상태의 서식 플래그
+  함수 호출 이전 상태의 서식 플래그
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -97,10 +97,10 @@ int main() {
 
 
 
-###  연관된 것들
+###  연관된 것들
 
-*  [ios_base::flags](http://itguru.tistory.com/153)  :  서식 플래그를 설정하거나 얻는다.
-*  [ios_base::unsetf](http://itguru.tistory.com/156)  :  서식 플래그를 초기화한다.
-*  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그 타입
-* `setiosflags` :  서식 플래그를 설정한다.
-* resetiosflags  :  서식  플래그를 재설정 한다.
+*  [ios_base::flags](http://itguru.tistory.com/153)  :  서식 플래그를 설정하거나 얻는다.
+*  [ios_base::unsetf](http://itguru.tistory.com/156)  :  서식 플래그를 초기화한다.
+*  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그 타입
+* `setiosflags` :  서식 플래그를 설정한다.
+* resetiosflags  :  서식  플래그를 재설정 한다.

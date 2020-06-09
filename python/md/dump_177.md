@@ -24,11 +24,11 @@ publish_date : 2012-03-24
 덕분에 리스트는 아래와 같은 장점을 가진다.
 
 
-*  컨테이너 임의의 위치에 원소의 삽입과 삭제가 가능하다 (상수 시간)
+*  컨테이너 임의의 위치에 원소의 삽입과 삭제가 가능하다 (상수 시간)
 
-*  서로 다른 컨테이너 사이 나 컨테이너 내부에서 원소들 간의 이동이 매우 효율적이다. (상수 시간)
+*  서로 다른 컨테이너 사이 나 컨테이너 내부에서 원소들 간의 이동이 매우 효율적이다. (상수 시간)
 
-*  원소들을 앞에서 뒤로, 혹은 뒤에서 앞으로 참조해나갈 수 있다 (선형 시간)
+*  원소들을 앞에서 뒤로, 혹은 뒤에서 앞으로 참조해나갈 수 있다 (선형 시간)
 
 
 
@@ -53,7 +53,7 @@ class list;
 * `Allocator` : 어떠한 방식으로 메모리를 할당할지에 관련한 할당자(allocator) 타입을 나타낸다. 기본값으로 `T` 의 할당자 클래스 템플릿을 사용하며, `Heap` 에 할당하게 된다. 많은 경우 인자를 생략한다.
 
 
-###  멤버 함수
+###  멤버 함수
 
 * 생성자 : 리스트를 생성한다.
 
@@ -116,11 +116,11 @@ class list;
 
 * `get_allocator` : 할당자(allocator) 을 얻는다.
 
-###  멤버 변수들
+###  멤버 변수들
 
 * `reference` : `Allocator::reference`
-* `const_reference` :  `Allocator::const_reference`
-* `iterator` :  양방향 반복자(Bidirectional iterator)
+* `const_reference` :  `Allocator::const_reference`
+* `iterator` :  양방향 반복자(Bidirectional iterator)
 * `const_iterator` : 상수 양방향 반복자 (즉, 접근하는 원소의 내용을 수정 못함)
 * `size_type` : 리스트 `size` 를 나타내는 타입 (많은 경우 `size_t` 와 타입이 같으며 부호없는 정수이다)
 * `difference_type` : 리스트 내의 두 원소 사이의 거리를 나타내는 타입 (많은 경우 `ptfdiff_t` 와 타입이 같으며 부호있는 정수)
@@ -128,5 +128,5 @@ class list;
 * `allocator_type` : 할당자
 * `pointer` : 포인터 (`Allocator::pointer`)
 * `const_pointer` : 상수 포인터 (`Allocator::const_pointer`)
-* `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
-* `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)
+* `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
+* `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)

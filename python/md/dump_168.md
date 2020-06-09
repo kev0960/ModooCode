@@ -22,7 +22,7 @@ bool operator ! ( ) const;
 
 
 
-###  인자
+###  인자
 
 
 없다
@@ -30,7 +30,7 @@ bool operator ! ( ) const;
 
 
 ### 
- 리턴값
+ 리턴값
 
 
 
@@ -40,7 +40,7 @@ bool operator ! ( ) const;
 
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 
@@ -52,7 +52,7 @@ bool operator ! ( ) const;
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -82,7 +82,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F1265704E4EA3679D21067B)
 
-###  참고 자료
+###  참고 자료
 
-*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
+*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.

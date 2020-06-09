@@ -21,7 +21,7 @@ FILE * freopen ( const char * filename, const char * mode, FILE * stream );
 이 함수는 특히 이미 정의된 스트림들, 예를 들면 표준 입력(stdin) 이나 표준 출력(stdout), 표준 오류(stderr) 와 같은 스트림들을 특정한 파일에 해당하는 스트림으로 변경할 수 있습니다.
 
 
-###  인자
+###  인자
 
 `filename`
 
@@ -54,12 +54,12 @@ C 문자열로 파일 접근 방식에 대한 정보를 포함해야 한다. 이
 
 
 
-###  리턴값
+###  리턴값
 
 만일 파일이 성공적으로 열렸다면 이 함수는 세번째 인자로 전달되었던 스트림 포인터를 리턴하게 된다.
 그렇지 않을 겨우 널 포인터가 리턴된다.
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 /*
@@ -122,7 +122,7 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-* [fopen](http://itguru.tistory.com/58)  :  파일을 연다
-* [fclose](http://itguru.tistory.com/54):  파일을 닫는다.
+* [fopen](http://itguru.tistory.com/58)  :  파일을 연다
+* [fclose](http://itguru.tistory.com/54):  파일을 닫는다.

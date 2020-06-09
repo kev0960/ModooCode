@@ -16,7 +16,7 @@ publish_date : 2012-03-25
 explicit vector ( const Allocator& = Allocator() );
 explicit vector ( size_type n, const T& value= T(), const Allocator& = Allocator() );
 template <class InputIterator>
-         vector ( InputIterator first, InputIterator last, const Allocator& = Allocator() );
+         vector ( InputIterator first, InputIterator last, const Allocator& = Allocator() );
 vector ( const vector<T,Allocator>& x );
 ```
 
@@ -56,7 +56,7 @@ vector(const vector<T, Allocator>& x);
 
 
 
-###  인자
+###  인자
 
 
 
@@ -80,7 +80,7 @@ vector(const vector<T, Allocator>& x);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -119,7 +119,7 @@ int main() {
 
 
 
-###  시간 복잡도
+###  시간 복잡도
 
 
 
@@ -133,7 +133,7 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 * vector::assign : 벡터 내용을 대입한다.

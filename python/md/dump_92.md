@@ -17,7 +17,7 @@ publish_date : 2010-08-01
 #include <string.h> // C++ 에서는 <cstring>
 
 const void * memchr ( const void * ptr, int value, size_t num );
-      void * memchr (       void * ptr, int value, size_t num );
+      void * memchr (       void * ptr, int value, size_t num );
 ```
 
 
@@ -31,7 +31,7 @@ const void * memchr ( const void * ptr, int value, size_t num );
 void * memchr ( const void *, int, size_t );
 ```
 
-###  인자
+###  인자
 
 `ptr`
 
@@ -47,7 +47,7 @@ void * memchr ( const void *, int, size_t );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -57,7 +57,7 @@ void * memchr ( const void *, int, size_t );
 
 
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 /*
@@ -91,9 +91,9 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile22.uf.tistory.com%2Fimage%2F207EAB0F4C5588E0CAACE4)
 
-###  참고 자료
+###  참고 자료
 
-* [memcmp](http://itguru.tistory.com/84)   :  두 메모리 블록을 비교한다.
-*  [strchr](http://itguru.tistory.com/93)  :  문자열에서 특정한 문자를 검색하되 가장 먼저 나타나는 위치를 구한다.
-*  [strrchr](http://itguru.tistory.com/96)  :
+* [memcmp](http://itguru.tistory.com/84)   :  두 메모리 블록을 비교한다.
+*  [strchr](http://itguru.tistory.com/93)  :  문자열에서 특정한 문자를 검색하되 가장 먼저 나타나는 위치를 구한다.
+*  [strrchr](http://itguru.tistory.com/96)  :
 문자열에서 특정한 문자를 검색하되 가장 마지막에 나타나는 위치를 구한다.

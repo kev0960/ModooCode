@@ -24,7 +24,7 @@ char * strerror ( int errnum );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -35,7 +35,7 @@ char * strerror ( int errnum );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -44,7 +44,7 @@ char * strerror ( int errnum );
 
 
 
-###  놀라운 사실
+###  놀라운 사실
 
 
 
@@ -54,7 +54,7 @@ char * strerror ( int errnum );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -88,6 +88,6 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [perror](http://itguru.tistory.com/53):  오류 메세지를 출력한다.
+*  [perror](http://itguru.tistory.com/53):  오류 메세지를 출력한다.

@@ -30,7 +30,7 @@ char * strncpy ( char * destination, const char * source, size_t num );
 
 
 
-###  인자
+###  인자
 
 `destination`
 
@@ -46,7 +46,7 @@ char * strncpy ( char * destination, const char * source, size_t num );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -55,7 +55,7 @@ char * strncpy ( char * destination, const char * source, size_t num );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -90,7 +90,7 @@ int main() {
 
 
 
-###  함수 구현 예
+###  함수 구현 예
 
 
 
@@ -116,11 +116,11 @@ char *strncpy(char *dest, const char *source, size_t count) {
 
 
 
-###  참고 자료
+###  참고 자료
 
 *  [strcpy](http://itguru.tistory.com/79): 문자열을 복사한다.
-*  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.
-*  [memmove](http://itguru.tistory.com/78):  메모리 블록을 옮긴다.
-* memchr  :  메모리 블록에 문자를 위치시킨다.
-*  [memcmp](http://itguru.tistory.com/84)  :  두 개의 메모리 블록을 비교한다.
-*  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.
+*  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.
+*  [memmove](http://itguru.tistory.com/78):  메모리 블록을 옮긴다.
+* memchr  :  메모리 블록에 문자를 위치시킨다.
+*  [memcmp](http://itguru.tistory.com/84)  :  두 개의 메모리 블록을 비교한다.
+*  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.

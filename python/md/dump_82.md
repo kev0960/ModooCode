@@ -28,7 +28,7 @@ char * strncat ( char * destination, char * source, size_t num );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -47,14 +47,14 @@ char * strncat ( char * destination, char * source, size_t num );
 
 
 
-###  리턴값
+###  리턴값
 
 
 `destination` 이 리턴된다.
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -87,7 +87,7 @@ int main() {
 
 
 
-###  함수 구현 예
+###  함수 구현 예
 
 
 ```cpp-formatted
@@ -114,9 +114,9 @@ char *strncat(char *s1, const char *s2, size_t count) {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [strcat](http://itguru.tistory.com/81)  :  문자열을 합친다.
-*  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
-*  [memcpy](http://itguru.tistory.com/77):  메모리의 일부분을 복사한다.
+*  [strcat](http://itguru.tistory.com/81)  :  문자열을 합친다.
+*  [strncpy](http://itguru.tistory.com/80)  :  문자열의 일부분을 복사한다.
+*  [memcpy](http://itguru.tistory.com/77):  메모리의 일부분을 복사한다.

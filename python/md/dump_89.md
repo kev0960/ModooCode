@@ -101,7 +101,7 @@ void swap(int *a, int *b) {
 
 
 
-###  void 형 변수
+###  void 형 변수
 
 ```cpp-formatted
 /* void 형 변수?? */
@@ -283,7 +283,7 @@ printf("%x \n", *(char *)p);
 
 
 
-###  메인 함수의 인자
+###  메인 함수의 인자
 
 ```cpp-formatted
 /* main 함수의 인자라고?? */

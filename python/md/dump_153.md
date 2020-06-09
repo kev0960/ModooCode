@@ -25,18 +25,18 @@ fmtflags flags(fmtflags fmtfl);
 
 
 
-###  인자
+###  인자
 
 `fmtfl`
 
-  스트림에서 사용되는 서식 플래그. 이 값은 [ios_base::fmtflags](http://itguru.tistory.com/154)형이다.
+  스트림에서 사용되는 서식 플래그. 이 값은 [ios_base::fmtflags](http://itguru.tistory.com/154)형이다.
 
 
-###  리턴값
+###  리턴값
 
 함수 호출 직전의 서식 플래그
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 /*
@@ -69,9 +69,9 @@ int main() {
 
 
 
-###  연관된 것들
+###  연관된 것들
 
-*  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 설정한다.
-*  [ios_base::unsetf](http://itguru.tistory.com/156)  :  특정 서식 플래그를 초기화 한다.
-*  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그의 타입
-* `setiosflags` : 서식 플래그를 설정한다.
+*  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 설정한다.
+*  [ios_base::unsetf](http://itguru.tistory.com/156)  :  특정 서식 플래그를 초기화 한다.
+*  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그의 타입
+* `setiosflags` : 서식 플래그를 설정한다.

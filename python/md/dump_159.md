@@ -38,7 +38,7 @@ void register_callback(event_callback fn, int index);
 모든 등록된 함수들은 위의 상황 발생 시 호출된다. 이 때 함수 자체에서 어떠한 이벤트가 발생하였는지는 `ev` 인자를 통해 알아낼 수 있다
 
 
-###  인자
+###  인자
 
 `fn`
 
@@ -51,11 +51,11 @@ typedef void (*event_callback)(event ev, ios_base& ios, int index);
 
 `index`
 
-  콜백 함수 호출시 인자로 전달되는 정수값이다. 이는 콜백 함수에서 사용될 인자들의 값들을 지정하는데 사용할 수 있다.
+  콜백 함수 호출시 인자로 전달되는 정수값이다. 이는 콜백 함수에서 사용될 인자들의 값들을 지정하는데 사용할 수 있다.
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -64,7 +64,7 @@ typedef void (*event_callback)(event ev, ios_base& ios, int index);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -115,8 +115,8 @@ int main() {
 
 
 
-###  연관된 것들
+###  연관된 것들
 
-*  [ios_base::imbue](http://itguru.tistory.com/158) :  로케일(locale) 을 설정한다.
-* `ios::copyfmt`  :  서식 정보를 복사한다.
-* `ios_base::event`  :  이벤트를 나타내기 위한 타입
+*  [ios_base::imbue](http://itguru.tistory.com/158) :  로케일(locale) 을 설정한다.
+* `ios::copyfmt`  :  서식 정보를 복사한다.
+* `ios_base::event`  :  이벤트를 나타내기 위한 타입

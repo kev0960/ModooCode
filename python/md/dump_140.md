@@ -32,7 +32,7 @@ void srand ( unsigned int seed );
 진짜 난수 같은 수열을 생성해 내고 싶다면 `srand` 는 보통 시간에 관련된 함수로 초기화 하는 것이 좋다. 예를 들어 `<time.h>` (C++ 에서는 `<ctime>`) 에 정의되어 있는 `time` 함수의 경우 매 초당 다른 값을 주기 때문에 매우 좋은 예가 될 수 있다. 실제로 대부분의 경우 `srand` 는 `time(NULL)` 값으로 초기화 하는 것이 대다수 이다.
 
 
-###  인자
+###  인자
 
 `seed`
 
@@ -40,7 +40,7 @@ void srand ( unsigned int seed );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -49,7 +49,7 @@ void srand ( unsigned int seed );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -84,6 +84,6 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [rand](http://itguru.tistory.com/139)  :  난수를 생성한다.
+*  [rand](http://itguru.tistory.com/139)  :  난수를 생성한다.

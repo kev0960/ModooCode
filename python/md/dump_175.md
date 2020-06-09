@@ -23,11 +23,11 @@ publish_date : 2012-03-24
 
 벡터 컨테이너는 아래와 같은 장점을 가지고 있다.
 
-*  각각의 원소를 원소의 인덱스(index) 값으로 바로 참조 가능하다 (상수 시간이 소요)
+*  각각의 원소를 원소의 인덱스(index) 값으로 바로 참조 가능하다 (상수 시간이 소요)
 
-*  원소들을 임의의 순서로 접근할 수 있다. (선형 시간 소요)
+*  원소들을 임의의 순서로 접근할 수 있다. (선형 시간 소요)
 
-*  벡터 끝에 새로운 원소를 추가하거나 제거하기 (상수 시간 소요 - constant amortized time) \sidenote{동적 배열 끝에 새로운 원소를 추가하는 경우를 생각해보자. 만일 이미 공간 자체가 할당되어 있으면 새로운 원소를 추가하는 일은 O(1) 일 것이다. 하지만, 공간이 할당되어 있지 않다면, 보통 2 배의 공간으로 다시 할당하게 되는데 이 때 시간이 O(n) 정도 들어가게 된다. 따라서 전체 평균적으로 볼 때 O(1) 정도의 상수 시간이 걸린다고 볼 수 있고 이러한 형태의 소요 시간을 constant amortized time 이라고 부른다.}
+*  벡터 끝에 새로운 원소를 추가하거나 제거하기 (상수 시간 소요 - constant amortized time) \sidenote{동적 배열 끝에 새로운 원소를 추가하는 경우를 생각해보자. 만일 이미 공간 자체가 할당되어 있으면 새로운 원소를 추가하는 일은 O(1) 일 것이다. 하지만, 공간이 할당되어 있지 않다면, 보통 2 배의 공간으로 다시 할당하게 되는데 이 때 시간이 O(n) 정도 들어가게 된다. 따라서 전체 평균적으로 볼 때 O(1) 정도의 상수 시간이 걸린다고 볼 수 있고 이러한 형태의 소요 시간을 constant amortized time 이라고 부른다.}
 
 
 벡터는 배열이 제공하는 거의 모든 기능을 다 가지고 있다. 게다가, 벡터 컨테이너의 크기는 쉽게 조정될 수 있기 때문에 매우 용이하다. 하지만 이러한 장점들 때문에 보통의 배열보다 더 많은 메모리 공간을 필요로 한다는 단점이 있다.
@@ -48,7 +48,7 @@ class vector;
 ```
 
 
-  이 때 각각의 템플릿 인자는 다음을 의미한다.
+  이 때 각각의 템플릿 인자는 다음을 의미한다.
 
 * `T` : (보관하려는) 원소의 타입
 
@@ -58,7 +58,7 @@ class vector;
 
 
 
-###  벡터의 멤버 함수
+###  벡터의 멤버 함수
 
 
 
@@ -150,7 +150,7 @@ class vector;
 
 
 
-###  멤버 변수들
+###  멤버 변수들
 
 
 
@@ -159,10 +159,10 @@ class vector;
 * `reference` : `Allocator::reference`
 
 
-* `const_reference` :  `Allocator::const_reference`
+* `const_reference` :  `Allocator::const_reference`
 
 
-* `iterator` :  임의 접근 반복자(random `access iterator)`
+* `iterator` :  임의 접근 반복자(random `access iterator)`
 
 
 
@@ -188,12 +188,12 @@ class vector;
 
 * `const_pointer` : 상수 포인터 (`Allocator::const_pointer`)
 
-* `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
+* `reverse_iterator` :  역 반복자 (끝에서 부터 참조해나간다) `reverse_iterator<iterator>`
 
-* `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)
+* `const_reverse_iterator` :  상수 역 반복자 (`reverse_iterator<const_iterator>`)
 
 
-###  템플릿 특수화 (template specialization)
+###  템플릿 특수화 (template specialization)
 
 벡터 템플릿 클래스는 특별히 `bool` 타입에 대한 템플릿 특수화(specialization)를 가지고 있다.
 

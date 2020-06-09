@@ -34,7 +34,7 @@ char mystr[100] = "test string";
 
 
 
-###  인자
+###  인자
 
 
 
@@ -45,14 +45,14 @@ C 형식 문자 C 형식 문자열
 
 
 
-###  리턴값
+###  리턴값
 
 
 문자열의 길이. 참고로 `size_t` 형으로 선언 되어 있는데 대부분의 `string.h` 에서는 부호 없는 정수형으로 선언되어 있다.
 
 
 
-###  구현 예
+###  구현 예
 
 
 
@@ -76,7 +76,7 @@ size_t strlen(const char *s) {
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -111,9 +111,9 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [strcmp](http://itguru.tistory.com/85)  :  두 개의 문자열을 비교한다.
-*  [strchr](http://itguru.tistory.com/93)  :  문자열에서 특정한 문자의 첫번째로 나타나는 위치를 찾는다.
-*  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자의 마지막으로 나타나는 위치를 찾는다.
+*  [strcmp](http://itguru.tistory.com/85)  :  두 개의 문자열을 비교한다.
+*  [strchr](http://itguru.tistory.com/93)  :  문자열에서 특정한 문자의 첫번째로 나타나는 위치를 찾는다.
+*  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자의 마지막으로 나타나는 위치를 찾는다.

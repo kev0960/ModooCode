@@ -123,7 +123,7 @@ strm >> variable1 >> variable2 >> variable3;  //...
 
 
 
-###  인자들
+###  인자들
 
 
 * `val` :  입력 시퀀스(sequence)에서 문자들을 추출하여 주어진 인자의 타입에 맞게 수치값으로 해석하려 한다. 만일 성공적으로 해석하였다면 그 값은 `val` 에 저장된다. 데이터가 정확히 어떠한 방식으로 해석될지는 이전에 스트림에 적용된 조작자와, 로케일(locale) 에 의해 결정된다.
@@ -138,7 +138,7 @@ strm >> variable1 >> variable2 >> variable3;  //...
 
 
 
-###  리턴값
+###  리턴값
 
 객체 자기 자신을 리턴한다 (`*this`)
 
@@ -153,7 +153,7 @@ strm >> variable1 >> variable2 >> variable3;  //...
 추가적으로 [ios::exceptions](http://itguru.tistory.com/150) 의 멤버 함수를 통해 적절하게 플래그가 설정되어있다면, 위와 같은 상황 발생 시 `ios_base::failure` 예외가 `throw` 된다.
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -194,7 +194,7 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F144DE2524E4B71D4023599)
 
 
-###  템플릿 전역 함수들
+###  템플릿 전역 함수들
 
 ```cpp-formatted
 template <class charT, class traits>
@@ -223,7 +223,7 @@ basic_istream<charT, traits>& operator>>(basic_istream<charT, traits>& is,
 ```
 
 
-###  참고 자료
+###  참고 자료
 
 
 * [istream::get](http://itguru.tistory.com/191) : 서식화 되지 않는 데이터를 스트림에서 가져온다.

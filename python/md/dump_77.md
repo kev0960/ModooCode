@@ -31,7 +31,7 @@ void * memcpy ( void * destination, const void * source, size_t num );
 
 
 
-###  인자
+###  인자
 
 `destination`
 
@@ -47,7 +47,7 @@ void * memcpy ( void * destination, const void * source, size_t num );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -56,7 +56,7 @@ void * memcpy ( void * destination, const void * source, size_t num );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -93,11 +93,11 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-* [memmove](http://itguru.tistory.com/78)  :  메모리의 블록을 옮긴다.
-*  [memchr](http://itguru.tistory.com/92)  :  메모리의 특정한 블록에 문자를 쓴다.
-*  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
-*  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.
-*  [strncpy](http://itguru.tistory.com/80)  :  문자열에서 특정한 개수의 문자를 복사한다.
+* [memmove](http://itguru.tistory.com/78)  :  메모리의 블록을 옮긴다.
+*  [memchr](http://itguru.tistory.com/92)  :  메모리의 특정한 블록에 문자를 쓴다.
+*  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
+*  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.
+*  [strncpy](http://itguru.tistory.com/80)  :  문자열에서 특정한 개수의 문자를 복사한다.

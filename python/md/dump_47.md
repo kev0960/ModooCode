@@ -26,7 +26,7 @@ int putchar ( int character );
 
 
 
-###  인자
+###  인자
 
 `character`
 
@@ -34,12 +34,12 @@ int putchar ( int character );
 
 
 
-###  리턴값
+###  리턴값
 
 오류가 하나도 없다면 표준 출력에 쓰여진 문자가 반환된다.
 만일 오류가 발생한다면 `EOF` 가 반환되고 오류 표시자가 설정된다.
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 /* 화면에 'p' 를 출력한다 */
@@ -85,14 +85,14 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [putc](http://itguru.tistory.com/46)  :  스트림에 문자를 쓴다.
+*  [putc](http://itguru.tistory.com/46)  :  스트림에 문자를 쓴다.
 
-*  [fputc](http://itguru.tistory.com/39):  스트림에 문자를 쓴다.
+*  [fputc](http://itguru.tistory.com/39):  스트림에 문자를 쓴다.
 
-*  [getchar](http://itguru.tistory.com/44)  :  표준 입력(stdin) 에서 문자를 받는다.
+*  [getchar](http://itguru.tistory.com/44)  :  표준 입력(stdin) 에서 문자를 받는다.

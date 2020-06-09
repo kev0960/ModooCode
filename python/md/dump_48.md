@@ -31,7 +31,7 @@ int puts ( const char * str );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -42,7 +42,7 @@ int puts ( const char * str );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -52,7 +52,7 @@ int puts ( const char * str );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -78,16 +78,16 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [fputs](http://itguru.tistory.com/40)  :  문자열을 스트림에 쓴다.
+*  [fputs](http://itguru.tistory.com/40)  :  문자열을 스트림에 쓴다.
 
-*  [printf](http://itguru.tistory.com/35)  :  표준 출력(stdout) 에 데이터를 형식에 맞추어 출력한다.
+*  [printf](http://itguru.tistory.com/35)  :  표준 출력(stdout) 에 데이터를 형식에 맞추어 출력한다.
 
-*  [putchar](http://itguru.tistory.com/47)  :  `stdout` 에 문자를 쓴다.
+*  [putchar](http://itguru.tistory.com/47)  :  `stdout` 에 문자를 쓴다.
 
-*  [gets](http://itguru.tistory.com/45)  :  `stdin` 에서 문자열을 받는다.
+*  [gets](http://itguru.tistory.com/45)  :  `stdin` 에서 문자열을 받는다.

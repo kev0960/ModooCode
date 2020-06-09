@@ -30,7 +30,7 @@ publish_date : 2012-03-24
 
 한 가지 유의할 사항은 스택(`stack`), 큐(`queue`), 우선순위 큐(`priority_queue`) 들로 이들은 **컨테이너 어댑터(container adaptor)** 이다. 이들은 다른 컨테이너 클래스들을 상속 받아서 다른 컨테이터 클래스의 객체에 특정한 인터페이스를 제공해준다. 
 
-이를 통해 원래 컨테이너의 기능을 제한하고, 어댑터가 제공하는 인터페이스를 사용할 수 있게 된다. 예컨대 `stack` 이 [deque](http://itguru.tistory.com/176)  에 작용한다면, [deque](http://itguru.tistory.com/176)에 `stack` 이 제공하는 `top, pop, push` 등의 인터페이스를 사용할 수 있게 되는 것이다.
+이를 통해 원래 컨테이너의 기능을 제한하고, 어댑터가 제공하는 인터페이스를 사용할 수 있게 된다. 예컨대 `stack` 이 [deque](http://itguru.tistory.com/176)  에 작용한다면, [deque](http://itguru.tistory.com/176)에 `stack` 이 제공하는 `top, pop, push` 등의 인터페이스를 사용할 수 있게 되는 것이다.
 
 
 
@@ -40,10 +40,10 @@ publish_date : 2012-03-24
 #### 순차 컨테이너 (Sequence Container)
 
 
-*  [vector](http://itguru.tistory.com/175):  벡터 (Vector)
+*  [vector](http://itguru.tistory.com/175):  벡터 (Vector)
 
 
-*  [deque](http://itguru.tistory.com/176):  데크 (double ended queue)
+*  [deque](http://itguru.tistory.com/176):  데크 (double ended queue)
 
 
 *  [list](http://itguru.tistory.com/177): 리스트 (List)
@@ -76,4 +76,4 @@ publish_date : 2012-03-24
 * `multimap` : 여러 키를 가지는 `map`
 
 
-* `bitset` :  `Bitset`
+* `bitset` :  `Bitset`

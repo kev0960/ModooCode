@@ -478,7 +478,7 @@ Weird 구조체의 a.i : 3
 
 와 같이 나옵니다.
 
-상당히 단순한 예제이지요. `test.c` 에서 `weird.h` 를 포함했으므로 `weird.h` 의 내용이 `test.c` 로 그대로 복사된 셈입니다. (즉, #include “weird.h” 부분이 `weird.h` 의  내용으로 바뀌었다고 보셔도 무방합니다) 따라서 `struct Weird` 를 사용할 수 있게 되므로 위와 같은 결과가 발생합니다. 그런데 만일 실수로 `weird.h` 를 두 번 포함했다고 합시다. 그렇다면 어떻게 될까요?
+상당히 단순한 예제이지요. `test.c` 에서 `weird.h` 를 포함했으므로 `weird.h` 의 내용이 `test.c` 로 그대로 복사된 셈입니다. (즉, #include “weird.h” 부분이 `weird.h` 의  내용으로 바뀌었다고 보셔도 무방합니다) 따라서 `struct Weird` 를 사용할 수 있게 되므로 위와 같은 결과가 발생합니다. 그런데 만일 실수로 `weird.h` 를 두 번 포함했다고 합시다. 그렇다면 어떻게 될까요?
 
 ```cpp-formatted
 #include <stdio.h>

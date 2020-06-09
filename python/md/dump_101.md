@@ -17,7 +17,7 @@ publish_date : 2010-11-27
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strstr ( const char * str1, const char * str2 );
-      char * strstr (       char * str1, const char * str2 );
+      char * strstr (       char * str1, const char * str2 );
 ```
 
 문자열을 검색한다.
@@ -26,7 +26,7 @@ const char * strstr ( const char * str1, const char * str2 );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -41,7 +41,7 @@ const char * strstr ( const char * str1, const char * str2 );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -50,7 +50,7 @@ const char * strstr ( const char * str1, const char * str2 );
 
 
 
-###  구현 예
+###  구현 예
 
 
 
@@ -75,7 +75,7 @@ char *strstr(const char *str1, const char *str2) {
 
 
 
-###  문자열 검색에 관련된 알고리즘
+###  문자열 검색에 관련된 알고리즘
 
 
 통상적으로 구현된 `strstr` 함수는 위에서 사용된 코드 처럼 단순하게도 각 문자열을 일일히 검색하는 방식을 취하고 있다. 이는 짧은 문자열을 검색하는데 에는 요긴하게 사용될 수 있지만 문자열의 길이가 길어진다면, 예를 들어 수십장 짜리 문서에서 특정 단어를 찾을 때 에는 적합하지 않은 방식이라 할 수 있다.
@@ -87,7 +87,7 @@ char *strstr(const char *str1, const char *str2) {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile21.uf.tistory.com%2Fimage%2F1733B5304CF0C6110482E0)
 
-위와 같이 `y` 라는 문자열에서 `x` 라는 문자열을 찾는다고 하자. 보이어 무어 알고리즘의 특징은, 문자열의 이동 자체는  왼쪽에서 오른쪽으로 쭉 가면서 찾지만 정작 문자열의 비교는 오른쪽에서 왼쪽으로 한다. 따라서 만일 특정 위치에서 `x` 와 `y` 를 비교하는데, 오른쪽의 `u` 만큼의 부분이 일치되었다고 하자 (위 그림에서 `u` 라고 표시된 부분, 이 부분을 가리켜 '착한 접미부(Good Suffix)' 라고 부른다) 
+위와 같이 `y` 라는 문자열에서 `x` 라는 문자열을 찾는다고 하자. 보이어 무어 알고리즘의 특징은, 문자열의 이동 자체는  왼쪽에서 오른쪽으로 쭉 가면서 찾지만 정작 문자열의 비교는 오른쪽에서 왼쪽으로 한다. 따라서 만일 특정 위치에서 `x` 와 `y` 를 비교하는데, 오른쪽의 `u` 만큼의 부분이 일치되었다고 하자 (위 그림에서 `u` 라고 표시된 부분, 이 부분을 가리켜 '착한 접미부(Good Suffix)' 라고 부른다) 
 
 그리고 왼쪽의 'b' 와 'a' 가 일치하지 않은 부분이라고 하자. 이렇게 된다면 보이어 무어 알고리즘에서는 `x` 를 문자열 `x` 의 또다른 착한 접미부가 나오는 곳과 기존의 착한 접미부가 있던 곳으로 오게 오른쪽으로 쉬프트를 하게 된다. 위 그림에서 보듯이 기존에 `u` 가 위치했던 곳에 `x` 의 또다른 `u` 가 일치되었음을 볼 수 있다. 예를 들어 아래의 그림을 보면 단박에 이해가 된다.
 
@@ -95,7 +95,7 @@ char *strstr(const char *str1, const char *str2) {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F142E0E034CF0CA1F31835B)
 
 
-  위와 같이 또다른 접미부에 도달하게 문자열을 이동시키는 것이다. 그리고는 다시 이동 시킨 문자열의 맨 오른쪽으로 부터 검사를 수행한다. 그런데, 만일 문자열에 또다른 착한 접미부가 없다면 어떻게 될까.
+  위와 같이 또다른 접미부에 도달하게 문자열을 이동시키는 것이다. 그리고는 다시 이동 시킨 문자열의 맨 오른쪽으로 부터 검사를 수행한다. 그런데, 만일 문자열에 또다른 착한 접미부가 없다면 어떻게 될까.
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F206642334CF0CD0C22CED4)
@@ -246,7 +246,7 @@ const char *boyermoore_search(const char *haystack, const char *needle) {
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -281,9 +281,9 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 포함된 정도를 구한다.
+*  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 포함된 정도를 구한다.
 *  [strpbrk](http://itguru.tistory.com/95): 어떠한 문자열들의 문자들을 키로 하여 특정 문자열에서 그 키들을 검색한다.
-*  [strchr](http://itguru.tistory.com/93)  : 특정 문자열에서 특정 문자가 첫번째로 나타나는 곳의 위치를 구한다.
+*  [strchr](http://itguru.tistory.com/93)  : 특정 문자열에서 특정 문자가 첫번째로 나타나는 곳의 위치를 구한다.

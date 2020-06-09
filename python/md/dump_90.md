@@ -27,7 +27,7 @@ C 형식 문자열인 `str1` 의 처음 `num` 개의 문자를 다른 C 형식 �
 이 함수는 처음 문자들 부터 비교를 수행하되, 다른 문자가 나타나거나 `NULL` 에 도달하거나, `num` 개의 문자들을 비교할 때 까지 비교를 수행하게 된다.
 
 
-###  인자
+###  인자
 
 
 `str1`
@@ -44,7 +44,7 @@ C 형식 문자열인 `str1` 의 처음 `num` 개의 문자를 다른 C 형식 �
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -53,11 +53,11 @@ C 형식 문자열인 `str1` 의 처음 `num` 개의 문자를 다른 C 형식 �
 리턴값은 다음과 같이 정해진다.
 
 * 만일 `num` 개의 문자가 모두 일치한다면 0 을 리턴한다.
-* 비교한 `num` 개의 문자 중 최초로 일치하지 않는 문자의 값이 `str1` 이 더 큰 경우 0 보다 큰 값을, str2  가 더 큰 경우 0 보다 작은 값을 리턴한다.
+* 비교한 `num` 개의 문자 중 최초로 일치하지 않는 문자의 값이 `str1` 이 더 큰 경우 0 보다 큰 값을, str2  가 더 큰 경우 0 보다 작은 값을 리턴한다.
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -90,9 +90,9 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F11111F374C54DB6A68C480)
 
 
-###  참고 자료
+###  참고 자료
 
-*  [strcmp](http://itguru.tistory.com/85) :  두 문자열을 비교한다.
-*  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
-*  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 지정한 문자의 마지막 위치를 얻는다.
-*  [strspn](http://itguru.tistory.com/97)  :  문자열의 일치된 정도를 얻는다. (자세한 내용은 레퍼런스 참조)
+*  [strcmp](http://itguru.tistory.com/85) :  두 문자열을 비교한다.
+*  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
+*  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 지정한 문자의 마지막 위치를 얻는다.
+*  [strspn](http://itguru.tistory.com/97)  :  문자열의 일치된 정도를 얻는다. (자세한 내용은 레퍼런스 참조)

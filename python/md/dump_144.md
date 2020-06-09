@@ -68,7 +68,7 @@ publish_date : 2011-08-17
 
 
 
-###  멤버 함수들
+###  멤버 함수들
 
 
 * 생성자
@@ -101,7 +101,7 @@ publish_date : 2011-08-17
 *  [register_callback](http://itguru.tistory.com/159) : 이벤트 콜백 함수를 등록한다.
 * `sync_with_stdio` : `iostream` 과 `cstdio` 스트림과의 동기화를 활성화 하거나 비활성화 한다.
 
-###  멤버 타입들
+###  멤버 타입들
 
 * `event` : 이벤트를 표시하기 위한 타입
 

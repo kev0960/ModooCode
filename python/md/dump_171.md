@@ -24,13 +24,13 @@ iostate rdstate ( ) const;
 
 
 
-###  인자
+###  인자
 
 없다
 
 
 
-###  리턴값
+###  리턴값
 
 
 `ios_base::iostate` 타입의 객체로, 아래 상태 플래그 상수들의 조합(OR 연산) 으로 구성된다.
@@ -48,7 +48,7 @@ iostate rdstate ( ) const;
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -86,7 +86,7 @@ int main() {
 
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 
@@ -99,10 +99,10 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
-*  [ios::eof](http://itguru.tistory.com/167)  :  `eofbit` 이 설정되어 있는지 확인한다.
-*  [ios::clear](http://itguru.tistory.com/180)  :  오류 상태 플래그를 설정한다.
+*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
+*  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.
+*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+*  [ios::eof](http://itguru.tistory.com/167)  :  `eofbit` 이 설정되어 있는지 확인한다.
+*  [ios::clear](http://itguru.tistory.com/180)  :  오류 상태 플래그를 설정한다.

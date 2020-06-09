@@ -24,7 +24,7 @@ bool bad ( ) const;
 
 
 
-###  인자
+###  인자
 
 
 
@@ -33,16 +33,16 @@ bool bad ( ) const;
 
 
 
-###  리턴값
+###  리턴값
 
 
 
 
-  `badbit` 이 설정되어 있을 때 `true` 를 리턴하고 아니면 `false`
+  `badbit` 이 설정되어 있을 때 `true` 를 리턴하고 아니면 `false`
 
 
 
-###  템플릿 멤버 선언
+###  템플릿 멤버 선언
 
 
 
@@ -52,10 +52,10 @@ bool bad ( ) const;
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
-*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
-*  [ios::eof](http://itguru.tistory.com/167)  :  `eofbit` 이 설정되어 있는지 확인한다.
-*  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.
-*  [ios::clear](http://itguru.tistory.com/180)  :  오류 상태 플래그를 설정한다.
+*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 이나 `badbit` 이 설정되어 있는지 확인한다.
+*  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
+*  [ios::eof](http://itguru.tistory.com/167)  :  `eofbit` 이 설정되어 있는지 확인한다.
+*  [ios::rdstate](http://itguru.tistory.com/171)  :  오류 상태 플래그를 얻는다.
+*  [ios::clear](http://itguru.tistory.com/180)  :  오류 상태 플래그를 설정한다.

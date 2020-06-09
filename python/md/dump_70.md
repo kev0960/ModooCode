@@ -28,7 +28,7 @@ int fgetpos(FILE* stream, fpos_t* position);
 
 
 
-###  인자
+###  인자
 
 
 
@@ -43,7 +43,7 @@ int fgetpos(FILE* stream, fpos_t* position);
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -52,7 +52,7 @@ int fgetpos(FILE* stream, fpos_t* position);
 
 
 
-###  실행 예제
+###  실행 예제
 
 ```cpp-formatted
 /*
@@ -105,8 +105,8 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-* [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
-* [ftell](http://itguru.tistory.com/74)  :  스트림 위치 지정자의 현재 위치를 구한다.
-* [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자의 위치를 변경한다.
+* [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
+* [ftell](http://itguru.tistory.com/74)  :  스트림 위치 지정자의 현재 위치를 구한다.
+* [fseek](http://itguru.tistory.com/72)  :  스트림 위치 지정자의 위치를 변경한다.

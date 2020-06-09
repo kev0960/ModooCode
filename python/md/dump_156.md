@@ -23,7 +23,7 @@ void unsetf(fmtflags mask);
 
 
 
-###  인자
+###  인자
 
 
 
@@ -31,11 +31,11 @@ void unsetf(fmtflags mask);
 
 `mask`
 
-  어떤 서식 플래그를 끌지 나타내는 비트마스크. 이 비트마스크는 `fmtflags` 타입의 상수들의 조합(OR 연산) 으로 나타낼 수 있다. 아래 실행 예제를 참고하여라.
+  어떤 서식 플래그를 끌지 나타내는 비트마스크. 이 비트마스크는 `fmtflags` 타입의 상수들의 조합(OR 연산) 으로 나타낼 수 있다. 아래 실행 예제를 참고하여라.
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -44,7 +44,7 @@ void unsetf(fmtflags mask);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -79,9 +79,9 @@ int main() {
 
 
 
-###  연관된 것들
+###  연관된 것들
 
-*  [ios_base::flags](http://itguru.tistory.com/153)  :  서식 플래그를 설정하거나 얻는다.
-*  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 설정한다.
-*  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그의 타입
-* `resetiosflags` :  서식 플래그를 끈다.
+*  [ios_base::flags](http://itguru.tistory.com/153)  :  서식 플래그를 설정하거나 얻는다.
+*  [ios_base::setf](http://itguru.tistory.com/155)  :  특정 서식 플래그를 설정한다.
+*  [ios_base::fmtflags](http://itguru.tistory.com/154)  :  스트림 서식 플래그의 타입
+* `resetiosflags` :  서식 플래그를 끈다.

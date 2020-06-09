@@ -27,14 +27,14 @@ int rand ( void );
 
 
 
-###  인자
+###  인자
 
 
 없음
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -43,7 +43,7 @@ int rand ( void );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -92,6 +92,6 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [srand](http://itguru.tistory.com/140)  :  난순열의 초기값을 설정한다.
+*  [srand](http://itguru.tistory.com/140)  :  난순열의 초기값을 설정한다.

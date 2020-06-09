@@ -28,7 +28,7 @@ C 문자열 형식의 `str1` 과 `str2` 를 비교한다.
 
 
 
-###  인자
+###  인자
 
 `str1`
 
@@ -40,18 +40,18 @@ C 문자열 형식의 `str1` 과 `str2` 를 비교한다.
 
 
 
-###  리턴값
+###  리턴값
 
 
 두 문자열의 관계에 따라 정수값을 리턴한다.
 
 만일 두 문자열이 정확하게 일치한다면 0 을 리턴한다.
 
-일치하지 않을 경우, 일치 하지 않는 첫 번째 문자를 비교해 `str1` 이 `str2` 보다 크다면 0 보다  큰 값을 아니면 0 보다 작은 값을 리턴한다.
+일치하지 않을 경우, 일치 하지 않는 첫 번째 문자를 비교해 `str1` 이 `str2` 보다 크다면 0 보다  큰 값을 아니면 0 보다 작은 값을 리턴한다.
 
 
 
-###  strcmp 함수의 간단한 구현
+###  strcmp 함수의 간단한 구현
 
 
 
@@ -81,7 +81,7 @@ int strcmp(const char *s1, const char *s2) {
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -116,9 +116,9 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F193B1B1E4C24BABDAC1454)
 
-###  참고 자료
+###  참고 자료
 
-*  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부 문자를 비교한다.
-*  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
-*  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자가 마지막으로 나타나는 위치를 찾는다.
-*  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 다른 문자열에서 차지하는 길이를 계산한다.
+*  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부 문자를 비교한다.
+*  [memcmp](http://itguru.tistory.com/84)  :  두 메모리 블록을 비교한다.
+*  [strrchr](http://itguru.tistory.com/96)  :  문자열에서 특정한 문자가 마지막으로 나타나는 위치를 찾는다.
+*  [strspn](http://itguru.tistory.com/97)  :  특정한 문자열이 다른 문자열에서 차지하는 길이를 계산한다.

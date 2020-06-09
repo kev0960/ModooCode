@@ -26,7 +26,7 @@ struct tm * localtime ( const time_t * timer );
 
 
 
-###  현재 시각을 구해오는 가장 간단한 방법
+###  현재 시각을 구해오는 가장 간단한 방법
 
 
 
@@ -42,7 +42,7 @@ timeinfo = localtime(&rawtime);
 
 
 
-###  인자
+###  인자
 
 
 
@@ -53,7 +53,7 @@ timeinfo = localtime(&rawtime);
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -64,7 +64,7 @@ timeinfo = localtime(&rawtime);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -102,10 +102,10 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-* [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
-* [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.
+* [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
+* [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.
 *  [gmtime](http://itguru.tistory.com/119): `time_t` 값을 토대로 `UTC` 시간에 맞추어 `tm` 구조체를 초기화한다.
-*  [mktime](http://itguru.tistory.com/112)  :  `tm` 구조체 내용을 토대로 `time_t` 형 값을 계산한다.
-*  [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.
+*  [mktime](http://itguru.tistory.com/112)  :  `tm` 구조체 내용을 토대로 `time_t` 형 값을 계산한다.
+*  [time](http://itguru.tistory.com/114)  :  현재 시간을 구한다.

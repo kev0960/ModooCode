@@ -12,7 +12,7 @@ publish_date : 2012-11-07
 `<istream>` 에 정의됨
 
 ```info-format
-istream&  ignore ( streamsize n = 1, int delim = EOF );
+istream&  ignore ( streamsize n = 1, int delim = EOF );
 ```
 
 문자를 스트림에서 입력 받고 버린다.
@@ -20,12 +20,12 @@ istream&  ignore ( streamsize n = 1, int delim = EOF );
 
 문자를 스트림에서 입력 받는 작업은 `n` 개의 문자를 읽어들이고 버렸거나, 제한 문자 `delim` 을 만났을 때 중단된다. 참고로, 후자의 경우 제한 문자 `delim` 역시 스트림에서 추출된다.
 
-###  인자
+###  인자
 
 * `n` : 추출할 최대 문자의 개수. 이는 `streamsize` 타입이다.
 * `delim` : 제한 문자
 
-###  리턴값
+###  리턴값
 
 
 `*this` 를 리턴한다.
@@ -42,7 +42,7 @@ istream&  ignore ( streamsize n = 1, int delim = EOF );
 위와 같은 플래그들이 [ios::exceptions](http://itguru.tistory.com/150)함수로 설정되었다면, `ios_base::failure` 가 `throw` 된다.
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -80,7 +80,7 @@ int main() {
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F01016F33509A678D2D4CCE)
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 ```cpp-formatted
@@ -88,7 +88,7 @@ int main() {
 basic_istream& ignore(streamsize n = 1, int_type delim = traits::eof());
 ```
 
-###  참고 자료
+###  참고 자료
 
 *  [istream::peek](http://itguru.tistory.com/194): 그 다음 문자를 추출하지는 않고 읽기만 한다.
 *  [istream::get](http://itguru.tistory.com/191): 스트림에서 서식화 되지 않는 데이터를 얻는다.

@@ -31,7 +31,7 @@ char * ctime ( const time_t * timer );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -42,7 +42,7 @@ char * ctime ( const time_t * timer );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -51,7 +51,7 @@ char * ctime ( const time_t * timer );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -84,10 +84,10 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
-*  [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
-*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 값을 `tm` 구조체로 변환하되, `UTC` 시간으로 한다.
-*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 값을 `tm` 구조체로 변환하되 지역 시간으로 한다.
-*  [time](http://itguru.tistory.com/114)  :  현재 시간을 알아온다.
+*  [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
+*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 값을 `tm` 구조체로 변환하되, `UTC` 시간으로 한다.
+*  [localtime](http://itguru.tistory.com/120)  :  `time_t` 값을 `tm` 구조체로 변환하되 지역 시간으로 한다.
+*  [time](http://itguru.tistory.com/114)  :  현재 시간을 알아온다.

@@ -32,18 +32,18 @@ int fflush ( FILE * stream );
 만일 파일이 [fclose](http://itguru.tistory.com/54)를 호출 하건 프로그램이 종료되건 어떤 연유에서 든지 닫히게 된다면 (close), 이 파일에 해당하는 모든 버퍼들은 자동적으로 비워지게 된다.
 
 
-###  인자
+###  인자
 
 `stream`
 
 작업을 수행할 buffered (스트림의 상태 중 하나로 fully buffered 와 line buffered 를 일컫는다. 자세한 내용은 [stdio.h](http://itguru.tistory.com/34)를 참조) 스트림의 파일 객체를 가리키는 포인터.
 
-###  리턴값
+###  리턴값
 
 `0` 이 리턴되면 성공적으로 작동되었음을 의미한다 0 이 리턴되면 성공적으로 작동되었음을 의미한다.
 오류가 발생하면 `EOF` 가 리턴되고 오류 표시자가 설정된다 ( [feof](http://itguru.tistory.com/51)참조)
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -94,9 +94,9 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [fclose](http://itguru.tistory.com/54)  :  파일을 닫는다.
-*  [fopen](http://itguru.tistory.com/58)   : 파일을 연다.
-*  [setbuf](http://itguru.tistory.com/61)  : 스트림 버퍼를 지정한다.
-*  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼링 모드를 설정한다.
+*  [fclose](http://itguru.tistory.com/54)  :  파일을 닫는다.
+*  [fopen](http://itguru.tistory.com/58)   : 파일을 연다.
+*  [setbuf](http://itguru.tistory.com/61)  : 스트림 버퍼를 지정한다.
+*  [setvbuf](http://itguru.tistory.com/62)  :  스트림 버퍼링 모드를 설정한다.

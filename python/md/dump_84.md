@@ -26,7 +26,7 @@ int memcmp ( const void * ptr1, const void * ptr2, size_t num );
 
 
 
-###  인자
+###  인자
 
 `ptr1`
 
@@ -42,7 +42,7 @@ int memcmp ( const void * ptr1, const void * ptr2, size_t num );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -54,7 +54,7 @@ int memcmp ( const void * ptr1, const void * ptr2, size_t num );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -112,9 +112,9 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-* [memchr](http://itguru.tistory.com/92)  :  메모리 블록에서 특정한 문자를 찾는다.
-*  [memcpy](http://itguru.tistory.com/77):  메모리 블록을 복사한다.
-*  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.
-*  [strncmp](http://itguru.tistory.com/90)  :  두 개의 문자열의 일부분을 비교한다.
+* [memchr](http://itguru.tistory.com/92)  :  메모리 블록에서 특정한 문자를 찾는다.
+*  [memcpy](http://itguru.tistory.com/77):  메모리 블록을 복사한다.
+*  [memset](http://itguru.tistory.com/104)  :  메모리 블록을 채운다.
+*  [strncmp](http://itguru.tistory.com/90)  :  두 개의 문자열의 일부분을 비교한다.

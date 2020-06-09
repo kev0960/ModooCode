@@ -16,9 +16,9 @@ publish_date : 2012-08-05
 
 ```info-format
 iterator insert ( iterator position, const T& x );
-    void insert ( iterator position, size_type n, const T& x );
+    void insert ( iterator position, size_type n, const T& x );
 template <class InputIterator>
-    void insert ( iterator position, InputIterator first, InputIterator last );
+    void insert ( iterator position, InputIterator first, InputIterator last );
 ```
 
 
@@ -27,7 +27,7 @@ template <class InputIterator>
 특정 위치에 원소를 추가함으로써 벡터가 확장된다.
 
 
-이 함수는 벡터의 크기를 효과적으로 증가시키는데, 만일 새로운 벡터의 size 가 현재 벡터의 `capacity` 보다 크다면 재할당을 하게 된다. 재할당 시, 벡터 컨테이너의 이전에 얻은 모든 반복자(iterator), 레퍼런스들은 무효화 된다.
+이 함수는 벡터의 크기를 효과적으로 증가시키는데, 만일 새로운 벡터의 size 가 현재 벡터의 `capacity` 보다 크다면 재할당을 하게 된다. 재할당 시, 벡터 컨테이너의 이전에 얻은 모든 반복자(iterator), 레퍼런스들은 무효화 된다.
 
 
 벡터는 배열의 형태로 저장되기 때문에 벡터 끝이 아닌 임의의 위치에 원소를 삽입하게 되면 그 뒤에 있는 원소들을 뒤로 이동시키게 된다. 따라서 벡터에서 원소들 중간에 새로운 원소들을 삽입하는 일은 그다시 효율적이지 못하다.
@@ -37,14 +37,14 @@ template <class InputIterator>
 
 
 
-###  인자
+###  인자
 
 
 `position`
 
 새로운 원소가 추가될 위치
 
-`iterator` 은 멤버 타입으로 임의 접근 반복자 타입(random access iterator type) 이다.
+`iterator` 은 멤버 타입으로 임의 접근 반복자 타입(random access iterator type) 이다.
 
 `x`
 
@@ -60,7 +60,7 @@ template <class InputIterator>
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -72,7 +72,7 @@ template <class InputIterator>
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -127,7 +127,7 @@ int main() {
 
 
 
-###  시간 복잡도
+###  시간 복잡도
 
 
 
@@ -137,7 +137,7 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 *  [vector::push_back](http://itguru.tistory.com/185): 벡터 끝에 원소를 추가한다.

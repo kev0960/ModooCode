@@ -23,7 +23,7 @@ streamsize precision(streamsize prec);
 
 두 번째 형태의 함수는 정밀도를 새로운 값으로 설정한다.
 
-  부동 소수점 정밀도는 부동 소수점 데이터(실수 데이터)를 출력시 최대 얼마의 정밀도로 나타낼 것인지를 의미한다. 어떠한 방식으로 해석될지는 [floatfield 서식 플래그](http://itguru.tistory.com/154)에 의해 결정되는데 이는 과학적 표기법(scientific) 과 고정 소수점 표기(fixed) 그리고 기본 표기(default notation) 이 있다. 기본 표기는 `scientific` 과 `fixed` 모두 설정 되어 있지 않은 경우를 의미한다.
+  부동 소수점 정밀도는 부동 소수점 데이터(실수 데이터)를 출력시 최대 얼마의 정밀도로 나타낼 것인지를 의미한다. 어떠한 방식으로 해석될지는 [floatfield 서식 플래그](http://itguru.tistory.com/154)에 의해 결정되는데 이는 과학적 표기법(scientific) 과 고정 소수점 표기(fixed) 그리고 기본 표기(default notation) 이 있다. 기본 표기는 `scientific` 과 `fixed` 모두 설정 되어 있지 않은 경우를 의미한다.
 
 기본 표기(default)시, 정밀도는 소수점 앞 뒤에 나타나는 숫자의 최대 개수를 의미한다. 표시되는 숫자가 정밀도 보다 적다면 0 을 붙여서 정밀도 개수로 맞추어 주게 된다.
 
@@ -33,17 +33,17 @@ streamsize precision(streamsize prec);
 
 
 
-###  인자
+###  인자
 
 
 
 `prec`
 
-  새로운 부동 소수점 정밀도 값. 이는 `streamsize` 타입의 정수형이다.
+  새로운 부동 소수점 정밀도 값. 이는 `streamsize` 타입의 정수형이다.
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -52,7 +52,7 @@ streamsize precision(streamsize prec);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -91,11 +91,11 @@ int main() {
 
 
 
-###  연관된 것들
+###  연관된 것들
 
 
 
 
-* setprecision  :  정밀도를 설정한다.
-*  [ios_base::width](http://itguru.tistory.com/152):  필드 너비(field width) 를 설정한다.
-*  [ios_base::setf](http://itguru.tistory.com/155):  특정 서식 플래그를 설정한다.
+* setprecision  :  정밀도를 설정한다.
+*  [ios_base::width](http://itguru.tistory.com/152):  필드 너비(field width) 를 설정한다.
+*  [ios_base::setf](http://itguru.tistory.com/155):  특정 서식 플래그를 설정한다.

@@ -22,7 +22,7 @@ operator void * ( ) const;
 
 
 
-###  인자
+###  인자
 
 
 
@@ -31,7 +31,7 @@ operator void * ( ) const;
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -40,7 +40,7 @@ operator void * ( ) const;
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -75,7 +75,7 @@ int main() {
 
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 
@@ -87,7 +87,7 @@ int main() {
 
 
 
-###  연관된 것들
+###  연관된 것들
 
-*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 나 `badbit` 이 설정되었는지 확인한다.
-*  [ios::operator!](http://itguru.tistory.com/168):  스트림 객체를 확인한다.
+*  [ios::fail](http://itguru.tistory.com/165)  :  `failbit` 나 `badbit` 이 설정되었는지 확인한다.
+*  [ios::operator!](http://itguru.tistory.com/168):  스트림 객체를 확인한다.

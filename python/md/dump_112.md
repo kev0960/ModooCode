@@ -29,7 +29,7 @@ time_t mktime ( struct tm * timeptr );
 
 
 
-###  인자
+###  인자
 
 
 `timeptr`
@@ -38,7 +38,7 @@ time_t mktime ( struct tm * timeptr );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -48,7 +48,7 @@ time_t mktime ( struct tm * timeptr );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -107,10 +107,10 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 *  [asctime](http://itguru.tistory.com/116) : `tm` 구조체를 문자열로 변환한다.
-*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 값을 `UTC` 시간에 따라 `tm` 구조체로 변환한다.
+*  [gmtime](http://itguru.tistory.com/119)  :  `time_t` 값을 `UTC` 시간에 따라 `tm` 구조체로 변환한다.
 *  [localtime](http://itguru.tistory.com/120) : `time_t` 값을 지역 시간에 따라 `tm` 구조체로 변환한다.
-*  [time](http://itguru.tistory.com/114)  :  현재 시각을 알아온다.
+*  [time](http://itguru.tistory.com/114)  :  현재 시각을 알아온다.

@@ -28,7 +28,7 @@ size_t strcspn ( const char * str1, const char * str2 );
 
 
 
-###  인자
+###  인자
 
 
 `str1`
@@ -41,7 +41,7 @@ size_t strcspn ( const char * str1, const char * str2 );
 
 
 
-###  리턴값
+###  리턴값
 
 
 만일 `str2` 의 문자들 중 `str1` 에 일치하는 것이 있다면 첫번째로 일치하는 문자까지 도달하기 위해 읽어들인 문자들의 수 (즉, 그 문자의 위치 `- 1` 이라 보면 된다) 를 리턴한다. 만일 일치하는 것이 없다면 `str1` 의 길이가 리턴된다.
@@ -50,7 +50,7 @@ size_t strcspn ( const char * str1, const char * str2 );
 
 
 
-###  구현 예
+###  구현 예
 
 
 ```cpp-formatted
@@ -135,7 +135,7 @@ map[*ctrl >> 3] |= (1 << (*ctrl & 7));
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -167,16 +167,16 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [strspn](http://itguru.tistory.com/97)  :  문자열에 다른 문자열에 포함된 정도를 구한다.
+*  [strspn](http://itguru.tistory.com/97)  :  문자열에 다른 문자열에 포함된 정도를 구한다.
 
 
 
-*  [strstr](http://itguru.tistory.com/101)   :  문자열에 특정한 문자열에 포함된 위치를 구한다.
+*  [strstr](http://itguru.tistory.com/101)   :  문자열에 특정한 문자열에 포함된 위치를 구한다.
 
-*  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부분일 비교한다.
+*  [strncmp](http://itguru.tistory.com/90)  :  두 문자열의 일부분일 비교한다.

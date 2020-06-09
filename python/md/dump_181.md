@@ -26,7 +26,7 @@ char fill ( char fillch );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -38,7 +38,7 @@ char fill ( char fillch );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -48,7 +48,7 @@ char fill ( char fillch );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -92,7 +92,7 @@ int main() {
 
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 
@@ -109,7 +109,7 @@ char_type fill(char_type fillch);
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 * `setfill` : 채우기 문자를 설정한다. (조작자)

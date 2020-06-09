@@ -35,7 +35,7 @@ istream& get ( streambuf& sb, char delim );
 
 `istream& get (char* s, streamsize n );`
 
-스트림에서 문자들을 가져온 뒤, `s` 에 C 형식 문자열로 저장한다. 문자는제한 문자 '\n' 이 나올 때 까지나, `n - 1` 개의 문자를 받을 때 까지 입력받게 된다. 또한 입력 작업 시 오류가 발생할 경우 또한 중단되게 된다. 또한 이 함수는 제한 문자는 스트림에서 빼내지 않기 때문에 (즉, 다음 번 입력 시 가장 첫번째로 입력 받는 것이 그 제한 문자일 것이다) 만일 제한 문자를 스트림에서 빼내 버리기 위해서는 [getline](http://itguru.tistory.com/149)과 같은 함수를 이용해야만 한다. `s` 맨 마지막에는 자동으로 널 문자(Null terminating character)가 붙여지게 된다.
+스트림에서 문자들을 가져온 뒤, `s` 에 C 형식 문자열로 저장한다. 문자는제한 문자 '\n' 이 나올 때 까지나, `n - 1` 개의 문자를 받을 때 까지 입력받게 된다. 또한 입력 작업 시 오류가 발생할 경우 또한 중단되게 된다. 또한 이 함수는 제한 문자는 스트림에서 빼내지 않기 때문에 (즉, 다음 번 입력 시 가장 첫번째로 입력 받는 것이 그 제한 문자일 것이다) 만일 제한 문자를 스트림에서 빼내 버리기 위해서는 [getline](http://itguru.tistory.com/149)과 같은 함수를 이용해야만 한다. `s` 맨 마지막에는 자동으로 널 문자(Null terminating character)가 붙여지게 된다.
 
 
 `istream& get (char* s, streamsize n, char delim );`
@@ -58,7 +58,7 @@ istream& get ( streambuf& sb, char delim );
 
 
 
-###  인자
+###  인자
 
 
 `c`
@@ -82,7 +82,7 @@ istream& get ( streambuf& sb, char delim );
 출력 스트림 버퍼 (streambuf 의 객체 혹은 이 스트림을 상속하고 있는 클래스들의 객체)
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -100,7 +100,7 @@ istream& get ( streambuf& sb, char delim );
 위와 같은 플래그들이 [ios::exceptions](http://itguru.tistory.com/150) 함수로 설정되었다면, `ios_base::failure` 가 `throw` 된다.
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -155,7 +155,7 @@ int main() {
 
 
 
-###  템플릿 멤버 정의
+###  템플릿 멤버 정의
 
 
 
@@ -172,7 +172,7 @@ basic_istream& get(basic_streambuf<char_type, traits>& sb);
 basic_istream& get(basic_streambuf<char_type, traits>& sb, char_type delim);
 ```
 
-###  참고 자료
+###  참고 자료
 
 
 *  [istream::getline](http://itguru.tistory.com/149): 스트림에서 한 줄을 입력받는다.

@@ -80,7 +80,7 @@ if (compare(str1, str2))
 
 
 
-###  파일 나누기
+###  파일 나누기
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190193344C4053CBBD99BB)
 먼저 위의 그림과 같이 오른쪽 파일 목록이 나와 있는 부분에서 '소스 파일' 폴더를 클릭한 후 마우스 오른쪽 클릭을 한 후, '새 항목' 을 위와 같이 누릅니다.
@@ -187,7 +187,7 @@ char compare(char *str1, char *str2);
 
 
 
-###  헤더 파일
+###  헤더 파일
 
 ![""](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F160941104C4069157ABB63)
 먼저 기존에 `str.c` 파일을 추가했을 때 했던 것 처럼 하되 이번에는 헤더파일 폴더에 파일을 추가해보도록 합시다.
@@ -318,12 +318,12 @@ _Check_return_opt_ _CRTIMP int __cdecl printf(
 /* something.c */
 int A()
 {
-    B();
-    return 0;
+    B();
+    return 0;
 }
 int B()
 {
-    return 1;
+    return 1;
 }
 ```
 
@@ -335,12 +335,12 @@ int B()
 int B();
 int A()
 {
-    B();
-    return 0;
+    B();
+    return 0;
 }
 int B()
 {
-    return 1;
+    return 1;
 }
 ```
 
@@ -352,12 +352,12 @@ int B()
 #include "something.h"
 int A()
 {
-    B();
-    return 0;
+    B();
+    return 0;
 }
 int B()
 {
-    return 1;
+    return 1;
 }
 ```
 

@@ -27,7 +27,7 @@ clock_t clock ( void );
 
 
 
-###  인자
+###  인자
 
 
 없다
@@ -35,7 +35,7 @@ clock_t clock ( void );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -47,7 +47,7 @@ clock_t clock ( void );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -92,7 +92,7 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [time](http://itguru.tistory.com/114)  :  현재 시각을 알아온다.
-*  [difftime](http://itguru.tistory.com/111)  :  두 개 시각의 차이를 구한다.
+*  [time](http://itguru.tistory.com/114)  :  현재 시각을 알아온다.
+*  [difftime](http://itguru.tistory.com/111)  :  두 개 시각의 차이를 구한다.

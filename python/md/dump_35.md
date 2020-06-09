@@ -28,7 +28,7 @@ int printf ( const char * format, ... );
 
 
 
-###  인자 (parameter)
+###  인자 (parameter)
 
 
 형식 문자열(format)형식 문자열에는 `stdout` 에 출력할 문자열이 들어있다. 
@@ -186,17 +186,17 @@ int main() {
 
 
 
-###  리턴값
+###  리턴값
 
 
 
 
 출력에 성공하면 출력된 전체 문자의 개수가 리턴된다. 출력에 실패하면 음수가 리턴된다.
 
-*  `fprintf` :  특정한 형식에 맞추어 데이터를 스트림에 출력한다.
+*  `fprintf` :  특정한 형식에 맞추어 데이터를 스트림에 출력한다.
 
-*  [fscanf](http://itguru.tistory.com/65)  :  특정한 형식에 맞추어 스트림에서 데이터를 읽어온다.
+*  [fscanf](http://itguru.tistory.com/65)  :  특정한 형식에 맞추어 스트림에서 데이터를 읽어온다.
 
-*  [fwrite](http://itguru.tistory.com/69)  :  스트림에 데이터 블록을 쓴다.
+*  [fwrite](http://itguru.tistory.com/69)  :  스트림에 데이터 블록을 쓴다.
 
-*  [fputs](http://itguru.tistory.com/40)  :  스트림에 문자열을 쓴다.
+*  [fputs](http://itguru.tistory.com/40)  :  스트림에 문자열을 쓴다.

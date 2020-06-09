@@ -25,7 +25,7 @@ size_t strftime ( char * ptr, size_t maxsize, const char * format, const struct 
 
 
 
-###  인자
+###  인자
 
 
 
@@ -74,7 +74,7 @@ C 형식 문자열로 특정한 형식 지정자(format specifier) 들을 포함
 
 
 
-###  리턴값
+###  리턴값
 
 
 만일 만들어지는 문자열의 길이가 종료 널 문자를 포함하여 `maxsize` 보다 작다면 `ptr` 에 복사된 문자의 수가 리턴되고 (이 때에는 종료 널 문자를 포함하지 않는다), 보다 크다면 0 이 리턴된다. 이 때 `ptr` 에 복사되는 문자열의 내용은 알 수 없다.
@@ -82,14 +82,14 @@ C 형식 문자열로 특정한 형식 지정자(format specifier) 들을 포함
 
 
 
-###  이식성
+###  이식성
 
 
 C++ 에서의 `strftime` 함수는 1990 년의 `ISO-C` 표준에서와 동일하다. C 컴파일러는 위에 나타나 있는 형식 지정자 말고도 부가적인 형식 지정자를 더 가질 수 있는데 위의 C 표준에서는 나타나 있지 않다.
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -126,7 +126,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F111039584D246E6A33FF6E)
 
-###  참고 자료
+###  참고 자료
 
-* [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
-* [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.
+* [asctime](http://itguru.tistory.com/116)  :  `tm` 구조체를 문자열로 변환한다.
+* [ctime](http://itguru.tistory.com/118)  :  `time_t` 값을 토대로 `asctime` 함수와 동일한 작업을 한다.

@@ -23,7 +23,7 @@ int getc ( FILE * stream );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -34,7 +34,7 @@ int getc ( FILE * stream );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -44,7 +44,7 @@ int getc ( FILE * stream );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 ```cpp-formatted
@@ -114,21 +114,21 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
 
 
 
 
-*  [fgetc](http://itguru.tistory.com/37)  : 스트림에서 한 문자를 가져온다.
+*  [fgetc](http://itguru.tistory.com/37)  : 스트림에서 한 문자를 가져온다.
 
 
 
-*  [fputc](http://itguru.tistory.com/39)  : 스트림에 한 문자를 쓴다.
+*  [fputc](http://itguru.tistory.com/39)  : 스트림에 한 문자를 쓴다.
 
 
 
-*  [fread](http://itguru.tistory.com/68)  : 스트림에서 데이터 블록을 읽어온다.
+*  [fread](http://itguru.tistory.com/68)  : 스트림에서 데이터 블록을 읽어온다.
 
 
 

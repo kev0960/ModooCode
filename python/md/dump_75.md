@@ -33,7 +33,7 @@ fseek(stream, 0, SEEK_SET);
 
 
 
-###  인자
+###  인자
 
 
 
@@ -44,7 +44,7 @@ fseek(stream, 0, SEEK_SET);
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -53,7 +53,7 @@ fseek(stream, 0, SEEK_SET);
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -93,8 +93,8 @@ int main() {
 
 
 
-###  참고 자료
+###  참고 자료
 
-*  [fseek](http://itguru.tistory.com/72):  스트림 위치 지정자를 설정한다.
-*  [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
-*  [fflush](http://itguru.tistory.com/57)  :  스트림을 비운다.
+*  [fseek](http://itguru.tistory.com/72):  스트림 위치 지정자를 설정한다.
+*  [fsetpos](http://itguru.tistory.com/73)  :  스트림 위치 지정자를 설정한다.
+*  [fflush](http://itguru.tistory.com/57)  :  스트림을 비운다.

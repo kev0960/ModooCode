@@ -22,7 +22,7 @@ char * strcat ( char * destination, const char * source );
 
 
 
-###  인자
+###  인자
 
 
 
@@ -37,7 +37,7 @@ char * strcat ( char * destination, const char * source );
 
 
 
-###  리턴값
+###  리턴값
 
 
 
@@ -46,7 +46,7 @@ char * strcat ( char * destination, const char * source );
 
 
 
-###  실행 예제
+###  실행 예제
 
 
 
@@ -82,7 +82,7 @@ int main() {
 
 
 
-###  함수 구현 예
+###  함수 구현 예
 
 
 
@@ -103,8 +103,8 @@ char *strcat(char *dst, const char *src) {
 
 
 
-###  참고 자료
+###  참고 자료
 
 *  [strcpy](http://itguru.tistory.com/79): 문자열을 복사한다.
-*  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.
+*  [memcpy](http://itguru.tistory.com/77)  :  메모리 블록을 복사한다.
 *  [strncat](http://itguru.tistory.com/82): 문자열에서 일부 문자들만 덧붙인다.
