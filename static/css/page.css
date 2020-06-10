@@ -85,6 +85,15 @@ pre.info-term {
     border-radius: 8px;
 }
 
+pre.info-verb {
+    font-family: 'Source Code Pro', monospace;
+    color: whitesmoke;
+    background-color: #2d2a2e;
+    border: 1px solid #2d2a2e;
+    font-size: 15px;
+    border-radius: 8px;
+}
+
 .compiler-warning-title {
     background-color: #f57a6e;
     margin-bottom: 0px;

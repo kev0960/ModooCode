@@ -172,6 +172,11 @@ string ParserEnvironment::GetUrlOfReference(string* ref_name) {
   }
   auto delim = ref_name->find("$");
 
+  // Makefile variable $(VAR) is mistreated.
+  if (delim == 0) {
+    return "";
+  }
+
   string specifier;
   if (delim != string::npos) {
     specifier.assign(ref_name->begin() + delim + 1, ref_name->end());

@@ -30,6 +30,7 @@ class BoxContent : public Content {
     INFO_FORMAT,
     INFO_TEXT,
     INFO_TERMINAL,
+    INFO_VERB,
     EXEC,
     LEC_SUMMARY,
     HTML_ONLY,

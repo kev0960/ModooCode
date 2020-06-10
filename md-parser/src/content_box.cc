@@ -210,6 +210,8 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::INFO_TEXT;
   } else if (box_name == "info-term") {
     box_type_ = BOX_CONTENT_TYPES::INFO_TERMINAL;
+  } else if (box_name == "info-verb") {
+    box_type_ = BOX_CONTENT_TYPES::INFO_VERB;
   } else if (box_name == "exec") {
     box_type_ = BOX_CONTENT_TYPES::EXEC;
   } else if (box_name == "warning") {
@@ -261,6 +263,7 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
     case INFO:
     case EXEC:
     case INFO_TERMINAL:
+    case INFO_VERB:
       escaped_html = EscapeHtmlString(content_);
       break;
     default:
@@ -286,6 +289,8 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       Content::Preprocess(parser_env);
       return StrCat("<div class='info'>", Content::OutputHtml(parser_env),
                     "</div>");
+    case INFO_VERB:
+      return StrCat(R"(<pre class='info-verb'>)", escaped_html, "</pre>");
     case INFO_TERMINAL:
       return StrCat(R"(<pre class='info-term'>)", escaped_html, "</pre>");
     case EXEC:
@@ -311,7 +316,6 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
           "class='lec-summary-content'>",
           output_html, "</div></div>");
     }
-
     case CPP_CODE:
     case CPP_FORMATTED_CODE:
     case INFO_FORMAT:
