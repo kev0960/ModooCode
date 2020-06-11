@@ -1529,8 +1529,8 @@ class Party {
 
   // 파티원 모두가 15 레벨 이상이여야지 던전 입장 가능
   bool can_join_dungeon() {
-    return all_of(users.begin(), users.end(),
-                  [](User& user) { return user.level >= 15; });
+    return std::all_of(users.begin(), users.end(),
+                       [](User& user) { return user.level >= 15; });
   }
 
   // 파티원 중 한명 이라도 19렙 이상이면 특별 아이템 사용 가능
