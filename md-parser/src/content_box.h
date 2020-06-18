@@ -34,7 +34,8 @@ class BoxContent : public Content {
     EXEC,
     LEC_SUMMARY,
     HTML_ONLY,
-    LATEX_ONLY
+    LATEX_ONLY,
+    EMBED
   };
 
   BOX_CONTENT_TYPES box_type_;

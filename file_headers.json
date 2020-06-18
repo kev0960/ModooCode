@@ -1690,6 +1690,13 @@
 	"title" : "씹어먹는 C++ - <19 - 1. Make 사용 가이드 (Makefile 만들기)>"
 }
 ,
+	"312" : {
+	"cat_title" : "씹어먹는 C++ 강좌 PDF - 파일",
+	"path" : "/C++",
+	"publish_date" : "2020-06-17",
+	"title" : "씹어먹는 C++ 강좌 PDF - 파일"
+}
+,
 	"32" : {
 	"cat_title" : "15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해",
 	"next_page" : "33",

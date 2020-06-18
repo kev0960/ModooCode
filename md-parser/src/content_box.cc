@@ -316,6 +316,8 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
           "class='lec-summary-content'>",
           output_html, "</div></div>");
     }
+    case EMBED:
+      return content_;
     case CPP_CODE:
     case CPP_FORMATTED_CODE:
     case INFO_FORMAT:
@@ -384,6 +386,8 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       return CreateTColorBox(SplitNewlineToItemize(output_tex), "blue",
                              "뭘 배웠지?");
     }
+    case EMBED:
+      return "";
     case HTML_ONLY:
       return "";
     case LATEX_ONLY: {
