@@ -143,7 +143,8 @@ void BookManager::GenerateMainTex() {
                                        {"fancyhdr"},
                                        {"tocloft"},
                                        {"tabularx"},
-                                       {"fapapersize"},{"pdfpages"}};
+                                       {"fapapersize"},
+                                       {"pdfpages"}};
 
   tex += AddBunchOfPackages(package_list);
 
@@ -242,7 +243,7 @@ void BookManager::GenerateMainTex() {
 
   // Geometry
   tex += R"(
-\usefapapersize{*,*,30mm,*,35mm,20mm}
+\usefapapersize{*,*,25mm,*,35mm,20mm}
 )";
 
   // Chapter Style
@@ -385,7 +386,10 @@ void BookManager::GenerateMainTex() {
     if (title_itr != file_info_->at(file_name).end()) {
       string title = title_itr->second;
       title = EscapeLatexString(title);
-      tex += StrCat("\n\\newpage\\section*{", title, "}\n");
+      if (chapter_itr == file_info_->at(file_name).end()) {
+        tex += "\n\\newpage";
+      }
+      tex += StrCat("\n\\section*{", title, "}\n");
       tex += StrCat("\\addcontentsline{toc}{section}{", title, "}\n");
     }
     tex += StrCat("\\input{", file_name, "}\n");
