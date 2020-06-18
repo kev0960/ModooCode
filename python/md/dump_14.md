@@ -44,7 +44,7 @@ sudo su
 
 ![sudo su 를 입력합니다. ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile2.uf.tistory.com%2Fimage%2F1761FA254A43A7F2BEA041)
 
-**(사용자 이름)@(컴퓨터이름)** 에서 **root@(컴퓨터이름)** 으로 바뀐 것을 볼 수 있습니다. 이제, 여러분은 아래의 명령어를 입력해서 `gcc` 를 설치하시면 됩니다. \sidenote{아니면 그냥 위 과정을 합쳐서 sudo apt-get install gcc 해도 됩니다.}
+**(사용자 이름)@(컴퓨터이름)** 에서 **root@(컴퓨터이름)** 으로 바뀐 것을 볼 수 있습니다. 이제, 여러분은 아래의 명령어를 입력해서 `gcc` 를 설치하시면 됩니다.\sidenote{아니면 그냥 위 과정을 합쳐서 sudo apt-get install gcc 해도 됩니다.}
 
 ```info-term
 apt-get install gcc

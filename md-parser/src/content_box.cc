@@ -362,6 +362,14 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       Content::Preprocess(parser_env);
       return CreateTColorBox(Content::OutputLatex(parser_env), "green");
     }
+    case INFO_TERMINAL: {
+      Content::Preprocess(parser_env);
+      return StrCat("\\begin{minted}{bash}\n", content_, "\n\\end{minted}\n");
+    }
+    case INFO_VERB: {
+      return StrCat("\\begin{infoverb}\n\\begin{Verbatim}[breaklines=true]\n",
+                    content_, "\n\\end{Verbatim}\n\\end{infoverb}\n");
+    }
     case EXEC:
       return StrCat("\\begin{mdprogout}\n\\begin{Verbatim}[breaklines=true]\n",
                     content_, "\n\\end{Verbatim}\n\\end{mdprogout}\n");

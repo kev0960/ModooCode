@@ -209,14 +209,11 @@ struct check_div<N, divide<N, two>::result> {
 struct check_div<N, divide<N, two>::result> {
 ```
 
-
-
 입니다. 먼저 컴파일러 입장에서 저 `::result` 를 어떻게 해석할지에 대해 생각해봅시다. 물론 우리는 `add<d, one>::result` 가 언제나 `INT<>` 타입 이라는 사실을 알고 있습니다. 왜냐하면 `typename` 인자로 들어오는 `N` 과 `d` 가 항상 `INT` 타입이기 때문에 저 `result` 를 항상 '타입'이네 라고 생각할 것입니다.
-
 
 그런데, 컴파일러에 구조상 어떠한 식별자(변수 이름이든 함수 이름이든 코드 상의 이름들 `-` 위 코드의 경우 `add, check_div,, result, one` 등등 ...) 를 보았을 때 이 식별자가 '값' 인지 '타입' 인지 결정을 해야 합니다. 왜냐하면 예를들어서
 
-```info-format
+```cpp
 template <typename T>
 int func() {
   T::t* p;
@@ -231,44 +228,32 @@ class B {
 };
 ```
 
-
-
 위와 같은 템플릿 함수에서 저 문장을 해석할 때 만약에 클래스 `A` 에 대해서, `func` 함수를 특수화 한다면, `t` 가 어떠한 `int` 값이 되어서
 
-```info-format
+```cpp
 T::t * p;
 ```
 
-
-
 위 문장은 단순히 클래스 `A` 의 `t` 와 `p` 를 곱하는 식으로 해석이 됩니다.
-
 
 반면에 `func` 함수가 클래스 `B` 에 대해서 특수화 된다면,
 
-```info-format
+```cpp
 T::t* p;
 ```
 
-
-
 이 문장은 `int` 형 포인터 `p` 를 선언하는 꼴이 되겠지요. 따라서 컴파일러가 이 두 상황을 명확히 구분하기 위해 저 `T::t` 가 타입인지 아니면 값인지 명확하게 알려줘야만 합니다.
-
 
 우리가 쓴 코드도 마찬가지로 컴파일러가 `result` 가 항상 '타입' 인지 아니면 '값' 인지 알 수 없습니다. 예컨대 만약에
 
-
-```info-format
+```cpp
 template <>
 struct divide <int a, int b> {
   const static int result = a + b;
 };
 ```
 
-
-
 이런 템플릿이 정의가 되어있다면, 만약에 `N` 과 `two` 가 그냥 `int` 값이였다면 저 `result` 는 `static const int` 타입의 '값' 이 됩니다.이렇게 템플릿 인자에 따라서 어떠한 타입이 달라질 수 있는 것을 **의존 타입(dependent type)** 이라고 부릅니다. 위 경우 저 `result` 는 `N` 에 의존하기 때문에 의존 타입이 되겠지요.
-
 
 따라서 컴파일러가 저 문장을 성공적으로 해석하기 위해서는 우리가 반드시 "야 저 `result` 는 무조건 타입이야" 라고 알려주어야만 합니다. 이를 위해서는 간단히 아래 코드 처럼
 

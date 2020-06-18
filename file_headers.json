@@ -880,7 +880,6 @@
 	"next_page" : "224",
 	"prev_page" : "222",
 	"publish_date" : "2017-07-04",
-	"tex_title" : "C++ 표준 컨테이너",
 	"title" : "씹어먹는 C++ - <10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)>"
 }
 ,
@@ -1681,10 +1680,10 @@
 ,
 	"311" : {
 	"cat_title" : "Make 사용 가이드 (Makefile 만들기)",
+	"chapter" : "부록",
 	"path" : "/C++",
 	"prev_page" : "310",
 	"publish_date" : "2020-06-10",
-	"tex_title" : "Make 사용 가이드 (Makefile 만들기)",
 	"title" : "씹어먹는 C++ - <19 - 1. Make 사용 가이드 (Makefile 만들기)>"
 }
 ,

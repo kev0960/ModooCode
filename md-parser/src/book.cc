@@ -107,7 +107,9 @@ BookManager::BookManager(
 }
 
 void BookManager::GenerateMainTex() {
-  string tex = "\\documentclass[letterpaper, 11pt, oneside, chapter, nanum]{oblivoir}\n";
+  string tex =
+      "\\documentclass[a4paper, 11pt, oneside, chapter, nanum, "
+      "footnote]{oblivoir}\n";
   std::vector<Package> package_list = {{"lmodern"},
                                        {"minted"},
                                        {"ulem", "normalem"},
@@ -140,7 +142,8 @@ void BookManager::GenerateMainTex() {
                                        {"hyphenat", "htt"},
                                        {"fancyhdr"},
                                        {"tocloft"},
-                                       {"tabularx"}};
+                                       {"tabularx"},
+                                       {"fapapersize"},{"pdfpages"}};
 
   tex += AddBunchOfPackages(package_list);
 
@@ -150,6 +153,7 @@ void BookManager::GenerateMainTex() {
 %\setkomainfont(Nanum Myeongjo)
 %\setsansfont{Nanum Gothic}
 \setmonofont{Source Code Pro}
+\setsansfont{Myriad Pro}
 )";
 
   // Add note for generating pygmentize.sty
@@ -177,6 +181,16 @@ void BookManager::GenerateMainTex() {
 ]{mdprogout}
 
 \newmdenv[%
+  backgroundcolor=black!5,
+  roundcorner=5pt,
+  skipabove=\topskip,
+  innertopmargin=\topskip,
+  splittopskip=\topskip,
+  nobreak=false,
+  usetwoside=false
+]{infoverb}
+
+\newmdenv[%
   backgroundcolor=red!5!,
   frametitlebackgroundcolor=red!75!white,
   frametitlefont={\normalfont\sffamily\color{white}},
@@ -195,7 +209,7 @@ void BookManager::GenerateMainTex() {
 
   tex += R"(
 \setminted[cpp]{
-  %frame=lines,
+  frame=single,
   framesep=1.5mm,
   baselinestretch=1.2,
   tabsize=2,
@@ -228,13 +242,7 @@ void BookManager::GenerateMainTex() {
 
   // Geometry
   tex += R"(
-\setlrmarginsandblock{1.2cm}{50mm}{*}
-\setulmarginsandblock{20mm}{15mm}{*}
-
-\sideparmargin{outer}
-\setmarginnotes{5mm}{40mm}{10mm}
-
-\checkandfixthelayout
+\usefapapersize{*,*,30mm,*,35mm,20mm}
 )";
 
   // Chapter Style
@@ -350,6 +358,9 @@ void BookManager::GenerateMainTex() {
   // Introduction page.
   tex += AddFancyComment("Introduction Page");
   tex += R"(
+\thispagestyle{empty}
+\includepdf{cover.pdf}
+
 \thispagestyle{empty}
 ~\vfill
 \noindent Copyright \textcopyright\  2019-2020 이재범

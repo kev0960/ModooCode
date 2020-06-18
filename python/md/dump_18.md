@@ -476,7 +476,7 @@ int main() {
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F12553F0C4ABA2FE43E64ED)
 
-왜 오류가 나올까? 라고 고민한다면 [3강](http://itguru.tistory.com/entry/%EC%94%B9%EC%96%B4%EB%A8%B9%EB%8A%94-C-%EC%96%B8%EC%96%B4-3-%EB%B3%80%EC%88%98%EA%B0%80-%EB%AD%90%EC%A7%80) 맨 아래 부분을 다시 보시길 바랍니다. \sidenote{2018년 현재, 더이상 변수를 최상단에 선언하지 않아도 됩니다. 아마 오류가 발생하지 않을 것입니다.}
+왜 오류가 나올까? 라고 고민한다면 [3강](http://itguru.tistory.com/entry/%EC%94%B9%EC%96%B4%EB%A8%B9%EB%8A%94-C-%EC%96%B8%EC%96%B4-3-%EB%B3%80%EC%88%98%EA%B0%80-%EB%AD%90%EC%A7%80) 맨 아래 부분을 다시 보시길 바랍니다.\sidenote{2018년 현재, 더이상 변수를 최상단에 선언하지 않아도 됩니다. 아마 오류가 발생하지 않을 것입니다.}
 
 왜냐하면 변수는 무조건 최상단에 선언되야 되기 때문입니다! 위와 같이 배열 `arr` 과 변수 `i, ave` 가 변수 선언문이 아닌 다른 문장 다음에 나타났으므로 C 컴파일러는 무조건 오류로 처리하게 됩니다. (물론 C++ 에서는 가능합니다)
 

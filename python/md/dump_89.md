@@ -386,7 +386,7 @@ int main(int argc, char **argv) {
 
 우왕. 잘 실행되는 군요. 일단 신기한 점은 이 프로그램이 받은 인자가 더이상 그 프로그램의 경로가 들어가지 않고 `teach.exe` 가 들어갔습니다. 맞습니다. 우리가 `teach.exe` 를 침으로써 실행한 순간 이 프로그램의 첫번째 인자는 `teach.exe` 가 됩니다.
 
-만일 우리가 이 프로그램을 `"C:\\Users\\Lee\\Documents\\Visual Studio 2008\\Projects\\teach\\Debug\\teach.exe"` 라고 쳐서 실행하였다면 인자가 `C:\\Users\\Lee\\Documents\\Visual Studio 2008\\Projects\\teach\\Debug\\teach.exe` 가 되겠지요.  \sidenote{사실 이 부분에 대해서는 딱히 정해진 것은 없습니다. 따라서 argv 의 첫 번째 인자는 보통 무시하게 됩니다.}
+만일 우리가 이 프로그램을 `"C:\\Users\\Lee\\Documents\\Visual Studio 2008\\Projects\\teach\\Debug\\teach.exe"` 라고 쳐서 실행하였다면 인자가 `C:\\Users\\Lee\\Documents\\Visual Studio 2008\\Projects\\teach\\Debug\\teach.exe` 가 되겠지요. \sidenote{사실 이 부분에 대해서는 딱히 정해진 것은 없습니다. 따라서 argv 의 첫 번째 인자는 보통 무시하게 됩니다.}
 
 그렇다면 다른 인자들을 넣어봅시다. 이는 간단합니다. 프로그램 이름 뒤에 다른 것들을 써주면 되죠. 예를 들어
 
