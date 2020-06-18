@@ -88,9 +88,10 @@ file_info_db
 /python/blog/
 /views/old/
 /views/new/
-/book
-!/book/cpp/*.pdf
-!/book/c/*.pdf
+book/cpp/*
+book/c/*
+!book/cpp/*.pdf
+!book/c/*.pdf
 
 auth.json
 
