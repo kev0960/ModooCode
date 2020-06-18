@@ -328,7 +328,6 @@ module.exports = class Server {
   }
 
   generateInfoToPassEJS(content_url, page_id, category_id, user, is_mobile) {
-    console.log('is_mobile : ', is_mobile);
     let canonical_url = 'https://modoocode.com/' + page_id;
     return {
       content_url,
@@ -445,8 +444,6 @@ module.exports = class Server {
           res.send(html);
         }
       }.bind(this);
-      const md = new MobileDetect(req.headers['user-agent']);
-      console.log(md.mobile())
 
       if (page_id <= 228) {
         if (page_id == 15) {
