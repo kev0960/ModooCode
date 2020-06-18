@@ -7,6 +7,8 @@ const util = require('./util.js');
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
+const MobileDetect = require('mobile-detect');
+
 const facebook_strategy = require('passport-facebook').Strategy;
 const google_strategy = require('passport-google-oauth2').Strategy;
 const DISCOURSE_SSO = require('discourse-sso');
@@ -20,6 +22,11 @@ const goog_key = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 const HASH_ROUNDS = parseInt(process.env.HASH_ROUNDS);
 const discourse_sso = new DISCOURSE_SSO(process.env.DISCOURSE_SSO_SECRET);
 const IS_DEV = (process.env.SERVER_ENV == 'DEV');
+
+function CheckMobile(req) {
+  const md = new MobileDetect(req.headers['user-agent']);
+  return md.mobile();
+}
 
 module.exports = class Server {
   constructor(app, static_data, client, comment_manager, pageview_manager) {
@@ -320,7 +327,8 @@ module.exports = class Server {
     }
   }
 
-  generateInfoToPassEJS(content_url, page_id, category_id, user) {
+  generateInfoToPassEJS(content_url, page_id, category_id, user, is_mobile) {
+    console.log('is_mobile : ', is_mobile);
     let canonical_url = 'https://modoocode.com/' + page_id;
     return {
       content_url,
@@ -332,6 +340,7 @@ module.exports = class Server {
       num_comment: this.comment_manager.getNumCommentAt(page_id),
       view_cnt: this.pageview_manager.getPageViewCnt(page_id),
       header_category: this.header_category.BuildPageHeader(),
+      is_mobile,
       user
     };
   }
@@ -373,26 +382,28 @@ module.exports = class Server {
           res.send(html);
         }
       }.bind(this);
-
       if (page_id <= 228) {
         if (page_id == 15) {
           this.pageview_manager.addPageViewCnt('231');
           return res.render(
               'new_page.ejs',
-              this.generateInfoToPassEJS('./new/231.html', 231, page_id, user));
+              this.generateInfoToPassEJS(
+                  './new/231.html', 231, page_id, user, CheckMobile(req)));
         }
         this.pageview_manager.addPageViewCnt(page_id);
         res.render(
             'new_page.ejs',
             this.generateInfoToPassEJS(
-                './old/blog_' + page_id + '.html', page_id, page_id, user),
+                './old/blog_' + page_id + '.html', page_id, page_id, user,
+                CheckMobile(req)),
             fallbackToIndexOnFailOrPass);
       } else {
         this.pageview_manager.addPageViewCnt(page_id);
         res.render(
             'new_page.ejs',
             this.generateInfoToPassEJS(
-                './new/' + page_id + '.html', page_id, page_id, user),
+                './new/' + page_id + '.html', page_id, page_id, user,
+                CheckMobile(req)),
             fallbackToIndexOnFailOrPass);
       }
     }.bind(this));
@@ -434,26 +445,31 @@ module.exports = class Server {
           res.send(html);
         }
       }.bind(this);
+      const md = new MobileDetect(req.headers['user-agent']);
+      console.log(md.mobile())
 
       if (page_id <= 228) {
         if (page_id == 15) {
           this.pageview_manager.addPageViewCnt('231');
           return res.render(
               'page.ejs',
-              this.generateInfoToPassEJS('./new/231.html', 231, page_id, user));
+              this.generateInfoToPassEJS(
+                  './new/231.html', 231, page_id, user, CheckMobile(req)));
         }
         this.pageview_manager.addPageViewCnt(page_id);
         res.render(
             'page.ejs',
             this.generateInfoToPassEJS(
-                './old/blog_' + page_id + '.html', page_id, page_id, user),
+                './old/blog_' + page_id + '.html', page_id, page_id, user,
+                CheckMobile(req)),
             fallbackToIndexOnFailOrPass);
       } else {
         this.pageview_manager.addPageViewCnt(page_id);
         res.render(
             'page.ejs',
             this.generateInfoToPassEJS(
-                './new/' + page_id + '.html', page_id, page_id, user),
+                './new/' + page_id + '.html', page_id, page_id, user,
+                CheckMobile(req)),
             fallbackToIndexOnFailOrPass);
       }
     }.bind(this));
