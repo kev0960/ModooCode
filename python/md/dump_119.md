@@ -60,7 +60,7 @@ http://www.cplusplus.com/reference/clibrary/ctime/gmtime/
 #define MST (-7)
 #define UTC (0)
 #define CCT (+8)
-#define GMT (+9)
+#define KST (+9)
 
 int main() {
   time_t rawtime;

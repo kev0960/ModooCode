@@ -366,11 +366,23 @@ void BookManager::GenerateMainTex() {
 ~\vfill
 \noindent Copyright \textcopyright\  2019-2020 이재범
 
+)";
+
+  if (book_type_ == BookType::CPP) {
+    tex += R"(
 \noindent
 이 책은 \textbf{모두의 코드}에 연재된 씹어먹는 C++ 강좌를 책으로 옮긴 것입니다. 해당 강좌는
  \url{https://modoocode.com} 에서 볼 수 있습니다.
 \newpage
 )";
+  } else if (book_type_ == BookType::C) {
+    tex += R"(
+\noindent
+이 책은 \textbf{모두의 코드}에 연재된 씹어먹는 C 언어 강좌를 책으로 옮긴 것입니다. 해당 강좌는
+ \url{https://modoocode.com} 에서 볼 수 있습니다.
+\newpage
+)";
+  }
 
   tex += "\\tableofcontents\n\\mainmatter\n";
   // Add \include{filename}

@@ -163,7 +163,7 @@ a = function(10);
 
 우리는 여태까지 구조체 변수를 다음과 같이 정의하였습니다.
 
-```info-format
+```cpp
 struct Anomynous Var1, Var2; // "struct Anomynous" 형의 변수 Var1 , Var2 를 정의한다.
 ```
 
@@ -326,7 +326,7 @@ struct HUMAN {
 
 어때요? 간단하지요. 그렇다면 이전 예제의
 
-```info-format
+```cpp
 struct obj
 {
     char name[20];
@@ -447,13 +447,13 @@ int main() {
 
 프로그래밍을 하다 보면 각 데이터에 수를 대응 시키는 경우가 많습니다. 예를 들어 사람을 처리할 때, 남자에는 0, 여자에는 1 을 대응시켜서 처리하거나 색깔을 나타낼 때도 빨강에는 0, 흰색에는 1 등을 대응 시켜서 나타내게 됩니다. 이렇게 수를 대응 시켜서 처리할 때 에는 아래와 같이 헷갈리는 경우가 발생합니다.
 
-```info-format
+```cpp
 if (human.gender == 0) // 사람의 성별이 0 일 때
 ```
 
 남자에는 0, 여자에는 1 임을 확실하게 기억하고 있다면 상관이 없겠지만 기억하지 못하게 된다면 성에 대해 무엇을 대응 시켰는지 다시 찾아 보아야 된다는 번거로운 일이 발생합니다. 하지만 아래와 같이
 
-```info-format
+```cpp
 if(human.gender == MALE) // 사람의 성별이 남자 일 때
 ```
 
@@ -502,13 +502,13 @@ enum { RED, BLUE, WHITE, BLACK };
 
 예를 들어
 
-```info-format
+```cpp
 if(palette == 0) // 현재 파레트의 색이 빨강인지 확인한다.
 ```
 
 로 했던 것을
 
-```info-format
+```cpp
 if(palette == RED) // 현재 파레트의 색이 빨강인지 확인한다.
 ```
 

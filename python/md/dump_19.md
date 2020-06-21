@@ -23,7 +23,7 @@ tex_title : 주석(Comment)
 
 C 언어에서 주석은 두 가지 방법으로 넣을 수 있습니다.
 
-```info-format
+```cpp-formatted
 /* 주석이 들어가는 부분 */
 
 // 주석이 들어가는 부분

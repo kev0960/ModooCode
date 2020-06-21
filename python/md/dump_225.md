@@ -33,21 +33,17 @@ tex_title : C++ 표준 알고리즘 라이브러리
 
 우리는 알고리즘에 정의되어 있는 여러가지 함수들로 작업을 수행하게 됩니다. 이 때 이 함수들은 크게 아래와 같은 두 개의 형태를 가지고 있습니다.
 
-```info-format
-
+```cpp
 template <typename Iter>
 void do_something (Iter begin, Iter end);
 ```
 
 거나
 
-```info-format
-
+```cpp
 template <typename Iter, typename Pred>
 void do_something (Iter begin, Iter end, Pred pred)
 ```
-
-
 
 와 같은 꼴을 따르고 있습니다. 전자의 경우, 알고리즘을 수행할 반복자의 시작점과 끝점 바로 뒤를 받고, 후자의 경우 반복자는 동일하게 받되, '특정한 조건' 을 추가 인자로 받게 됩니다. 이러한 '특정한 조건'을 **서술자(Predicate)** 이라고 부르며 저기 `Pred` 에는 보통 `bool` 을 리턴하는 **함수 객체(Functor)** 를 전달하게 됩니다. (이번 강좌에서 함수 객체를 매우 편리하게 만들어주는 람다 함수에 대해 다룰 것입니다!)
 

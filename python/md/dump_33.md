@@ -325,7 +325,7 @@ char str[100] = "abcdefg";
 
   문자열을 합치는 함수라 하면 다음과 같은 작업을 하는 함수를 말합니다.
 
-```info-format
+```cpp
     char str1[100]="hello my name is ";
     char str2[]="Psi";
 
@@ -451,7 +451,7 @@ while (*src) {
 
   문자열을 비교하는 함수라 하면 다음과 같은 작업을 하는 함수를 의미합니다.
 
-```info-format
+```cpp
 if(compare(str1, str2))
 {
 /*
