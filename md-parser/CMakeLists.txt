@@ -80,6 +80,7 @@ add_executable(content_test
                src/fast_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc
                src/fast_py_syntax_highlighter.cc
+               src/fast_asm_syntax_highlighter.cc
                src/parser_environment.cc)
 
 if(NOT APPLE)
@@ -105,6 +106,7 @@ add_executable(parser_test
                src/fast_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc
                src/fast_py_syntax_highlighter.cc
+               src/fast_asm_syntax_highlighter.cc
                src/parser_environment.cc)
 
 if(NOT APPLE)
@@ -120,6 +122,7 @@ add_executable(syntax_highlight_test
                src/util.cc
                src/fast_syntax_highlighter.cc
                src/fast_py_syntax_highlighter.cc
+               src/fast_asm_syntax_highlighter.cc
                src/fast_cpp_syntax_highlighter.cc)
 target_link_libraries(syntax_highlight_test gmock_main)
 add_test(NAME syntax_highlight_test COMMAND syntax_highlight_test)

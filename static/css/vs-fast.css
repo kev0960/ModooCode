@@ -31,3 +31,22 @@
 .chroma .g {
   color: #78dce8;
 }
+
+.lang-asm .in {
+  color: #6dbeff;
+}
+.lang-asm .rg {
+  color: #78dce8;
+}
+.lang-asm .u {
+  color: #ffb97c;
+}
+.lang-asm .lb {
+  color: #f19798;
+}
+.lang-asm .dr {
+  color: #ff3133;
+}
+.lang-asm .c {
+  color: #d6d6d6;
+}

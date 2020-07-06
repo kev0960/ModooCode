@@ -17,11 +17,13 @@ class BoxContent : public Content {
   TokenTypes GetContentType() const override { return TokenTypes::BOX; }
 
   void Preprocess(ParserEnvironment* parser_env) override;
+
  private:
   enum BOX_CONTENT_TYPES {
     CPP_CODE,
     CPP_FORMATTED_CODE,
     PY_CODE,
+    ASM_CODE,
     WARNING,
     CODE_WARNING,
     COMPILER_WARNING,

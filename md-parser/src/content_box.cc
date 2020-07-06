@@ -5,6 +5,7 @@
 #include <thread>
 #include <utility>
 
+#include "fast_asm_syntax_highlighter.h"
 #include "fast_cpp_syntax_highlighter.h"
 #include "fast_py_syntax_highlighter.h"
 #include "tex_util.h"
@@ -21,8 +22,11 @@ string FormatCodeUsingFSH(const string& content, const string& code_type) {
   if (code_type == "cpp") {
     highlighter =
         std::make_unique<FastCppSyntaxHighlighter>(content, code_type);
-  } else {
+  } else if (code_type == "py") {
     highlighter = std::make_unique<FastPySyntaxHighlighter>(content, code_type);
+  } else if (code_type == "asm") {
+    highlighter = std::make_unique<FastAsmSyntaxHighlighter>(
+        content, code_type, FastAsmSyntaxHighlighter::INTEL);
   }
   highlighter->ParseCode();
   highlighter->ColorMerge();
@@ -202,6 +206,8 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::CPP_FORMATTED_CODE;
   } else if (box_name == "py") {
     box_type_ = BOX_CONTENT_TYPES::PY_CODE;
+  } else if (box_name == "asm") {
+    box_type_ = BOX_CONTENT_TYPES::ASM_CODE;
   } else if (box_name == "info") {
     box_type_ = BOX_CONTENT_TYPES::INFO;
   } else if (box_name == "info-format") {
@@ -325,6 +331,8 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       return FormatCodeUsingFSH(content_, "cpp");
     case PY_CODE:
       return FormatCodeUsingFSH(content_, "py");
+    case ASM_CODE:
+      return FormatCodeUsingFSH(content_, "asm");
     case HTML_ONLY: {
       Content::Preprocess(parser_env);
       return Content::OutputHtml(parser_env);
@@ -345,6 +353,8 @@ string BoxContent::OutputLatex(ParserEnvironment* parser_env) {
       return StrCat("\\begin{minted}{cpp}\n", content_, "\n\\end{minted}\n");
     case PY_CODE:
       return StrCat("\\begin{minted}{python}\n", content_, "\n\\end{minted}\n");
+    case ASM_CODE:
+      return StrCat("\\begin{minted}{nasm}\n", content_, "\n\\end{minted}\n");
     case WARNING: {
       Content::Preprocess(parser_env);
       string output_tex = Content::OutputLatex(parser_env);

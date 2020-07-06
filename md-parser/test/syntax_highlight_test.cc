@@ -1,3 +1,4 @@
+#include "../src/fast_asm_syntax_highlighter.h"
 #include "../src/fast_cpp_syntax_highlighter.h"
 #include "../src/fast_py_syntax_highlighter.h"
 #include "../src/util.h"
@@ -41,6 +42,14 @@ string TokenTypeToString(SyntaxTokenType type) {
       return "BUILT_IN";
     case MAGIC_FUNCTION:
       return "MAGIC_FUNCTION";
+    case REGISTER:
+      return "REGISTER";
+    case LABEL:
+      return "LABEL";
+    case DIRECTIVE:
+      return "DIRECTIVE";
+    case INSTRUCTION:
+      return "INSTRUCTION";
     case NONE:
       return "NONE";
   }
@@ -370,6 +379,119 @@ TEST(PySyntaxHighlightTest, PyBuiltIn2) {
                          {PARENTHESES, 10, 11},
                          {STRING_LITERAL, 11, 14},
                          {PARENTHESES, 14, 15}});
+}
+
+class MockAsmSyntaxHighlighter : public FastAsmSyntaxHighlighter {
+ public:
+  MockAsmSyntaxHighlighter(const string& content)
+      : FastAsmSyntaxHighlighter(content, "asm",
+                                 FastAsmSyntaxHighlighter::INTEL) {}
+
+  void CheckSyntaxTokens(std::vector<SyntaxToken> token_list) {
+    EXPECT_EQ(token_list_.size(), token_list.size());
+    for (size_t i = 0; i < std::min(token_list_.size(), token_list.size());
+         i++) {
+      if (i < token_list_.size() && i < token_list.size()) {
+        EXPECT_EQ(TokenTypeToString(token_list[i].token_types),
+                  TokenTypeToString(token_list_[i].token_types));
+        EXPECT_EQ(token_list[i].token_start, token_list_[i].token_start);
+        EXPECT_EQ(token_list[i].token_end, token_list_[i].token_end);
+      }
+    }
+  }
+  void PrintTokens() {
+    LOG << "Parsed code : " << code_;
+    for (const auto& token : token_list_) {
+      LOG << TokenTypeToString(token.token_types);
+      LOG << " [" << token.token_start << " , " << token.token_end << "]";
+    }
+  }
+};
+
+TEST(MockAsmSyntaxHighlighter, LabelTest) {
+  MockAsmSyntaxHighlighter syn(R"(label1:
+label2:
+label3:)");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({{LABEL, 0, 7},
+                         {WHITESPACE, 7, 8},
+                         {LABEL, 8, 15},
+                         {WHITESPACE, 15, 16},
+                         {LABEL, 16, 23}});
+}
+
+TEST(MockAsmSyntaxHighlighter, InstructionTest) {
+  MockAsmSyntaxHighlighter syn(R"(func1:
+mov eax, ebp)");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({
+      {LABEL, 0, 6},
+      {WHITESPACE, 6, 7},
+      {INSTRUCTION, 7, 10},
+      {WHITESPACE, 10, 11},
+      {REGISTER, 11, 14},
+      {PUNCTUATION, 14, 15},
+      {WHITESPACE, 15, 16},
+      {REGISTER, 16, 19},
+  });
+}
+
+TEST(MockAsmSyntaxHighlighter, RegisterAndIdentifier) {
+  MockAsmSyntaxHighlighter syn(R"(mov BYTE PTR data[rbx-1], al)");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({
+      {INSTRUCTION, 0, 3},
+      {WHITESPACE, 3, 4},
+      {IDENTIFIER, 4, 8},
+      {WHITESPACE, 8, 9},
+      {IDENTIFIER, 9, 12},
+      {WHITESPACE, 12, 13},
+      {IDENTIFIER, 13, 17},
+      {BRACKET, 17, 18},
+      {REGISTER, 18, 21},
+      {OPERATOR, 21, 22},
+      {NUMERIC_LITERAL, 22, 23},
+      {BRACKET, 23, 24},
+      {PUNCTUATION, 24, 25},
+      {WHITESPACE, 25, 26},
+      {REGISTER, 26, 28},
+  });
+
+  MockAsmSyntaxHighlighter syn2("imul rax, rax, 1374389535");
+  syn2.ParseCode();
+  syn2.CheckSyntaxTokens({{INSTRUCTION, 0, 4},
+                          {WHITESPACE, 4, 5},
+                          {REGISTER, 5, 8},
+                          {PUNCTUATION, 8, 9},
+                          {WHITESPACE, 9, 10},
+                          {REGISTER, 10, 13},
+                          {PUNCTUATION, 13, 14},
+                          {WHITESPACE, 14, 15},
+                          {NUMERIC_LITERAL, 15, 25}});
+}
+
+TEST(MockAsmSyntaxHighlighter, Directive) {
+  MockAsmSyntaxHighlighter syn("jne .L2");
+  syn.ParseCode();
+  syn.CheckSyntaxTokens({
+      {INSTRUCTION, 0, 3},
+      {WHITESPACE, 3, 4},
+      {DIRECTIVE, 4, 7},
+  });
+}
+
+TEST(MockAsmSyntaxHighlighter, TestAsm) {
+  MockAsmSyntaxHighlighter syn(R"(
+func(unsigned int, int):
+        mov     eax, edi
+        imul    rax, rax, 1374389535
+        shr     rax, 37
+        imul    edx, eax, 100
+        mov     eax, edi
+        sub     eax, edx
+)");
+  syn.ParseCode();
+  syn.PrintTokens();
 }
 
 }  // namespace md_parser

@@ -23,10 +23,16 @@ enum SyntaxTokenType {
   MACRO_HEAD,  // "#include"
   MACRO_BODY,  // "<iostream>"
   WHITESPACE,
+  // Python only
   FUNCTION,
   BUILT_IN,        // range, print
   MAGIC_FUNCTION,  // __init__
-  NONE             // Not matched to any token.
+  // Assembly only
+  REGISTER,     // e.g eax
+  LABEL,        // e.g func:
+  DIRECTIVE,    // e.g .align, .global
+  INSTRUCTION,  // e.g mov, add, sub
+  NONE          // Not matched to any token.
 };
 
 struct SyntaxToken {
