@@ -330,27 +330,27 @@ class Complex {
   Complex(double real, double img) : real(real), img(img) {}
   Complex(const Complex& c) { real = c.real, img = c.img; }
 
-  Complex operator+(const Complex& c);
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
+  Complex operator+(const Complex& c) const;
+  Complex operator-(const Complex& c) const;
+  Complex operator*(const Complex& c) const;
+  Complex operator/(const Complex& c) const;
 
   void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 
-Complex Complex::operator+(const Complex& c) {
+Complex Complex::operator+(const Complex& c) const {
   Complex temp(real + c.real, img + c.img);
   return temp;
 }
-Complex Complex::operator-(const Complex& c) {
+Complex Complex::operator-(const Complex& c) const {
   Complex temp(real - c.real, img - c.img);
   return temp;
 }
-Complex Complex::operator*(const Complex& c) {
+Complex Complex::operator*(const Complex& c) const {
   Complex temp(real * c.real - img * c.img, real * c.img + img * c.real);
   return temp;
 }
-Complex Complex::operator/(const Complex& c) {
+Complex Complex::operator/(const Complex& c) const {
   Complex temp(
     (real * c.real + img * c.img) / (c.real * c.real + c.img * c.img),
     (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img));
@@ -376,10 +376,10 @@ int main() {
 와 같이 잘 나옴을 알 수 있습니다. 여기서 가장 중요하게 봐야 할 부분은 바로, 사칙연산 연산자 함수들의 리턴 타입 입니다.
 
 ```cpp-formatted
-Complex operator+(const Complex& c);
-Complex operator-(const Complex& c);
-Complex operator*(const Complex& c);
-Complex operator/(const Complex& c);
+  Complex operator+(const Complex& c) const;
+  Complex operator-(const Complex& c) const;
+  Complex operator*(const Complex& c) const;
+  Complex operator/(const Complex& c) const;
 ```
 
 위 4 개의 연산자 함수 모두 `Complex&` 가 아닌 `Complex` 를 리턴하고 있습니다. 간혹가다,
@@ -393,7 +393,7 @@ Complex& operator+(const Complex& c) {
 }
 ```
 
-로 잘못 생각하는 경우도 있습니다. 물론 이렇게 설계하였을 경우, `Complex` 를 리턴하는 연산자 함수는 값의 복사가 일어나기 때문에 속도  저하가 발생하지만 위 처럼 레퍼런스를 리턴하게 되면 값의 복사 대신 레퍼런스만 복사하는 것이므로 큰 속도의 저하는 나타나지 않습니다. 하지만, 위와 같이 `operator+` 를 정의할 경우 다음과 같은 문장이 어떻게 처리되는지 생각해봅시다.
+로 잘못 생각하는 경우도 있습니다. 물론 이렇게 설계하였을 경우, `Complex` 를 리턴하는 연산자 함수는 값의 복사가 일어나기 때문에 속도 저하가 발생하지만 위 처럼 레퍼런스를 리턴하게 되면 값의 복사 대신 레퍼런스만 복사하는 것이므로 큰 속도의 저하는 나타나지 않습니다. 하지만, 위와 같이 `operator+` 를 정의할 경우 다음과 같은 문장이 어떻게 처리되는지 생각해봅시다.
 
 ```cpp-formatted
 Complex a = b + c + b;
@@ -406,8 +406,15 @@ Complex a = b + c + b;
 
 또한 함수 내부에서 **읽기**만 수행되고 값이 바뀌지 않는 인자들에 대해서는 `const` 키워드를 붙여주는 것이 바람직합니다. `operator+` 의 경우, `c` 의 값을 읽기만 하지 `c` 의 값에 어떠한 변화도 주지 않으므로 `const Complex&` 타입으로 인자를 받았습니다.
 
+
 ```lec-warning
 인자의 값이 함수 내부에서 바뀌지 않는 다고 확신할 때에는 `const` 키워드를 붙여주시기 바랍니다. 이는 나중에 발생할 수 있는 실수들을 줄여줍니다.
+```
+
+또한 이 버전의 `operator+` 들의 경우 객체 내부의 값을 변경하지 않기 때문에 상수 함수로 선언하였습니다. 
+
+```lec-warning
+상수 함수로 선언할 수 있는 경우 상수 함수로 선언하는 것이 바람직합니다.
 ```
 
 ###  대입 연산자 함수
@@ -450,28 +457,28 @@ class Complex {
   Complex(double real, double img) : real(real), img(img) {}
   Complex(const Complex& c) { real = c.real, img = c.img; }
 
-  Complex operator+(const Complex& c);
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
+  Complex operator+(const Complex& c) const;
+  Complex operator-(const Complex& c) const;
+  Complex operator*(const Complex& c) const;
+  Complex operator/(const Complex& c) const;
 
   Complex& operator=(const Complex& c);
   void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 
-Complex Complex::operator+(const Complex& c) {
+Complex Complex::operator+(const Complex& c) const {
   Complex temp(real + c.real, img + c.img);
   return temp;
 }
-Complex Complex::operator-(const Complex& c) {
+Complex Complex::operator-(const Complex& c) const {
   Complex temp(real - c.real, img - c.img);
   return temp;
 }
-Complex Complex::operator*(const Complex& c) {
+Complex Complex::operator*(const Complex& c) const {
   Complex temp(real * c.real - img * c.img, real * c.img + img * c.real);
   return temp;
 }
-Complex Complex::operator/(const Complex& c) {
+Complex Complex::operator/(const Complex& c) const {
   Complex temp(
     (real * c.real + img * c.img) / (c.real * c.real + c.img * c.img),
     (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img));
@@ -506,8 +513,6 @@ int main() {
 
 디폴트 복사 생성자와 마찬가지로 디폴트 대입 연산자 역시 얕은 복사를 수행합니다. 따라서, 깊은 복사가 필요한 클래스의 경우 (예를 들어, 클래스 내부적으로 동적으로 할당되는 메모리를 관리하는 포인터가 있다던지) 대입 연산자 함수를 꼭 만들어주어야 할 필요가 있습니다.
 
-
-
 여담이지만, 이제 여러분은 다음 두 문장의 차이를 완벽히 이해 하실 수 있을 것이라 믿습니다.
 
 ```cpp-formatted
@@ -521,8 +526,9 @@ Some_Class a;  // ②
 a = b;
 ```
 
-말이지요. 이전에 이에 대해서 이야기 하였을 때 연산자 오버로딩을 배우지 못하였기 때문에 대충 두루뭉실하게 넘어갔지만 이제는 제대로 이해할 수 있습니다.① 의 경우, 아예 `a` 의 '복사 생성자' 가 호출되는 것이고,② 의 경우 `a` 의 그냥 기본 생성자가 호출 된 다음, 다음 문장에서 대입 연산자 함수가 실행되는 것입니다. 위 두 문장은 비록 비슷해 보이기는 해도 아예 다른 것이지요.
+말이지요. 이전에 이에 대해서 이야기 하였을 때 연산자 오버로딩을 배우지 못하였기 때문에 대충 두루뭉실하게 넘어갔지만 이제는 제대로 이해할 수 있습니다. 
 
+① 의 경우, 아예 `a` 의 '복사 생성자' 가 호출되는 것이고, ② 의 경우 `a` 의 그냥 기본 생성자가 호출 된 다음, 다음 문장에서 대입 연산자 함수가 실행되는 것입니다. 위 두 문장은 비록 비슷해 보이기는 해도 아예 다른 것이지요.
 
 마찬가지 이유로 대입 사칙연산 함수들인, `+=, -=` 등을 구현할 수 있습니다. 일단 `=` 와 마찬가지로 아래와 같이 `Complex&` 를 리턴하고
 
@@ -533,7 +539,7 @@ Complex& operator*=(const Complex& c);
 Complex& operator/=(const Complex& c);
 ```
 
-그 내부 구현은 간단히 미리 만들어 놓은 `operator+, operator-` 등을 이용해서 처리하면 됩니다.
+그 내부 구현은 간단히 미리 만들어 놓은 `operator+`, `operator-` 등을 이용해서 처리하면 됩니다.
 
 ```cpp-formatted
 Complex& Complex::operator+=(const Complex& c) {
@@ -554,9 +560,9 @@ Complex& Complex::operator/=(const Complex& c) {
 }
 ```
 
+와 같이 말이지요. 참고로 `operator+=` 의 경우 `operator+` 와는 다르게 객체 내부의 상태를 변경하기 때문에 상수 함수로 선언할 수 없습니다. 
 
-
-와 같이 말이지요. 전체 소스를 살펴보자면;
+전체 소스를 살펴보자면;
 
 ```cpp
 #include <iostream>
@@ -569,10 +575,10 @@ class Complex {
   Complex(double real, double img) : real(real), img(img) {}
   Complex(const Complex& c) { real = c.real, img = c.img; }
 
-  Complex operator+(const Complex& c);
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
+  Complex operator+(const Complex& c) const;
+  Complex operator-(const Complex& c) const;
+  Complex operator*(const Complex& c) const;
+  Complex operator/(const Complex& c) const;
 
   Complex& operator+=(const Complex& c);
   Complex& operator-=(const Complex& c);
@@ -582,19 +588,19 @@ class Complex {
   void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 
-Complex Complex::operator+(const Complex& c) {
+Complex Complex::operator+(const Complex& c) const {
   Complex temp(real + c.real, img + c.img);
   return temp;
 }
-Complex Complex::operator-(const Complex& c) {
+Complex Complex::operator-(const Complex& c) const {
   Complex temp(real - c.real, img - c.img);
   return temp;
 }
-Complex Complex::operator*(const Complex& c) {
+Complex Complex::operator*(const Complex& c) const {
   Complex temp(real * c.real - img * c.img, real * c.img + img * c.real);
   return temp;
 }
-Complex Complex::operator/(const Complex& c) {
+Complex Complex::operator/(const Complex& c) const {
   Complex temp(
     (real * c.real + img * c.img) / (c.real * c.real + c.img * c.img),
     (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img));
@@ -625,8 +631,6 @@ int main() {
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
 ```exec
@@ -636,21 +640,16 @@ int main() {
 
 와 같이 잘 출력됨을 알 수 있습니다. `a` 의 값만 바뀐 채 `b` 에는 아무런 영향이 없지요.
 
-
-
 참고로, 연산자 오버로딩을 사용하게 된다면 `a+= b` 와 `a = a +` b; 가같다고 보장되지 않는다는 점을 명심해야 합니다. 컴파일러는 `operator+` 와 `operator=` 를 정의해놓았다고 해서 `a+=b` 를 자동으로 `a = a +` b; 로 바꾸어 주지 않습니다. 반드시 `operator+=` 를 따로 만들어야지 `+=` 를 사용할 수 있게 됩니다. 이와 같은 사실은 `++` 을 `+= 1` 로 바꾸어 주지 않는다던지, `--` 를 `-= 1` 로 바꾸어 주지 않는 다는 사실과 일맥상통합니다. 즉, 연산자 오버로딩을 하게 된다면 여러분이 생각하는 모든 연산자들에 대해 개별적인 정의가 필요합니다.
 
 
 ###  문자열로 `Complex` 수와 덧셈하기
-
 
 이번에는 `operator+` 를 개량해서, 꼭 `Complex` 수를 더하는 것이 아니라, 문자열로도 덧셈을 할 수 있도록 `operator+` 함수를 만드려 보려고 합니다. 다시 말해서,
 
 ```cpp-formatted
 y = z + "3+i2";
 ```
-
-
 
 이런 문장을 사용하였을 경우 성공적으로 처리할 수 있게 된다는 의미이지요. 참고로, 문자열로 복소수를 어떻게 표현해야 할 지에 대해서는 모종의 약속이 필요한데, 우리 `Complex` 클래스의 경우 다음과 같은 꼴로 표현하도록 정합시다.
 
@@ -699,7 +698,6 @@ Complex Complex::operator+(const char* str) {
 }
 ```
 
-
 일단 문자열을 덧셈의 피연산자로 사용하게 되므로, `operator+` 의 인자는 `Complex &` 가 아니라 `const char *` 가 됩니다. 저의 경우, 이제 입력 받은 '문자열 복소수' 를 분석하기 위해서 가장 중요한 'i' 의 위치를 먼저 찾도록 하였습니다. 왜냐하면 이 'i' 를 기준으로 복소수의 실수부와 허수부가 나뉘어지기 때문이지요.
 
 ```cpp-formatted
@@ -713,8 +711,6 @@ for (int i = 0; i != end; i++) {
 }
 ```
 
-
-
 따라서 위와 같이 `pos_i` 에 `str` 의 'i' 의 위치를 찾도록 하였습니다. 물론, 입력 받은 문자열에 반드시 'i' 가 있어야만 하는 것은 아닙니다. 왜냐하면 이전에도 말했듯이 복소수가 그냥 실수 라면 굳이 허수 부분을 표현하지 않을 수 있기 때문입니다. 따라서, 아래와 같이 `i` 가 없을 경우 간단히 따로 처리할 수 있습니다.
 
 
@@ -727,8 +723,6 @@ if (pos_i == -1) {
   return (*this) + temp;
 }
 ```
-
-
 
 참고로 우리가 사용하는 `get_number` 함수는 특정 문자열에서 수 부분을 `double` 값으로 반환하는 함수 입니다.
 
@@ -752,7 +746,7 @@ if (pos_i >= 1 && str[pos_i - 1] == '-') str_img *= -1.0;
 
 
 ```cpp-formatted
-double Complex::get_number(const char *str, int from, int to) {
+double Complex::get_number(const char *str, int from, int to) const {
   bool minus = false;
   if (from > to) return 0;
 
@@ -790,10 +784,7 @@ double Complex::get_number(const char *str, int from, int to) {
 if (str[from] == '-' || str[from] == '+') from++;
 ```
 
-
-
 일단 부호 부분은 위와 같이 처리해서 부호 부분 바로 다음 부터 처리하도록 합니다.
-
 
 ```cpp-formatted
 for (int i = from; i <= to; i++) {
@@ -838,18 +829,18 @@ class Complex {
  private:
   double real, img;
 
-  double get_number(const char* str, int from, int to);
+  double get_number(const char* str, int from, int to) const;
 
  public:
   Complex(double real, double img) : real(real), img(img) {}
   Complex(const Complex& c) { real = c.real, img = c.img; }
 
-  Complex operator+(const Complex& c);
-  Complex operator+(const char* str);
+  Complex operator+(const Complex& c) const;
+  Complex operator+(const char* str) const;
 
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
+  Complex operator-(const Complex& c) const;
+  Complex operator*(const Complex& c) const;
+  Complex operator/(const Complex& c) const;
 
   Complex& operator+=(const Complex& c);
   Complex& operator-=(const Complex& c);
@@ -861,11 +852,11 @@ class Complex {
   void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
 
-Complex Complex::operator+(const Complex& c) {
+Complex Complex::operator+(const Complex& c) const {
   Complex temp(real + c.real, img + c.img);
   return temp;
 }
-double Complex::get_number(const char* str, int from, int to) {
+double Complex::get_number(const char* str, int from, int to) const {
   bool minus = false;
   if (from > to) return 0;
 
@@ -893,7 +884,7 @@ double Complex::get_number(const char* str, int from, int to) {
 
   return num;
 }
-Complex Complex::operator+(const char* str) {
+Complex Complex::operator+(const char* str) const {
   // 입력 받은 문자열을 분석하여 real 부분과 img 부분을 찾아야 한다.
   // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
   // 이 때 맨 앞의 부호는 생략 가능합니다. (생략시 + 라 가정)
@@ -927,15 +918,15 @@ Complex Complex::operator+(const char* str) {
   Complex temp(str_real, str_img);
   return (*this) + temp;
 }
-Complex Complex::operator-(const Complex& c) {
+Complex Complex::operator-(const Complex& c) const {
   Complex temp(real - c.real, img - c.img);
   return temp;
 }
-Complex Complex::operator*(const Complex& c) {
+Complex Complex::operator*(const Complex& c) const {
   Complex temp(real * c.real - img * c.img, real * c.img + img * c.real);
   return temp;
 }
-Complex Complex::operator/(const Complex& c) {
+Complex Complex::operator/(const Complex& c) const {
   Complex temp(
     (real * c.real + img * c.img) / (c.real * c.real + c.img * c.img),
     (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img));
@@ -983,7 +974,7 @@ int main() {
 그렇게 된다면 길고 복잡했었던 `operator+ (const char * str)` 부분을 다음과 같이 간단하게 줄일 수 있기 때문이지요.
 
 ```cpp-formatted
-Complex Complex::operator+(const char* str) {
+Complex Complex::operator+(const char* str) const {
   Complex temp(str);
   return (*this) + temp;
 }
@@ -1028,15 +1019,15 @@ Complex::Complex(const char* str) {
 그렇게 된다면, 나머지 함수들도,
 
 ```cpp-formatted
-Complex Complex::operator-(const char* str) {
+Complex Complex::operator-(const char* str) const {
   Complex temp(str);
   return (*this) - temp;
 }
-Complex Complex::operator*(const char* str) {
+Complex Complex::operator*(const char* str) const {
   Complex temp(str);
   return (*this) * temp;
 }
-Complex Complex::operator/(const char* str) {
+Complex Complex::operator/(const char* str) const {
   Complex temp(str);
   return (*this) / temp;
 }
@@ -1052,22 +1043,22 @@ class Complex {
  private:
   double real, img;
 
-  double get_number(const char* str, int from, int to);
+  double get_number(const char* str, int from, int to) const;
 
  public:
   Complex(double real, double img) : real(real), img(img) {}
   Complex(const Complex& c) { real = c.real, img = c.img; }
   Complex(const char* str);
 
-  Complex operator+(const Complex& c);
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
+  Complex operator+(const Complex& c) const;
+  Complex operator-(const Complex& c) const;
+  Complex operator*(const Complex& c) const;
+  Complex operator/(const Complex& c) const;
 
-  Complex operator+(const char* str);
-  Complex operator-(const char* str);
-  Complex operator*(const char* str);
-  Complex operator/(const char* str);
+  Complex operator+(const char* str) const;
+  Complex operator-(const char* str) const;
+  Complex operator*(const char* str) const;
+  Complex operator/(const char* str) const;
 
   Complex& operator+=(const Complex& c);
   Complex& operator-=(const Complex& c);
@@ -1108,7 +1099,7 @@ Complex::Complex(const char* str) {
 
   if (pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
-double Complex::get_number(const char* str, int from, int to) {
+double Complex::get_number(const char* str, int from, int to) const {
   bool minus = false;
   if (from > to) return 0;
 
@@ -1136,37 +1127,37 @@ double Complex::get_number(const char* str, int from, int to) {
 
   return num;
 }
-Complex Complex::operator+(const Complex& c) {
+Complex Complex::operator+(const Complex& c) const {
   Complex temp(real + c.real, img + c.img);
   return temp;
 }
-Complex Complex::operator-(const Complex& c) {
+Complex Complex::operator-(const Complex& c) const {
   Complex temp(real - c.real, img - c.img);
   return temp;
 }
-Complex Complex::operator*(const Complex& c) {
+Complex Complex::operator*(const Complex& c) const {
   Complex temp(real * c.real - img * c.img, real * c.img + img * c.real);
   return temp;
 }
-Complex Complex::operator/(const Complex& c) {
+Complex Complex::operator/(const Complex& c) const {
   Complex temp(
     (real * c.real + img * c.img) / (c.real * c.real + c.img * c.img),
     (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img));
   return temp;
 }
-Complex Complex::operator+(const char* str) {
+Complex Complex::operator+(const char* str) const {
   Complex temp(str);
   return (*this) + temp;
 }
-Complex Complex::operator-(const char* str) {
+Complex Complex::operator-(const char* str) const {
   Complex temp(str);
   return (*this) - temp;
 }
-Complex Complex::operator*(const char* str) {
+Complex Complex::operator*(const char* str) const {
   Complex temp(str);
   return (*this) * temp;
 }
-Complex Complex::operator/(const char* str) {
+Complex Complex::operator/(const char* str) const {
   Complex temp(str);
   return (*this) / temp;
 }
@@ -1226,17 +1217,17 @@ class Complex {
  private:
   double real, img;
 
-  double get_number(const char* str, int from, int to);
+  double get_number(const char* str, int from, int to) const;
 
  public:
   Complex(double real, double img) : real(real), img(img) {}
   Complex(const Complex& c) { real = c.real, img = c.img; }
   Complex(const char* str);
 
-  Complex operator+(const Complex& c);
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
+  Complex operator+(const Complex& c) const;
+  Complex operator-(const Complex& c) const;
+  Complex operator*(const Complex& c) const;
+  Complex operator/(const Complex& c) const;
 
   Complex& operator+=(const Complex& c);
   Complex& operator-=(const Complex& c);
@@ -1277,7 +1268,7 @@ Complex::Complex(const char* str) {
 
   if (pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
-double Complex::get_number(const char* str, int from, int to) {
+double Complex::get_number(const char* str, int from, int to) const {
   bool minus = false;
   if (from > to) return 0;
 
@@ -1305,19 +1296,19 @@ double Complex::get_number(const char* str, int from, int to) {
 
   return num;
 }
-Complex Complex::operator+(const Complex& c) {
+Complex Complex::operator+(const Complex& c) const {
   Complex temp(real + c.real, img + c.img);
   return temp;
 }
-Complex Complex::operator-(const Complex& c) {
+Complex Complex::operator-(const Complex& c) const {
   Complex temp(real - c.real, img - c.img);
   return temp;
 }
-Complex Complex::operator*(const Complex& c) {
+Complex Complex::operator*(const Complex& c) const {
   Complex temp(real * c.real - img * c.img, real * c.img + img * c.real);
   return temp;
 }
-Complex Complex::operator/(const Complex& c) {
+Complex Complex::operator/(const Complex& c) const {
   Complex temp(
     (real * c.real + img * c.img) / (c.real * c.real + c.img * c.img),
     (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img));
@@ -1372,10 +1363,10 @@ int main() {
 
 
 ```cpp-formatted
-Complex operator+(const char *str);
-Complex operator-(const char *str);
-Complex operator*(const char *str);
-Complex operator/(const char *str);
+Complex operator+(const char *str) const;
+Complex operator-(const char *str) const;
+Complex operator*(const char *str) const;
+Complex operator/(const char *str) const;
 ```
 
 들을 모두 만들어 주었더니, 결과적으로 생성자 하나만 만들면 충분하다는 것이였나요? 놀랍게도, 우리의 컴파일러는 매우 똑똑하기 때문에 이와 같은 일이 가능합니다. 우리가
@@ -1434,5 +1425,8 @@ a = a + "-1.1 + i3.923";
 
  그렇다면 `Complex` 클래스의 연산자 오버로딩을 수행하면서 쌓은 지식을 바탕으로 `MyString` 함수를 완전하게 만들어봅시다. 즉, 강좌 서두에서 지적한 사항들을 모두 구현하시면 됩니다. (난이도 : 下)
 
+#### 문제 2
+
+`get_number` 함수를 `cstdlib` 의 `atof` 함수를 이용해서 좀 더 간단하게 나타내보세요.
 
 ##@ chewing-cpp-end

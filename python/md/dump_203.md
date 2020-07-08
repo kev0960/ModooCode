@@ -31,14 +31,11 @@ tex_title : 잡다한 연산자들의 오버로딩
 a = a + "-1.1 + i3.923";  // ①
 ```
 
-
-
 는 잘 컴파일 되서 실행되지만
 
 ```cpp-formatted
 a = "-1.1 + i3.923" + a;  // ②
 ```
-
 
 는 컴파일 되지 않습니다. 왜냐하면, ① 의 경우 `a.operator+("i3.923");` 으로 변환될 수 있지만 ② 는 그렇지 못하기 때문이죠. 하지만, 원칙적으로  클래스를 사용하는 사용자의 입장에서① 이 된다면 당연히② 도 수행될 수 있어야 연산자 오버로딩을 하는 명분이 생깁니다. 다행 스럽게도, 사실 컴파일러는 이항 연산자 (피연산자를 두 개를 취하는 연산자 `-` 예를 들어서 `+, -, *, /, ->, =` 등이 이항 연산자 이다) 를 다음과 같은 두 개의 방식으로 해석합니다.
 
@@ -56,12 +53,11 @@ a = "-1.1 + i3.923" + a;  // ②
 
 ```cpp-formatted
 Complex operator+(const Complex& a, const Complex& b) {
-  Complex temp(a);
-  return temp.operator+(b);
+  return a + b;
 }
 ```
 
-우리의 또 다른 `operator+` 는 두 개의 `const Complex&` 타입의 인자 `a,b` 를 받게 됩니다. 앞에서도 말했지만 컴파일러는 정확히 일치 하지 않는 경우, 가장 가까운 '가능한' 오버로딩 되는 함수를 찾게 되는데, 마침 우리에게는 `Complex(const char *)` 타입의 생성자가 있으므로,
+우리의 또 다른 `operator+` 는 두 개의 `const Complex&` 타입의 인자 `a,b` 를 받게 됩니다. 앞에서도 말했지만 컴파일러는 정확히 일치 하지 않는 경우, 가장 가까운 *가능한* 오버로딩 되는 함수를 찾게 되는데, 마침 우리에게는 `Complex(const char *)` 타입의 생성자가 있으므로,
 
 ```cpp-formatted
 "-1.1 + i3.923" + a;
@@ -83,31 +79,27 @@ class Complex {
  private:
   double real, img;
 
-  double get_number(const char* str, int from, int to);
+  double get_number(const char* str, int from, int to) const;
 
  public:
   Complex(double real, double img) : real(real), img(img) {}
   Complex(const Complex& c) { real = c.real, img = c.img; }
   Complex(const char* str);
 
-  Complex operator+(const Complex& c);
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
-
+  Complex operator+(const Complex& c) const;
   Complex& operator+=(const Complex& c);
-  Complex& operator-=(const Complex& c);
-  Complex& operator*=(const Complex& c);
-  Complex& operator/=(const Complex& c);
 
   Complex& operator=(const Complex& c);
 
+  // 나머지 연산자 함수들은 생략 :) 
+
   void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
 };
+
 Complex operator+(const Complex& a, const Complex& b) {
-  Complex temp(a);
-  return temp.operator+(b);
+  return a.operator+(b);
 }
+
 Complex::Complex(const char* str) {
   // 입력 받은 문자열을 분석하여 real 부분과 img 부분을 찾아야 한다.
   // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
@@ -138,7 +130,7 @@ Complex::Complex(const char* str) {
 
   if (pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
-double Complex::get_number(const char* str, int from, int to) {
+double Complex::get_number(const char* str, int from, int to) const {
   bool minus = false;
   if (from > to) return 0;
 
@@ -166,41 +158,17 @@ double Complex::get_number(const char* str, int from, int to) {
 
   return num;
 }
-Complex Complex::operator+(const Complex& c) {
+
+Complex Complex::operator+(const Complex& c) const {
   Complex temp(real + c.real, img + c.img);
-  return temp;
-}
-Complex Complex::operator-(const Complex& c) {
-  Complex temp(real - c.real, img - c.img);
-  return temp;
-}
-Complex Complex::operator*(const Complex& c) {
-  Complex temp(real * c.real - img * c.img, real * c.img + img * c.real);
-  return temp;
-}
-Complex Complex::operator/(const Complex& c) {
-  Complex temp(
-    (real * c.real + img * c.img) / (c.real * c.real + c.img * c.img),
-    (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img));
   return temp;
 }
 
 Complex& Complex::operator+=(const Complex& c) {
-  (*this) = (*this) + c;
+  (*this) = operator+(c);
   return *this;
 }
-Complex& Complex::operator-=(const Complex& c) {
-  (*this) = (*this) - c;
-  return *this;
-}
-Complex& Complex::operator*=(const Complex& c) {
-  (*this) = (*this) * c;
-  return *this;
-}
-Complex& Complex::operator/=(const Complex& c) {
-  (*this) = (*this) / c;
-  return *this;
-}
+
 Complex& Complex::operator=(const Complex& c) {
   real = c.real;
   img = c.img;
@@ -220,137 +188,54 @@ int main() {
 ( -1.1 , 3.923 ) 
 ```
 
-와 같이 잘 실행됨을 알 수 있습니다. 그런데, 아마 `operator+` 를 자세히 살펴보신 분들은 아마 다음과 같은 문제점을 확인할 수 있었을 것입니다.
+와 같이 잘 실행됨을 알 수 있습니다. 그런데, 아마 `operator+` 를 유심히 살펴보신 분들은 조금 특이한 점을 발견하실 수 있을 것입니다.
 
 ```cpp-formatted
 Complex operator+(const Complex& a, const Complex& b) {
-  Complex temp(a);
-  return temp.operator+(b);
+  return a.operator+(b);
 }
 ```
 
-
-
-왜 굳이 귀찮게 `temp` 라는 새로운 `Complex` 객체를 정의하여서 `temp` 와의 `+` 연산을 리턴하느냐 입니다. 그냥 `a + b` 할 것을 불필요 하게 복사 생성을 한 번 더 하게 되서 성능의 하락이 발생하게 됩니다. 하지만, 그냥 `a + b` 를 하게 된다면;
+왜 굳이 귀찮게 a 의 operator+ 를 명시적으로 호출하였을 까요? 그냥 `a + b` 을 하면 되는 것 아닐까요? 한 번 아래와 같이 수정해서 컴파일을 해봅시다.
 
 ```cpp-formatted
 Complex operator+(const Complex& a, const Complex& b) { return a + b; }
 ```
 
-
-
 위 코드를 컴파일 시에 다음과 같은 경고 메세지를 볼 수 있을 것입니다.
 
 ```compiler-warning
-warning C4717: 'operator+' : recursive on all control paths, function will cause runtime stack overflow
+test.cc: In function ‘Complex operator+(const Complex&, const Complex&)’:
+test.cc:30:12: error: ambiguous overload for ‘operator+’ (operand types are ‘const Complex’ and ‘const Complex’)
+   30 |   return a + b;
+      |          ~ ^ ~
+      |          |   |
+      |          |   const Complex
+      |          const Complex
+test.cc:15:11: note: candidate: ‘Complex Complex::operator+(const Complex&) const’
+   15 |   Complex operator+(const Complex& c) const;
+      |           ^~~~~~~~
+test.cc:29:9: note: candidate: ‘Complex operator+(const Complex&, const Complex&)’
+   29 | Complex operator+(const Complex& a, const Complex& b) {
+      |         ^~~~~~~~
 ```
 
-
-
-즉, `a + b` 에서 `a.operator+(b)` 가 호출되는 것이 아니라, `operator+(a,b)` 가 호출 되기 때문에 재귀적으로 무한히 많이 함수가 호출되어 오류가 발생한다는 것이지요. 실제로 실행해 보아도 프로그램이 강제로 종료되는 모습을 볼 수 있습니다. 따라서 이와 같은 문제를 방지하기 위해서 우리는 다음과 같이 강제로 멤버 함수 `operator+` 를 호출하도록 지정하였습니다.
+즉, `a + b` 에서 컴파일러가 `a.operator+(b)` 을 호출해야 할지, 아니면 우리가 새로 정의한 `operator+(a,b)` 가 호출 할지 구별할 수 없다는 문제 입니다. 따라서 우리는 다음과 같이 강제로 멤버 함수 `operator+` 를 호출하도록 지정해야 합니다.
 
 ```cpp-formatted
 Complex operator+(const Complex& a, const Complex& b) { return a.operator+(b); }
 ```
 
-
-
-이 역시 컴파일 되지 않습니다. 아마 오류의 내용은 다음과 같을 것입니다.
-
-```compiler-warning
-error C2662: 'Complex::operator +' : cannot convert 'this' pointer from 'const Complex' to 'Complex &'
-```
-
-
-
-이 말은 즉슨, `a` 가 `const Complex` 인데, 우리가 호출하고자 하는 멤버 함수 `operator+` 는 `const` 함수가 아니기 때문입니다. 상당히 골치아픈 문제가 아닐 수 없습니다. (참고로 [const 함수가 무엇인지 기억이 나지 않으시는 분들은 이 강좌](http://itguru.tistory.com/197)를 다시 읽어보시기 바랍니다)
-
-`const` 객체는 언제나 값이 바뀔 수 없으며, 만일 `const` 객체의 멤버 함수 호출 시에는 그 함수가 객체의 값을 바꾸지 않는 다고 보장할 수 있도록 `const` 함수여야만 합니다. 하지만 멤버 함수 `operator+` 는 `const` 성이 없으므로, `operator+` 를 호출하는 것은 불가능 해지지요.
-
-
-이 문제를 해결할 수 있는 유일한 방법은`Complex operator+(const Complex& a, const Complex& b)` 내부에서 다른 함수들을 호출하지 않고 직접 덧셈을 수행하면 됩니다. 다만 이 방법도 문제가 있지요. 멤버 함수가 아닌 외부 함수 `operator+` 에서 객체의 `private` 정보에 접근할 수 있어야만 하는데, 이 것이 불가능 하기 때문입니다. 하지만, 놀랍게도 C++ 에서는 이를 가능케 하는 키워드가 있습니다.
-
-
-
-###  friend 는 모든 것을 공유한다.
-
-
-아마 이 글을 읽는 독자 여러분들은 자신의 모든 것을 아낌없이 털어놓을 수 있는 절친한 친구 한 두 명 쯤은 있을 것입니다. 그 친구와 나 사이에는 어떠한 정보도 열람할 수 있는 관계가 되지요.
-그런데 재미있는 사실에는 비슷한 역할을 하는 키워드가 C++ 에도 있다는 점입니다. 그 이름도 역시 **friend** 입니다.
+마찬가지 이유에서 `operator+=` 도 멤버 함수로 정의되어 있는 `operator+` 을 호출할 수 있도록 살짝 바꿔줘야 합니다.
 
 ```cpp
-class Complex {
- private:
-  double real, img;
-
-  double get_number(const char* str, int from, int to);
-
- public:
-  Complex(double real, double img) : real(real), img(img) {}
-  Complex(const Complex& c) { real = c.real, img = c.img; }
-  Complex(const char* str);
-
-  Complex operator+(const Complex& c);
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
-
-  Complex& operator+=(const Complex& c);
-  Complex& operator-=(const Complex& c);
-  Complex& operator*=(const Complex& c);
-  Complex& operator/=(const Complex& c);
-
-  Complex& operator=(const Complex& c);
-
-  friend Complex operator+(const Complex& a, const Complex& b);
-
-  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
-};
-```
-
-위와 같이 `Complex` 클래스 안에서
-
-```cpp-formatted
-friend Complex operator+(const Complex& a, const Complex& b);
-```
-
-라 같이 쓰면 우리의`Complex operator+(const Complex& a, const Complex& b);`  함수는 이제 `Complex` 의 `friend` 가 됩니다. 즉, `Complex` 클래스의 입장에서는 자신의 새로운 친구인 `operator+` 에게 마음의 문을 열고 모든 정보에 접근할 수 있도록 허가하는 것입니다.
-
-`private` 냐 `public` 이냐에 관계 없이`Complex operator+(const Complex& a, const Complex&` b); 함수는 이제 어떤 `Complex` 객체라도 그 내부 정보에 접근할 수 있습니다.
-
-
-따라서, 다음과 같은 코드를 사용하는 것도 가능하지요.
-
-```cpp-formatted
-Complex operator+(const Complex& a, const Complex& b) {
-  Complex temp(a.real + b.real, a.img + b.img);
-  return temp;
+Complex& Complex::operator+=(const Complex& c) {
+  (*this) = operator+(c);
+  return *this;
 }
 ```
 
-이제 이 `operator+` 함수는 마치 `Complex` 클래스의 멤버 변수인양, 객체들의 정보에 접근할 수 있게 됩니다. `real` 변수는 `private` 이지만, `a.real` 을 해도 무방하지요. 이렇게 된다면, 이전의 `operator+` 에서 불필요하게 `temp` 객체를 생성했던 것 과는 달리 필요한 것만 사용하면 됩니다.
-
-
-한 가지 재미 있는 사실은 `friend` 키워드는 함수에만 적용할 수 있는 것이 아니라, 다른 클래스 자체도 `friend` 로 지정할 수 있습니다. 예를 들어서,
-
-```cpp-formatted
-class A {
- private:
-  int x;
-
-  friend B;
-};
-
-class B {
- private:
-  int y;
-};
-```
-
-와 같이 할 경우, `A` 는 `B` 를 `friend` 로 지정하게 된 것입니다. 한 가지 주의할 사실은, 우리가 흔히 생각하는 friend 관계와는 다르게, C++ 에서 friend 는 짝사랑과 비슷합니다. 즉, `A` 는 자기 생각에 `B` 가 `friend` 라고 생각하는 것이므로, `B` 에게 `A` 의 모든 것을 공개합니다.
-
-즉 클래스 `B` 에서 `A` 의 `private` 변수인 `x` 에 접근할 수 있게 됩니다. 하지만 `B` 에는 `A` 가 `friend` 라고 지정하지 않았으므로, `B` 의 입장에서는 `A` 에게 어떠한 내용도 공개하지 않습니다 (`public` 변수들 빼고). 따라서 `A` 는 `B` 의 `private` 변수인 `int y` 에 접근할 수 없게 됩니다.
-
+따라서 위 처럼 멤버 함수인 `operator+` 를 강제로 호출하게 됩니다. 만일 이전 처럼 `(*this) + c` 를 하였다면, 앞서 보았던 동일한 컴파일러 오류 메세지를 보게 될 것입니다.
 
 ###  입출력 연산자 오버로딩 하기
 
@@ -363,7 +248,7 @@ std::cout << a;
 라고 하는 것은 사실 `std::cout.operator<<(a)` 를 하는 것과 동일한 명령이었습니다. 즉, 어떤 `std::cout` 이라는 객체에 멤버 함수 `operator<<` 가 정의되어 있어서 `a` 를 호출하게 되는 것이지요. 그런데, `std::cout` 이 `int` 나 `double` 변수, 심지어 문자열 까지 자유 자재로 `operator<<` 하나로 출력할 수 있었던 이유는 그 많은 수의 `operator<<` 함수들이 오버로딩 되어 있다는 뜻입니다.
 
 
-실제로 우리가 `include` 하던 `iostream` 의 헤더파일의 내용을 살펴보면 (실제로는 `ostream` 에 정의되어 있습니다. 다만 `iostream` 이 `ostream` 을 `include` 하고 있음) `ostream` 클래스에
+실제로 우리가 `include` 하던 `iostream` 의 헤더파일의 내용을 살펴보면 (실제로는 `ostream` 에 정의되어 있습니다. 다만 `iostream` 이 `ostream` 을 include 하고 있음) `ostream` 클래스에
 
 ```cpp-formatted
 ostream& operator<<(bool val);
@@ -379,10 +264,7 @@ ostream& operator<<(long double val);
 ostream& operator<<(void* val);
 ```
 
-
-
 와 같이 엄청난 수의 `operator<<` 가 정의되어 있는 것을 알 수 있습니다. 이들 덕분에 우리가 편하게 인자의 타입에 관계없이 손쉽게 출력을 사용할 수 있게 되는 것이지요.
-
 
 그렇다면 한 번 우리의 `Complex` 클래스에서 `ostream` 클래스의 연산자 `operator<<` 를 자유롭게 사용할 수 있으면 어떨까요. 예를 들어서
 
@@ -391,7 +273,6 @@ Complex c;
 std::cout << c;
 ```
 
-
 를 하게 되면 마치
 
 ```cpp-formatted
@@ -399,12 +280,11 @@ Complex c;
 c.println();
 ```
 
+을 한 것과 같은 효과를 내도록 말이지요. 당연하게도, `ostream` 클래스에 `operator<<` 멤버 함수를 새롭게 추가하는 것은 불가능 합니다. 이를 위해서는 표준 헤더파일의 내용을 수정해야 하기 때문이죠. 
 
+따라서, 우리는 `ostream` 클래스에 `Complex` 객체를 오버로딩하는 `operator<<` 연산자 함수를 추가할 수는 없습니다.
 
-을 한 것과 같은 효과를 내도록 말이지요. 당연하게도, `ostream` 클래스에 `operator<<` 멤버 함수를 새롭게 추가하는 것은 불가능 합니다. 이는 표준 헤더파일의 내용을 수정하는 것과 같기 때문이죠. 대부분의 경우 표준 헤더파일은 읽기만 가능이고, 원칙적으로 표준 라이브러리의 내용을 수정하는 것은 좋지 않습니다 (정확히 말하면 하면 안됩니다!). 따라서, 우리는 `ostream` 클래스에 `Complex` 객체를 오버로딩하는 `operator<<` 연산자 함수를 추가할 수는 없지요.
-
-
-그 대신에, 여태 까지 배운 내용에 따르면 아예 `operator<<` 전역 함수 하나를 정해서 `Complex` 의 `friend` 로 지정한 다음에 사용할 수 있습니다. 그 함수는 아마 다음과 같이 생겼겟지요.
+하지만 우리는 클래스의 연산자 함수를 추가하는 방법으로, 멤버 함수를 사용하는 것 말고도 한 가지 더 있다는 것을 알고 있지요. 바로 `ostream` 클래스 객체와 `Complex` 객체 두 개를 인자로 받는 전역 `operator<<` 함수를 정의하면 됩니다.
 
 ```cpp-formatted
 std::ostream& operator<<(std::ostream& os, const Complex& c) {
@@ -413,25 +293,101 @@ std::ostream& operator<<(std::ostream& os, const Complex& c) {
 }
 ```
 
-
-
-여기서 왜 `std::cout` 이 아니고 `os` 라고 의문을 가질 수 도 있는데, `std::cout` 자체가 `iostream` 에서 하나 만들어 놓은 `ostream` 객체 입니다. 따라서 `ostream&` 타입으로 `std::cout` 객체를 받아서 이를 출력하면 됩니다. 마찬가지로, `Complex` 클래스 내부에서 `friend` 선언을 해주시면 됩니다. 참고로 `opreator<<` 에서 `ostream&` 타입을 리턴하는 이유는 다음과 같은 문장을 처리할 수 있기 위해서입니다.
+참고로 `opreator<<` 에서 `ostream&` 타입을 리턴하는 이유는 다음과 같은 문장을 처리할 수 있기 위해서입니다.
 
 ```cpp-formatted
 std::cout << "a 의 값은 : " << a << " 이다. " << std::endl;
 ```
 
+하지만 위 `operator<<` 의 경우 한 가지 문제가 있는데 바로 이 `operator<<` 에서 `c.real` 과 `c.img` 에 접근할 수 없다는 점입니다. 왜냐하면 `real` 과 `img` 모두 `Complex` 클래스의 `private` 멤버 변수들이기 때문이죠.
 
+따라서 이를 해결하기 위해 세 가지 방법을 고려할 수 있습니다.
 
-`<<` 연산자는 왼쪽 부터 오른쪽 순으로 실행되기 때문에 가장 먼저 `std::cout.operator<<("a 의 값은?")` 이 실행되고, 그 자리에 `std::cout` 이 다시 리턴됩니다. 그 다음에는 `operator<<(std::cout, a);` 가 되서 쭉쭉 이어질 수 있도록 이와 같이 `ostream&` 를 리턴하게 되는 것입니다. 참고로, `Complex` 클래스 내부에는
+1. 그냥 `real` 과 `img` 를 `public` 으로 바꾼다.
+2. `Complex` 에 `print(std::ostream& os)` 와 같은 멤버 함수를 추가한 뒤, 이를 `operator<<` 에서 호출한다.
+3. 위 `operator<<` 를 `friend` 로 지정한다.
+
+흠 첫 번째 방법은 그닥 권장되지 않는 방법입니다. 구현 디테일은 최대한 숨기는 것이 좋습니다. 두 번째 방법은 나름 괜찮은 방법이기는 한데, 세 번째 방법은 어떨까요? `friend` 로 지정한다는 것이 무슨 말일까요?
+
+### friend 키워드
+
+`friend` 키워드는 클래스 내부에서 **다른 클래스나 함수들을 friend** 로 정의할 수 있는데, `friend` 로 정의된 클래스나 함수들은 원래 클래스의 private 로 정의된 변수나 함수들에 접근할 수 있습니다.
+
+아래 간단한 예시를 살펴봅시다.
+
+```cpp
+class A {
+ private:
+  void private_func() {}
+  int private_num;
+
+  // B 는 A 의 친구!
+  friend class B;
+
+  // func 은 A 의 친구!
+  friend void func();
+};
+
+class B {
+ public:
+  void b() {
+    A a;
+
+    // 비록 private 함수의 필드들이지만 친구이기 때문에 접근 가능하다.
+    a.private_func();
+    a.private_num = 2;
+  }
+};
+
+void func() {
+  A a;
+
+  // 비록 private 함수의 필드들이지만 위와 마찬가지로 친구이기 때문에 접근
+  // 가능하다.
+  a.private_func();
+  a.private_num = 2;
+}
+
+int main() {}
+```
+
+그리고 컴파일도 잘 됨을 알 수 있습니다.
+
+```cpp
+  // B 는 A 의 친구!
+  friend class B;
+
+  // func 은 A 의 친구!
+  friend void func();
+```
+
+위 처럼 클래스 `B` 와 `void` 함수 `func` 을 `A` 의 친구라고 선언하고 있습니다. 이렇게 친구라고 선언하게 되면, `B` 와 `func` 안에서는 `A` 의 모든 `private` 멤버 함수들과 멤버 변수들에 대한 접근 권한을 부여하게 됩니다. **정말 친한 친구 사이라 보면 됩니다.**
+
+한 가지 재미있는 점은 이 친구 관계가 **짝사랑** 과 같다는 점입니다. 즉 위 경우 `B` 는 `A` 의 모든 `private` 들을 볼 수 있지만, `B` 안에서 `A` 를 `friend` 로 지정하지 않는 이상, `A` 는 `B` 의 `private` 개체들에 접근할 수 없습니다.
+
+```cpp-formatted
+class A {
+ private:
+  int x;
+
+  friend class B;
+};
+
+class B {
+ private:
+  int y;
+};
+```
+
+쉽게 말해 위 경우 `B` 에는 `A` 가 `friend` 라고 지정하지 않았으므로, `A` 는 `B` 의 `private` 변수인 `int y` 에 접근할 수 없게 됩니다. 안타까운 관계이지요.
+
+자 그러면 본론으로 돌아와서 `ostream& operator<<` 안에서 `c` 의 `real` 과 `img` 필드들에 접근하기 위해선 아래와 같이 `friend` 로 선언하면 됩니다.
 
 ```cpp-formatted
 friend ostream& operator<<(ostream& os, const Complex& c);
 ```
 
-
-
-위와 같이 `friend` 선언을 해주시면 됩니다. 비슷한 방법으로 `Complex` 객체 `c` 에 대해 `cin >>` c; 와 같은 작업을 할 수 있습니다. 다만, 이번에는 `cin` 은 `istream` 객체이고, `opreator>>` 를 오버로딩 해야 된다는 점이 다를 뿐이지요.
+위와 같이 `friend` 선언을 해주시면 됩니다. 비슷한 방법으로 `Complex` 객체 `c` 에 대해 `cin >> c;` 와 같은 작업을 할 수 있습니다. 다만, 이번에는 `cin` 은 `istream` 객체이고, `opreator>>` 를 오버로딩 해야 된다는 점이 다를 뿐이지요.
 
 ```cpp
 #include <iostream>
@@ -441,38 +397,33 @@ class Complex {
  private:
   double real, img;
 
-  double get_number(const char* str, int from, int to);
+  double get_number(const char* str, int from, int to) const;
 
  public:
   Complex(double real, double img) : real(real), img(img) {}
   Complex(const Complex& c) { real = c.real, img = c.img; }
   Complex(const char* str);
 
-  Complex operator+(const Complex& c);
-  Complex operator-(const Complex& c);
-  Complex operator*(const Complex& c);
-  Complex operator/(const Complex& c);
-
+  Complex operator+(const Complex& c) const;
   Complex& operator+=(const Complex& c);
-  Complex& operator-=(const Complex& c);
-  Complex& operator*=(const Complex& c);
-  Complex& operator/=(const Complex& c);
 
   Complex& operator=(const Complex& c);
 
-  friend Complex operator+(const Complex& a, const Complex& b);
-  friend std::ostream& operator<<(std::ostream& os, const Complex& c);
+  // 나머지 연산자 함수들은 생략 :) 
 
-  void println() { std::cout << "( " << real << " , " << img << " ) " << std::endl; }
+  // 아래 함수는 Complex 의 멤버 함수를 정의한 것이 *아니다*
+  friend std::ostream& operator<<(std::ostream& os, const Complex& c);
 };
+
 std::ostream& operator<<(std::ostream& os, const Complex& c) {
   os << "( " << c.real << " , " << c.img << " ) ";
   return os;
 }
+
 Complex operator+(const Complex& a, const Complex& b) {
-  Complex temp(a.real + b.real, a.img + b.img);
-  return temp;
+  return a.operator+(b);
 }
+
 Complex::Complex(const char* str) {
   // 입력 받은 문자열을 분석하여 real 부분과 img 부분을 찾아야 한다.
   // 문자열의 꼴은 다음과 같습니다 "[부호](실수부)(부호)i(허수부)"
@@ -503,7 +454,7 @@ Complex::Complex(const char* str) {
 
   if (pos_i >= 1 && str[pos_i - 1] == '-') img *= -1.0;
 }
-double Complex::get_number(const char* str, int from, int to) {
+double Complex::get_number(const char* str, int from, int to) const {
   bool minus = false;
   if (from > to) return 0;
 
@@ -531,41 +482,17 @@ double Complex::get_number(const char* str, int from, int to) {
 
   return num;
 }
-Complex Complex::operator+(const Complex& c) {
+
+Complex Complex::operator+(const Complex& c) const {
   Complex temp(real + c.real, img + c.img);
-  return temp;
-}
-Complex Complex::operator-(const Complex& c) {
-  Complex temp(real - c.real, img - c.img);
-  return temp;
-}
-Complex Complex::operator*(const Complex& c) {
-  Complex temp(real * c.real - img * c.img, real * c.img + img * c.real);
-  return temp;
-}
-Complex Complex::operator/(const Complex& c) {
-  Complex temp(
-    (real * c.real + img * c.img) / (c.real * c.real + c.img * c.img),
-    (img * c.real - real * c.img) / (c.real * c.real + c.img * c.img));
   return temp;
 }
 
 Complex& Complex::operator+=(const Complex& c) {
-  (*this) = (*this) + c;
+  (*this) = operator+(c);
   return *this;
 }
-Complex& Complex::operator-=(const Complex& c) {
-  (*this) = (*this) - c;
-  return *this;
-}
-Complex& Complex::operator*=(const Complex& c) {
-  (*this) = (*this) * c;
-  return *this;
-}
-Complex& Complex::operator/=(const Complex& c) {
-  (*this) = (*this) / c;
-  return *this;
-}
+
 Complex& Complex::operator=(const Complex& c) {
   real = c.real;
   img = c.img;
@@ -587,8 +514,9 @@ a 의 값은 : ( -1.1 , 3.923 )  이다.
 
 와 같이 잘 실행됨을 알 수 있습니다.
 
-
-
+```lec-warning
+물론 무분별하게 `friend` 키워드를 남발하는 것은 썩 권장하지 않습니다. 왜냐하면 `friend` 키워드는 해당 함수나 클래스에게 자기 자신의 모든 `private` 멤버 함수와 변수들을 공개하기 때문이지요. 따라서 **구현 디테일은 최대한 숨기라** 는 원칙을 지키기가 힘들어집니다. 물론 절대 `friend` 를 쓰지 말라는 것은 아니고, 테스트 코드 작성과 같이 `friend` 를 유용하게 사용할 수 있는 경우가 종종 있습니다.
+```
 
 ###  첨자 연산자 (operator[])
 
@@ -601,22 +529,17 @@ a 의 값은 : ( -1.1 , 3.923 )  이다.
 char& operator[](const int index);
 ```
 
-
-
 `index` 로 `[]` 안에 들어가는 값을 받게 됩니다. 그리고 `char&` 를 인자로 리턴하는 이유는
 
 ```cpp-formatted
 str[10] = 'c';
 ```
 
-
-
 와 같은 명령을 수행하기 때문에, 그 원소의 레퍼런스를 리턴하게 되는 것이지요. 실제로 `opreator[]` 의 구현은 아래와 같이 매우 단순합니다.
 
 ```cpp-formatted
 char& MyString::operator[](const int index) { return string_content[index]; }
 ```
-
 
 위와 같이 `index` 번째의 `string_content` 를 리턴해서, `operator[]` 를 사용하는 사용자가, 이의 레퍼런스를 가질 수 있게 되지요. 그렇다면, 전체 소스를 한 번 살펴보도록 합시다.
 
@@ -947,7 +870,7 @@ x : 5
 
 연산자 오버로딩에 대해 다루면서 몇 가지 중요한 포인트 들만 따로 정리해보자면;
 
-* 두 개의 동등한 객체 사이에서의 이항 연산자는 멤버 함수가 아닌 외부 함수로 오버로딩 하는 것이 좋습니다. (예를 들어 `Complex` 의 `operator+(const Complex&, const Complex&)` 와 같이 말입니다.)
+* 두 개의 동등한 객체 사이에서의 이항 연산자는 멤버 함수가 아닌 외부 함수로 오버로딩 하는 것이 좋습니다. (예를 들어 `Complex` 의 `operator+(const Complex&, const Complex&) const` 와 같이 말입니다.)
 * 두 개의 객체 사이의 이항 연산자 이지만 한 객체만 값이 바뀐다던지 등의 동등하지 않는 이항 연산자는 멤버 함수로 오버로딩 하는 것이 좋습니다. (예를 들어서 `operator+=` 는 이항 연산자 이지만 `operator+=(const Complex&)` 가 낫다)
 * 단항 연산자는 멤버 함수로 오버로딩 하는 것이 좋습니다 (예를 들어 `operator++` 의 경우 멤버 함수로 오버로딩 합니다)
 * 일부 연산자들은 반드시 멤버 함수로만 오버로딩 해야 합니다 (강좌 앞 부분 참고)
