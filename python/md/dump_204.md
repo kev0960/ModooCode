@@ -327,18 +327,15 @@ void delete_address(Address *current) {
     delete_address(static_cast<Address *>(current->next) + i);
   }
 
-  delete[] current->next;
+  delete[] static_cast<Address*>(current->next);
 }
 ```
 
-
-
 위와 같이 `delete_address` 함수를 생각해 볼 수 있습니다. (여러분들이 한 번 직접 생각해보세요)
-
 
 이들을 조합해서, 우리의 `Array` 클래스의 생성자를 수정해보도록 합시다.
 
-```cpp-formatted
+```cpp
 Array(int dim, int* array_size) : dim(dim) {
   size = new int[dim];
   for (int i = 0; i < dim; i++) size[i] = array_size[i];
@@ -356,24 +353,37 @@ Array(const Array& arr) : dim(arr.dim) {
   top->level = 0;
 
   initialize_address(top);
+
+  // 내용물 복사
+  copy_address(top, arr.top);
 }
+
+void copy_address(Address *dst, Address *src) {
+  if (dst->level == dim - 1) {
+    for (int i = 0; i < size[dst->level]; ++i)
+      static_cast<int *>(dst->next)[i] = static_cast<int *>(src->next)[i];
+    return;
+  }
+  for (int i = 0; i != size[dst->level]; i++) {
+    Address *new_dst = static_cast<Address *>(dst->next) + i;
+    Address *new_src = static_cast<Address *>(src->next) + i;
+    copy_address(new_dst, new_src);
+  }
+}
+  
 ~Array() {
   delete_address(top);
   delete[] size;
 }
 ```
 
+위 두개는 `Array` 의 기본 생성자와 복사 생성자, 그리고 소멸자를 나타낸 것입니다. 재귀 함수의 시작으로 `current` 에 `top` 을 전달하였고, 이 `top` 을 시작으로 함수들이 쭈르륵 재귀 호출 되면서 거대한 `N` 차원 메모리 구조가 생성되거나 소멸 됩니다.
 
+항상 유의할 점은 소멸자에서 동적으로 할당한 모든 것들을 정리해 주어야 한다는 점인데, 재귀 호출로 생성한 메모리 구조만을 소멸해야 되는 것이 아니라 `size` 역시 동적으로 할당한 것이므로 꼭 해제해 주어야만 합니다.
 
-위 두개는 `Array` 의 기본 생성자와 복사 생성자, 그리고 소멸자를 나타낸 것입니다. 재귀 함수의 시작으로 `current` 에 `top` 을 전달하였고, 이 `top` 을 시작으로 함수들이 쭈르륵 재귀 호출 되면서 거대한 `N` 차원 메모리 구조가 생성되거나 소멸 됩니다. 항상 유의할 점은 소멸자에서 동적으로 할당한 모든 것들을 정리해 주어야 한다는 점인데, 재귀 호출로 생성한 메모리 구조만을 소멸해야 되는 것이 아니라 `size` 역시 동적으로 할당한 것이므로 꼭 해제해 주어야만 합니다.
-
-
-
-
+또한 복사 생성자에서 마찬가지로 트리 안에 모든 원소들을 복사해줘야만 합니다. \sidenote{백사과님께서 해당 내용을 지적해주셨습니다 ;) }
 
 ###  operator[] 문제
-
-
 
 
 이제 생성을 하였는데, 문제는 어떻게 `N` 차원 배열의 각각의 원소에 접근하느냐 입니다. 우리의 클래스는 다른 복잡한 방법을 사용하지 않고 마치 진짜 배열을 다루던 것 처럼 `[]` 를 이용해서 원소에 접근하는 기능을 제공하고 싶습니다. 하지만 문제는 C++ 에는 1 개의 `[]` 를 취하는 연산자는 있어도 `N` 개의 `[]` 들을 취하는 연산자는 없다는 점입니다.
@@ -681,7 +691,22 @@ class Array {
     top->level = 0;
 
     initialize_address(top);
+    // 내용물 복사
+  copy_address(top, arr.top);
+}
+
+void copy_address(Address *dst, Address *src) {
+  if (dst->level == dim - 1) {
+    for (int i = 0; i < size[dst->level]; ++i)
+      static_cast<int *>(dst->next)[i] = static_cast<int *>(src->next)[i];
+    return;
   }
+  for (int i = 0; i != size[dst->level]; i++) {
+    Address *new_dst = static_cast<Address *>(dst->next) + i;
+    Address *new_src = static_cast<Address *>(src->next) + i;
+    copy_address(new_dst, new_src);
+  }
+}
   // address 를 초기화 하는 함수이다. 재귀 호출로 구성되어 있다.
   void initialize_address(Address* current) {
     if (!current) return;
@@ -701,7 +726,7 @@ class Array {
       delete_address(static_cast<Address*>(current->next) + i);
     }
 
-    delete[] current->next;
+    delete[] static_cast<Address*>(current->next);
   }
   Int operator[](const int index);
   ~Array() {
@@ -1087,7 +1112,23 @@ class Array {
     top->level = 0;
 
     initialize_address(top);
+    // 내용물 복사
+    copy_address(top, arr.top);
   }
+
+  void copy_address(Address *dst, Address *src) {
+    if (dst->level == dim - 1) {
+      for (int i = 0; i < size[dst->level]; ++i)
+        static_cast<int *>(dst->next)[i] = static_cast<int *>(src->next)[i];
+      return;
+    }
+    for (int i = 0; i != size[dst->level]; i++) {
+      Address *new_dst = static_cast<Address *>(dst->next) + i;
+      Address *new_src = static_cast<Address *>(src->next) + i;
+      copy_address(new_dst, new_src);
+    }
+  }
+
   // address 를 초기화 하는 함수이다. 재귀 호출로 구성되어 있다.
   void initialize_address(Address* current) {
     if (!current) return;
@@ -1107,7 +1148,7 @@ class Array {
       delete_address(static_cast<Address*>(current->next) + i);
     }
 
-    delete[] current->next;
+    delete[] static_cast<Address*>(current->next);
   }
   Int operator[](const int index);
   ~Array() {
@@ -1277,17 +1318,9 @@ MyArray::Array::Iterator itr = arr.begin();
 for (int i = 0; itr != arr.end(); itr++, i++) (*itr) = i;
 ```
 
-
-
 와 같이 수행하는 부분입니다. 이와 같이 반복자를 이용하는 것은 C++ 에서 매우 많이 사용 되고 있는 방법으로, 나중에 표준 라이브러리들에 대해 살펴볼 때 다시 한번 등장하게 됩니다.
 
-
 자 여러분 수고하셨습니다! 아마 이번 강좌는 제가 여태까지 진행한 강좌 중에 가장 어려웠고 저도 설명하기에 가장 어려운 내용이 아니였나 싶네요. 다음 강좌에서는 C++ 의 또 다른 쇼킹할 만한 기능들에 대해 살펴보도록 하겠습니다. 감사합니다.
-
-
-
-
-
 
 ###  생각해보기
 
