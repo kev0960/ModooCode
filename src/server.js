@@ -191,6 +191,49 @@ module.exports = class Server {
     return result.rows[0];
   }
 
+  getCategoryFiles(category_path) {
+    let root = this.page_infos[''];
+    let category = root;
+    for (let i = 0; i < category_path.length; i++) {
+      if (!category) {
+        return {};
+      }
+
+      category = category[category_path[i]]
+    }
+    return category;
+  }
+
+  getCategoryHtml(category) {
+    let html = ''
+    for (const [key, value] of Object.entries(category)) {
+      if (key == 'files') {
+        let file_info = [];
+        for (let i = 0; i < value.length; i++) {
+          file_info.push({info: this.file_infos[value[i]], link: value[i]});
+        }
+        file_info.sort(function(x, y) {
+          if(Date.parse(x.info.publish_date) < Date.parse(y.info.publish_date)) {
+            return 1;
+          }
+          return -1;
+        });
+        for (let i = 0; i < file_info.length; i++) {
+          console.log(file_info[i].info.title, "and", file_info[i].info.publish_date,
+          "and",Date.parse(file_info[i].info.publish_date))
+          html += '<div><a href="/' + file_info[i].link + '">' +
+              file_info[i].info.title + '</a></div>';
+        }
+      }
+      else {
+        html += '<div><p>'+  key + '</p>'
+        html += this.getCategoryHtml(value);
+        html += '</div>'
+      }
+    }
+    return html;
+  }
+
   buildCategoryListing(page_id) {
     if (this.cached_category_html.get(page_id)) {
       return this.cached_category_html.get(page_id);
@@ -381,6 +424,7 @@ module.exports = class Server {
           res.send(html);
         }
       }.bind(this);
+
       if (page_id <= 228) {
         if (page_id == 15) {
           this.pageview_manager.addPageViewCnt('231');
@@ -407,6 +451,20 @@ module.exports = class Server {
       }
     }.bind(this));
 
+    this.app.get('/category/:cat_name(*)', async function(req, res) {
+      let cat_name = req.params.cat_name;
+      let category_path = cat_name.split('/');
+      console.log(cat_name.split('/'))
+      let user = req.user;
+
+      this.comment_manager.getLatestComments(150).then(function(comments) {
+        res.render('./category.ejs', {
+          header_category: this.header_category.BuildPageHeader(),
+          category_info:
+              this.getCategoryHtml(this.getCategoryFiles(category_path)),
+        });
+      }.bind(this));
+    }.bind(this));
 
     this.app.get('/comments', async function(req, res) {
       this.comment_manager.getLatestComments(150).then(function(comments) {
@@ -414,6 +472,48 @@ module.exports = class Server {
           comments,
         });
       }.bind(this));
+    }.bind(this));
+
+    this.app.get('/en/inst/:inst_name', function(req, res) {
+      let inst_name = req.params.inst_name;
+      console.log(inst_name);
+
+      let user = req.user;
+      if (!inst_name) {
+        this.comment_manager.getLatestComments(10).then(function(comments) {
+          res.render('./index.ejs', {
+            comments,
+            recent_articles: this.recent_articles,
+            visitor_counts: this.visitor_counts
+          });
+        }.bind(this));
+        return;
+      }
+      console.log('Page [', util.getDateTime(), '] ::', inst_name);
+
+      let fallbackToIndexOnFailOrPass = function(err, html) {
+        if (err) {
+          this.comment_manager.getLatestComments(10).then(function(comments) {
+            res.render('./index.ejs', {
+              comments,
+              recent_articles: this.recent_articles,
+              visitor_counts: this.visitor_counts
+            });
+          }.bind(this));
+        } else {
+          res.send(html);
+        }
+      }.bind(this);
+
+      
+      this.pageview_manager.addPageViewCnt(inst_name);
+      res.render(
+          'page.ejs',
+          this.generateInfoToPassEJS(
+              './new/inst/' + inst_name + '.html', inst_name, inst_name, user,
+              CheckMobile(req)), fallbackToIndexOnFailOrPass
+          );
+      
     }.bind(this));
 
     this.app.get('/:id', function(req, res) {

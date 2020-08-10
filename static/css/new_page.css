@@ -158,7 +158,6 @@ pre {
 
 /* Outline */
 .main-wrap {
-  display: flex;
 }
 
 /* Sidebar */
@@ -166,12 +165,10 @@ pre {
 .sidebar-wrap {
   top: 0;
   margin-top: 96px;
-  /* position: fixed; */
+  position: fixed;
   height: 100%;
   width: 256px;
-  position: sticky;
-  position: -webkit-sticky;
-  /* float: left; */
+  float: left;
 }
 
 div.sidebar-box-header {
@@ -251,10 +248,10 @@ div.toc-header {
 
 .article-content-wrap {
   margin-top: 96px;
-  /* margin-left: 276px; */
+  margin-left: 276px;
   /* 256 + 20 margin */
   width: 70%;
-  /* float: left; */
+  float: left;
 }
 
 .article-content {

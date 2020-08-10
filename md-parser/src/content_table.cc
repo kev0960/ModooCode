@@ -5,6 +5,23 @@
 namespace md_parser {
 
 namespace {
+
+// If there is only one <p>, then remove it.
+string RemoveParagraphIfUnique(const string& html) {
+  auto first = html.find("<p>");
+  if (first != string::npos && first + 4 < html.size()) {
+    // There is another <p>
+    if (html.find("<p>", first + 4) != string::npos) {
+      return html;
+    }
+  } else {
+    return html;
+  }
+
+  auto end = html.find("</p>");
+  return html.substr(first + 3, end - (first + 3));
+}
+
 bool ParseTableRow(const string& row, std::vector<Content>* elems) {
   if (row[0] != '|') {
     return false;
@@ -74,10 +91,13 @@ string GenerateTableRow(std::vector<Content>* row,
     if (!column_class.empty()) {
       content.Preprocess(parser_env);
       html += StrCat(R"(<td class=")", column_class, R"(">)",
-                     content.OutputHtml(parser_env), "</td>");
+                     RemoveParagraphIfUnique(content.OutputHtml(parser_env)),
+                     "</td>");
     } else {
       content.Preprocess(parser_env);
-      html += StrCat("<td>", content.OutputHtml(parser_env), "</td>");
+      html += StrCat("<td>",
+                     RemoveParagraphIfUnique(content.OutputHtml(parser_env)),
+                     "</td>");
     }
     column_index++;
   }

@@ -234,6 +234,8 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::HTML_ONLY;
   } else if (box_name == "latex-only") {
     box_type_ = BOX_CONTENT_TYPES::LATEX_ONLY;
+  } else if (box_name == "embed") {
+    box_type_ = BOX_CONTENT_TYPES::EMBED;
   }
 }
 

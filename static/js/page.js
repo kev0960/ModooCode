@@ -110,7 +110,7 @@ function initCategory() {
       // Get the directory.
       const current_dir = GetFilesFromPath(path);
 
-      // Add directories. 
+      // Add directories.
       const folders = Object.keys(current_dir);
       const div = $('<div>', {class: 'inner-menu' + path.length});
       for (let i = 0; i < folders.length; i++) {
@@ -146,7 +146,8 @@ function initCategory() {
       }
       div.insertAfter($(this));
 
-      const elem = $('.sidebar-nav-item[href="' + window.location.pathname + '"]');
+      const elem =
+          $('.sidebar-nav-item[href="' + window.location.pathname + '"]');
       elem.css('background-color', 'rgba(255, 255, 255, .33)');
     }
   });
@@ -304,8 +305,8 @@ function postComment() {
 
 function postReply(parent_id) {
   postGenericComment(
-      parent_id, $('#posted-reply').val(), $('#reply-id').val(),
-      $('#reply-password').val());
+      parent_id, $('#posted-reply').val(), $('#reply-password').val(),
+      $('#reply-id').val());
 }
 
 function postGenericComment(parent_id, content, password, name) {
@@ -453,13 +454,11 @@ function createCodeExecute(elem, index) {
   elem.addClass('plain-code')
   $('<div class=\'button-group\'><label class=\'stdin-label\' for=\'stdin-' +
     index + '\'>입력</label><input type=\'text\' class=\'stdin\' ' +
-    'id=\'stdin-' + index + '\' name=\'stdin-' + index +
-    '\' placeholder=\'' +
+    'id=\'stdin-' + index + '\' name=\'stdin-' + index + '\' placeholder=\'' +
     '프로그램 입력값을 여기에 입력하세요.\'>' +
     '<button class=\'edit\' id=\'edit-' + index +
     '\'><i class=\'xi-pen\'></i><span class="btn-text">&nbsp;&nbsp;코드 수정</span></button>' +
-    '<button class=\'run\' id=\'run-' + index +
-    '\'><i class=\'xi-refresh\'>' +
+    '<button class=\'run\' id=\'run-' + index + '\'><i class=\'xi-refresh\'>' +
     '</i><span class="btn-text">&nbsp;&nbsp;실행</span></button></div>')
       .insertAfter(elem);
 
@@ -471,11 +470,13 @@ function createCodeExecute(elem, index) {
     require(['vs/editor/editor.main'], function() {
       let previous_height = countLine(code);
       let current_code_box = '#' + index;
-      console.log("current code box ", $(current_code_box), $(current_code_box).height());
+      console.log(
+          'current code box ', $(current_code_box),
+          $(current_code_box).height());
 
       $(current_code_box).empty();
       $(current_code_box).height(19 * previous_height + 30);
-      $(current_code_box).css("padding", "5px");
+      $(current_code_box).css('padding', '5px');
       let new_div =
           $('<div id=\'div-' + index + '\' class=\'monaco-container\'></div>')
               .height(19 * previous_height + 30);
@@ -523,8 +524,7 @@ function createCodeExecute(elem, index) {
 
         if (result.compile_error.length > 0) {
           let marked_lines = new Set();
-          formatted =
-              FormatCompileError(result.compile_error, marked_lines);
+          formatted = FormatCompileError(result.compile_error, marked_lines);
           $('#result-' + index).text(formatted);
 
           if (is_editor) {
@@ -567,7 +567,6 @@ window.onload = function() {
   $('pre.chroma').each(function(index) {
     createCodeExecute($(this), index);
   });
-  require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
   initCategory();
 
   let sidebar_status = localStorage.getItem('sidebar');
@@ -721,6 +720,8 @@ window.onload = function() {
           .click(function(e) {
 
           });
+
+  require.config({paths: {'vs': '/lib/monaco-editor/min/vs'}});
 };
 
 document.addEventListener('DOMContentLoaded', function() {

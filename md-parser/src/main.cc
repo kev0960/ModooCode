@@ -60,8 +60,11 @@ int main(int argc, char** argv) {
   if (filenames.empty()) {
     for (const auto& md_path : md_paths) {
       for (auto& p :
-           std::experimental::filesystem::directory_iterator(md_path)) {
-        filenames.push_back(p.path());
+           std::experimental::filesystem::recursive_directory_iterator(
+               md_path)) {
+        if (std::experimental::filesystem::is_regular_file(p)) {
+          filenames.push_back(p.path());
+        }
       }
     }
   }

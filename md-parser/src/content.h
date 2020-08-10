@@ -25,7 +25,8 @@ struct Fragments {
     FORCE_NEWLINE,
     SERIF,
     HTML_ONLY,
-    LATEX_ONLY
+    LATEX_ONLY,
+    FOOTNOTE
   } type;
 
   // Start and end are inclusive.

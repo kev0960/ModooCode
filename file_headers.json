@@ -2191,7 +2191,1891 @@
 	"title" : "씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>"
 }
 ,
+	"aaa" : {
+}
+,
+	"aad" : {
+}
+,
+	"aam" : {
+}
+,
+	"aas" : {
+}
+,
+	"adc" : {
+}
+,
+	"adcx_" : {
+}
+,
+	"add" : {
+}
+,
+	"addpd" : {
+}
+,
+	"addps" : {
+}
+,
+	"addsd" : {
+}
+,
+	"addss" : {
+}
+,
+	"addsubpd" : {
+}
+,
+	"addsubps" : {
+}
+,
+	"adox_" : {
+}
+,
+	"aesdec" : {
+}
+,
+	"aesdeclast" : {
+}
+,
+	"aesenc" : {
+}
+,
+	"aesenclast" : {
+}
+,
+	"aesimc" : {
+}
+,
+	"aeskeygenassist" : {
+}
+,
+	"and" : {
+}
+,
+	"andn_" : {
+}
+,
+	"andnpd" : {
+}
+,
+	"andnps" : {
+}
+,
+	"andpd" : {
+}
+,
+	"andps" : {
+}
+,
+	"arpl" : {
+}
+,
+	"bextr_" : {
+}
+,
+	"blendpd_" : {
+}
+,
+	"blendps_" : {
+}
+,
+	"blendvpd_" : {
+}
+,
+	"blendvps_" : {
+}
+,
+	"blsi_" : {
+}
+,
+	"blsmsk_" : {
+}
+,
+	"blsr_" : {
+}
+,
+	"bndcl" : {
+}
+,
+	"bndcu_or_bndcn" : {
+}
+,
+	"bndldx" : {
+}
+,
+	"bndmk" : {
+}
+,
+	"bndmov" : {
+}
+,
+	"bndstx" : {
+}
+,
+	"bound" : {
+}
+,
+	"bsf" : {
+}
+,
+	"bsr" : {
+}
+,
+	"bswap" : {
+}
+,
+	"bt" : {
+}
+,
+	"btc" : {
+}
+,
+	"btr" : {
+}
+,
+	"bts" : {
+}
+,
+	"bzhi_" : {
+}
+,
+	"call" : {
+}
+,
+	"cbw_or_cwde_or_cdqe" : {
+}
+,
+	"clac" : {
+}
+,
+	"clc" : {
+}
+,
+	"cld" : {
+}
+,
+	"clflush" : {
+}
+,
+	"clflushopt" : {
+}
+,
+	"cli_" : {
+}
+,
+	"clts" : {
+}
+,
+	"clwb" : {
+}
+,
+	"cmc" : {
+}
+,
+	"cmovcc" : {
+}
+,
+	"cmp" : {
+}
+,
+	"cmppd" : {
+}
+,
+	"cmpps" : {
+}
+,
+	"cmps_or_cmpsb_or_cmpsw_or_cmpsd_or_cmpsq" : {
+}
+,
+	"cmpsd" : {
+}
+,
+	"cmpss" : {
+}
+,
+	"cmpxchg" : {
+}
+,
+	"cmpxchg8b_or_cmpxchg16b" : {
+}
+,
+	"comisd" : {
+}
+,
+	"comiss" : {
+}
+,
+	"cpuid" : {
+}
+,
+	"crc32_" : {
+}
+,
+	"cvtdq2pd" : {
+}
+,
+	"cvtdq2ps" : {
+}
+,
+	"cvtpd2dq" : {
+}
+,
+	"cvtpd2pi" : {
+}
+,
+	"cvtpd2ps" : {
+}
+,
+	"cvtpi2pd" : {
+}
+,
+	"cvtpi2ps" : {
+}
+,
+	"cvtps2dq" : {
+}
+,
+	"cvtps2pd" : {
+}
+,
+	"cvtps2pi" : {
+}
+,
+	"cvtsd2si" : {
+}
+,
+	"cvtsd2ss" : {
+}
+,
+	"cvtsi2sd" : {
+}
+,
+	"cvtsi2ss" : {
+}
+,
+	"cvtss2sd" : {
+}
+,
+	"cvtss2si" : {
+}
+,
+	"cvttpd2dq" : {
+}
+,
+	"cvttpd2pi" : {
+}
+,
+	"cvttps2dq" : {
+}
+,
+	"cvttps2pi" : {
+}
+,
+	"cvttsd2si" : {
+}
+,
+	"cvttss2si" : {
+}
+,
+	"cwd_or_cdq_or_cqo" : {
+}
+,
+	"daa" : {
+}
+,
+	"das" : {
+}
+,
+	"dec" : {
+}
+,
+	"div" : {
+}
+,
+	"divpd" : {
+}
+,
+	"divps" : {
+}
+,
+	"divsd" : {
+}
+,
+	"divss" : {
+}
+,
+	"dppd_" : {
+}
+,
+	"dpps_" : {
+}
+,
+	"emms" : {
+}
+,
+	"enter" : {
+}
+,
+	"extractps" : {
+}
+,
+	"f2xm1" : {
+}
+,
+	"fabs" : {
+}
+,
+	"fadd_or_faddp_or_fiadd" : {
+}
+,
+	"fbld" : {
+}
+,
+	"fbstp" : {
+}
+,
+	"fchs" : {
+}
+,
+	"fclex_or_fnclex" : {
+}
+,
+	"fcmovcc" : {
+}
+,
+	"fcom_or_fcomp_or_fcompp" : {
+}
+,
+	"fcomi_or_fcomip_or__fucomi_or_fucomip" : {
+}
+,
+	"fcos" : {
+}
+,
+	"fdecstp" : {
+}
+,
+	"fdiv_or_fdivp_or_fidiv" : {
+}
+,
+	"fdivr_or_fdivrp_or_fidivr" : {
+}
+,
+	"ffree" : {
+}
+,
+	"ficom_or_ficomp" : {
+}
+,
+	"fild" : {
+}
+,
+	"fincstp" : {
+}
+,
+	"finit_or_fninit" : {
+}
+,
+	"fist_or_fistp" : {
+}
+,
+	"fisttp" : {
+}
+,
+	"fld" : {
+}
+,
+	"fld1_or_fldl2t_or_fldl2e_or_fldpi_or_fldlg2_or_fldln2_or_fldz" : {
+}
+,
+	"fldcw" : {
+}
+,
+	"fldenv" : {
+}
+,
+	"fmul_or_fmulp_or_fimul" : {
+}
+,
+	"fnop" : {
+}
+,
+	"fpatan" : {
+}
+,
+	"fprem" : {
+}
+,
+	"fprem1" : {
+}
+,
+	"fptan" : {
+}
+,
+	"frndint" : {
+}
+,
+	"frstor" : {
+}
+,
+	"fsave_or_fnsave" : {
+}
+,
+	"fscale" : {
+}
+,
+	"fsin" : {
+}
+,
+	"fsincos" : {
+}
+,
+	"fsqrt" : {
+}
+,
+	"fst_or_fstp" : {
+}
+,
+	"fstcw_or_fnstcw" : {
+}
+,
+	"fstenv_or_fnstenv" : {
+}
+,
+	"fstsw_or_fnstsw" : {
+}
+,
+	"fsub_or_fsubp_or_fisub" : {
+}
+,
+	"fsubr_or_fsubrp_or_fisubr" : {
+}
+,
+	"ftst" : {
+}
+,
+	"fucom_or_fucomp_or_fucompp" : {
+}
+,
+	"fxam" : {
+}
+,
+	"fxch" : {
+}
+,
+	"fxrstor" : {
+}
+,
+	"fxsave" : {
+}
+,
+	"fxtract" : {
+}
+,
+	"fyl2x" : {
+}
+,
+	"fyl2xp1" : {
+}
+,
+	"getsec[exitac]" : {
+}
+,
+	"getsec[parameters]" : {
+}
+,
+	"getsec[senter]" : {
+}
+,
+	"getsec[sexit]" : {
+}
+,
+	"getsec[smctrl]" : {
+}
+,
+	"getsec[wakeup]" : {
+}
+,
+	"haddpd" : {
+}
+,
+	"haddps" : {
+}
+,
+	"hlt" : {
+}
+,
+	"hsubpd" : {
+}
+,
+	"hsubps" : {
+}
+,
+	"idiv" : {
+}
+,
+	"imul" : {
+}
+,
+	"in" : {
+}
+,
+	"inc" : {
+}
+,
+	"ins_or_insb_or_insw_or_insd" : {
+}
+,
+	"insertps" : {
+}
+,
+	"int_n_or_into_or_int_3" : {
+}
+,
+	"invd" : {
+}
+,
+	"invlpg" : {
+}
+,
+	"invpcid" : {
+}
+,
+	"iret_or_iretd" : {
+}
+,
+	"jcc" : {
+}
+,
+	"jmp" : {
+}
+,
+	"kaddw_or_kaddb_or_kaddq_or_kaddd" : {
+}
+,
+	"kandnw_or_kandnb_or_kandnq_or_kandnd" : {
+}
+,
+	"kandw_or_kandb_or_kandq_or_kandd" : {
+}
+,
+	"kmovw_or_kmovb_or_kmovq_or_kmovd" : {
+}
+,
+	"knotw_or_knotb_or_knotq_or_knotd" : {
+}
+,
+	"kortestw_or_kortestb_or_kortestq_or_kortestd" : {
+}
+,
+	"korw_or_korb_or_korq_or_kord" : {
+}
+,
+	"kshiftlw_or_kshiftlb_or_kshiftlq_or_kshiftld" : {
+}
+,
+	"kshiftrw_or_kshiftrb_or_kshiftrq_or_kshiftrd" : {
+}
+,
+	"ktestw_or_ktestb_or_ktestq_or_ktestd" : {
+}
+,
+	"kunpckbw_or_kunpckwd_or_kunpckdq" : {
+}
+,
+	"kxnorw_or_kxnorb_or_kxnorq_or_kxnord" : {
+}
+,
+	"kxorw_or_kxorb_or_kxorq_or_kxord" : {
+}
+,
+	"lahf" : {
+}
+,
+	"lar" : {
+}
+,
+	"lddqu" : {
+}
+,
+	"ldmxcsr" : {
+}
+,
+	"lds_or_les_or_lfs_or_lgs_or_lss" : {
+}
+,
+	"lea" : {
+}
+,
+	"leave" : {
+}
+,
+	"lfence" : {
+}
+,
+	"lgdt_or_lidt" : {
+}
+,
+	"lldt" : {
+}
+,
+	"lmsw" : {
+}
+,
+	"lock" : {
+}
+,
+	"lods_or_lodsb_or_lodsw_or_lodsd_or_lodsq" : {
+}
+,
+	"loop_or_loopcc" : {
+}
+,
+	"lsl" : {
+}
+,
+	"ltr" : {
+}
+,
+	"lzcnt" : {
+}
+,
+	"maskmovdqu" : {
+}
+,
+	"maskmovq" : {
+}
+,
+	"maxpd" : {
+}
+,
+	"maxps" : {
+}
+,
+	"maxsd" : {
+}
+,
+	"maxss" : {
+}
+,
+	"mfence" : {
+}
+,
+	"minpd" : {
+}
+,
+	"minps" : {
+}
+,
+	"minsd" : {
+}
+,
+	"minss" : {
+}
+,
+	"monitor" : {
+}
+,
+	"mov" : {
+}
+,
+	"mov_1" : {
+}
+,
+	"mov_2" : {
+}
+,
+	"movapd" : {
+}
+,
+	"movaps" : {
+}
+,
+	"movbe" : {
+}
+,
+	"movd_or_movq" : {
+}
+,
+	"movddup" : {
+}
+,
+	"movdq2q" : {
+}
+,
+	"movdqa,vmovdqa32_or_64" : {
+}
+,
+	"movdqu,vmovdqu8_or_16_or_32_or_64" : {
+}
+,
+	"movhlps" : {
+}
+,
+	"movhpd" : {
+}
+,
+	"movhps" : {
+}
+,
+	"movlhps" : {
+}
+,
+	"movlpd" : {
+}
+,
+	"movlps" : {
+}
+,
+	"movmskpd" : {
+}
+,
+	"movmskps" : {
+}
+,
+	"movntdq" : {
+}
+,
+	"movntdqa" : {
+}
+,
+	"movnti" : {
+}
+,
+	"movntpd" : {
+}
+,
+	"movntps" : {
+}
+,
+	"movntq" : {
+}
+,
+	"movq" : {
+}
+,
+	"movq2dq" : {
+}
+,
+	"movs_or_movsb_or_movsw_or_movsd_or_movsq" : {
+}
+,
+	"movsd" : {
+}
+,
+	"movshdup" : {
+}
+,
+	"movsldup" : {
+}
+,
+	"movss" : {
+}
+,
+	"movsx_or_movsxd" : {
+}
+,
+	"movupd" : {
+}
+,
+	"movups" : {
+}
+,
+	"movzx" : {
+}
+,
+	"mpsadbw_" : {
+}
+,
+	"mul" : {
+}
+,
+	"mulpd" : {
+}
+,
+	"mulps" : {
+}
+,
+	"mulsd" : {
+}
+,
+	"mulss" : {
+}
+,
+	"mulx_" : {
+}
+,
+	"mwait" : {
+}
+,
+	"neg" : {
+}
+,
+	"nop" : {
+}
+,
+	"not" : {
+}
+,
+	"or" : {
+}
+,
+	"orpd" : {
+}
+,
+	"orps" : {
+}
+,
+	"out" : {
+}
+,
+	"outs_or_outsb_or_outsw_or_outsd" : {
+}
+,
+	"pabsb_or_pabsw_or_pabsd_or_pabsq_" : {
+}
+,
+	"packsswb_or_packssdw" : {
+}
+,
+	"packusdw" : {
+}
+,
+	"packuswb" : {
+}
+,
+	"paddb_or_paddw_or_paddd_or_paddq" : {
+}
+,
+	"paddsb_or_paddsw" : {
+}
+,
+	"paddusb_or_paddusw" : {
+}
+,
+	"palignr_" : {
+}
+,
+	"pand" : {
+}
+,
+	"pandn" : {
+}
+,
+	"pause" : {
+}
+,
+	"pavgb_or_pavgw" : {
+}
+,
+	"pblendvb_" : {
+}
+,
+	"pblendw_" : {
+}
+,
+	"pcmpeqb_or_pcmpeqw_or_pcmpeqd" : {
+}
+,
+	"pcmpeqq_" : {
+}
+,
+	"pcmpestri_" : {
+}
+,
+	"pcmpestrm_" : {
+}
+,
+	"pcmpgtb_or_pcmpgtw_or_pcmpgtd" : {
+}
+,
+	"pcmpgtq_" : {
+}
+,
+	"pcmpistri_" : {
+}
+,
+	"pcmpistrm_" : {
+}
+,
+	"pdep_" : {
+}
+,
+	"pext_" : {
+}
+,
+	"pextrb_or_pextrd_or_pextrq_" : {
+}
+,
+	"pextrw" : {
+}
+,
+	"phaddsw_" : {
+}
+,
+	"phaddw_or_phaddd_" : {
+}
+,
+	"phminposuw_" : {
+}
+,
+	"phsubsw_" : {
+}
+,
+	"phsubw_or_phsubd_" : {
+}
+,
+	"pinsrb_or_pinsrd_or_pinsrq_" : {
+}
+,
+	"pinsrw" : {
+}
+,
+	"pmaddubsw_" : {
+}
+,
+	"pmaddwd" : {
+}
+,
+	"pmaxsb_or_pmaxsw_or_pmaxsd_or_pmaxsq" : {
+}
+,
+	"pmaxub_or_pmaxuw" : {
+}
+,
+	"pmaxud_or_pmaxuq" : {
+}
+,
+	"pminsb_or_pminsw" : {
+}
+,
+	"pminsd_or_pminsq" : {
+}
+,
+	"pminub_or_pminuw" : {
+}
+,
+	"pminud_or_pminuq" : {
+}
+,
+	"pmovmskb" : {
+}
+,
+	"pmovsx" : {
+}
+,
+	"pmovzx" : {
+}
+,
+	"pmuldq" : {
+}
+,
+	"pmulhrsw_" : {
+}
+,
+	"pmulhuw" : {
+}
+,
+	"pmulhw" : {
+}
+,
+	"pmulld_or_pmullq" : {
+}
+,
+	"pmullw" : {
+}
+,
+	"pmuludq" : {
+}
+,
+	"pop" : {
+}
+,
+	"popa_or_popad" : {
+}
+,
+	"popcnt_" : {
+}
+,
+	"popf_or_popfd_or_popfq" : {
+}
+,
+	"por" : {
+}
+,
+	"prefetchh" : {
+}
+,
+	"prefetchw" : {
+}
+,
+	"prefetchwt1" : {
+}
+,
+	"prold_or_prolvd_or_prolq_or_prolvq" : {
+}
+,
+	"prord_or_prorvd_or_prorq_or_prorvq" : {
+}
+,
+	"psadbw" : {
+}
+,
+	"pshufb_" : {
+}
+,
+	"pshufd" : {
+}
+,
+	"pshufhw" : {
+}
+,
+	"pshuflw" : {
+}
+,
+	"pshufw" : {
+}
+,
+	"psignb_or_psignw_or_psignd_" : {
+}
+,
+	"pslldq" : {
+}
+,
+	"psllw_or_pslld_or_psllq" : {
+}
+,
+	"psraw_or_psrad_or_psraq" : {
+}
+,
+	"psrldq" : {
+}
+,
+	"psrlw_or_psrld_or_psrlq" : {
+}
+,
+	"psubb_or_psubw_or_psubd" : {
+}
+,
+	"psubq" : {
+}
+,
+	"psubsb_or_psubsw" : {
+}
+,
+	"psubusb_or_psubusw" : {
+}
+,
+	"punpckhbw_or_punpckhwd_or_punpckhdq_or_punpckhqdq" : {
+}
+,
+	"punpcklbw_or_punpcklwd_or_punpckldq_or_punpcklqdq" : {
+}
+,
+	"push" : {
+}
+,
+	"pusha_or_pushad" : {
+}
+,
+	"pushf_or_pushfd" : {
+}
+,
+	"pxor" : {
+}
+,
+	"rcl_or_rcr_or_rol_or_ror" : {
+}
+,
+	"rcpps" : {
+}
+,
+	"rcpss" : {
+}
+,
+	"rdfsbase_or_rdgsbase" : {
+}
+,
+	"rdmsr" : {
+}
+,
+	"rdpid" : {
+}
+,
+	"rdpkru" : {
+}
+,
+	"rdpmc" : {
+}
+,
+	"rdrand" : {
+}
+,
+	"rdseed" : {
+}
+,
+	"rdtsc" : {
+}
+,
+	"rdtscp" : {
+}
+,
+	"rep_or_repe_or_repz_or_repne_or_repnz" : {
+}
+,
+	"ret" : {
+}
+,
+	"rorx_" : {
+}
+,
+	"roundpd_" : {
+}
+,
+	"roundps_" : {
+}
+,
+	"roundsd_" : {
+}
+,
+	"roundss_" : {
+}
+,
+	"rsm" : {
+}
+,
+	"rsqrtps" : {
+}
+,
+	"rsqrtss" : {
+}
+,
+	"sahf" : {
+}
+,
+	"sal_or_sar_or_shl_or_shr" : {
+}
+,
+	"sarx_or_shlx_or_shrx_" : {
+}
+,
+	"sbb" : {
+}
+,
+	"scas_or_scasb_or_scasw_or_scasd" : {
+}
+,
+	"setcc" : {
+}
+,
+	"sfence" : {
+}
+,
+	"sgdt" : {
+}
+,
+	"sha1msg1" : {
+}
+,
+	"sha1msg2" : {
+}
+,
+	"sha1nexte" : {
+}
+,
+	"sha1rnds4" : {
+}
+,
+	"sha256msg1" : {
+}
+,
+	"sha256msg2" : {
+}
+,
+	"sha256rnds2" : {
+}
+,
+	"shld" : {
+}
+,
+	"shrd" : {
+}
+,
+	"shufpd" : {
+}
+,
+	"shufps" : {
+}
+,
+	"sidt" : {
+}
+,
+	"sldt" : {
+}
+,
+	"smsw" : {
+}
+,
+	"sqrtpd" : {
+}
+,
+	"sqrtps" : {
+}
+,
+	"sqrtsd" : {
+}
+,
+	"sqrtss" : {
+}
+,
+	"stac" : {
+}
+,
+	"stc" : {
+}
+,
+	"std" : {
+}
+,
+	"sti" : {
+}
+,
+	"stmxcsr" : {
+}
+,
+	"stos_or_stosb_or_stosw_or_stosd_or_stosq" : {
+}
+,
+	"str" : {
+}
+,
+	"sub" : {
+}
+,
+	"subpd" : {
+}
+,
+	"subps" : {
+}
+,
+	"subsd" : {
+}
+,
+	"subss" : {
+}
+,
+	"swapgs" : {
+}
+,
+	"syscall" : {
+}
+,
+	"sysenter" : {
+}
+,
+	"sysexit" : {
+}
+,
+	"sysret" : {
+}
+,
 	"test" : {
+}
+,
+	"tzcnt_" : {
+}
+,
+	"ucomisd" : {
+}
+,
+	"ucomiss" : {
+}
+,
+	"ud2" : {
+}
+,
+	"unpckhpd" : {
+}
+,
+	"unpckhps" : {
+}
+,
+	"unpcklpd" : {
+}
+,
+	"unpcklps" : {
+}
+,
+	"valignd_or_valignq" : {
+}
+,
+	"vblendmpd_or_vblendmps" : {
+}
+,
+	"vbroadcast" : {
+}
+,
+	"vcompresspd" : {
+}
+,
+	"vcompressps" : {
+}
+,
+	"vcvtpd2qq" : {
+}
+,
+	"vcvtpd2udq" : {
+}
+,
+	"vcvtpd2uqq" : {
+}
+,
+	"vcvtph2ps" : {
+}
+,
+	"vcvtps2ph" : {
+}
+,
+	"vcvtps2qq" : {
+}
+,
+	"vcvtps2udq" : {
+}
+,
+	"vcvtps2uqq" : {
+}
+,
+	"vcvtqq2pd" : {
+}
+,
+	"vcvtqq2ps" : {
+}
+,
+	"vcvtsd2usi" : {
+}
+,
+	"vcvtss2usi" : {
+}
+,
+	"vcvttpd2qq" : {
+}
+,
+	"vcvttpd2udq" : {
+}
+,
+	"vcvttpd2uqq" : {
+}
+,
+	"vcvttps2qq" : {
+}
+,
+	"vcvttps2udq" : {
+}
+,
+	"vcvttps2uqq" : {
+}
+,
+	"vcvttsd2usi" : {
+}
+,
+	"vcvttss2usi" : {
+}
+,
+	"vcvtudq2pd" : {
+}
+,
+	"vcvtudq2ps" : {
+}
+,
+	"vcvtuqq2pd" : {
+}
+,
+	"vcvtuqq2ps" : {
+}
+,
+	"vcvtusi2sd" : {
+}
+,
+	"vcvtusi2ss" : {
+}
+,
+	"vdbpsadbw" : {
+}
+,
+	"verr_or_verw" : {
+}
+,
+	"vexp2pd" : {
+}
+,
+	"vexp2ps" : {
+}
+,
+	"vexpandpd" : {
+}
+,
+	"vexpandps" : {
+}
+,
+	"vextractf128_or_vextractf32x4_or_vextractf64x2_or_vextractf32x8_or_vextractf64x4" : {
+}
+,
+	"vextracti128_or_vextracti32x4_or_vextracti64x2_or_vextracti32x8_or_vextracti64x4" : {
+}
+,
+	"vfixupimmpd" : {
+}
+,
+	"vfixupimmps" : {
+}
+,
+	"vfixupimmsd" : {
+}
+,
+	"vfixupimmss" : {
+}
+,
+	"vfmadd132pd_or_vfmadd213pd_or_vfmadd231pd" : {
+}
+,
+	"vfmadd132ps_or_vfmadd213ps_or_vfmadd231ps" : {
+}
+,
+	"vfmadd132sd_or_vfmadd213sd_or_vfmadd231sd" : {
+}
+,
+	"vfmadd132ss_or_vfmadd213ss_or_vfmadd231ss" : {
+}
+,
+	"vfmaddsub132pd_or_vfmaddsub213pd_or_vfmaddsub231pd" : {
+}
+,
+	"vfmaddsub132ps_or_vfmaddsub213ps_or_vfmaddsub231ps" : {
+}
+,
+	"vfmsub132pd_or_vfmsub213pd_or_vfmsub231pd" : {
+}
+,
+	"vfmsub132ps_or_vfmsub213ps_or_vfmsub231ps" : {
+}
+,
+	"vfmsub132sd_or_vfmsub213sd_or_vfmsub231sd" : {
+}
+,
+	"vfmsub132ss_or_vfmsub213ss_or_vfmsub231ss" : {
+}
+,
+	"vfmsubadd132pd_or_vfmsubadd213pd_or_vfmsubadd231pd" : {
+}
+,
+	"vfmsubadd132ps_or_vfmsubadd213ps_or_vfmsubadd231ps" : {
+}
+,
+	"vfnmadd132pd_or_vfnmadd213pd_or_vfnmadd231pd" : {
+}
+,
+	"vfnmadd132ps_or_vfnmadd213ps_or_vfnmadd231ps" : {
+}
+,
+	"vfnmadd132sd_or_vfnmadd213sd_or_vfnmadd231sd" : {
+}
+,
+	"vfnmadd132ss_or_vfnmadd213ss_or_vfnmadd231ss" : {
+}
+,
+	"vfnmsub132pd_or_vfnmsub213pd_or_vfnmsub231pd" : {
+}
+,
+	"vfnmsub132ps_or_vfnmsub213ps_or_vfnmsub231ps" : {
+}
+,
+	"vfnmsub132sd_or_vfnmsub213sd_or_vfnmsub231sd" : {
+}
+,
+	"vfnmsub132ss_or_vfnmsub213ss_or_vfnmsub231ss" : {
+}
+,
+	"vfpclasspd" : {
+}
+,
+	"vfpclassps" : {
+}
+,
+	"vfpclasssd" : {
+}
+,
+	"vfpclassss" : {
+}
+,
+	"vgatherdpd_or_vgatherqpd_" : {
+}
+,
+	"vgatherdps_or_vgatherdpd" : {
+}
+,
+	"vgatherdps_or_vgatherqps_" : {
+}
+,
+	"vgatherpf0dps_or_vgatherpf0qps_or_vgatherpf0dpd_or_vgatherpf0qpd" : {
+}
+,
+	"vgatherpf1dps_or_vgatherpf1qps_or_vgatherpf1dpd_or_vgatherpf1qpd" : {
+}
+,
+	"vgatherqps_or_vgatherqpd" : {
+}
+,
+	"vgetexppd" : {
+}
+,
+	"vgetexpps" : {
+}
+,
+	"vgetexpsd" : {
+}
+,
+	"vgetexpss" : {
+}
+,
+	"vgetmantpd" : {
+}
+,
+	"vgetmantps" : {
+}
+,
+	"vgetmantsd" : {
+}
+,
+	"vgetmantss" : {
+}
+,
+	"vinsertf128_or_vinsertf32x4_or_vinsertf64x2_or_vinsertf32x8_or_vinsertf64x4" : {
+}
+,
+	"vinserti128_or_vinserti32x4_or_vinserti64x2_or_vinserti32x8_or_vinserti64x4" : {
+}
+,
+	"vmaskmov" : {
+}
+,
+	"vpblendd_" : {
+}
+,
+	"vpblendmb_or_vpblendmw" : {
+}
+,
+	"vpblendmd_or_vpblendmq" : {
+}
+,
+	"vpbroadcast" : {
+}
+,
+	"vpbroadcastb_or_w_or_d_or_q" : {
+}
+,
+	"vpbroadcastm" : {
+}
+,
+	"vpcmpb_or_vpcmpub" : {
+}
+,
+	"vpcmpd_or_vpcmpud" : {
+}
+,
+	"vpcmpq_or_vpcmpuq" : {
+}
+,
+	"vpcmpw_or_vpcmpuw" : {
+}
+,
+	"vpcompressd" : {
+}
+,
+	"vpcompressq" : {
+}
+,
+	"vpconflictd_or_q" : {
+}
+,
+	"vperm2f128_" : {
+}
+,
+	"vperm2i128_" : {
+}
+,
+	"vpermd_or_vpermw" : {
+}
+,
+	"vpermi2w_or_d_or_q_or_ps_or_pd" : {
+}
+,
+	"vpermilpd" : {
+}
+,
+	"vpermilps" : {
+}
+,
+	"vpermpd" : {
+}
+,
+	"vpermps" : {
+}
+,
+	"vpermq" : {
+}
+,
+	"vpexpandd" : {
+}
+,
+	"vpexpandq" : {
+}
+,
+	"vpgatherdd_or_vpgatherdq" : {
+}
+,
+	"vpgatherdd_or_vpgatherqd_" : {
+}
+,
+	"vpgatherdq_or_vpgatherqq_" : {
+}
+,
+	"vpgatherqd_or_vpgatherqq" : {
+}
+,
+	"vplzcntd_or_q" : {
+}
+,
+	"vpmaskmov_" : {
+}
+,
+	"vpmovb2m_or_vpmovw2m_or_vpmovd2m_or_vpmovq2m" : {
+}
+,
+	"vpmovdb_or_vpmovsdb_or_vpmovusdb" : {
+}
+,
+	"vpmovdw_or_vpmovsdw_or_vpmovusdw" : {
+}
+,
+	"vpmovm2b_or_vpmovm2w_or_vpmovm2d_or_vpmovm2q" : {
+}
+,
+	"vpmovqb_or_vpmovsqb_or_vpmovusqb" : {
+}
+,
+	"vpmovqd_or_vpmovsqd_or_vpmovusqd" : {
+}
+,
+	"vpmovqw_or_vpmovsqw_or_vpmovusqw" : {
+}
+,
+	"vpmovwb_or_vpmovswb_or_vpmovuswb" : {
+}
+,
+	"vpscatterdd_or_vpscatterdq_or_vpscatterqd_or_vpscatterqq" : {
+}
+,
+	"vpsllvw_or_vpsllvd_or_vpsllvq" : {
+}
+,
+	"vpsravw_or_vpsravd_or_vpsravq" : {
+}
+,
+	"vpsrlvw_or_vpsrlvd_or_vpsrlvq" : {
+}
+,
+	"vpternlogd_or_vpternlogq" : {
+}
+,
+	"vptestmb_or_vptestmw_or_vptestmd_or_vptestmq" : {
+}
+,
+	"vptestnmb_or_w_or_d_or_q" : {
+}
+,
+	"vrangepd" : {
+}
+,
+	"vrangesd" : {
+}
+,
+	"vrangess" : {
+}
+,
+	"vrcp14pd" : {
+}
+,
+	"vrcp14ps" : {
+}
+,
+	"vrcp14sd" : {
+}
+,
+	"vrcp14ss" : {
+}
+,
+	"vrcp28pd" : {
+}
+,
+	"vrcp28ps" : {
+}
+,
+	"vrcp28sd" : {
+}
+,
+	"vrcp28ss" : {
+}
+,
+	"vreducepd" : {
+}
+,
+	"vreduceps" : {
+}
+,
+	"vreducess" : {
+}
+,
+	"vrndscalepd" : {
+}
+,
+	"vrndscaleps" : {
+}
+,
+	"vrndscalesd" : {
+}
+,
+	"vrndscaless" : {
+}
+,
+	"vrsqrt14pd" : {
+}
+,
+	"vrsqrt14ps" : {
+}
+,
+	"vrsqrt14sd" : {
+}
+,
+	"vrsqrt14ss" : {
+}
+,
+	"vrsqrt28pd" : {
+}
+,
+	"vrsqrt28ps" : {
+}
+,
+	"vrsqrt28sd" : {
+}
+,
+	"vrsqrt28ss" : {
+}
+,
+	"vscalefpd" : {
+}
+,
+	"vscalefps" : {
+}
+,
+	"vscalefsd" : {
+}
+,
+	"vscalefss" : {
+}
+,
+	"vscatterdps_or_vscatterdpd_or_vscatterqps_or_vscatterqpd" : {
+}
+,
+	"vscatterpf0dps_or_vscatterpf0qps_or_vscatterpf0dpd_or_vscatterpf0qpd" : {
+}
+,
+	"vscatterpf1dps_or_vscatterpf1qps_or_vscatterpf1dpd_or_vscatterpf1qpd" : {
+}
+,
+	"vshuff32x4_or_vshuff64x2_or_vshufi32x4_or_vshufi64x2" : {
+}
+,
+	"vtestpd_or_vtestps" : {
+}
+,
+	"vzeroall" : {
+}
+,
+	"vzeroupper" : {
+}
+,
+	"wait_or_fwait" : {
+}
+,
+	"wbinvd" : {
+}
+,
+	"wrfsbase_or_wrgsbase" : {
+}
+,
+	"wrmsr" : {
+}
+,
+	"wrpkru" : {
+}
+,
+	"xabort_" : {
+}
+,
+	"xacquire_or_xrelease_" : {
+}
+,
+	"xadd" : {
+}
+,
+	"xbegin_" : {
+}
+,
+	"xchg" : {
+}
+,
+	"xend_" : {
+}
+,
+	"xgetbv" : {
+}
+,
+	"xlat_or_xlatb" : {
+}
+,
+	"xor" : {
+}
+,
+	"xorpd" : {
+}
+,
+	"xorps" : {
+}
+,
+	"xrstor" : {
+}
+,
+	"xrstors" : {
+}
+,
+	"xsave" : {
+}
+,
+	"xsavec" : {
+}
+,
+	"xsaveopt" : {
+}
+,
+	"xsaves" : {
+}
+,
+	"xsetbv" : {
+}
+,
+	"xtest_" : {
 }
 
 }

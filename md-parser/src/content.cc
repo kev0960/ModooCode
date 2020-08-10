@@ -20,7 +20,7 @@
 #include "util.h"
 
 static const std::unordered_set<string> kSpecialCommands = {
-    "sidenote", "sc", "newline", "serif", "htmlonly", "latexonly"};
+    "sidenote", "sc", "newline", "serif", "htmlonly", "latexonly", "footnote"};
 
 namespace md_parser {
 
@@ -349,6 +349,9 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
                      GetHtmlFragmentText(content_, fragments_[i]), "</span>");
     } else if (fragments_[i].type == Fragments::Types::HTML_ONLY) {
       html += GetHtmlFragmentText(content_, fragments_[i]);
+    } else if (fragments_[i].type == Fragments::Types::FOOTNOTE) {
+      html += StrCat("<sup>", GetHtmlFragmentText(content_, fragments_[i]),
+                     "</sup>");
     } else if (fragments_[i].type == Fragments::Types::FORCE_NEWLINE) {
       html += "<br>";
     } else if (fragments_[i].type == Fragments::Types::LINK) {
@@ -474,8 +477,8 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
       }
       strike_through = !strike_through;
     } else if (fragment.type == Fragments::Types::SIDENOTE) {
-      latex += StrCat(R"(\footnote{)",
-                      GetLatexFragmentText(content_, fragment), "} ");
+      latex += StrCat(R"(\footnote{)", GetLatexFragmentText(content_, fragment),
+                      "} ");
       /*
       latex += StrCat("\n\\begin{sidenotebox}\n",
                       GetLatexFragmentText(content_, fragment),
@@ -635,6 +638,10 @@ size_t Content::HandleSpecialCommands(const size_t start_pos, int* text_start) {
     return body_end;
   } else if (delimiter == "htmlonly") {
     fragments_.emplace_back(Fragments::Types::HTML_ONLY, delimiter_pos + 1,
+                            body_end - 1);
+    return body_end;
+  } else if (delimiter == "footnote") {
+    fragments_.emplace_back(Fragments::Types::FOOTNOTE, delimiter_pos + 1,
                             body_end - 1);
     return body_end;
   }

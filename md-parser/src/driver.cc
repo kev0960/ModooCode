@@ -27,6 +27,8 @@ string GetOutputFile(const string& s) {
   if (is_old_file) {
     filename_without_ext.replace(0, 4, "blog");
     output_dir_name = "../views/old/";
+  } else if (s.find("/inst/") != string::npos) {
+    output_dir_name = "../views/new/inst/";
   } else {
     output_dir_name = "../views/new/";
   }
