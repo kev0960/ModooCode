@@ -1,3 +1,7 @@
+----------------------------
+title : PAUSE instruction(Intel x86/64 assembly instruction)
+cat_title : PAUSE
+----------------------------
 ### PAUSE--Spin Loop Hint
 
 

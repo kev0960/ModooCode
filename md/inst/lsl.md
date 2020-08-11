@@ -1,3 +1,7 @@
+----------------------------
+title : LSL instruction(Intel x86/64 assembly instruction)
+cat_title : LSL
+----------------------------
 ### LSL--Load Segment Limit
 
 

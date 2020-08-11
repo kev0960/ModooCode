@@ -1,3 +1,7 @@
+----------------------------
+title : FFREE instruction(Intel x86/64 assembly instruction)
+cat_title : FFREE
+----------------------------
 ### FFREE--Free Floating-Point Register
 
 

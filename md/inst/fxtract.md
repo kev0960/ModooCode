@@ -1,3 +1,7 @@
+----------------------------
+title : FXTRACT instruction(Intel x86/64 assembly instruction)
+cat_title : FXTRACT
+----------------------------
 ### FXTRACT--Extract Exponent and Significand
 
 

@@ -586,7 +586,7 @@ figcaption {
     font-weight: bold;
 }
 
-.publish-date {
+.additional-info > .publish-date {
     font-size: 65%!important;
     padding: 5px;
     color: white;
@@ -594,7 +594,7 @@ figcaption {
     border-radius: 4px;
 }
 
-.view-cnt {
+.additional-info > .view-cnt {
     font-size: 65%!important;
     padding: 5px;
     color: white;

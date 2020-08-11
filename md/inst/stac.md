@@ -1,3 +1,7 @@
+----------------------------
+title : STAC instruction(Intel x86/64 assembly instruction)
+cat_title : STAC
+----------------------------
 ### STAC--Set AC Flag in EFLAGS Register
 
 

@@ -1,3 +1,7 @@
+----------------------------
+title : FSIN instruction(Intel x86/64 assembly instruction)
+cat_title : FSIN
+----------------------------
 ### FSIN--Sine
 
 

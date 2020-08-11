@@ -1,3 +1,7 @@
+----------------------------
+title : PMULHUW instruction(Intel x86/64 assembly instruction)
+cat_title : PMULHUW
+----------------------------
 ### PMULHUW--Multiply Packed Unsigned Integers and Store High Result
 
 

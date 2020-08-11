@@ -1,3 +1,7 @@
+----------------------------
+title : XOR instruction(Intel x86/64 assembly instruction)
+cat_title : XOR
+----------------------------
 ### XOR--Logical Exclusive OR
 
 

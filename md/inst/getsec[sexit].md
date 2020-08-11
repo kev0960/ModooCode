@@ -1,3 +1,7 @@
+----------------------------
+title : GETSEC[SEXIT] instruction(Intel x86/64 assembly instruction)
+cat_title : GETSEC[SEXIT]
+----------------------------
 ### GETSEC[SEXIT]--Exit Measured Environment
 
 

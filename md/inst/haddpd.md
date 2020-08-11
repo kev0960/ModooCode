@@ -1,3 +1,7 @@
+----------------------------
+title : HADDPD instruction(Intel x86/64 assembly instruction)
+cat_title : HADDPD
+----------------------------
 ### HADDPD--Packed Double-FP Horizontal Add
 
 

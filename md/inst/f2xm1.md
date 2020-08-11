@@ -1,3 +1,7 @@
+----------------------------
+title : F2XM1 instruction(Intel x86/64 assembly instruction)
+cat_title : F2XM1
+----------------------------
 ### F2XM1--Compute 2\footnote{x} -1
 
 

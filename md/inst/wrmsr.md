@@ -1,3 +1,7 @@
+----------------------------
+title : WRMSR instruction(Intel x86/64 assembly instruction)
+cat_title : WRMSR
+----------------------------
 ### WRMSR--Write to Model Specific Register
 
 

@@ -1,3 +1,7 @@
+----------------------------
+title : CMP instruction(Intel x86/64 assembly instruction)
+cat_title : CMP
+----------------------------
 ### CMP--Compare Two Operands
 
 

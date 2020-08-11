@@ -1,3 +1,7 @@
+----------------------------
+title : EMMS instruction(Intel x86/64 assembly instruction)
+cat_title : EMMS
+----------------------------
 ### EMMS--Empty MMX Technology State
 
 

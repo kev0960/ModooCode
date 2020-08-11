@@ -1,3 +1,7 @@
+----------------------------
+title : SUB instruction(Intel x86/64 assembly instruction)
+cat_title : SUB
+----------------------------
 ### SUB--Subtract
 
 

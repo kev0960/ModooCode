@@ -1,3 +1,7 @@
+----------------------------
+title : MOVDDUP instruction(Intel x86/64 assembly instruction)
+cat_title : MOVDDUP
+----------------------------
 ### MOVDDUP--Replicate Double FP Values
 
 

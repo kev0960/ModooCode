@@ -1,3 +1,7 @@
+----------------------------
+title : VGETEXPPS instruction(Intel x86/64 assembly instruction)
+cat_title : VGETEXPPS
+----------------------------
 ### VGETEXPPS--Convert Exponents of Packed SP FP Values to SP FP Values
 
 

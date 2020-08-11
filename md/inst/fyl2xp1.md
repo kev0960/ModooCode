@@ -1,3 +1,7 @@
+----------------------------
+title : FYL2XP1 instruction(Intel x86/64 assembly instruction)
+cat_title : FYL2XP1
+----------------------------
 ### FYL2XP1--Compute y `*` log2(x +1)
 
 

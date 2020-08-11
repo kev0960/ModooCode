@@ -1,3 +1,7 @@
+----------------------------
+title : INC instruction(Intel x86/64 assembly instruction)
+cat_title : INC
+----------------------------
 ### INC--Increment by 1
 
 

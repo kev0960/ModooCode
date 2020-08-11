@@ -1,3 +1,7 @@
+----------------------------
+title : WBINVD instruction(Intel x86/64 assembly instruction)
+cat_title : WBINVD
+----------------------------
 ### WBINVD--Write Back and Invalidate Cache
 
 

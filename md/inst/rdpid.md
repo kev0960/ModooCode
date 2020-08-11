@@ -1,3 +1,7 @@
+----------------------------
+title : RDPID instruction(Intel x86/64 assembly instruction)
+cat_title : RDPID
+----------------------------
 ### RDPID--Read Processor ID
 
 

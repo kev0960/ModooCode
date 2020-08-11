@@ -1,3 +1,7 @@
+----------------------------
+title : FPTAN instruction(Intel x86/64 assembly instruction)
+cat_title : FPTAN
+----------------------------
 ### FPTAN--Partial Tangent
 
 

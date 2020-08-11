@@ -1,3 +1,7 @@
+----------------------------
+title : AAA instruction(Intel x86/64 assembly instruction)
+cat_title : AAA
+----------------------------
 ### AAA--ASCII Adjust After Addition
 
 

@@ -1,3 +1,7 @@
+----------------------------
+title : MOVSHDUP instruction(Intel x86/64 assembly instruction)
+cat_title : MOVSHDUP
+----------------------------
 ### MOVSHDUP--Replicate Single FP Values
 
 

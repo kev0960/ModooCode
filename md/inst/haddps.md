@@ -1,3 +1,7 @@
+----------------------------
+title : HADDPS instruction(Intel x86/64 assembly instruction)
+cat_title : HADDPS
+----------------------------
 ### HADDPS--Packed Single-FP Horizontal Add
 
 

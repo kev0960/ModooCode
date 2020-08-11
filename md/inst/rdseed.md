@@ -1,3 +1,7 @@
+----------------------------
+title : RDSEED instruction(Intel x86/64 assembly instruction)
+cat_title : RDSEED
+----------------------------
 ### RDSEED--Read Random SEED
 
 

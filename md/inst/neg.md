@@ -1,3 +1,7 @@
+----------------------------
+title : NEG instruction(Intel x86/64 assembly instruction)
+cat_title : NEG
+----------------------------
 ### NEG--Two's Complement Negation
 
 

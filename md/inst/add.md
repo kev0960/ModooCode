@@ -1,3 +1,7 @@
+----------------------------
+title : ADD instruction(Intel x86/64 assembly instruction)
+cat_title : ADD
+----------------------------
 ### ADD--Add
 
 
@@ -28,7 +32,7 @@
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+* In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 

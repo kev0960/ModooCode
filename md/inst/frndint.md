@@ -1,3 +1,7 @@
+----------------------------
+title : FRNDINT instruction(Intel x86/64 assembly instruction)
+cat_title : FRNDINT
+----------------------------
 ### FRNDINT--Round to Integer
 
 

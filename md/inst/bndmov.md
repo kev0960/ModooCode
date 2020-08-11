@@ -1,3 +1,7 @@
+----------------------------
+title : BNDMOV instruction(Intel x86/64 assembly instruction)
+cat_title : BNDMOV
+----------------------------
 ### BNDMOV--Move Bounds
 
 

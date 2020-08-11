@@ -1,3 +1,7 @@
+----------------------------
+title : SMSW instruction(Intel x86/64 assembly instruction)
+cat_title : SMSW
+----------------------------
 ### SMSW--Store Machine Status Word
 
 

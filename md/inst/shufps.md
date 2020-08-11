@@ -1,3 +1,7 @@
+----------------------------
+title : SHUFPS instruction(Intel x86/64 assembly instruction)
+cat_title : SHUFPS
+----------------------------
 ### SHUFPS--Packed Interleave Shuffle of Quadruplets of Single-Precision Floating-Point Values
 
 

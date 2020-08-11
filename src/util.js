@@ -14,6 +14,27 @@ function getDateTime() {
   return year + ':' + month + ':' + day + ':' + hour + ':' + min + ':' + sec;
 }
 
+function escapeHTML(html) {
+  return html
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
+
+function normalizeDate(date) {
+  let dates = date.split('-');
+  for (let i = 0; i < dates.length; i ++) {
+    if (dates[i].length < 2) {
+      dates[i] = '0' + dates[i];
+    }
+  }
+  return dates.join('-');
+}
+
 module.exports = {
-  getDateTime
+  getDateTime,
+  escapeHTML,
+  normalizeDate
 };

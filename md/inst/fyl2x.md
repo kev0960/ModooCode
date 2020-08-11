@@ -1,3 +1,7 @@
+----------------------------
+title : FYL2X instruction(Intel x86/64 assembly instruction)
+cat_title : FYL2X
+----------------------------
 ### FYL2X--Compute y `*` log2x
 
 

@@ -1,3 +1,7 @@
+----------------------------
+title : PSHUFW instruction(Intel x86/64 assembly instruction)
+cat_title : PSHUFW
+----------------------------
 ### PSHUFW--Shuffle Packed Words
 
 

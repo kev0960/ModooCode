@@ -1,3 +1,7 @@
+----------------------------
+title : FSINCOS instruction(Intel x86/64 assembly instruction)
+cat_title : FSINCOS
+----------------------------
 ### FSINCOS--Sine and Cosine
 
 

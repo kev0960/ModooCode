@@ -1,3 +1,7 @@
+----------------------------
+title : FISTTP instruction(Intel x86/64 assembly instruction)
+cat_title : FISTTP
+----------------------------
 ### FISTTP--Store Integer with Truncation
 
 

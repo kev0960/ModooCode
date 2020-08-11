@@ -1,3 +1,7 @@
+----------------------------
+title : FCOS instruction(Intel x86/64 assembly instruction)
+cat_title : FCOS
+----------------------------
 ### FCOS-- Cosine
 
 

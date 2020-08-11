@@ -1,3 +1,7 @@
+----------------------------
+title : DEC instruction(Intel x86/64 assembly instruction)
+cat_title : DEC
+----------------------------
 ### DEC--Decrement by 1
 
 

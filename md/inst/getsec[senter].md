@@ -1,3 +1,7 @@
+----------------------------
+title : GETSEC[SENTER] instruction(Intel x86/64 assembly instruction)
+cat_title : GETSEC[SENTER]
+----------------------------
 ### GETSEC[SENTER]--Enter a Measured Environment
 
 

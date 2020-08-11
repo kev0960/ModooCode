@@ -204,31 +204,67 @@ module.exports = class Server {
     return category;
   }
 
+  countTotalArticleInCategory(category) {
+    let total = 0;
+    for (const [key, value] of Object.entries(category)) {
+      if (key == 'files') {
+        total += value.length;
+      } else {
+        total += this.countTotalArticleInCategory(value);
+      }
+    }
+    return total;
+  }
+
   getCategoryHtml(category) {
+    if (!category) {
+      return;
+    }
+
     let html = ''
+    let page_header_num = 1;
     for (const [key, value] of Object.entries(category)) {
       if (key == 'files') {
         let file_info = [];
         for (let i = 0; i < value.length; i++) {
-          file_info.push({info: this.file_infos[value[i]], link: value[i]});
+          file_info.push({
+            info: this.file_infos[value[i]],
+            link: value[i],
+            num_comment: this.comment_manager.getNumCommentAt(value[i]),
+            view_cnt: this.pageview_manager.getPageViewCnt(value[i]),
+          });
         }
+
         file_info.sort(function(x, y) {
-          if(Date.parse(x.info.publish_date) < Date.parse(y.info.publish_date)) {
+          if (Date.parse(x.info.publish_date) <
+              Date.parse(y.info.publish_date)) {
             return 1;
           }
           return -1;
         });
         for (let i = 0; i < file_info.length; i++) {
-          console.log(file_info[i].info.title, "and", file_info[i].info.publish_date,
-          "and",Date.parse(file_info[i].info.publish_date))
-          html += '<div><a href="/' + file_info[i].link + '">' +
-              file_info[i].info.title + '</a></div>';
+          console.log(
+              file_info[i].info.title, 'and', file_info[i].info.publish_date,
+              'and', Date.parse(file_info[i].info.publish_date), file_info[i])
+          html += `<div class="category-article-entry"><p class="category-article-info"><span class="publish-date">${
+              util.normalizeDate(
+                  file_info[i]
+                      .info
+                      .publish_date)}</span> <span class="view-cnt">조회수 : ${
+              file_info[i]
+                  .view_cnt}</span> <span class="comment-cnt">댓글 수 : ${
+              file_info[i]
+                  .num_comment}</span></p><a class="category-article-header" href="/${
+              file_info[i].link}">${
+              util.escapeHTML(file_info[i].info.title)}</a></div>`
         }
-      }
-      else {
-        html += '<div><p>'+  key + '</p>'
+      } else {
+        html +=
+            '<div><h3 class="category-header header-general" id="page-heading-' +
+            page_header_num + '">' + key + '</h3>'
         html += this.getCategoryHtml(value);
         html += '</div>'
+        page_header_num++;
       }
     }
     return html;
@@ -458,10 +494,12 @@ module.exports = class Server {
       let user = req.user;
 
       this.comment_manager.getLatestComments(150).then(function(comments) {
+        let category_files = this.getCategoryFiles(category_path);
         res.render('./category.ejs', {
           header_category: this.header_category.BuildPageHeader(),
-          category_info:
-              this.getCategoryHtml(this.getCategoryFiles(category_path)),
+          category_info: this.getCategoryHtml(category_files),
+          is_mobile: CheckMobile(req),
+          total_article: this.countTotalArticleInCategory(category_files)
         });
       }.bind(this));
     }.bind(this));
@@ -505,15 +543,14 @@ module.exports = class Server {
         }
       }.bind(this);
 
-      
+
       this.pageview_manager.addPageViewCnt(inst_name);
       res.render(
           'page.ejs',
           this.generateInfoToPassEJS(
               './new/inst/' + inst_name + '.html', inst_name, inst_name, user,
-              CheckMobile(req)), fallbackToIndexOnFailOrPass
-          );
-      
+              CheckMobile(req)),
+          fallbackToIndexOnFailOrPass);
     }.bind(this));
 
     this.app.get('/:id', function(req, res) {

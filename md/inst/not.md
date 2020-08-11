@@ -1,3 +1,7 @@
+----------------------------
+title : NOT instruction(Intel x86/64 assembly instruction)
+cat_title : NOT
+----------------------------
 ### NOT--One's Complement Negation
 
 

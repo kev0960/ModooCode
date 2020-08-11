@@ -1,3 +1,7 @@
+----------------------------
+title : RSM instruction(Intel x86/64 assembly instruction)
+cat_title : RSM
+----------------------------
 ### RSM--Resume from System Management Mode
 
 

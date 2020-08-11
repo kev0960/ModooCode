@@ -1,3 +1,7 @@
+----------------------------
+title : BOUND instruction(Intel x86/64 assembly instruction)
+cat_title : BOUND
+----------------------------
 ### BOUND--Check Array Index Against Bounds
 
 

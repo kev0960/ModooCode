@@ -1,3 +1,7 @@
+----------------------------
+title : LMSW instruction(Intel x86/64 assembly instruction)
+cat_title : LMSW
+----------------------------
 ### LMSW--Load Machine Status Word
 
 

@@ -1,3 +1,7 @@
+----------------------------
+title : WRPKRU instruction(Intel x86/64 assembly instruction)
+cat_title : WRPKRU
+----------------------------
 ### WRPKRU--Write Data to User Page Key Register
 
 

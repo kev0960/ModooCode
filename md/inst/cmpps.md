@@ -1,3 +1,7 @@
+----------------------------
+title : CMPPS instruction(Intel x86/64 assembly instruction)
+cat_title : CMPPS
+----------------------------
 ### CMPPS--Compare Packed Single-Precision Floating-Point Values
 
 

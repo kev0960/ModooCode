@@ -1,3 +1,7 @@
+----------------------------
+title : OR instruction(Intel x86/64 assembly instruction)
+cat_title : OR
+----------------------------
 ### OR--Logical Inclusive OR
 
 

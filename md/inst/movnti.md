@@ -1,3 +1,7 @@
+----------------------------
+title : MOVNTI instruction(Intel x86/64 assembly instruction)
+cat_title : MOVNTI
+----------------------------
 ### MOVNTI--Store Doubleword Using Non-Temporal Hint
 
 

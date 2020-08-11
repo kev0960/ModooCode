@@ -1,3 +1,7 @@
+----------------------------
+title : CMPSS instruction(Intel x86/64 assembly instruction)
+cat_title : CMPSS
+----------------------------
 ### CMPSS--Compare Scalar Single-Precision Floating-Point Value
 
 

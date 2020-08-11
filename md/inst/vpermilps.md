@@ -1,3 +1,7 @@
+----------------------------
+title : VPERMILPS instruction(Intel x86/64 assembly instruction)
+cat_title : VPERMILPS
+----------------------------
 ### VPERMILPS--Permute In-Lane of Quadruples of Single-Precision Floating-Point Values
 
 

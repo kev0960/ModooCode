@@ -1,4 +1,7 @@
 {
+	"" : {
+}
+,
 	"10" : {
 	"cat_title" : "6. 만약에... (if 문)",
 	"chapter" : "만약에... (조건문)",
@@ -2192,1890 +2195,3148 @@
 }
 ,
 	"aaa" : {
+	"cat_title" : "AAA",
+	"title" : "AAA instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aad" : {
+	"cat_title" : "AAD",
+	"title" : "AAD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aam" : {
+	"cat_title" : "AAM",
+	"title" : "AAM instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aas" : {
+	"cat_title" : "AAS",
+	"title" : "AAS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"adc" : {
+	"cat_title" : "ADC",
+	"title" : "ADC instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"adcx_" : {
+	"adcx" : {
+	"cat_title" : "ADCX",
+	"title" : "ADCX instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"add" : {
+	"cat_title" : "ADD",
+	"title" : "ADD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"addpd" : {
+	"cat_title" : "ADDPD",
+	"title" : "ADDPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"addps" : {
+	"cat_title" : "ADDPS",
+	"title" : "ADDPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"addsd" : {
+	"cat_title" : "ADDSD",
+	"title" : "ADDSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"addss" : {
+	"cat_title" : "ADDSS",
+	"title" : "ADDSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"addsubpd" : {
+	"cat_title" : "ADDSUBPD",
+	"title" : "ADDSUBPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"addsubps" : {
+	"cat_title" : "ADDSUBPS",
+	"title" : "ADDSUBPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"adox_" : {
+	"adox" : {
+	"cat_title" : "ADOX",
+	"title" : "ADOX instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aesdec" : {
+	"cat_title" : "AESDEC",
+	"title" : "AESDEC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aesdeclast" : {
+	"cat_title" : "AESDECLAST",
+	"title" : "AESDECLAST instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aesenc" : {
+	"cat_title" : "AESENC",
+	"title" : "AESENC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aesenclast" : {
+	"cat_title" : "AESENCLAST",
+	"title" : "AESENCLAST instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aesimc" : {
+	"cat_title" : "AESIMC",
+	"title" : "AESIMC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"aeskeygenassist" : {
+	"cat_title" : "AESKEYGENASSIST",
+	"title" : "AESKEYGENASSIST instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"and" : {
+	"cat_title" : "AND",
+	"title" : "AND instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"andn_" : {
+	"andn" : {
+	"cat_title" : "ANDN",
+	"title" : "ANDN instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"andnpd" : {
+	"cat_title" : "ANDNPD",
+	"title" : "ANDNPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"andnps" : {
+	"cat_title" : "ANDNPS",
+	"title" : "ANDNPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"andpd" : {
+	"cat_title" : "ANDPD",
+	"title" : "ANDPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"andps" : {
+	"cat_title" : "ANDPS",
+	"title" : "ANDPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"arpl" : {
+	"cat_title" : "ARPL",
+	"title" : "ARPL instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"bextr_" : {
+	"bextr" : {
+	"cat_title" : "BEXTR",
+	"title" : "BEXTR instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"blendpd_" : {
+	"blendpd" : {
+	"cat_title" : "BLENDPD",
+	"title" : "BLENDPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"blendps_" : {
+	"blendps" : {
+	"cat_title" : "BLENDPS",
+	"title" : "BLENDPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"blendvpd_" : {
+	"blendvpd" : {
+	"cat_title" : "BLENDVPD",
+	"title" : "BLENDVPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"blendvps_" : {
+	"blendvps" : {
+	"cat_title" : "BLENDVPS",
+	"title" : "BLENDVPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"blsi_" : {
+	"blsi" : {
+	"cat_title" : "BLSI",
+	"title" : "BLSI instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"blsmsk_" : {
+	"blsmsk" : {
+	"cat_title" : "BLSMSK",
+	"title" : "BLSMSK instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"blsr_" : {
+	"blsr" : {
+	"cat_title" : "BLSR",
+	"title" : "BLSR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bndcl" : {
+	"cat_title" : "BNDCL",
+	"title" : "BNDCL instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"bndcu_or_bndcn" : {
+	"bndcu-bndcn" : {
+	"cat_title" : "BNDCU, BNDCN",
+	"title" : "BNDCU, BNDCN instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"bndldx" : {
+	"cat_title" : "BNDLDX",
+	"title" : "BNDLDX instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bndmk" : {
+	"cat_title" : "BNDMK",
+	"title" : "BNDMK instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bndmov" : {
+	"cat_title" : "BNDMOV",
+	"title" : "BNDMOV instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bndstx" : {
+	"cat_title" : "BNDSTX",
+	"title" : "BNDSTX instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bound" : {
+	"cat_title" : "BOUND",
+	"title" : "BOUND instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bsf" : {
+	"cat_title" : "BSF",
+	"title" : "BSF instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bsr" : {
+	"cat_title" : "BSR",
+	"title" : "BSR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bswap" : {
+	"cat_title" : "BSWAP",
+	"title" : "BSWAP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bt" : {
+	"cat_title" : "BT",
+	"title" : "BT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"btc" : {
+	"cat_title" : "BTC",
+	"title" : "BTC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"btr" : {
+	"cat_title" : "BTR",
+	"title" : "BTR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"bts" : {
+	"cat_title" : "BTS",
+	"title" : "BTS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"bzhi_" : {
+	"bzhi" : {
+	"cat_title" : "BZHI",
+	"title" : "BZHI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"call" : {
+	"cat_title" : "CALL",
+	"title" : "CALL instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"cbw_or_cwde_or_cdqe" : {
+	"cbw-cwde-cdqe" : {
+	"cat_title" : "CBW, CWDE, CDQE",
+	"title" : "CBW, CWDE, CDQE instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"clac" : {
+	"cat_title" : "CLAC",
+	"title" : "CLAC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"clc" : {
+	"cat_title" : "CLC",
+	"title" : "CLC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cld" : {
+	"cat_title" : "CLD",
+	"title" : "CLD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"clflush" : {
+	"cat_title" : "CLFLUSH",
+	"title" : "CLFLUSH instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"clflushopt" : {
+	"cat_title" : "CLFLUSHOPT",
+	"title" : "CLFLUSHOPT instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"cli_" : {
+	"cli" : {
+	"cat_title" : "CLI",
+	"title" : "CLI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"clts" : {
+	"cat_title" : "CLTS",
+	"title" : "CLTS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"clwb" : {
+	"cat_title" : "CLWB",
+	"title" : "CLWB instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cmc" : {
+	"cat_title" : "CMC",
+	"title" : "CMC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cmovcc" : {
+	"cat_title" : "CMOVcc",
+	"title" : "CMOVcc instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cmp" : {
+	"cat_title" : "CMP",
+	"title" : "CMP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cmppd" : {
+	"cat_title" : "CMPPD",
+	"title" : "CMPPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpps" : {
+	"cat_title" : "CMPPS",
+	"title" : "CMPPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"cmps_or_cmpsb_or_cmpsw_or_cmpsd_or_cmpsq" : {
+	"cmps-cmpsb-cmpsw-cmpsd-cmpsq" : {
+	"cat_title" : "CMPS, CMPSB, CMPSW, CMPSD, CMPSQ",
+	"title" : "CMPS, CMPSB, CMPSW, CMPSD, CMPSQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpsd" : {
+	"cat_title" : "CMPSD",
+	"title" : "CMPSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpss" : {
+	"cat_title" : "CMPSS",
+	"title" : "CMPSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpxchg" : {
+	"cat_title" : "CMPXCHG",
+	"title" : "CMPXCHG instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"cmpxchg8b_or_cmpxchg16b" : {
+	"cmpxchg8b-cmpxchg16b" : {
+	"cat_title" : "CMPXCHG8B, CMPXCHG16B",
+	"title" : "CMPXCHG8B, CMPXCHG16B instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"comisd" : {
+	"cat_title" : "COMISD",
+	"title" : "COMISD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"comiss" : {
+	"cat_title" : "COMISS",
+	"title" : "COMISS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cpuid" : {
+	"cat_title" : "CPUID",
+	"title" : "CPUID instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"crc32_" : {
+	"crc32" : {
+	"cat_title" : "CRC32",
+	"title" : "CRC32 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtdq2pd" : {
+	"cat_title" : "CVTDQ2PD",
+	"title" : "CVTDQ2PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtdq2ps" : {
+	"cat_title" : "CVTDQ2PS",
+	"title" : "CVTDQ2PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpd2dq" : {
+	"cat_title" : "CVTPD2DQ",
+	"title" : "CVTPD2DQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpd2pi" : {
+	"cat_title" : "CVTPD2PI",
+	"title" : "CVTPD2PI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpd2ps" : {
+	"cat_title" : "CVTPD2PS",
+	"title" : "CVTPD2PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpi2pd" : {
+	"cat_title" : "CVTPI2PD",
+	"title" : "CVTPI2PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpi2ps" : {
+	"cat_title" : "CVTPI2PS",
+	"title" : "CVTPI2PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtps2dq" : {
+	"cat_title" : "CVTPS2DQ",
+	"title" : "CVTPS2DQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtps2pd" : {
+	"cat_title" : "CVTPS2PD",
+	"title" : "CVTPS2PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtps2pi" : {
+	"cat_title" : "CVTPS2PI",
+	"title" : "CVTPS2PI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtsd2si" : {
+	"cat_title" : "CVTSD2SI",
+	"title" : "CVTSD2SI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtsd2ss" : {
+	"cat_title" : "CVTSD2SS",
+	"title" : "CVTSD2SS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtsi2sd" : {
+	"cat_title" : "CVTSI2SD",
+	"title" : "CVTSI2SD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtsi2ss" : {
+	"cat_title" : "CVTSI2SS",
+	"title" : "CVTSI2SS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtss2sd" : {
+	"cat_title" : "CVTSS2SD",
+	"title" : "CVTSS2SD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtss2si" : {
+	"cat_title" : "CVTSS2SI",
+	"title" : "CVTSS2SI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttpd2dq" : {
+	"cat_title" : "CVTTPD2DQ",
+	"title" : "CVTTPD2DQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttpd2pi" : {
+	"cat_title" : "CVTTPD2PI",
+	"title" : "CVTTPD2PI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttps2dq" : {
+	"cat_title" : "CVTTPS2DQ",
+	"title" : "CVTTPS2DQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttps2pi" : {
+	"cat_title" : "CVTTPS2PI",
+	"title" : "CVTTPS2PI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttsd2si" : {
+	"cat_title" : "CVTTSD2SI",
+	"title" : "CVTTSD2SI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttss2si" : {
+	"cat_title" : "CVTTSS2SI",
+	"title" : "CVTTSS2SI instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"cwd_or_cdq_or_cqo" : {
+	"cwd-cdq-cqo" : {
+	"cat_title" : "CWD, CDQ, CQO",
+	"title" : "CWD, CDQ, CQO instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"daa" : {
+	"cat_title" : "DAA",
+	"title" : "DAA instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"das" : {
+	"cat_title" : "DAS",
+	"title" : "DAS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"dec" : {
+	"cat_title" : "DEC",
+	"title" : "DEC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"div" : {
+	"cat_title" : "DIV",
+	"title" : "DIV instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"divpd" : {
+	"cat_title" : "DIVPD",
+	"title" : "DIVPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"divps" : {
+	"cat_title" : "DIVPS",
+	"title" : "DIVPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"divsd" : {
+	"cat_title" : "DIVSD",
+	"title" : "DIVSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"divss" : {
+	"cat_title" : "DIVSS",
+	"title" : "DIVSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"dppd_" : {
+	"dppd" : {
+	"cat_title" : "DPPD",
+	"title" : "DPPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"dpps_" : {
+	"dpps" : {
+	"cat_title" : "DPPS",
+	"title" : "DPPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"emms" : {
+	"cat_title" : "EMMS",
+	"title" : "EMMS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"enter" : {
+	"cat_title" : "ENTER",
+	"title" : "ENTER instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"extractps" : {
+	"cat_title" : "EXTRACTPS",
+	"title" : "EXTRACTPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"f2xm1" : {
+	"cat_title" : "F2XM1",
+	"title" : "F2XM1 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fabs" : {
+	"cat_title" : "FABS",
+	"title" : "FABS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fadd_or_faddp_or_fiadd" : {
+	"fadd-faddp-fiadd" : {
+	"cat_title" : "FADD, FADDP, FIADD",
+	"title" : "FADD, FADDP, FIADD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fbld" : {
+	"cat_title" : "FBLD",
+	"title" : "FBLD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fbstp" : {
+	"cat_title" : "FBSTP",
+	"title" : "FBSTP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fchs" : {
+	"cat_title" : "FCHS",
+	"title" : "FCHS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fclex_or_fnclex" : {
+	"fclex-fnclex" : {
+	"cat_title" : "FCLEX, FNCLEX",
+	"title" : "FCLEX, FNCLEX instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fcmovcc" : {
+	"cat_title" : "FCMOVcc",
+	"title" : "FCMOVcc instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fcom_or_fcomp_or_fcompp" : {
+	"fcom-fcomp-fcompp" : {
+	"cat_title" : "FCOM, FCOMP, FCOMPP",
+	"title" : "FCOM, FCOMP, FCOMPP instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"fcomi_or_fcomip_or__fucomi_or_fucomip" : {
+	"fcomi-fcomip--fucomip" : {
+	"cat_title" : "FCOMI, FCOMIP, , FUCOMIP",
+	"title" : "FCOMI, FCOMIP, , FUCOMIP instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fcos" : {
+	"cat_title" : "FCOS",
+	"title" : "FCOS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fdecstp" : {
+	"cat_title" : "FDECSTP",
+	"title" : "FDECSTP instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fdiv_or_fdivp_or_fidiv" : {
+	"fdiv-fdivp-fidiv" : {
+	"cat_title" : "FDIV, FDIVP, FIDIV",
+	"title" : "FDIV, FDIVP, FIDIV instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"fdivr_or_fdivrp_or_fidivr" : {
+	"fdivr-fdivrp-fidivr" : {
+	"cat_title" : "FDIVR, FDIVRP, FIDIVR",
+	"title" : "FDIVR, FDIVRP, FIDIVR instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"ffree" : {
+	"cat_title" : "FFREE",
+	"title" : "FFREE instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"ficom_or_ficomp" : {
+	"ficom-ficomp" : {
+	"cat_title" : "FICOM, FICOMP",
+	"title" : "FICOM, FICOMP instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fild" : {
+	"cat_title" : "FILD",
+	"title" : "FILD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fincstp" : {
+	"cat_title" : "FINCSTP",
+	"title" : "FINCSTP instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"finit_or_fninit" : {
+	"finit-fninit" : {
+	"cat_title" : "FINIT, FNINIT",
+	"title" : "FINIT, FNINIT instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"fist_or_fistp" : {
+	"fist-fistp" : {
+	"cat_title" : "FIST, FISTP",
+	"title" : "FIST, FISTP instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fisttp" : {
+	"cat_title" : "FISTTP",
+	"title" : "FISTTP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fld" : {
+	"cat_title" : "FLD",
+	"title" : "FLD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fld1_or_fldl2t_or_fldl2e_or_fldpi_or_fldlg2_or_fldln2_or_fldz" : {
+	"fld1-fldl2t-fldl2e-fldpi-fldlg2-fldln2-fldz" : {
+	"cat_title" : "FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ",
+	"title" : "FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fldcw" : {
+	"cat_title" : "FLDCW",
+	"title" : "FLDCW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fldenv" : {
+	"cat_title" : "FLDENV",
+	"title" : "FLDENV instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fmul_or_fmulp_or_fimul" : {
+	"fmul-fmulp-fimul" : {
+	"cat_title" : "FMUL, FMULP, FIMUL",
+	"title" : "FMUL, FMULP, FIMUL instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fnop" : {
+	"cat_title" : "FNOP",
+	"title" : "FNOP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fpatan" : {
+	"cat_title" : "FPATAN",
+	"title" : "FPATAN instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fprem" : {
+	"cat_title" : "FPREM",
+	"title" : "FPREM instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fprem1" : {
+	"cat_title" : "FPREM1",
+	"title" : "FPREM1 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fptan" : {
+	"cat_title" : "FPTAN",
+	"title" : "FPTAN instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"frndint" : {
+	"cat_title" : "FRNDINT",
+	"title" : "FRNDINT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"frstor" : {
+	"cat_title" : "FRSTOR",
+	"title" : "FRSTOR instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fsave_or_fnsave" : {
+	"fsave-fnsave" : {
+	"cat_title" : "FSAVE, FNSAVE",
+	"title" : "FSAVE, FNSAVE instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fscale" : {
+	"cat_title" : "FSCALE",
+	"title" : "FSCALE instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fsin" : {
+	"cat_title" : "FSIN",
+	"title" : "FSIN instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fsincos" : {
+	"cat_title" : "FSINCOS",
+	"title" : "FSINCOS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fsqrt" : {
+	"cat_title" : "FSQRT",
+	"title" : "FSQRT instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fst_or_fstp" : {
+	"fst-fstp" : {
+	"cat_title" : "FST, FSTP",
+	"title" : "FST, FSTP instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"fstcw_or_fnstcw" : {
+	"fstcw-fnstcw" : {
+	"cat_title" : "FSTCW, FNSTCW",
+	"title" : "FSTCW, FNSTCW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"fstenv_or_fnstenv" : {
+	"fstenv-fnstenv" : {
+	"cat_title" : "FSTENV, FNSTENV",
+	"title" : "FSTENV, FNSTENV instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"fstsw_or_fnstsw" : {
+	"fstsw-fnstsw" : {
+	"cat_title" : "FSTSW, FNSTSW",
+	"title" : "FSTSW, FNSTSW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"fsub_or_fsubp_or_fisub" : {
+	"fsub-fsubp-fisub" : {
+	"cat_title" : "FSUB, FSUBP, FISUB",
+	"title" : "FSUB, FSUBP, FISUB instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"fsubr_or_fsubrp_or_fisubr" : {
+	"fsubr-fsubrp-fisubr" : {
+	"cat_title" : "FSUBR, FSUBRP, FISUBR",
+	"title" : "FSUBR, FSUBRP, FISUBR instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"ftst" : {
+	"cat_title" : "FTST",
+	"title" : "FTST instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"fucom_or_fucomp_or_fucompp" : {
+	"fucom-fucomp-fucompp" : {
+	"cat_title" : "FUCOM, FUCOMP, FUCOMPP",
+	"title" : "FUCOM, FUCOMP, FUCOMPP instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"fxam" : {
+	"cat_title" : "FXAM",
+	"title" : "FXAM instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fxch" : {
+	"cat_title" : "FXCH",
+	"title" : "FXCH instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fxrstor" : {
+	"cat_title" : "FXRSTOR",
+	"title" : "FXRSTOR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fxsave" : {
+	"cat_title" : "FXSAVE",
+	"title" : "FXSAVE instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fxtract" : {
+	"cat_title" : "FXTRACT",
+	"title" : "FXTRACT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fyl2x" : {
+	"cat_title" : "FYL2X",
+	"title" : "FYL2X instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"fyl2xp1" : {
+	"cat_title" : "FYL2XP1",
+	"title" : "FYL2XP1 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[exitac]" : {
+	"cat_title" : "GETSEC[EXITAC]",
+	"title" : "GETSEC[EXITAC] instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[parameters]" : {
+	"cat_title" : "GETSEC[PARAMETERS]",
+	"title" : "GETSEC[PARAMETERS] instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[senter]" : {
+	"cat_title" : "GETSEC[SENTER]",
+	"title" : "GETSEC[SENTER] instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[sexit]" : {
+	"cat_title" : "GETSEC[SEXIT]",
+	"title" : "GETSEC[SEXIT] instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[smctrl]" : {
+	"cat_title" : "GETSEC[SMCTRL]",
+	"title" : "GETSEC[SMCTRL] instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[wakeup]" : {
+	"cat_title" : "GETSEC[WAKEUP]",
+	"title" : "GETSEC[WAKEUP] instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"haddpd" : {
+	"cat_title" : "HADDPD",
+	"title" : "HADDPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"haddps" : {
+	"cat_title" : "HADDPS",
+	"title" : "HADDPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"hlt" : {
+	"cat_title" : "HLT",
+	"title" : "HLT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"hsubpd" : {
+	"cat_title" : "HSUBPD",
+	"title" : "HSUBPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"hsubps" : {
+	"cat_title" : "HSUBPS",
+	"title" : "HSUBPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"idiv" : {
+	"cat_title" : "IDIV",
+	"title" : "IDIV instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"imul" : {
+	"cat_title" : "IMUL",
+	"title" : "IMUL instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"in" : {
+	"cat_title" : "IN",
+	"title" : "IN instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"inc" : {
+	"cat_title" : "INC",
+	"title" : "INC instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"ins_or_insb_or_insw_or_insd" : {
+	"ins-insb-insw-insd" : {
+	"cat_title" : "INS, INSB, INSW, INSD",
+	"title" : "INS, INSB, INSW, INSD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"insertps" : {
+	"cat_title" : "INSERTPS",
+	"title" : "INSERTPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"int_n_or_into_or_int_3" : {
+	"int n-into-int 3" : {
+	"cat_title" : "INT n, INTO, INT 3",
+	"title" : "INT n, INTO, INT 3 instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"invd" : {
+	"cat_title" : "INVD",
+	"title" : "INVD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"invlpg" : {
+	"cat_title" : "INVLPG",
+	"title" : "INVLPG instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"invpcid" : {
+	"cat_title" : "INVPCID",
+	"title" : "INVPCID instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"iret_or_iretd" : {
+	"iret-iretd" : {
+	"cat_title" : "IRET, IRETD",
+	"title" : "IRET, IRETD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"jcc" : {
+	"cat_title" : "Jcc",
+	"title" : "Jcc instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"jmp" : {
+	"cat_title" : "JMP",
+	"title" : "JMP instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"kaddw_or_kaddb_or_kaddq_or_kaddd" : {
+	"kaddw-kaddb-kaddq-kaddd" : {
+	"cat_title" : "KADDW, KADDB, KADDQ, KADDD",
+	"title" : "KADDW, KADDB, KADDQ, KADDD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kandnw_or_kandnb_or_kandnq_or_kandnd" : {
+	"kandnw-kandnb-kandnq-kandnd" : {
+	"cat_title" : "KANDNW, KANDNB, KANDNQ, KANDND",
+	"title" : "KANDNW, KANDNB, KANDNQ, KANDND instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kandw_or_kandb_or_kandq_or_kandd" : {
+	"kandw-kandb-kandq-kandd" : {
+	"cat_title" : "KANDW, KANDB, KANDQ, KANDD",
+	"title" : "KANDW, KANDB, KANDQ, KANDD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kmovw_or_kmovb_or_kmovq_or_kmovd" : {
+	"kmovw-kmovb-kmovq-kmovd" : {
+	"cat_title" : "KMOVW, KMOVB, KMOVQ, KMOVD",
+	"title" : "KMOVW, KMOVB, KMOVQ, KMOVD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"knotw_or_knotb_or_knotq_or_knotd" : {
+	"knotw-knotb-knotq-knotd" : {
+	"cat_title" : "KNOTW, KNOTB, KNOTQ, KNOTD",
+	"title" : "KNOTW, KNOTB, KNOTQ, KNOTD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kortestw_or_kortestb_or_kortestq_or_kortestd" : {
+	"kortestw-kortestb-kortestq-kortestd" : {
+	"cat_title" : "KORTESTW, KORTESTB, KORTESTQ, KORTESTD",
+	"title" : "KORTESTW, KORTESTB, KORTESTQ, KORTESTD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"korw_or_korb_or_korq_or_kord" : {
+	"korw-korb-korq-kord" : {
+	"cat_title" : "KORW, KORB, KORQ, KORD",
+	"title" : "KORW, KORB, KORQ, KORD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kshiftlw_or_kshiftlb_or_kshiftlq_or_kshiftld" : {
+	"kshiftlw-kshiftlb-kshiftlq-kshiftld" : {
+	"cat_title" : "KSHIFTLW, KSHIFTLB, KSHIFTLQ, KSHIFTLD",
+	"title" : "KSHIFTLW, KSHIFTLB, KSHIFTLQ, KSHIFTLD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kshiftrw_or_kshiftrb_or_kshiftrq_or_kshiftrd" : {
+	"kshiftrw-kshiftrb-kshiftrq-kshiftrd" : {
+	"cat_title" : "KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRD",
+	"title" : "KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"ktestw_or_ktestb_or_ktestq_or_ktestd" : {
+	"ktestw-ktestb-ktestq-ktestd" : {
+	"cat_title" : "KTESTW, KTESTB, KTESTQ, KTESTD",
+	"title" : "KTESTW, KTESTB, KTESTQ, KTESTD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kunpckbw_or_kunpckwd_or_kunpckdq" : {
+	"kunpckbw-kunpckwd-kunpckdq" : {
+	"cat_title" : "KUNPCKBW, KUNPCKWD, KUNPCKDQ",
+	"title" : "KUNPCKBW, KUNPCKWD, KUNPCKDQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kxnorw_or_kxnorb_or_kxnorq_or_kxnord" : {
+	"kxnorw-kxnorb-kxnorq-kxnord" : {
+	"cat_title" : "KXNORW, KXNORB, KXNORQ, KXNORD",
+	"title" : "KXNORW, KXNORB, KXNORQ, KXNORD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"kxorw_or_kxorb_or_kxorq_or_kxord" : {
+	"kxorw-kxorb-kxorq-kxord" : {
+	"cat_title" : "KXORW, KXORB, KXORQ, KXORD",
+	"title" : "KXORW, KXORB, KXORQ, KXORD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"lahf" : {
+	"cat_title" : "LAHF",
+	"title" : "LAHF instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"lar" : {
+	"cat_title" : "LAR",
+	"title" : "LAR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"lddqu" : {
+	"cat_title" : "LDDQU",
+	"title" : "LDDQU instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"ldmxcsr" : {
+	"cat_title" : "LDMXCSR",
+	"title" : "LDMXCSR instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"lds_or_les_or_lfs_or_lgs_or_lss" : {
+	"lds-les-lfs-lgs-lss" : {
+	"cat_title" : "LDS, LES, LFS, LGS, LSS",
+	"title" : "LDS, LES, LFS, LGS, LSS instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"lea" : {
+	"cat_title" : "LEA",
+	"title" : "LEA instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"leave" : {
+	"cat_title" : "LEAVE",
+	"title" : "LEAVE instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"lfence" : {
+	"cat_title" : "LFENCE",
+	"title" : "LFENCE instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"lgdt_or_lidt" : {
+	"lgdt-lidt" : {
+	"cat_title" : "LGDT, LIDT",
+	"title" : "LGDT, LIDT instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"lldt" : {
+	"cat_title" : "LLDT",
+	"title" : "LLDT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"lmsw" : {
+	"cat_title" : "LMSW",
+	"title" : "LMSW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"lock" : {
+	"cat_title" : "LOCK",
+	"title" : "LOCK instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"lods_or_lodsb_or_lodsw_or_lodsd_or_lodsq" : {
+	"lods-lodsb-lodsw-lodsd-lodsq" : {
+	"cat_title" : "LODS, LODSB, LODSW, LODSD, LODSQ",
+	"title" : "LODS, LODSB, LODSW, LODSD, LODSQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"loop_or_loopcc" : {
+	"loop-loopcc" : {
+	"cat_title" : "LOOP, LOOPcc",
+	"title" : "LOOP, LOOPcc instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"lsl" : {
+	"cat_title" : "LSL",
+	"title" : "LSL instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"ltr" : {
+	"cat_title" : "LTR",
+	"title" : "LTR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"lzcnt" : {
+	"cat_title" : "LZCNT",
+	"title" : "LZCNT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"maskmovdqu" : {
+	"cat_title" : "MASKMOVDQU",
+	"title" : "MASKMOVDQU instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"maskmovq" : {
+	"cat_title" : "MASKMOVQ",
+	"title" : "MASKMOVQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"maxpd" : {
+	"cat_title" : "MAXPD",
+	"title" : "MAXPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"maxps" : {
+	"cat_title" : "MAXPS",
+	"title" : "MAXPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"maxsd" : {
+	"cat_title" : "MAXSD",
+	"title" : "MAXSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"maxss" : {
+	"cat_title" : "MAXSS",
+	"title" : "MAXSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mfence" : {
+	"cat_title" : "MFENCE",
+	"title" : "MFENCE instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"minpd" : {
+	"cat_title" : "MINPD",
+	"title" : "MINPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"minps" : {
+	"cat_title" : "MINPS",
+	"title" : "MINPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"minsd" : {
+	"cat_title" : "MINSD",
+	"title" : "MINSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"minss" : {
+	"cat_title" : "MINSS",
+	"title" : "MINSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"monitor" : {
+	"cat_title" : "MONITOR",
+	"title" : "MONITOR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mov" : {
+	"cat_title" : "MOV",
+	"title" : "MOV instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mov_1" : {
+	"cat_title" : "MOV",
+	"title" : "MOV instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mov_2" : {
+	"cat_title" : "MOV",
+	"title" : "MOV instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movapd" : {
+	"cat_title" : "MOVAPD",
+	"title" : "MOVAPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movaps" : {
+	"cat_title" : "MOVAPS",
+	"title" : "MOVAPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movbe" : {
+	"cat_title" : "MOVBE",
+	"title" : "MOVBE instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"movd_or_movq" : {
+	"movd-movq" : {
+	"cat_title" : "MOVD, MOVQ",
+	"title" : "MOVD, MOVQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"movddup" : {
+	"cat_title" : "MOVDDUP",
+	"title" : "MOVDDUP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movdq2q" : {
+	"cat_title" : "MOVDQ2Q",
+	"title" : "MOVDQ2Q instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"movdqa,vmovdqa32_or_64" : {
+	"movdqa-vmovdqa32-vmovdqa64" : {
+	"cat_title" : "MOVDQA, VMOVDQA32, VMOVDQA64",
+	"title" : "MOVDQA, VMOVDQA32, VMOVDQA64 instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"movdqu,vmovdqu8_or_16_or_32_or_64" : {
+	"movdqu-vmovdqu8-vmovdqu16-vmovdqu32-vmovdqu64" : {
+	"cat_title" : "MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64",
+	"title" : "MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64 instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"movhlps" : {
+	"cat_title" : "MOVHLPS",
+	"title" : "MOVHLPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movhpd" : {
+	"cat_title" : "MOVHPD",
+	"title" : "MOVHPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movhps" : {
+	"cat_title" : "MOVHPS",
+	"title" : "MOVHPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movlhps" : {
+	"cat_title" : "MOVLHPS",
+	"title" : "MOVLHPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movlpd" : {
+	"cat_title" : "MOVLPD",
+	"title" : "MOVLPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movlps" : {
+	"cat_title" : "MOVLPS",
+	"title" : "MOVLPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movmskpd" : {
+	"cat_title" : "MOVMSKPD",
+	"title" : "MOVMSKPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movmskps" : {
+	"cat_title" : "MOVMSKPS",
+	"title" : "MOVMSKPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movntdq" : {
+	"cat_title" : "MOVNTDQ",
+	"title" : "MOVNTDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movntdqa" : {
+	"cat_title" : "MOVNTDQA",
+	"title" : "MOVNTDQA instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movnti" : {
+	"cat_title" : "MOVNTI",
+	"title" : "MOVNTI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movntpd" : {
+	"cat_title" : "MOVNTPD",
+	"title" : "MOVNTPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movntps" : {
+	"cat_title" : "MOVNTPS",
+	"title" : "MOVNTPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movntq" : {
+	"cat_title" : "MOVNTQ",
+	"title" : "MOVNTQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movq" : {
+	"cat_title" : "MOVQ",
+	"title" : "MOVQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movq2dq" : {
+	"cat_title" : "MOVQ2DQ",
+	"title" : "MOVQ2DQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"movs_or_movsb_or_movsw_or_movsd_or_movsq" : {
+	"movs-movsb-movsw-movsd-movsq" : {
+	"cat_title" : "MOVS, MOVSB, MOVSW, MOVSD, MOVSQ",
+	"title" : "MOVS, MOVSB, MOVSW, MOVSD, MOVSQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"movsd" : {
+	"cat_title" : "MOVSD",
+	"title" : "MOVSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movshdup" : {
+	"cat_title" : "MOVSHDUP",
+	"title" : "MOVSHDUP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movsldup" : {
+	"cat_title" : "MOVSLDUP",
+	"title" : "MOVSLDUP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movss" : {
+	"cat_title" : "MOVSS",
+	"title" : "MOVSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"movsx_or_movsxd" : {
+	"movsx-movsxd" : {
+	"cat_title" : "MOVSX, MOVSXD",
+	"title" : "MOVSX, MOVSXD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"movupd" : {
+	"cat_title" : "MOVUPD",
+	"title" : "MOVUPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movups" : {
+	"cat_title" : "MOVUPS",
+	"title" : "MOVUPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"movzx" : {
+	"cat_title" : "MOVZX",
+	"title" : "MOVZX instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"mpsadbw_" : {
+	"mpsadbw" : {
+	"cat_title" : "MPSADBW",
+	"title" : "MPSADBW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mul" : {
+	"cat_title" : "MUL",
+	"title" : "MUL instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mulpd" : {
+	"cat_title" : "MULPD",
+	"title" : "MULPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mulps" : {
+	"cat_title" : "MULPS",
+	"title" : "MULPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mulsd" : {
+	"cat_title" : "MULSD",
+	"title" : "MULSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mulss" : {
+	"cat_title" : "MULSS",
+	"title" : "MULSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"mulx_" : {
+	"mulx" : {
+	"cat_title" : "MULX",
+	"title" : "MULX instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"mwait" : {
+	"cat_title" : "MWAIT",
+	"title" : "MWAIT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"neg" : {
+	"cat_title" : "NEG",
+	"title" : "NEG instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"nop" : {
+	"cat_title" : "NOP",
+	"title" : "NOP instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"not" : {
+	"cat_title" : "NOT",
+	"title" : "NOT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"or" : {
+	"cat_title" : "OR",
+	"title" : "OR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"orpd" : {
+	"cat_title" : "ORPD",
+	"title" : "ORPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"orps" : {
+	"cat_title" : "ORPS",
+	"title" : "ORPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"out" : {
+	"cat_title" : "OUT",
+	"title" : "OUT instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"outs_or_outsb_or_outsw_or_outsd" : {
+	"outs-outsb-outsw-outsd" : {
+	"cat_title" : "OUTS, OUTSB, OUTSW, OUTSD",
+	"title" : "OUTS, OUTSB, OUTSW, OUTSD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pabsb_or_pabsw_or_pabsd_or_pabsq_" : {
+	"pabsb-pabsw-pabsd-pabsq" : {
+	"cat_title" : "PABSB, PABSW, PABSD, PABSQ",
+	"title" : "PABSB, PABSW, PABSD, PABSQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"packsswb_or_packssdw" : {
+	"packsswb-packssdw" : {
+	"cat_title" : "PACKSSWB, PACKSSDW",
+	"title" : "PACKSSWB, PACKSSDW instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"packusdw" : {
+	"cat_title" : "PACKUSDW",
+	"title" : "PACKUSDW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"packuswb" : {
+	"cat_title" : "PACKUSWB",
+	"title" : "PACKUSWB instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"paddb_or_paddw_or_paddd_or_paddq" : {
+	"paddb-paddw-paddd-paddq" : {
+	"cat_title" : "PADDB, PADDW, PADDD, PADDQ",
+	"title" : "PADDB, PADDW, PADDD, PADDQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"paddsb_or_paddsw" : {
+	"paddsb-paddsw" : {
+	"cat_title" : "PADDSB, PADDSW",
+	"title" : "PADDSB, PADDSW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"paddusb_or_paddusw" : {
+	"paddusb-paddusw" : {
+	"cat_title" : "PADDUSB, PADDUSW",
+	"title" : "PADDUSB, PADDUSW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"palignr_" : {
+	"palignr" : {
+	"cat_title" : "PALIGNR",
+	"title" : "PALIGNR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pand" : {
+	"cat_title" : "PAND",
+	"title" : "PAND instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pandn" : {
+	"cat_title" : "PANDN",
+	"title" : "PANDN instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pause" : {
+	"cat_title" : "PAUSE",
+	"title" : "PAUSE instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pavgb_or_pavgw" : {
+	"pavgb-pavgw" : {
+	"cat_title" : "PAVGB, PAVGW",
+	"title" : "PAVGB, PAVGW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pblendvb_" : {
+	"pblendvb" : {
+	"cat_title" : "PBLENDVB",
+	"title" : "PBLENDVB instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pblendw_" : {
+	"pblendw" : {
+	"cat_title" : "PBLENDW",
+	"title" : "PBLENDW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pcmpeqb_or_pcmpeqw_or_pcmpeqd" : {
+	"pcmpeqb-pcmpeqw-pcmpeqd" : {
+	"cat_title" : "PCMPEQB, PCMPEQW, PCMPEQD",
+	"title" : "PCMPEQB, PCMPEQW, PCMPEQD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pcmpeqq_" : {
+	"pcmpeqq" : {
+	"cat_title" : "PCMPEQQ",
+	"title" : "PCMPEQQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pcmpestri_" : {
+	"pcmpestri" : {
+	"cat_title" : "PCMPESTRI",
+	"title" : "PCMPESTRI instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pcmpestrm_" : {
+	"pcmpestrm" : {
+	"cat_title" : "PCMPESTRM",
+	"title" : "PCMPESTRM instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pcmpgtb_or_pcmpgtw_or_pcmpgtd" : {
+	"pcmpgtb-pcmpgtw-pcmpgtd" : {
+	"cat_title" : "PCMPGTB, PCMPGTW, PCMPGTD",
+	"title" : "PCMPGTB, PCMPGTW, PCMPGTD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pcmpgtq_" : {
+	"pcmpgtq" : {
+	"cat_title" : "PCMPGTQ",
+	"title" : "PCMPGTQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pcmpistri_" : {
+	"pcmpistri" : {
+	"cat_title" : "PCMPISTRI",
+	"title" : "PCMPISTRI instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pcmpistrm_" : {
+	"pcmpistrm" : {
+	"cat_title" : "PCMPISTRM",
+	"title" : "PCMPISTRM instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pdep_" : {
+	"pdep" : {
+	"cat_title" : "PDEP",
+	"title" : "PDEP instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pext_" : {
+	"pext" : {
+	"cat_title" : "PEXT",
+	"title" : "PEXT instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pextrb_or_pextrd_or_pextrq_" : {
+	"pextrb-pextrd-pextrq" : {
+	"cat_title" : "PEXTRB, PEXTRD, PEXTRQ",
+	"title" : "PEXTRB, PEXTRD, PEXTRQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"pextrw" : {
+	"cat_title" : "PEXTRW",
+	"title" : "PEXTRW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"phaddsw_" : {
+	"phaddsw" : {
+	"cat_title" : "PHADDSW",
+	"title" : "PHADDSW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"phaddw_or_phaddd_" : {
+	"phaddw-phaddd" : {
+	"cat_title" : "PHADDW, PHADDD",
+	"title" : "PHADDW, PHADDD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"phminposuw_" : {
+	"phminposuw" : {
+	"cat_title" : "PHMINPOSUW",
+	"title" : "PHMINPOSUW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"phsubsw_" : {
+	"phsubsw" : {
+	"cat_title" : "PHSUBSW",
+	"title" : "PHSUBSW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"phsubw_or_phsubd_" : {
+	"phsubw-phsubd" : {
+	"cat_title" : "PHSUBW, PHSUBD",
+	"title" : "PHSUBW, PHSUBD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pinsrb_or_pinsrd_or_pinsrq_" : {
+	"pinsrb-pinsrd-pinsrq" : {
+	"cat_title" : "PINSRB, PINSRD, PINSRQ",
+	"title" : "PINSRB, PINSRD, PINSRQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"pinsrw" : {
+	"cat_title" : "PINSRW",
+	"title" : "PINSRW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pmaddubsw_" : {
+	"pmaddubsw" : {
+	"cat_title" : "PMADDUBSW",
+	"title" : "PMADDUBSW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmaddwd" : {
+	"cat_title" : "PMADDWD",
+	"title" : "PMADDWD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pmaxsb_or_pmaxsw_or_pmaxsd_or_pmaxsq" : {
+	"pmaxsb-pmaxsw-pmaxsd-pmaxsq" : {
+	"cat_title" : "PMAXSB, PMAXSW, PMAXSD, PMAXSQ",
+	"title" : "PMAXSB, PMAXSW, PMAXSD, PMAXSQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pmaxub_or_pmaxuw" : {
+	"pmaxub-pmaxuw" : {
+	"cat_title" : "PMAXUB, PMAXUW",
+	"title" : "PMAXUB, PMAXUW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pmaxud_or_pmaxuq" : {
+	"pmaxud-pmaxuq" : {
+	"cat_title" : "PMAXUD, PMAXUQ",
+	"title" : "PMAXUD, PMAXUQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pminsb_or_pminsw" : {
+	"pminsb-pminsw" : {
+	"cat_title" : "PMINSB, PMINSW",
+	"title" : "PMINSB, PMINSW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pminsd_or_pminsq" : {
+	"pminsd-pminsq" : {
+	"cat_title" : "PMINSD, PMINSQ",
+	"title" : "PMINSD, PMINSQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pminub_or_pminuw" : {
+	"pminub-pminuw" : {
+	"cat_title" : "PMINUB, PMINUW",
+	"title" : "PMINUB, PMINUW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pminud_or_pminuq" : {
+	"pminud-pminuq" : {
+	"cat_title" : "PMINUD, PMINUQ",
+	"title" : "PMINUD, PMINUQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmovmskb" : {
+	"cat_title" : "PMOVMSKB",
+	"title" : "PMOVMSKB instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmovsx" : {
+	"cat_title" : "PMOVSX",
+	"title" : "PMOVSX instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmovzx" : {
+	"cat_title" : "PMOVZX",
+	"title" : "PMOVZX instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmuldq" : {
+	"cat_title" : "PMULDQ",
+	"title" : "PMULDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pmulhrsw_" : {
+	"pmulhrsw" : {
+	"cat_title" : "PMULHRSW",
+	"title" : "PMULHRSW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmulhuw" : {
+	"cat_title" : "PMULHUW",
+	"title" : "PMULHUW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmulhw" : {
+	"cat_title" : "PMULHW",
+	"title" : "PMULHW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pmulld_or_pmullq" : {
+	"pmulld-pmullq" : {
+	"cat_title" : "PMULLD, PMULLQ",
+	"title" : "PMULLD, PMULLQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmullw" : {
+	"cat_title" : "PMULLW",
+	"title" : "PMULLW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pmuludq" : {
+	"cat_title" : "PMULUDQ",
+	"title" : "PMULUDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pop" : {
+	"cat_title" : "POP",
+	"title" : "POP instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"popa_or_popad" : {
+	"popa-popad" : {
+	"cat_title" : "POPA, POPAD",
+	"title" : "POPA, POPAD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"popcnt_" : {
+	"popcnt" : {
+	"cat_title" : "POPCNT",
+	"title" : "POPCNT instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"popf_or_popfd_or_popfq" : {
+	"popf-popfd-popfq" : {
+	"cat_title" : "POPF, POPFD, POPFQ",
+	"title" : "POPF, POPFD, POPFQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"por" : {
+	"cat_title" : "POR",
+	"title" : "POR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"prefetchh" : {
+	"cat_title" : "PREFETCHh",
+	"title" : "PREFETCHh instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"prefetchw" : {
+	"cat_title" : "PREFETCHW",
+	"title" : "PREFETCHW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"prefetchwt1" : {
+	"cat_title" : "PREFETCHWT1",
+	"title" : "PREFETCHWT1 instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"prold_or_prolvd_or_prolq_or_prolvq" : {
+	"prold-prolvd-prolq-prolvq" : {
+	"cat_title" : "PROLD, PROLVD, PROLQ, PROLVQ",
+	"title" : "PROLD, PROLVD, PROLQ, PROLVQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"prord_or_prorvd_or_prorq_or_prorvq" : {
+	"prord-prorvd-prorq-prorvq" : {
+	"cat_title" : "PRORD, PRORVD, PRORQ, PRORVQ",
+	"title" : "PRORD, PRORVD, PRORQ, PRORVQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"psadbw" : {
+	"cat_title" : "PSADBW",
+	"title" : "PSADBW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pshufb_" : {
+	"pshufb" : {
+	"cat_title" : "PSHUFB",
+	"title" : "PSHUFB instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pshufd" : {
+	"cat_title" : "PSHUFD",
+	"title" : "PSHUFD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pshufhw" : {
+	"cat_title" : "PSHUFHW",
+	"title" : "PSHUFHW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pshuflw" : {
+	"cat_title" : "PSHUFLW",
+	"title" : "PSHUFLW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"pshufw" : {
+	"cat_title" : "PSHUFW",
+	"title" : "PSHUFW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"psignb_or_psignw_or_psignd_" : {
+	"psignb-psignw-psignd" : {
+	"cat_title" : "PSIGNB, PSIGNW, PSIGND",
+	"title" : "PSIGNB, PSIGNW, PSIGND instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"pslldq" : {
+	"cat_title" : "PSLLDQ",
+	"title" : "PSLLDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"psllw_or_pslld_or_psllq" : {
+	"psllw-pslld-psllq" : {
+	"cat_title" : "PSLLW, PSLLD, PSLLQ",
+	"title" : "PSLLW, PSLLD, PSLLQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"psraw_or_psrad_or_psraq" : {
+	"psraw-psrad-psraq" : {
+	"cat_title" : "PSRAW, PSRAD, PSRAQ",
+	"title" : "PSRAW, PSRAD, PSRAQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"psrldq" : {
+	"cat_title" : "PSRLDQ",
+	"title" : "PSRLDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"psrlw_or_psrld_or_psrlq" : {
+	"psrlw-psrld-psrlq" : {
+	"cat_title" : "PSRLW, PSRLD, PSRLQ",
+	"title" : "PSRLW, PSRLD, PSRLQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"psubb_or_psubw_or_psubd" : {
+	"psubb-psubw-psubd" : {
+	"cat_title" : "PSUBB, PSUBW, PSUBD",
+	"title" : "PSUBB, PSUBW, PSUBD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"psubq" : {
+	"cat_title" : "PSUBQ",
+	"title" : "PSUBQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"psubsb_or_psubsw" : {
+	"psubsb-psubsw" : {
+	"cat_title" : "PSUBSB, PSUBSW",
+	"title" : "PSUBSB, PSUBSW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"psubusb_or_psubusw" : {
+	"psubusb-psubusw" : {
+	"cat_title" : "PSUBUSB, PSUBUSW",
+	"title" : "PSUBUSB, PSUBUSW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"punpckhbw_or_punpckhwd_or_punpckhdq_or_punpckhqdq" : {
+	"punpckhbw-punpckhwd-punpckhdq-punpckhqdq" : {
+	"cat_title" : "PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQ",
+	"title" : "PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"punpcklbw_or_punpcklwd_or_punpckldq_or_punpcklqdq" : {
+	"punpcklbw-punpcklwd-punpckldq-punpcklqdq" : {
+	"cat_title" : "PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQ",
+	"title" : "PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"push" : {
+	"cat_title" : "PUSH",
+	"title" : "PUSH instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"pusha_or_pushad" : {
+	"pusha-pushad" : {
+	"cat_title" : "PUSHA, PUSHAD",
+	"title" : "PUSHA, PUSHAD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"pushf_or_pushfd" : {
+	"pushf-pushfd" : {
+	"cat_title" : "PUSHF, PUSHFD",
+	"title" : "PUSHF, PUSHFD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"pxor" : {
+	"cat_title" : "PXOR",
+	"title" : "PXOR instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"rcl_or_rcr_or_rol_or_ror" : {
+	"rcl-rcr-rol-ror" : {
+	"cat_title" : "RCL, RCR, ROL, ROR",
+	"title" : "RCL, RCR, ROL, ROR instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"rcpps" : {
+	"cat_title" : "RCPPS",
+	"title" : "RCPPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rcpss" : {
+	"cat_title" : "RCPSS",
+	"title" : "RCPSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"rdfsbase_or_rdgsbase" : {
+	"rdfsbase-rdgsbase" : {
+	"cat_title" : "RDFSBASE, RDGSBASE",
+	"title" : "RDFSBASE, RDGSBASE instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"rdmsr" : {
+	"cat_title" : "RDMSR",
+	"title" : "RDMSR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rdpid" : {
+	"cat_title" : "RDPID",
+	"title" : "RDPID instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rdpkru" : {
+	"cat_title" : "RDPKRU",
+	"title" : "RDPKRU instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rdpmc" : {
+	"cat_title" : "RDPMC",
+	"title" : "RDPMC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rdrand" : {
+	"cat_title" : "RDRAND",
+	"title" : "RDRAND instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rdseed" : {
+	"cat_title" : "RDSEED",
+	"title" : "RDSEED instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rdtsc" : {
+	"cat_title" : "RDTSC",
+	"title" : "RDTSC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rdtscp" : {
+	"cat_title" : "RDTSCP",
+	"title" : "RDTSCP instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"rep_or_repe_or_repz_or_repne_or_repnz" : {
+	"rep-repe-repz-repne-repnz" : {
+	"cat_title" : "REP, REPE, REPZ, REPNE, REPNZ",
+	"title" : "REP, REPE, REPZ, REPNE, REPNZ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"ret" : {
+	"cat_title" : "RET",
+	"title" : "RET instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"rorx_" : {
+	"rorx" : {
+	"cat_title" : "RORX",
+	"title" : "RORX instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"roundpd_" : {
+	"roundpd" : {
+	"cat_title" : "ROUNDPD",
+	"title" : "ROUNDPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"roundps_" : {
+	"roundps" : {
+	"cat_title" : "ROUNDPS",
+	"title" : "ROUNDPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"roundsd_" : {
+	"roundsd" : {
+	"cat_title" : "ROUNDSD",
+	"title" : "ROUNDSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"roundss_" : {
+	"roundss" : {
+	"cat_title" : "ROUNDSS",
+	"title" : "ROUNDSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rsm" : {
+	"cat_title" : "RSM",
+	"title" : "RSM instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rsqrtps" : {
+	"cat_title" : "RSQRTPS",
+	"title" : "RSQRTPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"rsqrtss" : {
+	"cat_title" : "RSQRTSS",
+	"title" : "RSQRTSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sahf" : {
+	"cat_title" : "SAHF",
+	"title" : "SAHF instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"sal_or_sar_or_shl_or_shr" : {
+	"sal-sar-shl-shr" : {
+	"cat_title" : "SAL, SAR, SHL, SHR",
+	"title" : "SAL, SAR, SHL, SHR instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"sarx_or_shlx_or_shrx_" : {
+	"sarx-shlx-shrx" : {
+	"cat_title" : "SARX, SHLX, SHRX",
+	"title" : "SARX, SHLX, SHRX instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"sbb" : {
+	"cat_title" : "SBB",
+	"title" : "SBB instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"scas_or_scasb_or_scasw_or_scasd" : {
+	"scas-scasb-scasw-scasd" : {
+	"cat_title" : "SCAS, SCASB, SCASW, SCASD",
+	"title" : "SCAS, SCASB, SCASW, SCASD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"setcc" : {
+	"cat_title" : "SETcc",
+	"title" : "SETcc instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sfence" : {
+	"cat_title" : "SFENCE",
+	"title" : "SFENCE instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sgdt" : {
+	"cat_title" : "SGDT",
+	"title" : "SGDT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sha1msg1" : {
+	"cat_title" : "SHA1MSG1",
+	"title" : "SHA1MSG1 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sha1msg2" : {
+	"cat_title" : "SHA1MSG2",
+	"title" : "SHA1MSG2 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sha1nexte" : {
+	"cat_title" : "SHA1NEXTE",
+	"title" : "SHA1NEXTE instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sha1rnds4" : {
+	"cat_title" : "SHA1RNDS4",
+	"title" : "SHA1RNDS4 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sha256msg1" : {
+	"cat_title" : "SHA256MSG1",
+	"title" : "SHA256MSG1 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sha256msg2" : {
+	"cat_title" : "SHA256MSG2",
+	"title" : "SHA256MSG2 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sha256rnds2" : {
+	"cat_title" : "SHA256RNDS2",
+	"title" : "SHA256RNDS2 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"shld" : {
+	"cat_title" : "SHLD",
+	"title" : "SHLD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"shrd" : {
+	"cat_title" : "SHRD",
+	"title" : "SHRD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"shufpd" : {
+	"cat_title" : "SHUFPD",
+	"title" : "SHUFPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"shufps" : {
+	"cat_title" : "SHUFPS",
+	"title" : "SHUFPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sidt" : {
+	"cat_title" : "SIDT",
+	"title" : "SIDT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sldt" : {
+	"cat_title" : "SLDT",
+	"title" : "SLDT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"smsw" : {
+	"cat_title" : "SMSW",
+	"title" : "SMSW instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sqrtpd" : {
+	"cat_title" : "SQRTPD",
+	"title" : "SQRTPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sqrtps" : {
+	"cat_title" : "SQRTPS",
+	"title" : "SQRTPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sqrtsd" : {
+	"cat_title" : "SQRTSD",
+	"title" : "SQRTSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sqrtss" : {
+	"cat_title" : "SQRTSS",
+	"title" : "SQRTSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"stac" : {
+	"cat_title" : "STAC",
+	"title" : "STAC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"stc" : {
+	"cat_title" : "STC",
+	"title" : "STC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"std" : {
+	"cat_title" : "STD",
+	"title" : "STD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sti" : {
+	"cat_title" : "STI",
+	"title" : "STI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"stmxcsr" : {
+	"cat_title" : "STMXCSR",
+	"title" : "STMXCSR instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"stos_or_stosb_or_stosw_or_stosd_or_stosq" : {
+	"stos-stosb-stosw-stosd-stosq" : {
+	"cat_title" : "STOS, STOSB, STOSW, STOSD, STOSQ",
+	"title" : "STOS, STOSB, STOSW, STOSD, STOSQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"str" : {
+	"cat_title" : "STR",
+	"title" : "STR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sub" : {
+	"cat_title" : "SUB",
+	"title" : "SUB instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"subpd" : {
+	"cat_title" : "SUBPD",
+	"title" : "SUBPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"subps" : {
+	"cat_title" : "SUBPS",
+	"title" : "SUBPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"subsd" : {
+	"cat_title" : "SUBSD",
+	"title" : "SUBSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"subss" : {
+	"cat_title" : "SUBSS",
+	"title" : "SUBSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"swapgs" : {
+	"cat_title" : "SWAPGS",
+	"title" : "SWAPGS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"syscall" : {
+	"cat_title" : "SYSCALL",
+	"title" : "SYSCALL instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sysenter" : {
+	"cat_title" : "SYSENTER",
+	"title" : "SYSENTER instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sysexit" : {
+	"cat_title" : "SYSEXIT",
+	"title" : "SYSEXIT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"sysret" : {
+	"cat_title" : "SYSRET",
+	"title" : "SYSRET instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"test" : {
+	"cat_title" : "TEST",
+	"title" : "TEST instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"tzcnt_" : {
+	"tzcnt" : {
+	"cat_title" : "TZCNT",
+	"title" : "TZCNT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"ucomisd" : {
+	"cat_title" : "UCOMISD",
+	"title" : "UCOMISD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"ucomiss" : {
+	"cat_title" : "UCOMISS",
+	"title" : "UCOMISS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"ud2" : {
+	"cat_title" : "UD2",
+	"title" : "UD2 instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"unpckhpd" : {
+	"cat_title" : "UNPCKHPD",
+	"title" : "UNPCKHPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"unpckhps" : {
+	"cat_title" : "UNPCKHPS",
+	"title" : "UNPCKHPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"unpcklpd" : {
+	"cat_title" : "UNPCKLPD",
+	"title" : "UNPCKLPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"unpcklps" : {
+	"cat_title" : "UNPCKLPS",
+	"title" : "UNPCKLPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"valignd_or_valignq" : {
+	"valignd-valignq" : {
+	"cat_title" : "VALIGND, VALIGNQ",
+	"title" : "VALIGND, VALIGNQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vblendmpd_or_vblendmps" : {
+	"vblendmpd-vblendmps" : {
+	"cat_title" : "VBLENDMPD, VBLENDMPS",
+	"title" : "VBLENDMPD, VBLENDMPS instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vbroadcast" : {
+	"cat_title" : "VBROADCAST",
+	"title" : "VBROADCAST instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcompresspd" : {
+	"cat_title" : "VCOMPRESSPD",
+	"title" : "VCOMPRESSPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcompressps" : {
+	"cat_title" : "VCOMPRESSPS",
+	"title" : "VCOMPRESSPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtpd2qq" : {
+	"cat_title" : "VCVTPD2QQ",
+	"title" : "VCVTPD2QQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtpd2udq" : {
+	"cat_title" : "VCVTPD2UDQ",
+	"title" : "VCVTPD2UDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtpd2uqq" : {
+	"cat_title" : "VCVTPD2UQQ",
+	"title" : "VCVTPD2UQQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtph2ps" : {
+	"cat_title" : "VCVTPH2PS",
+	"title" : "VCVTPH2PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtps2ph" : {
+	"cat_title" : "VCVTPS2PH",
+	"title" : "VCVTPS2PH instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtps2qq" : {
+	"cat_title" : "VCVTPS2QQ",
+	"title" : "VCVTPS2QQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtps2udq" : {
+	"cat_title" : "VCVTPS2UDQ",
+	"title" : "VCVTPS2UDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtps2uqq" : {
+	"cat_title" : "VCVTPS2UQQ",
+	"title" : "VCVTPS2UQQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtqq2pd" : {
+	"cat_title" : "VCVTQQ2PD",
+	"title" : "VCVTQQ2PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtqq2ps" : {
+	"cat_title" : "VCVTQQ2PS",
+	"title" : "VCVTQQ2PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtsd2usi" : {
+	"cat_title" : "VCVTSD2USI",
+	"title" : "VCVTSD2USI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtss2usi" : {
+	"cat_title" : "VCVTSS2USI",
+	"title" : "VCVTSS2USI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttpd2qq" : {
+	"cat_title" : "VCVTTPD2QQ",
+	"title" : "VCVTTPD2QQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttpd2udq" : {
+	"cat_title" : "VCVTTPD2UDQ",
+	"title" : "VCVTTPD2UDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttpd2uqq" : {
+	"cat_title" : "VCVTTPD2UQQ",
+	"title" : "VCVTTPD2UQQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttps2qq" : {
+	"cat_title" : "VCVTTPS2QQ",
+	"title" : "VCVTTPS2QQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttps2udq" : {
+	"cat_title" : "VCVTTPS2UDQ",
+	"title" : "VCVTTPS2UDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttps2uqq" : {
+	"cat_title" : "VCVTTPS2UQQ",
+	"title" : "VCVTTPS2UQQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttsd2usi" : {
+	"cat_title" : "VCVTTSD2USI",
+	"title" : "VCVTTSD2USI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttss2usi" : {
+	"cat_title" : "VCVTTSS2USI",
+	"title" : "VCVTTSS2USI instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtudq2pd" : {
+	"cat_title" : "VCVTUDQ2PD",
+	"title" : "VCVTUDQ2PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtudq2ps" : {
+	"cat_title" : "VCVTUDQ2PS",
+	"title" : "VCVTUDQ2PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtuqq2pd" : {
+	"cat_title" : "VCVTUQQ2PD",
+	"title" : "VCVTUQQ2PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtuqq2ps" : {
+	"cat_title" : "VCVTUQQ2PS",
+	"title" : "VCVTUQQ2PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtusi2sd" : {
+	"cat_title" : "VCVTUSI2SD",
+	"title" : "VCVTUSI2SD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtusi2ss" : {
+	"cat_title" : "VCVTUSI2SS",
+	"title" : "VCVTUSI2SS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vdbpsadbw" : {
+	"cat_title" : "VDBPSADBW",
+	"title" : "VDBPSADBW instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"verr_or_verw" : {
+	"verr-verw" : {
+	"cat_title" : "VERR, VERW",
+	"title" : "VERR, VERW instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vexp2pd" : {
+	"cat_title" : "VEXP2PD",
+	"title" : "VEXP2PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vexp2ps" : {
+	"cat_title" : "VEXP2PS",
+	"title" : "VEXP2PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vexpandpd" : {
+	"cat_title" : "VEXPANDPD",
+	"title" : "VEXPANDPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vexpandps" : {
+	"cat_title" : "VEXPANDPS",
+	"title" : "VEXPANDPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vextractf128_or_vextractf32x4_or_vextractf64x2_or_vextractf32x8_or_vextractf64x4" : {
+	"vextractf128-vextractf32x4-vextractf64x2-vextractf32x8-vextractf64x4" : {
+	"cat_title" : "VEXTRACTF128, VEXTRACTF32x4, VEXTRACTF64x2, VEXTRACTF32x8, VEXTRACTF64x4",
+	"title" : "VEXTRACTF128, VEXTRACTF32x4, VEXTRACTF64x2, VEXTRACTF32x8, VEXTRACTF64x4 instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vextracti128_or_vextracti32x4_or_vextracti64x2_or_vextracti32x8_or_vextracti64x4" : {
+	"vextracti128-vextracti32x4-vextracti64x2-vextracti32x8-vextracti64x4" : {
+	"cat_title" : "VEXTRACTI128, VEXTRACTI32x4, VEXTRACTI64x2, VEXTRACTI32x8, VEXTRACTI64x4",
+	"title" : "VEXTRACTI128, VEXTRACTI32x4, VEXTRACTI64x2, VEXTRACTI32x8, VEXTRACTI64x4 instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vfixupimmpd" : {
+	"cat_title" : "VFIXUPIMMPD",
+	"title" : "VFIXUPIMMPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vfixupimmps" : {
+	"cat_title" : "VFIXUPIMMPS",
+	"title" : "VFIXUPIMMPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vfixupimmsd" : {
+	"cat_title" : "VFIXUPIMMSD",
+	"title" : "VFIXUPIMMSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vfixupimmss" : {
+	"cat_title" : "VFIXUPIMMSS",
+	"title" : "VFIXUPIMMSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmadd132pd_or_vfmadd213pd_or_vfmadd231pd" : {
+	"vfmadd132pd-vfmadd213pd-vfmadd231pd" : {
+	"cat_title" : "VFMADD132PD, VFMADD213PD, VFMADD231PD",
+	"title" : "VFMADD132PD, VFMADD213PD, VFMADD231PD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmadd132ps_or_vfmadd213ps_or_vfmadd231ps" : {
+	"vfmadd132ps-vfmadd213ps-vfmadd231ps" : {
+	"cat_title" : "VFMADD132PS, VFMADD213PS, VFMADD231PS",
+	"title" : "VFMADD132PS, VFMADD213PS, VFMADD231PS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmadd132sd_or_vfmadd213sd_or_vfmadd231sd" : {
+	"vfmadd132sd-vfmadd213sd-vfmadd231sd" : {
+	"cat_title" : "VFMADD132SD, VFMADD213SD, VFMADD231SD",
+	"title" : "VFMADD132SD, VFMADD213SD, VFMADD231SD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmadd132ss_or_vfmadd213ss_or_vfmadd231ss" : {
+	"vfmadd132ss-vfmadd213ss-vfmadd231ss" : {
+	"cat_title" : "VFMADD132SS, VFMADD213SS, VFMADD231SS",
+	"title" : "VFMADD132SS, VFMADD213SS, VFMADD231SS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmaddsub132pd_or_vfmaddsub213pd_or_vfmaddsub231pd" : {
+	"vfmaddsub132pd-vfmaddsub213pd-vfmaddsub231pd" : {
+	"cat_title" : "VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PD",
+	"title" : "VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmaddsub132ps_or_vfmaddsub213ps_or_vfmaddsub231ps" : {
+	"vfmaddsub132ps-vfmaddsub213ps-vfmaddsub231ps" : {
+	"cat_title" : "VFMADDSUB132PS, VFMADDSUB213PS, VFMADDSUB231PS",
+	"title" : "VFMADDSUB132PS, VFMADDSUB213PS, VFMADDSUB231PS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmsub132pd_or_vfmsub213pd_or_vfmsub231pd" : {
+	"vfmsub132pd-vfmsub213pd-vfmsub231pd" : {
+	"cat_title" : "VFMSUB132PD, VFMSUB213PD, VFMSUB231PD",
+	"title" : "VFMSUB132PD, VFMSUB213PD, VFMSUB231PD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmsub132ps_or_vfmsub213ps_or_vfmsub231ps" : {
+	"vfmsub132ps-vfmsub213ps-vfmsub231ps" : {
+	"cat_title" : "VFMSUB132PS, VFMSUB213PS, VFMSUB231PS",
+	"title" : "VFMSUB132PS, VFMSUB213PS, VFMSUB231PS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmsub132sd_or_vfmsub213sd_or_vfmsub231sd" : {
+	"vfmsub132sd-vfmsub213sd-vfmsub231sd" : {
+	"cat_title" : "VFMSUB132SD, VFMSUB213SD, VFMSUB231SD",
+	"title" : "VFMSUB132SD, VFMSUB213SD, VFMSUB231SD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmsub132ss_or_vfmsub213ss_or_vfmsub231ss" : {
+	"vfmsub132ss-vfmsub213ss-vfmsub231ss" : {
+	"cat_title" : "VFMSUB132SS, VFMSUB213SS, VFMSUB231SS",
+	"title" : "VFMSUB132SS, VFMSUB213SS, VFMSUB231SS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmsubadd132pd_or_vfmsubadd213pd_or_vfmsubadd231pd" : {
+	"vfmsubadd132pd-vfmsubadd213pd-vfmsubadd231pd" : {
+	"cat_title" : "VFMSUBADD132PD, VFMSUBADD213PD, VFMSUBADD231PD",
+	"title" : "VFMSUBADD132PD, VFMSUBADD213PD, VFMSUBADD231PD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfmsubadd132ps_or_vfmsubadd213ps_or_vfmsubadd231ps" : {
+	"vfmsubadd132ps-vfmsubadd213ps-vfmsubadd231ps" : {
+	"cat_title" : "VFMSUBADD132PS, VFMSUBADD213PS, VFMSUBADD231PS",
+	"title" : "VFMSUBADD132PS, VFMSUBADD213PS, VFMSUBADD231PS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfnmadd132pd_or_vfnmadd213pd_or_vfnmadd231pd" : {
+	"vfnmadd132pd-vfnmadd213pd-vfnmadd231pd" : {
+	"cat_title" : "VFNMADD132PD, VFNMADD213PD, VFNMADD231PD",
+	"title" : "VFNMADD132PD, VFNMADD213PD, VFNMADD231PD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfnmadd132ps_or_vfnmadd213ps_or_vfnmadd231ps" : {
+	"vfnmadd132ps-vfnmadd213ps-vfnmadd231ps" : {
+	"cat_title" : "VFNMADD132PS, VFNMADD213PS, VFNMADD231PS",
+	"title" : "VFNMADD132PS, VFNMADD213PS, VFNMADD231PS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfnmadd132sd_or_vfnmadd213sd_or_vfnmadd231sd" : {
+	"vfnmadd132sd-vfnmadd213sd-vfnmadd231sd" : {
+	"cat_title" : "VFNMADD132SD, VFNMADD213SD, VFNMADD231SD",
+	"title" : "VFNMADD132SD, VFNMADD213SD, VFNMADD231SD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfnmadd132ss_or_vfnmadd213ss_or_vfnmadd231ss" : {
+	"vfnmadd132ss-vfnmadd213ss-vfnmadd231ss" : {
+	"cat_title" : "VFNMADD132SS, VFNMADD213SS, VFNMADD231SS",
+	"title" : "VFNMADD132SS, VFNMADD213SS, VFNMADD231SS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfnmsub132pd_or_vfnmsub213pd_or_vfnmsub231pd" : {
+	"vfnmsub132pd-vfnmsub213pd-vfnmsub231pd" : {
+	"cat_title" : "VFNMSUB132PD, VFNMSUB213PD, VFNMSUB231PD",
+	"title" : "VFNMSUB132PD, VFNMSUB213PD, VFNMSUB231PD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfnmsub132ps_or_vfnmsub213ps_or_vfnmsub231ps" : {
+	"vfnmsub132ps-vfnmsub213ps-vfnmsub231ps" : {
+	"cat_title" : "VFNMSUB132PS, VFNMSUB213PS, VFNMSUB231PS",
+	"title" : "VFNMSUB132PS, VFNMSUB213PS, VFNMSUB231PS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfnmsub132sd_or_vfnmsub213sd_or_vfnmsub231sd" : {
+	"vfnmsub132sd-vfnmsub213sd-vfnmsub231sd" : {
+	"cat_title" : "VFNMSUB132SD, VFNMSUB213SD, VFNMSUB231SD",
+	"title" : "VFNMSUB132SD, VFNMSUB213SD, VFNMSUB231SD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vfnmsub132ss_or_vfnmsub213ss_or_vfnmsub231ss" : {
+	"vfnmsub132ss-vfnmsub213ss-vfnmsub231ss" : {
+	"cat_title" : "VFNMSUB132SS, VFNMSUB213SS, VFNMSUB231SS",
+	"title" : "VFNMSUB132SS, VFNMSUB213SS, VFNMSUB231SS instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vfpclasspd" : {
+	"cat_title" : "VFPCLASSPD",
+	"title" : "VFPCLASSPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vfpclassps" : {
+	"cat_title" : "VFPCLASSPS",
+	"title" : "VFPCLASSPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vfpclasssd" : {
+	"cat_title" : "VFPCLASSSD",
+	"title" : "VFPCLASSSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vfpclassss" : {
+	"cat_title" : "VFPCLASSSS",
+	"title" : "VFPCLASSSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vgatherdpd_or_vgatherqpd_" : {
+	"vgatherdpd-vgatherqpd" : {
+	"cat_title" : "VGATHERDPD, VGATHERQPD",
+	"title" : "VGATHERDPD, VGATHERQPD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vgatherdps_or_vgatherdpd" : {
+	"vgatherdps-vgatherdpd" : {
+	"cat_title" : "VGATHERDPS, VGATHERDPD",
+	"title" : "VGATHERDPS, VGATHERDPD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vgatherdps_or_vgatherqps_" : {
+	"vgatherdps-vgatherqps" : {
+	"cat_title" : "VGATHERDPS, VGATHERQPS",
+	"title" : "VGATHERDPS, VGATHERQPS instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vgatherpf0dps_or_vgatherpf0qps_or_vgatherpf0dpd_or_vgatherpf0qpd" : {
+	"vgatherpf0dps-vgatherpf0qps-vgatherpf0dpd-vgatherpf0qpd" : {
+	"cat_title" : "VGATHERPF0DPS, VGATHERPF0QPS, VGATHERPF0DPD, VGATHERPF0QPD",
+	"title" : "VGATHERPF0DPS, VGATHERPF0QPS, VGATHERPF0DPD, VGATHERPF0QPD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vgatherpf1dps_or_vgatherpf1qps_or_vgatherpf1dpd_or_vgatherpf1qpd" : {
+	"vgatherpf1dps-vgatherpf1qps-vgatherpf1dpd-vgatherpf1qpd" : {
+	"cat_title" : "VGATHERPF1DPS, VGATHERPF1QPS, VGATHERPF1DPD, VGATHERPF1QPD",
+	"title" : "VGATHERPF1DPS, VGATHERPF1QPS, VGATHERPF1DPD, VGATHERPF1QPD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vgatherqps_or_vgatherqpd" : {
+	"vgatherqps-vgatherqpd" : {
+	"cat_title" : "VGATHERQPS, VGATHERQPD",
+	"title" : "VGATHERQPS, VGATHERQPD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetexppd" : {
+	"cat_title" : "VGETEXPPD",
+	"title" : "VGETEXPPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetexpps" : {
+	"cat_title" : "VGETEXPPS",
+	"title" : "VGETEXPPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetexpsd" : {
+	"cat_title" : "VGETEXPSD",
+	"title" : "VGETEXPSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetexpss" : {
+	"cat_title" : "VGETEXPSS",
+	"title" : "VGETEXPSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetmantpd" : {
+	"cat_title" : "VGETMANTPD",
+	"title" : "VGETMANTPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetmantps" : {
+	"cat_title" : "VGETMANTPS",
+	"title" : "VGETMANTPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetmantsd" : {
+	"cat_title" : "VGETMANTSD",
+	"title" : "VGETMANTSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetmantss" : {
+	"cat_title" : "VGETMANTSS",
+	"title" : "VGETMANTSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vinsertf128_or_vinsertf32x4_or_vinsertf64x2_or_vinsertf32x8_or_vinsertf64x4" : {
+	"vinsertf128-vinsertf32x4-vinsertf64x2-vinsertf32x8-vinsertf64x4" : {
+	"cat_title" : "VINSERTF128, VINSERTF32x4, VINSERTF64x2, VINSERTF32x8, VINSERTF64x4",
+	"title" : "VINSERTF128, VINSERTF32x4, VINSERTF64x2, VINSERTF32x8, VINSERTF64x4 instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vinserti128_or_vinserti32x4_or_vinserti64x2_or_vinserti32x8_or_vinserti64x4" : {
+	"vinserti128-vinserti32x4-vinserti64x2-vinserti32x8-vinserti64x4" : {
+	"cat_title" : "VINSERTI128, VINSERTI32x4, VINSERTI64x2, VINSERTI32x8, VINSERTI64x4",
+	"title" : "VINSERTI128, VINSERTI32x4, VINSERTI64x2, VINSERTI32x8, VINSERTI64x4 instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vmaskmov" : {
+	"cat_title" : "VMASKMOV",
+	"title" : "VMASKMOV instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpblendd_" : {
+	"vpblendd" : {
+	"cat_title" : "VPBLENDD",
+	"title" : "VPBLENDD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpblendmb_or_vpblendmw" : {
+	"vpblendmb-vpblendmw" : {
+	"cat_title" : "VPBLENDMB, VPBLENDMW",
+	"title" : "VPBLENDMB, VPBLENDMW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpblendmd_or_vpblendmq" : {
+	"vpblendmd-vpblendmq" : {
+	"cat_title" : "VPBLENDMD, VPBLENDMQ",
+	"title" : "VPBLENDMD, VPBLENDMQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpbroadcast" : {
+	"cat_title" : "VPBROADCAST",
+	"title" : "VPBROADCAST instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpbroadcastb_or_w_or_d_or_q" : {
+	"vpbroadcastb-vpbroadcastw-vpbroadcastd-vpbroadcastq" : {
+	"cat_title" : "VPBROADCASTB, VPBROADCASTW, VPBROADCASTD, VPBROADCASTQ",
+	"title" : "VPBROADCASTB, VPBROADCASTW, VPBROADCASTD, VPBROADCASTQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpbroadcastm" : {
+	"cat_title" : "VPBROADCASTM",
+	"title" : "VPBROADCASTM instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpcmpb_or_vpcmpub" : {
+	"vpcmpb-vpcmpub" : {
+	"cat_title" : "VPCMPB, VPCMPUB",
+	"title" : "VPCMPB, VPCMPUB instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpcmpd_or_vpcmpud" : {
+	"vpcmpd-vpcmpud" : {
+	"cat_title" : "VPCMPD, VPCMPUD",
+	"title" : "VPCMPD, VPCMPUD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpcmpq_or_vpcmpuq" : {
+	"vpcmpq-vpcmpuq" : {
+	"cat_title" : "VPCMPQ, VPCMPUQ",
+	"title" : "VPCMPQ, VPCMPUQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpcmpw_or_vpcmpuw" : {
+	"vpcmpw-vpcmpuw" : {
+	"cat_title" : "VPCMPW, VPCMPUW",
+	"title" : "VPCMPW, VPCMPUW instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpcompressd" : {
+	"cat_title" : "VPCOMPRESSD",
+	"title" : "VPCOMPRESSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpcompressq" : {
+	"cat_title" : "VPCOMPRESSQ",
+	"title" : "VPCOMPRESSQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpconflictd_or_q" : {
+	"vpconflictd-vpconflictq" : {
+	"cat_title" : "VPCONFLICTD, VPCONFLICTQ",
+	"title" : "VPCONFLICTD, VPCONFLICTQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vperm2f128_" : {
+	"vperm2f128" : {
+	"cat_title" : "VPERM2F128",
+	"title" : "VPERM2F128 instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vperm2i128_" : {
+	"vperm2i128" : {
+	"cat_title" : "VPERM2I128",
+	"title" : "VPERM2I128 instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpermd_or_vpermw" : {
+	"vpermd-vpermw" : {
+	"cat_title" : "VPERMD, VPERMW",
+	"title" : "VPERMD, VPERMW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpermi2w_or_d_or_q_or_ps_or_pd" : {
+	"vpermi2w-vpermi2d-vpermi2q-vpermi2ps-vpermi2pd" : {
+	"cat_title" : "VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PD",
+	"title" : "VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PD instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermilpd" : {
+	"cat_title" : "VPERMILPD",
+	"title" : "VPERMILPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermilps" : {
+	"cat_title" : "VPERMILPS",
+	"title" : "VPERMILPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermpd" : {
+	"cat_title" : "VPERMPD",
+	"title" : "VPERMPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermps" : {
+	"cat_title" : "VPERMPS",
+	"title" : "VPERMPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermq" : {
+	"cat_title" : "VPERMQ",
+	"title" : "VPERMQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpexpandd" : {
+	"cat_title" : "VPEXPANDD",
+	"title" : "VPEXPANDD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vpexpandq" : {
+	"cat_title" : "VPEXPANDQ",
+	"title" : "VPEXPANDQ instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpgatherdd_or_vpgatherdq" : {
+	"vpgatherdd-vpgatherdq" : {
+	"cat_title" : "VPGATHERDD, VPGATHERDQ",
+	"title" : "VPGATHERDD, VPGATHERDQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpgatherdd_or_vpgatherqd_" : {
+	"vpgatherdd-vpgatherqd" : {
+	"cat_title" : "VPGATHERDD, VPGATHERQD",
+	"title" : "VPGATHERDD, VPGATHERQD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpgatherdq_or_vpgatherqq_" : {
+	"vpgatherdq-vpgatherqq" : {
+	"cat_title" : "VPGATHERDQ, VPGATHERQQ",
+	"title" : "VPGATHERDQ, VPGATHERQQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpgatherqd_or_vpgatherqq" : {
+	"vpgatherqd-vpgatherqq" : {
+	"cat_title" : "VPGATHERQD, VPGATHERQQ",
+	"title" : "VPGATHERQD, VPGATHERQQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vplzcntd_or_q" : {
+	"vplzcntd-vplzcntq" : {
+	"cat_title" : "VPLZCNTD, VPLZCNTQ",
+	"title" : "VPLZCNTD, VPLZCNTQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmaskmov_" : {
+	"vpmaskmov" : {
+	"cat_title" : "VPMASKMOV",
+	"title" : "VPMASKMOV instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmovb2m_or_vpmovw2m_or_vpmovd2m_or_vpmovq2m" : {
+	"vpmovb2m-vpmovw2m-vpmovd2m-vpmovq2m" : {
+	"cat_title" : "VPMOVB2M, VPMOVW2M, VPMOVD2M, VPMOVQ2M",
+	"title" : "VPMOVB2M, VPMOVW2M, VPMOVD2M, VPMOVQ2M instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmovdb_or_vpmovsdb_or_vpmovusdb" : {
+	"vpmovdb-vpmovsdb-vpmovusdb" : {
+	"cat_title" : "VPMOVDB, VPMOVSDB, VPMOVUSDB",
+	"title" : "VPMOVDB, VPMOVSDB, VPMOVUSDB instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmovdw_or_vpmovsdw_or_vpmovusdw" : {
+	"vpmovdw-vpmovsdw-vpmovusdw" : {
+	"cat_title" : "VPMOVDW, VPMOVSDW, VPMOVUSDW",
+	"title" : "VPMOVDW, VPMOVSDW, VPMOVUSDW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmovm2b_or_vpmovm2w_or_vpmovm2d_or_vpmovm2q" : {
+	"vpmovm2b-vpmovm2w-vpmovm2d-vpmovm2q" : {
+	"cat_title" : "VPMOVM2B, VPMOVM2W, VPMOVM2D, VPMOVM2Q",
+	"title" : "VPMOVM2B, VPMOVM2W, VPMOVM2D, VPMOVM2Q instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmovqb_or_vpmovsqb_or_vpmovusqb" : {
+	"vpmovqb-vpmovsqb-vpmovusqb" : {
+	"cat_title" : "VPMOVQB, VPMOVSQB, VPMOVUSQB",
+	"title" : "VPMOVQB, VPMOVSQB, VPMOVUSQB instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmovqd_or_vpmovsqd_or_vpmovusqd" : {
+	"vpmovqd-vpmovsqd-vpmovusqd" : {
+	"cat_title" : "VPMOVQD, VPMOVSQD, VPMOVUSQD",
+	"title" : "VPMOVQD, VPMOVSQD, VPMOVUSQD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmovqw_or_vpmovsqw_or_vpmovusqw" : {
+	"vpmovqw-vpmovsqw-vpmovusqw" : {
+	"cat_title" : "VPMOVQW, VPMOVSQW, VPMOVUSQW",
+	"title" : "VPMOVQW, VPMOVSQW, VPMOVUSQW instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpmovwb_or_vpmovswb_or_vpmovuswb" : {
+	"vpmovwb-vpmovswb-vpmovuswb" : {
+	"cat_title" : "VPMOVWB, VPMOVSWB, VPMOVUSWB",
+	"title" : "VPMOVWB, VPMOVSWB, VPMOVUSWB instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpscatterdd_or_vpscatterdq_or_vpscatterqd_or_vpscatterqq" : {
+	"vpscatterdd-vpscatterdq-vpscatterqd-vpscatterqq" : {
+	"cat_title" : "VPSCATTERDD, VPSCATTERDQ, VPSCATTERQD, VPSCATTERQQ",
+	"title" : "VPSCATTERDD, VPSCATTERDQ, VPSCATTERQD, VPSCATTERQQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpsllvw_or_vpsllvd_or_vpsllvq" : {
+	"vpsllvw-vpsllvd-vpsllvq" : {
+	"cat_title" : "VPSLLVW, VPSLLVD, VPSLLVQ",
+	"title" : "VPSLLVW, VPSLLVD, VPSLLVQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpsravw_or_vpsravd_or_vpsravq" : {
+	"vpsravw-vpsravd-vpsravq" : {
+	"cat_title" : "VPSRAVW, VPSRAVD, VPSRAVQ",
+	"title" : "VPSRAVW, VPSRAVD, VPSRAVQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpsrlvw_or_vpsrlvd_or_vpsrlvq" : {
+	"vpsrlvw-vpsrlvd-vpsrlvq" : {
+	"cat_title" : "VPSRLVW, VPSRLVD, VPSRLVQ",
+	"title" : "VPSRLVW, VPSRLVD, VPSRLVQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vpternlogd_or_vpternlogq" : {
+	"vpternlogd-vpternlogq" : {
+	"cat_title" : "VPTERNLOGD, VPTERNLOGQ",
+	"title" : "VPTERNLOGD, VPTERNLOGQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vptestmb_or_vptestmw_or_vptestmd_or_vptestmq" : {
+	"vptestmb-vptestmw-vptestmd-vptestmq" : {
+	"cat_title" : "VPTESTMB, VPTESTMW, VPTESTMD, VPTESTMQ",
+	"title" : "VPTESTMB, VPTESTMW, VPTESTMD, VPTESTMQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vptestnmb_or_w_or_d_or_q" : {
+	"vptestnmb-vptestnmw-vptestnmd-vptestnmq" : {
+	"cat_title" : "VPTESTNMB, VPTESTNMW, VPTESTNMD, VPTESTNMQ",
+	"title" : "VPTESTNMB, VPTESTNMW, VPTESTNMD, VPTESTNMQ instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrangepd" : {
+	"cat_title" : "VRANGEPD",
+	"title" : "VRANGEPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrangesd" : {
+	"cat_title" : "VRANGESD",
+	"title" : "VRANGESD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrangess" : {
+	"cat_title" : "VRANGESS",
+	"title" : "VRANGESS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp14pd" : {
+	"cat_title" : "VRCP14PD",
+	"title" : "VRCP14PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp14ps" : {
+	"cat_title" : "VRCP14PS",
+	"title" : "VRCP14PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp14sd" : {
+	"cat_title" : "VRCP14SD",
+	"title" : "VRCP14SD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp14ss" : {
+	"cat_title" : "VRCP14SS",
+	"title" : "VRCP14SS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp28pd" : {
+	"cat_title" : "VRCP28PD",
+	"title" : "VRCP28PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp28ps" : {
+	"cat_title" : "VRCP28PS",
+	"title" : "VRCP28PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp28sd" : {
+	"cat_title" : "VRCP28SD",
+	"title" : "VRCP28SD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp28ss" : {
+	"cat_title" : "VRCP28SS",
+	"title" : "VRCP28SS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vreducepd" : {
+	"cat_title" : "VREDUCEPD",
+	"title" : "VREDUCEPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vreduceps" : {
+	"cat_title" : "VREDUCEPS",
+	"title" : "VREDUCEPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vreducess" : {
+	"cat_title" : "VREDUCESS",
+	"title" : "VREDUCESS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrndscalepd" : {
+	"cat_title" : "VRNDSCALEPD",
+	"title" : "VRNDSCALEPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrndscaleps" : {
+	"cat_title" : "VRNDSCALEPS",
+	"title" : "VRNDSCALEPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrndscalesd" : {
+	"cat_title" : "VRNDSCALESD",
+	"title" : "VRNDSCALESD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrndscaless" : {
+	"cat_title" : "VRNDSCALESS",
+	"title" : "VRNDSCALESS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt14pd" : {
+	"cat_title" : "VRSQRT14PD",
+	"title" : "VRSQRT14PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt14ps" : {
+	"cat_title" : "VRSQRT14PS",
+	"title" : "VRSQRT14PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt14sd" : {
+	"cat_title" : "VRSQRT14SD",
+	"title" : "VRSQRT14SD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt14ss" : {
+	"cat_title" : "VRSQRT14SS",
+	"title" : "VRSQRT14SS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt28pd" : {
+	"cat_title" : "VRSQRT28PD",
+	"title" : "VRSQRT28PD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt28ps" : {
+	"cat_title" : "VRSQRT28PS",
+	"title" : "VRSQRT28PS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt28sd" : {
+	"cat_title" : "VRSQRT28SD",
+	"title" : "VRSQRT28SD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt28ss" : {
+	"cat_title" : "VRSQRT28SS",
+	"title" : "VRSQRT28SS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vscalefpd" : {
+	"cat_title" : "VSCALEFPD",
+	"title" : "VSCALEFPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vscalefps" : {
+	"cat_title" : "VSCALEFPS",
+	"title" : "VSCALEFPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vscalefsd" : {
+	"cat_title" : "VSCALEFSD",
+	"title" : "VSCALEFSD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vscalefss" : {
+	"cat_title" : "VSCALEFSS",
+	"title" : "VSCALEFSS instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"vscatterdps_or_vscatterdpd_or_vscatterqps_or_vscatterqpd" : {
+	"vscatterdps-vscatterdpd-vscatterqps-vscatterqpd" : {
+	"cat_title" : "VSCATTERDPS, VSCATTERDPD, VSCATTERQPS, VSCATTERQPD",
+	"title" : "VSCATTERDPS, VSCATTERDPD, VSCATTERQPS, VSCATTERQPD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vscatterpf0dps_or_vscatterpf0qps_or_vscatterpf0dpd_or_vscatterpf0qpd" : {
+	"vscatterpf0dps-vscatterpf0qps-vscatterpf0dpd-vscatterpf0qpd" : {
+	"cat_title" : "VSCATTERPF0DPS, VSCATTERPF0QPS, VSCATTERPF0DPD, VSCATTERPF0QPD",
+	"title" : "VSCATTERPF0DPS, VSCATTERPF0QPS, VSCATTERPF0DPD, VSCATTERPF0QPD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vscatterpf1dps_or_vscatterpf1qps_or_vscatterpf1dpd_or_vscatterpf1qpd" : {
+	"vscatterpf1dps-vscatterpf1qps-vscatterpf1dpd-vscatterpf1qpd" : {
+	"cat_title" : "VSCATTERPF1DPS, VSCATTERPF1QPS, VSCATTERPF1DPD, VSCATTERPF1QPD",
+	"title" : "VSCATTERPF1DPS, VSCATTERPF1QPS, VSCATTERPF1DPD, VSCATTERPF1QPD instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vshuff32x4_or_vshuff64x2_or_vshufi32x4_or_vshufi64x2" : {
+	"vshuff32x4-vshuff64x2-vshufi32x4-vshufi64x2" : {
+	"cat_title" : "VSHUFF32x4, VSHUFF64x2, VSHUFI32x4, VSHUFI64x2",
+	"title" : "VSHUFF32x4, VSHUFF64x2, VSHUFI32x4, VSHUFI64x2 instructions(Intel x86/64 assembly instruction)"
 }
 ,
-	"vtestpd_or_vtestps" : {
+	"vtestpd-vtestps" : {
+	"cat_title" : "VTESTPD, VTESTPS",
+	"title" : "VTESTPD, VTESTPS instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"vzeroall" : {
+	"cat_title" : "VZEROALL",
+	"title" : "VZEROALL instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"vzeroupper" : {
+	"cat_title" : "VZEROUPPER",
+	"title" : "VZEROUPPER instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"wait_or_fwait" : {
+	"wait-fwait" : {
+	"cat_title" : "WAIT, FWAIT",
+	"title" : "WAIT, FWAIT instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"wbinvd" : {
+	"cat_title" : "WBINVD",
+	"title" : "WBINVD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"wrfsbase_or_wrgsbase" : {
+	"wrfsbase-wrgsbase" : {
+	"cat_title" : "WRFSBASE, WRGSBASE",
+	"title" : "WRFSBASE, WRGSBASE instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"wrmsr" : {
+	"cat_title" : "WRMSR",
+	"title" : "WRMSR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"wrpkru" : {
+	"cat_title" : "WRPKRU",
+	"title" : "WRPKRU instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"xabort_" : {
+	"xabort" : {
+	"cat_title" : "XABORT",
+	"title" : "XABORT instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"xacquire_or_xrelease_" : {
+	"xacquire-xrelease" : {
+	"cat_title" : "XACQUIRE, XRELEASE",
+	"title" : "XACQUIRE, XRELEASE instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"xadd" : {
+	"cat_title" : "XADD",
+	"title" : "XADD instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"xbegin_" : {
+	"xbegin" : {
+	"cat_title" : "XBEGIN",
+	"title" : "XBEGIN instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xchg" : {
+	"cat_title" : "XCHG",
+	"title" : "XCHG instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"xend_" : {
+	"xend" : {
+	"cat_title" : "XEND",
+	"title" : "XEND instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xgetbv" : {
+	"cat_title" : "XGETBV",
+	"title" : "XGETBV instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"xlat_or_xlatb" : {
+	"xlat-xlatb" : {
+	"cat_title" : "XLAT, XLATB",
+	"title" : "XLAT, XLATB instructions(Intel x86/64 assembly instruction)"
 }
 ,
 	"xor" : {
+	"cat_title" : "XOR",
+	"title" : "XOR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xorpd" : {
+	"cat_title" : "XORPD",
+	"title" : "XORPD instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xorps" : {
+	"cat_title" : "XORPS",
+	"title" : "XORPS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xrstor" : {
+	"cat_title" : "XRSTOR",
+	"title" : "XRSTOR instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xrstors" : {
+	"cat_title" : "XRSTORS",
+	"title" : "XRSTORS instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xsave" : {
+	"cat_title" : "XSAVE",
+	"title" : "XSAVE instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xsavec" : {
+	"cat_title" : "XSAVEC",
+	"title" : "XSAVEC instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xsaveopt" : {
+	"cat_title" : "XSAVEOPT",
+	"title" : "XSAVEOPT instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xsaves" : {
+	"cat_title" : "XSAVES",
+	"title" : "XSAVES instruction(Intel x86/64 assembly instruction)"
 }
 ,
 	"xsetbv" : {
+	"cat_title" : "XSETBV",
+	"title" : "XSETBV instruction(Intel x86/64 assembly instruction)"
 }
 ,
-	"xtest_" : {
+	"xtest" : {
+	"cat_title" : "XTEST",
+	"title" : "XTEST instruction(Intel x86/64 assembly instruction)"
 }
 
 }

@@ -1,3 +1,7 @@
+----------------------------
+title : STD instruction(Intel x86/64 assembly instruction)
+cat_title : STD
+----------------------------
 ### STD--Set Direction Flag
 
 

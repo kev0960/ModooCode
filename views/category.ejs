@@ -57,8 +57,47 @@
     </div>
     <div class="article-content-wrap">
       <article class="article-content">
+        <h2 class="category-header">전체 글 목록 (총 <%- total_article %> 건)</h2>
         <%- category_info %>
-      </article>      
+      </article>
+      <div class="adsense-content-bottom">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <% if (!is_mobile) { %>
+          <ins class="adsbygoogle"
+              style="display:inline-block;width:728px;height:90px"
+              data-ad-client="ca-pub-6608926154840997"
+              data-ad-slot="5265146061"></ins>
+        <% } else { %>
+          <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-6608926154840997"
+          data-ad-slot="8048150950"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+        <% } %>  
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        </div>
+        <div class="container search-box">
+          <div class="search-bar-text" id="search">
+          궁금한 것은 직접 찾아보세요!
+          </div>
+          <div class="cse">
+            <script>
+            (function() {
+              var cx = '003869586044905610715:visr8hwbmrq';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+            </script>
+            <gcse:search></gcse:search>
+          </div>
+        </div>      
     </div>
   </main>
 </body>

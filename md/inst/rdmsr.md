@@ -1,3 +1,7 @@
+----------------------------
+title : RDMSR instruction(Intel x86/64 assembly instruction)
+cat_title : RDMSR
+----------------------------
 ### RDMSR--Read from Model Specific Register
 
 

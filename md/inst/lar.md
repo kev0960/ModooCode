@@ -1,3 +1,7 @@
+----------------------------
+title : LAR instruction(Intel x86/64 assembly instruction)
+cat_title : LAR
+----------------------------
 ### LAR--Load Access Rights Byte
 
 

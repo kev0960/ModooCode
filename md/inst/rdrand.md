@@ -1,3 +1,7 @@
+----------------------------
+title : RDRAND instruction(Intel x86/64 assembly instruction)
+cat_title : RDRAND
+----------------------------
 ### RDRAND--Read Random Number
 
 
