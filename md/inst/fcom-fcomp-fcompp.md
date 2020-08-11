@@ -1,9 +1,12 @@
 ----------------------------
-title : FCOM, FCOMP, FCOMPP instructions(Intel x86/64 assembly instruction)
+title : FCOM, FCOMP, FCOMPPs (Intel x86/64 assembly instruction)
 cat_title : FCOM, FCOMP, FCOMPP
+ref_title : FCOM, FCOMP, FCOMPP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FCOM/FCOMP/FCOMPP--Compare Floating Point Values
+#@ FCOM, FCOMP, FCOMPP
 
+**Compare Floating Point Values**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -29,11 +32,11 @@ Compares the contents of register ST(0) and source value and sets condition code
 |ST(0) > SRC|0|0|0|
 |ST(0) < SRC|0|0|1|
 |ST(0) = SRC|1|0|0|
-|Unordered*|1|1|1|
+|Unordered\htmlonly{*}|1|1|1|
 ### NOTES:
 
 
-*Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
+\htmlonly{*}Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
 
 This instruction checks the class of the numbers being compared (see "FXAM--Examine Floating-Point" in this chapter). If either operand is a NaN or is in an unsupported format, an invalid-arithmetic-operand exception (#IA) is raised and, if the exception is masked, the condition flags are set to "unordered." If the invalid-arithmetic-operand exception is unmasked, the condition code flags are not set.
 

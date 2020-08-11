@@ -1,9 +1,12 @@
 ----------------------------
-title : XOR instruction(Intel x86/64 assembly instruction)
+title : XOR (Intel x86/64 assembly instruction)
 cat_title : XOR
+ref_title : XOR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XOR--Logical Exclusive OR
+#@ XOR
 
+**Logical Exclusive OR**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -12,7 +15,7 @@ cat_title : XOR
 |35 id|XOR EAX, imm32|I|Valid|Valid|EAX XOR imm32.|
 |REX.W + 35 id|XOR RAX, imm32|I|Valid|N.E.|RAX XOR imm32 (sign-extended).|
 |80 /6 ib|XOR r/m8, imm8|MI|Valid|Valid|r/m8 XOR imm8.|
-|REX + 80 /6 ib|XOR r/m8*, imm8|MI|Valid|N.E.|r/m8 XOR imm8.|
+|REX + 80 /6 ib|XOR r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|r/m8 XOR imm8.|
 |81 /6 iw|XOR r/m16, imm16|MI|Valid|Valid|r/m16 XOR imm16.|
 |81 /6 id|XOR r/m32, imm32|MI|Valid|Valid|r/m32 XOR imm32.|
 |REX.W + 81 /6 id|XOR r/m64, imm32|MI|Valid|N.E.|r/m64 XOR imm32 (sign-extended).|
@@ -20,19 +23,19 @@ cat_title : XOR
 |83 /6 ib|XOR r/m32, imm8|MI|Valid|Valid|r/m32 XOR imm8 (sign-extended).|
 |REX.W + 83 /6 ib|XOR r/m64, imm8|MI|Valid|N.E.|r/m64 XOR imm8 (sign-extended).|
 |30 /r|XOR r/m8, r8|MR|Valid|Valid|r/m8 XOR r8.|
-|REX + 30 /r|XOR r/m8*, r8*|MR|Valid|N.E.|r/m8 XOR r8.|
+|REX + 30 /r|XOR r/m8\htmlonly{*}, r8\htmlonly{*}|MR|Valid|N.E.|r/m8 XOR r8.|
 |31 /r|XOR r/m16, r16|MR|Valid|Valid|r/m16 XOR r16.|
 |31 /r|XOR r/m32, r32|MR|Valid|Valid|r/m32 XOR r32.|
 |REX.W + 31 /r|XOR r/m64, r64|MR|Valid|N.E.|r/m64 XOR r64.|
 |32 /r|XOR r8, r/m8|RM|Valid|Valid|r8 XOR r/m8.|
-|REX + 32 /r|XOR r8*, r/m8*|RM|Valid|N.E.|r8 XOR r/m8.|
+|REX + 32 /r|XOR r8\htmlonly{*}, r/m8\htmlonly{*}|RM|Valid|N.E.|r8 XOR r/m8.|
 |33 /r|XOR r16, r/m16|RM|Valid|Valid|r16 XOR r/m16.|
 |33 /r|XOR r32, r/m32|RM|Valid|Valid|r32 XOR r/m32.|
 |REX.W + 33 /r|XOR r64, r/m64|RM|Valid|N.E.|r64 XOR r/m64.|
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -46,9 +49,9 @@ cat_title : XOR
 ### Description
 
 
-Performs a bitwise exclusive OR (XOR) operation on the destination (first) and source (second) operands and stores the result in the destination operand location. The source operand can be an immediate, a register, or a memory location; the destination operand can be a register or a memory location. (However, two memory oper-ands cannot be used in one instruction.) Each bit of the result is 1 if the corresponding bits of the operands are different; each bit is 0 if the corresponding bits are the same.
+Performs a bitwise exclusive `OR` (XOR) operation on the destination (first) and source (second) operands and stores the result in the destination operand location. The source operand can be an immediate, a register, or a memory location; the destination operand can be a register or a memory location. (However, two memory oper-ands cannot be used in one instruction.) Each bit of the result is 1 if the corresponding bits of the operands are different; each bit is 0 if the corresponding bits are the same.
 
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.
+This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically.
 
 
 

@@ -1,9 +1,12 @@
 ----------------------------
-title : FRNDINT instruction(Intel x86/64 assembly instruction)
+title : FRNDINT (Intel x86/64 assembly instruction)
 cat_title : FRNDINT
+ref_title : FRNDINT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FRNDINT--Round to Integer
+#@ FRNDINT
 
+**Round to Integer**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

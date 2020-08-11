@@ -1,9 +1,12 @@
 ----------------------------
-title : LZCNT instruction(Intel x86/64 assembly instruction)
+title : LZCNT (Intel x86/64 assembly instruction)
 cat_title : LZCNT
+ref_title : LZCNT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LZCNT-- Count the Number of Leading Zero Bits
+#@ LZCNT
 
+** Count the Number of Leading Zero Bits**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|

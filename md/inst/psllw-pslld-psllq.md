@@ -1,9 +1,12 @@
 ----------------------------
-title : PSLLW, PSLLD, PSLLQ instructions(Intel x86/64 assembly instruction)
+title : PSLLW, PSLLD, PSLLQs (Intel x86/64 assembly instruction)
 cat_title : PSLLW, PSLLD, PSLLQ
+ref_title : PSLLW, PSLLD, PSLLQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PSLLW/PSLLD/PSLLQ--Shift Packed Data Left Logical
+#@ PSLLW, PSLLD, PSLLQ
 
+**Shift Packed Data Left Logical**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -266,7 +269,7 @@ Legacy SSE instructions 64-bit operand: The destination operand is an MMX techno
 <text x="72.679901" y="47.920013" textLength="2.582160" font-size="8px">f</text>
 <text x="58.786301" y="63.580093" textLength="3.647040" font-size="8px">e</text>
 </svg>
-<figcaption>Figure 4-17.  PSLLW, PSLLD, and PSLLQ Instruction Operation Using 64-bit Operand
+<figcaption>Figure 4-17.  `PSLLW`, `PSLLD`, and `PSLLQ` Instruction Operation Using 64-bit Operand
 </figcaption></figure>
 ```
 
@@ -292,7 +295,7 @@ Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /6, or EVEX.128.66
    DEST[64:0] <- 0000000000000000H;
  ELSE
    DEST[15:0] <- ZeroExtend(DEST[15:0] << COUNT);
-   (\htmlonly{*} Repeat shift operation for 2nd and 3rd words \htmlonly{*})
+   (* Repeat shift operation for 2nd and 3rd words *)
    DEST[63:48] <- ZeroExtend(DEST[63:48] << COUNT);
  FI;
 ```

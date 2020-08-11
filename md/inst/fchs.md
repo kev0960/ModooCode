@@ -1,9 +1,12 @@
 ----------------------------
-title : FCHS instruction(Intel x86/64 assembly instruction)
+title : FCHS (Intel x86/64 assembly instruction)
 cat_title : FCHS
+ref_title : FCHS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FCHS--Change Sign
+#@ FCHS
 
+**Change Sign**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -28,7 +31,7 @@ Complements the sign bit of ST(0). This operation changes a positive value into 
 ### NOTES:
 
 
-*F means finite floating-point value.
+\htmlonly{*}F means finite floating-point value.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

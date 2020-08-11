@@ -1,9 +1,12 @@
 ----------------------------
-title : CMP instruction(Intel x86/64 assembly instruction)
+title : CMP (Intel x86/64 assembly instruction)
 cat_title : CMP
+ref_title : CMP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CMP--Compare Two Operands
+#@ CMP
 
+**Compare Two Operands**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -32,7 +35,7 @@ cat_title : CMP
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -46,9 +49,9 @@ cat_title : CMP
 ### Description
 
 
-Compares the first source operand with the second source operand and sets the status flags in the EFLAGS register according to the results. The comparison is performed by subtracting the second operand from the first operand and then setting the status flags in the same manner as the SUB instruction. When an immediate value is used as an operand, it is sign-extended to the length of the first operand.
+Compares the first source operand with the second source operand and sets the status flags in the EFLAGS register according to the results. The comparison is performed by subtracting the second operand from the first operand and then setting the status flags in the same manner as the `SUB` instruction. When an immediate value is used as an operand, it is sign-extended to the length of the first operand.
 
-The condition codes used by the Jcc, CMOVcc, and SETcc instructions are based on the results of a CMP instruction. Appendix B, "EFLAGS Condition Codes," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, shows the relationship of the status flags and the condition codes.
+The condition codes used by the `Jcc`, `CMOVcc`, and `SETcc` instructions are based on the results of a `CMP` instruction. Appendix B, "EFLAGS Condition Codes," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, shows the relationship of the status flags and the condition codes.
 
 
 
@@ -59,7 +62,7 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Use of the 
 
 ```info-verb
 temp <- SRC1 - SignExtend(SRC2); 
-ModifyStatusFlags; (\htmlonly{*} Modify status flags in the same manner as the SUB instruction\htmlonly{*})
+ModifyStatusFlags; (* Modify status flags in the same manner as the SUB instruction*)
 ```
 ### Flags Affected
 

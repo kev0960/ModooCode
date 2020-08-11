@@ -1,9 +1,12 @@
 ----------------------------
-title : FDIVR, FDIVRP, FIDIVR instructions(Intel x86/64 assembly instruction)
+title : FDIVR, FDIVRP, FIDIVRs (Intel x86/64 assembly instruction)
 cat_title : FDIVR, FDIVRP, FIDIVR
+ref_title : FDIVR, FDIVRP, FIDIVR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FDIVR/FDIVRP/FIDIVR--Reverse Divide
+#@ FDIVR, FDIVRP, FIDIVR
 
+**Reverse Divide**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -20,13 +23,13 @@ cat_title : FDIVR, FDIVRP, FIDIVR
 
 Divides the source operand by the destination operand and stores the result in the destination location. The desti-nation operand (divisor) is always in an FPU register; the source operand (dividend) can be a register or a memory location. Source operands in memory can be in single-precision or double-precision floating-point format, word or doubleword integer format.
 
-These instructions perform the reverse operations of the FDIV, FDIVP, and FIDIV instructions. They are provided to support more efficient coding.
+These instructions perform the reverse operations of the `FDIV`, `FDIVP`, and `FIDIV` instructions. They are provided to support more efficient coding.
 
 The no-operand version of the instruction divides the contents of the ST(0) register by the contents of the ST(1) register. The one-operand version divides the contents of a memory location (either a floating-point or an integer value) by the contents of the ST(0) register. The two-operand version, divides the contents of the ST(i) register by the contents of the ST(0) register or vice versa.
 
-The FDIVRP instructions perform the additional operation of popping the FPU register stack after storing the result. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The no-operand version of the floating-point divide instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is FDIVR rather than FDIVRP.
+The `FDIVRP` instructions perform the additional operation of popping the FPU register stack after storing the result. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The no-operand version of the floating-point divide instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is `FDIVR` rather than `FDIVRP`.
 
-The FIDIVR instructions convert an integer source operand to double extended-precision floating-point format before performing the division.
+The `FIDIVR` instructions convert an integer source operand to double extended-precision floating-point format before performing the division.
 
 If an unmasked divide-by-zero exception (#Z) is generated, no result is stored; if the exception is masked, an $$\infty$$ of the appropriate sign is stored in the destination operand.
 
@@ -57,15 +60,15 @@ NaN
 
 
 
-|- $$\infty$$\newline{}- $$\infty$$ *|- F\newline{}+ $$\infty$$|**DE**\newline{}- 0\newline{}+ $$\infty$$|**ST**\newline{}  + 0\newline{}  - $$\infty$$|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}*|
-|------------------------------------|-------------------------|-----------------------------------------|---------------------------------------------|-------------------------|-----------------------|
-|**SRC** - F + 0|+ F|**|**|- F|- 0|
-|- I + 0|+ F|**|**|- F|- 0|
-|- 0 + 0|+ 0|*|*|- 0|- 0|
-|+ 0 - 0|- 0|*|*|+ 0|+ 0|
-|+ I - 0|- F|**|**|+ F|+ 0|
-|+ F - 0|- F|**|**|+ F|+ 0|
-|+ $$\infty$$ *|- $$\infty$$|- $$\infty$$|+ $$\infty$$|+ $$\infty$$|*|
+|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{}+ $$\infty$$|**DE**\newline{}- 0\newline{}+ $$\infty$$|**ST**\newline{}  + 0\newline{}  - $$\infty$$|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}\htmlonly{*}|
+|-----------------------------------------------|-------------------------|-----------------------------------------|---------------------------------------------|-------------------------|----------------------------------|
+|**SRC** - F + 0|+ F|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|- F|- 0|
+|- I + 0|+ F|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|- F|- 0|
+|- 0 + 0|+ 0|\htmlonly{*}|\htmlonly{*}|- 0|- 0|
+|+ 0 - 0|- 0|\htmlonly{*}|\htmlonly{*}|+ 0|+ 0|
+|+ I - 0|- F|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|+ F|+ 0|
+|+ F - 0|- F|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|+ F|+ 0|
+|+ $$\infty$$ \htmlonly{*}|- $$\infty$$|- $$\infty$$|+ $$\infty$$|+ $$\infty$$|\htmlonly{*}|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
@@ -74,9 +77,9 @@ FMeans finite floating-point value.
 
 IMeans integer.
 
-*Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
-** Indicates floating-point zero-divide (#Z) exception.
+\htmlonly{*}\htmlonly{*} Indicates floating-point zero-divide (#Z) exception.
 
 When the source operand is an integer 0, it is treated as a +0. This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -91,7 +94,7 @@ IF DEST = 0
    IF Instruction = FIDIVR
     THEN
       DEST <- ConvertToDoubleExtendedPrecisionFP(SRC) / DEST;
-    ELSE (\htmlonly{*} Source operand is floating-point value \htmlonly{*})
+    ELSE (* Source operand is floating-point value *)
       DEST <- SRC / DEST;
    FI;
 FI;

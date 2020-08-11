@@ -1,13 +1,16 @@
 ----------------------------
-title : IMUL instruction(Intel x86/64 assembly instruction)
+title : IMUL (Intel x86/64 assembly instruction)
 cat_title : IMUL
+ref_title : IMUL
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### IMUL--Signed Multiply
+#@ IMUL
 
+**Signed Multiply**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|F6 /5|IMUL r/m8*|M|Valid|Valid|AX<- AL `*` r/m byte.|
+|F6 /5|IMUL r/m8\htmlonly{*}|M|Valid|Valid|AX<- AL `*` r/m byte.|
 |F7 /5|IMUL r/m16|M|Valid|Valid|DX:AX <- AX `*` r/m word.|
 |F7 /5|IMUL r/m32|M|Valid|Valid|EDX:EAX <- EAX `*` r/m32.|
 |REX.W + F7 /5|IMUL r/m64|M|Valid|N.E.|RDX:RAX <- RAX `*` r/m64.|
@@ -23,7 +26,7 @@ cat_title : IMUL
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
 ### Instruction Operand Encoding
 
@@ -38,7 +41,7 @@ cat_title : IMUL
 
 Performs a signed multiplication of two operands. This instruction has three forms, depending on the number of operands. 
 
-*  One-operand form -- This form is identical to that used by the MUL instruction. Here, the source operand (in a general-purpose register or memory location) is multiplied by the value in the AL, AX, EAX, or RAX register (depending on the operand size) and the product (twice the size of the input operand) is stored in the AX, DX:AX, EDX:EAX, or RDX:RAX registers, respectively.
+*  One-operand form -- This form is identical to that used by the `MUL` instruction. Here, the source operand (in a general-purpose register or memory location) is multiplied by the value in the AL, AX, EAX, or RAX register (depending on the operand size) and the product (twice the size of the input operand) is stored in the AX, DX:AX, EDX:EAX, or RDX:RAX registers, respectively.
 
 *  Two-operand form -- With this form the destination operand (the first operand) is multiplied by the source operand (second operand). The destination operand is a general-purpose register and the source operand is an immediate value, a general-purpose register, or a memory location. The intermediate product (twice the size of the input operand) is truncated and stored in the destination operand location.
 
@@ -50,7 +53,7 @@ When an immediate value is used as an operand, it is sign-extended to the length
 
 The CF and OF flags are set when the signed integer value of the intermediate product differs from the sign extended operand-size-truncated product, otherwise the CF and OF flags are cleared.
 
-The three forms of the IMUL instruction are similar in that the length of the product is calculated to twice the length of the operands. With the one-operand form, the product is stored exactly in the destination. With the two- and three- operand forms, however, the result is truncated to the length of the destination before it is stored in the destination register. Because of this truncation, the CF or OF flag should be tested to ensure that no significant bits are lost. 
+The three forms of the `IMUL` instruction are similar in that the length of the product is calculated to twice the length of the operands. With the one-operand form, the product is stored exactly in the destination. With the two- and three- operand forms, however, the result is truncated to the length of the destination before it is stored in the destination register. Because of this truncation, the CF or OF flag should be tested to ensure that no significant bits are lost. 
 
 The two- and three-operand forms may also be used with unsigned operands because the lower half of the product is the same regardless if the operands are signed or unsigned. The CF and OF flags, however, cannot be used to determine if the upper half of the result is non-zero.
 
@@ -69,27 +72,27 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Use of the 
 IF (NumberOfOperands = 1)
  THEN IF (OperandSize = 8)
    THEN
-    TMP_XP <- AL `*` SRC (\htmlonly{*} Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC \htmlonly{*}); 
+    TMP_XP <- AL `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *); 
     AX <- TMP_XP[15:0];
     IF SignExtend(TMP_XP[7:0]) = TMP_XP
       THEN CF <- 0; OF <- 0;
       ELSE CF <- 1; OF <- 1; FI;
    ELSE IF OperandSize = 16
     THEN 
-      TMP_XP <- AX `*` SRC (\htmlonly{*} Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC \htmlonly{*}) 
+      TMP_XP <- AX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *) 
       DX:AX <- TMP_XP[31:0];
       IF SignExtend(TMP_XP[15:0]) = TMP_XP
         THEN CF <- 0; OF <- 0;
         ELSE CF <- 1; OF <- 1; FI;
     ELSE IF OperandSize = 32 
       THEN 
-        TMP_XP <- EAX `*` SRC (\htmlonly{*} Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC\htmlonly{*}) 
+        TMP_XP <- EAX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC*) 
         EDX:EAX <- TMP_XP[63:0];
         IF SignExtend(TMP_XP[31:0]) = TMP_XP
           THEN CF <- 0; OF <- 0;
           ELSE CF <- 1; OF <- 1; FI;
-      ELSE (\htmlonly{*} OperandSize = 64 \htmlonly{*})
-        TMP_XP <- RAX `*` SRC (\htmlonly{*} Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC \htmlonly{*})
+      ELSE (* OperandSize = 64 *)
+        TMP_XP <- RAX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *)
         EDX:EAX <- TMP_XP[127:0];
         IF SignExtend(TMP_XP[63:0]) = TMP_XP
           THEN CF <- 0; OF <- 0;

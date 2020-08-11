@@ -1,9 +1,12 @@
 ----------------------------
-title : ADDSUBPD instruction(Intel x86/64 assembly instruction)
+title : ADDSUBPD (Intel x86/64 assembly instruction)
 cat_title : ADDSUBPD
+ref_title : ADDSUBPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### ADDSUBPD--Packed Double-FP Add/Subtract
+#@ ADDSUBPD
 
+**Packed Double-FP Add/Subtract**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|

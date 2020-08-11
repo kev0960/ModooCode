@@ -1,9 +1,12 @@
 ----------------------------
-title : BSR instruction(Intel x86/64 assembly instruction)
+title : BSR (Intel x86/64 assembly instruction)
 cat_title : BSR
+ref_title : BSR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BSR--Bit Scan Reverse
+#@ BSR
 
+**Bit Scan Reverse**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|

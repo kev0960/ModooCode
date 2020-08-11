@@ -1,9 +1,12 @@
 ----------------------------
-title : VCVTPS2PH instruction(Intel x86/64 assembly instruction)
+title : VCVTPS2PH (Intel x86/64 assembly instruction)
 cat_title : VCVTPS2PH
+ref_title : VCVTPS2PH
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VCVTPS2PH--Convert Single-Precision FP value to 16-bit FP value
+#@ VCVTPS2PH
 
+**Convert Single-Precision FP value to 16-bit FP value**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -441,7 +444,7 @@ The immediate byte defines several bit fields that control rounding operation. T
 <text x="236.410980" y="126.160004" textLength="3.735931" font-size="8px">3</text>
 <text x="240.130127" y="126.160004" textLength="3.735931" font-size="8px">2</text>
 </svg>
-<figcaption>Figure 5-7.  VCVTPS2PH (128-bit Version)
+<figcaption>Figure 5-7.  `VCVTPS2PH` (128-bit Version)
 </figcaption></figure>
 ```
 ###       Table 5-3. Immediate Byte Encoding for 16-bit Floating-Point Conversion Instructions
@@ -472,14 +475,14 @@ EVEX encoded versions: The source operand is a ZMM/YMM/XMM register. The destina
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
 FOR j  <- 0 TO KL-1
- i  <- j \htmlonly{*} 16
- k <-  j \htmlonly{*} 32
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 16
+ k <-  j * 32
+ IF k1[j] OR *no writemask*
    THEN DEST[i+15:i]  <-
     vCvt_s2h(SRC[k+31:k])
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+15:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+15:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+15:i] <-  0
     FI

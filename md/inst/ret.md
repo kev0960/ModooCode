@@ -1,12 +1,15 @@
 ----------------------------
-title : RET instruction(Intel x86/64 assembly instruction)
+title : RET (Intel x86/64 assembly instruction)
 cat_title : RET
+ref_title : RET
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RET--Return from Procedure
+#@ RET
 
+**Return from Procedure**
 
-|**Opcode***|**Instruction**|**Op/**\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|-----------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/**\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|-----------------------|-----------------------------|---------------------------------|---------------|
 |C3|RET|NP|Valid |Valid|Near return to calling procedure.|
 |CB|RET|NP|Valid |Valid|Far return to calling procedure.|
 |C2 iw|RET imm16|I|Valid |Valid|Near return to calling procedure and pop imm16 bytes from stack.|
@@ -21,11 +24,11 @@ cat_title : RET
 ### Description
 
 
-Transfers program control to a return address located on the top of the stack. The address is usually placed on the stack by a CALL instruction, and the return is made to the instruction that follows the CALL instruction.
+Transfers program control to a return address located on the top of the stack. The address is usually placed on the stack by a `CALL` instruction, and the return is made to the instruction that follows the `CALL` instruction.
 
-The optional source operand specifies the number of stack bytes to be released after the return address is popped; the default is none. This operand can be used to release parameters from the stack that were passed to the called procedure and are no longer needed. It must be used when the CALL instruction used to switch to a new procedure uses a call gate with a non-zero word count to access the new procedure. Here, the source operand for the RET instruction must specify the same number of bytes as is specified in the word count field of the call gate.
+The optional source operand specifies the number of stack bytes to be released after the return address is popped; the default is none. This operand can be used to release parameters from the stack that were passed to the called procedure and are no longer needed. It must be used when the `CALL` instruction used to switch to a new procedure uses a call gate with a non-zero word count to access the new procedure. Here, the source operand for the `RET` instruction must specify the same number of bytes as is specified in the word count field of the call gate.
 
-The RET instruction can be used to execute three different types of returns:
+The `RET` instruction can be used to execute three different types of returns:
 
 *  Near return -- A return to a calling procedure within the current code segment (the segment currently pointed to by the CS register), sometimes referred to as an intrasegment return.
 
@@ -39,9 +42,9 @@ When executing a near return, the processor pops the return instruction pointer 
 
 When executing a far return, the processor pops the return instruction pointer from the top of the stack into the EIP register, then pops the segment selector from the top of the stack into the CS register. The processor then begins program execution in the new code segment at the new instruction pointer.
 
-The mechanics of an inter-privilege-level far return are similar to an intersegment return, except that the processor examines the privilege levels and access rights of the code and stack segments being returned to deter-mine if the control transfer is allowed to be made. The DS, ES, FS, and GS segment registers are cleared by the RET instruction during an inter-privilege-level return if they refer to segments that are not allowed to be accessed at the new privilege level. Since a stack switch also occurs on an inter-privilege level return, the ESP and SS registers are loaded from the stack. 
+The mechanics of an inter-privilege-level far return are similar to an intersegment return, except that the processor examines the privilege levels and access rights of the code and stack segments being returned to deter-mine if the control transfer is allowed to be made. The DS, ES, FS, and GS segment registers are cleared by the `RET` instruction during an inter-privilege-level return if they refer to segments that are not allowed to be accessed at the new privilege level. Since a stack switch also occurs on an inter-privilege level return, the ESP and SS registers are loaded from the stack. 
 
-If parameters are passed to the called procedure during an inter-privilege level call, the optional source operand must be used with the RET instruction to release the parameters on the return. Here, the parameters are released both from the called procedure's stack and the calling procedure's stack (that is, the stack being returned to).
+If parameters are passed to the called procedure during an inter-privilege level call, the optional source operand must be used with the `RET` instruction to release the parameters on the return. Here, the parameters are released both from the called procedure's stack and the calling procedure's stack (that is, the stack being returned to).
 
 In 64-bit mode, the default operation size of this instruction is the stack-address size, i.e. 64 bits. This applies to near returns, not far returns; the default operation size of far returns is 32 bits.
 
@@ -49,7 +52,7 @@ In 64-bit mode, the default operation size of this instruction is the stack-addr
 ### Operation
 
 ```info-verb
-(\htmlonly{*} Near return \htmlonly{*})
+(* Near return *)
 IF instruction = near return 
  THEN;
    IF OperandSize = 32
@@ -63,7 +66,7 @@ IF instruction = near return
           IF top 8 bytes of stack not within stack limits
             THEN #SS(0); FI;
           RIP <- Pop();
-        ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
+        ELSE (* OperandSize = 16 *)
           IF top 2 bytes of stack not within stack limits
             THEN #SS(0); FI;
           tempEIP <- Pop();
@@ -74,7 +77,7 @@ IF instruction = near return
       FI;
    FI;
  IF instruction has immediate operand
-   THEN (\htmlonly{*} Release parameters from stack \htmlonly{*})
+   THEN (* Release parameters from stack *)
     IF StackAddressSize = 32
       THEN 
         ESP <- ESP + SRC;
@@ -82,13 +85,13 @@ IF instruction = near return
         IF StackAddressSize = 64
           THEN 
             RSP <- RSP + SRC;
-          ELSE (\htmlonly{*} StackAddressSize = 16 \htmlonly{*})
+          ELSE (* StackAddressSize = 16 *)
             SP <- SP + SRC;
         FI;
     FI;
  FI;
 FI;
-(\htmlonly{*} Real-address mode or virtual-8086 mode \htmlonly{*})
+(* Real-address mode or virtual-8086 mode *)
 IF ((PE = 0) or (PE = 1 AND VM = 1)) and instruction = far return
  THEN
    IF OperandSize = 32
@@ -96,8 +99,8 @@ IF ((PE = 0) or (PE = 1 AND VM = 1)) and instruction = far return
       IF top 8 bytes of stack not within stack limits
         THEN #SS(0); FI;
       EIP <- Pop(); 
-      CS <- Pop(); (\htmlonly{*} 32-bit pop, high-order 16 bits discarded \htmlonly{*})
-    ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
+      CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
+    ELSE (* OperandSize = 16 *)
       IF top 4 bytes of stack not within stack limits
         THEN #SS(0); FI;
 tempEIP <- Pop(); 

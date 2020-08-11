@@ -1,9 +1,12 @@
 ----------------------------
-title : ARPL instruction(Intel x86/64 assembly instruction)
+title : ARPL (Intel x86/64 assembly instruction)
 cat_title : ARPL
+ref_title : ARPL
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### ARPL--Adjust RPL Field of Segment Selector
+#@ ARPL
 
+**Adjust RPL Field of Segment Selector**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -19,7 +22,7 @@ cat_title : ARPL
 
 Compares the RPL fields of two segment selectors. The first operand (the destination operand) contains one segment selector and the second operand (source operand) contains the other. (The RPL field is located in bits 0 and 1 of each operand.) If the RPL field of the destination operand is less than the RPL field of the source operand, the ZF flag is set and the RPL field of the destination operand is increased to match that of the source operand. Otherwise, the ZF flag is cleared and no change is made to the destination operand. (The destination operand can be a word register or a memory location; the source operand must be a word register.)
 
-The ARPL instruction is provided for use by operating-system procedures (however, it can also be used by applica-tions). It is generally used to adjust the RPL of a segment selector that has been passed to the operating system by an application program to match the privilege level of the application program. Here the segment selector passed to the operating system is placed in the destination operand and segment selector for the application program's code segment is placed in the source operand. (The RPL field in the source operand represents the priv-ilege level of the application program.) Execution of the ARPL instruction then ensures that the RPL of the segment selector received by the operating system is no lower (does not have a higher privilege) than the privilege level of the application program (the segment selector for the application program's code segment can be read from the stack following a procedure call).
+The `ARPL` instruction is provided for use by operating-system procedures (however, it can also be used by applica-tions). It is generally used to adjust the RPL of a segment selector that has been passed to the operating system by an application program to match the privilege level of the application program. Here the segment selector passed to the operating system is placed in the destination operand and segment selector for the application program's code segment is placed in the source operand. (The RPL field in the source operand represents the priv-ilege level of the application program.) Execution of the `ARPL` instruction then ensures that the RPL of the segment selector received by the operating system is no lower (does not have a higher privilege) than the privilege level of the application program (the segment selector for the application program's code segment can be read from the stack following a procedure call).
 
 This instruction executes as described in compatibility mode and legacy mode. It is not encodable in 64-bit mode. 
 

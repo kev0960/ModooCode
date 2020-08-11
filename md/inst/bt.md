@@ -1,9 +1,12 @@
 ----------------------------
-title : BT instruction(Intel x86/64 assembly instruction)
+title : BT (Intel x86/64 assembly instruction)
 cat_title : BT
+ref_title : BT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BT--Bit Test
+#@ BT
 
+**Bit Test**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -35,13 +38,13 @@ Some assemblers support immediate bit offsets larger than 31 by using the immedi
 
 When accessing a bit in memory, the processor may access 4 bytes starting from the memory address for a 32-bit operand size, using by the following relationship:
 
- Effective Address + (4 `*` (BitOffset DIV 32))
+ Effective Address + (4 `*` (BitOffset `DIV` 32))
 
 Or, it may access 2 bytes starting from the memory address for a 16-bit operand, using this relationship:
 
- Effective Address + (2 `*` (BitOffset DIV 16))
+ Effective Address + (2 `*` (BitOffset `DIV` 16))
 
-It may do so even when only a single byte needs to be accessed to reach the given bit. When using this bit addressing mechanism, software should avoid referencing areas of memory close to address space holes. In partic-ular, it should avoid references to memory-mapped I/O registers. Instead, software should use the MOV instruc-tions to load from or store to these addresses, and use the register form of these instructions to manipulate the data.
+It may do so even when only a single byte needs to be accessed to reach the given bit. When using this bit addressing mechanism, software should avoid referencing areas of memory close to address space holes. In partic-ular, it should avoid references to memory-mapped I/O registers. Instead, software should use the `MOV` instruc-tions to load from or store to these addresses, and use the register form of these instructions to manipulate the data.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bit oper-ands. See the summary chart at the beginning of this section for encoding data and limits.
 

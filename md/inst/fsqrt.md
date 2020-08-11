@@ -1,9 +1,12 @@
 ----------------------------
-title : FSQRT instruction(Intel x86/64 assembly instruction)
+title : FSQRT (Intel x86/64 assembly instruction)
 cat_title : FSQRT
+ref_title : FSQRT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FSQRT--Square Root
+#@ FSQRT
 
+**Square Root**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -20,8 +23,8 @@ The following table shows the results obtained when taking the square root of va
 
 |**SRC (ST(0))**|**DEST (ST(0))**|
 |---------------|----------------|
-|- $$\infty$$|*|
-|- F|*|
+|- $$\infty$$|\htmlonly{*}|
+|- F|\htmlonly{*}|
 |- 0|- 0|
 |+ 0|+ 0|
 |+ F|+ F|
@@ -32,7 +35,7 @@ The following table shows the results obtained when taking the square root of va
 
 FMeans finite floating-point value.
 
-*Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

@@ -1,9 +1,12 @@
 ----------------------------
-title : MOV instruction(Intel x86/64 assembly instruction)
+title : MOV (Intel x86/64 assembly instruction)
 cat_title : MOV
+ref_title : MOV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOV--Move
+#@ MOV
 
+**Move**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -13,42 +16,42 @@ cat_title : MOV
 |89 /r|MOV r/m32,r32|MR|Valid|Valid|Move r32 to r/m32.|
 |REX.W + 89 /r|MOV r/m64,r64|MR|Valid|N.E.|Move r64 to r/m64.|
 |8A /r|MOV r8,r/m8|RM|Valid|Valid|Move r/m8 to r8.|
-|REX + 8A /r|MOV r8***,r/m8***|RM|Valid|N.E.|Move r/m8 to r8.|
+|REX + 8A /r|MOV r8\htmlonly{*}\htmlonly{*}\htmlonly{*},r/m8\htmlonly{*}\htmlonly{*}\htmlonly{*}|RM|Valid|N.E.|Move r/m8 to r8.|
 |8B /r|MOV r16,r/m16|RM|Valid|Valid|Move r/m16 to r16.|
 |8B /r|MOV r32,r/m32|RM|Valid|Valid|Move r/m32 to r32.|
 |REX.W + 8B /r|MOV r64,r/m64|RM|Valid|N.E.|Move r/m64 to r64.|
-|8C /r|MOV r/m16,Sreg**|MR|Valid|Valid|Move segment register to r/m16.|
-|REX.W + 8C /r|MOV r/m64,Sreg**|MR|Valid|Valid|Move zero extended 16-bit segment register to r/m64.|
-|8E /r|MOV Sreg,r/m16**|RM|Valid|Valid|Move r/m16 to segment register.|
-|REX.W + 8E /r|MOV Sreg,r/m64**|RM|Valid|Valid|Move lower 16 bits of r/m64 to segment register.|
-|A0|MOV AL,moffs8*|FD|Valid|Valid|Move byte at (seg:offset) to AL.|
-|REX.W + A0|MOV AL,moffs8*|FD| Valid|N.E.|Move byte at (offset) to AL.|
-|A1|MOV AX,moffs16*|FD|Valid|Valid|Move word at (seg:offset) to AX.|
-|A1|MOV EAX,moffs32*|FD|Valid|Valid|Move doubleword at (seg:offset) to EAX.|
-|REX.W + A1|MOV RAX,moffs64*|FD|Valid|N.E.|Move quadword at (offset) to RAX.|
+|8C /r|MOV r/m16,Sreg\htmlonly{*}\htmlonly{*}|MR|Valid|Valid|Move segment register to r/m16.|
+|REX.W + 8C /r|MOV r/m64,Sreg\htmlonly{*}\htmlonly{*}|MR|Valid|Valid|Move zero extended 16-bit segment register to r/m64.|
+|8E /r|MOV Sreg,r/m16\htmlonly{*}\htmlonly{*}|RM|Valid|Valid|Move r/m16 to segment register.|
+|REX.W + 8E /r|MOV Sreg,r/m64\htmlonly{*}\htmlonly{*}|RM|Valid|Valid|Move lower 16 bits of r/m64 to segment register.|
+|A0|MOV AL,moffs8\htmlonly{*}|FD|Valid|Valid|Move byte at (seg:offset) to AL.|
+|REX.W + A0|MOV AL,moffs8\htmlonly{*}|FD| Valid|N.E.|Move byte at (offset) to AL.|
+|A1|MOV AX,moffs16\htmlonly{*}|FD|Valid|Valid|Move word at (seg:offset) to AX.|
+|A1|MOV EAX,moffs32\htmlonly{*}|FD|Valid|Valid|Move doubleword at (seg:offset) to EAX.|
+|REX.W + A1|MOV RAX,moffs64\htmlonly{*}|FD|Valid|N.E.|Move quadword at (offset) to RAX.|
 |A2|MOV moffs8,AL|TD| Valid|Valid|Move AL to (seg:offset).|
 |REX.W + A2|MOV moffs8\footnote{***} ,AL|TD|Valid|N.E.|Move AL to (offset).|
-|A3|MOV moffs16*,AX|TD|Valid|Valid|Move AX to (seg:offset).|
-|A3|MOV moffs32*,EAX|TD|Valid|Valid|Move EAX to (seg:offset).|
-|REX.W + A3|MOV moffs64*,RAX|TD|Valid|N.E.|Move RAX to (offset).|
+|A3|MOV moffs16\htmlonly{*},AX|TD|Valid|Valid|Move AX to (seg:offset).|
+|A3|MOV moffs32\htmlonly{*},EAX|TD|Valid|Valid|Move EAX to (seg:offset).|
+|REX.W + A3|MOV moffs64\htmlonly{*},RAX|TD|Valid|N.E.|Move RAX to (offset).|
 |B0+ rb ib|MOV r8, imm8|OI|Valid|Valid|Move imm8 to r8.|
 |REX + B0+ rb ib|MOV r8\footnote{***} , imm8|OI|Valid|N.E.|Move imm8 to r8.|
 |B8+ rw iw|MOV r16, imm16|OI|Valid|Valid|Move imm16 to r16.|
 |B8+ rd id|MOV r32, imm32|OI|Valid|Valid|Move imm32 to r32.|
 |REX.W + B8+ rd io|MOV r64, imm64|OI|Valid|N.E.|Move imm64 to r64.|
 |C6 /0 ib|MOV r/m8, imm8|MI|Valid|Valid|Move imm8 to r/m8.|
-|REX + C6 /0 ib|MOV r/m8***, imm8|MI|Valid|N.E.|Move imm8 to r/m8.|
+|REX + C6 /0 ib|MOV r/m8\htmlonly{*}\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Move imm8 to r/m8.|
 |C7 /0 iw|MOV r/m16, imm16|MI|Valid|Valid|Move imm16 to r/m16.|
 |C7 /0 id|MOV r/m32, imm32|MI|Valid|Valid|Move imm32 to r/m32.|
 |REX.W + C7 /0 id|MOV r/m64, imm32|MI|Valid |N.E.|Move imm32 sign extended to 64-bits to r/m64.|
 ### NOTES:
 
 
-*The moffs8, moffs16, moffs32 and moffs64 operands specify a simple offset relative to the segment base, where 8, 16, 32 and 64 refer to the size of the data. The address-size attribute of the instruction determines the size of the offset, either 16, 32 or 64 bits.
+\htmlonly{*}The moffs8, moffs16, moffs32 and moffs64 operands specify a simple offset relative to the segment base, where 8, 16, 32 and 64 refer to the size of the data. The address-size attribute of the instruction determines the size of the offset, either 16, 32 or 64 bits.
 
-**In 32-bit mode, the assembler may insert the 16-bit operand-size prefix with this instruction (see the following "Description" sec-tion for further information).
+\htmlonly{*}\htmlonly{*}In 32-bit mode, the assembler may insert the 16-bit operand-size prefix with this instruction (see the following "Description" sec-tion for further information).
 
-***In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}\htmlonly{*}\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -66,23 +69,23 @@ cat_title : MOV
 
 Copies the second operand (source operand) to the first operand (destination operand). The source operand can be an immediate value, general-purpose register, segment register, or memory location; the destination register can be a general-purpose register, segment register, or memory location. Both operands must be the same size, which can be a byte, a word, a doubleword, or a quadword.
 
-The MOV instruction cannot be used to load the CS register. Attempting to do so results in an invalid opcode excep-tion (#UD). To load the CS register, use the far JMP, CALL, or RET instruction.
+The `MOV` instruction cannot be used to load the CS register. Attempting to do so results in an invalid opcode excep-tion (#UD). To load the CS register, use the far `JMP`, `CALL`, or `RET` instruction.
 
 If the destination operand is a segment register (DS, ES, FS, GS, or SS), the source operand must be a valid segment selector. In protected mode, moving a segment selector into a segment register automatically causes the segment descriptor information associated with that segment selector to be loaded into the hidden (shadow) part of the segment register. While loading this information, the segment selector and segment descriptor information is validated (see the "Operation" algorithm below). The segment descriptor data is obtained from the GDT or LDT entry for the specified segment selector. 
 
 A NULL segment selector (values 0000-0003) can be loaded into the DS, ES, FS, and GS registers without causing a protection exception. However, any subsequent attempt to reference a segment whose corresponding segment register is loaded with a NULL value causes a general protection exception (#GP) and no memory reference occurs.
 
-Loading the SS register with a MOV instruction inhibits all interrupts until after the execution of the next instruc-tion. This operation allows a stack pointer to be loaded into the ESP register with the next instruction (MOV ESP, stack-pointer value) before an interrupt occurs\footnote{1} . Be aware that the LSS instruction offers a more efficient method of loading the SS and ESP registers.
+Loading the SS register with a `MOV` instruction inhibits all interrupts until after the execution of the next instruc-tion. This operation allows a stack pointer to be loaded into the ESP register with the next instruction (MOV ESP, stack-pointer value) before an interrupt occurs\footnote{1} . Be aware that the `LSS` instruction offers a more efficient method of loading the SS and ESP registers.
 
-When executing MOV Reg, Sreg, the processor copies the content of Sreg to the 16 least significant bits of the general-purpose register. The upper bits of the destination register are zero for most IA-32 processors (Pentium 
+When executing `MOV` Reg, Sreg, the processor copies the content of Sreg to the 16 least significant bits of the general-purpose register. The upper bits of the destination register are zero for most IA-32 processors (Pentium 
 
 
 
-1.If a code instruction breakpoint (for debug) is placed on an instruction located immediately after a MOV SS instruction, the break-point may not be triggered. However, in a sequence of instructions that load the SS register, only the first instruction in the sequence is guaranteed to delay an interrupt.
+1.If a code instruction breakpoint (for debug) is placed on an instruction located immediately after a `MOV` SS instruction, the break-point may not be triggered. However, in a sequence of instructions that load the SS register, only the first instruction in the sequence is guaranteed to delay an interrupt.
 
- In the following sequence, interrupts may be recognized before MOV ESP, EBP executes:
+ In the following sequence, interrupts may be recognized before `MOV` ESP, EBP executes:
 
- MOV SS, EDXMOV SS, EAXMOV ESP, EBP
+ `MOV` SS, EDXMOV SS, EAXMOV ESP, EBP
 
 
 

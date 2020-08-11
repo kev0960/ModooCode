@@ -1,12 +1,15 @@
 ----------------------------
-title : SMSW instruction(Intel x86/64 assembly instruction)
+title : SMSW (Intel x86/64 assembly instruction)
 cat_title : SMSW
+ref_title : SMSW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SMSW--Store Machine Status Word
+#@ SMSW
 
+**Store Machine Status Word**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 01 /4|SMSW r/m16|M|Valid |Valid|Store machine status word to r/m16.|
 |0F 01 /4|SMSW r32/m16|M|Valid|Valid|Store machine status word in low-order 16 bits of r32/m16; high-order 16 bits of r32 are undefined.|
 |REX.W + 0F 01 /4|SMSW r64/m16|M|Valid|Valid|Store machine status word in low-order 16 bits of r64/m16; high-order 16 bits of r32 are undefined.|
@@ -23,21 +26,21 @@ Stores the machine status word (bits 0 through 15 of control register CR0) into 
 
 In non-64-bit modes, when the destination operand is a 32-bit register, the low-order 16 bits of register CR0 are copied into the low-order 16 bits of the register and the high-order 16 bits are undefined. When the destination operand is a memory location, the low-order 16 bits of register CR0 are written to memory as a 16-bit quantity, regardless of the operand size.
 
-In 64-bit mode, the behavior of the SMSW instruction is defined by the following examples:
+In 64-bit mode, the behavior of the `SMSW` instruction is defined by the following examples:
 
-*  SMSW r16 operand size 16, store CR0[15:0] in r16
+*  `SMSW` r16 operand size 16, store CR0[15:0] in r16
 
-*  SMSW r32 operand size 32, zero-extend CR0[31:0], and store in r32
+*  `SMSW` r32 operand size 32, zero-extend CR0[31:0], and store in r32
 
-*  SMSW r64 operand size 64, zero-extend CR0[63:0], and store in r64
+*  `SMSW` r64 operand size 64, zero-extend CR0[63:0], and store in r64
 
-*  SMSW m16 operand size 16, store CR0[15:0] in m16
+*  `SMSW` m16 operand size 16, store CR0[15:0] in m16
 
-*  SMSW m16 operand size 32, store CR0[15:0] in m16 (not m32)
+*  `SMSW` m16 operand size 32, store CR0[15:0] in m16 (not m32)
 
-*  SMSW m16 operands size 64, store CR0[15:0] in m16 (not m64)
+*  `SMSW` m16 operands size 64, store CR0[15:0] in m16 (not m64)
 
-SMSW is only useful in operating-system software. However, it is not a privileged instruction and can be used in application programs if CR4.UMIP= 0. It is provided for compatibility with the Intel 286 processor. Programs and procedures intended to run on IA-32 and Intel 64 processors beginning with the Intel386 processors should use the MOV CR instruction to load the machine status word.
+SMSW is only useful in operating-system software. However, it is not a privileged instruction and can be used in application programs if CR4.UMIP= 0. It is provided for compatibility with the Intel 286 processor. Programs and procedures intended to run on IA-32 and Intel 64 processors beginning with the Intel386 processors should use the `MOV` CR instruction to load the machine status word.
 
 See "Changes to Instruction Behavior in VMX Non-Root Operation" in Chapter 25 of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.
 
@@ -46,7 +49,7 @@ See "Changes to Instruction Behavior in VMX Non-Root Operation" in Chapter 25 of
 
 ```info-verb
 DEST <- CR0[15:0]; 
-(\htmlonly{*} Machine status word \htmlonly{*})
+(* Machine status word *)
 ```
 ### Flags Affected
 

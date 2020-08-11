@@ -1,12 +1,15 @@
 ----------------------------
-title : PUSHF, PUSHFD instructions(Intel x86/64 assembly instruction)
+title : PUSHF, PUSHFDs (Intel x86/64 assembly instruction)
 cat_title : PUSHF, PUSHFD
+ref_title : PUSHF, PUSHFD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PUSHF/PUSHFD--Push EFLAGS Register onto the Stack
+#@ PUSHF, PUSHFD
 
+**Push EFLAGS Register onto the Stack**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |9C|PUSHF|NP|Valid|Valid|Push lower 16 bits of EFLAGS.|
 |9C|PUSHFD|NP|N.E.|Valid|Push EFLAGS.|
 |9C|PUSHFQ|NP|Valid|N.E.|Push RFLAGS.|
@@ -23,7 +26,7 @@ Decrements the stack pointer by 4 (if the current operand-size attribute is 32) 
 
 When copying the entire EFLAGS register to the stack, the VM and RF flags (bits 16 and 17) are not copied; instead, the values for these flags are cleared in the EFLAGS image stored on the stack. See Chapter 3 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for more information about the EFLAGS register. 
 
-The PUSHF (push flags) and PUSHFD (push flags double) mnemonics reference the same opcode. The PUSHF instruction is intended for use when the operand-size attribute is 16 and the PUSHFD instruction for when the operand-size attribute is 32. Some assemblers may force the operand size to 16 when PUSHF is used and to 32 when PUSHFD is used. Others may treat these mnemonics as synonyms (PUSHF/PUSHFD) and use the current setting of the operand-size attribute to determine the size of values to be pushed from the stack, regardless of the mnemonic used.
+The `PUSHF` (push flags) and `PUSHFD` (push flags double) mnemonics reference the same opcode. The `PUSHF` instruction is intended for use when the operand-size attribute is 16 and the `PUSHFD` instruction for when the operand-size attribute is 32. Some assemblers may force the operand size to 16 when `PUSHF` is used and to 32 when `PUSHFD` is used. Others may treat these mnemonics as synonyms (PUSHF/PUSHFD) and use the current setting of the operand-size attribute to determine the size of values to be pushed from the stack, regardless of the mnemonic used.
 
 In 64-bit mode, the instruction's default operation is to decrement the stack pointer (RSP) by 8 and pushes RFLAGS on the stack. 16-bit operation is supported using the operand size override prefix 66H. 32-bit operand size cannot be encoded in this mode. When copying RFLAGS to the stack, the VM and RF flags (bits 16 and 17) are not copied; instead, values for these flags are cleared in the RFLAGS image stored on the stack.
 
@@ -36,16 +39,16 @@ In the real-address mode, if the ESP or SP register is 1 when PUSHF/PUSHFD instr
 
 ```info-verb
 IF (PE = 0) or (PE = 1 and ((VM = 0) or (VM = 1 and IOPL = 3)))
-(\htmlonly{*} Real-Address Mode, Protected mode, or Virtual-8086 mode with IOPL equal to 3 \htmlonly{*})
+(* Real-Address Mode, Protected mode, or Virtual-8086 mode with IOPL equal to 3 *)
  THEN
    IF OperandSize = 32
     THEN 
       push (EFLAGS AND 00FCFFFFH);
-      (\htmlonly{*} VM and RF EFLAG bits are cleared in image stored on the stack \htmlonly{*})
+      (* VM and RF EFLAG bits are cleared in image stored on the stack *)
     ELSE 
-      push (EFLAGS); (\htmlonly{*} Lower 16 bits only \htmlonly{*})
+      push (EFLAGS); (* Lower 16 bits only *)
    FI;
- ELSE IF 64-bit MODE (\htmlonly{*} In 64-bit Mode \htmlonly{*})
+ ELSE IF 64-bit MODE (* In 64-bit Mode *)
    IF OperandSize = 64
 THEN 
       push (RFLAGS AND 00000000_00FCFFFFH);

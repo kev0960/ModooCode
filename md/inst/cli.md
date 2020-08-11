@@ -1,9 +1,12 @@
 ----------------------------
-title : CLI instruction(Intel x86/64 assembly instruction)
+title : CLI (Intel x86/64 assembly instruction)
 cat_title : CLI
+ref_title : CLI
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CLI -- Clear Interrupt Flag
+#@ CLI
 
+** Clear Interrupt Flag**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,9 +20,9 @@ cat_title : CLI
 ### Description
 
 
-If protected-mode virtual interrupts are not enabled, CLI clears the IF flag in the EFLAGS register. No other flags are affected. Clearing the IF flag causes the processor to ignore maskable external interrupts. The IF flag and the CLI and STI instruction have no affect on the generation of exceptions and NMI interrupts.
+If protected-mode virtual interrupts are not enabled, `CLI` clears the IF flag in the EFLAGS register. No other flags are affected. Clearing the IF flag causes the processor to ignore maskable external interrupts. The IF flag and the `CLI` and `STI` instruction have no affect on the generation of exceptions and NMI interrupts.
 
-When protected-mode virtual interrupts are enabled, CPL is 3, and IOPL is less than 3; CLI clears the VIF flag in the EFLAGS register, leaving IF unaffected. Table 3-7 indicates the action of the CLI instruction depending on the processor operating mode and the CPL/IOPL of the running program or procedure. 
+When protected-mode virtual interrupts are enabled, CPL is 3, and IOPL is less than 3; `CLI` clears the VIF flag in the EFLAGS register, leaving IF unaffected. Table 3-7 indicates the action of the `CLI` instruction depending on the processor operating mode and the CPL/IOPL of the running program or procedure. 
 
 Operation is the same in all modes.
 
@@ -39,7 +42,7 @@ Operation is the same in all modes.
 ### NOTES:
 
 
-*X = This setting has no impact.
+\htmlonly{*}X = This setting has no impact.
 
 
 ### Operation
@@ -47,17 +50,17 @@ Operation is the same in all modes.
 ```info-verb
 IF PE = 0
  THEN
-   IF <- 0; (\htmlonly{*} Reset Interrupt Flag \htmlonly{*})
+   IF <- 0; (* Reset Interrupt Flag *)
  ELSE
    IF VM = 0;
     THEN
       IF IOPL >= CPL
         THEN
-          IF <- 0; (\htmlonly{*} Reset Interrupt Flag \htmlonly{*})
+          IF <- 0; (* Reset Interrupt Flag *)
       ELSE
         IF ((IOPL < CPL) and (CPL = 3) and (PVI = 1))
           THEN
-            VIF <- 0; (\htmlonly{*} Reset Virtual Interrupt Flag \htmlonly{*})
+            VIF <- 0; (* Reset Virtual Interrupt Flag *)
           ELSE
             #GP(0);
 FI;

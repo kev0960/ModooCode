@@ -1,9 +1,12 @@
 ----------------------------
-title : VRANGEPD instruction(Intel x86/64 assembly instruction)
+title : VRANGEPD (Intel x86/64 assembly instruction)
 cat_title : VRANGEPD
+ref_title : VRANGEPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VRANGEPD--Range Restriction Calculation For Packed Pairs of Float64 Values
+#@ VRANGEPD
 
+**Range Restriction Calculation For Packed Pairs of Float64 Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|

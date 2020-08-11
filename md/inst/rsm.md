@@ -1,12 +1,15 @@
 ----------------------------
-title : RSM instruction(Intel x86/64 assembly instruction)
+title : RSM (Intel x86/64 assembly instruction)
 cat_title : RSM
+ref_title : RSM
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RSM--Resume from System Management Mode
+#@ RSM
 
+**Resume from System Management Mode**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F AA|RSM|NP|Valid|Valid|Resume operation of interrupted program.|
 ### Instruction Operand Encoding
 
@@ -27,9 +30,9 @@ Returns program control from system management mode (SMM) to the application pro
 
 The contents of the model-specific registers are not affected by a return from SMM.
 
-The SMM state map used by RSM supports resuming processor context for non-64-bit modes and 64-bit mode. 
+The SMM state map used by `RSM` supports resuming processor context for non-64-bit modes and 64-bit mode. 
 
-See Chapter 34, "System Management Mode," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3C, for more information about SMM and the behavior of the RSM instruction.
+See Chapter 34, "System Management Mode," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3C, for more information about SMM and the behavior of the `RSM` instruction.
 
 
 ### Operation

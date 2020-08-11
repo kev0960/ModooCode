@@ -1,21 +1,24 @@
 ----------------------------
-title : XADD instruction(Intel x86/64 assembly instruction)
+title : XADD (Intel x86/64 assembly instruction)
 cat_title : XADD
+ref_title : XADD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XADD--Exchange and Add
+#@ XADD
 
+**Exchange and Add**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F C0 /r|XADD r/m8, r8|MR|Valid |Valid|Exchange r8 and r/m8; load sum into r/m8.|
-|REX + 0F C0 /r|XADD r/m8*, r8*|MR|Valid|N.E.|Exchange r8 and r/m8; load sum into r/m8.|
+|REX + 0F C0 /r|XADD r/m8\htmlonly{*}, r8\htmlonly{*}|MR|Valid|N.E.|Exchange r8 and r/m8; load sum into r/m8.|
 |0F C1 /r|XADD r/m16, r16|MR|Valid|Valid|Exchange r16 and r/m16; load sum into r/m16.|
 |0F C1 /r|XADD r/m32, r32|MR|Valid |Valid|Exchange r32 and r/m32; load sum into r/m32.|
 |REX.W + 0F C1 /r|XADD r/m64, r64|MR|Valid |N.E.|Exchange r64 and r/m64; load sum into r/m64.|
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -30,7 +33,7 @@ Exchanges the first operand (destination operand) with the second operand (sourc
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.
+This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically.
 
 ### IA-32 Architecture Compatibility
 

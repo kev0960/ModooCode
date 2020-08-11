@@ -1,9 +1,12 @@
 ----------------------------
-title : FISTTP instruction(Intel x86/64 assembly instruction)
+title : FISTTP (Intel x86/64 assembly instruction)
 cat_title : FISTTP
+ref_title : FISTTP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FISTTP--Store Integer with Truncation
+#@ FISTTP
 
+**Store Integer with Truncation**
 
 |**Opcode**|**Instruction**|**64-Bit Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|---------------|---------------------------------|---------------|
@@ -13,7 +16,7 @@ cat_title : FISTTP
 ### Description
 
 
-FISTTP converts the value in ST into a signed integer using truncation (chop) as rounding mode, transfers the result to the destination, and pop ST. FISTTP accepts word, short integer, and long integer destinations.
+FISTTP converts the value in ST into a signed integer using truncation (chop) as rounding mode, transfers the result to the destination, and pop ST. `FISTTP` accepts word, short integer, and long integer destinations.
 
 The following table shows the results obtained when storing various classes of numbers in integer format.
 
@@ -22,12 +25,12 @@ The following table shows the results obtained when storing various classes of n
 
 |**ST(0)**|**DEST**|
 |---------|--------|
-|- $$\infty$$ or Value Too Large for DEST Format|*|
+|- $$\infty$$ or Value Too Large for DEST Format|\htmlonly{*}|
 |F<= - 1|- I|
 |- 1<F<+ 1|0|
 |F-+ 1|+ I|
-|+ $$\infty$$ or Value Too Large for DEST Format|*|
-|NaN|*|
+|+ $$\infty$$ or Value Too Large for DEST Format|\htmlonly{*}|
+|NaN|\htmlonly{*}|
 ### NOTES:
 
 

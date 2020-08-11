@@ -1,9 +1,12 @@
 ----------------------------
-title : PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQ instructions(Intel x86/64 assembly instruction)
+title : PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQs (Intel x86/64 assembly instruction)
 cat_title : PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQ
+ref_title : PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PUNPCKLBW/PUNPCKLWD/PUNPCKLDQ/PUNPCKLQDQ--Unpack Low Data
+#@ PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQ
 
+**Unpack Low Data**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -236,7 +239,7 @@ Unpacks and interleaves the low-order data elements (bytes, words, doublewords, 
 <text x="165.060104" y="34.240845" textLength="5.329997" font-size="8px">Y</text>
 <text x="260.397705" y="95.380005" textLength="5.329997" font-size="8px">X</text>
 </svg>
-<figcaption>Figure 4-22.  PUNPCKLBW Instruction Operation Using 64-bit Operands
+<figcaption>Figure 4-22.  `PUNPCKLBW` Instruction Operation Using 64-bit Operands
 </figcaption></figure>
 ```
 ```embed

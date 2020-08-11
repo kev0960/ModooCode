@@ -1,9 +1,12 @@
 ----------------------------
-title : BLSMSK instruction(Intel x86/64 assembly instruction)
+title : BLSMSK (Intel x86/64 assembly instruction)
 cat_title : BLSMSK
+ref_title : BLSMSK
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BLSMSK -- Get Mask Up to Lowest Set Bit
+#@ BLSMSK
 
+** Get Mask Up to Lowest Set Bit**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
@@ -18,7 +21,7 @@ cat_title : BLSMSK
 ### Description
 
 
-Sets all the lower bits of the destination operand to "1" up to and including lowest set bit (=1) in the source operand. If source operand is zero, BLSMSK sets all bits of the destination operand to 1 and also sets CF to 1.
+Sets all the lower bits of the destination operand to "1" up to and including lowest set bit (=1) in the source operand. If source operand is zero, `BLSMSK` sets all bits of the destination operand to 1 and also sets CF to 1.
 
 This instruction is not supported in real mode and virtual-8086 mode. The operand size is always 32 bits if not in 64-bit mode. In 64-bit mode operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to execute this instruction with VEX.L not equal to 0 will cause #UD.
 

@@ -1,9 +1,12 @@
 ----------------------------
-title : VDBPSADBW instruction(Intel x86/64 assembly instruction)
+title : VDBPSADBW (Intel x86/64 assembly instruction)
 cat_title : VDBPSADBW
+ref_title : VDBPSADBW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VDBPSADBW--Double Block Packed Sum-Absolute-Differences (SAD) on Unsigned Bytes
+#@ VDBPSADBW
 
+**Double Block Packed Sum-Absolute-Differences (SAD) on Unsigned Bytes**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -28,7 +31,7 @@ Within each super block of packed word results, the SAD results from two 32-bit 
 
 *  The next two word results are calculated each from the SAD operation between a sliding dword element within a qword superblock from the intermediate vector Tmp1 with a second stationary dword element in the corre-sponding qword superblock of the first source operand. The two sliding dword elements in a qword superblock of Tmp1 are located at byte offset 2and 3 within the superblock, respectively. The stationary dword element in the qword superblock from the first source operand is located at byte offset 4.
 
-*  The intermediate vector is constructed in 128-bits lanes. Within each 128-bit lane, each dword element of the intermediate vector is selected by a two-bit field within the imm8 byte on the corresponding 128-bits of the second source operand. The imm8 byte serves as dword shuffle control within each 128-bit lanes of the inter-mediate vector and the second source operand, similarly to PSHUFD.
+*  The intermediate vector is constructed in 128-bits lanes. Within each 128-bit lane, each dword element of the intermediate vector is selected by a two-bit field within the imm8 byte on the corresponding 128-bits of the second source operand. The imm8 byte serves as dword shuffle control within each 128-bit lanes of the inter-mediate vector and the second source operand, similarly to `PSHUFD`.
 
 The first source operand is a ZMM/YMM/XMM register. The second source operand is a ZMM/YMM/XMM register, or a 512/256/128-bit memory location. The destination operand is conditionally updated based on writemask k1 at 16-bit word granularity.
 
@@ -1051,7 +1054,7 @@ The first source operand is a ZMM/YMM/XMM register. The second source operand is
 <text x="111.059998" y="30.100037" textLength="3.510000" font-size="8px">1</text>
 <text x="125.038773" y="30.100037" textLength="3.510000" font-size="8px">1</text>
 </svg>
-<figcaption>Figure 5-8.  64-bit Super Block of SAD Operation in VDBPSADBW 
+<figcaption>Figure 5-8.  64-bit Super Block of SAD Operation in `VDBPSADBW` 
 </figcaption></figure>
 ```
 
@@ -1086,12 +1089,12 @@ FOR I =0 to VL step 64
    ABS(SRC1[I+63: I+56] - TMP1[I+55: I+48])
 ENDFOR
 FOR j  <- 0 TO KL-1
- i <-   j \htmlonly{*} 16
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <-   j * 16
+ IF k1[j] OR *no writemask*
    THEN DEST[i+15:i]  <- TMP_DEST[i+15:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+15:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+15:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+15:i]  <- 0
     FI

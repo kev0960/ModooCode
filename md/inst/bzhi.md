@@ -1,9 +1,12 @@
 ----------------------------
-title : BZHI instruction(Intel x86/64 assembly instruction)
+title : BZHI (Intel x86/64 assembly instruction)
 cat_title : BZHI
+ref_title : BZHI
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BZHI -- Zero High Bits Starting with Specified Bit Position
+#@ BZHI
 
+** Zero High Bits Starting with Specified Bit Position**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|

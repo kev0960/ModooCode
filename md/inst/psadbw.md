@@ -1,9 +1,12 @@
 ----------------------------
-title : PSADBW instruction(Intel x86/64 assembly instruction)
+title : PSADBW (Intel x86/64 assembly instruction)
 cat_title : PSADBW
+ref_title : PSADBW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PSADBW--Compute Sum of Absolute Differences
+#@ PSADBW
 
+**Compute Sum of Absolute Differences**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|------------------------------------|---------------|
@@ -34,7 +37,7 @@ Computes the absolute value of the difference of 8 unsigned byte integers from t
 
 
 
-operand) and from the destination operand (first operand). These 8 differences are then summed to produce an unsigned word integer result that is stored in the destination operand. Figure4-14 shows the operation of the PSADBW instruction when using 64-bit operands.
+operand) and from the destination operand (first operand). These 8 differences are then summed to produce an unsigned word integer result that is stored in the destination operand. Figure4-14 shows the operation of the `PSADBW` instruction when using 64-bit operands.
 
 When operating on 64-bit operands, the word integer result is stored in the low word of the destination operand, and the remaining bytes in the destination operand are cleared to all 0s.
 
@@ -382,7 +385,7 @@ EVEX.512 encoded version: The first source operand and destination register are 
 <text x="254.596268" y="92.680023" textLength="4.002000" font-size="8px">X</text>
 <text x="198.310257" y="92.680023" textLength="1.998000" font-size="8px">)</text>
 </svg>
-<figcaption>Figure 4-14.  PSADBW Instruction Operation Using 64-bit Operands
+<figcaption>Figure 4-14.  `PSADBW` Instruction Operation Using 64-bit Operands
 </figcaption></figure>
 ```
 
@@ -391,7 +394,7 @@ EVEX.512 encoded version: The first source operand and destination register are 
 ```info-verb
 VL = 128, 256, 512
 TEMP0 <-  ABS(SRC1[7:0] - SRC2[7:0])
-(\htmlonly{*} Repeat operation for bytes 1 through 15 \htmlonly{*})
+(* Repeat operation for bytes 1 through 15 *)
 TEMP15  <- ABS(SRC1[127:120] - SRC2[127:120])
 DEST[15:0]  <-SUM(TEMP0:TEMP7)
 DEST[63:16] <-  000000000000H

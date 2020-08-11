@@ -1,17 +1,20 @@
 ----------------------------
-title : LAHF instruction(Intel x86/64 assembly instruction)
+title : LAHF (Intel x86/64 assembly instruction)
 cat_title : LAHF
+ref_title : LAHF
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LAHF--Load Status Flags into AH Register
+#@ LAHF
 
+**Load Status Flags into AH Register**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|9F |LAHF|NP|Invalid*|Valid|Load: AH <- EFLAGS(SF:ZF:0:AF:0:PF:1:CF).|
+|9F |LAHF|NP|Invalid\htmlonly{*}|Valid|Load: AH <- EFLAGS(SF:ZF:0:AF:0:PF:1:CF).|
 ### NOTES:
 
 
-*Valid in specific steppings. See Description section.
+\htmlonly{*}Valid in specific steppings. See Description section.
 
 ### Instruction Operand Encoding
 
@@ -22,7 +25,7 @@ cat_title : LAHF
 ### Description
 
 
-This instruction executes as described above in compatibility mode and legacy mode. It is valid in 64-bit mode only if CPUID.80000001H:ECX.LAHF-SAHF[bit 0] = 1. 
+This instruction executes as described above in compatibility mode and legacy mode. It is valid in 64-bit mode only if `CPUID`.80000001H:ECX.LAHF-SAHF[bit 0] = 1. 
 
 
 ### Operation

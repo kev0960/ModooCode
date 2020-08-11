@@ -1,9 +1,12 @@
 ----------------------------
-title : VERR, VERW instructions(Intel x86/64 assembly instruction)
+title : VERR, VERWs (Intel x86/64 assembly instruction)
 cat_title : VERR, VERW
+ref_title : VERR, VERW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VERR/VERW--Verify a Segment for Reading or Writing
+#@ VERR, VERW
 
+**Verify a Segment for Reading or Writing**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -28,9 +31,9 @@ To set the ZF flag, the following conditions must be met:
 
 *  The selector must denote the descriptor of a code or data segment (not that of a system segment or gate).
 
-*  For the VERR instruction, the segment must be readable.
+*  For the `VERR` instruction, the segment must be readable.
 
-*  For the VERW instruction, the segment must be a writable data segment.
+*  For the `VERW` instruction, the segment must be a writable data segment.
 
 *  If the segment is not a conforming code segment, the segment's DPL must be greater than or equal to (have less or the same privilege as) both the CPL and the segment selector's RPL.
 
@@ -45,7 +48,7 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode. Th
 IF SRC(Offset) > (GDTR(Limit) or (LDTR(Limit))
  THEN ZF <- 0; FI;
 Read segment descriptor;
-IF SegmentDescriptor(DescriptorType) = 0 (\htmlonly{*} System segment \htmlonly{*})
+IF SegmentDescriptor(DescriptorType) = 0 (* System segment *)
 or (SegmentDescriptor(Type) != conforming code segment) 
 and (CPL > DPL) or (RPL > DPL)
  THEN

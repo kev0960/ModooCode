@@ -1,21 +1,24 @@
 ----------------------------
-title : MOVZX instruction(Intel x86/64 assembly instruction)
+title : MOVZX (Intel x86/64 assembly instruction)
 cat_title : MOVZX
+ref_title : MOVZX
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVZX--Move with Zero-Extend
+#@ MOVZX
 
+**Move with Zero-Extend**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F B6 /r|MOVZX r16, r/m8|RM|Valid|Valid|Move byte to word with zero-extension.|
 |0F B6 /r|MOVZX r32, r/m8|RM|Valid|Valid|Move byte to doubleword, zero-extension.|
-|REX.W + 0F B6 /r|MOVZX r64, r/m8*|RM|Valid|N.E.|Move byte to quadword, zero-extension.|
+|REX.W + 0F B6 /r|MOVZX r64, r/m8\htmlonly{*}|RM|Valid|N.E.|Move byte to quadword, zero-extension.|
 |0F B7 /r|MOVZX r32, r/m16|RM|Valid|Valid|Move word to doubleword, zero-extension.|
 |REX.W + 0F B7 /r|MOVZX r64, r/m16|RM|Valid |N.E.|Move word to quadword, zero-extension.|
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if the REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if the REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 

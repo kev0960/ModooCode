@@ -1,21 +1,24 @@
 ----------------------------
-title : NEG instruction(Intel x86/64 assembly instruction)
+title : NEG (Intel x86/64 assembly instruction)
 cat_title : NEG
+ref_title : NEG
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### NEG--Two's Complement Negation
+#@ NEG
 
+**Two's Complement Negation**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |F6 /3|NEG r/m8|M|Valid|Valid|Two's complement negate r/m8.|
-|REX + F6 /3|NEG r/m8*|M|Valid|N.E.|Two's complement negate r/m8.|
+|REX + F6 /3|NEG r/m8\htmlonly{*}|M|Valid|N.E.|Two's complement negate r/m8.|
 |F7 /3|NEG r/m16|M|Valid|Valid|Two's complement negate r/m16.|
 |F7 /3|NEG r/m32|M|Valid|Valid|Two's complement negate r/m32.|
 |REX.W + F7 /3|NEG r/m64|M|Valid |N.E.|Two's complement negate r/m64.|
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -28,7 +31,7 @@ cat_title : NEG
 
 Replaces the value of operand (the destination operand) with its two's complement. (This operation is equivalent to subtracting the operand from 0.) The destination operand is located in a general-purpose register or a memory location.
 
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.
+This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 

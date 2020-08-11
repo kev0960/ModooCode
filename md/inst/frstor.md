@@ -1,9 +1,12 @@
 ----------------------------
-title : FRSTOR instruction(Intel x86/64 assembly instruction)
+title : FRSTOR (Intel x86/64 assembly instruction)
 cat_title : FRSTOR
+ref_title : FRSTOR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FRSTOR--Restore x87 FPU State
+#@ FRSTOR
 
+**Restore x87 FPU State**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -15,7 +18,7 @@ Loads the FPU state (operating environment and register stack) from the memory a
 
 The FPU operating environment consists of the FPU control word, status word, tag word, instruction pointer, data pointer, and last opcode. Figures 8-9 through 8-12 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, show the layout in memory of the stored environment, depending on the operating mode of the processor (protected or real) and the current operand-size attribute (16-bit or 32-bit). In virtual-8086 mode, the real mode layouts are used. The contents of the FPU register stack are stored in the 80 bytes immediately following the operating environment image.
 
-The FRSTOR instruction should be executed in the same operating mode as the corresponding FSAVE/FNSAVE instruction.
+The `FRSTOR` instruction should be executed in the same operating mode as the corresponding FSAVE/FNSAVE instruction.
 
 If one or more unmasked exception bits are set in the new FPU status word, a floating-point exception will be generated. To avoid raising exceptions when loading a new operating environment, clear all the exception flags in the FPU status word that is being loaded.
 

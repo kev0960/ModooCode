@@ -1,55 +1,50 @@
 ----------------------------
-title : GETSEC[SEXIT] instruction(Intel x86/64 assembly instruction)
+title : GETSEC[SEXIT] (Intel x86/64 assembly instruction)
 cat_title : GETSEC[SEXIT]
+ref_title : GETSEC[SEXIT]
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### GETSEC[SEXIT]--Exit Measured Environment
+#@ GETSEC[SEXIT]
+
+**Exit Measured Environment**### Description
 
 
-**Opcode Instruction Description**
+The `GETSEC[SEXIT]` instruction initiates an exit of a measured environment established by `GETSEC[SENTER]`. The SEXIT leaf of GETSEC is selected with EAX set to 5 at execution. This instruction leaf sends a message to all logical processors in the platform to signal the measured environment exit. 
 
-0F 37 GETSEC[SEXIT] Exit measured environment.
-
-(EAX=5)
-
-### Description
-
-
-The GETSEC[SEXIT] instruction initiates an exit of a measured environment established by GETSEC[SENTER]. The SEXIT leaf of GETSEC is selected with EAX set to 5 at execution. This instruction leaf sends a message to all logical processors in the platform to signal the measured environment exit. 
-
-There are restrictions enforced by the processor for the execution of the GETSEC[SEXIT] instruction: 
+There are restrictions enforced by the processor for the execution of the `GETSEC[SEXIT]` instruction: 
 
 *  Execution is not allowed unless the processor is in protected mode (CR0.PE = 1) with CPL = 0 and EFLAGS.VM = 0. 
 
-*  The processor must be in a measured environment as launched by a previous GETSEC[SENTER] instruction, but not still in authenticated code execution mode. 
+*  The processor must be in a measured environment as launched by a previous `GETSEC[SENTER]` instruction, but not still in authenticated code execution mode. 
 
 *  To avoid potential inter-operability conflicts between modes, the processor is not allowed to execute this instruction if it currently is in SMM or in VMX operation. 
 
-*  To insure consistent handling of SIPI messages, the processor executing the GETSEC[SEXIT] instruction must also be designated the BSP (bootstrap processor) as defined by the register bit IA32_APIC_BASE.BSP (bit 8). 
+*  To insure consistent handling of SIPI messages, the processor executing the `GETSEC[SEXIT]` instruction must also be designated the BSP (bootstrap processor) as defined by the register bit IA32_APIC_BASE.BSP (bit 8). 
 
 Failure to abide by the above conditions results in the processor signaling a general protection violation.
 
 This instruction initiates a sequence to rendezvous the RLPs with the ILP. It then clears the internal processor flag indicating the processor is operating in a measured environment.
 
-In response to a message signaling the completion of rendezvous, all RLPs restart execution with the instruction that was to be executed at the time GETSEC[SEXIT] was recognized. This applies to all processor conditions, with the following exceptions: 
+In response to a message signaling the completion of rendezvous, all RLPs restart execution with the instruction that was to be executed at the time `GETSEC[SEXIT]` was recognized. This applies to all processor conditions, with the following exceptions: 
 
-*  If an RLP executed HLT and was in this halt state at the time of the message initiated by GETSEC[SEXIT], then execution resumes in the halt state. 
+*  If an RLP executed `HLT` and was in this halt state at the time of the message initiated by `GETSEC[SEXIT]`, then execution resumes in the halt state. 
 
-*  If an RLP was executing MWAIT, then a message initiated by GETSEC[SEXIT] causes an exit of the MWAIT state, falling through to the next instruction. 
+*  If an RLP was executing `MWAIT`, then a message initiated by `GETSEC[SEXIT]` causes an exit of the `MWAIT` state, falling through to the next instruction. 
 
-*  If an RLP was executing an intermediate iteration of a string instruction, then the processor resumes execution of the string instruction at the point which the message initiated by GETSEC[SEXIT] was recognized. 
+*  If an RLP was executing an intermediate iteration of a string instruction, then the processor resumes execution of the string instruction at the point which the message initiated by `GETSEC[SEXIT]` was recognized. 
 
 *  If an RLP is still in the SENTER sleep state (never awakened with GETSEC[WAKEUP]), it will be sent to the wait-for-SIPI state after first clearing the bootstrap processor indicator flag (IA32_APIC_BASE.BSP) and any pending SIPI state. In this case, such RLPs are initialized to an architectural state consistent with having taken a soft reset using the INIT# pin. 
 
-Prior to completion of the GETSEC[SEXIT] operation, both the ILP and any active RLPs unmask the response of the external event signals INIT#, A20M, NMI#, and SMI#. This unmasking is performed unconditionally to recognize pin events which are masked after a GETSEC[SENTER]. The state of A20M is unmasked, as the A20M pin is not recognized while the measured environment is active.
+Prior to completion of the `GETSEC[SEXIT]` operation, both the ILP and any active RLPs unmask the response of the external event signals INIT#, A20M, NMI#, and SMI#. This unmasking is performed unconditionally to recognize pin events which are masked after a `GETSEC[SENTER]`. The state of A20M is unmasked, as the A20M pin is not recognized while the measured environment is active.
 
-On a successful exit of the measured environment, the ILP re-locks the Intel(R) TXT-capable chipset private config-uration space. GETSEC[SEXIT] does not affect the content of any PCR.
+On a successful exit of the measured environment, the ILP re-locks the Intel(R) TXT-capable chipset private config-uration space. `GETSEC[SEXIT]` does not affect the content of any PCR.
 
-At completion of GETSEC[SEXIT] by the ILP, execution proceeds to the next instruction. Since EFLAGS and the debug register state are not modified by this instruction, a pending trap condition is free to be signaled if previously enabled.
+At completion of `GETSEC[SEXIT]` by the ILP, execution proceeds to the next instruction. Since EFLAGS and the debug register state are not modified by this instruction, a pending trap condition is free to be signaled if previously enabled.
 
 ### Operation in a Uni-Processor Platform
 
 
-(* The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary *)
+(\htmlonly{*} The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary \htmlonly{*})
 
 **GETSEC[SEXIT] (ILP only):**
 
@@ -101,7 +96,7 @@ IF (logical processor is not ILP)
 
  THEN GOTO RLP_SEXIT_ROUTINE;
 
-(* ILP waits for all logical processors to ACK *)
+(\htmlonly{*} ILP waits for all logical processors to ACK \htmlonly{*})
 
 DO
 
@@ -159,7 +154,7 @@ RLPs: all flags are modified for an RLP. returning to wait-for-SIPI state, none 
 
 LOCK Causes #UD.
 
-REP* Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
+REP\htmlonly{*} Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
 
 Operand size Causes #UD.
 

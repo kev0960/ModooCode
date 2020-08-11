@@ -1,9 +1,12 @@
 ----------------------------
-title : AAD instruction(Intel x86/64 assembly instruction)
+title : AAD (Intel x86/64 assembly instruction)
 cat_title : AAD
+ref_title : AAD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### AAD--ASCII Adjust AX Before Division
+#@ AAD
 
+**ASCII Adjust AX Before Division**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -18,11 +21,11 @@ cat_title : AAD
 ### Description
 
 
-Adjusts two unpacked BCD digits (the least-significant digit in the AL register and the most-significant digit in the AH register) so that a division operation performed on the result will yield a correct unpacked BCD value. The AAD instruction is only useful when it precedes a DIV instruction that divides (binary division) the adjusted value in the AX register by an unpacked BCD value.
+Adjusts two unpacked BCD digits (the least-significant digit in the AL register and the most-significant digit in the AH register) so that a division operation performed on the result will yield a correct unpacked BCD value. The `AAD` instruction is only useful when it precedes a `DIV` instruction that divides (binary division) the adjusted value in the AX register by an unpacked BCD value.
 
-The AAD instruction sets the value in the AL register to (AL + (10 * AH)), and then clears the AH register to 00H. The value in the AX register is then equal to the binary equivalent of the original unpacked two-digit (base 10) number in registers AH andAL.
+The `AAD` instruction sets the value in the AL register to (AL + (10 \htmlonly{*} AH)), and then clears the AH register to 00H. The value in the AX register is then equal to the binary equivalent of the original unpacked two-digit (base 10) number in registers AH andAL.
 
-The generalized version of this instruction allows adjustment of two unpacked digits of any number base (see the "Operation" section below), by setting the imm8 byte to the selected number base (for example, 08H for octal, 0AH for decimal, or 0CH for base 12 numbers). The AAD mnemonic is interpreted by all assemblers to mean adjust ASCII (base 10) values. To adjust values in another number base, the instruction must be hand coded in machine code (D5 imm8).
+The generalized version of this instruction allows adjustment of two unpacked digits of any number base (see the "Operation" section below), by setting the imm8 byte to the selected number base (for example, 08H for octal, 0AH for decimal, or 0CH for base 12 numbers). The `AAD` mnemonic is interpreted by all assemblers to mean adjust ASCII (base 10) values. To adjust values in another number base, the instruction must be hand coded in machine code (D5 imm8).
 
 This instruction executes as described in compatibility mode and legacy mode. It is not valid in 64-bit mode.
 
@@ -32,7 +35,7 @@ This instruction executes as described in compatibility mode and legacy mode. It
 ```info-verb
 IF 64-Bit ModeTHEN#UD;ELSEtempAL <- AL;
    tempAH <- AH;
-   AL <- (tempAL + (tempAH `*` imm8)) AND FFH; (\htmlonly{*} imm8 is set to 0AH for the AAD mnemonic.\htmlonly{*})
+   AL <- (tempAL + (tempAH `*` imm8)) AND FFH; (* imm8 is set to 0AH for the AAD mnemonic.*)
    AH <- 0;
 FI;
 The immediate value (imm8) is taken from the second byte of the instruction.

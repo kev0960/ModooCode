@@ -1,9 +1,12 @@
 ----------------------------
-title : INVD instruction(Intel x86/64 assembly instruction)
+title : INVD (Intel x86/64 assembly instruction)
 cat_title : INVD
+ref_title : INVD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### INVD--Invalidate Internal Caches
+#@ INVD
 
+**Invalidate Internal Caches**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -11,7 +14,7 @@ cat_title : INVD
 ### NOTES:
 
 
-*See the IA-32 Architecture Compatibility section below.
+\htmlonly{*}See the IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -26,11 +29,11 @@ Invalidates (flushes) the processor's internal caches and issues a special-funct
 
 After executing this instruction, the processor does not wait for the external caches to complete their flushing oper-ation before proceeding with instruction execution. It is the responsibility of hardware to respond to the cache flush signal.
 
-The INVD instruction is a privileged instruction. When the processor is running in protected mode, the CPL of a program or procedure must be 0 to execute this instruction.
+The `INVD` instruction is a privileged instruction. When the processor is running in protected mode, the CPL of a program or procedure must be 0 to execute this instruction.
 
-The INVD instruction may be used when the cache is used as temporary memory and the cache contents need to be invalidated rather than written back to memory. When the cache is used as temporary memory, no external device should be actively writing data to main memory. 
+The `INVD` instruction may be used when the cache is used as temporary memory and the cache contents need to be invalidated rather than written back to memory. When the cache is used as temporary memory, no external device should be actively writing data to main memory. 
 
-Use this instruction with care. Data cached internally and not written back to main memory will be lost. Note that any data from an external device to main memory (for example, via a PCIWrite) can be temporarily stored in the caches; these data can be lost when an INVD instruction is executed. Unless there is a specific requirement or benefit to flushing caches without writing back modified cache lines (for example, temporary memory, testing, or fault recovery where cache coherency with main memory is not a concern), software should instead use the WBINVD instruction.
+Use this instruction with care. Data cached internally and not written back to main memory will be lost. Note that any data from an external device to main memory (for example, via a PCIWrite) can be temporarily stored in the caches; these data can be lost when an `INVD` instruction is executed. Unless there is a specific requirement or benefit to flushing caches without writing back modified cache lines (for example, temporary memory, testing, or fault recovery where cache coherency with main memory is not a concern), software should instead use the `WBINVD` instruction.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -45,7 +48,7 @@ The INVD instruction is implementation dependent; it may be implemented differen
 ```info-verb
 Flush(InternalCaches);
 SignalFlush(ExternalCaches);
-Continue (\htmlonly{*} Continue execution \htmlonly{*})
+Continue (* Continue execution *)
 ```
 ### Flags Affected
 

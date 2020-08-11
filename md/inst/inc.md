@@ -1,9 +1,12 @@
 ----------------------------
-title : INC instruction(Intel x86/64 assembly instruction)
+title : INC (Intel x86/64 assembly instruction)
 cat_title : INC
+ref_title : INC
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### INC--Increment by 1
+#@ INC
 
+**Increment by 1**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,9 +20,9 @@ cat_title : INC
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
-**40H through 47H are REX prefixes in 64-bit mode.
+\htmlonly{*}\htmlonly{*}40H through 47H are REX prefixes in 64-bit mode.
 
 ### Instruction Operand Encoding
 
@@ -31,11 +34,11 @@ cat_title : INC
 ### Description
 
 
-Adds 1 to the destination operand, while preserving the state of the CF flag. The destination operand can be a register or a memory location. This instruction allows a loop counter to be updated without disturbing the CF flag. (Use a ADD instruction with an immediate operand of 1 to perform an increment operation that does updates the CF flag.)
+Adds 1 to the destination operand, while preserving the state of the CF flag. The destination operand can be a register or a memory location. This instruction allows a loop counter to be updated without disturbing the CF flag. (Use a `ADD` instruction with an immediate operand of 1 to perform an increment operation that does updates the CF flag.)
 
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.
+This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically.
 
-In 64-bit mode, INC r16 and INC r32 are not encodable (because opcodes 40H through 47H are REX prefixes). Otherwise, the instruction's 64-bit mode default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits.
+In 64-bit mode, `INC` r16 and `INC` r32 are not encodable (because opcodes 40H through 47H are REX prefixes). Otherwise, the instruction's 64-bit mode default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits.
 
 
 ### Operation

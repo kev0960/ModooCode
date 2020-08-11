@@ -1,9 +1,12 @@
 ----------------------------
-title : FSAVE, FNSAVE instructions(Intel x86/64 assembly instruction)
+title : FSAVE, FNSAVEs (Intel x86/64 assembly instruction)
 cat_title : FSAVE, FNSAVE
+ref_title : FSAVE, FNSAVE
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FSAVE/FNSAVE--Store x87 FPU State
+#@ FSAVE, FNSAVE
 
+**Store x87 FPU State**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -12,12 +15,12 @@ cat_title : FSAVE, FNSAVE
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Description
 
 
-Stores the current FPU state (operating environment and register stack) at the specified destination in memory, and then re-initializes the FPU. The FSAVE instruction checks for and handles pending unmasked floating-point exceptions before storing the FPU state; the FNSAVE instruction does not.
+Stores the current FPU state (operating environment and register stack) at the specified destination in memory, and then re-initializes the FPU. The `FSAVE` instruction checks for and handles pending unmasked floating-point exceptions before storing the FPU state; the `FNSAVE` instruction does not.
 
 The FPU operating environment consists of the FPU control word, status word, tag word, instruction pointer, data pointer, and last opcode. Figures 8-9 through 8-12 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, show the layout in memory of the stored environment, depending on the operating mode of the processor (protected or real) and the current operand-size attribute (16-bit or 32-bit). In virtual-8086 mode, the real mode layouts are used. The contents of the FPU register stack are stored in the 80 bytes immediately follow the operating environment image.
 
@@ -27,7 +30,7 @@ After the FPU state has been saved, the FPU is reset to the same default values 
 
 The FSAVE/FNSAVE instructions are typically used when the operating system needs to perform a context switch, an exception handler needs to use the FPU, or an application program needs to pass a "clean" FPU to a procedure.
 
-The assembler issues two instructions for the FSAVE instruction (an FWAIT instruction followed by an FNSAVE instruction), and the processor executes each of these instructions separately. If an exception is generated for either of these instructions, the save EIP points to the instruction that caused the exception.
+The assembler issues two instructions for the `FSAVE` instruction (an `FWAIT` instruction followed by an `FNSAVE` instruction), and the processor executes each of these instructions separately. If an exception is generated for either of these instructions, the save EIP points to the instruction that caused the exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -42,7 +45,7 @@ When operating a Pentium or Intel486 processor in MS-DOS compatibility mode, it 
 ### Operation
 
 ```info-verb
-(\htmlonly{*} Save FPU State and Registers \htmlonly{*})
+(* Save FPU State and Registers *)
 DEST[FPUControlWord] <- FPUControlWord;
 DEST[FPUStatusWord] <- FPUStatusWord;
 DEST[FPUTagWord] <- FPUTagWord;
@@ -57,7 +60,7 @@ DEST[ST(4)]<- ST(4);
 DEST[ST(5)] <- ST(5);
 DEST[ST(6)] <- ST(6);
 DEST[ST(7)] <- ST(7);
-(\htmlonly{*} Initialize FPU \htmlonly{*})
+(* Initialize FPU *)
 FPUControlWord <- 037FH;
 FPUStatusWord <- 0;
 FPUTagWord <- FFFFH;

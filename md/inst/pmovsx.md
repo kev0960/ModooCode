@@ -1,9 +1,12 @@
 ----------------------------
-title : PMOVSX instruction(Intel x86/64 assembly instruction)
+title : PMOVSX (Intel x86/64 assembly instruction)
 cat_title : PMOVSX
+ref_title : PMOVSX
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PMOVSX--Packed Move with Sign Extend 
+#@ PMOVSX
 
+**Packed Move with Sign Extend **
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -123,13 +126,13 @@ IF VL >= 512
  Packed_Sign_Extend_BYTE_to_WORD(TMP_DEST[511:384], SRC[255:192])
 FI;
 FOR j  <- 0 TO KL-1
- i  <- j \htmlonly{*} 16
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 16
+ IF k1[j] OR *no writemask*
    THEN DEST[i+15:i] <-  TEMP_DEST[i+15:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+15:i] remains unchanged\htmlonly{*}
-      ELSE \htmlonly{*}zeroing-masking\htmlonly{*} ; zeroing-masking
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+15:i] remains unchanged*
+      ELSE *zeroing-masking* ; zeroing-masking
         DEST[i+15:i]  <- 0
 FI
  FI;

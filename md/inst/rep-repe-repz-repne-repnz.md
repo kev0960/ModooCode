@@ -1,9 +1,12 @@
 ----------------------------
-title : REP, REPE, REPZ, REPNE, REPNZ instructions(Intel x86/64 assembly instruction)
+title : REP, REPE, REPZ, REPNE, REPNZs (Intel x86/64 assembly instruction)
 cat_title : REP, REPE, REPZ, REPNE, REPNZ
+ref_title : REP, REPE, REPZ, REPNE, REPNZ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### REP/REPE/REPZ/REPNE/REPNZ--Repeat String Operation Prefix
+#@ REP, REPE, REPZ, REPNE, REPNZ
 
+**Repeat String Operation Prefix**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -18,7 +21,7 @@ cat_title : REP, REPE, REPZ, REPNE, REPNZ
 |F3 A5|REP MOVS m32, m32|NP|Valid |Valid|Move (E)CX doublewords from DS:[(E)SI] to ES:[(E)DI].|
 |F3 REX.W A5|REP MOVS m64, m64|NP|Valid|N.E.|Move RCX quadwords from [RSI] to [RDI].|
 |F3 6E|REP OUTS DX, r/m8|NP|Valid |Valid|Output (E)CX bytes from DS:[(E)SI] to port DX.|
-|F3 REX.W 6E|REP OUTS DX, r/m8*|NP|Valid|N.E.|Output RCX bytes from [RSI] to port DX.|
+|F3 REX.W 6E|REP OUTS DX, r/m8\htmlonly{*}|NP|Valid|N.E.|Output RCX bytes from [RSI] to port DX.|
 |F3 6F|REP OUTS DX, r/m16|NP|Valid |Valid|Output (E)CX words from DS:[(E)SI] to port DX.|
 |F3 6F|REP OUTS DX, r/m32|NP|Valid |Valid|Output (E)CX doublewords from DS:[(E)SI] to port DX.|
 |F3 REX.W 6F|REP OUTS DX, r/m32|NP|Valid|N.E.|Output RCX default size from [RSI] to port DX.|
@@ -85,7 +88,7 @@ F2 REX.W AF Find RAX, starting at [RDI].
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
 ### Instruction Operand Encoding
 
@@ -96,26 +99,26 @@ F2 REX.W AF Find RAX, starting at [RDI].
 ### Description
 
 
-Repeats a string instruction the number of times specified in the count register or until the indicated condition of the ZF flag is no longer met. The REP (repeat), REPE (repeat while equal), REPNE (repeat while not equal), REPZ (repeat while zero), and REPNZ (repeat while not zero) mnemonics are prefixes that can be added to one of the string instructions. The REP prefix can be added to the INS, OUTS, MOVS, LODS, and STOS instructions, and the REPE, REPNE, REPZ, and REPNZ prefixes can be added to the CMPS and SCAS instructions. (The REPZ and REPNZ prefixes are synonymous forms of the REPE and REPNE prefixes, respectively.) The F3H prefix is defined for the following instructions and undefined for the rest:
+Repeats a string instruction the number of times specified in the count register or until the indicated condition of the ZF flag is no longer met. The `REP` (repeat), `REPE` (repeat while equal), `REPNE` (repeat while not equal), `REPZ` (repeat while zero), and `REPNZ` (repeat while not zero) mnemonics are prefixes that can be added to one of the string instructions. The `REP` prefix can be added to the `INS`, `OUTS`, `MOVS`, `LODS`, and `STOS` instructions, and the `REPE`, `REPNE`, `REPZ`, and `REPNZ` prefixes can be added to the `CMPS` and `SCAS` instructions. (The `REPZ` and `REPNZ` prefixes are synonymous forms of the `REPE` and `REPNE` prefixes, respectively.) The F3H prefix is defined for the following instructions and undefined for the rest:
 
    *  F3H as REP/REPE/REPZ for string and input/output instruction.
 
-   *  F3H is a mandatory prefix for POPCNT, LZCNT, and ADOX.
+   *  F3H is a mandatory prefix for `POPCNT`, `LZCNT`, and `ADOX`.
 
-The REP prefixes apply only to one string instruction at a time. To repeat a block of instructions, use the LOOP instruction or another looping construct. All of these repeat prefixes cause the associated instruction to be repeated until the count in register is decremented to 0. See Table 4-17.
+The `REP` prefixes apply only to one string instruction at a time. To repeat a block of instructions, use the `LOOP` instruction or another looping construct. All of these repeat prefixes cause the associated instruction to be repeated until the count in register is decremented to 0. See Table 4-17.
 
 ### Table 4-17.  Repeat Prefixes
 
 
-|**Repeat Prefix**|**Termination Condition 1***|**Termination Condition 2**|
-|-----------------|----------------------------|---------------------------|
+|**Repeat Prefix**|**Termination Condition 1\htmlonly{*}**|**Termination Condition 2**|
+|-----------------|---------------------------------------|---------------------------|
 |REP|RCX or (E)CX = 0 |None|
 |REPE/REPZ|RCX or (E)CX = 0|ZF = 0|
 |REPNE/REPNZ|RCX or (E)CX = 0 |ZF = 1|
 ### NOTES:
 
 
-*Count register is CX, ECX or RCX by default, depending on attributes of the operating modes.
+\htmlonly{*}Count register is CX, ECX or RCX by default, depending on attributes of the operating modes.
 
 
 

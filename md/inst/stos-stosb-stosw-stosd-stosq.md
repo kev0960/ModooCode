@@ -1,9 +1,12 @@
 ----------------------------
-title : STOS, STOSB, STOSW, STOSD, STOSQ instructions(Intel x86/64 assembly instruction)
+title : STOS, STOSB, STOSW, STOSD, STOSQs (Intel x86/64 assembly instruction)
 cat_title : STOS, STOSB, STOSW, STOSD, STOSQ
+ref_title : STOS, STOSB, STOSW, STOSD, STOSQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### STOS/STOSB/STOSW/STOSD/STOSQ--Store String
+#@ STOS, STOSB, STOSW, STOSD, STOSQ
 
+**Store String**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -26,19 +29,19 @@ cat_title : STOS, STOSB, STOSW, STOSD, STOSQ
 
 In non-64-bit and default 64-bit mode; stores a byte, word, or doubleword from the AL, AX, or EAX register (respectively) into the destination operand. The destination operand is a memory location, the address of which is read from either the ES:EDI or ES:DI register (depending on the address-size attribute of the instruction and the mode of operation). The ES segment cannot be overridden with a segment override prefix.
 
-At the assembly-code level, two forms of the instruction are allowed: the "explicit-operands" form and the "no-operands" form. The explicit-operands form (specified with the STOS mnemonic) allows the destination operand to be specified explicitly. Here, the destination operand should be a symbol that indicates the size and location of the destination value. The source operand is then automatically selected to match the size of the destination operand (the AL register for byte operands, AX for word operands, EAX for doubleword operands). The explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the destination operand symbol must specify the correct type (size) of the operand (byte, word, or doubleword), but it does not have to specify the correct location. The location is always specified by the ES:(E)DI register. These must be loaded correctly before the store string instruction is executed.
+At the assembly-code level, two forms of the instruction are allowed: the "explicit-operands" form and the "no-operands" form. The explicit-operands form (specified with the `STOS` mnemonic) allows the destination operand to be specified explicitly. Here, the destination operand should be a symbol that indicates the size and location of the destination value. The source operand is then automatically selected to match the size of the destination operand (the AL register for byte operands, AX for word operands, EAX for doubleword operands). The explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the destination operand symbol must specify the correct type (size) of the operand (byte, word, or doubleword), but it does not have to specify the correct location. The location is always specified by the ES:(E)DI register. These must be loaded correctly before the store string instruction is executed.
 
-The no-operands form provides "short forms" of the byte, word, doubleword, and quadword versions of the STOS instructions. Here also ES:(E)DI is assumed to be the destination operand and AL, AX, or EAX is assumed to be the source operand. The size of the destination and source operands is selected by the mnemonic: STOSB (byte read from register AL), STOSW (word from AX), STOSD (doubleword from EAX).
+The no-operands form provides "short forms" of the byte, word, doubleword, and quadword versions of the `STOS` instructions. Here also ES:(E)DI is assumed to be the destination operand and AL, AX, or EAX is assumed to be the source operand. The size of the destination and source operands is selected by the mnemonic: `STOSB` (byte read from register AL), `STOSW` (word from AX), `STOSD` (doubleword from EAX).
 
 After the byte, word, or doubleword is transferred from the register to the memory location, the (E)DI register is incremented or decremented according to the setting of the DF flag in the EFLAGS register. If the DF flag is 0, the register is incremented; if the DF flag is 1, the register is decremented (the register is incremented or decremented by 1 for byte operations, by 2 for word operations, by 4 for doubleword operations).
 
 
 
-NOTE: To improve performance, more recent processors support modifications to the processor's operation during the string store operations initiated with STOS and STOSB. See Section 7.3.9.3 in the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 1 for additional information on fast-string operation.
+NOTE: To improve performance, more recent processors support modifications to the processor's operation during the string store operations initiated with `STOS` and `STOSB`. See Section 7.3.9.3 in the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 1 for additional information on fast-string operation.
 
-In 64-bit mode, the default address size is 64 bits, 32-bit address size is supported using the prefix 67H. Using a REX prefix in the form of REX.W promotes operation on doubleword operand to 64 bits. The promoted no-operand mnemonic is STOSQ. STOSQ (and its explicit operands variant) store a quadword from the RAX register into the destination addressed by RDI or EDI. See the summary chart at the beginning of this section for encoding data and limits.
+In 64-bit mode, the default address size is 64 bits, 32-bit address size is supported using the prefix 67H. Using a REX prefix in the form of REX.W promotes operation on doubleword operand to 64 bits. The promoted no-operand mnemonic is `STOSQ`. `STOSQ` (and its explicit operands variant) store a quadword from the RAX register into the destination addressed by RDI or EDI. See the summary chart at the beginning of this section for encoding data and limits.
 
-The STOS, STOSB, STOSW, STOSD, STOSQ instructions can be preceded by the REP prefix for block loads of ECX bytes, words, or doublewords. More often, however, these instructions are used within a LOOP construct because data needs to be moved into the AL, AX, or EAX register before it can be stored. See "REP/REPE/REPZ /REPNE/REPNZ--Repeat String Operation Prefix" in this chapter for a description of the REP prefix.
+The `STOS`, `STOSB`, `STOSW`, `STOSD`, `STOSQ` instructions can be preceded by the `REP` prefix for block loads of ECX bytes, words, or doublewords. More often, however, these instructions are used within a `LOOP` construct because data needs to be moved into the AL, AX, or EAX register before it can be stored. See "REP/REPE/REPZ /REPNE/REPNZ--Repeat String Operation Prefix" in this chapter for a description of the `REP` prefix.
 
 
 ### Operation

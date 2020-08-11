@@ -1,9 +1,12 @@
 ----------------------------
-title : FPREM instruction(Intel x86/64 assembly instruction)
+title : FPREM (Intel x86/64 assembly instruction)
 cat_title : FPREM
+ref_title : FPREM
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FPREM--Partial Remainder
+#@ FPREM
 
+**Partial Remainder**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -22,22 +25,22 @@ This instruction produces an exact result; the inexact-result exception does not
 ### Table 3-31.  FPREM Results
 
 
-|-$$\infty$$\newline{}-$$\infty$$ *|-F\newline{}*|**ST(**\newline{}-0\newline{}*|**1)**\newline{}  +0\newline{}  *|+F\newline{}*|+$$\infty$$\newline{}*|NaN\newline{}NaN|
-|----------------------------------|-------------|------------------------------|---------------------------------|-------------|----------------------|----------------|
-|**ST(0)** -F ST(0)|-F or -0|**|**|-F or -0|ST(0)|NaN|
-|-0 -0|-0|*|*|-0|-0|NaN|
-|+0 +0|+0|*|*|+0|+0|NaN|
-|+F ST(0)|+F or +0|**|**|+F or +0|ST(0)|NaN|
-|+$$\infty$$ *|*|*|*|*|*|NaN|
+|-$$\infty$$\newline{}-$$\infty$$ \htmlonly{*}|-F\newline{}\htmlonly{*}|**ST(**\newline{}-0\newline{}\htmlonly{*}|**1)**\newline{}  +0\newline{}  \htmlonly{*}|+F\newline{}\htmlonly{*}|+$$\infty$$\newline{}\htmlonly{*}|NaN\newline{}NaN|
+|---------------------------------------------|------------------------|-----------------------------------------|--------------------------------------------|------------------------|---------------------------------|----------------|
+|**ST(0)** -F ST(0)|-F or -0|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|-F or -0|ST(0)|NaN|
+|-0 -0|-0|\htmlonly{*}|\htmlonly{*}|-0|-0|NaN|
+|+0 +0|+0|\htmlonly{*}|\htmlonly{*}|+0|+0|NaN|
+|+F ST(0)|+F or +0|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|+F or +0|ST(0)|NaN|
+|+$$\infty$$ \htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
 
 FMeans finite floating-point value.
 
-*Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
-**Indicates floating-point zero-divide (#Z) exception.
+\htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
 
 When the result is 0, its sign is the same as that of the dividend. When the modulus is $$\infty$$, the result is equal to the value in ST(0). 
 
@@ -63,7 +66,7 @@ IF D < 64
    Q <- Integer(TruncateTowardZero(ST(0) / ST(1)));
    ST(0) <- ST(0) - (ST(1) `*` Q);
    C2 <- 0;
-   C0, C3, C1 <- LeastSignificantBits(Q); (\htmlonly{*} Q2, Q1, Q0 \htmlonly{*})
+   C0, C3, C1 <- LeastSignificantBits(Q); (* Q2, Q1, Q0 *)
  ELSE
    C2 <- 1;
    N <- An implementation-dependent number between 32 and 63;

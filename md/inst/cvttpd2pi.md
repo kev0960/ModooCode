@@ -1,9 +1,12 @@
 ----------------------------
-title : CVTTPD2PI instruction(Intel x86/64 assembly instruction)
+title : CVTTPD2PI (Intel x86/64 assembly instruction)
 cat_title : CVTTPD2PI
+ref_title : CVTTPD2PI
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CVTTPD2PI--Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers
+#@ CVTTPD2PI
 
+**Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -21,7 +24,7 @@ Converts two packed double-precision floating-point values in the source operand
 
 When a conversion is inexact, a truncated (round toward zero) result is returned. If a converted result is larger than the maximum signed doubleword integer, the floating-point invalid exception is raised, and if this exception is masked, the indefinite integer value (80000000H) is returned.
 
-This instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the CVTTPD2PI instruction is executed.
+This instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the `CVTTPD2PI` instruction is executed.
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).
 

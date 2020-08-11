@@ -1,9 +1,12 @@
 ----------------------------
-title : VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PD instructions(Intel x86/64 assembly instruction)
+title : VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PDs (Intel x86/64 assembly instruction)
 cat_title : VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PD
+ref_title : VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VFMADDSUB132PD/VFMADDSUB213PD/VFMADDSUB231PD--Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values
+#@ VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PD
 
+**Fused Multiply-Alternating Add/Subtract of Packed Double-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -57,40 +60,40 @@ Compiler tools may optionally support a complementary mnemonic for each instruct
 #### VFMADDSUB132PD DEST, SRC2, SRC3 
 ```info-verb
 IF (VEX.128) THEN 
- DEST[63:0] <- RoundFPControl_MXCSR(DEST[63:0]\htmlonly{*}SRC3[63:0] - SRC2[63:0])
- DEST[127:64] <- RoundFPControl_MXCSR(DEST[127:64]\htmlonly{*}SRC3[127:64] + SRC2[127:64])
+ DEST[63:0] <- RoundFPControl_MXCSR(DEST[63:0]*SRC3[63:0] - SRC2[63:0])
+ DEST[127:64] <- RoundFPControl_MXCSR(DEST[127:64]*SRC3[127:64] + SRC2[127:64])
  DEST[MAX_VL-1:128] <- 0
 ELSEIF (VEX.256)
- DEST[63:0]  <-RoundFPControl_MXCSR(DEST[63:0]\htmlonly{*}SRC3[63:0] - SRC2[63:0])
- DEST[127:64]  <-RoundFPControl_MXCSR(DEST[127:64]\htmlonly{*}SRC3[127:64] + SRC2[127:64])
- DEST[191:128] <- RoundFPControl_MXCSR(DEST[191:128]\htmlonly{*}SRC3[191:128] - SRC2[191:128])
- DEST[255:192] <- RoundFPControl_MXCSR(DEST[255:192]\htmlonly{*}SRC3[255:192] + SRC2[255:192]
+ DEST[63:0]  <-RoundFPControl_MXCSR(DEST[63:0]*SRC3[63:0] - SRC2[63:0])
+ DEST[127:64]  <-RoundFPControl_MXCSR(DEST[127:64]*SRC3[127:64] + SRC2[127:64])
+ DEST[191:128] <- RoundFPControl_MXCSR(DEST[191:128]*SRC3[191:128] - SRC2[191:128])
+ DEST[255:192] <- RoundFPControl_MXCSR(DEST[255:192]*SRC3[255:192] + SRC2[255:192]
 FI
 ```
 #### VFMADDSUB213PD DEST, SRC2, SRC3 
 ```info-verb
 IF (VEX.128) THEN 
- DEST[63:0]  <-RoundFPControl_MXCSR(SRC2[63:0]\htmlonly{*}DEST[63:0] - SRC3[63:0])
- DEST[127:64]  <-RoundFPControl_MXCSR(SRC2[127:64]\htmlonly{*}DEST[127:64] + SRC3[127:64])
+ DEST[63:0]  <-RoundFPControl_MXCSR(SRC2[63:0]*DEST[63:0] - SRC3[63:0])
+ DEST[127:64]  <-RoundFPControl_MXCSR(SRC2[127:64]*DEST[127:64] + SRC3[127:64])
  DEST[MAX_VL-1:128]  <-0
 ELSEIF (VEX.256)
- DEST[63:0]  <-RoundFPControl_MXCSR(SRC2[63:0]\htmlonly{*}DEST[63:0] - SRC3[63:0])
- DEST[127:64]  <-RoundFPControl_MXCSR(SRC2[127:64]\htmlonly{*}DEST[127:64] + SRC3[127:64])
- DEST[191:128] <- RoundFPControl_MXCSR(SRC2[191:128]\htmlonly{*}DEST[191:128] - SRC3[191:128])
- DEST[255:192] <- RoundFPControl_MXCSR(SRC2[255:192]\htmlonly{*}DEST[255:192] + SRC3[255:192]
+ DEST[63:0]  <-RoundFPControl_MXCSR(SRC2[63:0]*DEST[63:0] - SRC3[63:0])
+ DEST[127:64]  <-RoundFPControl_MXCSR(SRC2[127:64]*DEST[127:64] + SRC3[127:64])
+ DEST[191:128] <- RoundFPControl_MXCSR(SRC2[191:128]*DEST[191:128] - SRC3[191:128])
+ DEST[255:192] <- RoundFPControl_MXCSR(SRC2[255:192]*DEST[255:192] + SRC3[255:192]
 FI
 ```
 #### VFMADDSUB231PD DEST, SRC2, SRC3 
 ```info-verb
 IF (VEX.128) THEN 
- DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]\htmlonly{*}SRC3[63:0] - DEST[63:0])
- DEST[127:64]  <-RoundFPControl_MXCSR(SRC2[127:64]\htmlonly{*}SRC3[127:64] + DEST[127:64])
+ DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]*SRC3[63:0] - DEST[63:0])
+ DEST[127:64]  <-RoundFPControl_MXCSR(SRC2[127:64]*SRC3[127:64] + DEST[127:64])
  DEST[MAX_VL-1:128]  <-0
 ELSEIF (VEX.256)
- DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]\htmlonly{*}SRC3[63:0] - DEST[63:0])
- DEST[127:64]  <-RoundFPControl_MXCSR(SRC2[127:64]\htmlonly{*}SRC3[127:64] + DEST[127:64])
- DEST[191:128] <- RoundFPControl_MXCSR(SRC2[191:128]\htmlonly{*}SRC3[191:128] - DEST[191:128])
- DEST[255:192]  <-RoundFPControl_MXCSR(SRC2[255:192]\htmlonly{*}SRC3[255:192] + DEST[255:192]
+ DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]*SRC3[63:0] - DEST[63:0])
+ DEST[127:64]  <-RoundFPControl_MXCSR(SRC2[127:64]*SRC3[127:64] + DEST[127:64])
+ DEST[191:128] <- RoundFPControl_MXCSR(SRC2[191:128]*SRC3[191:128] - DEST[191:128])
+ DEST[255:192]  <-RoundFPControl_MXCSR(SRC2[255:192]*SRC3[255:192] + DEST[255:192]
 FI
 ```
 #### VFMADDSUB132PD DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a register)

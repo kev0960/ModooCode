@@ -1,9 +1,12 @@
 ----------------------------
-title : FDIV, FDIVP, FIDIV instructions(Intel x86/64 assembly instruction)
+title : FDIV, FDIVP, FIDIVs (Intel x86/64 assembly instruction)
 cat_title : FDIV, FDIVP, FIDIV
+ref_title : FDIV, FDIVP, FIDIV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FDIV/FDIVP/FIDIV--Divide
+#@ FDIV, FDIVP, FIDIV
 
+**Divide**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -22,9 +25,9 @@ Divides the destination operand by the source operand and stores the result in t
 
 The no-operand version of the instruction divides the contents of the ST(1) register by the contents of the ST(0) register. The one-operand version divides the contents of the ST(0) register by the contents of a memory location (either a floating-point or an integer value). The two-operand version, divides the contents of the ST(0) register by the contents of the ST(i) register or vice versa.
 
-The FDIVP instructions perform the additional operation of popping the FPU register stack after storing the result. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The no-operand version of the floating-point divide instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is FDIV rather than FDIVP.
+The `FDIVP` instructions perform the additional operation of popping the FPU register stack after storing the result. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The no-operand version of the floating-point divide instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is `FDIV` rather than `FDIVP`.
 
-The FIDIV instructions convert an integer source operand to double extended-precision floating-point format before performing the division. When the source operand is an integer 0, it is treated as a +0.
+The `FIDIV` instructions convert an integer source operand to double extended-precision floating-point format before performing the division. When the source operand is an integer 0, it is treated as a +0.
 
 If an unmasked divide-by-zero exception (#Z) is generated, no result is stored; if the exception is masked, an $$\infty$$ of the appropriate sign is stored in the destination operand.
 
@@ -55,15 +58,15 @@ NaN
 
 
 
-|- $$\infty$$\newline{}- $$\infty$$ *|- F\newline{}+ 0|**DE**\newline{}- 0\newline{}+ 0|**ST**\newline{}+ 0\newline{}- 0|+ F\newline{}- 0|+ $$\infty$$\newline{}*|
-|------------------------------------|----------------|--------------------------------|--------------------------------|----------------|-----------------------|
+|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{}+ 0|**DE**\newline{}- 0\newline{}+ 0|**ST**\newline{}+ 0\newline{}- 0|+ F\newline{}- 0|+ $$\infty$$\newline{}\htmlonly{*}|
+|-----------------------------------------------|----------------|--------------------------------|--------------------------------|----------------|----------------------------------|
 |- F + $$\infty$$|+ F|+ 0|- 0|- F|- $$\infty$$|
 |- I + $$\infty$$|+ F|+ 0|- 0|- F|- $$\infty$$|
-|**SRC** - 0 + $$\infty$$|**|*|*|**|- $$\infty$$|
-|+ 0 - $$\infty$$|**|*|*|**|+ $$\infty$$|
+|**SRC** - 0 + $$\infty$$|\htmlonly{*}\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}\htmlonly{*}|- $$\infty$$|
+|+ 0 - $$\infty$$|\htmlonly{*}\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}\htmlonly{*}|+ $$\infty$$|
 |+ I - $$\infty$$|- F|- 0|+ 0|+ F|+ $$\infty$$|
 |+ F - $$\infty$$|- F|- 0|+ 0|+ F|+ $$\infty$$|
-|+ $$\infty$$ *|- 0|- 0|+ 0|+ 0|*|
+|+ $$\infty$$ \htmlonly{*}|- 0|- 0|+ 0|+ 0|\htmlonly{*}|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
@@ -72,9 +75,9 @@ FMeans finite floating-point value.
 
 IMeans integer.
 
-*Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
-**Indicates floating-point zero-divide (#Z) exception.
+\htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -89,7 +92,7 @@ IF SRC = 0
    IF Instruction is FIDIV
     THEN
       DEST <- DEST / ConvertToDoubleExtendedPrecisionFP(SRC);
-    ELSE (\htmlonly{*} Source operand is floating-point value \htmlonly{*})
+    ELSE (* Source operand is floating-point value *)
       DEST <- DEST / SRC;
    FI;
 FI;

@@ -1,9 +1,12 @@
 ----------------------------
-title : PACKSSWB, PACKSSDW instructions(Intel x86/64 assembly instruction)
+title : PACKSSWB, PACKSSDWs (Intel x86/64 assembly instruction)
 cat_title : PACKSSWB, PACKSSDW
+ref_title : PACKSSWB, PACKSSDW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PACKSSWB/PACKSSDW--Pack with Signed Saturation
+#@ PACKSSWB, PACKSSDW
 
+**Pack with Signed Saturation**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|------------------------------------|---------------|
@@ -43,7 +46,7 @@ cat_title : PACKSSWB, PACKSSDW
 
 Converts packed signed word integers into packed signed byte integers (PACKSSWB) or converts packed signed doubleword integers into packed signed word integers (PACKSSDW), using saturation to handle overflow condi-tions. See Figure4-6 for an example of the packing operation.
 
-PACKSSWB converts packed signed word integers in the first and second source operands into packed signed byte integers using signed saturation to handle overflow conditions beyond the range of signed byte integers. If the signed doubleword value is beyond the range of an unsigned word (i.e. greater than 7FH or less than 80H), the saturated signed byte integer value of 7FH or 80H, respectively, is stored in the destination. PACKSSDW converts packed signed doubleword integers in the first and second source operands into packed signed word integers using signed saturation to handle overflow conditions beyond 7FFFH and 8000H.
+PACKSSWB converts packed signed word integers in the first and second source operands into packed signed byte integers using signed saturation to handle overflow conditions beyond the range of signed byte integers. If the signed doubleword value is beyond the range of an unsigned word (i.e. greater than 7FH or less than 80H), the saturated signed byte integer value of 7FH or 80H, respectively, is stored in the destination. `PACKSSDW` converts packed signed doubleword integers in the first and second source operands into packed signed word integers using signed saturation to handle overflow conditions beyond 7FFFH and 8000H.
 
 EVEX encoded PACKSSWB: The first source operand is a ZMM/YMM/XMM register. The second source operand is a ZMM/YMM/XMM register or a 512/256/128-bit memory location. The destination operand is a ZMM/YMM/XMM register, updated conditional under the writemask k1.
 
@@ -154,7 +157,7 @@ EVEX encoded PACKSSDW: The first source operand is a ZMM/YMM/XMM register. The s
 <text x="145.688828" y="25.959991" textLength="4.189500" font-size="8px">C</text>
 <text x="246.730911" y="27.399445" textLength="4.907700" font-size="8px">D</text>
 </svg>
-<figcaption>Figure 4-6.  Operation of the PACKSSDW Instruction Using 64-bit Operands
+<figcaption>Figure 4-6.  Operation of the `PACKSSDW` Instruction Using 64-bit Operands
 </figcaption></figure>
 ```
 

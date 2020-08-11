@@ -1,9 +1,12 @@
 ----------------------------
-title : BLSR instruction(Intel x86/64 assembly instruction)
+title : BLSR (Intel x86/64 assembly instruction)
 cat_title : BLSR
+ref_title : BLSR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BLSR -- Reset Lowest Set Bit
+#@ BLSR
 
+** Reset Lowest Set Bit**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
@@ -18,7 +21,7 @@ cat_title : BLSR
 ### Description
 
 
-Copies all bits from the source operand to the destination operand and resets (=0) the bit position in the destina-tion operand that corresponds to the lowest set bit of the source operand. If the source operand is zero BLSR sets CF.
+Copies all bits from the source operand to the destination operand and resets (=0) the bit position in the destina-tion operand that corresponds to the lowest set bit of the source operand. If the source operand is zero `BLSR` sets CF.
 
 This instruction is not supported in real mode and virtual-8086 mode. The operand size is always 32 bits if not in 64-bit mode. In 64-bit mode operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to execute this instruction with VEX.L not equal to 0 will cause #UD.
 

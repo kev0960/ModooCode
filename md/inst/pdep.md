@@ -1,9 +1,12 @@
 ----------------------------
-title : PDEP instruction(Intel x86/64 assembly instruction)
+title : PDEP (Intel x86/64 assembly instruction)
 cat_title : PDEP
+ref_title : PDEP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PDEP -- Parallel Bits Deposit
+#@ PDEP
 
+** Parallel Bits Deposit**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|

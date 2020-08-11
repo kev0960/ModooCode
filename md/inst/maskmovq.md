@@ -1,9 +1,12 @@
 ----------------------------
-title : MASKMOVQ instruction(Intel x86/64 assembly instruction)
+title : MASKMOVQ (Intel x86/64 assembly instruction)
 cat_title : MASKMOVQ
+ref_title : MASKMOVQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MASKMOVQ--Store Selected Bytes of Quadword
+#@ MASKMOVQ
 
+**Store Selected Bytes of Quadword**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -21,11 +24,11 @@ Stores selected bytes from the source operand (first operand) into a 64-bit memo
 
 The most significant bit in each byte of the mask operand determines whether the corresponding byte in the source operand is written to the corresponding byte location in memory: 0 indicates no write and 1 indicates write. 
 
-The MASKMOVQ instruction generates a non-temporal hint to the processor to minimize cache pollution. The non-temporal hint is implemented by using a write combining (WC) memory type protocol (see "Caching of Temporal vs. Non-Temporal Data" in Chapter 10, of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1). Because the WC protocol uses a weakly-ordered memory consistency model, a fencing operation imple-mented with the SFENCE or MFENCE instruction should be used in conjunction with MASKMOVQ instructions if multiple processors might use different memory types to read/write the destination memory locations.
+The `MASKMOVQ` instruction generates a non-temporal hint to the processor to minimize cache pollution. The non-temporal hint is implemented by using a write combining (WC) memory type protocol (see "Caching of Temporal vs. Non-Temporal Data" in Chapter 10, of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1). Because the WC protocol uses a weakly-ordered memory consistency model, a fencing operation imple-mented with the `SFENCE` or `MFENCE` instruction should be used in conjunction with `MASKMOVQ` instructions if multiple processors might use different memory types to read/write the destination memory locations.
 
 This instruction causes a transition from x87 FPU to MMX technology state (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]).
 
-The behavior of the MASKMOVQ instruction with a mask of all 0s is as follows:
+The behavior of the `MASKMOVQ` instruction with a mask of all 0s is as follows:
 
 *  No data will be written to memory. 
 
@@ -37,7 +40,7 @@ The behavior of the MASKMOVQ instruction with a mask of all 0s is as follows:
 
 *  If the destination memory region is mapped as UC or WP, enforcement of associated semantics for these memory types is not guaranteed (that is, is reserved) and is implementation-specific. 
 
-The MASKMOVQ instruction can be used to improve performance for algorithms that need to merge data on a byte-by-byte basis. It should not cause a read for ownership; doing so generates unnecessary bandwidth since data is to be written directly using the byte-mask without allocating old data prior to the store. 
+The `MASKMOVQ` instruction can be used to improve performance for algorithms that need to merge data on a byte-by-byte basis. It should not cause a read for ownership; doing so generates unnecessary bandwidth since data is to be written directly using the byte-mask without allocating old data prior to the store. 
 
 In 64-bit mode, the memory address is specified by DS:RDI.
 
@@ -46,12 +49,12 @@ In 64-bit mode, the memory address is specified by DS:RDI.
 
 ```info-verb
 IF (MASK[7] = 1)
- THEN DEST[DI/EDI] <- SRC[7:0] ELSE (\htmlonly{*} Memory location unchanged \htmlonly{*}); FI;
+ THEN DEST[DI/EDI] <- SRC[7:0] ELSE (* Memory location unchanged *); FI;
 IF (MASK[15] = 1) 
- THEN DEST[DI/EDI +1] <- SRC[15:8] ELSE (\htmlonly{*} Memory location unchanged \htmlonly{*}); FI;
- (\htmlonly{*} Repeat operation for 3rd through 6th bytes in source operand \htmlonly{*})
+ THEN DEST[DI/EDI +1] <- SRC[15:8] ELSE (* Memory location unchanged *); FI;
+ (* Repeat operation for 3rd through 6th bytes in source operand *)
 IF (MASK[63] = 1) 
- THEN DEST[DI/EDI +15] <- SRC[63:56] ELSE (\htmlonly{*} Memory location unchanged \htmlonly{*}); FI;
+ THEN DEST[DI/EDI +15] <- SRC[63:56] ELSE (* Memory location unchanged *); FI;
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

@@ -1,9 +1,12 @@
 ----------------------------
-title : PMULLW instruction(Intel x86/64 assembly instruction)
+title : PMULLW (Intel x86/64 assembly instruction)
 cat_title : PMULLW
+ref_title : PMULLW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PMULLW--Multiply Packed Signed Integers and Store Low Result
+#@ PMULLW
 
+**Multiply Packed Signed Integers and Store Low Result**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -252,7 +255,7 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 ### Operation
 #### PMULLW (with 64-bit operands)
 ```info-verb
- TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (\htmlonly{*} Signed multiplication \htmlonly{*})
+ TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (* Signed multiplication *)
  TEMP1[31:0] <- DEST[31:16] `*` SRC[31:16];
  TEMP2[31:0] <- DEST[47:32] `*` SRC[47:32];
  TEMP3[31:0] <- DEST[63:48] `*` SRC[63:48];
@@ -263,7 +266,7 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 ```
 #### PMULLW (with 128-bit operands)
 ```info-verb
- TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (\htmlonly{*} Signed multiplication \htmlonly{*})
+ TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (* Signed multiplication *)
  TEMP1[31:0] <- DEST[31:16] `*` SRC[31:16];
  TEMP2[31:0] <- DEST[47:32] `*` SRC[47:32];
  TEMP3[31:0] <- DEST[63:48] `*` SRC[63:48];

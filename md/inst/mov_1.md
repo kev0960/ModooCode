@@ -1,9 +1,12 @@
 ----------------------------
-title : MOV instruction(Intel x86/64 assembly instruction)
+title : MOV (Intel x86/64 assembly instruction)
 cat_title : MOV
+ref_title : MOV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOV--Move to/from Control Registers
+#@ MOV
 
+**Move to/from Control Registers**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -16,7 +19,7 @@ cat_title : MOV
 ### NOTE:
 
 
-1. MOV CR* instructions, except for MOV CR8, are serializing instructions. MOV CR8 is not architecturally defined as a serializing instruction. For more information, see Chapter 8 in Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 3A.
+1. MOV CR\htmlonly{*} instructions, except for MOV CR8, are serializing instructions. MOV CR8 is not architecturally defined as a serializing instruction. For more information, see Chapter 8 in Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 3A.
 
 ### Instruction Operand Encoding
 
@@ -44,7 +47,7 @@ In 64-bit mode, the instruction's default operation size is 64 bits. The REX.R p
 
 the REX.R prefix to specify a register other than CR8 causes an invalid-opcode exception. See the summary chart at the beginning of this section for encoding data and limits.
 
-If CR4.PCIDE= 1, bit63 of the source operand to MOV to CR3 determines whether the instruction invalidates entries in the TLBs and the paging-structure caches (see Section 4.10.4.1, "Operations that Invalidate TLBs and Paging-Structure Caches," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A). The instruction does not modify bit63 of CR3, which is reserved and always 0.
+If CR4.PCIDE= 1, bit63 of the source operand to `MOV` to CR3 determines whether the instruction invalidates entries in the TLBs and the paging-structure caches (see Section 4.10.4.1, "Operations that Invalidate TLBs and Paging-Structure Caches," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A). The instruction does not modify bit63 of CR3, which is reserved and always 0.
 
 See "Changes to Instruction Behavior in VMX Non-Root Operation" in Chapter 25 of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.
 

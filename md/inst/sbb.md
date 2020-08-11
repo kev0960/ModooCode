@@ -1,9 +1,12 @@
 ----------------------------
-title : SBB instruction(Intel x86/64 assembly instruction)
+title : SBB (Intel x86/64 assembly instruction)
 cat_title : SBB
+ref_title : SBB
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SBB--Integer Subtraction with Borrow
+#@ SBB
 
+**Integer Subtraction with Borrow**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -12,7 +15,7 @@ cat_title : SBB
 |1D id|SBB EAX, imm32|I|Valid |Valid|Subtract with borrow imm32 from EAX.|
 |REX.W + 1D id|SBB RAX, imm32|I|Valid|N.E.|Subtract with borrow sign-extended imm.32 to 64-bits from RAX.|
 |80 /3 ib|SBB r/m8, imm8|MI|Valid |Valid|Subtract with borrow imm8 from r/m8.|
-|REX + 80 /3 ib|SBB r/m8*, imm8|MI|Valid|N.E.|Subtract with borrow imm8 from r/m8.|
+|REX + 80 /3 ib|SBB r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Subtract with borrow imm8 from r/m8.|
 |81 /3 iw|SBB r/m16, imm16|MI|Valid |Valid|Subtract with borrow imm16 from r/m16.|
 |81 /3 id|SBB r/m32, imm32|MI|Valid |Valid|Subtract with borrow imm32 from r/m32.|
 |REX.W + 81 /3 id|SBB r/m64, imm32|MI|Valid|N.E.|Subtract with borrow sign-extended imm32 to 64-bits from r/m64.|
@@ -20,19 +23,19 @@ cat_title : SBB
 |83 /3 ib|SBB r/m32, imm8|MI|Valid |Valid|Subtract with borrow sign-extended imm8 from r/m32.|
 |REX.W + 83 /3 ib|SBB r/m64, imm8|MI|Valid|N.E.|Subtract with borrow sign-extended imm8 from r/m64.|
 |18 /r|SBB r/m8, r8|MR|Valid |Valid|Subtract with borrow r8 from r/m8.|
-|REX + 18 /r|SBB r/m8*, r8|MR|Valid|N.E.|Subtract with borrow r8 from r/m8.|
+|REX + 18 /r|SBB r/m8\htmlonly{*}, r8|MR|Valid|N.E.|Subtract with borrow r8 from r/m8.|
 |19 /r|SBB r/m16, r16|MR|Valid |Valid|Subtract with borrow r16 from r/m16.|
 |19 /r|SBB r/m32, r32|MR|Valid |Valid|Subtract with borrow r32 from r/m32.|
 |REX.W + 19 /r|SBB r/m64, r64|MR|Valid|N.E.|Subtract with borrow r64 from r/m64.|
 |1A /r|SBB r8, r/m8|RM|Valid |Valid|Subtract with borrow r/m8 from r8.|
-|REX + 1A /r|SBB r8*, r/m8*|RM|Valid|N.E.|Subtract with borrow r/m8 from r8.|
+|REX + 1A /r|SBB r8\htmlonly{*}, r/m8\htmlonly{*}|RM|Valid|N.E.|Subtract with borrow r/m8 from r8.|
 |1B /r|SBB r16, r/m16|RM|Valid |Valid|Subtract with borrow r/m16 from r16.|
 |1B /r|SBB r32, r/m32|RM|Valid |Valid|Subtract with borrow r/m32 from r32.|
 |REX.W + 1B /r|SBB r64, r/m64|RM|Valid |N.E.|Subtract with borrow r/m64 from r64.|
 ### NOTES:
 
 
-* In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -50,11 +53,11 @@ Adds the source operand (second operand) and the carry (CF) flag, and subtracts 
 
 When an immediate value is used as an operand, it is sign-extended to the length of the destination operand format.
 
-The SBB instruction does not distinguish between signed or unsigned operands. Instead, the processor evaluates the result for both data types and sets the OF and CF flags to indicate a borrow in the signed or unsigned result, respectively. The SF flag indicates the sign of the signed result.
+The `SBB` instruction does not distinguish between signed or unsigned operands. Instead, the processor evaluates the result for both data types and sets the OF and CF flags to indicate a borrow in the signed or unsigned result, respectively. The SF flag indicates the sign of the signed result.
 
-The SBB instruction is usually executed as part of a multibyte or multiword subtraction in which a SUB instruction is followed by a SBB instruction.
+The `SBB` instruction is usually executed as part of a multibyte or multiword subtraction in which a `SUB` instruction is followed by a `SBB` instruction.
 
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.
+This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 

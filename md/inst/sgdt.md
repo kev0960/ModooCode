@@ -1,17 +1,20 @@
 ----------------------------
-title : SGDT instruction(Intel x86/64 assembly instruction)
+title : SGDT (Intel x86/64 assembly instruction)
 cat_title : SGDT
+ref_title : SGDT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SGDT--Store Global Descriptor Table Register
+#@ SGDT
 
+**Store Global Descriptor Table Register**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 01 /0|SGDT m|M|Valid |Valid|Store GDTR to m.|
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -43,15 +46,15 @@ IF instruction is SGDT
    IF OperandSize = 16
     THEN 
       DEST[0:15] <- GDTR(Limit);
-      DEST[16:39] <- GDTR(Base); (\htmlonly{*} 24 bits of base address stored \htmlonly{*})
+      DEST[16:39] <- GDTR(Base); (* 24 bits of base address stored *)
       DEST[40:47] <- 0;
     ELSE IF (32-bit Operand Size)
       DEST[0:15] <- GDTR(Limit);
-      DEST[16:47] <- GDTR(Base); (\htmlonly{*} Full 32-bit base address stored \htmlonly{*})
+      DEST[16:47] <- GDTR(Base); (* Full 32-bit base address stored *)
       FI;
-    ELSE (\htmlonly{*} 64-bit Operand Size \htmlonly{*})
+    ELSE (* 64-bit Operand Size *)
       DEST[0:15] <- GDTR(Limit);
-      DEST[16:79] <- GDTR(Base); (\htmlonly{*} Full 64-bit base address stored \htmlonly{*})
+      DEST[16:79] <- GDTR(Base); (* Full 64-bit base address stored *)
    FI; 
 FI;
 ```

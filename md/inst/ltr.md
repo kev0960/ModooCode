@@ -1,9 +1,12 @@
 ----------------------------
-title : LTR instruction(Intel x86/64 assembly instruction)
+title : LTR (Intel x86/64 assembly instruction)
 cat_title : LTR
+ref_title : LTR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LTR--Load Task Register
+#@ LTR
 
+**Load Task Register**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -19,7 +22,7 @@ cat_title : LTR
 
 Loads the source operand into the segment selector field of the task register. The source operand (a general-purpose register or a memory location) contains a segment selector that points to a task state segment (TSS). After the segment selector is loaded in the task register, the processor uses the segment selector to locate the segment descriptor for the TSS in the global descriptor table (GDT). It then loads the segment limit and base address for the TSS from the segment descriptor into the task register. The task pointed to by the task register is marked busy, but a switch to the task does not occur.
 
-The LTR instruction is provided for use in operating-system software; it should not be used in application programs. It can only be executed in protected mode when the CPL is 0. It is commonly used in initialization code to establish the first task to be executed.
+The `LTR` instruction is provided for use in operating-system software; it should not be used in application programs. It can only be executed in protected mode when the CPL is 0. It is commonly used in initialization code to establish the first task to be executed.
 
 The operand-size attribute has no effect on this instruction. 
 
@@ -38,7 +41,7 @@ IF segment descriptor is not for an available TSS
 IF segment descriptor is not present 
  THEN #NP(segment selector); FI;
 TSSsegmentDescriptor(busy) <- 1; 
-(\htmlonly{*} Locked read-modify-write operation on the entire descriptor when setting busy flag \htmlonly{*})
+(* Locked read-modify-write operation on the entire descriptor when setting busy flag *)
 TaskRegister(SegmentSelector) <- SRC;
 TaskRegister(SegmentDescriptor) <- TSSSegmentDescriptor;
 ```

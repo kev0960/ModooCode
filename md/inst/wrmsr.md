@@ -1,9 +1,12 @@
 ----------------------------
-title : WRMSR instruction(Intel x86/64 assembly instruction)
+title : WRMSR (Intel x86/64 assembly instruction)
 cat_title : WRMSR
+ref_title : WRMSR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### WRMSR--Write to Model Specific Register
+#@ WRMSR
 
+**Write to Model Specific Register**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -21,13 +24,13 @@ Writes the contents of registers EDX:EAX into the 64-bit model specific register
 
 This instruction must be executed at privilege level 0 or in real-address mode; otherwise, a general protection exception #GP(0) is generated. Specifying a reserved or unimplemented MSR address in ECX will also cause a general protection exception. The processor will also generate a general protection exception if software attempts to write to bits in a reserved MSR.
 
-When the WRMSR instruction is used to write to an MTRR, the TLBs are invalidated. This includes global entries (see "Translation Lookaside Buffers (TLBs)" in Chapter 3 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A).
+When the `WRMSR` instruction is used to write to an MTRR, the TLBs are invalidated. This includes global entries (see "Translation Lookaside Buffers (TLBs)" in Chapter 3 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A).
 
 MSRs control functions for testability, execution tracing, performance-monitoring and machine check errors. Chapter 35, "Model-Specific Registers (MSRs)", in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3C, lists all MSRs that can be written with this instruction and their addresses. Note that each processor family has its own set of MSRs.
 
-The WRMSR instruction is a serializing instruction (see "Serializing Instructions" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A). Note that WRMSR to the IA32_TSC_DEADLINE MSR (MSR index 6E0H) and the X2APIC MSRs (MSR indices 802H to 83FH) are not serializing.
+The `WRMSR` instruction is a serializing instruction (see "Serializing Instructions" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A). Note that `WRMSR` to the IA32_TSC_DEADLINE MSR (MSR index 6E0H) and the X2APIC MSRs (MSR indices 802H to 83FH) are not serializing.
 
-The CPUID instruction should be used to determine whether MSRs are supported (CPUID.01H:EDX[5] = 1) before using this instruction.
+The `CPUID` instruction should be used to determine whether MSRs are supported (CPUID.01H:EDX[5] = 1) before using this instruction.
 
 ### IA-32 Architecture Compatibility
 

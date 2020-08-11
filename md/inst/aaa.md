@@ -1,9 +1,12 @@
 ----------------------------
-title : AAA instruction(Intel x86/64 assembly instruction)
+title : AAA (Intel x86/64 assembly instruction)
 cat_title : AAA
+ref_title : AAA
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### AAA--ASCII Adjust After Addition
+#@ AAA
 
+**ASCII Adjust After Addition**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,7 +20,7 @@ cat_title : AAA
 ### Description
 
 
-Adjusts the sum of two unpacked BCD values to create an unpacked BCD result. The AL register is the implied source and destination operand for this instruction. The AAA instruction is only useful when it follows an ADD instruction that adds (binary addition) two unpacked BCD values and stores a byte result in the AL register. The AAA instruction then adjusts the contents of the AL register to contain the correct 1-digit unpacked BCD result. 
+Adjusts the sum of two unpacked BCD values to create an unpacked BCD result. The AL register is the implied source and destination operand for this instruction. The `AAA` instruction is only useful when it follows an `ADD` instruction that adds (binary addition) two unpacked BCD values and stores a byte result in the AL register. The `AAA` instruction then adjusts the contents of the AL register to contain the correct 1-digit unpacked BCD result. 
 
 If the addition produces a decimal carry, the AH register increments by 1, and the CF and AF flags are set. If there was no decimal carry, the CF and AF flags are cleared and the AH register is unchanged. In either case, bits 4 through 7 of the AL register are set to 0.
 

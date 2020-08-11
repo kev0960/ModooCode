@@ -1,9 +1,12 @@
 ----------------------------
-title : FNOP instruction(Intel x86/64 assembly instruction)
+title : FNOP (Intel x86/64 assembly instruction)
 cat_title : FNOP
+ref_title : FNOP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FNOP--No Operation
+#@ FNOP
 
+**No Operation**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

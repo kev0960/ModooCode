@@ -1,9 +1,12 @@
 ----------------------------
-title : FLDCW instruction(Intel x86/64 assembly instruction)
+title : FLDCW (Intel x86/64 assembly instruction)
 cat_title : FLDCW
+ref_title : FLDCW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FLDCW--Load x87 FPU Control Word
+#@ FLDCW
 
+**Load x87 FPU Control Word**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -13,7 +16,7 @@ cat_title : FLDCW
 
 Loads the 16-bit source operand into the FPU control word. The source operand is a memory location. This instruc-tion is typically used to establish or change the FPU's mode of operation.
 
-If one or more exception flags are set in the FPU status word prior to loading a new FPU control word and the new control word unmasks one or more of those exceptions, a floating-point exception will be generated upon execution of the next floating-point instruction (except for the no-wait floating-point instructions, see the section titled "Soft-ware Exception Handling" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1). To avoid raising exceptions when changing FPU operating modes, clear any pending exceptions (using the FCLEX or FNCLEX instruction) before loading the new control word.
+If one or more exception flags are set in the FPU status word prior to loading a new FPU control word and the new control word unmasks one or more of those exceptions, a floating-point exception will be generated upon execution of the next floating-point instruction (except for the no-wait floating-point instructions, see the section titled "Soft-ware Exception Handling" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1). To avoid raising exceptions when changing FPU operating modes, clear any pending exceptions (using the `FCLEX` or `FNCLEX` instruction) before loading the new control word.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

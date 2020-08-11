@@ -1,9 +1,12 @@
 ----------------------------
-title : BTR instruction(Intel x86/64 assembly instruction)
+title : BTR (Intel x86/64 assembly instruction)
 cat_title : BTR
+ref_title : BTR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BTR--Bit Test and Reset
+#@ BTR
 
+**Bit Test and Reset**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -33,7 +36,7 @@ See also: Bit(BitBase, BitOffset) on page 3-11.
 
 Some assemblers support immediate bit offsets larger than 31 by using the immediate bit offset field in combina-tion with the displacement field of the memory operand. See "BT--Bit Test" in this chapter for more information on this addressing mechanism.
 
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.
+This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 

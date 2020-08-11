@@ -1,9 +1,12 @@
 ----------------------------
-title : RDFSBASE, RDGSBASE instructions(Intel x86/64 assembly instruction)
+title : RDFSBASE, RDGSBASEs (Intel x86/64 assembly instruction)
 cat_title : RDFSBASE, RDGSBASE
+ref_title : RDFSBASE, RDGSBASE
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RDFSBASE/RDGSBASE--Read FS/GS Segment Base
+#@ RDFSBASE, RDGSBASE
 
+**Read FS/GS Segment Base**
 
 |**Opcode/**\newline{}**Instruction**||**Op/ **\newline{}**En**|**64/32-**\newline{}**bit **\newline{}**Mode**|**CPUID Fea-**\newline{}**ture Flag**|**Description**|
 |------------------------------------||------------------------|----------------------------------------------|-------------------------------------|---------------|

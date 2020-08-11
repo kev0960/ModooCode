@@ -1,9 +1,12 @@
 ----------------------------
-title : PSHUFD instruction(Intel x86/64 assembly instruction)
+title : PSHUFD (Intel x86/64 assembly instruction)
 cat_title : PSHUFD
+ref_title : PSHUFD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PSHUFD--Shuffle Packed Doublewords
+#@ PSHUFD
 
+**Shuffle Packed Doublewords**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -438,18 +441,18 @@ Note: EVEX.vvvv and VEX.vvvv are reserved and must be 1111b otherwise instructio
 ### Operation
 #### PSHUFD (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0] <-  (SRC >> (ORDER[1:0] \htmlonly{*} 32))[31:0];
-DEST[63:32] <-  (SRC >> (ORDER[3:2] \htmlonly{*} 32))[31:0];
-DEST[95:64]  <- (SRC >> (ORDER[5:4] \htmlonly{*} 32))[31:0];
-DEST[127:96]  <- (SRC >> (ORDER[7:6] \htmlonly{*} 32))[31:0];
+DEST[31:0] <-  (SRC >> (ORDER[1:0] * 32))[31:0];
+DEST[63:32] <-  (SRC >> (ORDER[3:2] * 32))[31:0];
+DEST[95:64]  <- (SRC >> (ORDER[5:4] * 32))[31:0];
+DEST[127:96]  <- (SRC >> (ORDER[7:6] * 32))[31:0];
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VPSHUFD (VEX.128 encoded version)
 ```info-verb
-DEST[31:0]  <- (SRC >> (ORDER[1:0] \htmlonly{*} 32))[31:0];
-DEST[63:32] <-  (SRC >> (ORDER[3:2] \htmlonly{*} 32))[31:0];
-DEST[95:64] <-  (SRC >> (ORDER[5:4] \htmlonly{*} 32))[31:0];
-DEST[127:96]  <- (SRC >> (ORDER[7:6] \htmlonly{*} 32))[31:0];
+DEST[31:0]  <- (SRC >> (ORDER[1:0] * 32))[31:0];
+DEST[63:32] <-  (SRC >> (ORDER[3:2] * 32))[31:0];
+DEST[95:64] <-  (SRC >> (ORDER[5:4] * 32))[31:0];
+DEST[127:96]  <- (SRC >> (ORDER[7:6] * 32))[31:0];
 DEST[VLMAX-1:128] <-  0
 ```
 #### VPSHUFD (VEX.256 encoded version)

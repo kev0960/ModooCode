@@ -1,9 +1,12 @@
 ----------------------------
-title : DAS instruction(Intel x86/64 assembly instruction)
+title : DAS (Intel x86/64 assembly instruction)
 cat_title : DAS
+ref_title : DAS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### DAS--Decimal Adjust AL after Subtraction
+#@ DAS
 
+**Decimal Adjust AL after Subtraction**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,7 +20,7 @@ cat_title : DAS
 ### Description
 
 
-Adjusts the result of the subtraction of two packed BCD values to create a packed BCD result. The AL register is the implied source and destination operand. The DAS instruction is only useful when it follows a SUB instruction that subtracts (binary subtraction) one 2-digit, packed BCD value from another and stores a byte result in the AL register. The DAS instruction then adjusts the contents of the AL register to contain the correct 2-digit, packed BCD result. If a decimal borrow is detected, the CF and AF flags are set accordingly.
+Adjusts the result of the subtraction of two packed BCD values to create a packed BCD result. The AL register is the implied source and destination operand. The `DAS` instruction is only useful when it follows a `SUB` instruction that subtracts (binary subtraction) one 2-digit, packed BCD value from another and stores a byte result in the AL register. The `DAS` instruction then adjusts the contents of the AL register to contain the correct 2-digit, packed BCD result. If a decimal borrow is detected, the CF and AF flags are set accordingly.
 
 This instruction executes as described above in compatibility mode and legacy mode. It is not valid in 64-bit mode.
 

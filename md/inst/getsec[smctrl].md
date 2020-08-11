@@ -1,22 +1,19 @@
 ----------------------------
-title : GETSEC[SMCTRL] instruction(Intel x86/64 assembly instruction)
+title : GETSEC[SMCTRL] (Intel x86/64 assembly instruction)
 cat_title : GETSEC[SMCTRL]
+ref_title : GETSEC[SMCTRL]
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### GETSEC[SMCTRL]--SMX Mode Control
+#@ GETSEC[SMCTRL]
+
+**SMX Mode Control**### Description
 
 
-**Opcode Instruction Description**
+The `GETSEC[SMCTRL]` instruction is available for performing certain SMX specific mode control operations. The operation to be performed is selected through the input register EBX. Currently only an input value in EBX of 0 is supported. All other EBX settings will result in the signaling of a general protection violation. 
 
-0F 37 (EAX = 7) GETSEC[SMCTRL] Perform specified SMX mode control as selected with the input EBX.
+If EBX is set to 0, then the SMCTRL leaf is used to re-enable SMI events. SMI is masked by the ILP executing the `GETSEC[SENTER]` instruction (SMI is also masked in the responding logical processors in response to SENTER rendezvous messages.). The determination of when this instruction is allowed and the events that are unmasked is dependent on the processor context (See Table6-11). For brevity, the usage of SMCTRL where EBX=0 will be referred to as GETSEC[SMCTRL(0)].
 
-### Description
-
-
-The GETSEC[SMCTRL] instruction is available for performing certain SMX specific mode control operations. The operation to be performed is selected through the input register EBX. Currently only an input value in EBX of 0 is supported. All other EBX settings will result in the signaling of a general protection violation. 
-
-If EBX is set to 0, then the SMCTRL leaf is used to re-enable SMI events. SMI is masked by the ILP executing the GETSEC[SENTER] instruction (SMI is also masked in the responding logical processors in response to SENTER rendezvous messages.). The determination of when this instruction is allowed and the events that are unmasked is dependent on the processor context (See Table6-11). For brevity, the usage of SMCTRL where EBX=0 will be referred to as GETSEC[SMCTRL(0)].
-
-As part of support for launching a measured environment, the SMI, NMI and INIT events are masked after GETSEC[SENTER], and remain masked after exiting authenticated execution mode. Unmasking these events should be accompanied by securely enabling these event handlers. These security concerns can be addressed in VMX operation by a MVMM. 
+As part of support for launching a measured environment, the SMI, NMI and INIT events are masked after `GETSEC[SENTER]`, and remain masked after exiting authenticated execution mode. Unmasking these events should be accompanied by securely enabling these event handlers. These security concerns can be addressed in VMX operation by a MVMM. 
 
 The VM monitor can choose two approaches:
 
@@ -35,7 +32,7 @@ Table6-11 defines the processor context in which GETSEC[SMCTRL(0)] can be used a
 ### Operation
 
 ```info-verb
-(\htmlonly{*} The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary \htmlonly{*})
+(* The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary *)
 IF (CR4.SMXE=0)
  THEN #UD;
 ELSE IF (in VMX non-root operation)
@@ -61,7 +58,7 @@ None.
 
 LOCK Causes #UD.
 
-REP* Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
+REP\htmlonly{*} Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
 
 Operand size Causes #UD.
 

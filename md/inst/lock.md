@@ -1,9 +1,12 @@
 ----------------------------
-title : LOCK instruction(Intel x86/64 assembly instruction)
+title : LOCK (Intel x86/64 assembly instruction)
 cat_title : LOCK
+ref_title : LOCK
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LOCK--Assert LOCK# Signal Prefix
+#@ LOCK
 
+**Assert LOCK# Signal Prefix**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -11,7 +14,7 @@ cat_title : LOCK
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -26,11 +29,11 @@ Causes the processor's LOCK# signal to be asserted during execution of the accom
 
 In most IA-32 and all Intel 64 processors, locking may occur without the LOCK# signal being asserted. See the "IA-32 Architecture Compatibility" section below for more details.
 
-The LOCK prefix can be prepended only to the following instructions and only to those forms of the instructions where the destination operand is a memory operand: ADD, ADC, AND, BTC, BTR, BTS, CMPXCHG, CMPXCH8B, CMPXCHG16B, DEC, INC, NEG, NOT, OR, SBB, SUB, XOR, XADD, and XCHG. If the LOCK prefix is used with one of these instructions and the source operand is a memory operand, an undefined opcode exception (#UD) may be generated. An undefined opcode exception will also be generated if the LOCK prefix is used with any instruction not in the above list. The XCHG instruction always asserts the LOCK# signal regardless of the presence or absence of the LOCK prefix.
+The `LOCK` prefix can be prepended only to the following instructions and only to those forms of the instructions where the destination operand is a memory operand: `ADD`, `ADC`, `AND`, `BTC`, `BTR`, `BTS`, `CMPXCHG`, CMPXCH8B, `CMPXCHG16B`, `DEC`, `INC`, `NEG`, `NOT`, `OR`, `SBB`, `SUB`, `XOR`, `XADD`, and `XCHG`. If the `LOCK` prefix is used with one of these instructions and the source operand is a memory operand, an undefined opcode exception (#UD) may be generated. An undefined opcode exception will also be generated if the `LOCK` prefix is used with any instruction not in the above list. The `XCHG` instruction always asserts the LOCK# signal regardless of the presence or absence of the `LOCK` prefix.
 
-The LOCK prefix is typically used with the BTS instruction to perform a read-modify-write operation on a memory location in shared memory environment.
+The `LOCK` prefix is typically used with the `BTS` instruction to perform a read-modify-write operation on a memory location in shared memory environment.
 
-The integrity of the LOCK prefix is not affected by the alignment of the memory field. Memory locking is observed for arbitrarily misaligned fields.
+The integrity of the `LOCK` prefix is not affected by the alignment of the memory field. Memory locking is observed for arbitrarily misaligned fields.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

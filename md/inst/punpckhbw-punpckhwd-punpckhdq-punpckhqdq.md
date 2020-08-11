@@ -1,9 +1,12 @@
 ----------------------------
-title : PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQ instructions(Intel x86/64 assembly instruction)
+title : PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQs (Intel x86/64 assembly instruction)
 cat_title : PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQ
+ref_title : PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PUNPCKHBW/PUNPCKHWD/PUNPCKHDQ/PUNPCKHQDQ-- Unpack High Data
+#@ PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQ
 
+** Unpack High Data**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -236,7 +239,7 @@ Unpacks and interleaves the high-order data elements (bytes, words, doublewords,
 <text x="133.019302" y="93.700012" textLength="4.442996" font-size="8px">5</text>
 <text x="223.558151" y="31.360596" textLength="4.442996" font-size="8px">6</text>
 </svg>
-<figcaption>Figure 4-20.  PUNPCKHBW Instruction Operation Using 64-bit Operands
+<figcaption>Figure 4-20.  `PUNPCKHBW` Instruction Operation Using 64-bit Operands
 </figcaption></figure>
 ```
 ```embed

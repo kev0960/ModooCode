@@ -1,9 +1,12 @@
 ----------------------------
-title : FCOMI, FCOMIP, , FUCOMIP instructions(Intel x86/64 assembly instruction)
+title : FCOMI, FCOMIP, , FUCOMIPs (Intel x86/64 assembly instruction)
 cat_title : FCOMI, FCOMIP, , FUCOMIP
+ref_title : FCOMI, FCOMIP, , FUCOMIP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FCOMI/FCOMIP/ FUCOMI/FUCOMIP--Compare Floating Point Values and Set EFLAGS
+#@ FCOMI, FCOMIP, , FUCOMIP
 
+**Compare Floating Point Values and Set EFLAGS**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -19,18 +22,18 @@ Performs an unordered comparison of the contents of registers ST(0) and ST(i) an
 ### Table 3-22.  FCOMI/FCOMIP/ FUCOMI/FUCOMIP Results
 
 
-|**Comparison Results***|**ZF**|**PF**|**CF**|
-|-----------------------|------|------|------|
+|**Comparison Results\htmlonly{*}**|**ZF**|**PF**|**CF**|
+|----------------------------------|------|------|------|
 |ST0 > ST(i)|0|0|0|
 |ST0 < ST(i)|0|0|1|
 |ST0 = ST(i)|1|0|0|
-|Unordered**|1|1|1|
+|Unordered\htmlonly{*}\htmlonly{*}|1|1|1|
 ### NOTES:
 
 
-*See the IA-32 Architecture Compatibility section below.
+\htmlonly{*}See the IA-32 Architecture Compatibility section below.
 
-**Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
+\htmlonly{*}\htmlonly{*}Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
 
 An unordered comparison checks the class of the numbers being compared (see "FXAM--Examine Floating-Point" in this chapter). The FUCOMI/FUCOMIP instructions perform the same operations as the FCOMI/FCOMIP instruc-tions. The only difference is that the FUCOMI/FUCOMIP instructions raise the invalid-arithmetic-operand exception (#IA) only when either or both operands are an SNaN or are in an unsupported format; QNaNs cause the condition code flags to be set to unordered, but do not cause an exception to be generated. The FCOMI/FCOMIP instructions raise an invalid-operation exception when either or both of the operands are a NaN value of any kind or are in an unsupported format.
 
@@ -72,7 +75,7 @@ IF Instruction is FUCOMI or FUCOMIP
    IF ST(0) or ST(i) = QNaN, but not SNaN or unsupported format
     THEN 
       ZF, PF, CF <- 111;
-    ELSE (\htmlonly{*} ST(0) or ST(i) is SNaN or unsupported format \htmlonly{*})
+    ELSE (* ST(0) or ST(i) is SNaN or unsupported format *)
        #IA;
       IF FPUControlWord.IM = 1
         THEN 

@@ -1,9 +1,12 @@
 ----------------------------
-title : MOVSHDUP instruction(Intel x86/64 assembly instruction)
+title : MOVSHDUP (Intel x86/64 assembly instruction)
 cat_title : MOVSHDUP
+ref_title : MOVSHDUP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVSHDUP--Replicate Single FP Values
+#@ MOVSHDUP
 
+**Replicate Single FP Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -206,7 +209,7 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 <text x="50.035507" y="100.779999" textLength="5.002500" font-size="8px">S</text>
 <text x="339.179993" y="33.220001" textLength="4.170000" font-size="8px">0</text>
 </svg>
-<figcaption>Figure 4-3.  MOVSHDUP Operation
+<figcaption>Figure 4-3.  `MOVSHDUP` Operation
 </figcaption></figure>
 ```
 

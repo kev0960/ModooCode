@@ -1,9 +1,12 @@
 ----------------------------
-title : PCMPEQB, PCMPEQW, PCMPEQD instructions(Intel x86/64 assembly instruction)
+title : PCMPEQB, PCMPEQW, PCMPEQDs (Intel x86/64 assembly instruction)
 cat_title : PCMPEQB, PCMPEQW, PCMPEQD
+ref_title : PCMPEQB, PCMPEQW, PCMPEQD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PCMPEQB/PCMPEQW/PCMPEQD-- Compare Packed Data for Equal
+#@ PCMPEQB, PCMPEQW, PCMPEQD
 
+** Compare Packed Data for Equal**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -75,7 +78,7 @@ EVEX encoded VPCMPEQB/W: The first source operand (second operand) is a ZMM/YMM/
  IF DEST[7:0] = SRC[7:0]
    THEN DEST[7:0) <- FFH; 
    ELSE DEST[7:0] <- 0; FI;
- (\htmlonly{*} Continue comparison of 2nd through 7th bytes in DEST and SRC \htmlonly{*})
+ (* Continue comparison of 2nd through 7th bytes in DEST and SRC *)
  IF DEST[63:56] = SRC[63:56]
    THEN DEST[63:56] <- FFH;
    ELSE DEST[63:56] <- 0; FI;
@@ -85,7 +88,7 @@ EVEX encoded VPCMPEQB/W: The first source operand (second operand) is a ZMM/YMM/
  IF SRC1[7:0] = SRC2[7:0]
  THEN DEST[7:0] <- FFH;
  ELSE DEST[7:0] <- 0; FI;
-(\htmlonly{*} Continue comparison of 2nd through 15th bytes in SRC1 and SRC2 \htmlonly{*})
+(* Continue comparison of 2nd through 15th bytes in SRC1 and SRC2 *)
  IF SRC1[127:120] = SRC2[127:120]
  THEN DEST[127:120]  <-FFH;
  ELSE DEST[127:120]  <-0; FI;
@@ -95,7 +98,7 @@ EVEX encoded VPCMPEQB/W: The first source operand (second operand) is a ZMM/YMM/
  IF SRC1[15:0] = SRC2[15:0]
  THEN DEST[15:0] <- FFFFH;
  ELSE DEST[15:0]  <-0; FI;
-(\htmlonly{*} Continue comparison of 2nd through 7th 16-bit words in SRC1 and SRC2 \htmlonly{*})
+(* Continue comparison of 2nd through 7th 16-bit words in SRC1 and SRC2 *)
  IF SRC1[127:112] = SRC2[127:112]
  THEN DEST[127:112]  <-FFFFH;
  ELSE DEST[127:112]  <-0; FI;
@@ -105,7 +108,7 @@ EVEX encoded VPCMPEQB/W: The first source operand (second operand) is a ZMM/YMM/
  IF SRC1[31:0] = SRC2[31:0]
  THEN DEST[31:0] <- FFFFFFFFH;
  ELSE DEST[31:0] <- 0; FI;
-(\htmlonly{*} Continue comparison of 2nd through 3rd 32-bit dwords in SRC1 and SRC2 \htmlonly{*})
+(* Continue comparison of 2nd through 3rd 32-bit dwords in SRC1 and SRC2 *)
  IF SRC1[127:96] = SRC2[127:96]
  THEN DEST[127:96] <- FFFFFFFFH;
  ELSE DEST[127:96] <- 0; FI;

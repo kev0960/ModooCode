@@ -1,21 +1,24 @@
 ----------------------------
-title : IDIV instruction(Intel x86/64 assembly instruction)
+title : IDIV (Intel x86/64 assembly instruction)
 cat_title : IDIV
+ref_title : IDIV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### IDIV--Signed Divide
+#@ IDIV
 
+**Signed Divide**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |F6 /7|IDIV r/m8|M|Valid|Valid|Signed divide AX by r/m8, with result stored in: AL <- Quotient, AH <- Remainder.|
-|REX + F6 /7|IDIV r/m8*|M|Valid|N.E.|Signed divide AX by r/m8, with result stored in AL <- Quotient, AH <- Remainder.|
+|REX + F6 /7|IDIV r/m8\htmlonly{*}|M|Valid|N.E.|Signed divide AX by r/m8, with result stored in AL <- Quotient, AH <- Remainder.|
 |F7 /7|IDIV r/m16|M|Valid|Valid|Signed divide DX:AX by r/m16, with result stored in AX <- Quotient, DX <- Remainder.|
 |F7 /7|IDIV r/m32|M|Valid|Valid|Signed divide EDX:EAX by r/m32, with result stored in EAX <- Quotient, EDX <- Remainder.|
 |REX.W + F7 /7|IDIV r/m64|M|Valid|N.E.|Signed divide RDX:RAX by r/m64, with result stored in RAX <- Quotient, RDX <- Remainder.|
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -45,50 +48,50 @@ See the summary chart at the beginning of this section for encoding data and lim
 
 ```info-verb
 IF SRC = 0
- THEN #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+ THEN #DE; (* Divide error *) 
 FI;
-IF OperandSize = 8 (\htmlonly{*} Word/byte operation \htmlonly{*})
+IF OperandSize = 8 (* Word/byte operation *)
  THEN
-   temp <- AX / SRC; (\htmlonly{*} Signed division \htmlonly{*})
+   temp <- AX / SRC; (* Signed division *)
    IF (temp > 7FH) or (temp < 80H) 
-   (\htmlonly{*} If a positive result is greater than 7FH or a negative result is less than 80H \htmlonly{*})
-    THEN #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+   (* If a positive result is greater than 7FH or a negative result is less than 80H *)
+    THEN #DE; (* Divide error *) 
     ELSE
       AL <- temp;
       AH <- AX SignedModulus SRC;
    FI;
- ELSE IF OperandSize = 16 (\htmlonly{*} Doubleword/word operation \htmlonly{*})
+ ELSE IF OperandSize = 16 (* Doubleword/word operation *)
    THEN
-    temp <- DX:AX / SRC; (\htmlonly{*} Signed division \htmlonly{*})
+    temp <- DX:AX / SRC; (* Signed division *)
     IF (temp > 7FFFH) or (temp < 8000H) 
-    (\htmlonly{*} If a positive result is greater than 7FFFH 
-    or a negative result is less than 8000H \htmlonly{*})
+    (* If a positive result is greater than 7FFFH 
+    or a negative result is less than 8000H *)
       THEN
-        #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+        #DE; (* Divide error *) 
       ELSE
         AX <- temp;
         DX <- DX:AX SignedModulus SRC;
     FI;
    FI;
- ELSE IF OperandSize = 32 (\htmlonly{*} Quadword/doubleword operation \htmlonly{*})
-    temp <- EDX:EAX / SRC; (\htmlonly{*} Signed division \htmlonly{*})
+ ELSE IF OperandSize = 32 (* Quadword/doubleword operation *)
+    temp <- EDX:EAX / SRC; (* Signed division *)
     IF (temp > 7FFFFFFFH) or (temp < 80000000H) 
-    (\htmlonly{*} If a positive result is greater than 7FFFFFFFH 
-    or a negative result is less than 80000000H \htmlonly{*})
+    (* If a positive result is greater than 7FFFFFFFH 
+    or a negative result is less than 80000000H *)
       THEN 
-        #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+        #DE; (* Divide error *) 
       ELSE
         EAX <- temp;
         EDX <- EDXE:AX SignedModulus SRC;
     FI;
    FI;
- ELSE IF OperandSize = 64 (\htmlonly{*} Doublequadword/quadword operation \htmlonly{*})
-    temp <- RDX:RAX / SRC; (\htmlonly{*} Signed division \htmlonly{*})
+ ELSE IF OperandSize = 64 (* Doublequadword/quadword operation *)
+    temp <- RDX:RAX / SRC; (* Signed division *)
     IF (temp > 7FFFFFFFFFFFFFFFH) or (temp < 8000000000000000H) 
-    (\htmlonly{*} If a positive result is greater than 7FFFFFFFFFFFFFFFH 
-    or a negative result is less than 8000000000000000H \htmlonly{*})
+    (* If a positive result is greater than 7FFFFFFFFFFFFFFFH 
+    or a negative result is less than 8000000000000000H *)
       THEN 
-        #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+        #DE; (* Divide error *) 
       ELSE
         RAX <- temp;
         RDX <- RDE:RAX SignedModulus SRC;

@@ -1,9 +1,12 @@
 ----------------------------
-title : FSUB, FSUBP, FISUB instructions(Intel x86/64 assembly instruction)
+title : FSUB, FSUBP, FISUBs (Intel x86/64 assembly instruction)
 cat_title : FSUB, FSUBP, FISUB
+ref_title : FSUB, FSUBP, FISUB
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FSUB/FSUBP/FISUB--Subtract
+#@ FSUB, FSUBP, FISUB
 
+**Subtract**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -22,9 +25,9 @@ Subtracts the source operand from the destination operand and stores the differe
 
 The no-operand version of the instruction subtracts the contents of the ST(0) register from the ST(1) register and stores the result in ST(1). The one-operand version subtracts the contents of a memory location (either a floating-point or an integer value) from the contents of the ST(0) register and stores the result in ST(0). The two-operand version, subtracts the contents of the ST(0) register from the ST(i) register or vice versa.
 
-The FSUBP instructions perform the additional operation of popping the FPU register stack following the subtrac-tion. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The no-operand version of the floating-point subtract instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is FSUB rather than FSUBP.
+The `FSUBP` instructions perform the additional operation of popping the FPU register stack following the subtrac-tion. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The no-operand version of the floating-point subtract instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is `FSUB` rather than `FSUBP`.
 
-The FISUB instructions convert an integer source operand to double extended-precision floating-point format before performing the subtraction.
+The `FISUB` instructions convert an integer source operand to double extended-precision floating-point format before performing the subtraction.
 
 Table 3-38 shows the results obtained when subtracting various classes of numbers from one another, assuming that neither overflow nor underflow occurs. Here, the SRC value is subtracted from the DEST value (DEST - SRC = result).
 
@@ -35,13 +38,13 @@ When one operand is $$\infty$$, the result is $$\infty$$ of the expected sign. I
 ### Table 3-38.  FSUB/FSUBP/FISUB Results
 
 
-|- $$\infty$$\newline{}- $$\infty$$ *|- F or - I\newline{} - $$\infty$$|**SR**\newline{}- 0\newline{}- $$\infty$$|**C**\newline{} + 0\newline{} - $$\infty$$|+ F or + I\newline{} - $$\infty$$|+ $$\infty$$\newline{}- $$\infty$$|NaN\newline{}NaN|
-|------------------------------------|---------------------------------|-----------------------------------------|------------------------------------------|---------------------------------|----------------------------------|----------------|
+|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F or - I\newline{} - $$\infty$$|**SR**\newline{}- 0\newline{}- $$\infty$$|**C**\newline{} + 0\newline{} - $$\infty$$|+ F or + I\newline{} - $$\infty$$|+ $$\infty$$\newline{}- $$\infty$$|NaN\newline{}NaN|
+|-----------------------------------------------|---------------------------------|-----------------------------------------|------------------------------------------|---------------------------------|----------------------------------|----------------|
 |- F + $$\infty$$|$$\pm$$F or $$\pm$$0|DEST|DEST|- F|- $$\infty$$|NaN|
 |**DEST** - 0 + $$\infty$$|-SRC|$$\pm$$0|- 0|- SRC|- $$\infty$$|NaN|
 |+ 0 + $$\infty$$|-SRC|+ 0|$$\pm$$0|- SRC|- $$\infty$$|NaN|
 |+ F + $$\infty$$|+ F|DEST|DEST|$$\pm$$F or $$\pm$$0|- $$\infty$$|NaN|
-|+ $$\infty$$ + $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|*|NaN|
+|+ $$\infty$$ + $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|\htmlonly{*}|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
@@ -50,7 +53,7 @@ FMeans finite floating-point value.
 
 IMeans integer.
 
-*Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -61,7 +64,7 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 IF Instruction = FISUB
  THEN
    DEST <- DEST - ConvertToDoubleExtendedPrecisionFP(SRC);
- ELSE (\htmlonly{*} Source operand is floating-point value \htmlonly{*})
+ ELSE (* Source operand is floating-point value *)
    DEST <- DEST - SRC;
 FI;
 IF Instruction = FSUBP 

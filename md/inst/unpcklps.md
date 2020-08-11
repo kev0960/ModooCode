@@ -1,9 +1,12 @@
 ----------------------------
-title : UNPCKLPS instruction(Intel x86/64 assembly instruction)
+title : UNPCKLPS (Intel x86/64 assembly instruction)
 cat_title : UNPCKLPS
+ref_title : UNPCKLPS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### UNPCKLPS--Unpack and Interleave Low Packed Single-Precision Floating-Point Values
+#@ UNPCKLPS
 
+**Unpack and Interleave Low Packed Single-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -299,7 +302,7 @@ IF VL >= 512
  TMP_DEST[511:480]  <- SRC2[447:416]
 FI;
 FOR j <-  0 TO KL-1
- i  <- j \htmlonly{*} 32
+ i  <- j * 32
 IF k1[j] OR *no writemask*
    THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
    ELSE 

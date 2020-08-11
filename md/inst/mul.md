@@ -1,9 +1,12 @@
 ----------------------------
-title : MUL instruction(Intel x86/64 assembly instruction)
+title : MUL (Intel x86/64 assembly instruction)
 cat_title : MUL
+ref_title : MUL
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MUL--Unsigned Multiply
+#@ MUL
 
+**Unsigned Multiply**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -15,7 +18,7 @@ cat_title : MUL
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -50,13 +53,13 @@ See the summary chart at the beginning of this section for encoding data and lim
 IF (Byte operation)
  THEN 
    AX <- AL `*` SRC;
- ELSE (\htmlonly{*} Word or doubleword operation \htmlonly{*})
+ ELSE (* Word or doubleword operation *)
    IF OperandSize = 16
     THEN 
       DX:AX <- AX `*` SRC;
     ELSE IF OperandSize = 32
       THEN EDX:EAX <- EAX `*` SRC; FI;
-    ELSE (\htmlonly{*} OperandSize = 64 \htmlonly{*})
+    ELSE (* OperandSize = 64 *)
       RDX:RAX <- RAX `*` SRC;
    FI;
 FI;

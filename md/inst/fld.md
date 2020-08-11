@@ -1,9 +1,12 @@
 ----------------------------
-title : FLD instruction(Intel x86/64 assembly instruction)
+title : FLD (Intel x86/64 assembly instruction)
 cat_title : FLD
+ref_title : FLD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FLD--Load Floating Point Value
+#@ FLD
 
+**Load Floating Point Value**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -16,7 +19,7 @@ cat_title : FLD
 
 Pushes the source operand onto the FPU register stack. The source operand can be in single-precision, double-precision, or double extended-precision floating-point format. If the source operand is in single-precision or double-precision floating-point format, it is automatically converted to the double extended-precision floating-point format before being pushed on the stack.
 
-The FLD instruction can also push the value in a selected FPU register [ST(i)] onto the stack. Here, pushing register ST(0) duplicates the stack top.
+The `FLD` instruction can also push the value in a selected FPU register [ST(i)] onto the stack. Here, pushing register ST(0) duplicates the stack top.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -32,7 +35,7 @@ TOP <- TOP - 1;
 IF SRC is memory-operand
  THEN
    ST(0) <- ConvertToDoubleExtendedPrecisionFP(SRC);
- ELSE (\htmlonly{*} SRC is ST(i) \htmlonly{*})
+ ELSE (* SRC is ST(i) *)
    ST(0) <- temp;
 FI;
 ```

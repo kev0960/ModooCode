@@ -1,18 +1,21 @@
 ----------------------------
-title : RCL, RCR, ROL, ROR instructions(Intel x86/64 assembly instruction)
+title : RCL, RCR, ROL, RORs (Intel x86/64 assembly instruction)
 cat_title : RCL, RCR, ROL, ROR
+ref_title : RCL, RCR, ROL, ROR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RCL/RCR/ROL/ROR--Rotate
+#@ RCL, RCR, ROL, ROR
 
+**Rotate**
 
-|**Opcode****|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |D0 /2|RCL r/m8, 1|M1|Valid |Valid|Rotate 9 bits (CF, r/m8) left once.|
-|REX + D0 /2|RCL r/m8*, 1|M1|Valid|N.E.|Rotate 9 bits (CF, r/m8) left once. |
+|REX + D0 /2|RCL r/m8\htmlonly{*}, 1|M1|Valid|N.E.|Rotate 9 bits (CF, r/m8) left once. |
 |D2 /2|RCL r/m8, CL|MC|Valid |Valid|Rotate 9 bits (CF, r/m8) left CL times. |
-|REX + D2 /2|RCL r/m8*, CL|MC|Valid|N.E.|Rotate 9 bits (CF, r/m8) left CL times. |
+|REX + D2 /2|RCL r/m8\htmlonly{*}, CL|MC|Valid|N.E.|Rotate 9 bits (CF, r/m8) left CL times. |
 |C0 /2 ib|RCL r/m8, imm8|MI|Valid |Valid|Rotate 9 bits (CF, r/m8) left imm8 times.|
-|REX + C0 /2 ib|RCL r/m8*, imm8|MI|Valid|N.E.|Rotate 9 bits (CF, r/m8) left imm8 times.|
+|REX + C0 /2 ib|RCL r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Rotate 9 bits (CF, r/m8) left imm8 times.|
 |D1 /2|RCL r/m16, 1|M1|Valid |Valid|Rotate 17 bits (CF, r/m16) left once.|
 |D3 /2|RCL r/m16, CL|MC|Valid |Valid|Rotate 17 bits (CF, r/m16) left CL times.|
 |C1 /2 ib|RCL r/m16, imm8|MI|Valid |Valid|Rotate 17 bits (CF, r/m16) left imm8 times.|
@@ -23,11 +26,11 @@ cat_title : RCL, RCR, ROL, ROR
 |C1 /2 ib|RCL r/m32, imm8|MI|Valid |Valid|Rotate 33 bits (CF, r/m32) left imm8 times.|
 |REX.W + C1 /2 ib|RCL r/m64, imm8|MI|Valid|N.E.|Rotate 65 bits (CF, r/m64) left imm8 times. Uses a 6 bit count.|
 |D0 /3|RCR r/m8, 1|M1|Valid |Valid|Rotate 9 bits (CF, r/m8) right once. |
-|REX + D0 /3|RCR r/m8*, 1|M1|Valid|N.E.|Rotate 9 bits (CF, r/m8) right once. |
+|REX + D0 /3|RCR r/m8\htmlonly{*}, 1|M1|Valid|N.E.|Rotate 9 bits (CF, r/m8) right once. |
 |D2 /3|RCR r/m8, CL|MC|Valid |Valid|Rotate 9 bits (CF, r/m8) right CL times. |
-|REX + D2 /3|RCR r/m8*, CL|MC|Valid|N.E.|Rotate 9 bits (CF, r/m8) right CL times. |
+|REX + D2 /3|RCR r/m8\htmlonly{*}, CL|MC|Valid|N.E.|Rotate 9 bits (CF, r/m8) right CL times. |
 |C0 /3 ib|RCR r/m8, imm8|MI|Valid |Valid|Rotate 9 bits (CF, r/m8) right imm8 times. |
-|REX + C0 /3 ib|RCR r/m8*, imm8|MI|Valid|N.E.|Rotate 9 bits (CF, r/m8) right imm8 times. |
+|REX + C0 /3 ib|RCR r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Rotate 9 bits (CF, r/m8) right imm8 times. |
 |D1 /3|RCR r/m16, 1|M1|Valid |Valid|Rotate 17 bits (CF, r/m16) right once.|
 |D3 /3|RCR r/m16, CL|MC|Valid |Valid|Rotate 17 bits (CF, r/m16) right CL times.|
 |C1 /3 ib|RCR r/m16, imm8|MI|Valid |Valid|Rotate 17 bits (CF, r/m16) right imm8 times.|
@@ -38,15 +41,15 @@ cat_title : RCL, RCR, ROL, ROR
 |C1 /3 ib|RCR r/m32, imm8|MI|Valid |Valid|Rotate 33 bits (CF, r/m32) right imm8 times.|
 |REX.W + C1 /3 ib|RCR r/m64, imm8|MI|Valid|N.E.|Rotate 65 bits (CF, r/m64) right imm8 times. Uses a 6 bit count.|
 |D0 /0|ROL r/m8, 1|M1|Valid |Valid|Rotate 8 bits r/m8 left once.|
-|REX + D0 /0|ROL r/m8*, 1|M1|Valid|N.E.|Rotate 8 bits r/m8 left once|
+|REX + D0 /0|ROL r/m8\htmlonly{*}, 1|M1|Valid|N.E.|Rotate 8 bits r/m8 left once|
 |D2 /0|ROL r/m8, CL|MC|Valid |Valid|Rotate 8 bits r/m8 left CL times.|
-|REX + D2 /0|ROL r/m8*, CL|MC|Valid|N.E.|Rotate 8 bits r/m8 left CL times.|
+|REX + D2 /0|ROL r/m8\htmlonly{*}, CL|MC|Valid|N.E.|Rotate 8 bits r/m8 left CL times.|
 |C0 /0 ib|ROL r/m8, imm8|MI|Valid |Valid|Rotate 8 bits r/m8 left imm8 times.|
 
 
-|**Opcode****|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|REX + C0 /0 ib|ROL r/m8*, imm8|MI|Valid|N.E.|Rotate 8 bits r/m8 left imm8 times.|
+|**Opcode\htmlonly{*}\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|REX + C0 /0 ib|ROL r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Rotate 8 bits r/m8 left imm8 times.|
 |D1 /0|ROL r/m16, 1|M1|Valid |Valid|Rotate 16 bits r/m16 left once.|
 |D3 /0|ROL r/m16, CL|MC|Valid |Valid|Rotate 16 bits r/m16 left CL times.|
 |C1 /0 ib|ROL r/m16, imm8|MI|Valid |Valid|Rotate 16 bits r/m16 left imm8 times.|
@@ -57,11 +60,11 @@ cat_title : RCL, RCR, ROL, ROR
 |C1 /0 ib|ROL r/m32, imm8|MI|Valid |Valid|Rotate 32 bits r/m32 left imm8 times.|
 |REX.W + C1 /0 ib|ROL r/m64, imm8|MI|Valid|N.E.|Rotate 64 bits r/m64 left imm8 times. Uses a 6 bit count.|
 |D0 /1|ROR r/m8, 1|M1|Valid |Valid|Rotate 8 bits r/m8 right once.|
-|REX + D0 /1|ROR r/m8*, 1|M1|Valid|N.E.|Rotate 8 bits r/m8 right once.|
+|REX + D0 /1|ROR r/m8\htmlonly{*}, 1|M1|Valid|N.E.|Rotate 8 bits r/m8 right once.|
 |D2 /1|ROR r/m8, CL|MC|Valid |Valid|Rotate 8 bits r/m8 right CL times.|
-|REX + D2 /1|ROR r/m8*, CL|MC|Valid|N.E.|Rotate 8 bits r/m8 right CL times.|
+|REX + D2 /1|ROR r/m8\htmlonly{*}, CL|MC|Valid|N.E.|Rotate 8 bits r/m8 right CL times.|
 |C0 /1 ib|ROR r/m8, imm8|MI|Valid |Valid|Rotate 8 bits r/m16 right imm8 times.|
-|REX + C0 /1 ib|ROR r/m8*, imm8|MI|Valid|N.E.|Rotate 8 bits r/m16 right imm8 times.|
+|REX + C0 /1 ib|ROR r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Rotate 8 bits r/m16 right imm8 times.|
 |D1 /1|ROR r/m16, 1|M1|Valid |Valid|Rotate 16 bits r/m16 right once.|
 |D3 /1|ROR r/m16, CL|MC|Valid |Valid|Rotate 16 bits r/m16 right CL times.|
 |C1 /1 ib|ROR r/m16, imm8|MI|Valid |Valid|Rotate 16 bits r/m16 right imm8 times.|
@@ -74,9 +77,9 @@ cat_title : RCL, RCR, ROL, ROR
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
-**See IA-32 Architecture Compatibility section below.
+\htmlonly{*}\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -93,9 +96,9 @@ Shifts (rotates) the bits of the first operand (destination operand) the number 
 
 The rotate left (ROL) and rotate through carry left (RCL) instructions shift all the bits toward more-significant bit positions, except for the most-significant bit, which is rotated to the least-significant bit location. The rotate right (ROR) and rotate through carry right (RCR) instructions shift all the bits toward less significant bit positions, except for the least-significant bit, which is rotated to the most-significant bit location.
 
-The RCL and RCR instructions include the CF flag in the rotation. The RCL instruction shifts the CF flag into the least-significant bit and shifts the most-significant bit into the CF flag. The RCR instruction shifts the CF flag into the most-significant bit and shifts the least-significant bit into the CF flag. For the ROL and ROR instructions, the original value of the CF flag is not a part of the result, but the CF flag receives a copy of the bit that was shifted from one end to the other.
+The `RCL` and `RCR` instructions include the CF flag in the rotation. The `RCL` instruction shifts the CF flag into the least-significant bit and shifts the most-significant bit into the CF flag. The `RCR` instruction shifts the CF flag into the most-significant bit and shifts the least-significant bit into the CF flag. For the `ROL` and `ROR` instructions, the original value of the CF flag is not a part of the result, but the CF flag receives a copy of the bit that was shifted from one end to the other.
 
-The OF flag is defined only for the 1-bit rotates; it is undefined in all other cases (except RCL and RCR instructions only: a zero-bit rotate does nothing, that is affects no flags). For left rotates, the OF flag is set to the exclusive OR of the CF bit (after the rotate) and the most-significant bit of the result. For right rotates, the OF flag is set to the exclusive OR of the two most-significant bits of the result.
+The OF flag is defined only for the 1-bit rotates; it is undefined in all other cases (except `RCL` and `RCR` instructions only: a zero-bit rotate does nothing, that is affects no flags). For left rotates, the OF flag is set to the exclusive `OR` of the CF bit (after the rotate) and the most-significant bit of the result. For right rotates, the OF flag is set to the exclusive `OR` of the two most-significant bits of the result.
 
 In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Use of REX.W promotes the first operand to 64 bits and causes the count operand to become a 6-bit counter.
 
@@ -108,7 +111,7 @@ The 8086 does not mask the rotation count. However, all other IA-32 processors (
 ### Operation
 
 ```info-verb
-(\htmlonly{*} RCL and RCR instructions \htmlonly{*})
+(* RCL and RCR instructions *)
 SIZE <- OperandSize;
 CASE (determine count) OF
  SIZE <- 8: tempCOUNT <- (COUNT AND 1FH) MOD 9;
@@ -116,7 +119,7 @@ CASE (determine count) OF
  SIZE <- 32: tempCOUNT <- COUNT AND 1FH;
  SIZE <- 64: tempCOUNT <- COUNT AND 3FH;
 ESAC;
-(\htmlonly{*} RCL instruction operation \htmlonly{*})
+(* RCL instruction operation *)
 WHILE (tempCOUNT != 0)
  DO
    tempCF <- MSB(DEST);

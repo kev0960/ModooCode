@@ -1,9 +1,12 @@
 ----------------------------
-title : XACQUIRE, XRELEASE instructions(Intel x86/64 assembly instruction)
+title : XACQUIRE, XRELEASEs (Intel x86/64 assembly instruction)
 cat_title : XACQUIRE, XRELEASE
+ref_title : XACQUIRE, XRELEASE
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XACQUIRE/XRELEASE -- Hardware Lock Elision Prefix Hints
+#@ XACQUIRE, XRELEASE
 
+** Hardware Lock Elision Prefix Hints**
 
 |**Opcode/Instruction**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
@@ -18,21 +21,21 @@ cat_title : XACQUIRE, XRELEASE
 ### Description
 
 
-The XACQUIRE prefix is a hint to start lock elision on the memory address specified by the instruction and the XRELEASE prefix is a hint to end lock elision on the memory address specified by the instruction.
+The `XACQUIRE` prefix is a hint to start lock elision on the memory address specified by the instruction and the `XRELEASE` prefix is a hint to end lock elision on the memory address specified by the instruction.
 
-The XACQUIRE prefix hint can only be used with the following instructions (these instructions are also referred to as XACQUIRE-enabled when used with the XACQUIRE prefix):
+The `XACQUIRE` prefix hint can only be used with the following instructions (these instructions are also referred to as XACQUIRE-enabled when used with the `XACQUIRE` prefix):
 
-*  Instructions with an explicit LOCK prefix (F0H) prepended to forms of the instruction where the destination operand is a memory operand: ADD, ADC, AND, BTC, BTR, BTS, CMPXCHG, CMPXCHG8B, DEC, INC, NEG, NOT, OR, SBB, SUB, XOR, XADD, and XCHG. 
+*  Instructions with an explicit `LOCK` prefix (F0H) prepended to forms of the instruction where the destination operand is a memory operand: `ADD`, `ADC`, `AND`, `BTC`, `BTR`, `BTS`, `CMPXCHG`, `CMPXCHG8B`, `DEC`, `INC`, `NEG`, `NOT`, `OR`, `SBB`, `SUB`, `XOR`, `XADD`, and `XCHG`. 
 
-*  The XCHG instruction either with or without the presence of the LOCK prefix. 
+*  The `XCHG` instruction either with or without the presence of the `LOCK` prefix. 
 
-The XRELEASE prefix hint can only be used with the following instructions (also referred to as XRELEASE-enabled when used with the XRELEASE prefix):
+The `XRELEASE` prefix hint can only be used with the following instructions (also referred to as XRELEASE-enabled when used with the `XRELEASE` prefix):
 
-*  Instructions with an explicit LOCK prefix (F0H) prepended to forms of the instruction where the destination operand is a memory operand: ADD, ADC, AND, BTC, BTR, BTS, CMPXCHG, CMPXCHG8B, DEC, INC, NEG, NOT, OR, SBB, SUB, XOR, XADD, and XCHG. 
+*  Instructions with an explicit `LOCK` prefix (F0H) prepended to forms of the instruction where the destination operand is a memory operand: `ADD`, `ADC`, `AND`, `BTC`, `BTR`, `BTS`, `CMPXCHG`, `CMPXCHG8B`, `DEC`, `INC`, `NEG`, `NOT`, `OR`, `SBB`, `SUB`, `XOR`, `XADD`, and `XCHG`. 
 
-*  The XCHG instruction either with or without the presence of the LOCK prefix. 
+*  The `XCHG` instruction either with or without the presence of the `LOCK` prefix. 
 
-*  The "MOV mem, reg" (Opcode 88H/89H) and "MOV mem, imm" (Opcode C6H/C7H) instructions. In these cases, the XRELEASE is recognized without the presence of the LOCK prefix.
+*  The "MOV mem, reg" (Opcode 88H/89H) and "MOV mem, imm" (Opcode C6H/C7H) instructions. In these cases, the `XRELEASE` is recognized without the presence of the `LOCK` prefix.
 
 The lock variables must satisfy the guidelines described in Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, Section 16.3.3, for elision to be successful, otherwise an HLE abort may be signaled.
 
@@ -44,7 +47,7 @@ Intel 64 and IA-32 Compatibility
 
 The effect of the XACQUIRE/XRELEASE prefix hint is the same in non-64-bit modes and in 64-bit mode.
 
-For instructions that do not support the XACQUIRE hint, the presence of the F2H  prefix behaves the same way as prior hardware, according to
+For instructions that do not support the `XACQUIRE` hint, the presence of the F2H  prefix behaves the same way as prior hardware, according to
 
 *  REPNE/REPNZ semantics for string instructions,
 
@@ -54,7 +57,7 @@ For instructions that do not support the XACQUIRE hint, the presence of the F2H 
 
 *  Undefined for non-string instructions or other situations.
 
-For instructions that do not support the XRELEASE hint, the presence of the F3H prefix behaves the same way as in prior hardware, according to
+For instructions that do not support the `XRELEASE` hint, the presence of the F3H prefix behaves the same way as in prior hardware, according to
 
 *  REP/REPE/REPZ semantics for string instructions,
 
@@ -80,8 +83,8 @@ IF XACQUIRE-enabled instruction
         ELSE
           restartEIP <- instruction pointer of the XACQUIRE-enabled instruction
       FI;
-      Enter HLE Execution (\htmlonly{*} record register state, start tracking memory state \htmlonly{*})
-    FI; (\htmlonly{*} HLE_NEST_COUNT = 1\htmlonly{*})
+      Enter HLE Execution (* record register state, start tracking memory state *)
+    FI; (* HLE_NEST_COUNT = 1*)
     IF ElisionBufferAvailable 
       THEN
         Allocate elision buffer
@@ -90,7 +93,7 @@ IF XACQUIRE-enabled instruction
       ELSE 
         Perform lock acquire operation transactionally but without elision
     FI;
-   ELSE (\htmlonly{*} HLE_NEST_COUNT = MAX_HLE_NEST_COUNT \htmlonly{*})
+   ELSE (* HLE_NEST_COUNT = MAX_HLE_NEST_COUNT *)
       GOTO HLE_ABORT_PROCESSING
    FI;
  ELSE

@@ -1,9 +1,12 @@
 ----------------------------
-title : ADDSUBPS instruction(Intel x86/64 assembly instruction)
+title : ADDSUBPS (Intel x86/64 assembly instruction)
 cat_title : ADDSUBPS
+ref_title : ADDSUBPS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### ADDSUBPS--Packed Single-FP Add/Subtract
+#@ ADDSUBPS
 
+**Packed Single-FP Add/Subtract**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|

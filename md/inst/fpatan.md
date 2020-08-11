@@ -1,45 +1,42 @@
 ----------------------------
-title : FPATAN instruction(Intel x86/64 assembly instruction)
+title : FPATAN (Intel x86/64 assembly instruction)
 cat_title : FPATAN
+ref_title : FPATAN
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FPATAN--Partial Arctangent
+#@ FPATAN
 
+**Partial Arctangent**
 
-NOTES:
-
-*See IA-32 Architecture Compatibility section below.
-
-
-
-|**Opcode***|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|-----------------------------|---------------------------------|---------------|
 |D9 F3|FPATAN|Valid|Valid|Replace ST(1) with arctan(ST(1)/ST(0)) and pop the register stack.|
 ### Description
 
 
 Computes the arctangent of the source operand in register ST(1) divided by the source operand in register ST(0), stores the result in ST(1), and pops the FPU register stack. The result in register ST(0) has the same sign as the source operand ST(1) and a magnitude less than +.
 
-The FPATAN instruction returns the angle between the X axis and the line from the origin to the point (X,Y), where Y (the ordinate) is ST(1) and X (the abscissa) is ST(0). The angle depends on the sign of X and Y independently, not just on the sign of the ratio Y/X. This is because a point (-X,Y) is in the second quadrant, resulting in an angle between /2 and , while a point (X,-Y) is in the fourth quadrant, resulting in an angle between 0 and -/2. A point (-X,-Y) is in the third quadrant, giving an angle between -/2 and -.
+The `FPATAN` instruction returns the angle between the X axis and the line from the origin to the point (X,Y), where Y (the ordinate) is ST(1) and X (the abscissa) is ST(0). The angle depends on the sign of X and Y independently, not just on the sign of the ratio Y/X. This is because a point (-X,Y) is in the second quadrant, resulting in an angle between /2 and , while a point (X,-Y) is in the fourth quadrant, resulting in an angle between 0 and -/2. A point (-X,-Y) is in the third quadrant, giving an angle between -/2 and -.
 
 The following table shows the results obtained when computing the arctangent of various classes of numbers, assuming that underflow does not occur.
 
 ### Table 3-30.  FPATAN Results
 
 
-|- $$\infty$$\newline{}- $$\infty$$ - 3/4*|- F\newline{}- /2|**ST(0**\newline{}- 0\newline{}- /2|**)**\newline{}+ 0\newline{}- /2|+ F\newline{}- /2|+ $$\infty$$\newline{}- /4*|NaN\newline{}NaN|
-|------------------------------------------|------------------|------------------------------------|---------------------------------|------------------|----------------------------|----------------|
+|- $$\infty$$\newline{}- $$\infty$$ - 3/4\htmlonly{*}|- F\newline{}- /2|**ST(0**\newline{}- 0\newline{}- /2|**)**\newline{}+ 0\newline{}- /2|+ F\newline{}- /2|+ $$\infty$$\newline{}- /4\htmlonly{*}|NaN\newline{}NaN|
+|-----------------------------------------------------|------------------|------------------------------------|---------------------------------|------------------|---------------------------------------|----------------|
 |**ST(1)** - F -p|- to -/2|-/2|-/2|-/2 to -0|- 0|NaN|
-|- 0 -p|-p|-p*|- 0*|- 0|- 0|NaN|
-|+ 0 +p|+ p|+ *|+ 0*|+ 0|+ 0|NaN|
+|- 0 -p|-p|-p\htmlonly{*}|- 0\htmlonly{*}|- 0|- 0|NaN|
+|+ 0 +p|+ p|+ \htmlonly{*}|+ 0\htmlonly{*}|+ 0|+ 0|NaN|
 |+ F +p|+ to +/2|+ /2|+/2|+/2 to +0|+ 0|NaN|
-|+ $$\infty$$ +3/4*|+/2|+/2|+/2|+ /2|+ /4*|NaN|
+|+ $$\infty$$ +3/4\htmlonly{*}|+/2|+/2|+/2|+ /2|+ /4\htmlonly{*}|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
 
 FMeans finite floating-point value.
 
-*Table 8-10 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, specifies that the ratios 0/0 and $$\infty$$/$$\infty$$ generate the floating-point invalid arithmetic-operation exception and, if this exception is masked, the floating-point QNaN indefi-nite value is returned. With the FPATAN instruction, the 0/0 or $$\infty$$/$$\infty$$ value is actually not calculated using division. Instead, the arc-tangent of the two variables is derived from a standard mathematical formulation that is generalized to allow complex numbers as arguments. In this complex variable formulation, arctangent(0,0) etc. has well defined values. These values are needed to develop a library to compute transcendental functions with complex arguments, based on the FPU functions that only allow floating-point values as arguments.
+\htmlonly{*}Table 8-10 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, specifies that the ratios 0/0 and $$\infty$$/$$\infty$$ generate the floating-point invalid arithmetic-operation exception and, if this exception is masked, the floating-point QNaN indefi-nite value is returned. With the FPATAN instruction, the 0/0 or $$\infty$$/$$\infty$$ value is actually not calculated using division. Instead, the arc-tangent of the two variables is derived from a standard mathematical formulation that is generalized to allow complex numbers as arguments. In this complex variable formulation, arctangent(0,0) etc. has well defined values. These values are needed to develop a library to compute transcendental functions with complex arguments, based on the FPU functions that only allow floating-point values as arguments.
 
 There is no restriction on the range of source operands that FPATAN can accept.
 

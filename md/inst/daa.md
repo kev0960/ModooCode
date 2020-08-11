@@ -1,9 +1,12 @@
 ----------------------------
-title : DAA instruction(Intel x86/64 assembly instruction)
+title : DAA (Intel x86/64 assembly instruction)
 cat_title : DAA
+ref_title : DAA
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### DAA--Decimal Adjust AL after Addition
+#@ DAA
 
+**Decimal Adjust AL after Addition**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,7 +20,7 @@ cat_title : DAA
 ### Description
 
 
-Adjusts the sum of two packed BCD values to create a packed BCD result. The AL register is the implied source and destination operand. The DAA instruction is only useful when it follows an ADD instruction that adds (binary addi-tion) two 2-digit, packed BCD values and stores a byte result in the AL register. The DAA instruction then adjusts the contents of the AL register to contain the correct 2-digit, packed BCD result. If a decimal carry is detected, the CF and AF flags are set accordingly.
+Adjusts the sum of two packed BCD values to create a packed BCD result. The AL register is the implied source and destination operand. The `DAA` instruction is only useful when it follows an `ADD` instruction that adds (binary addi-tion) two 2-digit, packed BCD values and stores a byte result in the AL register. The `DAA` instruction then adjusts the contents of the AL register to contain the correct 2-digit, packed BCD result. If a decimal carry is detected, the CF and AF flags are set accordingly.
 
 This instruction executes as described above in compatibility mode and legacy mode. It is not valid in 64-bit mode.
 

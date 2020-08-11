@@ -1,9 +1,12 @@
 ----------------------------
-title : PSRLW, PSRLD, PSRLQ instructions(Intel x86/64 assembly instruction)
+title : PSRLW, PSRLD, PSRLQs (Intel x86/64 assembly instruction)
 cat_title : PSRLW, PSRLD, PSRLQ
+ref_title : PSRLW, PSRLD, PSRLQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PSRLW/PSRLD/PSRLQ--Shift Packed Data Right Logical
+#@ PSRLW, PSRLD, PSRLQ
 
+**Shift Packed Data Right Logical**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -79,7 +82,7 @@ Shifts the bits in the individual data elements (words, doublewords, or quadword
 
 Note that only the low 64-bits of a 128-bit count operand are checked to compute the count.
 
-The (V)PSRLW instruction shifts each of the words in the destination operand to the right by the number of bits specified in the count operand; the (V)PSRLD instruction shifts each of the doublewords in the destination operand; and the PSRLQ instruction shifts the quadword (or quadwords) in the destination operand.
+The (V)PSRLW instruction shifts each of the words in the destination operand to the right by the number of bits specified in the count operand; the (V)PSRLD instruction shifts each of the doublewords in the destination operand; and the `PSRLQ` instruction shifts the quadword (or quadwords) in the destination operand.
 
 In 64-bit mode and not encoded with VEX/EVEX, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).
 
@@ -269,7 +272,7 @@ Legacy SSE instruction 64-bit operand: The destination operand is an MMX technol
 <text x="56.459442" y="57.879990" textLength="2.610000" font-size="8px">t</text>
 <text x="71.999741" y="57.879990" textLength="2.526480" font-size="8px">r</text>
 </svg>
-<figcaption>Figure 4-19.  PSRLW, PSRLD, and PSRLQ Instruction Operation Using 64-bit Operand
+<figcaption>Figure 4-19.  `PSRLW`, `PSRLD`, and `PSRLQ` Instruction Operation Using 64-bit Operand
 </figcaption></figure>
 ```
 
@@ -295,7 +298,7 @@ Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /2, or EVEX.128.66
    DEST[64:0] <- 0000000000000000H
  ELSE
    DEST[15:0] <- ZeroExtend(DEST[15:0] >> COUNT);
-   (\htmlonly{*} Repeat shift operation for 2nd and 3rd words \htmlonly{*})
+   (* Repeat shift operation for 2nd and 3rd words *)
    DEST[63:48] <- ZeroExtend(DEST[63:48] >> COUNT);
  FI;
 ```

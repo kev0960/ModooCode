@@ -1,12 +1,15 @@
 ----------------------------
-title : WRPKRU instruction(Intel x86/64 assembly instruction)
+title : WRPKRU (Intel x86/64 assembly instruction)
 cat_title : WRPKRU
+ref_title : WRPKRU
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### WRPKRU--Write Data to User Page Key Register
+#@ WRPKRU
 
+**Write Data to User Page Key Register**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
-|-----------|---------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
 |0F 01 EF|WRPKRU|NP|V/V|OSPKE|Writes EAX into PKRU.|
 ### Instruction Operand Encoding
 
@@ -17,9 +20,9 @@ cat_title : WRPKRU
 ### Description
 
 
-Writes the value of EAX into PKRU. ECX and EDX must be 0 when WRPKRU is executed; otherwise, a general-protection exception (#GP) occurs.
+Writes the value of EAX into PKRU. ECX and EDX must be 0 when `WRPKRU` is executed; otherwise, a general-protection exception (#GP) occurs.
 
-WRPKRU can be executed only if CR4.PKE= 1; otherwise, an invalid-opcode exception (#UD) occurs. Software can discover the value of CR4.PKE by examining CPUID.(EAX=07H,ECX=0H):ECX.OSPKE [bit 4].
+WRPKRU can be executed only if CR4.PKE= 1; otherwise, an invalid-opcode exception (#UD) occurs. Software can discover the value of CR4.PKE by examining `CPUID`.(EAX=07H,ECX=0H):ECX.OSPKE [bit 4].
 
 On processors that support the Intel64 Architecture, the high-order 32-bits of RCX, RDX and RAX are ignored.
 

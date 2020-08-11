@@ -1,9 +1,12 @@
 ----------------------------
-title : CLD instruction(Intel x86/64 assembly instruction)
+title : CLD (Intel x86/64 assembly instruction)
 cat_title : CLD
+ref_title : CLD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CLD--Clear Direction Flag
+#@ CLD
 
+**Clear Direction Flag**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|

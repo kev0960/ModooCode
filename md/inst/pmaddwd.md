@@ -1,9 +1,12 @@
 ----------------------------
-title : PMADDWD instruction(Intel x86/64 assembly instruction)
+title : PMADDWD (Intel x86/64 assembly instruction)
 cat_title : PMADDWD
+ref_title : PMADDWD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PMADDWD--Multiply and Add Packed Integers
+#@ PMADDWD
 
+**Multiply and Add Packed Integers**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -220,7 +223,7 @@ EVEX.512 encoded version: The second source operand can be an ZMM register or a 
 <text x="150.779999" y="116.680023" textLength="5.329997" font-size="8px">Y</text>
 <text x="181.079498" y="31.779999" textLength="4.442996" font-size="8px">2</text>
 </svg>
-<figcaption>Figure 4-11.  PMADDWD Execution Model Using 64-bit Operands
+<figcaption>Figure 4-11.  `PMADDWD` Execution Model Using 64-bit Operands
 </figcaption></figure>
 ```
 
@@ -239,18 +242,18 @@ EVEX.512 encoded version: The second source operand can be an ZMM register or a 
 ```
 #### VPMADDWD (VEX.128 encoded version)
 ```info-verb
-DEST[31:0]  <- (SRC1[15:0] \htmlonly{*} SRC2[15:0]) + (SRC1[31:16] \htmlonly{*} SRC2[31:16])
-DEST[63:32]  <- (SRC1[47:32] \htmlonly{*} SRC2[47:32]) + (SRC1[63:48] \htmlonly{*} SRC2[63:48])
-DEST[95:64]  <- (SRC1[79:64] \htmlonly{*} SRC2[79:64]) + (SRC1[95:80] \htmlonly{*} SRC2[95:80])
-DEST[127:96] <-  (SRC1[111:96] \htmlonly{*} SRC2[111:96]) + (SRC1[127:112] \htmlonly{*} SRC2[127:112])
+DEST[31:0]  <- (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
+DEST[63:32]  <- (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
+DEST[95:64]  <- (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
+DEST[127:96] <-  (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
 DEST[VLMAX-1:128]  <- 0
 ```
 #### VPMADDWD (VEX.256 encoded version)
 ```info-verb
-DEST[31:0] <-  (SRC1[15:0] \htmlonly{*} SRC2[15:0]) + (SRC1[31:16] \htmlonly{*} SRC2[31:16])
-DEST[63:32]  <- (SRC1[47:32] \htmlonly{*} SRC2[47:32]) + (SRC1[63:48] \htmlonly{*} SRC2[63:48])
-DEST[95:64]  <- (SRC1[79:64] \htmlonly{*} SRC2[79:64]) + (SRC1[95:80] \htmlonly{*} SRC2[95:80])
-DEST[127:96] <-  (SRC1[111:96] \htmlonly{*} SRC2[111:96]) + (SRC1[127:112] \htmlonly{*} SRC2[127:112])
+DEST[31:0] <-  (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
+DEST[63:32]  <- (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
+DEST[95:64]  <- (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
+DEST[127:96] <-  (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
 DEST[159:128]  <- (SRC1[143:128] * SRC2[143:128]) + (SRC1[159:144] * SRC2[159:144])
 DEST[191:160]  <- (SRC1[175:160] * SRC2[175:160]) + (SRC1[191:176] * SRC2[191:176])
 DEST[223:192]  <- (SRC1[207:192] * SRC2[207:192]) + (SRC1[223:208] * SRC2[223:208])

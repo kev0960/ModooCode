@@ -1,9 +1,12 @@
 ----------------------------
-title : FLDENV instruction(Intel x86/64 assembly instruction)
+title : FLDENV (Intel x86/64 assembly instruction)
 cat_title : FLDENV
+ref_title : FLDENV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FLDENV--Load x87 FPU Environment
+#@ FLDENV
 
+**Load x87 FPU Environment**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -11,15 +14,15 @@ cat_title : FLDENV
 ### Description
 
 
-Loads the complete x87 FPU operating environment from memory into the FPU registers. The source operand spec-ifies the first byte of the operating-environment data in memory. This data is typically written to the specified memory location by a FSTENV or FNSTENV instruction.
+Loads the complete x87 FPU operating environment from memory into the FPU registers. The source operand spec-ifies the first byte of the operating-environment data in memory. This data is typically written to the specified memory location by a `FSTENV` or `FNSTENV` instruction.
 
 The FPU operating environment consists of the FPU control word, status word, tag word, instruction pointer, data pointer, and last opcode. Figures 8-9 through 8-12 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, show the layout in memory of the loaded environment, depending on the operating mode of the processor (protected or real) and the current operand-size attribute (16-bit or 32-bit). In virtual-8086 mode, the real mode layouts are used.
 
-The FLDENV instruction should be executed in the same operating mode as the corresponding FSTENV/FNSTENV instruction.
+The `FLDENV` instruction should be executed in the same operating mode as the corresponding FSTENV/FNSTENV instruction.
 
 If one or more unmasked exception flags are set in the new FPU status word, a floating-point exception will be generated upon execution of the next floating-point instruction (except for the no-wait floating-point instructions, see the section titled "Software Exception Handling" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1). To avoid generating exceptions when loading a new environment, clear all the exception flags in the FPU status word that is being loaded.
 
-If a page or limit fault occurs during the execution of this instruction, the state of the x87 FPU registers as seen by the fault handler may be different than the state being loaded from memory. In such situations, the fault handler should ignore the status of the x87 FPU registers, handle the fault, and return. The FLDENV instruction will then complete the loading of the x87 FPU registers with no resulting context inconsistency.
+If a page or limit fault occurs during the execution of this instruction, the state of the x87 FPU registers as seen by the fault handler may be different than the state being loaded from memory. In such situations, the fault handler should ignore the status of the x87 FPU registers, handle the fault, and return. The `FLDENV` instruction will then complete the loading of the x87 FPU registers with no resulting context inconsistency.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

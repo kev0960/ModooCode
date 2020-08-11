@@ -1,9 +1,12 @@
 ----------------------------
-title : FYL2XP1 instruction(Intel x86/64 assembly instruction)
+title : FYL2XP1 (Intel x86/64 assembly instruction)
 cat_title : FYL2XP1
+ref_title : FYL2XP1
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FYL2XP1--Compute y `*` log2(x +1)
+#@ FYL2XP1
 
+**Compute y `*` log2(x +1)**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -27,19 +30,19 @@ The following table shows the results obtained when taking the log epsilon of va
 ||||||
 ||||||
 ||||||
-|-(1 - (2$$\sqrt$$2)) to -0\newline{}- $$\infty$$ +$$\infty$$|-0\newline{}*|+0\newline{}*|+0 to +(1 - (2$$\sqrt$$2))\newline{}   - $$\infty$$|NaN\newline{}NaN|
+|-(1 - (2$$\sqrt$$2)) to -0\newline{}- $$\infty$$ +$$\infty$$|-0\newline{}\htmlonly{*}|+0\newline{}\htmlonly{*}|+0 to +(1 - (2$$\sqrt$$2))\newline{}   - $$\infty$$|NaN\newline{}NaN|
 |**ST(1)** - F +F|+0|-0|- F|NaN|
 |- 0 +0|+0|-0|- 0|NaN|
 |+0 - 0|- 0|+0|+0|NaN|
 |+F - F|- 0|+0|+F|NaN|
-|+$$\infty$$ - $$\infty$$|*|*|+$$\infty$$|NaN|
+|+$$\infty$$ - $$\infty$$|\htmlonly{*}|\htmlonly{*}|+$$\infty$$|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
 
 FMeans finite floating-point value.
 
-*Indicates floating-point invalid-operation (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-operation (#IA) exception.
 
 This instruction provides optimal accuracy for values of epsilon [the value in register ST(0)] that are close to 0. For small epsilon (
 ) values, more significant digits can be retained by using the FYL2XP1 instruction than by using (

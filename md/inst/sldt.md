@@ -1,12 +1,15 @@
 ----------------------------
-title : SLDT instruction(Intel x86/64 assembly instruction)
+title : SLDT (Intel x86/64 assembly instruction)
 cat_title : SLDT
+ref_title : SLDT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SLDT--Store Local Descriptor Table Register
+#@ SLDT
 
+**Store Local Descriptor Table Register**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 00 /0|SLDT r/m16|M|Valid |Valid|Stores segment selector from LDTR in r/m16.|
 |REX.W + 0F 00 /0|SLDT r64/m16|M|Valid |Valid|Stores segment selector from LDTR in r64/m16.|
 ### Instruction Operand Encoding
@@ -24,7 +27,7 @@ Outside IA-32e mode, when the destination operand is a 32-bit register, the 16-b
 
 In compatibility mode, when the destination operand is a 32-bit register, the 16-bit segment selector is copied into the low-order 16 bits of the register. The high-order 16 bits of the register are cleared. When the destination operand is a memory location, the segment selector is written to memory as a 16-bit quantity, regardless of the operand size.
 
-In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). The behavior of SLDT with a 64-bit register is to zero-extend the 16-bit selector and store it in the register. If the desti-nation is memory and operand size is 64, SLDT will write the 16-bit selector to memory as a 16-bit quantity, regardless of the operand size.
+In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). The behavior of `SLDT` with a 64-bit register is to zero-extend the 16-bit selector and store it in the register. If the desti-nation is memory and operand size is 64, `SLDT` will write the 16-bit selector to memory as a 16-bit quantity, regardless of the operand size.
 
 
 ### Operation

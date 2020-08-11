@@ -1,9 +1,12 @@
 ----------------------------
-title : IRET, IRETD instructions(Intel x86/64 assembly instruction)
+title : IRET, IRETDs (Intel x86/64 assembly instruction)
 cat_title : IRET, IRETD
+ref_title : IRET, IRETD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### IRET/IRETD--Interrupt Return
+#@ IRET, IRETD
 
+**Interrupt Return**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -19,13 +22,13 @@ cat_title : IRET, IRETD
 ### Description
 
 
-Returns program control from an exception or interrupt handler to a program or procedure that was interrupted by an exception, an external interrupt, or a software-generated interrupt. These instructions are also used to perform a return from a nested task. (A nested task is created when a CALL instruction is used to initiate a task switch or when an interrupt or exception causes a task switch to an interrupt or exception handler.) See the section titled "Task Linking" in Chapter 7 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
+Returns program control from an exception or interrupt handler to a program or procedure that was interrupted by an exception, an external interrupt, or a software-generated interrupt. These instructions are also used to perform a return from a nested task. (A nested task is created when a `CALL` instruction is used to initiate a task switch or when an interrupt or exception causes a task switch to an interrupt or exception handler.) See the section titled "Task Linking" in Chapter 7 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
-IRET and IRETD are mnemonics for the same opcode. The IRETD mnemonic (interrupt return double) is intended for use when returning from an interrupt when using the 32-bit operand size; however, most assemblers use the IRET mnemonic interchangeably for both operand sizes.
+IRET and `IRETD` are mnemonics for the same opcode. The `IRETD` mnemonic (interrupt return double) is intended for use when returning from an interrupt when using the 32-bit operand size; however, most assemblers use the `IRET` mnemonic interchangeably for both operand sizes.
 
-In Real-Address Mode, the IRET instruction preforms a far return to the interrupted program or procedure. During this operation, the processor pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure.
+In Real-Address Mode, the `IRET` instruction preforms a far return to the interrupted program or procedure. During this operation, the processor pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure.
 
-In Protected Mode, the action of the IRET instruction depends on the settings of the NT (nested task) and VM flags in the EFLAGS register and the VM flag in the EFLAGS image stored on the current stack. Depending on the setting of these flags, the processor performs the following types of interrupt returns:
+In Protected Mode, the action of the `IRET` instruction depends on the settings of the NT (nested task) and VM flags in the EFLAGS register and the VM flag in the EFLAGS image stored on the current stack. Depending on the setting of these flags, the processor performs the following types of interrupt returns:
 
 *  Return from virtual-8086 mode.
 
@@ -37,15 +40,15 @@ In Protected Mode, the action of the IRET instruction depends on the settings of
 
 *  Return from nested task (task switch).
 
-If the NT flag (EFLAGS register) is cleared, the IRET instruction performs a far return from the interrupt procedure, without a task switch. The code segment being returned to must be equally or less privileged than the interrupt handler routine (as indicated by the RPL field of the code segment selector popped from the stack). 
+If the NT flag (EFLAGS register) is cleared, the `IRET` instruction performs a far return from the interrupt procedure, without a task switch. The code segment being returned to must be equally or less privileged than the interrupt handler routine (as indicated by the RPL field of the code segment selector popped from the stack). 
 
-As with a real-address mode interrupt return, the IRET instruction pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure. If the return is to another privilege level, the IRET instruction also pops the stack pointer and SS from the stack, before resuming program execution. If the return is to virtual-8086 mode, the processor also pops the data segment registers from the stack.
+As with a real-address mode interrupt return, the `IRET` instruction pops the return instruction pointer, return code segment selector, and EFLAGS image from the stack to the EIP, CS, and EFLAGS registers, respectively, and then resumes execution of the interrupted program or procedure. If the return is to another privilege level, the `IRET` instruction also pops the stack pointer and SS from the stack, before resuming program execution. If the return is to virtual-8086 mode, the processor also pops the data segment registers from the stack.
 
-If the NT flag is set, the IRET instruction performs a task switch (return) from a nested task (a task called with a CALL instruction, an interrupt, or an exception) back to the calling or interrupted task. The updated state of the task executing the IRET instruction is saved in its TSS. If the task is re-entered later, the code that follows the IRET instruction is executed.
+If the NT flag is set, the `IRET` instruction performs a task switch (return) from a nested task (a task called with a `CALL` instruction, an interrupt, or an exception) back to the calling or interrupted task. The updated state of the task executing the `IRET` instruction is saved in its TSS. If the task is re-entered later, the code that follows the `IRET` instruction is executed.
 
-If the NT flag is set and the processor is in IA-32e mode, the IRET instruction causes a general protection excep-tion.
+If the NT flag is set and the processor is in IA-32e mode, the `IRET` instruction causes a general protection excep-tion.
 
-If nonmaskable interrupts (NMIs) are blocked (see Section 6.7.1, "Handling Multiple NMIs" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A), execution of the IRET instruction unblocks NMIs. 
+If nonmaskable interrupts (NMIs) are blocked (see Section 6.7.1, "Handling Multiple NMIs" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A), execution of the `IRET` instruction unblocks NMIs. 
 
 
 
@@ -73,30 +76,30 @@ REAL-ADDRESS-MODE;
  IF OperandSize = 32
    THEN
     EIP <- Pop();
-    CS <- Pop(); (\htmlonly{*} 32-bit pop, high-order 16 bits discarded \htmlonly{*})
+    CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
     tempEFLAGS <- Pop();
     EFLAGS <- (tempEFLAGS AND 257FD5H) OR (EFLAGS AND 1A0000H);
-   ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
-    EIP <- Pop(); (\htmlonly{*} 16-bit pop; clear upper 16 bits \htmlonly{*})
-    CS <- Pop(); (\htmlonly{*} 16-bit pop \htmlonly{*})
+   ELSE (* OperandSize = 16 *)
+    EIP <- Pop(); (* 16-bit pop; clear upper 16 bits *)
+    CS <- Pop(); (* 16-bit pop *)
     EFLAGS[15:0] <- Pop();
  FI;
  END;
 RETURN-FROM-VIRTUAL-8086-MODE: 
-(\htmlonly{*} Processor is in virtual-8086 mode when IRET is executed and stays in virtual-8086 mode \htmlonly{*})
- IF IOPL = 3 (\htmlonly{*} Virtual mode: PE = 1, VM = 1, IOPL = 3 \htmlonly{*})
+(* Processor is in virtual-8086 mode when IRET is executed and stays in virtual-8086 mode *)
+ IF IOPL = 3 (* Virtual mode: PE = 1, VM = 1, IOPL = 3 *)
    THEN IF OperandSize = 32
     THEN
       EIP <- Pop();
-      CS <- Pop(); (\htmlonly{*} 32-bit pop, high-order 16 bits discarded \htmlonly{*})
+      CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
       EFLAGS <- Pop();
-      (\htmlonly{*} VM, IOPL,VIP and VIF EFLAG bits not modified by pop \htmlonly{*})
+      (* VM, IOPL,VIP and VIF EFLAG bits not modified by pop *)
       IF EIP not within CS limit
         THEN #GP(0); FI;
-    ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
-      EIP <- Pop(); (\htmlonly{*} 16-bit pop; clear upper 16 bits \htmlonly{*})
-      CS <- Pop(); (\htmlonly{*} 16-bit pop \htmlonly{*})
-      EFLAGS[15:0] <- Pop(); (\htmlonly{*} IOPL in EFLAGS not modified by pop \htmlonly{*})
+    ELSE (* OperandSize = 16 *)
+      EIP <- Pop(); (* 16-bit pop; clear upper 16 bits *)
+      CS <- Pop(); (* 16-bit pop *)
+      EFLAGS[15:0] <- Pop(); (* IOPL in EFLAGS not modified by pop *)
       IF EIP not within CS limit
         THEN #GP(0); FI;
     FI;

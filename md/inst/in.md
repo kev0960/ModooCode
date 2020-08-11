@@ -1,9 +1,12 @@
 ----------------------------
-title : IN instruction(Intel x86/64 assembly instruction)
+title : IN (Intel x86/64 assembly instruction)
 cat_title : IN
+ref_title : IN
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### IN--Input from Port
+#@ IN
 
+**Input from Port**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -36,15 +39,15 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
- THEN (\htmlonly{*} Protected mode with CPL > IOPL or virtual-8086 mode \htmlonly{*})
+ THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
    IF (Any I/O Permission Bit for I/O port being accessed = 1)
-    THEN (\htmlonly{*} I/O operation is not allowed \htmlonly{*})
+    THEN (* I/O operation is not allowed *)
       #GP(0);
-    ELSE ( \htmlonly{*} I/O operation is allowed \htmlonly{*}) 
-      DEST <- SRC; (\htmlonly{*} Read from selected I/O port \htmlonly{*})
+    ELSE ( * I/O operation is allowed *) 
+      DEST <- SRC; (* Read from selected I/O port *)
    FI;
- ELSE (Real Mode or Protected Mode with CPL <= IOPL \htmlonly{*})
-   DEST <- SRC; (\htmlonly{*} Read from selected I/O port \htmlonly{*})
+ ELSE (Real Mode or Protected Mode with CPL <= IOPL *)
+   DEST <- SRC; (* Read from selected I/O port *)
 FI;
 ```
 ### Flags Affected

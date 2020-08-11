@@ -1,9 +1,12 @@
 ----------------------------
-title : WBINVD instruction(Intel x86/64 assembly instruction)
+title : WBINVD (Intel x86/64 assembly instruction)
 cat_title : WBINVD
+ref_title : WBINVD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### WBINVD--Write Back and Invalidate Cache
+#@ WBINVD
 
+**Write Back and Invalidate Cache**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -19,11 +22,11 @@ cat_title : WBINVD
 
 Writes back all modified cache lines in the processor's internal cache to main memory and invalidates (flushes) the internal caches. The instruction then issues a special-function bus cycle that directs external caches to also write back modified data and another bus cycle to indicate that the external caches should be invalidated.
 
-After executing this instruction, the processor does not wait for the external caches to complete their write-back and flushing operations before proceeding with instruction execution. It is the responsibility of hardware to respond to the cache write-back and flush signals. The amount of time or cycles for WBINVD to complete will vary due to size and other factors of different cache hierarchies. As a consequence, the use of the WBINVD instruction can have an impact on logical processor interrupt/event response time. Additional information of WBINVD behavior in a cache hierarchy with hierarchical sharing topology can be found in Chapter 2 of the Intel(R) 64 and IA-32 Architec-tures Software Developer's Manual, Volume 3A.
+After executing this instruction, the processor does not wait for the external caches to complete their write-back and flushing operations before proceeding with instruction execution. It is the responsibility of hardware to respond to the cache write-back and flush signals. The amount of time or cycles for `WBINVD` to complete will vary due to size and other factors of different cache hierarchies. As a consequence, the use of the `WBINVD` instruction can have an impact on logical processor interrupt/event response time. Additional information of `WBINVD` behavior in a cache hierarchy with hierarchical sharing topology can be found in Chapter 2 of the Intel(R) 64 and IA-32 Architec-tures Software Developer's Manual, Volume 3A.
 
-The WBINVD instruction is a privileged instruction. When the processor is running in protected mode, the CPL of a program or procedure must be 0 to execute this instruction. This instruction is also a serializing instruction (see "Serializing Instructions" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A).
+The `WBINVD` instruction is a privileged instruction. When the processor is running in protected mode, the CPL of a program or procedure must be 0 to execute this instruction. This instruction is also a serializing instruction (see "Serializing Instructions" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A).
 
-In situations where cache coherency with main memory is not a concern, software can use the INVD instruction. 
+In situations where cache coherency with main memory is not a concern, software can use the `INVD` instruction. 
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -40,7 +43,7 @@ WriteBack(InternalCaches);
 Flush(InternalCaches);
 SignalWriteBack(ExternalCaches);
 SignalFlush(ExternalCaches);
-Continue; (\htmlonly{*} Continue execution \htmlonly{*})
+Continue; (* Continue execution *)
 ```
 ### Flags Affected
 

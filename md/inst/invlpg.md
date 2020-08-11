@@ -1,9 +1,12 @@
 ----------------------------
-title : INVLPG instruction(Intel x86/64 assembly instruction)
+title : INVLPG (Intel x86/64 assembly instruction)
 cat_title : INVLPG
+ref_title : INVLPG
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### INVLPG--Invalidate TLB Entries
+#@ INVLPG
 
+**Invalidate TLB Entries**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -11,7 +14,7 @@ cat_title : INVLPG
 ### NOTES:
 
 
-*See the IA-32 Architecture Compatibility section below.
+\htmlonly{*}See the IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -24,13 +27,13 @@ cat_title : INVLPG
 
 Invalidates any translation lookaside buffer (TLB) entries specified with the source operand. The source operand is a memory address. The processor determines the page that contains that address and flushes all TLB entries for that page.\footnote{1}
 
-The INVLPG instruction is a privileged instruction. When the processor is running in protected mode, the CPL must be 0 to execute this instruction.
+The `INVLPG` instruction is a privileged instruction. When the processor is running in protected mode, the CPL must be 0 to execute this instruction.
 
-The INVLPG instruction normally flushes TLB entries only for the specified page; however, in some cases, it may flush more entries, even the entire TLB. The instruction is guaranteed to invalidates only TLB entries associated with the current PCID. (If PCIDs are disabled-- CR4.PCIDE= 0-- the current PCID is 000H.) The instruction also invalidates any global TLB entries for the specified page, regardless of PCID.
+The `INVLPG` instruction normally flushes TLB entries only for the specified page; however, in some cases, it may flush more entries, even the entire TLB. The instruction is guaranteed to invalidates only TLB entries associated with the current PCID. (If PCIDs are disabled-- CR4.PCIDE= 0-- the current PCID is 000H.) The instruction also invalidates any global TLB entries for the specified page, regardless of PCID.
 
 For more details on operations that flush the TLB, see "MOV--Move to/from Control Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2B and Section 4.10.4.1, "Operations that Invalidate TLBs and Paging-Structure Caches," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
-This instruction's operation is the same in all non-64-bit modes. It also operates the same in 64-bit mode, except if the memory address is in non-canonical form. In this case, INVLPG is the same as a NOP.
+This instruction's operation is the same in all non-64-bit modes. It also operates the same in 64-bit mode, except if the memory address is in non-canonical form. In this case, `INVLPG` is the same as a `NOP`.
 
 ### IA-32 Architecture Compatibility
 
@@ -42,7 +45,7 @@ The INVLPG instruction is implementation dependent, and its function may be impl
 
 ```info-verb
 Invalidate(RelevantTLBEntries);
-Continue; (\htmlonly{*} Continue execution \htmlonly{*})
+Continue; (* Continue execution *)
 ```
 ### Flags Affected
 

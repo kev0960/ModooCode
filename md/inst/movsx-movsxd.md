@@ -1,24 +1,27 @@
 ----------------------------
-title : MOVSX, MOVSXD instructions(Intel x86/64 assembly instruction)
+title : MOVSX, MOVSXDs (Intel x86/64 assembly instruction)
 cat_title : MOVSX, MOVSXD
+ref_title : MOVSX, MOVSXD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVSX/MOVSXD--Move with Sign-Extension
+#@ MOVSX, MOVSXD
 
+**Move with Sign-Extension**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F BE /r|MOVSX r16, r/m8|RM|Valid|Valid|Move byte to word with sign-extension.|
 |0F BE /r|MOVSX r32, r/m8|RM|Valid|Valid|Move byte to doubleword with sign-extension.|
-|REX + 0F BE /r|MOVSX r64, r/m8*|RM|Valid|N.E.|Move byte to quadword with sign-extension.|
+|REX + 0F BE /r|MOVSX r64, r/m8\htmlonly{*}|RM|Valid|N.E.|Move byte to quadword with sign-extension.|
 |0F BF /r|MOVSX r32, r/m16|RM|Valid|Valid|Move word to doubleword, with sign-extension.|
 |REX.W + 0F BF /r|MOVSX r64, r/m16|RM|Valid |N.E.|Move word to quadword with sign-extension.|
-|REX.W** + 63 /r|MOVSXD r64, r/m32|RM|Valid |N.E.|Move doubleword to quadword with sign-extension.|
+|REX.W\htmlonly{*}\htmlonly{*} + 63 /r|MOVSXD r64, r/m32|RM|Valid |N.E.|Move doubleword to quadword with sign-extension.|
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
-**The use of MOVSXD without REX.W in 64-bit mode is discouraged, Regular MOV should be used instead of using MOVSXD without REX.W. 
+\htmlonly{*}\htmlonly{*}The use of MOVSXD without REX.W in 64-bit mode is discouraged, Regular MOV should be used instead of using MOVSXD without REX.W. 
 
 ### Instruction Operand Encoding
 

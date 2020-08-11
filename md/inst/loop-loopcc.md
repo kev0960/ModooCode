@@ -1,9 +1,12 @@
 ----------------------------
-title : LOOP, LOOPcc instructions(Intel x86/64 assembly instruction)
+title : LOOP, LOOPccs (Intel x86/64 assembly instruction)
 cat_title : LOOP, LOOPcc
+ref_title : LOOP, LOOPcc
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LOOP/LOOPcc--Loop According to ECX Counter
+#@ LOOP, LOOPcc
 
+**Loop According to ECX Counter**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -19,13 +22,13 @@ cat_title : LOOP, LOOPcc
 ### Description
 
 
-Performs a loop operation using the RCX, ECX or CX register as a counter (depending on whether address size is 64 bits, 32 bits, or 16 bits). Note that the LOOP instruction ignores REX.W; but 64-bit address size can be over-ridden using a 67H prefix.
+Performs a loop operation using the RCX, ECX or CX register as a counter (depending on whether address size is 64 bits, 32 bits, or 16 bits). Note that the `LOOP` instruction ignores REX.W; but 64-bit address size can be over-ridden using a 67H prefix.
 
-Each time the LOOP instruction is executed, the count register is decremented, then checked for 0. If the count is 0, the loop is terminated and program execution continues with the instruction following the LOOP instruction. If the count is not zero, a near jump is performed to the destination (target) operand, which is presumably the instruction at the beginning of the loop.
+Each time the `LOOP` instruction is executed, the count register is decremented, then checked for 0. If the count is 0, the loop is terminated and program execution continues with the instruction following the `LOOP` instruction. If the count is not zero, a near jump is performed to the destination (target) operand, which is presumably the instruction at the beginning of the loop.
 
 The target instruction is specified with a relative offset (a signed offset relative to the current value of the instruc-tion pointer in the IP/EIP/RIP register). This offset is generally specified as a label in assembly code, but at the machine code level, it is encoded as a signed, 8-bit immediate value, which is added to the instruction pointer. Offsets of -128 to +127 are allowed with this instruction.
 
-Some forms of the loop instruction (LOOPcc) also accept the ZF flag as a condition for terminating the loop before the count reaches zero. With these forms of the instruction, a condition code (cc) is associated with each instruction to indicate the condition being tested for. Here, the LOOPcc instruction itself does not affect the state of the ZF flag; the ZF flag is changed by other instructions in the loop.
+Some forms of the loop instruction (LOOPcc) also accept the ZF flag as a condition for terminating the loop before the count reaches zero. With these forms of the instruction, a condition code (cc) is associated with each instruction to indicate the condition being tested for. Here, the `LOOPcc` instruction itself does not affect the state of the ZF flag; the ZF flag is changed by other instructions in the loop.
 
 
 ### Operation

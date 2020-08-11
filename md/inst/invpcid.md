@@ -1,9 +1,12 @@
 ----------------------------
-title : INVPCID instruction(Intel x86/64 assembly instruction)
+title : INVPCID (Intel x86/64 assembly instruction)
 cat_title : INVPCID
+ref_title : INVPCID
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### INVPCID--Invalidate Process-Context Identifier
+#@ INVPCID
 
+**Invalidate Process-Context Identifier**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32-**\newline{}**bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
@@ -18,21 +21,21 @@ cat_title : INVPCID
 ### Description
 
 
-Invalidates mappings in the translation lookaside buffers (TLBs) and paging-structure caches based on process-context identifier (PCID). (See Section 4.10, "Caching Translation Information," in Intel64 and IA-32 Architecture Software Developer's Manual, Volume 3A.) Invalidation is based on the INVPCID type specified in the register operand and the INVPCID descriptor specified in the memory operand.
+Invalidates mappings in the translation lookaside buffers (TLBs) and paging-structure caches based on process-context identifier (PCID). (See Section 4.10, "Caching Translation Information," in Intel64 and IA-32 Architecture Software Developer's Manual, Volume 3A.) Invalidation is based on the `INVPCID` type specified in the register operand and the `INVPCID` descriptor specified in the memory operand.
 
 Outside 64-bit mode, the register operand is always 32 bits, regardless of the value of CS.D. In 64-bit mode the register operand has 64 bits.
 
-There are four INVPCID types currently defined:
+There are four `INVPCID` types currently defined:
 
-*  Individual-address invalidation: If the INVPCID type is 0, the logical processor invalidates mappings--except global translations--for the linear address and PCID specified in the INVPCID descriptor.\footnote{1}  In some cases, the instruction may invalidate global translations or mappings for other linear addresses (or other PCIDs) as well.
+*  Individual-address invalidation: If the `INVPCID` type is 0, the logical processor invalidates mappings--except global translations--for the linear address and PCID specified in the `INVPCID` descriptor.\footnote{1}  In some cases, the instruction may invalidate global translations or mappings for other linear addresses (or other PCIDs) as well.
 
-*  Single-context invalidation: If the INVPCID type is 1, the logical processor invalidates all mappings--except global translations--associated with the PCID specified in the INVPCID descriptor. In some cases, the instruction may invalidate global translations or mappings for other PCIDs as well.
+*  Single-context invalidation: If the `INVPCID` type is 1, the logical processor invalidates all mappings--except global translations--associated with the PCID specified in the `INVPCID` descriptor. In some cases, the instruction may invalidate global translations or mappings for other PCIDs as well.
 
-*  All-context invalidation, including global translations: If the INVPCID type is 2, the logical processor invalidates all mappings--including global translations--associated with any PCID. 
+*  All-context invalidation, including global translations: If the `INVPCID` type is 2, the logical processor invalidates all mappings--including global translations--associated with any PCID. 
 
-*  All-context invalidation: If the INVPCID type is 3, the logical processor invalidates all mappings--except global translations--associated with any PCID. In some case, the instruction may invalidate global translations as well. 
+*  All-context invalidation: If the `INVPCID` type is 3, the logical processor invalidates all mappings--except global translations--associated with any PCID. In some case, the instruction may invalidate global translations as well. 
 
-The INVPCID descriptor comprises 128 bits and consists of a PCID and a linear address as shown in Figure 3-24. For INVPCID type 0, the processor uses the full 64 bits of the linear address even outside 64-bit mode; the linear address is not used for other INVPCID types.
+The `INVPCID` descriptor comprises 128 bits and consists of a PCID and a linear address as shown in Figure 3-24. For `INVPCID` type 0, the processor uses the full 64 bits of the linear address even outside 64-bit mode; the linear address is not used for other `INVPCID` types.
 
 ```embed
 <figure>
@@ -105,7 +108,7 @@ The INVPCID descriptor comprises 128 bits and consists of a PCID and a linear ad
 <text x="302.966431" y="50.500183" textLength="3.014949" font-size="8px">)</text>
 <text x="37.860001" y="35.199997" textLength="5.033968" font-size="8px">1</text>
 </svg>
-<figcaption>Figure 3-24.  INVPCID Descriptor
+<figcaption>Figure 3-24.  `INVPCID` Descriptor
 </figcaption></figure>
 ```
 
@@ -114,7 +117,7 @@ The INVPCID descriptor comprises 128 bits and consists of a PCID and a linear ad
 
 
 
-If CR4.PCIDE= 0, a logical processor does not cache information for any PCID other than 000H. In this case, executions with INVPCID types 0 and 1 are allowed only if the PCID specified in the INVPCID descriptor is 000H; executions with INVPCID types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0 outside 64-bit mode (see Chapter 4.10.1, "Process-Context Identifiers (PCIDs)," of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 3A).
+If CR4.PCIDE= 0, a logical processor does not cache information for any PCID other than 000H. In this case, executions with `INVPCID` types 0 and 1 are allowed only if the PCID specified in the `INVPCID` descriptor is 000H; executions with `INVPCID` types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0 outside 64-bit mode (see Chapter 4.10.1, "Process-Context Identifiers (PCIDs)," of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 3A).
 
 
 ### Operation

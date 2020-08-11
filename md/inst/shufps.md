@@ -1,9 +1,12 @@
 ----------------------------
-title : SHUFPS instruction(Intel x86/64 assembly instruction)
+title : SHUFPS (Intel x86/64 assembly instruction)
 cat_title : SHUFPS
+ref_title : SHUFPS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SHUFPS--Packed Interleave Shuffle of Quadruplets of Single-Precision Floating-Point Values
+#@ SHUFPS
 
+**Packed Interleave Shuffle of Quadruplets of Single-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|

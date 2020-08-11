@@ -1,9 +1,12 @@
 ----------------------------
-title : CLTS instruction(Intel x86/64 assembly instruction)
+title : CLTS (Intel x86/64 assembly instruction)
 cat_title : CLTS
+ref_title : CLTS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CLTS--Clear Task-Switched Flag in CR0
+#@ CLTS
 
+**Clear Task-Switched Flag in CR0**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|

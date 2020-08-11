@@ -1,9 +1,12 @@
 ----------------------------
-title : HADDPS instruction(Intel x86/64 assembly instruction)
+title : HADDPS (Intel x86/64 assembly instruction)
 cat_title : HADDPS
+ref_title : HADDPS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### HADDPS--Packed Single-FP Horizontal Add
+#@ HADDPS
 
+**Packed Single-FP Horizontal Add**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|

@@ -1,9 +1,12 @@
 ----------------------------
-title : FSTCW, FNSTCW instructions(Intel x86/64 assembly instruction)
+title : FSTCW, FNSTCWs (Intel x86/64 assembly instruction)
 cat_title : FSTCW, FNSTCW
+ref_title : FSTCW, FNSTCW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FSTCW/FNSTCW--Store x87 FPU Control Word
+#@ FSTCW, FNSTCW
 
+**Store x87 FPU Control Word**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -12,14 +15,14 @@ cat_title : FSTCW, FNSTCW
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Description
 
 
-Stores the current value of the FPU control word at the specified destination in memory. The FSTCW instruction checks for and handles pending unmasked floating-point exceptions before storing the control word; the FNSTCW instruction does not.
+Stores the current value of the FPU control word at the specified destination in memory. The `FSTCW` instruction checks for and handles pending unmasked floating-point exceptions before storing the control word; the `FNSTCW` instruction does not.
 
-The assembler issues two instructions for the FSTCW instruction (an FWAIT instruction followed by an FNSTCW instruction), and the processor executes each of these instructions in separately. If an exception is generated for either of these instructions, the save EIP points to the instruction that caused the exception.
+The assembler issues two instructions for the `FSTCW` instruction (an `FWAIT` instruction followed by an `FNSTCW` instruction), and the processor executes each of these instructions in separately. If an exception is generated for either of these instructions, the save EIP points to the instruction that caused the exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

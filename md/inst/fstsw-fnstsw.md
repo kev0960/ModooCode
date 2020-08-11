@@ -1,9 +1,12 @@
 ----------------------------
-title : FSTSW, FNSTSW instructions(Intel x86/64 assembly instruction)
+title : FSTSW, FNSTSWs (Intel x86/64 assembly instruction)
 cat_title : FSTSW, FNSTSW
+ref_title : FSTSW, FNSTSW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FSTSW/FNSTSW--Store x87 FPU Status Word
+#@ FSTSW, FNSTSW
 
+**Store x87 FPU Status Word**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -14,16 +17,16 @@ cat_title : FSTSW, FNSTSW
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Description
 
 
-Stores the current value of the x87 FPU status word in the destination location. The destination operand can be either a two-byte memory location or the AX register. The FSTSW instruction checks for and handles pending unmasked floating-point exceptions before storing the status word; the FNSTSW instruction does not.
+Stores the current value of the x87 FPU status word in the destination location. The destination operand can be either a two-byte memory location or the AX register. The `FSTSW` instruction checks for and handles pending unmasked floating-point exceptions before storing the status word; the `FNSTSW` instruction does not.
 
-The FNSTSW AX form of the instruction is used primarily in conditional branching (for instance, after an FPU comparison instruction or an FPREM, FPREM1, or FXAM instruction), where the direction of the branch depends on the state of the FPU condition code flags. (See the section titled "Branching and Conditional Moves on FPU Condi-tion Codes" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1.) This instruction can also be used to invoke exception handlers (by examining the exception flags) in environments that do not use interrupts. When the FNSTSW AX instruction is executed, the AX register is updated before the processor executes any further instructions. The status stored in the AX register is thus guaranteed to be from the completion of the prior FPU instruction. 
+The `FNSTSW` AX form of the instruction is used primarily in conditional branching (for instance, after an FPU comparison instruction or an `FPREM`, `FPREM1`, or `FXAM` instruction), where the direction of the branch depends on the state of the FPU condition code flags. (See the section titled "Branching and Conditional Moves on FPU Condi-tion Codes" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1.) This instruction can also be used to invoke exception handlers (by examining the exception flags) in environments that do not use interrupts. When the `FNSTSW` AX instruction is executed, the AX register is updated before the processor executes any further instructions. The status stored in the AX register is thus guaranteed to be from the completion of the prior FPU instruction. 
 
-The assembler issues two instructions for the FSTSW instruction (an FWAIT instruction followed by an FNSTSW instruction), and the processor executes each of these instructions separately. If an exception is generated for either of these instructions, the save EIP points to the instruction that caused the exception.
+The assembler issues two instructions for the `FSTSW` instruction (an `FWAIT` instruction followed by an `FNSTSW` instruction), and the processor executes each of these instructions separately. If an exception is generated for either of these instructions, the save EIP points to the instruction that caused the exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

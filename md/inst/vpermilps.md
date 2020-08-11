@@ -1,9 +1,12 @@
 ----------------------------
-title : VPERMILPS instruction(Intel x86/64 assembly instruction)
+title : VPERMILPS (Intel x86/64 assembly instruction)
 cat_title : VPERMILPS
+ref_title : VPERMILPS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VPERMILPS--Permute In-Lane of Quadruples of Single-Precision Floating-Point Values
+#@ VPERMILPS
 
+**Permute In-Lane of Quadruples of Single-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -261,7 +264,7 @@ Note: For the imm8 version, VEX.vvvv and EVEX.vvvv are reserved and must be 1111
 <text x="201.206177" y="112.240021" textLength="5.530430" font-size="8px">X</text>
 <text x="12.120003" y="112.240021" textLength="5.415000" font-size="8px">D</text>
 </svg>
-<figcaption>Figure 5-25.  VPERMILPS Operation
+<figcaption>Figure 5-25.  `VPERMILPS` Operation
 </figcaption></figure>
 ```
 ```embed
@@ -414,7 +417,7 @@ Note: For the imm8 version, VEX.vvvv and EVEX.vvvv are reserved and must be 1111
 <text x="374.766663" y="62.260010" textLength="4.053631" font-size="8px">e</text>
 <text x="246.059052" y="96.760010" textLength="5.537760" font-size="8px">F</text>
 </svg>
-<figcaption>Figure 5-26.  VPERMILPS Shuffle Control
+<figcaption>Figure 5-26.  `VPERMILPS` Shuffle Control
 </figcaption></figure>
 ```
 
@@ -423,8 +426,8 @@ Note: For the imm8 version, VEX.vvvv and EVEX.vvvv are reserved and must be 1111
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
 FOR j  <- 0 TO KL-1
- i  <- j \htmlonly{*} 32
- IF (EVEX.b = 1) AND (SRC1 \htmlonly{*}is memory\htmlonly{*})
+ i  <- j * 32
+ IF (EVEX.b = 1) AND (SRC1 *is memory*)
    THEN TMP_SRC1[i+31:i] <-  SRC1[31:0];
    ELSE TMP_SRC1[i+31:i]  <- SRC1[i+31:i];
  FI;
@@ -450,12 +453,12 @@ IF VL >= 512
  TMP_DEST[511:480] <-  Select4(TMP_SRC1[511:384], imm8[7:6]); FI;
 FI;
 FOR j  <- 0 TO KL-1
- i  <- j \htmlonly{*} 32
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 32
+ IF k1[j] OR *no writemask*
    THEN DEST[i+31:i]  <- TMP_DEST[i+31:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*}
-      THEN \htmlonly{*}DEST[i+31:i] remains unchanged\htmlonly{*}
+    IF *merging-masking*
+      THEN *DEST[i+31:i] remains unchanged*
       ELSE DEST[i+31:i]  <- 0 ;zeroing-masking
     FI;
  FI;

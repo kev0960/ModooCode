@@ -1,9 +1,12 @@
 ----------------------------
-title : PEXT instruction(Intel x86/64 assembly instruction)
+title : PEXT (Intel x86/64 assembly instruction)
 cat_title : PEXT
+ref_title : PEXT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PEXT -- Parallel Bits Extract
+#@ PEXT
 
+** Parallel Bits Extract**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|

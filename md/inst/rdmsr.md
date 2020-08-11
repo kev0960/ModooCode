@@ -1,17 +1,20 @@
 ----------------------------
-title : RDMSR instruction(Intel x86/64 assembly instruction)
+title : RDMSR (Intel x86/64 assembly instruction)
 cat_title : RDMSR
+ref_title : RDMSR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RDMSR--Read from Model Specific Register
+#@ RDMSR
 
+**Read from Model Specific Register**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 32|RDMSR|NP|Valid |Valid|Read MSR specified by ECX into EDX:EAX.|
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -28,7 +31,7 @@ This instruction must be executed at privilege level 0 or in real-address mode; 
 
 The MSRs control functions for testability, execution tracing, performance-monitoring, and machine check errors. Chapter 35, "Model-Specific Registers (MSRs)," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3C, lists all the MSRs that can be read with this instruction and their addresses. Note that each processor family has its own set of MSRs.
 
-The CPUID instruction should be used to determine whether MSRs are supported (CPUID.01H:EDX[5] = 1) before using this instruction.
+The `CPUID` instruction should be used to determine whether MSRs are supported (CPUID.01H:EDX[5] = 1) before using this instruction.
 
 ### IA-32 Architecture Compatibility
 

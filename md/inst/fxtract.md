@@ -1,9 +1,12 @@
 ----------------------------
-title : FXTRACT instruction(Intel x86/64 assembly instruction)
+title : FXTRACT (Intel x86/64 assembly instruction)
 cat_title : FXTRACT
+ref_title : FXTRACT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FXTRACT--Extract Exponent and Significand
+#@ FXTRACT
 
+**Extract Exponent and Significand**
 
 |**Opcode/**\newline{}**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|-----------------------------|---------------------------------|---------------|
@@ -13,7 +16,7 @@ cat_title : FXTRACT
 
 Separates the source value in the ST(0) register into its exponent and significand, stores the exponent in ST(0), and pushes the significand onto the register stack. Following this operation, the new top-of-stack register ST(0) contains the value of the original significand expressed as a floating-point value. The sign and significand of this value are the same as those found in the source operand, and the exponent is 3FFFH (biased value for a true expo-nent of zero). The ST(1) register contains the value of the original operand's true (unbiased) exponent expressed as a floating-point value. (The operation performed by this instruction is a superset of the IEEE-recommended logb(x) function.)
 
-This instruction and the F2XM1 instruction are useful for performing power and range scaling operations. The FXTRACT instruction is also useful for converting numbers in double extended-precision floating-point format to decimal representations (e.g., for printing or displaying).
+This instruction and the `F2XM1` instruction are useful for performing power and range scaling operations. The `FXTRACT` instruction is also useful for converting numbers in double extended-precision floating-point format to decimal representations (e.g., for printing or displaying).
 
 If the floating-point zero-divide exception (#Z) is masked and the source operand is zero, an exponent value of -$$\infty$$ is stored in register ST(1) and 0 with the sign of the source operand is stored in register ST(0).
 

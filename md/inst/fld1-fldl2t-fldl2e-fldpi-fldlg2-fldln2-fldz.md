@@ -1,12 +1,15 @@
 ----------------------------
-title : FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ instructions(Intel x86/64 assembly instruction)
+title : FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZs (Intel x86/64 assembly instruction)
 cat_title : FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ
+ref_title : FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FLD1/FLDL2T/FLDL2E/FLDPI/FLDLG2/FLDLN2/FLDZ--Load Constant
+#@ FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ
 
+**Load Constant**
 
-|**Opcode***|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|-----------------------------|---------------------------------|---------------|
 |D9 E8|FLD1|Valid|Valid|Push +1.0 onto the FPU register stack.|
 |D9 E9|FLDL2T|Valid|Valid|Push log210 onto the FPU register stack.|
 |D9 EA|FLDL2E|Valid|Valid|Push log2e onto the FPU register stack.|
@@ -17,7 +20,7 @@ cat_title : FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Description
 

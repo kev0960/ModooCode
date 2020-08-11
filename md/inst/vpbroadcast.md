@@ -1,9 +1,12 @@
 ----------------------------
-title : VPBROADCAST instruction(Intel x86/64 assembly instruction)
+title : VPBROADCAST (Intel x86/64 assembly instruction)
 cat_title : VPBROADCAST
+ref_title : VPBROADCAST
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VPBROADCAST--Load Integer and Broadcast
+#@ VPBROADCAST
 
+**Load Integer and Broadcast**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -181,7 +184,7 @@ If VPBROADCASTI128 is encoded with VEX.L= 0, an attempt to execute the instructi
 <text x="99.479942" y="105.820007" textLength="4.610074" font-size="8px">0</text>
 <text x="285.179962" y="105.820007" textLength="4.610074" font-size="8px">0</text>
 </svg>
-<figcaption>Figure 5-16.  VPBROADCASTD Operation (VEX.256 encoded version)
+<figcaption>Figure 5-16.  `VPBROADCASTD` Operation (VEX.256 encoded version)
 </figcaption></figure>
 ```
 ```embed
@@ -278,7 +281,7 @@ If VPBROADCASTI128 is encoded with VEX.L= 0, an attempt to execute the instructi
 <text x="275.458527" y="36.100037" textLength="4.170000" font-size="8px">2</text>
 <text x="314.339996" y="34.480042" textLength="5.002500" font-size="8px">X</text>
 </svg>
-<figcaption>Figure 5-17.  VPBROADCASTD Operation (128-bit version)
+<figcaption>Figure 5-17.  `VPBROADCASTD` Operation (128-bit version)
 </figcaption></figure>
 ```
 ```embed
@@ -351,7 +354,7 @@ If VPBROADCASTI128 is encoded with VEX.L= 0, an attempt to execute the instructi
 <text x="235.198517" y="39.940002" textLength="4.170000" font-size="8px">4</text>
 <text x="143.760010" y="112.480011" textLength="5.002500" font-size="8px">X</text>
 </svg>
-<figcaption>Figure 5-18.  VPBROADCASTQ Operation (256-bit version)
+<figcaption>Figure 5-18.  `VPBROADCASTQ` Operation (256-bit version)
 </figcaption></figure>
 ```
 ```embed
@@ -460,12 +463,12 @@ If VPBROADCASTI128 is encoded with VEX.L= 0, an attempt to execute the instructi
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
 FOR j  <- 0 TO KL-1
- i <- j \htmlonly{*} 8
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <- j * 8
+ IF k1[j] OR *no writemask*
    THEN DEST[i+7:i]  <- SRC[7:0]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+7:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+7:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+7:i]  <- 0
     FI
@@ -477,12 +480,12 @@ DEST[MAX_VL-1:VL] <-  0
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 FOR j <-  0 TO KL-1
- i  <-j \htmlonly{*} 16
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <-j * 16
+ IF k1[j] OR *no writemask*
    THEN DEST[i+15:i]  <- SRC[15:0]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+15:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+15:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+15:i] <-  0
     FI

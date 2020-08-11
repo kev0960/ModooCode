@@ -1,25 +1,12 @@
 ----------------------------
-title : MOVBE instruction(Intel x86/64 assembly instruction)
+title : MOVBE (Intel x86/64 assembly instruction)
 cat_title : MOVBE
+ref_title : MOVBE
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVBE--Move Data After Swapping Bytes
+#@ MOVBE
 
-
-**Opcode Instruction Op/ 64-Bit  Compat/ Description****En Mode Leg Mode**
-
-0F 38 F0 /r MOVBE r16, m16 RM Valid Valid Reverse byte order in m16 and move to r16.
-
-0F 38 F0 /r MOVBE r32, m32 RM Valid Valid Reverse byte order in m32 and move to r32.
-
-REX.W + 0F 38 F0 /r MOVBE r64, m64 RM Valid N.E. Reverse byte order in m64 and move to r64. 
-
-0F 38 F1 /r MOVBE m16, r16 MR Valid Valid Reverse byte order in r16 and move to m16.
-
-0F 38 F1 /r MOVBE m32, r32 MR Valid Valid Reverse byte order in r32 and move to m32.
-
-REX.W + 0F 38 F1 /r MOVBE m64, r64 MR Valid N.E. Reverse byte order in r64 and move to m64. 
-
-### Instruction Operand Encoding
+**Move Data After Swapping Bytes**### Instruction Operand Encoding
 
 
 |Op/En|Operand 1|Operand 2|Operand 3|Operand 4|
@@ -31,7 +18,7 @@ REX.W + 0F 38 F1 /r MOVBE m64, r64 MR Valid N.E. Reverse byte order in r64 and m
 
 Performs a byte swap operation on the data copied from the second operand (source operand) and store the result in the first operand (destination operand). The source operand can be a general-purpose register, or memory loca-tion; the destination register can be a general-purpose register, or a memory location; however, both operands can not be registers, and only one operand can be a memory location. Both operands must be the same size, which can be a word, a doubleword or quadword. 
 
-The MOVBE instruction is provided for swapping the bytes on a read from memory or on a write to memory; thus providing support for converting little-endian values to big-endian format and vice versa.
+The `MOVBE` instruction is provided for swapping the bytes on a read from memory or on a write to memory; thus providing support for converting little-endian values to big-endian format and vice versa.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Use of the REX.R prefix permits access to addi-tional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 

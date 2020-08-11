@@ -1,9 +1,12 @@
 ----------------------------
-title : VFPCLASSPD instruction(Intel x86/64 assembly instruction)
+title : VFPCLASSPD (Intel x86/64 assembly instruction)
 cat_title : VFPCLASSPD
+ref_title : VFPCLASSPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VFPCLASSPD--Tests Types Of a Packed Float64 Values
+#@ VFPCLASSPD
 
+**Tests Types Of a Packed Float64 Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -126,10 +129,10 @@ EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
 FOR j <-  0 TO KL-1
- i <-  j \htmlonly{*} 64
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <-  j * 64
+ IF k1[j] OR *no writemask*
    THEN 
-    IF (EVEX.b == 1) AND (SRC \htmlonly{*}is memory\htmlonly{*})
+    IF (EVEX.b == 1) AND (SRC *is memory*)
       THEN
         DEST[j]  <- CheckFPClassDP(SRC1[63:0], imm8[7:0]);
       ELSE 

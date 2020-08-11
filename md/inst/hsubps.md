@@ -1,9 +1,12 @@
 ----------------------------
-title : HSUBPS instruction(Intel x86/64 assembly instruction)
+title : HSUBPS (Intel x86/64 assembly instruction)
 cat_title : HSUBPS
+ref_title : HSUBPS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### HSUBPS--Packed Single-FP Horizontal Subtract
+#@ HSUBPS
 
+**Packed Single-FP Horizontal Subtract**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|

@@ -1,9 +1,12 @@
 ----------------------------
-title : FXAM instruction(Intel x86/64 assembly instruction)
+title : FXAM (Intel x86/64 assembly instruction)
 cat_title : FXAM
+ref_title : FXAM
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FXAM--Examine Floating-Point
+#@ FXAM
 
+**Examine Floating-Point**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -35,7 +38,7 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Operation
 
 ```info-verb
-C1 <- sign bit of ST; (\htmlonly{*} 0 for positive, 1 for negative \htmlonly{*})
+C1 <- sign bit of ST; (* 0 for positive, 1 for negative *)
 CASE (class of value or number in ST(0)) OF
  Unsupported:C3, C2, C0 <- 000;
  NaN: C3, C2, C0 <- 001;

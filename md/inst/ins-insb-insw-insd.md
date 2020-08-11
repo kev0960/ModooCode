@@ -1,13 +1,16 @@
 ----------------------------
-title : INS, INSB, INSW, INSD instructions(Intel x86/64 assembly instruction)
+title : INS, INSB, INSW, INSDs (Intel x86/64 assembly instruction)
 cat_title : INS, INSB, INSW, INSD
+ref_title : INS, INSB, INSW, INSD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### INS/INSB/INSW/INSD--Input from Port to String
+#@ INS, INSB, INSW, INSD
 
+**Input from Port to String**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|6C|INS m8, DX |NP|Valid|Valid|Input byte from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.*|
+|6C|INS m8, DX |NP|Valid|Valid|Input byte from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\htmlonly{*}|
 |6D|INS m16, DX|NP|Valid|Valid|Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
 |6D|INS m32, DX|NP|Valid|Valid|Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
 |6C|INSB|NP|Valid|Valid|Input byte from I/O port specified in DX into memory location specified with ES:(E)DI or RDI.\footnote{1}|
@@ -16,7 +19,7 @@ cat_title : INS, INSB, INSW, INSD
 ### NOTES:
 
 
-*In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes are supported.
+\htmlonly{*}In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes are supported.
 
 ### Instruction Operand Encoding
 
@@ -29,15 +32,15 @@ cat_title : INS, INSB, INSW, INSD
 
 Copies the data from the I/O port specified with the source operand (second operand) to the destination operand (first operand). The source operand is an I/O port address (from 0 to 65,535) that is read from the DX register. The destination operand is a memory location, the address of which is read from either the ES:DI, ES:EDI or the RDI registers (depending on the address-size attribute of the instruction, 16, 32 or 64, respectively). (The ES segment cannot be overridden with a segment override prefix.) The size of the I/O port being accessed (that is, the size of the source and destination operands) is determined by the opcode for an 8-bit I/O port or by the operand-size attri-bute of the instruction for a 16- or 32-bit I/O port.
 
-At the assembly-code level, two forms of this instruction are allowed: the "explicit-operands" form and the "no-operands" form. The explicit-operands form (specified with the INS mnemonic) allows the source and destination operands to be specified explicitly. Here, the source operand must be "DX," and the destination operand should be a symbol that indicates the size of the I/O port and the destination address. This explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the destination operand symbol must specify the correct type (size) of the operand (byte, word, or doubleword), but it does not have to specify the correct location. The location is always specified by the ES:(E)DI registers, which must be loaded correctly before the INS instruction is executed.
+At the assembly-code level, two forms of this instruction are allowed: the "explicit-operands" form and the "no-operands" form. The explicit-operands form (specified with the `INS` mnemonic) allows the source and destination operands to be specified explicitly. Here, the source operand must be "DX," and the destination operand should be a symbol that indicates the size of the I/O port and the destination address. This explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the destination operand symbol must specify the correct type (size) of the operand (byte, word, or doubleword), but it does not have to specify the correct location. The location is always specified by the ES:(E)DI registers, which must be loaded correctly before the `INS` instruction is executed.
 
-The no-operands form provides "short forms" of the byte, word, and doubleword versions of the INS instructions. Here also DX is assumed by the processor to be the source operand and ES:(E)DI is assumed to be the destination operand. The size of the I/O port is specified with the choice of mnemonic: INSB (byte), INSW (word), or INSD (doubleword).
+The no-operands form provides "short forms" of the byte, word, and doubleword versions of the `INS` instructions. Here also DX is assumed by the processor to be the source operand and ES:(E)DI is assumed to be the destination operand. The size of the I/O port is specified with the choice of mnemonic: `INSB` (byte), `INSW` (word), or `INSD` (doubleword).
 
 After the byte, word, or doubleword is transfer from the I/O port to the memory location, the DI/EDI/RDI register is incremented or decremented automatically according to the setting of the DF flag in the EFLAGS register. (If the DF flag is 0, the (E)DI register is incremented; if the DF flag is 1, the (E)DI register is decremented.) The (E)DI register is incremented or decremented by 1 for byte operations, by 2 for word operations, or by 4 for doubleword operations.
 
 
 
-The INS, INSB, INSW, and INSD instructions can be preceded by the REP prefix for block input of ECX bytes, words, or doublewords. See "REP/REPE/REPZ /REPNE/REPNZ--Repeat String Operation Prefix" in Chapter 4 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2B, for a description of the REP prefix.
+The `INS`, `INSB`, `INSW`, and `INSD` instructions can be preceded by the `REP` prefix for block input of ECX bytes, words, or doublewords. See "REP/REPE/REPZ /REPNE/REPNZ--Repeat String Operation Prefix" in Chapter 4 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2B, for a description of the `REP` prefix.
 
 These instructions are only useful for accessing I/O ports located in the processor's I/O address space. See Chapter 18, "Input/Output," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for more information on accessing I/O ports in the I/O address space.
 
@@ -50,15 +53,15 @@ These instructions may read from the I/O port without writing to the memory loca
 
 ```info-verb
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
- THEN (\htmlonly{*} Protected mode with CPL > IOPL or virtual-8086 mode \htmlonly{*})
+ THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
    IF (Any I/O Permission Bit for I/O port being accessed = 1)
-    THEN (\htmlonly{*} I/O operation is not allowed \htmlonly{*})
+    THEN (* I/O operation is not allowed *)
       #GP(0);
-    ELSE (\htmlonly{*} I/O operation is allowed \htmlonly{*}) 
-      DEST <- SRC; (\htmlonly{*} Read from I/O port \htmlonly{*})
+    ELSE (* I/O operation is allowed *) 
+      DEST <- SRC; (* Read from I/O port *)
    FI;
- ELSE (Real Mode or Protected Mode with CPL IOPL \htmlonly{*})
-   DEST <- SRC; (\htmlonly{*} Read from I/O port \htmlonly{*})
+ ELSE (Real Mode or Protected Mode with CPL IOPL *)
+   DEST <- SRC; (* Read from I/O port *)
 FI;
 Non-64-bit Mode:
 IF (Byte transfer)
@@ -69,7 +72,7 @@ IF (Byte transfer)
    THEN IF DF = 0
     THEN (E)DI <- (E)DI + 2; 
     ELSE (E)DI <- (E)DI - 2; FI;
-   ELSE (\htmlonly{*} Doubleword transfer \htmlonly{*})
+   ELSE (* Doubleword transfer *)
     THEN IF DF = 0
       THEN (E)DI <- (E)DI + 4; 
       ELSE (E)DI <- (E)DI - 4; FI;
@@ -84,7 +87,7 @@ IF (Byte transfer)
    THEN IF DF = 0
     THEN (E)DI <- (E)DI + 2; 
     ELSE (E)DI <- (E)DI - 2; FI;
-   ELSE (\htmlonly{*} Doubleword transfer \htmlonly{*})
+   ELSE (* Doubleword transfer *)
 THEN IF DF = 0
       THEN (E|R)DI <- (E|R)DI + 4; 
       ELSE (E|R)DI <- (E|R)DI - 4; FI;

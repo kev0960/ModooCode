@@ -1,9 +1,12 @@
 ----------------------------
-title : AESDEC instruction(Intel x86/64 assembly instruction)
+title : AESDEC (Intel x86/64 assembly instruction)
 cat_title : AESDEC
+ref_title : AESDEC
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### AESDEC--Perform One Round of an AES Decryption Flow
+#@ AESDEC
 
+**Perform One Round of an AES Decryption Flow**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
@@ -21,7 +24,7 @@ cat_title : AESDEC
 
 This instruction performs a single round of the AES decryption flow using the Equivalent Inverse Cipher, with the round key from the second source operand, operating on a 128-bit data (state) from the first source operand, and store the result in the destination operand. 
 
-Use the AESDEC instruction for all but the last decryption round. For the last decryption round, use the AESDE-CLAST instruction.
+Use the `AESDEC` instruction for all but the last decryption round. For the last decryption round, use the AESDE-CLAST instruction.
 
 128-bit Legacy SSE version: The first source operand and the destination operand are the same and must be an XMM register. The second source operand can be an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.
 

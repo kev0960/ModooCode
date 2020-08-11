@@ -1,9 +1,12 @@
 ----------------------------
-title : PREFETCHW instruction(Intel x86/64 assembly instruction)
+title : PREFETCHW (Intel x86/64 assembly instruction)
 cat_title : PREFETCHW
+ref_title : PREFETCHW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PREFETCHW--Prefetch Data into Caches in Anticipation of a Write
+#@ PREFETCHW
 
+**Prefetch Data into Caches in Anticipation of a Write**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -21,13 +24,13 @@ Fetches the cache line of data from memory that contains the byte specified with
 
 The source operand is a byte memory location. If the line selected is already present in the lowest level cache and is already in an exclusively owned state, no data movement occurs. Prefetches from non-writeback memory are ignored.
 
-The PREFETCHW instruction is merely a hint and does not affect program behavior. If executed, this instruction moves data closer to the processor and invalidates other cached copies in anticipation of the line being written to in the future.
+The `PREFETCHW` instruction is merely a hint and does not affect program behavior. If executed, this instruction moves data closer to the processor and invalidates other cached copies in anticipation of the line being written to in the future.
 
 The characteristic of prefetch locality hints is implementation-dependent, and can be overloaded or ignored by a processor implementation. The amount of data prefetched is also processor implementation-dependent. It will, however, be a minimum of 32 bytes. Additional details of the implementation-dependent locality hints are described in Section 7.4 of Intel(R) 64 and IA-32 Architectures Optimization Reference Manual.
 
-It should be noted that processors are free to speculatively fetch and cache data with exclusive ownership from system memory regions that permit such accesses (that is, the WB memory type). A PREFETCHW instruction is considered a hint to this speculative behavior. Because this speculative fetching can occur at any time and is not tied to instruction execution, a PREFETCHW instruction is not ordered with respect to the fence instructions (MFENCE, SFENCE, and LFENCE) or locked memory references. A PREFETCHW instruction is also unordered with respect to CLFLUSH and CLFLUSHOPT instructions, other PREFETCHW instructions, or any other general instruction
+It should be noted that processors are free to speculatively fetch and cache data with exclusive ownership from system memory regions that permit such accesses (that is, the WB memory type). A `PREFETCHW` instruction is considered a hint to this speculative behavior. Because this speculative fetching can occur at any time and is not tied to instruction execution, a `PREFETCHW` instruction is not ordered with respect to the fence instructions (MFENCE, `SFENCE`, and LFENCE) or locked memory references. A `PREFETCHW` instruction is also unordered with respect to `CLFLUSH` and `CLFLUSHOPT` instructions, other `PREFETCHW` instructions, or any other general instruction
 
-It is ordered with respect to serializing instructions such as CPUID, WRMSR, OUT, and MOV CR.
+It is ordered with respect to serializing instructions such as `CPUID`, `WRMSR`, `OUT`, and `MOV` CR.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -45,7 +48,7 @@ All flags are affected
 ### C/C++ Compiler Intrinsic Equivalent
 
 
-void _m_prefetchw( void * );
+void _m_prefetchw( void \htmlonly{*} );
 
 
 ### Protected Mode Exceptions

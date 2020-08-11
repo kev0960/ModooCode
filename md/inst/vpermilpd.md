@@ -1,9 +1,12 @@
 ----------------------------
-title : VPERMILPD instruction(Intel x86/64 assembly instruction)
+title : VPERMILPD (Intel x86/64 assembly instruction)
 cat_title : VPERMILPD
+ref_title : VPERMILPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VPERMILPD--Permute In-Lane of Pairs of Double-Precision Floating-Point Values
+#@ VPERMILPD
 
+**Permute In-Lane of Pairs of Double-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -157,7 +160,7 @@ Note: For the imm8 versions, VEX.vvvv and EVEX.vvvv are reserved and must be 111
 <text x="88.255524" y="108.279999" textLength="5.002500" font-size="8px">E</text>
 <text x="156.241501" y="108.279999" textLength="4.170000" font-size="8px">3</text>
 </svg>
-<figcaption>Figure 5-23.  VPERMILPD Operation
+<figcaption>Figure 5-23.  `VPERMILPD` Operation
 </figcaption></figure>
 ```
 ```embed
@@ -339,7 +342,7 @@ Note: For the imm8 versions, VEX.vvvv and EVEX.vvvv are reserved and must be 111
 <text x="262.500031" y="41.740021" textLength="4.980000" font-size="8px">6</text>
 <text x="395.340851" y="68.440002" textLength="2.282450" font-size="8px"> </text>
 </svg>
-<figcaption>Figure 5-24.  VPERMILPD Shuffle Control
+<figcaption>Figure 5-24.  `VPERMILPD` Shuffle Control
 </figcaption></figure>
 ```
 
@@ -348,8 +351,8 @@ Note: For the imm8 versions, VEX.vvvv and EVEX.vvvv are reserved and must be 111
 ```info-verb
 (KL, VL) = (8, 512)
 FOR j <-  0 TO KL-1
- i <-  j \htmlonly{*} 64
- IF (EVEX.b = 1) AND (SRC1 \htmlonly{*}is memory\htmlonly{*})
+ i <-  j * 64
+ IF (EVEX.b = 1) AND (SRC1 *is memory*)
    THEN TMP_SRC1[i+63:i] <-  SRC1[63:0];
    ELSE TMP_SRC1[i+63:i]  <- SRC1[i+63:i];
  FI;
@@ -375,12 +378,12 @@ IF VL >= 512
  IF (imm8[7] = 1) THEN TMP_DEST[511:448]  <- TMP_SRC1[511:448]; FI;
 FI;
 FOR j <-  0 TO KL-1
- i  <- j \htmlonly{*} 64
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 64
+ IF k1[j] OR *no writemask*
    THEN DEST[i+63:i] <-  TMP_DEST[i+63:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+63:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+63:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+63:i] <-  0
     FI

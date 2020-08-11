@@ -1,9 +1,12 @@
 ----------------------------
-title : PHADDW, PHADDD instructions(Intel x86/64 assembly instruction)
+title : PHADDW, PHADDDs (Intel x86/64 assembly instruction)
 cat_title : PHADDW, PHADDD
+ref_title : PHADDW, PHADDD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PHADDW/PHADDD -- Packed Horizontal Add
+#@ PHADDW, PHADDD
 
+** Packed Horizontal Add**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|

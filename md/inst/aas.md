@@ -1,9 +1,12 @@
 ----------------------------
-title : AAS instruction(Intel x86/64 assembly instruction)
+title : AAS (Intel x86/64 assembly instruction)
 cat_title : AAS
+ref_title : AAS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### AAS--ASCII Adjust AL After Subtraction
+#@ AAS
 
+**ASCII Adjust AL After Subtraction**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,7 +20,7 @@ cat_title : AAS
 ### Description
 
 
-Adjusts the result of the subtraction of two unpacked BCD values to create a unpacked BCD result. The AL register is the implied source and destination operand for this instruction. The AAS instruction is only useful when it follows a SUB instruction that subtracts (binary subtraction) one unpacked BCD value from another and stores a byte result in the AL register. The AAA instruction then adjusts the contents of the AL register to contain the correct 1-digit unpacked BCD result. 
+Adjusts the result of the subtraction of two unpacked BCD values to create a unpacked BCD result. The AL register is the implied source and destination operand for this instruction. The `AAS` instruction is only useful when it follows a `SUB` instruction that subtracts (binary subtraction) one unpacked BCD value from another and stores a byte result in the AL register. The `AAA` instruction then adjusts the contents of the AL register to contain the correct 1-digit unpacked BCD result. 
 
 If the subtraction produced a decimal carry, the AH register decrements by 1, and the CF and AF flags are set. If no decimal carry occurred, the CF and AF flags are cleared, and the AH register is unchanged. In either case, the AL register is left with its top four bits set to 0.
 

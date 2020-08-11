@@ -1,21 +1,24 @@
 ----------------------------
-title : NOT instruction(Intel x86/64 assembly instruction)
+title : NOT (Intel x86/64 assembly instruction)
 cat_title : NOT
+ref_title : NOT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### NOT--One's Complement Negation
+#@ NOT
 
+**One's Complement Negation**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |F6 /2|NOT r/m8|M|Valid|Valid|Reverse each bit of r/m8.|
-|REX + F6 /2|NOT r/m8*|M|Valid|N.E.|Reverse each bit of r/m8.|
+|REX + F6 /2|NOT r/m8\htmlonly{*}|M|Valid|N.E.|Reverse each bit of r/m8.|
 |F7 /2|NOT r/m16|M|Valid|Valid|Reverse each bit of r/m16.|
 |F7 /2|NOT r/m32|M|Valid|Valid|Reverse each bit of r/m32.|
 |REX.W + F7 /2|NOT r/m64|M|Valid |N.E.|Reverse each bit of r/m64.|
 ### NOTES:
 
 
-* In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -26,9 +29,9 @@ cat_title : NOT
 ### Description
 
 
-Performs a bitwise NOT operation (each 1 is set to 0, and each 0 is set to 1) on the destination operand and stores the result in the destination operand location. The destination operand can be a register or a memory location.
+Performs a bitwise `NOT` operation (each 1 is set to 0, and each 0 is set to 1) on the destination operand and stores the result in the destination operand location. The destination operand can be a register or a memory location.
 
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.
+This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 

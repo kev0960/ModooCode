@@ -1,9 +1,12 @@
 ----------------------------
-title : XSETBV instruction(Intel x86/64 assembly instruction)
+title : XSETBV (Intel x86/64 assembly instruction)
 cat_title : XSETBV
+ref_title : XSETBV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XSETBV--Set Extended Control Register
+#@ XSETBV
 
+**Set Extended Control Register**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -21,7 +24,7 @@ Writes the contents of registers EDX:EAX into the 64-bit extended control regist
 
 This instruction must be executed at privilege level 0 or in real-address mode; otherwise, a general protection exception #GP(0) is generated. Specifying a reserved or unimplemented XCR in ECX will also cause a general protection exception. The processor will also generate a general protection exception if software attempts to write to reserved bits in an XCR.
 
-Currently, only XCR0 is supported. Thus, all other values of ECX are reserved and will cause a #GP(0). Note that bit0 of XCR0 (corresponding to x87 state) must be set to 1; the instruction will cause a #GP(0) if an attempt is made to clear this bit. In addition, the instruction causes a #GP(0) if an attempt is made to set XCR0[2] (AVX state) while clearing XCR0[1] (SSE state); it is necessary to set both bits to use AVX instructions; Section 13.3, "Enabling the XSAVE Feature Set and XSAVE-Enabled Features," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1.
+Currently, only XCR0 is supported. Thus, all other values of ECX are reserved and will cause a #GP(0). Note that bit0 of XCR0 (corresponding to x87 state) must be set to 1; the instruction will cause a #GP(0) if an attempt is made to clear this bit. In addition, the instruction causes a #GP(0) if an attempt is made to set XCR0[2] (AVX state) while clearing XCR0[1] (SSE state); it is necessary to set both bits to use AVX instructions; Section 13.3, "Enabling the `XSAVE` Feature Set and XSAVE-Enabled Features," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1.
 
 
 ### Operation

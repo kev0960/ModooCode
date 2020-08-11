@@ -1,15 +1,12 @@
 ----------------------------
-title : MONITOR instruction(Intel x86/64 assembly instruction)
+title : MONITOR (Intel x86/64 assembly instruction)
 cat_title : MONITOR
+ref_title : MONITOR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MONITOR--Set Up Monitor Address
+#@ MONITOR
 
-
-**Opcode Instruction Op/ 64-Bit  Compat/ Description****En Mode Leg Mode**
-
-0F 01 C8 MONITOR NP Valid Valid Sets up a linear address range to be monitored by hardware and activates the monitor. The address range should be a write-back memory caching type. The address is DS:EAX (DS:RAX in 64-bit mode).
-
-###                  Instruction Operand Encoding
+**Set Up Monitor Address**###                  Instruction Operand Encoding
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
@@ -19,17 +16,17 @@ NP NA NA NA NA
 ### Description
 
 
-The MONITOR instruction arms address monitoring hardware using an address specified in EAX (the address range that the monitoring hardware checks for store operations can be determined by using CPUID). A store to an address within the specified address range triggers the monitoring hardware. The state of monitor hardware is used by MWAIT. 
+The `MONITOR` instruction arms address monitoring hardware using an address specified in EAX (the address range that the monitoring hardware checks for store operations can be determined by using CPUID). A store to an address within the specified address range triggers the monitoring hardware. The state of monitor hardware is used by `MWAIT`. 
 
 The content of EAX is an effective address (in 64-bit mode, RAX is used). By default, the DS segment is used to create a linear address that is monitored. Segment overrides can be used.
 
-ECX and EDX are also used. They communicate other information to MONITOR. ECX specifies optional extensions. EDX specifies optional hints; it does not change the architectural behavior of the instruction. For the Pentium 4 processor (family 15, model 3), no extensions or hints are defined. Undefined hints in EDX are ignored by the processor; undefined extensions in ECX raises a general protection fault.
+ECX and EDX are also used. They communicate other information to `MONITOR`. ECX specifies optional extensions. EDX specifies optional hints; it does not change the architectural behavior of the instruction. For the Pentium 4 processor (family 15, model 3), no extensions or hints are defined. Undefined hints in EDX are ignored by the processor; undefined extensions in ECX raises a general protection fault.
 
 The address range must use memory of the write-back type. Only write-back memory will correctly trigger the monitoring hardware. Additional information on determining what address range to use in order to prevent false wake-ups is described in Chapter 8, "Multiple-Processor Management" of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
-The MONITOR instruction is ordered as a load operation with respect to other memory transactions. The instruction is subject to the permission checking and faults associated with a byte load. Like a load, MONITOR sets the A-bit but not the D-bit in page tables. 
+The `MONITOR` instruction is ordered as a load operation with respect to other memory transactions. The instruction is subject to the permission checking and faults associated with a byte load. Like a load, `MONITOR` sets the A-bit but not the D-bit in page tables. 
 
-CPUID.01H:ECX.MONITOR[bit 3] indicates the availability of MONITOR and MWAIT in the processor. When set, MONITOR may be executed only at privilege level 0 (use at any other privilege level results in an invalid-opcode exception). The operating system or system BIOS may disable this instruction by using the IA32_MISC_ENABLE MSR; disabling MONITOR clears the CPUID feature flag and causes execution to generate an invalid-opcode excep-tion. 
+CPUID.01H:ECX.MONITOR[bit 3] indicates the availability of `MONITOR` and `MWAIT` in the processor. When set, `MONITOR` may be executed only at privilege level 0 (use at any other privilege level results in an invalid-opcode exception). The operating system or system BIOS may disable this instruction by using the IA32_MISC_ENABLE MSR; disabling `MONITOR` clears the `CPUID` feature flag and causes execution to generate an invalid-opcode excep-tion. 
 
 The instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

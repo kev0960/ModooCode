@@ -1,9 +1,12 @@
 ----------------------------
-title : FST, FSTP instructions(Intel x86/64 assembly instruction)
+title : FST, FSTPs (Intel x86/64 assembly instruction)
 cat_title : FST, FSTP
+ref_title : FST, FSTP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FST/FSTP--Store Floating Point Value
+#@ FST, FSTP
 
+**Store Floating Point Value**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -17,9 +20,9 @@ cat_title : FST, FSTP
 ### Description
 
 
-The FST instruction copies the value in the ST(0) register to the destination operand, which can be a memory loca-tion or another register in the FPU register stack. When storing the value in memory, the value is converted to single-precision or double-precision floating-point format. 
+The `FST` instruction copies the value in the ST(0) register to the destination operand, which can be a memory loca-tion or another register in the FPU register stack. When storing the value in memory, the value is converted to single-precision or double-precision floating-point format. 
 
-The FSTP instruction performs the same operation as the FST instruction and then pops the register stack. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The FSTP instruction can also store values in memory in double extended-precision floating-point format.
+The `FSTP` instruction performs the same operation as the `FST` instruction and then pops the register stack. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The `FSTP` instruction can also store values in memory in double extended-precision floating-point format.
 
 If the destination operand is a memory location, the operand specifies the address where the first byte of the desti-nation value is to be stored. If the destination operand is a register, the operand specifies a register in the register stack relative to the top of the stack.
 

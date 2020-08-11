@@ -1,9 +1,12 @@
 ----------------------------
-title : CMPPD instruction(Intel x86/64 assembly instruction)
+title : CMPPD (Intel x86/64 assembly instruction)
 cat_title : CMPPD
+ref_title : CMPPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CMPPD--Compare Packed Double-Precision Floating-Point Values
+#@ CMPPD
 
+**Compare Packed Double-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|

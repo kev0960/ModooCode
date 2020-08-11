@@ -1,9 +1,12 @@
 ----------------------------
-title : STR instruction(Intel x86/64 assembly instruction)
+title : STR (Intel x86/64 assembly instruction)
 cat_title : STR
+ref_title : STR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### STR--Store Task Register
+#@ STR
 
+**Store Task Register**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -23,7 +26,7 @@ When the destination operand is a 32-bit register, the 16-bit segment selector i
 
 In 64-bit mode, operation is the same. The size of the memory operand is fixed at 16 bits. In register stores, the 2-byte TR is zero extended if stored to a 64-bit register.
 
-The STR instruction is useful only in operating-system software. It can only be executed in protected mode.
+The `STR` instruction is useful only in operating-system software. It can only be executed in protected mode.
 
 
 ### Operation

@@ -1,9 +1,12 @@
 ----------------------------
-title : PSRAW, PSRAD, PSRAQ instructions(Intel x86/64 assembly instruction)
+title : PSRAW, PSRAD, PSRAQs (Intel x86/64 assembly instruction)
 cat_title : PSRAW, PSRAD, PSRAQ
+ref_title : PSRAW, PSRAD, PSRAQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PSRAW/PSRAD/PSRAQ--Shift Packed Data Right Arithmetic
+#@ PSRAW, PSRAD, PSRAQ
 
+**Shift Packed Data Right Arithmetic**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -264,7 +267,7 @@ VEX.256 encoded version: The destination operand is a YMM register. The source o
 <text x="56.410416" y="65.680084" textLength="2.610000" font-size="8px">t</text>
 <text x="55.818222" y="50.619995" textLength="2.582160" font-size="8px">f</text>
 </svg>
-<figcaption>Figure 4-18.  PSRAW and PSRAD Instruction Operation Using a 64-bit Operand
+<figcaption>Figure 4-18.  `PSRAW` and `PSRAD` Instruction Operation Using a 64-bit Operand
 </figcaption></figure>
 ```
 
@@ -283,7 +286,7 @@ Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /4, EVEX.128.66.0F
    THEN COUNT <- 16;
  FI;
  DEST[15:0] <- SignExtend(DEST[15:0] >> COUNT);
- (\htmlonly{*} Repeat shift operation for 2nd and 3rd words \htmlonly{*})
+ (* Repeat shift operation for 2nd and 3rd words *)
  DEST[63:48] <- SignExtend(DEST[63:48] >> COUNT);
 ```
 #### PSRAD (with 64-bit operand)
@@ -315,7 +318,7 @@ IF (COUNT > 15)
  THEN COUNT  <- 16;
 FI;
 DEST[15:0]  <- SignExtend(SRC[15:0] >> COUNT);
- (\htmlonly{*} Repeat shift operation for 2nd through 15th words \htmlonly{*})
+ (* Repeat shift operation for 2nd through 15th words *)
 DEST[255:240] <-  SignExtend(SRC[255:240] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC, COUNT_SRC)
 COUNT <-  COUNT_SRC[63:0];

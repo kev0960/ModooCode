@@ -1,9 +1,12 @@
 ----------------------------
-title : LDS, LES, LFS, LGS, LSS instructions(Intel x86/64 assembly instruction)
+title : LDS, LES, LFS, LGS, LSSs (Intel x86/64 assembly instruction)
 cat_title : LDS, LES, LFS, LGS, LSS
+ref_title : LDS, LES, LFS, LGS, LSS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LDS/LES/LFS/LGS/LSS--Load Far Pointer
+#@ LDS, LES, LFS, LGS, LSS
 
+**Load Far Pointer**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|

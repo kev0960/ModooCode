@@ -1,9 +1,12 @@
 ----------------------------
-title : JMP instruction(Intel x86/64 assembly instruction)
+title : JMP (Intel x86/64 assembly instruction)
 cat_title : JMP
+ref_title : JMP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### JMP--Jump
+#@ JMP
 
+**Jump**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -40,7 +43,7 @@ This instruction can be used to execute four different types of jumps:
 
 *  Task switch--A jump to an instruction located in a different task. 
 
-A task switch can only be executed in protected mode (see Chapter 7, in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A, for information on performing task switches with the JMP instruction).
+A task switch can only be executed in protected mode (see Chapter 7, in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A, for information on performing task switches with the `JMP` instruction).
 
 Near and Short Jumps. When executing a near jump, the processor jumps to the address (within the current code segment) that is specified with the target operand. The target operand specifies either an absolute offset (that is an offset from the base of the code segment) or a relative offset (a signed displacement relative to the current 
 
@@ -50,11 +53,11 @@ value of the instruction pointer in the EIP register). A near jump to a relative
 
 An absolute offset is specified indirectly in a general-purpose register or a memory location (r/m16 or r/m32). The operand-size attribute determines the size of the target operand (16 or 32 bits). Absolute offsets are loaded directly into the EIP register. If the operand-size attribute is 16, the upper two bytes of the EIP register are cleared, resulting in a maximum instruction pointer size of 16 bits.
 
-A relative offset (rel8, rel16, or rel32) is generally specified as a label in assembly code, but at the machine code level, it is encoded as a signed 8-, 16-, or 32-bit immediate value. This value is added to the value in the EIP register. (Here, the EIP register contains the address of the instruction following the JMP instruction). When using relative offsets, the opcode (for short vs. near jumps) and the operand-size attribute (for near relative jumps) determines the size of the target operand (8, 16, or 32 bits).
+A relative offset (rel8, rel16, or rel32) is generally specified as a label in assembly code, but at the machine code level, it is encoded as a signed 8-, 16-, or 32-bit immediate value. This value is added to the value in the EIP register. (Here, the EIP register contains the address of the instruction following the `JMP` instruction). When using relative offsets, the opcode (for short vs. near jumps) and the operand-size attribute (for near relative jumps) determines the size of the target operand (8, 16, or 32 bits).
 
 Far Jumps in Real-Address or Virtual-8086 Mode. When executing a far jump in real-address or virtual-8086 mode, the processor jumps to the code segment and offset specified with the target operand. Here the target operand specifies an absolute far address either directly with a pointer (ptr16:16 or ptr16:32) or indirectly with a memory location (m16:16 or m16:32). With the pointer method, the segment and address of the called procedure is encoded in the instruction, using a 4-byte (16-bit operand size) or 6-byte (32-bit operand size) far address imme-diate. With the indirect method, the target operand specifies a memory location that contains a 4-byte (16-bit operand size) or 6-byte (32-bit operand size) far address. The far address is loaded directly into the CS and EIP registers. If the operand-size attribute is 16, the upper two bytes of the EIP register are cleared.
 
-Far Jumps in Protected Mode. When the processor is operating in protected mode, the JMP instruction can be used to perform the following three types of far jumps:
+Far Jumps in Protected Mode. When the processor is operating in protected mode, the `JMP` instruction can be used to perform the following three types of far jumps:
 
 *  A far jump to a conforming or non-conforming code segment.
 
@@ -62,7 +65,7 @@ Far Jumps in Protected Mode. When the processor is operating in protected mode, 
 
 *  A task switch.
 
-(The JMP instruction cannot be used to perform inter-privilege-level far jumps.)
+(The `JMP` instruction cannot be used to perform inter-privilege-level far jumps.)
 
 In protected mode, the processor always uses the segment selector part of the far address to access the corre-sponding descriptor in the GDT or LDT. The descriptor type (code segment, call gate, task gate, or TSS) and access rights determine the type of jump to be performed.
 
@@ -70,13 +73,13 @@ If the selected descriptor is for a code segment, a far jump to a code segment a
 
 When executing a far jump through a call gate, the segment selector specified by the target operand identifies the call gate. (The offset part of the target operand is ignored.) The processor then jumps to the code segment speci-fied in the call gate descriptor and begins executing the instruction at the offset specified in the call gate. No stack switch occurs. Here again, the target operand can specify the far address of the call gate either directly with a pointer (ptr16:16 or ptr16:32) or indirectly with a memory location (m16:16 or m16:32).
 
-Executing a task switch with the JMP instruction is somewhat similar to executing a jump through a call gate. Here the target operand specifies the segment selector of the task gate for the task being switched to (and the offset part of the target operand is ignored). The task gate in turn points to the TSS for the task, which contains the segment selectors for the task's code and stack segments. The TSS also contains the EIP value for the next instruc-tion that was to be executed before the task was suspended. This instruction pointer value is loaded into the EIP register so that the task begins executing again at this next instruction. 
+Executing a task switch with the `JMP` instruction is somewhat similar to executing a jump through a call gate. Here the target operand specifies the segment selector of the task gate for the task being switched to (and the offset part of the target operand is ignored). The task gate in turn points to the TSS for the task, which contains the segment selectors for the task's code and stack segments. The TSS also contains the EIP value for the next instruc-tion that was to be executed before the task was suspended. This instruction pointer value is loaded into the EIP register so that the task begins executing again at this next instruction. 
 
-The JMP instruction can also specify the segment selector of the TSS directly, which eliminates the indirection of the task gate. See Chapter 7 in Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A, for detailed information on the mechanics of a task switch.
+The `JMP` instruction can also specify the segment selector of the TSS directly, which eliminates the indirection of the task gate. See Chapter 7 in Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A, for detailed information on the mechanics of a task switch.
 
 
 
-Note that when you execute at task switch with a JMP instruction, the nested task flag (NT) is not set in the EFLAGS register and the new TSS's previous task link field is not loaded with the old task's TSS selector. A return to the previous task can thus not be carried out by executing the IRET instruction. Switching tasks with the JMP instruc-tion differs in this regard from the CALL instruction which does set the NT flag and save the previous task link infor-mation, allowing a return to the calling task with an IRET instruction.
+Note that when you execute at task switch with a `JMP` instruction, the nested task flag (NT) is not set in the EFLAGS register and the new TSS's previous task link field is not loaded with the old task's TSS selector. A return to the previous task can thus not be carried out by executing the `IRET` instruction. Switching tasks with the `JMP` instruc-tion differs in this regard from the `CALL` instruction which does set the NT flag and save the previous task link infor-mation, allowing a return to the calling task with an `IRET` instruction.
 
 In 64-Bit Mode -- The instruction's operation size is fixed at 64 bits. If a selector points to a gate, then RIP equals the 64-bit displacement taken from gate; else RIP equals the zero-extended offset from the far pointer referenced in the instruction. 
 
@@ -91,15 +94,15 @@ IF near jump
    THEN 
     IF near relative jump
      THEN
-      tempRIP <- RIP + DEST; (\htmlonly{*} RIP is instruction following JMP instruction\htmlonly{*})
-     ELSE (\htmlonly{*} Near absolute jump \htmlonly{*})
+      tempRIP <- RIP + DEST; (* RIP is instruction following JMP instruction*)
+     ELSE (* Near absolute jump *)
       tempRIP <- DEST;
     FI;
    ELSE
     IF near relative jump
      THEN
-      tempEIP <- EIP + DEST; (\htmlonly{*} EIP is instruction following JMP instruction\htmlonly{*})
-     ELSE (\htmlonly{*} Near absolute jump \htmlonly{*})
+      tempEIP <- EIP + DEST; (* EIP is instruction following JMP instruction*)
+     ELSE (* Near absolute jump *)
       tempEIP <- DEST;
     FI;
  FI;
@@ -113,19 +116,19 @@ IF near jump
     EIP <- tempEIP; 
     ELSE 
     IF OperandSize = 16
-      THEN (\htmlonly{*} OperandSize = 16 \htmlonly{*})
+      THEN (* OperandSize = 16 *)
         EIP <- tempEIP AND 0000FFFFH;
-       ELSE (\htmlonly{*} OperandSize = 64)
+       ELSE (* OperandSize = 64)
         RIP <- tempRIP;
     FI;
   FI;
 FI;
-IF far jump and (PE = 0 or (PE = 1 AND VM = 1)) (\htmlonly{*} Real-address or virtual-8086 mode \htmlonly{*})
+IF far jump and (PE = 0 or (PE = 1 AND VM = 1)) (* Real-address or virtual-8086 mode *)
   THEN
-    tempEIP <- DEST(Offset); (\htmlonly{*} DEST is ptr16:32 or [m16:32] \htmlonly{*})
+    tempEIP <- DEST(Offset); (* DEST is ptr16:32 or [m16:32] *)
     IF tempEIP is beyond code segment limit 
     THEN #GP(0); FI;
-    CS <- DEST(segment selector); (\htmlonly{*} DEST is ptr16:32 or [m16:32] \htmlonly{*})
+    CS <- DEST(segment selector); (* DEST is ptr16:32 or [m16:32] *)
     IF OperandSize = 32
  THEN
       EIP <- tempEIP; (* DEST is ptr16:32 or [m16:32] *)

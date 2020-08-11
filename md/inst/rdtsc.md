@@ -1,12 +1,15 @@
 ----------------------------
-title : RDTSC instruction(Intel x86/64 assembly instruction)
+title : RDTSC (Intel x86/64 assembly instruction)
 cat_title : RDTSC
+ref_title : RDTSC
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RDTSC--Read Time-Stamp Counter
+#@ RDTSC
 
+**Read Time-Stamp Counter**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 31|RDTSC|NP|Valid |Valid|Read time-stamp counter into EDX:EAX.|
 ### Instruction Operand Encoding
 
@@ -21,11 +24,11 @@ Reads the current value of the processor's time-stamp counter (a 64-bit MSR) int
 
 The processor monotonically increments the time-stamp counter MSR every clock cycle and resets it to 0 whenever the processor is reset. See "Time Stamp Counter" in Chapter 17 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B, for specific details of the time stamp counter behavior.
 
-The time stamp disable (TSD) flag in register CR4 restricts the use of the RDTSC instruction as follows. When the flag is clear, the RDTSC instruction can be executed at any privilege level; when the flag is set, the instruction can only be executed at privilege level 0.
+The time stamp disable (TSD) flag in register CR4 restricts the use of the `RDTSC` instruction as follows. When the flag is clear, the `RDTSC` instruction can be executed at any privilege level; when the flag is set, the instruction can only be executed at privilege level 0.
 
-The time-stamp counter can also be read with the RDMSR instruction, when executing at privilege level 0.
+The time-stamp counter can also be read with the `RDMSR` instruction, when executing at privilege level 0.
 
-The RDTSC instruction is not a serializing instruction. It does not necessarily wait until all previous instructions have been executed before reading the counter. Similarly, subsequent instructions may begin execution before the read operation is performed. If software requires RDTSC to be executed only after all previous instructions have completed locally, it can either use RDTSCP (if the processor supports that instruction) or execute the sequence LFENCE;RDTSC.
+The `RDTSC` instruction is not a serializing instruction. It does not necessarily wait until all previous instructions have been executed before reading the counter. Similarly, subsequent instructions may begin execution before the read operation is performed. If software requires `RDTSC` to be executed only after all previous instructions have completed locally, it can either use `RDTSCP` (if the processor supports that instruction) or execute the sequence LFENCE;RDTSC.
 
 This instruction was introduced by the Pentium processor.
 
@@ -37,7 +40,7 @@ See "Changes to Instruction Behavior in VMX Non-Root Operation" in Chapter 25 of
 ```info-verb
 IF (CR4.TSD = 0) or (CPL = 0) or (CR0.PE = 0) 
  THEN EDX:EAX <- TimeStampCounter;
- ELSE (\htmlonly{*} CR4.TSD = 1 and (CPL = 1, 2, or 3) and CR0.PE = 1 \htmlonly{*})
+ ELSE (* CR4.TSD = 1 and (CPL = 1, 2, or 3) and CR0.PE = 1 *)
    #GP(0);
 FI;
 ```

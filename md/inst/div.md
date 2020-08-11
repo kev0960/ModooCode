@@ -1,9 +1,12 @@
 ----------------------------
-title : DIV instruction(Intel x86/64 assembly instruction)
+title : DIV (Intel x86/64 assembly instruction)
 cat_title : DIV
+ref_title : DIV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### DIV--Unsigned Divide
+#@ DIV
 
+**Unsigned Divide**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -15,7 +18,7 @@ cat_title : DIV
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
 ### Instruction Operand Encoding
 
@@ -48,41 +51,41 @@ See the summary chart at the beginning of this section for encoding data and lim
 
 ```info-verb
 IF SRC = 0
- THEN #DE; FI; (\htmlonly{*} Divide Error \htmlonly{*}) 
-IF OperandSize = 8 (\htmlonly{*} Word/Byte Operation \htmlonly{*})
+ THEN #DE; FI; (* Divide Error *) 
+IF OperandSize = 8 (* Word/Byte Operation *)
  THEN
    temp <- AX / SRC;
    IF temp > FFH
-    THEN #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+    THEN #DE; (* Divide error *) 
     ELSE
       AL <- temp;
       AH <- AX MOD SRC;
    FI;
- ELSE IF OperandSize = 16 (\htmlonly{*} Doubleword/word operation \htmlonly{*})
+ ELSE IF OperandSize = 16 (* Doubleword/word operation *)
    THEN
     temp <- DX:AX / SRC;
     IF temp > FFFFH
-      THEN #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+      THEN #DE; (* Divide error *) 
     ELSE
       AX <- temp;
       DX <- DX:AX MOD SRC;
     FI;
    FI;
- ELSE IF Operandsize = 32 (\htmlonly{*} Quadword/doubleword operation \htmlonly{*})
+ ELSE IF Operandsize = 32 (* Quadword/doubleword operation *)
    THEN
     temp <- EDX:EAX / SRC;
     IF temp > FFFFFFFFH
-      THEN #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+      THEN #DE; (* Divide error *) 
     ELSE
       EAX <- temp;
       EDX <- EDX:EAX MOD SRC;
     FI;
    FI;
- ELSE IF 64-Bit Mode and Operandsize = 64 (\htmlonly{*} Doublequadword/quadword operation \htmlonly{*})
+ ELSE IF 64-Bit Mode and Operandsize = 64 (* Doublequadword/quadword operation *)
    THEN
     temp <- RDX:RAX / SRC;
     IF temp > FFFFFFFFFFFFFFFFH
-      THEN #DE; (\htmlonly{*} Divide error \htmlonly{*}) 
+      THEN #DE; (* Divide error *) 
     ELSE
       RAX <- temp;
       RDX <- RDX:RAX MOD SRC;

@@ -1,9 +1,12 @@
 ----------------------------
-title : MWAIT instruction(Intel x86/64 assembly instruction)
+title : MWAIT (Intel x86/64 assembly instruction)
 cat_title : MWAIT
+ref_title : MWAIT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MWAIT--Monitor Wait
+#@ MWAIT
 
+**Monitor Wait**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,13 +20,13 @@ cat_title : MWAIT
 ### Description
 
 
-MWAIT instruction provides hints to allow the processor to enter an implementation-dependent optimized state. There are two principal targeted usages: address-range monitor and advanced power management. Both usages of MWAIT require the use of the MONITOR instruction.
+MWAIT instruction provides hints to allow the processor to enter an implementation-dependent optimized state. There are two principal targeted usages: address-range monitor and advanced power management. Both usages of `MWAIT` require the use of the `MONITOR` instruction.
 
-CPUID.01H:ECX.MONITOR[bit 3] indicates the availability of MONITOR and MWAIT in the processor. When set, MWAIT may be executed only at privilege level 0 (use at any other privilege level results in an invalid-opcode exception). The operating system or system BIOS may disable this instruction by using the IA32_MISC_ENABLE MSR; disabling MWAIT clears the CPUID feature flag and causes execution to generate an invalid-opcode excep-tion. 
+CPUID.01H:ECX.MONITOR[bit 3] indicates the availability of `MONITOR` and `MWAIT` in the processor. When set, `MWAIT` may be executed only at privilege level 0 (use at any other privilege level results in an invalid-opcode exception). The operating system or system BIOS may disable this instruction by using the IA32_MISC_ENABLE MSR; disabling `MWAIT` clears the `CPUID` feature flag and causes execution to generate an invalid-opcode excep-tion. 
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
-ECX specifies optional extensions for the MWAIT instruction. EAX may contain hints such as the preferred optimized state the processor should enter. The first processors to implement MWAIT supported only the zero value for EAX and ECX. Later processors allowed setting ECX[0] to enable masked interrupts as break events for MWAIT (see below). Software can use the CPUID instruction to determine the extensions and hints supported by the processor.
+ECX specifies optional extensions for the `MWAIT` instruction. EAX may contain hints such as the preferred optimized state the processor should enter. The first processors to implement `MWAIT` supported only the zero value for EAX and ECX. Later processors allowed setting ECX[0] to enable masked interrupts as break events for `MWAIT` (see below). Software can use the `CPUID` instruction to determine the extensions and hints supported by the processor.
 
 ### MWAIT for Address Range Monitoring
 
@@ -66,13 +69,13 @@ For additional details of MWAIT extensions, see Chapter 14, "Power and Thermal M
 |**Bits**|**Description**|
 |--------|---------------|
 |3 : 0|Sub C-state within a C-state, indicated by bits [7:4]|
-|7 : 4|Target C-state*\newline{}Value of 0 means C1; 1 means C2 and so on\newline{}Value of 01111B means C0\newline{}Note: Target C states for MWAIT extensions are processor-specific C-states, not ACPI C-states|
+|7 : 4|Target C-state\htmlonly{*}\newline{}Value of 0 means C1; 1 means C2 and so on\newline{}Value of 01111B means C0\newline{}Note: Target C states for MWAIT extensions are processor-specific C-states, not ACPI C-states|
 |31: 8|Reserved|
 
 ### Operation
 
 ```info-verb
-(\htmlonly{*} MWAIT takes the argument in EAX as a hint extension and is architected to take the argument in ECX as an instruction extension MWAIT EAX, ECX \htmlonly{*})
+(* MWAIT takes the argument in EAX as a hint extension and is architected to take the argument in ECX as an instruction extension MWAIT EAX, ECX *)
 {
 WHILE ( ("Monitor Hardware is in armed state")) {
  implementation_dependent_optimized_state(EAX, ECX); }
@@ -94,9 +97,9 @@ Typically the MONITOR/MWAIT pair is used in a sequence, such as:
 
 EAX = Logical Address(Trigger)
 
-ECX = 0 (*Hints *)
+ECX = 0 (\htmlonly{*}Hints \htmlonly{*})
 
-EDX = 0 (* Hints *)
+EDX = 0 (\htmlonly{*} Hints \htmlonly{*})
 
 IF ( !trigger_store_happened) {
 

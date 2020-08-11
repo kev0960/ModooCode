@@ -1,9 +1,12 @@
 ----------------------------
-title : ENTER instruction(Intel x86/64 assembly instruction)
+title : ENTER (Intel x86/64 assembly instruction)
 cat_title : ENTER
+ref_title : ENTER
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### ENTER--Make Stack Frame for Procedure Parameters
+#@ ENTER
 
+**Make Stack Frame for Procedure Parameters**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -23,17 +26,17 @@ Creates a stack frame (comprising of space for dynamic storage and 1-32 frame po
 
 The nesting level determines the number of frame pointers that are copied into the "display area" of the new stack frame from the preceding frame. The default size of the frame pointer is the StackAddrSize attribute, but can be overridden using the 66H prefix. Thus, the OperandSize attribute determines the size of each frame pointer that will be copied into the stack frame and the data being transferred from SP/ESP/RSP register into the BP/EBP/RBP register.
 
-The ENTER and companion LEAVE instructions are provided to support block structured languages. The ENTER instruction (when used) is typically the first instruction in a procedure and is used to set up a new stack frame for a procedure. The LEAVE instruction is then used at the end of the procedure (just before the RET instruction) to release the stack frame.
+The `ENTER` and companion `LEAVE` instructions are provided to support block structured languages. The `ENTER` instruction (when used) is typically the first instruction in a procedure and is used to set up a new stack frame for a procedure. The `LEAVE` instruction is then used at the end of the procedure (just before the `RET` instruction) to release the stack frame.
 
-If the nesting level is 0, the processor pushes the frame pointer from the BP/EBP/RBP register onto the stack, copies the current stack pointer from the SP/ESP/RSP register into the BP/EBP/RBP register, and loads the SP/ESP/RSP register with the current stack-pointer value minus the value in the size operand. For nesting levels of 1 or greater, the processor pushes additional frame pointers on the stack before adjusting the stack pointer. These additional frame pointers provide the called procedure with access points to other nested frames on the stack. See "Procedure Calls for Block-Structured Languages" in Chapter 6 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for more information about the actions of the ENTER instruction.
+If the nesting level is 0, the processor pushes the frame pointer from the BP/EBP/RBP register onto the stack, copies the current stack pointer from the SP/ESP/RSP register into the BP/EBP/RBP register, and loads the SP/ESP/RSP register with the current stack-pointer value minus the value in the size operand. For nesting levels of 1 or greater, the processor pushes additional frame pointers on the stack before adjusting the stack pointer. These additional frame pointers provide the called procedure with access points to other nested frames on the stack. See "Procedure Calls for Block-Structured Languages" in Chapter 6 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for more information about the actions of the `ENTER` instruction.
 
-The ENTER instruction causes a page fault whenever a write using the final value of the stack pointer (within the current stack segment) would do so.
+The `ENTER` instruction causes a page fault whenever a write using the final value of the stack pointer (within the current stack segment) would do so.
 
 In 64-bit mode, default operation size is 64 bits; 32-bit operation size cannot be encoded. Use of 66H prefix changes frame pointer operand size to 16 bits.
 
 When the 66H prefix is used and causing the OperandSize attribute to be less than the StackAddrSize, software is responsible for the following:
 
-*  The companion LEAVE instruction must also use the 66H prefix,
+*  The companion `LEAVE` instruction must also use the 66H prefix,
 
 *  The value in the RBP/EBP register prior to executing "66H ENTER" must be within the same 16KByte region of the current stack pointer (RSP/ESP), such that the value of RBP/EBP after "66H ENTER" remains a valid address in the stack. This ensures "66H LEAVE" can restore 16-bits of data from the stack.
 
@@ -45,14 +48,14 @@ AllocSize <- imm16;
 NestingLevel <- imm8 MOD 32;
 IF (OperandSize = 64)
  THEN 
-   Push(RBP); (\htmlonly{*} RSP decrements by 8 \htmlonly{*})
+   Push(RBP); (* RSP decrements by 8 *)
    FrameTemp <- RSP; 
  ELSE IF OperandSize = 32
    THEN 
-    Push(EBP); (\htmlonly{*} (E)SP decrements by 4 \htmlonly{*})
+    Push(EBP); (* (E)SP decrements by 4 *)
     FrameTemp <- ESP; FI;
- ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
-    Push(BP); (\htmlonly{*} RSP or (E)SP decrements by 2 \htmlonly{*})
+ ELSE (* OperandSize = 16 *)
+    Push(BP); (* RSP or (E)SP decrements by 2 *)
     FrameTemp <- SP; 
 FI;
 IF NestingLevel = 0
@@ -64,32 +67,32 @@ IF (NestingLevel > 1)
     IF (OperandSize = 64)
       THEN
         RBP <- RBP - 8;
-        Push([RBP]); (\htmlonly{*} Quadword push \htmlonly{*})
+        Push([RBP]); (* Quadword push *)
       ELSE IF OperandSize = 32
         THEN
           IF StackSize = 32
             EBP <- EBP - 4;
-            Push([EBP]); (\htmlonly{*} Doubleword push \htmlonly{*})
-          ELSE (\htmlonly{*} StackSize = 16 \htmlonly{*})
+            Push([EBP]); (* Doubleword push *)
+          ELSE (* StackSize = 16 *)
             BP <- BP - 4;
-            Push([BP]); (\htmlonly{*} Doubleword push \htmlonly{*})
+            Push([BP]); (* Doubleword push *)
           FI;
         FI;
-      ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
+      ELSE (* OperandSize = 16 *)
         IF StackSize = 32
           THEN
             EBP <- EBP - 2;
-            Push([EBP]); (\htmlonly{*} Word push \htmlonly{*})
-          ELSE (\htmlonly{*} StackSize = 16 \htmlonly{*})
+            Push([EBP]); (* Word push *)
+          ELSE (* StackSize = 16 *)
             BP <- BP - 2;
-            Push([BP]); (\htmlonly{*} Word push \htmlonly{*})
+            Push([BP]); (* Word push *)
         FI;
       FI;
  OD;
 FI;
-IF (OperandSize = 64) (\htmlonly{*} nestinglevel 1 \htmlonly{*})
+IF (OperandSize = 64) (* nestinglevel 1 *)
  THEN
-   Push(FrameTemp); (\htmlonly{*} Quadword push and RSP decrements by 8 \htmlonly{*})
+   Push(FrameTemp); (* Quadword push and RSP decrements by 8 *)
  ELSE IF OperandSize = 32
 THEN 
     Push(FrameTemp); FI; (* Doubleword push and (E)SP decrements by 4 *)

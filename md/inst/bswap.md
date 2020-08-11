@@ -1,18 +1,21 @@
 ----------------------------
-title : BSWAP instruction(Intel x86/64 assembly instruction)
+title : BSWAP (Intel x86/64 assembly instruction)
 cat_title : BSWAP
+ref_title : BSWAP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BSWAP--Byte Swap
+#@ BSWAP
 
+**Byte Swap**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F C8+rd|BSWAP r32|O|Valid*|Valid|Reverses the byte order of a 32-bit register.|
+|0F C8+rd|BSWAP r32|O|Valid\htmlonly{*}|Valid|Reverses the byte order of a 32-bit register.|
 |REX.W + 0F C8+rd|BSWAP r64|O|Valid|N.E.|Reverses the byte order of a 64-bit register.|
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -23,7 +26,7 @@ cat_title : BSWAP
 ### Description
 
 
-Reverses the byte order of a 32-bit or 64-bit (destination) register. This instruction is provided for converting little-endian values to big-endian format and vice versa. To swap bytes in a word value (16-bit register), use the XCHG instruction. When the BSWAP instruction references a 16-bit register, the result is undefined.
+Reverses the byte order of a 32-bit or 64-bit (destination) register. This instruction is provided for converting little-endian values to big-endian format and vice versa. To swap bytes in a word value (16-bit register), use the `XCHG` instruction. When the `BSWAP` instruction references a 16-bit register, the result is undefined.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 

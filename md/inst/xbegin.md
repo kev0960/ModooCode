@@ -1,9 +1,12 @@
 ----------------------------
-title : XBEGIN instruction(Intel x86/64 assembly instruction)
+title : XBEGIN (Intel x86/64 assembly instruction)
 cat_title : XBEGIN
+ref_title : XBEGIN
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XBEGIN -- Transactional Begin
+#@ XBEGIN
 
+** Transactional Begin**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
@@ -18,9 +21,9 @@ cat_title : XBEGIN
 ### Description
 
 
-The XBEGIN instruction specifies the start of an RTM code region. If the logical processor was not already in trans-actional execution, then the XBEGIN instruction causes the logical processor to transition into transactional execu-tion. The XBEGIN instruction that transitions the logical processor into transactional execution is referred to as the outermost XBEGIN instruction. The instruction also specifies a relative offset to compute the address of the fallback code path following a transactional abort.
+The `XBEGIN` instruction specifies the start of an RTM code region. If the logical processor was not already in trans-actional execution, then the `XBEGIN` instruction causes the logical processor to transition into transactional execu-tion. The `XBEGIN` instruction that transitions the logical processor into transactional execution is referred to as the outermost `XBEGIN` instruction. The instruction also specifies a relative offset to compute the address of the fallback code path following a transactional abort.
 
-On an RTM abort, the logical processor discards all architectural register and memory updates performed during the RTM execution and restores architectural state to that corresponding to the outermost XBEGIN instruction. The fallback address following an abort is computed from the outermost XBEGIN instruction. 
+On an RTM abort, the logical processor discards all architectural register and memory updates performed during the RTM execution and restores architectural state to that corresponding to the outermost `XBEGIN` instruction. The fallback address following an abort is computed from the outermost `XBEGIN` instruction. 
 
 
 ### Operation
@@ -33,10 +36,10 @@ IF RTM_NEST_COUNT < MAX_RTM_NEST_COUNT
     IF 64-bit Mode
       THEN
           fallbackRIP <- RIP + SignExtend64(IMM)
-               (\htmlonly{*} RIP is instruction following XBEGIN instruction \htmlonly{*})
+               (* RIP is instruction following XBEGIN instruction *)
         ELSE
           fallbackEIP <- EIP + SignExtend32(IMM)
-               (\htmlonly{*} EIP is instruction following XBEGIN instruction \htmlonly{*})
+               (* EIP is instruction following XBEGIN instruction *)
     FI;
     IF (64-bit mode)
       THEN IF (fallbackRIP is not canonical)
@@ -47,8 +50,8 @@ IF RTM_NEST_COUNT < MAX_RTM_NEST_COUNT
       FI;
     FI;
     RTM_ACTIVE <- 1
-    Enter RTM Execution (\htmlonly{*} record register state, start tracking memory state\htmlonly{*})
-   FI; (\htmlonly{*} RTM_NEST_COUNT = 1 \htmlonly{*})
+    Enter RTM Execution (* record register state, start tracking memory state*)
+   FI; (* RTM_NEST_COUNT = 1 *)
 ELSE (* RTM_NEST_COUNT = MAX_RTM_NEST_COUNT *)
    GOTO RTM_ABORT_PROCESSING
 FI;

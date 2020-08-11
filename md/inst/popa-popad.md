@@ -1,9 +1,12 @@
 ----------------------------
-title : POPA, POPAD instructions(Intel x86/64 assembly instruction)
+title : POPA, POPADs (Intel x86/64 assembly instruction)
 cat_title : POPA, POPAD
+ref_title : POPA, POPAD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### POPA/POPAD--Pop All General-Purpose Registers
+#@ POPA, POPAD
 
+**Pop All General-Purpose Registers**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -20,7 +23,7 @@ cat_title : POPA, POPAD
 
 Pops doublewords (POPAD) or words (POPA) from the stack into the general-purpose registers. The registers are loaded in the following order: EDI, ESI, EBP, EBX, EDX, ECX, and EAX (if the operand-size attribute is 32) and DI, SI, BP, BX, DX, CX, and AX (if the operand-size attribute is 16). (These instructions reverse the operation of the PUSHA/PUSHAD instructions.) The value on the stack for the ESP or SP register is ignored. Instead, the ESP or SP register is incremented after each register is loaded.
 
-The POPA (pop all) and POPAD (pop all double) mnemonics reference the same opcode. The POPA instruction is intended for use when the operand-size attribute is 16 and the POPAD instruction for when the operand-size attri-bute is 32. Some assemblers may force the operand size to 16 when POPA is used and to 32 when POPAD is used (using the operand-size override prefix [66H] if necessary). Others may treat these mnemonics as synonyms (POPA/POPAD) and use the current setting of the operand-size attribute to determine the size of values to be popped from the stack, regardless of the mnemonic used. (The D flag in the current code segment's segment descriptor determines the operand-size attribute.)
+The `POPA` (pop all) and `POPAD` (pop all double) mnemonics reference the same opcode. The `POPA` instruction is intended for use when the operand-size attribute is 16 and the `POPAD` instruction for when the operand-size attri-bute is 32. Some assemblers may force the operand size to 16 when `POPA` is used and to 32 when `POPAD` is used (using the operand-size override prefix [66H] if necessary). Others may treat these mnemonics as synonyms (POPA/POPAD) and use the current setting of the operand-size attribute to determine the size of values to be popped from the stack, regardless of the mnemonic used. (The D flag in the current code segment's segment descriptor determines the operand-size attribute.)
 
 This instruction executes as described in non-64-bit modes. It is not valid in 64-bit mode.
 
@@ -28,21 +31,21 @@ This instruction executes as described in non-64-bit modes. It is not valid in 6
 ### Operation
 
 ```info-verb
-IF 64-Bit ModeTHEN#UD;ELSEIF OperandSize = 32 (\htmlonly{*} Instruction = POPAD \htmlonly{*})
+IF 64-Bit ModeTHEN#UD;ELSEIF OperandSize = 32 (* Instruction = POPAD *)
  THEN
    EDI <- Pop();
    ESI <- Pop();
    EBP <- Pop();
-   Increment ESP by 4; (\htmlonly{*} Skip next 4 bytes of stack \htmlonly{*})
+   Increment ESP by 4; (* Skip next 4 bytes of stack *)
    EBX <- Pop();
    EDX <- Pop();
    ECX <- Pop();
    EAX <- Pop();
- ELSE (\htmlonly{*} OperandSize = 16, instruction = POPA \htmlonly{*})
+ ELSE (* OperandSize = 16, instruction = POPA *)
    DI <- Pop();
    SI <- Pop();
    BP <- Pop();
-   Increment ESP by 2; (\htmlonly{*} Skip next 2 bytes of stack \htmlonly{*})
+   Increment ESP by 2; (* Skip next 2 bytes of stack *)
    BX <- Pop();
    DX <- Pop();
    CX <- Pop();

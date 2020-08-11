@@ -1,9 +1,12 @@
 ----------------------------
-title : FBSTP instruction(Intel x86/64 assembly instruction)
+title : FBSTP (Intel x86/64 assembly instruction)
 cat_title : FBSTP
+ref_title : FBSTP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FBSTP--Store BCD Integer and Pop
+#@ FBSTP
 
+**Store BCD Integer and Pop**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -22,15 +25,15 @@ The following table shows the results obtained when storing various classes of n
 
 |**ST(0)**|**DEST**|
 |---------|--------|
-|- $$\infty$$ or Value Too Large for DEST Format|*|
+|- $$\infty$$ or Value Too Large for DEST Format|\htmlonly{*}|
 |F <= - 1|- D|
-|-1 < F < -0|**|
+|-1 < F < -0|\htmlonly{*}\htmlonly{*}|
 |- 0|- 0|
 |+ 0|+ 0|
-|+ 0 < F < +1|**|
+|+ 0 < F < +1|\htmlonly{*}\htmlonly{*}|
 |F >= +1|+ D|
-|+ $$\infty$$ or Value Too Large for DEST Format|*|
-|NaN|*|
+|+ $$\infty$$ or Value Too Large for DEST Format|\htmlonly{*}|
+|NaN|\htmlonly{*}|
 ### NOTES:
 
 
@@ -38,9 +41,9 @@ FMeans finite floating-point value.
 
 DMeans packed-BCD number.
 
-*Indicates floating-point invalid-operation (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-operation (#IA) exception.
 
-**$$\pm$$0 or $$\pm$$1, depending on the rounding mode.
+\htmlonly{*}\htmlonly{*}$$\pm$$0 or $$\pm$$1, depending on the rounding mode.
 
 If the converted value is too large for the destination format, or if the source operand is an $$\infty$$, SNaN, QNAN, or is in an unsupported format, an invalid-arithmetic-operand condition is signaled. If the invalid-operation exception is not masked, an invalid-arithmetic-operand exception (#IA) is generated and no value is stored in the destination operand. If the invalid-operation exception is masked, the packed BCD indefinite value is stored in memory.
 

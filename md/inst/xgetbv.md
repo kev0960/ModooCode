@@ -1,9 +1,12 @@
 ----------------------------
-title : XGETBV instruction(Intel x86/64 assembly instruction)
+title : XGETBV (Intel x86/64 assembly instruction)
 cat_title : XGETBV
+ref_title : XGETBV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XGETBV--Get Value of Extended Control Register
+#@ XGETBV
 
+**Get Value of Extended Control Register**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -19,7 +22,7 @@ cat_title : XGETBV
 
 Reads the contents of the extended control register (XCR) specified in the ECX register into registers EDX:EAX. (On processors that support the Intel64 architecture, the high-order 32 bits of RCX are ignored.) The EDX register is loaded with the high-order 32 bits of the XCR and the EAX register is loaded with the low-order 32 bits. (On proces-sors that support the Intel64 architecture, the high-order 32 bits of each of RAX and RDX are cleared.) If fewer than 64 bits are implemented in the XCR being read, the values returned to EDX:EAX in unimplemented bit loca-tions are undefined.
 
-XCR0 is supported on any processor that supports the XGETBV instruction. If CPUID.(EAX=0DH,ECX=1):EAX.XG1[bit2]= 1, executing XGETBV with ECX= 1 returns in EDX:EAX the logical-AND of XCR0 and the current value of the XINUSE state-component bitmap. This allows software to discover the state of the init optimization used by XSAVEOPT and XSAVES. See Chapter 13, "Managing State Using the XSAVE Feature Set," in Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1.
+XCR0 is supported on any processor that supports the `XGETBV` instruction. If `CPUID`.(EAX=0DH,ECX=1):EAX.XG1[bit2]= 1, executing `XGETBV` with ECX= 1 returns in EDX:EAX the logical-AND of XCR0 and the current value of the XINUSE state-component bitmap. This allows software to discover the state of the init optimization used by `XSAVEOPT` and `XSAVES`. See Chapter 13, "Managing State Using the `XSAVE` Feature Set," in Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1.
 
 Use of any other value for ECX results in a general-protection (#GP) exception.
 

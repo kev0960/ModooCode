@@ -1,9 +1,12 @@
 ----------------------------
-title : PSUBB, PSUBW, PSUBD instructions(Intel x86/64 assembly instruction)
+title : PSUBB, PSUBW, PSUBDs (Intel x86/64 assembly instruction)
 cat_title : PSUBB, PSUBW, PSUBD
+ref_title : PSUBB, PSUBW, PSUBD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PSUBB/PSUBW/PSUBD--Subtract Packed Integers
+#@ PSUBB, PSUBW, PSUBD
 
+**Subtract Packed Integers**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -79,13 +82,13 @@ EVEX encoded VPSUBB/W: The second source operand is a ZMM/YMM/XMM register, a 51
 #### PSUBB (with 64-bit operands)
 ```info-verb
  DEST[7:0] <- DEST[7:0] - SRC[7:0]; 
- (\htmlonly{*} Repeat subtract operation for 2nd through 7th byte \htmlonly{*})
+ (* Repeat subtract operation for 2nd through 7th byte *)
  DEST[63:56] <- DEST[63:56] - SRC[63:56];
 ```
 #### PSUBW (with 64-bit operands)
 ```info-verb
  DEST[15:0] <- DEST[15:0] - SRC[15:0];
- (\htmlonly{*} Repeat subtract operation for 2nd and 3rd word \htmlonly{*})
+ (* Repeat subtract operation for 2nd and 3rd word *)
  DEST[63:48] <- DEST[63:48] - SRC[63:48];
 ```
 #### PSUBD (with 64-bit operands)
@@ -96,20 +99,20 @@ EVEX encoded VPSUBB/W: The second source operand is a ZMM/YMM/XMM register, a 51
 #### PSUBD (with 128-bit operands)
 ```info-verb
  DEST[31:0]  <- DEST[31:0] - SRC[31:0];
- (\htmlonly{*} Repeat subtract operation for 2nd and 3rd doubleword \htmlonly{*})
+ (* Repeat subtract operation for 2nd and 3rd doubleword *)
  DEST[127:96] <- DEST[127:96] - SRC[127:96];
 ```
 #### VPSUBB (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
 FOR j <-  0 TO KL-1
- i <-  j \htmlonly{*} 8
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <-  j * 8
+ IF k1[j] OR *no writemask*
    THEN DEST[i+7:i] <-  SRC1[i+7:i] - SRC2[i+7:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+7:i] remains unchanged\htmlonly{*}
-      ELSE \htmlonly{*}zeroing-masking\htmlonly{*} ; zeroing-masking
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+7:i] remains unchanged*
+      ELSE *zeroing-masking* ; zeroing-masking
         DEST[i+7:i] = 0
     FI
  FI;
@@ -120,11 +123,11 @@ DEST[MAX_VL-1:VL]  <- 0
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 FOR j  <- 0 TO KL-1
- i <-  j \htmlonly{*} 16
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <-  j * 16
+ IF k1[j] OR *no writemask*
    THEN DEST[i+15:i] <-  SRC1[i+15:i] - SRC2[i+15:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
+    IF *merging-masking* ; merging-masking
 THEN *DEST[i+15:i] remains unchanged*
       ELSE *zeroing-masking* ; zeroing-masking
         DEST[i+15:i] = 0

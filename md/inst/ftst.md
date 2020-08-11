@@ -1,9 +1,12 @@
 ----------------------------
-title : FTST instruction(Intel x86/64 assembly instruction)
+title : FTST (Intel x86/64 assembly instruction)
 cat_title : FTST
+ref_title : FTST
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FTST--TEST
+#@ FTST
 
+**TEST**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

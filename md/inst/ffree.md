@@ -1,9 +1,12 @@
 ----------------------------
-title : FFREE instruction(Intel x86/64 assembly instruction)
+title : FFREE (Intel x86/64 assembly instruction)
 cat_title : FFREE
+ref_title : FFREE
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FFREE--Free Floating-Point Register
+#@ FFREE
 
+**Free Floating-Point Register**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

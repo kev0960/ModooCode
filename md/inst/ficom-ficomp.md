@@ -1,9 +1,12 @@
 ----------------------------
-title : FICOM, FICOMP instructions(Intel x86/64 assembly instruction)
+title : FICOM, FICOMPs (Intel x86/64 assembly instruction)
 cat_title : FICOM, FICOMP
+ref_title : FICOM, FICOMP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FICOM/FICOMP--Compare Integer
+#@ FICOM, FICOMP
 
+**Compare Integer**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

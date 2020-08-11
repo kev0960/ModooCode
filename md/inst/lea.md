@@ -1,9 +1,12 @@
 ----------------------------
-title : LEA instruction(Intel x86/64 assembly instruction)
+title : LEA (Intel x86/64 assembly instruction)
 cat_title : LEA
+ref_title : LEA
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LEA--Load Effective Address
+#@ LEA
 
+**Load Effective Address**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -53,34 +56,34 @@ In 64-bit mode, the instruction's destination operand is governed by operand siz
 ```info-verb
 IF OperandSize = 16 and AddressSize = 16
  THEN 
-   DEST <- EffectiveAddress(SRC); (\htmlonly{*} 16-bit address \htmlonly{*})
+   DEST <- EffectiveAddress(SRC); (* 16-bit address *)
  ELSE IF OperandSize = 16 and AddressSize = 32
    THEN
-    temp <- EffectiveAddress(SRC); (\htmlonly{*} 32-bit address \htmlonly{*})
-    DEST <- temp[0:15]; (\htmlonly{*} 16-bit address \htmlonly{*})
+    temp <- EffectiveAddress(SRC); (* 32-bit address *)
+    DEST <- temp[0:15]; (* 16-bit address *)
    FI;
  ELSE IF OperandSize = 32 and AddressSize = 16
    THEN
-    temp <- EffectiveAddress(SRC); (\htmlonly{*} 16-bit address \htmlonly{*})
-    DEST <- ZeroExtend(temp); (\htmlonly{*} 32-bit address \htmlonly{*})
+    temp <- EffectiveAddress(SRC); (* 16-bit address *)
+    DEST <- ZeroExtend(temp); (* 32-bit address *)
    FI;
  ELSE IF OperandSize = 32 and AddressSize = 32
    THEN 
-    DEST <- EffectiveAddress(SRC); (\htmlonly{*} 32-bit address \htmlonly{*})
+    DEST <- EffectiveAddress(SRC); (* 32-bit address *)
    FI;
  ELSE IF OperandSize = 16 and AddressSize = 64
    THEN 
-    temp <- EffectiveAddress(SRC); (\htmlonly{*} 64-bit address \htmlonly{*})
-    DEST <- temp[0:15]; (\htmlonly{*} 16-bit address \htmlonly{*})
+    temp <- EffectiveAddress(SRC); (* 64-bit address *)
+    DEST <- temp[0:15]; (* 16-bit address *)
    FI;
  ELSE IF OperandSize = 32 and AddressSize = 64
    THEN 
-    temp <- EffectiveAddress(SRC); (\htmlonly{*} 64-bit address \htmlonly{*})
-    DEST <- temp[0:31]; (\htmlonly{*} 16-bit address \htmlonly{*})
+    temp <- EffectiveAddress(SRC); (* 64-bit address *)
+    DEST <- temp[0:31]; (* 16-bit address *)
    FI;
  ELSE IF OperandSize = 64 and AddressSize = 64
    THEN 
-    DEST <- EffectiveAddress(SRC); (\htmlonly{*} 64-bit address \htmlonly{*})
+    DEST <- EffectiveAddress(SRC); (* 64-bit address *)
    FI;
 FI;
 ```

@@ -1,9 +1,12 @@
 ----------------------------
-title : XCHG instruction(Intel x86/64 assembly instruction)
+title : XCHG (Intel x86/64 assembly instruction)
 cat_title : XCHG
+ref_title : XCHG
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XCHG--Exchange Register/Memory with Register
+#@ XCHG
 
+**Exchange Register/Memory with Register**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -14,9 +17,9 @@ cat_title : XCHG
 |90+rd|XCHG r32, EAX|O|Valid |Valid|Exchange EAX with r32.|
 |REX.W + 90+rd|XCHG r64, RAX|O|Valid|N.E.|Exchange RAX with r64.|
 |86 /r|XCHG r/m8, r8|MR|Valid |Valid|Exchange r8 (byte register) with byte from r/m8.|
-|REX + 86 /r|XCHG r/m8*, r8*|MR|Valid|N.E.|Exchange r8 (byte register) with byte from r/m8.|
+|REX + 86 /r|XCHG r/m8\htmlonly{*}, r8\htmlonly{*}|MR|Valid|N.E.|Exchange r8 (byte register) with byte from r/m8.|
 |86 /r|XCHG r8, r/m8|RM|Valid |Valid|Exchange byte from r/m8 with r8 (byte register).|
-|REX + 86 /r|XCHG r8*, r/m8*|RM|Valid|N.E.|Exchange byte from r/m8 with r8 (byte register).|
+|REX + 86 /r|XCHG r8\htmlonly{*}, r/m8\htmlonly{*}|RM|Valid|N.E.|Exchange byte from r/m8 with r8 (byte register).|
 |87 /r|XCHG r/m16, r16|MR|Valid|Valid|Exchange r16 with word from r/m16.|
 |87 /r|XCHG r16, r/m16|RM|Valid |Valid|Exchange word from r/m16 with r16.|
 |87 /r|XCHG r/m32, r32|MR|Valid |Valid|Exchange r32 with doubleword from r/m32.|
@@ -26,7 +29,7 @@ cat_title : XCHG
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -40,11 +43,11 @@ cat_title : XCHG
 ### Description
 
 
-Exchanges the contents of the destination (first) and source (second) operands. The operands can be two general-purpose registers or a register and a memory location. If a memory operand is referenced, the processor's locking protocol is automatically implemented for the duration of the exchange operation, regardless of the presence or absence of the LOCK prefix or of the value of the IOPL. (See the LOCK prefix description in this chapter for more information on the locking protocol.)
+Exchanges the contents of the destination (first) and source (second) operands. The operands can be two general-purpose registers or a register and a memory location. If a memory operand is referenced, the processor's locking protocol is automatically implemented for the duration of the exchange operation, regardless of the presence or absence of the `LOCK` prefix or of the value of the IOPL. (See the `LOCK` prefix description in this chapter for more information on the locking protocol.)
 
 This instruction is useful for implementing semaphores or similar data structures for process synchronization. (See "Bus Locking" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A, for more information on bus locking.) 
 
-The XCHG instruction can also be used instead of the BSWAP instruction for 16-bit operands.
+The `XCHG` instruction can also be used instead of the `BSWAP` instruction for 16-bit operands.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 

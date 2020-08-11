@@ -1,9 +1,12 @@
 ----------------------------
-title : CVTPS2PD instruction(Intel x86/64 assembly instruction)
+title : CVTPS2PD (Intel x86/64 assembly instruction)
 cat_title : CVTPS2PD
+ref_title : CVTPS2PD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CVTPS2PD--Convert Packed Single-Precision Floating-Point Values to Packed Double-Precision Floating-Point Values
+#@ CVTPS2PD
 
+**Convert Packed Single-Precision Floating-Point Values to Packed Double-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -126,7 +129,7 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 <text x="25.678497" y="129.160034" textLength="4.582500" font-size="8px">T</text>
 <text x="142.919998" y="125.799988" textLength="4.170000" font-size="8px">2</text>
 </svg>
-<figcaption>Figure 3-14.  CVTPS2PD (VEX.256 encoded version)
+<figcaption>Figure 3-14.  `CVTPS2PD` (VEX.256 encoded version)
 </figcaption></figure>
 ```
 
@@ -135,14 +138,14 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
 FOR j  <- 0 TO KL-1
- i  <- j \htmlonly{*} 64
- k <-  j \htmlonly{*} 32
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 64
+ k <-  j * 32
+ IF k1[j] OR *no writemask*
    THEN DEST[i+63:i] <- 
     Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[k+31:k])
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+63:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+63:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+63:i]  <- 0
     FI
@@ -154,9 +157,9 @@ DEST[MAX_VL-1:VL]  <- 0
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
 FOR j <-  0 TO KL-1
- i  <- j \htmlonly{*} 64
- k  <- j \htmlonly{*} 32
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 64
+ k  <- j * 32
+ IF k1[j] OR *no writemask*
    THEN 
     IF (EVEX.b = 1) 
       THEN

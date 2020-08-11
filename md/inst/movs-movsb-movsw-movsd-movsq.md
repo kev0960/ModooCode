@@ -1,13 +1,12 @@
 ----------------------------
-title : MOVS, MOVSB, MOVSW, MOVSD, MOVSQ instructions(Intel x86/64 assembly instruction)
+title : MOVS, MOVSB, MOVSW, MOVSD, MOVSQs (Intel x86/64 assembly instruction)
 cat_title : MOVS, MOVSB, MOVSW, MOVSD, MOVSQ
+ref_title : MOVS, MOVSB, MOVSW, MOVSD, MOVSQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVS/MOVSB/MOVSW/MOVSD/MOVSQ--Move Data from StringtoString
+#@ MOVS, MOVSB, MOVSW, MOVSD, MOVSQ
 
-
-\
-
-
+**Move Data from StringtoString**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -30,9 +29,9 @@ cat_title : MOVS, MOVSB, MOVSW, MOVSD, MOVSQ
 
 Moves the byte, word, or doubleword specified with the second operand (source operand) to the location specified with the first operand (destination operand). Both the source and destination operands are located in memory. The address of the source operand is read from the DS:ESI or the DS:SI registers (depending on the address-size attri-bute of the instruction, 32 or 16, respectively). The address of the destination operand is read from the ES:EDI or the ES:DI registers (again depending on the address-size attribute of the instruction). The DS segment may be overridden with a segment override prefix, but the ES segment cannot be overridden.
 
-At the assembly-code level, two forms of this instruction are allowed: the "explicit-operands" form and the "no-operands" form. The explicit-operands form (specified with the MOVS mnemonic) allows the source and destination operands to be specified explicitly. Here, the source and destination operands should be symbols that indicate the size and location of the source value and the destination, respectively. This explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the source and destination operand symbols must specify the correct type (size) of the operands (bytes, words, or doublewords), but they do not have to specify the correct location. The locations of the source and destination operands are always specified by the DS:(E)SI and ES:(E)DI registers, which must be loaded correctly before the move string instruction is executed. 
+At the assembly-code level, two forms of this instruction are allowed: the "explicit-operands" form and the "no-operands" form. The explicit-operands form (specified with the `MOVS` mnemonic) allows the source and destination operands to be specified explicitly. Here, the source and destination operands should be symbols that indicate the size and location of the source value and the destination, respectively. This explicit-operands form is provided to allow documentation; however, note that the documentation provided by this form can be misleading. That is, the source and destination operand symbols must specify the correct type (size) of the operands (bytes, words, or doublewords), but they do not have to specify the correct location. The locations of the source and destination operands are always specified by the DS:(E)SI and ES:(E)DI registers, which must be loaded correctly before the move string instruction is executed. 
 
-The no-operands form provides "short forms" of the byte, word, and doubleword versions of the MOVS instruc-tions. Here also DS:(E)SI and ES:(E)DI are assumed to be the source and destination operands, respectively. The size of the source and destination operands is selected with the mnemonic: MOVSB (byte move), MOVSW (word move), or MOVSD (doubleword move).
+The no-operands form provides "short forms" of the byte, word, and doubleword versions of the `MOVS` instruc-tions. Here also DS:(E)SI and ES:(E)DI are assumed to be the source and destination operands, respectively. The size of the source and destination operands is selected with the mnemonic: `MOVSB` (byte move), `MOVSW` (word move), or `MOVSD` (doubleword move).
 
 After the move operation, the (E)SI and (E)DI registers are incremented or decremented automatically according to the setting of the DF flag in the EFLAGS register. (If the DF flag is 0, the (E)SI and (E)DI register are incre-
 

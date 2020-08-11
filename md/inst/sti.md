@@ -1,9 +1,12 @@
 ----------------------------
-title : STI instruction(Intel x86/64 assembly instruction)
+title : STI (Intel x86/64 assembly instruction)
 cat_title : STI
+ref_title : STI
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### STI--Set Interrupt Flag
+#@ STI
 
+**Set Interrupt Flag**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,13 +20,13 @@ cat_title : STI
 ### Description
 
 
-If protected-mode virtual interrupts are not enabled, STI sets the interrupt flag (IF) in the EFLAGS register. After the IF flag is set, the processor begins responding to external, maskable interrupts after the next instruction is executed. The delayed effect of this instruction is provided to allow interrupts to be enabled just before returning from a procedure (or subroutine). For instance, if an STI instruction is followed by an RET instruction, the RET instruction is allowed to execute before external interrupts are recognized\footnote{1} . If the STI instruction is followed by a CLI instruction (which clears the IF flag), the effect of the STI instruction is negated. 
+If protected-mode virtual interrupts are not enabled, `STI` sets the interrupt flag (IF) in the EFLAGS register. After the IF flag is set, the processor begins responding to external, maskable interrupts after the next instruction is executed. The delayed effect of this instruction is provided to allow interrupts to be enabled just before returning from a procedure (or subroutine). For instance, if an `STI` instruction is followed by an `RET` instruction, the `RET` instruction is allowed to execute before external interrupts are recognized\footnote{1} . If the `STI` instruction is followed by a `CLI` instruction (which clears the IF flag), the effect of the `STI` instruction is negated. 
 
-The IF flag and the STI and CLI instructions do not prohibit the generation of exceptions and NMI interrupts. NMI interrupts (and SMIs) may be blocked for one macroinstruction following an STI.
+The IF flag and the `STI` and `CLI` instructions do not prohibit the generation of exceptions and NMI interrupts. NMI interrupts (and SMIs) may be blocked for one macroinstruction following an `STI`.
 
-When protected-mode virtual interrupts are enabled, CPL is 3, and IOPL is less than 3; STI sets the VIF flag in the EFLAGS register, leaving IF unaffected.
+When protected-mode virtual interrupts are enabled, CPL is 3, and IOPL is less than 3; `STI` sets the VIF flag in the EFLAGS register, leaving IF unaffected.
 
-Table 4-19 indicates the action of the STI instruction depending on the processor's mode of operation and the CPL/IOPL settings of the running program or procedure.
+Table 4-19 indicates the action of the `STI` instruction depending on the processor's mode of operation and the CPL/IOPL settings of the running program or procedure.
 
 Operation is the same in all modes.
 
@@ -57,33 +60,33 @@ X = This setting has no impact.
 ### Operation
 
 ```info-verb
-IF PE = 0  (\htmlonly{*} Executing in real-address mode \htmlonly{*})
+IF PE = 0  (* Executing in real-address mode *)
  THEN 
-   IF <- 1; (\htmlonly{*} Set Interrupt Flag \htmlonly{*})
- ELSE  (\htmlonly{*} Executing in protected mode or virtual-8086 mode \htmlonly{*})
-   IF VM = 0  (\htmlonly{*} Executing in protected mode\htmlonly{*})
+   IF <- 1; (* Set Interrupt Flag *)
+ ELSE  (* Executing in protected mode or virtual-8086 mode *)
+   IF VM = 0  (* Executing in protected mode*)
     THEN
       IF IOPL >= CPL
         THEN
-          IF <- 1;  (\htmlonly{*} Set Interrupt Flag \htmlonly{*})
+          IF <- 1;  (* Set Interrupt Flag *)
       ELSE
         IF (IOPL < CPL) and (CPL = 3) and (PVI = 1)
           THEN 
-            VIF <- 1;  (\htmlonly{*} Set Virtual Interrupt Flag \htmlonly{*})
+            VIF <- 1;  (* Set Virtual Interrupt Flag *)
           ELSE 
             #GP(0);
         FI;
       FI;
-    ELSE  (\htmlonly{*} Executing in Virtual-8086 mode \htmlonly{*})
+    ELSE  (* Executing in Virtual-8086 mode *)
       IF IOPL = 3
         THEN
-          IF <- 1;  (\htmlonly{*} Set Interrupt Flag \htmlonly{*})
+          IF <- 1;  (* Set Interrupt Flag *)
       ELSE 
         IF ((IOPL < 3) and (VIP = 0) and (VME = 1))
           THEN
-            VIF <- 1;  (\htmlonly{*} Set Virtual Interrupt Flag \htmlonly{*})
+            VIF <- 1;  (* Set Virtual Interrupt Flag *)
         ELSE
-          #GP(0); (\htmlonly{*} Trap to virtual-8086 monitor \htmlonly{*})
+          #GP(0); (* Trap to virtual-8086 monitor *)
         FI;)
       FI;
    FI; 

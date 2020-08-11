@@ -1,9 +1,12 @@
 ----------------------------
-title : XABORT instruction(Intel x86/64 assembly instruction)
+title : XABORT (Intel x86/64 assembly instruction)
 cat_title : XABORT
+ref_title : XABORT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XABORT -- Transactional Abort
+#@ XABORT
 
+** Transactional Abort**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
@@ -17,7 +20,7 @@ cat_title : XABORT
 ### Description
 
 
-XABORT forces an RTM abort. Following an RTM abort, the logical processor resumes execution at the fallback address computed through the outermost XBEGIN instruction. The EAX register is updated to reflect an XABORT instruction caused the abort, and the imm8 argument will be provided in bits 31:24 of EAX. 
+XABORT forces an RTM abort. Following an RTM abort, the logical processor resumes execution at the fallback address computed through the outermost `XBEGIN` instruction. The EAX register is updated to reflect an `XABORT` instruction caused the abort, and the imm8 argument will be provided in bits 31:24 of EAX. 
 
 
 ### Operation
@@ -29,7 +32,7 @@ IF RTM_ACTIVE = 0
  ELSE
    GOTO RTM_ABORT_PROCESSING;
 FI;
-(\htmlonly{*} For any RTM abort condition encountered during RTM execution \htmlonly{*})
+(* For any RTM abort condition encountered during RTM execution *)
 RTM_ABORT_PROCESSING:
  Restore architectural register state;
  Discard memory updates performed in transaction;

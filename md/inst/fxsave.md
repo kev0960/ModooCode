@@ -1,9 +1,12 @@
 ----------------------------
-title : FXSAVE instruction(Intel x86/64 assembly instruction)
+title : FXSAVE (Intel x86/64 assembly instruction)
 cat_title : FXSAVE
+ref_title : FXSAVE
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FXSAVE--Save x87 FPU, MMX Technology, and SSE State
+#@ FXSAVE
 
+**Save x87 FPU, MMX Technology, and SSE State**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -20,9 +23,9 @@ cat_title : FXSAVE
 
 Saves the current state of the x87 FPU, MMX technology, XMM, and MXCSR registers to a 512-byte memory loca-tion specified in the destination operand. The content layout of the 512 byte region depends on whether the processor is operating in non-64-bit operating modes or 64-bit sub-mode of IA-32e mode. 
 
-Bytes 464:511 are available to software use. The processor does not write to bytes 464:511 of an FXSAVE area. 
+Bytes 464:511 are available to software use. The processor does not write to bytes 464:511 of an `FXSAVE` area. 
 
-The operation of FXSAVE in non-64-bit modes is described first.
+The operation of `FXSAVE` in non-64-bit modes is described first.
 
 ### Non-64-Bit Mode Operation
 

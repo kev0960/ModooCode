@@ -1,9 +1,12 @@
 ----------------------------
-title : FINCSTP instruction(Intel x86/64 assembly instruction)
+title : FINCSTP (Intel x86/64 assembly instruction)
 cat_title : FINCSTP
+ref_title : FINCSTP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FINCSTP--Increment Stack-Top Pointer
+#@ FINCSTP
 
+**Increment Stack-Top Pointer**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

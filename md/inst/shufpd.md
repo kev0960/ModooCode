@@ -1,9 +1,12 @@
 ----------------------------
-title : SHUFPD instruction(Intel x86/64 assembly instruction)
+title : SHUFPD (Intel x86/64 assembly instruction)
 cat_title : SHUFPD
+ref_title : SHUFPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SHUFPD--Packed Interleave Shuffle of Pairs of Double-Precision Floating-Point Values
+#@ SHUFPD
 
+**Packed Interleave Shuffle of Pairs of Double-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -243,8 +246,8 @@ IF VL >= 512
    ELSE TMP_DEST[511:448] <-  SRC2[511:448] FI;
 FI;
 FOR j <-  0 TO KL-1
- i <-  j \htmlonly{*} 64
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <-  j * 64
+ IF k1[j] OR *no writemask*
    THEN DEST[i+63:i]  <- TMP_DEST[i+63:i]
    ELSE 
 IF *merging-masking* ; merging-masking

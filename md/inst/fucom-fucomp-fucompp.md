@@ -1,9 +1,12 @@
 ----------------------------
-title : FUCOM, FUCOMP, FUCOMPP instructions(Intel x86/64 assembly instruction)
+title : FUCOM, FUCOMP, FUCOMPPs (Intel x86/64 assembly instruction)
 cat_title : FUCOM, FUCOMP, FUCOMPP
+ref_title : FUCOM, FUCOMP, FUCOMPP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FUCOM/FUCOMP/FUCOMPP--Unordered Compare Floating Point Values
+#@ FUCOM, FUCOMP, FUCOMPP
 
+**Unordered Compare Floating Point Values**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -20,8 +23,8 @@ Performs an unordered comparison of the contents of register ST(0) and ST(i) and
 ### Table 3-41.  FUCOM/FUCOMP/FUCOMPP Results
 
 
-|**Comparison Results***|**C3**|**C2**|**C0**|
-|-----------------------|------|------|------|
+|**Comparison Results\htmlonly{*}**|**C3**|**C2**|**C0**|
+|----------------------------------|------|------|------|
 |ST0 > ST(i)|0|0|0|
 |ST0 < ST(i)|0|0|1|
 |ST0 = ST(i)|1|0|0|
@@ -29,7 +32,7 @@ Performs an unordered comparison of the contents of register ST(0) and ST(i) and
 ### NOTES:
 
 
-*Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
+\htmlonly{*}Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
 
 An unordered comparison checks the class of the numbers being compared (see "FXAM--Examine Floating-Point" in this chapter). The FUCOM/FUCOMP/FUCOMPP instructions perform the same operations as the FCOM/FCOMP/FCOMPP instructions. The only difference is that the FUCOM/FUCOMP/FUCOMPP instructions raise the invalid-arithmetic-operand exception (#IA) only when either or both operands are an SNaN or are in an unsup-ported format; QNaNs cause the condition code flags to be set to unordered, but do not cause an exception to be generated. The FCOM/FCOMP/FCOMPP instructions raise an invalid-operation exception when either or both of the operands are a NaN value of any kind or are in an unsupported format.
 
@@ -51,7 +54,7 @@ ESAC;
 IF ST(0) or SRC = QNaN, but not SNaN or unsupported format
  THEN 
    C3, C2, C0 <- 111;
- ELSE (\htmlonly{*} ST(0) or SRC is SNaN or unsupported format \htmlonly{*})
+ ELSE (* ST(0) or SRC is SNaN or unsupported format *)
     #IA;
    IF FPUControlWord.IM = 1
     THEN 

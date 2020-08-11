@@ -1,9 +1,12 @@
 ----------------------------
-title : FDECSTP instruction(Intel x86/64 assembly instruction)
+title : FDECSTP (Intel x86/64 assembly instruction)
 cat_title : FDECSTP
+ref_title : FDECSTP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FDECSTP--Decrement Stack-Top Pointer
+#@ FDECSTP
 
+**Decrement Stack-Top Pointer**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

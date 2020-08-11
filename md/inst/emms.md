@@ -1,9 +1,12 @@
 ----------------------------
-title : EMMS instruction(Intel x86/64 assembly instruction)
+title : EMMS (Intel x86/64 assembly instruction)
 cat_title : EMMS
+ref_title : EMMS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### EMMS--Empty MMX Technology State
+#@ EMMS
 
+**Empty MMX Technology State**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|

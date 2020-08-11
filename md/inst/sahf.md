@@ -1,17 +1,20 @@
 ----------------------------
-title : SAHF instruction(Intel x86/64 assembly instruction)
+title : SAHF (Intel x86/64 assembly instruction)
 cat_title : SAHF
+ref_title : SAHF
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SAHF--Store AH into Flags
+#@ SAHF
 
+**Store AH into Flags**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|9E|SAHF|NP|Invalid*|Valid|Loads SF, ZF, AF, PF, and CF from AH into EFLAGS register.|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|9E|SAHF|NP|Invalid\htmlonly{*}|Valid|Loads SF, ZF, AF, PF, and CF from AH into EFLAGS register.|
 ### NOTES:
 
 
-* Valid in specific steppings. See Description section.
+\htmlonly{*} Valid in specific steppings. See Description section.
 
 ### Instruction Operand Encoding
 
@@ -24,7 +27,7 @@ cat_title : SAHF
 
 Loads the SF, ZF, AF, PF, and CF flags of the EFLAGS register with values from the corresponding bits in the AH register (bits 7, 6, 4, 2, and 0, respectively). Bits 1, 3, and 5 of register AH are ignored; the corresponding reserved bits (1, 3, and 5) in the EFLAGS register remain as shown in the "Operation" section below.
 
-This instruction executes as described above in compatibility mode and legacy mode. It is valid in 64-bit mode only if CPUID.80000001H:ECX.LAHF-SAHF[bit 0] = 1.
+This instruction executes as described above in compatibility mode and legacy mode. It is valid in 64-bit mode only if `CPUID`.80000001H:ECX.LAHF-SAHF[bit 0] = 1.
 
 
 ### Operation

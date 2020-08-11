@@ -1,17 +1,20 @@
 ----------------------------
-title : CVTPI2PD instruction(Intel x86/64 assembly instruction)
+title : CVTPI2PD (Intel x86/64 assembly instruction)
 cat_title : CVTPI2PD
+ref_title : CVTPI2PD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CVTPI2PD--Convert Packed Dword Integers to Packed Double-Precision FP Values
+#@ CVTPI2PD
 
+**Convert Packed Dword Integers to Packed Double-Precision FP Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|66 0F 2A /r\newline{}CVTPI2PD xmm, mm/m64*|RM|Valid|Valid|Convert two packed signed doubleword integers from mm/mem64 to two packed double-precision floating-point values in xmm.|
+|66 0F 2A /r\newline{}CVTPI2PD xmm, mm/m64\htmlonly{*}|RM|Valid|Valid|Convert two packed signed doubleword integers from mm/mem64 to two packed double-precision floating-point values in xmm.|
 ### NOTES:
 
 
-*Operation is different for different operand sets; see the Description section.
+\htmlonly{*}Operation is different for different operand sets; see the Description section.
 
 ### Instruction Operand Encoding
 
@@ -26,7 +29,7 @@ Converts two packed signed doubleword integers in the source operand (second ope
 
 The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an XMM register. In addition, depending on the operand configuration:
 
-*  For operands xmm, mm: the instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the CVTPI2PD instruction is executed.
+*  For operands xmm, mm: the instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the `CVTPI2PD` instruction is executed.
 
 *  For operands xmm, m64: the instruction does not cause a transition to MMX technology and does not take x87 FPU exceptions.
 

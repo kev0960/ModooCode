@@ -1,23 +1,26 @@
 ----------------------------
-title : CMPXCHG instruction(Intel x86/64 assembly instruction)
+title : CMPXCHG (Intel x86/64 assembly instruction)
 cat_title : CMPXCHG
+ref_title : CMPXCHG
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CMPXCHG--Compare and Exchange
+#@ CMPXCHG
 
+**Compare and Exchange**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F B0/r\newline{}CMPXCHG r/m8, r8|MR|Valid|Valid*|Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.|
-|REX + 0F B0/r\newline{}CMPXCHG r/m8**,r8|MR|Valid|N.E.|Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.|
-|0F B1/r\newline{}CMPXCHG r/m16, r16|MR|Valid|Valid*|Compare AX with r/m16. If equal, ZF is set and r16 is loaded into r/m16. Else, clear ZF and load r/m16 into AX.|
-|0F B1/r\newline{}CMPXCHG r/m32, r32|MR|Valid|Valid*|Compare EAX with r/m32. If equal, ZF is set and r32 is loaded into r/m32. Else, clear ZF and load r/m32 into EAX.|
+|0F B0/r\newline{}CMPXCHG r/m8, r8|MR|Valid|Valid\htmlonly{*}|Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.|
+|REX + 0F B0/r\newline{}CMPXCHG r/m8\htmlonly{*}\htmlonly{*},r8|MR|Valid|N.E.|Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.|
+|0F B1/r\newline{}CMPXCHG r/m16, r16|MR|Valid|Valid\htmlonly{*}|Compare AX with r/m16. If equal, ZF is set and r16 is loaded into r/m16. Else, clear ZF and load r/m16 into AX.|
+|0F B1/r\newline{}CMPXCHG r/m32, r32|MR|Valid|Valid\htmlonly{*}|Compare EAX with r/m32. If equal, ZF is set and r32 is loaded into r/m32. Else, clear ZF and load r/m32 into EAX.|
 |REX.W + 0F B1/r\newline{}CMPXCHG r/m64, r64|MR|Valid|N.E.|Compare RAX with r/m64. If equal, ZF is set and r64 is loaded into r/m64. Else, clear ZF and load r/m64 into RAX.|
 ### NOTES:
 
 
-*See the IA-32 Architecture Compatibility section below. 
+\htmlonly{*}See the IA-32 Architecture Compatibility section below. 
 
-**In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -30,7 +33,7 @@ cat_title : CMPXCHG
 
 Compares the value in the AL, AX, EAX, or RAX register with the first operand (destination operand). If the two values are equal, the second operand (source operand) is loaded into the destination operand. Otherwise, the destination operand is loaded into the AL, AX, EAX or RAX register. RAX register is available only in 64-bit mode.
 
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically. To simplify the interface to the processor's bus, the destination operand receives a write cycle without regard to the result of the comparison. The destination operand is written back if the comparison fails; otherwise, the source operand is written into the destination. (The processor never produces a locked read without also producing a locked write.)
+This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically. To simplify the interface to the processor's bus, the destination operand receives a write cycle without regard to the result of the comparison. The destination operand is written back if the comparison fails; otherwise, the source operand is written into the destination. (The processor never produces a locked read without also producing a locked write.)
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Use of the REX.R prefix permits access to addi-tional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 
@@ -43,7 +46,7 @@ This instruction is not supported on Intel processors earlier than the Intel486 
 ### Operation
 
 ```info-verb
-(\htmlonly{*} Accumulator = AL, AX, EAX, or RAX depending on whether a byte, word, doubleword, or quadword comparison is being performed \htmlonly{*})
+(* Accumulator = AL, AX, EAX, or RAX depending on whether a byte, word, doubleword, or quadword comparison is being performed *)
 TEMP <- DEST
 IF accumulator = TEMP
  THEN

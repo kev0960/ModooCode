@@ -1,9 +1,12 @@
 ----------------------------
-title : STC instruction(Intel x86/64 assembly instruction)
+title : STC (Intel x86/64 assembly instruction)
 cat_title : STC
+ref_title : STC
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### STC--Set Carry Flag
+#@ STC
 
+**Set Carry Flag**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|

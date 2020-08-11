@@ -1,9 +1,12 @@
 ----------------------------
-title : FILD instruction(Intel x86/64 assembly instruction)
+title : FILD (Intel x86/64 assembly instruction)
 cat_title : FILD
+ref_title : FILD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FILD--Load Integer
+#@ FILD
 
+**Load Integer**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

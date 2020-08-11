@@ -1,9 +1,12 @@
 ----------------------------
-title : FMUL, FMULP, FIMUL instructions(Intel x86/64 assembly instruction)
+title : FMUL, FMULP, FIMULs (Intel x86/64 assembly instruction)
 cat_title : FMUL, FMULP, FIMUL
+ref_title : FMUL, FMULP, FIMUL
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FMUL/FMULP/FIMUL--Multiply
+#@ FMUL, FMULP, FIMUL
 
+**Multiply**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -22,9 +25,9 @@ Multiplies the destination and source operands and stores the product in the des
 
 The no-operand version of the instruction multiplies the contents of the ST(1) register by the contents of the ST(0) register and stores the product in the ST(1) register. The one-operand version multiplies the contents of the ST(0) register by the contents of a memory location (either a floating point or an integer value) and stores the product in the ST(0) register. The two-operand version, multiplies the contents of the ST(0) register by the contents of the ST(i) register, or vice versa, with the result being stored in the register specified with the first operand (the desti-nation operand). 
 
-The FMULP instructions perform the additional operation of popping the FPU register stack after storing the product. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The no-operand version of the floating-point multiply instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is FMUL rather than FMULP.
+The `FMULP` instructions perform the additional operation of popping the FPU register stack after storing the product. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The no-operand version of the floating-point multiply instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is `FMUL` rather than `FMULP`.
 
-The FIMUL instructions convert an integer source operand to double extended-precision floating-point format before performing the multiplication.
+The `FIMUL` instructions convert an integer source operand to double extended-precision floating-point format before performing the multiplication.
 
 The sign of the result is always the exclusive-OR of the source signs, even if one or more of the values being multi-plied is 0 or $$\infty$$. When the source operand is an integer 0, it is treated as a +0.
 
@@ -33,15 +36,15 @@ The following table shows the results obtained when multiplying various classes 
 ### Table 3-29.  FMUL/FMULP/FIMUL Results
 
 
-|- $$\infty$$\newline{}- $$\infty$$ + $$\infty$$|- F\newline{}+ $$\infty$$|**DE**\newline{}- 0\newline{}*|**ST**\newline{}  + 0\newline{}  *|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}- $$\infty$$|NaN\newline{}NaN|
-|-----------------------------------------------|-------------------------|------------------------------|----------------------------------|-------------------------|----------------------------------|----------------|
+|- $$\infty$$\newline{}- $$\infty$$ + $$\infty$$|- F\newline{}+ $$\infty$$|**DE**\newline{}- 0\newline{}\htmlonly{*}|**ST**\newline{}  + 0\newline{}  \htmlonly{*}|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}- $$\infty$$|NaN\newline{}NaN|
+|-----------------------------------------------|-------------------------|-----------------------------------------|---------------------------------------------|-------------------------|----------------------------------|----------------|
 |- F + $$\infty$$|+ F|+ 0|- 0|- F|- $$\infty$$|NaN|
 |- I + $$\infty$$|+ F|+ 0|- 0|- F|- $$\infty$$|NaN|
-|**SRC** - 0 *|+ 0|+ 0|- 0|- 0|*|NaN|
-|+ 0 *|- 0|- 0|+ 0|+ 0|*|NaN|
+|**SRC** - 0 \htmlonly{*}|+ 0|+ 0|- 0|- 0|\htmlonly{*}|NaN|
+|+ 0 \htmlonly{*}|- 0|- 0|+ 0|+ 0|\htmlonly{*}|NaN|
 |+ I - $$\infty$$|- F|- 0|+ 0|+ F|+ $$\infty$$|NaN|
 |+ F - $$\infty$$|- F|- 0|+ 0|+ F|+ $$\infty$$|NaN|
-|+ $$\infty$$ - $$\infty$$|- $$\infty$$|*|*|+ $$\infty$$|+ $$\infty$$|NaN|
+|+ $$\infty$$ - $$\infty$$|- $$\infty$$|\htmlonly{*}|\htmlonly{*}|+ $$\infty$$|+ $$\infty$$|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
@@ -50,7 +53,7 @@ FMeans finite floating-point value.
 
 IMeans Integer.
 
-*Indicates invalid-arithmetic-operand (#IA) exception.
+\htmlonly{*}Indicates invalid-arithmetic-operand (#IA) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -61,7 +64,7 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 IF Instruction = FIMUL
  THEN
    DEST <- DEST `*` ConvertToDoubleExtendedPrecisionFP(SRC);
- ELSE (\htmlonly{*} Source operand is floating-point value \htmlonly{*})
+ ELSE (* Source operand is floating-point value *)
    DEST <- DEST `*` SRC;
 FI;
 IF Instruction = FMULP 

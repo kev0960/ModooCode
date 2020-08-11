@@ -1,12 +1,15 @@
 ----------------------------
-title : RDRAND instruction(Intel x86/64 assembly instruction)
+title : RDRAND (Intel x86/64 assembly instruction)
 cat_title : RDRAND
+ref_title : RDRAND
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RDRAND--Read Random Number
+#@ RDRAND
 
+**Read Random Number**
 
-|**Opcode*/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
-|-------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
+|**Opcode\htmlonly{*}/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
+|------------------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
 |0F C7 /6\newline{}RDRAND r16|M|V/V|RDRAND|Read a 16-bit random number and store in the destination register.|
 |0F C7 /6\newline{}RDRAND r32|M|V/V|RDRAND|Read a 32-bit random number and store in the destination register.|
 |REX.W + 0F C7 /6\newline{}RDRAND r64|M|V/I|RDRAND|Read a 64-bit random number and store in the destination register.|
@@ -19,7 +22,7 @@ cat_title : RDRAND
 ### Description
 
 
-Loads a hardware generated random value and store it in the destination register. The size of the random value is determined by the destination register size and operating mode. The Carry Flag indicates whether a random value is available at the time the instruction is executed. CF=1 indicates that the data in the destination is valid. Other-wise CF=0 and the data in the destination operand will be returned as zeros for the specified width. All other flags are forced to 0 in either situation. Software must check the state of CF=1 for determining if a valid random value has been returned, otherwise it is expected to loop and retry execution of RDRAND (see Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 1, Section 7.3.17, "Random Number Generator Instructions").
+Loads a hardware generated random value and store it in the destination register. The size of the random value is determined by the destination register size and operating mode. The Carry Flag indicates whether a random value is available at the time the instruction is executed. CF=1 indicates that the data in the destination is valid. Other-wise CF=0 and the data in the destination operand will be returned as zeros for the specified width. All other flags are forced to 0 in either situation. Software must check the state of CF=1 for determining if a valid random value has been returned, otherwise it is expected to loop and retry execution of `RDRAND` (see Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 1, Section 7.3.17, "Random Number Generator Instructions").
 
 This instruction is available at all privilege levels.
 

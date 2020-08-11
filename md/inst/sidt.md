@@ -1,12 +1,15 @@
 ----------------------------
-title : SIDT instruction(Intel x86/64 assembly instruction)
+title : SIDT (Intel x86/64 assembly instruction)
 cat_title : SIDT
+ref_title : SIDT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SIDT--Store Interrupt Descriptor Table Register
+#@ SIDT
 
+**Store Interrupt Descriptor Table Register**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 01 /1|SIDT m|M|Valid|Valid|Store IDTR to m.|
 ### Instruction Operand Encoding
 
@@ -39,14 +42,14 @@ IF instruction is SIDT
    IF OperandSize = 16
     THEN 
       DEST[0:15] <- IDTR(Limit);
-      DEST[16:39] <- IDTR(Base); (\htmlonly{*} 24 bits of base address stored; \htmlonly{*})
+      DEST[16:39] <- IDTR(Base); (* 24 bits of base address stored; *)
       DEST[40:47] <- 0;
     ELSE IF (32-bit Operand Size)
       DEST[0:15] <- IDTR(Limit);
-      DEST[16:47] <- IDTR(Base); FI; (\htmlonly{*} Full 32-bit base address stored \htmlonly{*})
-    ELSE (\htmlonly{*} 64-bit Operand Size \htmlonly{*})
+      DEST[16:47] <- IDTR(Base); FI; (* Full 32-bit base address stored *)
+    ELSE (* 64-bit Operand Size *)
       DEST[0:15] <- IDTR(Limit);
-      DEST[16:79] <- IDTR(Base); (\htmlonly{*} Full 64-bit base address stored \htmlonly{*})
+      DEST[16:79] <- IDTR(Base); (* Full 64-bit base address stored *)
    FI;
 FI;
 ```

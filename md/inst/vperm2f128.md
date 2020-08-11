@@ -1,9 +1,12 @@
 ----------------------------
-title : VPERM2F128 instruction(Intel x86/64 assembly instruction)
+title : VPERM2F128 (Intel x86/64 assembly instruction)
 cat_title : VPERM2F128
+ref_title : VPERM2F128
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VPERM2F128 -- Permute Floating-Point Values
+#@ VPERM2F128
 
+** Permute Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -151,7 +154,7 @@ VEX.L must be 1, otherwise the instruction will #UD.
 <text x="124.025986" y="129.640015" textLength="4.170000" font-size="8px">1</text>
 <text x="15.778503" y="19.899994" textLength="4.170000" font-size="8px">2</text>
 </svg>
-<figcaption>Figure 5-21.  VPERM2F128 Operation
+<figcaption>Figure 5-21.  `VPERM2F128` Operation
 </figcaption></figure>
 ```
 

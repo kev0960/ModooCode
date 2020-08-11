@@ -1,9 +1,12 @@
 ----------------------------
-title : FYL2X instruction(Intel x86/64 assembly instruction)
+title : FYL2X (Intel x86/64 assembly instruction)
 cat_title : FYL2X
+ref_title : FYL2X
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FYL2X--Compute y `*` log2x
+#@ FYL2X
 
+**Compute y `*` log2x**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -18,22 +21,22 @@ The following table shows the results obtained when taking the log of various cl
 ### Table 3-48.  FYL2X Results
 
 
-|- $$\infty$$\newline{}- $$\infty$$ *|- F\newline{}*|$$\pm$$0\newline{}+ $$\infty$$|**ST(0)**\newline{}+0<+F<+1\newline{} + $$\infty$$|+ 1\newline{}*|+ F > + 1\newline{} - $$\infty$$|+ $$\infty$$\newline{}- $$\infty$$|NaN\newline{}NaN|
-|------------------------------------|--------------|------------------------------|--------------------------------------------------|--------------|--------------------------------|----------------------------------|----------------|
-|**ST(1)** - F *|*|**|+ F|- 0|- F|- $$\infty$$|NaN|
-|- 0 *|*|*|+ 0|- 0|- 0|*|NaN|
-|+ 0 *|*|*|- 0|+ 0|+ 0|*|NaN|
-|+ F *|*|**|- F|+ 0|+ F|+ $$\infty$$|NaN|
-|+ $$\infty$$ *|*|- $$\infty$$|- $$\infty$$|*|+ $$\infty$$|+ $$\infty$$|NaN|
+|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{}\htmlonly{*}|$$\pm$$0\newline{}+ $$\infty$$|**ST(0)**\newline{}+0<+F<+1\newline{} + $$\infty$$|+ 1\newline{}\htmlonly{*}|+ F > + 1\newline{} - $$\infty$$|+ $$\infty$$\newline{}- $$\infty$$|NaN\newline{}NaN|
+|-----------------------------------------------|-------------------------|------------------------------|--------------------------------------------------|-------------------------|--------------------------------|----------------------------------|----------------|
+|**ST(1)** - F \htmlonly{*}|\htmlonly{*}|\htmlonly{*}\htmlonly{*}|+ F|- 0|- F|- $$\infty$$|NaN|
+|- 0 \htmlonly{*}|\htmlonly{*}|\htmlonly{*}|+ 0|- 0|- 0|\htmlonly{*}|NaN|
+|+ 0 \htmlonly{*}|\htmlonly{*}|\htmlonly{*}|- 0|+ 0|+ 0|\htmlonly{*}|NaN|
+|+ F \htmlonly{*}|\htmlonly{*}|\htmlonly{*}\htmlonly{*}|- F|+ 0|+ F|+ $$\infty$$|NaN|
+|+ $$\infty$$ \htmlonly{*}|\htmlonly{*}|- $$\infty$$|- $$\infty$$|\htmlonly{*}|+ $$\infty$$|+ $$\infty$$|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
 
 FMeans finite floating-point value.
 
-*Indicates floating-point invalid-operation (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-operation (#IA) exception.
 
-**Indicates floating-point zero-divide (#Z) exception.
+\htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
 
 If the divide-by-zero exception is masked and register ST(0) contains $$\pm$$0, the instruction returns $$\infty$$ with a sign that is the opposite of the sign of the source operand in register ST(1).
 

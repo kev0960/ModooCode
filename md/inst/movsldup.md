@@ -1,9 +1,12 @@
 ----------------------------
-title : MOVSLDUP instruction(Intel x86/64 assembly instruction)
+title : MOVSLDUP (Intel x86/64 assembly instruction)
 cat_title : MOVSLDUP
+ref_title : MOVSLDUP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVSLDUP--Replicate Single FP Values
+#@ MOVSLDUP
 
+**Replicate Single FP Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -206,7 +209,7 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 <text x="50.338493" y="34.960007" textLength="5.415000" font-size="8px">C</text>
 <text x="148.559998" y="33.280014" textLength="5.002500" font-size="8px">X</text>
 </svg>
-<figcaption>Figure 4-4.  MOVSLDUP Operation
+<figcaption>Figure 4-4.  `MOVSLDUP` Operation
 </figcaption></figure>
 ```
 
@@ -235,12 +238,12 @@ IF VL >= 512
  TMP_SRC[511:480]  <- SRC[479:448]
 FI;
 FOR j  <- 0 TO KL-1
- i <-  j \htmlonly{*} 32
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <-  j * 32
+ IF k1[j] OR *no writemask*
    THEN DEST[i+31:i]  <- TMP_SRC[i+31:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+31:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+31:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+31:i]  <- 0 
     FI

@@ -1,9 +1,12 @@
 ----------------------------
-title : FINIT, FNINIT instructions(Intel x86/64 assembly instruction)
+title : FINIT, FNINITs (Intel x86/64 assembly instruction)
 cat_title : FINIT, FNINIT
+ref_title : FINIT, FNINIT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FINIT/FNINIT--Initialize Floating-Point Unit
+#@ FINIT, FNINIT
 
+**Initialize Floating-Point Unit**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -12,16 +15,16 @@ cat_title : FINIT, FNINIT
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Description
 
 
 Sets the FPU control, status, tag, instruction pointer, and data pointer registers to their default states. The FPU control word is set to 037FH (round to nearest, all exceptions masked, 64-bit precision). The status word is cleared (no exception flags set, TOP is set to 0). The data registers in the register stack are left unchanged, but they are all tagged as empty (11B). Both the instruction and data pointers are cleared.
 
-The FINIT instruction checks for and handles any pending unmasked floating-point exceptions before performing the initialization; the FNINIT instruction does not.
+The `FINIT` instruction checks for and handles any pending unmasked floating-point exceptions before performing the initialization; the `FNINIT` instruction does not.
 
-The assembler issues two instructions for the FINIT instruction (an FWAIT instruction followed by an FNINIT instruction), and the processor executes each of these instructions in separately. If an exception is generated for either of these instructions, the save EIP points to the instruction that caused the exception.
+The assembler issues two instructions for the `FINIT` instruction (an `FWAIT` instruction followed by an `FNINIT` instruction), and the processor executes each of these instructions in separately. If an exception is generated for either of these instructions, the save EIP points to the instruction that caused the exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

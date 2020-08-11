@@ -1,9 +1,12 @@
 ----------------------------
-title : FPTAN instruction(Intel x86/64 assembly instruction)
+title : FPTAN (Intel x86/64 assembly instruction)
 cat_title : FPTAN
+ref_title : FPTAN
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FPTAN--Partial Tangent
+#@ FPTAN
 
+**Partial Tangent**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -18,19 +21,19 @@ Computes the approximate tangent of the source operand in register ST(0), stores
 
 |**ST(0) SRC**|**ST(0) DEST**|
 |-------------|--------------|
-|- $$\infty$$|*|
+|- $$\infty$$|\htmlonly{*}|
 |- F|- F to + F|
 |- 0|- 0|
 |+ 0|+ 0|
 |+ F|- F to + F|
-|+ $$\infty$$|*|
+|+ $$\infty$$|\htmlonly{*}|
 |NaN|NaN |
 ### NOTES:
 
 
 FMeans finite floating-point value.
 
-*Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
 If the source operand is outside the acceptable range, the C2 flag in the FPU status word is set, and the value in register ST(0) remains unchanged. The instruction does not raise an exception when the source operand is out of range. It is up to the program to check the C2 flag for out-of-range conditions. Source values outside the range -2\footnote{63}  to +2\footnote{63}  can be reduced to the range of the instruction by subtracting an appropriate integer multiple of 2. However, even within the range -2\footnote{63}  to +2\footnote{63} , inaccurate results can occur because the finite approximation of  used internally for argument reduction is not sufficient in all cases. Therefore, for accurate results it is safe to apply FPTAN only to arguments reduced accurately in software, to a value smaller in absolute value than 3/8. See the sections titled "Approximation of Pi" and "Transcendental Instruction Accuracy" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for a discussion of the proper value to use for  in performing such reductions.
 
@@ -48,7 +51,7 @@ IF ST(0) < 2\footnote{63}
    ST(0) <- fptan(ST(0)); // approximation of tan
    TOP <- TOP - 1;
    ST(0) <- 1.0;
- ELSE (\htmlonly{*} Source operand is out-of-range \htmlonly{*})
+ ELSE (* Source operand is out-of-range *)
    C2 <- 1;
 FI;
 ```

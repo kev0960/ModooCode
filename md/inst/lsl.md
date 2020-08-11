@@ -1,9 +1,12 @@
 ----------------------------
-title : LSL instruction(Intel x86/64 assembly instruction)
+title : LSL (Intel x86/64 assembly instruction)
 cat_title : LSL
+ref_title : LSL
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LSL--Load Segment Limit
+#@ LSL
 
+**Load Segment Limit**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -13,7 +16,7 @@ cat_title : LSL
 ### NOTES:
 
 
-*For all loads (regardless of destination sizing), only bits 16-0 are used. Other bits are ignored.
+\htmlonly{*}For all loads (regardless of destination sizing), only bits 16-0 are used. Other bits are ignored.
 
 ### Instruction Operand Encoding
 
@@ -28,7 +31,7 @@ Loads the unscrambled segment limit from the segment descriptor specified with t
 
 The processor performs access checks as part of the loading process. Once loaded in the destination register, soft-ware can compare the segment limit with the offset of a pointer. 
 
-The segment limit is a 20-bit value contained in bytes 0 and 1 and in the first 4 bits of byte 6 of the segment descriptor. If the descriptor has a byte granular segment limit (the granularity flag is set to 0), the destination operand is loaded with a byte granular value (byte limit). If the descriptor has a page granular segment limit (the granularity flag is set to 1), the LSL instruction will translate the page granular limit (page limit) into a byte limit before loading it into the destination operand. The translation is performed by shifting the 20-bit "raw" limit left 12 bits and filling the low-order 12 bits with 1s.
+The segment limit is a 20-bit value contained in bytes 0 and 1 and in the first 4 bits of byte 6 of the segment descriptor. If the descriptor has a byte granular segment limit (the granularity flag is set to 0), the destination operand is loaded with a byte granular value (byte limit). If the descriptor has a page granular segment limit (the granularity flag is set to 1), the `LSL` instruction will translate the page granular limit (page limit) into a byte limit before loading it into the destination operand. The translation is performed by shifting the 20-bit "raw" limit left 12 bits and filling the low-order 12 bits with 1s.
 
 When the operand size is 32 bits, the 32-bit byte limit is stored in the destination operand. When the operand size is 16 bits, a valid 32-bit limit is computed; however, the upper 16 bits are truncated and only the low-order 16 bits are loaded into the destination operand.
 
@@ -38,7 +41,7 @@ This instruction performs the following checks before it loads the segment limit
 
 *  Checks that the segment selector points to a descriptor that is within the limits of the GDT or LDT being accessed
 
-*  Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the LSL instruction. The valid special segment and gate descriptor types are given in the following table. 
+*  Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the `LSL` instruction. The valid special segment and gate descriptor types are given in the following table. 
 
 *  If the segment is not a conforming code segment, the instruction checks that the specified segment descriptor is visible at the CPL (that is, if the CPL and the RPL of the segment selector are less than or equal to the DPL of the segment selector).
 
@@ -69,9 +72,9 @@ or Segment type is not valid for instruction
       THEN temp <- ShiftLeft(12, temp) OR 00000FFFH;
     ELSE IF OperandSize = 32 
       THEN DEST <- temp; FI;
-    ELSE IF OperandSize = 64 (\htmlonly{*} REX.W used \htmlonly{*})
-      THEN DEST (\htmlonly{*} Zero-extended \htmlonly{*}) <- temp; FI;
-    ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
+    ELSE IF OperandSize = 64 (* REX.W used *)
+      THEN DEST (* Zero-extended *) <- temp; FI;
+    ELSE (* OperandSize = 16 *)
       DEST <- temp AND FFFFH;
     FI;
 FI;

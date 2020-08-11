@@ -1,9 +1,12 @@
 ----------------------------
-title : PUSHA, PUSHAD instructions(Intel x86/64 assembly instruction)
+title : PUSHA, PUSHADs (Intel x86/64 assembly instruction)
 cat_title : PUSHA, PUSHAD
+ref_title : PUSHA, PUSHAD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PUSHA/PUSHAD--Push All General-Purpose Registers
+#@ PUSHA, PUSHAD
 
+**Push All General-Purpose Registers**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -20,7 +23,7 @@ cat_title : PUSHA, PUSHAD
 
 Pushes the contents of the general-purpose registers onto the stack. The registers are stored on the stack in the following order: EAX, ECX, EDX, EBX, ESP (original value), EBP, ESI, and EDI (if the current operand-size attribute is 32) and AX, CX, DX, BX, SP (original value), BP, SI, and DI (if the operand-size attribute is 16). These instruc-tions perform the reverse operation of the POPA/POPAD instructions. The value pushed for the ESP or SP register is its value before prior to pushing the first register (see the "Operation" section below).
 
-The PUSHA (push all) and PUSHAD (push all double) mnemonics reference the same opcode. The PUSHA instruc-tion is intended for use when the operand-size attribute is 16 and the PUSHAD instruction for when the operand-size attribute is 32. Some assemblers may force the operand size to 16 when PUSHA is used and to 32 when PUSHAD is used. Others may treat these mnemonics as synonyms (PUSHA/PUSHAD) and use the current setting of the operand-size attribute to determine the size of values to be pushed from the stack, regardless of the mnemonic used.
+The `PUSHA` (push all) and `PUSHAD` (push all double) mnemonics reference the same opcode. The `PUSHA` instruc-tion is intended for use when the operand-size attribute is 16 and the `PUSHAD` instruction for when the operand-size attribute is 32. Some assemblers may force the operand size to 16 when `PUSHA` is used and to 32 when `PUSHAD` is used. Others may treat these mnemonics as synonyms (PUSHA/PUSHAD) and use the current setting of the operand-size attribute to determine the size of values to be pushed from the stack, regardless of the mnemonic used.
 
 In the real-address mode, if the ESP or SP register is 1, 3, or 5 when PUSHA/PUSHAD executes: an #SS exception is generated but not delivered (the stack error reported prevents #SS delivery). Next, the processor generates a #DF exception and enters a shutdown state as described in the #DF discussion in Chapter 6 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
@@ -33,7 +36,7 @@ This instruction executes as described in compatibility mode and legacy mode. It
 IF 64-bit Mode 
  THEN #UD
 FI;
-IF OperandSize = 32 (\htmlonly{*} PUSHAD instruction \htmlonly{*})
+IF OperandSize = 32 (* PUSHAD instruction *)
  THEN
    Temp <- (ESP);
    Push(EAX);
@@ -44,7 +47,7 @@ IF OperandSize = 32 (\htmlonly{*} PUSHAD instruction \htmlonly{*})
    Push(EBP);
    Push(ESI);
    Push(EDI);
- ELSE (\htmlonly{*} OperandSize = 16, PUSHA instruction \htmlonly{*})
+ ELSE (* OperandSize = 16, PUSHA instruction *)
    Temp <- (SP);
    Push(AX);
    Push(CX);

@@ -1,9 +1,12 @@
 ----------------------------
-title : CVTPD2PS instruction(Intel x86/64 assembly instruction)
+title : CVTPD2PS (Intel x86/64 assembly instruction)
 cat_title : CVTPD2PS
+ref_title : CVTPD2PS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CVTPD2PS--Convert Packed Double-Precision Floating-Point Values to Packed Single-Precision Floating-Point Values
+#@ CVTPD2PS
 
+**Convert Packed Double-Precision Floating-Point Values to Packed Single-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -149,14 +152,14 @@ IF (VL = 512) AND (EVEX.b = 1)
    SET_RM(MXCSR.RM);
 FI;
 FOR j  <- 0 TO KL-1
- i  <- j \htmlonly{*} 32
- k  <- j \htmlonly{*} 64
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 32
+ k  <- j * 64
+ IF k1[j] OR *no writemask*
    THEN 
     DEST[i+31:i] <-  Convert_Double_Precision_Floating_Point_To_Single_Precision_Floating_Point(SRC[k+63:k])
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+31:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+31:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+31:i] <-  0
     FI

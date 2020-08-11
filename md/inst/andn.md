@@ -1,9 +1,12 @@
 ----------------------------
-title : ANDN instruction(Intel x86/64 assembly instruction)
+title : ANDN (Intel x86/64 assembly instruction)
 cat_title : ANDN
+ref_title : ANDN
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### ANDN -- Logical AND NOT
+#@ ANDN
 
+** Logical AND NOT**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
@@ -18,7 +21,7 @@ cat_title : ANDN
 ### Description
 
 
-Performs a bitwise logical AND of inverted second operand (the first source operand) with the third operand (the 
+Performs a bitwise logical `AND` of inverted second operand (the first source operand) with the third operand (the 
 
 second source operand). The result is stored in the first operand (destination operand).
 

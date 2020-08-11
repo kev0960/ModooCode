@@ -1,12 +1,15 @@
 ----------------------------
-title : RDPMC instruction(Intel x86/64 assembly instruction)
+title : RDPMC (Intel x86/64 assembly instruction)
 cat_title : RDPMC
+ref_title : RDPMC
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RDPMC--Read Performance-Monitoring Counters
+#@ RDPMC
 
+**Read Performance-Monitoring Counters**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 33|RDPMC|NP|Valid |Valid|Read performance-monitoring counter specified by ECX into EDX:EAX.|
 ### Instruction Operand Encoding
 
@@ -17,17 +20,17 @@ cat_title : RDPMC
 ### Description
 
 
-The EAX register is loaded with the low-order 32 bits. The EDX register is loaded with the supported high-order bits of the counter. The number of high-order bits loaded into EDX is implementation specific on processors that do no support architectural performance monitoring. The width of fixed-function and general-purpose performance coun-ters on processors supporting architectural performance monitoring are reported by CPUID 0AH leaf. See below for the treatment of the EDX register for "fast" reads.
+The EAX register is loaded with the low-order 32 bits. The EDX register is loaded with the supported high-order bits of the counter. The number of high-order bits loaded into EDX is implementation specific on processors that do no support architectural performance monitoring. The width of fixed-function and general-purpose performance coun-ters on processors supporting architectural performance monitoring are reported by `CPUID` 0AH leaf. See below for the treatment of the EDX register for "fast" reads.
 
 The ECX register specifies the counter type (if the processor supports architectural performance monitoring) and counter index. Counter type is specified in ECX[30] to select one of two type of performance counters. If the processor does not support architectural performance monitoring, ECX[30:0] specifies the counter index; other-wise ECX[29:0] specifies the index relative to the base of each counter type. ECX[31] selects "fast" read mode if supported. The two counter types are: 
 
-*  General-purpose or special-purpose performance counters are specified with ECX[30] = 0: The number of general-purpose performance counters on processor supporting architectural performance monitoring are reported by CPUID 0AH leaf. The number of general-purpose counters is model specific if the processor does not support architectural performance monitoring, see Chapter 18, "Performance Monitoring" of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B. Special-purpose counters are available only in selected processor members, see Table4-16.
+*  General-purpose or special-purpose performance counters are specified with ECX[30] = 0: The number of general-purpose performance counters on processor supporting architectural performance monitoring are reported by `CPUID` 0AH leaf. The number of general-purpose counters is model specific if the processor does not support architectural performance monitoring, see Chapter 18, "Performance Monitoring" of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B. Special-purpose counters are available only in selected processor members, see Table4-16.
 
-*  Fixed-function performance counter are specified with ECX[30] = 1. The number fixed-function performance counters is enumerated by CPUID 0AH leaf. See Chapter 30 of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B. This counter type is selected if ECX[30] is set.
+*  Fixed-function performance counter are specified with ECX[30] = 1. The number fixed-function performance counters is enumerated by `CPUID` 0AH leaf. See Chapter 30 of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B. This counter type is selected if ECX[30] is set.
 
-The width of fixed-function performance counters and general-purpose performance counters on processor supporting architectural performance monitoring are reported by CPUID 0AH leaf. The width of general-purpose performance counters are 40-bits for processors that do not support architectural performance monitoring coun-ters. The width of special-purpose performance counters are implementation specific. 
+The width of fixed-function performance counters and general-purpose performance counters on processor supporting architectural performance monitoring are reported by `CPUID` 0AH leaf. The width of general-purpose performance counters are 40-bits for processors that do not support architectural performance monitoring coun-ters. The width of special-purpose performance counters are implementation specific. 
 
-Table4-16 lists valid indices of the general-purpose and special-purpose performance counters according to the DisplayFamily_DisplayModel values of CPUID encoding for each processor family (see CPUID instruction in Chapter 3, "Instruction Set Reference, A-L" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A). 
+Table4-16 lists valid indices of the general-purpose and special-purpose performance counters according to the DisplayFamily_DisplayModel values of `CPUID` encoding for each processor family (see `CPUID` instruction in Chapter 3, "Instruction Set Reference, A-L" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A). 
 
 ### Table 4-16.  Valid General and Special Purpose Performance Counter Index Range for RDPMC
 
@@ -83,7 +86,7 @@ The RDPMC instruction can execute in 16-bit addressing mode or virtual-8086 mode
 ### Operation
 
 ```info-verb
-(\htmlonly{*} Intel processors that support architectural performance monitoring \htmlonly{*})
+(* Intel processors that support architectural performance monitoring *)
 Most significant counter bit (MSCB) = 47
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
  THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
@@ -92,10 +95,10 @@ IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
  ELSE IF (ECX[30] = 0 and ECX[29:0] in valid general-purpose counter range)
    EAX <- PMC(ECX[30:0])[31:0];
    EDX <- PMC(ECX[30:0])[MSCB:32];
- ELSE (\htmlonly{*} ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 \htmlonly{*})
+ ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
    #GP(0); 
 FI;
-(\htmlonly{*} Intel Core 2 Duo processor family and Intel Xeon processor 3000, 5100, 5300, 7400 series\htmlonly{*})
+(* Intel Core 2 Duo processor family and Intel Xeon processor 3000, 5100, 5300, 7400 series*)
 Most significant counter bit (MSCB) = 39
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
  THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
@@ -105,19 +108,19 @@ IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
    EAX <- PMC(ECX[30:0])[31:0];
    EDX <- PMC(ECX[30:0])[MSCB:32];
  ELSE IF (ECX[30] = 0 and ECX[29:0] in valid special-purpose counter range)
-   EAX <- PMC(ECX[30:0])[31:0]; (\htmlonly{*} 32-bit read \htmlonly{*})
- ELSE (\htmlonly{*} ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 \htmlonly{*})
+   EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+ ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
    #GP(0); 
 FI;
-(\htmlonly{*} P6 family processors and Pentium processor with MMX technology \htmlonly{*})
+(* P6 family processors and Pentium processor with MMX technology *)
 IF (ECX = 0 or 1) and ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
  THEN 
    EAX <- PMC(ECX)[31:0];
    EDX <- PMC(ECX)[39:32];
- ELSE (\htmlonly{*} ECX is not 0 or 1 or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 \htmlonly{*})
+ ELSE (* ECX is not 0 or 1 or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
    #GP(0); 
 FI;
-(\htmlonly{*} Processors based on Intel NetBurst microarchitecture \htmlonly{*})
+(* Processors based on Intel NetBurst microarchitecture *)
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
  THEN IF (ECX[30:0] = 0:17)
    THEN IF ECX[31] = 0

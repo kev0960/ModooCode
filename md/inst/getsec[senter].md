@@ -1,30 +1,21 @@
 ----------------------------
-title : GETSEC[SENTER] instruction(Intel x86/64 assembly instruction)
+title : GETSEC[SENTER] (Intel x86/64 assembly instruction)
 cat_title : GETSEC[SENTER]
+ref_title : GETSEC[SENTER]
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### GETSEC[SENTER]--Enter a Measured Environment
+#@ GETSEC[SENTER]
+
+**Enter a Measured Environment**### Description
 
 
-**Opcode Instruction Description**
+The `GETSEC[SENTER]` instruction initiates the launch of a measured environment and places the initiating logical processor (ILP) into the authenticated code execution mode. The SENTER leaf of GETSEC is selected with EAX set to 4 at execution. The physical base address of the AC module to be loaded and authenticated is specified in EBX. The size of the module in bytes is specified in ECX. EDX controls the level of functionality supported by the measured environment launch. To enable the full functionality of the protected environment launch, EDX must be initialized to zero.
 
-0F 37 GETSEC[SENTER] Launch a measured environment.
+The authenticated code base address and size parameters (in bytes) are passed to the `GETSEC[SENTER]` instruc-tion using EBX and ECX respectively. The ILP evaluates the contents of these registers according to the rules for the AC module address in GETSEC[ENTERACCS]. AC module execution follows the same rules, as set by GETSEC[ENTERACCS].
 
-(EAX=4) EBX holds the SINIT authenticated code module physical base address.
+The launching software must ensure that the TPM.ACCESS_0.activeLocality bit is clear before executing the `GETSEC[SENTER]` instruction.
 
-                ECX holds the SINIT authenticated code module size (bytes).
-
-                EDX controls the level of functionality supported by the measured environment launch.
-
-### Description
-
-
-The GETSEC[SENTER] instruction initiates the launch of a measured environment and places the initiating logical processor (ILP) into the authenticated code execution mode. The SENTER leaf of GETSEC is selected with EAX set to 4 at execution. The physical base address of the AC module to be loaded and authenticated is specified in EBX. The size of the module in bytes is specified in ECX. EDX controls the level of functionality supported by the measured environment launch. To enable the full functionality of the protected environment launch, EDX must be initialized to zero.
-
-The authenticated code base address and size parameters (in bytes) are passed to the GETSEC[SENTER] instruc-tion using EBX and ECX respectively. The ILP evaluates the contents of these registers according to the rules for the AC module address in GETSEC[ENTERACCS]. AC module execution follows the same rules, as set by GETSEC[ENTERACCS].
-
-The launching software must ensure that the TPM.ACCESS_0.activeLocality bit is clear before executing the GETSEC[SENTER] instruction.
-
-There are restrictions enforced by the processor for execution of the GETSEC[SENTER] instruction: 
+There are restrictions enforced by the processor for execution of the `GETSEC[SENTER]` instruction: 
 
 *  Execution is not allowed unless the processor is in protected mode or IA-32e mode with CPL = 0 and EFLAGS.VM = 0. 
 
@@ -34,11 +25,11 @@ There are restrictions enforced by the processor for execution of the GETSEC[SEN
 
 *  An Intel TXT-capable chipset must be present as communicated to the processor by sampling of the power-on configuration capability field after reset. 
 
-*  The processor can not be in authenticated code execution mode or already in a measured environment (as launched by a previous GETSEC[ENTERACCS] or GETSEC[SENTER] instruction). 
+*  The processor can not be in authenticated code execution mode or already in a measured environment (as launched by a previous GETSEC[ENTERACCS] or `GETSEC[SENTER]` instruction). 
 
 *  To avoid potential operability conflicts between modes, the processor is not allowed to execute this instruction if it currently is in SMM or VMX operation. 
 
-*  To insure consistent handling of SIPI messages, the processor executing the GETSEC[SENTER] instruction must also be designated the BSP (boot-strap processor) as defined by A32_APIC_BASE.BSP (Bit 8). 
+*  To insure consistent handling of SIPI messages, the processor executing the `GETSEC[SENTER]` instruction must also be designated the BSP (boot-strap processor) as defined by A32_APIC_BASE.BSP (Bit 8). 
 
 *  EDX must be initialized to a setting supportable by the processor. Unless enumeration by the GETSEC[PARAM-ETERS] leaf reports otherwise, only a value of zero is supported.
 
@@ -76,7 +67,7 @@ A successful launch of the measured environment results in the initiating logica
 
 *  Begin execution in the authenticated code module at the defined entry point.
 
-As an integrity check for proper processor hardware operation, execution of GETSEC[SENTER] will also check the contents of all the machine check status registers (as reported by the MSRs IA32_MCi_STATUS) for any valid uncorrectable error condition. In addition, the global machine check status register IA32_MCG_STATUS MCIP bit must be cleared and the IERR processor package pin (or its equivalent) must be not asserted, indicating that no machine check exception processing is currently in-progress. These checks are performed twice: once by the ILP prior to the broadcast of the rendezvous message to RLPs, and later in response to RLPs acknowledging the rendez-vous message. Any outstanding valid uncorrectable machine check error condition present in the machine check status registers at the first check point will result in the ILP signaling a general protection violation. If an outstanding valid uncorrectable machine check error condition is present at the second check point, then this will result in the corresponding logical processor signaling the more severe TXT-shutdown condition with an error code of 12.
+As an integrity check for proper processor hardware operation, execution of `GETSEC[SENTER]` will also check the contents of all the machine check status registers (as reported by the MSRs IA32_MCi_STATUS) for any valid uncorrectable error condition. In addition, the global machine check status register IA32_MCG_STATUS MCIP bit must be cleared and the IERR processor package pin (or its equivalent) must be not asserted, indicating that no machine check exception processing is currently in-progress. These checks are performed twice: once by the ILP prior to the broadcast of the rendezvous message to RLPs, and later in response to RLPs acknowledging the rendez-vous message. Any outstanding valid uncorrectable machine check error condition present in the machine check status registers at the first check point will result in the ILP signaling a general protection violation. If an outstanding valid uncorrectable machine check error condition is present at the second check point, then this will result in the corresponding logical processor signaling the more severe TXT-shutdown condition with an error code of 12.
 
 Before loading and authentication of the target code module is performed, the processor also checks that the current voltage and bus ratio encodings correspond to known good values supportable by the processor. The MSR IA32_PERF_STATUS values are compared against either the processor supported maximum operating target setting, system reset setting, or the thermal monitor operating target. If the current settings do not meet any of these criteria then the SENTER function will attempt to change the voltage and bus ratio select controls in a processor-specific manner. This adjustment may be to the thermal monitor, minimum (if different), or maximum operating target depending on the processor.
 
@@ -156,7 +147,7 @@ The Intel(R) Trusted Execution Technology Measured Launched Environment Programm
 ### Operation in a Uni-Processor Platform
 
 
-(* The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary *)
+(\htmlonly{*} The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary \htmlonly{*})
 
 **GETSEC[SENTER] (ILP only):**
 
@@ -268,9 +259,9 @@ IF (Voltage or bus ratio status are NOT at a known good state)
 
 FI;
 
-IA32_MISC_ENABLE<- (IA32_MISC_ENABLE & MASK_CONST*)
+IA32_MISC_ENABLE<- (IA32_MISC_ENABLE & MASK_CONST\htmlonly{*})
 
-(* The hexadecimal value of MASK_CONST may vary due to processor implementations *)
+(\htmlonly{*} The hexadecimal value of MASK_CONST may vary due to processor implementations \htmlonly{*})
 
 A20M<- 0;
 
@@ -290,7 +281,7 @@ IF (logical processor is not ILP)
 
  THEN GOTO RLP_SENTER_ROUTINE;
 
-(* ILP waits for all logical processors to ACK *)
+(\htmlonly{*} ILP waits for all logical processors to ACK \htmlonly{*})
 
 DO
 
@@ -332,7 +323,7 @@ IF (KEYHASH ->  CSKEYHASH)
 
 SIGNATURE<- DECRYPT(ACRAM, ACBASE, KEY);
 
-(* The value of SIGNATURE_LEN_CONST is implementation-specific*)
+(\htmlonly{*} The value of SIGNATURE_LEN_CONST is implementation-specific\htmlonly{*})
 
 FOR I=0 to SIGNATURE_LEN_CONST - 1 DO
 
@@ -358,7 +349,7 @@ IF (ACMCONTROL reserved bits are set)
 
  THEN TXT-SHUTDOWN(#BadACMFormat);
 
-IF ((ACRAM[GDTBasePtr] < (ACRAM[HeaderLen] * 4 + Scratch_size)) OR 
+IF ((ACRAM[GDTBasePtr] < (ACRAM[HeaderLen] \htmlonly{*} 4 + Scratch_size)) OR 
 
  ((ACRAM[GDTBasePtr] + ACRAM[GDTLimit]) >= ACSIZE))
 
@@ -374,7 +365,7 @@ ELSE
 
  ACEntryPoint<- ACBASE+ACRAM[EntryPoint];
 
-IF ((ACEntryPoint >= ACSIZE) or (ACEntryPoint < (ACRAM[HeaderLen] * 4 + Scratch_size)))
+IF ((ACEntryPoint >= ACSIZE) or (ACEntryPoint < (ACRAM[HeaderLen] \htmlonly{*} 4 + Scratch_size)))
 
  THEN TXT-SHUTDOWN(#BadACMFormat);
 
@@ -386,13 +377,13 @@ IF ((ACRAM[SegSel].TI=1) or (ACRAM[SegSel].RPL-> 0))
 
  THEN TXT-SHUTDOWN(#BadACMFormat);
 
-IF (FTM_INTERFACE_ID.[3:0] = 1 ) (* Alternate FTM Interface has been enabled *)
+IF (FTM_INTERFACE_ID.[3:0] = 1 ) (\htmlonly{*} Alternate FTM Interface has been enabled \htmlonly{*})
 
- THEN (* TPM_LOC_CTRL_4 is located at 0FED44008H, TMP_DATA_BUFFER_4 is located at 0FED44080H *)
+ THEN (\htmlonly{*} TPM_LOC_CTRL_4 is located at 0FED44008H, TMP_DATA_BUFFER_4 is located at 0FED44080H \htmlonly{*})
 
-   WRITE(TPM_LOC_CTRL_4) <- 01H; (* Modified HASH.START protocol *)
+   WRITE(TPM_LOC_CTRL_4) <- 01H; (\htmlonly{*} Modified HASH.START protocol \htmlonly{*})
 
-   (* Write to firmware storage *)
+   (\htmlonly{*} Write to firmware storage \htmlonly{*})
 
    WRITE(TPM_DATA_BUFFER_4) <- SIGNATURE_LEN_CONST + 4;
 
@@ -402,9 +393,9 @@ IF (FTM_INTERFACE_ID.[3:0] = 1 ) (* Alternate FTM Interface has been enabled *)
 
    WRITE(TPM_DATA_BUFFER_4 + 2 + SIGNATURE_LEN_CONST) <- EDX;
 
-   WRITE(FTM.LOC_CTRL) <- 06H; (* Modified protocol combining HASH.DATA and HASH.END *)
+   WRITE(FTM.LOC_CTRL) <- 06H; (\htmlonly{*} Modified protocol combining HASH.DATA and HASH.END \htmlonly{*})
 
- ELSE IF (FTM_INTERFACE_ID.[3:0] = 0 ) (* Use standard TPM Interface *)
+ ELSE IF (FTM_INTERFACE_ID.[3:0] = 0 ) (\htmlonly{*} Use standard TPM Interface \htmlonly{*})
 
    ACRAM[SCRATCH.SIGNATURE_LEN_CONST]<- EDX;
 
@@ -502,7 +493,7 @@ All flags are cleared.
 
 LOCK Causes #UD.
 
-REP* Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
+REP\htmlonly{*} Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
 
 Operand size Causes #UD.
 

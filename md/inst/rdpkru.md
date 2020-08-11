@@ -1,12 +1,15 @@
 ----------------------------
-title : RDPKRU instruction(Intel x86/64 assembly instruction)
+title : RDPKRU (Intel x86/64 assembly instruction)
 cat_title : RDPKRU
+ref_title : RDPKRU
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### RDPKRU--Read Protection Key Rights for User Pages
+#@ RDPKRU
 
+**Read Protection Key Rights for User Pages**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
-|-----------|---------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
 |0F 01 EE|RDPKRU|NP|V/V|OSPKE|Reads PKRU into EAX.|
 ### Instruction Operand Encoding
 
@@ -17,9 +20,9 @@ cat_title : RDPKRU
 ### Description
 
 
-Reads the value of PKRU into EAX and clears EDX. ECX must be 0 when RDPKRU is executed; otherwise, a general-protection exception (#GP) occurs.
+Reads the value of PKRU into EAX and clears EDX. ECX must be 0 when `RDPKRU` is executed; otherwise, a general-protection exception (#GP) occurs.
 
-RDPKRU can be executed only if CR4.PKE= 1; otherwise, an invalid-opcode exception (#UD) occurs. Software can discover the value of CR4.PKE by examining CPUID.(EAX=07H,ECX=0H):ECX.OSPKE [bit 4].
+RDPKRU can be executed only if CR4.PKE= 1; otherwise, an invalid-opcode exception (#UD) occurs. Software can discover the value of CR4.PKE by examining `CPUID`.(EAX=07H,ECX=0H):ECX.OSPKE [bit 4].
 
 On processors that support the Intel64 Architecture, the high-order 32-bits of RCX are ignored and the high-order 32-bits of RDX and RAX are cleared.
 

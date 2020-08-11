@@ -1,12 +1,15 @@
 ----------------------------
-title : PUSH instruction(Intel x86/64 assembly instruction)
+title : PUSH (Intel x86/64 assembly instruction)
 cat_title : PUSH
+ref_title : PUSH
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PUSH--Push Word, Doubleword or Quadword Onto the Stack
+#@ PUSH
 
+**Push Word, Doubleword or Quadword Onto the Stack**
 
-|**Opcode***|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |FF /6|PUSH r/m16|M|Valid|Valid|Push r/m16.|
 |FF /6|PUSH r/m32|M|N.E.|Valid|Push r/m32.|
 |FF /6|PUSH r/m64|M|Valid|N.E.|Push r/m64. |
@@ -25,7 +28,7 @@ cat_title : PUSH
 ### NOTES:
 
 
-*See IA-32 Architecture Compatibility section below.
+\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -57,11 +60,11 @@ Decrements the stack pointer and then stores the source operand on the top of th
 
 The stack-address size determines the width of the stack pointer when writing to the stack in memory andwhen decrementing the stack pointer. (As stated above, the amount by which the stack pointer isdecremented is determined by the operand size.)
 
- If the operand size is less than the stack-address size, the PUSH instruction may result in a misaligned stackpointer (a stack pointer that is not aligned on a doubleword or quadword boundary).
+ If the operand size is less than the stack-address size, the `PUSH` instruction may result in a misaligned stackpointer (a stack pointer that is not aligned on a doubleword or quadword boundary).
 
-The PUSH ESP instruction pushes the value of the ESP register as it existed before the instruction was executed. If a PUSH instruction uses a memory operand in which the ESP register is used for computing the operand address, the address of the operand is computed before the ESP register is decremented. 
+The `PUSH` ESP instruction pushes the value of the ESP register as it existed before the instruction was executed. If a `PUSH` instruction uses a memory operand in which the ESP register is used for computing the operand address, the address of the operand is computed before the ESP register is decremented. 
 
-If the ESP or SP register is 1 when the PUSH instruction is executed in real-address mode, a stack-fault exception (#SS) is generated (because the limit of the stack segment is violated). Its delivery encounters a second stack-fault exception (for the same reason), causing generation of a double-fault exception (#DF). Delivery of the double-fault exception encounters a third stack-fault exception, and the logical processor enters shutdown mode. See the discussion of the double-fault exception in Chapter 6 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
+If the ESP or SP register is 1 when the `PUSH` instruction is executed in real-address mode, a stack-fault exception (#SS) is generated (because the limit of the stack segment is violated). Its delivery encounters a second stack-fault exception (for the same reason), causing generation of a double-fault exception (#DF). Delivery of the double-fault exception encounters a third stack-fault exception, and the logical processor enters shutdown mode. See the discussion of the double-fault exception in Chapter 6 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
 ### IA-32 Architecture Compatibility
 
@@ -72,37 +75,37 @@ For IA-32 processors from the Intel 286 on, the PUSH ESP instruction pushes the 
 ### Operation
 
 ```info-verb
-(\htmlonly{*} See Description section for possible sign-extension or zero-extension of source operand and for \htmlonly{*})
-(\htmlonly{*} a case in which the size of the memory store may be smaller than the instruction's operand size \htmlonly{*})
+(* See Description section for possible sign-extension or zero-extension of source operand and for *)
+(* a case in which the size of the memory store may be smaller than the instruction's operand size *)
 IF StackAddrSize = 64
  THEN
    IF OperandSize = 64
     THEN
       RSP <- RSP - 8;
-      Memory[SS:RSP] <- SRC; (\htmlonly{*} push quadword \htmlonly{*})
+      Memory[SS:RSP] <- SRC; (* push quadword *)
    ELSE IF OperandSize = 32
     THEN
       RSP <- RSP - 4;
-      Memory[SS:RSP] <- SRC; (\htmlonly{*} push dword \htmlonly{*})
-    ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
+      Memory[SS:RSP] <- SRC; (* push dword *)
+    ELSE (* OperandSize = 16 *)
       RSP <- RSP - 2;
-      Memory[SS:RSP] <- SRC; (\htmlonly{*} push word \htmlonly{*})
+      Memory[SS:RSP] <- SRC; (* push word *)
    FI;
 ELSE IF StackAddrSize = 32
  THEN
    IF OperandSize = 64
     THEN
       ESP <- ESP - 8;
-      Memory[SS:ESP] <- SRC; (\htmlonly{*} push quadword \htmlonly{*})
+      Memory[SS:ESP] <- SRC; (* push quadword *)
    ELSE IF OperandSize = 32
     THEN
       ESP <- ESP - 4;
-      Memory[SS:ESP] <- SRC; (\htmlonly{*} push dword \htmlonly{*})
-    ELSE (\htmlonly{*} OperandSize = 16 \htmlonly{*})
+      Memory[SS:ESP] <- SRC; (* push dword *)
+    ELSE (* OperandSize = 16 *)
       ESP <- ESP - 2;
-      Memory[SS:ESP] <- SRC; (\htmlonly{*} push word \htmlonly{*})
+      Memory[SS:ESP] <- SRC; (* push word *)
    FI;
- ELSE (\htmlonly{*} StackAddrSize = 16 \htmlonly{*})
+ ELSE (* StackAddrSize = 16 *)
 IF OperandSize = 32
     THEN
       SP <- SP - 4;

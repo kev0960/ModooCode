@@ -1,9 +1,12 @@
 ----------------------------
-title : MOV instruction(Intel x86/64 assembly instruction)
+title : MOV (Intel x86/64 assembly instruction)
 cat_title : MOV
+ref_title : MOV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOV--Move to/from Debug Registers
+#@ MOV
 
+**Move to/from Debug Registers**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|

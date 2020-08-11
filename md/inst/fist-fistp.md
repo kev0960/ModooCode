@@ -1,9 +1,12 @@
 ----------------------------
-title : FIST, FISTP instructions(Intel x86/64 assembly instruction)
+title : FIST, FISTPs (Intel x86/64 assembly instruction)
 cat_title : FIST, FISTP
+ref_title : FIST, FISTP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FIST/FISTP--Store Integer
+#@ FIST, FISTP
 
+**Store Integer**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -15,9 +18,9 @@ cat_title : FIST, FISTP
 ### Description
 
 
-The FIST instruction converts the value in the ST(0) register to a signed integer and stores the result in the desti-nation operand. Values can be stored in word or doubleword integer format. The destination operand specifies the address where the first byte of the destination value is to be stored.
+The `FIST` instruction converts the value in the ST(0) register to a signed integer and stores the result in the desti-nation operand. Values can be stored in word or doubleword integer format. The destination operand specifies the address where the first byte of the destination value is to be stored.
 
-The FISTP instruction performs the same operation as the FIST instruction and then pops the register stack. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The FISTP instruction also stores values in quadword integer format.
+The `FISTP` instruction performs the same operation as the `FIST` instruction and then pops the register stack. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. The `FISTP` instruction also stores values in quadword integer format.
 
 The following table shows the results obtained when storing various classes of numbers in integer format.
 
@@ -26,23 +29,23 @@ The following table shows the results obtained when storing various classes of n
 
 **ST(0) DEST**
 
-- $$\infty$$ or Value Too Large for DEST Format *
+- $$\infty$$ or Value Too Large for DEST Format \htmlonly{*}
 
       F <= -1 - I
 
-     -1 < F < -0 **
+     -1 < F < -0 \htmlonly{*}\htmlonly{*}
 
        - 0 0
 
        + 0 0
 
-     + 0 < F < + 1 **
+     + 0 < F < + 1 \htmlonly{*}\htmlonly{*}
 
       F >= + 1 + I
 
-+ $$\infty$$ or Value Too Large for DEST Format *
++ $$\infty$$ or Value Too Large for DEST Format \htmlonly{*}
 
-      NaN *
+      NaN \htmlonly{*}
 
 ### NOTES:
 
@@ -51,9 +54,9 @@ FMeans finite floating-point value.
 
 IMeans integer.
 
-*Indicates floating-point invalid-operation (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-operation (#IA) exception.
 
-**0 or $$\pm$$1, depending on the rounding mode.
+\htmlonly{*}\htmlonly{*}0 or $$\pm$$1, depending on the rounding mode.
 
 If the source value is a non-integral value, it is rounded to an integer value, according to the rounding mode spec-ified by the RC field of the FPU control word. 
 

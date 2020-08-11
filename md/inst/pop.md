@@ -1,9 +1,12 @@
 ----------------------------
-title : POP instruction(Intel x86/64 assembly instruction)
+title : POP (Intel x86/64 assembly instruction)
 cat_title : POP
+ref_title : POP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### POP--Pop a Value from the Stack
+#@ POP
 
+**Pop a Value from the Stack**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -55,13 +58,13 @@ If the destination operand is one of the segment registers DS, ES, FS, GS, or SS
 
 A NULL value (0000-0003) may be popped into the DS, ES, FS, or GS register without causing a general protection fault. However, any subsequent attempt to reference a segment whose corresponding segment register is loaded with a NULL value causes a general protection exception (#GP). In this situation, no memory reference occurs and the saved value of the segment register is NULL.
 
-The POP instruction cannot pop a value into the CS register. To load the CS register from the stack, use the RET instruction.
+The `POP` instruction cannot pop a value into the CS register. To load the CS register from the stack, use the `RET` instruction.
 
-If the ESP register is used as a base register for addressing a destination operand in memory, the POP instruction computes the effective address of the operand after it increments the ESP register. For the case of a 16-bit stack where ESP wraps to 0H as a result of the POP instruction, the resulting location of the memory write is processor-family-specific.
+If the ESP register is used as a base register for addressing a destination operand in memory, the `POP` instruction computes the effective address of the operand after it increments the ESP register. For the case of a 16-bit stack where ESP wraps to 0H as a result of the `POP` instruction, the resulting location of the memory write is processor-family-specific.
 
-The POP ESP instruction increments the stack pointer (ESP) before data at the old top of stack is written into the destination.
+The `POP` ESP instruction increments the stack pointer (ESP) before data at the old top of stack is written into the destination.
 
-A POP SS instruction inhibits all interrupts, including the NMI interrupt, until after execution of the next instruction. This action allows sequential execution of POP SS and MOV ESP, EBP instructions without the danger of having an invalid stack during an interrupt\footnote{1} . However, use of the LSS instruction is the preferred method of loading the SS and ESP registers.
+A `POP` SS instruction inhibits all interrupts, including the NMI interrupt, until after execution of the next instruction. This action allows sequential execution of `POP` SS and `MOV` ESP, EBP instructions without the danger of having an invalid stack during an interrupt\footnote{1} . However, use of the `LSS` instruction is the preferred method of loading the SS and ESP registers.
 
 In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). When in 64-bit mode, POPs using 32-bit operands are not encodable and POPs to DS, ES, SS are not valid. See the summary chart at the beginning of this section for encoding data and limits.
 
@@ -73,10 +76,10 @@ IF StackAddrSize = 32
  THEN
    IF OperandSize = 32
     THEN
-      DEST <- SS:ESP; (\htmlonly{*} Copy a doubleword \htmlonly{*})
+      DEST <- SS:ESP; (* Copy a doubleword *)
       ESP <- ESP + 4;
-    ELSE (\htmlonly{*} OperandSize = 16\htmlonly{*})
-      DEST <- SS:ESP; (\htmlonly{*} Copy a word \htmlonly{*})
+    ELSE (* OperandSize = 16*)
+      DEST <- SS:ESP; (* Copy a word *)
 1.If a code instruction breakpoint (for debug) is placed on an instruction located immediately after a POP SS instruction, the breakpoint may not be triggered. However, in a sequence of instructions that POP the SS register, only the first instruction in the sequence is guaranteed to delay an interrupt.
  In the following sequence, interrupts may be recognized before POP ESP executes:
  POP SSPOP SSPOP ESP

@@ -1,9 +1,12 @@
 ----------------------------
-title : CMC instruction(Intel x86/64 assembly instruction)
+title : CMC (Intel x86/64 assembly instruction)
 cat_title : CMC
+ref_title : CMC
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CMC--Complement Carry Flag
+#@ CMC
 
+**Complement Carry Flag**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,7 +20,7 @@ cat_title : CMC
 ### Description
 
 
-Complements the CF flag in the EFLAGS register. CMC operation is the same in non-64-bit modes and 64-bit mode.
+Complements the CF flag in the EFLAGS register. `CMC` operation is the same in non-64-bit modes and 64-bit mode.
 
 
 ### Operation

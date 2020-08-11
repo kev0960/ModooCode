@@ -1,9 +1,12 @@
 ----------------------------
-title : F2XM1 instruction(Intel x86/64 assembly instruction)
+title : F2XM1 (Intel x86/64 assembly instruction)
 cat_title : F2XM1
+ref_title : F2XM1
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### F2XM1--Compute 2\footnote{x} -1
+#@ F2XM1
 
+**Compute 2\footnote{x} -1**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

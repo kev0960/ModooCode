@@ -1,18 +1,21 @@
 ----------------------------
-title : SAL, SAR, SHL, SHR instructions(Intel x86/64 assembly instruction)
+title : SAL, SAR, SHL, SHRs (Intel x86/64 assembly instruction)
 cat_title : SAL, SAR, SHL, SHR
+ref_title : SAL, SAR, SHL, SHR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### SAL/SAR/SHL/SHR--Shift
+#@ SAL, SAR, SHL, SHR
 
+**Shift**
 
-|**Opcode*****|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
-|-------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
+|**Opcode\htmlonly{*}\htmlonly{*}\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
+|----------------------------------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |D0 /4|SAL r/m8, 1|M1|Valid |Valid|Multiply r/m8 by 2, once. |
-|REX + D0 /4|SAL r/m8**, 1|M1|Valid|N.E.|Multiply r/m8 by 2, once. |
+|REX + D0 /4|SAL r/m8\htmlonly{*}\htmlonly{*}, 1|M1|Valid|N.E.|Multiply r/m8 by 2, once. |
 |D2 /4|SAL r/m8, CL|MC|Valid |Valid|Multiply r/m8 by 2, CL times.|
-|REX + D2 /4|SAL r/m8**, CL|MC|Valid|N.E.|Multiply r/m8 by 2, CL times.|
+|REX + D2 /4|SAL r/m8\htmlonly{*}\htmlonly{*}, CL|MC|Valid|N.E.|Multiply r/m8 by 2, CL times.|
 |C0 /4 ib|SAL r/m8, imm8|MI|Valid |Valid|Multiply r/m8 by 2, imm8 times.|
-|REX + C0 /4 ib|SAL r/m8**, imm8|MI|Valid|N.E.|Multiply r/m8 by 2, imm8 times.|
+|REX + C0 /4 ib|SAL r/m8\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Multiply r/m8 by 2, imm8 times.|
 |D1 /4|SAL r/m16, 1|M1|Valid |Valid|Multiply r/m16 by 2, once.|
 |D3 /4|SAL r/m16, CL|MC|Valid |Valid|Multiply r/m16 by 2, CL times.|
 |C1 /4 ib|SAL r/m16, imm8|MI|Valid |Valid|Multiply r/m16 by 2, imm8 times.|
@@ -22,27 +25,27 @@ cat_title : SAL, SAR, SHL, SHR
 |REX.W + D3 /4|SAL r/m64, CL|MC|Valid|N.E.|Multiply r/m64 by 2, CL times.|
 |C1 /4 ib|SAL r/m32, imm8|MI|Valid |Valid|Multiply r/m32 by 2, imm8 times.|
 |REX.W + C1 /4 ib|SAL r/m64, imm8|MI|Valid|N.E.|Multiply r/m64 by 2, imm8 times.|
-|D0 /7|SAR r/m8, 1|M1|Valid |Valid|Signed divide* r/m8 by 2, once.|
-|REX + D0 /7|SAR r/m8**, 1|M1|Valid|N.E.|Signed divide* r/m8 by 2, once.|
-|D2 /7|SAR r/m8, CL|MC|Valid |Valid|Signed divide* r/m8 by 2, CL times.|
-|REX + D2 /7|SAR r/m8**, CL|MC|Valid|N.E.|Signed divide* r/m8 by 2, CL times.|
-|C0 /7 ib|SAR r/m8, imm8|MI|Valid |Valid|Signed divide* r/m8 by 2, imm8 time.|
-|REX + C0 /7 ib|SAR r/m8**, imm8|MI|Valid|N.E.|Signed divide* r/m8 by 2, imm8 times.|
-|D1 /7|SAR r/m16,1|M1|Valid |Valid|Signed divide* r/m16 by 2, once.|
-|D3 /7|SAR r/m16, CL|MC|Valid |Valid|Signed divide* r/m16 by 2, CL times.|
-|C1 /7 ib|SAR r/m16, imm8|MI|Valid |Valid|Signed divide*\footnote{ } r/m16 by 2, imm8 times.|
-|D1 /7|SAR r/m32, 1|M1|Valid |Valid|Signed divide* r/m32 by 2, once.|
-|REX.W + D1 /7|SAR r/m64, 1|M1|Valid|N.E.|Signed divide* r/m64 by 2, once.|
-|D3 /7|SAR r/m32, CL|MC|Valid |Valid|Signed divide*\footnote{ } r/m32 by 2, CL times.|
-|REX.W + D3 /7|SAR r/m64, CL|MC|Valid|N.E.|Signed divide*\footnote{ } r/m64 by 2, CL times.|
-|C1 /7 ib|SAR r/m32, imm8|MI|Valid |Valid|Signed divide*\footnote{ } r/m32 by 2, imm8 times.|
-|REX.W + C1 /7 ib|SAR r/m64, imm8|MI|Valid|N.E.|Signed divide*\footnote{ } r/m64 by 2, imm8 times|
+|D0 /7|SAR r/m8, 1|M1|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, once.|
+|REX + D0 /7|SAR r/m8\htmlonly{*}\htmlonly{*}, 1|M1|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, once.|
+|D2 /7|SAR r/m8, CL|MC|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, CL times.|
+|REX + D2 /7|SAR r/m8\htmlonly{*}\htmlonly{*}, CL|MC|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, CL times.|
+|C0 /7 ib|SAR r/m8, imm8|MI|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, imm8 time.|
+|REX + C0 /7 ib|SAR r/m8\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, imm8 times.|
+|D1 /7|SAR r/m16,1|M1|Valid |Valid|Signed divide\htmlonly{*} r/m16 by 2, once.|
+|D3 /7|SAR r/m16, CL|MC|Valid |Valid|Signed divide\htmlonly{*} r/m16 by 2, CL times.|
+|C1 /7 ib|SAR r/m16, imm8|MI|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m16 by 2, imm8 times.|
+|D1 /7|SAR r/m32, 1|M1|Valid |Valid|Signed divide\htmlonly{*} r/m32 by 2, once.|
+|REX.W + D1 /7|SAR r/m64, 1|M1|Valid|N.E.|Signed divide\htmlonly{*} r/m64 by 2, once.|
+|D3 /7|SAR r/m32, CL|MC|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m32 by 2, CL times.|
+|REX.W + D3 /7|SAR r/m64, CL|MC|Valid|N.E.|Signed divide\htmlonly{*}\footnote{ } r/m64 by 2, CL times.|
+|C1 /7 ib|SAR r/m32, imm8|MI|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m32 by 2, imm8 times.|
+|REX.W + C1 /7 ib|SAR r/m64, imm8|MI|Valid|N.E.|Signed divide\htmlonly{*}\footnote{ } r/m64 by 2, imm8 times|
 |D0 /4|SHL r/m8, 1|M1|Valid |Valid|Multiply r/m8 by 2, once.|
-|REX + D0 /4|SHL r/m8**, 1|M1|Valid|N.E.|Multiply r/m8 by 2, once.|
+|REX + D0 /4|SHL r/m8\htmlonly{*}\htmlonly{*}, 1|M1|Valid|N.E.|Multiply r/m8 by 2, once.|
 |D2 /4|SHL r/m8, CL|MC|Valid |Valid|Multiply r/m8 by 2, CL times.|
-|REX + D2 /4|SHL r/m8**, CL|MC|Valid|N.E.|Multiply r/m8 by 2, CL times.|
+|REX + D2 /4|SHL r/m8\htmlonly{*}\htmlonly{*}, CL|MC|Valid|N.E.|Multiply r/m8 by 2, CL times.|
 |C0 /4 ib|SHL r/m8, imm8|MI|Valid |Valid|Multiply r/m8 by 2, imm8 times.|
-|REX + C0 /4 ib|SHL r/m8**, imm8|MI|Valid|N.E.|Multiply r/m8 by 2, imm8 times.|
+|REX + C0 /4 ib|SHL r/m8\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Multiply r/m8 by 2, imm8 times.|
 |D1 /4|SHL r/m16,1|M1|Valid |Valid|Multiply r/m16 by 2, once.|
 |D3 /4|SHL r/m16, CL|MC|Valid |Valid|Multiply r/m16 by 2, CL times.|
 |C1 /4 ib|SHL r/m16, imm8|MI|Valid |Valid|Multiply r/m16 by 2, imm8 times.|
@@ -57,11 +60,11 @@ cat_title : SAL, SAR, SHL, SHR
 |C1 /4 ib|SHL r/m32, imm8|MI|Valid |Valid|Multiply r/m32 by 2, imm8 times.|
 |REX.W + C1 /4 ib|SHL r/m64, imm8|MI|Valid|N.E.|Multiply r/m64 by 2, imm8 times.|
 |D0 /5|SHR r/m8,1|M1|Valid |Valid|Unsigned divide r/m8 by 2, once.|
-|REX + D0 /5|SHR r/m8**, 1|M1|Valid|N.E.|Unsigned divide r/m8 by 2, once.|
+|REX + D0 /5|SHR r/m8\htmlonly{*}\htmlonly{*}, 1|M1|Valid|N.E.|Unsigned divide r/m8 by 2, once.|
 |D2 /5|SHR r/m8, CL|MC|Valid |Valid|Unsigned divide r/m8 by 2, CL times.|
-|REX + D2 /5|SHR r/m8**, CL|MC|Valid|N.E.|Unsigned divide r/m8 by 2, CL times.|
+|REX + D2 /5|SHR r/m8\htmlonly{*}\htmlonly{*}, CL|MC|Valid|N.E.|Unsigned divide r/m8 by 2, CL times.|
 |C0 /5 ib|SHR r/m8, imm8|MI|Valid |Valid|Unsigned divide r/m8 by 2, imm8 times.|
-|REX + C0 /5 ib|SHR r/m8**, imm8|MI|Valid|N.E.|Unsigned divide r/m8 by 2, imm8 times.|
+|REX + C0 /5 ib|SHR r/m8\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Unsigned divide r/m8 by 2, imm8 times.|
 |D1 /5|SHR r/m16, 1|M1|Valid |Valid|Unsigned divide r/m16 by 2, once.|
 |D3 /5|SHR r/m16, CL|MC|Valid |Valid|Unsigned divide r/m16 by 2, CL times|
 |C1 /5 ib|SHR r/m16, imm8|MI|Valid |Valid|Unsigned divide r/m16 by 2, imm8 times.|
@@ -74,11 +77,11 @@ cat_title : SAL, SAR, SHL, SHR
 ### NOTES:
 
 
-*Not the same form of division as IDIV; rounding is toward negative infinity.
+\htmlonly{*}Not the same form of division as IDIV; rounding is toward negative infinity.
 
-** In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+\htmlonly{*}\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
-***See IA-32 Architecture Compatibility section below.
+\htmlonly{*}\htmlonly{*}\htmlonly{*}See IA-32 Architecture Compatibility section below.
 
 ### Instruction Operand Encoding
 
@@ -99,13 +102,13 @@ The shift arithmetic left (SAL) and shift logical left (SHL) instructions perfor
 
 
 
-The shift arithmetic right (SAR) and shift logical right (SHR) instructions shift the bits of the destination operand to the right (toward less significant bit locations). For each shift count, the least significant bit of the destination operand is shifted into the CF flag, and the most significant bit is either set or cleared depending on the instruction type. The SHR instruction clears the most significant bit (see Figure 7-8 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1); the SAR instruction sets or clears the most significant bit to correspond to the sign (most significant bit) of the original value in the destination operand. In effect, the SAR instruction fills the empty bit position's shifted value with the sign of the unshifted value (see Figure 7-9 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1).
+The shift arithmetic right (SAR) and shift logical right (SHR) instructions shift the bits of the destination operand to the right (toward less significant bit locations). For each shift count, the least significant bit of the destination operand is shifted into the CF flag, and the most significant bit is either set or cleared depending on the instruction type. The `SHR` instruction clears the most significant bit (see Figure 7-8 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1); the `SAR` instruction sets or clears the most significant bit to correspond to the sign (most significant bit) of the original value in the destination operand. In effect, the `SAR` instruction fills the empty bit position's shifted value with the sign of the unshifted value (see Figure 7-9 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1).
 
-The SAR and SHR instructions can be used to perform signed or unsigned division, respectively, of the destination operand by powers of 2. For example, using the SAR instruction to shift a signed integer 1 bit to the right divides the value by 2.
+The `SAR` and `SHR` instructions can be used to perform signed or unsigned division, respectively, of the destination operand by powers of 2. For example, using the `SAR` instruction to shift a signed integer 1 bit to the right divides the value by 2.
 
-Using the SAR instruction to perform a division operation does not produce the same result as the IDIV instruction. The quotient from the IDIV instruction is rounded toward zero, whereas the "quotient" of the SAR instruction is rounded toward negative infinity. This difference is apparent only for negative numbers. For example, when the IDIV instruction is used to divide -9 by 4, the result is -2 with a remainder of -1. If the SAR instruction is used to shift -9 right by two bits, the result is -3 and the "remainder" is +3; however, the SAR instruction stores only the most significant bit of the remainder (in the CF flag). 
+Using the `SAR` instruction to perform a division operation does not produce the same result as the `IDIV` instruction. The quotient from the `IDIV` instruction is rounded toward zero, whereas the "quotient" of the `SAR` instruction is rounded toward negative infinity. This difference is apparent only for negative numbers. For example, when the `IDIV` instruction is used to divide -9 by 4, the result is -2 with a remainder of -1. If the `SAR` instruction is used to shift -9 right by two bits, the result is -3 and the "remainder" is +3; however, the `SAR` instruction stores only the most significant bit of the remainder (in the CF flag). 
 
-The OF flag is affected only on 1-bit shifts. For left shifts, the OF flag is set to 0 if the most-significant bit of the result is the same as the CF flag (that is, the top two bits of the original operand were the same); otherwise, it is set to 1. For the SAR instruction, the OF flag is cleared for all 1-bit shifts. For the SHR instruction, the OF flag is set to the most-significant bit of the original operand.
+The OF flag is affected only on 1-bit shifts. For left shifts, the OF flag is set to 0 if the most-significant bit of the result is the same as the CF flag (that is, the top two bits of the original operand were the same); otherwise, it is set to 1. For the `SAR` instruction, the OF flag is cleared for all 1-bit shifts. For the `SHR` instruction, the OF flag is set to the most-significant bit of the original operand.
 
 In 64-bit mode, the instruction's default operation size is 32 bits and the mask width for CL is 5 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64-bits and sets the mask width for CL to 6 bits. See the summary chart at the beginning of this section for encoding data and limits.
 
@@ -131,7 +134,7 @@ DO
  IF instruction is SAL or SHL
    THEN 
     CF <- MSB(DEST);
-   ELSE (\htmlonly{*} Instruction is SAR or SHR \htmlonly{*})
+   ELSE (* Instruction is SAR or SHR *)
     CF <- LSB(DEST);
  FI;
  IF instruction is SAL or SHL

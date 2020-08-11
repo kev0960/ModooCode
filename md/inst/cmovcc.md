@@ -1,9 +1,12 @@
 ----------------------------
-title : CMOVcc instruction(Intel x86/64 assembly instruction)
+title : CMOVcc (Intel x86/64 assembly instruction)
 cat_title : CMOVcc
+ref_title : CMOVcc
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CMOVcc--Conditional Move
+#@ CMOVcc
 
+**Conditional Move**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -114,15 +117,15 @@ cat_title : CMOVcc
 ### Description
 
 
-The CMOVcc instructions check the state of one or more of the status flags in the EFLAGS register (CF, OF, PF, SF, and ZF) and perform a move operation if the flags are in a specified state (or condition). A condition code (cc) is associated with each instruction to indicate the condition being tested for. If the condition is not satisfied, a move is not performed and execution continues with the instruction following the CMOVcc instruction.
+The `CMOVcc` instructions check the state of one or more of the status flags in the EFLAGS register (CF, OF, PF, SF, and ZF) and perform a move operation if the flags are in a specified state (or condition). A condition code (cc) is associated with each instruction to indicate the condition being tested for. If the condition is not satisfied, a move is not performed and execution continues with the instruction following the `CMOVcc` instruction.
 
 These instructions can move 16-bit, 32-bit or 64-bit values from memory to a general-purpose register or from one general-purpose register to another. Conditional moves of 8-bit register operands are not supported.
 
-The condition for each CMOVcc mnemonic is given in the description column of the above table. The terms "less" and "greater" are used for comparisons of signed integers and the terms "above" and "below" are used for unsigned integers.
+The condition for each `CMOVcc` mnemonic is given in the description column of the above table. The terms "less" and "greater" are used for comparisons of signed integers and the terms "above" and "below" are used for unsigned integers.
 
 Because a particular state of the status flags can sometimes be interpreted in two ways, two mnemonics are defined for some opcodes. For example, the CMOVA (conditional move if above) instruction and the CMOVNBE (conditional move if not below or equal) instruction are alternate mnemonics for the opcode 0F 47H. 
 
-The CMOVcc instructions were introduced in P6 family processors; however, these instructions may not be supported by all IA-32 processors. Software can determine if the CMOVcc instructions are supported by checking the processor's feature information with the CPUID instruction (see "CPUID--CPU Identification" in this chapter).
+The `CMOVcc` instructions were introduced in P6 family processors; however, these instructions may not be supported by all IA-32 processors. Software can determine if the `CMOVcc` instructions are supported by checking the processor's feature information with the `CPUID` instruction (see "CPUID--CPU Identification" in this chapter).
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Use of the REX.R prefix permits access to addi-tional registers (R8-R15). Use of the REX.W prefix promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 

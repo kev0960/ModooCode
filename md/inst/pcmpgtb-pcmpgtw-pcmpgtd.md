@@ -1,9 +1,12 @@
 ----------------------------
-title : PCMPGTB, PCMPGTW, PCMPGTD instructions(Intel x86/64 assembly instruction)
+title : PCMPGTB, PCMPGTW, PCMPGTDs (Intel x86/64 assembly instruction)
 cat_title : PCMPGTB, PCMPGTW, PCMPGTD
+ref_title : PCMPGTB, PCMPGTW, PCMPGTD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PCMPGTB/PCMPGTW/PCMPGTD--Compare Packed Signed Integers for Greater Than
+#@ PCMPGTB, PCMPGTW, PCMPGTD
 
+**Compare Packed Signed Integers for Greater Than**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -50,7 +53,7 @@ cat_title : PCMPGTB, PCMPGTW, PCMPGTD
 
 Performs an SIMD signed compare for the greater value of the packed byte, word, or doubleword integers in the destination operand (first operand) and the source operand (second operand). If a data element in the destination operand is greater than the corresponding date element in the source operand, the corresponding data element in the destination operand is set to all 1s; otherwise, it is set to all 0s.
 
-The PCMPGTB instruction compares the corresponding signed byte integers in the destination and source oper-ands; the PCMPGTW instruction compares the corresponding signed word integers in the destination and source operands; and the PCMPGTD instruction compares the corresponding signed doubleword integers in the destina-tion and source operands.
+The `PCMPGTB` instruction compares the corresponding signed byte integers in the destination and source oper-ands; the `PCMPGTW` instruction compares the corresponding signed word integers in the destination and source operands; and the `PCMPGTD` instruction compares the corresponding signed doubleword integers in the destina-tion and source operands.
 
 In 64-bit mode and not encoded with VEX/EVEX, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).
 
@@ -75,7 +78,7 @@ EVEX encoded VPCMPGTB/W: The first source operand (second operand) is a ZMM/YMM/
  IF DEST[7:0] > SRC[7:0]
    THEN DEST[7:0) <- FFH; 
    ELSE DEST[7:0] <- 0; FI;
- (\htmlonly{*} Continue comparison of 2nd through 7th bytes in DEST and SRC \htmlonly{*})
+ (* Continue comparison of 2nd through 7th bytes in DEST and SRC *)
  IF DEST[63:56] > SRC[63:56]
    THEN DEST[63:56] <- FFH;
    ELSE DEST[63:56] <- 0; FI;
@@ -85,7 +88,7 @@ EVEX encoded VPCMPGTB/W: The first source operand (second operand) is a ZMM/YMM/
  IF SRC1[7:0] > SRC2[7:0]
  THEN DEST[7:0] <- FFH;
  ELSE DEST[7:0]  <-0; FI;
-(\htmlonly{*} Continue comparison of 2nd through 15th bytes in SRC1 and SRC2 \htmlonly{*})
+(* Continue comparison of 2nd through 15th bytes in SRC1 and SRC2 *)
  IF SRC1[127:120] > SRC2[127:120]
  THEN DEST[127:120]  <-FFH;
  ELSE DEST[127:120] <- 0; FI;
@@ -95,7 +98,7 @@ EVEX encoded VPCMPGTB/W: The first source operand (second operand) is a ZMM/YMM/
  IF SRC1[15:0] > SRC2[15:0]
  THEN DEST[15:0] <- FFFFH;
  ELSE DEST[15:0] <- 0; FI;
-(\htmlonly{*} Continue comparison of 2nd through 7th 16-bit words in SRC1 and SRC2 \htmlonly{*})
+(* Continue comparison of 2nd through 7th 16-bit words in SRC1 and SRC2 *)
  IF SRC1[127:112] > SRC2[127:112]
  THEN DEST[127:112] <- FFFFH;
  ELSE DEST[127:112]  <-0; FI;
@@ -105,7 +108,7 @@ EVEX encoded VPCMPGTB/W: The first source operand (second operand) is a ZMM/YMM/
  IF SRC1[31:0] > SRC2[31:0]
  THEN DEST[31:0]  <-FFFFFFFFH;
  ELSE DEST[31:0] <- 0; FI;
-(\htmlonly{*} Continue comparison of 2nd through 3rd 32-bit dwords in SRC1 and SRC2 \htmlonly{*})
+(* Continue comparison of 2nd through 3rd 32-bit dwords in SRC1 and SRC2 *)
  IF SRC1[127:96] > SRC2[127:96]
  THEN DEST[127:96]  <-FFFFFFFFH;
  ELSE DEST[127:96]  <-0; FI;

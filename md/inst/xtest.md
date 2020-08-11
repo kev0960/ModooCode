@@ -1,9 +1,12 @@
 ----------------------------
-title : XTEST instruction(Intel x86/64 assembly instruction)
+title : XTEST (Intel x86/64 assembly instruction)
 cat_title : XTEST
+ref_title : XTEST
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XTEST -- Test If In Transactional Execution
+#@ XTEST
 
+** Test If In Transactional Execution**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
@@ -17,7 +20,7 @@ cat_title : XTEST
 ### Description
 
 
-The XTEST instruction queries the transactional execution status. If the instruction executes inside a transaction-ally executing RTM region or a transactionally executing HLE region, then the ZF flag is cleared, else it is set.
+The `XTEST` instruction queries the transactional execution status. If the instruction executes inside a transaction-ally executing RTM region or a transactionally executing HLE region, then the ZF flag is cleared, else it is set.
 
 
 ### Operation

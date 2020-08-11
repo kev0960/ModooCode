@@ -1,9 +1,12 @@
 ----------------------------
-title : PADDB, PADDW, PADDD, PADDQ instructions(Intel x86/64 assembly instruction)
+title : PADDB, PADDW, PADDD, PADDQs (Intel x86/64 assembly instruction)
 cat_title : PADDB, PADDW, PADDD, PADDQ
+ref_title : PADDB, PADDW, PADDD, PADDQ
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PADDB/PADDW/PADDD/PADDQ--Add Packed Integers
+#@ PADDB, PADDW, PADDD, PADDQ
 
+**Add Packed Integers**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -97,13 +100,13 @@ VEX.128 encoded version: The first source operand is an XMM register. The second
 #### PADDB (with 64-bit operands)
 ```info-verb
  DEST[7:0] <- DEST[7:0] + SRC[7:0]; 
- (\htmlonly{*} Repeat add operation for 2nd through 7th byte \htmlonly{*})
+ (* Repeat add operation for 2nd through 7th byte *)
  DEST[63:56] <- DEST[63:56] + SRC[63:56];
 ```
 #### PADDW (with 64-bit operands)
 ```info-verb
  DEST[15:0] <- DEST[15:0] + SRC[15:0];
- (\htmlonly{*} Repeat add operation for 2nd and 3th word \htmlonly{*})
+ (* Repeat add operation for 2nd and 3th word *)
  DEST[63:48] <- DEST[63:48] + SRC[63:48];
 ```
 #### PADDD (with 64-bit operands)
@@ -118,21 +121,21 @@ VEX.128 encoded version: The first source operand is an XMM register. The second
 #### PADDB (Legacy SSE instruction)
 ```info-verb
  DEST[7:0]<- DEST[7:0] + SRC[7:0]; 
- (\htmlonly{*} Repeat add operation for 2nd through 15th byte \htmlonly{*})
+ (* Repeat add operation for 2nd through 15th byte *)
  DEST[127:120]<- DEST[127:120] + SRC[127:120];
  DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PADDW (Legacy SSE instruction)
 ```info-verb
  DEST[15:0] <- DEST[15:0] + SRC[15:0];
- (\htmlonly{*} Repeat add operation for 2nd through 7th word \htmlonly{*})
+ (* Repeat add operation for 2nd through 7th word *)
  DEST[127:112]<- DEST[127:112] + SRC[127:112];
  DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PADDD (Legacy SSE instruction)
 ```info-verb
  DEST[31:0]<- DEST[31:0]  + SRC[31:0];
- (\htmlonly{*} Repeat add operation for 2nd and 3th doubleword \htmlonly{*})
+ (* Repeat add operation for 2nd and 3th doubleword *)
  DEST[127:96]<- DEST[127:96] + SRC[127:96];
 DEST[MAX_VL-1:128] (Unmodified)
 ```

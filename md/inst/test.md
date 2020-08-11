@@ -1,9 +1,12 @@
 ----------------------------
-title : TEST instruction(Intel x86/64 assembly instruction)
+title : TEST (Intel x86/64 assembly instruction)
 cat_title : TEST
+ref_title : TEST
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### TEST--Logical Compare
+#@ TEST
 
+**Logical Compare**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -12,19 +15,19 @@ cat_title : TEST
 |A9 id|TEST EAX, imm32|I|Valid |Valid|AND imm32 with EAX; set SF, ZF, PF according to result.|
 |REX.W + A9 id|TEST RAX, imm32|I|Valid |N.E.|AND imm32 sign-extended to 64-bits with RAX; set SF, ZF, PF according to result.|
 |F6 /0 ib|TEST r/m8, imm8|MI|Valid |Valid|AND imm8 with r/m8; set SF, ZF, PF according to result.|
-|REX + F6 /0 ib|TEST r/m8*, imm8|MI|Valid |N.E.|AND imm8 with r/m8; set SF, ZF, PF according to result.|
+|REX + F6 /0 ib|TEST r/m8\htmlonly{*}, imm8|MI|Valid |N.E.|AND imm8 with r/m8; set SF, ZF, PF according to result.|
 |F7 /0 iw|TEST r/m16, imm16|MI|Valid |Valid|AND imm16 with r/m16; set SF, ZF, PF according to result.|
 |F7 /0 id|TEST r/m32, imm32|MI|Valid |Valid|AND imm32 with r/m32; set SF, ZF, PF according to result.|
 |REX.W + F7 /0 id|TEST r/m64, imm32|MI|Valid |N.E.|AND imm32 sign-extended to 64-bits with r/m64; set SF, ZF, PF according to result.|
 |84 /r|TEST r/m8, r8|MR|Valid |Valid|AND r8 with r/m8; set SF, ZF, PF according to result.|
-|REX + 84 /r|TEST r/m8*, r8*|MR|Valid |N.E.|AND r8 with r/m8; set SF, ZF, PF according to result.|
+|REX + 84 /r|TEST r/m8\htmlonly{*}, r8\htmlonly{*}|MR|Valid |N.E.|AND r8 with r/m8; set SF, ZF, PF according to result.|
 |85 /r|TEST r/m16, r16|MR|Valid |Valid|AND r16 with r/m16; set SF, ZF, PF according to result.|
 |85 /r|TEST r/m32, r32|MR|Valid |Valid|AND r32 with r/m32; set SF, ZF, PF according to result.|
 |REX.W + 85 /r|TEST r/m64, r64|MR|Valid |N.E.|AND r64 with r/m64; set SF, ZF, PF according to result.|
 ### NOTES:
 
 
-*In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
 
 ### Instruction Operand Encoding
 
@@ -37,7 +40,7 @@ cat_title : TEST
 ### Description
 
 
-Computes the bit-wise logical AND of first operand (source 1 operand) and the second operand (source 2 operand) and sets the SF, ZF, and PF status flags according to the result. The result is then discarded.
+Computes the bit-wise logical `AND` of first operand (source 1 operand) and the second operand (source 2 operand) and sets the SF, ZF, and PF status flags according to the result. The result is then discarded.
 
 In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 
@@ -54,7 +57,7 @@ FI:
 PF <- BitwiseXNOR(TEMP[0:7]);
 CF <- 0;
 OF <- 0;
-(\htmlonly{*} AF is undefined \htmlonly{*})
+(* AF is undefined *)
 ```
 ### Flags Affected
 

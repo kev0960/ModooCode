@@ -1,9 +1,12 @@
 ----------------------------
-title : XEND instruction(Intel x86/64 assembly instruction)
+title : XEND (Intel x86/64 assembly instruction)
 cat_title : XEND
+ref_title : XEND
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XEND -- Transactional End
+#@ XEND
 
+** Transactional End**
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
@@ -17,7 +20,7 @@ cat_title : XEND
 ### Description
 
 
-The instruction marks the end of an RTM code region. If this corresponds to the outermost scope (that is, including this XEND instruction, the number of XBEGIN instructions is the same as number of XEND instructions), the logical processor will attempt to commit the logical processor state atomically. If the commit fails, the logical processor will rollback all architectural register and memory updates performed during the RTM execution. The logical processor will resume execution at the fallback address computed from the outermost XBEGIN instruction. The EAX register is updated to reflect RTM abort information.
+The instruction marks the end of an RTM code region. If this corresponds to the outermost scope (that is, including this `XEND` instruction, the number of `XBEGIN` instructions is the same as number of `XEND` instructions), the logical processor will attempt to commit the logical processor state atomically. If the commit fails, the logical processor will rollback all architectural register and memory updates performed during the RTM execution. The logical processor will resume execution at the fallback address computed from the outermost `XBEGIN` instruction. The EAX register is updated to reflect RTM abort information.
 
 XEND executed outside a transactional region will cause a #GP (General Protection Fault). 
 
@@ -34,12 +37,12 @@ ELSE
    IF fail to commit transactional execution
     THEN
       GOTO RTM_ABORT_PROCESSING;
-    ELSE (\htmlonly{*} commit success \htmlonly{*})
+    ELSE (* commit success *)
       RTM_ACTIVE <- 0
    FI;
  FI;
 FI;
-(\htmlonly{*} For any RTM abort condition encountered during RTM execution \htmlonly{*})
+(* For any RTM abort condition encountered during RTM execution *)
 RTM_ABORT_PROCESSING:
  Restore architectural register state
  Discard memory updates performed in transaction

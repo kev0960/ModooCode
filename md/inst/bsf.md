@@ -1,9 +1,12 @@
 ----------------------------
-title : BSF instruction(Intel x86/64 assembly instruction)
+title : BSF (Intel x86/64 assembly instruction)
 cat_title : BSF
+ref_title : BSF
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BSF--Bit Scan Forward
+#@ BSF
 
+**Bit Scan Forward**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|

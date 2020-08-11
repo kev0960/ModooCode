@@ -1,9 +1,12 @@
 ----------------------------
-title : FADD, FADDP, FIADD instructions(Intel x86/64 assembly instruction)
+title : FADD, FADDP, FIADDs (Intel x86/64 assembly instruction)
 cat_title : FADD, FADDP, FIADD
+ref_title : FADD, FADDP, FIADD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FADD/FADDP/FIADD--Add
+#@ FADD, FADDP, FIADD
 
+**Add**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
@@ -22,11 +25,11 @@ Adds the destination and source operands and stores the sum in the destination l
 
 The no-operand version of the instruction adds the contents of the ST(0) register to the ST(1) register. The one-operand version adds the contents of a memory location (either a floating-point or an integer value) to the contents of the ST(0) register. The two-operand version, adds the contents of the ST(0) register to the ST(i) register or vice versa. The value in ST(0) can be doubled by coding:
 
- FADD ST(0), ST(0);
+ `FADD` ST(0), ST(0);
 
-The FADDP instructions perform the additional operation of popping the FPU register stack after storing the result. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. (The no-operand version of the floating-point add instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is FADD rather than FADDP.)
+The `FADDP` instructions perform the additional operation of popping the FPU register stack after storing the result. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. (The no-operand version of the floating-point add instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is `FADD` rather than `FADDP`.)
 
-The FIADD instructions convert an integer source operand to double extended-precision floating-point format before performing the addition.
+The `FIADD` instructions convert an integer source operand to double extended-precision floating-point format before performing the addition.
 
 The table on the following page shows the results obtained when adding various classes of numbers, assuming that neither overflow nor underflow occurs.
 
@@ -55,13 +58,13 @@ NaN
 
 
 
-|- $$\infty$$\newline{}- $$\infty$$ - $$\infty$$|- F\newline{}- $$\infty$$|**DE**\newline{}- 0\newline{}- $$\infty$$|**ST**\newline{}+ 0\newline{}- $$\infty$$|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}*|
-|-----------------------------------------------|-------------------------|-----------------------------------------|-----------------------------------------|-------------------------|-----------------------|
+|- $$\infty$$\newline{}- $$\infty$$ - $$\infty$$|- F\newline{}- $$\infty$$|**DE**\newline{}- 0\newline{}- $$\infty$$|**ST**\newline{}+ 0\newline{}- $$\infty$$|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}\htmlonly{*}|
+|-----------------------------------------------|-------------------------|-----------------------------------------|-----------------------------------------|-------------------------|----------------------------------|
 |- F or - I - $$\infty$$|- F|SRC|SRC|$$\pm$$ F or $$\pm$$ 0|+ $$\infty$$|
 |**SRC** -0 - $$\infty$$|DEST|- 0|$$\pm$$ 0|DEST|+ $$\infty$$|
 |+ 0 - $$\infty$$|DEST|$$\pm$$ 0|+ 0|DEST|+ $$\infty$$|
 |+ F or + I - $$\infty$$|$$\pm$$ F or $$\pm$$ 0|SRC|SRC|+ F|+ $$\infty$$|
-|+ $$\infty$$ *|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|
+|+ $$\infty$$ \htmlonly{*}|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|
 ### NOTES:
 
@@ -70,7 +73,7 @@ FMeans finite floating-point value.
 
 IMeans integer.
 
-*Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -81,7 +84,7 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 IF Instruction = FIADD
  THEN
    DEST <- DEST + ConvertToDoubleExtendedPrecisionFP(SRC);
- ELSE (\htmlonly{*} Source operand is floating-point value \htmlonly{*})
+ ELSE (* Source operand is floating-point value *)
    DEST <- DEST + SRC;
 FI;
 IF Instruction = FADDP 

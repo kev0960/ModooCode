@@ -1,9 +1,12 @@
 ----------------------------
-title : PREFETCHh instruction(Intel x86/64 assembly instruction)
+title : PREFETCHh (Intel x86/64 assembly instruction)
 cat_title : PREFETCHh
+ref_title : PREFETCHh
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PREFETCHh--Prefetch Data Into Caches
+#@ PREFETCHh
 
+**Prefetch Data Into Caches**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -34,11 +37,11 @@ The source operand is a byte memory location. (The locality hints are encoded in
 
 If the line selected is already present in the cache hierarchy at a level closer to the processor, no data movement occurs. Prefetches from uncacheable or WC memory are ignored.
 
-The PREFETCHh instruction is merely a hint and does not affect program behavior. If executed, this instruction moves data closer to the processor in anticipation of future use.
+The `PREFETCHh` instruction is merely a hint and does not affect program behavior. If executed, this instruction moves data closer to the processor in anticipation of future use.
 
 The implementation of prefetch locality hints is implementation-dependent, and can be overloaded or ignored by a processor implementation. The amount of data prefetched is also processor implementation-dependent. It will, however, be a minimum of 32 bytes. Additional details of the implementation-dependent locality hints are described in Section 7.4 of Intel(R) 64 and IA-32 Architectures Optimization Reference Manual.
 
-It should be noted that processors are free to speculatively fetch and cache data from system memory regions that are assigned a memory-type that permits speculative reads (that is, the WB, WC, and WT memory types). A PREFETCHh instruction is considered a hint to this speculative behavior. Because this speculative fetching can occur at any time and is not tied to instruction execution, a PREFETCHh instruction is not ordered with respect to the fence instructions (MFENCE, SFENCE, and LFENCE) or locked memory references. A PREFETCHh instruction is also unordered with respect to CLFLUSH and CLFLUSHOPT instructions, other PREFETCHh instructions, or any other general instruction. It is ordered with respect to serializing instructions such as CPUID, WRMSR, OUT, and MOV CR.
+It should be noted that processors are free to speculatively fetch and cache data from system memory regions that are assigned a memory-type that permits speculative reads (that is, the WB, WC, and WT memory types). A `PREFETCHh` instruction is considered a hint to this speculative behavior. Because this speculative fetching can occur at any time and is not tied to instruction execution, a `PREFETCHh` instruction is not ordered with respect to the fence instructions (MFENCE, `SFENCE`, and LFENCE) or locked memory references. A `PREFETCHh` instruction is also unordered with respect to `CLFLUSH` and `CLFLUSHOPT` instructions, other `PREFETCHh` instructions, or any other general instruction. It is ordered with respect to serializing instructions such as `CPUID`, `WRMSR`, `OUT`, and `MOV` CR.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

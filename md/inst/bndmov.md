@@ -1,9 +1,12 @@
 ----------------------------
-title : BNDMOV instruction(Intel x86/64 assembly instruction)
+title : BNDMOV (Intel x86/64 assembly instruction)
 cat_title : BNDMOV
+ref_title : BNDMOV
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### BNDMOV--Move Bounds
+#@ BNDMOV
 
+**Move Bounds**
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -21,7 +24,7 @@ cat_title : BNDMOV
 ### Description
 
 
-BNDMOV moves a pair of lower and upper bound values from the source operand (the second operand) to the destination (the first operand). Each operation is 128-bit move. The exceptions are same as the MOV instruction. The memory format for loading/store bounds in 64-bit mode is shown in Figure3-5.
+BNDMOV moves a pair of lower and upper bound values from the source operand (the second operand) to the destination (the first operand). Each operation is 128-bit move. The exceptions are same as the `MOV` instruction. The memory format for loading/store bounds in 64-bit mode is shown in Figure3-5.
 
 This instruction does not change flags.
 
@@ -246,7 +249,7 @@ This instruction does not change flags.
 <text x="122.580414" y="42.579987" textLength="2.308456" font-size="8px">(</text>
 <text x="91.211761" y="126.820007" textLength="1.927179" font-size="8px"> </text>
 </svg>
-<figcaption>Figure 3-5.  Memory Layout of BNDMOV to/from Memory
+<figcaption>Figure 3-5.  Memory Layout of `BNDMOV` to/from Memory
 </figcaption></figure>
 ```
 

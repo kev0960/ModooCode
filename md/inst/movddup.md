@@ -1,9 +1,12 @@
 ----------------------------
-title : MOVDDUP instruction(Intel x86/64 assembly instruction)
+title : MOVDDUP (Intel x86/64 assembly instruction)
 cat_title : MOVDDUP
+ref_title : MOVDDUP
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVDDUP--Replicate Double FP Values
+#@ MOVDDUP
 
+**Replicate Double FP Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -151,12 +154,12 @@ IF VL >= 512
  TMP_SRC[511:484]  <- SRC[477:384]
 FI;
 FOR j <-  0 TO KL-1
- i <-  j \htmlonly{*} 64
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <-  j * 64
+ IF k1[j] OR *no writemask*
    THEN DEST[i+63:i] <-  TMP_SRC[i+63:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+63:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+63:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+63:i] <-  0  ; zeroing-masking
     FI

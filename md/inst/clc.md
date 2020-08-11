@@ -1,9 +1,12 @@
 ----------------------------
-title : CLC instruction(Intel x86/64 assembly instruction)
+title : CLC (Intel x86/64 assembly instruction)
 cat_title : CLC
+ref_title : CLC
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CLC--Clear Carry Flag
+#@ CLC
 
+**Clear Carry Flag**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|

@@ -1,9 +1,12 @@
 ----------------------------
-title : HSUBPD instruction(Intel x86/64 assembly instruction)
+title : HSUBPD (Intel x86/64 assembly instruction)
 cat_title : HSUBPD
+ref_title : HSUBPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### HSUBPD--Packed Double-FP Horizontal Subtract
+#@ HSUBPD
 
+**Packed Double-FP Horizontal Subtract**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
@@ -20,7 +23,7 @@ cat_title : HSUBPD
 ### Description
 
 
-The HSUBPD instruction subtracts horizontally the packed DP FP numbers of both operands. 
+The `HSUBPD` instruction subtracts horizontally the packed DP FP numbers of both operands. 
 
 Subtracts the double-precision floating-point value in the high quadword of the destination operand from the low quadword of the destination operand and stores the result in the low quadword of the destination operand. 
 

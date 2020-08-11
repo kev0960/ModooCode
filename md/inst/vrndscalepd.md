@@ -1,9 +1,12 @@
 ----------------------------
-title : VRNDSCALEPD instruction(Intel x86/64 assembly instruction)
+title : VRNDSCALEPD (Intel x86/64 assembly instruction)
 cat_title : VRNDSCALEPD
+ref_title : VRNDSCALEPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VRNDSCALEPD--Round Packed Float64 Values To Include A Given Number Of Fraction Bits
+#@ VRNDSCALEPD
 
+**Round Packed Float64 Values To Include A Given Number Of Fraction Bits**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -33,15 +36,15 @@ The Precision Floating-Point Exception is signaled according to the immediate op
 
 The sign of the result of this instruction is preserved, including the sign of zero.
 
-The formula of the operation on each data element for VRNDSCALEPD is
+The formula of the operation on each data element for `VRNDSCALEPD` is
 
- ROUND(x) = 2\footnote{-M} *Round_to_INT(x*2\footnote{M} , round_ctrl), 
+ ROUND(x) = 2\footnote{-M} \htmlonly{*}Round_to_INT(x\htmlonly{*}2\footnote{M} , round_ctrl), 
 
  round_ctrl = imm[3:0];
 
  M=imm[7:4];
 
-The operation of x*2\footnote{M}  is computed as if the exponent range is unlimited (i.e. no overflow ever occurs).
+The operation of x\htmlonly{*}2\footnote{M}  is computed as if the exponent range is unlimited (i.e. no overflow ever occurs).
 
 
 

@@ -1,9 +1,12 @@
 ----------------------------
-title : MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64 instructions(Intel x86/64 assembly instruction)
+title : MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64s (Intel x86/64 assembly instruction)
 cat_title : MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64
+ref_title : MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVDQU,VMOVDQU8/16/32/64--Move Unaligned Packed Integer Values
+#@ MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64
 
+**Move Unaligned Packed Integer Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -85,12 +88,12 @@ VEX.128 encoded version: Bits (MAX_VL-1:128) of the destination register are zer
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
 FOR j  <- 0 TO KL-1
- i <-  j \htmlonly{*} 8
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i <-  j * 8
+ IF k1[j] OR *no writemask*
    THEN DEST[i+7:i]  <- SRC[i+7:i]
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+7:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+7:i] remains unchanged*
       ELSE  DEST[i+7:i] <-  0  ; zeroing-masking
     FI
  FI;
@@ -101,11 +104,11 @@ DEST[MAX_VL-1:VL] <-  0
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
 FOR j <-  0 TO KL-1
- i  <- j \htmlonly{*} 8
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 8
+ IF k1[j] OR *no writemask*
    THEN DEST[i+7:i] <- 
     SRC[i+7:i]
-   ELSE \htmlonly{*}DEST[i+7:i] remains unchanged\htmlonly{*} ; merging-masking
+   ELSE *DEST[i+7:i] remains unchanged* ; merging-masking
  FI;
 ENDFOR;
 ```

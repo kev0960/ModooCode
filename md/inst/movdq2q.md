@@ -1,15 +1,12 @@
 ----------------------------
-title : MOVDQ2Q instruction(Intel x86/64 assembly instruction)
+title : MOVDQ2Q (Intel x86/64 assembly instruction)
 cat_title : MOVDQ2Q
+ref_title : MOVDQ2Q
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MOVDQ2Q--Move Quadword from XMM to MMX Technology Register
+#@ MOVDQ2Q
 
-
-**Opcode Instruction Op/ 64-Bit  Compat/ Description****En Mode Leg Mode**
-
-F2 0F D6 /r MOVDQ2Q mm, xmm RM Valid Valid Move low quadword from xmm to mmx register.
-
-###                  Instruction Operand Encoding
+**Move Quadword from XMM to MMX Technology Register**###                  Instruction Operand Encoding
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
@@ -21,7 +18,7 @@ RM ModRM:reg (w) ModRM:r/m (r) NA NA
 
 Moves the low quadword from the source operand (second operand) to the destination operand (first operand). The source operand is an XMM register and the destination operand is an MMX technology register.
 
-This instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the MOVDQ2Q instruction is executed.
+This instruction causes a transition from x87 FPU to MMX technology operation (that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word is set to all 0s [valid]). If this instruction is executed while an x87 FPU floating-point exception is pending, the exception is handled before the `MOVDQ2Q` instruction is executed.
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).
 

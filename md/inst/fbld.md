@@ -1,9 +1,12 @@
 ----------------------------
-title : FBLD instruction(Intel x86/64 assembly instruction)
+title : FBLD (Intel x86/64 assembly instruction)
 cat_title : FBLD
+ref_title : FBLD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FBLD--Load Binary Coded Decimal
+#@ FBLD
 
+**Load Binary Coded Decimal**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|

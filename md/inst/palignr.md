@@ -1,9 +1,12 @@
 ----------------------------
-title : PALIGNR instruction(Intel x86/64 assembly instruction)
+title : PALIGNR (Intel x86/64 assembly instruction)
 cat_title : PALIGNR
+ref_title : PALIGNR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PALIGNR -- Packed Align Right 
+#@ PALIGNR
 
+** Packed Align Right **
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -342,7 +345,7 @@ Note: VEX.L must be 0, otherwise the instruction will #UD.
 ### Operation
 #### PALIGNR (with 64-bit operands)
 ```info-verb
- temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8\htmlonly{*}8) 
+ temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8*8) 
  DEST[63:0] = temp1[63:0] 
 ```
 #### PALIGNR (with 128-bit operands)

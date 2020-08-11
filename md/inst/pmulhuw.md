@@ -1,9 +1,12 @@
 ----------------------------
-title : PMULHUW instruction(Intel x86/64 assembly instruction)
+title : PMULHUW (Intel x86/64 assembly instruction)
 cat_title : PMULHUW
+ref_title : PMULHUW
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### PMULHUW--Multiply Packed Unsigned Integers and Store High Result
+#@ PMULHUW
 
+**Multiply Packed Unsigned Integers and Store High Result**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -249,14 +252,14 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 <text x="133.380005" y="115.240021" textLength="4.008960" font-size="8px">Z</text>
 <text x="228.180008" y="87.460022" textLength="4.381020" font-size="8px">=</text>
 </svg>
-<figcaption>Figure 4-12.  PMULHUW and PMULHW Instruction Operation Using 64-bit Operands
+<figcaption>Figure 4-12.  `PMULHUW` and `PMULHW` Instruction Operation Using 64-bit Operands
 </figcaption></figure>
 ```
 
 ### Operation
 #### PMULHUW (with 64-bit operands)
 ```info-verb
- TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (\htmlonly{*} Unsigned multiplication \htmlonly{*})
+ TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (* Unsigned multiplication *)
  TEMP1[31:0] <- DEST[31:16] `*` SRC[31:16];
  TEMP2[31:0] <- DEST[47:32] `*` SRC[47:32];
  TEMP3[31:0] <- DEST[63:48] `*` SRC[63:48];
@@ -267,7 +270,7 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 ```
 #### PMULHUW (with 128-bit operands)
 ```info-verb
- TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (\htmlonly{*} Unsigned multiplication \htmlonly{*})
+ TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (* Unsigned multiplication *)
  TEMP1[31:0] <- DEST[31:16] `*` SRC[31:16];
  TEMP2[31:0] <- DEST[47:32] `*` SRC[47:32];
  TEMP3[31:0] <- DEST[63:48] `*` SRC[63:48];
@@ -286,7 +289,7 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 ```
 #### VPMULHUW (VEX.128 encoded version)
 ```info-verb
-TEMP0[31:0] <-  SRC1[15:0] \htmlonly{*} SRC2[15:0]
+TEMP0[31:0] <-  SRC1[15:0] * SRC2[15:0]
 TEMP1[31:0] <-  SRC1[31:16] * SRC2[31:16]
 TEMP2[31:0]  <- SRC1[47:32] * SRC2[47:32]
 TEMP3[31:0]  <- SRC1[63:48] * SRC2[63:48]

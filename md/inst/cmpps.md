@@ -1,9 +1,12 @@
 ----------------------------
-title : CMPPS instruction(Intel x86/64 assembly instruction)
+title : CMPPS (Intel x86/64 assembly instruction)
 cat_title : CMPPS
+ref_title : CMPPS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### CMPPS--Compare Packed Single-Precision Floating-Point Values
+#@ CMPPS
 
+**Compare Packed Single-Precision Floating-Point Values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -48,7 +51,7 @@ A subsequent computational instruction that uses the mask result in the destinat
 
 Note that processors with "CPUID.1H:ECX.AVX =0" do not implement the "greater-than", "greater-than-or-equal", "not-greater than", and "not-greater-than-or-equal relations" predicates. These comparisons can be made either by using the inverse relationship (that is, use the "not-less-than-or-equal" to make a "greater-than" comparison) or by using software emulation. When using software emulation, the program must swap the operands (copying registers when necessary to protect the data that will now be in the destination), and then perform the compare using a different predicate. The predicate to be used for these emulations is listed in the first 8 rows of Table 3-7 (Intel 64 and IA-32 Architectures Software Developer's Manual Volume 2A) under the heading Emulation. 
 
-Compilers and assemblers may implement the following two-operand pseudo-ops in addition to the three-operand CMPPS instruction, for processors with "CPUID.1H:ECX.AVX =0". See Table 3-4. Compiler should treat reserved Imm8 values as illegal syntax.:
+Compilers and assemblers may implement the following two-operand pseudo-ops in addition to the three-operand `CMPPS` instruction, for processors with "CPUID.1H:ECX.AVX =0". See Table 3-4. Compiler should treat reserved Imm8 values as illegal syntax.:
 
 ###               Table 3-4. Pseudo-Op and CMPPS Implementation
 

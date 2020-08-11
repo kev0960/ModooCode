@@ -1,9 +1,12 @@
 ----------------------------
-title : XSAVE instruction(Intel x86/64 assembly instruction)
+title : XSAVE (Intel x86/64 assembly instruction)
 cat_title : XSAVE
+ref_title : XSAVE
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### XSAVE--Save Processor Extended States
+#@ XSAVE
 
+**Save Processor Extended States**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -18,17 +21,17 @@ cat_title : XSAVE
 ### Description
 
 
-Performs a full or partial save of processor state components to the XSAVE area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and XCR0.
+Performs a full or partial save of processor state components to the `XSAVE` area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and XCR0.
 
-The format of the XSAVE area is detailed in Section 13.4, "XSAVE Area," of Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1.
+The format of the `XSAVE` area is detailed in Section 13.4, "XSAVE Area," of Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1.
 
-Section 13.7, "Operation of XSAVE," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 provides a detailed description of the operation of the XSAVE instruction. The following items provide a high-level outline:*  XSAVE saves state component i if and only if RFBM[i]= 1.\footnote{1}
+Section 13.7, "Operation of `XSAVE`," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 provides a detailed description of the operation of the `XSAVE` instruction. The following items provide a high-level outline:*  `XSAVE` saves state component i if and only if RFBM[i]= 1.\footnote{1}
 
-*  XSAVE does not modify bytes 511:464 of the legacy region of the XSAVE area (see Section 13.4.1, "Legacy Region of an XSAVE Area").
+*  `XSAVE` does not modify bytes 511:464 of the legacy region of the `XSAVE` area (see Section 13.4.1, "Legacy Region of an `XSAVE` Area").
 
-*  XSAVE reads the XSTATE_BV field of the XSAVE header (see Section 13.4.2, "XSAVE Header") and writes a modified value back to memory as follows. If RFBM[i]= 1, XSAVE writes XSTATE_BV[i] with the value of XINUSE[i]. (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") If RFBM[i]= 0, XSAVE writes XSTATE_BV[i] with the value that it read from memory (it does not modify the bit). XSAVE does not write to any part of the XSAVE header other than the XSTATE_BV field.
+*  `XSAVE` reads the XSTATE_BV field of the `XSAVE` header (see Section 13.4.2, "XSAVE Header") and writes a modified value back to memory as follows. If RFBM[i]= 1, `XSAVE` writes XSTATE_BV[i] with the value of XINUSE[i]. (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") If RFBM[i]= 0, `XSAVE` writes XSTATE_BV[i] with the value that it read from memory (it does not modify the bit). `XSAVE` does not write to any part of the `XSAVE` header other than the XSTATE_BV field.
 
-*  XSAVE always uses the standard format of the extended region of the XSAVE area (see Section 13.4.3, "Extended Region of an XSAVE Area").
+*  `XSAVE` always uses the standard format of the extended region of the `XSAVE` area (see Section 13.4.3, "Extended Region of an `XSAVE` Area").
 
 Use of a destination operand not aligned to 64-byte boundary (in either 64-bit or 32-bit modes) results in a general-protection (#GP) exception. In 64-bit mode, the upper 32 bits of RDX and RAX are ignored.
 
@@ -36,7 +39,7 @@ Use of a destination operand not aligned to 64-byte boundary (in either 64-bit o
 ### Operation
 
 ```info-verb
-RFBM <- XCR0 AND EDX:EAX;/\htmlonly{*} bitwise logical AND \htmlonly{*}/
+RFBM <- XCR0 AND EDX:EAX;/* bitwise logical AND */
 OLD_BV <- XSTATE_BV field from XSAVE header;
 IF RFBM[0]= 1
  THEN store x87 state into legacy region of XSAVE area;

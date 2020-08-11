@@ -1,9 +1,12 @@
 ----------------------------
-title : VBROADCAST instruction(Intel x86/64 assembly instruction)
+title : VBROADCAST (Intel x86/64 assembly instruction)
 cat_title : VBROADCAST
+ref_title : VBROADCAST
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VBROADCAST--Load with Broadcast Floating-Point Data
+#@ VBROADCAST
 
+**Load with Broadcast Floating-Point Data**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|--------------------------------------------------------------------|--------------------------------------------------|---------------|

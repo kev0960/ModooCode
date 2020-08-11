@@ -1,9 +1,12 @@
 ----------------------------
-title : HLT instruction(Intel x86/64 assembly instruction)
+title : HLT (Intel x86/64 assembly instruction)
 cat_title : HLT
+ref_title : HLT
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### HLT--Halt
+#@ HLT
 
+**Halt**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -17,11 +20,11 @@ cat_title : HLT
 ### Description
 
 
-Stops instruction execution and places the processor in a HALT state. An enabled interrupt (including NMI and SMI), a debug exception, the BINIT# signal, the INIT# signal, or the RESET# signal will resume execution. If an interrupt (including NMI) is used to resume execution after a HLT instruction, the saved instruction pointer (CS:EIP) points to the instruction following the HLT instruction.
+Stops instruction execution and places the processor in a HALT state. An enabled interrupt (including NMI and SMI), a debug exception, the BINIT# signal, the INIT# signal, or the RESET# signal will resume execution. If an interrupt (including NMI) is used to resume execution after a `HLT` instruction, the saved instruction pointer (CS:EIP) points to the instruction following the `HLT` instruction.
 
-When a HLT instruction is executed on an Intel 64 or IA-32 processor supporting Intel Hyper-Threading Technology, only the logical processor that executes the instruction is halted. The other logical processors in the physical processor remain active, unless they are each individually halted by executing a HLT instruction.
+When a `HLT` instruction is executed on an Intel 64 or IA-32 processor supporting Intel Hyper-Threading Technology, only the logical processor that executes the instruction is halted. The other logical processors in the physical processor remain active, unless they are each individually halted by executing a `HLT` instruction.
 
-The HLT instruction is a privileged instruction. When the processor is running in protected or virtual-8086 mode, the privilege level of a program or procedure must be 0 to execute the HLT instruction.
+The `HLT` instruction is a privileged instruction. When the processor is running in protected or virtual-8086 mode, the privilege level of a program or procedure must be 0 to execute the `HLT` instruction.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

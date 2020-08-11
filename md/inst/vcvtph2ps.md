@@ -1,9 +1,12 @@
 ----------------------------
-title : VCVTPH2PS instruction(Intel x86/64 assembly instruction)
+title : VCVTPH2PS (Intel x86/64 assembly instruction)
 cat_title : VCVTPH2PS
+ref_title : VCVTPH2PS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VCVTPH2PS--Convert 16-bit FP values to Single-Precision FP values
+#@ VCVTPH2PS
 
+**Convert 16-bit FP values to Single-Precision FP values**
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
@@ -435,7 +438,7 @@ Note: VEX.vvvv and EVEX.vvvv are reserved (must be 1111b).
 <text x="302.548035" y="116.379639" textLength="1.859097" font-size="8px"> </text>
 <text x="304.229248" y="116.379639" textLength="1.859097" font-size="8px"> </text>
 </svg>
-<figcaption>Figure 5-6.  VCVTPH2PS (128-bit Version)
+<figcaption>Figure 5-6.  `VCVTPH2PS` (128-bit Version)
 </figcaption></figure>
 ```
 
@@ -444,14 +447,14 @@ Note: VEX.vvvv and EVEX.vvvv are reserved (must be 1111b).
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
 FOR j  <- 0 TO KL-1
- i  <- j \htmlonly{*} 32
- k <-  j \htmlonly{*} 16
- IF k1[j] OR \htmlonly{*}no writemask\htmlonly{*}
+ i  <- j * 32
+ k <-  j * 16
+ IF k1[j] OR *no writemask*
    THEN DEST[i+31:i]  <-
     vCvt_h2s(SRC[k+15:k])
    ELSE 
-    IF \htmlonly{*}merging-masking\htmlonly{*} ; merging-masking
-      THEN \htmlonly{*}DEST[i+31:i] remains unchanged\htmlonly{*}
+    IF *merging-masking* ; merging-masking
+      THEN *DEST[i+31:i] remains unchanged*
       ELSE  ; zeroing-masking
         DEST[i+31:i]  <- 0
     FI

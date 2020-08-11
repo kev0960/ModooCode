@@ -1,9 +1,12 @@
 ----------------------------
-title : MULX instruction(Intel x86/64 assembly instruction)
+title : MULX (Intel x86/64 assembly instruction)
 cat_title : MULX
+ref_title : MULX
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### MULX -- Unsigned Multiply Without Affecting Flags
+#@ MULX
 
+** Unsigned Multiply Without Affecting Flags**
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
@@ -32,12 +35,12 @@ This instruction is not supported in real mode and virtual-8086 mode. The operan
 // DEST2: VEX.vvvv
 IF (OperandSize = 32)
  SRC1 <- EDX;
- DEST2 <- (SRC1\htmlonly{*}SRC2)[31:0];
- DEST1 <- (SRC1\htmlonly{*}SRC2)[63:32];
+ DEST2 <- (SRC1*SRC2)[31:0];
+ DEST1 <- (SRC1*SRC2)[63:32];
 ELSE IF (OperandSize = 64)
  SRC1 <- RDX;
-   DEST2 <- (SRC1\htmlonly{*}SRC2)[63:0];
-   DEST1 <- (SRC1\htmlonly{*}SRC2)[127:64];
+   DEST2 <- (SRC1*SRC2)[63:0];
+   DEST1 <- (SRC1*SRC2)[127:64];
 FI
 ```
 ### Flags Affected

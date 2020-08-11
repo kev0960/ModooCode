@@ -1,9 +1,12 @@
 ----------------------------
-title : LAR instruction(Intel x86/64 assembly instruction)
+title : LAR (Intel x86/64 assembly instruction)
 cat_title : LAR
+ref_title : LAR
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### LAR--Load Access Rights Byte
+#@ LAR
 
+**Load Access Rights Byte**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -27,7 +30,7 @@ Loads the access rights from the segment descriptor specified by the second oper
 
 The processor performs access checks as part of the loading process. Once loaded in the destination register, soft-ware can perform additional checks on the access rights information. 
 
-The access rights for a segment descriptor include fields located in the second doubleword (bytes 4-7) of the segment descriptor. The following fields are loaded by the LAR instruction:
+The access rights for a segment descriptor include fields located in the second doubleword (bytes 4-7) of the segment descriptor. The following fields are loaded by the `LAR` instruction:
 
 *  Bits 7:0 are returned as 0
 
@@ -59,7 +62,7 @@ This instruction performs the following checks before it loads the access rights
 
 *  Checks that the segment selector points to a descriptor that is within the limits of the GDT or LDT being accessed
 
-*  Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the LAR instruction. The valid system segment and gate descriptor types are given in Table 3-52. 
+*  Checks that the descriptor type is valid for this instruction. All code and data segment descriptors are valid for (can be accessed with) the `LAR` instruction. The valid system segment and gate descriptor types are given in Table 3-52. 
 
 *  If the segment is not a conforming code segment, it checks that the specified segment descriptor is visible at the CPL (that is, if the CPL and the RPL of the segment selector are less than or equal to the DPL of the segment selector).
 
@@ -67,7 +70,7 @@ If the segment descriptor cannot be accessed or is an invalid type for the instr
 
 
 
-The LAR instruction can only be executed in protected mode and IA-32e mode.
+The `LAR` instruction can only be executed in protected mode and IA-32e mode.
 
 ### Table 3-52.  Segment and Gate Types
 

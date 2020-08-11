@@ -1,9 +1,12 @@
 ----------------------------
-title : VGETMANTPD instruction(Intel x86/64 assembly instruction)
+title : VGETMANTPD (Intel x86/64 assembly instruction)
 cat_title : VGETMANTPD
+ref_title : VGETMANTPD
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### VGETMANTPD--Extract Float64 Vector of Normalized Mantissas from Float64 Vector
+#@ VGETMANTPD
 
+**Extract Float64 Vector of Normalized Mantissas from Float64 Vector**
 
 |**Opcode/**\newline{}**Instruction**|**Op/**\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|

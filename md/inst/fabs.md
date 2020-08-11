@@ -1,9 +1,12 @@
 ----------------------------
-title : FABS instruction(Intel x86/64 assembly instruction)
+title : FABS (Intel x86/64 assembly instruction)
 cat_title : FABS
+ref_title : FABS
+path : /X86-64 명령어 레퍼런스
 ----------------------------
-### FABS--Absolute Value
+#@ FABS
 
+**Absolute Value**
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
