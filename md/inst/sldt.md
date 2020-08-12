@@ -47,7 +47,7 @@ None.
 * If the destination is located in a non-writable segment.
 * If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
 * If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.
-* If CR4.UMIP= 1 and CPL> 0.
+* If CR4.UMIP = 1 and CPL > 0.
 
 #### #SS(0)
 * If a memory operand effective address is outside the SS segment limit.
@@ -56,7 +56,7 @@ None.
 * If a page fault occurs.
 
 #### #AC(0)
-* If alignment checking is enabled and an unaligned memory reference is made while CPL= 3.
+* If alignment checking is enabled and an unaligned memory reference is made while CPL = 3.
 
 #### #UD
 * If the LOCK prefix is used.
@@ -85,13 +85,13 @@ Same exceptions as in protected mode.
 
 #### #GP(0)
 * If the memory address is in a non-canonical form.
-* If CR4.UMIP= 1 and CPL> 0.
+* If CR4.UMIP = 1 and CPL > 0.
 
 #### #PF(fault-code)
 * If a page fault occurs.
 
 #### #AC(0)
-* If alignment checking is enabled and an unaligned memory reference is made while CPL= 3.
+* If alignment checking is enabled and an unaligned memory reference is made while CPL = 3.
 
 #### #UD
 * If the LOCK prefix is used.

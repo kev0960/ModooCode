@@ -24,7 +24,7 @@ SYSCALL invokes an OS system-call handler at privilege level 0. It does so by lo
 
 SYSCALL also saves RFLAGS into R11 and then masks RFLAGS using the IA32_FMASK MSR (MSR address C0000084H); specifically, the processor clears in RFLAGS every bit corresponding to a bit that is set in the IA32_FMASK MSR.
 
-SYSCALL loads the CS and SS selectors with values derived from bits47:32 of the IA32_STAR MSR. However, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the respon-sibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values corre-spond to the fixed values loaded into the descriptor caches; the `SYSCALL` instruction does not ensure this correspondence.
+SYSCALL loads the CS and SS selectors with values derived from bits 47:32 of the IA32_STAR MSR. However, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the respon-sibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values corre-spond to the fixed values loaded into the descriptor caches; the `SYSCALL` instruction does not ensure this correspondence.
 
 The `SYSCALL` instruction does not save the stack pointer (RSP). If the OS system-call handler will change the stack pointer, it is the responsibility of software to save the previous value of the stack pointer. This might be done prior to executing `SYSCALL`, with software restoring the stack pointer with the instruction following `SYSCALL` (which will be executed after SYSRET). Alternatively, the OS system-call handler may save the stack pointer and restore it before executing `SYSRET`.
 
@@ -33,7 +33,7 @@ The `SYSCALL` instruction does not save the stack pointer (RSP). If the OS syste
 
 ```info-verb
 IF (CS.L != 1 ) or (IA32_EFER.LMA != 1) or (IA32_EFER.SCE != 1)(* Not in 64-Bit Mode or SYSCALL/SYSRET not enabled in IA32_EFER *)
- THEN #UD;
+    THEN #UD;
 FI;
 RCX <- RIP; (* Will contain address of next instruction *)
 RIP <- IA32_LSTAR;

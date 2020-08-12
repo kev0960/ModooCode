@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 01 CA\newline{}CLAC|NP|V/V|SMAP|Clear the AC flag in the EFLAGS register.|
+|0F 01 CA\newline{}\newline{}CLAC|NP|V/V|SMAP|Clear the AC flag in the EFLAGS register.|
 ### Instruction Operand Encoding
 
 
@@ -22,7 +22,7 @@ path : /X86-64 명령어 레퍼런스
 
 Clears the AC flag bit in EFLAGS register. This disables any alignment checking of user-mode data accesses. If the SMAP bit is set in the CR4 register, this disallows explicit supervisor-mode data accesses to user-mode pages.
 
-This instruction's operation is the same in non-64-bit modes and 64-bit mode. Attempts to execute `CLAC` when CPL> 0 cause #UD.
+This instruction's operation is the same in non-64-bit modes and 64-bit mode. Attempts to execute `CLAC` when CPL > 0 cause #UD.
 
 
 ### Operation

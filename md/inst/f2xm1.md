@@ -18,12 +18,12 @@ Computes the exponential value of 2 to the power of the source operand minus 1. 
 
 The following table shows the results obtained when computing the exponential value of various classes of numbers, assuming that neither overflow nor underflow occurs.
 
-###                 Table 3-16.  Results Obtained from F2XM1
+###                                                      Table 3-16.  Results Obtained from F2XM1
 
 
 Values other than 2 can be exponentiated using the following formula:
 
- x\footnote{y}  <- 2\footnote{(y `*` log} 2\footnote{x)}
+    x\footnote{y}  <- 2\footnote{(y `*` log} 2\footnote{x)}
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -46,7 +46,7 @@ ST(0) <- (2\footnote{ST(0)}  - 1);
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 

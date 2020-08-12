@@ -40,8 +40,8 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ```info-verb
 DEST <- ST(0);
 IF Instruction = FSTP 
- THEN 
-   PopRegisterStack; 
+    THEN 
+          PopRegisterStack; 
 FI;
 ```
 ### FPU Flags Affected
@@ -49,7 +49,7 @@ FI;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Indicates rounding direction of if the floating-point inexact exception (#P) is generated: 0 <- not roundup; 1 <- roundup.
+                              Indicates rounding direction of if the floating-point inexact exception (#P) is generated: 0 <- not roundup; 1 <- roundup.
 
 C0, C2, C3  Undefined.
 

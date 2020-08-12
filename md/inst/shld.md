@@ -41,30 +41,30 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX
 
 ```info-verb
 IF (In 64-Bit Mode and REX.W = 1) 
- THEN COUNT <- COUNT MOD 64;
- ELSE COUNT <- COUNT MOD 32;
+    THEN COUNT <- COUNT MOD 64;
+    ELSE COUNT <- COUNT MOD 32;
 FI
 SIZE <- OperandSize;
 IF COUNT = 0
- THEN 
-   No operation;
- ELSE
+    THEN 
+          No operation;
+    ELSE
 IF COUNT > SIZE
-    THEN (* Bad parameters *)
-      DEST is undefined;
-      CF, OF, SF, ZF, AF, PF are undefined;
-    ELSE (* Perform the shift *)
-      CF <- BIT[DEST, SIZE - COUNT];
-      (* Last bit shifted out on exit *)
-      FOR i <- SIZE - 1 DOWN TO COUNT
-        DO
-          Bit(DEST, i) <- Bit(DEST, i - COUNT);
-        OD;
-      FOR i <- COUNT - 1 DOWN TO 0
-        DO
-          BIT[DEST, i] <- BIT[SRC, i - COUNT + SIZE];
-        OD;
-   FI;
+                THEN (* Bad parameters *)
+                      DEST is undefined;
+                      CF, OF, SF, ZF, AF, PF are undefined;
+                ELSE (* Perform the shift *)
+                      CF <- BIT[DEST, SIZE - COUNT];
+                      (* Last bit shifted out on exit *)
+                      FOR i <- SIZE - 1 DOWN TO COUNT
+                            DO
+                                  Bit(DEST, i) <- Bit(DEST, i - COUNT);
+                            OD;
+                      FOR i <- COUNT - 1 DOWN TO 0
+                            DO
+                                  BIT[DEST, i] <- BIT[SRC, i - COUNT + SIZE];
+                            OD;
+          FI;
 FI;
 ```
 ### Flags Affected

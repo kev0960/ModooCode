@@ -10,27 +10,27 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F FC /r\footnote{1}\newline{}PADDB mm, mm/m64|RM|V/V|MMX|Add packed byte integers from mm/m64 and mm.|
-|0F FD /r\footnote{1}\newline{}PADDW mm, mm/m64|RM|V/V|MMX|Add packed word integers from mm/m64 and mm.|
-|66 0F FC /rPADDB xmm1, xmm2/m128|RM|V/V|SSE2|Add packed byte integers from xmm2/m128 and xmm1.|
-|66 0F FD /rPADDW xmm1, xmm2/m128|RM|V/V|SSE2|Add packed word integers from xmm2/m128 and xmm1.|
-|66 0F FE /rPADDD xmm1, xmm2/m128|RM|V/V|SSE2|Add packed doubleword integers from xmm2/m128 and xmm1.|
-|66 0F D4 /rPADDQ xmm1, xmm2/m128|RM|V/V|SSE2|Add packed quadword integers from xmm2/m128 and xmm1.|
-|VEX.NDS.128.66.0F.WIG FC /rVPADDB xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add packed byte integers from xmm2, and xmm3/m128 and store in xmm1.|
-|VEX.NDS.128.66.0F.WIG FD /rVPADDW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add packed word integers from xmm2, xmm3/m128 and store in xmm1.|
-|VEX.NDS.128.66.0F.WIG FE /rVPADDD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add packed doubleword integers from xmm2, xmm3/m128 and store in xmm1.|
-|VEX.NDS.128.66.0F.WIG D4 /rVPADDQ xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add packed quadword integers from xmm2, xmm3/m128 and store in xmm1.|
-|VEX.NDS.256.66.0F.WIG FC /rVPADDB ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1.|
-|VEX.NDS.256.66.0F.WIG FD /rVPADDW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed word integers from ymm2, ymm3/m256 and store in ymm1.|
-|VEX.NDS.256.66.0F.WIG FE /rVPADDD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed doubleword integers from ymm2, ymm3/m256 and store in ymm1.|
-|VEX.NDS.256.66.0F.WIG D4 /rVPADDQ ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed quadword integers from ymm2, ymm3/m256 and store in ymm1.|
-|EVEX.NDS.128.66.0F.WIG FC /rVPADDB xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Add packed byte integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.|
-|EVEX.NDS.128.66.0F.WIG FD /rVPADDW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Add packed word integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.|
-|EVEX.NDS.128.66.0F.W0 FE /rVPADDD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Add packed doubleword integers from xmm2, and xmm3/m128/m32bcst and store in xmm1 using writemask k1.|
-|EVEX.NDS.128.66.0F.W1 D4 /rVPADDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst|FV|V/V|AVX512VLAVX512F|Add packed quadword integers from xmm2, and xmm3/m128/m64bcst and store in xmm1 using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG FC /rVPADDB ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG FD /rVPADDW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Add packed word integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.|
-|EVEX.NDS.256.66.0F.W0 FE /rVPADDD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Add packed doubleword integers from ymm2, ymm3/m256/m32bcst and store in ymm1 using writemask k1.|
+|0F FC /r\footnote{1}\newline{}\newline{}PADDB mm, mm/m64|RM|V/V|MMX|Add packed byte integers from mm/m64 and mm.|
+|0F FD /r\footnote{1}\newline{}\newline{}PADDW mm, mm/m64|RM|V/V|MMX|Add packed word integers from mm/m64 and mm.|
+|66 0F FC /r\newline{}PADDB xmm1, xmm2/m128|RM|V/V|SSE2|Add packed byte integers from xmm2/m128 and xmm1.|
+|66 0F FD /r\newline{}PADDW xmm1, xmm2/m128|RM|V/V|SSE2|Add packed word integers from xmm2/m128 and xmm1.|
+|66 0F FE /r\newline{}PADDD xmm1, xmm2/m128|RM|V/V|SSE2|Add packed doubleword integers from xmm2/m128 and xmm1.|
+|66 0F D4 /r\newline{}PADDQ xmm1, xmm2/m128|RM|V/V|SSE2|Add packed quadword integers from xmm2/m128 and xmm1.|
+|VEX.NDS.128.66.0F.WIG FC /r\newline{}VPADDB xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add packed byte integers from xmm2, and xmm3/m128 and store in xmm1.|
+|VEX.NDS.128.66.0F.WIG FD /r\newline{}VPADDW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add packed word integers from xmm2, xmm3/m128 and store in xmm1.|
+|VEX.NDS.128.66.0F.WIG FE /r\newline{}VPADDD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add packed doubleword integers from xmm2, xmm3/m128 and store in xmm1.|
+|VEX.NDS.128.66.0F.WIG D4 /r\newline{}VPADDQ xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add packed quadword integers from xmm2, xmm3/m128 and store in xmm1.|
+|VEX.NDS.256.66.0F.WIG FC /r\newline{}VPADDB ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1.|
+|VEX.NDS.256.66.0F.WIG FD /r\newline{}VPADDW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed word integers from ymm2, ymm3/m256 and store in ymm1.|
+|VEX.NDS.256.66.0F.WIG FE /r\newline{}VPADDD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed doubleword integers from ymm2, ymm3/m256 and store in ymm1.|
+|VEX.NDS.256.66.0F.WIG D4 /r\newline{}VPADDQ ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed quadword integers from ymm2, ymm3/m256 and store in ymm1.|
+|EVEX.NDS.128.66.0F.WIG FC /r\newline{}VPADDB xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Add packed byte integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.|
+|EVEX.NDS.128.66.0F.WIG FD /r\newline{}VPADDW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Add packed word integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.|
+|EVEX.NDS.128.66.0F.W0 FE /r\newline{}VPADDD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Add packed doubleword integers from xmm2, and xmm3/m128/m32bcst and store in xmm1 using writemask k1.|
+|EVEX.NDS.128.66.0F.W1 D4 /r\newline{}VPADDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst|FV|V/V|AVX512VLAVX512F|Add packed quadword integers from xmm2, and xmm3/m128/m64bcst and store in xmm1 using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG FC /r\newline{}VPADDB ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG FD /r\newline{}VPADDW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Add packed word integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.|
+|EVEX.NDS.256.66.0F.W0 FE /r\newline{}VPADDD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Add packed doubleword integers from ymm2, ymm3/m256/m32bcst and store in ymm1 using writemask k1.|
 
 
 |**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|
@@ -54,11 +54,10 @@ EVEX.NDS.512.66.0F.W0 FE /r Add packed doubleword integers from zmm2, VPADDD zmm
 
 EVEX.NDS.512.66.0F.W1 D4 /r Add packed quadword integers from zmm2, VPADDQ zmm1 {k1}{z}, zmm2,  zmm3/m512/m64bcst and store in zmm1 using zmm3/m512/m64bcst writemask k1.
 
-### NOTES:
 
-
-1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
-
+```note
+1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A
+```
 ### Instruction Operand Encoding
 
 
@@ -99,179 +98,179 @@ VEX.128 encoded version: The first source operand is an XMM register. The second
 ### Operation
 #### PADDB (with 64-bit operands)
 ```info-verb
- DEST[7:0] <- DEST[7:0] + SRC[7:0]; 
- (* Repeat add operation for 2nd through 7th byte *)
- DEST[63:56] <- DEST[63:56] + SRC[63:56];
+    DEST[7:0] <- DEST[7:0] + SRC[7:0]; 
+    (* Repeat add operation for 2nd through 7th byte *)
+    DEST[63:56] <- DEST[63:56] + SRC[63:56];
 ```
 #### PADDW (with 64-bit operands)
 ```info-verb
- DEST[15:0] <- DEST[15:0] + SRC[15:0];
- (* Repeat add operation for 2nd and 3th word *)
- DEST[63:48] <- DEST[63:48] + SRC[63:48];
+    DEST[15:0] <- DEST[15:0] + SRC[15:0];
+    (* Repeat add operation for 2nd and 3th word *)
+    DEST[63:48] <- DEST[63:48] + SRC[63:48];
 ```
 #### PADDD (with 64-bit operands)
 ```info-verb
- DEST[31:0] <- DEST[31:0] + SRC[31:0];
- DEST[63:32] <- DEST[63:32] + SRC[63:32];
+    DEST[31:0] <- DEST[31:0] + SRC[31:0];
+    DEST[63:32] <- DEST[63:32] + SRC[63:32];
 ```
 #### PADDQ (with 64-Bit operands)
 ```info-verb
- DEST[63:0] <- DEST[63:0] + SRC[63:0];
+    DEST[63:0] <- DEST[63:0] + SRC[63:0];
 ```
 #### PADDB (Legacy SSE instruction)
 ```info-verb
- DEST[7:0]<- DEST[7:0] + SRC[7:0]; 
- (* Repeat add operation for 2nd through 15th byte *)
- DEST[127:120]<- DEST[127:120] + SRC[127:120];
- DEST[MAX_VL-1:128] (Unmodified)
+    DEST[7:0]<- DEST[7:0] + SRC[7:0]; 
+    (* Repeat add operation for 2nd through 15th byte *)
+    DEST[127:120]<- DEST[127:120] + SRC[127:120];
+    DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PADDW (Legacy SSE instruction)
 ```info-verb
- DEST[15:0] <- DEST[15:0] + SRC[15:0];
- (* Repeat add operation for 2nd through 7th word *)
- DEST[127:112]<- DEST[127:112] + SRC[127:112];
- DEST[MAX_VL-1:128] (Unmodified)
+    DEST[15:0] <- DEST[15:0] + SRC[15:0];
+    (* Repeat add operation for 2nd through 7th word *)
+    DEST[127:112]<- DEST[127:112] + SRC[127:112];
+    DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PADDD (Legacy SSE instruction)
 ```info-verb
- DEST[31:0]<- DEST[31:0]  + SRC[31:0];
- (* Repeat add operation for 2nd and 3th doubleword *)
- DEST[127:96]<- DEST[127:96] + SRC[127:96];
+    DEST[31:0]<- DEST[31:0]  + SRC[31:0];
+    (* Repeat add operation for 2nd and 3th doubleword *)
+    DEST[127:96]<- DEST[127:96] + SRC[127:96];
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PADDQ (Legacy SSE instruction)
 ```info-verb
- DEST[63:0]<- DEST[63:0]  + SRC[63:0];
- DEST[127:64]<- DEST[127:64] + SRC[127:64];
- DEST[MAX_VL-1:128] (Unmodified)
+    DEST[63:0]<- DEST[63:0]  + SRC[63:0];
+    DEST[127:64]<- DEST[127:64] + SRC[127:64];
+    DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPADDB (VEX.128 encoded instruction)
 ```info-verb
- DEST[7:0]<- SRC1[7:0] + SRC2[7:0]; 
- (* Repeat add operation for 2nd through 15th byte *)
- DEST[127:120]<- SRC1[127:120] + SRC2[127:120];
- DEST[MAX_VL-1:128] <- 0;
+    DEST[7:0]<- SRC1[7:0] + SRC2[7:0]; 
+    (* Repeat add operation for 2nd through 15th byte *)
+    DEST[127:120]<- SRC1[127:120] + SRC2[127:120];
+    DEST[MAX_VL-1:128] <- 0;
 ```
 #### VPADDW (VEX.128 encoded instruction)
 ```info-verb
- DEST[15:0] <- SRC1[15:0] + SRC2[15:0];
- (* Repeat add operation for 2nd through 7th word *)
- DEST[127:112]<- SRC1[127:112] + SRC2[127:112];
- DEST[MAX_VL-1:128] <- 0;
+    DEST[15:0] <- SRC1[15:0] + SRC2[15:0];
+    (* Repeat add operation for 2nd through 7th word *)
+    DEST[127:112]<- SRC1[127:112] + SRC2[127:112];
+    DEST[MAX_VL-1:128] <- 0;
 ```
 #### VPADDD (VEX.128 encoded instruction)
 ```info-verb
- DEST[31:0]<- SRC1[31:0]  + SRC2[31:0];
- (* Repeat add operation for 2nd and 3th doubleword *)
- DEST[127:96] <- SRC1[127:96] + SRC2[127:96];
- DEST[MAX_VL-1:128] <- 0;
+    DEST[31:0]<- SRC1[31:0]  + SRC2[31:0];
+    (* Repeat add operation for 2nd and 3th doubleword *)
+    DEST[127:96] <- SRC1[127:96] + SRC2[127:96];
+    DEST[MAX_VL-1:128] <- 0;
 ```
 #### VPADDQ (VEX.128 encoded instruction)
 ```info-verb
- DEST[63:0]<- SRC1[63:0]  + SRC2[63:0];
- DEST[127:64] <- SRC1[127:64] + SRC2[127:64];
- DEST[MAX_VL-1:128] <- 0;
+    DEST[63:0]<- SRC1[63:0]  + SRC2[63:0];
+    DEST[127:64] <- SRC1[127:64] + SRC2[127:64];
+    DEST[MAX_VL-1:128] <- 0;
 ```
 #### VPADDB (VEX.256 encoded instruction)
 ```info-verb
- DEST[7:0]<- SRC1[7:0] + SRC2[7:0]; 
- (* Repeat add operation for 2nd through 31th byte *)
- DEST[255:248]<- SRC1[255:248] + SRC2[255:248];
+    DEST[7:0]<- SRC1[7:0] + SRC2[7:0]; 
+    (* Repeat add operation for 2nd through 31th byte *)
+    DEST[255:248]<- SRC1[255:248] + SRC2[255:248];
 ```
 #### VPADDW (VEX.256 encoded instruction)
 ```info-verb
- DEST[15:0] <- SRC1[15:0] + SRC2[15:0];
- (* Repeat add operation for 2nd through 15th word *)
- DEST[255:240]<- SRC1[255:240] + SRC2[255:240];
+    DEST[15:0] <- SRC1[15:0] + SRC2[15:0];
+    (* Repeat add operation for 2nd through 15th word *)
+    DEST[255:240]<- SRC1[255:240] + SRC2[255:240];
 ```
 #### VPADDD (VEX.256 encoded instruction)
 ```info-verb
- DEST[31:0]<- SRC1[31:0]  + SRC2[31:0];
- (* Repeat add operation for 2nd and 7th doubleword *)
- DEST[255:224] <- SRC1[255:224] + SRC2[255:224];
+    DEST[31:0]<- SRC1[31:0]  + SRC2[31:0];
+    (* Repeat add operation for 2nd and 7th doubleword *)
+    DEST[255:224] <- SRC1[255:224] + SRC2[255:224];
 ```
 #### VPADDQ (VEX.256 encoded instruction)
 ```info-verb
- DEST[63:0]<- SRC1[63:0]  + SRC2[63:0];
- DEST[127:64] <- SRC1[127:64] + SRC2[127:64];
- DEST[191:128]<- SRC1[191:128]  + SRC2[191:128];
- DEST[255:192] <- SRC1[255:192] + SRC2[255:192];
+    DEST[63:0]<- SRC1[63:0]  + SRC2[63:0];
+    DEST[127:64] <- SRC1[127:64] + SRC2[127:64];
+    DEST[191:128]<- SRC1[191:128]  + SRC2[191:128];
+    DEST[255:192] <- SRC1[255:192] + SRC2[255:192];
 ```
 #### VPADDB (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
-FOR j <-  0 TO KL-1
- i <-  j * 8
- IF k1[j] OR *no writemask*
-   THEN DEST[i+7:i] <-  SRC1[i+7:i] + SRC2[i+7:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+7:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+7:i] = 0
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i <-   j * 8
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+7:i] <-   SRC1[i+7:i] + SRC2[i+7:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+7:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+7:i] = 0
+                FI
+    FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VPADDW (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j <-  0 TO KL-1
- i <-  j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+15:i]  <- SRC1[i+15:i] + SRC2[i+15:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+15:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+15:i] = 0
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i <-   j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+15:i]  <-  SRC1[i+15:i] + SRC2[i+15:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+15:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+15:i] = 0
+                FI
+    FI;
 ENDFOR;
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VPADDD (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- IF k1[j] OR *no writemask*
-   THEN 
-    IF (EVEX.b = 1) AND (SRC2 *is memory*)
-      THEN DEST[i+31:i]  <- SRC1[i+31:i] + SRC2[31:0]
-      ELSE DEST[i+31:i]  <- SRC1[i+31:i] + SRC2[i+31:i]
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN 
+                IF (EVEX.b = 1) AND (SRC2 *is memory*)
+                      THEN DEST[i+31:i]  <-  SRC1[i+31:i] + SRC2[31:0]
+                      ELSE DEST[i+31:i]  <-  SRC1[i+31:i] + SRC2[i+31:i]
+                FI;
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+31:i] <-   0
+                FI
     FI;
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+31:i] <-  0
-    FI
- FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VPADDQ (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
-i  <- j * 64
- IF k1[j] OR *no writemask*
-   THEN 
-    IF (EVEX.b = 1) AND (SRC2 *is memory*)
-      THEN DEST[i+63:i] <-  SRC1[i+63:i] + SRC2[63:0]
-      ELSE DEST[i+63:i] <-  SRC1[i+63:i] + SRC2[i+63:i]
+FOR j  <-  0 TO KL-1
+i  <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN 
+                IF (EVEX.b = 1) AND (SRC2 *is memory*)
+                      THEN DEST[i+63:i] <-   SRC1[i+63:i] + SRC2[63:0]
+                      ELSE DEST[i+63:i] <-   SRC1[i+63:i] + SRC2[i+63:i]
+                FI;
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+63:i] <-   0
+                FI
     FI;
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+63:i] <-  0
-    FI
- FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalents

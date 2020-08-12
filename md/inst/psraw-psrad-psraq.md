@@ -10,25 +10,25 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F E1 /r\footnote{1}\newline{}PSRAW mm, mm/m64|RM|V/V|MMX|Shift words in mm right by mm/m64 while shifting in sign bits.|
-|66 0F E1 /r\newline{}PSRAW xmm1, xmm2/m128|RM|V/V|SSE2|Shift words in xmm1 right by xmm2/m128 while shifting in sign bits.|
-|0F 71 /4 ib\footnote{1}\newline{}PSRAW mm, imm8|MI|V/V|MMX|Shift words in mm right by imm8 while shifting in sign bits|
-|66 0F 71 /4 ib\newline{}PSRAW xmm1, imm8|MI|V/V|SSE2|Shift words in xmm1 right by imm8 while shifting in sign bits|
-|0F E2 /r\footnote{1}\newline{}PSRAD mm, mm/m64|RM|V/V|MMX|Shift doublewords in mm right by mm/m64 while shifting in sign bits.|
-|66 0F E2 /r\newline{}PSRAD xmm1, xmm2/m128|RM|V/V|SSE2|Shift doubleword in xmm1 right by xmm2 /m128 while shifting in sign bits.|
-|0F 72 /4 ib\footnote{1}\newline{}PSRAD mm, imm8|MI|V/V|MMX|Shift doublewords in mm right by imm8 while shifting in sign bits.|
-|66 0F 72 /4 ib\newline{}PSRAD xmm1, imm8|MI|V/V|SSE2|Shift doublewords in xmm1 right by imm8 while shifting in sign bits.|
-|VEX.NDS.128.66.0F.WIG E1 /r\newline{}VPSRAW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
-|VEX.NDD.128.66.0F.WIG 71 /4 ib\newline{}VPSRAW xmm1, xmm2, imm8|VMI|V/V|AVX|Shift words in xmm2 right by imm8 while shifting in sign bits.|
-|VEX.NDS.128.66.0F.WIG E2 /r\newline{}VPSRAD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
-|VEX.NDD.128.66.0F.WIG 72 /4 ib\newline{}VPSRAD xmm1, xmm2, imm8|VMI|V/V|AVX|Shift doublewords in xmm2 right by imm8 while shifting in sign bits.|
-|VEX.NDS.256.66.0F.WIG E1 /r\newline{}VPSRAW ymm1, ymm2, xmm3/m128|RVM|V/V|AVX2|Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
-|VEX.NDD.256.66.0F.WIG 71 /4 ib\newline{}VPSRAW ymm1, ymm2, imm8|VMI|V/V|AVX2|Shift words in ymm2 right by imm8 while shifting in sign bits.|
-|VEX.NDS.256.66.0F.WIG E2 /r\newline{}VPSRAD ymm1, ymm2, xmm3/m128|RVM|V/V|AVX2|Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
-|VEX.NDD.256.66.0F.WIG 72 /4 ib\newline{}VPSRAD ymm1, ymm2, imm8|VMI|V/V|AVX2|Shift doublewords in ymm2 right by imm8 while shifting in sign bits.|
-|EVEX.NDS.128.66.0F.WIG E1 /rVPSRAW xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VLAVX512BW|Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG E1 /rVPSRAW ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VLAVX512BW|Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
-|EVEX.NDS.512.66.0F.WIG E1 /rVPSRAW zmm1 {k1}{z}, zmm2, xmm3/m128|M128|V/V|AVX512BW|Shift words in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|0F E1 /r\footnote{1}\newline{}\newline{}PSRAW mm, mm/m64|RM|V/V|MMX|Shift words in mm right by mm/m64 while shifting in sign bits.|
+|66 0F E1 /r\newline{}\newline{}PSRAW xmm1, xmm2/m128|RM|V/V|SSE2|Shift words in xmm1 right by xmm2/m128 while shifting in sign bits.|
+|0F 71 /4 ib\footnote{1}\newline{}\newline{}PSRAW mm, imm8|MI|V/V|MMX|Shift words in mm right by imm8 while shifting in sign bits|
+|66 0F 71 /4 ib\newline{}\newline{}PSRAW xmm1, imm8|MI|V/V|SSE2|Shift words in xmm1 right by imm8 while shifting in sign bits|
+|0F E2 /r\footnote{1}\newline{}\newline{}PSRAD mm, mm/m64|RM|V/V|MMX|Shift doublewords in mm right by mm/m64 while shifting in sign bits.|
+|66 0F E2 /r\newline{}\newline{}PSRAD xmm1, xmm2/m128|RM|V/V|SSE2|Shift doubleword in xmm1 right by xmm2 /m128 while shifting in sign bits.|
+|0F 72 /4 ib\footnote{1}\newline{}\newline{}PSRAD mm, imm8|MI|V/V|MMX|Shift doublewords in mm right by imm8 while shifting in sign bits.|
+|66 0F 72 /4 ib\newline{}\newline{}PSRAD xmm1, imm8|MI|V/V|SSE2|Shift doublewords in xmm1 right by imm8 while shifting in sign bits.|
+|VEX.NDS.128.66.0F.WIG E1 /r\newline{}\newline{}VPSRAW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
+|VEX.NDD.128.66.0F.WIG 71 /4 ib\newline{}\newline{}VPSRAW xmm1, xmm2, imm8|VMI|V/V|AVX|Shift words in xmm2 right by imm8 while shifting in sign bits.|
+|VEX.NDS.128.66.0F.WIG E2 /r\newline{}\newline{}VPSRAD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
+|VEX.NDD.128.66.0F.WIG 72 /4 ib\newline{}\newline{}VPSRAD xmm1, xmm2, imm8|VMI|V/V|AVX|Shift doublewords in xmm2 right by imm8 while shifting in sign bits.|
+|VEX.NDS.256.66.0F.WIG E1 /r\newline{}\newline{}VPSRAW ymm1, ymm2, xmm3/m128|RVM|V/V|AVX2|Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
+|VEX.NDD.256.66.0F.WIG 71 /4 ib\newline{}\newline{}VPSRAW ymm1, ymm2, imm8|VMI|V/V|AVX2|Shift words in ymm2 right by imm8 while shifting in sign bits.|
+|VEX.NDS.256.66.0F.WIG E2 /r\newline{}\newline{}VPSRAD ymm1, ymm2, xmm3/m128|RVM|V/V|AVX2|Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
+|VEX.NDD.256.66.0F.WIG 72 /4 ib\newline{}\newline{}VPSRAD ymm1, ymm2, imm8|VMI|V/V|AVX2|Shift doublewords in ymm2 right by imm8 while shifting in sign bits.|
+|EVEX.NDS.128.66.0F.WIG E1 /r\newline{}VPSRAW xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VLAVX512BW|Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG E1 /r\newline{}VPSRAW ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VLAVX512BW|Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|EVEX.NDS.512.66.0F.WIG E1 /r\newline{}VPSRAW zmm1 {k1}{z}, zmm2, xmm3/m128|M128|V/V|AVX512BW|Shift words in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
 
 
 |EVEX.NDD.128.66.0F.WIG 71 /4 ib\newline{}VPSRAW xmm1 {k1}{z}, xmm2/m128, imm8|FVMI|V/V|AVX512VL\newline{}AVX512BW|Shift words in xmm2/m128 right by imm8 while \newline{}shifting in sign bits using writemask k1.|
@@ -47,11 +47,10 @@ path : /X86-64 명령어 레퍼런스
 |EVEX.NDD.128.66.0F.W1 72 /4 ibVPSRAQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift quadwords in xmm2/m128/m64bcst right by imm8 while shifting in sign bits using writemask k1.|
 |EVEX.NDD.256.66.0F.W1 72 /4 ibVPSRAQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift quadwords in ymm2/m256/m64bcst right by imm8 while shifting in sign bits using writemask k1.|
 |EVEX.NDD.512.66.0F.W1 72 /4 ibVPSRAQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8|FVI|V/V|AVX512F|Shift quadwords in zmm2/m512/m64bcst right by imm8 while shifting in sign bits using writemask k1.|
-### NOTES:
 
-
-1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
-
+```note
+1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A
+```
 ### Instruction Operand Encoding
 
 
@@ -67,7 +66,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Shifts the bits in the individual data elements (words, doublewords or quadwords) in the destination operand (first operand) to the right by the number of bits specified in the count operand (second operand). As the bits in the data elements are shifted right, the empty high-order bits are filled with the initial value of the sign bit of the data element. If the value specified by the count operand is greater than 15 (for words), 31 (for doublewords), or 63 (for quadwords), each destination data element is filled with the initial value of the sign bit of the element. (Figure4-18 gives an example of shifting words in a 64-bit operand.)
+Shifts the bits in the individual data elements (words, doublewords or quadwords) in the destination operand (first operand) to the right by the number of bits specified in the count operand (second operand). As the bits in the data elements are shifted right, the empty high-order bits are filled with the initial value of the sign bit of the data element. If the value specified by the count operand is greater than 15 (for words), 31 (for doublewords), or 63 (for quadwords), each destination data element is filled with the initial value of the sign bit of the element. (Figure 4-18 gives an example of shifting words in a 64-bit operand.)
 
 Note that only the first 64-bits of a 128-bit count operand are checked to compute the count. If the second source operand is a memory address, 128 bits are loaded.
 
@@ -267,7 +266,7 @@ VEX.256 encoded version: The destination operand is a YMM register. The source o
 <text x="56.410416" y="65.680084" textLength="2.610000" font-size="8px">t</text>
 <text x="55.818222" y="50.619995" textLength="2.582160" font-size="8px">f</text>
 </svg>
-<figcaption>Figure 4-18.  `PSRAW` and `PSRAD` Instruction Operation Using a 64-bit Operand
+<figcaption>Figure 4-18.  PSRAW and PSRAD Instruction Operation Using a 64-bit Operand
 </figcaption></figure>
 ```
 
@@ -282,275 +281,275 @@ Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /4, EVEX.128.66.0F
 ### Operation
 #### PSRAW (with 64-bit operand)
 ```info-verb
- IF (COUNT > 15)
-   THEN COUNT <- 16;
- FI;
- DEST[15:0] <- SignExtend(DEST[15:0] >> COUNT);
- (* Repeat shift operation for 2nd and 3rd words *)
- DEST[63:48] <- SignExtend(DEST[63:48] >> COUNT);
+    IF (COUNT > 15)
+          THEN COUNT <- 16;
+    FI;
+    DEST[15:0] <- SignExtend(DEST[15:0] >> COUNT);
+    (* Repeat shift operation for 2nd and 3rd words *)
+    DEST[63:48] <- SignExtend(DEST[63:48] >> COUNT);
 ```
 #### PSRAD (with 64-bit operand)
 ```info-verb
- IF (COUNT > 31)
-   THEN COUNT <- 32;
- FI;
- DEST[31:0] <- SignExtend(DEST[31:0] >> COUNT);
- DEST[63:32] <- SignExtend(DEST[63:32] >> COUNT);
+    IF (COUNT > 31)
+          THEN COUNT <- 32;
+    FI;
+    DEST[31:0] <- SignExtend(DEST[31:0] >> COUNT);
+    DEST[63:32] <- SignExtend(DEST[63:32] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC, COUNT_SRC)
-COUNT  <- COUNT_SRC[63:0];
+COUNT  <-  COUNT_SRC[63:0];
 IF (COUNT > 31)
 THEN
- DEST[31:0] <-  SignBit
+    DEST[31:0] <-   SignBit
 ELSE
- DEST[31:0]  <- SignExtend(SRC[31:0] >> COUNT);
+    DEST[31:0]  <-  SignExtend(SRC[31:0] >> COUNT);
 FI;
 ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC, COUNT_SRC)
-COUNT <-  COUNT_SRC[63:0];
+COUNT <-   COUNT_SRC[63:0];
 IF (COUNT > 63)
 THEN
- DEST[63:0] <-  SignBit
+    DEST[63:0] <-   SignBit
 ELSE
- DEST[63:0]  <- SignExtend(SRC[63:0] >> COUNT);
+    DEST[63:0]  <-  SignExtend(SRC[63:0] >> COUNT);
 FI;
 ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC, COUNT_SRC)
-COUNT  <- COUNT_SRC[63:0];
+COUNT  <-  COUNT_SRC[63:0];
 IF (COUNT > 15)
- THEN COUNT  <- 16;
+    THEN COUNT  <-  16;
 FI;
-DEST[15:0]  <- SignExtend(SRC[15:0] >> COUNT);
- (* Repeat shift operation for 2nd through 15th words *)
-DEST[255:240] <-  SignExtend(SRC[255:240] >> COUNT);
+DEST[15:0]  <-  SignExtend(SRC[15:0] >> COUNT);
+    (* Repeat shift operation for 2nd through 15th words *)
+DEST[255:240] <-   SignExtend(SRC[255:240] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC, COUNT_SRC)
-COUNT <-  COUNT_SRC[63:0];
+COUNT <-   COUNT_SRC[63:0];
 IF (COUNT > 31)
- THEN COUNT  <- 32;
+    THEN COUNT  <-  32;
 FI;
-DEST[31:0] <-  SignExtend(SRC[31:0] >> COUNT);
- (* Repeat shift operation for 2nd through 7th words *)
-DEST[255:224]  <- SignExtend(SRC[255:224] >> COUNT);
+DEST[31:0] <-   SignExtend(SRC[31:0] >> COUNT);
+    (* Repeat shift operation for 2nd through 7th words *)
+DEST[255:224]  <-  SignExtend(SRC[255:224] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_QWORDS(SRC, COUNT_SRC, VL)  ; VL: 128b, 256b or 512b
-COUNT  <- COUNT_SRC[63:0];
+COUNT  <-  COUNT_SRC[63:0];
 IF (COUNT > 63)
- THEN COUNT  <- 64;
+    THEN COUNT  <-  64;
 FI;
-DEST[63:0] <-  SignExtend(SRC[63:0] >> COUNT);
- (* Repeat shift operation for 2nd through 7th words *)
-DEST[VL-1:VL-64]  <- SignExtend(SRC[VL-1:VL-64] >> COUNT);
+DEST[63:0] <-   SignExtend(SRC[63:0] >> COUNT);
+    (* Repeat shift operation for 2nd through 7th words *)
+DEST[VL-1:VL-64]  <-  SignExtend(SRC[VL-1:VL-64] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_WORDS(SRC, COUNT_SRC)
-COUNT  <- COUNT_SRC[63:0];
+COUNT  <-  COUNT_SRC[63:0];
 IF (COUNT > 15)
- THEN COUNT <-  16;
+    THEN COUNT <-   16;
 FI;
-DEST[15:0]  <- SignExtend(SRC[15:0] >> COUNT);
- (* Repeat shift operation for 2nd through 7th words *)
-DEST[127:112] <-  SignExtend(SRC[127:112] >> COUNT);
+DEST[15:0]  <-  SignExtend(SRC[15:0] >> COUNT);
+    (* Repeat shift operation for 2nd through 7th words *)
+DEST[127:112] <-   SignExtend(SRC[127:112] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC, COUNT_SRC)
-COUNT  <- COUNT_SRC[63:0];
+COUNT  <-  COUNT_SRC[63:0];
 IF (COUNT > 31)
- THEN COUNT  <- 32;
+    THEN COUNT  <-  32;
 FI;
-DEST[31:0] <-  SignExtend(SRC[31:0] >> COUNT);
- (* Repeat shift operation for 2nd through 3rd words *)
-DEST[127:96]  <- SignExtend(SRC[127:96] >> COUNT);
+DEST[31:0] <-   SignExtend(SRC[31:0] >> COUNT);
+    (* Repeat shift operation for 2nd through 3rd words *)
+DEST[127:96]  <-  SignExtend(SRC[127:96] >> COUNT);
 ```
 #### VPSRAW (EVEX versions, xmm/m128)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 IF VL = 128
- TMP_DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_128b(SRC1[127:0], SRC2)
+    TMP_DEST[127:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_128b(SRC1[127:0], SRC2)
 FI;
 IF VL = 256
- TMP_DEST[255:0]  <- ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
 FI;
 IF VL = 512
- TMP_DEST[255:0]  <- ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
- TMP_DEST[511:256]  <- ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[511:256], SRC2)
+    TMP_DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[511:256]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[511:256], SRC2)
 FI;
-FOR j <-  0 TO KL-1
- i  <- j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+15:i]  <- TMP_DEST[i+15:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+15:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking 
-        DEST[i+15:i] = 0
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i  <-  j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+15:i]  <-  TMP_DEST[i+15:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+15:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking 
+                            DEST[i+15:i] = 0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VPSRAW (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 IF VL = 128
- TMP_DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_128b(SRC1[127:0], imm8)
+    TMP_DEST[127:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_128b(SRC1[127:0], imm8)
 FI;
 IF VL = 256
- TMP_DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
+    TMP_DEST[255:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
 FI;
 IF VL = 512
- TMP_DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
- TMP_DEST[511:256]  <- ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[511:256], imm8)
+    TMP_DEST[255:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
+    TMP_DEST[511:256]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[511:256], imm8)
 FI;
-FOR j  <- 0 TO KL-1
- i  <- j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+15:i]  <- TMP_DEST[i+15:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+15:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking 
-        DEST[i+15:i] = 0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+15:i]  <-  TMP_DEST[i+15:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+15:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking 
+                            DEST[i+15:i] = 0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VPSRAW (ymm, ymm, xmm/m128) - VEX
 ```info-verb
-DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256] <-  0
+DEST[255:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <-   0
 ```
 #### VPSRAW (ymm, imm8) - VEX
 ```info-verb
-DEST[255:0]  <- ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, imm8)
-DEST[MAX_VL-1:256]  <- 0
+DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, imm8)
+DEST[MAX_VL-1:256]  <-  0
 ```
 #### VPSRAW (xmm, xmm, xmm/m128) - VEX
 ```info-verb
-DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, SRC2)
-DEST[MAX_VL-1:128]  <- 0
+DEST[127:0]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, SRC2)
+DEST[MAX_VL-1:128]  <-  0
 ```
 #### VPSRAW (xmm, imm8) - VEX
 ```info-verb
-DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, imm8)
-DEST[MAX_VL-1:128]  <- 0
+DEST[127:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, imm8)
+DEST[MAX_VL-1:128]  <-  0
 ```
 #### PSRAW (xmm, xmm, xmm/m128)
 ```info-verb
-DEST[127:0]  <-ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, SRC)
+DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, SRC)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PSRAW (xmm, imm8)
 ```info-verb
-DEST[127:0]  <-ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, imm8)
+DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, imm8)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPSRAD (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- IF k1[j] OR *no writemask* THEN
-    IF (EVEX.b = 1) AND (SRC1 *is memory*)
-      THEN DEST[i+31:i]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC1[31:0], imm8)
-      ELSE DEST[i+31:i] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC1[i+31:i], imm8)
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    IF k1[j] OR *no writemask* THEN
+                IF (EVEX.b = 1) AND (SRC1 *is memory*)
+                      THEN DEST[i+31:i]  <-  ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC1[31:0], imm8)
+                      ELSE DEST[i+31:i] <-   ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC1[i+31:i], imm8)
+                FI;
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking 
+                            DEST[i+31:i]  <-  0
+                FI
     FI;
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking 
-        DEST[i+31:i]  <- 0
-    FI
- FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VPSRAD (EVEX versions, xmm/m128)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
 IF VL = 128
- TMP_DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_128b(SRC1[127:0], SRC2)
+    TMP_DEST[127:0] <-   ARITHMETIC_RIGHT_SHIFT_DWORDS_128b(SRC1[127:0], SRC2)
 FI;
 IF VL = 256
- TMP_DEST[255:0]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
 FI;
 IF VL = 512
- TMP_DEST[255:0]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
- TMP_DEST[511:256] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[511:256], SRC2)
+    TMP_DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[511:256] <-   ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[511:256], SRC2)
 FI;
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking 
-        DEST[i+31:i]  <- 0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i] <-   TMP_DEST[i+31:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking 
+                            DEST[i+31:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VPSRAD (ymm, ymm, xmm/m128) - VEX
 ```info-verb
-DEST[255:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256]  <- 0
+DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256]  <-  0
 ```
 #### VPSRAD (ymm, imm8) - VEX
 ```info-verb
-DEST[255:0]  <-ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
-DEST[MAX_VL-1:256]  <- 0
+DEST[255:0]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
+DEST[MAX_VL-1:256]  <-  0
 ```
 #### VPSRAD (xmm, xmm, xmm/m128) - VEX
 ```info-verb
-DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, SRC2)
-DEST[MAX_VL-1:128] <- 0
+DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, SRC2)
+DEST[MAX_VL-1:128] <-  0
 ```
 #### VPSRAD (xmm, imm8) - VEX
 ```info-verb
-DEST[127:0]  <-ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, imm8)
-DEST[MAX_VL-1:128] <- 0
+DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, imm8)
+DEST[MAX_VL-1:128] <-  0
 ```
 #### PSRAD (xmm, xmm, xmm/m128)
 ```info-verb
-DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, SRC)
+DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, SRC)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PSRAD (xmm, imm8)
 ```info-verb
-DEST[127:0]  <-ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, imm8)
+DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, imm8)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPSRAQ (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
- i <-  j * 64
- IF k1[j] OR *no writemask* THEN
-    IF (EVEX.b = 1) AND (SRC1 *is memory*)
-      THEN DEST[i+63:i] <-  ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC1[63:0], imm8)
-      ELSE DEST[i+63:i] <-  ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC1[i+63:i], imm8)
-    FI;
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking 
-        DEST[i+63:i]  <- 0
+FOR j  <-  0 TO KL-1
+    i <-   j * 64
+    IF k1[j] OR *no writemask* THEN
+                IF (EVEX.b = 1) AND (SRC1 *is memory*)
+                      THEN DEST[i+63:i] <-   ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC1[63:0], imm8)
+                      ELSE DEST[i+63:i] <-   ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC1[i+63:i], imm8)
+                FI;
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking 
+                            DEST[i+63:i]  <-  0
 FI
- FI;
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VPSRAQ (EVEX versions, xmm/m128)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-TMP_DEST[VL-1:0] <-  ARITHMETIC_RIGHT_SHIFT_QWORDS(SRC1[VL-1:0], SRC2, VL)
-FOR j  <- 0 TO 7
- i <-  j * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i]  <- TMP_DEST[i+63:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking 
-        DEST[i+63:i]  <- 0
-    FI
- FI;
+TMP_DEST[VL-1:0] <-   ARITHMETIC_RIGHT_SHIFT_QWORDS(SRC1[VL-1:0], SRC2, VL)
+FOR j  <-  0 TO 7
+    i <-   j * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i]  <-  TMP_DEST[i+63:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking 
+                            DEST[i+63:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalents
@@ -626,15 +625,15 @@ None.
 
 VEX-encoded instructions:
 
- Syntax with RM/RVM operand encoding, see Exceptions Type 4.
+     Syntax with RM/RVM operand encoding, see Exceptions Type 4.
 
- Syntax with MI/VMI operand encoding, see Exceptions Type 7.
+     Syntax with MI/VMI operand encoding, see Exceptions Type 7.
 
 EVEX-encoded VPSRAW, see Exceptions Type E4NF.nb.
 
 EVEX-encoded VPSRAD/Q:
 
- Syntax with M128 operand encoding, see Exceptions Type E4NF.nb.
+     Syntax with M128 operand encoding, see Exceptions Type E4NF.nb.
 
- Syntax with FVI operand encoding, see Exceptions Type E4.
+     Syntax with FVI operand encoding, see Exceptions Type E4.
 

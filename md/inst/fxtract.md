@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|-----------------------------|---------------------------------|---------------|
-|D9 F4\newline{}FXTRACT|Valid|Valid|Separate value in ST(0) into exponent and significand, store exponent in ST(0), and push the significand onto the register stack.|
+|D9 F4\newline{}\newline{}FXTRACT|Valid|Valid|Separate value in ST(0) into exponent and significand, store exponent in ST(0), and push the significand onto the register stack.|
 ### Description
 
 

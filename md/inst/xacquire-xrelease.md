@@ -13,11 +13,10 @@ path : /X86-64 명령어 레퍼런스
 |F2XACQUIRE|V/V|HLE\footnote{1}|**A hint used with an "XACQUIRE-eanbled" instruction to start lock ****elision on the instruction memory operand address.**|
 |**F3****XRELEASE**|**V/V**|**HLE**|**A hint used with an "XRELEAES-enabled" instruction to end lock ****elision on the instruction memory operand address.**|
 |||||
-### NOTES:
 
-
-**1. Software is not required to check the HLE feature flag to use XACQUIRE or XRELEASE, as they are treated as regular p rHeLfiEx if****feature flag reports 0.**
-
+```note
+**1. Software is not required to check the HLE feature flag to use XACQUIRE or XRELEASE, as they are treated as regular p rHeLfiEx if****feature flag reports 0.*
+```
 ### Description
 
 
@@ -72,81 +71,81 @@ For instructions that do not support the `XRELEASE` hint, the presence of the F3
 #### XACQUIRE
 ```info-verb
 IF XACQUIRE-enabled instruction
- THEN
-   IF (HLE_NEST_COUNT < MAX_HLE_NEST_COUNT) THEN
-    HLE_NEST_COUNT++
-    IF (HLE_NEST_COUNT = 1) THEN
-      HLE_ACTIVE <- 1
-      IF 64-bit mode
-        THEN 
-          restartRIP <- instruction pointer of the XACQUIRE-enabled instruction
-        ELSE
-          restartEIP <- instruction pointer of the XACQUIRE-enabled instruction
-      FI;
-      Enter HLE Execution (* record register state, start tracking memory state *)
-    FI; (* HLE_NEST_COUNT = 1*)
-    IF ElisionBufferAvailable 
-      THEN
-        Allocate elision buffer
-        Record address and data for forwarding and commit checking
-        Perform elision
-      ELSE 
-        Perform lock acquire operation transactionally but without elision
-    FI;
-   ELSE (* HLE_NEST_COUNT = MAX_HLE_NEST_COUNT *)
-      GOTO HLE_ABORT_PROCESSING
-   FI;
- ELSE
-   Treat instruction as non-XACQUIRE F2H prefixed legacy instruction
+    THEN
+          IF (HLE_NEST_COUNT < MAX_HLE_NEST_COUNT) THEN
+                HLE_NEST_COUNT++
+                IF (HLE_NEST_COUNT = 1) THEN
+                      HLE_ACTIVE <- 1
+                      IF 64-bit mode
+                            THEN 
+                                  restartRIP <- instruction pointer of the XACQUIRE-enabled instruction
+                            ELSE
+                                  restartEIP <- instruction pointer of the XACQUIRE-enabled instruction
+                      FI;
+                      Enter HLE Execution (* record register state, start tracking memory state *)
+                FI; (* HLE_NEST_COUNT = 1*)
+                IF ElisionBufferAvailable 
+                      THEN
+                            Allocate elision buffer
+                            Record address and data for forwarding and commit checking
+                            Perform elision
+                      ELSE 
+                            Perform lock acquire operation transactionally but without elision
+                FI;
+          ELSE (* HLE_NEST_COUNT = MAX_HLE_NEST_COUNT *)
+                      GOTO HLE_ABORT_PROCESSING
+          FI;
+    ELSE
+          Treat instruction as non-XACQUIRE F2H prefixed legacy instruction
 FI;
 ```
 #### XRELEASE
 ```info-verb
 IF XRELEASE-enabled instruction 
- THEN
-   IF (HLE_NEST_COUNT > 0) 
     THEN
-      HLE_NEST_COUNT--
-      IF lock address matches in elision buffer THEN
-        IF lock satisfies address and value requirements THEN
-          Deallocate elision buffer
-        ELSE
-          GOTO HLE_ABORT_PROCESSING
-        FI;
-      FI;
-      IF (HLE_NEST_COUNT = 0) 
-        THEN
-          IF NoAllocatedElisionBuffer 
-            THEN
-             Try to commit transactional execution
-             IF fail to commit transactional execution 
-               THEN
-                 GOTO HLE_ABORT_PROCESSING;
-               ELSE (* commit success *)
-                 HLE_ACTIVE <- 0
-             FI;
-            ELSE
-             GOTO HLE_ABORT_PROCESSING
-          FI;
-      FI;
-   FI; (* HLE_NEST_COUNT > 0 *)
- ELSE 
-   Treat instruction as non-XRELEASE F3H prefixed legacy instruction
+          IF (HLE_NEST_COUNT > 0) 
+                THEN
+                      HLE_NEST_COUNT--
+                      IF lock address matches in elision buffer THEN
+                            IF lock satisfies address and value requirements THEN
+                                  Deallocate elision buffer
+                            ELSE
+                                  GOTO HLE_ABORT_PROCESSING
+                            FI;
+                      FI;
+                      IF (HLE_NEST_COUNT = 0) 
+                            THEN
+                                  IF NoAllocatedElisionBuffer 
+                                        THEN
+                                              Try to commit transactional execution
+                                              IF fail to commit transactional execution 
+                                                    THEN
+                                                          GOTO HLE_ABORT_PROCESSING;
+                                                    ELSE (* commit success *)
+                                                          HLE_ACTIVE <- 0
+                                              FI;
+                                        ELSE
+                                              GOTO HLE_ABORT_PROCESSING
+                                  FI;
+                      FI;
+          FI; (* HLE_NEST_COUNT > 0 *)
+    ELSE 
+          Treat instruction as non-XRELEASE F3H prefixed legacy instruction
 FI;
 (* For any HLE abort condition encountered during HLE execution *)
 HLE_ABORT_PROCESSING:
   HLE_ACTIVE <- 0
- HLE_NEST_COUNT <- 0
- Restore architectural register state
- Discard memory updates performed in transaction
- Free any allocated lock elision buffers
- IF 64-bit mode
-   THEN 
-    RIP <- restartRIP
-   ELSE
-    EIP <- restartEIP
- FI;
- Execute and retire instruction at RIP (or EIP) and ignore any HLE hint
+    HLE_NEST_COUNT <- 0
+    Restore architectural register state
+    Discard memory updates performed in transaction
+    Free any allocated lock elision buffers
+    IF 64-bit mode
+          THEN 
+                RIP <- restartRIP
+          ELSE
+                EIP <- restartEIP
+    FI;
+    Execute and retire instruction at RIP (or EIP) and ignore any HLE hint
 END
 ```
 ### SIMD Floating-Point Exceptions

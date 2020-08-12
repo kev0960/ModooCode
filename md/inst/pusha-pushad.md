@@ -34,29 +34,29 @@ This instruction executes as described in compatibility mode and legacy mode. It
 
 ```info-verb
 IF 64-bit Mode 
- THEN #UD
+    THEN #UD
 FI;
 IF OperandSize = 32 (* PUSHAD instruction *)
- THEN
-   Temp <- (ESP);
-   Push(EAX);
-   Push(ECX);
-   Push(EDX);
-   Push(EBX);
-   Push(Temp);
-   Push(EBP);
-   Push(ESI);
-   Push(EDI);
- ELSE (* OperandSize = 16, PUSHA instruction *)
-   Temp <- (SP);
-   Push(AX);
-   Push(CX);
-   Push(DX);
+    THEN
+          Temp <- (ESP);
+          Push(EAX);
+          Push(ECX);
+          Push(EDX);
+          Push(EBX);
+          Push(Temp);
+          Push(EBP);
+          Push(ESI);
+          Push(EDI);
+    ELSE (* OperandSize = 16, PUSHA instruction *)
+          Temp <- (SP);
+          Push(AX);
+          Push(CX);
+          Push(DX);
 Push(BX);
-   Push(Temp);
-   Push(BP);
-   Push(SI);
-   Push(DI);
+          Push(Temp);
+          Push(BP);
+          Push(SI);
+          Push(DI);
 FI;
 ```
 ### Flags Affected

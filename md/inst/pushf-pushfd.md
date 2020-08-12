@@ -40,24 +40,24 @@ In the real-address mode, if the ESP or SP register is 1 when PUSHF/PUSHFD instr
 ```info-verb
 IF (PE = 0) or (PE = 1 and ((VM = 0) or (VM = 1 and IOPL = 3)))
 (* Real-Address Mode, Protected mode, or Virtual-8086 mode with IOPL equal to 3 *)
- THEN
-   IF OperandSize = 32
-    THEN 
-      push (EFLAGS AND 00FCFFFFH);
-      (* VM and RF EFLAG bits are cleared in image stored on the stack *)
-    ELSE 
-      push (EFLAGS); (* Lower 16 bits only *)
-   FI;
- ELSE IF 64-bit MODE (* In 64-bit Mode *)
-   IF OperandSize = 64
+    THEN
+          IF OperandSize = 32
+                THEN 
+                      push (EFLAGS AND 00FCFFFFH);
+                      (* VM and RF EFLAG bits are cleared in image stored on the stack *)
+                ELSE 
+                      push (EFLAGS); (* Lower 16 bits only *)
+          FI;
+    ELSE IF 64-bit MODE (* In 64-bit Mode *)
+          IF OperandSize = 64
 THEN 
-      push (RFLAGS AND 00000000_00FCFFFFH);
-      (* VM and RF RFLAG bits are cleared in image stored on the stack; *)
-    ELSE 
-      push (EFLAGS); (* Lower 16 bits only *)
-   FI;
- ELSE (* In Virtual-8086 Mode with IOPL less than 3 *)
-   #GP(0); (* Trap to virtual-8086 monitor *)
+                      push (RFLAGS AND 00000000_00FCFFFFH);
+                      (* VM and RF RFLAG bits are cleared in image stored on the stack; *)
+                ELSE 
+                      push (EFLAGS); (* Lower 16 bits only *)
+          FI;
+    ELSE (* In Virtual-8086 Mode with IOPL less than 3 *)
+          #GP(0); (* Trap to virtual-8086 monitor *)
 FI;
 ```
 ### Flags Affected

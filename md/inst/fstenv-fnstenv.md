@@ -12,11 +12,10 @@ path : /X86-64 명령어 레퍼런스
 |----------|---------------|-----------------------------|---------------------------------|---------------|
 |9B D9 /6|FSTENV m14/28byte|Valid|Valid|Store FPU environment to m14byte or m28byte after checking for pending unmasked floating-point exceptions. Then mask all floating-pointexceptions.|
 |D9 /6|FNSTENV\footnote{*}  m14/28byte|Valid|Valid|Store FPU environment to m14byte or m28byte without checking for pending unmasked floating-point exceptions. Then mask all floating-pointexceptions.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Description
 
 

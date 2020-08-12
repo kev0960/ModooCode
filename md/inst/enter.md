@@ -47,70 +47,70 @@ When the 66H prefix is used and causing the OperandSize attribute to be less tha
 AllocSize <- imm16;
 NestingLevel <- imm8 MOD 32;
 IF (OperandSize = 64)
- THEN 
-   Push(RBP); (* RSP decrements by 8 *)
-   FrameTemp <- RSP; 
- ELSE IF OperandSize = 32
-   THEN 
-    Push(EBP); (* (E)SP decrements by 4 *)
-    FrameTemp <- ESP; FI;
- ELSE (* OperandSize = 16 *)
-    Push(BP); (* RSP or (E)SP decrements by 2 *)
-    FrameTemp <- SP; 
+    THEN 
+          Push(RBP); (* RSP decrements by 8 *)
+          FrameTemp <- RSP; 
+    ELSE IF OperandSize = 32
+          THEN 
+                Push(EBP); (* (E)SP decrements by 4 *)
+                FrameTemp <- ESP; FI;
+    ELSE (* OperandSize = 16 *)
+                Push(BP); (* RSP or (E)SP decrements by 2 *)
+                FrameTemp <- SP; 
 FI;
 IF NestingLevel = 0
- THEN GOTO CONTINUE;
+    THEN GOTO CONTINUE;
 FI;
 IF (NestingLevel > 1) 
- THEN FOR i <- 1 to (NestingLevel - 1)
-   DO 
-    IF (OperandSize = 64)
-      THEN
-        RBP <- RBP - 8;
-        Push([RBP]); (* Quadword push *)
-      ELSE IF OperandSize = 32
-        THEN
-          IF StackSize = 32
-            EBP <- EBP - 4;
-            Push([EBP]); (* Doubleword push *)
-          ELSE (* StackSize = 16 *)
-            BP <- BP - 4;
-            Push([BP]); (* Doubleword push *)
-          FI;
-        FI;
-      ELSE (* OperandSize = 16 *)
-        IF StackSize = 32
-          THEN
-            EBP <- EBP - 2;
-            Push([EBP]); (* Word push *)
-          ELSE (* StackSize = 16 *)
-            BP <- BP - 2;
-            Push([BP]); (* Word push *)
-        FI;
-      FI;
- OD;
+    THEN FOR i <- 1 to (NestingLevel - 1)
+          DO 
+                IF (OperandSize = 64)
+                      THEN
+                            RBP <- RBP - 8;
+                            Push([RBP]); (* Quadword push *)
+                      ELSE IF OperandSize = 32
+                            THEN
+                                  IF StackSize = 32
+                                        EBP <- EBP - 4;
+                                        Push([EBP]); (* Doubleword push *)
+                                  ELSE (* StackSize = 16 *)
+                                        BP <- BP - 4;
+                                        Push([BP]); (* Doubleword push *)
+                                  FI;
+                            FI;
+                      ELSE (* OperandSize = 16 *)
+                            IF StackSize = 32
+                                  THEN
+                                        EBP <- EBP - 2;
+                                        Push([EBP]); (* Word push *)
+                                  ELSE (* StackSize = 16 *)
+                                        BP <- BP - 2;
+                                        Push([BP]); (* Word push *)
+                            FI;
+                      FI;
+    OD;
 FI;
 IF (OperandSize = 64) (* nestinglevel 1 *)
- THEN
-   Push(FrameTemp); (* Quadword push and RSP decrements by 8 *)
- ELSE IF OperandSize = 32
+    THEN
+          Push(FrameTemp); (* Quadword push and RSP decrements by 8 *)
+    ELSE IF OperandSize = 32
 THEN 
-    Push(FrameTemp); FI; (* Doubleword push and (E)SP decrements by 4 *)
- ELSE (* OperandSize = 16 *)
-    Push(FrameTemp); (* Word push and RSP|ESP|SP decrements by 2 *)
+                Push(FrameTemp); FI; (* Doubleword push and (E)SP decrements by 4 *)
+    ELSE (* OperandSize = 16 *)
+                Push(FrameTemp); (* Word push and RSP|ESP|SP decrements by 2 *)
 FI;
 CONTINUE:
 IF 64-Bit Mode (StackSize = 64)
- THEN
-    RBP <- FrameTemp;
-    RSP <- RSP - AllocSize;
- ELSE IF OperandSize = 32 
-   THEN
-    EBP <- FrameTemp;
-    ESP <- ESP - AllocSize; FI;
- ELSE (* OperandSize = 16 *)
-    BP <- FrameTemp[15:1]; (* Bits 16 and above of applicable RBP/EBP are unmodified *)
-    SP <- SP - AllocSize;
+    THEN
+                RBP <- FrameTemp;
+                RSP <- RSP - AllocSize;
+    ELSE IF OperandSize = 32 
+          THEN
+                EBP <- FrameTemp;
+                ESP <- ESP - AllocSize; FI;
+    ELSE (* OperandSize = 16 *)
+                BP <- FrameTemp[15:1]; (* Bits 16 and above of applicable RBP/EBP are unmodified *)
+                SP <- SP - AllocSize;
 FI;
 END;
 ```

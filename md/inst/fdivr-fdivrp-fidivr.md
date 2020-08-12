@@ -40,28 +40,28 @@ The following table shows the results obtained when dividing various classes of 
 
 NaN
 
-                               NaN
+                                                                                                        NaN
 
-                               NaN
+                                                                                                        NaN
 
-                               NaN
+                                                                                                        NaN
 
-                               NaN
+                                                                                                        NaN
 
-                               NaN
+                                                                                                        NaN
 
-                               NaN
+                                                                                                        NaN
 
-                               NaN
+                                                                                                        NaN
 
-                               NaN
+                                                                                                        NaN
 
-                               NaN
+                                                                                                        NaN
 
 
 
-|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{}+ $$\infty$$|**DE**\newline{}- 0\newline{}+ $$\infty$$|**ST**\newline{}  + 0\newline{}  - $$\infty$$|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}\htmlonly{*}|
-|-----------------------------------------------|-------------------------|-----------------------------------------|---------------------------------------------|-------------------------|----------------------------------|
+|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{}+ $$\infty$$|**DE**\newline{}- 0\newline{}+ $$\infty$$|**ST**\newline{}       + 0\newline{}       - $$\infty$$|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{} \htmlonly{*}|
+|-----------------------------------------------|-------------------------|-----------------------------------------|-------------------------------------------------------|-------------------------|-----------------------------------|
 |**SRC** - F + 0|+ F|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|- F|- 0|
 |- I + 0|+ F|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|- F|- 0|
 |- 0 + 0|+ 0|\htmlonly{*}|\htmlonly{*}|- 0|- 0|
@@ -70,16 +70,16 @@ NaN
 |+ F - 0|- F|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|+ F|+ 0|
 |+ $$\infty$$ \htmlonly{*}|- $$\infty$$|- $$\infty$$|+ $$\infty$$|+ $$\infty$$|\htmlonly{*}|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-IMeans integer.
+ I Means integer.
 
-\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+ \htmlonly{*} Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
-\htmlonly{*}\htmlonly{*} Indicates floating-point zero-divide (#Z) exception.
+ \htmlonly{*}\htmlonly{*} Indicates floating-point zero-divide (#Z) exception.
 
 When the source operand is an integer 0, it is treated as a +0. This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -88,19 +88,19 @@ When the source operand is an integer 0, it is treated as a +0. This instruction
 
 ```info-verb
 IF DEST = 0
- THEN
-   #Z;
- ELSE
-   IF Instruction = FIDIVR
     THEN
-      DEST <- ConvertToDoubleExtendedPrecisionFP(SRC) / DEST;
-    ELSE (* Source operand is floating-point value *)
-      DEST <- SRC / DEST;
-   FI;
+          #Z;
+    ELSE
+          IF Instruction = FIDIVR
+                THEN
+                      DEST <- ConvertToDoubleExtendedPrecisionFP(SRC) / DEST;
+                ELSE (* Source operand is floating-point value *)
+                      DEST <- SRC / DEST;
+          FI;
 FI;
 IF Instruction = FDIVRP 
- THEN 
-   PopRegisterStack;
+    THEN 
+          PopRegisterStack;
 FI;
 ```
 ### FPU Flags Affected
@@ -108,7 +108,7 @@ FI;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 
@@ -119,7 +119,7 @@ C0, C2, C3  Undefined.
 
 #IA Operand is an SNaN value or unsupported format.
 
-         $$\pm$$$$\infty$$ / $$\pm$$$$\infty$$; $$\pm$$0 / $$\pm$$0
+                              $$\pm$$$$\infty$$ / $$\pm$$$$\infty$$; $$\pm$$0 / $$\pm$$0
 
 #D Source is a denormal value.
 

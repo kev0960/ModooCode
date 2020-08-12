@@ -10,10 +10,10 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|66 0F 1A /rBNDMOV bnd1, bnd2/m64|RM|NE/V|MPX|Move lower and upper bound from bnd2/m64 to bound register bnd1.|
-|66 0F 1A /rBNDMOV bnd1, bnd2/m128|RM|V/NE|MPX|Move lower and upper bound from bnd2/m128 to bound register bnd1.|
-|66 0F 1B /rBNDMOV bnd1/m64, bnd2|MR|NE/V|MPX|Move lower and upper bound from bnd2 to bnd1/m64.|
-|66 0F 1B /rBNDMOV bnd1/m128, bnd2|MR|V/NE|MPX|Move lower and upper bound from bnd2 to bound register bnd1/m128.|
+|66 0F 1A /r\newline{}BNDMOV bnd1, bnd2/m64|RM|NE/V|MPX|Move lower and upper bound from bnd2/m64 to bound register bnd1.|
+|66 0F 1A /r\newline{}BNDMOV bnd1, bnd2/m128|RM|V/NE|MPX|Move lower and upper bound from bnd2/m128 to bound register bnd1.|
+|66 0F 1B /r\newline{}BNDMOV bnd1/m64, bnd2|MR|NE/V|MPX|Move lower and upper bound from bnd2 to bnd1/m64.|
+|66 0F 1B /r\newline{}BNDMOV bnd1/m128, bnd2|MR|V/NE|MPX|Move lower and upper bound from bnd2 to bound register bnd1/m128.|
 ### Instruction Operand Encoding
 
 
@@ -24,7 +24,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-BNDMOV moves a pair of lower and upper bound values from the source operand (the second operand) to the destination (the first operand). Each operation is 128-bit move. The exceptions are same as the `MOV` instruction. The memory format for loading/store bounds in 64-bit mode is shown in Figure3-5.
+BNDMOV moves a pair of lower and upper bound values from the source operand (the second operand) to the destination (the first operand). Each operation is 128-bit move. The exceptions are same as the `MOV` instruction. The memory format for loading/store bounds in 64-bit mode is shown in Figure 3-5.
 
 This instruction does not change flags.
 
@@ -249,34 +249,34 @@ This instruction does not change flags.
 <text x="122.580414" y="42.579987" textLength="2.308456" font-size="8px">(</text>
 <text x="91.211761" y="126.820007" textLength="1.927179" font-size="8px"> </text>
 </svg>
-<figcaption>Figure 3-5.  Memory Layout of `BNDMOV` to/from Memory
+<figcaption>Figure 3-5.  Memory Layout of BNDMOV to/from Memory
 </figcaption></figure>
 ```
 
 ### Operation
 #### BNDMOV register to register
 ```info-verb
-DEST.LB <-  SRC.LB; 
-DEST.UB <-  SRC.UB; 
+DEST.LB <-   SRC.LB; 
+DEST.UB <-   SRC.UB; 
 ```
 #### BNDMOV from memory
 ```info-verb
 IF 64-bit mode THEN
-   DEST.LB <-  LOAD_QWORD(SRC); 
-   DEST.UB <-  LOAD_QWORD(SRC+8); 
- ELSE
-   DEST.LB <-  LOAD_DWORD_ZERO_EXT(SRC); 
-   DEST.UB  <- LOAD_DWORD_ZERO_EXT(SRC+4); 
+          DEST.LB <-   LOAD_QWORD(SRC); 
+          DEST.UB <-   LOAD_QWORD(SRC+8); 
+    ELSE
+          DEST.LB <-   LOAD_DWORD_ZERO_EXT(SRC); 
+          DEST.UB  <-  LOAD_DWORD_ZERO_EXT(SRC+4); 
 FI;
 ```
 #### BNDMOV to memory
 ```info-verb
 IF 64-bit mode THEN
-   DEST[63:0]  <- SRC.LB; 
-   DEST[127:64]  <- SRC.UB; 
- ELSE
-   DEST[31:0] <-  SRC.LB; 
-   DEST[63:32] <-  SRC.UB; 
+          DEST[63:0]  <-  SRC.LB; 
+          DEST[127:64]  <-  SRC.UB; 
+    ELSE
+          DEST[31:0] <-   SRC.LB; 
+          DEST[63:32] <-   SRC.UB; 
 FI;
 ```
 

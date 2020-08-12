@@ -21,7 +21,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Invalidates mappings in the translation lookaside buffers (TLBs) and paging-structure caches based on process-context identifier (PCID). (See Section 4.10, "Caching Translation Information," in Intel64 and IA-32 Architecture Software Developer's Manual, Volume 3A.) Invalidation is based on the `INVPCID` type specified in the register operand and the `INVPCID` descriptor specified in the memory operand.
+Invalidates mappings in the translation lookaside buffers (TLBs) and paging-structure caches based on process-context identifier (PCID). (See Section 4.10, "Caching Translation Information," in Intel 64 and IA-32 Architecture Software Developer's Manual, Volume 3A.) Invalidation is based on the `INVPCID` type specified in the register operand and the `INVPCID` descriptor specified in the memory operand.
 
 Outside 64-bit mode, the register operand is always 32 bits, regardless of the value of CS.D. In 64-bit mode the register operand has 64 bits.
 
@@ -108,16 +108,16 @@ The `INVPCID` descriptor comprises 128 bits and consists of a PCID and a linear 
 <text x="302.966431" y="50.500183" textLength="3.014949" font-size="8px">)</text>
 <text x="37.860001" y="35.199997" textLength="5.033968" font-size="8px">1</text>
 </svg>
-<figcaption>Figure 3-24.  `INVPCID` Descriptor
+<figcaption>Figure 3-24.  INVPCID Descriptor
 </figcaption></figure>
 ```
+```sidenote
 
 
-1.If the paging structures map the linear address using a page larger than 4 KBytes and there are multiple TLB entries for that page (see Section 4.10.2.3, "Details of TLB Use," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A), the instruction invalidates all of them.
+1. If the paging structures map the linear address using a page larger than 4 KBytes and there are multiple TLB entries for that page (see Section 4.10.2.3, "Details of TLB Use," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A), the instruction invalidates all of them.
+```
 
-
-
-If CR4.PCIDE= 0, a logical processor does not cache information for any PCID other than 000H. In this case, executions with `INVPCID` types 0 and 1 are allowed only if the PCID specified in the `INVPCID` descriptor is 000H; executions with `INVPCID` types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0 outside 64-bit mode (see Chapter 4.10.1, "Process-Context Identifiers (PCIDs)," of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 3A).
+If CR4.PCIDE = 0, a logical processor does not cache information for any PCID other than 000H. In this case, executions with INVPCID types 0 and 1 are allowed only if the PCID specified in the INVPCID descriptor is 000H; executions with INVPCID types 2 and 3 invalidate mappings only for PCID 000H. Note that CR4.PCIDE must be 0 outside 64-bit mode (see Chapter 4.10.1, "Process-Context Identifiers (PCIDs)," of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 3A).
 
 
 ### Operation
@@ -126,21 +126,21 @@ If CR4.PCIDE= 0, a logical processor does not cache information for any PCID oth
 INVPCID_TYPE <- value of register operand;  // must be in the range of 0-3
 INVPCID_DESC <- value of memory operand;
 CASE INVPCID_TYPE OF
- 0: // individual-address invalidation
-   PCID <- INVPCID_DESC[11:0];
-   L_ADDR <- INVPCID_DESC[127:64];
-   Invalidate mappings for L_ADDR associated with PCID except global translations;
-   BREAK;
- 1: // single PCID invalidation
-   PCID <- INVPCID_DESC[11:0];
-   Invalidate all mappings associated with PCID except global translations;
-   BREAK;
- 2: // all PCID invalidation including global translations
-   Invalidate all mappings for all PCIDs, including global translations;
-   BREAK;
- 3: // all PCID invalidation retaining global translations
-   Invalidate all mappings for all PCIDs except global translations;
-   BREAK;
+    0: // individual-address invalidation
+          PCID <- INVPCID_DESC[11:0];
+          L_ADDR <- INVPCID_DESC[127:64];
+          Invalidate mappings for L_ADDR associated with PCID except global translations;
+          BREAK;
+    1: // single PCID invalidation
+          PCID <- INVPCID_DESC[11:0];
+          Invalidate all mappings associated with PCID except global translations;
+          BREAK;
+    2: // all PCID invalidation including global translations
+          Invalidate all mappings for all PCIDs, including global translations;
+          BREAK;
+    3: // all PCID invalidation retaining global translations
+          Invalidate all mappings for all PCIDs except global translations;
+          BREAK;
 ESAC;
 ```
 

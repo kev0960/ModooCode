@@ -23,8 +23,8 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF TOP = 7
- THEN TOP <- 0;
- ELSE TOP <- TOP + 1;
+    THEN TOP <- 0;
+    ELSE TOP <- TOP + 1;
 FI;
 ```
 ### FPU Flags Affected

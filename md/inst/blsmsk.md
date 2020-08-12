@@ -33,9 +33,9 @@ temp <- (SRC-1) XOR (SRC) ;
 SF <- temp[OperandSize -1];
 ZF <- 0;
 IF SRC = 0
- CF <- 1;
+    CF <- 1;
 ELSE
- CF <- 0;
+    CF <- 0;
 FI
 DEST <- temp;
 ```

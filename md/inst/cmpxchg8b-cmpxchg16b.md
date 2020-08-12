@@ -10,13 +10,12 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F C7 /1 m64\newline{}CMPXCHG8B m64|M|Valid|Valid\htmlonly{*}|Compare EDX:EAX with m64. If equal, set ZF and load ECX:EBX into m64. Else, clear ZF and load m64 into EDX:EAX.|
-|REX.W + 0F C7 /1 m128\newline{}CMPXCHG16B m128|M|Valid|N.E.|Compare RDX:RAX with m128. If equal, set ZF and load RCX:RBX into m128. Else, clear ZF and load m128 into RDX:RAX.|
-### NOTES:
+|0F C7 /1 m64\newline{}\newline{}CMPXCHG8B m64|M|Valid|Valid\htmlonly{*}|Compare EDX:EAX with m64. If equal, set ZF and load ECX:EBX into m64. Else, clear ZF and load m64 into EDX:EAX.|
+|REX.W + 0F C7 /1 m128\newline{}\newline{}CMPXCHG16B m128|M|Valid|N.E.|Compare RDX:RAX with m128. If equal, set ZF and load RCX:RBX into m128. Else, clear ZF and load m128 into RDX:RAX.|
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*}See IA-32 Architecture Compatibility section below
+```
 ### Instruction Operand Encoding
 
 
@@ -42,30 +41,30 @@ This instruction encoding is not supported on Intel processors earlier than the 
 
 ```info-verb
 IF (64-Bit Mode and OperandSize = 64)
- THEN
-   TEMP128 <- DEST
-   IF (RDX:RAX = TEMP128)
     THEN
-      ZF <- 1;
-      DEST <- RCX:RBX;
+          TEMP128 <- DEST
+          IF (RDX:RAX = TEMP128)
+                THEN
+                      ZF <- 1;
+                      DEST <- RCX:RBX;
+                ELSE
+                      ZF <- 0;
+                      RDX:RAX <- TEMP128;
+                      DEST <- TEMP128;
+                      FI;
+          FI
     ELSE
-      ZF <- 0;
-      RDX:RAX <- TEMP128;
-      DEST <- TEMP128;
-      FI;
-   FI
- ELSE
-   TEMP64 <- DEST;
-   IF (EDX:EAX = TEMP64)
-    THEN
-      ZF <- 1;
-      DEST <- ECX:EBX;
-    ELSE
-      ZF <- 0;
-      EDX:EAX <- TEMP64;
-      DEST <- TEMP64;
-      FI;
-   FI;
+          TEMP64 <- DEST;
+          IF (EDX:EAX = TEMP64)
+                THEN
+                      ZF <- 1;
+                      DEST <- ECX:EBX;
+                ELSE
+                      ZF <- 0;
+                      EDX:EAX <- TEMP64;
+                      DEST <- TEMP64;
+                      FI;
+          FI;
 FI;
 ```
 ### Flags Affected

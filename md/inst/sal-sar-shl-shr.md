@@ -74,15 +74,14 @@ path : /X86-64 명령어 레퍼런스
 |REX.W + D3 /5|SHR r/m64, CL|MC|Valid|N.E.|Unsigned divide r/m64 by 2, CL times.|
 |C1 /5 ib|SHR r/m32, imm8|MI|Valid |Valid|Unsigned divide r/m32 by 2, imm8 times.|
 |REX.W + C1 /5 ib|SHR r/m64, imm8|MI|Valid |N.E.|Unsigned divide r/m64 by 2, imm8 times.|
-### NOTES:
 
-
-\htmlonly{*}Not the same form of division as IDIV; rounding is toward negative infinity.
+```note
+\htmlonly{*} Not the same form of division as IDIV; rounding is toward negative infinity.
 
 \htmlonly{*}\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
-\htmlonly{*}\htmlonly{*}\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+\htmlonly{*}\htmlonly{*}\htmlonly{*}See IA-32 Architecture Compatibility section below
+```
 ### Instruction Operand Encoding
 
 
@@ -122,54 +121,54 @@ The 8086 does not mask the shift count. However, all other IA-32 processors (sta
 
 ```info-verb
 IF 64-Bit Mode and using REX.W
- THEN
-   countMASK <- 3FH;
- ELSE
-   countMASK <- 1FH;
+    THEN
+          countMASK <- 3FH;
+    ELSE
+          countMASK <- 1FH;
 FI
 tempCOUNT <- (COUNT AND countMASK);
 tempDEST <- DEST;
 WHILE (tempCOUNT != 0)
 DO
- IF instruction is SAL or SHL
-   THEN 
-    CF <- MSB(DEST);
-   ELSE (* Instruction is SAR or SHR *)
-    CF <- LSB(DEST);
- FI;
- IF instruction is SAL or SHL
-   THEN 
-    DEST <- DEST `*` 2;
-   ELSE 
-    IF instruction is SAR
-THEN 
-        DEST <- DEST / 2; (* Signed divide, rounding toward negative infinity *)
-      ELSE (* Instruction is SHR *)
-        DEST <- DEST / 2 ; (* Unsigned divide *)
+    IF instruction is SAL or SHL
+          THEN 
+                CF <- MSB(DEST);
+          ELSE (* Instruction is SAR or SHR *)
+                CF <- LSB(DEST);
     FI;
- FI;
- tempCOUNT <- tempCOUNT - 1;
+    IF instruction is SAL or SHL
+          THEN 
+                DEST <- DEST `*` 2;
+          ELSE 
+                IF instruction is SAR
+THEN 
+                            DEST <- DEST / 2; (* Signed divide, rounding toward negative infinity *)
+                      ELSE (* Instruction is SHR *)
+                            DEST <- DEST / 2 ; (* Unsigned divide *)
+                FI;
+    FI;
+    tempCOUNT <- tempCOUNT - 1;
 OD;
 (* Determine overflow for the various instructions *)
 IF (COUNT and countMASK) = 1
- THEN
-   IF instruction is SAL or SHL
-    THEN 
-      OF <- MSB(DEST) XOR CF;
-    ELSE 
-      IF instruction is SAR
-        THEN 
-          OF <- 0;
-        ELSE (* Instruction is SHR *)
-          OF <- MSB(tempDEST);
-      FI;
-   FI;
- ELSE IF (COUNT AND countMASK) = 0
-   THEN
-    All flags unchanged;
-   ELSE (* COUNT not 1 or 0 *)
-    OF <- undefined;
- FI;
+    THEN
+          IF instruction is SAL or SHL
+                THEN 
+                      OF <- MSB(DEST) XOR CF;
+                ELSE 
+                      IF instruction is SAR
+                            THEN 
+                                  OF <- 0;
+                            ELSE (* Instruction is SHR *)
+                                  OF <- MSB(tempDEST);
+                      FI;
+          FI;
+    ELSE IF (COUNT AND countMASK) = 0
+          THEN
+                All flags unchanged;
+          ELSE (* COUNT not 1 or 0 *)
+                OF <- undefined;
+    FI;
 FI;
 ```
 ### Flags Affected

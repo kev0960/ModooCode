@@ -25,7 +25,7 @@ Adds the destination and source operands and stores the sum in the destination l
 
 The no-operand version of the instruction adds the contents of the ST(0) register to the ST(1) register. The one-operand version adds the contents of a memory location (either a floating-point or an integer value) to the contents of the ST(0) register. The two-operand version, adds the contents of the ST(0) register to the ST(i) register or vice versa. The value in ST(0) can be doubled by coding:
 
- `FADD` ST(0), ST(0);
+    `FADD` ST(0), ST(0);
 
 The `FADDP` instructions perform the additional operation of popping the FPU register stack after storing the result. To pop the register stack, the processor marks the ST(0) register as empty and increments the stack pointer (TOP) by 1. (The no-operand version of the floating-point add instructions always results in the register stack being popped. In some assemblers, the mnemonic for this instruction is `FADD` rather than `FADDP`.)
 
@@ -42,38 +42,38 @@ When both operand are infinities of the same sign, the result is $$\infty$$ of t
 
 NaN
 
-                             NaN
+                                                                                                 NaN
 
-                             NaN
+                                                                                                 NaN
 
-                             NaN
+                                                                                                 NaN
 
-                             NaN
+                                                                                                 NaN
 
-                             NaN
+                                                                                                 NaN
 
-                             NaN
+                                                                                                 NaN
 
-                             NaN
+                                                                                                 NaN
 
 
 
-|- $$\infty$$\newline{}- $$\infty$$ - $$\infty$$|- F\newline{}- $$\infty$$|**DE**\newline{}- 0\newline{}- $$\infty$$|**ST**\newline{}+ 0\newline{}- $$\infty$$|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}\htmlonly{*}|
-|-----------------------------------------------|-------------------------|-----------------------------------------|-----------------------------------------|-------------------------|----------------------------------|
+|- $$\infty$$\newline{}- $$\infty$$ - $$\infty$$|- F\newline{}- $$\infty$$|**DE**\newline{}- 0\newline{}- $$\infty$$|**ST**\newline{} + 0\newline{} - $$\infty$$|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}\htmlonly{*}|
+|-----------------------------------------------|-------------------------|-----------------------------------------|-------------------------------------------|-------------------------|----------------------------------|
 |- F or - I - $$\infty$$|- F|SRC|SRC|$$\pm$$ F or $$\pm$$ 0|+ $$\infty$$|
 |**SRC** -0 - $$\infty$$|DEST|- 0|$$\pm$$ 0|DEST|+ $$\infty$$|
 |+ 0 - $$\infty$$|DEST|$$\pm$$ 0|+ 0|DEST|+ $$\infty$$|
 |+ F or + I - $$\infty$$|$$\pm$$ F or $$\pm$$ 0|SRC|SRC|+ F|+ $$\infty$$|
 |+ $$\infty$$ \htmlonly{*}|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|
-### NOTES:
+###   NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-IMeans integer.
+  I Means integer.
 
-\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+  \htmlonly{*} Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -82,14 +82,14 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF Instruction = FIADD
- THEN
-   DEST <- DEST + ConvertToDoubleExtendedPrecisionFP(SRC);
- ELSE (* Source operand is floating-point value *)
-   DEST <- DEST + SRC;
+    THEN
+          DEST <- DEST + ConvertToDoubleExtendedPrecisionFP(SRC);
+    ELSE (* Source operand is floating-point value *)
+          DEST <- DEST + SRC;
 FI;
 IF Instruction = FADDP 
- THEN 
-   PopRegisterStack;
+    THEN 
+          PopRegisterStack;
 FI;
 ```
 ### FPU Flags Affected
@@ -97,7 +97,7 @@ FI;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 
@@ -108,7 +108,7 @@ C0, C2, C3  Undefined.
 
 #IA Operand is an SNaN value or unsupported format.
 
-         Operands are infinities of unlike sign.
+                              Operands are infinities of unlike sign.
 
 #D Source operand is a denormal value.
 

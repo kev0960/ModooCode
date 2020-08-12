@@ -34,16 +34,16 @@ The following table shows the results obtained when storing various classes of n
 |F >= +1|+ D|
 |+ $$\infty$$ or Value Too Large for DEST Format|\htmlonly{*}|
 |NaN|\htmlonly{*}|
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-DMeans packed-BCD number.
+ D Means packed-BCD number.
 
-\htmlonly{*}Indicates floating-point invalid-operation (#IA) exception.
+ \htmlonly{*} Indicates floating-point invalid-operation (#IA) exception.
 
-\htmlonly{*}\htmlonly{*}$$\pm$$0 or $$\pm$$1, depending on the rounding mode.
+ \htmlonly{*}\htmlonly{*}$$\pm$$0 or $$\pm$$1, depending on the rounding mode.
 
 If the converted value is too large for the destination format, or if the source operand is an $$\infty$$, SNaN, QNAN, or is in an unsupported format, an invalid-arithmetic-operand condition is signaled. If the invalid-operation exception is not masked, an invalid-arithmetic-operand exception (#IA) is generated and no value is stored in the destination operand. If the invalid-operation exception is masked, the packed BCD indefinite value is stored in memory.
 
@@ -61,7 +61,7 @@ PopRegisterStack;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 
@@ -72,7 +72,7 @@ C0, C2, C3  Undefined.
 
 #IA Converted value that exceeds 18 BCD digits in length.
 
-         Source operand is an SNaN, QNaN, $$\pm$$$$\infty$$, or in an unsupported format.
+                              Source operand is an SNaN, QNaN, $$\pm$$$$\infty$$, or in an unsupported format.
 
 #P Value cannot be represented exactly in destination format.
 

@@ -30,12 +30,12 @@ The following table shows the results obtained when taking the square root of va
 |+ F|+ F|
 |+ $$\infty$$|+ $$\infty$$|
 |NaN|NaN |
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+ \htmlonly{*} Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -50,7 +50,7 @@ ST(0) <- SquareRoot(ST(0));
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 
@@ -61,7 +61,7 @@ C0, C2, C3  Undefined.
 
 #IA Source operand is an SNaN value or unsupported format.
 
-         Source operand is a negative value (except for -0).
+                              Source operand is a negative value (except for -0).
 
 #D Source operand is a denormal value.
 

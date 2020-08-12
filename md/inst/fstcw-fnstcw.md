@@ -12,11 +12,10 @@ path : /X86-64 명령어 레퍼런스
 |----------|---------------|-----------------------------|---------------------------------|---------------|
 |9B D9 /7|FSTCW m2byte|Valid|Valid|Store FPU control word to m2byte after checking for pending unmasked floating-point exceptions.|
 |D9 /7|FNSTCW\footnote{*}  m2byte|Valid|Valid|Store FPU control word to m2byte without checking for pending unmasked floating-point exceptions.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Description
 
 

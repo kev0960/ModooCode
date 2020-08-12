@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.NDS.128.66.0F3A.W1 50 /r ibVRANGEPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512DQ|Calculate two RANGE operation output value from 2 pairs of double-precision floating-point values in xmm2 and xmm3/m128/m32bcst, store the results to xmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.|
-|EVEX.NDS.256.66.0F3A.W1 50 /r ibVRANGEPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512DQ|Calculate four RANGE operation output value from 4pairs of double-precision floating-point values in ymm2 and ymm3/m256/m32bcst, store the results to ymm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.|
-|EVEX.NDS.512.66.0F3A.W1 50 /r ibVRANGEPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8|FV|V/V|AVX512DQ|Calculate eight RANGE operation output value from 8 pairs of double-precision floating-point values in zmm2 and zmm3/m512/m32bcst, store the results to zmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.|
+|EVEX.NDS.128.66.0F3A.W1 50 /r ib\newline{}VRANGEPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512DQ|Calculate two RANGE operation output value from 2 pairs of double-precision floating-point values in xmm2 and xmm3/m128/m32bcst, store the results to xmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.|
+|EVEX.NDS.256.66.0F3A.W1 50 /r ib\newline{}VRANGEPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512DQ|Calculate four RANGE operation output value from 4pairs of double-precision floating-point values in ymm2 and ymm3/m256/m32bcst, store the results to ymm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.|
+|EVEX.NDS.512.66.0F3A.W1 50 /r ib\newline{}VRANGEPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst{sae}, imm8|FV|V/V|AVX512DQ|Calculate eight RANGE operation output value from 8 pairs of double-precision floating-point values in zmm2 and zmm3/m512/m32bcst, store the results to zmm1 under the writemask k1. Imm8 specifies the comparison and sign of the range operation.|
 ### Instruction Operand Encoding
 
 
@@ -30,7 +30,7 @@ Bits7:4 of imm8 byte must be zero. The range operation output is performed in tw
 
 *  Imm8[3:2] specifies the sign of the range operation output to be one of the following: from the first input value, from the comparison result, set or clear.
 
-The encodings of Imm8[1:0] and Imm8[3:2] are shown in Figure5-27.
+The encodings of Imm8[1:0] and Imm8[3:2] are shown in Figure 5-27.
 
 ```embed
 <figure>
@@ -452,31 +452,31 @@ Additionally, non-zero, equal-magnitude with opposite-sign input values perform 
 #### VRANGEPD (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 64
- IF k1[j] OR *no writemask* THEN
-    IF (EVEX.b == 1) AND (SRC2 *is memory*)
-      THEN DEST[i+63:i] <-  RangeDP (SRC1[i+63:i], SRC2[63:0], CmpOpCtl[1:0], SignSelCtl[1:0]);
-      ELSE DEST[i+63:i] <-  RangeDP (SRC1[i+63:i], SRC2[i+63:i], DAZ, CmpOpCtl[1:0], SignSelCtl[1:0]);
+FOR j  <-  0 TO KL-1
+    i  <-  j * 64
+    IF k1[j] OR *no writemask* THEN
+                IF (EVEX.b == 1) AND (SRC2 *is memory*)
+                      THEN DEST[i+63:i] <-   RangeDP (SRC1[i+63:i], SRC2[63:0], CmpOpCtl[1:0], SignSelCtl[1:0]);
+                      ELSE DEST[i+63:i] <-   RangeDP (SRC1[i+63:i], SRC2[i+63:i], DAZ, CmpOpCtl[1:0], SignSelCtl[1:0]);
+                FI;
+    ELSE 
+          IF *merging-masking* ; merging-masking
+                THEN *DEST[i+63:i] remains unchanged*
+                ELSE  ; zeroing-masking
+                      DEST[i+63:i] = 0
+          FI;
     FI;
- ELSE 
-   IF *merging-masking* ; merging-masking
-    THEN *DEST[i+63:i] remains unchanged*
-    ELSE  ; zeroing-masking
-      DEST[i+63:i] = 0
-   FI;
- FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 The following example describes a common usage of this instruction for checking that the input operand isbounded between $$\pm$$1023.
 VRANGEPD zmm_dst, zmm_src, zmm_1023, 02h;
 Where:
-   zmm_dst is the destination operand.
-   zmm_src is the input operand to compare against $$\pm$$1023 (this is SRC1).
-   zmm_1023 is the reference operand, contains the value of 1023 (and this is SRC2).
-   IMM=02(imm8[1:0]='10) selects the Min Absolute value operation with selection of SRC1.sign.
+            zmm_dst is the destination operand.
+            zmm_src is the input operand to compare against $$\pm$$1023 (this is SRC1).
+            zmm_1023 is the reference operand, contains the value of 1023 (and this is SRC2).
+            IMM=02(imm8[1:0]='10) selects the Min Absolute value operation with selection of SRC1.sign.
 In case |zmm_src| < 1023 (i.e. SRC1 is smaller than 1023 in magnitude), then its value will be written intozmm_dst. Otherwise, the value stored in zmm_dst will get the value of 1023 (received on zmm_1023, which isSRC2).
-However, the sign control (imm8[3:2]='00) instructs to select the sign of SRC1 received from zmm_src. So, evenin the case of |zmm_src|  *  1023, the selected sign of SRC1 is kept. 
+However, the sign control (imm8[3:2]='00) instructs to select the sign of SRC1 received from zmm_src. So, evenin the case of |zmm_src|  *   1023, the selected sign of SRC1 is kept. 
 Thus, if zmm_src < -1023, the result of VRANGEPD will be the minimal value of -1023 while if zmm_src > +1023,the result of VRANGE will be the maximal value of +1023.
 ```
 

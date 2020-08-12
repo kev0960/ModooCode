@@ -422,6 +422,16 @@ h3.lecture-header+p {
     margin-right: 5px;
 }
 
+.inline-note {
+    padding: 10px;
+    background-color: #f5f5f5;
+    font-size:small;
+}
+
+.inline-note > p {
+    margin: 0;
+}
+
 .shrink-btn:hover {
     background: grey;
     color: white;

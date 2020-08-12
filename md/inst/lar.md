@@ -12,11 +12,10 @@ path : /X86-64 명령어 레퍼런스
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 02 /r|LAR r16, r16/m16|RM|Valid|Valid|r16 <- access rights referenced by r16/m16|
 |0F 02 /r|LAR reg, r32/m16\footnote{1}|RM|Valid|Valid|reg <- access rights referenced by r32/m16|
-### NOTES:
 
-
-1. For all loads (regardless of source or destination sizing) only bits 16-0 are used. Other bits are ignored.
-
+```note
+1. For all loads (regardless of source or destination sizing) only bits 16-0 are used. Other bits are ignored
+```
 ### Instruction Operand Encoding
 
 
@@ -44,17 +43,17 @@ The access rights for a segment descriptor include fields located in the second 
 
 *  The following fields are returned only if the operand size is greater than 16 bits:
 
- --Bits 19:16 are undefined.
+     -- Bits 19:16 are undefined.
 
- --Bit 20 returns the software-available bit in the descriptor.
+     -- Bit 20 returns the software-available bit in the descriptor.
 
- --Bit 21 returns the L flag.
+     -- Bit 21 returns the L flag.
 
- --Bit 22 returns the D/B flag.
+     -- Bit 22 returns the D/B flag.
 
- --Bit 23 returns the G flag.
+     -- Bit 23 returns the G flag.
 
- --Bits 31:24 are returned as 0.
+     -- Bits 31:24 are returned as 0.
 
 This instruction performs the following checks before it loads the access rights in the destination register: 
 
@@ -84,19 +83,19 @@ The `LAR` instruction can only be executed in protected mode and IA-32e mode.
 
 ```info-verb
 IF Offset(SRC) > descriptor table limit
- THEN 
-   ZF <- 0; 
- ELSE
-   SegmentDescriptor <- descriptor referenced by SRC;
-   IF SegmentDescriptor(Type) != conforming code segment
-   and (CPL > DPL) or (RPL > DPL)
-   or SegmentDescriptor(Type) is not valid for instruction
-    THEN
-      ZF <- 0;
+    THEN 
+          ZF <- 0; 
     ELSE
-      DEST <- access rights from SegmentDescriptor as given in Description section;
-      ZF <- 1;
-   FI;
+          SegmentDescriptor <- descriptor referenced by SRC;
+          IF SegmentDescriptor(Type) != conforming code segment
+          and (CPL > DPL) or (RPL > DPL)
+          or SegmentDescriptor(Type) is not valid for instruction
+                THEN
+                      ZF <- 0;
+                ELSE
+                      DEST <- access rights from SegmentDescriptor as given in Description section;
+                      ZF <- 1;
+          FI;
 FI;
 ```
 ### Flags Affected

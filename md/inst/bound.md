@@ -32,8 +32,8 @@ This instruction executes as described in compatibility mode and legacy mode. It
 
 ```info-verb
 IF 64bit ModeTHEN#UD;ELSEIF (ArrayIndex < LowerBound OR ArrayIndex > UpperBound)
-   (* Below lower bound or above upper bound *)
-    THEN #BR; FI;
+          (* Below lower bound or above upper bound *)
+                THEN #BR; FI;
 FI;
 ```
 ### Flags Affected

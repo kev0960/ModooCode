@@ -32,11 +32,10 @@ path : /X86-64 명령어 레퍼런스
 |13 /r|ADC r16, r/m16|RM|Valid|Valid|Add with carry r/m16 to r16.|
 |13 /r|ADC r32, r/m32|RM|Valid|Valid|Add with CF r/m32 to r32.|
 |REX.W + 13 /r|ADC r64, r/m64|RM|Valid|N.E.|Add with CF r/m64 to r64.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
-
+```note
+\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH
+```
 ### Instruction Operand Encoding
 
 

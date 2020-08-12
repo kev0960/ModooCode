@@ -22,17 +22,17 @@ path : /X86-64 명령어 레퍼런스
 
 Writes the value of EAX into PKRU. ECX and EDX must be 0 when `WRPKRU` is executed; otherwise, a general-protection exception (#GP) occurs.
 
-WRPKRU can be executed only if CR4.PKE= 1; otherwise, an invalid-opcode exception (#UD) occurs. Software can discover the value of CR4.PKE by examining `CPUID`.(EAX=07H,ECX=0H):ECX.OSPKE [bit 4].
+WRPKRU can be executed only if CR4.PKE = 1; otherwise, an invalid-opcode exception (#UD) occurs. Software can discover the value of CR4.PKE by examining `CPUID`.(EAX=07H,ECX=0H):ECX.OSPKE [bit 4].
 
-On processors that support the Intel64 Architecture, the high-order 32-bits of RCX, RDX and RAX are ignored.
+On processors that support the Intel 64 Architecture, the high-order 32-bits of RCX, RDX and RAX are ignored.
 
 
 ### Operation
 
 ```info-verb
 IF (ECX = 0 AND EDX = 0) 
- THEN PKRU <- EAX;
- ELSE #GP(0); 
+    THEN PKRU <- EAX;
+    ELSE #GP(0); 
 FI;
 ```
 ### Flags Affected
@@ -49,8 +49,8 @@ WRPKRU: void _wrpkru(uint32_t);
 ### Protected Mode Exceptions
 
 #### #GP(0)
-* If ECX >=B 0.
-* If EDX >=B 0.
+* If ECX >=B  0.
+* If EDX >=B  0.
 
 #### #UD
 * If the LOCK prefix is used.

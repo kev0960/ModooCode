@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 70 /r ib\newline{}PSHUFW mm1, mm2/m64, imm8|RMI|Valid |Valid|Shuffle the words in mm2/m64 based on the encoding in imm8 and store the result in mm1.|
+|0F 70 /r ib\newline{}\newline{}PSHUFW mm1, mm2/m64, imm8|RMI|Valid |Valid|Shuffle the words in mm2/m64 based on the encoding in imm8 and store the result in mm1.|
 ### Instruction Operand Encoding
 
 
@@ -20,7 +20,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Copies words from the source operand (second operand) and inserts them in the destination operand (first operand) at word locations selected with the order operand (third operand). This operation is similar to the opera-tion used by the `PSHUFD` instruction, which is illustrated in Figure4-16. For the `PSHUFW` instruction, each 2-bit field in the order operand selects the contents of one word location in the destination operand. The encodings of the order operand fields select words from the source operand to be copied to the destination operand.
+Copies words from the source operand (second operand) and inserts them in the destination operand (first operand) at word locations selected with the order operand (third operand). This operation is similar to the opera-tion used by the `PSHUFD` instruction, which is illustrated in Figure 4-16. For the `PSHUFW` instruction, each 2-bit field in the order operand selects the contents of one word location in the destination operand. The encodings of the order operand fields select words from the source operand to be copied to the destination operand.
 
 The source operand can be an MMX technology register or a 64-bit memory location. The destination operand is an MMX technology register. The order operand is an 8-bit immediate. Note that this instruction permits a word in the source operand to be copied to more than one word location in the destination operand.
 
@@ -54,5 +54,5 @@ None.
 ### Other Exceptions
 
 
-See Table22-7, "Exception Conditions for SIMD/MMX Instructions with Memory Reference," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
+See Table 22-7, "Exception Conditions for SIMD/MMX Instructions with Memory Reference," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 

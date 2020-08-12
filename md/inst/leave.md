@@ -35,19 +35,19 @@ In 64-bit mode, the instruction's default operation size is 64 bits; 32-bit oper
 
 ```info-verb
 IF StackAddressSize = 32
- THEN
-   ESP <- EBP;
- ELSE IF StackAddressSize = 64
-   THEN RSP <- RBP; FI;
- ELSE IF StackAddressSize = 16
-   THEN SP <- BP; FI;
+    THEN
+          ESP <- EBP;
+    ELSE IF StackAddressSize = 64
+          THEN RSP <- RBP; FI;
+    ELSE IF StackAddressSize = 16
+          THEN SP <- BP; FI;
 FI;
 IF OperandSize = 32
- THEN EBP <- Pop();
- ELSE IF OperandSize = 64
-   THEN RBP <- Pop(); FI;
- ELSE IF OperandSize = 16
-   THEN BP <- Pop(); FI;
+    THEN EBP <- Pop();
+    ELSE IF OperandSize = 64
+          THEN RBP <- Pop(); FI;
+    ELSE IF OperandSize = 16
+          THEN BP <- Pop(); FI;
 FI;
 ```
 ### Flags Affected

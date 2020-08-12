@@ -11,11 +11,10 @@ path : /X86-64 명령어 레퍼런스
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |9E|SAHF|NP|Invalid\htmlonly{*}|Valid|Loads SF, ZF, AF, PF, and CF from AH into EFLAGS register.|
-### NOTES:
 
-
-\htmlonly{*} Valid in specific steppings. See Description section.
-
+```note
+\htmlonly{*} Valid in specific steppings. See Description section
+```
 ### Instruction Operand Encoding
 
 
@@ -34,12 +33,12 @@ This instruction executes as described above in compatibility mode and legacy mo
 
 ```info-verb
 IF IA-64 Mode
- THEN
-   IF CPUID.80000001H.ECX[0] = 1;THENRFLAGS(SF:ZF:0:AF:0:PF:1:CF) <- AH;ELSE
-      #UD;
-   FI
- ELSE
-   EFLAGS(SF:ZF:0:AF:0:PF:1:CF) <- AH;
+    THEN
+          IF CPUID.80000001H.ECX[0] = 1;THENRFLAGS(SF:ZF:0:AF:0:PF:1:CF) <- AH;ELSE
+                      #UD;
+          FI
+    ELSE
+          EFLAGS(SF:ZF:0:AF:0:PF:1:CF) <- AH;
 FI;
 ```
 ### Flags Affected

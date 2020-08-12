@@ -10,12 +10,12 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F 16 /rMOVSHDUP xmm1, xmm2/m128|RM|V/V|SSE3|Move odd index single-precision floating-point values from xmm2/mem and duplicate each element into xmm1.|
-|VEX.128.F3.0F.WIG 16 /rVMOVSHDUP xmm1, xmm2/m128|RM|V/V|AVX|Move odd index single-precision floating-point values from xmm2/mem and duplicate each element into xmm1.|
-|VEX.256.F3.0F.WIG 16 /rVMOVSHDUP ymm1, ymm2/m256|RM|V/V|AVX|Move odd index single-precision floating-point values from ymm2/mem and duplicate each element into ymm1.|
-|EVEX.128.F3.0F.W0 16 /rVMOVSHDUP xmm1 {k1}{z}, xmm2/m128|FVM|V/V|AVX512VLAVX512F|Move odd index single-precision floating-point values from xmm2/m128 and duplicate each element into xmm1 under writemask.|
-|EVEX.256.F3.0F.W0 16 /rVMOVSHDUP ymm1 {k1}{z}, ymm2/m256|FVM|V/V|AVX512VLAVX512F|Move odd index single-precision floating-point values from ymm2/m256 and duplicate each element into ymm1 under writemask.|
-|EVEX.512.F3.0F.W0 16 /rVMOVSHDUP zmm1 {k1}{z}, zmm2/m512|FVM|V/V|AVX512F|Move odd index single-precision floating-point values from zmm2/m512 and duplicate each element into zmm1 under writemask.|
+|F3 0F 16 /r\newline{}MOVSHDUP xmm1, xmm2/m128|RM|V/V|SSE3|Move odd index single-precision floating-point values from xmm2/mem and duplicate each element into xmm1.|
+|VEX.128.F3.0F.WIG 16 /r\newline{}VMOVSHDUP xmm1, xmm2/m128|RM|V/V|AVX|Move odd index single-precision floating-point values from xmm2/mem and duplicate each element into xmm1.|
+|VEX.256.F3.0F.WIG 16 /r\newline{}VMOVSHDUP ymm1, ymm2/m256|RM|V/V|AVX|Move odd index single-precision floating-point values from ymm2/mem and duplicate each element into ymm1.|
+|EVEX.128.F3.0F.W0 16 /r\newline{}VMOVSHDUP xmm1 {k1}{z}, xmm2/m128|FVM|V/V|AVX512VLAVX512F|Move odd index single-precision floating-point values from xmm2/m128 and duplicate each element into xmm1 under writemask.|
+|EVEX.256.F3.0F.W0 16 /r\newline{}VMOVSHDUP ymm1 {k1}{z}, ymm2/m256|FVM|V/V|AVX512VLAVX512F|Move odd index single-precision floating-point values from ymm2/m256 and duplicate each element into ymm1 under writemask.|
+|EVEX.512.F3.0F.W0 16 /r\newline{}VMOVSHDUP zmm1 {k1}{z}, zmm2/m512|FVM|V/V|AVX512F|Move odd index single-precision floating-point values from zmm2/m512 and duplicate each element into zmm1 under writemask.|
 ### Instruction Operand Encoding
 
 
@@ -209,7 +209,7 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 <text x="50.035507" y="100.779999" textLength="5.002500" font-size="8px">S</text>
 <text x="339.179993" y="33.220001" textLength="4.170000" font-size="8px">0</text>
 </svg>
-<figcaption>Figure 4-3.  `MOVSHDUP` Operation
+<figcaption>Figure 4-3.  MOVSHDUP Operation
 </figcaption></figure>
 ```
 
@@ -217,66 +217,66 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 #### VMOVSHDUP (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-TMP_SRC[31:0] <-  SRC[63:32]
-TMP_SRC[63:32] <-  SRC[63:32]
-TMP_SRC[95:64] <-  SRC[127:96]
-TMP_SRC[127:96]  <- SRC[127:96]
+TMP_SRC[31:0] <-   SRC[63:32]
+TMP_SRC[63:32] <-   SRC[63:32]
+TMP_SRC[95:64] <-   SRC[127:96]
+TMP_SRC[127:96]  <-  SRC[127:96]
 IF VL >= 256
- TMP_SRC[159:128] <-  SRC[191:160]
- TMP_SRC[191:160] <-  SRC[191:160]
- TMP_SRC[223:192]  <- SRC[255:224]
- TMP_SRC[255:224]  <- SRC[255:224]
+    TMP_SRC[159:128] <-   SRC[191:160]
+    TMP_SRC[191:160] <-   SRC[191:160]
+    TMP_SRC[223:192]  <-  SRC[255:224]
+    TMP_SRC[255:224]  <-  SRC[255:224]
 FI;
 IF VL >= 512
- TMP_SRC[287:256] <-  SRC[319:288]
- TMP_SRC[319:288]  <- SRC[319:288]
- TMP_SRC[351:320] <-  SRC[383:352]
- TMP_SRC[383:352] <-  SRC[383:352]
- TMP_SRC[415:384]  <- SRC[447:416]
- TMP_SRC[447:416]  <- SRC[447:416]
- TMP_SRC[479:448]  <- SRC[511:480]
- TMP_SRC[511:480]  <- SRC[511:480]
+    TMP_SRC[287:256] <-   SRC[319:288]
+    TMP_SRC[319:288]  <-  SRC[319:288]
+    TMP_SRC[351:320] <-   SRC[383:352]
+    TMP_SRC[383:352] <-   SRC[383:352]
+    TMP_SRC[415:384]  <-  SRC[447:416]
+    TMP_SRC[447:416]  <-  SRC[447:416]
+    TMP_SRC[479:448]  <-  SRC[511:480]
+    TMP_SRC[511:480]  <-  SRC[511:480]
 FI;
-FOR j <-  0 TO KL-1
- i  <- j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i] <-  TMP_SRC[i+31:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i] <-  0 
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i  <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i] <-   TMP_SRC[i+31:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i] <-   0 
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VMOVSHDUP (VEX.256 encoded version)
 ```info-verb
-DEST[31:0] <-  SRC[63:32]
-DEST[63:32]  <- SRC[63:32]
-DEST[95:64] <-  SRC[127:96]
-DEST[127:96]  <- SRC[127:96]
-DEST[159:128]  <- SRC[191:160]
-DEST[191:160] <-  SRC[191:160]
-DEST[223:192] <-  SRC[255:224]
-DEST[255:224]  <- SRC[255:224]
-DEST[MAX_VL-1:256] <-  0
+DEST[31:0] <-   SRC[63:32]
+DEST[63:32]  <-  SRC[63:32]
+DEST[95:64] <-   SRC[127:96]
+DEST[127:96]  <-  SRC[127:96]
+DEST[159:128]  <-  SRC[191:160]
+DEST[191:160] <-   SRC[191:160]
+DEST[223:192] <-   SRC[255:224]
+DEST[255:224]  <-  SRC[255:224]
+DEST[MAX_VL-1:256] <-   0
 ```
 #### VMOVSHDUP (VEX.128 encoded version)
 ```info-verb
-DEST[31:0]  <- SRC[63:32]
-DEST[63:32] <-  SRC[63:32]
-DEST[95:64]  <- SRC[127:96]
-DEST[127:96]  <- SRC[127:96]
-DEST[MAX_VL-1:128]  <- 0
+DEST[31:0]  <-  SRC[63:32]
+DEST[63:32] <-   SRC[63:32]
+DEST[95:64]  <-  SRC[127:96]
+DEST[127:96]  <-  SRC[127:96]
+DEST[MAX_VL-1:128]  <-  0
 ```
 #### MOVSHDUP (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0]  <-SRC[63:32]
-DEST[63:32]  <-SRC[63:32]
-DEST[95:64]  <-SRC[127:96]
-DEST[127:96] <- SRC[127:96]
+DEST[31:0]  <- SRC[63:32]
+DEST[63:32]  <- SRC[63:32]
+DEST[95:64]  <- SRC[127:96]
+DEST[127:96] <-  SRC[127:96]
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 

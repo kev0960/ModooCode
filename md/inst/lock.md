@@ -11,11 +11,10 @@ path : /X86-64 명령어 레퍼런스
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |F0|LOCK|NP|Valid|Valid|Asserts LOCK# signal for duration of the accompanying instruction.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Instruction Operand Encoding
 
 

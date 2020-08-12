@@ -31,17 +31,16 @@ The following table shows the results obtained when storing various classes of n
 |F-+ 1|+ I|
 |+ $$\infty$$ or Value Too Large for DEST Format|\htmlonly{*}|
 |NaN|\htmlonly{*}|
-### NOTES:
 
+```note
+F Means finite floating-point value.
 
-FMeans finite floating-point value.
+	 Means integer.
 
-	Means integer.
+`*` Indicates floating-point invalid-operation (#IA) exception.
 
-`*`Indicates floating-point invalid-operation (#IA) exception.
-
-This instruction's operation is the same in non-64-bit modes and 64-bit mode.
-
+This instruction's operation is the same in non-64-bit modes and 64-bit mode
+```
 
 ### Operation
 
@@ -89,11 +88,11 @@ GP(0)  If any part of the operand would lie outside of the effective address spa
 
 #NM If CR0.EM[bit 2] = 1.
 
-         If CR0.TS[bit 3] = 1.
+                              If CR0.TS[bit 3] = 1.
 
 #UD  If CPUID.01H:ECX.SSE3[bit 0] = 0.
 
-         If the LOCK prefix is used.
+                              If the LOCK prefix is used.
 
 ### Virtual 8086 Mode Exceptions
 
@@ -102,11 +101,11 @@ GP(0)  If any part of the operand would lie outside of the effective address spa
 
 #NM If CR0.EM[bit 2] = 1.
 
-         If CR0.TS[bit 3] = 1.
+                              If CR0.TS[bit 3] = 1.
 
 #UD  If CPUID.01H:ECX.SSE3[bit 0] = 0.
 
-         If the LOCK prefix is used.
+                              If the LOCK prefix is used.
 
 #PF(fault-code)  For a page fault.
 

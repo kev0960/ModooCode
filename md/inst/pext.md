@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDS.LZ.F3.0F38.W0 F5 /rPEXT r32a, r32b, r/m32|RVM|V/V|BMI2|Parallel extract of bits from r32b using mask in r/m32, result is writ-ten to r32a.|
-|VEX.NDS.LZ.F3.0F38.W1 F5 /rPEXT r64a, r64b, r/m64|RVM|V/N.E.|BMI2|Parallel extract of bits from r64b using mask in r/m64, result is writ-ten to r64a.|
+|VEX.NDS.LZ.F3.0F38.W0 F5 /r\newline{}PEXT r32a, r32b, r/m32|RVM|V/V|BMI2|Parallel extract of bits from r32b using mask in r/m32, result is writ-ten to r32a.|
+|VEX.NDS.LZ.F3.0F38.W1 F5 /r\newline{}PEXT r64a, r64b, r/m64|RVM|V/N.E.|BMI2|Parallel extract of bits from r64b using mask in r/m64, result is writ-ten to r64a.|
 ### Instruction Operand Encoding
 
 
@@ -403,10 +403,10 @@ MASK <- SRC2;
 DEST <- 0 ;
 m<- 0, k<- 0;
 DOWHILE m< OperandSize
-   IF MASK[ m] = 1 THEN
-    DEST[ k] <- TEMP[ m];
-       k <- k+ 1;
-   FI
+          IF MASK[ m] = 1 THEN
+                DEST[ k] <- TEMP[ m];
+               k <- k+ 1;
+          FI
 m <- m+ 1;
 OD
 ```

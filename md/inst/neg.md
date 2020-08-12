@@ -15,11 +15,10 @@ path : /X86-64 명령어 레퍼런스
 |F7 /3|NEG r/m16|M|Valid|Valid|Two's complement negate r/m16.|
 |F7 /3|NEG r/m32|M|Valid|Valid|Two's complement negate r/m32.|
 |REX.W + F7 /3|NEG r/m64|M|Valid |N.E.|Two's complement negate r/m64.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 
@@ -40,8 +39,8 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX
 
 ```info-verb
 IF DEST = 0 
- THEN CF <- 0;
- ELSE CF <- 1; 
+    THEN CF <- 0;
+    ELSE CF <- 1; 
 FI;
 DEST <- [- (DEST)]
 ```

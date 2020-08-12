@@ -29,37 +29,37 @@ This instruction executes as described above in compatibility mode and legacy mo
 
 ```info-verb
 IF 64-Bit Mode
- THEN
-   #UD;
- ELSE
-   old_AL <- AL;
-   old_CF <- CF;
-   CF <- 0;
-   IF (((AL AND 0FH) > 9) or AF = 1)
-     THEN
-     AL <- AL - 6;
-      CF <- old_CF or (Borrow from AL <- AL - 6);
-      AF <- 1;
+    THEN
+          #UD;
     ELSE
-      AF <- 0;
-   FI;
-   IF ((old_AL > 99H) or (old_CF = 1))
-     THEN
-      AL <- AL - 60H;
-      CF <- 1;
-   FI;
+          old_AL <- AL;
+          old_CF <- CF;
+          CF <- 0;
+          IF (((AL AND 0FH) > 9) or AF = 1)
+            THEN
+            AL <- AL - 6;
+                      CF <- old_CF or (Borrow from AL <- AL - 6);
+                      AF <- 1;
+                ELSE
+                      AF <- 0;
+          FI;
+          IF ((old_AL > 99H) or (old_CF = 1))
+                 THEN
+                      AL <- AL - 60H;
+                      CF <- 1;
+          FI;
 FI;
 ```
 ### Example
 
 
-SUB  AL, BL Before: AL = 35H, BL = 47H, EFLAGS(OSZAPC) = XXXXXX
+SUB  AL, BL  Before: AL = 35H, BL = 47H, EFLAGS(OSZAPC) = XXXXXX
 
-      After: AL = EEH, BL = 47H, EFLAGS(0SZAPC) = 010111
+                      After: AL = EEH, BL = 47H, EFLAGS(0SZAPC) = 010111
 
 DAA Before: AL = EEH, BL = 47H, EFLAGS(OSZAPC) = 010111
 
-      After: AL = 88H, BL = 47H, EFLAGS(0SZAPC) = X10111
+                      After: AL = 88H, BL = 47H, EFLAGS(0SZAPC) = X10111
 
 ### Flags Affected
 

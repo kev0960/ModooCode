@@ -35,12 +35,12 @@ In 64-bit mode, use of the REX.W prefix promotes operation to 64 bits. The `CQO`
 
 ```info-verb
 IF OperandSize = 16 (* CWD instruction *)
- THEN 
-   DX <- SignExtend(AX);
- ELSE IF OperandSize = 32 (* CDQ instruction *)
-   EDX <- SignExtend(EAX); FI;
- ELSE IF 64-Bit Mode and OperandSize = 64 (* CQO instruction*)
-   RDX <- SignExtend(RAX); FI;
+    THEN 
+          DX <- SignExtend(AX);
+    ELSE IF OperandSize = 32 (* CDQ instruction *)
+          EDX <- SignExtend(EAX); FI;
+    ELSE IF 64-Bit Mode and OperandSize = 64 (* CQO instruction*)
+          RDX <- SignExtend(RAX); FI;
 FI;
 ```
 ### Flags Affected

@@ -39,36 +39,36 @@ After the byte, word, or doubleword is transferred from the memory location into
 
 In 64-bit mode, use of the REX.W prefix promotes operation to 64 bits. LODS/LODSQ load the quadword at address (R)SI into RAX. The (R)SI register is then incremented or decremented automatically according to the setting of the DF flag in the EFLAGS register. 
 
-The `LODS`, `LODSB`, `LODSW`, and `LODSD` instructions can be preceded by the `REP` prefix for block loads of ECX bytes, words, or doublewords. More often, however, these instructions areused within a `LOOP` construct because further processing of the data moved into the register is usually necessary before the next transfer can be made. See "REP/REPE/REPZ /REPNE/REPNZ--Repeat String Operation Prefix" in Chapter 4 of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 2B, for a description of the `REP` prefix.
+The `LODS`, `LODSB`, `LODSW`, and `LODSD` instructions can be preceded by the `REP` prefix for block loads of ECX bytes, words, or doublewords. More often, however, these instructions are used within a `LOOP` construct because further processing of the data moved into the register is  usually necessary before the next transfer can be made. See "REP/REPE/REPZ /REPNE/REPNZ--Repeat String Operation Prefix" in Chapter 4 of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 2B, for a description of the `REP` prefix.
 
 
 ### Operation
 
 ```info-verb
 IF AL <- SRC; (* Byte load *)
- THEN AL <- SRC; (* Byte load *)
-   IF DF = 0
-    THEN (E)SI <- (E)SI + 1; 
-    ELSE (E)SI <- (E)SI - 1; 
-   FI;
+    THEN AL <- SRC; (* Byte load *)
+          IF DF = 0
+                THEN (E)SI <- (E)SI + 1; 
+                ELSE (E)SI <- (E)SI - 1; 
+          FI;
 ELSE IF AX <- SRC; (* Word load *)
- THEN IF DF = 0
-    THEN (E)SI <- (E)SI + 2; 
-    ELSE (E)SI <- (E)SI - 2; 
-   IF;
- FI;
+    THEN IF DF = 0
+                THEN (E)SI <- (E)SI + 2; 
+                ELSE (E)SI <- (E)SI - 2; 
+          IF;
+    FI;
 ELSE IF EAX <- SRC; (* Doubleword load *)
- THEN IF DF = 0
-    THEN (E)SI <- (E)SI + 4; 
-    ELSE (E)SI <- (E)SI - 4; 
-   FI;
- FI;
+    THEN IF DF = 0
+                THEN (E)SI <- (E)SI + 4; 
+                ELSE (E)SI <- (E)SI - 4; 
+          FI;
+    FI;
 ELSE IF RAX <- SRC; (* Quadword load *)
- THEN IF DF = 0
-    THEN (R)SI <- (R)SI + 8; 
-    ELSE (R)SI <- (R)SI - 8; 
-   FI;
- FI;
+    THEN IF DF = 0
+                THEN (R)SI <- (R)SI + 8; 
+                ELSE (R)SI <- (R)SI - 8; 
+          FI;
+    FI;
 FI;
 ```
 ### Flags Affected

@@ -19,28 +19,28 @@ Truncates the value in the source operand (toward 0) to an integral value and ad
 ### Table 3-34.  FSCALE Results
 
 
-|**ST(1)**\newline{}       - $$\infty$$\newline{} - $$\infty$$ NaN|- F\newline{}- $$\infty$$|- 0\newline{}- $$\infty$$|+ 0\newline{}- $$\infty$$|+ F + $$\infty$$ NaN\newline{}- $$\infty$$ - $$\infty$$ NaN|
-|-----------------------------------------------------------------|-------------------------|-------------------------|-------------------------|-----------------------------------------------------------|
+|**ST(1)**\newline{}                        - $$\infty$$\newline{}      - $$\infty$$ NaN|- F\newline{}- $$\infty$$|- 0\newline{}- $$\infty$$|+ 0\newline{}- $$\infty$$|+ F + $$\infty$$ NaN\newline{}- $$\infty$$ - $$\infty$$ NaN|
+|---------------------------------------------------------------------------------------|-------------------------|-------------------------|-------------------------|-----------------------------------------------------------|
 |**ST(0) ** - F - 0|- F|- F|- F|- F - $$\infty$$ NaN|
 |- 0 - 0|- 0|- 0|- 0|- 0 NaN NaN|
 |+ 0 + 0|+ 0|+ 0|+ 0|+ 0 NaN NaN|
 |+ F + 0|+ F|+ F|+ F|+ F + $$\infty$$ NaN|
 |+ $$\infty$$ NaN|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$|+ $$\infty$$ + $$\infty$$ NaN|
 |NaN NaN |NaN|NaN |NaN |NaN  NaN  NaN|
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
 In most cases, only the exponent is changed and the mantissa (significand) remains unchanged. However, when the value being scaled in ST(0) is a denormal value, the mantissa is also changed and the result may turn out to be a normalized number. Similarly, if overflow or underflow results from a scale operation, the resulting mantissa will differ from the source's mantissa.
 
 The FSCALE instruction can also be used to reverse the action of the FXTRACT instruction, as shown in the following example:
 
- FXTRACT;
+    FXTRACT;
 
- FSCALE;
+    FSCALE;
 
- FSTP ST(1);
+    FSTP ST(1);
 
 In this example, the FXTRACT instruction extracts the significand and exponent from the value in ST(0) and stores them in ST(0) and ST(1) respectively. The FSCALE then scales the significand in ST(0) by the exponent in ST(1), recreating the original value before the FXTRACT operation was performed. The FSTP ST(1) instruction overwrites the exponent (extracted by the FXTRACT instruction) with the recreated value, which returns the stack to its orig-inal state with only one register [ST(0)] occupied.
 
@@ -57,7 +57,7 @@ ST(0) <- ST(0) `*` 2\footnote{RoundTowardZero(ST(1))} ;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 

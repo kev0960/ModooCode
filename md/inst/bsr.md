@@ -31,17 +31,17 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX
 
 ```info-verb
 IF SRC = 0
- THEN
-   ZF <- 1;
-   DEST is undefined;
- ELSE
-   ZF <- 0;
-   temp <- OperandSize - 1;
-   WHILE Bit(SRC, temp) = 0
-   DO
-    temp <- temp - 1;
-   OD;
-   DEST <- temp;
+    THEN
+          ZF <- 1;
+          DEST is undefined;
+    ELSE
+          ZF <- 0;
+          temp <- OperandSize - 1;
+          WHILE Bit(SRC, temp) = 0
+          DO
+                temp <- temp - 1;
+          OD;
+          DEST <- temp;
 FI;
 ```
 ### Flags Affected

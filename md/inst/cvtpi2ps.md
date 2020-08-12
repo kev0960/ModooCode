@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 2A /r\newline{}CVTPI2PS xmm, mm/m64|RM|Valid|Valid|Convert two signed doubleword integers from mm/m64 to two single-precision floating-point values in xmm.|
+|0F 2A /r\newline{}\newline{}CVTPI2PS xmm, mm/m64|RM|Valid|Valid|Convert two signed doubleword integers from mm/m64 to two single-precision floating-point values in xmm.|
 ### Instruction Operand Encoding
 
 
@@ -50,5 +50,5 @@ Precision
 ### Other Exceptions
 
 
-See Table22-5, "Exception Conditions for Legacy SIMD/MMX Instructions with XMM and FP Exception," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B.
+See Table 22-5, "Exception Conditions for Legacy SIMD/MMX Instructions with XMM and FP Exception," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B.
 

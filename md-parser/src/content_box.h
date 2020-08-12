@@ -37,7 +37,9 @@ class BoxContent : public Content {
     LEC_SUMMARY,
     HTML_ONLY,
     LATEX_ONLY,
-    EMBED
+    EMBED,
+    SIDENOTE,
+    NOTE
   };
 
   BOX_CONTENT_TYPES box_type_;

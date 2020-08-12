@@ -11,11 +11,10 @@ path : /X86-64 명령어 레퍼런스
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 01/7|INVLPG m|M|Valid|Valid|Invalidate TLB entries for page containing m.|
-### NOTES:
 
-
-\htmlonly{*}See the IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See the IA-32 Architecture Compatibility section below
+```
 ### Instruction Operand Encoding
 
 
@@ -29,7 +28,7 @@ Invalidates any translation lookaside buffer (TLB) entries specified with the so
 
 The `INVLPG` instruction is a privileged instruction. When the processor is running in protected mode, the CPL must be 0 to execute this instruction.
 
-The `INVLPG` instruction normally flushes TLB entries only for the specified page; however, in some cases, it may flush more entries, even the entire TLB. The instruction is guaranteed to invalidates only TLB entries associated with the current PCID. (If PCIDs are disabled-- CR4.PCIDE= 0-- the current PCID is 000H.) The instruction also invalidates any global TLB entries for the specified page, regardless of PCID.
+The `INVLPG` instruction normally flushes TLB entries only for the specified page; however, in some cases, it may flush more entries, even the entire TLB. The instruction is guaranteed to invalidates only TLB entries associated with the current PCID. (If PCIDs are disabled -- CR4.PCIDE = 0 -- the current PCID is 000H.) The instruction also invalidates any global TLB entries for the specified page, regardless of PCID.
 
 For more details on operations that flush the TLB, see "MOV--Move to/from Control Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2B and Section 4.10.4.1, "Operations that Invalidate TLBs and Paging-Structure Caches," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
@@ -61,8 +60,11 @@ None.
 #### #UD
 * Operand is a register.
 * If the LOCK prefix is used.
-* 1.If the paging structures map the linear address using a page larger than 4 KBytes and there are multiple TLB entries for that page (see Section 4.10.2.3, "Details of TLB Use," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A), the instruction invalidates all of them.
+```sidenote
 
+
+1. If the paging structures map the linear address using a page larger than 4 KBytes and there are multiple TLB entries for that page (see Section 4.10.2.3, "Details of TLB Use," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A), the instruction invalidates all of them.
+```
 ### Real-Address Mode Exceptions
 
 #### #UD

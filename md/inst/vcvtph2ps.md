@@ -10,17 +10,17 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.128.66.0F38.W0 13 /r VCVTPH2PS xmm1, xmm2/m64|RM|V/V|F16C|Convert four packed half precision (16-bit) floating-point values in xmm2/m64 to packed single-precision floating-point value in xmm1. |
-|VEX.256.66.0F38.W0 13 /r VCVTPH2PS ymm1, xmm2/m128|RM|V/V|F16C|Convert eight packed half precision (16-bit) floating-point values in xmm2/m128 to packed single-precision floating-point value in ymm1. |
-|EVEX.128.66.0F38.W0 13 /r VCVTPH2PS xmm1 {k1}{z}, xmm2/m64|HVM|V/V|AVX512VLAVX512F|Convert four packed half precision (16-bit) floating-point values in xmm2/m64 to packed single-precision floating-point values in xmm1. |
-|EVEX.256.66.0F38.W0 13 /r VCVTPH2PS ymm1 {k1}{z}, xmm2/m128|HVM|V/V|AVX512VLAVX512F|Convert eight packed half precision (16-bit) floating-point values in xmm2/m128 to packed single-precision floating-point values in ymm1. |
-|EVEX.512.66.0F38.W0 13 /r VCVTPH2PS zmm1 {k1}{z}, ymm2/m256 {sae}|HVM|V/V|AVX512F|Convert sixteen packed half precision (16-bit) floating-point values in ymm2/m256 to packed single-precision floating-point values in zmm1. |
-###                 Instruction Operand Encoding
+|VEX.128.66.0F38.W0 13 /r \newline{}VCVTPH2PS xmm1, xmm2/m64|RM|V/V|F16C|Convert four packed half precision (16-bit) floating-point values in xmm2/m64 to packed single-precision floating-point value in xmm1. |
+|VEX.256.66.0F38.W0 13 /r \newline{}VCVTPH2PS ymm1, xmm2/m128|RM|V/V|F16C|Convert eight packed half precision (16-bit) floating-point values in xmm2/m128 to packed single-precision floating-point value in ymm1. |
+|EVEX.128.66.0F38.W0 13 /r \newline{}VCVTPH2PS xmm1 {k1}{z}, xmm2/m64|HVM|V/V|AVX512VLAVX512F|Convert four packed half precision (16-bit) floating-point values in xmm2/m64 to packed single-precision floating-point values in xmm1. |
+|EVEX.256.66.0F38.W0 13 /r \newline{}VCVTPH2PS ymm1 {k1}{z}, xmm2/m128|HVM|V/V|AVX512VLAVX512F|Convert eight packed half precision (16-bit) floating-point values in xmm2/m128 to packed single-precision floating-point values in ymm1. |
+|EVEX.512.66.0F38.W0 13 /r \newline{}VCVTPH2PS zmm1 {k1}{z}, ymm2/m256 {sae}|HVM|V/V|AVX512F|Convert sixteen packed half precision (16-bit) floating-point values in ymm2/m256 to packed single-precision floating-point values in zmm1. |
+###                                                        Instruction Operand Encoding
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
 
-RM ModRM:reg (w) ModRM:r/m (r) NA NA
+ RM ModRM:reg (w) ModRM:r/m (r) NA NA
 
 HVM ModRM:reg (w) ModRM:r/m (r) NA NA
 
@@ -438,7 +438,7 @@ Note: VEX.vvvv and EVEX.vvvv are reserved (must be 1111b).
 <text x="302.548035" y="116.379639" textLength="1.859097" font-size="8px"> </text>
 <text x="304.229248" y="116.379639" textLength="1.859097" font-size="8px"> </text>
 </svg>
-<figcaption>Figure 5-6.  `VCVTPH2PS` (128-bit Version)
+<figcaption>Figure 5-6.  VCVTPH2PS (128-bit Version)
 </figcaption></figure>
 ```
 
@@ -446,41 +446,41 @@ Note: VEX.vvvv and EVEX.vvvv are reserved (must be 1111b).
 #### VCVTPH2PS (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- k <-  j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i]  <-
-    vCvt_h2s(SRC[k+15:k])
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i]  <- 0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    k <-   j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i]  <-
+                vCvt_h2s(SRC[k+15:k])
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VCVTPH2PS (VEX.256 encoded version)
 ```info-verb
-DEST[31:0] <- vCvt_h2s(SRC1[15:0]);
-DEST[63:32] <- vCvt_h2s(SRC1[31:16]);
-DEST[95:64]  <-vCvt_h2s(SRC1[47:32]);
-DEST[127:96] <- vCvt_h2s(SRC1[63:48]);
-DEST[159:128] <- vCvt_h2s(SRC1[79:64]);
-DEST[191:160]  <-vCvt_h2s(SRC1[95:80]);
-DEST[223:192] <- vCvt_h2s(SRC1[111:96]);
-DEST[255:224]  <-vCvt_h2s(SRC1[127:112]);
-DEST[MAX_VL-1:256] <-  0
+DEST[31:0] <-  vCvt_h2s(SRC1[15:0]);
+DEST[63:32] <-  vCvt_h2s(SRC1[31:16]);
+DEST[95:64]  <- vCvt_h2s(SRC1[47:32]);
+DEST[127:96] <-  vCvt_h2s(SRC1[63:48]);
+DEST[159:128] <-  vCvt_h2s(SRC1[79:64]);
+DEST[191:160]  <- vCvt_h2s(SRC1[95:80]);
+DEST[223:192] <-  vCvt_h2s(SRC1[111:96]);
+DEST[255:224]  <- vCvt_h2s(SRC1[127:112]);
+DEST[MAX_VL-1:256] <-   0
 ```
 #### VCVTPH2PS (VEX.128 encoded version) 
 ```info-verb
-DEST[31:0]  <-vCvt_h2s(SRC1[15:0]);
-DEST[63:32] <- vCvt_h2s(SRC1[31:16]);
-DEST[95:64] <- vCvt_h2s(SRC1[47:32]);
-DEST[127:96]  <-vCvt_h2s(SRC1[63:48]);
-DEST[MAX_VL-1:128]  <- 0
+DEST[31:0]  <- vCvt_h2s(SRC1[15:0]);
+DEST[63:32] <-  vCvt_h2s(SRC1[31:16]);
+DEST[95:64] <-  vCvt_h2s(SRC1[47:32]);
+DEST[127:96]  <- vCvt_h2s(SRC1[63:48]);
+DEST[MAX_VL-1:128]  <-  0
 ```
 ### Flags Affected
 

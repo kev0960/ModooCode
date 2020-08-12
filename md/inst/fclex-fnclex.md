@@ -12,11 +12,10 @@ path : /X86-64 명령어 레퍼런스
 |----------------------|---------------|-----------------------------|---------------------------------|---------------|
 |9B DB E2|FCLEX|Valid|Valid|Clear floating-point exception flags after checking for pending unmasked floating-point exceptions.|
 |DB E2|FNCLEX\footnote{*}|Valid|Valid|Clear floating-point exception flags without checking for pending unmasked floating-point exceptions.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Description
 
 

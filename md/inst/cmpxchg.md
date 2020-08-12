@@ -10,18 +10,17 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F B0/r\newline{}CMPXCHG r/m8, r8|MR|Valid|Valid\htmlonly{*}|Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.|
-|REX + 0F B0/r\newline{}CMPXCHG r/m8\htmlonly{*}\htmlonly{*},r8|MR|Valid|N.E.|Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.|
-|0F B1/r\newline{}CMPXCHG r/m16, r16|MR|Valid|Valid\htmlonly{*}|Compare AX with r/m16. If equal, ZF is set and r16 is loaded into r/m16. Else, clear ZF and load r/m16 into AX.|
-|0F B1/r\newline{}CMPXCHG r/m32, r32|MR|Valid|Valid\htmlonly{*}|Compare EAX with r/m32. If equal, ZF is set and r32 is loaded into r/m32. Else, clear ZF and load r/m32 into EAX.|
-|REX.W + 0F B1/r\newline{}CMPXCHG r/m64, r64|MR|Valid|N.E.|Compare RAX with r/m64. If equal, ZF is set and r64 is loaded into r/m64. Else, clear ZF and load r/m64 into RAX.|
-### NOTES:
+|0F B0/r\newline{}\newline{}CMPXCHG r/m8, r8|MR|Valid|Valid\htmlonly{*}|Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.|
+|REX + 0F B0/r\newline{}\newline{}CMPXCHG r/m8\htmlonly{*}\htmlonly{*},r8|MR|Valid|N.E.|Compare AL with r/m8. If equal, ZF is set and r8 is loaded into r/m8. Else, clear ZF and load r/m8 into AL.|
+|0F B1/r\newline{}\newline{}CMPXCHG r/m16, r16|MR|Valid|Valid\htmlonly{*}|Compare AX with r/m16. If equal, ZF is set and r16 is loaded into r/m16. Else, clear ZF and load r/m16 into AX.|
+|0F B1/r\newline{}\newline{}CMPXCHG r/m32, r32|MR|Valid|Valid\htmlonly{*}|Compare EAX with r/m32. If equal, ZF is set and r32 is loaded into r/m32. Else, clear ZF and load r/m32 into EAX.|
+|REX.W + 0F B1/r\newline{}\newline{}CMPXCHG r/m64, r64|MR|Valid|N.E.|Compare RAX with r/m64. If equal, ZF is set and r64 is loaded into r/m64. Else, clear ZF and load r/m64 into RAX.|
 
+```note
+\htmlonly{*} See the IA-32 Architecture Compatibility section below. 
 
-\htmlonly{*}See the IA-32 Architecture Compatibility section below. 
-
-\htmlonly{*}\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+\htmlonly{*}\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 
@@ -49,13 +48,13 @@ This instruction is not supported on Intel processors earlier than the Intel486 
 (* Accumulator = AL, AX, EAX, or RAX depending on whether a byte, word, doubleword, or quadword comparison is being performed *)
 TEMP <- DEST
 IF accumulator = TEMP
- THEN
-   ZF <- 1;
-   DEST <- SRC;
- ELSE
-   ZF <- 0;
-   accumulator <- TEMP;
-   DEST <- TEMP;
+    THEN
+          ZF <- 1;
+          DEST <- SRC;
+    ELSE
+          ZF <- 0;
+          accumulator <- TEMP;
+          DEST <- TEMP;
 FI;
 ```
 ### Flags Affected

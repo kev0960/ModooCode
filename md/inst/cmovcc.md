@@ -135,12 +135,12 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Use of the 
 ```info-verb
 temp <- SRC
 IF condition TRUE
- THEN 
-   DEST <- temp;
- FI;
+    THEN 
+          DEST <- temp;
+    FI;
 ELSEIF (OperandSize = 32 and IA-32e mode active)
-   THENDEST[63:32] <- 0;
- FI;
+          THENDEST[63:32] <- 0;
+    FI;
 FI;
 ```
 ### Flags Affected

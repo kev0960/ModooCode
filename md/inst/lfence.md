@@ -47,5 +47,5 @@ void _mm_lfence(void)
 
 #UD  If CPUID.01H:EDX.SSE2[bit 26] = 0.
 
-         If the LOCK prefix is used.
+                              If the LOCK prefix is used.
 

@@ -48,11 +48,11 @@ The address size is used only when writing to a destination operand in memory.
 
 *  Operand size. The D flag in the current code-segment descriptor determines the default operand size; it may be overridden by instruction prefixes (66H or REX.W).
 
- The operand size (16, 32, or 64 bits) determines the amount by which the stack pointer is incremented (2, 4or 8).
+     The operand size (16, 32, or 64 bits) determines the amount by which the stack pointer is incremented (2, 4or 8).
 
 *  Stack-address size. Outside of 64-bit mode, the B flag in the current stack-segment descriptor determines the size of the stack pointer (16 or 32 bits); in 64-bit mode, the size of the stack pointer is always 64 bits.
 
- The stack-address size determines the width of the stack pointer when reading from the stack in memory andwhen incrementing the stack pointer. (As stated above, the amount by which the stack pointer is incrementedis determined by the operand size.)
+     The stack-address size determines the width of the stack pointer when reading from the stack in memory andwhen incrementing the stack pointer. (As stated above, the amount by which the stack pointer is incrementedis determined by the operand size.)
 
 If the destination operand is one of the segment registers DS, ES, FS, GS, or SS, the value loaded into the register must be a valid segment selector. In protected mode, popping a segment selector into a segment register automat-ically causes the descriptor information associated with that segment selector to be loaded into the hidden (shadow) part of the segment register and causes the selector and the descriptor information to be validated (see the "Operation" section below).
 
@@ -73,101 +73,194 @@ In 64-bit mode, using a REX prefix in the form of REX.R permits access to additi
 
 ```info-verb
 IF StackAddrSize = 32
- THEN
-   IF OperandSize = 32
     THEN
-      DEST <- SS:ESP; (* Copy a doubleword *)
-      ESP <- ESP + 4;
-    ELSE (* OperandSize = 16*)
-      DEST <- SS:ESP; (* Copy a word *)
-1.If a code instruction breakpoint (for debug) is placed on an instruction located immediately after a POP SS instruction, the breakpoint may not be triggered. However, in a sequence of instructions that POP the SS register, only the first instruction in the sequence is guaranteed to delay an interrupt.
- In the following sequence, interrupts may be recognized before POP ESP executes:
- POP SSPOP SSPOP ESP
-ESP <- ESP + 2;
-   FI;
- ELSE IF StackAddrSize = 64
-   THEN
-    IF OperandSize = 64
-      THEN
-        DEST <- SS:RSP; (* Copy quadword *)
-        RSP <- RSP + 8;
-      ELSE (* OperandSize = 16*)
-        DEST <- SS:RSP; (* Copy a word *)
-        RSP <- RSP + 2;
-    FI;
-   FI;
- ELSE StackAddrSize = 16
-   THEN
-    IF OperandSize = 16
-      THEN
-        DEST <- SS:SP; (* Copy a word *)
-        SP <- SP + 2;
-      ELSE (* OperandSize = 32 *)
-        DEST <- SS:SP; (* Copy a doubleword *)
-        SP <- SP + 4;
-    FI;
-FI;
-Loading a segment register while in protected mode results in special actions, as described in the following listing. These checks are performed on the segment selector and the segment descriptor it points to.
-64-BIT_MODE
-IF FS, or GS is loaded with non-NULL selector;
- THEN
-   IF segment selector index is outside descriptor table limits
-    OR segment is not a data or readable code segment
-    OR ((segment is a data or nonconforming code segment)
-      AND (both RPL and CPL > DPL))
-        THEN #GP(selector);
-    IF segment not marked present
-      THEN #NP(selector);
-   ELSE
-    SegmentRegister <- segment selector;
-    SegmentRegister <- segment descriptor;
-   FI;
-FI;
-IF FS, or GS is loaded with a NULL selector;
-   THEN
-    SegmentRegister <- segment selector;
-    SegmentRegister <- segment descriptor;
-FI;
-PREOTECTED MODE OR COMPATIBILITY MODE;
-IF SS is loaded;
-THEN
-   IF segment selector is NULL
-    THEN #GP(0); 
-   FI;
-   IF segment selector index is outside descriptor table limits 
-    or segment selector's RPL != CPL
-    or segment is not a writable data segment
-    or DPL != CPL
-      THEN #GP(selector); 
-   FI;
-   IF segment not marked present 
-    THEN #SS(selector); 
-    ELSE
-      SS <- segment selector;
-      SS <- segment descriptor; 
-   FI;
-FI;
-IF DS, ES, FS, or GS is loaded with non-NULL selector;
- THEN
-   IF segment selector index is outside descriptor table limits
-    or segment is not a data or readable code segment
-    or ((segment is a data or nonconforming code segment)
-    and (both RPL and CPL > DPL))
-      THEN #GP(selector); 
-   FI;
-   IF segment not marked present
-    THEN #NP(selector);
-    ELSE
-      SegmentRegister <- segment selector;
-      SegmentRegister <- segment descriptor;
-    FI;
-FI;
-IF DS, ES, FS, or GS is loaded with a NULL selector
- THEN
-   SegmentRegister <- segment selector;
-   SegmentRegister <- segment descriptor;
-FI;
+          IF OperandSize = 32
+                THEN
+                      DEST <- SS:ESP; (* Copy a doubleword *)
+                      ESP <- ESP + 4;
+                ELSE (* OperandSize = 16*)
+                      DEST <- SS:ESP; (* Copy a word *)
 ```
+```sidenote
+
+
+1. If a code instruction breakpoint (for debug) is placed on an instruction located immediately after a POP SS instruction, the breakpoint may not be triggered. However, in a sequence of instructions that POP the SS register, only the first instruction in the sequence is guaranteed to delay an interrupt.
+
+    In the following sequence, interrupts may be recognized before POP ESP executes:
+
+    POP SSPOP SSPOP ESP
+```
+
+ESP <- ESP + 2;
+
+          FI;
+
+    ELSE IF StackAddrSize = 64
+
+          THEN
+
+                IF OperandSize = 64
+
+                      THEN
+
+                            DEST <- SS:RSP; (\htmlonly{*} Copy quadword \htmlonly{*})
+
+                            RSP <- RSP + 8;
+
+                      ELSE (\htmlonly{*} OperandSize = 16\htmlonly{*})
+
+                            DEST <- SS:RSP; (\htmlonly{*} Copy a word \htmlonly{*})
+
+                            RSP <- RSP + 2;
+
+                FI;
+
+          FI;
+
+    ELSE StackAddrSize = 16
+
+          THEN
+
+                IF OperandSize = 16
+
+                      THEN
+
+                            DEST <- SS:SP; (\htmlonly{*} Copy a word \htmlonly{*})
+
+                            SP <- SP + 2;
+
+                      ELSE (\htmlonly{*} OperandSize = 32 \htmlonly{*})
+
+                            DEST <- SS:SP; (\htmlonly{*} Copy a doubleword \htmlonly{*})
+
+                            SP <- SP + 4;
+
+                FI;
+
+FI;
+
+Loading a segment register while in protected mode results in special actions, as described in the following listing. These checks are performed on the segment selector and the segment descriptor it points to.
+
+64-BIT_MODE
+
+IF FS, or GS is loaded with non-NULL selector;
+
+    THEN
+
+          IF segment selector index is outside descriptor table limits
+
+                OR segment is not a data or readable code segment
+
+                OR ((segment is a data or nonconforming code segment)
+
+                      AND (both RPL and CPL > DPL))
+
+                            THEN #GP(selector);
+
+                IF segment not marked present
+
+                      THEN #NP(selector);
+
+          ELSE
+
+                SegmentRegister <- segment selector;
+
+                SegmentRegister <- segment descriptor;
+
+          FI;
+
+FI;
+
+IF FS, or GS is loaded with a NULL selector;
+
+          THEN
+
+                SegmentRegister <- segment selector;
+
+                SegmentRegister <- segment descriptor;
+
+FI;
+
+PREOTECTED MODE OR COMPATIBILITY MODE;
+
+IF SS is loaded;
+
+
+
+THEN
+
+          IF segment selector is NULL
+
+                THEN #GP(0); 
+
+          FI;
+
+          IF segment selector index is outside descriptor table limits 
+
+                or segment selector's RPL != CPL
+
+                or segment is not a writable data segment
+
+                or DPL != CPL
+
+                      THEN #GP(selector); 
+
+          FI;
+
+          IF segment not marked present 
+
+                THEN #SS(selector); 
+
+                ELSE
+
+                      SS <- segment selector;
+
+                      SS <- segment descriptor; 
+
+          FI;
+
+FI;
+
+IF DS, ES, FS, or GS is loaded with non-NULL selector;
+
+    THEN
+
+          IF segment selector index is outside descriptor table limits
+
+                or segment is not a data or readable code segment
+
+                or ((segment is a data or nonconforming code segment)
+
+                and (both RPL and CPL > DPL))
+
+                      THEN #GP(selector); 
+
+          FI;
+
+          IF segment not marked present
+
+                THEN #NP(selector);
+
+                ELSE
+
+                      SegmentRegister <- segment selector;
+
+                      SegmentRegister <- segment descriptor;
+
+           FI;
+
+FI;
+
+IF DS, ES, FS, or GS is loaded with a NULL selector
+
+    THEN
+
+          SegmentRegister <- segment selector;
+
+          SegmentRegister <- segment descriptor;
+
+FI;
+
 ### Flags Affected
 
 

@@ -33,10 +33,10 @@ Compares the contents of register ST(0) and source value and sets condition code
 |ST(0) < SRC|0|0|1|
 |ST(0) = SRC|1|0|0|
 |Unordered\htmlonly{*}|1|1|1|
-### NOTES:
+###  NOTES:
 
 
-\htmlonly{*}Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
+\htmlonly{*} Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
 
 This instruction checks the class of the numbers being compared (see "FXAM--Examine Floating-Point" in this chapter). If either operand is a NaN or is in an unsupported format, an invalid-arithmetic-operand exception (#IA) is raised and, if the exception is masked, the condition flags are set to "unordered." If the invalid-arithmetic-operand exception is unmasked, the condition code flags are not set.
 
@@ -51,26 +51,26 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 CASE (relation of operands) OF
- ST > SRC: C3, C2, C0 <- 000;
- ST < SRC: C3, C2, C0 <- 001;
- ST = SRC: C3, C2, C0 <- 100;
+    ST > SRC: C3, C2, C0 <- 000;
+    ST < SRC: C3, C2, C0 <- 001;
+    ST = SRC: C3, C2, C0 <- 100;
 ESAC;
 IF ST(0) or SRC = NaN or unsupported format
- THEN 
-   #IA
-   IF FPUControlWord.IM = 1
     THEN 
-      C3, C2, C0 <- 111;
-   FI;
+          #IA
+          IF FPUControlWord.IM = 1
+                THEN 
+                      C3, C2, C0 <- 111;
+          FI;
 FI;
 IF Instruction = FCOMP 
- THEN 
-   PopRegisterStack;
+    THEN 
+          PopRegisterStack;
 FI;
 IF Instruction = FCOMPP 
- THEN 
-   PopRegisterStack;
-   PopRegisterStack;
+    THEN 
+          PopRegisterStack;
+          PopRegisterStack;
 FI;
 ```
 ### FPU Flags Affected
@@ -87,7 +87,7 @@ C0, C2, C3 See table on previous page.
 
 #IA One or both operands are NaN values or have unsupported formats.
 
-         Register is marked empty.
+                              Register is marked empty.
 
 #D One or both operands are denormal values.
 

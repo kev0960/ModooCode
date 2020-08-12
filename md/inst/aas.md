@@ -31,17 +31,17 @@ This instruction executes as described in compatibility mode and legacy mode. It
 
 ```info-verb
 IF 64-bit modeTHEN#UD;ELSEIF ((AL AND 0FH) > 9) or (AF = 1)
-    THEN
-      AX <- AX - 6;
-      AH <- AH - 1;
-      AF <- 1;
-      CF <- 1;
-      AL <- AL AND 0FH;
-    ELSE
-      CF <- 0;
-      AF <- 0;
-      AL <- AL AND 0FH;
-   FI;
+                THEN
+                      AX <- AX - 6;
+                      AH <- AH - 1;
+                      AF <- 1;
+                      CF <- 1;
+                      AL <- AL AND 0FH;
+                ELSE
+                      CF <- 0;
+                      AF <- 0;
+                      AL <- AL AND 0FH;
+          FI;
 FI;
 ```
 ### Flags Affected

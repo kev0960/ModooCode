@@ -10,12 +10,11 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|66 0F 2A /r\newline{}CVTPI2PD xmm, mm/m64\htmlonly{*}|RM|Valid|Valid|Convert two packed signed doubleword integers from mm/mem64 to two packed double-precision floating-point values in xmm.|
-### NOTES:
+|66 0F 2A /r\newline{}\newline{}CVTPI2PD xmm, mm/m64\htmlonly{*}|RM|Valid|Valid|Convert two packed signed doubleword integers from mm/mem64 to two packed double-precision floating-point values in xmm.|
 
-
-\htmlonly{*}Operation is different for different operand sets; see the Description section.
-
+```note
+\htmlonly{*}Operation is different for different operand sets; see the Description section
+```
 ### Instruction Operand Encoding
 
 
@@ -56,5 +55,5 @@ None
 ### Other Exceptions
 
 
-See Table22-6, "Exception Conditions for Legacy SIMD/MMX Instructions with XMM and without FP Exception," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B.
+See Table 22-6, "Exception Conditions for Legacy SIMD/MMX Instructions with XMM and without FP Exception," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B.
 

@@ -12,11 +12,10 @@ path : /X86-64 명령어 레퍼런스
 |----------|---------------|-----------------------------|---------------------------------|---------------|
 |9B DD /6|FSAVE m94/108byte|Valid|Valid|Store FPU state to m94byte or m108byte after checking for pending unmasked floating-point exceptions. Then re-initialize the FPU.|
 |DD /6|FNSAVE\footnote{* } m94/108byte|Valid|Valid|Store FPU environment to m94byte or m108byte without checking for pending unmasked floating-point exceptions. Then re-initialize the FPU.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Description
 
 

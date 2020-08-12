@@ -25,11 +25,11 @@ Performs a full or partial save of processor state components to the `XSAVE` are
 
 The format of the `XSAVE` area is detailed in Section 13.4, "XSAVE Area," of Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1.
 
-Section 13.7, "Operation of `XSAVE`," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 provides a detailed description of the operation of the `XSAVE` instruction. The following items provide a high-level outline:*  `XSAVE` saves state component i if and only if RFBM[i]= 1.\footnote{1}
+Section 13.7, "Operation of `XSAVE`," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 provides a detailed description of the operation of the `XSAVE` instruction. The following items provide a high-level outline:*  `XSAVE` saves state component i if and only if RFBM[i] = 1.\footnote{1}
 
 *  `XSAVE` does not modify bytes 511:464 of the legacy region of the `XSAVE` area (see Section 13.4.1, "Legacy Region of an `XSAVE` Area").
 
-*  `XSAVE` reads the XSTATE_BV field of the `XSAVE` header (see Section 13.4.2, "XSAVE Header") and writes a modified value back to memory as follows. If RFBM[i]= 1, `XSAVE` writes XSTATE_BV[i] with the value of XINUSE[i]. (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") If RFBM[i]= 0, `XSAVE` writes XSTATE_BV[i] with the value that it read from memory (it does not modify the bit). `XSAVE` does not write to any part of the `XSAVE` header other than the XSTATE_BV field.
+*  `XSAVE` reads the XSTATE_BV field of the `XSAVE` header (see Section 13.4.2, "XSAVE Header") and writes a modified value back to memory as follows. If RFBM[i] = 1, `XSAVE` writes XSTATE_BV[i] with the value of XINUSE[i]. (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") If RFBM[i] = 0, `XSAVE` writes XSTATE_BV[i] with the value that it read from memory (it does not modify the bit). `XSAVE` does not write to any part of the `XSAVE` header other than the XSTATE_BV field.
 
 *  `XSAVE` always uses the standard format of the extended region of the `XSAVE` area (see Section 13.4.3, "Extended Region of an `XSAVE` Area").
 
@@ -39,23 +39,35 @@ Use of a destination operand not aligned to 64-byte boundary (in either 64-bit o
 ### Operation
 
 ```info-verb
-RFBM <- XCR0 AND EDX:EAX;/* bitwise logical AND */
+RFBM <- XCR0 AND EDX:EAX; /* bitwise logical AND */
 OLD_BV <- XSTATE_BV field from XSAVE header;
 IF RFBM[0]= 1
- THEN store x87 state into legacy region of XSAVE area;
+    THEN store x87 state into legacy region of XSAVE area;
 FI;
 IF RFBM[1]= 1
- THEN store XMM registers into legacy region of XSAVE area;
+    THEN store XMM registers into legacy region of XSAVE area;
 FI;
-1.An exception is made for MXCSR and MXCSR_MASK, which belong to state component 1 -- SSE. XSAVE saves these values to mem-ory if either RFBM[1] or RFBM[2] is 1.
-IF RFBM[2]= 1
- THEN store AVX state into extended region of XSAVE area;
-FI;
-IF RFBM[1]= 1 or RFBM[2]= 1
- THEN store MXCSR and MXCSR_MASK into legacy region of XSAVE area;
-FI;
-XSTATE_BV field in XSAVE header <- (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);
 ```
+```sidenote
+
+
+1. An exception is made for MXCSR and MXCSR_MASK, which belong to state component 1 -- SSE. XSAVE saves these values to mem-ory if either RFBM[1] or RFBM[2] is 1.
+```
+
+IF RFBM[2]= 1
+
+    THEN store AVX state into extended region of XSAVE area;
+
+FI;
+
+IF RFBM[1]= 1 or RFBM[2]= 1
+
+    THEN store MXCSR and MXCSR_MASK into legacy region of XSAVE area;
+
+FI;
+
+XSTATE_BV field in XSAVE header <- (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);
+
 ### Flags Affected
 
 

@@ -32,11 +32,10 @@ path : /X86-64 명령어 레퍼런스
 |2B /r|SUB r16, r/m16|RM|Valid |Valid|Subtract r/m16 from r16.|
 |2B /r|SUB r32, r/m32|RM|Valid |Valid|Subtract r/m32 from r32.|
 |REX.W + 2B /r|SUB r64, r/m64|RM|Valid |N.E.|Subtract r/m64 from r64.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 

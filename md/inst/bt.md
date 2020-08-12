@@ -38,11 +38,11 @@ Some assemblers support immediate bit offsets larger than 31 by using the immedi
 
 When accessing a bit in memory, the processor may access 4 bytes starting from the memory address for a 32-bit operand size, using by the following relationship:
 
- Effective Address + (4 `*` (BitOffset `DIV` 32))
+    Effective Address + (4 `*` (BitOffset `DIV` 32))
 
 Or, it may access 2 bytes starting from the memory address for a 16-bit operand, using this relationship:
 
- Effective Address + (2 `*` (BitOffset `DIV` 16))
+    Effective Address + (2 `*` (BitOffset `DIV` 16))
 
 It may do so even when only a single byte needs to be accessed to reach the given bit. When using this bit addressing mechanism, software should avoid referencing areas of memory close to address space holes. In partic-ular, it should avoid references to memory-mapped I/O registers. Instead, software should use the `MOV` instruc-tions to load from or store to these addresses, and use the register form of these instructions to manipulate the data.
 

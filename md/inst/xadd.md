@@ -15,11 +15,10 @@ path : /X86-64 명령어 레퍼런스
 |0F C1 /r|XADD r/m16, r16|MR|Valid|Valid|Exchange r16 and r/m16; load sum into r/m16.|
 |0F C1 /r|XADD r/m32, r32|MR|Valid |Valid|Exchange r32 and r/m32; load sum into r/m32.|
 |REX.W + 0F C1 /r|XADD r/m64, r64|MR|Valid |N.E.|Exchange r64 and r/m64; load sum into r/m64.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 

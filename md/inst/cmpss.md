@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F C2 /r ibCMPSS xmm1, xmm2/m32, imm8|RMI|V/V|SSE|Compare low single-precision floating-point value in xmm2/m32 and xmm1 using bits 2:0 of imm8 as comparison predicate.|
-|VEX.NDS.128.F3.0F.WIG C2 /r ibVCMPSS xmm1, xmm2, xmm3/m32, imm8|RVMI|V/V|AVX|Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate.|
-|EVEX.NDS.LIG.F3.0F.W0 C2 /r ibVCMPSS k1 {k2}, xmm2, xmm3/m32{sae}, imm8|T1S|V/V|AVX512F|Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate with writemask k2 and leave the result in mask register k1.|
+|F3 0F C2 /r ib\newline{}CMPSS xmm1, xmm2/m32, imm8|RMI|V/V|SSE|Compare low single-precision floating-point value in xmm2/m32 and xmm1 using bits 2:0 of imm8 as comparison predicate.|
+|VEX.NDS.128.F3.0F.WIG C2 /r ib\newline{}VCMPSS xmm1, xmm2, xmm3/m32, imm8|RVMI|V/V|AVX|Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate.|
+|EVEX.NDS.LIG.F3.0F.W0 C2 /r ib\newline{}VCMPSS k1 {k2}, xmm2, xmm3/m32{sae}, imm8|T1S|V/V|AVX512F|Compare low single-precision floating-point value in xmm3/m32 and xmm2 using bits 4:0 of imm8 as comparison predicate with writemask k2 and leave the result in mask register k1.|
 ### Instruction Operand Encoding
 
 
@@ -50,12 +50,12 @@ by using the inverse relationship (that is, use the "not-less-than-or-equal" to 
 
 Compilers and assemblers may implement the following two-operand pseudo-ops in addition to the three-operand `CMPSS` instruction, for processors with "CPUID.1H:ECX.AVX =0". See Table 3-8. Compiler should treat reserved Imm8 values as illegal syntax.:
 
-###               Table 3-8. Pseudo-Op and CMPSS Implementation
+###                                                 Table 3-8. Pseudo-Op and CMPSS Implementation
 
 
 The greater-than relations that the processor does not implement require more than one instruction to emulate in software and therefore should not be implemented as pseudo-ops. (For these, the programmer should reverse the operands of the corresponding less than relations and use move instructions to ensure that the mask is moved to the correct destination register and that the source operand is left intact.) 
 
-Processors with "CPUID.1H:ECX.AVX =1" implement the full complement of 32 predicates shown in Table 3-7, soft-ware emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPSS instruction. See Table 3-9, where the notations of reg1 reg2, and reg3 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic inter-face. Compilers and assemblers may implement three-operand pseudo-ops for EVEX encoded VCMPSS instructions in a similar fashion by extending the syntax listed in Table3-9.:
+Processors with "CPUID.1H:ECX.AVX =1" implement the full complement of 32 predicates shown in Table 3-7, soft-ware emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPSS instruction. See Table 3-9, where the notations of reg1 reg2, and reg3 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic inter-face. Compilers and assemblers may implement three-operand pseudo-ops for EVEX encoded VCMPSS instructions in a similar fashion by extending the syntax listed in Table 3-9.:
 
 
 
@@ -87,7 +87,7 @@ Processors with "CPUID.1H:ECX.AVX =1" implement the full complement of 32 predic
 |VCMPFALSESS reg1, reg2, reg3|VCMPSS reg1, reg2, reg3, 0BH|
 |VCMPNEQ_OQSS reg1, reg2, reg3|VCMPSS reg1, reg2, reg3, 0CH|
 |VCMPGESS reg1, reg2, reg3|VCMPSS reg1, reg2, reg3, 0DH|
-###               Table 3-9. Pseudo-Op and VCMPSS Implementation
+###                                                Table 3-9. Pseudo-Op and VCMPSS Implementation
 
 
 Software should ensure VCMPSS is encoded with VEX.L=0. Encoding VCMPSS with VEX.L=1 may encounter unpre-dictable behavior across different processor generations.
@@ -116,31 +116,31 @@ Software should ensure VCMPSS is encoded with VEX.L=0. Encoding VCMPSS with VEX.
 ### Operation
 #### VCMPSS (EVEX encoded version) 
 ```info-verb
-CMP0 <-  SRC1[31:0] OP5 SRC2[31:0];
+CMP0 <-   SRC1[31:0] OP5 SRC2[31:0];
 IF k2[0] or *no writemask*
- THEN IF CMP0 = TRUE
-      THEN DEST[0]  <- 1;
-      ELSE DEST[0] <-  0; FI;
- ELSE  DEST[0]  <- 0 ; zeroing-masking only
+    THEN IF CMP0 = TRUE
+                      THEN DEST[0]  <-  1;
+                      ELSE DEST[0] <-   0; FI;
+    ELSE  DEST[0]  <-  0 ; zeroing-masking only
 FI;
-DEST[MAX_KL-1:1]  <- 0
+DEST[MAX_KL-1:1]  <-  0
 ```
 #### CMPSS (128-bit Legacy SSE version)
 ```info-verb
-CMP0 <- DEST[31:0] OP3 SRC[31:0];
+CMP0 <-  DEST[31:0] OP3 SRC[31:0];
 IF CMP0 = TRUE
-THEN DEST[31:0]  <-FFFFFFFFH;
-ELSE DEST[31:0] <- 00000000H; FI;
+THEN DEST[31:0]  <- FFFFFFFFH;
+ELSE DEST[31:0] <-  00000000H; FI;
 DEST[MAX_VL-1:32] (Unmodified)
 ```
 #### VCMPSS (VEX.128 encoded version)
 ```info-verb
-CMP0  <-SRC1[31:0] OP5 SRC2[31:0];
+CMP0  <- SRC1[31:0] OP5 SRC2[31:0];
 IF CMP0 = TRUE
-THEN DEST[31:0]  <-FFFFFFFFH;
-ELSE DEST[31:0]  <-00000000H; FI;
-DEST[127:32] <- SRC1[127:32]
-DEST[MAX_VL-1:128]  <-0
+THEN DEST[31:0]  <- FFFFFFFFH;
+ELSE DEST[31:0]  <- 00000000H; FI;
+DEST[127:32] <-  SRC1[127:32]
+DEST[MAX_VL-1:128]  <- 0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -155,7 +155,7 @@ VCMPSS __mmask8 _mm_mask_cmp_round_ss_mask( __mmask8 k1, __m128 a, __m128 b, int
 ### SIMD Floating-Point Exceptions
 
 
-Invalid if SNaN operand, Invalid if QNaN and predicate as listed in Table3-1, Denormal.
+Invalid if SNaN operand, Invalid if QNaN and predicate as listed in Table 3-1, Denormal.
 
 ### Other Exceptions
 

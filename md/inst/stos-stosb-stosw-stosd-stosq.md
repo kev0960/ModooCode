@@ -49,61 +49,61 @@ The `STOS`, `STOSB`, `STOSW`, `STOSD`, `STOSQ` instructions can be preceded by t
 ```info-verb
 Non-64-bit Mode:
 IF (Byte store)
- THEN
-   DEST <- AL;
-    THEN IF DF = 0
-      THEN (E)DI <- (E)DI + 1; 
-      ELSE (E)DI <- (E)DI - 1; 
-    FI;
- ELSE IF (Word store)
-   THEN
-    DEST <- AX;
-      THEN IF DF = 0
-        THEN (E)DI <- (E)DI + 2; 
-        ELSE (E)DI <- (E)DI - 2; 
-      FI;
-   FI;
- ELSE IF (Doubleword store)
-   THEN
-    DEST <- EAX;
-      THEN IF DF = 0
-        THEN (E)DI <- (E)DI + 4; 
-        ELSE (E)DI <- (E)DI - 4; 
-      FI;
-   FI;
+    THEN
+          DEST <- AL;
+                THEN IF DF = 0
+                      THEN (E)DI <- (E)DI + 1; 
+                      ELSE (E)DI <- (E)DI - 1; 
+                FI;
+    ELSE IF (Word store)
+          THEN
+                DEST <- AX;
+                      THEN IF DF = 0
+                            THEN (E)DI <- (E)DI + 2; 
+                            ELSE (E)DI <- (E)DI - 2; 
+                      FI;
+          FI;
+    ELSE IF (Doubleword store)
+          THEN
+                DEST <- EAX;
+                      THEN IF DF = 0
+                            THEN (E)DI <- (E)DI + 4; 
+                            ELSE (E)DI <- (E)DI - 4; 
+                      FI;
+          FI;
 FI;
 64-bit Mode:
 IF (Byte store)
- THEN
-   DEST <- AL;
-    THEN IF DF = 0
-      THEN (R|E)DI <- (R|E)DI + 1; 
-      ELSE (R|E)DI <- (R|E)DI - 1; 
-    FI;
- ELSE IF (Word store)
-   THEN
-    DEST <- AX;
+    THEN
+          DEST <- AL;
+                THEN IF DF = 0
+                      THEN (R|E)DI <- (R|E)DI + 1; 
+                      ELSE (R|E)DI <- (R|E)DI - 1; 
+                FI;
+    ELSE IF (Word store)
+          THEN
+                DEST <- AX;
 THEN IF DF = 0
-        THEN (R|E)DI <- (R|E)DI + 2; 
-        ELSE (R|E)DI <- (R|E)DI - 2; 
-      FI;
-   FI;
- ELSE IF (Doubleword store)
-   THEN
-    DEST <- EAX;
-      THEN IF DF = 0
-        THEN (R|E)DI <- (R|E)DI + 4; 
-        ELSE (R|E)DI <- (R|E)DI - 4; 
-      FI;
-   FI;
- ELSE IF (Quadword store using REX.W )
-   THEN
-    DEST <- RAX;
-      THEN IF DF = 0
-        THEN (R|E)DI <- (R|E)DI + 8; 
-        ELSE (R|E)DI <- (R|E)DI - 8; 
-      FI;
-   FI;
+                            THEN (R|E)DI <- (R|E)DI + 2; 
+                            ELSE (R|E)DI <- (R|E)DI - 2; 
+                      FI;
+          FI;
+    ELSE IF (Doubleword store)
+          THEN
+                DEST <- EAX;
+                      THEN IF DF = 0
+                            THEN (R|E)DI <- (R|E)DI + 4; 
+                            ELSE (R|E)DI <- (R|E)DI - 4; 
+                      FI;
+          FI;
+    ELSE IF (Quadword store using REX.W )
+          THEN
+                DEST <- RAX;
+                      THEN IF DF = 0
+                            THEN (R|E)DI <- (R|E)DI + 8; 
+                            ELSE (R|E)DI <- (R|E)DI - 8; 
+                      FI;
+          FI;
 FI;
 ```
 ### Flags Affected

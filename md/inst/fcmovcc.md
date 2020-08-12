@@ -18,11 +18,10 @@ path : /X86-64 명령어 레퍼런스
 |DB C8+i|FCMOVNE ST(0), ST(i)|Valid|Valid|Move if not equal (ZF=0).|
 |DB D0+i|FCMOVNBE ST(0), ST(i)|Valid|Valid|Move if not below or equal (CF=0 and ZF=0).|
 |DB D8+i|FCMOVNU ST(0), ST(i)|Valid|Valid|Move if not unordered (PF=0).|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Description
 
 
@@ -44,7 +43,7 @@ The FCMOVcc instructions were introduced to the IA-32 Architecture in the P6 fam
 
 ```info-verb
 IF condition TRUE
- THEN ST(0) <- ST(i);
+    THEN ST(0) <- ST(i);
 FI;
 ```
 ### FPU Flags Affected

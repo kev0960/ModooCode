@@ -10,18 +10,17 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F E4 /r\footnote{1}\newline{}PMULHUW mm1, mm2/m64|RM|V/V|SSE|Multiply the packed unsigned word integers in mm1 register and mm2/m64, and store the high 16 bits of the results in mm1. |
-|66 0F E4 /r\newline{}PMULHUW xmm1, xmm2/m128|RM|V/V|SSE2|Multiply the packed unsigned word integers in xmm1 and xmm2/m128, and store the high 16 bits of the results in xmm1.|
-|VEX.NDS.128.66.0F.WIG E4 /r\newline{}VPMULHUW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1.|
-|VEX.NDS.256.66.0F.WIG E4 /r\newline{}VPMULHUW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1.|
-|EVEX.NDS.128.66.0F.WIG E4 /rVPMULHUW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1 under writemask k1.|
-|EVEX.NDS.256.66.0F.WIG E4 /rVPMULHUW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1 under writemask k1.|
-|EVEX.NDS.512.66.0F.WIG E4 /rVPMULHUW zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Multiply the packed unsigned word integers in zmm2 and zmm3/m512, and store the high 16 bits of the results in zmm1 under writemask k1.|
-### NOTES:
+|0F E4 /r\footnote{1}\newline{}\newline{}PMULHUW mm1, mm2/m64|RM|V/V|SSE|Multiply the packed unsigned word integers in mm1 register and mm2/m64, and store the high 16 bits of the results in mm1. |
+|66 0F E4 /r\newline{}\newline{}PMULHUW xmm1, xmm2/m128|RM|V/V|SSE2|Multiply the packed unsigned word integers in xmm1 and xmm2/m128, and store the high 16 bits of the results in xmm1.|
+|VEX.NDS.128.66.0F.WIG E4 /r\newline{}\newline{}VPMULHUW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1.|
+|VEX.NDS.256.66.0F.WIG E4 /r\newline{}\newline{}VPMULHUW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1.|
+|EVEX.NDS.128.66.0F.WIG E4 /r\newline{}VPMULHUW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1 under writemask k1.|
+|EVEX.NDS.256.66.0F.WIG E4 /r\newline{}VPMULHUW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1 under writemask k1.|
+|EVEX.NDS.512.66.0F.WIG E4 /r\newline{}VPMULHUW zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Multiply the packed unsigned word integers in zmm2 and zmm3/m512, and store the high 16 bits of the results in zmm1 under writemask k1.|
 
-
-1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
-
+```note
+1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A
+```
 ### Instruction Operand Encoding
 
 
@@ -33,7 +32,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Performs a SIMD unsigned multiply of the packed unsigned word integers in the destination operand (first operand) and the source operand (second operand), and stores the high 16 bits of each 32-bit intermediate results in the destination operand. (Figure4-12 shows this operation when using 64-bit operands.)
+Performs a SIMD unsigned multiply of the packed unsigned word integers in the destination operand (first operand) and the source operand (second operand), and stores the high 16 bits of each 32-bit intermediate results in the destination operand. (Figure 4-12 shows this operation when using 64-bit operands.)
 
 In 64-bit mode and not encoded with VEX/EVEX, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).
 
@@ -252,115 +251,115 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 <text x="133.380005" y="115.240021" textLength="4.008960" font-size="8px">Z</text>
 <text x="228.180008" y="87.460022" textLength="4.381020" font-size="8px">=</text>
 </svg>
-<figcaption>Figure 4-12.  `PMULHUW` and `PMULHW` Instruction Operation Using 64-bit Operands
+<figcaption>Figure 4-12.  PMULHUW and PMULHW Instruction Operation Using 64-bit Operands
 </figcaption></figure>
 ```
 
 ### Operation
 #### PMULHUW (with 64-bit operands)
 ```info-verb
- TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (* Unsigned multiplication *)
- TEMP1[31:0] <- DEST[31:16] `*` SRC[31:16];
- TEMP2[31:0] <- DEST[47:32] `*` SRC[47:32];
- TEMP3[31:0] <- DEST[63:48] `*` SRC[63:48];
- DEST[15:0] <-  TEMP0[31:16];
- DEST[31:16] <-  TEMP1[31:16];
- DEST[47:32] <-  TEMP2[31:16];
- DEST[63:48] <-  TEMP3[31:16];
+    TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (* Unsigned multiplication *)
+    TEMP1[31:0] <- DEST[31:16] `*` SRC[31:16];
+    TEMP2[31:0] <-  DEST[47:32] `*` SRC[47:32];
+    TEMP3[31:0] <- DEST[63:48] `*` SRC[63:48];
+    DEST[15:0] <-  TEMP0[31:16];
+    DEST[31:16] <-  TEMP1[31:16];
+    DEST[47:32] <-  TEMP2[31:16];
+    DEST[63:48] <-  TEMP3[31:16];
 ```
 #### PMULHUW (with 128-bit operands)
 ```info-verb
- TEMP0[31:0] <- DEST[15:0] `*` SRC[15:0]; (* Unsigned multiplication *)
- TEMP1[31:0] <- DEST[31:16] `*` SRC[31:16];
- TEMP2[31:0] <- DEST[47:32] `*` SRC[47:32];
- TEMP3[31:0] <- DEST[63:48] `*` SRC[63:48];
- TEMP4[31:0] <- DEST[79:64] `*` SRC[79:64];
- TEMP5[31:0] <- DEST[95:80] `*` SRC[95:80];
- TEMP6[31:0] <- DEST[111:96] `*` SRC[111:96];
- TEMP7[31:0] <- DEST[127:112] `*` SRC[127:112];
- DEST[15:0] <-  TEMP0[31:16];
- DEST[31:16] <-  TEMP1[31:16];
- DEST[47:32] <-  TEMP2[31:16];
- DEST[63:48] <-  TEMP3[31:16];
- DEST[79:64] <-  TEMP4[31:16];
- DEST[95:80] <-  TEMP5[31:16];
- DEST[111:96] <- TEMP6[31:16];
- DEST[127:112] <- TEMP7[31:16];
+    TEMP0[31:0] <-  DEST[15:0] `*` SRC[15:0]; (* Unsigned multiplication *)
+    TEMP1[31:0] <- DEST[31:16] `*` SRC[31:16];
+    TEMP2[31:0] <-  DEST[47:32] `*` SRC[47:32];
+    TEMP3[31:0] <- DEST[63:48] `*` SRC[63:48];
+    TEMP4[31:0] <- DEST[79:64] `*` SRC[79:64];
+    TEMP5[31:0] <-  DEST[95:80] `*` SRC[95:80];
+    TEMP6[31:0] <-  DEST[111:96] `*` SRC[111:96];
+    TEMP7[31:0] <- DEST[127:112] `*` SRC[127:112];
+    DEST[15:0] <-  TEMP0[31:16];
+    DEST[31:16] <-  TEMP1[31:16];
+    DEST[47:32] <-  TEMP2[31:16];
+    DEST[63:48] <-  TEMP3[31:16];
+    DEST[79:64] <-  TEMP4[31:16];
+    DEST[95:80] <-  TEMP5[31:16];
+    DEST[111:96] <-  TEMP6[31:16];
+    DEST[127:112] <- TEMP7[31:16];
 ```
 #### VPMULHUW (VEX.128 encoded version)
 ```info-verb
-TEMP0[31:0] <-  SRC1[15:0] * SRC2[15:0]
-TEMP1[31:0] <-  SRC1[31:16] * SRC2[31:16]
-TEMP2[31:0]  <- SRC1[47:32] * SRC2[47:32]
-TEMP3[31:0]  <- SRC1[63:48] * SRC2[63:48]
-TEMP4[31:0] <-  SRC1[79:64] * SRC2[79:64]
-TEMP5[31:0]  <- SRC1[95:80] * SRC2[95:80]
-TEMP6[31:0] <-  SRC1[111:96] * SRC2[111:96]
-TEMP7[31:0]  <- SRC1[127:112] * SRC2[127:112]
-DEST[15:0]  <- TEMP0[31:16]
-DEST[31:16]  <- TEMP1[31:16]
-DEST[47:32]  <- TEMP2[31:16]
-DEST[63:48]  <- TEMP3[31:16]
-DEST[79:64]  <- TEMP4[31:16]
-DEST[95:80]  <- TEMP5[31:16]
-DEST[111:96]  <- TEMP6[31:16]
-DEST[127:112] <-  TEMP7[31:16]
-DEST[VLMAX-1:128] <-  0
+TEMP0[31:0] <-   SRC1[15:0] * SRC2[15:0]
+TEMP1[31:0] <-   SRC1[31:16] * SRC2[31:16]
+TEMP2[31:0]  <-  SRC1[47:32] * SRC2[47:32]
+TEMP3[31:0]  <-  SRC1[63:48] * SRC2[63:48]
+TEMP4[31:0] <-   SRC1[79:64] * SRC2[79:64]
+TEMP5[31:0]  <-  SRC1[95:80] * SRC2[95:80]
+TEMP6[31:0] <-   SRC1[111:96] * SRC2[111:96]
+TEMP7[31:0]  <-  SRC1[127:112] * SRC2[127:112]
+DEST[15:0]  <-  TEMP0[31:16]
+DEST[31:16]  <-  TEMP1[31:16]
+DEST[47:32]  <-  TEMP2[31:16]
+DEST[63:48]  <-  TEMP3[31:16]
+DEST[79:64]  <-  TEMP4[31:16]
+DEST[95:80]  <-  TEMP5[31:16]
+DEST[111:96]  <-  TEMP6[31:16]
+DEST[127:112] <-   TEMP7[31:16]
+DEST[VLMAX-1:128] <-   0
 ```
 #### PMULHUW (VEX.256 encoded version)
 ```info-verb
-TEMP0[31:0]  <- SRC1[15:0] * SRC2[15:0]
-TEMP1[31:0] <-  SRC1[31:16] * SRC2[31:16]
-TEMP2[31:0] <-  SRC1[47:32] * SRC2[47:32]
-TEMP3[31:0] <-  SRC1[63:48] * SRC2[63:48]
-TEMP4[31:0]  <- SRC1[79:64] * SRC2[79:64]
-TEMP5[31:0]  <- SRC1[95:80] * SRC2[95:80]
-TEMP6[31:0]  <- SRC1[111:96] * SRC2[111:96]
-TEMP7[31:0] <-  SRC1[127:112] * SRC2[127:112]
-TEMP8[31:0]  <- SRC1[143:128] * SRC2[143:128]
-TEMP9[31:0] <-  SRC1[159:144] * SRC2[159:144]
-TEMP10[31:0] <-  SRC1[175:160] * SRC2[175:160]
-TEMP11[31:0]  <- SRC1[191:176] * SRC2[191:176]
-TEMP12[31:0] <-  SRC1[207:192] * SRC2[207:192]
-TEMP13[31:0]  <- SRC1[223:208] * SRC2[223:208]
-TEMP14[31:0]  <- SRC1[239:224] * SRC2[239:224]
-TEMP15[31:0]  <- SRC1[255:240] * SRC2[255:240]
-DEST[15:0] <-  TEMP0[31:16]
-DEST[31:16]  <- TEMP1[31:16]
-DEST[47:32] <-  TEMP2[31:16]
-DEST[63:48]  <- TEMP3[31:16]
-DEST[79:64] <-  TEMP4[31:16]
-DEST[95:80]  <- TEMP5[31:16]
-DEST[111:96] <-  TEMP6[31:16]
-DEST[127:112] <-  TEMP7[31:16]
-DEST[143:128]  <- TEMP8[31:16]
-DEST[159:144] <-  TEMP9[31:16]
-DEST[175:160]  <- TEMP10[31:16]
-DEST[191:176] <-  TEMP11[31:16]
-DEST[207:192]  <- TEMP12[31:16]
-DEST[223:208]  <- TEMP13[31:16]
-DEST[239:224] <-  TEMP14[31:16]
-DEST[255:240] <-  TEMP15[31:16]
-DEST[MAX_VL-1:256] <-  0
+TEMP0[31:0]  <-  SRC1[15:0] * SRC2[15:0]
+TEMP1[31:0] <-   SRC1[31:16] * SRC2[31:16]
+TEMP2[31:0] <-   SRC1[47:32] * SRC2[47:32]
+TEMP3[31:0] <-   SRC1[63:48] * SRC2[63:48]
+TEMP4[31:0]  <-  SRC1[79:64] * SRC2[79:64]
+TEMP5[31:0]  <-  SRC1[95:80] * SRC2[95:80]
+TEMP6[31:0]  <-  SRC1[111:96] * SRC2[111:96]
+TEMP7[31:0] <-   SRC1[127:112] * SRC2[127:112]
+TEMP8[31:0]  <-  SRC1[143:128] * SRC2[143:128]
+TEMP9[31:0] <-   SRC1[159:144] * SRC2[159:144]
+TEMP10[31:0] <-   SRC1[175:160] * SRC2[175:160]
+TEMP11[31:0]  <-  SRC1[191:176] * SRC2[191:176]
+TEMP12[31:0] <-   SRC1[207:192] * SRC2[207:192]
+TEMP13[31:0]  <-  SRC1[223:208] * SRC2[223:208]
+TEMP14[31:0]  <-  SRC1[239:224] * SRC2[239:224]
+TEMP15[31:0]  <-  SRC1[255:240] * SRC2[255:240]
+DEST[15:0] <-   TEMP0[31:16]
+DEST[31:16]  <-  TEMP1[31:16]
+DEST[47:32] <-   TEMP2[31:16]
+DEST[63:48]  <-  TEMP3[31:16]
+DEST[79:64] <-   TEMP4[31:16]
+DEST[95:80]  <-  TEMP5[31:16]
+DEST[111:96] <-   TEMP6[31:16]
+DEST[127:112] <-   TEMP7[31:16]
+DEST[143:128]  <-  TEMP8[31:16]
+DEST[159:144] <-   TEMP9[31:16]
+DEST[175:160]  <-  TEMP10[31:16]
+DEST[191:176] <-   TEMP11[31:16]
+DEST[207:192]  <-  TEMP12[31:16]
+DEST[223:208]  <-  TEMP13[31:16]
+DEST[239:224] <-   TEMP14[31:16]
+DEST[255:240] <-   TEMP15[31:16]
+DEST[MAX_VL-1:256] <-   0
 ```
 #### PMULHUW (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j  <- 0 TO KL-1
- i <-  j * 16
- IF k1[j] OR *no writemask*
-   THEN 
-    temp[31:0]  <- SRC1[i+15:i] * SRC2[i+15:i]
-    DEST[i+15:i] <-  tmp[31:16]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+15:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+15:i] <-  0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i <-   j * 16
+    IF k1[j] OR *no writemask*
+          THEN 
+                temp[31:0]  <-  SRC1[i+15:i] * SRC2[i+15:i]
+                DEST[i+15:i] <-   tmp[31:16]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+15:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+15:i] <-   0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

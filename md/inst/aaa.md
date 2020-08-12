@@ -31,14 +31,14 @@ This instruction executes as described in compatibility mode and legacy mode. It
 
 ```info-verb
 IF 64-Bit ModeTHEN#UD;ELSEIF ((AL AND 0FH) > 9) or (AF = 1)
-    THEN
-      AX <- AX + 106H;
-      AF <- 1;
-      CF <- 1;
-    ELSE
-      AF <- 0;
-      CF <- 0;FI;
-   AL <- AL AND 0FH;
+                THEN
+                      AX <- AX + 106H;
+                      AF <- 1;
+                      CF <- 1;
+                ELSE
+                      AF <- 0;
+                      CF <- 0;FI;
+          AL <- AL AND 0FH;
 FI;
 ```
 ### Flags Affected

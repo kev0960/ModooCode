@@ -14,11 +14,10 @@ path : /X86-64 명령어 레퍼런스
 |9B DF E0|FSTSW AX|Valid|Valid|Store FPU status word in AX register after checking for pending unmasked floating-point exceptions.|
 |DD /7|FNSTSW\footnote{*}  m2byte|Valid|Valid|Store FPU status word at m2byte without checking for pending unmasked floating-point exceptions.|
 |DF E0|FNSTSW\footnote{*}  AX|Valid|Valid|Store FPU status word in AX register without checking for pending unmasked floating-point exceptions.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Description
 
 

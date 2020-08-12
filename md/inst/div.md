@@ -15,11 +15,10 @@ path : /X86-64 명령어 레퍼런스
 |F7 /6|DIV r/m16|M|Valid|Valid|Unsigned divide DX:AX by r/m16, with result stored in AX <- Quotient, DX <- Remainder.|
 |F7 /6|DIV r/m32|M|Valid|Valid|Unsigned divide EDX:EAX by r/m32, with result stored in EAX <- Quotient, EDX <- Remainder.|
 |REX.W + F7 /6|DIV r/m64|M|Valid|N.E.|Unsigned divide RDX:RAX by r/m64, with result stored in RAX <- Quotient, RDX <- Remainder.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH
+```
 ### Instruction Operand Encoding
 
 
@@ -51,46 +50,46 @@ See the summary chart at the beginning of this section for encoding data and lim
 
 ```info-verb
 IF SRC = 0
- THEN #DE; FI; (* Divide Error *) 
+    THEN #DE; FI; (* Divide Error *) 
 IF OperandSize = 8 (* Word/Byte Operation *)
- THEN
-   temp <- AX / SRC;
-   IF temp > FFH
-    THEN #DE; (* Divide error *) 
-    ELSE
-      AL <- temp;
-      AH <- AX MOD SRC;
-   FI;
- ELSE IF OperandSize = 16 (* Doubleword/word operation *)
-   THEN
-    temp <- DX:AX / SRC;
-    IF temp > FFFFH
-      THEN #DE; (* Divide error *) 
-    ELSE
-      AX <- temp;
-      DX <- DX:AX MOD SRC;
-    FI;
-   FI;
- ELSE IF Operandsize = 32 (* Quadword/doubleword operation *)
-   THEN
-    temp <- EDX:EAX / SRC;
-    IF temp > FFFFFFFFH
-      THEN #DE; (* Divide error *) 
-    ELSE
-      EAX <- temp;
-      EDX <- EDX:EAX MOD SRC;
-    FI;
-   FI;
- ELSE IF 64-Bit Mode and Operandsize = 64 (* Doublequadword/quadword operation *)
-   THEN
-    temp <- RDX:RAX / SRC;
-    IF temp > FFFFFFFFFFFFFFFFH
-      THEN #DE; (* Divide error *) 
-    ELSE
-      RAX <- temp;
-      RDX <- RDX:RAX MOD SRC;
-    FI;
-   FI;
+    THEN
+          temp <- AX / SRC;
+          IF temp > FFH
+                THEN #DE; (* Divide error *) 
+                ELSE
+                      AL <- temp;
+                      AH <- AX MOD SRC;
+          FI;
+    ELSE IF OperandSize = 16 (* Doubleword/word operation *)
+          THEN
+                temp <- DX:AX / SRC;
+                IF temp > FFFFH
+                      THEN #DE; (* Divide error *) 
+                ELSE
+                      AX <- temp;
+                      DX <- DX:AX MOD SRC;
+                FI;
+          FI;
+    ELSE IF Operandsize = 32 (* Quadword/doubleword operation *)
+          THEN
+                temp <- EDX:EAX / SRC;
+                IF temp > FFFFFFFFH
+                      THEN #DE; (* Divide error *) 
+                ELSE
+                      EAX <- temp;
+                      EDX <- EDX:EAX MOD SRC;
+                FI;
+          FI;
+    ELSE IF 64-Bit Mode and Operandsize = 64 (* Doublequadword/quadword operation *)
+          THEN
+                temp <- RDX:RAX / SRC;
+                IF temp > FFFFFFFFFFFFFFFFH
+                      THEN #DE; (* Divide error *) 
+                ELSE
+                      RAX <- temp;
+                      RDX <- RDX:RAX MOD SRC;
+                FI;
+          FI;
 FI;
 ```
 ### Flags Affected

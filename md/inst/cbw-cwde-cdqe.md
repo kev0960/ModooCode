@@ -33,12 +33,12 @@ In 64-bit mode, the default operation size is the size of the destination regist
 
 ```info-verb
 IF OperandSize = 16 (* Instruction = CBW *)
- THEN 
-   AX <- SignExtend(AL);
- ELSE IF (OperandSize = 32, Instruction = CWDE)
-   EAX <- SignExtend(AX); FI;
- ELSE (* 64-Bit Mode, OperandSize = 64, Instruction = CDQE*)
-   RAX <- SignExtend(EAX);
+    THEN 
+          AX <- SignExtend(AL);
+    ELSE IF (OperandSize = 32, Instruction = CWDE)
+          EAX <- SignExtend(AX); FI;
+    ELSE (* 64-Bit Mode, OperandSize = 64, Instruction = CDQE*)
+          RAX <- SignExtend(EAX);
 FI;
 ```
 ### Flags Affected

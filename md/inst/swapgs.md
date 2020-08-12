@@ -33,10 +33,10 @@ The IA32_KERNEL_GS_BASE MSR itself is only accessible using RDMSR/WRMSR instruct
 
 ```info-verb
 IF CS.L != 1 (* Not in 64-Bit Mode *)
- THEN
-   #UD; FI;
+    THEN
+          #UD; FI;
 IF CPL != 0
- THEN #GP(0); FI;
+    THEN #GP(0); FI;
 tmp <- GS.base;
 GS.base <- IA32_KERNEL_GS_BASE;
 IA32_KERNEL_GS_BASE <- tmp;

@@ -10,14 +10,14 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F AE /1\newline{}FXRSTOR m512byte|M|Valid|Valid|Restore the x87 FPU, MMX, XMM, and MXCSR register state from m512byte.|
-|REX.W+ 0F AE /1\newline{}FXRSTOR64 m512byte|M|Valid|N.E.|Restore the x87 FPU, MMX, XMM, and MXCSR register state from m512byte.|
-###                  Instruction Operand Encoding
+|0F AE /1\newline{}\newline{}FXRSTOR m512byte|M|Valid|Valid|Restore the x87 FPU, MMX, XMM, and MXCSR register state from m512byte.|
+|REX.W+ 0F AE /1\newline{}\newline{}FXRSTOR64 m512byte|M|Valid|N.E.|Restore the x87 FPU, MMX, XMM, and MXCSR register state from m512byte.|
+###                                                            Instruction Operand Encoding
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
 
-M ModRM:r/m (r) NA NA NA
+  M ModRM:r/m (r) NA NA NA
 
 ### Description
 
@@ -44,7 +44,7 @@ IF 64-Bit Mode
       THEN               
              (x87 FPU, MMX, XMM15-XMM0, MXCSR)     Load(SRC);
       ELSE
-   (x87 FPU, MMX, XMM7-XMM0, MXCSR) <- Load(SRC);
+          (x87 FPU, MMX, XMM7-XMM0, MXCSR) <- Load(SRC);
 FI;
 ```
 ### x87 FPU and SIMD Floating-Point Exceptions

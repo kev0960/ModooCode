@@ -17,11 +17,10 @@ path : /X86-64 명령어 레퍼런스
 |D9 EC|FLDLG2|Valid|Valid|Push log102 onto the FPU register stack.|
 |D9 ED|FLDLN2|Valid|Valid|Push loge2 onto the FPU register stack.|
 |D9 EE|FLDZ|Valid|Valid|Push +0.0 onto the FPU register stack.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Description
 
 

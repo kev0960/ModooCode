@@ -19,7 +19,7 @@ path : /X86-64 명령어 레퍼런스
 
 Compares the value in ST(0) with an integer source operand and sets the condition code flags C0, C2, and C3 in the FPU status word according to the results (see table below). The integer value is converted to double extended-precision floating-point format before the comparison is made.
 
-###                  Table 3-26.  FICOM/FICOMP Results
+###                                                            Table 3-26.  FICOM/FICOMP Results
 
 
 These instructions perform an "unordered comparison." An unordered comparison also checks the class of the numbers being compared (see "FXAM--Examine Floating-Point" in this chapter). If either operand is a NaN or is in an undefined format, the condition flags are set to "unordered."
@@ -43,14 +43,14 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 CASE (relation of operands) OF
- ST(0) > SRC: C3, C2, C0 <- 000;
- ST(0) < SRC: C3, C2, C0 <- 001;
- ST(0) = SRC: C3, C2, C0 <- 100;
- Unordered: C3, C2, C0 <- 111;
+    ST(0) > SRC: C3, C2, C0 <- 000;
+    ST(0) < SRC: C3, C2, C0 <- 001;
+    ST(0) = SRC: C3, C2, C0 <- 100;
+    Unordered: C3, C2, C0 <- 111;
 ESAC;
 IF Instruction = FICOMP 
- THEN 
-   PopRegisterStack; 
+    THEN 
+          PopRegisterStack; 
 FI;
 ```
 ### FPU Flags Affected

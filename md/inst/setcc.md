@@ -120,11 +120,10 @@ REX + 0F 98 Set byte if sign (SF=1).
 
 REX + 0F 94 Set byte if zero (ZF=1).
 
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 
@@ -151,8 +150,8 @@ In IA-64 mode, the operand size is fixed at 8 bits. Use of REX prefix enable uni
 
 ```info-verb
 IF condition
- THEN DEST <- 1; 
- ELSE DEST <- 0; 
+    THEN DEST <- 1; 
+    ELSE DEST <- 0; 
 FI;
 ```
 ### Flags Affected

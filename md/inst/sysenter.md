@@ -28,9 +28,9 @@ Prior to executing the `SYSENTER` instruction, software must specify the privile
 
 *  IA32_SYSENTER_CS (MSR address 174H) -- The lower 16 bits of this MSR are the segment selector for the privilege level 0 code segment. This value is also used to determine the segment selector of the privilege level 0 stack segment (see the Operation section). This value cannot indicate a null selector.
 
-*  IA32_SYSENTER_EIP (MSR address 176H) -- The value of this MSR is loaded into RIP (thus, this value references the first instruction of the selected operating procedure or routine). In protected mode, only bits31:0 are loaded.
+*  IA32_SYSENTER_EIP (MSR address 176H) -- The value of this MSR is loaded into RIP (thus, this value references the first instruction of the selected operating procedure or routine). In protected mode, only bits 31:0 are loaded.
 
-*  IA32_SYSENTER_ESP (MSR address 175H) -- The value of this MSR is loaded into RSP (thus, this value contains the stack pointer for the privilege level 0 stack). This value cannot represent a non-canonical address. In protected mode, only bits31:0 are loaded.
+*  IA32_SYSENTER_ESP (MSR address 175H) -- The value of this MSR is loaded into RSP (thus, this value contains the stack pointer for the privilege level 0 stack). This value cannot represent a non-canonical address. In protected mode, only bits 31:0 are loaded.
 
 These MSRs can be read from and written to using RDMSR/WRMSR. The `WRMSR` instruction ensures that the IA32_SYSENTER_EIP and IA32_SYSENTER_ESP MSRs always contain canonical addresses.
 
@@ -52,15 +52,15 @@ The `SYSENTER` and `SYSEXIT` instructions were introduced into the IA-32 archite
 
 IF `CPUID` SEP bit is set
 
- THEN IF (Family = 6) and (Model < 3) and (Stepping < 3) 
+    THEN IF (Family = 6) and (Model < 3) and (Stepping < 3) 
 
-   THEN
+          THEN
 
-    SYSENTER/SYSEXIT_Not_Supported; FI;
+                SYSENTER/SYSEXIT_Not_Supported; FI;
 
-   ELSE 
+          ELSE 
 
-    SYSENTER/SYSEXIT_Supported; FI;
+                SYSENTER/SYSEXIT_Supported; FI;
 
 FI;
 
@@ -74,15 +74,15 @@ IF CR0.PE = 0 OR IA32_SYSENTER_CS[15:2] = 0 THEN #GP(0); FI;
 RFLAGS.VM <- 0; (* Ensures protected mode execution *)
 RFLAGS.IF <- 0; (* Mask interrupts *)
 IF in IA-32e mode
- THEN
-   RSP <- IA32_SYSENTER_ESP;
-   RIP <- IA32_SYSENTER_EIP;
+    THEN
+          RSP <- IA32_SYSENTER_ESP;
+          RIP <- IA32_SYSENTER_EIP;
 ELSE
-   ESP <- IA32_SYSENTER_ESP[31:0];
-   EIP <- IA32_SYSENTER_EIP[31:0];
+          ESP <- IA32_SYSENTER_ESP[31:0];
+          EIP <- IA32_SYSENTER_EIP[31:0];
 FI;
 CS.Selector <- IA32_SYSENTER_CS[15:0] AND FFFCH;
-                 (* Operating system provides CS; RPL forced to 0 *)
+                                                          (* Operating system provides CS; RPL forced to 0 *)
 (* Set rest of CS to a fixed value *)
 CS.Base <- 0; (* Flat segment *)
 CS.Limit <- FFFFFH; (* With 4-KByte granularity, implies a 4-GByte limit *)
@@ -91,12 +91,12 @@ CS.S <- 1;
 CS.DPL <- 0;
 CS.P <- 1;
 IF in IA-32e mode
- THEN
-   CS.L <- 1; (* Entry is to 64-bit mode *)
-   CS.D <- 0; (* Required if CS.L = 1 *)
- ELSE
-   CS.L <- 0;
-   CS.D <- 1; (* 32-bit code segment*)
+    THEN
+          CS.L <- 1; (* Entry is to 64-bit mode *)
+          CS.D <- 0; (* Required if CS.L = 1 *)
+    ELSE
+          CS.L <- 0;
+          CS.D <- 1; (* 32-bit code segment*)
 FI;
 CS.G <- 1; (* 4-KByte granularity *)
 CPL <- 0;

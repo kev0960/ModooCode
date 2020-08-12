@@ -25,22 +25,22 @@ This instruction produces an exact result; the precision (inexact) exception doe
 ### Table 3-32.  FPREM1 Results
 
 
-|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{}\htmlonly{*}|**ST(**\newline{}- 0\newline{}\htmlonly{*}|**1)**\newline{}  + 0\newline{}  \htmlonly{*}|+ F\newline{}\htmlonly{*}|+ $$\infty$$\newline{}\htmlonly{*}|NaN\newline{}NaN|
-|-----------------------------------------------|-------------------------|------------------------------------------|---------------------------------------------|-------------------------|----------------------------------|----------------|
+|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{} \htmlonly{*}|**ST(**\newline{}- 0\newline{} \htmlonly{*}|**1)**\newline{}      + 0\newline{}        \htmlonly{*}|+ F\newline{} \htmlonly{*}|+ $$\infty$$\newline{} \htmlonly{*}|NaN\newline{}NaN|
+|-----------------------------------------------|--------------------------|-------------------------------------------|-------------------------------------------------------|--------------------------|-----------------------------------|----------------|
 |**ST(0)** - F ST(0)|$$\pm$$F or -0|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|$$\pm$$ F or - 0|ST(0)|NaN|
 |- 0 - 0|- 0|\htmlonly{*}|\htmlonly{*}|- 0|-0|NaN|
 |+ 0 + 0|+ 0|\htmlonly{*}|\htmlonly{*}|+ 0|+0|NaN|
 |+ F ST(0)|$$\pm$$ F or + 0|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|$$\pm$$ F or + 0|ST(0)|NaN|
 |+ $$\infty$$ \htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+ \htmlonly{*} Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
-\htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
+ \htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
 
 When the result is 0, its sign is the same as that of the dividend. When the modulus is $$\infty$$, the result is equal to the value in ST(0). 
 
@@ -63,25 +63,25 @@ D <- exponent(ST(0)) - exponent(ST(1));
 
 IF D < 64
 
- THEN
+    THEN
 
-   Q <- Integer(RoundTowardNearestInteger(ST(0) / ST(1)));
+          Q <- Integer(RoundTowardNearestInteger(ST(0) / ST(1)));
 
-   ST(0) <- ST(0) - (ST(1) `*` Q);
+          ST(0) <- ST(0) - (ST(1) `*` Q);
 
-   C2 <- 0;
+          C2 <- 0;
 
-   C0, C3, C1 <- LeastSignificantBits(Q); (\htmlonly{*} Q2, Q1, Q0 \htmlonly{*})
+          C0, C3, C1 <- LeastSignificantBits(Q); (\htmlonly{*} Q2, Q1, Q0 \htmlonly{*})
 
- ELSE
+    ELSE
 
-   C2 <- 1;
+          C2 <- 1;
 
-   N <- An implementation-dependent number between 32 and 63;
+          N <- An implementation-dependent number between 32 and 63;
 
-   QQ <- Integer(TruncateTowardZero((ST(0)  / ST(1)) / 2\footnote{(D - N)} ));
+          QQ <- Integer(TruncateTowardZero((ST(0)  / ST(1)) / 2\footnote{(D - N)} ));
 
-   ST(0) <- ST(0) - (ST(1) `*` QQ `*` 2\footnote{(D - N)} ); 
+          ST(0) <- ST(0) - (ST(1) `*` QQ `*` 2\footnote{(D - N)} ); 
 
 FI;
 

@@ -33,9 +33,9 @@ temp <- (SRC-1) bitwiseAND ( SRC );
 SF <- temp[OperandSize -1];
 ZF <- (temp = 0);
 IF SRC = 0
- CF <- 1;
+    CF <- 1;
 ELSE
- CF <- 0;
+    CF <- 0;
 FI
 DEST <- temp;
 ```

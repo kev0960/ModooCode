@@ -27,10 +27,10 @@ The `XTEST` instruction queries the transactional execution status. If the instr
 #### XTEST
 ```info-verb
 IF (RTM_ACTIVE = 1 OR HLE_ACTIVE = 1)
- THEN
-   ZF <- 0
- ELSE
-   ZF <- 1
+    THEN
+          ZF <- 0
+    ELSE
+          ZF <- 1
 FI;
 ```
 ### Flags Affected
@@ -54,5 +54,5 @@ None
 
 #UD CPUID.(EAX=7, ECX=0):HLE[bit 4] = 0 and CPUID.(EAX=7, ECX=0):RTM[bit 11] = 0.
 
-         If LOCK or 66H or F2H or F3H prefix is used.
+                              If LOCK or 66H or F2H or F3H prefix is used.
 

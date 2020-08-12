@@ -40,10 +40,10 @@ See Chapter 34, "System Management Mode," in the Intel(R) 64 and IA-32 Architect
 ```info-verb
 ReturnFromSMM;
 IF (IA-32e mode supported) or (CPUID DisplayFamily_DisplayModel = 06H_0CH )
- THEN
-   ProcessorState <- Restore(SMMDump(IA-32e SMM STATE MAP));
- Else
-   ProcessorState <- Restore(SMMDump(Non-32-Bit-Mode SMM STATE MAP));
+    THEN
+          ProcessorState <- Restore(SMMDump(IA-32e SMM STATE MAP));
+    Else
+          ProcessorState <- Restore(SMMDump(Non-32-Bit-Mode SMM STATE MAP));
 FI
 ```
 ### Flags Affected

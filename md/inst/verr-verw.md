@@ -46,19 +46,19 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode. Th
 
 ```info-verb
 IF SRC(Offset) > (GDTR(Limit) or (LDTR(Limit))
- THEN ZF <- 0; FI;
+    THEN ZF <- 0; FI;
 Read segment descriptor;
 IF SegmentDescriptor(DescriptorType) = 0 (* System segment *)
 or (SegmentDescriptor(Type) != conforming code segment) 
 and (CPL > DPL) or (RPL > DPL)
- THEN
-   ZF <- 0;
- ELSE
-   IF ((Instruction = VERR) and (Segment readable))
-   or ((Instruction = VERW) and (Segment writable))
-    THEN 
-      ZF <- 1;
-   FI;
+    THEN
+          ZF <- 0;
+    ELSE
+          IF ((Instruction = VERR) and (Segment readable))
+          or ((Instruction = VERW) and (Segment writable))
+                THEN 
+                      ZF <- 1;
+          FI;
 FI;
 ```
 ### Flags Affected

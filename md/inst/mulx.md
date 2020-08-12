@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDD.LZ.F2.0F38.W0 F6 /rMULX r32a, r32b, r/m32|RVM|V/V|BMI2|Unsigned multiply of r/m32 with EDX without affecting arithmetic flags.|
-|VEX.NDD.LZ.F2.0F38.W1 F6 /rMULX r64a, r64b, r/m64|RVM|V/N.E.|BMI2|Unsigned multiply of r/m64 with RDX without affecting arithmetic flags.|
+|VEX.NDD.LZ.F2.0F38.W0 F6 /r\newline{}MULX r32a, r32b, r/m32|RVM|V/V|BMI2|Unsigned multiply of r/m32 with EDX without affecting arithmetic flags.|
+|VEX.NDD.LZ.F2.0F38.W1 F6 /r\newline{}MULX r64a, r64b, r/m64|RVM|V/N.E.|BMI2|Unsigned multiply of r/m64 with RDX without affecting arithmetic flags.|
 ### Instruction Operand Encoding
 
 
@@ -34,13 +34,13 @@ This instruction is not supported in real mode and virtual-8086 mode. The operan
 // DEST1: ModRM:reg
 // DEST2: VEX.vvvv
 IF (OperandSize = 32)
- SRC1 <- EDX;
- DEST2 <- (SRC1*SRC2)[31:0];
- DEST1 <- (SRC1*SRC2)[63:32];
+    SRC1 <- EDX;
+    DEST2 <- (SRC1*SRC2)[31:0];
+    DEST1 <- (SRC1*SRC2)[63:32];
 ELSE IF (OperandSize = 64)
- SRC1 <- RDX;
-   DEST2 <- (SRC1*SRC2)[63:0];
-   DEST1 <- (SRC1*SRC2)[127:64];
+    SRC1 <- RDX;
+          DEST2 <- (SRC1*SRC2)[63:0];
+          DEST1 <- (SRC1*SRC2)[127:64];
 FI
 ```
 ### Flags Affected

@@ -10,35 +10,34 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F F8 /r\footnote{1}\newline{}PSUBB mm, mm/m64|RM|V/V|MMX|Subtract packed byte integers in mm/m64 from packed byte integers in mm.|
-|66 0F F8 /r\newline{}PSUBB xmm1, xmm2/m128|RM|V/V|SSE2|Subtract packed byte integers in xmm2/m128 from packed byte integers in xmm1.|
-|0F F9 /r\footnote{1}\newline{}PSUBW mm, mm/m64|RM|V/V|MMX|Subtract packed word integers in mm/m64 from packed word integers in mm.|
-|66 0F F9 /r\newline{}PSUBW xmm1, xmm2/m128|RM|V/V|SSE2|Subtract packed word integers in xmm2/m128 from packed word integers in xmm1.|
-|0F FA /r\footnote{1}\newline{}PSUBD mm, mm/m64|RM|V/V|MMX|Subtract packed doubleword integers in mm/m64 from packed doubleword integers in mm.|
-|66 0F FA /r\newline{}PSUBD xmm1, xmm2/m128|RM|V/V|SSE2|Subtract packed doubleword integers in xmm2/mem128 from packed doubleword integers in xmm1.|
-|VEX.NDS.128.66.0F.WIG F8 /rVPSUBB xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Subtract packed byte integers in xmm3/m128 from xmm2.|
-|VEX.NDS.128.66.0F.WIG F9 /r\newline{}VPSUBW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Subtract packed word integers in xmm3/m128 from xmm2.|
-|VEX.NDS.128.66.0F.WIG FA /rVPSUBD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Subtract packed doubleword integers in xmm3/m128 from xmm2.|
-|VEX.NDS.256.66.0F.WIG F8 /rVPSUBB ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Subtract packed byte integers in ymm3/m256 from ymm2.|
-|VEX.NDS.256.66.0F.WIG F9 /rVPSUBW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Subtract packed word integers in ymm3/m256 from ymm2.|
-|VEX.NDS.256.66.0F.WIG FA /rVPSUBD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Subtract packed doubleword integers in ymm3/m256 from ymm2.|
-|EVEX.NDS.128.66.0F.WIG F8 /rVPSUBB xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Subtract packed byte integers in xmm3/m128 from xmm2 and store in xmm1 using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG F8 /rVPSUBB ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Subtract packed byte integers in ymm3/m256 from ymm2 and store in ymm1 using writemask k1.|
-|EVEX.NDS.512.66.0F.WIG F8 /rVPSUBB zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Subtract packed byte integers in zmm3/m512 from zmm2 and store in zmm1 using writemask k1.|
-|EVEX.NDS.128.66.0F.WIG F9 /rVPSUBW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Subtract packed word integers in xmm3/m128 from xmm2 and store in xmm1 using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG F9 /rVPSUBW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Subtract packed word integers in ymm3/m256 from ymm2 and store in ymm1 using writemask k1.|
-|EVEX.NDS.512.66.0F.WIG F9 /rVPSUBW zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Subtract packed word integers in zmm3/m512 from zmm2 and store in zmm1 using writemask k1.|
+|0F F8 /r\footnote{1}\newline{}\newline{}PSUBB mm, mm/m64|RM|V/V|MMX|Subtract packed byte integers in mm/m64 from packed byte integers in mm.|
+|66 0F F8 /r\newline{}\newline{}PSUBB xmm1, xmm2/m128|RM|V/V|SSE2|Subtract packed byte integers in xmm2/m128 from packed byte integers in xmm1.|
+|0F F9 /r\footnote{1}\newline{}\newline{}PSUBW mm, mm/m64|RM|V/V|MMX|Subtract packed word integers in mm/m64 from packed word integers in mm.|
+|66 0F F9 /r\newline{}\newline{}PSUBW xmm1, xmm2/m128|RM|V/V|SSE2|Subtract packed word integers in xmm2/m128 from packed word integers in xmm1.|
+|0F FA /r\footnote{1}\newline{}\newline{}PSUBD mm, mm/m64|RM|V/V|MMX|Subtract packed doubleword integers in mm/m64 from packed doubleword integers in mm.|
+|66 0F FA /r\newline{}\newline{}PSUBD xmm1, xmm2/m128|RM|V/V|SSE2|Subtract packed doubleword integers in xmm2/mem128 from packed doubleword integers in xmm1.|
+|VEX.NDS.128.66.0F.WIG F8 /r\newline{}VPSUBB xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Subtract packed byte integers in xmm3/m128 from xmm2.|
+|VEX.NDS.128.66.0F.WIG F9 /r\newline{}\newline{}VPSUBW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Subtract packed word integers in xmm3/m128 from xmm2.|
+|VEX.NDS.128.66.0F.WIG FA /r\newline{}VPSUBD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Subtract packed doubleword integers in xmm3/m128 from xmm2.|
+|VEX.NDS.256.66.0F.WIG F8 /r\newline{}VPSUBB ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Subtract packed byte integers in ymm3/m256 from ymm2.|
+|VEX.NDS.256.66.0F.WIG F9 /r\newline{}VPSUBW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Subtract packed word integers in ymm3/m256 from ymm2.|
+|VEX.NDS.256.66.0F.WIG FA /r\newline{}VPSUBD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Subtract packed doubleword integers in ymm3/m256 from ymm2.|
+|EVEX.NDS.128.66.0F.WIG F8 /r\newline{}VPSUBB xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Subtract packed byte integers in xmm3/m128 from xmm2 and store in xmm1 using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG F8 /r\newline{}VPSUBB ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Subtract packed byte integers in ymm3/m256 from ymm2 and store in ymm1 using writemask k1.|
+|EVEX.NDS.512.66.0F.WIG F8 /r\newline{}VPSUBB zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Subtract packed byte integers in zmm3/m512 from zmm2 and store in zmm1 using writemask k1.|
+|EVEX.NDS.128.66.0F.WIG F9 /r\newline{}VPSUBW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Subtract packed word integers in xmm3/m128 from xmm2 and store in xmm1 using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG F9 /r\newline{}VPSUBW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Subtract packed word integers in ymm3/m256 from ymm2 and store in ymm1 using writemask k1.|
+|EVEX.NDS.512.66.0F.WIG F9 /r\newline{}VPSUBW zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Subtract packed word integers in zmm3/m512 from zmm2 and store in zmm1 using writemask k1.|
 
 
 |EVEX.NDS.128.66.0F.W0 FA /r\newline{}VPSUBD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst |FV|V/V|AVX512VL\newline{}AVX512F|Subtract packed doubleword integers in \newline{}xmm3/m128/m32bcst from xmm2 and store \newline{}in xmm1 using writemask k1.|
 |----------------------------------------------------------------------------------|--|---|-------------------------|----------------------------------------------------------------------------------------------------------------------------|
 |EVEX.NDS.256.66.0F.W0 FA /rVPSUBD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Subtract packed doubleword integers in ymm3/m256/m32bcst from ymm2 and store in ymm1 using writemask k1.|
 |EVEX.NDS.512.66.0F.W0 FA /rVPSUBD zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst |FV|V/V|AVX512F|Subtract packed doubleword integers in zmm3/m512/m32bcst from zmm2 and store in zmm1 using writemask k1|
-### NOTES:
 
-
-1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
-
+```note
+1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A
+```
 ### Instruction Operand Encoding
 
 
@@ -81,227 +80,227 @@ EVEX encoded VPSUBB/W: The second source operand is a ZMM/YMM/XMM register, a 51
 ### Operation
 #### PSUBB (with 64-bit operands)
 ```info-verb
- DEST[7:0] <- DEST[7:0] - SRC[7:0]; 
- (* Repeat subtract operation for 2nd through 7th byte *)
- DEST[63:56] <- DEST[63:56] - SRC[63:56];
+    DEST[7:0] <- DEST[7:0] - SRC[7:0]; 
+    (* Repeat subtract operation for 2nd through 7th byte *)
+    DEST[63:56] <- DEST[63:56] - SRC[63:56];
 ```
 #### PSUBW (with 64-bit operands)
 ```info-verb
- DEST[15:0] <- DEST[15:0] - SRC[15:0];
- (* Repeat subtract operation for 2nd and 3rd word *)
- DEST[63:48] <- DEST[63:48] - SRC[63:48];
+    DEST[15:0] <- DEST[15:0] - SRC[15:0];
+    (* Repeat subtract operation for 2nd and 3rd word *)
+    DEST[63:48] <- DEST[63:48] - SRC[63:48];
 ```
 #### PSUBD (with 64-bit operands)
 ```info-verb
- DEST[31:0] <- DEST[31:0] - SRC[31:0];
- DEST[63:32] <- DEST[63:32] - SRC[63:32];
+    DEST[31:0] <- DEST[31:0] - SRC[31:0];
+    DEST[63:32] <- DEST[63:32] - SRC[63:32];
 ```
 #### PSUBD (with 128-bit operands)
 ```info-verb
- DEST[31:0]  <- DEST[31:0] - SRC[31:0];
- (* Repeat subtract operation for 2nd and 3rd doubleword *)
- DEST[127:96] <- DEST[127:96] - SRC[127:96];
+    DEST[31:0]  <- DEST[31:0] - SRC[31:0];
+    (* Repeat subtract operation for 2nd and 3rd doubleword *)
+    DEST[127:96] <- DEST[127:96] - SRC[127:96];
 ```
 #### VPSUBB (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
-FOR j <-  0 TO KL-1
- i <-  j * 8
- IF k1[j] OR *no writemask*
-   THEN DEST[i+7:i] <-  SRC1[i+7:i] - SRC2[i+7:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+7:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+7:i] = 0
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i <-   j * 8
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+7:i] <-   SRC1[i+7:i] - SRC2[i+7:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+7:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+7:i] = 0
+                FI
+    FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VPSUBW (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j  <- 0 TO KL-1
- i <-  j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+15:i] <-  SRC1[i+15:i] - SRC2[i+15:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
+FOR j  <-  0 TO KL-1
+    i <-   j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+15:i] <-   SRC1[i+15:i] - SRC2[i+15:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
 THEN *DEST[i+15:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+15:i] = 0
-    FI
- FI;
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+15:i] = 0
+                FI
+    FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VPSUBD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j <-  0 TO KL-1
- i <-  j * 32
- IF k1[j] OR *no writemask* THEN
-    IF (EVEX.b = 1) AND (SRC2 *is memory*)
-      THEN DEST[i+31:i]  <- SRC1[i+31:i] - SRC2[31:0]
-      ELSE DEST[i+31:i]  <- SRC1[i+31:i] - SRC2[i+31:i]
+FOR j <-   0 TO KL-1
+    i <-   j * 32
+    IF k1[j] OR *no writemask* THEN
+                IF (EVEX.b = 1) AND (SRC2 *is memory*)
+                      THEN DEST[i+31:i]  <-  SRC1[i+31:i] - SRC2[31:0]
+                      ELSE DEST[i+31:i]  <-  SRC1[i+31:i] - SRC2[i+31:i]
+                FI;
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+31:i] <-   0
+                FI
     FI;
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+31:i] <-  0
-    FI
- FI;
 ENDFOR;
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VPSUBB (VEX.256 encoded version)
 ```info-verb
-DEST[7:0] <- SRC1[7:0]-SRC2[7:0]
-DEST[15:8]  <-SRC1[15:8]-SRC2[15:8]
-DEST[23:16]  <-SRC1[23:16]-SRC2[23:16]
-DEST[31:24]  <-SRC1[31:24]-SRC2[31:24]
-DEST[39:32]  <-SRC1[39:32]-SRC2[39:32]
-DEST[47:40] <- SRC1[47:40]-SRC2[47:40]
-DEST[55:48] <- SRC1[55:48]-SRC2[55:48]
-DEST[63:56] <- SRC1[63:56]-SRC2[63:56]
-DEST[71:64] <- SRC1[71:64]-SRC2[71:64]
-DEST[79:72]  <-SRC1[79:72]-SRC2[79:72]
-DEST[87:80] <- SRC1[87:80]-SRC2[87:80]
-DEST[95:88]  <-SRC1[95:88]-SRC2[95:88]
-DEST[103:96]  <-SRC1[103:96]-SRC2[103:96]
-DEST[111:104]  <-SRC1[111:104]-SRC2[111:104]
-DEST[119:112] <- SRC1[119:112]-SRC2[119:112]
-DEST[127:120] <- SRC1[127:120]-SRC2[127:120]
-DEST[135:128] <- SRC1[135:128]-SRC2[135:128]
-DEST[143:136] <- SRC1[143:136]-SRC2[143:136]
-DEST[151:144]  <-SRC1[151:144]-SRC2[151:144]
-DEST[159:152] <- SRC1[159:152]-SRC2[159:152]
-DEST[167:160] <- SRC1[167:160]-SRC2[167:160]
-DEST[175:168] <- SRC1[175:168]-SRC2[175:168]
-DEST[183:176] <- SRC1[183:176]-SRC2[183:176]
-DEST[191:184] <- SRC1[191:184]-SRC2[191:184]
-DEST[199:192] <- SRC1[199:192]-SRC2[199:192]
-DEST[207:200] <- SRC1[207:200]-SRC2[207:200]
-DEST[215:208]  <-SRC1[215:208]-SRC2[215:208]
-DEST[223:216]  <-SRC1[223:216]-SRC2[223:216]
-DEST[231:224] <- SRC1[231:224]-SRC2[231:224]
-DEST[239:232] <- SRC1[239:232]-SRC2[239:232]
-DEST[247:240] <- SRC1[247:240]-SRC2[247:240]
-DEST[255:248] <- SRC1[255:248]-SRC2[255:248]
-DEST[MAX_VL-1:256]  <-0
+DEST[7:0] <-  SRC1[7:0]-SRC2[7:0]
+DEST[15:8]  <- SRC1[15:8]-SRC2[15:8]
+DEST[23:16]  <- SRC1[23:16]-SRC2[23:16]
+DEST[31:24]  <- SRC1[31:24]-SRC2[31:24]
+DEST[39:32]  <- SRC1[39:32]-SRC2[39:32]
+DEST[47:40] <-  SRC1[47:40]-SRC2[47:40]
+DEST[55:48] <-  SRC1[55:48]-SRC2[55:48]
+DEST[63:56] <-  SRC1[63:56]-SRC2[63:56]
+DEST[71:64] <-  SRC1[71:64]-SRC2[71:64]
+DEST[79:72]  <- SRC1[79:72]-SRC2[79:72]
+DEST[87:80] <-  SRC1[87:80]-SRC2[87:80]
+DEST[95:88]  <- SRC1[95:88]-SRC2[95:88]
+DEST[103:96]  <- SRC1[103:96]-SRC2[103:96]
+DEST[111:104]  <- SRC1[111:104]-SRC2[111:104]
+DEST[119:112] <-  SRC1[119:112]-SRC2[119:112]
+DEST[127:120] <-  SRC1[127:120]-SRC2[127:120]
+DEST[135:128] <-  SRC1[135:128]-SRC2[135:128]
+DEST[143:136] <-  SRC1[143:136]-SRC2[143:136]
+DEST[151:144]  <- SRC1[151:144]-SRC2[151:144]
+DEST[159:152] <-  SRC1[159:152]-SRC2[159:152]
+DEST[167:160] <-  SRC1[167:160]-SRC2[167:160]
+DEST[175:168] <-  SRC1[175:168]-SRC2[175:168]
+DEST[183:176] <-  SRC1[183:176]-SRC2[183:176]
+DEST[191:184] <-  SRC1[191:184]-SRC2[191:184]
+DEST[199:192] <-  SRC1[199:192]-SRC2[199:192]
+DEST[207:200] <-  SRC1[207:200]-SRC2[207:200]
+DEST[215:208]  <- SRC1[215:208]-SRC2[215:208]
+DEST[223:216]  <- SRC1[223:216]-SRC2[223:216]
+DEST[231:224] <-  SRC1[231:224]-SRC2[231:224]
+DEST[239:232] <-  SRC1[239:232]-SRC2[239:232]
+DEST[247:240] <-  SRC1[247:240]-SRC2[247:240]
+DEST[255:248] <-  SRC1[255:248]-SRC2[255:248]
+DEST[MAX_VL-1:256]  <- 0
 ```
 #### VPSUBB (VEX.128 encoded version)
 ```info-verb
-DEST[7:0]  <-SRC1[7:0]-SRC2[7:0]
-DEST[15:8]  <-SRC1[15:8]-SRC2[15:8]
-DEST[23:16] <- SRC1[23:16]-SRC2[23:16]
-DEST[31:24] <- SRC1[31:24]-SRC2[31:24]
-DEST[39:32]  <-SRC1[39:32]-SRC2[39:32]
-DEST[47:40]  <-SRC1[47:40]-SRC2[47:40]
-DEST[55:48] <- SRC1[55:48]-SRC2[55:48]
-DEST[63:56] <- SRC1[63:56]-SRC2[63:56]
-DEST[71:64]  <-SRC1[71:64]-SRC2[71:64]
-DEST[79:72] <- SRC1[79:72]-SRC2[79:72]
-DEST[87:80]  <-SRC1[87:80]-SRC2[87:80]
-DEST[95:88] <- SRC1[95:88]-SRC2[95:88]
-DEST[103:96] <- SRC1[103:96]-SRC2[103:96]
-DEST[111:104]  <-SRC1[111:104]-SRC2[111:104]
-DEST[119:112]  <-SRC1[119:112]-SRC2[119:112]
-DEST[127:120]  <-SRC1[127:120]-SRC2[127:120]
-DEST[MAX_VL-1:128] <- 0
+DEST[7:0]  <- SRC1[7:0]-SRC2[7:0]
+DEST[15:8]  <- SRC1[15:8]-SRC2[15:8]
+DEST[23:16] <-  SRC1[23:16]-SRC2[23:16]
+DEST[31:24] <-  SRC1[31:24]-SRC2[31:24]
+DEST[39:32]  <- SRC1[39:32]-SRC2[39:32]
+DEST[47:40]  <- SRC1[47:40]-SRC2[47:40]
+DEST[55:48] <-  SRC1[55:48]-SRC2[55:48]
+DEST[63:56] <-  SRC1[63:56]-SRC2[63:56]
+DEST[71:64]  <- SRC1[71:64]-SRC2[71:64]
+DEST[79:72] <-  SRC1[79:72]-SRC2[79:72]
+DEST[87:80]  <- SRC1[87:80]-SRC2[87:80]
+DEST[95:88] <-  SRC1[95:88]-SRC2[95:88]
+DEST[103:96] <-  SRC1[103:96]-SRC2[103:96]
+DEST[111:104]  <- SRC1[111:104]-SRC2[111:104]
+DEST[119:112]  <- SRC1[119:112]-SRC2[119:112]
+DEST[127:120]  <- SRC1[127:120]-SRC2[127:120]
+DEST[MAX_VL-1:128] <-  0
 ```
 #### PSUBB (128-bit Legacy SSE version)
 ```info-verb
-DEST[7:0] <- DEST[7:0]-SRC[7:0]
-DEST[15:8]  <-DEST[15:8]-SRC[15:8]
-DEST[23:16]  <-DEST[23:16]-SRC[23:16]
-DEST[31:24]  <-DEST[31:24]-SRC[31:24]
-DEST[39:32]  <-DEST[39:32]-SRC[39:32]
-DEST[47:40]  <-DEST[47:40]-SRC[47:40]
-DEST[55:48]  <-DEST[55:48]-SRC[55:48]
-DEST[63:56] <- DEST[63:56]-SRC[63:56]
-DEST[71:64] <- DEST[71:64]-SRC[71:64]
-DEST[79:72]  <-DEST[79:72]-SRC[79:72]
-DEST[87:80] <- DEST[87:80]-SRC[87:80]
-DEST[95:88] <- DEST[95:88]-SRC[95:88]
-DEST[103:96]  <-DEST[103:96]-SRC[103:96]
-DEST[111:104] <- DEST[111:104]-SRC[111:104]
-DEST[119:112] <- DEST[119:112]-SRC[119:112]
-DEST[127:120] <- DEST[127:120]-SRC[127:120]
+DEST[7:0] <-  DEST[7:0]-SRC[7:0]
+DEST[15:8]  <- DEST[15:8]-SRC[15:8]
+DEST[23:16]  <- DEST[23:16]-SRC[23:16]
+DEST[31:24]  <- DEST[31:24]-SRC[31:24]
+DEST[39:32]  <- DEST[39:32]-SRC[39:32]
+DEST[47:40]  <- DEST[47:40]-SRC[47:40]
+DEST[55:48]  <- DEST[55:48]-SRC[55:48]
+DEST[63:56] <-  DEST[63:56]-SRC[63:56]
+DEST[71:64] <-  DEST[71:64]-SRC[71:64]
+DEST[79:72]  <- DEST[79:72]-SRC[79:72]
+DEST[87:80] <-  DEST[87:80]-SRC[87:80]
+DEST[95:88] <-  DEST[95:88]-SRC[95:88]
+DEST[103:96]  <- DEST[103:96]-SRC[103:96]
+DEST[111:104] <-  DEST[111:104]-SRC[111:104]
+DEST[119:112] <-  DEST[119:112]-SRC[119:112]
+DEST[127:120] <-  DEST[127:120]-SRC[127:120]
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPSUBW (VEX.256 encoded version)
 ```info-verb
-DEST[15:0]  <-SRC1[15:0]-SRC2[15:0]
-DEST[31:16] <- SRC1[31:16]-SRC2[31:16]
-DEST[47:32]  <-SRC1[47:32]-SRC2[47:32]
-DEST[63:48]  <-SRC1[63:48]-SRC2[63:48]
-DEST[79:64] <- SRC1[79:64]-SRC2[79:64]
-DEST[95:80] <- SRC1[95:80]-SRC2[95:80]
-DEST[111:96]  <-SRC1[111:96]-SRC2[111:96]
-DEST[127:112] <- SRC1[127:112]-SRC2[127:112]
-DEST[143:128] <- SRC1[143:128]-SRC2[143:128]
-DEST[159:144]  <-SRC1[159:144]-SRC2[159:144]
-DEST[175:160] <- SRC1[175:160]-SRC2[175:160]
-DEST[191:176] <- SRC1[191:176]-SRC2[191:176]
-DEST[207:192]  <-SRC1207:192]-SRC2[207:192]
-DEST[223:208] <- SRC1[223:208]-SRC2[223:208]
-DEST[239:224] <- SRC1[239:224]-SRC2[239:224]
-DEST[255:240] <- SRC1[255:240]-SRC2[255:240]
-DEST[MAX_VL-1:256] <- 0
+DEST[15:0]  <- SRC1[15:0]-SRC2[15:0]
+DEST[31:16] <-  SRC1[31:16]-SRC2[31:16]
+DEST[47:32]  <- SRC1[47:32]-SRC2[47:32]
+DEST[63:48]  <- SRC1[63:48]-SRC2[63:48]
+DEST[79:64] <-  SRC1[79:64]-SRC2[79:64]
+DEST[95:80] <-  SRC1[95:80]-SRC2[95:80]
+DEST[111:96]  <- SRC1[111:96]-SRC2[111:96]
+DEST[127:112] <-  SRC1[127:112]-SRC2[127:112]
+DEST[143:128] <-  SRC1[143:128]-SRC2[143:128]
+DEST[159:144]  <- SRC1[159:144]-SRC2[159:144]
+DEST[175:160] <-  SRC1[175:160]-SRC2[175:160]
+DEST[191:176] <-  SRC1[191:176]-SRC2[191:176]
+DEST[207:192]  <- SRC1207:192]-SRC2[207:192]
+DEST[223:208] <-  SRC1[223:208]-SRC2[223:208]
+DEST[239:224] <-  SRC1[239:224]-SRC2[239:224]
+DEST[255:240] <-  SRC1[255:240]-SRC2[255:240]
+DEST[MAX_VL-1:256] <-  0
 ```
 #### VPSUBW (VEX.128 encoded version)
 ```info-verb
-DEST[15:0] <- SRC1[15:0]-SRC2[15:0]
-DEST[31:16] <- SRC1[31:16]-SRC2[31:16]
-DEST[47:32]  <-SRC1[47:32]-SRC2[47:32]
-DEST[63:48] <- SRC1[63:48]-SRC2[63:48]
-DEST[79:64] <- SRC1[79:64]-SRC2[79:64]
-DEST[95:80] <- SRC1[95:80]-SRC2[95:80]
-DEST[111:96]  <-SRC1[111:96]-SRC2[111:96]
-DEST[127:112]  <-SRC1[127:112]-SRC2[127:112]
-DEST[MAX_VL-1:128] <- 0
+DEST[15:0] <-  SRC1[15:0]-SRC2[15:0]
+DEST[31:16] <-  SRC1[31:16]-SRC2[31:16]
+DEST[47:32]  <- SRC1[47:32]-SRC2[47:32]
+DEST[63:48] <-  SRC1[63:48]-SRC2[63:48]
+DEST[79:64] <-  SRC1[79:64]-SRC2[79:64]
+DEST[95:80] <-  SRC1[95:80]-SRC2[95:80]
+DEST[111:96]  <- SRC1[111:96]-SRC2[111:96]
+DEST[127:112]  <- SRC1[127:112]-SRC2[127:112]
+DEST[MAX_VL-1:128] <-  0
 ```
 #### PSUBW (128-bit Legacy SSE version)
 ```info-verb
-DEST[15:0] <- DEST[15:0]-SRC[15:0]
-DEST[31:16]  <-DEST[31:16]-SRC[31:16]
-DEST[47:32] <- DEST[47:32]-SRC[47:32]
-DEST[63:48]  <-DEST[63:48]-SRC[63:48]
-DEST[79:64]  <-DEST[79:64]-SRC[79:64]
-DEST[95:80]  <-DEST[95:80]-SRC[95:80]
-DEST[111:96] <- DEST[111:96]-SRC[111:96]
-DEST[127:112]  <-DEST[127:112]-SRC[127:112]
+DEST[15:0] <-  DEST[15:0]-SRC[15:0]
+DEST[31:16]  <- DEST[31:16]-SRC[31:16]
+DEST[47:32] <-  DEST[47:32]-SRC[47:32]
+DEST[63:48]  <- DEST[63:48]-SRC[63:48]
+DEST[79:64]  <- DEST[79:64]-SRC[79:64]
+DEST[95:80]  <- DEST[95:80]-SRC[95:80]
+DEST[111:96] <-  DEST[111:96]-SRC[111:96]
+DEST[127:112]  <- DEST[127:112]-SRC[127:112]
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPSUBD (VEX.256 encoded version)
 ```info-verb
-DEST[31:0] <- SRC1[31:0]-SRC2[31:0]
-DEST[63:32] <- SRC1[63:32]-SRC2[63:32]
-DEST[95:64] <- SRC1[95:64]-SRC2[95:64]
-DEST[127:96]  <-SRC1[127:96]-SRC2[127:96]
-DEST[159:128] <- SRC1[159:128]-SRC2[159:128]
-DEST[191:160] <- SRC1[191:160]-SRC2[191:160]
-DEST[223:192] <- SRC1[223:192]-SRC2[223:192]
-DEST[255:224] <- SRC1[255:224]-SRC2[255:224]
-DEST[MAX_VL-1:256]  <-0
+DEST[31:0] <-  SRC1[31:0]-SRC2[31:0]
+DEST[63:32] <-  SRC1[63:32]-SRC2[63:32]
+DEST[95:64] <-  SRC1[95:64]-SRC2[95:64]
+DEST[127:96]  <- SRC1[127:96]-SRC2[127:96]
+DEST[159:128] <-  SRC1[159:128]-SRC2[159:128]
+DEST[191:160] <-  SRC1[191:160]-SRC2[191:160]
+DEST[223:192] <-  SRC1[223:192]-SRC2[223:192]
+DEST[255:224] <-  SRC1[255:224]-SRC2[255:224]
+DEST[MAX_VL-1:256]  <- 0
 ```
 #### VPSUBD (VEX.128 encoded version)
 ```info-verb
-DEST[31:0] <- SRC1[31:0]-SRC2[31:0]
-DEST[63:32]  <-SRC1[63:32]-SRC2[63:32]
-DEST[95:64]  <-SRC1[95:64]-SRC2[95:64]
-DEST[127:96] <- SRC1[127:96]-SRC2[127:96]
-DEST[MAX_VL-1:128] <- 0
+DEST[31:0] <-  SRC1[31:0]-SRC2[31:0]
+DEST[63:32]  <- SRC1[63:32]-SRC2[63:32]
+DEST[95:64]  <- SRC1[95:64]-SRC2[95:64]
+DEST[127:96] <-  SRC1[127:96]-SRC2[127:96]
+DEST[MAX_VL-1:128] <-  0
 ```
 #### PSUBD (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0] <- DEST[31:0]-SRC[31:0]
-DEST[63:32] <- DEST[63:32]-SRC[63:32]
-DEST[95:64] <- DEST[95:64]-SRC[95:64]
-DEST[127:96] <- DEST[127:96]-SRC[127:96]
+DEST[31:0] <-  DEST[31:0]-SRC[31:0]
+DEST[63:32] <-  DEST[63:32]-SRC[63:32]
+DEST[95:64] <-  DEST[95:64]-SRC[95:64]
+DEST[127:96] <-  DEST[127:96]-SRC[127:96]
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 

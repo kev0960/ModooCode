@@ -27,24 +27,24 @@ XABORT forces an RTM abort. Following an RTM abort, the logical processor resume
 #### XABORT
 ```info-verb
 IF RTM_ACTIVE = 0
- THEN 
-   Treat as NOP;
- ELSE
-   GOTO RTM_ABORT_PROCESSING;
+    THEN 
+          Treat as NOP;
+    ELSE
+          GOTO RTM_ABORT_PROCESSING;
 FI;
 (* For any RTM abort condition encountered during RTM execution *)
 RTM_ABORT_PROCESSING:
- Restore architectural register state;
- Discard memory updates performed in transaction;
- Update EAX with status and XABORT argument;
- RTM_NEST_COUNT <- 0;
- RTM_ACTIVE <- 0;
- IF 64-bit Mode
-   THEN
-    RIP <- fallbackRIP;
-   ELSE
-    EIP <- fallbackEIP;
- FI;
+    Restore architectural register state;
+    Discard memory updates performed in transaction;
+    Update EAX with status and XABORT argument;
+    RTM_NEST_COUNT <- 0;
+    RTM_ACTIVE <- 0;
+    IF 64-bit Mode
+          THEN
+                RIP <- fallbackRIP;
+          ELSE
+                EIP <- fallbackEIP;
+    FI;
 END
 ```
 ### Flags Affected
@@ -68,5 +68,5 @@ None
 
 #UD CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11] = 0.
 
-         If LOCK prefix is used.
+                              If LOCK prefix is used.
 

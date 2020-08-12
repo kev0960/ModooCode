@@ -146,72 +146,72 @@ VEX.vvvv and EVEX.vvvv are reserved and must be 1111b, otherwise instructions wi
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
 IF (VL = 512) AND (EVEX.b = 1) 
- THEN
-   SET_RM(EVEX.RC);
- ELSE 
-   SET_RM(MXCSR.RM);
+    THEN
+          SET_RM(EVEX.RC);
+    ELSE 
+          SET_RM(MXCSR.RM);
 FI;
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- k  <- j * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i]  <-
-    Convert_Double_Precision_Floating_Point_To_Integer(SRC[k+63:k])
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i] <-  0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    k  <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i]  <-
+                Convert_Double_Precision_Floating_Point_To_Integer(SRC[k+63:k])
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i] <-   0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL/2] <-  0
+DEST[MAX_VL-1:VL/2] <-   0
 ```
 #### VCVTPD2DQ (EVEX encoded versions) when src operand is a memory source
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-  0 TO KL-1
- i <-  j * 32
- k  <- j * 64
- IF k1[j] OR *no writemask*
-   THEN 
-    IF (EVEX.b = 1) 
-      THEN
-        DEST[i+31:i]  <-
-    Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
-      ELSE 
-        DEST[i+31:i]  <-
-    Convert_Double_Precision_Floating_Point_To_Integer(SRC[k+63:k])
+FOR j <-   0 TO KL-1
+    i <-   j * 32
+    k  <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN 
+                IF (EVEX.b = 1) 
+                      THEN
+                            DEST[i+31:i]  <-
+                Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
+                      ELSE 
+                            DEST[i+31:i]  <-
+                Convert_Double_Precision_Floating_Point_To_Integer(SRC[k+63:k])
+                FI;
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i]  <-  0
+                FI
     FI;
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i]  <- 0
-    FI
- FI;
 ENDFOR
-DEST[MAX_VL-1:VL/2] <-  0
+DEST[MAX_VL-1:VL/2] <-   0
 ```
 #### VCVTPD2DQ (VEX.256 encoded version)
 ```info-verb
-DEST[31:0]  <-Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
-DEST[63:32] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
-DEST[95:64] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[191:128])
-DEST[127:96] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[255:192)
-DEST[MAX_VL-1:128]<- 0
+DEST[31:0]  <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
+DEST[63:32] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
+DEST[95:64] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[191:128])
+DEST[127:96] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[255:192)
+DEST[MAX_VL-1:128]<-  0
 ```
 #### VCVTPD2DQ (VEX.128 encoded version)
 ```info-verb
-DEST[31:0] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
-DEST[63:32]  <-Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
-DEST[MAX_VL-1:64] <-0
+DEST[31:0] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
+DEST[63:32]  <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
+DEST[MAX_VL-1:64] <- 0
 ```
 #### CVTPD2DQ (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
-DEST[63:32]  <-Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
-DEST[127:64] <- 0
+DEST[31:0] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
+DEST[63:32]  <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
+DEST[127:64] <-  0
 DEST[MAX_VL-1:128] (unmodified)
 ```
 

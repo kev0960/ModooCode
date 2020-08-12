@@ -32,25 +32,25 @@ This instruction executes as described in non-64-bit modes. It is not valid in 6
 
 ```info-verb
 IF 64-Bit ModeTHEN#UD;ELSEIF OperandSize = 32 (* Instruction = POPAD *)
- THEN
-   EDI <- Pop();
-   ESI <- Pop();
-   EBP <- Pop();
-   Increment ESP by 4; (* Skip next 4 bytes of stack *)
-   EBX <- Pop();
-   EDX <- Pop();
-   ECX <- Pop();
-   EAX <- Pop();
- ELSE (* OperandSize = 16, instruction = POPA *)
-   DI <- Pop();
-   SI <- Pop();
-   BP <- Pop();
-   Increment ESP by 2; (* Skip next 2 bytes of stack *)
-   BX <- Pop();
-   DX <- Pop();
-   CX <- Pop();
-   AX <- Pop();
- FI;
+    THEN
+          EDI <- Pop();
+          ESI <- Pop();
+          EBP <- Pop();
+          Increment ESP by 4; (* Skip next 4 bytes of stack *)
+          EBX <- Pop();
+          EDX <- Pop();
+          ECX <- Pop();
+          EAX <- Pop();
+    ELSE (* OperandSize = 16, instruction = POPA *)
+          DI <- Pop();
+          SI <- Pop();
+          BP <- Pop();
+          Increment ESP by 2; (* Skip next 2 bytes of stack *)
+          BX <- Pop();
+          DX <- Pop();
+          CX <- Pop();
+          AX <- Pop();
+    FI;
 FI;
 ```
 ### Flags Affected

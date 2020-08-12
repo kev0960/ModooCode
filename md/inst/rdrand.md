@@ -33,20 +33,20 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX
 
 ```info-verb
 IF HW_RND_GEN.ready = 1
- THEN 
-   CASE of
-    osize is 64: DEST[63:0] <- HW_RND_GEN.data;
-    osize is 32: DEST[31:0] <- HW_RND_GEN.data;
-    osize is 16: DEST[15:0] <- HW_RND_GEN.data;
-   ESAC
-   CF <- 1;
- ELSE
-   CASE of
-    osize is 64: DEST[63:0] <- 0;
-    osize is 32: DEST[31:0] <- 0;
-    osize is 16: DEST[15:0] <- 0;
-   ESAC
-   CF <- 0;
+    THEN 
+          CASE of
+                osize is 64: DEST[63:0] <- HW_RND_GEN.data;
+                osize is 32: DEST[31:0] <- HW_RND_GEN.data;
+                osize is 16: DEST[15:0] <- HW_RND_GEN.data;
+          ESAC
+          CF <- 1;
+    ELSE
+          CASE of
+                osize is 64: DEST[63:0] <- 0;
+                osize is 32: DEST[31:0] <- 0;
+                osize is 16: DEST[15:0] <- 0;
+          ESAC
+          CF <- 0;
 FI
 OF, SF, ZF, AF, PF <- 0;
 ```

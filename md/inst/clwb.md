@@ -10,13 +10,13 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|------------------------------------|---------------|
-|66 0F AE /6CLWB m8|M|V/V|CLWB|Writes back modified cache line containing m8, and may retain the line in cache hierarchy in non-modified state.|
-###                 Instruction Operand Encoding\footnote{1}
+|66 0F AE /6\newline{}CLWB m8|M|V/V|\newline{}CLWB|Writes back modified cache line containing m8, and may retain the line in cache hierarchy in non-modified state.|
+###                                                       Instruction Operand Encoding\footnote{1}
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
 
-M ModRM:r/m (w) NA NA NA
+  M ModRM:r/m (w) NA NA NA
 
 ### Description
 
@@ -46,11 +46,11 @@ Cache_Line_Write_Back(m8);
 
 None.
 
+```sidenote
 
 
-1.ModRM.MOD != 011B
-
-### C/C++ Compiler Intrinsic Equivalent
+1. ModRM.MOD != 011B
+```### C/C++ Compiler Intrinsic Equivalent
 
 
 CLWB void _mm_clwb(void const \htmlonly{*}p);

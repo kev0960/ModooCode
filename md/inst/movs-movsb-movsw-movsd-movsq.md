@@ -6,7 +6,7 @@ path : /X86-64 명령어 레퍼런스
 ----------------------------
 #@ MOVS, MOVSB, MOVSW, MOVSD, MOVSQ
 
-**Move Data from StringtoString**
+**Move Data from String toString**
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
@@ -39,7 +39,7 @@ After the move operation, the (E)SI and (E)DI registers are incremented or decre
 
 mented; if the DF flag is 1, the (E)SI and (E)DI registers are decremented.) The registers are incremented or decremented by 1 for byte operations, by 2 for word operations, or by 4 for doubleword operations.
 
-###                         NOTE
+###                                                                                  NOTE
 
 
 To improve performance, more recent processors support modifications to the processor's operation during the string store operations initiated with MOVS and MOVSB. See Section 7.3.9.3 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 for additional information on fast-string operation.
@@ -55,70 +55,70 @@ In 64-bit mode, the instruction's default address size is 64 bits, 32-bit addres
 DEST <- SRC;
 Non-64-bit Mode:
 IF (Byte move)
- THEN IF DF = 0
-   THEN 
-    (E)SI <- (E)SI + 1; 
-    (E)DI <- (E)DI + 1; 
-   ELSE 
-    (E)SI <- (E)SI - 1; 
-    (E)DI <- (E)DI - 1; 
-   FI;
- ELSE IF (Word move)
-   THEN IF DF = 0
-    (E)SI <- (E)SI + 2; 
-    (E)DI <- (E)DI + 2; 
-    FI;
-   ELSE 
-    (E)SI <- (E)SI - 2; 
-    (E)DI <- (E)DI - 2; 
-   FI;
- ELSE IF (Doubleword move)
-   THEN IF DF = 0
-    (E)SI <- (E)SI + 4; 
-    (E)DI <- (E)DI + 4; 
-    FI;
-   ELSE 
-    (E)SI <- (E)SI - 4; 
-    (E)DI <- (E)DI - 4; 
-   FI;
+    THEN IF DF = 0
+          THEN 
+                (E)SI <- (E)SI + 1; 
+                (E)DI <- (E)DI + 1; 
+          ELSE 
+                (E)SI <- (E)SI - 1; 
+                (E)DI <- (E)DI - 1; 
+          FI;
+    ELSE IF (Word move)
+          THEN IF DF = 0
+                (E)SI <- (E)SI + 2; 
+                (E)DI <- (E)DI + 2; 
+                FI;
+          ELSE 
+                (E)SI <- (E)SI - 2; 
+                (E)DI <- (E)DI - 2; 
+          FI;
+    ELSE IF (Doubleword move)
+          THEN IF DF = 0
+                (E)SI <- (E)SI + 4; 
+                (E)DI <- (E)DI + 4; 
+                FI;
+          ELSE 
+                (E)SI <- (E)SI - 4; 
+                (E)DI <- (E)DI - 4; 
+          FI;
 FI;
 64-bit Mode:
 IF (Byte move)
- THEN IF DF = 0
-   THEN 
+    THEN IF DF = 0
+          THEN 
 (R|E)SI <- (R|E)SI + 1; 
-    (R|E)DI <- (R|E)DI + 1; 
-   ELSE 
-    (R|E)SI <- (R|E)SI - 1; 
-    (R|E)DI <- (R|E)DI - 1; 
-   FI;
- ELSE IF (Word move)
-   THEN IF DF = 0
-    (R|E)SI <- (R|E)SI + 2; 
-    (R|E)DI <- (R|E)DI + 2; 
-    FI;
-   ELSE 
-    (R|E)SI <- (R|E)SI - 2; 
-    (R|E)DI <- (R|E)DI - 2; 
-   FI;
- ELSE IF (Doubleword move)
-   THEN IF DF = 0
-    (R|E)SI <- (R|E)SI + 4; 
-    (R|E)DI <- (R|E)DI + 4; 
-    FI;
-   ELSE 
-    (R|E)SI <- (R|E)SI - 4; 
-    (R|E)DI <- (R|E)DI - 4; 
-   FI;
- ELSE IF (Quadword move)
-   THEN IF DF = 0
-    (R|E)SI <- (R|E)SI + 8; 
-    (R|E)DI <- (R|E)DI + 8;
-    FI;
-   ELSE 
-    (R|E)SI <- (R|E)SI - 8; 
-    (R|E)DI <- (R|E)DI - 8; 
-   FI;
+                (R|E)DI <- (R|E)DI + 1; 
+          ELSE 
+                (R|E)SI <- (R|E)SI - 1; 
+                (R|E)DI <- (R|E)DI - 1; 
+          FI;
+    ELSE IF (Word move)
+          THEN IF DF = 0
+                (R|E)SI <- (R|E)SI + 2; 
+                (R|E)DI <- (R|E)DI + 2; 
+                FI;
+          ELSE 
+                (R|E)SI <- (R|E)SI - 2; 
+                (R|E)DI <- (R|E)DI - 2; 
+          FI;
+    ELSE IF (Doubleword move)
+          THEN IF DF = 0
+                (R|E)SI <- (R|E)SI + 4; 
+                (R|E)DI <- (R|E)DI + 4; 
+                FI;
+          ELSE 
+                (R|E)SI <- (R|E)SI - 4; 
+                (R|E)DI <- (R|E)DI - 4; 
+          FI;
+    ELSE IF (Quadword move)
+          THEN IF DF = 0
+                (R|E)SI <- (R|E)SI + 8; 
+                (R|E)DI <- (R|E)DI + 8;
+                FI;
+          ELSE 
+                (R|E)SI <- (R|E)SI - 8; 
+                (R|E)DI <- (R|E)DI - 8; 
+          FI;
 FI;
 ```
 ### Flags Affected

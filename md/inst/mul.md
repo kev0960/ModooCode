@@ -15,11 +15,10 @@ path : /X86-64 명령어 레퍼런스
 |F7 /4|MUL r/m16|M|Valid|Valid|Unsigned multiply (DX:AX <- AX `*` r/m16).|
 |F7 /4|MUL r/m32|M|Valid|Valid|Unsigned multiply (EDX:EAX <- EAX `*` r/m32).|
 |REX.W + F7 /4|MUL r/m64|M|Valid |N.E.|Unsigned multiply (RDX:RAX <- RAX `*` r/m64).|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 
@@ -51,17 +50,17 @@ See the summary chart at the beginning of this section for encoding data and lim
 
 ```info-verb
 IF (Byte operation)
- THEN 
-   AX <- AL `*` SRC;
- ELSE (* Word or doubleword operation *)
-   IF OperandSize = 16
     THEN 
-      DX:AX <- AX `*` SRC;
-    ELSE IF OperandSize = 32
-      THEN EDX:EAX <- EAX `*` SRC; FI;
-    ELSE (* OperandSize = 64 *)
-      RDX:RAX <- RAX `*` SRC;
-   FI;
+          AX <- AL `*` SRC;
+    ELSE (* Word or doubleword operation *)
+          IF OperandSize = 16
+                THEN 
+                      DX:AX <- AX `*` SRC;
+                ELSE IF OperandSize = 32
+                      THEN EDX:EAX <- EAX `*` SRC; FI;
+                ELSE (* OperandSize = 64 *)
+                      RDX:RAX <- RAX `*` SRC;
+          FI;
 FI;
 ```
 ### Flags Affected

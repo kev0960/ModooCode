@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
-|F2 0F 7C /r\newline{}HADDPS xmm1, xmm2/m128|RM|V/V|SSE3|Horizontal add packed single-precision floating-point values from xmm2/m128 to xmm1.|
-|VEX.NDS.128.F2.0F.WIG 7C /r\newline{}VHADDPS xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Horizontal add packed single-precision floating-point values from xmm2 and xmm3/mem.|
-|VEX.NDS.256.F2.0F.WIG 7C /r\newline{}VHADDPS ymm1, ymm2, ymm3/m256|RVM|V/V|AVX|Horizontal add packed single-precision floating-point values from ymm2 and ymm3/mem.|
+|F2 0F 7C /r\newline{}\newline{}HADDPS xmm1, xmm2/m128|RM|V/V|SSE3|Horizontal add packed single-precision floating-point values from xmm2/m128 to xmm1.|
+|VEX.NDS.128.F2.0F.WIG 7C /r\newline{}\newline{}VHADDPS xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Horizontal add packed single-precision floating-point values from xmm2 and xmm3/mem.|
+|VEX.NDS.256.F2.0F.WIG 7C /r\newline{}\newline{}VHADDPS ymm1, ymm2, ymm3/m256|RVM|V/V|AVX|Horizontal add packed single-precision floating-point values from ymm2 and ymm3/mem.|
 ### Instruction Operand Encoding
 
 
@@ -35,7 +35,7 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to access addit
 
 
 
-See Figure3-18 for HADDPS; see Figure3-19 for VHADDPS.
+See Figure 3-18 for HADDPS; see Figure 3-19 for VHADDPS.
 
 128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The desti-nation is not distinct from the first source XMM register and the upper bits (VLMAX-1:128) of the corresponding YMM register destination are unmodified.
 
@@ -641,37 +641,37 @@ VEX.256 encoded version: The first source operand is a YMM register. The second 
 ### Operation
 #### HADDPS (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0]  <- SRC1[63:32] + SRC1[31:0]
-DEST[63:32] <-  SRC1[127:96] + SRC1[95:64]
-DEST[95:64] <-  SRC2[63:32] + SRC2[31:0]
-DEST[127:96] <-  SRC2[127:96] + SRC2[95:64] 
+DEST[31:0]  <-  SRC1[63:32] + SRC1[31:0]
+DEST[63:32] <-   SRC1[127:96] + SRC1[95:64]
+DEST[95:64] <-   SRC2[63:32] + SRC2[31:0]
+DEST[127:96] <-   SRC2[127:96] + SRC2[95:64] 
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VHADDPS (VEX.128 encoded version)
 ```info-verb
-DEST[31:0]  <- SRC1[63:32] + SRC1[31:0]
-DEST[63:32] <-  SRC1[127:96] + SRC1[95:64]
-DEST[95:64]  <- SRC2[63:32] + SRC2[31:0]
-DEST[127:96]  <- SRC2[127:96] + SRC2[95:64] 
-DEST[VLMAX-1:128] <-  0
+DEST[31:0]  <-  SRC1[63:32] + SRC1[31:0]
+DEST[63:32] <-   SRC1[127:96] + SRC1[95:64]
+DEST[95:64]  <-  SRC2[63:32] + SRC2[31:0]
+DEST[127:96]  <-  SRC2[127:96] + SRC2[95:64] 
+DEST[VLMAX-1:128] <-   0
 ```
 #### VHADDPS (VEX.256 encoded version)
 ```info-verb
-DEST[31:0]  <- SRC1[63:32] + SRC1[31:0]
-DEST[63:32]  <- SRC1[127:96] + SRC1[95:64]
-DEST[95:64]  <- SRC2[63:32] + SRC2[31:0]
-DEST[127:96] <-  SRC2[127:96] + SRC2[95:64] 
-DEST[159:128] <-  SRC1[191:160] + SRC1[159:128]
-DEST[191:160] <-  SRC1[255:224] + SRC1[223:192]
-DEST[223:192]  <- SRC2[191:160] + SRC2[159:128]
-DEST[255:224]  <- SRC2[255:224] + SRC2[223:192]
+DEST[31:0]  <-  SRC1[63:32] + SRC1[31:0]
+DEST[63:32]  <-  SRC1[127:96] + SRC1[95:64]
+DEST[95:64]  <-  SRC2[63:32] + SRC2[31:0]
+DEST[127:96] <-   SRC2[127:96] + SRC2[95:64] 
+DEST[159:128] <-   SRC1[191:160] + SRC1[159:128]
+DEST[191:160] <-   SRC1[255:224] + SRC1[223:192]
+DEST[223:192]  <-  SRC2[191:160] + SRC2[159:128]
+DEST[255:224]  <-  SRC2[255:224] + SRC2[223:192]
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
 
 ```cpp
 HADDPS:  __m128 _mm_hadd_ps (__m128 a, __m128 b);
-VHADDPS:__m256 _mm256_hadd_ps (__m256 a, __m256 b);
+VHADDPS: __m256 _mm256_hadd_ps (__m256 a, __m256 b);
 ```
 ### Exceptions
 

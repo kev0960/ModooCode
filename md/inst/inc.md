@@ -17,13 +17,12 @@ path : /X86-64 명령어 레퍼런스
 |REX.W + FF /0|INC r/m64|M|Valid|N.E.|Increment r/m quadword by 1.|
 |40+ rw\footnote{**}|INC r16|O|N.E.|Valid|Increment word register by 1.|
 |40+ rd|INC r32|O|N.E.|Valid|Increment doubleword register by 1.|
-### NOTES:
 
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
-
-\htmlonly{*}\htmlonly{*}40H through 47H are REX prefixes in 64-bit mode.
-
+\htmlonly{*}\htmlonly{*}40H through 47H are REX prefixes in 64-bit mode
+```
 ### Instruction Operand Encoding
 
 

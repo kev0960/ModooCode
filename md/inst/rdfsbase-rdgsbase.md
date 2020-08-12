@@ -10,10 +10,10 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**||**Op/ **\newline{}**En**|**64/32-**\newline{}**bit **\newline{}**Mode**|**CPUID Fea-**\newline{}**ture Flag**|**Description**|
 |------------------------------------||------------------------|----------------------------------------------|-------------------------------------|---------------|
-|F3 0F AE /0RDFSBASE r32||M|V/I|FSGSBASE|Load the 32-bit destination register with the FS base address.|
-|F3 REX.W 0F AE /0RDFSBASE r64||M|V/I|FSGSBASE|Load the 64-bit destination register with the FS base address.|
-|F3 0F AE /1RDGSBASE r32||M|V/I|FSGSBASE|Load the 32-bit destination register with the GS base address.|
-|F3 REX.W 0F AE /1RDGSBASE r64||M|V/I|FSGSBASE|Load the 64-bit destination register with the GS base address.|
+|F3 0F AE /0\newline{}RDFSBASE r32||M|V/I|FSGSBASE|Load the 32-bit destination register with the FS base address.|
+|F3 REX.W 0F AE /0\newline{}RDFSBASE r64||M|V/I|FSGSBASE|Load the 64-bit destination register with the FS base address.|
+|F3 0F AE /1\newline{}RDGSBASE r32||M|V/I|FSGSBASE|Load the 32-bit destination register with the GS base address.|
+|F3 REX.W 0F AE /1\newline{}RDGSBASE r64||M|V/I|FSGSBASE|Load the 64-bit destination register with the GS base address.|
 ### Instruction Operand Encoding
 
 

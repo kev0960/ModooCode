@@ -28,10 +28,10 @@ Clears the sign bit of ST(0) to create the absolute value of the operand. The fo
 |+ F|+ F|
 |+ $$\infty$$|+ $$\infty$$|
 |NaN|NaN |
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

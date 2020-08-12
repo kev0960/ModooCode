@@ -74,13 +74,12 @@ path : /X86-64 명령어 레퍼런스
 |REX.W + D3 /1|ROR r/m64, CL|MC|Valid|N.E.|Rotate 64 bits r/m64 right CL times. Uses a 6 bit count.|
 |C1 /1 ib|ROR r/m32, imm8|MI|Valid |Valid|Rotate 32 bits r/m32 right imm8 times.|
 |REX.W + C1 /1 ib|ROR r/m64, imm8|MI|Valid |N.E.|Rotate 64 bits r/m64 right imm8 times. Uses a 6 bit count.|
-### NOTES:
 
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
-
-\htmlonly{*}\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+\htmlonly{*}\htmlonly{*}See IA-32 Architecture Compatibility section below
+```
 ### Instruction Operand Encoding
 
 
@@ -114,72 +113,72 @@ The 8086 does not mask the rotation count. However, all other IA-32 processors (
 (* RCL and RCR instructions *)
 SIZE <- OperandSize;
 CASE (determine count) OF
- SIZE <- 8: tempCOUNT <- (COUNT AND 1FH) MOD 9;
- SIZE <- 16: tempCOUNT <- (COUNT AND 1FH) MOD 17;
- SIZE <- 32: tempCOUNT <- COUNT AND 1FH;
- SIZE <- 64: tempCOUNT <- COUNT AND 3FH;
+    SIZE <- 8: tempCOUNT <- (COUNT AND 1FH) MOD 9;
+    SIZE <- 16: tempCOUNT <- (COUNT AND 1FH) MOD 17;
+    SIZE <- 32: tempCOUNT <- COUNT AND 1FH;
+    SIZE <- 64: tempCOUNT <- COUNT AND 3FH;
 ESAC;
 (* RCL instruction operation *)
 WHILE (tempCOUNT != 0)
- DO
-   tempCF <- MSB(DEST);
-   DEST <- (DEST `*` 2) + CF;
-   CF <- tempCF;
-   tempCOUNT <- tempCOUNT - 1;
- OD;
+    DO
+          tempCF <- MSB(DEST);
+          DEST <- (DEST `*` 2) + CF;
+          CF <- tempCF;
+          tempCOUNT <- tempCOUNT - 1;
+    OD;
 ELIHW;
 IF (COUNT & COUNTMASK) = 1
- THEN OF <- MSB(DEST) XOR CF;
- ELSE OF is undefined;
+    THEN OF <- MSB(DEST) XOR CF;
+    ELSE OF is undefined;
 FI;
 (* RCR instruction operation *)
 IF (COUNT & COUNTMASK) = 1
- THEN OF <- MSB(DEST) XOR CF;
- ELSE OF is undefined;
+    THEN OF <- MSB(DEST) XOR CF;
+    ELSE OF is undefined;
 FI;
 WHILE (tempCOUNT != 0)
- DO
-   tempCF <- LSB(SRC);
-   DEST <- (DEST / 2) + (CF * 2\footnote{SIZE} );
-   CF <- tempCF;
-   tempCOUNT <- tempCOUNT - 1;
- OD;
+    DO
+          tempCF <- LSB(SRC);
+          DEST <- (DEST / 2) + (CF * 2\footnote{SIZE} );
+          CF <- tempCF;
+          tempCOUNT <- tempCOUNT - 1;
+    OD;
 (* ROL and ROR instructions *)
 IF OperandSize = 64
- THEN COUNTMASK = 3FH;
- ELSE COUNTMASK = 1FH;
+    THEN COUNTMASK = 3FH;
+    ELSE COUNTMASK = 1FH;
 FI;
 (* ROL instruction operation *)
 tempCOUNT <- (COUNT & COUNTMASK) MOD SIZE
 WHILE (tempCOUNT != 0)
- DO
-   tempCF <- MSB(DEST);
-   DEST <- (DEST `*` 2) + tempCF;
-   tempCOUNT <- tempCOUNT - 1;
- OD;
+    DO
+          tempCF <- MSB(DEST);
+          DEST <- (DEST `*` 2) + tempCF;
+          tempCOUNT <- tempCOUNT - 1;
+    OD;
 ELIHW;
-IF (COUNT & COUNTMASK) ->  0
- THEN CF <- LSB(DEST);
+IF (COUNT & COUNTMASK) ->   0
+    THEN CF <- LSB(DEST);
 FI;
 IF (COUNT & COUNTMASK) = 1
- THEN OF <- MSB(DEST) XOR CF;
- ELSE OF is undefined;
+    THEN OF <- MSB(DEST) XOR CF;
+    ELSE OF is undefined;
 FI;
 (* ROR instruction operation *)
 tempCOUNT <- (COUNT & COUNTMASK) MOD SIZE
 WHILE (tempCOUNT != 0)
- DO
-   tempCF <- LSB(SRC);
-   DEST <- (DEST / 2) + (tempCF `*` 2\footnote{SIZE} );
-   tempCOUNT <- tempCOUNT - 1;
- OD;
+    DO
+          tempCF <- LSB(SRC);
+          DEST <- (DEST / 2) + (tempCF `*` 2\footnote{SIZE} );
+          tempCOUNT <- tempCOUNT - 1;
+    OD;
 ELIHW;
-IF (COUNT & COUNTMASK)  -> 0
- THEN CF <- MSB(DEST);
+IF (COUNT & COUNTMASK)  ->  0
+    THEN CF <- MSB(DEST);
 FI;
 IF (COUNT & COUNTMASK) = 1
- THEN OF <- MSB(DEST) XOR MSB - 1(DEST);
- ELSE OF is undefined;
+    THEN OF <- MSB(DEST) XOR MSB - 1(DEST);
+    ELSE OF is undefined;
 FI;
 ```
 ### Flags Affected

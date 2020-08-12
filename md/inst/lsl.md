@@ -13,11 +13,10 @@ path : /X86-64 명령어 레퍼런스
 |0F 03 /r|LSL r16, r16/m16|RM|Valid|Valid|Load: r16 <- segment limit, selector r16/m16.|
 |0F 03 /r|LSL r32, r32/m16\footnote{*}|RM|Valid|Valid|Load: r32 <- segment limit, selector r32/m16.|
 |REX.W + 0F 03 /r|LSL r64, r32/m16\footnote{*}|RM|Valid|Valid|Load: r64 <- segment limit, selector r32/m16|
-### NOTES:
 
-
-\htmlonly{*}For all loads (regardless of destination sizing), only bits 16-0 are used. Other bits are ignored.
-
+```note
+\htmlonly{*} For all loads (regardless of destination sizing), only bits 16-0 are used. Other bits are ignored
+```
 ### Instruction Operand Encoding
 
 
@@ -59,24 +58,24 @@ If the segment descriptor cannot be accessed or is an invalid type for the instr
 
 ```info-verb
 IF SRC(Offset) > descriptor table limit
- THEN ZF <- 0; FI;
+    THEN ZF <- 0; FI;
 Read segment descriptor;
 IF SegmentDescriptor(Type) != conforming code segment
 and (CPL > DPL) OR (RPL > DPL)
 or Segment type is not valid for instruction
-   THEN
-    ZF <- 0;
-   ELSE
-    temp <- SegmentLimit([SRC]);
-    IF (G <- 1)
-      THEN temp <- ShiftLeft(12, temp) OR 00000FFFH;
-    ELSE IF OperandSize = 32 
-      THEN DEST <- temp; FI;
-    ELSE IF OperandSize = 64 (* REX.W used *)
-      THEN DEST (* Zero-extended *) <- temp; FI;
-    ELSE (* OperandSize = 16 *)
-      DEST <- temp AND FFFFH;
-    FI;
+          THEN
+                ZF <- 0;
+          ELSE
+                temp <- SegmentLimit([SRC]);
+                IF (G <- 1)
+                      THEN temp <- ShiftLeft(12, temp) OR 00000FFFH;
+                ELSE IF OperandSize = 32 
+                      THEN DEST <- temp; FI;
+                ELSE IF OperandSize = 64 (* REX.W used *)
+                      THEN DEST (* Zero-extended *) <- temp; FI;
+                ELSE (* OperandSize = 16 *)
+                      DEST <- temp AND FFFFH;
+                FI;
 FI;
 ```
 ### Flags Affected

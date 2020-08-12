@@ -10,18 +10,17 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 3A 0F /r ib\footnote{1}\newline{}PALIGNR mm1, mm2/m64, imm8|RMI|V/V|SSSE3|Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in imm8 into mm1. |
-|66 0F 3A 0F /r ib\newline{}PALIGNR xmm1, xmm2/m128, imm8|RMI|V/V|SSSE3|Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in imm8 into xmm1.|
-|VEX.NDS.128.66.0F3A.WIG 0F /r ib\newline{}VPALIGNR xmm1, xmm2, xmm3/m128, imm8|RVMI|V/V|AVX|Concatenate xmm2 and xmm3/m128, extract byte aligned result shifted to the right by constant value in imm8 and result is stored in xmm1.|
-|VEX.NDS.256.66.0F3A.WIG 0F /r ib\newline{}VPALIGNR ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX2|Concatenate pairs of 16 bytes in ymm2 and ymm3/m256 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and two 16-byte results are stored in ymm1.|
-|EVEX.NDS.128.66.0F3A.WIG 0F /r ibVPALIGNR xmm1 {k1}{z}, xmm2, xmm3/m128, imm8|FVM|V/V|AVX512VLAVX512BW|Concatenate xmm2 and xmm3/m128 into a 32-byte intermediate result, extract byte aligned result shifted to the right by constant value in imm8 and result is stored in xmm1.|
-|EVEX.NDS.256.66.0F3A.WIG 0F /r ibVPALIGNR ymm1 {k1}{z}, ymm2, ymm3/m256, imm8|FVM|V/V|AVX512VLAVX512BW|Concatenate pairs of 16 bytes in ymm2 and ymm3/m256 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and two 16-byte results are stored in ymm1.|
-|EVEX.NDS.512.66.0F3A.WIG 0F /r ibVPALIGNR zmm1 {k1}{z}, zmm2, zmm3/m512, imm8|FVM|V/V|AVX512BW|Concatenate pairs of 16 bytes in zmm2 and zmm3/m512 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and four 16-byte results are stored in zmm1.|
-### NOTES:
+|0F 3A 0F /r ib\footnote{1}\newline{}\newline{}PALIGNR mm1, mm2/m64, imm8|RMI|V/V|SSSE3|Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in imm8 into mm1. |
+|66 0F 3A 0F /r ib\newline{}\newline{}PALIGNR xmm1, xmm2/m128, imm8|RMI|V/V|SSSE3|Concatenate destination and source operands, extract byte-aligned result shifted to the right by constant value in imm8 into xmm1.|
+|VEX.NDS.128.66.0F3A.WIG 0F /r ib\newline{}\newline{}VPALIGNR xmm1, xmm2, xmm3/m128, imm8|RVMI|V/V|AVX|Concatenate xmm2 and xmm3/m128, extract byte aligned result shifted to the right by constant value in imm8 and result is stored in xmm1.|
+|VEX.NDS.256.66.0F3A.WIG 0F /r ib\newline{}\newline{}VPALIGNR ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX2|Concatenate pairs of 16 bytes in ymm2 and ymm3/m256 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and two 16-byte results are stored in ymm1.|
+|EVEX.NDS.128.66.0F3A.WIG 0F /r ib\newline{}VPALIGNR xmm1 {k1}{z}, xmm2, xmm3/m128, imm8|FVM|V/V|AVX512VLAVX512BW|Concatenate xmm2 and xmm3/m128 into a 32-byte intermediate result, extract byte aligned result shifted to the right by constant value in imm8 and result is stored in xmm1.|
+|EVEX.NDS.256.66.0F3A.WIG 0F /r ib\newline{}VPALIGNR ymm1 {k1}{z}, ymm2, ymm3/m256, imm8|FVM|V/V|AVX512VLAVX512BW|Concatenate pairs of 16 bytes in ymm2 and ymm3/m256 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and two 16-byte results are stored in ymm1.|
+|EVEX.NDS.512.66.0F3A.WIG 0F /r ib\newline{}VPALIGNR zmm1 {k1}{z}, zmm2, zmm3/m512, imm8|FVM|V/V|AVX512BW|Concatenate pairs of 16 bytes in zmm2 and zmm3/m512 into 32-byte intermediate result, extract byte-aligned, 16-byte result shifted to the right by constant values in imm8 from each intermediate result, and four 16-byte results are stored in zmm1.|
 
-
-1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
-
+```note
+1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A
+```
 ### Instruction Operand Encoding
 
 
@@ -345,48 +344,48 @@ Note: VEX.L must be 0, otherwise the instruction will #UD.
 ### Operation
 #### PALIGNR (with 64-bit operands)
 ```info-verb
- temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8*8) 
- DEST[63:0] = temp1[63:0] 
+    temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8*8) 
+    DEST[63:0] = temp1[63:0] 
 ```
 #### PALIGNR (with 128-bit operands)
 ```info-verb
-temp1[255:0]  <- ((DEST[127:0] << 128) OR SRC[127:0])>>(imm8*8);
-DEST[127:0] <-  temp1[127:0]
+temp1[255:0]  <-  ((DEST[127:0] << 128) OR SRC[127:0])>>(imm8*8);
+DEST[127:0] <-   temp1[127:0]
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VPALIGNR (VEX.128 encoded version)
 ```info-verb
-temp1[255:0]  <- ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8*8);
-DEST[127:0] <-  temp1[127:0]
-DEST[VLMAX-1:128] <-  0
+temp1[255:0]  <-  ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8*8);
+DEST[127:0] <-   temp1[127:0]
+DEST[VLMAX-1:128] <-   0
 ```
 #### VPALIGNR (VEX.256 encoded version)
 ```info-verb
-temp1[255:0] <-  ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8[7:0]*8);
-DEST[127:0]  <- temp1[127:0]
-temp1[255:0]  <- ((SRC1[255:128] << 128) OR SRC2[255:128])>>(imm8[7:0]*8);
-DEST[MAX_VL-1:128]  <- temp1[127:0]
+temp1[255:0] <-   ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8[7:0]*8);
+DEST[127:0]  <-  temp1[127:0]
+temp1[255:0]  <-  ((SRC1[255:128] << 128) OR SRC2[255:128])>>(imm8[7:0]*8);
+DEST[MAX_VL-1:128]  <-  temp1[127:0]
 ```
 #### VPALIGNR (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
-FOR l  <- 0 TO VL-1 with increments of 128
- temp1[255:0] <- ((SRC1[l+127:l] << 128) OR SRC2[l+127:l])>>(imm8[7:0]*8);
- TMP_DEST[l+127:l] <- temp1[127:0]
+FOR l  <-  0 TO VL-1 with increments of 128
+    temp1[255:0] <- ((SRC1[l+127:l] << 128) OR SRC2[l+127:l])>>(imm8[7:0]*8);
+    TMP_DEST[l+127:l] <- temp1[127:0]
 ENDFOR;
-FOR j  <- 0 TO KL-1
- i  <- j * 8
- IF k1[j] OR *no writemask*
-   THEN DEST[i+7:i]  <- TMP_DEST[i+7:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+7:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+7:i] = 0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 8
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+7:i]  <-  TMP_DEST[i+7:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+7:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+7:i] = 0
+                FI
+    FI;
 ENDFOR;
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalents

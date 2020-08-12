@@ -16,13 +16,12 @@ path : /X86-64 명령어 레퍼런스
 |6E|OUTSB|NP|Valid|Valid|Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
 |6F|OUTSW|NP|Valid|Valid|Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
 |6F|OUTSD|NP|Valid|Valid|Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
-### NOTES:
 
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below.
 
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
-\htmlonly{*}\htmlonly{*}In 64-bit mode, only 64-bit (RSI) and 32-bit (ESI) address sizes are supported. In non-64-bit mode, only 32-bit (ESI) and 16-bit (SI) address sizes are supported.
-
+\htmlonly{*}\htmlonly{*}In 64-bit mode, only 64-bit (RSI) and 32-bit (ESI) address sizes are supported. In non-64-bit mode, only 32-bit (ESI) and 16-bit (SI) address sizes are supported
+```
 ### Instruction Operand Encoding
 
 
@@ -58,79 +57,79 @@ For the Pentium 4, Intel\footnote{(R)}  Xeon\footnote{(R)} , and P6 processor fa
 
 ```info-verb
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
- THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
-   IF (Any I/O Permission Bit for I/O port being accessed = 1)
-    THEN (* I/O operation is not allowed *)
-      #GP(0);
-    ELSE (* I/O operation is allowed *) 
-      DEST <- SRC; (* Writes to I/O port *)
-   FI;
- ELSE (Real Mode or Protected Mode or 64-Bit Mode with CPL <= IOPL *)
-   DEST <- SRC; (* Writes to I/O port *)
+    THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
+          IF (Any I/O Permission Bit for I/O port being accessed = 1)
+                THEN (* I/O operation is not allowed *)
+                      #GP(0);
+                ELSE (* I/O operation is allowed *) 
+                      DEST <- SRC; (* Writes to I/O port *)
+          FI;
+    ELSE (Real Mode or Protected Mode or 64-Bit Mode with CPL <= IOPL *)
+          DEST <- SRC; (* Writes to I/O port *)
 FI;
 Byte transfer:
- IF 64-bit mode
-   Then
-    IF 64-Bit Address Size 
-      THEN 
-        IF DF = 0
-          THEN RSI <- RSI RSI + 1; 
-          ELSE RSI <- RSI or - 1; 
-        FI;
-      ELSE (* 32-Bit Address Size *)
-        IF DF = 0
-          THEN  ESI <- ESI + 1; 
-          ELSE  ESI <- ESI - 1; 
-        FI;
+    IF 64-bit mode
+          Then
+                IF 64-Bit Address Size 
+                      THEN 
+                            IF DF = 0
+                                  THEN RSI <- RSI RSI + 1; 
+                                  ELSE RSI <- RSI or - 1; 
+                            FI;
+                      ELSE (* 32-Bit Address Size *)
+                            IF DF = 0
+                                  THEN  ESI <- ESI + 1; 
+                                  ELSE  ESI <- ESI - 1; 
+                            FI;
+                FI;
+          ELSE 
+                IF DF = 0
+                      THEN  (E)SI <- (E)SI + 1; 
+                      ELSE (E)SI <- (E)SI - 1; 
+                FI;
     FI;
-   ELSE 
-    IF DF = 0
-      THEN  (E)SI <- (E)SI + 1; 
-      ELSE (E)SI <- (E)SI - 1; 
-    FI;
- FI;
 Word transfer:
- IF 64-bit mode
+    IF 64-bit mode
 Then
-    IF 64-Bit Address Size 
-      THEN 
-        IF DF = 0
-          THEN RSI <- RSI RSI + 2; 
-          ELSE RSI <- RSI or - 2; 
-        FI;
-      ELSE (* 32-Bit Address Size *)
-        IF DF = 0
-          THEN  ESI <- ESI + 2; 
-          ELSE  ESI <- ESI - 2; 
-        FI;
+                IF 64-Bit Address Size 
+                      THEN 
+                            IF DF = 0
+                                  THEN RSI <- RSI RSI + 2; 
+                                  ELSE RSI <- RSI or - 2; 
+                            FI;
+                      ELSE (* 32-Bit Address Size *)
+                            IF DF = 0
+                                  THEN  ESI <- ESI + 2; 
+                                  ELSE  ESI <- ESI - 2; 
+                            FI;
+                FI;
+          ELSE 
+                IF DF = 0
+                      THEN  (E)SI <- (E)SI + 2; 
+                      ELSE (E)SI <- (E)SI - 2; 
+                FI;
     FI;
-   ELSE 
-    IF DF = 0
-      THEN  (E)SI <- (E)SI + 2; 
-      ELSE (E)SI <- (E)SI - 2; 
-    FI;
- FI;
 Doubleword transfer:
- IF 64-bit mode
-   Then
-    IF 64-Bit Address Size 
-      THEN 
-        IF DF = 0
-          THEN RSI <- RSI RSI + 4; 
-          ELSE RSI <- RSI or - 4; 
-        FI;
-      ELSE (* 32-Bit Address Size *)
-        IF DF = 0
-          THEN  ESI <- ESI + 4; 
-          ELSE  ESI <- ESI - 4; 
-        FI;
+    IF 64-bit mode
+          Then
+                IF 64-Bit Address Size 
+                      THEN 
+                            IF DF = 0
+                                  THEN RSI <- RSI RSI + 4; 
+                                  ELSE RSI <- RSI or - 4; 
+                            FI;
+                      ELSE (* 32-Bit Address Size *)
+                            IF DF = 0
+                                  THEN  ESI <- ESI + 4; 
+                                  ELSE  ESI <- ESI - 4; 
+                            FI;
+                FI;
+          ELSE 
+                IF DF = 0
+                      THEN  (E)SI <- (E)SI + 4; 
+                      ELSE (E)SI <- (E)SI - 4; 
+                FI;
     FI;
-   ELSE 
-    IF DF = 0
-      THEN  (E)SI <- (E)SI + 4; 
-      ELSE (E)SI <- (E)SI - 4; 
-    FI;
- FI;
 ```
 ### Flags Affected
 

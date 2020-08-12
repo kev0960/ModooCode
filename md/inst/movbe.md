@@ -28,21 +28,21 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Use of the 
 ```info-verb
 TEMP <- SRC
 IF ( OperandSize = 16)THENDEST[7:0] <- TEMP[15:8];
-   DEST[15:8] <- TEMP[7:0];
- ELES IF( OperandSize = 32) 
-   DEST[7:0] <- TEMP[31:24];
-   DEST[15:8] <- TEMP[23:16];
-   DEST[23:16] <- TEMP[15:8];
-   DEST[31:23] <- TEMP[7:0];
- ELSE IF ( OperandSize = 64) 
-   DEST[7:0] <- TEMP[63:56];
-   DEST[15:8] <- TEMP[55:48];
-   DEST[23:16] <- TEMP[47:40];
-   DEST[31:24] <- TEMP[39:32];
-   DEST[39:32] <- TEMP[31:24];
-   DEST[47:40] <- TEMP[23:16];
-   DEST[55:48] <- TEMP[15:8];
-   DEST[63:56] <- TEMP[7:0];
+          DEST[15:8] <- TEMP[7:0];
+    ELES IF ( OperandSize = 32) 
+          DEST[7:0] <- TEMP[31:24];
+          DEST[15:8] <- TEMP[23:16];
+          DEST[23:16] <- TEMP[15:8];
+          DEST[31:23] <- TEMP[7:0];
+    ELSE IF ( OperandSize = 64) 
+          DEST[7:0] <- TEMP[63:56];
+          DEST[15:8] <- TEMP[55:48];
+          DEST[23:16] <- TEMP[47:40];
+          DEST[31:24] <- TEMP[39:32];
+          DEST[39:32] <- TEMP[31:24];
+          DEST[47:40] <- TEMP[23:16];
+          DEST[55:48] <- TEMP[15:8];
+          DEST[63:56] <- TEMP[7:0];
 FI;
 ```
 ### Flags Affected

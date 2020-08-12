@@ -35,15 +35,15 @@ In 64-bit mode, the operand size is fixed at 16 bits.
 
 ```info-verb
 IF SRC(Offset) > descriptor table limit 
- THEN #GP(segment selector); FI;
+    THEN #GP(segment selector); FI;
 IF segment selector is valid
- Read segment descriptor;
- IF SegmentDescriptor(Type) != LDT 
-   THEN #GP(segment selector); FI;
- IF segment descriptor is not present 
-   THEN #NP(segment selector); FI;
- LDTR(SegmentSelector) <- SRC;
- LDTR(SegmentDescriptor) <- GDTSegmentDescriptor;
+    Read segment descriptor;
+    IF SegmentDescriptor(Type) != LDT 
+          THEN #GP(segment selector); FI;
+    IF segment descriptor is not present 
+          THEN #NP(segment selector); FI;
+    LDTR(SegmentSelector) <- SRC;
+    LDTR(SegmentDescriptor) <- GDTSegmentDescriptor;
 ELSE LDTR <- INVALID
 FI;
 ```

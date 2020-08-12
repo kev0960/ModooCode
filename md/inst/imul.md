@@ -23,11 +23,10 @@ path : /X86-64 명령어 레퍼런스
 |69 /r iw|IMUL r16, r/m16, imm16|RMI|Valid|Valid|word register <- r/m16 `*` immediate word.|
 |69 /r id|IMUL r32, r/m32, imm32|RMI|Valid|Valid|doubleword register <- r/m32 `*` immediate doubleword.|
 |REX.W + 69 /r id|IMUL r64, r/m64, imm32|RMI|Valid|N.E.|Quadword register <- r/m64 `*` immediate doubleword.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH
+```
 ### Instruction Operand Encoding
 
 
@@ -70,49 +69,49 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Use of the 
 
 ```info-verb
 IF (NumberOfOperands = 1)
- THEN IF (OperandSize = 8)
-   THEN
-    TMP_XP <- AL `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *); 
-    AX <- TMP_XP[15:0];
-    IF SignExtend(TMP_XP[7:0]) = TMP_XP
-      THEN CF <- 0; OF <- 0;
-      ELSE CF <- 1; OF <- 1; FI;
-   ELSE IF OperandSize = 16
-    THEN 
-      TMP_XP <- AX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *) 
-      DX:AX <- TMP_XP[31:0];
-      IF SignExtend(TMP_XP[15:0]) = TMP_XP
-        THEN CF <- 0; OF <- 0;
-        ELSE CF <- 1; OF <- 1; FI;
-    ELSE IF OperandSize = 32 
-      THEN 
-        TMP_XP <- EAX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC*) 
-        EDX:EAX <- TMP_XP[63:0];
-        IF SignExtend(TMP_XP[31:0]) = TMP_XP
-          THEN CF <- 0; OF <- 0;
-          ELSE CF <- 1; OF <- 1; FI;
-      ELSE (* OperandSize = 64 *)
-        TMP_XP <- RAX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *)
-        EDX:EAX <- TMP_XP[127:0];
-        IF SignExtend(TMP_XP[63:0]) = TMP_XP
-          THEN CF <- 0; OF <- 0;
-          ELSE CF <- 1; OF <- 1; FI;
-      FI;
+    THEN IF (OperandSize = 8)
+          THEN
+                TMP_XP <- AL `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *); 
+                AX <- TMP_XP[15:0];
+                IF SignExtend(TMP_XP[7:0]) = TMP_XP
+                      THEN CF <- 0; OF <- 0;
+                      ELSE CF <- 1; OF <- 1; FI;
+          ELSE IF OperandSize = 16
+                THEN 
+                      TMP_XP <- AX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *) 
+                      DX:AX <- TMP_XP[31:0];
+                      IF SignExtend(TMP_XP[15:0]) = TMP_XP
+                            THEN CF <- 0; OF <- 0;
+                            ELSE CF <- 1; OF <- 1; FI;
+                ELSE IF OperandSize = 32 
+                      THEN 
+                            TMP_XP <- EAX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC*) 
+                            EDX:EAX <- TMP_XP[63:0];
+                            IF SignExtend(TMP_XP[31:0]) = TMP_XP
+                                  THEN CF <- 0; OF <- 0;
+                                  ELSE CF <- 1; OF <- 1; FI;
+                      ELSE (* OperandSize = 64 *)
+                            TMP_XP <- RAX `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *)
+                            EDX:EAX <- TMP_XP[127:0];
+                            IF SignExtend(TMP_XP[63:0]) = TMP_XP
+                                  THEN CF <- 0; OF <- 0;
+                                  ELSE CF <- 1; OF <- 1; FI;
+                      FI;
 FI;
- ELSE IF (NumberOfOperands = 2)
-   THEN 
-    TMP_XP <- DEST `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *)
-    DEST <- TruncateToOperandSize(TMP_XP);
-    IF SignExtend(DEST) != TMP_XP
-      THEN CF <- 1; OF <- 1;
-      ELSE CF <- 0; OF <- 0; FI;
-   ELSE (* NumberOfOperands = 3 *)
-    TMP_XP <- SRC1 `*` SRC2 (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC1 *)
-    DEST <- TruncateToOperandSize(TMP_XP);
-    IF SignExtend(DEST) != TMP_XP
-      THEN CF <- 1; OF <- 1;
-      ELSE CF <- 0; OF <- 0; FI;
- FI;
+    ELSE IF (NumberOfOperands = 2)
+          THEN 
+                TMP_XP <- DEST `*` SRC (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC *)
+                DEST <- TruncateToOperandSize(TMP_XP);
+                IF SignExtend(DEST) != TMP_XP
+                      THEN CF <- 1; OF <- 1;
+                      ELSE CF <- 0; OF <- 0; FI;
+          ELSE (* NumberOfOperands = 3 *)
+                TMP_XP <- SRC1 `*` SRC2 (* Signed multiplication; TMP_XP is a signed integer at twice the width of the SRC1 *)
+                DEST <- TruncateToOperandSize(TMP_XP);
+                IF SignExtend(DEST) != TMP_XP
+                      THEN CF <- 1; OF <- 1;
+                      ELSE CF <- 0; OF <- 0; FI;
+    FI;
 FI;
 ```
 ### Flags Affected

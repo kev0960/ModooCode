@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
-|66 0F 38 DF /rAESDECLAST xmm1, xmm2/m128|RM|V/V|AES|Perform the last round of an AES decryption flow, using the Equivalent Inverse Cipher, operating on a 128-bit data (state) from xmm1 with a 128-bit round key from xmm2/m128.|
-|VEX.NDS.128.66.0F38.WIG DF /rVAESDECLAST xmm1, xmm2, xmm3/m128|RVM|V/V|Both AES andAVX flags|Perform the last round of an AES decryption flow, using the Equivalent Inverse Cipher, operating on a 128-bit data (state) from xmm2 with a 128-bit round key from xmm3/m128; store the result in xmm1.|
+|66 0F 38 DF /r\newline{}AESDECLAST xmm1, xmm2/m128|RM|V/V|AES|Perform the last round of an AES decryption flow, using the Equivalent Inverse Cipher, operating on a 128-bit data (state) from xmm1 with a 128-bit round key from xmm2/m128.|
+|VEX.NDS.128.66.0F38.WIG DF /r\newline{}VAESDECLAST xmm1, xmm2, xmm3/m128|RVM|V/V|Both AES andAVX flags|Perform the last round of an AES decryption flow, using the Equivalent Inverse Cipher, operating on a 128-bit data (state) from xmm2 with a 128-bit round key from xmm3/m128; store the result in xmm1.|
 ### Instruction Operand Encoding
 
 

@@ -33,12 +33,12 @@ See "Checking Caller Access Privileges" in Chapter 3, "Protected-Mode Memory Man
 
 ```info-verb
 IF 64-BIT MODETHENSee MOVSXD;ELSEIF DEST[RPL] < SRC[RPL]
-    THEN
-      ZF <- 1;
-      DEST[RPL] <- SRC[RPL];
-    ELSE
-      ZF <- 0;
-   FI;
+                THEN
+                      ZF <- 1;
+                      DEST[RPL] <- SRC[RPL];
+                ELSE
+                      ZF <- 0;
+          FI;
 FI;
 ```
 ### Flags Affected

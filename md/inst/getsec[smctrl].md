@@ -11,7 +11,7 @@ path : /X86-64 명령어 레퍼런스
 
 The `GETSEC[SMCTRL]` instruction is available for performing certain SMX specific mode control operations. The operation to be performed is selected through the input register EBX. Currently only an input value in EBX of 0 is supported. All other EBX settings will result in the signaling of a general protection violation. 
 
-If EBX is set to 0, then the SMCTRL leaf is used to re-enable SMI events. SMI is masked by the ILP executing the `GETSEC[SENTER]` instruction (SMI is also masked in the responding logical processors in response to SENTER rendezvous messages.). The determination of when this instruction is allowed and the events that are unmasked is dependent on the processor context (See Table6-11). For brevity, the usage of SMCTRL where EBX=0 will be referred to as GETSEC[SMCTRL(0)].
+If EBX is set to 0, then the SMCTRL leaf is used to re-enable SMI events. SMI is masked by the ILP executing the `GETSEC[SENTER]` instruction (SMI is also masked in the responding logical processors in response to SENTER rendezvous messages.). The determination of when this instruction is allowed and the events that are unmasked is dependent on the processor context (See Table 6-11). For brevity, the usage of SMCTRL where EBX=0 will be referred to as GETSEC[SMCTRL(0)].
 
 As part of support for launching a measured environment, the SMI, NMI and INIT events are masked after `GETSEC[SENTER]`, and remain masked after exiting authenticated execution mode. Unmasking these events should be accompanied by securely enabling these event handlers. These security concerns can be addressed in VMX operation by a MVMM. 
 
@@ -21,7 +21,7 @@ The VM monitor can choose two approaches:
 
 *  If a dedicated SMM monitor will not be established and SMIs are to be handled within the measured environment, then GETSEC[SMCTRL(0)] can be used by the executive software to re-enable SMI that has been masked as a result of SENTER.
 
-Table6-11 defines the processor context in which GETSEC[SMCTRL(0)] can be used and which events will be unmasked. Note that the events that are unmasked are dependent upon the currently operating processor context.
+Table 6-11 defines the processor context in which GETSEC[SMCTRL(0)] can be used and which events will be unmasked. Note that the events that are unmasked are dependent upon the currently operating processor context.
 
 ### Table 6-11.  Supported Actions for GETSEC[SMCTRL(0)]
 
@@ -34,18 +34,18 @@ Table6-11 defines the processor context in which GETSEC[SMCTRL(0)] can be used a
 ```info-verb
 (* The state of the internal flag ACMODEFLAG and SENTERFLAG persist across instruction boundary *)
 IF (CR4.SMXE=0)
- THEN #UD;
+    THEN #UD;
 ELSE IF (in VMX non-root operation)
- THEN VM Exit (reason="GETSEC instruction");
+    THEN VM Exit (reason="GETSEC instruction");
 ELSE IF (GETSEC leaf unsupported)
- THEN #UD;
+    THEN #UD;
 ELSE IF ((CR0.PE=0) or (CPL>0) OR (EFLAGS.VM=1))
- THEN #GP(0);
+    THEN #GP(0);
 ELSE IF((EBX=0) and (SENTERFLAG=1) and (ACMODEFLAG=0) and (IN_SMM=0) and
-    (((in VMX root operation) and (SMM monitor not configured)) or (not in VMX operation)) )
- THEN unmask SMI;
+           (((in VMX root operation) and (SMM monitor not configured)) or (not in VMX operation)) )
+    THEN unmask SMI;
 ELSE
- #GP(0);
+    #GP(0);
 END
 ```
 ### Flags Affected
@@ -62,7 +62,7 @@ REP\htmlonly{*} Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
 
 Operand size Causes #UD.
 
-Segment overridesIgnored.
+Segment overrides Ignored.
 
 Address size Ignored.
 

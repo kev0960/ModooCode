@@ -24,7 +24,7 @@ path : /X86-64 명령어 레퍼런스
 
 Round the 2 double-precision floating-point values in the source operand (second operand) using the rounding mode specified in the immediate operand (third operand) and place the results in the destination operand (first operand). The rounding process rounds each input floating-point value to an integer value and returns the integer result as a double-precision floating-point value. 
 
-The immediate operand specifies control fields for the rounding operation, three bit fields are defined and shown in Figure4-24. Bit 3 of the immediate byte controls processor behavior for a precision exception, bit 2 selects the source of rounding mode control. Bits 1:0 specify a non-sticky rounding-mode value (Table 4-18 lists the encoded values for rounding-mode field). 
+The immediate operand specifies control fields for the rounding operation, three bit fields are defined and shown in Figure 4-24. Bit 3 of the immediate byte controls processor behavior for a precision exception, bit 2 selects the source of rounding mode control. Bits 1:0 specify a non-sticky rounding-mode value (Table 4-18 lists the encoded values for rounding-mode field). 
 
 The Precision Floating-Point Exception is signaled according to the immediate operand. If any source operand is an SNaN then it will be converted to a QNaN. If DAZ is set to '1 then denormals will be converted to zero before rounding.
 
@@ -188,22 +188,22 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise
 ### Operation
 #### ROUNDPD (128-bit Legacy SSE version)
 ```info-verb
-DEST[63:0] <-  RoundToInteger(SRC[63:0]], ROUND_CONTROL)
-DEST[127:64] <-  RoundToInteger(SRC[127:64]], ROUND_CONTROL)
+DEST[63:0] <-   RoundToInteger(SRC[63:0]], ROUND_CONTROL)
+DEST[127:64] <-   RoundToInteger(SRC[127:64]], ROUND_CONTROL)
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VROUNDPD (VEX.128 encoded version)
 ```info-verb
-DEST[63:0]  <- RoundToInteger(SRC[63:0]], ROUND_CONTROL)
-DEST[127:64]  <- RoundToInteger(SRC[127:64]], ROUND_CONTROL)
-DEST[VLMAX-1:128]  <- 0
+DEST[63:0]  <-  RoundToInteger(SRC[63:0]], ROUND_CONTROL)
+DEST[127:64]  <-  RoundToInteger(SRC[127:64]], ROUND_CONTROL)
+DEST[VLMAX-1:128]  <-  0
 ```
 #### VROUNDPD (VEX.256 encoded version)
 ```info-verb
-DEST[63:0] <-  RoundToInteger(SRC[63:0], ROUND_CONTROL)
-DEST[127:64] <-  RoundToInteger(SRC[127:64]], ROUND_CONTROL)
-DEST[191:128]  <- RoundToInteger(SRC[191:128]], ROUND_CONTROL)
-DEST[255:192] <-  RoundToInteger(SRC[255:192] ], ROUND_CONTROL)
+DEST[63:0] <-   RoundToInteger(SRC[63:0], ROUND_CONTROL)
+DEST[127:64] <-   RoundToInteger(SRC[127:64]], ROUND_CONTROL)
+DEST[191:128]  <-  RoundToInteger(SRC[191:128]], ROUND_CONTROL)
+DEST[255:192] <-   RoundToInteger(SRC[255:192] ], ROUND_CONTROL)
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -230,5 +230,5 @@ Note that Denormal is not signaled by ROUNDPD.
 
 See Exceptions Type 2; additionally
 
-#UD If VEX.vvvv  -> 1111B.
+#UD If VEX.vvvv  ->  1111B.
 

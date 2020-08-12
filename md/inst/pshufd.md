@@ -10,12 +10,12 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|66 0F 70 /r ib\newline{}PSHUFD xmm1, xmm2/m128, imm8|RMI|V/V| SSE2|Shuffle the doublewords in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.|
-|VEX.128.66.0F.WIG 70 /r ib\newline{}VPSHUFD xmm1, xmm2/m128, imm8|RMI|V/V|AVX|Shuffle the doublewords in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.|
-|VEX.256.66.0F.WIG 70 /r ib\newline{}VPSHUFD ymm1, ymm2/m256, imm8|RMI|V/V|AVX2|Shuffle the doublewords in ymm2/m256 based on the encoding in imm8 and store the result in ymm1.|
-|EVEX.128.66.0F.W0 70 /r ibVPSHUFD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Shuffle the doublewords in xmm2/m128/m32bcst based on the encoding in imm8 and store the result in xmm1 using writemask k1.|
-|EVEX.256.66.0F.W0 70 /r ibVPSHUFD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Shuffle the doublewords in ymm2/m256/m32bcst based on the encoding in imm8 and store the result in ymm1 using writemask k1.|
-|EVEX.512.66.0F.W0 70 /r ibVPSHUFD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8|FV|V/V|AVX512F|Shuffle the doublewords in zmm2/m512/m32bcst based on the encoding in imm8 and store the result in zmm1 using writemask k1.|
+|66 0F 70 /r ib\newline{}\newline{}PSHUFD xmm1, xmm2/m128, imm8|RMI|V/V| SSE2|Shuffle the doublewords in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.|
+|VEX.128.66.0F.WIG 70 /r ib\newline{}\newline{}VPSHUFD xmm1, xmm2/m128, imm8|RMI|V/V|AVX|Shuffle the doublewords in xmm2/m128 based on the encoding in imm8 and store the result in xmm1.|
+|VEX.256.66.0F.WIG 70 /r ib\newline{}\newline{}VPSHUFD ymm1, ymm2/m256, imm8|RMI|V/V|AVX2|Shuffle the doublewords in ymm2/m256 based on the encoding in imm8 and store the result in ymm1.|
+|EVEX.128.66.0F.W0 70 /r ib\newline{}VPSHUFD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Shuffle the doublewords in xmm2/m128/m32bcst based on the encoding in imm8 and store the result in xmm1 using writemask k1.|
+|EVEX.256.66.0F.W0 70 /r ib\newline{}VPSHUFD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Shuffle the doublewords in ymm2/m256/m32bcst based on the encoding in imm8 and store the result in ymm1 using writemask k1.|
+|EVEX.512.66.0F.W0 70 /r ib\newline{}VPSHUFD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8|FV|V/V|AVX512F|Shuffle the doublewords in zmm2/m512/m32bcst based on the encoding in imm8 and store the result in zmm1 using writemask k1.|
 ### Instruction Operand Encoding
 
 
@@ -441,77 +441,77 @@ Note: EVEX.vvvv and VEX.vvvv are reserved and must be 1111b otherwise instructio
 ### Operation
 #### PSHUFD (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0] <-  (SRC >> (ORDER[1:0] * 32))[31:0];
-DEST[63:32] <-  (SRC >> (ORDER[3:2] * 32))[31:0];
-DEST[95:64]  <- (SRC >> (ORDER[5:4] * 32))[31:0];
-DEST[127:96]  <- (SRC >> (ORDER[7:6] * 32))[31:0];
+DEST[31:0] <-   (SRC >> (ORDER[1:0] * 32))[31:0];
+DEST[63:32] <-   (SRC >> (ORDER[3:2] * 32))[31:0];
+DEST[95:64]  <-  (SRC >> (ORDER[5:4] * 32))[31:0];
+DEST[127:96]  <-  (SRC >> (ORDER[7:6] * 32))[31:0];
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VPSHUFD (VEX.128 encoded version)
 ```info-verb
-DEST[31:0]  <- (SRC >> (ORDER[1:0] * 32))[31:0];
-DEST[63:32] <-  (SRC >> (ORDER[3:2] * 32))[31:0];
-DEST[95:64] <-  (SRC >> (ORDER[5:4] * 32))[31:0];
-DEST[127:96]  <- (SRC >> (ORDER[7:6] * 32))[31:0];
-DEST[VLMAX-1:128] <-  0
+DEST[31:0]  <-  (SRC >> (ORDER[1:0] * 32))[31:0];
+DEST[63:32] <-   (SRC >> (ORDER[3:2] * 32))[31:0];
+DEST[95:64] <-   (SRC >> (ORDER[5:4] * 32))[31:0];
+DEST[127:96]  <-  (SRC >> (ORDER[7:6] * 32))[31:0];
+DEST[VLMAX-1:128] <-   0
 ```
 #### VPSHUFD (VEX.256 encoded version)
 ```info-verb
-DEST[31:0]  <- (SRC[127:0] >> (ORDER[1:0] * 32))[31:0];
-DEST[63:32]  <- (SRC[127:0] >> (ORDER[3:2] * 32))[31:0];
-DEST[95:64]  <- (SRC[127:0] >> (ORDER[5:4] * 32))[31:0];
-DEST[127:96] <-  (SRC[127:0] >> (ORDER[7:6] * 32))[31:0];
-DEST[159:128]  <- (SRC[255:128] >> (ORDER[1:0] * 32))[31:0];
-DEST[191:160] <-  (SRC[255:128] >> (ORDER[3:2] * 32))[31:0];
-DEST[223:192]  <- (SRC[255:128] >> (ORDER[5:4] * 32))[31:0];
-DEST[255:224] <-  (SRC[255:128] >> (ORDER[7:6] * 32))[31:0];
-DEST[VLMAX-1:256] <-  0
+DEST[31:0]  <-  (SRC[127:0] >> (ORDER[1:0] * 32))[31:0];
+DEST[63:32]  <-  (SRC[127:0] >> (ORDER[3:2] * 32))[31:0];
+DEST[95:64]  <-  (SRC[127:0] >> (ORDER[5:4] * 32))[31:0];
+DEST[127:96] <-   (SRC[127:0] >> (ORDER[7:6] * 32))[31:0];
+DEST[159:128]  <-  (SRC[255:128] >> (ORDER[1:0] * 32))[31:0];
+DEST[191:160] <-   (SRC[255:128] >> (ORDER[3:2] * 32))[31:0];
+DEST[223:192]  <-  (SRC[255:128] >> (ORDER[5:4] * 32))[31:0];
+DEST[255:224] <-   (SRC[255:128] >> (ORDER[7:6] * 32))[31:0];
+DEST[VLMAX-1:256] <-   0
 ```
 #### VPSHUFD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- IF (EVEX.b = 1) AND (SRC *is memory*)
-   THEN TMP_SRC[i+31:i] <-  SRC[31:0]
-   ELSE TMP_SRC[i+31:i]  <- SRC[i+31:i]
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    IF (EVEX.b = 1) AND (SRC *is memory*)
+          THEN TMP_SRC[i+31:i] <-   SRC[31:0]
+          ELSE TMP_SRC[i+31:i]  <-  SRC[i+31:i]
+    FI;
 ENDFOR;
 IF VL >= 128
- TMP_DEST[31:0] <-  (TMP_SRC[127:0] >> (ORDER[1:0] * 32))[31:0];
- TMP_DEST[63:32] <-  (TMP_SRC[127:0] >> (ORDER[3:2] * 32))[31:0];
- TMP_DEST[95:64] <-  (TMP_SRC[127:0] >> (ORDER[5:4] * 32))[31:0];
- TMP_DEST[127:96] <-  (TMP_SRC[127:0] >> (ORDER[7:6] * 32))[31:0];
+    TMP_DEST[31:0] <-   (TMP_SRC[127:0] >> (ORDER[1:0] * 32))[31:0];
+    TMP_DEST[63:32] <-   (TMP_SRC[127:0] >> (ORDER[3:2] * 32))[31:0];
+    TMP_DEST[95:64] <-   (TMP_SRC[127:0] >> (ORDER[5:4] * 32))[31:0];
+    TMP_DEST[127:96] <-   (TMP_SRC[127:0] >> (ORDER[7:6] * 32))[31:0];
 FI;
 IF VL >= 256
- TMP_DEST[159:128] <-  (TMP_SRC[255:128] >> (ORDER[1:0] * 32))[31:0];
- TMP_DEST[191:160]  <- (TMP_SRC[255:128] >> (ORDER[3:2] * 32))[31:0];
- TMP_DEST[223:192] <-  (TMP_SRC[255:128] >> (ORDER[5:4] * 32))[31:0];
- TMP_DEST[255:224] <-  (TMP_SRC[255:128] >> (ORDER[7:6] * 32))[31:0];
+    TMP_DEST[159:128] <-   (TMP_SRC[255:128] >> (ORDER[1:0] * 32))[31:0];
+    TMP_DEST[191:160]  <-  (TMP_SRC[255:128] >> (ORDER[3:2] * 32))[31:0];
+    TMP_DEST[223:192] <-   (TMP_SRC[255:128] >> (ORDER[5:4] * 32))[31:0];
+    TMP_DEST[255:224] <-   (TMP_SRC[255:128] >> (ORDER[7:6] * 32))[31:0];
 FI;
 IF VL >= 512
- TMP_DEST[287:256]  <- (TMP_SRC[383:256] >> (ORDER[1:0] * 32))[31:0];
- TMP_DEST[319:288]  <- (TMP_SRC[383:256] >> (ORDER[3:2] * 32))[31:0];
- TMP_DEST[351:320] <-  (TMP_SRC[383:256] >> (ORDER[5:4] * 32))[31:0];
- TMP_DEST[383:352]  <- (TMP_SRC[383:256] >> (ORDER[7:6] * 32))[31:0];
- TMP_DEST[415:384] <-  (TMP_SRC[511:384] >> (ORDER[1:0] * 32))[31:0];
- TMP_DEST[447:416] <-  (TMP_SRC[511:384] >> (ORDER[3:2] * 32))[31:0];
- TMP_DEST[479:448]  <-(TMP_SRC[511:384] >> (ORDER[5:4] * 32))[31:0];
- TMP_DEST[511:480] <-  (TMP_SRC[511:384] >> (ORDER[7:6] * 32))[31:0];
+    TMP_DEST[287:256]  <-  (TMP_SRC[383:256] >> (ORDER[1:0] * 32))[31:0];
+    TMP_DEST[319:288]  <-  (TMP_SRC[383:256] >> (ORDER[3:2] * 32))[31:0];
+    TMP_DEST[351:320] <-   (TMP_SRC[383:256] >> (ORDER[5:4] * 32))[31:0];
+    TMP_DEST[383:352]  <-  (TMP_SRC[383:256] >> (ORDER[7:6] * 32))[31:0];
+    TMP_DEST[415:384] <-   (TMP_SRC[511:384] >> (ORDER[1:0] * 32))[31:0];
+    TMP_DEST[447:416] <-   (TMP_SRC[511:384] >> (ORDER[3:2] * 32))[31:0];
+    TMP_DEST[479:448]  <- (TMP_SRC[511:384] >> (ORDER[5:4] * 32))[31:0];
+    TMP_DEST[511:480] <-   (TMP_SRC[511:384] >> (ORDER[7:6] * 32))[31:0];
 FI;
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i]  <- TMP_DEST[i+31:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+31:i] <-  0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i]  <-  TMP_DEST[i+31:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+31:i] <-   0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0 
+DEST[MAX_VL-1:VL]  <-  0 
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -544,5 +544,5 @@ Non-EVEX-encoded instruction, see Exceptions Type 4.
 
 EVEX-encoded instruction, see Exceptions Type E4NF.
 
-#UD If VEX.vvvv ->  1111B or EVEX.vvvv ->  1111B.
+#UD If VEX.vvvv ->   1111B or EVEX.vvvv ->   1111B.
 

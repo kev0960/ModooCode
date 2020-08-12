@@ -28,12 +28,12 @@ Performs an unordered comparison of the contents of registers ST(0) and ST(i) an
 |ST0 < ST(i)|0|0|1|
 |ST0 = ST(i)|1|0|0|
 |Unordered\htmlonly{*}\htmlonly{*}|1|1|1|
-### NOTES:
+###  NOTES:
 
 
-\htmlonly{*}See the IA-32 Architecture Compatibility section below.
+\htmlonly{*} See the IA-32 Architecture Compatibility section below.
 
-\htmlonly{*}\htmlonly{*}Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
+ \htmlonly{*}\htmlonly{*}Flags not set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
 
 An unordered comparison checks the class of the numbers being compared (see "FXAM--Examine Floating-Point" in this chapter). The FUCOMI/FUCOMIP instructions perform the same operations as the FCOMI/FCOMIP instruc-tions. The only difference is that the FUCOMI/FUCOMIP instructions raise the invalid-arithmetic-operand exception (#IA) only when either or both operands are an SNaN or are in an unsupported format; QNaNs cause the condition code flags to be set to unordered, but do not cause an exception to be generated. The FCOMI/FCOMIP instructions raise an invalid-operation exception when either or both of the operands are a NaN value of any kind or are in an unsupported format.
 
@@ -55,37 +55,37 @@ The FCOMI/FCOMIP/FUCOMI/FUCOMIP instructions were introduced to the IA-32 Archit
 
 ```info-verb
 CASE (relation of operands) OF
- ST(0) > ST(i): ZF, PF, CF <- 000;
- ST(0) < ST(i): ZF, PF, CF <- 001;
- ST(0) = ST(i): ZF, PF, CF <- 100;
+    ST(0) > ST(i): ZF, PF, CF <- 000;
+    ST(0) < ST(i): ZF, PF, CF <- 001;
+    ST(0) = ST(i): ZF, PF, CF <- 100;
 ESAC;
 IF Instruction is FCOMI or FCOMIP
- THEN
-   IF ST(0) or ST(i) = NaN or unsupported format
-    THEN 
-      #IA
-      IF FPUControlWord.IM = 1
-        THEN 
-          ZF, PF, CF <- 111;
-      FI;
-   FI;
+    THEN
+          IF ST(0) or ST(i) = NaN or unsupported format
+                THEN 
+                      #IA
+                      IF FPUControlWord.IM = 1
+                            THEN 
+                                  ZF, PF, CF <- 111;
+                      FI;
+          FI;
 FI;
 IF Instruction is FUCOMI or FUCOMIP
- THEN
-   IF ST(0) or ST(i) = QNaN, but not SNaN or unsupported format
-    THEN 
-      ZF, PF, CF <- 111;
-    ELSE (* ST(0) or ST(i) is SNaN or unsupported format *)
-       #IA;
-      IF FPUControlWord.IM = 1
-        THEN 
-          ZF, PF, CF <- 111;
-      FI;
-   FI;
+    THEN
+          IF ST(0) or ST(i) = QNaN, but not SNaN or unsupported format
+                THEN 
+                      ZF, PF, CF <- 111;
+                ELSE (* ST(0) or ST(i) is SNaN or unsupported format *)
+                       #IA;
+                      IF FPUControlWord.IM = 1
+                            THEN 
+                                  ZF, PF, CF <- 111;
+                      FI;
+          FI;
 FI;
 IF Instruction is FCOMIP or FUCOMIP 
- THEN 
-   PopRegisterStack;
+    THEN 
+          PopRegisterStack;
 FI;
 ```
 ### FPU Flags Affected
@@ -102,7 +102,7 @@ C0, C2, C3  Not affected.
 
 #IA (FCOMI or FCOMIP instruction) One or both operands are NaN values or have unsupported formats.
 
-         (FUCOMI or FUCOMIP instruction) One or both operands are SNaN values (but not QNaNs) or have undefined formats. Detection of a QNaN value does not raise an invalid-operand excep-tion.
+                              (FUCOMI or FUCOMIP instruction) One or both operands are SNaN values (but not QNaNs) or have undefined formats. Detection of a QNaN value does not raise an invalid-operand excep-tion.
 
 
 ### Protected Mode Exceptions

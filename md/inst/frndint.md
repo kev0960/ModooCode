@@ -31,7 +31,7 @@ ST(0) <- RoundToIntegralValue(ST(0));
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 

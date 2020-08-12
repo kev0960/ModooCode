@@ -10,16 +10,16 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 20/r\newline{}MOV r32, CR0-CR7|MR|N.E.|Valid|Move control register to r32.|
-|0F 20/r\newline{}MOV r64, CR0-CR7|MR|Valid|N.E.|Move extended control register to r64. |
-|REX.R + 0F 20 /0\newline{}MOV r64, CR8|MR|Valid |N.E.|Move extended CR8 to r64.\footnote{1}|
-|0F 22 /r\newline{}MOV CR0-CR7, r32|RM|N.E.|Valid|Move r32 to control register.|
-|0F 22 /r\newline{}MOV CR0-CR7, r64|RM|Valid |N.E.|Move r64 to extended control register.|
-|REX.R + 0F 22 /0\newline{}MOV CR8, r64|RM|Valid|N.E.|Move r64 to extended CR8.\footnote{1}|
+|0F 20/r\newline{}\newline{}MOV r32, CR0-CR7|MR|N.E.|Valid|Move control register to r32.|
+|0F 20/r\newline{}\newline{}MOV r64, CR0-CR7|MR|Valid|N.E.|Move extended control register to r64. |
+|REX.R + 0F 20 /0\newline{}\newline{}MOV r64, CR8|MR|Valid |N.E.|Move extended CR8 to r64.\footnote{1}|
+|0F 22 /r\newline{}\newline{}MOV CR0-CR7, r32|RM|N.E.|Valid|Move r32 to control register.|
+|0F 22 /r\newline{}\newline{}MOV CR0-CR7, r64|RM|Valid |N.E.|Move r64 to extended control register.|
+|REX.R + 0F 22 /0\newline{}\newline{}MOV CR8, r64|RM|Valid|N.E.|Move r64 to extended CR8.\footnote{1}|
 ### NOTE:
 
 
-1. MOV CR\htmlonly{*} instructions, except for MOV CR8, are serializing instructions. MOV CR8 is not architecturally defined as a serializing instruction. For more information, see Chapter 8 in Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 3A.
+1.  MOV CR\htmlonly{*} instructions, except for MOV CR8, are serializing instructions. MOV CR8 is not architecturally defined as a serializing instruction. For more information, see Chapter 8 in Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 3A.
 
 ### Instruction Operand Encoding
 
@@ -39,7 +39,7 @@ When loading control registers, programs should not attempt to change the reserv
 
 In certain cases, these instructions have the side effect of invalidating entries in the TLBs and the paging-structure caches. See Section 4.10.4.1, "Operations that Invalidate TLBs and Paging-Structure Caches," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A for details.
 
-The following side effects are implementation-specific for the Pentium 4, Intel Xeon, and P6 processor family: when modifying PE or PG in register CR0, or PSE or PAE in register CR4, all TLB entries are flushed, including global entries. Software should not depend on this functionality in all Intel64 or IA-32 processors.
+The following side effects are implementation-specific for the Pentium 4, Intel Xeon, and P6 processor family: when modifying PE or PG in register CR0, or PSE or PAE in register CR4, all TLB entries are flushed, including global entries. Software should not depend on this functionality in all Intel 64 or IA-32 processors.
 
 In 64-bit mode, the instruction's default operation size is 64 bits. The REX.R prefix must be used to access CR8. Use of REX.B permits access to additional registers (R8-R15). Use of the REX.W prefix or 66H prefix is ignored. Use of 
 
@@ -47,7 +47,7 @@ In 64-bit mode, the instruction's default operation size is 64 bits. The REX.R p
 
 the REX.R prefix to specify a register other than CR8 causes an invalid-opcode exception. See the summary chart at the beginning of this section for encoding data and limits.
 
-If CR4.PCIDE= 1, bit63 of the source operand to `MOV` to CR3 determines whether the instruction invalidates entries in the TLBs and the paging-structure caches (see Section 4.10.4.1, "Operations that Invalidate TLBs and Paging-Structure Caches," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A). The instruction does not modify bit63 of CR3, which is reserved and always 0.
+If CR4.PCIDE = 1, bit 63 of the source operand to `MOV` to CR3 determines whether the instruction invalidates entries in the TLBs and the paging-structure caches (see Section 4.10.4.1, "Operations that Invalidate TLBs and Paging-Structure Caches," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A). The instruction does not modify bit 63 of CR3, which is reserved and always 0.
 
 See "Changes to Instruction Behavior in VMX Non-Root Operation" in Chapter 25 of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.
 
@@ -98,7 +98,7 @@ The OF, SF, ZF, AF, PF, and CF flags are undefined.
 * If the current privilege level is not 0.
 * If an attempt is made to write invalid bit combinations in CR0 (such as setting the PG flag to 1 when the PE flag is set to 0, or setting the CD flag to 0 when the NW flag is set to 1).
 * If an attempt is made to change CR4.PCIDE from 0 to 1 while CR3[11:0] != 000H.
-* If an attempt is made to clear CR0.PG[bit 31] while CR4.PCIDE= 1.
+* If an attempt is made to clear CR0.PG[bit 31] while CR4.PCIDE = 1.
 * If an attempt is made to write a 1 to any reserved bit in CR3.
 * If an attempt is made to leave IA-32e mode by clearing CR4.PAE[bit 5].
 

@@ -17,6 +17,11 @@ static char kClangFormatConfig[] = "-style=google";
 namespace md_parser {
 namespace {
 
+void RemoveLeftNewline(string& s) {
+  size_t not_newline = s.find_first_not_of('\n', 3);
+  s.erase(3, not_newline);
+}
+
 string FormatCodeUsingFSH(const string& content, const string& code_type) {
   std::unique_ptr<FastSyntaxHighlighter> highlighter;
   if (code_type == "cpp") {
@@ -236,6 +241,10 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::LATEX_ONLY;
   } else if (box_name == "embed") {
     box_type_ = BOX_CONTENT_TYPES::EMBED;
+  } else if (box_name == "sidenote") {
+    box_type_ = BOX_CONTENT_TYPES::SIDENOTE;
+  } else if (box_name == "note") {
+    box_type_ = BOX_CONTENT_TYPES::NOTE;
   }
 }
 
@@ -285,6 +294,19 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       NewlineToBr(&output_html);
       return StrCat("<div class='warning warning-text'>", output_html,
                     "</div>");
+    }
+    case SIDENOTE: {
+      Content::Preprocess(parser_env);
+      string output_html = Content::OutputHtml(parser_env);
+      RemoveLeftNewline(output_html);
+      NewlineToBr(&output_html);
+      return StrCat("<aside class='sidenote'>", output_html, "</aside>");
+    }
+    case NOTE: {
+      Content::Preprocess(parser_env);
+      string output_html = Content::OutputHtml(parser_env);
+      NewlineToBr(&output_html);
+      return StrCat("<div class='inline-note'>", output_html, "</div>");
     }
     case COMPILER_WARNING:
       return StrCat(

@@ -40,22 +40,22 @@ When one operand is $$\infty$$, the result is $$\infty$$ of the expected sign. I
 ### Table 3-39.  FSUBR/FSUBRP/FISUBR Results
 
 
-|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|-F or -I\newline{}+ $$\infty$$|**SR**\newline{}-0\newline{}+ $$\infty$$|**C**\newline{}  +0\newline{} + $$\infty$$|+F or +I\newline{}+ $$\infty$$|+ $$\infty$$\newline{}+ $$\infty$$|NaN\newline{}NaN|
-|-----------------------------------------------|------------------------------|----------------------------------------|------------------------------------------|------------------------------|----------------------------------|----------------|
+|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|-F or -I\newline{}  + $$\infty$$|**SR**\newline{}-0\newline{}+ $$\infty$$|**C**\newline{}      +0\newline{}      + $$\infty$$|+F or +I\newline{}  + $$\infty$$|+ $$\infty$$\newline{}+ $$\infty$$|NaN\newline{}NaN|
+|-----------------------------------------------|--------------------------------|----------------------------------------|---------------------------------------------------|--------------------------------|----------------------------------|----------------|
 |- F - $$\infty$$|$$\pm$$F or $$\pm$$0|-DEST|-DEST|+ F|+ $$\infty$$|NaN|
 |**DEST** - 0 - $$\infty$$|SRC|$$\pm$$0|+ 0|SRC|+ $$\infty$$|NaN|
 |+ 0 - $$\infty$$|SRC|- 0|$$\pm$$0|SRC|+ $$\infty$$|NaN|
 |+ F - $$\infty$$|- F|-DEST|-DEST|$$\pm$$F or $$\pm$$0|+ $$\infty$$|NaN|
 |+ $$\infty$$ - $$\infty$$|- $$\infty$$|- $$\infty$$|- $$\infty$$|- $$\infty$$|\htmlonly{*}|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-IMeans integer.
+ I Means integer.
 
-\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+ \htmlonly{*} Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -64,20 +64,20 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF Instruction = FISUBR
- THEN
-   DEST <- ConvertToDoubleExtendedPrecisionFP(SRC) - DEST;
- ELSE (* Source operand is floating-point value *)
-   DEST <- SRC - DEST; FI;
+    THEN
+          DEST <- ConvertToDoubleExtendedPrecisionFP(SRC) - DEST;
+    ELSE (* Source operand is floating-point value *)
+          DEST <- SRC - DEST; FI;
 IF Instruction = FSUBRP 
- THEN 
-   PopRegisterStack; FI;
+    THEN 
+          PopRegisterStack; FI;
 ```
 ### FPU Flags Affected
 
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 
@@ -88,7 +88,7 @@ C0, C2, C3  Undefined.
 
 #IA Operand is an SNaN value or unsupported format.
 
-         Operands are infinities of like sign.
+                              Operands are infinities of like sign.
 
 #D Source operand is a denormal value.
 

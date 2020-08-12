@@ -10,10 +10,10 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-**\newline{}**bit **\newline{}**Mode**|**CPUID Fea-**\newline{}**ture Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|-------------------------------------|---------------|
-|F3 0F AE /2WRFSBASE r32|M|V/I|FSGSBASE|Load the FS base address with the 32-bit value in the source register.|
-|F3 REX.W 0F AE /2WRFSBASE r64|M|V/I|FSGSBASE|Load the FS base address with the 64-bit value in the source register.|
-|F3 0F AE /3WRGSBASE r32|M|V/I|FSGSBASE|Load the GS base address with the 32-bit value in the source register.|
-|F3 REX.W 0F AE /3WRGSBASE r64|M|V/I|FSGSBASE|Load the GS base address with the 64-bit value in the source register.|
+|F3 0F AE /2\newline{}WRFSBASE r32|M|V/I|FSGSBASE|Load the FS base address with the 32-bit value in the source register.|
+|F3 REX.W 0F AE /2\newline{}WRFSBASE r64|M|V/I|FSGSBASE|Load the FS base address with the 64-bit value in the source register.|
+|F3 0F AE /3\newline{}WRGSBASE r32|M|V/I|FSGSBASE|Load the GS base address with the 32-bit value in the source register.|
+|F3 REX.W 0F AE /3\newline{}WRGSBASE r64|M|V/I|FSGSBASE|Load the GS base address with the 64-bit value in the source register.|
 ### Instruction Operand Encoding
 
 

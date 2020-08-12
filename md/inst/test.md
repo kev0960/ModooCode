@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|A8ib|TEST AL, imm8|I|Valid |Valid|AND imm8 with AL; set SF, ZF, PF according to result.|
+|A8 ib|TEST AL, imm8|I|Valid |Valid|AND imm8 with AL; set SF, ZF, PF according to result.|
 |A9 iw|TEST AX, imm16|I|Valid |Valid|AND imm16 with AX; set SF, ZF, PF according to result.|
 |A9 id|TEST EAX, imm32|I|Valid |Valid|AND imm32 with EAX; set SF, ZF, PF according to result.|
 |REX.W + A9 id|TEST RAX, imm32|I|Valid |N.E.|AND imm32 sign-extended to 64-bits with RAX; set SF, ZF, PF according to result.|
@@ -24,11 +24,10 @@ path : /X86-64 명령어 레퍼런스
 |85 /r|TEST r/m16, r16|MR|Valid |Valid|AND r16 with r/m16; set SF, ZF, PF according to result.|
 |85 /r|TEST r/m32, r32|MR|Valid |Valid|AND r32 with r/m32; set SF, ZF, PF according to result.|
 |REX.W + 85 /r|TEST r/m64, r64|MR|Valid |N.E.|AND r64 with r/m64; set SF, ZF, PF according to result.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 
@@ -51,8 +50,8 @@ In 64-bit mode, using a REX prefix in the form of REX.R permits access to additi
 TEMP <- SRC1 AND SRC2;
 SF <- MSB(TEMP);
 IF TEMP = 0
- THEN ZF <- 1;
- ELSE ZF <- 0;
+    THEN ZF <- 1;
+    ELSE ZF <- 0;
 FI:
 PF <- BitwiseXNOR(TEMP[0:7]);
 CF <- 0;

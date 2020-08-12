@@ -25,22 +25,22 @@ This instruction produces an exact result; the inexact-result exception does not
 ### Table 3-31.  FPREM Results
 
 
-|-$$\infty$$\newline{}-$$\infty$$ \htmlonly{*}|-F\newline{}\htmlonly{*}|**ST(**\newline{}-0\newline{}\htmlonly{*}|**1)**\newline{}  +0\newline{}  \htmlonly{*}|+F\newline{}\htmlonly{*}|+$$\infty$$\newline{}\htmlonly{*}|NaN\newline{}NaN|
-|---------------------------------------------|------------------------|-----------------------------------------|--------------------------------------------|------------------------|---------------------------------|----------------|
+|-$$\infty$$\newline{}-$$\infty$$ \htmlonly{*}|-F\newline{}\htmlonly{*}|**ST(**\newline{}-0\newline{}\htmlonly{*}|**1)**\newline{}       +0\newline{}        \htmlonly{*}|+F\newline{} \htmlonly{*}|+$$\infty$$\newline{} \htmlonly{*}|NaN\newline{}NaN|
+|---------------------------------------------|------------------------|-----------------------------------------|-------------------------------------------------------|-------------------------|----------------------------------|----------------|
 |**ST(0)** -F ST(0)|-F or -0|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|-F or -0|ST(0)|NaN|
 |-0 -0|-0|\htmlonly{*}|\htmlonly{*}|-0|-0|NaN|
 |+0 +0|+0|\htmlonly{*}|\htmlonly{*}|+0|+0|NaN|
 |+F ST(0)|+F or +0|\htmlonly{*}\htmlonly{*}|\htmlonly{*}\htmlonly{*}|+F or +0|ST(0)|NaN|
 |+$$\infty$$ \htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+ \htmlonly{*} Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
-\htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
+ \htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
 
 When the result is 0, its sign is the same as that of the dividend. When the modulus is $$\infty$$, the result is equal to the value in ST(0). 
 
@@ -62,16 +62,16 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ```info-verb
 D <- exponent(ST(0)) - exponent(ST(1));
 IF D < 64
- THEN
-   Q <- Integer(TruncateTowardZero(ST(0) / ST(1)));
-   ST(0) <- ST(0) - (ST(1) `*` Q);
-   C2 <- 0;
-   C0, C3, C1 <- LeastSignificantBits(Q); (* Q2, Q1, Q0 *)
- ELSE
-   C2 <- 1;
-   N <- An implementation-dependent number between 32 and 63;
-   QQ <- Integer(TruncateTowardZero((ST(0)  / ST(1)) / 2\footnote{(D - N)} ));
-   ST(0) <- ST(0) - (ST(1) `*` QQ `*` 2\footnote{(D - N)} ); 
+    THEN
+          Q <- Integer(TruncateTowardZero(ST(0) / ST(1)));
+          ST(0) <- ST(0) - (ST(1) `*` Q);
+          C2 <- 0;
+          C0, C3, C1 <- LeastSignificantBits(Q); (* Q2, Q1, Q0 *)
+    ELSE
+          C2 <- 1;
+          N <- An implementation-dependent number between 32 and 63;
+          QQ <- Integer(TruncateTowardZero((ST(0)  / ST(1)) / 2\footnote{(D - N)} ));
+          ST(0) <- ST(0) - (ST(1) `*` QQ `*` 2\footnote{(D - N)} ); 
 FI;
 ```
 ### FPU Flags Affected

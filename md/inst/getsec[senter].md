@@ -73,7 +73,7 @@ Before loading and authentication of the target code module is performed, the pr
 
 This implies that some thermal operating target parameters configured by BIOS may be overridden by SENTER. The measured environment software may need to take responsibility for restoring such settings that are deemed to be safe, but not necessarily recognized by SENTER. If an adjustment is not possible when an out of range setting is discovered, then the processor will abort the measured launch. This may be the case for chipset controlled settings of these values or if the controllability is not enabled on the processor. In this case it is the responsibility of the external software to program the chipset voltage ID and/or bus ratio select settings to known good values recognized by the processor, prior to executing SENTER.
 
-###                         NOTE
+###                                                                                 NOTE
 
 
 For a mobile processor, an adjustment can be made according to the thermal monitor operating target. For a quad-core processor the SENTER adjustment mechanism may result in a more conser-vative but non-uniform voltage setting, depending on the pre-SENTER settings per core.
@@ -100,7 +100,7 @@ After authentication is completed successfully, the private configuration space 
 
 The SENTER leaf function also initializes some processor architecture state for the ILP from contents held in the header of the authenticated code module. Since the authenticated code module is relocatable, all address refer-ences are relative to the base address passed in via EBX. The ILP GDTR base value is initialized to EBX + [GDTBa-sePtr] and GDTR limit set to [GDTLimit]. The CS selector is initialized to the value held in the AC module header field SegSel, while the DS, SS, and ES selectors are initialized to CS+8. The segment descriptor fields are initialized implicitly with BASE=0, LIMIT=FFFFFh, G=1, D=1, P=1, S=1, read/write/accessed for DS, SS, and ES, while execute/read/accessed for CS. Execution in the authenticated code module for the ILP begins with the EIP set to EBX + [EntryPoint]. AC module defined fields used for initializing processor state are consistency checked with a failure resulting in an TXT-shutdown condition.
 
-Table6-6 provides a summary of processor state initialization for the ILP and RLP(s) after successful completion of GETSEC[SENTER]. For both ILP and RLP(s), paging is disabled upon entry to the measured environment. It is up to the ILP to establish a trusted paging environment, with appropriate mappings, to meet protection requirements established during the launch of the measured environment. RLP state initialization is not completed until a subse-quent wake-up has been signaled by execution of the GETSEC[WAKEUP] function by the ILP.
+Table 6-6 provides a summary of processor state initialization for the ILP and RLP(s) after successful completion of GETSEC[SENTER]. For both ILP and RLP(s), paging is disabled upon entry to the measured environment. It is up to the ILP to establish a trusted paging environment, with appropriate mappings, to meet protection requirements established during the launch of the measured environment. RLP state initialization is not completed until a subse-quent wake-up has been signaled by execution of the GETSEC[WAKEUP] function by the ILP.
 
 ### Table 6-6.  Register State Initialization after GETSEC[SENTER] and GETSEC[WAKEUP]
 
@@ -109,14 +109,13 @@ Table6-6 provides a summary of processor state initialization for the ILP and RL
 |------------------|----------------------------|----------------------------|
 |CR0\newline{}CR4\newline{}EFLAGS\newline{}IA32_EFER\newline{}EIP\newline{}EBX\newline{}EDX\newline{}EBP\newline{}CS\newline{}DS, ES, SS\newline{}GDTR\newline{}DR7\newline{}IA32_DEBUGCTL\newline{}Performance counters and counter control registers\newline{}IA32_MISC_ENABLE\newline{}IA32_SMM_MONITOR_CTL|PG<-0, AM<-0, WP<-0; Others unchanged\newline{}00004000H\newline{}00000002H\newline{}0H\newline{}[EntryPoint from MLE header\footnote{1} ]\newline{}Unchanged [SINIT.BASE]\newline{}SENTER control flags\newline{}SINIT.BASE\newline{}Sel=[SINIT SegSel], base=0, limit=FFFFFh, G=1, D=1, AR=9BH\newline{}Sel=[SINIT SegSel] +8, base=0, limit=FFFFFh, G=1, D=1, AR=93H\newline{}Base= SINIT.base (EBX) + [SINIT.GDTBasePtr], Limit=[SINIT.GDTLimit]\newline{}00000400H\newline{}0H\newline{}0H\newline{}See Table6-5\newline{}Bit 2<-0|PG<-0, CD<-0, NW<-0, AM<-0, WP<-0; PE<-1, NE<-1\newline{}00004000H\newline{}00000002H\newline{}0\newline{}[LT.MLE.JOIN + 12]\newline{}Unchanged\newline{}Unchanged\newline{}Unchanged\newline{}Sel = [LT.MLE.JOIN + 8], base = 0, limit = FFFFFH, G = 1, D = 1, AR = 9BH\newline{}Sel = [LT.MLE.JOIN + 8] +8, base = 0, limit = FFFFFH, G = 1, D = 1, AR = 93H\newline{}Base = [LT.MLE.JOIN + 4], Limit = [LT.MLE.JOIN]\newline{}00000400H\newline{}0H\newline{}0H\newline{}See Table6-5\newline{}Bit 2<-0|
 ||||
-### NOTES:
 
-
+```note
 1. See Intel(R) Trusted Execution Technology Measured Launched Environment Programming Guide for MLE header format.
 
 Segmentation related processor state that has not been initialized by GETSEC[SENTER] requires appropriate initialization before use. Since a new GDT context has been established, the previous state of the segment selector values held in FS, GS, TR, and LDTR may no longer be valid. The IDTR will also require reloading with a new IDT context after launching the measured environment before exceptions or the external interrupts INTR and NMI can be handled. In the meantime, the programmer must take care in not executing an INT n instruction or any other condition that would result in an exception or trap signaling.
 
-Debug exception and trap related signaling is also disabled as part of execution of GETSEC[SENTER]. This is achieved by clearing DR7, TF in EFLAGs, and the MSR IA32_DEBUGCTL as defined in Table6-6. These can be re-enabled once supporting exception handler(s), descriptor tables, and debug registers have been properly re-initial-ized following SENTER. Also, any pending single-step trap condition will be cleared at the completion of SENTER for both the ILP and RLP(s).
+Debug exception and trap related signaling is also disabled as part of execution of GETSEC[SENTER]. This is achieved by clearing DR7, TF in EFLAGs, and the MSR IA32_DEBUGCTL as defined in Table 6-6. These can be re-enabled once supporting exception handler(s), descriptor tables, and debug registers have been properly re-initial-ized following SENTER. Also, any pending single-step trap condition will be cleared at the completion of SENTER for both the ILP and RLP(s).
 
 Performance related counters and counter control registers are cleared as part of execution of SENTER on both the ILP and RLP. This implies any active performance counters at the time of SENTER execution will be disabled. To reactive the processor performance counters, this state must be re-initialized and re-enabled.
 
@@ -128,7 +127,7 @@ shutdown action. This also applies to an RLP while in the SENTER sleep state. Fo
 
 The MSR IA32_EFER is also unconditionally cleared as part of the processor state initialized by SENTER for both the ILP and RLP. Since paging is disabled upon entering authenticated code execution mode, a new paging environ-ment will have to be re-established if it is desired to enable IA-32e mode while operating in authenticated code execution mode. 
 
-The miscellaneous feature control MSR, IA32_MISC_ENABLE, is initialized as part of the measured environment launch. Certain bits of this MSR are preserved because preserving these bits may be important to maintain previ-ously established platform settings. See the footnote for Table6-5 The remaining bits are cleared for the purpose of establishing a more consistent environment for the execution of authenticated code modules. Among the impact of initializing this MSR, any previous condition established by the MONITOR instruction will be cleared. 
+The miscellaneous feature control MSR, IA32_MISC_ENABLE, is initialized as part of the measured environment launch. Certain bits of this MSR are preserved because preserving these bits may be important to maintain previ-ously established platform settings. See the footnote for Table 6-5 The remaining bits are cleared for the purpose of establishing a more consistent environment for the execution of authenticated code modules. Among the impact of initializing this MSR, any previous condition established by the MONITOR instruction will be cleared. 
 
 **Effect of MSR IA32_FEATURE_CONTROL MSR**
 
@@ -138,12 +137,12 @@ Bits 15:8 of the IA32_FEATURE_CONTROL MSR affect the execution of GETSEC[SENTER]
 
 *  Bits 14:8: a parameter control field providing the ability to qualify SENTER execution based on the level of functionality specified with corresponding EDX parameter bits 6:0. 
 
-The layout of these fields in the IA32_FEATURE_CONTROL MSR is shown in Table6-1. 
+The layout of these fields in the IA32_FEATURE_CONTROL MSR is shown in Table 6-1. 
 
 Prior to the execution of GETSEC[SENTER], the lock bit of IA32_FEATURE_CONTROL MSR must be bit set to affirm the settings to be used. Once the lock bit is set, only a power-up reset condition will clear this MSR. The IA32_FEATURE_CONTROL MSR must be configured in accordance to the intended usage at platform initialization. Note that this MSR is only available on SMX or VMX enabled processors. Otherwise, IA32_FEATURE_CONTROL is treated as reserved.
 
-The Intel(R) Trusted Execution Technology Measured Launched Environment Programming Guide provides additional details and requirements for programming measured environment software to launch in an Intel TXT platform.
-
+The Intel(R) Trusted Execution Technology Measured Launched Environment Programming Guide provides additional details and requirements for programming measured environment software to launch in an Intel TXT platform
+```
 ### Operation in a Uni-Processor Platform
 
 
@@ -153,47 +152,47 @@ The Intel(R) Trusted Execution Technology Measured Launched Environment Programm
 
 IF (CR4.SMXE=0)
 
- THEN #UD;
+    THEN #UD;
 
 ELSE IF (in VMX non-root operation)
 
- THEN VM Exit (reason="GETSEC instruction");
+    THEN VM Exit (reason="GETSEC instruction");
 
 ELSE IF (GETSEC leaf unsupported)
 
- THEN #UD;
+    THEN #UD;
 
 ELSE IF ((in VMX root operation) or
 
- (CR0.PE=0) or (CR0.CD=1) or (CR0.NW=1) or (CR0.NE=0) or
+    (CR0.PE=0) or (CR0.CD=1) or (CR0.NW=1) or (CR0.NE=0) or
 
- (CPL>0) or (EFLAGS.VM=1) or
+    (CPL>0) or (EFLAGS.VM=1) or
 
- (IA32_APIC_BASE.BSP=0) or (TXT chipset not present) or
+    (IA32_APIC_BASE.BSP=0) or (TXT chipset not present) or
 
- (SENTERFLAG=1) or (ACMODEFLAG=1) or (IN_SMM=1) or
+    (SENTERFLAG=1) or (ACMODEFLAG=1) or (IN_SMM=1) or
 
- (TPM interface is not present) or
+    (TPM interface is not present) or
 
- (EDX  -> (SENTER_EDX_support_mask & EDX)) or
+    (EDX  ->  (SENTER_EDX_support_mask & EDX)) or
 
- (IA32_FEATURE_CONTROL[0]=0) or (IA32_FEATURE_CONTROL[15]=0) or
+    (IA32_FEATURE_CONTROL[0]=0) or (IA32_FEATURE_CONTROL[15]=0) or
 
- ((IA32_FEATURE_CONTROL[14:8] & EDX[6:0]) ->  EDX[6:0]))
+    ((IA32_FEATURE_CONTROL[14:8] & EDX[6:0]) ->   EDX[6:0]))
 
-   THEN #GP(0);
+          THEN #GP(0);
 
 IF (GETSEC[PARAMETERS].Parameter_Type = 5, MCA_Handling (bit 6) = 0)
 
- FOR I = 0 to IA32_MCG_CAP.COUNT-1 DO
+    FOR I = 0 to IA32_MCG_CAP.COUNT-1 DO
 
-   IF IA32_MC[I]_STATUS = uncorrectable error
+          IF IA32_MC[I]_STATUS = uncorrectable error
 
-    THEN #GP(0);
+                THEN #GP(0);
 
-   FI;
+          FI;
 
- OD;
+    OD;
 
 
 
@@ -201,17 +200,17 @@ FI;
 
 IF (IA32_MCG_STATUS.MCIP=1) or (IERR pin is asserted)
 
- THEN #GP(0);
+    THEN #GP(0);
 
 ACBASE<- EBX;
 
 ACSIZE<- ECX;
 
-IF (((ACBASE MOD 4096) ->  0) or ((ACSIZE MOD 64)  -> 0 ) or (ACSIZE < minimum 
+IF (((ACBASE MOD 4096) ->   0) or ((ACSIZE MOD 64)  ->  0 ) or (ACSIZE < minimum 
 
- module size) or (ACSIZE > AC RAM capacity) or ((ACBASE+ACSIZE) > (2^32 -1)))
+    module size) or (ACSIZE > AC RAM capacity) or ((ACBASE+ACSIZE) > (2^32 -1)))
 
-   THEN #GP(0);
+          THEN #GP(0);
 
 Mask SMI, INIT, A20M, and NMI external pin events;
 
@@ -229,33 +228,33 @@ Unmask SignalSEXIT event;
 
 IF (in VMX operation)
 
- THEN TXT-SHUTDOWN(#IllegalEvent);
+    THEN TXT-SHUTDOWN(#IllegalEvent);
 
 FOR I = 0 to IA32_MCG_CAP.COUNT-1 DO
 
- IF IA32_MC[I]_STATUS = uncorrectable error
+    IF IA32_MC[I]_STATUS = uncorrectable error
 
-   THEN TXT-SHUTDOWN(#UnrecovMCError);
+          THEN TXT-SHUTDOWN(#UnrecovMCError);
 
- FI;
+    FI;
 
 OD;
 
 IF (IA32_MCG_STATUS.MCIP=1) or (IERR pin is asserted)
 
- THEN TXT-SHUTDOWN(#UnrecovMCError);
+    THEN TXT-SHUTDOWN(#UnrecovMCError);
 
 IF (Voltage or bus ratio status are NOT at a known good state)
 
- THEN IF (Voltage select and bus ratio are internally adjustable)
+    THEN IF (Voltage select and bus ratio are internally adjustable)
 
-   THEN 
+          THEN 
 
-    Make product-specific adjustment on operating parameters;
+                Make product-specific adjustment on operating parameters;
 
-   ELSE
+          ELSE
 
-    TXT-SHUTDOWN(#IIlegalVIDBRatio);
+                TXT-SHUTDOWN(#IIlegalVIDBRatio);
 
 FI;
 
@@ -279,13 +278,13 @@ SignalTXTMsg(SENTERAck);
 
 IF (logical processor is not ILP)
 
- THEN GOTO RLP_SENTER_ROUTINE;
+    THEN GOTO RLP_SENTER_ROUTINE;
 
 (\htmlonly{*} ILP waits for all logical processors to ACK \htmlonly{*})
 
 DO
 
- DONE<- TXT.READ(LT.STS);
+    DONE<- TXT.READ(LT.STS);
 
 WHILE (not DONE);
 
@@ -295,21 +294,21 @@ SignalTXTMsg(ProcessorHold);
 
 FOR I=ACBASE to ACBASE+ACSIZE-1 DO
 
- ACRAM[I-ACBASE].ADDR<- I;
+    ACRAM[I-ACBASE].ADDR<- I;
 
- ACRAM[I-ACBASE].DATA<- LOAD(I);
+    ACRAM[I-ACBASE].DATA<- LOAD(I);
 
 OD;
 
 
 
-IF (ACRAM memory type ->  WB)
+IF (ACRAM memory type ->   WB)
 
- THEN TXT-SHUTDOWN(#BadACMMType);
+    THEN TXT-SHUTDOWN(#BadACMMType);
 
-IF (AC module header version is not supported) OR (ACRAM[ModuleType]  -> 2)
+IF (AC module header version is not supported) OR (ACRAM[ModuleType]  ->  2)
 
- THEN TXT-SHUTDOWN(#UnsupportedACM);
+    THEN TXT-SHUTDOWN(#UnsupportedACM);
 
 KEY<- GETKEY(ACRAM, ACBASE);
 
@@ -317,9 +316,9 @@ KEYHASH<- HASH(KEY);
 
 CSKEYHASH<- LT.READ(LT.PUBLIC.KEY);
 
-IF (KEYHASH ->  CSKEYHASH)
+IF (KEYHASH ->   CSKEYHASH)
 
- THEN TXT-SHUTDOWN(#AuthenticateFail);
+    THEN TXT-SHUTDOWN(#AuthenticateFail);
 
 SIGNATURE<- DECRYPT(ACRAM, ACBASE, KEY);
 
@@ -327,85 +326,85 @@ SIGNATURE<- DECRYPT(ACRAM, ACBASE, KEY);
 
 FOR I=0 to SIGNATURE_LEN_CONST - 1 DO
 
- ACRAM[SCRATCH.I]<- SIGNATURE[I];
+    ACRAM[SCRATCH.I]<- SIGNATURE[I];
 
 COMPUTEDSIGNATURE<- HASH(ACRAM, ACBASE, ACSIZE);
 
 FOR I=0 to SIGNATURE_LEN_CONST - 1 DO
 
- ACRAM[SCRATCH.SIGNATURE_LEN_CONST+I]<- COMPUTEDSIGNATURE[I];
+    ACRAM[SCRATCH.SIGNATURE_LEN_CONST+I]<- COMPUTEDSIGNATURE[I];
 
-IF (SIGNATURE  -> COMPUTEDSIGNATURE)
+IF (SIGNATURE  ->  COMPUTEDSIGNATURE)
 
- THEN TXT-SHUTDOWN(#AuthenticateFail);
+    THEN TXT-SHUTDOWN(#AuthenticateFail);
 
 ACMCONTROL<- ACRAM[CodeControl];
 
 IF ((ACMCONTROL.0 = 0) and (ACMCONTROL.1 = 1) and (snoop hit to modified line detected on ACRAM load))
 
- THEN TXT-SHUTDOWN(#UnexpectedHITM);
+    THEN TXT-SHUTDOWN(#UnexpectedHITM);
 
 IF (ACMCONTROL reserved bits are set)
 
- THEN TXT-SHUTDOWN(#BadACMFormat);
+    THEN TXT-SHUTDOWN(#BadACMFormat);
 
 IF ((ACRAM[GDTBasePtr] < (ACRAM[HeaderLen] \htmlonly{*} 4 + Scratch_size)) OR 
 
- ((ACRAM[GDTBasePtr] + ACRAM[GDTLimit]) >= ACSIZE))
+    ((ACRAM[GDTBasePtr] + ACRAM[GDTLimit]) >= ACSIZE))
 
- THEN TXT-SHUTDOWN(#BadACMFormat);
+    THEN TXT-SHUTDOWN(#BadACMFormat);
 
 IF ((ACMCONTROL.0 = 1) and (ACMCONTROL.1 = 1) and (snoop hit to modified 
 
- line detected on ACRAM load)) 
+    line detected on ACRAM load)) 
 
- THEN ACEntryPoint<- ACBASE+ACRAM[ErrorEntryPoint];
+    THEN ACEntryPoint<- ACBASE+ACRAM[ErrorEntryPoint];
 
 ELSE
 
- ACEntryPoint<- ACBASE+ACRAM[EntryPoint];
+    ACEntryPoint<- ACBASE+ACRAM[EntryPoint];
 
 IF ((ACEntryPoint >= ACSIZE) or (ACEntryPoint < (ACRAM[HeaderLen] \htmlonly{*} 4 + Scratch_size)))
 
- THEN TXT-SHUTDOWN(#BadACMFormat);
+    THEN TXT-SHUTDOWN(#BadACMFormat);
 
 IF ((ACRAM[SegSel] > (ACRAM[GDTLimit] - 15)) or (ACRAM[SegSel] < 8))
 
- THEN TXT-SHUTDOWN(#BadACMFormat);
+    THEN TXT-SHUTDOWN(#BadACMFormat);
 
-IF ((ACRAM[SegSel].TI=1) or (ACRAM[SegSel].RPL-> 0))
+IF ((ACRAM[SegSel].TI=1) or (ACRAM[SegSel].RPL->  0))
 
- THEN TXT-SHUTDOWN(#BadACMFormat);
+    THEN TXT-SHUTDOWN(#BadACMFormat);
 
 IF (FTM_INTERFACE_ID.[3:0] = 1 ) (\htmlonly{*} Alternate FTM Interface has been enabled \htmlonly{*})
 
- THEN (\htmlonly{*} TPM_LOC_CTRL_4 is located at 0FED44008H, TMP_DATA_BUFFER_4 is located at 0FED44080H \htmlonly{*})
+    THEN (\htmlonly{*} TPM_LOC_CTRL_4 is located at 0FED44008H, TMP_DATA_BUFFER_4 is located at 0FED44080H \htmlonly{*})
 
-   WRITE(TPM_LOC_CTRL_4) <- 01H; (\htmlonly{*} Modified HASH.START protocol \htmlonly{*})
+          WRITE(TPM_LOC_CTRL_4) <- 01H; (\htmlonly{*} Modified HASH.START protocol \htmlonly{*})
 
-   (\htmlonly{*} Write to firmware storage \htmlonly{*})
+          (\htmlonly{*} Write to firmware storage \htmlonly{*})
 
-   WRITE(TPM_DATA_BUFFER_4) <- SIGNATURE_LEN_CONST + 4;
+          WRITE(TPM_DATA_BUFFER_4) <- SIGNATURE_LEN_CONST + 4;
 
-   FOR I=0 to SIGNATURE_LEN_CONST - 1 DO
+          FOR I=0 to SIGNATURE_LEN_CONST - 1 DO
 
-    WRITE(TPM_DATA_BUFFER_4 + 2 + I )<- ACRAM[SCRATCH.I];
+                WRITE(TPM_DATA_BUFFER_4 + 2 + I )<- ACRAM[SCRATCH.I];
 
-   WRITE(TPM_DATA_BUFFER_4 + 2 + SIGNATURE_LEN_CONST) <- EDX;
+          WRITE(TPM_DATA_BUFFER_4 + 2 + SIGNATURE_LEN_CONST) <- EDX;
 
-   WRITE(FTM.LOC_CTRL) <- 06H; (\htmlonly{*} Modified protocol combining HASH.DATA and HASH.END \htmlonly{*})
+          WRITE(FTM.LOC_CTRL) <- 06H; (\htmlonly{*} Modified protocol combining HASH.DATA and HASH.END \htmlonly{*})
 
- ELSE IF (FTM_INTERFACE_ID.[3:0] = 0 ) (\htmlonly{*} Use standard TPM Interface \htmlonly{*})
+    ELSE IF (FTM_INTERFACE_ID.[3:0] = 0 ) (\htmlonly{*} Use standard TPM Interface \htmlonly{*})
 
-   ACRAM[SCRATCH.SIGNATURE_LEN_CONST]<- EDX;
+          ACRAM[SCRATCH.SIGNATURE_LEN_CONST]<- EDX;
 
-   WRITE(TPM.HASH.START)<- 0;
+          WRITE(TPM.HASH.START)<- 0;
 
-   FOR I=0 to SIGNATURE_LEN_CONST + 3 DO
+          FOR I=0 to SIGNATURE_LEN_CONST + 3 DO
 
-    WRITE(TPM.HASH.DATA)<- ACRAM[SCRATCH.I];
+                WRITE(TPM.HASH.DATA)<- ACRAM[SCRATCH.I];
 
-   WRITE(TPM.HASH.END)<- 0;
+          WRITE(TPM.HASH.END)<- 0;
 
 FI;
 
@@ -497,7 +496,7 @@ REP\htmlonly{*} Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
 
 Operand size Causes #UD.
 
-Segment overridesIgnored.
+Segment overrides Ignored.
 
 Address size Ignored.
 

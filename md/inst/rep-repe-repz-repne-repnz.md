@@ -85,11 +85,10 @@ F2 AF Find EAX, starting at ES:[(E)DI].
 
 F2 REX.W AF Find RAX, starting at [RDI].
 
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH
+```
 ### Instruction Operand Encoding
 
 
@@ -101,9 +100,9 @@ F2 REX.W AF Find RAX, starting at [RDI].
 
 Repeats a string instruction the number of times specified in the count register or until the indicated condition of the ZF flag is no longer met. The `REP` (repeat), `REPE` (repeat while equal), `REPNE` (repeat while not equal), `REPZ` (repeat while zero), and `REPNZ` (repeat while not zero) mnemonics are prefixes that can be added to one of the string instructions. The `REP` prefix can be added to the `INS`, `OUTS`, `MOVS`, `LODS`, and `STOS` instructions, and the `REPE`, `REPNE`, `REPZ`, and `REPNZ` prefixes can be added to the `CMPS` and `SCAS` instructions. (The `REPZ` and `REPNZ` prefixes are synonymous forms of the `REPE` and `REPNE` prefixes, respectively.) The F3H prefix is defined for the following instructions and undefined for the rest:
 
-   *  F3H as REP/REPE/REPZ for string and input/output instruction.
+           *  F3H as REP/REPE/REPZ for string and input/output instruction.
 
-   *  F3H is a mandatory prefix for `POPCNT`, `LZCNT`, and `ADOX`.
+           *  F3H is a mandatory prefix for `POPCNT`, `LZCNT`, and `ADOX`.
 
 The `REP` prefixes apply only to one string instruction at a time. To repeat a block of instructions, use the `LOOP` instruction or another looping construct. All of these repeat prefixes cause the associated instruction to be repeated until the count in register is decremented to 0. See Table 4-17.
 
@@ -115,10 +114,9 @@ The `REP` prefixes apply only to one string instruction at a time. To repeat a b
 |REP|RCX or (E)CX = 0 |None|
 |REPE/REPZ|RCX or (E)CX = 0|ZF = 0|
 |REPNE/REPNZ|RCX or (E)CX = 0 |ZF = 1|
-### NOTES:
 
-
-\htmlonly{*}Count register is CX, ECX or RCX by default, depending on attributes of the operating modes.
+```note
+\htmlonly{*} Count register is CX, ECX or RCX by default, depending on attributes of the operating modes.
 
 
 
@@ -134,8 +132,8 @@ Use the REP INS and REP OUTS instructions with caution. Not all I/O ports can ha
 
 In 64-bit mode, the operand size of the count register is associated with the address size attribute. Thus the default count register is RCX; REX.W has no effect on the address size and the count register. In 64-bit mode, if 67H is used to override address size attribute, the count register is ECX and any implicit source/destination operand will use the corresponding 32-bit index register. See the summary chart at the beginning of this section for encoding data and limits.
 
-REP INS may read from the I/O port without writing to the memory location if an exception or VM exit occurs due to the write (e.g. #PF). If this would be problematic, for example because the I/O port read has side-effects, soft-ware should ensure the write to the memory location does not cause an exception or VM exit.
-
+REP INS may read from the I/O port without writing to the memory location if an exception or VM exit occurs due to the write (e.g. #PF). If this would be problematic, for example because the I/O port read has side-effects, soft-ware should ensure the write to the memory location does not cause an exception or VM exit
+```
 
 ### Operation
 
@@ -152,15 +150,15 @@ IF AddressSize = 16
         Implicit Source/Dest operand for memory use of ESI/EDI;
 FI;
 WHILE CountReg != 0
- DO
-   Service pending interrupts (if any);
-   Execute associated string instruction;
-   CountReg <- (CountReg - 1);
-   IF CountReg = 0
-    THEN exit WHILE loop; FI;
-   IF (Repeat prefix is REPZ or REPE) and (ZF = 0)
-   or (Repeat prefix is REPNZ or REPNE) and (ZF = 1)
-    THEN exit WHILE loop; FI;OD;
+    DO
+          Service pending interrupts (if any);
+          Execute associated string instruction;
+          CountReg <- (CountReg - 1);
+          IF CountReg = 0
+                THEN exit WHILE loop; FI;
+          IF (Repeat prefix is REPZ or REPE) and (ZF = 0)
+          or (Repeat prefix is REPNZ or REPNE) and (ZF = 1)
+                THEN exit WHILE loop; FI;OD;
 ```
 ### Flags Affected
 

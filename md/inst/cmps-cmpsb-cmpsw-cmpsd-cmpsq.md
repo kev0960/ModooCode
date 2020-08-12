@@ -52,68 +52,68 @@ In 64-bit mode, the instruction's default address size is 64 bits, 32 bit addres
 temp <- SRC1 - SRC2;
 SetStatusFlags(temp);
 IF (64-Bit Mode)THENIF (Byte comparison)
-   THEN IF DF = 0
-    THEN 
-      (R|E)SI <- (R|E)SI + 1; 
-      (R|E)DI <- (R|E)DI + 1; 
-    ELSE 
-      (R|E)SI <- (R|E)SI - 1; 
-      (R|E)DI <- (R|E)DI - 1; 
-    FI;
-   ELSE IF (Word comparison)
-    THEN IF DF = 0
-      THEN 
-        (R|E)SI <- (R|E)SI + 2; 
-        (R|E)DI <- (R|E)DI + 2; 
-      ELSE 
-        (R|E)SI <- (R|E)SI - 2; 
-        (R|E)DI <- (R|E)DI - 2; 
-      FI;
-   ELSE IF (Doubleword comparison)
-    THEN IF DF = 0
-      THEN 
-        (R|E)SI <- (R|E)SI + 4; 
-        (R|E)DI <- (R|E)DI + 4; 
-      ELSE 
-        (R|E)SI <- (R|E)SI - 4; 
-        (R|E)DI <- (R|E)DI - 4; 
-      FI;
+          THEN IF DF = 0
+                THEN 
+                      (R|E)SI <- (R|E)SI + 1; 
+                      (R|E)DI <- (R|E)DI + 1; 
+                ELSE 
+                      (R|E)SI <- (R|E)SI - 1; 
+                      (R|E)DI <- (R|E)DI - 1; 
+                FI;
+          ELSE IF (Word comparison)
+                THEN IF DF = 0
+                      THEN 
+                            (R|E)SI <- (R|E)SI + 2; 
+                            (R|E)DI <- (R|E)DI + 2; 
+                      ELSE 
+                            (R|E)SI <- (R|E)SI - 2; 
+                            (R|E)DI <- (R|E)DI - 2; 
+                      FI;
+          ELSE IF (Doubleword comparison)
+                THEN IF DF = 0
+                      THEN 
+                            (R|E)SI <- (R|E)SI + 4; 
+                            (R|E)DI <- (R|E)DI + 4; 
+                      ELSE 
+                            (R|E)SI <- (R|E)SI - 4; 
+                            (R|E)DI <- (R|E)DI - 4; 
+                      FI;
 ELSE (* Quadword comparison *)
-    THEN IF DF = 0
-      (R|E)SI <- (R|E)SI + 8; 
-      (R|E)DI <- (R|E)DI + 8; 
-    ELSE 
-      (R|E)SI <- (R|E)SI - 8; 
-      (R|E)DI <- (R|E)DI - 8; 
-    FI;
-   FI;
- ELSE (* Non-64-bit Mode *)
-   IF (byte comparison)
-   THEN IF DF = 0
-    THEN 
-      (E)SI <- (E)SI + 1; 
-      (E)DI <- (E)DI + 1; 
-    ELSE 
-      (E)SI <- (E)SI - 1; 
-      (E)DI <- (E)DI - 1; 
-    FI;
-   ELSE IF (Word comparison)
-    THEN IF DF = 0
-      (E)SI <- (E)SI + 2; 
-      (E)DI <- (E)DI + 2; 
-    ELSE 
-      (E)SI <- (E)SI - 2; 
-      (E)DI <- (E)DI - 2; 
-    FI;
-   ELSE (* Doubleword comparison *)
-    THEN IF DF = 0
-      (E)SI <- (E)SI + 4; 
-      (E)DI <- (E)DI + 4; 
-    ELSE 
-      (E)SI <- (E)SI - 4; 
-      (E)DI <- (E)DI - 4; 
-    FI;
-   FI;
+                THEN IF DF = 0
+                      (R|E)SI <- (R|E)SI + 8; 
+                      (R|E)DI <- (R|E)DI + 8; 
+                ELSE 
+                      (R|E)SI <- (R|E)SI - 8; 
+                      (R|E)DI <- (R|E)DI - 8; 
+                FI;
+          FI;
+    ELSE (* Non-64-bit Mode *)
+          IF (byte comparison)
+          THEN IF DF = 0
+                THEN 
+                      (E)SI <- (E)SI + 1; 
+                      (E)DI <- (E)DI + 1; 
+                ELSE 
+                      (E)SI <- (E)SI - 1; 
+                      (E)DI <- (E)DI - 1; 
+                FI;
+          ELSE IF (Word comparison)
+                THEN IF DF = 0
+                      (E)SI <- (E)SI + 2; 
+                      (E)DI <- (E)DI + 2; 
+                ELSE 
+                      (E)SI <- (E)SI - 2; 
+                      (E)DI <- (E)DI - 2; 
+                FI;
+          ELSE (* Doubleword comparison *)
+                THEN IF DF = 0
+                      (E)SI <- (E)SI + 4; 
+                      (E)DI <- (E)DI + 4; 
+                ELSE 
+                      (E)SI <- (E)SI - 4; 
+                      (E)DI <- (E)DI - 4; 
+                FI;
+          FI;
 FI;
 ```
 ### Flags Affected

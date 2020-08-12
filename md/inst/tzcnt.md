@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F BC /rTZCNT r16, r/m16|RM|V/V|BMI1|Count the number of trailing zero bits in r/m16, return result in r16.|
-|F3 0F BC /rTZCNT r32, r/m32|RM|V/V|BMI1|Count the number of trailing zero bits in r/m32, return result in r32.|
-|F3 REX.W 0F BC /rTZCNT r64, r/m64|RM|V/N.E.|BMI1|Count the number of trailing zero bits in r/m64, return result in r64.|
+|F3 0F BC /r\newline{}TZCNT r16, r/m16|RM|V/V|BMI1|Count the number of trailing zero bits in r/m16, return result in r16.|
+|F3 0F BC /r\newline{}TZCNT r32, r/m32|RM|V/V|BMI1|Count the number of trailing zero bits in r/m32, return result in r32.|
+|F3 REX.W 0F BC /r\newline{}TZCNT r64, r/m64|RM|V/N.E.|BMI1|Count the number of trailing zero bits in r/m64, return result in r64.|
 ### Instruction Operand Encoding
 
 
@@ -31,18 +31,18 @@ TZCNT counts the number of trailing least significant zero bits in source operan
 temp <- 0
 DEST <- 0
 DO WHILE ( (temp < OperandSize) and (SRC[ temp] = 0) )
- temp <- temp +1
- DEST <- DEST+ 1
+    temp <- temp +1
+    DEST <- DEST+ 1
 OD
 IF DEST = OperandSize
- CF <- 1
+    CF <- 1
 ELSE
- CF <- 0
+    CF <- 0
 FI
 IF DEST = 0
- ZF <- 1
+    ZF <- 1
 ELSE
- ZF <- 0
+    ZF <- 0
 FI
 ```
 ### Flags Affected

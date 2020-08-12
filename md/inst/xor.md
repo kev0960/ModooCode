@@ -32,11 +32,10 @@ path : /X86-64 명령어 레퍼런스
 |33 /r|XOR r16, r/m16|RM|Valid|Valid|r16 XOR r/m16.|
 |33 /r|XOR r32, r/m32|RM|Valid|Valid|r32 XOR r/m32.|
 |REX.W + 33 /r|XOR r64, r/m64|RM|Valid|N.E.|r64 XOR r/m64.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 

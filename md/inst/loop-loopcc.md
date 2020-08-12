@@ -39,42 +39,42 @@ ELSE Count is CX;
 FI;
 Count <- Count - 1;
 IF Instruction is not LOOP
- THEN
-   IF (Instruction <- LOOPE) or (Instruction <- LOOPZ)
-    THEN IF (ZF = 1) and (Count != 0)
-        THEN BranchCond <- 1;
-        ELSE BranchCond <- 0;
-      FI;
-    ELSE (Instruction = LOOPNE) or (Instruction = LOOPNZ)
-      IF (ZF = 0 ) and (Count != 0)
-        THEN BranchCond <- 1;
-        ELSE BranchCond <- 0;
+    THEN
+          IF (Instruction <- LOOPE) or (Instruction <- LOOPZ)
+                THEN IF (ZF = 1) and (Count != 0)
+                            THEN BranchCond <- 1;
+                            ELSE BranchCond <- 0;
+                      FI;
+                ELSE (Instruction = LOOPNE) or (Instruction = LOOPNZ)
+                      IF (ZF = 0 ) and (Count != 0)
+                            THEN BranchCond <- 1;
+                            ELSE BranchCond <- 0;
 FI;
-   FI;
- ELSE (* Instruction = LOOP *)
-   IF (Count != 0)
-    THEN BranchCond <- 1;
-    ELSE BranchCond <- 0;
-   FI;
+          FI;
+    ELSE (* Instruction = LOOP *)
+          IF (Count != 0)
+                THEN BranchCond <- 1;
+                ELSE BranchCond <- 0;
+          FI;
 FI;
 IF BranchCond = 1
- THEN
-   IF OperandSize = 32
-    THEN EIP <- EIP + SignExtend(DEST);
-    ELSE IF OperandSize = 64
-      THEN RIP <- RIP + SignExtend(DEST);
-      FI;
-    ELSE IF OperandSize = 16
-      THEN EIP <- EIP AND 0000FFFFH;
-      FI;
-   FI;
-   IF OperandSize = (32 or 64)
-    THEN IF (R/E)IP < CS.Base or (R/E)IP > CS.Limit
-      #GP; FI;
-      FI;
-   FI;
- ELSE
-   Terminate loop and continue program execution at (R/E)IP;
+    THEN
+          IF OperandSize = 32
+                THEN EIP <- EIP + SignExtend(DEST);
+                ELSE IF OperandSize = 64
+                      THEN RIP <- RIP + SignExtend(DEST);
+                      FI;
+                ELSE IF OperandSize = 16
+                      THEN EIP <- EIP AND 0000FFFFH;
+                      FI;
+          FI;
+          IF OperandSize = (32 or 64)
+                THEN IF (R/E)IP < CS.Base or (R/E)IP > CS.Limit
+                      #GP; FI;
+                      FI;
+          FI;
+    ELSE
+          Terminate loop and continue program execution at (R/E)IP;
 FI;
 ```
 ### Flags Affected

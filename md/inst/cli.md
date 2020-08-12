@@ -39,45 +39,44 @@ Operation is the same in all modes.
 |1|1|3|X|X|X|X|**IF **=** 0**|
 |1|1|< 3|X|X|X|1|**VIF** = **0**|
 |1|1|< 3|X|X|X|0|**GP Fault**|
-### NOTES:
 
-
-\htmlonly{*}X = This setting has no impact.
-
+```note
+\htmlonly{*} X = This setting has no impact
+```
 
 ### Operation
 
 ```info-verb
 IF PE = 0
- THEN
-   IF <- 0; (* Reset Interrupt Flag *)
- ELSE
-   IF VM = 0;
     THEN
-      IF IOPL >= CPL
-        THEN
           IF <- 0; (* Reset Interrupt Flag *)
-      ELSE
-        IF ((IOPL < CPL) and (CPL = 3) and (PVI = 1))
-          THEN
-            VIF <- 0; (* Reset Virtual Interrupt Flag *)
-          ELSE
-            #GP(0);
+    ELSE
+          IF VM = 0;
+                THEN
+                      IF IOPL >= CPL
+                            THEN
+                                  IF <- 0; (* Reset Interrupt Flag *)
+                      ELSE
+                            IF ((IOPL < CPL) and (CPL = 3) and (PVI = 1))
+                                  THEN
+                                        VIF <- 0; (* Reset Virtual Interrupt Flag *)
+                                  ELSE
+                                        #GP(0);
 FI;
-      FI;
-    ELSE (* VM = 1 *)
-      IF IOPL = 3
-        THEN
-          IF <- 0; (* Reset Interrupt Flag *)
-        ELSE 
-          IF (IOPL < 3) AND (VME = 1)
-            THEN
-             VIF <- 0; (* Reset Virtual Interrupt Flag *)
-            ELSE
-             #GP(0);
+                      FI;
+                ELSE (* VM = 1 *)
+                      IF IOPL = 3
+                            THEN
+                                  IF <- 0; (* Reset Interrupt Flag *)
+                            ELSE 
+                                  IF (IOPL < 3) AND (VME = 1)
+                                        THEN
+                                              VIF <- 0; (* Reset Virtual Interrupt Flag *)
+                                        ELSE
+                                              #GP(0);
+                                  FI;
+                      FI;
           FI;
-      FI;
-   FI;
 FI;
 ```
 ### Flags Affected

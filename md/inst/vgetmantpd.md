@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/**\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.128.66.0F3A.W1 26 /r ibVGETMANTPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Get Normalized Mantissa from float64 vector xmm2/m128/m64bcst and store the result in xmm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
-|EVEX.256.66.0F3A.W1 26 /r ibVGETMANTPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Get Normalized Mantissa from float64 vector ymm2/m256/m64bcst and store the result in ymm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
-|EVEX.512.66.0F3A.W1 26 /r ibVGETMANTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8|FV|V/V|AVX512F|Get Normalized Mantissa from float64 vector zmm2/m512/m64bcst and store the result in zmm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
+|EVEX.128.66.0F3A.W1 26 /r ib\newline{}VGETMANTPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Get Normalized Mantissa from float64 vector xmm2/m128/m64bcst and store the result in xmm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
+|EVEX.256.66.0F3A.W1 26 /r ib\newline{}VGETMANTPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Get Normalized Mantissa from float64 vector ymm2/m256/m64bcst and store the result in ymm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
+|EVEX.512.66.0F3A.W1 26 /r ib\newline{}VGETMANTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8|FV|V/V|AVX512F|Get Normalized Mantissa from float64 vector zmm2/m512/m64bcst and store the result in zmm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
 ### Instruction Operand Encoding
 
 
@@ -22,17 +22,17 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Convert double-precision floating values in the source operand (the second operand) to DP FP values with the mantissa normalization and sign control specified by the imm8 byte, see Figure5-15. The converted results are written to the destination operand (the first operand) using writemask k1. The normalized mantissa is specified by interv (imm8[1:0]) and the sign control (sc) is specified by bits 3:2 of the immediate byte. 
+Convert double-precision floating values in the source operand (the second operand) to DP FP values with the mantissa normalization and sign control specified by the imm8 byte, see Figure 5-15. The converted results are written to the destination operand (the first operand) using writemask k1. The normalized mantissa is specified by interv (imm8[1:0]) and the sign control (sc) is specified by bits 3:2 of the immediate byte. 
 
 The destination operand is a ZMM/YMM/XMM register updated under the writemask. The source operand can be a ZMM/YMM/XMM register, a 512/256/128-bit memory location, or a 512/256/128-bit vector broadcasted from a 64-bit memory location.
 
 For each input DP FP value x, The conversion operation is:
 
-   GetMant(x) = $$\pm$$2k|x.significand|
+            GetMant(x) = $$\pm$$2k|x.significand|
 
 where:
 
-   1 <= |x.significand| < 2
+            1 <= |x.significand| < 2
 
 Unbiased exponent k depends on the interval range defined by interv and whether the exponent of the source is even or odd. The sign of the final result is determined by sc and the source sign.
 
@@ -402,7 +402,7 @@ Unbiased exponent k depends on the interval range defined by interv and whether 
 
 If interv != 0 then k = -1, otherwise K = 0. The encoded value of imm8[1:0] and sign control are shown in 
 
-Figure5-15.
+Figure 5-15.
 
 Each converted DP FP result is encoded according to the sign control, the unbiased exponent k (adding bias) and a mantissa normalized to the range specified by interv.
 
@@ -410,7 +410,7 @@ The GetMant() function follows Table 5-9 when dealing with floating-point specia
 
 This instruction is writemasked, so only those elements with the corresponding bit set in vector mask register k1 are computed and stored into the destination. Elements in zmm1 with the corresponding bit clear in k1 retain their previous values.
 
-Note: EVEX.vvvv is reserved and must be 1111b; otherwise instructions will #UD.
+ Note: EVEX.vvvv is reserved and must be 1111b; otherwise instructions will #UD.
 
 ### Table 5-9. GetMant() Special Float Values Behavior
 
@@ -428,25 +428,25 @@ Note: EVEX.vvvv is reserved and must be 1111b; otherwise instructions will #UD.
 #### VGETMANTPD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 64
- IF k1[j] OR *no writemask*
-   THEN 
-    IF (EVEX.b = 1) AND (SRC *is memory*)
-      THEN
-        DEST[i+63:i] != <-  GetNormalizedMantissaDP(SRC[63:0], sc, interv)
-      ELSE 
-        DEST[i+63:i] != <-  GetNormalizedMantissaDP(SRC[i+63:i], sc, interv)
+FOR j  <-  0 TO KL-1
+    i  <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN 
+                IF (EVEX.b = 1) AND (SRC *is memory*)
+                      THEN
+                            DEST[i+63:i] != <-  GetNormalizedMantissaDP(SRC[63:0], sc, interv)
+                      ELSE 
+                            DEST[i+63:i] != <-  GetNormalizedMantissaDP(SRC[i+63:i], sc, interv)
+                FI;
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+63:i] <-   0
+                FI
     FI;
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+63:i] <-  0
-    FI
- FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

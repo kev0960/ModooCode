@@ -16,11 +16,10 @@ path : /X86-64 명령어 레퍼런스
 |6C|INSB|NP|Valid|Valid|Input byte from I/O port specified in DX into memory location specified with ES:(E)DI or RDI.\footnote{1}|
 |6D|INSW|NP|Valid|Valid|Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
 |6D|INSD|NP|Valid|Valid|Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes are supported.
-
+```note
+\htmlonly{*} In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes are supported
+```
 ### Instruction Operand Encoding
 
 
@@ -53,45 +52,45 @@ These instructions may read from the I/O port without writing to the memory loca
 
 ```info-verb
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
- THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
-   IF (Any I/O Permission Bit for I/O port being accessed = 1)
-    THEN (* I/O operation is not allowed *)
-      #GP(0);
-    ELSE (* I/O operation is allowed *) 
-      DEST <- SRC; (* Read from I/O port *)
-   FI;
- ELSE (Real Mode or Protected Mode with CPL IOPL *)
-   DEST <- SRC; (* Read from I/O port *)
+    THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
+          IF (Any I/O Permission Bit for I/O port being accessed = 1)
+                THEN (* I/O operation is not allowed *)
+                      #GP(0);
+                ELSE (* I/O operation is allowed *) 
+                      DEST <- SRC; (* Read from I/O port *)
+          FI;
+    ELSE (Real Mode or Protected Mode with CPL IOPL *)
+          DEST <- SRC; (* Read from I/O port *)
 FI;
 Non-64-bit Mode:
 IF (Byte transfer)
- THEN IF DF = 0
-   THEN (E)DI <- (E)DI + 1; 
-   ELSE (E)DI <- (E)DI - 1; FI;
- ELSE IF (Word transfer)
-   THEN IF DF = 0
-    THEN (E)DI <- (E)DI + 2; 
-    ELSE (E)DI <- (E)DI - 2; FI;
-   ELSE (* Doubleword transfer *)
     THEN IF DF = 0
-      THEN (E)DI <- (E)DI + 4; 
-      ELSE (E)DI <- (E)DI - 4; FI;
-   FI;
+          THEN (E)DI <- (E)DI + 1; 
+          ELSE (E)DI <- (E)DI - 1; FI;
+    ELSE IF (Word transfer)
+          THEN IF DF = 0
+                THEN (E)DI <- (E)DI + 2; 
+                ELSE (E)DI <- (E)DI - 2; FI;
+          ELSE (* Doubleword transfer *)
+                THEN IF DF = 0
+                      THEN (E)DI <- (E)DI + 4; 
+                      ELSE (E)DI <- (E)DI - 4; FI;
+          FI;
 FI;
 FI64-bit Mode:
 IF (Byte transfer)
- THEN IF DF = 0
-   THEN (E|R)DI <- (E|R)DI + 1; 
-   ELSE (E|R)DI <- (E|R)DI - 1; FI;
- ELSE IF (Word transfer)
-   THEN IF DF = 0
-    THEN (E)DI <- (E)DI + 2; 
-    ELSE (E)DI <- (E)DI - 2; FI;
-   ELSE (* Doubleword transfer *)
+    THEN IF DF = 0
+          THEN (E|R)DI <- (E|R)DI + 1; 
+          ELSE (E|R)DI <- (E|R)DI - 1; FI;
+    ELSE IF (Word transfer)
+          THEN IF DF = 0
+                THEN (E)DI <- (E)DI + 2; 
+                ELSE (E)DI <- (E)DI - 2; FI;
+          ELSE (* Doubleword transfer *)
 THEN IF DF = 0
-      THEN (E|R)DI <- (E|R)DI + 4; 
-      ELSE (E|R)DI <- (E|R)DI - 4; FI;
-   FI;
+                      THEN (E|R)DI <- (E|R)DI + 4; 
+                      ELSE (E|R)DI <- (E|R)DI - 4; FI;
+          FI;
 FI;
 ```
 ### Flags Affected

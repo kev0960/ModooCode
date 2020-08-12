@@ -10,10 +10,10 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.NDS.128.66.0F3A.W0 42 /r ibVDBPSADBW xmm1 {k1}{z}, xmm2, xmm3/m128, imm8|FVM|V/V|AVX512VLAVX512BW|Compute packed SAD word results of unsigned bytes in dword block from xmm2 with unsigned bytes of dword blocks transformed from xmm3/m128 using the shuffle controls in imm8. Results are written to xmm1 under the writemask k1.|
-|EVEX.NDS.256.66.0F3A.W0 42 /r ibVDBPSADBW ymm1 {k1}{z}, ymm2, ymm3/m256, imm8|FVM|V/V|AVX512VLAVX512BW|Compute packed SAD word results of unsigned bytes in dword block from ymm2 with unsigned bytes of dword blocks transformed from ymm3/m256 using the shuffle controls in imm8. Results are written to ymm1 under the writemask k1.|
-|EVEX.NDS.512.66.0F3A.W0 42 /r ibVDBPSADBW zmm1 {k1}{z}, zmm2, zmm3/m512, imm8|FVM|V/V|AVX512BW|Compute packed SAD word results of unsigned bytes in dword block from zmm2 with unsigned bytes of dword blocks transformed from zmm3/m512 using the shuffle controls in imm8. Results are written to zmm1 under the writemask k1.|
-###                 Instruction Operand Encoding
+|EVEX.NDS.128.66.0F3A.W0 42 /r ib\newline{}VDBPSADBW xmm1 {k1}{z}, xmm2, xmm3/m128, imm8|FVM|V/V|AVX512VLAVX512BW|Compute packed SAD word results of unsigned bytes in dword block from xmm2 with unsigned bytes of dword blocks transformed from xmm3/m128 using the shuffle controls in imm8. Results are written to xmm1 under the writemask k1.|
+|EVEX.NDS.256.66.0F3A.W0 42 /r ib\newline{}VDBPSADBW ymm1 {k1}{z}, ymm2, ymm3/m256, imm8|FVM|V/V|AVX512VLAVX512BW|Compute packed SAD word results of unsigned bytes in dword block from ymm2 with unsigned bytes of dword blocks transformed from ymm3/m256 using the shuffle controls in imm8. Results are written to ymm1 under the writemask k1.|
+|EVEX.NDS.512.66.0F3A.W0 42 /r ib\newline{}VDBPSADBW zmm1 {k1}{z}, zmm2, zmm3/m512, imm8|FVM|V/V|AVX512BW|Compute packed SAD word results of unsigned bytes in dword block from zmm2 with unsigned bytes of dword blocks transformed from zmm3/m512 using the shuffle controls in imm8. Results are written to zmm1 under the writemask k1.|
+###                                                      Instruction Operand Encoding
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
@@ -27,7 +27,7 @@ Compute packed SAD (sum of absolute differences) word results of unsigned bytes 
 
 Within each super block of packed word results, the SAD results from two 32-bit dword elements are calculated as follows:
 
-*  The lower two word results are calculated each from the SAD operation between a sliding dword element within a qword superblock from an intermediate vector with a stationary dword element in the corresponding qword superblock of the first source operand. The intermediate vector, see "Tmp1" in Figure5-8, is constructed from the second source operand the imm8 byte as shuffle control to select dword elements within a 128-bit lane of the second source operand. The two sliding dword elements in a qword superblock of Tmp1 are located at byte offset 0 and 1 within the superblock, respectively. The stationary dword element in the qword superblock from the first source operand is located at byte offset 0.
+*  The lower two word results are calculated each from the SAD operation between a sliding dword element within a qword superblock from an intermediate vector with a stationary dword element in the corresponding qword superblock of the first source operand. The intermediate vector, see "Tmp1" in Figure 5-8, is constructed from the second source operand the imm8 byte as shuffle control to select dword elements within a 128-bit lane of the second source operand. The two sliding dword elements in a qword superblock of Tmp1 are located at byte offset 0 and 1 within the superblock, respectively. The stationary dword element in the qword superblock from the first source operand is located at byte offset 0.
 
 *  The next two word results are calculated each from the SAD operation between a sliding dword element within a qword superblock from the intermediate vector Tmp1 with a second stationary dword element in the corre-sponding qword superblock of the first source operand. The two sliding dword elements in a qword superblock of Tmp1 are located at byte offset 2and 3 within the superblock, respectively. The stationary dword element in the qword superblock from the first source operand is located at byte offset 4.
 
@@ -1054,7 +1054,7 @@ The first source operand is a ZMM/YMM/XMM register. The second source operand is
 <text x="111.059998" y="30.100037" textLength="3.510000" font-size="8px">1</text>
 <text x="125.038773" y="30.100037" textLength="3.510000" font-size="8px">1</text>
 </svg>
-<figcaption>Figure 5-8.  64-bit Super Block of SAD Operation in `VDBPSADBW` 
+<figcaption>Figure 5-8.  64-bit Super Block of SAD Operation in VDBPSADBW 
 </figcaption></figure>
 ```
 
@@ -1064,43 +1064,43 @@ The first source operand is a ZMM/YMM/XMM register. The second source operand is
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 Selection of quadruplets:
 FOR I = 0 to VL step 128
- TMP1[I+31:I] <-  select (SRC2[I+127: I], imm8[1:0])
- TMP1[I+63: I+32]  <- select (SRC2[I+127: I], imm8[3:2])
- TMP1[I+95: I+64]  <- select (SRC2[I+127: I], imm8[5:4])
- TMP1[I+127: I+96] <- select (SRC2[I+127: I], imm8[7:6])
+    TMP1[I+31:I] <-   select (SRC2[I+127: I], imm8[1:0])
+    TMP1[I+63: I+32]  <-  select (SRC2[I+127: I], imm8[3:2])
+    TMP1[I+95: I+64]  <-  select (SRC2[I+127: I], imm8[5:4])
+    TMP1[I+127: I+96] <-  select (SRC2[I+127: I], imm8[7:6])
 END FOR
 SAD of quadruplets:
 FOR I =0 to VL step 64
- TMP_DEST[I+15:I]  <- ABS(SRC1[I+7: I] - TMP1[I+7: I]) +
-   ABS(SRC1[I+15: I+8]- TMP1[I+15: I+8]) +
-   ABS(SRC1[I+23: I+16]- TMP1[I+23: I+16]) +
-   ABS(SRC1[I+31: I+24]- TMP1[I+31: I+24]) 
- TMP_DEST[I+31: I+16]  <-ABS(SRC1[I+7: I] - TMP1[I+15: I+8]) +
-   ABS(SRC1[I+15: I+8]- TMP1[I+23: I+16]) +
-   ABS(SRC1[I+23: I+16]- TMP1[I+31: I+24]) +
-   ABS(SRC1[I+31: I+24]- TMP1[I+39: I+32])
- TMP_DEST[I+47: I+32] <- ABS(SRC1[I+39: I+32] - TMP1[I+23: I+16]) +
-   ABS(SRC1[I+47: I+40]- TMP1[I+31: I+24]) +
-   ABS(SRC1[I+55: I+48]- TMP1[I+39: I+32]) +
-   ABS(SRC1[I+63: I+56]- TMP1[I+47: I+40]) 
- TMP_DEST[I+63: I+48]  <-ABS(SRC1[I+39: I+32] - TMP1[I+31: I+24]) +
-   ABS(SRC1[I+47: I+40] - TMP1[I+39: I+32]) +
-   ABS(SRC1[I+55: I+48] - TMP1[I+47: I+40]) +
-   ABS(SRC1[I+63: I+56] - TMP1[I+55: I+48])
+    TMP_DEST[I+15:I]  <-  ABS(SRC1[I+7: I] - TMP1[I+7: I]) +
+          ABS(SRC1[I+15: I+8]- TMP1[I+15: I+8]) +
+          ABS(SRC1[I+23: I+16]- TMP1[I+23: I+16]) +
+          ABS(SRC1[I+31: I+24]- TMP1[I+31: I+24]) 
+    TMP_DEST[I+31: I+16]  <- ABS(SRC1[I+7: I] - TMP1[I+15: I+8]) +
+          ABS(SRC1[I+15: I+8]- TMP1[I+23: I+16]) +
+          ABS(SRC1[I+23: I+16]- TMP1[I+31: I+24]) +
+          ABS(SRC1[I+31: I+24]- TMP1[I+39: I+32])
+    TMP_DEST[I+47: I+32] <-  ABS(SRC1[I+39: I+32] - TMP1[I+23: I+16]) +
+          ABS(SRC1[I+47: I+40]- TMP1[I+31: I+24]) +
+          ABS(SRC1[I+55: I+48]- TMP1[I+39: I+32]) +
+          ABS(SRC1[I+63: I+56]- TMP1[I+47: I+40]) 
+    TMP_DEST[I+63: I+48]  <- ABS(SRC1[I+39: I+32] - TMP1[I+31: I+24]) +
+          ABS(SRC1[I+47: I+40] - TMP1[I+39: I+32]) +
+          ABS(SRC1[I+55: I+48] - TMP1[I+47: I+40]) +
+          ABS(SRC1[I+63: I+56] - TMP1[I+55: I+48])
 ENDFOR
-FOR j  <- 0 TO KL-1
- i <-   j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+15:i]  <- TMP_DEST[i+15:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+15:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+15:i]  <- 0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i <-   j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+15:i]  <-  TMP_DEST[i+15:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+15:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+15:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

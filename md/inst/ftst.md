@@ -16,7 +16,7 @@ path : /X86-64 명령어 레퍼런스
 
 Compares the value in the ST(0) register with 0.0 and sets the condition code flags C0, C2, and C3 in the FPU status word according to the results (see table below).
 
-###                    Table 3-40.  FTST Results
+###                                                                   Table 3-40.  FTST Results
 
 
 This instruction performs an "unordered comparison." An unordered comparison also checks the class of the numbers being compared (see "FXAM--Examine Floating-Point" in this chapter). If the value in register ST(0) is a NaN or is in an undefined format, the condition flags are set to "unordered" and the invalid operation exception is generated.
@@ -38,10 +38,10 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 CASE (relation of operands) OF
- Not comparable: C3, C2, C0 <- 111;
- ST(0) > 0.0: C3, C2, C0 <- 000;
- ST(0) < 0.0: C3, C2, C0 <- 001;
- ST(0) = 0.0: C3, C2, C0 <- 100;
+    Not comparable: C3, C2, C0 <- 111;
+    ST(0) > 0.0: C3, C2, C0 <- 000;
+    ST(0) < 0.0: C3, C2, C0 <- 001;
+    ST(0) = 0.0: C3, C2, C0 <- 100;
 ESAC;
 ```
 ### FPU Flags Affected

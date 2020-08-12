@@ -31,12 +31,12 @@ The following table shows the results obtained when computing the arctangent of 
 |+ F +p|+ to +/2|+ /2|+/2|+/2 to +0|+ 0|NaN|
 |+ $$\infty$$ +3/4\htmlonly{*}|+/2|+/2|+/2|+ /2|+ /4\htmlonly{*}|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-\htmlonly{*}Table 8-10 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, specifies that the ratios 0/0 and $$\infty$$/$$\infty$$ generate the floating-point invalid arithmetic-operation exception and, if this exception is masked, the floating-point QNaN indefi-nite value is returned. With the FPATAN instruction, the 0/0 or $$\infty$$/$$\infty$$ value is actually not calculated using division. Instead, the arc-tangent of the two variables is derived from a standard mathematical formulation that is generalized to allow complex numbers as arguments. In this complex variable formulation, arctangent(0,0) etc. has well defined values. These values are needed to develop a library to compute transcendental functions with complex arguments, based on the FPU functions that only allow floating-point values as arguments.
+ \htmlonly{*} Table 8-10 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, specifies that the ratios 0/0 and $$\infty$$/$$\infty$$ generate the floating-point invalid arithmetic-operation exception and, if this exception is masked, the floating-point QNaN indefi-nite value is returned. With the FPATAN instruction, the 0/0 or $$\infty$$/$$\infty$$ value is actually not calculated using division. Instead, the arc-tangent of the two variables is derived from a standard mathematical formulation that is generalized to allow complex numbers as arguments. In this complex variable formulation, arctangent(0,0) etc. has well defined values. These values are needed to develop a library to compute transcendental functions with complex arguments, based on the FPU functions that only allow floating-point values as arguments.
 
 There is no restriction on the range of source operands that FPATAN can accept.
 
@@ -61,7 +61,7 @@ PopRegisterStack;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 

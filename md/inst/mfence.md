@@ -6,12 +6,12 @@ path : /X86-64 명령어 레퍼런스
 ----------------------------
 #@ MFENCE
 
-**Memory Fence**###                  Instruction Operand Encoding
+**Memory Fence**###                                                           Instruction Operand Encoding
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
 
-NP NA NA NA NA
+  NP NA NA NA NA
 
 ### Description
 
@@ -43,9 +43,10 @@ void _mm_mfence(void)
 
 #UD  If CPUID.01H:EDX.SSE2[bit 26] = 0.
 
-         If the LOCK prefix is used.
+                              If the LOCK prefix is used.
+
+```sidenote
 
 
-
-1.A load instruction is considered to become globally visible when the value to be loaded into its destination register is determined.
-
+1. A load instruction is considered to become globally visible when the value to be loaded into its destination register is determined.
+```

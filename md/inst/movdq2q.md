@@ -6,12 +6,12 @@ path : /X86-64 명령어 레퍼런스
 ----------------------------
 #@ MOVDQ2Q
 
-**Move Quadword from XMM to MMX Technology Register**###                  Instruction Operand Encoding
+**Move Quadword from XMM to MMX Technology Register**###                                                            Instruction Operand Encoding
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
 
-RM ModRM:reg (w) ModRM:r/m (r) NA NA
+ RM ModRM:reg (w) ModRM:r/m (r) NA NA
 
 ### Description
 

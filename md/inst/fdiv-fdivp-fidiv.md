@@ -38,28 +38,28 @@ The following table shows the results obtained when dividing various classes of 
 
 NaN
 
-                            NaN
+                                                                                               NaN
 
-                            NaN
+                                                                                               NaN
 
-                            NaN
+                                                                                               NaN
 
-                            NaN
+                                                                                               NaN
 
-                            NaN
+                                                                                               NaN
 
-                            NaN
+                                                                                               NaN
 
-                            NaN
+                                                                                               NaN
 
-                            NaN
+                                                                                               NaN
 
-                            NaN
+                                                                                               NaN
 
 
 
-|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{}+ 0|**DE**\newline{}- 0\newline{}+ 0|**ST**\newline{}+ 0\newline{}- 0|+ F\newline{}- 0|+ $$\infty$$\newline{}\htmlonly{*}|
-|-----------------------------------------------|----------------|--------------------------------|--------------------------------|----------------|----------------------------------|
+|- $$\infty$$\newline{}- $$\infty$$ \htmlonly{*}|- F\newline{}+ 0|**DE**\newline{}- 0\newline{}+ 0|**ST**\newline{} + 0\newline{} - 0|+ F\newline{}- 0|+ $$\infty$$\newline{}\htmlonly{*}|
+|-----------------------------------------------|----------------|--------------------------------|----------------------------------|----------------|----------------------------------|
 |- F + $$\infty$$|+ F|+ 0|- 0|- F|- $$\infty$$|
 |- I + $$\infty$$|+ F|+ 0|- 0|- F|- $$\infty$$|
 |**SRC** - 0 + $$\infty$$|\htmlonly{*}\htmlonly{*}|\htmlonly{*}|\htmlonly{*}|\htmlonly{*}\htmlonly{*}|- $$\infty$$|
@@ -68,16 +68,16 @@ NaN
 |+ F - $$\infty$$|- F|- 0|+ 0|+ F|+ $$\infty$$|
 |+ $$\infty$$ \htmlonly{*}|- 0|- 0|+ 0|+ 0|\htmlonly{*}|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|
-### NOTES:
+###   NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-IMeans integer.
+  I Means integer.
 
-\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+  \htmlonly{*} Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
-\htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
+  \htmlonly{*}\htmlonly{*}Indicates floating-point zero-divide (#Z) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -86,19 +86,19 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF SRC = 0
- THEN
-   #Z;
- ELSE
-   IF Instruction is FIDIV
     THEN
-      DEST <- DEST / ConvertToDoubleExtendedPrecisionFP(SRC);
-    ELSE (* Source operand is floating-point value *)
-      DEST <- DEST / SRC;
-   FI;
+          #Z;
+    ELSE
+          IF Instruction is FIDIV
+                THEN
+                      DEST <- DEST / ConvertToDoubleExtendedPrecisionFP(SRC);
+                ELSE (* Source operand is floating-point value *)
+                      DEST <- DEST / SRC;
+          FI;
 FI;
 IF Instruction = FDIVP 
- THEN 
-   PopRegisterStack;
+    THEN 
+          PopRegisterStack;
 FI;
 ```
 ### FPU Flags Affected
@@ -106,7 +106,7 @@ FI;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 
@@ -117,7 +117,7 @@ C0, C2, C3  Undefined.
 
 #IA Operand is an SNaN value or unsupported format.
 
-         $$\pm$$$$\infty$$ / $$\pm$$$$\infty$$; $$\pm$$0 / $$\pm$$0
+                              $$\pm$$$$\infty$$ / $$\pm$$$$\infty$$; $$\pm$$0 / $$\pm$$0
 
 #D Source is a denormal value.
 

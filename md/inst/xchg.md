@@ -26,11 +26,10 @@ path : /X86-64 명령어 레퍼런스
 |REX.W + 87 /r|XCHG r/m64, r64|MR|Valid|N.E.|Exchange r64 with quadword from r/m64.|
 |87 /r|XCHG r32, r/m32|RM|Valid |Valid|Exchange doubleword from r/m32 with r32.|
 |REX.W + 87 /r|XCHG r64, r/m64|RM|Valid |N.E.|Exchange quadword from r/m64 with r64.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 
@@ -51,7 +50,7 @@ The `XCHG` instruction can also be used instead of the `BSWAP` instruction for 1
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a REX prefix in the form of REX.R permits access to additional registers (R8-R15). Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 
-###                     NOTE
+###                                                                      NOTE
 
 
 XCHG (E)AX, (E)AX (encoded instruction byte is 90H) is an alias for NOP regardless of data size prefixes, including REX.W.

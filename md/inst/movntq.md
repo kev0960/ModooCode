@@ -48,5 +48,5 @@ None.
 ### Other Exceptions
 
 
-See Table22-8, "Exception Conditions for Legacy SIMD/MMX Instructions without FP Exception," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
+See Table 22-8, "Exception Conditions for Legacy SIMD/MMX Instructions without FP Exception," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 

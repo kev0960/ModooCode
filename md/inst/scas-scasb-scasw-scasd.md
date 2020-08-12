@@ -18,11 +18,10 @@ path : /X86-64 명령어 레퍼런스
 |AF|SCASW|NP|Valid |Valid|Compare AX with word at ES:(E)DI or RDI then set status flags.\htmlonly{*}|
 |AF|SCASD|NP|Valid |Valid|Compare EAX with doubleword at ES:(E)DI or RDI then set status flags.\htmlonly{*}|
 |REX.W + AF|SCASQ|NP|Valid |N.E.|Compare RAX with quadword at RDI or EDI then set status flags.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes are supported.
-
+```note
+\htmlonly{*} In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes are supported
+```
 ### Instruction Operand Encoding
 
 
@@ -54,62 +53,62 @@ In 64-bit mode, the instruction's default address size is 64-bits, 32-bit addres
 ```info-verb
 Non-64-bit Mode:
 IF (Byte comparison)
- THEN
-   temp <- AL - SRC;
-   SetStatusFlags(temp);
-    THEN IF DF = 0 
-      THEN (E)DI <- (E)DI + 1; 
-      ELSE (E)DI <- (E)DI - 1; FI;
- ELSE IF (Word comparison)
-   THEN
-    temp <- AX - SRC;
-    SetStatusFlags(temp);
-    IF DF = 0
-      THEN (E)DI <- (E)DI + 2; 
-      ELSE (E)DI <- (E)DI - 2; FI;
-   FI;
- ELSE IF (Doubleword comparison)
-   THEN
-    temp <- EAX - SRC;
-    SetStatusFlags(temp);
-    IF DF = 0
-      THEN (E)DI <- (E)DI + 4; 
-      ELSE (E)DI <- (E)DI - 4; FI;
-   FI;
+    THEN
+          temp <- AL - SRC;
+          SetStatusFlags(temp);
+                THEN IF DF = 0 
+                      THEN (E)DI <- (E)DI + 1; 
+                      ELSE (E)DI <- (E)DI - 1; FI;
+    ELSE IF (Word comparison)
+          THEN
+                temp <- AX - SRC;
+                SetStatusFlags(temp);
+                IF DF = 0
+                      THEN (E)DI <- (E)DI + 2; 
+                      ELSE (E)DI <- (E)DI - 2; FI;
+          FI;
+    ELSE IF (Doubleword comparison)
+          THEN
+                temp <- EAX - SRC;
+                SetStatusFlags(temp);
+                IF DF = 0
+                      THEN (E)DI <- (E)DI + 4; 
+                      ELSE (E)DI <- (E)DI - 4; FI;
+          FI;
 FI;
 64-bit Mode:
 IF (Byte cmparison)
- THEN
-   temp <- AL - SRC;
-   SetStatusFlags(temp);
-    THEN IF DF = 0 
-      THEN (R|E)DI <- (R|E)DI + 1; 
-      ELSE (R|E)DI <- (R|E)DI - 1; FI;
- ELSE IF (Word comparison)
-   THEN
-    temp <- AX - SRC;
-    SetStatusFlags(temp);
-    IF DF = 0
-      THEN (R|E)DI <- (R|E)DI + 2; 
-      ELSE (R|E)DI <- (R|E)DI - 2; FI;
-   FI;
+    THEN
+          temp <- AL - SRC;
+          SetStatusFlags(temp);
+                THEN IF DF = 0 
+                      THEN (R|E)DI <- (R|E)DI + 1; 
+                      ELSE (R|E)DI <- (R|E)DI - 1; FI;
+    ELSE IF (Word comparison)
+          THEN
+                temp <- AX - SRC;
+                SetStatusFlags(temp);
+                IF DF = 0
+                      THEN (R|E)DI <- (R|E)DI + 2; 
+                      ELSE (R|E)DI <- (R|E)DI - 2; FI;
+          FI;
 ELSE IF (Doubleword comparison)
-   THEN
-    temp <- EAX - SRC;
-    SetStatusFlags(temp);
-    IF DF = 0
-      THEN (R|E)DI <- (R|E)DI + 4; 
-      ELSE (R|E)DI <- (R|E)DI - 4; FI;
-   FI;
- ELSE IF (Quadword comparison using REX.W )
-   THEN
-    temp <- RAX - SRC;
-    SetStatusFlags(temp);
-    IF DF = 0
-      THEN (R|E)DI <- (R|E)DI + 8; 
-      ELSE (R|E)DI <- (R|E)DI - 8; 
+          THEN
+                temp <- EAX - SRC;
+                SetStatusFlags(temp);
+                IF DF = 0
+                      THEN (R|E)DI <- (R|E)DI + 4; 
+                      ELSE (R|E)DI <- (R|E)DI - 4; FI;
+          FI;
+    ELSE IF (Quadword comparison using REX.W )
+          THEN
+                temp <- RAX - SRC;
+                SetStatusFlags(temp);
+                IF DF = 0
+                      THEN (R|E)DI <- (R|E)DI + 8; 
+                      ELSE (R|E)DI <- (R|E)DI - 8; 
+                FI;
     FI;
- FI;
 F
 ```
 ### Flags Affected

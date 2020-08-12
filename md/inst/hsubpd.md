@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
-|66 0F 7D /r\newline{}HSUBPD xmm1, xmm2/m128|RM|V/V|SSE3|Horizontal subtract packed double-precision floating-point values from xmm2/m128 to xmm1.|
-|VEX.NDS.128.66.0F.WIG 7D /rVHSUBPD xmm1,xmm2, xmm3/m128|RVM|V/V|AVX|Horizontal subtract packed double-precision floating-point values from xmm2 and xmm3/mem.|
-|VEX.NDS.256.66.0F.WIG 7D /rVHSUBPD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX|Horizontal subtract packed double-precision floating-point values from ymm2 and ymm3/mem.|
+|66 0F 7D /r\newline{}\newline{}HSUBPD xmm1, xmm2/m128|RM|V/V|SSE3|Horizontal subtract packed double-precision floating-point values from xmm2/m128 to xmm1.|
+|VEX.NDS.128.66.0F.WIG 7D /r\newline{}VHSUBPD xmm1,xmm2, xmm3/m128|RVM|V/V|AVX|Horizontal subtract packed double-precision floating-point values from xmm2 and xmm3/mem.|
+|VEX.NDS.256.66.0F.WIG 7D /r\newline{}VHSUBPD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX|Horizontal subtract packed double-precision floating-point values from ymm2 and ymm3/mem.|
 ### Instruction Operand Encoding
 
 
@@ -31,7 +31,7 @@ Subtracts the double-precision floating-point value in the high quadword of the 
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional registers (XMM8-XMM15).
 
-See Figure3-20 for HSUBPD; see Figure3-21 for VHSUBPD.
+See Figure 3-20 for HSUBPD; see Figure 3-21 for VHSUBPD.
 
 ```embed
 <figure>
@@ -392,22 +392,22 @@ VEX.256 encoded version: The first source operand is a YMM register. The second 
 ### Operation
 #### HSUBPD (128-bit Legacy SSE version)
 ```info-verb
-DEST[63:0] <-  SRC1[63:0] - SRC1[127:64] 
-DEST[127:64]  <- SRC2[63:0] - SRC2[127:64] 
+DEST[63:0] <-   SRC1[63:0] - SRC1[127:64] 
+DEST[127:64]  <-  SRC2[63:0] - SRC2[127:64] 
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VHSUBPD (VEX.128 encoded version)
 ```info-verb
-DEST[63:0] <-  SRC1[63:0] - SRC1[127:64] 
-DEST[127:64] <-  SRC2[63:0] - SRC2[127:64] 
-DEST[VLMAX-1:128] <-  0
+DEST[63:0] <-   SRC1[63:0] - SRC1[127:64] 
+DEST[127:64] <-   SRC2[63:0] - SRC2[127:64] 
+DEST[VLMAX-1:128] <-   0
 ```
 #### VHSUBPD (VEX.256 encoded version)
 ```info-verb
-DEST[63:0]  <- SRC1[63:0] - SRC1[127:64] 
-DEST[127:64]  <- SRC2[63:0] - SRC2[127:64] 
-DEST[191:128] <-  SRC1[191:128] - SRC1[255:192]
-DEST[255:192] <-  SRC2[191:128] - SRC2[255:192]
+DEST[63:0]  <-  SRC1[63:0] - SRC1[127:64] 
+DEST[127:64]  <-  SRC2[63:0] - SRC2[127:64] 
+DEST[191:128] <-   SRC1[191:128] - SRC1[255:192]
+DEST[255:192] <-   SRC2[191:128] - SRC2[255:192]
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

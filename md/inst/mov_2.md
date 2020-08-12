@@ -10,10 +10,10 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 21/r\newline{}MOV r32, DR0-DR7|MR|N.E.|Valid|Move debug register to r32.|
-|0F 21/r\newline{}MOV r64, DR0-DR7|MR|Valid|N.E.|Move extended debug register to r64. |
-|0F 23 /r\newline{}MOV DR0-DR7, r32|RM|N.E.|Valid|Move r32 to debug register.|
-|0F 23 /r\newline{}MOV DR0-DR7, r64|RM|Valid |N.E.|Move r64 to extended debug register. |
+|0F 21/r\newline{}\newline{}MOV r32, DR0-DR7|MR|N.E.|Valid|Move debug register to r32.|
+|0F 21/r\newline{}\newline{}MOV r64, DR0-DR7|MR|Valid|N.E.|Move extended debug register to r64. |
+|0F 23 /r\newline{}\newline{}MOV DR0-DR7, r32|RM|N.E.|Valid|Move r32 to debug register.|
+|0F 23 /r\newline{}\newline{}MOV DR0-DR7, r64|RM|Valid |N.E.|Move r64 to extended debug register. |
 ### Instruction Operand Encoding
 
 

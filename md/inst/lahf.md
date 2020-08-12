@@ -11,11 +11,10 @@ path : /X86-64 명령어 레퍼런스
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |9F |LAHF|NP|Invalid\htmlonly{*}|Valid|Load: AH <- EFLAGS(SF:ZF:0:AF:0:PF:1:CF).|
-### NOTES:
 
-
-\htmlonly{*}Valid in specific steppings. See Description section.
-
+```note
+\htmlonly{*}Valid in specific steppings. See Description section
+```
 ### Instruction Operand Encoding
 
 

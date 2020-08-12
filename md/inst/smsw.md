@@ -40,7 +40,7 @@ In 64-bit mode, the behavior of the `SMSW` instruction is defined by the followi
 
 *  `SMSW` m16 operands size 64, store CR0[15:0] in m16 (not m64)
 
-SMSW is only useful in operating-system software. However, it is not a privileged instruction and can be used in application programs if CR4.UMIP= 0. It is provided for compatibility with the Intel 286 processor. Programs and procedures intended to run on IA-32 and Intel 64 processors beginning with the Intel386 processors should use the `MOV` CR instruction to load the machine status word.
+SMSW is only useful in operating-system software. However, it is not a privileged instruction and can be used in application programs if CR4.UMIP = 0. It is provided for compatibility with the Intel 286 processor. Programs and procedures intended to run on IA-32 and Intel 64 processors beginning with the Intel386 processors should use the `MOV` CR instruction to load the machine status word.
 
 See "Changes to Instruction Behavior in VMX Non-Root Operation" in Chapter 25 of the Intel(R) 64 and IA-32 Archi-tectures Software Developer's Manual, Volume 3C, for more information about the behavior of this instruction in VMX non-root operation.
 
@@ -63,7 +63,7 @@ None.
 * If the destination is located in a non-writable segment.
 * If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
 * If the DS, ES, FS, or GS register is used to access memory and it contains a NULL segment selector.
-* If CR4.UMIP= 1 and CPL> 0.
+* If CR4.UMIP = 1 and CPL > 0.
 
 #### #SS(0)
 * If a memory operand effective address is outside the SS segment limit.
@@ -72,7 +72,7 @@ None.
 * If a page fault occurs.
 
 #### #AC(0)
-* If alignment checking is enabled and an unaligned memory reference is made while CPL= 3.
+* If alignment checking is enabled and an unaligned memory reference is made while CPL = 3.
 
 #### #UD
 * If the LOCK prefix is used.
@@ -92,7 +92,7 @@ None.
 
 #### #GP(0)
 * If a memory operand effective address is outside the CS, DS, ES, FS, or GS segment limit.
-* If CR4.UMIP= 1.
+* If CR4.UMIP = 1.
 
 #### #SS(0)
 * If a memory operand effective address is outside the SS segment limit.
@@ -120,13 +120,13 @@ Same exceptions as in protected mode.
 
 #### #GP(0)
 * If the memory address is in a non-canonical form.
-* If CR4.UMIP= 1 and CPL> 0.
+* If CR4.UMIP = 1 and CPL > 0.
 
 #### #PF(fault-code)
 * If a page fault occurs.
 
 #### #AC(0)
-* If alignment checking is enabled and an unaligned memory reference is made while CPL= 3.
+* If alignment checking is enabled and an unaligned memory reference is made while CPL = 3.
 
 #### #UD
 * If the LOCK prefix is used.

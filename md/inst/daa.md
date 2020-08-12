@@ -29,42 +29,42 @@ This instruction executes as described above in compatibility mode and legacy mo
 
 ```info-verb
 IF 64-Bit Mode
- THEN#UD;
- ELSE
-   old_AL <- AL;
-   old_CF <- CF;
-   CF <- 0;
-   IF (((AL AND 0FH) > 9) or AF = 1)
-     THEN
-       AL <- AL + 6;
-       CF <- old_CF or (Carry from AL <- AL + 6);
-       AF <- 1;
+    THEN#UD;
+    ELSE
+          old_AL <- AL;
+          old_CF <- CF;
+          CF <- 0;
+          IF (((AL AND 0FH) > 9) or AF = 1)
+                 THEN
+                       AL <- AL + 6;
+                       CF <- old_CF or (Carry from AL <- AL + 6);
+                       AF <- 1;
    ELSE
    AF <- 0;
-   FI;
-   IF ((old_AL > 99H) or (old_CF = 1))
+          FI;
+          IF ((old_AL > 99H) or (old_CF = 1))
   THEN
-       AL <- AL + 60H;
+                       AL <- AL + 60H;
    CF <- 1;
-    ELSE
-       CF <- 0;
-   FI;
+                ELSE
+                       CF <- 0;
+          FI;
 FI;
 ```
 ### Example
 
 
-ADD  AL, BL Before: AL=79H BL=35H EFLAGS(OSZAPC)=XXXXXX
+ADD  AL, BL  Before: AL=79H BL=35H EFLAGS(OSZAPC)=XXXXXX
 
-      After: AL=AEH BL=35H EFLAGS(0SZAPC)=110000
+                      After: AL=AEH BL=35H EFLAGS(0SZAPC)=110000
 
 DAA Before: AL=AEH BL=35H EFLAGS(OSZAPC)=110000
 
-      After: AL=14H BL=35H EFLAGS(0SZAPC)=X00111
+                      After: AL=14H BL=35H EFLAGS(0SZAPC)=X00111
 
 DAA Before: AL=2EH BL=35H EFLAGS(OSZAPC)=110000
 
-      After: AL=34H BL=35H EFLAGS(0SZAPC)=X00101
+                      After: AL=34H BL=35H EFLAGS(0SZAPC)=X00101
 
 ### Flags Affected
 

@@ -29,32 +29,32 @@ XEND executed outside a transactional region will cause a #GP (General Protectio
 #### XEND
 ```info-verb
 IF (RTM_ACTIVE = 0) THEN
- SIGNAL #GP
+    SIGNAL #GP
 ELSE
- RTM_NEST_COUNT--
- IF (RTM_NEST_COUNT = 0) THEN
-   Try to commit transaction
-   IF fail to commit transactional execution
-    THEN
-      GOTO RTM_ABORT_PROCESSING;
-    ELSE (* commit success *)
-      RTM_ACTIVE <- 0
-   FI;
- FI;
+    RTM_NEST_COUNT--
+    IF (RTM_NEST_COUNT = 0) THEN
+          Try to commit transaction
+          IF fail to commit transactional execution
+                THEN
+                      GOTO RTM_ABORT_PROCESSING;
+                ELSE (* commit success *)
+                      RTM_ACTIVE <- 0
+          FI;
+    FI;
 FI;
 (* For any RTM abort condition encountered during RTM execution *)
 RTM_ABORT_PROCESSING:
- Restore architectural register state
- Discard memory updates performed in transaction
- Update EAX with status
- RTM_NEST_COUNT <- 0
- RTM_ACTIVE <- 0
- IF 64-bit Mode
-   THEN
-    RIP <- fallbackRIP
-   ELSE
-    EIP <- fallbackEIP
- FI;
+    Restore architectural register state
+    Discard memory updates performed in transaction
+    Update EAX with status
+    RTM_NEST_COUNT <- 0
+    RTM_ACTIVE <- 0
+    IF 64-bit Mode
+          THEN
+                RIP <- fallbackRIP
+          ELSE
+                EIP <- fallbackEIP
+    FI;
 END
 ```
 ### Flags Affected
@@ -78,7 +78,7 @@ None
 
 #UD CPUID.(EAX=7, ECX=0):EBX.RTM[bit 11] = 0.
 
-         If LOCK or 66H or F2H or F3H prefix is used.
+                              If LOCK or 66H or F2H or F3H prefix is used.
 
 #GP(0) If RTM_ACTIVE = 0.
 

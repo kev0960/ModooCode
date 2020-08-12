@@ -20,7 +20,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Reads the current value of the processor's time-stamp counter (a 64-bit MSR) into the EDX:EAX registers and also reads the value of the IA32_TSC_AUX MSR (address C0000103H) into the ECX register. The EDX register is loaded with the high-order 32 bits of the IA32_TSC MSR; the EAX register is loaded with the low-order 32 bits of the IA32_TSC MSR; and the ECX register is loaded with the low-order 32-bits of IA32_TSC_AUX MSR. On processors that support the Intel64 architecture, the high-order 32 bits of each of RAX, RDX, and RCX are cleared.
+Reads the current value of the processor's time-stamp counter (a 64-bit MSR) into the EDX:EAX registers and also reads the value of the IA32_TSC_AUX MSR (address C0000103H) into the ECX register. The EDX register is loaded with the high-order 32 bits of the IA32_TSC MSR; the EAX register is loaded with the low-order 32 bits of the IA32_TSC MSR; and the ECX register is loaded with the low-order 32-bits of IA32_TSC_AUX MSR. On processors that support the Intel 64 architecture, the high-order 32 bits of each of RAX, RDX, and RCX are cleared.
 
 The processor monotonically increments the time-stamp counter MSR every clock cycle and resets it to 0 whenever the processor is reset. See "Time Stamp Counter" in Chapter 17 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B, for specific details of the time stamp counter behavior.
 
@@ -35,11 +35,11 @@ See "Changes to Instruction Behavior in VMX Non-Root Operation" in Chapter 25 of
 
 ```info-verb
 IF (CR4.TSD = 0) or (CPL = 0) or (CR0.PE = 0) 
- THEN 
-   EDX:EAX <- TimeStampCounter;
-   ECX <- IA32_TSC_AUX[31:0];
- ELSE (* CR4.TSD = 1 and (CPL = 1, 2, or 3) and CR0.PE = 1 *)
-   #GP(0);
+    THEN 
+          EDX:EAX <- TimeStampCounter;
+          ECX <- IA32_TSC_AUX[31:0];
+    ELSE (* CR4.TSD = 1 and (CPL = 1, 2, or 3) and CR0.PE = 1 *)
+          #GP(0);
 FI;
 ```
 ### Flags Affected

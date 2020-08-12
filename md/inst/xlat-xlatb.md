@@ -35,12 +35,12 @@ In 64-bit mode, operation is similar to that in legacy or compatibility mode. AL
 
 ```info-verb
 IF AddressSize = 16
- THEN
-   AL <- (DS:BX + ZeroExtend(AL));
- ELSE IF (AddressSize = 32)
-   AL <- (DS:EBX + ZeroExtend(AL)); FI;
- ELSE (AddressSize = 64)
-   AL <- (RBX + ZeroExtend(AL));
+    THEN
+          AL <- (DS:BX + ZeroExtend(AL));
+    ELSE IF (AddressSize = 32)
+          AL <- (DS:EBX + ZeroExtend(AL)); FI;
+    ELSE (AddressSize = 64)
+          AL <- (RBX + ZeroExtend(AL));
 FI;
 ```
 ### Flags Affected

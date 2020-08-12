@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F F7 /r\newline{}MASKMOVQ mm1, mm2|RM|Valid|Valid|Selectively write bytes from mm1 to memory location using the byte mask in mm2. The default memory location is specified by DS:DI/EDI/RDI.|
+|0F F7 /r\newline{}\newline{}MASKMOVQ mm1, mm2|RM|Valid|Valid|Selectively write bytes from mm1 to memory location using the byte mask in mm2. The default memory location is specified by DS:DI/EDI/RDI.|
 ### Instruction Operand Encoding
 
 
@@ -49,12 +49,12 @@ In 64-bit mode, the memory address is specified by DS:RDI.
 
 ```info-verb
 IF (MASK[7] = 1)
- THEN DEST[DI/EDI] <- SRC[7:0] ELSE (* Memory location unchanged *); FI;
+    THEN DEST[DI/EDI] <- SRC[7:0] ELSE (* Memory location unchanged *); FI;
 IF (MASK[15] = 1) 
- THEN DEST[DI/EDI +1] <- SRC[15:8] ELSE (* Memory location unchanged *); FI;
- (* Repeat operation for 3rd through 6th bytes in source operand *)
+    THEN DEST[DI/EDI +1] <- SRC[15:8] ELSE (* Memory location unchanged *); FI;
+    (* Repeat operation for 3rd through 6th bytes in source operand *)
 IF (MASK[63] = 1) 
- THEN DEST[DI/EDI +15] <- SRC[63:56] ELSE (* Memory location unchanged *); FI;
+    THEN DEST[DI/EDI +15] <- SRC[63:56] ELSE (* Memory location unchanged *); FI;
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -65,5 +65,5 @@ void _mm_maskmove_si64(__m64d, __m64n, char * p)
 ### Other Exceptions
 
 
-See Table22-8, "Exception Conditions for Legacy SIMD/MMX Instructions without FP Exception," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
+See Table 22-8, "Exception Conditions for Legacy SIMD/MMX Instructions without FP Exception," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 

@@ -39,15 +39,15 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
- THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
-   IF (Any I/O Permission Bit for I/O port being accessed = 1)
-    THEN (* I/O operation is not allowed *)
-      #GP(0);
-    ELSE ( * I/O operation is allowed *) 
-      DEST <- SRC; (* Read from selected I/O port *)
-   FI;
- ELSE (Real Mode or Protected Mode with CPL <= IOPL *)
-   DEST <- SRC; (* Read from selected I/O port *)
+    THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
+          IF (Any I/O Permission Bit for I/O port being accessed = 1)
+                THEN (* I/O operation is not allowed *)
+                      #GP(0);
+                ELSE ( * I/O operation is allowed *) 
+                      DEST <- SRC; (* Read from selected I/O port *)
+          FI;
+    ELSE (Real Mode or Protected Mode with CPL <= IOPL *)
+          DEST <- SRC; (* Read from selected I/O port *)
 FI;
 ```
 ### Flags Affected

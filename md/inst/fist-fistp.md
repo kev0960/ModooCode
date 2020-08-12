@@ -24,39 +24,39 @@ The `FISTP` instruction performs the same operation as the `FIST` instruction an
 
 The following table shows the results obtained when storing various classes of numbers in integer format.
 
-###              Table 3-27.  FIST/FISTP Results 
+###                                               Table 3-27.  FIST/FISTP Results 
 
 
 **ST(0) DEST**
 
 - $$\infty$$ or Value Too Large for DEST Format \htmlonly{*}
 
-      F <= -1 - I
+                     F <= -1 - I
 
-     -1 < F < -0 \htmlonly{*}\htmlonly{*}
+                  -1 < F < -0 \htmlonly{*}\htmlonly{*}
 
-       - 0 0
+                       - 0 0
 
-       + 0 0
+                       + 0 0
 
-     + 0 < F < + 1 \htmlonly{*}\htmlonly{*}
+                 + 0 < F < + 1 \htmlonly{*}\htmlonly{*}
 
-      F >= + 1 + I
+                     F >= + 1 + I
 
 + $$\infty$$ or Value Too Large for DEST Format \htmlonly{*}
 
-      NaN \htmlonly{*}
+                       NaN \htmlonly{*}
 
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-IMeans integer.
+ I Means integer.
 
-\htmlonly{*}Indicates floating-point invalid-operation (#IA) exception.
+ \htmlonly{*} Indicates floating-point invalid-operation (#IA) exception.
 
-\htmlonly{*}\htmlonly{*}0 or $$\pm$$1, depending on the rounding mode.
+ \htmlonly{*}\htmlonly{*}0 or $$\pm$$1, depending on the rounding mode.
 
 If the source value is a non-integral value, it is rounded to an integer value, according to the rounding mode spec-ified by the RC field of the FPU control word. 
 
@@ -70,8 +70,8 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ```info-verb
 DEST <- Integer(ST(0));
 IF Instruction = FISTP 
- THEN 
-   PopRegisterStack;
+    THEN 
+          PopRegisterStack;
 FI;
 ```
 ### FPU Flags Affected
@@ -79,9 +79,9 @@ FI;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Indicates rounding direction of if the inexact exception (#P) is generated: 0 <- not roundup; 1 <- roundup.
+                              Indicates rounding direction of if the inexact exception (#P) is generated: 0 <- not roundup; 1 <- roundup.
 
-         Set to 0 otherwise.
+                              Set to 0 otherwise.
 
 C0, C2, C3  Undefined.
 
@@ -92,7 +92,7 @@ C0, C2, C3  Undefined.
 
 #IA Converted value is too large for the destination format.
 
-         Source operand is an SNaN, QNaN, $$\pm$$$$\infty$$, or unsupported format.
+                              Source operand is an SNaN, QNaN, $$\pm$$$$\infty$$, or unsupported format.
 
 #P Value cannot be represented exactly in destination format.
 

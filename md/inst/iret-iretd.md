@@ -63,197 +63,197 @@ See "Changes to Instruction Behavior in VMX Non-Root Operation" in Chapter 25 of
 
 ```info-verb
 IF PE = 0
- THEN GOTO REAL-ADDRESS-MODE;
+    THEN GOTO REAL-ADDRESS-MODE;
 ELSIF (IA32_EFER.LMA = 0)
- THEN
-   IF (EFLAGS.VM = 1)
-    THEN GOTO RETURN-FROM-VIRTUAL-8086-MODE;
-    ELSE GOTO PROTECTED-MODE;
-   FI;
- ELSE GOTO IA-32e-MODE;
+    THEN
+          IF (EFLAGS.VM = 1)
+                THEN GOTO RETURN-FROM-VIRTUAL-8086-MODE;
+                ELSE GOTO PROTECTED-MODE;
+          FI;
+    ELSE GOTO IA-32e-MODE;
 FI;
 REAL-ADDRESS-MODE;
- IF OperandSize = 32
-   THEN
-    EIP <- Pop();
-    CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
-    tempEFLAGS <- Pop();
-    EFLAGS <- (tempEFLAGS AND 257FD5H) OR (EFLAGS AND 1A0000H);
-   ELSE (* OperandSize = 16 *)
-    EIP <- Pop(); (* 16-bit pop; clear upper 16 bits *)
-    CS <- Pop(); (* 16-bit pop *)
-    EFLAGS[15:0] <- Pop();
- FI;
- END;
+    IF OperandSize = 32
+          THEN
+                EIP <- Pop();
+                CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
+                tempEFLAGS <- Pop();
+                EFLAGS <- (tempEFLAGS AND 257FD5H) OR (EFLAGS AND 1A0000H);
+          ELSE (* OperandSize = 16 *)
+                EIP <- Pop(); (* 16-bit pop; clear upper 16 bits *)
+                CS <- Pop(); (* 16-bit pop *)
+                EFLAGS[15:0] <- Pop();
+    FI;
+    END;
 RETURN-FROM-VIRTUAL-8086-MODE: 
 (* Processor is in virtual-8086 mode when IRET is executed and stays in virtual-8086 mode *)
- IF IOPL = 3 (* Virtual mode: PE = 1, VM = 1, IOPL = 3 *)
-   THEN IF OperandSize = 32
-    THEN
-      EIP <- Pop();
-      CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
-      EFLAGS <- Pop();
-      (* VM, IOPL,VIP and VIF EFLAG bits not modified by pop *)
-      IF EIP not within CS limit
-        THEN #GP(0); FI;
-    ELSE (* OperandSize = 16 *)
-      EIP <- Pop(); (* 16-bit pop; clear upper 16 bits *)
-      CS <- Pop(); (* 16-bit pop *)
-      EFLAGS[15:0] <- Pop(); (* IOPL in EFLAGS not modified by pop *)
-      IF EIP not within CS limit
-        THEN #GP(0); FI;
-    FI;
-   ELSE 
+    IF IOPL = 3 (* Virtual mode: PE = 1, VM = 1, IOPL = 3 *)
+          THEN IF OperandSize = 32
+                THEN
+                      EIP <- Pop();
+                      CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
+                      EFLAGS <- Pop();
+                      (* VM, IOPL,VIP and VIF EFLAG bits not modified by pop *)
+                      IF EIP not within CS limit
+                            THEN #GP(0); FI;
+                ELSE (* OperandSize = 16 *)
+                      EIP <- Pop(); (* 16-bit pop; clear upper 16 bits *)
+                      CS <- Pop(); (* 16-bit pop *)
+                      EFLAGS[15:0] <- Pop(); (* IOPL in EFLAGS not modified by pop *)
+                      IF EIP not within CS limit
+                            THEN #GP(0); FI;
+                FI;
+          ELSE 
 #GP(0); (* Trap to virtual-8086 monitor: PE = 1, VM = 1, IOPL < 3 *)
- FI;
+    FI;
 END;
 PROTECTED-MODE:
- IF NT = 1
-   THEN GOTO TASK-RETURN; (* PE = 1, VM = 0, NT = 1 *)
- FI;
- IF OperandSize = 32
-   THEN
-    EIP <- Pop();
-    CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
-    tempEFLAGS <- Pop();
-   ELSE (* OperandSize = 16 *)
-    EIP <- Pop(); (* 16-bit pop; clear upper bits *)
-    CS <- Pop(); (* 16-bit pop *)
-    tempEFLAGS <- Pop(); (* 16-bit pop; clear upper bits *)
- FI;
- IF tempEFLAGS(VM) = 1 and CPL = 0
-   THEN GOTO RETURN-TO-VIRTUAL-8086-MODE; 
-   ELSE GOTO PROTECTED-MODE-RETURN;
- FI;
+    IF NT = 1
+          THEN GOTO TASK-RETURN; (* PE = 1, VM = 0, NT = 1 *)
+    FI;
+    IF OperandSize = 32
+          THEN
+                EIP <- Pop();
+                CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
+                tempEFLAGS <- Pop();
+          ELSE (* OperandSize = 16 *)
+                EIP <- Pop(); (* 16-bit pop; clear upper bits *)
+                CS <- Pop(); (* 16-bit pop *)
+                tempEFLAGS <- Pop(); (* 16-bit pop; clear upper bits *)
+    FI;
+    IF tempEFLAGS(VM) = 1 and CPL = 0
+          THEN GOTO RETURN-TO-VIRTUAL-8086-MODE; 
+          ELSE GOTO PROTECTED-MODE-RETURN;
+    FI;
 TASK-RETURN: (* PE = 1, VM = 0, NT = 1 *)
- SWITCH-TASKS (without nesting) to TSS specified in link field of current TSS;
- Mark the task just abandoned as NOT BUSY;
- IF EIP is not within CS limit
-   THEN #GP(0); FI;
+    SWITCH-TASKS (without nesting) to TSS specified in link field of current TSS;
+    Mark the task just abandoned as NOT BUSY;
+    IF EIP is not within CS limit
+          THEN #GP(0); FI;
 END;
 RETURN-TO-VIRTUAL-8086-MODE: 
- (* Interrupted procedure was in virtual-8086 mode: PE = 1, CPL=0, VM = 1 in flag image *)
- IF EIP not within CS limit
-   THEN #GP(0); FI;
- EFLAGS <- tempEFLAGS;
- ESP <- Pop();
- SS <- Pop(); (* Pop 2 words; throw away high-order word *)
- ES <- Pop(); (* Pop 2 words; throw away high-order word *)
- DS <- Pop(); (* Pop 2 words; throw away high-order word *)
- FS <- Pop(); (* Pop 2 words; throw away high-order word *)
- GS <- Pop(); (* Pop 2 words; throw away high-order word *)
- CPL <- 3;
- (* Resume execution in Virtual-8086 mode *)
+    (* Interrupted procedure was in virtual-8086 mode: PE = 1, CPL=0, VM = 1 in flag image *)
+    IF EIP not within CS limit
+          THEN #GP(0); FI;
+    EFLAGS <- tempEFLAGS;
+    ESP <- Pop();
+    SS <- Pop(); (* Pop 2 words; throw away high-order word *)
+    ES <- Pop(); (* Pop 2 words; throw away high-order word *)
+    DS <- Pop(); (* Pop 2 words; throw away high-order word *)
+    FS <- Pop(); (* Pop 2 words; throw away high-order word *)
+    GS <- Pop(); (* Pop 2 words; throw away high-order word *)
+    CPL <- 3;
+    (* Resume execution in Virtual-8086 mode *)
 END;
 PROTECTED-MODE-RETURN: (* PE = 1 *)
- IF CS(RPL) > CPL
-   THEN GOTO RETURN-TO-OUTER-PRIVILEGE-LEVEL;
-   ELSE GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
+    IF CS(RPL) > CPL
+          THEN GOTO RETURN-TO-OUTER-PRIVILEGE-LEVEL;
+          ELSE GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
 END;
 RETURN-TO-OUTER-PRIVILEGE-LEVEL:
- IF OperandSize = 32
-   THEN
-ESP <- Pop();
-    SS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
- ELSE IF OperandSize = 16 
-   THEN
-    ESP <- Pop(); (* 16-bit pop; clear upper bits *)
-    SS <- Pop(); (* 16-bit pop *)
-   ELSE (* OperandSize = 64 *)
-    RSP <- Pop();
-    SS <- Pop(); (* 64-bit pop, high-order 48 bits discarded *)
- FI;
- IF new mode != 64-Bit Mode
-   THEN
-    IF EIP is not within CS limit
-      THEN #GP(0); FI;
-   ELSE (* new mode = 64-bit mode *)
-    IF RIP is non-canonical
-        THEN #GP(0); FI;
- FI;
- EFLAGS (CF, PF, AF, ZF, SF, TF, DF, OF, NT) <- tempEFLAGS;
- IF OperandSize = 32
-   THEN EFLAGS(RF, AC, ID) <- tempEFLAGS; FI;
- IF CPL <= IOPL 
-   THEN EFLAGS(IF) <- tempEFLAGS; FI;
- IF CPL = 0
-   THEN
-    EFLAGS(IOPL) <- tempEFLAGS;
     IF OperandSize = 32
-      THEN EFLAGS(VM, VIF, VIP) <- tempEFLAGS; FI;
-    IF OperandSize = 64
-      THEN EFLAGS(VIF, VIP) <- tempEFLAGS; FI;
- FI;
- CPL <- CS(RPL);
- FOR each SegReg in (ES, FS, GS, and DS)
-   DO
-    tempDesc <- descriptor cache for SegReg (* hidden part of segment register *)
-    IF tempDesc(DPL) < CPL AND tempDesc(Type) is data or non-conforming code
-      THEN (* Segment register invalid *)
-        SegReg <- NULL;
+          THEN
+ESP <- Pop();
+                SS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
+    ELSE IF OperandSize = 16 
+          THEN
+                ESP <- Pop(); (* 16-bit pop; clear upper bits *)
+                SS <- Pop(); (* 16-bit pop *)
+          ELSE (* OperandSize = 64 *)
+                RSP <- Pop();
+                SS <- Pop(); (* 64-bit pop, high-order 48 bits discarded *)
     FI;
-   OD;
+    IF new mode != 64-Bit Mode
+          THEN
+                IF EIP is not within CS limit
+                      THEN #GP(0); FI;
+          ELSE (* new mode = 64-bit mode *)
+                IF RIP is non-canonical
+                            THEN #GP(0); FI;
+    FI;
+    EFLAGS (CF, PF, AF, ZF, SF, TF, DF, OF, NT) <- tempEFLAGS;
+    IF OperandSize = 32
+          THEN EFLAGS(RF, AC, ID) <- tempEFLAGS; FI;
+    IF CPL <= IOPL 
+          THEN EFLAGS(IF) <- tempEFLAGS; FI;
+    IF CPL = 0
+          THEN
+                EFLAGS(IOPL) <- tempEFLAGS;
+                IF OperandSize = 32
+                      THEN EFLAGS(VM, VIF, VIP) <- tempEFLAGS; FI;
+                IF OperandSize = 64
+                      THEN EFLAGS(VIF, VIP) <- tempEFLAGS; FI;
+    FI;
+    CPL <- CS(RPL);
+    FOR each SegReg in (ES, FS, GS, and DS)
+          DO
+                tempDesc <- descriptor cache for SegReg (* hidden part of segment register *)
+                IF tempDesc(DPL) < CPL AND tempDesc(Type) is data or non-conforming code
+                      THEN (* Segment register invalid *)
+                            SegReg <- NULL;
+                FI;
+          OD;
 END;
 RETURN-TO-SAME-PRIVILEGE-LEVEL: (* PE = 1, RPL = CPL *)
- IF new mode != 64-Bit Mode
-   THEN
-    IF EIP is not within CS limit
-      THEN #GP(0); FI;
-   ELSE (* new mode = 64-bit mode *)
-    IF RIP is non-canonical
-        THEN #GP(0); FI;
- FI;
- EFLAGS (CF, PF, AF, ZF, SF, TF, DF, OF, NT) <- tempEFLAGS;
- IF OperandSize = 32 or OperandSize = 64
-   THEN EFLAGS(RF, AC, ID) <- tempEFLAGS; FI;
+    IF new mode != 64-Bit Mode
+          THEN
+                IF EIP is not within CS limit
+                      THEN #GP(0); FI;
+          ELSE (* new mode = 64-bit mode *)
+                IF RIP is non-canonical
+                            THEN #GP(0); FI;
+    FI;
+    EFLAGS (CF, PF, AF, ZF, SF, TF, DF, OF, NT) <- tempEFLAGS;
+    IF OperandSize = 32 or OperandSize = 64
+          THEN EFLAGS(RF, AC, ID) <- tempEFLAGS; FI;
 IF CPL <= IOPL
-   THEN EFLAGS(IF) <- tempEFLAGS; FI;
- IF CPL = 0 
+          THEN EFLAGS(IF) <- tempEFLAGS; FI;
+    IF CPL = 0 
    THEN (* VM = 0 in flags image *)
-     EFLAGS(IOPL) <- tempEFLAGS;
-     IF OperandSize = 32 or OperandSize = 64
-      THEN EFLAGS(VIF, VIP) <- tempEFLAGS; FI;
+                 EFLAGS(IOPL) <- tempEFLAGS;
+                 IF OperandSize = 32 or OperandSize = 64
+                      THEN EFLAGS(VIF, VIP) <- tempEFLAGS; FI;
   FI;
 END;
 IA-32e-MODE:
- IF NT = 1
-   THEN #GP(0);
- ELSE IF OperandSize = 32
-   THEN
-    EIP <- Pop();
-    CS <- Pop();
-    tempEFLAGS <- Pop();
-   ELSE IF OperandSize = 16 
-    THEN
-      EIP <- Pop(); (* 16-bit pop; clear upper bits *)
-      CS <- Pop(); (* 16-bit pop *)
-      tempEFLAGS <- Pop(); (* 16-bit pop; clear upper bits *)
-    FI;
-   ELSE (* OperandSize = 64 *)
-    THEN
-        RIP <- Pop();
-        CS <- Pop(); (* 64-bit pop, high-order 48 bits discarded *)
-        tempRFLAGS <- Pop();
- FI;
- IF tempCS.RPL > CPL
-   THEN GOTO RETURN-TO-OUTER-PRIVILEGE-LEVEL;
-   ELSE
-    IF instruction began in 64-Bit Mode
-      THEN
-        IF OperandSize = 32
+    IF NT = 1
+          THEN #GP(0);
+    ELSE IF OperandSize = 32
           THEN
-            ESP <- Pop();
-            SS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
-        ELSE IF OperandSize = 16 
-          THEN
-            ESP <- Pop(); (* 16-bit pop; clear upper bits *)
-            SS <- Pop(); (* 16-bit pop *)
+                EIP <- Pop();
+                CS <- Pop();
+                tempEFLAGS <- Pop();
+          ELSE IF OperandSize = 16 
+                THEN
+                      EIP <- Pop(); (* 16-bit pop; clear upper bits *)
+                      CS <- Pop(); (* 16-bit pop *)
+                      tempEFLAGS <- Pop(); (* 16-bit pop; clear upper bits *)
+                FI;
           ELSE (* OperandSize = 64 *)
-            RSP <- Pop();
-            SS <- Pop(); (* 64-bit pop, high-order 48 bits discarded *)
-        FI;
+                THEN
+                            RIP <- Pop();
+                            CS <- Pop(); (* 64-bit pop, high-order 48 bits discarded *)
+                            tempRFLAGS <- Pop();
     FI;
-    GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
+    IF tempCS.RPL > CPL
+          THEN GOTO RETURN-TO-OUTER-PRIVILEGE-LEVEL;
+          ELSE
+                IF instruction began in 64-Bit Mode
+                      THEN
+                            IF OperandSize = 32
+                                  THEN
+                                        ESP <- Pop();
+                                        SS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
+                            ELSE IF OperandSize = 16 
+                                  THEN
+                                        ESP <- Pop(); (* 16-bit pop; clear upper bits *)
+                                        SS <- Pop(); (* 16-bit pop *)
+                                  ELSE (* OperandSize = 64 *)
+                                        RSP <- Pop();
+                                        SS <- Pop(); (* 64-bit pop, high-order 48 bits discarded *)
+                            FI;
+                FI;
+                GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
 END;
 ```
 ### Flags Affected

@@ -35,7 +35,7 @@ For address-range monitoring, the MWAIT instruction operates with the MONITOR in
 
 The following cause the processor to exit the implementation-dependent-optimized state: a store to the address range armed by the MONITOR instruction, an NMI or SMI, a debug exception, a machine check exception, the BINIT# signal, the INIT# signal, and the RESET# signal. Other implementation-dependent events may also cause the processor to exit the implementation-dependent-optimized state.
 
-In addition, an external interrupt causes the processor to exit the implementation-dependent-optimized state either (1)if the interrupt would be delivered to software (e.g., as it would be if HLT had been executed instead of MWAIT); or (2)if ECX[0]= 1. Software can execute MWAIT with ECX[0]= 1 only if CPUID.05H:ECX[bit 1] = 1. (Implementation-specific conditions may result in an interrupt causing the processor to exit the implementation-dependent-optimized state even if interrupts are masked and ECX[0] = 0.)
+In addition, an external interrupt causes the processor to exit the implementation-dependent-optimized state either (1) if the interrupt would be delivered to software (e.g., as it would be if HLT had been executed instead of MWAIT); or (2) if ECX[0] = 1. Software can execute MWAIT with ECX[0] = 1 only if CPUID.05H:ECX[bit 1] = 1. (Implementation-specific conditions may result in an interrupt causing the processor to exit the implementation-dependent-optimized state even if interrupts are masked and ECX[0] = 0.)
 
 Following exit from the implementation-dependent-optimized state, control passes to the instruction following the MWAIT instruction. A pending interrupt that is not masked (including an NMI or an SMI) may be delivered before execution of that instruction. Unlike the HLT instruction, the MWAIT instruction does not support a restart at the MWAIT instruction following the handling of an SMI. 
 
@@ -48,7 +48,7 @@ MWAIT accepts a hint and optional extension to the processor that it can enter a
 
 EAX and ECX are used to communicate the additional information to the MWAIT instruction, such as the kind of optimized state the processor should enter. ECX specifies optional extensions for the MWAIT instruction. EAX may contain hints such as the preferred optimized state the processor should enter. Implementation-specific conditions may cause a processor to ignore the hint and enter a different optimized state. Future processor implementations may implement several optimized "waiting" states and will select among those states based on the hint argument.
 
-Table4-10 describes the meaning of ECX and EAX registers for MWAIT extensions.
+Table 4-10 describes the meaning of ECX and EAX registers for MWAIT extensions.
 
 ### Table 4-10.  MWAIT Extension Register (ECX)
 
@@ -57,7 +57,7 @@ Table4-10 describes the meaning of ECX and EAX registers for MWAIT extensions.
 |--------|---------------|
 |0|Treat interrupts as break events even if masked (e.g., even if EFLAGS.IF=0). May be set only if CPUID.05H:ECX[bit 1] = 1.|
 |31: 1|Reserved|
-###                 Table 4-11.  MWAIT Hints Register (EAX)
+###                                                        Table 4-11.  MWAIT Hints Register (EAX)
 
 
 Note that if MWAIT is used to enter any of the C-states that are numerically higher than C1, a store to the address range armed by the MONITOR instruction will cause the processor to exit MWAIT only if the store was originated by other processor agents. A store from non-processor agent might not cause the processor to exit MWAIT in such cases.
@@ -78,7 +78,7 @@ For additional details of MWAIT extensions, see Chapter 14, "Power and Thermal M
 (* MWAIT takes the argument in EAX as a hint extension and is architected to take the argument in ECX as an instruction extension MWAIT EAX, ECX *)
 {
 WHILE ( ("Monitor Hardware is in armed state")) {
- implementation_dependent_optimized_state(EAX, ECX); }
+    implementation_dependent_optimized_state(EAX, ECX); }
 Set the state of Monitor Hardware as triggered;
 }
 ```
@@ -103,13 +103,13 @@ EDX = 0 (\htmlonly{*} Hints \htmlonly{*})
 
 IF ( !trigger_store_happened) {
 
- MONITOR EAX, ECX, EDX
+    MONITOR EAX, ECX, EDX
 
- IF ( !trigger_store_happened ) {
+    IF ( !trigger_store_happened ) {
 
-   MWAIT EAX, ECX
+          MWAIT EAX, ECX
 
- }
+    }
 
 }
 
@@ -135,7 +135,7 @@ None
 
 #GP  If ECX[31:1] != 0.
 
-         If ECX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
+                              If ECX[0] = 1 and CPUID.05H:ECX[bit 1] = 0.
 
 #UD  If CPUID.01H:ECX.MONITOR[bit 3] = 0.
 

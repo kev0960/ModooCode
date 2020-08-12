@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/**\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.128.66.0F38.W0 42 /rVGETEXPPS xmm1 {k1}{z}, xmm2/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Convert the exponent of packed single-precision floating-point values in the source operand to SP FP results representing unbiased integer exponents and stores the results in the destination register.|
-|EVEX.256.66.0F38.W0 42 /rVGETEXPPS ymm1 {k1}{z}, ymm2/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Convert the exponent of packed single-precision floating-point values in the source operand to SP FP results representing unbiased integer exponents and stores the results in the destination register.|
-|EVEX.512.66.0F38.W0 42 /rVGETEXPPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}|FV|V/V|AVX512F|Convert the exponent of packed single-precision floating-point values in the source operand to SP FP results representing unbiased integer exponents and stores the results in the destination register.|
+|EVEX.128.66.0F38.W0 42 /r\newline{}VGETEXPPS xmm1 {k1}{z}, xmm2/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Convert the exponent of packed single-precision floating-point values in the source operand to SP FP results representing unbiased integer exponents and stores the results in the destination register.|
+|EVEX.256.66.0F38.W0 42 /r\newline{}VGETEXPPS ymm1 {k1}{z}, ymm2/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Convert the exponent of packed single-precision floating-point values in the source operand to SP FP results representing unbiased integer exponents and stores the results in the destination register.|
+|EVEX.512.66.0F38.W0 42 /r\newline{}VGETEXPPS zmm1 {k1}{z}, zmm2/m512/m32bcst{sae}|FV|V/V|AVX512F|Convert the exponent of packed single-precision floating-point values in the source operand to SP FP results representing unbiased integer exponents and stores the results in the destination register.|
 ### Instruction Operand Encoding
 
 
@@ -49,7 +49,7 @@ Software usage of VGETEXPxx and VGETMANTxx instructions generally involve a comb
 || src1| = 0|-INF||
 
 
-Figure5-14 illustrates the VGETEXPPS functionality on input values with normalized representation.
+Figure 5-14 illustrates the VGETEXPPS functionality on input values with normalized representation.
 
 ```embed
 <figure>
@@ -612,27 +612,27 @@ Figure5-14 illustrates the VGETEXPPS functionality on input values with normaliz
 #### VGETEXPPS (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i <-  j * 32
- IF k1[j] OR *no writemask*
-   THEN 
-    IF (EVEX.b = 1) AND (SRC *is memory*)
-      THEN
-        DEST[i+31:i]  <-
-    ConvertExpSPFP(SRC[31:0])
-      ELSE 
-        DEST[i+31:i] <- 
-    ConvertExpSPFP(SRC[i+31:i])
+FOR j  <-  0 TO KL-1
+    i <-   j * 32
+    IF k1[j] OR *no writemask*
+          THEN 
+                IF (EVEX.b = 1) AND (SRC *is memory*)
+                      THEN
+                            DEST[i+31:i]  <-
+                ConvertExpSPFP(SRC[31:0])
+                      ELSE 
+                            DEST[i+31:i] <- 
+                ConvertExpSPFP(SRC[i+31:i])
+                FI;
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i] <-   0
+                FI
     FI;
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i] <-  0
-    FI
- FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

@@ -22,7 +22,7 @@ path : /X86-64 명령어 레퍼런스
 
 Invalidates from every level of the cache hierarchy in the cache coherence domain the cache line that contains the linear address specified with the memory operand. If that cache line contains modified data at any level of the cache hierarchy, that data is written back to memory. The source operand is a byte memory location.
 
-The availability of `CLFLUSH` is indicated by the presence of the `CPUID` feature flag CLFSH (CPUID.01H:EDX[bit19]). The aligned cache line size affected is also indicated with the `CPUID` instruction (bits 8 through 15 of the EBX register when the initial value in the EAX register is 1).
+The availability of `CLFLUSH` is indicated by the presence of the `CPUID` feature flag CLFSH (CPUID.01H:EDX[bit 19]). The aligned cache line size affected is also indicated with the `CPUID` instruction (bits 8 through 15 of the EBX register when the initial value in the EAX register is 1).
 
 The memory attribute of the page containing the affected line has no effect on the behavior of this instruction. It should be noted that processors are free to speculatively fetch and cache data from system memory regions assigned a memory-type allowing for speculative reads (such as, the WB, WC, and WT memory types). `PREFETCHh` instructions can be used to provide the processor with hints for this speculative behavior. Because this speculative fetching can occur at any time and is not tied to instruction execution, the `CLFLUSH` instruction is not ordered with respect to `PREFETCHh` instructions or any of the speculative fetching mechanisms (that is, data can be specula-tively loaded into a cache line just before, during, or after the execution of a `CLFLUSH` instruction that references the cache line).
 
@@ -47,9 +47,12 @@ Flush_Cache_Line(SRC);
 
 ```cpp
 CLFLUSH: void _mm_clflush(void const *p)
-1.Earlier versions of this manual specified that executions of the CLFLUSH instruction were ordered only by the MFENCE instruction. All processors implementing the CLFLUSH instruction also order it relative to the other operations enumerated above.
 ```
+```sidenote
 
+
+1. Earlier versions of this manual specified that executions of the CLFLUSH instruction were ordered only by the MFENCE instruction. All processors implementing the CLFLUSH instruction also order it relative to the other operations enumerated above.
+```
 ### Protected Mode Exceptions
 
 #### #GP(0)

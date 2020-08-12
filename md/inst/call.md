@@ -34,13 +34,13 @@ Saves procedure linking information on the stack and branches to the called proc
 
 This instruction can be used to execute four types of calls:
 
-*  Near Call -- A call to a procedure in the current code segment (the segment currently pointed to by the CS register), sometimes referred to as an intra-segment call.
+*  Near Call --  A call to a procedure in the current code segment (the segment currently pointed to by the CS register), sometimes referred to as an intra-segment call.
 
 *  Far Call --A call to a procedure located in a different segment than the current code segment, sometimes referred to as an inter-segment call.
 
-*  Inter-privilege-level far call--A far call to a procedure in a segment at a different privilege level than that of the currently executing program or procedure.
+*  Inter-privilege-level far call --A far call to a procedure in a segment at a different privilege level than that of the currently executing program or procedure.
 
-*  Task switch--A call to a procedure located in a different task.
+*  Task switch --A call to a procedure located in a different task.
 
 The latter two call types (inter-privilege-level call and task switch) can only be executed in protected mode. See "Calling Procedures Using Call and RET" in Chapter 6 of the Intel(R) 64 and IA-32 Architectures Software Devel-oper's Manual, Volume 1, for additional information on near, far, and inter-privilege-level calls. See Chapter 7, "Task Management," in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A, for infor-mation on performing task switches with the `CALL` instruction.
 
@@ -133,353 +133,353 @@ Note that when using a call gate to perform a far call to a segment at the same 
 
 ```info-verb
 IF near call
- THEN IF near relative call
-   THEN 
-    IF OperandSize = 64
-      THEN
-        tempDEST <- SignExtend(DEST); (* DEST is rel32 *) 
-        tempRIP <- RIP + tempDEST;
-        IF stack not large enough for a 8-byte return address
-          THEN #SS(0); FI;
-        Push(RIP);
-        RIP <- tempRIP;
-    FI;
-    IF OperandSize = 32
-      THEN
-        tempEIP <- EIP + DEST; (* DEST is rel32 *)
-        IF tempEIP is not within code segment limit THEN #GP(0); FI;
-        IF stack not large enough for a 4-byte return address
-          THEN #SS(0); FI;
-        Push(EIP);
-        EIP <- tempEIP;
-    FI;
-    IF OperandSize = 16
-      THEN
-        tempEIP <- (EIP + DEST) AND 0000FFFFH; (* DEST is rel16 *)
-        IF tempEIP is not within code segment limit THEN #GP(0); FI;
-        IF stack not large enough for a 2-byte return address 
-          THEN #SS(0); FI;
-        Push(IP);
-        EIP <- tempEIP;
-    FI;
-   ELSE (* Near absolute call *)
-    IF OperandSize = 64
-      THEN
-        tempRIP <- DEST; (* DEST is r/m64 *)
-        IF stack not large enough for a 8-byte return address 
-          THEN #SS(0); FI;
-        Push(RIP); 
-        RIP <- tempRIP;
-    FI;
-    IF OperandSize = 32
-      THEN
-        tempEIP <- DEST; (* DEST is r/m32 *)
-        IF tempEIP is not within code segment limit THEN #GP(0); FI;
-        IF stack not large enough for a 4-byte return address 
-          THEN #SS(0); FI;
-        Push(EIP); 
-        EIP <- tempEIP;
-    FI;
-    IF OperandSize = 16
-      THEN
-        tempEIP <- DEST AND 0000FFFFH; (* DEST is r/m16 *)
-        IF tempEIP is not within code segment limit THEN #GP(0); FI;
+    THEN IF near relative call
+          THEN 
+                IF OperandSize = 64
+                      THEN
+                            tempDEST <- SignExtend(DEST); (* DEST is rel32 *) 
+                            tempRIP <- RIP + tempDEST;
+                            IF stack not large enough for a 8-byte return address
+                                  THEN #SS(0); FI;
+                            Push(RIP);
+                            RIP <- tempRIP;
+                FI;
+                IF OperandSize = 32
+                      THEN
+                            tempEIP <- EIP + DEST; (* DEST is rel32 *)
+                            IF tempEIP is not within code segment limit THEN #GP(0); FI;
+                            IF stack not large enough for a 4-byte return address
+                                  THEN #SS(0); FI;
+                            Push(EIP);
+                            EIP <- tempEIP;
+                FI;
+                IF OperandSize = 16
+                      THEN
+                            tempEIP <- (EIP + DEST) AND 0000FFFFH; (* DEST is rel16 *)
+                            IF tempEIP is not within code segment limit THEN #GP(0); FI;
+                            IF stack not large enough for a 2-byte return address 
+                                  THEN #SS(0); FI;
+                            Push(IP);
+                            EIP <- tempEIP;
+                FI;
+          ELSE (* Near absolute call *)
+                IF OperandSize = 64
+                      THEN
+                            tempRIP <- DEST; (* DEST is r/m64 *)
+                            IF stack not large enough for a 8-byte return address 
+                                  THEN #SS(0); FI;
+                            Push(RIP); 
+                            RIP <- tempRIP;
+                FI;
+                IF OperandSize = 32
+                      THEN
+                            tempEIP <- DEST; (* DEST is r/m32 *)
+                            IF tempEIP is not within code segment limit THEN #GP(0); FI;
+                            IF stack not large enough for a 4-byte return address 
+                                  THEN #SS(0); FI;
+                            Push(EIP); 
+                            EIP <- tempEIP;
+                FI;
+                IF OperandSize = 16
+                      THEN
+                            tempEIP <- DEST AND 0000FFFFH; (* DEST is r/m16 *)
+                            IF tempEIP is not within code segment limit THEN #GP(0); FI;
 IF stack not large enough for a 2-byte return address 
-          THEN #SS(0); FI;
-        Push(IP);
-        EIP <- tempEIP;
-    FI;
- FI;rel/abs
+                                  THEN #SS(0); FI;
+                            Push(IP);
+                            EIP <- tempEIP;
+                FI;
+    FI;rel/abs
 FI; near
 IF far call and (PE = 0 or (PE = 1 and VM = 1)) (* Real-address or virtual-8086 mode *)
- THEN
-   IF OperandSize = 32
     THEN
-      IF stack not large enough for a 6-byte return address 
-        THEN #SS(0); FI;
-      IF DEST[31:16] is not zero THEN #GP(0); FI;
-      Push(CS); (* Padded with 16 high-order bits *)
-      Push(EIP);
-      CS <- DEST[47:32]; (* DEST is ptr16:32 or [m16:32] *)
-      EIP <- DEST[31:0]; (* DEST is ptr16:32 or [m16:32] *)
-    ELSE (* OperandSize = 16 *)
-      IF stack not large enough for a 4-byte return address 
-        THEN #SS(0); FI;
-      Push(CS);
-      Push(IP);
-      CS <- DEST[31:16]; (* DEST is ptr16:16 or [m16:16] *)
-      EIP <- DEST[15:0]; (* DEST is ptr16:16 or [m16:16]; clear upper 16 bits *)
-   FI;
+          IF OperandSize = 32
+                THEN
+                      IF stack not large enough for a 6-byte return address 
+                            THEN #SS(0); FI;
+                      IF DEST[31:16] is not zero THEN #GP(0); FI;
+                      Push(CS); (* Padded with 16 high-order bits *)
+                      Push(EIP);
+                      CS <- DEST[47:32]; (* DEST is ptr16:32 or [m16:32] *)
+                      EIP <- DEST[31:0]; (* DEST is ptr16:32 or [m16:32] *)
+                ELSE (* OperandSize = 16 *)
+                      IF stack not large enough for a 4-byte return address 
+                            THEN #SS(0); FI;
+                      Push(CS);
+                      Push(IP);
+                      CS <- DEST[31:16]; (* DEST is ptr16:16 or [m16:16] *)
+                      EIP <- DEST[15:0]; (* DEST is ptr16:16 or [m16:16]; clear upper 16 bits *)
+          FI;
 FI;
 IF far call and (PE = 1 and VM = 0) (* Protected mode or IA-32e Mode, not virtual-8086 mode*)
- THEN
-   IF segment selector in target operand NULL 
-    THEN #GP(0); FI;
-   IF segment selector index not within descriptor table limits
-    THEN #GP(new code segment selector); FI;
-   Read type and access rights of selected segment descriptor;
-   IF IA32_EFER.LMA = 0
     THEN
-      IF segment type is not a conforming or nonconforming code segment, call 
-      gate, task gate, or TSS 
-        THEN #GP(segment selector); FI;
-    ELSE 
-      IF segment type is not a conforming or nonconforming code segment or 
-      64-bit call gate, 
-        THEN #GP(segment selector); FI;
-   FI;
-   Depending on type and access rights:
-    GO TO CONFORMING-CODE-SEGMENT;
-    GO TO NONCONFORMING-CODE-SEGMENT;
-    GO TO CALL-GATE;
-    GO TO TASK-GATE;
-    GO TO TASK-STATE-SEGMENT;
+          IF segment selector in target operand NULL 
+                THEN #GP(0); FI;
+          IF segment selector index not within descriptor table limits
+                THEN #GP(new code segment selector); FI;
+          Read type and access rights of selected segment descriptor;
+          IF IA32_EFER.LMA = 0
+                THEN
+                      IF segment type is not a conforming or nonconforming code segment, call 
+                      gate, task gate, or TSS 
+                            THEN #GP(segment selector); FI;
+                ELSE 
+                      IF segment type is not a conforming or nonconforming code segment or 
+                      64-bit call gate, 
+                            THEN #GP(segment selector); FI;
+          FI;
+          Depending on type and access rights:
+                GO TO CONFORMING-CODE-SEGMENT;
+                GO TO NONCONFORMING-CODE-SEGMENT;
+                GO TO CALL-GATE;
+                GO TO TASK-GATE;
+                GO TO TASK-STATE-SEGMENT;
 FI;
 CONFORMING-CODE-SEGMENT:
- IF L bit = 1 and D bit = 1 and IA32_EFER.LMA = 1 
-   THEN GP(new code segment selector); FI;
- IF DPL > CPL 
-   THEN #GP(new code segment selector); FI;
- IF segment not present 
-   THEN #NP(new code segment selector); FI;
- IF stack not large enough for return address
-   THEN #SS(0); FI;
- tempEIP <- DEST(Offset);
- IF OperandSize = 16
-   THEN
-    tempEIP <- tempEIP AND 0000FFFFH; FI; (* Clear upper 16 bits *)
- IF (EFER.LMA = 0 or target mode = Compatibility mode) and (tempEIP outside new code
- segment limit) 
-   THEN #GP(0); FI;
- IF tempEIP is non-canonical 
-   THEN #GP(0); FI;
- IF OperandSize = 32
-   THEN
-    Push(CS); (* Padded with 16 high-order bits *)
-    Push(EIP);
-    CS <- DEST(CodeSegmentSelector); 
-    (* Segment descriptor information also loaded *)
-    CS(RPL) <- CPL;
-    EIP <- tempEIP;
-   ELSE
+    IF L bit = 1 and D bit = 1 and IA32_EFER.LMA = 1 
+          THEN GP(new code segment selector); FI;
+    IF DPL > CPL 
+          THEN #GP(new code segment selector); FI;
+    IF segment not present 
+          THEN #NP(new code segment selector); FI;
+    IF stack not large enough for return address
+          THEN #SS(0); FI;
+    tempEIP <- DEST(Offset);
     IF OperandSize = 16
-      THEN
-        Push(CS);
-        Push(IP);
-        CS <- DEST(CodeSegmentSelector); 
-        (* Segment descriptor information also loaded *)
-        CS(RPL) <- CPL;
-        EIP <- tempEIP;
-      ELSE (* OperandSize = 64 *)
-        Push(CS); (* Padded with 48 high-order bits *)
-        Push(RIP);
-        CS <- DEST(CodeSegmentSelector); 
-        (* Segment descriptor information also loaded *)
-        CS(RPL) <- CPL;
-        RIP <- tempEIP;
+          THEN
+                tempEIP <- tempEIP AND 0000FFFFH; FI; (* Clear upper 16 bits *)
+    IF (EFER.LMA = 0 or target mode = Compatibility mode) and (tempEIP outside new code
+    segment limit) 
+          THEN #GP(0); FI;
+    IF tempEIP is non-canonical 
+          THEN #GP(0); FI;
+    IF OperandSize = 32
+          THEN
+                Push(CS); (* Padded with 16 high-order bits *)
+                Push(EIP);
+                CS <- DEST(CodeSegmentSelector); 
+                (* Segment descriptor information also loaded *)
+                CS(RPL) <- CPL;
+                EIP <- tempEIP;
+          ELSE
+                IF OperandSize = 16
+                      THEN
+                            Push(CS);
+                            Push(IP);
+                            CS <- DEST(CodeSegmentSelector); 
+                            (* Segment descriptor information also loaded *)
+                            CS(RPL) <- CPL;
+                            EIP <- tempEIP;
+                      ELSE (* OperandSize = 64 *)
+                            Push(CS); (* Padded with 48 high-order bits *)
+                            Push(RIP);
+                            CS <- DEST(CodeSegmentSelector); 
+                            (* Segment descriptor information also loaded *)
+                            CS(RPL) <- CPL;
+                            RIP <- tempEIP;
+                FI;
     FI;
- FI;
 END;
 NONCONFORMING-CODE-SEGMENT:
- IF L-Bit = 1 and D-BIT = 1 and IA32_EFER.LMA = 1 
-   THEN GP(new code segment selector); FI;
- IF (RPL > CPL) or (DPL != CPL) 
-   THEN #GP(new code segment selector); FI;
- IF segment not present 
-   THEN #NP(new code segment selector); FI;
- IF stack not large enough for return address 
+    IF L-Bit = 1 and D-BIT = 1 and IA32_EFER.LMA = 1 
+          THEN GP(new code segment selector); FI;
+    IF (RPL > CPL) or (DPL != CPL) 
+          THEN #GP(new code segment selector); FI;
+    IF segment not present 
+          THEN #NP(new code segment selector); FI;
+    IF stack not large enough for return address 
 THEN #SS(0); FI;
- tempEIP <- DEST(Offset);
- IF OperandSize = 16
-   THEN tempEIP <- tempEIP AND 0000FFFFH; FI; (* Clear upper 16 bits *)
- IF (EFER.LMA = 0 or target mode = Compatibility mode) and (tempEIP outside new codesegment limit)
-   THEN #GP(0); FI;
- IF tempEIP is non-canonical 
-   THEN #GP(0); FI;
- IF OperandSize = 32
-   THEN
-    Push(CS); (* Padded with 16 high-order bits *)
-    Push(EIP);
-    CS <- DEST(CodeSegmentSelector); 
-    (* Segment descriptor information also loaded *)
-    CS(RPL) <- CPL;
-    EIP <- tempEIP;
-   ELSE
+    tempEIP <- DEST(Offset);
     IF OperandSize = 16
-      THEN
-        Push(CS);
-        Push(IP);
-        CS <- DEST(CodeSegmentSelector); 
-        (* Segment descriptor information also loaded *)
-        CS(RPL) <- CPL;
-        EIP <- tempEIP;
-      ELSE (* OperandSize = 64 *)
-        Push(CS); (* Padded with 48 high-order bits *)
-        Push(RIP);
-        CS <- DEST(CodeSegmentSelector); 
-        (* Segment descriptor information also loaded *)
-        CS(RPL) <- CPL;
-        RIP <- tempEIP;
+          THEN tempEIP <- tempEIP AND 0000FFFFH; FI; (* Clear upper 16 bits *)
+    IF (EFER.LMA = 0 or target mode = Compatibility mode) and (tempEIP outside new codesegment limit)
+          THEN #GP(0); FI;
+    IF tempEIP is non-canonical 
+          THEN #GP(0); FI;
+    IF OperandSize = 32
+          THEN
+                Push(CS); (* Padded with 16 high-order bits *)
+                Push(EIP);
+                CS <- DEST(CodeSegmentSelector); 
+                (* Segment descriptor information also loaded *)
+                CS(RPL) <- CPL;
+                EIP <- tempEIP;
+          ELSE
+                IF OperandSize = 16
+                      THEN
+                            Push(CS);
+                            Push(IP);
+                            CS <- DEST(CodeSegmentSelector); 
+                            (* Segment descriptor information also loaded *)
+                            CS(RPL) <- CPL;
+                            EIP <- tempEIP;
+                      ELSE (* OperandSize = 64 *)
+                            Push(CS); (* Padded with 48 high-order bits *)
+                            Push(RIP);
+                            CS <- DEST(CodeSegmentSelector); 
+                            (* Segment descriptor information also loaded *)
+                            CS(RPL) <- CPL;
+                            RIP <- tempEIP;
+                FI;
     FI;
- FI;
 END;
 CALL-GATE:
- IF call gate (DPL < CPL) or (RPL > DPL)
-   THEN #GP(call-gate selector); FI;
- IF call gate not present 
-   THEN #NP(call-gate selector); FI;
- IF call-gate code-segment selector is NULL
-   THEN #GP(0); FI;
- IF call-gate code-segment selector index is outside descriptor table limits
-   THEN #GP(call-gate code-segment selector); FI;
- Read call-gate code-segment descriptor;
- IF call-gate code-segment descriptor does not indicate a code segment
- or call-gate code-segment descriptor DPL > CPL 
-   THEN #GP(call-gate code-segment selector); FI;
- IF IA32_EFER.LMA = 1 AND (call-gate code-segment descriptor is not a 64-bit code segment or call-gate code-segment descriptor has both L-bit and D-bit set)
-   THEN #GP(call-gate code-segment selector); FI;
- IF call-gate code segment not present 
+    IF call gate (DPL < CPL) or (RPL > DPL)
+          THEN #GP(call-gate selector); FI;
+    IF call gate not present 
+          THEN #NP(call-gate selector); FI;
+    IF call-gate code-segment selector is NULL
+          THEN #GP(0); FI;
+    IF call-gate code-segment selector index is outside descriptor table limits
+          THEN #GP(call-gate code-segment selector); FI;
+    Read call-gate code-segment descriptor;
+    IF call-gate code-segment descriptor does not indicate a code segment
+    or call-gate code-segment descriptor DPL > CPL 
+          THEN #GP(call-gate code-segment selector); FI;
+    IF IA32_EFER.LMA = 1 AND (call-gate code-segment descriptor is not a 64-bit code segment or call-gate code-segment descriptor has both L-bit and D-bit set)
+          THEN #GP(call-gate code-segment selector); FI;
+    IF call-gate code segment not present 
 THEN #NP(call-gate code-segment selector); FI;
- IF call-gate code segment is non-conforming and DPL < CPL
-   THEN go to MORE-PRIVILEGE;
-   ELSE go to SAME-PRIVILEGE;
- FI;
+    IF call-gate code segment is non-conforming and DPL < CPL
+          THEN go to MORE-PRIVILEGE;
+          ELSE go to SAME-PRIVILEGE;
+    FI;
 END;
 MORE-PRIVILEGE:
- IF current TSS is 32-bit
-   THEN 
-    TSSstackAddress <- (new code-segment DPL `*` 8) + 4;
-    IF (TSSstackAddress + 5) > current TSS limit
-      THEN #TS(current TSS selector); FI;
-    NewSS <- 2 bytes loaded from (TSS base + TSSstackAddress + 4);
-    NewESP <- 4 bytes loaded from (TSS base + TSSstackAddress);
-   ELSE 
-    IF current TSS is 16-bit
-      THEN
-        TSSstackAddress <- (new code-segment DPL `*` 4) + 2
-        IF (TSSstackAddress + 3) > current TSS limit
-          THEN #TS(current TSS selector); FI;
-        NewSS <- 2 bytes loaded from (TSS base + TSSstackAddress + 2);
-        NewESP <- 2 bytes loaded from (TSS base + TSSstackAddress);
-      ELSE (* current TSS is 64-bit *)
-        TSSstackAddress <- (new code-segment DPL `*` 8) + 4;
-        IF (TSSstackAddress + 7) > current TSS limit
-          THEN #TS(current TSS selector); FI;
-        NewSS <- new code-segment DPL; (* NULL selector with RPL = new CPL *)
-        NewRSP <- 8 bytes loaded from (current TSS base + TSSstackAddress);
+    IF current TSS is 32-bit
+          THEN 
+                TSSstackAddress <- (new code-segment DPL `*` 8) + 4;
+                IF (TSSstackAddress + 5) > current TSS limit
+                      THEN #TS(current TSS selector); FI;
+                NewSS <- 2 bytes loaded from (TSS base + TSSstackAddress + 4);
+                NewESP <- 4 bytes loaded from (TSS base + TSSstackAddress);
+          ELSE 
+                IF current TSS is 16-bit
+                      THEN
+                            TSSstackAddress <- (new code-segment DPL `*` 4) + 2
+                            IF (TSSstackAddress + 3) > current TSS limit
+                                  THEN #TS(current TSS selector); FI;
+                            NewSS <- 2 bytes loaded from (TSS base + TSSstackAddress + 2);
+                            NewESP <- 2 bytes loaded from (TSS base + TSSstackAddress);
+                      ELSE (* current TSS is 64-bit *)
+                            TSSstackAddress <- (new code-segment DPL `*` 8) + 4;
+                            IF (TSSstackAddress + 7) > current TSS limit
+                                  THEN #TS(current TSS selector); FI;
+                            NewSS <- new code-segment DPL; (* NULL selector with RPL = new CPL *)
+                            NewRSP <- 8 bytes loaded from (current TSS base + TSSstackAddress);
+                FI;
     FI;
- FI;
- IF IA32_EFER.LMA = 0 and NewSS is NULL
-   THEN #TS(NewSS); FI;
- Read new code-segment descriptor and new stack-segment descriptor; 
- IF IA32_EFER.LMA = 0 and (NewSS RPL != new code-segment DPL
- or new stack-segment DPL != new code-segment DPL or new stack segment is not awritable data segment)
-   THEN #TS(NewSS); FI
- IF IA32_EFER.LMA = 0 and new stack segment not present 
-   THEN #SS(NewSS); FI;
- IF CallGateSize = 32
-   THEN
-    IF new stack does not have room for parameters plus 16 bytes
-      THEN #SS(NewSS); FI;
-    IF CallGate(InstructionPointer) not within new code-segment limit 
-      THEN #GP(0); FI;
-    SS <- newSS; (* Segment descriptor information also loaded *)
-    ESP <- newESP; 
-    CS:EIP <- CallGate(CS:InstructionPointer); 
-    (* Segment descriptor information also loaded *)
-    Push(oldSS:oldESP); (* From calling procedure *)
-    temp <- parameter count from call gate, masked to 5 bits;
-    Push(parameters from calling procedure's stack, temp)
-    Push(oldCS:oldEIP); (* Return address to calling procedure *)
+    IF IA32_EFER.LMA = 0 and NewSS is NULL
+          THEN #TS(NewSS); FI;
+    Read new code-segment descriptor and new stack-segment descriptor; 
+    IF IA32_EFER.LMA = 0 and (NewSS RPL != new code-segment DPL
+    or new stack-segment DPL != new code-segment DPL or new stack segment is not awritable data segment)
+          THEN #TS(NewSS); FI
+    IF IA32_EFER.LMA = 0 and new stack segment not present 
+          THEN #SS(NewSS); FI;
+    IF CallGateSize = 32
+          THEN
+                IF new stack does not have room for parameters plus 16 bytes
+                      THEN #SS(NewSS); FI;
+                IF CallGate(InstructionPointer) not within new code-segment limit 
+                      THEN #GP(0); FI;
+                SS <- newSS; (* Segment descriptor information also loaded *)
+                ESP <- newESP; 
+                CS:EIP <- CallGate(CS:InstructionPointer); 
+                (* Segment descriptor information also loaded *)
+                Push(oldSS:oldESP); (* From calling procedure *)
+                temp <- parameter count from call gate, masked to 5 bits;
+                Push(parameters from calling procedure's stack, temp)
+                Push(oldCS:oldEIP); (* Return address to calling procedure *)
 ELSE 
-    IF CallGateSize = 16
-      THEN
-        IF new stack does not have room for parameters plus 8 bytes
-          THEN #SS(NewSS); FI;
-        IF (CallGate(InstructionPointer) AND FFFFH) not in new code-segment limit
-          THEN #GP(0); FI;
-        SS <- newSS; (* Segment descriptor information also loaded *)
-        ESP <- newESP; 
-        CS:IP <- CallGate(CS:InstructionPointer);
-        (* Segment descriptor information also loaded *)
-        Push(oldSS:oldESP); (* From calling procedure *)
-        temp <- parameter count from call gate, masked to 5 bits;
-        Push(parameters from calling procedure's stack, temp)
-        Push(oldCS:oldEIP); (* Return address to calling procedure *)
-      ELSE (* CallGateSize = 64 *)
-        IF pushing 32 bytes on the stack would use a non-canonical address
-          THEN #SS(NewSS); FI;
-        IF (CallGate(InstructionPointer) is non-canonical) 
-          THEN #GP(0); FI;
-        SS <- NewSS; (* NewSS is NULL)
-        RSP <- NewESP; 
-        CS:IP <- CallGate(CS:InstructionPointer);
-        (* Segment descriptor information also loaded *)
-        Push(oldSS:oldESP); (* From calling procedure *)
-        Push(oldCS:oldEIP); (* Return address to calling procedure *)
+                IF CallGateSize = 16
+                      THEN
+                            IF new stack does not have room for parameters plus 8 bytes
+                                  THEN #SS(NewSS); FI;
+                            IF (CallGate(InstructionPointer) AND FFFFH) not in new code-segment limit
+                                  THEN #GP(0); FI;
+                            SS <- newSS; (* Segment descriptor information also loaded *)
+                            ESP <- newESP; 
+                            CS:IP <- CallGate(CS:InstructionPointer);
+                            (* Segment descriptor information also loaded *)
+                            Push(oldSS:oldESP); (* From calling procedure *)
+                            temp <- parameter count from call gate, masked to 5 bits;
+                            Push(parameters from calling procedure's stack, temp)
+                            Push(oldCS:oldEIP); (* Return address to calling procedure *)
+                      ELSE (* CallGateSize = 64 *)
+                            IF pushing 32 bytes on the stack would use a non-canonical address
+                                  THEN #SS(NewSS); FI;
+                            IF (CallGate(InstructionPointer) is non-canonical) 
+                                  THEN #GP(0); FI;
+                            SS <- NewSS; (* NewSS is NULL)
+                            RSP <- NewESP; 
+                            CS:IP <- CallGate(CS:InstructionPointer);
+                            (* Segment descriptor information also loaded *)
+                            Push(oldSS:oldESP); (* From calling procedure *)
+                            Push(oldCS:oldEIP); (* Return address to calling procedure *)
+                FI;
     FI;
- FI;
- CPL <- CodeSegment(DPL)
- CS(RPL) <- CPL
+    CPL <- CodeSegment(DPL)
+    CS(RPL) <- CPL
 END;
 SAME-PRIVILEGE:
- IF CallGateSize = 32
-   THEN
-    IF stack does not have room for 8 bytes
-      THEN #SS(0); FI;
-    IF CallGate(InstructionPointer) not within code segment limit 
-      THEN #GP(0); FI;
-    CS:EIP <- CallGate(CS:EIP) (* Segment descriptor information also loaded *)
-    Push(oldCS:oldEIP); (* Return address to calling procedure *)
-   ELSE 
-    If CallGateSize = 16
-      THEN
-        IF stack does not have room for 4 bytes
-          THEN #SS(0); FI;
-        IF CallGate(InstructionPointer) not within code segment limit 
-          THEN #GP(0); FI;
-        CS:IP <- CallGate(CS:instruction pointer); 
-        (* Segment descriptor information also loaded *)
-        Push(oldCS:oldIP); (* Return address to calling procedure *)
-      ELSE (* CallGateSize = 64)
-        IF pushing 16 bytes on the stack touches non-canonical addresses
-          THEN #SS(0); FI;
+    IF CallGateSize = 32
+          THEN
+                IF stack does not have room for 8 bytes
+                      THEN #SS(0); FI;
+                IF CallGate(InstructionPointer) not within code segment limit 
+                      THEN #GP(0); FI;
+                CS:EIP <- CallGate(CS:EIP) (* Segment descriptor information also loaded *)
+                Push(oldCS:oldEIP); (* Return address to calling procedure *)
+          ELSE 
+                If CallGateSize = 16
+                      THEN
+                            IF stack does not have room for 4 bytes
+                                  THEN #SS(0); FI;
+                            IF CallGate(InstructionPointer) not within code segment limit 
+                                  THEN #GP(0); FI;
+                            CS:IP <- CallGate(CS:instruction pointer); 
+                            (* Segment descriptor information also loaded *)
+                            Push(oldCS:oldIP); (* Return address to calling procedure *)
+                      ELSE (* CallGateSize = 64)
+                            IF pushing 16 bytes on the stack touches non-canonical addresses
+                                  THEN #SS(0); FI;
 IF RIP non-canonical 
-          THEN #GP(0); FI;
-        CS:IP <- CallGate(CS:instruction pointer); 
-        (* Segment descriptor information also loaded *)
-        Push(oldCS:oldIP); (* Return address to calling procedure *)
+                                  THEN #GP(0); FI;
+                            CS:IP <- CallGate(CS:instruction pointer); 
+                            (* Segment descriptor information also loaded *)
+                            Push(oldCS:oldIP); (* Return address to calling procedure *)
+                FI;
     FI;
- FI;
- CS(RPL) <- CPL
+    CS(RPL) <- CPL
 END;
 TASK-GATE:
- IF task gate DPL < CPL or RPL 
-   THEN #GP(task gate selector); FI;
- IF task gate not present 
-   THEN #NP(task gate selector); FI;
- Read the TSS segment selector in the task-gate descriptor;
- IF TSS segment selector local/global bit is set to local
- or index not within GDT limits
-   THEN #GP(TSS selector); FI;
- Access TSS descriptor in GDT;
- IF TSS descriptor specifies that the TSS is busy (low-order 5 bits set to 00001)
-   THEN #GP(TSS selector); FI;
- IF TSS not present 
-   THEN #NP(TSS selector); FI;
- SWITCH-TASKS (with nesting) to TSS;
- IF EIP not within code segment limit 
-   THEN #GP(0); FI;
+    IF task gate DPL < CPL or RPL 
+          THEN #GP(task gate selector); FI;
+    IF task gate not present 
+          THEN #NP(task gate selector); FI;
+    Read the TSS segment selector in the task-gate descriptor;
+    IF TSS segment selector local/global bit is set to local
+    or index not within GDT limits
+          THEN #GP(TSS selector); FI;
+    Access TSS descriptor in GDT;
+    IF TSS descriptor specifies that the TSS is busy (low-order 5 bits set to 00001)
+          THEN #GP(TSS selector); FI;
+    IF TSS not present 
+          THEN #NP(TSS selector); FI;
+    SWITCH-TASKS (with nesting) to TSS;
+    IF EIP not within code segment limit 
+          THEN #GP(0); FI;
 END;
 TASK-STATE-SEGMENT:
- IF TSS DPL < CPL or RPL
- or TSS descriptor indicates TSS not available
-   THEN #GP(TSS selector); FI;
- IF TSS is not present 
-   THEN #NP(TSS selector); FI;
- SWITCH-TASKS (with nesting) to TSS;
- IF EIP not within code segment limit 
-   THEN #GP(0); FI;
+    IF TSS DPL < CPL or RPL
+    or TSS descriptor indicates TSS not available
+          THEN #GP(TSS selector); FI;
+    IF TSS is not present 
+          THEN #NP(TSS selector); FI;
+    SWITCH-TASKS (with nesting) to TSS;
+    IF EIP not within code segment limit 
+          THEN #GP(0); FI;
 END;
 ```
 ### Flags Affected

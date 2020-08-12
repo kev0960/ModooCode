@@ -10,40 +10,40 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F 6F /rMOVDQU xmm1, xmm2/m128|RM|V/V|SSE2|Move unaligned packed integer values from xmm2/m128 to xmm1. |
-|F3 0F 7F /rMOVDQU xmm2/m128, xmm1|MR|V/V|SSE2|Move unaligned packed integer values from xmm1 to xmm2/m128. |
-|VEX.128.F3.0F.WIG 6F /rVMOVDQU xmm1, xmm2/m128|RM|V/V|AVX|Move unaligned packed integer values from xmm2/m128 to xmm1. |
-|VEX.128.F3.0F.WIG 7F /rVMOVDQU xmm2/m128, xmm1|MR|V/V|AVX|Move unaligned packed integer values from xmm1 to xmm2/m128.|
-|VEX.256.F3.0F.WIG 6F /rVMOVDQU ymm1, ymm2/m256|RM|V/V|AVX|Move unaligned packed integer values from ymm2/m256 to ymm1.|
-|VEX.256.F3.0F.WIG 7F /rVMOVDQU ymm2/m256, ymm1|MR|V/V|AVX|Move unaligned packed integer values from ymm1 to ymm2/m256.|
-|EVEX.128.F2.0F.W0 6F /rVMOVDQU8 xmm1 {k1}{z}, xmm2/m128|FVM-RM|V/V|AVX512VLAVX512BW|Move unaligned packed byte integer values from xmm2/m128 to xmm1 using writemask k1.|
-|EVEX.256.F2.0F.W0 6F /rVMOVDQU8 ymm1 {k1}{z}, ymm2/m256 |FVM-RM|V/V|AVX512VLAVX512BW|Move unaligned packed byte integer values from ymm2/m256 to ymm1 using writemask k1.|
-|EVEX.512.F2.0F.W0 6F /rVMOVDQU8 zmm1 {k1}{z}, zmm2/m512|FVM-RM|V/V|AVX512BW|Move unaligned packed byte integer values from zmm2/m512 to zmm1 using writemask k1.|
-|EVEX.128.F2.0F.W0 7F /rVMOVDQU8 xmm2/m128 {k1}{z}, xmm1|FVM-MR|V/V|AVX512VLAVX512BW|Move unaligned packed byte integer values from xmm1 to xmm2/m128 using writemask k1.|
-|EVEX.256.F2.0F.W0 7F /rVMOVDQU8 ymm2/m256 {k1}{z}, ymm1|FVM-MR|V/V|AVX512VLAVX512BW|Move unaligned packed byte integer values from ymm1 to ymm2/m256 using writemask k1.|
-|EVEX.512.F2.0F.W0 7F /rVMOVDQU8 zmm2/m512 {k1}{z}, zmm1|FVM-MR|V/V|AVX512BW|Move unaligned packed byte integer values from zmm1 to zmm2/m512 using writemask k1.|
-|EVEX.128.F2.0F.W1 6F /rVMOVDQU16 xmm1 {k1}{z}, xmm2/m128 |FVM-RM|V/V|AVX512VLAVX512BW|Move unaligned packed word integer values from xmm2/m128 to xmm1 using writemask k1.|
-|EVEX.256.F2.0F.W1 6F /rVMOVDQU16 ymm1 {k1}{z}, ymm2/m256|FVM-RM|V/V|AVX512VLAVX512BW|Move unaligned packed word integer values from ymm2/m256 to ymm1 using writemask k1.|
-|EVEX.512.F2.0F.W1 6F /rVMOVDQU16 zmm1 {k1}{z}, zmm2/m512 |FVM-RM|V/V|AVX512BW|Move unaligned packed word integer values from zmm2/m512 to zmm1 using writemask k1.|
-|EVEX.128.F2.0F.W1 7F /rVMOVDQU16 xmm2/m128 {k1}{z}, xmm1|FVM-MR|V/V|AVX512VLAVX512BW|Move unaligned packed word integer values from xmm1 to xmm2/m128 using writemask k1.|
-|EVEX.256.F2.0F.W1 7F /rVMOVDQU16 ymm2/m256 {k1}{z}, ymm1|FVM-MR|V/V|AVX512VLAVX512BW|Move unaligned packed word integer values from ymm1 to ymm2/m256 using writemask k1.|
-|EVEX.512.F2.0F.W1 7F /rVMOVDQU16 zmm2/m512 {k1}{z}, zmm1|FVM-MR|V/V|AVX512BW|Move unaligned packed word integer values from zmm1 to zmm2/m512 using writemask k1.|
-|EVEX.128.F3.0F.W0 6F /rVMOVDQU32 xmm1 {k1}{z}, xmm2/mm128|FVM-RM|V/V|AVX512VLAVX512F|Move unaligned packed doubleword integer values from xmm2/m128 to xmm1 using writemask k1.|
+|F3 0F 6F /r\newline{}MOVDQU xmm1, xmm2/m128|RM|V/V|SSE2|Move unaligned packed integer values from xmm2/m128 to xmm1. |
+|F3 0F 7F /r\newline{}MOVDQU xmm2/m128, xmm1|MR|V/V|SSE2|Move unaligned packed integer values from xmm1 to xmm2/m128. |
+|VEX.128.F3.0F.WIG 6F /r\newline{}VMOVDQU xmm1, xmm2/m128|RM|V/V|AVX|Move unaligned packed integer values from xmm2/m128 to xmm1. |
+|VEX.128.F3.0F.WIG 7F /r\newline{}VMOVDQU xmm2/m128, xmm1|MR|V/V|AVX|Move unaligned packed integer values from xmm1 to xmm2/m128.|
+|VEX.256.F3.0F.WIG 6F /r\newline{}VMOVDQU ymm1, ymm2/m256|RM|V/V|AVX|Move unaligned packed integer values from ymm2/m256 to ymm1.|
+|VEX.256.F3.0F.WIG 7F /r\newline{}VMOVDQU ymm2/m256, ymm1|MR|V/V|AVX|Move unaligned packed integer values from ymm1 to ymm2/m256.|
+|EVEX.128.F2.0F.W0 6F /r\newline{}VMOVDQU8 xmm1 {k1}{z}, xmm2/m128|FVM-RM|V/V|AVX512VLAVX512BW|Move unaligned packed byte integer values from xmm2/m128 to xmm1 using writemask k1.|
+|EVEX.256.F2.0F.W0 6F /r\newline{}VMOVDQU8 ymm1 {k1}{z}, ymm2/m256 |FVM-RM|V/V|AVX512VLAVX512BW|Move unaligned packed byte integer values from ymm2/m256 to ymm1 using writemask k1.|
+|EVEX.512.F2.0F.W0 6F /r\newline{}VMOVDQU8 zmm1 {k1}{z}, zmm2/m512|FVM-RM|V/V|AVX512BW|Move unaligned packed byte integer values from zmm2/m512 to zmm1 using writemask k1.|
+|EVEX.128.F2.0F.W0 7F /r\newline{}VMOVDQU8 xmm2/m128 {k1}{z}, xmm1|FVM-MR|V/V|AVX512VLAVX512BW|Move unaligned packed byte integer values from xmm1 to xmm2/m128 using writemask k1.|
+|EVEX.256.F2.0F.W0 7F /r\newline{}VMOVDQU8 ymm2/m256 {k1}{z}, ymm1|FVM-MR|V/V|AVX512VLAVX512BW|Move unaligned packed byte integer values from ymm1 to ymm2/m256 using writemask k1.|
+|EVEX.512.F2.0F.W0 7F /r\newline{}VMOVDQU8 zmm2/m512 {k1}{z}, zmm1|FVM-MR|V/V|AVX512BW|Move unaligned packed byte integer values from zmm1 to zmm2/m512 using writemask k1.|
+|EVEX.128.F2.0F.W1 6F /r\newline{}VMOVDQU16 xmm1 {k1}{z}, xmm2/m128 |FVM-RM|V/V|AVX512VLAVX512BW|Move unaligned packed word integer values from xmm2/m128 to xmm1 using writemask k1.|
+|EVEX.256.F2.0F.W1 6F /r\newline{}VMOVDQU16 ymm1 {k1}{z}, ymm2/m256|FVM-RM|V/V|AVX512VLAVX512BW|Move unaligned packed word integer values from ymm2/m256 to ymm1 using writemask k1.|
+|EVEX.512.F2.0F.W1 6F /r\newline{}VMOVDQU16 zmm1 {k1}{z}, zmm2/m512 |FVM-RM|V/V|AVX512BW|Move unaligned packed word integer values from zmm2/m512 to zmm1 using writemask k1.|
+|EVEX.128.F2.0F.W1 7F /r\newline{}VMOVDQU16 xmm2/m128 {k1}{z}, xmm1|FVM-MR|V/V|AVX512VLAVX512BW|Move unaligned packed word integer values from xmm1 to xmm2/m128 using writemask k1.|
+|EVEX.256.F2.0F.W1 7F /r\newline{}VMOVDQU16 ymm2/m256 {k1}{z}, ymm1|FVM-MR|V/V|AVX512VLAVX512BW|Move unaligned packed word integer values from ymm1 to ymm2/m256 using writemask k1.|
+|EVEX.512.F2.0F.W1 7F /r\newline{}VMOVDQU16 zmm2/m512 {k1}{z}, zmm1|FVM-MR|V/V|AVX512BW|Move unaligned packed word integer values from zmm1 to zmm2/m512 using writemask k1.|
+|EVEX.128.F3.0F.W0 6F /r\newline{}VMOVDQU32 xmm1 {k1}{z}, xmm2/mm128|FVM-RM|V/V|AVX512VLAVX512F|Move unaligned packed doubleword integer values from xmm2/m128 to xmm1 using writemask k1.|
 
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.256.F3.0F.W0 6F /rVMOVDQU32 ymm1 {k1}{z}, ymm2/m256 |FVM-RM|V/V|AVX512VLAVX512F|Move unaligned packed doubleword integer values from ymm2/m256 to ymm1 using writemask k1.|
-|EVEX.512.F3.0F.W0 6F /rVMOVDQU32 zmm1 {k1}{z}, zmm2/m512|FVM-RM|V/V|AVX512F|Move unaligned packed doubleword integer values from zmm2/m512 to zmm1 using writemask k1.|
-|EVEX.128.F3.0F.W0 7F /rVMOVDQU32 xmm2/m128 {k1}{z}, xmm1|FVM-MR|V/V|AVX512VLAVX512F|Move unaligned packed doubleword integer values from xmm1 to xmm2/m128 using writemask k1.|
-|EVEX.256.F3.0F.W0 7F /rVMOVDQU32 ymm2/m256 {k1}{z}, ymm1|FVM-MR|V/V|AVX512VLAVX512F|Move unaligned packed doubleword integer values from ymm1 to ymm2/m256 using writemask k1.|
-|EVEX.512.F3.0F.W0 7F /rVMOVDQU32 zmm2/m512 {k1}{z}, zmm1|FVM-MR|V/V|AVX512F|Move unaligned packed doubleword integer values from zmm1 to zmm2/m512 using writemask k1.|
-|EVEX.128.F3.0F.W1 6F /rVMOVDQU64 xmm1 {k1}{z}, xmm2/m128 |FVM-RM|V/V|AVX512VLAVX512F|Move unaligned packed quadword integer values from xmm2/m128 to xmm1 using writemask k1.|
-|EVEX.256.F3.0F.W1 6F /rVMOVDQU64 ymm1 {k1}{z}, ymm2/m256|FVM-RM|V/V|AVX512VLAVX512F|Move unaligned packed quadword integer values from ymm2/m256 to ymm1 using writemask k1.|
-|EVEX.512.F3.0F.W1 6F /rVMOVDQU64 zmm1 {k1}{z}, zmm2/m512|FVM-RM|V/V|AVX512F|Move unaligned packed quadword integer values from zmm2/m512 to zmm1 using writemask k1.|
-|EVEX.128.F3.0F.W1 7F /rVMOVDQU64 xmm2/m128 {k1}{z}, xmm1|FVM-MR|V/V|AVX512VLAVX512F|Move unaligned packed quadword integer values from xmm1 to xmm2/m128 using writemask k1.|
-|EVEX.256.F3.0F.W1 7F /rVMOVDQU64 ymm2/m256 {k1}{z}, ymm1|FVM-MR|V/V|AVX512VLAVX512F|Move unaligned packed quadword integer values from ymm1 to ymm2/m256 using writemask k1.|
-|EVEX.512.F3.0F.W1 7F /rVMOVDQU64 zmm2/m512 {k1}{z}, zmm1|FVM-MR|V/V|AVX512F|Move unaligned packed quadword integer values from zmm1 to zmm2/m512 using writemask k1.|
+|EVEX.256.F3.0F.W0 6F /r\newline{}VMOVDQU32 ymm1 {k1}{z}, ymm2/m256 |FVM-RM|V/V|AVX512VLAVX512F|Move unaligned packed doubleword integer values from ymm2/m256 to ymm1 using writemask k1.|
+|EVEX.512.F3.0F.W0 6F /r\newline{}VMOVDQU32 zmm1 {k1}{z}, zmm2/m512|FVM-RM|V/V|AVX512F|Move unaligned packed doubleword integer values from zmm2/m512 to zmm1 using writemask k1.|
+|EVEX.128.F3.0F.W0 7F /r\newline{}VMOVDQU32 xmm2/m128 {k1}{z}, xmm1|FVM-MR|V/V|AVX512VLAVX512F|Move unaligned packed doubleword integer values from xmm1 to xmm2/m128 using writemask k1.|
+|EVEX.256.F3.0F.W0 7F /r\newline{}VMOVDQU32 ymm2/m256 {k1}{z}, ymm1|FVM-MR|V/V|AVX512VLAVX512F|Move unaligned packed doubleword integer values from ymm1 to ymm2/m256 using writemask k1.|
+|EVEX.512.F3.0F.W0 7F /r\newline{}VMOVDQU32 zmm2/m512 {k1}{z}, zmm1|FVM-MR|V/V|AVX512F|Move unaligned packed doubleword integer values from zmm1 to zmm2/m512 using writemask k1.|
+|EVEX.128.F3.0F.W1 6F /r\newline{}VMOVDQU64 xmm1 {k1}{z}, xmm2/m128 |FVM-RM|V/V|AVX512VLAVX512F|Move unaligned packed quadword integer values from xmm2/m128 to xmm1 using writemask k1.|
+|EVEX.256.F3.0F.W1 6F /r\newline{}VMOVDQU64 ymm1 {k1}{z}, ymm2/m256|FVM-RM|V/V|AVX512VLAVX512F|Move unaligned packed quadword integer values from ymm2/m256 to ymm1 using writemask k1.|
+|EVEX.512.F3.0F.W1 6F /r\newline{}VMOVDQU64 zmm1 {k1}{z}, zmm2/m512|FVM-RM|V/V|AVX512F|Move unaligned packed quadword integer values from zmm2/m512 to zmm1 using writemask k1.|
+|EVEX.128.F3.0F.W1 7F /r\newline{}VMOVDQU64 xmm2/m128 {k1}{z}, xmm1|FVM-MR|V/V|AVX512VLAVX512F|Move unaligned packed quadword integer values from xmm1 to xmm2/m128 using writemask k1.|
+|EVEX.256.F3.0F.W1 7F /r\newline{}VMOVDQU64 ymm2/m256 {k1}{z}, ymm1|FVM-MR|V/V|AVX512VLAVX512F|Move unaligned packed quadword integer values from ymm1 to ymm2/m256 using writemask k1.|
+|EVEX.512.F3.0F.W1 7F /r\newline{}VMOVDQU64 zmm2/m512 {k1}{z}, zmm1|FVM-MR|V/V|AVX512F|Move unaligned packed quadword integer values from zmm1 to zmm2/m512 using writemask k1.|
 ### Instruction Operand Encoding
 
 
@@ -87,198 +87,198 @@ VEX.128 encoded version: Bits (MAX_VL-1:128) of the destination register are zer
 #### VMOVDQU8 (EVEX encoded versions, register-copy form)
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
-FOR j  <- 0 TO KL-1
- i <-  j * 8
- IF k1[j] OR *no writemask*
-   THEN DEST[i+7:i]  <- SRC[i+7:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+7:i] remains unchanged*
-      ELSE  DEST[i+7:i] <-  0  ; zeroing-masking
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i <-   j * 8
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+7:i]  <-  SRC[i+7:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+7:i] remains unchanged*
+                      ELSE  DEST[i+7:i] <-   0  ; zeroing-masking
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VMOVDQU8 (EVEX encoded versions, store-form) 
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
-FOR j <-  0 TO KL-1
- i  <- j * 8
- IF k1[j] OR *no writemask*
-   THEN DEST[i+7:i] <- 
-    SRC[i+7:i]
-   ELSE *DEST[i+7:i] remains unchanged* ; merging-masking
- FI;
+FOR j <-   0 TO KL-1
+    i  <-  j * 8
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+7:i] <-  
+                SRC[i+7:i]
+          ELSE *DEST[i+7:i] remains unchanged* ; merging-masking
+    FI;
 ENDFOR;
 ```
 #### VMOVDQU8 (EVEX encoded versions, load-form) 
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 8
- IF k1[j] OR *no writemask*
-   THEN DEST[i+7:i] <-  SRC[i+7:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+7:i] remains unchanged*
-      ELSE  DEST[i+7:i]  <- 0  ; zeroing-masking
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 8
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+7:i] <-   SRC[i+7:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+7:i] remains unchanged*
+                      ELSE  DEST[i+7:i]  <-  0  ; zeroing-masking
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VMOVDQU16 (EVEX encoded versions, register-copy form)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j <-  0 TO KL-1
- i  <- j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+15:i]  <- SRC[i+15:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+15:i] remains unchanged*
-      ELSE  DEST[i+15:i]  <- 0  ; zeroing-masking
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i  <-  j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+15:i]  <-  SRC[i+15:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+15:i] remains unchanged*
+                      ELSE  DEST[i+15:i]  <-  0  ; zeroing-masking
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VMOVDQU16 (EVEX encoded versions, store-form) 
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j  <- 0 TO KL-1
- i <-  j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+15:i]<-  
-    SRC[i+15:i]
-   ELSE *DEST[i+15:i] remains unchanged* ; merging-masking
- FI;
+FOR j  <-  0 TO KL-1
+    i <-   j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+15:i]<-   
+                SRC[i+15:i]
+          ELSE *DEST[i+15:i] remains unchanged* ; merging-masking
+    FI;
 ENDFOR;
 ```
 #### VMOVDQU16 (EVEX encoded versions, load-form) 
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j  <- 0 TO KL-1
- i <-  j * 16
- IF k1[j] OR *no writemask*
-   THEN DEST[i+15:i]  <- SRC[i+15:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+15:i] remains unchanged*
-      ELSE  DEST[i+15:i]  <- 0  ; zeroing-masking
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i <-   j * 16
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+15:i]  <-  SRC[i+15:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+15:i] remains unchanged*
+                      ELSE  DEST[i+15:i]  <-  0  ; zeroing-masking
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VMOVDQU32 (EVEX encoded versions, register-copy form)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i]  <- SRC[i+31:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  DEST[i+31:i] <-  0  ; zeroing-masking
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i]  <-  SRC[i+31:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  DEST[i+31:i] <-   0  ; zeroing-masking
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VMOVDQU32 (EVEX encoded versions, store-form) 
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i]<-  
-    SRC[i+31:i]
-   ELSE *DEST[i+31:i] remains unchanged* ; merging-masking
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i]<-   
+                SRC[i+31:i]
+          ELSE *DEST[i+31:i] remains unchanged* ; merging-masking
+    FI;
 ENDFOR;
 ```
 #### VMOVDQU32 (EVEX encoded versions, load-form) 
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j <-  0 TO KL-1
- i  <- j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i]  <- SRC[i+31:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  DEST[i+31:i] <-  0  ; zeroing-masking
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i  <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i]  <-  SRC[i+31:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  DEST[i+31:i] <-   0  ; zeroing-masking
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VMOVDQU64 (EVEX encoded versions, register-copy form)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i]  <- SRC[i+63:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE  DEST[i+63:i] <-  0  ; zeroing-masking
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i]  <-  SRC[i+63:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE  DEST[i+63:i] <-   0  ; zeroing-masking
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VMOVDQU64 (EVEX encoded versions, store-form) 
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-  0 TO KL-1
- i  <- j * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i] <- SRC[i+63:i]
-   ELSE *DEST[i+63:i] remains unchanged* ; merging-masking
- FI;
+FOR j <-   0 TO KL-1
+    i  <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i] <-  SRC[i+63:i]
+          ELSE *DEST[i+63:i] remains unchanged* ; merging-masking
+    FI;
 ENDFOR;
 ```
 #### VMOVDQU64 (EVEX encoded versions, load-form) 
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i] <-  SRC[i+63:i]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE  DEST[i+63:i] <-  0  ; zeroing-masking
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i] <-   SRC[i+63:i]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE  DEST[i+63:i] <-   0  ; zeroing-masking
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VMOVDQU (VEX.256 encoded version, load - and register copy)
 ```info-verb
-DEST[255:0] <-  SRC[255:0]
-DEST[MAX_VL-1:256] <-  0
+DEST[255:0] <-   SRC[255:0]
+DEST[MAX_VL-1:256] <-   0
 ```
 #### VMOVDQU (VEX.256 encoded version, store-form)
 ```info-verb
-DEST[255:0]  <- SRC[255:0]
+DEST[255:0]  <-  SRC[255:0]
 VMOVDQU (VEX.128 encoded version)
-DEST[127:0]  <- SRC[127:0]
-DEST[MAX_VL-1:128]  <- 0
+DEST[127:0]  <-  SRC[127:0]
+DEST[MAX_VL-1:128]  <-  0
 ```
 #### VMOVDQU (128-bit load- and register-copy- form Legacy SSE version)
 ```info-verb
-DEST[127:0] <-  SRC[127:0]
+DEST[127:0] <-   SRC[127:0]
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### (V)MOVDQU (128-bit store-form version)
 ```info-verb
-DEST[127:0] <-  SRC[127:0]
+DEST[127:0] <-   SRC[127:0]
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

@@ -32,12 +32,12 @@ This instruction is not supported in real mode and virtual-8086 mode. The operan
 N <- SRC2[7:0]
 DEST <- SRC1
 IF (N < OperandSize)
- DEST[OperandSize-1:N] <- 0
+    DEST[OperandSize-1:N] <- 0
 FI
 IF (N > OperandSize - 1)
- CF <- 1
+    CF <- 1
 ELSE
- CF <- 0
+    CF <- 0
 FI
 ```
 ### Flags Affected

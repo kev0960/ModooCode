@@ -28,15 +28,15 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF SRC is ST(i)
- THEN
-   temp <- ST(i);
+    THEN
+          temp <- ST(i);
 FI;
 TOP <- TOP - 1;
 IF SRC is memory-operand
- THEN
-   ST(0) <- ConvertToDoubleExtendedPrecisionFP(SRC);
- ELSE (* SRC is ST(i) *)
-   ST(0) <- temp;
+    THEN
+          ST(0) <- ConvertToDoubleExtendedPrecisionFP(SRC);
+    ELSE (* SRC is ST(i) *)
+          ST(0) <- temp;
 FI;
 ```
 ### FPU Flags Affected

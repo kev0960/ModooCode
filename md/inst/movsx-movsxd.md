@@ -16,13 +16,12 @@ path : /X86-64 명령어 레퍼런스
 |0F BF /r|MOVSX r32, r/m16|RM|Valid|Valid|Move word to doubleword, with sign-extension.|
 |REX.W + 0F BF /r|MOVSX r64, r/m16|RM|Valid |N.E.|Move word to quadword with sign-extension.|
 |REX.W\htmlonly{*}\htmlonly{*} + 63 /r|MOVSXD r64, r/m32|RM|Valid |N.E.|Move doubleword to quadword with sign-extension.|
-### NOTES:
 
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
 
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
-
-\htmlonly{*}\htmlonly{*}The use of MOVSXD without REX.W in 64-bit mode is discouraged, Regular MOV should be used instead of using MOVSXD without REX.W. 
-
+\htmlonly{*}\htmlonly{*}The use of MOVSXD without REX.W in 64-bit mode is discouraged, Regular MOV should be used instead of using MOVSXD without REX.W.
+```
 ### Instruction Operand Encoding
 
 

@@ -10,19 +10,18 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 38 01 /r\footnote{1}  \newline{}PHADDW mm1, mm2/m64|RM|V/V|SSSE3|Add 16-bit integers horizontally, pack to mm1. |
-|66 0F 38 01 /r\newline{}PHADDW xmm1, xmm2/m128|RM|V/V|SSSE3|Add 16-bit integers horizontally, pack to xmm1.|
-|0F 38 02 /r \newline{}PHADDD mm1, mm2/m64|RM|V/V|SSSE3|Add 32-bit integers horizontally, pack to mm1. |
-|66 0F 38 02 /r\newline{}PHADDD xmm1, xmm2/m128|RM|V/V|SSSE3|Add 32-bit integers horizontally, pack to xmm1. |
-|VEX.NDS.128.66.0F38.WIG 01 /r\newline{}VPHADDW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add 16-bit integers horizontally, pack to xmm1.|
-|VEX.NDS.128.66.0F38.WIG 02 /r\newline{}VPHADDD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add 32-bit integers horizontally, pack to xmm1.|
-|VEX.NDS.256.66.0F38.WIG 01 /r\newline{}VPHADDW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add 16-bit signed integers horizontally, pack to ymm1.|
-|VEX.NDS.256.66.0F38.WIG 02 /r\newline{}VPHADDD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add 32-bit signed integers horizontally, pack to ymm1.|
-### NOTES:
+|0F 38 01 /r\footnote{1}  \newline{}\newline{}PHADDW mm1, mm2/m64|RM|V/V|SSSE3|Add 16-bit integers horizontally, pack to mm1. |
+|66 0F 38 01 /r\newline{}\newline{}PHADDW xmm1, xmm2/m128|RM|V/V|SSSE3|Add 16-bit integers horizontally, pack to xmm1.|
+|0F 38 02 /r \newline{}\newline{}PHADDD mm1, mm2/m64|RM|V/V|SSSE3|Add 32-bit integers horizontally, pack to mm1. |
+|66 0F 38 02 /r\newline{}\newline{}PHADDD xmm1, xmm2/m128|RM|V/V|SSSE3|Add 32-bit integers horizontally, pack to xmm1. |
+|VEX.NDS.128.66.0F38.WIG 01 /r\newline{}\newline{}VPHADDW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add 16-bit integers horizontally, pack to xmm1.|
+|VEX.NDS.128.66.0F38.WIG 02 /r\newline{}\newline{}VPHADDD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add 32-bit integers horizontally, pack to xmm1.|
+|VEX.NDS.256.66.0F38.WIG 01 /r\newline{}\newline{}VPHADDW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add 16-bit signed integers horizontally, pack to ymm1.|
+|VEX.NDS.256.66.0F38.WIG 02 /r\newline{}\newline{}VPHADDD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add 32-bit signed integers horizontally, pack to ymm1.|
 
-
-1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
-
+```note
+1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A
+```
 ### Instruction Operand Encoding
 
 
@@ -345,133 +344,133 @@ Note: VEX.L must be 0, otherwise the instruction will #UD.
 
 **PHADDW (with 64-bit operands)**
 
- mm1[15-0]  = mm1[31-16] + mm1[15-0]; 
+    mm1[15-0]  = mm1[31-16] + mm1[15-0]; 
 
- mm1[31-16] = mm1[63-48] + mm1[47-32]; 
+    mm1[31-16] = mm1[63-48] + mm1[47-32]; 
 
- mm1[47-32] = mm2/m64[31-16] + mm2/m64[15-0]; 
+    mm1[47-32] = mm2/m64[31-16] + mm2/m64[15-0]; 
 
- mm1[63-48] = mm2/m64[63-48] + mm2/m64[47-32]; 
+    mm1[63-48] = mm2/m64[63-48] + mm2/m64[47-32]; 
 
 **PHADDW (with 128-bit operands)**
 
- xmm1[15-0] = xmm1[31-16] + xmm1[15-0]; 
+    xmm1[15-0] = xmm1[31-16] + xmm1[15-0]; 
 
- xmm1[31-16] = xmm1[63-48] + xmm1[47-32]; 
+    xmm1[31-16] = xmm1[63-48] + xmm1[47-32]; 
 
- xmm1[47-32] = xmm1[95-80] + xmm1[79-64]; 
+    xmm1[47-32] = xmm1[95-80] + xmm1[79-64]; 
 
- xmm1[63-48] = xmm1[127-112] + xmm1[111-96]; 
+    xmm1[63-48] = xmm1[127-112] + xmm1[111-96]; 
 
- xmm1[79-64] = xmm2/m128[31-16] + xmm2/m128[15-0]; 
+    xmm1[79-64] = xmm2/m128[31-16] + xmm2/m128[15-0]; 
 
- xmm1[95-80] = xmm2/m128[63-48] + xmm2/m128[47-32]; 
+    xmm1[95-80] = xmm2/m128[63-48] + xmm2/m128[47-32]; 
 
- xmm1[111-96] = xmm2/m128[95-80] + xmm2/m128[79-64]; 
+    xmm1[111-96] = xmm2/m128[95-80] + xmm2/m128[79-64]; 
 
- xmm1[127-112] = xmm2/m128[127-112] + xmm2/m128[111-96]; 
+    xmm1[127-112] = xmm2/m128[127-112] + xmm2/m128[111-96]; 
 
 **VPHADDW (VEX.128 encoded version)**
 
-DEST[15:0] <-  SRC1[31:16] + SRC1[15:0]
+DEST[15:0] <-   SRC1[31:16] + SRC1[15:0]
 
-DEST[31:16]  <- SRC1[63:48] + SRC1[47:32]
+DEST[31:16]  <-  SRC1[63:48] + SRC1[47:32]
 
-DEST[47:32] <-  SRC1[95:80] + SRC1[79:64]
+DEST[47:32] <-   SRC1[95:80] + SRC1[79:64]
 
-DEST[63:48]  <- SRC1[127:112] + SRC1[111:96]
+DEST[63:48]  <-  SRC1[127:112] + SRC1[111:96]
 
-DEST[79:64] <-  SRC2[31:16] + SRC2[15:0]
+DEST[79:64] <-   SRC2[31:16] + SRC2[15:0]
 
-DEST[95:80]  <- SRC2[63:48] + SRC2[47:32]
+DEST[95:80]  <-  SRC2[63:48] + SRC2[47:32]
 
-DEST[111:96]  <- SRC2[95:80] + SRC2[79:64]
+DEST[111:96]  <-  SRC2[95:80] + SRC2[79:64]
 
-DEST[127:112] <-  SRC2[127:112] + SRC2[111:96]
+DEST[127:112] <-   SRC2[127:112] + SRC2[111:96]
 
-DEST[VLMAX-1:128] <-  0
+DEST[VLMAX-1:128] <-   0
 
 
 
 **VPHADDW (VEX.256 encoded version)**
 
-DEST[15:0] <-  SRC1[31:16] + SRC1[15:0]
+DEST[15:0] <-   SRC1[31:16] + SRC1[15:0]
 
-DEST[31:16] <-  SRC1[63:48] + SRC1[47:32]
+DEST[31:16] <-   SRC1[63:48] + SRC1[47:32]
 
-DEST[47:32] <-  SRC1[95:80] + SRC1[79:64]
+DEST[47:32] <-   SRC1[95:80] + SRC1[79:64]
 
-DEST[63:48]  <- SRC1[127:112] + SRC1[111:96]
+DEST[63:48]  <-  SRC1[127:112] + SRC1[111:96]
 
-DEST[79:64] <-  SRC2[31:16] + SRC2[15:0]
+DEST[79:64] <-   SRC2[31:16] + SRC2[15:0]
 
-DEST[95:80]  <- SRC2[63:48] + SRC2[47:32]
+DEST[95:80]  <-  SRC2[63:48] + SRC2[47:32]
 
-DEST[111:96] <-  SRC2[95:80] + SRC2[79:64]
+DEST[111:96] <-   SRC2[95:80] + SRC2[79:64]
 
-DEST[127:112]  <- SRC2[127:112] + SRC2[111:96]
+DEST[127:112]  <-  SRC2[127:112] + SRC2[111:96]
 
-DEST[143:128]  <- SRC1[159:144] + SRC1[143:128]
+DEST[143:128]  <-  SRC1[159:144] + SRC1[143:128]
 
-DEST[159:144] <-  SRC1[191:176] + SRC1[175:160]
+DEST[159:144] <-   SRC1[191:176] + SRC1[175:160]
 
-DEST[175:160] <-  SRC1[223:208] + SRC1[207:192]
+DEST[175:160] <-   SRC1[223:208] + SRC1[207:192]
 
-DEST[191:176] <-  SRC1[255:240] + SRC1[239:224]
+DEST[191:176] <-   SRC1[255:240] + SRC1[239:224]
 
-DEST[207:192] <-  SRC2[127:112] + SRC2[143:128]
+DEST[207:192] <-   SRC2[127:112] + SRC2[143:128]
 
-DEST[223:208] <-  SRC2[159:144] + SRC2[175:160]
+DEST[223:208] <-   SRC2[159:144] + SRC2[175:160]
 
-DEST[239:224]  <- SRC2[191:176] + SRC2[207:192]
+DEST[239:224]  <-  SRC2[191:176] + SRC2[207:192]
 
-DEST[255:240] <-  SRC2[223:208] + SRC2[239:224]
+DEST[255:240] <-   SRC2[223:208] + SRC2[239:224]
 
 **PHADDD (with 64-bit operands)**
 
- mm1[31-0]  = mm1[63-32] + mm1[31-0]; 
+    mm1[31-0]  = mm1[63-32] + mm1[31-0]; 
 
- mm1[63-32] = mm2/m64[63-32] + mm2/m64[31-0]; 
+    mm1[63-32] = mm2/m64[63-32] + mm2/m64[31-0]; 
 
 **PHADDD (with 128-bit operands)**
 
- xmm1[31-0] = xmm1[63-32] + xmm1[31-0]; 
+    xmm1[31-0] = xmm1[63-32] + xmm1[31-0]; 
 
- xmm1[63-32] = xmm1[127-96] + xmm1[95-64]; 
+    xmm1[63-32] = xmm1[127-96] + xmm1[95-64]; 
 
- xmm1[95-64] = xmm2/m128[63-32] + xmm2/m128[31-0]; 
+    xmm1[95-64] = xmm2/m128[63-32] + xmm2/m128[31-0]; 
 
- xmm1[127-96] = xmm2/m128[127-96] + xmm2/m128[95-64]; 
+    xmm1[127-96] = xmm2/m128[127-96] + xmm2/m128[95-64]; 
 
 **VPHADDD (VEX.128 encoded version)**
 
-DEST[31-0] <-  SRC1[63-32] + SRC1[31-0]
+DEST[31-0] <-   SRC1[63-32] + SRC1[31-0]
 
-DEST[63-32]  <- SRC1[127-96] + SRC1[95-64]
+DEST[63-32]  <-  SRC1[127-96] + SRC1[95-64]
 
-DEST[95-64] <-  SRC2[63-32] + SRC2[31-0]
+DEST[95-64] <-   SRC2[63-32] + SRC2[31-0]
 
-DEST[127-96] <-  SRC2[127-96] + SRC2[95-64]
+DEST[127-96] <-   SRC2[127-96] + SRC2[95-64]
 
-DEST[VLMAX-1:128] <-  0
+DEST[VLMAX-1:128] <-   0
 
 **VPHADDD (VEX.256 encoded version)**
 
-DEST[31-0]  <- SRC1[63-32] + SRC1[31-0]
+DEST[31-0]  <-  SRC1[63-32] + SRC1[31-0]
 
-DEST[63-32] <-  SRC1[127-96] + SRC1[95-64]
+DEST[63-32] <-   SRC1[127-96] + SRC1[95-64]
 
-DEST[95-64] <-  SRC2[63-32] + SRC2[31-0]
+DEST[95-64] <-   SRC2[63-32] + SRC2[31-0]
 
-DEST[127-96]  <- SRC2[127-96] + SRC2[95-64]
+DEST[127-96]  <-  SRC2[127-96] + SRC2[95-64]
 
-DEST[159-128] <-  SRC1[191-160] + SRC1[159-128]
+DEST[159-128] <-   SRC1[191-160] + SRC1[159-128]
 
-DEST[191-160]  <- SRC1[255-224] + SRC1[223-192]
+DEST[191-160]  <-  SRC1[255-224] + SRC1[223-192]
 
-DEST[223-192] <-  SRC2[191-160] + SRC2[159-128]
+DEST[223-192] <-   SRC2[191-160] + SRC2[159-128]
 
-DEST[255-224] <-  SRC2[255-224] + SRC2[223-192]
+DEST[255-224] <-   SRC2[255-224] + SRC2[223-192]
 
 
 ### Intel C/C++ Compiler Intrinsic Equivalents

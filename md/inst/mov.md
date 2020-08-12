@@ -44,15 +44,14 @@ path : /X86-64 명령어 레퍼런스
 |C7 /0 iw|MOV r/m16, imm16|MI|Valid|Valid|Move imm16 to r/m16.|
 |C7 /0 id|MOV r/m32, imm32|MI|Valid|Valid|Move imm32 to r/m32.|
 |REX.W + C7 /0 id|MOV r/m64, imm32|MI|Valid |N.E.|Move imm32 sign extended to 64-bits to r/m64.|
-### NOTES:
 
-
-\htmlonly{*}The moffs8, moffs16, moffs32 and moffs64 operands specify a simple offset relative to the segment base, where 8, 16, 32 and 64 refer to the size of the data. The address-size attribute of the instruction determines the size of the offset, either 16, 32 or 64 bits.
+```note
+\htmlonly{*} The moffs8, moffs16, moffs32 and moffs64 operands specify a simple offset relative to the segment base, where 8, 16, 32 and 64 refer to the size of the data. The address-size attribute of the instruction determines the size of the offset, either 16, 32 or 64 bits.
 
 \htmlonly{*}\htmlonly{*}In 32-bit mode, the assembler may insert the 16-bit operand-size prefix with this instruction (see the following "Description" sec-tion for further information).
 
-\htmlonly{*}\htmlonly{*}\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH. 
-
+\htmlonly{*}\htmlonly{*}\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 
@@ -79,15 +78,15 @@ Loading the SS register with a `MOV` instruction inhibits all interrupts until a
 
 When executing `MOV` Reg, Sreg, the processor copies the content of Sreg to the 16 least significant bits of the general-purpose register. The upper bits of the destination register are zero for most IA-32 processors (Pentium 
 
+```sidenote
 
 
-1.If a code instruction breakpoint (for debug) is placed on an instruction located immediately after a `MOV` SS instruction, the break-point may not be triggered. However, in a sequence of instructions that load the SS register, only the first instruction in the sequence is guaranteed to delay an interrupt.
+1. If a code instruction breakpoint (for debug) is placed on an instruction located immediately after a MOV SS instruction, the break-point may not be triggered. However, in a sequence of instructions that load the SS register, only the first instruction in the sequence is guaranteed to delay an interrupt.
 
- In the following sequence, interrupts may be recognized before `MOV` ESP, EBP executes:
+    In the following sequence, interrupts may be recognized before MOV ESP, EBP executes:
 
- `MOV` SS, EDXMOV SS, EAXMOV ESP, EBP
-
-
+    MOV SS, EDXMOV SS, EAXMOV ESP, EBP
+```
 
 Pro processors and later) and all Intel 64 processors, with the exception that bits 31:16 are undefined for Intel Quark X1000 processors, Pentium and earlier processors.
 
@@ -100,36 +99,36 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Use of the 
 DEST <- SRC;
 Loading a segment register while in protected mode results in special checks and actions, as described in the following listing. These checks are performed on the segment selector and the segment descriptor to which it points.
 IF SS is loaded
- THEN
-   IF segment selector is NULL
-    THEN #GP(0); FI;
-   IF segment selector index is outside descriptor table limits 
-   or segment selector's RPL != CPL
-   or segment is not a writable data segmentor DPL != CPL
-    THEN #GP(selector); FI;
-   IF segment not marked present 
-    THEN #SS(selector); 
-    ELSE
-      SS <- segment selector;
-      SS <- segment descriptor; FI;
+    THEN
+          IF segment selector is NULL
+                THEN #GP(0); FI;
+          IF segment selector index is outside descriptor table limits 
+          or segment selector's RPL != CPL
+          or segment is not a writable data segmentor DPL != CPL
+                THEN #GP(selector); FI;
+          IF segment not marked present 
+                THEN #SS(selector); 
+                ELSE
+                      SS <- segment selector;
+                      SS <- segment descriptor; FI;
 FI;
 IF DS, ES, FS, or GS is loaded with non-NULL selector
 THEN
- IF segment selector index is outside descriptor table limits
- or segment is not a data or readable code segment
- or ((segment is a data or nonconforming code segment)
- or ((RPL > DPL) and (CPL > DPL))
-   THEN #GP(selector); FI;
- IF segment not marked present
-   THEN #NP(selector);
-   ELSE
-    SegmentRegister <- segment selector;
-    SegmentRegister <- segment descriptor; FI;
+    IF segment selector index is outside descriptor table limits
+    or segment is not a data or readable code segment
+    or ((segment is a data or nonconforming code segment)
+    or ((RPL > DPL) and (CPL > DPL))
+          THEN #GP(selector); FI;
+    IF segment not marked present
+          THEN #NP(selector);
+          ELSE
+                SegmentRegister <- segment selector;
+                SegmentRegister <- segment descriptor; FI;
 FI;
 IF DS, ES, FS, or GS is loaded with NULL selector
- THEN
-   SegmentRegister <- segment selector;
-   SegmentRegister <- segment descriptor;
+    THEN
+          SegmentRegister <- segment selector;
+          SegmentRegister <- segment descriptor;
 FI;
 ```
 ### Flags Affected

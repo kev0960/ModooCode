@@ -34,12 +34,12 @@ In 64-bit mode, the operand size is still fixed at 16 bits. The instruction refe
 ```info-verb
 IF SRC is a NULL selectorTHEN #GP(0);
 IF SRC(Offset) > descriptor table limit OR IF SRC(type) != global
- THEN #GP(segment selector); FI;
+    THEN #GP(segment selector); FI;
 Read segment descriptor;
 IF segment descriptor is not for an available TSS 
- THEN #GP(segment selector); FI;
+    THEN #GP(segment selector); FI;
 IF segment descriptor is not present 
- THEN #NP(segment selector); FI;
+    THEN #NP(segment selector); FI;
 TSSsegmentDescriptor(busy) <- 1; 
 (* Locked read-modify-write operation on the entire descriptor when setting busy flag *)
 TaskRegister(SegmentSelector) <- SRC;

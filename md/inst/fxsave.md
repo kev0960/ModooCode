@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F AE /0\newline{}FXSAVE m512byte|M|Valid|Valid|Save the x87 FPU, MMX, XMM, and MXCSR register state to m512byte.|
-|REX.W+ 0F AE /0\newline{}FXSAVE64 m512byte|M|Valid|N.E.|Save the x87 FPU, MMX, XMM, and MXCSR register state to m512byte.|
+|0F AE /0\newline{}\newline{}FXSAVE m512byte|M|Valid|Valid|Save the x87 FPU, MMX, XMM, and MXCSR register state to m512byte.|
+|REX.W+ 0F AE /0\newline{}\newline{}FXSAVE64 m512byte|M|Valid|N.E.|Save the x87 FPU, MMX, XMM, and MXCSR register state to m512byte.|
 ### Instruction Operand Encoding
 
 
@@ -32,84 +32,84 @@ The operation of `FXSAVE` in non-64-bit modes is described first.
 
 Table 3-43 shows the layout of the state information in memory when the processor is operating in legacy modes.
 
-###           Table 3-43.  Non-64-bit-Mode Layout of FXSAVE and FXRSTOR Memory Region
+###                                   Table 3-43.  Non-64-bit-Mode Layout of FXSAVE and FXRSTOR Memory Region
 
 
-**15 14 13  12 1110 9  8 7 6 5  4 3 2 1 0**
+**15 14 13  12 11 10 9  8 7 6 5  4 3 2 1 0**
 
-Rsvd FCS FIP[31:0] FOP Rsvd FTW FSW FCW** 0**
+  Rsvd FCS FIP[31:0] FOP Rsvd FTW FSW FCW** 0**
 
- MXCSR_MASK MXCSR Rsrvd FDS FDP[31:0]** 16**
+     MXCSR_MASK MXCSR Rsrvd FDS FDP[31:0]** 16**
 
-     Reserved ST0/MM0** 32**
+                  Reserved ST0/MM0** 32**
 
-     Reserved ST1/MM1** 48**
+                  Reserved ST1/MM1** 48**
 
-     Reserved ST2/MM2** 64**
+                  Reserved ST2/MM2** 64**
 
-     Reserved ST3/MM3** 80**
+                  Reserved ST3/MM3** 80**
 
-     Reserved ST4/MM4** 96**
+                  Reserved ST4/MM4** 96**
 
-     Reserved ST5/MM5** 112**
+                  Reserved ST5/MM5** 112**
 
-     Reserved ST6/MM6** 128**
+                  Reserved ST6/MM6** 128**
 
-     Reserved ST7/MM7** 144**
+                  Reserved ST7/MM7** 144**
 
-                     XMM0** 160**
+                                                                      XMM0** 160**
 
-                     XMM1** 176**
+                                                                      XMM1** 176**
 
-                     XMM2** 192**
+                                                                      XMM2** 192**
 
-                     XMM3** 208**
+                                                                      XMM3** 208**
 
-                     XMM4** 224**
+                                                                      XMM4** 224**
 
-                     XMM5** 240**
+                                                                      XMM5** 240**
 
-                     XMM6** 256**
+                                                                      XMM6** 256**
 
-                     XMM7** 272**
+                                                                      XMM7** 272**
 
-                    Reserved** 288**
+                                                                    Reserved** 288**
 
 
 
 |||||
 |||||
 |||||
-###            Table 3-43.  Non-64-bit-Mode Layout of FXSAVE and FXRSTOR Memory Region (Contd.)
+###                                       Table 3-43.  Non-64-bit-Mode Layout of FXSAVE and FXRSTOR Memory Region (Contd.)
 
 
-**15 14 13  12 1110 9  8 7 6 5  4 3 2 1 0**
+**15 14 13  12 11 10 9  8 7 6 5  4 3 2 1 0**
 
-                     Reserved** 304**
+                                                                        Reserved** 304**
 
-                     Reserved** 320**
+                                                                        Reserved** 320**
 
-                     Reserved** 336**
+                                                                        Reserved** 336**
 
-                     Reserved** 352**
+                                                                        Reserved** 352**
 
-                     Reserved** 368**
+                                                                        Reserved** 368**
 
-                     Reserved** 384**
+                                                                        Reserved** 384**
 
-                     Reserved** 400**
+                                                                        Reserved** 400**
 
-                     Reserved** 416**
+                                                                        Reserved** 416**
 
-                     Reserved** 432**
+                                                                        Reserved** 432**
 
-                     Reserved** 448**
+                                                                        Reserved** 448**
 
-                     Available** 464**
+                                                                        Available** 464**
 
-                     Available** 480**
+                                                                        Available** 480**
 
-                     Available** 496**
+                                                                        Available** 496**
 
 The destination operand contains the first byte of the memory image, and it must be aligned on a 16-byte boundary. A misaligned destination operand will result in a general-protection (#GP) exception being generated (or in some cases, an alignment check exception [#AC]).
 
@@ -117,7 +117,7 @@ The FXSAVE instruction is used when an operating system needs to perform a conte
 
 The fields in Table 3-43 are defined in Table 3-44.
 
-###                   Table 3-44.  Field Definitions 
+###                                                             Table 3-44.  Field Definitions 
 
 
 FCW x87 FPU Control Word (16 bits). See Figure 8-6 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for the layout of the x87 FPU control word.
@@ -133,24 +133,24 @@ FCW x87 FPU Control Word (16 bits). See Figure 8-6 in the Intel(R) 64 and IA-32 
 |Abridged FTW|x87 FPU Tag Word (8 bits). The tag information saved here is abridged, as described in the following paragraphs.|
 |FOP|x87 FPU Opcode (16 bits). The lower 11 bits of this field contain the opcode, upper 5 bits are reserved. See Figure 8-8 in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for the layout of the x87 FPU opcode field.|
 |FIP|x87 FPU Instruction Pointer Offset (64 bits). The contents of this field differ depending on the current addressing mode (32-bit, 16-bit, or 64-bit) of the processor when the FXSAVE instruction was executed:\newline{}32-bit mode -- 32-bit IP offset.\newline{}16-bit mode -- low 16 bits are IP offset; high 16 bits are reserved.\newline{}64-bit mode with REX.W -- 64-bit IP offset.\newline{}64-bit mode without REX.W -- 32-bit IP offset.\newline{}See "x87 FPU Instruction and Operand (Data) Pointers" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for a description of the x87 FPU instruction pointer.|
-###                  Table 3-44.  Field Definitions  (Contd.)
+###                                                          Table 3-44.  Field Definitions  (Contd.)
 
 
 FCS x87 FPU Instruction Pointer Selector (16 bits). If CPUID.(EAX=07H,ECX=0H):EBX[bit 13]= 1, the processor deprecates FCS and FDS, and this field is saved as 0000H.
 
 The FXSAVE instruction saves an abridged version of the x87 FPU tag word in the FTW field (unlike the FSAVE instruction, which saves the complete tag word). The tag information is saved in physical register order (R0 through R7), rather than in top-of-stack (TOS) order. With the FXSAVE instruction, however, only a single bit (1 for valid or 0 for empty) is saved for each tag. For example, assume that the tag word is currently set as follows:
 
- R7R6R5R4R3R2R1R0
+    R7 R6 R5 R4 R3 R2 R1 R0
 
- 11xxxxxx11111111
+    11 xx xx xx 11 11 11 11
 
 Here, 11B indicates empty stack elements and "xx" indicates valid (00B), zero (01B), or special (10B). 
 
 For this example, the FXSAVE instruction saves only the following 8 bits of information:
 
- R7R6R5R4R3R2R1R0
+    R7 R6 R5 R4 R3 R2 R1 R0
 
- 0 1 1 1 0 0 0 0
+    0 1 1 1 0 0 0 0
 
 Here, a 1 is saved for any valid, zero, or special tag, and a 0 is saved for any empty tag.
 
@@ -181,36 +181,36 @@ used by an application program to pass a "clean" x87 FPU state to a procedure, s
 
 The FSAVE format for FTW can be recreated from the FTW valid bits and the stored 80-bit FP data (assuming the stored data was not the contents of MMX technology registers) using Table 3-45.
 
-###                 Table 3-45.  Recreating FSAVE Format 
+###                                                         Table 3-45.  Recreating FSAVE Format 
 
 
 **Exponent J and M FTW valid bit****all 1's bits x87 FTW**
 
-   0 0x 1 Special 10
+            0 0x 1 Special 10
 
-   0 1x 1 Valid 00
+            0 1x 1 Valid 00
 
-   0 00 1 Special 10
+            0 00 1 Special 10
 
-   0 10 1 Valid 00
+            0 10 1 Valid 00
 
-   0 0x 1 Special 10
+            0 0x 1 Special 10
 
-   0 1x 1 Special 10
+            0 1x 1 Special 10
 
-   0 00 1 Zero 01
+            0 00 1 Zero 01
 
-   0 10 1 Special 10
+            0 10 1 Special 10
 
-   1 1x 1 Special 10
+            1 1x 1 Special 10
 
-   1 1x 1 Special 10
+            1 1x 1 Special 10
 
-   1 00 1 Special 10
+            1 00 1 Special 10
 
-   1 10 1 Special 10
+            1 10 1 Special 10
 
-For all legal combinations above. 0 Empty 11
+  For all legal combinations above. 0 Empty 11
 
 The J-bit is defined to be the 1-bit binary integer to the left of the decimal place in the significand. The M-bit is defined to be the most significant bit of the fractional portion of the significand (i.e., the bit immediately to the right of the decimal place).
 
@@ -218,8 +218,8 @@ When the M-bit is the most significant bit of the fractional portion of the sign
 
 
 
-|**Exponent**\newline{}**all 0's**|**Fraction**\newline{}**all 0's**|
-|---------------------------------|---------------------------------|
+|**Exponent**\newline{}  **all 0's**|**Fraction**\newline{} **all 0's**|
+|-----------------------------------|----------------------------------|
 |0\newline{}0|0\newline{}0|
 |0\newline{}0|1\newline{}1|
 |1\newline{}1|0\newline{}0|
@@ -229,145 +229,145 @@ When the M-bit is the most significant bit of the fractional portion of the sign
 ### IA-32e Mode Operation
 
 
-In compatibility sub-mode of IA-32e mode, legacy SSE registers, XMM0 through XMM7, are saved according to the legacy FXSAVE map. In 64-bit mode, all of the SSE registers, XMM0 through XMM15, are saved. Additionally, there are two different layouts of the FXSAVE map in 64-bit mode, corresponding to FXSAVE64 (which requires REX.W=1) and FXSAVE (REX.W=0). In the FXSAVE64 map (Table3-46), the FPU IP and FPU DP pointers are 64-bit wide. In the FXSAVE map for 64-bit mode (Table3-47), the FPU IP and FPU DP pointers are 32-bits.
+In compatibility sub-mode of IA-32e mode, legacy SSE registers, XMM0 through XMM7, are saved according to the legacy FXSAVE map. In 64-bit mode, all of the SSE registers, XMM0 through XMM15, are saved. Additionally, there are two different layouts of the FXSAVE map in 64-bit mode, corresponding to FXSAVE64 (which requires REX.W=1) and FXSAVE (REX.W=0). In the FXSAVE64 map (Table 3-46), the FPU IP and FPU DP pointers are 64-bit wide. In the FXSAVE map for 64-bit mode (Table 3-47), the FPU IP and FPU DP pointers are 32-bits.
 
-###             Table 3-46.  Layout of the 64-bit-mode FXSAVE64 Map (requires REX.W = 1)
-
-
-1514 1312 1110 9 8 7 6 5  4 3 2 1 0
-
-        FIP FOP Reserved FTW FSW FCW** 0**
-
-MXCSR_MASK MXCSR FDP** 16**
-
-    Reserved ST0/MM0** 32**
-
-    Reserved ST1/MM1** 48**
-
-    Reserved ST2/MM2** 64**
-
-    Reserved ST3/MM3** 80**
-
-    Reserved ST4/MM4** 96**
-
-    Reserved ST5/MM5** 112**
-
-    Reserved ST6/MM6** 128**
-
-    Reserved ST7/MM7** 144**
-
-                    XMM0** 160**
-
-                    XMM1** 176**
-
-                    XMM2** 192**
-
-                    XMM3** 208**
-
-                    XMM4** 224**
-
-                    XMM5** 240**
-
-                    XMM6** 256**
-
-                    XMM7** 272**
-
-                    XMM8** 288**
-
-                    XMM9** 304**
-
-                    XMM10** 320**
-
-                    XMM11** 336**
-
-                    XMM12** 352**
-
-                    XMM13** 368**
-
-                    XMM14** 384**
-
-                    XMM15** 400**
-
-                   Reserved** 416**
-
-                   Reserved** 432**
-
-                   Reserved** 448**
-
-                    Available** 464**
-
-                    Available** 480**
-
-                    Available** 496**
-
-###          Table 3-47.  Layout of the 64-bit-mode FXSAVE Map (REX.W = 0)
+###                                         Table 3-46.  Layout of the 64-bit-mode FXSAVE64 Map (requires REX.W = 1)
 
 
-1514 13 12 1110 9 8 7 6 5  4 3 2 1 0
+15 14 13 12 11 10 9 8 7 6 5  4 3 2 1 0
+
+                             FIP FOP Reserved FTW FSW FCW** 0**
+
+   MXCSR_MASK MXCSR FDP** 16**
+
+                Reserved ST0/MM0** 32**
+
+                Reserved ST1/MM1** 48**
+
+                Reserved ST2/MM2** 64**
+
+                Reserved ST3/MM3** 80**
+
+                Reserved ST4/MM4** 96**
+
+                Reserved ST5/MM5** 112**
+
+                Reserved ST6/MM6** 128**
+
+                Reserved ST7/MM7** 144**
+
+                                                                    XMM0** 160**
+
+                                                                    XMM1** 176**
+
+                                                                    XMM2** 192**
+
+                                                                    XMM3** 208**
+
+                                                                    XMM4** 224**
+
+                                                                    XMM5** 240**
+
+                                                                    XMM6** 256**
+
+                                                                    XMM7** 272**
+
+                                                                    XMM8** 288**
+
+                                                                    XMM9** 304**
+
+                                                                   XMM10** 320**
+
+                                                                   XMM11** 336**
+
+                                                                   XMM12** 352**
+
+                                                                   XMM13** 368**
+
+                                                                   XMM14** 384**
+
+                                                                   XMM15** 400**
+
+                                                                  Reserved** 416**
+
+                                                                  Reserved** 432**
+
+                                                                  Reserved** 448**
+
+                                                                  Available** 464**
+
+                                                                  Available** 480**
+
+                                                                  Available** 496**
+
+###                                 Table 3-47.  Layout of the 64-bit-mode FXSAVE Map (REX.W = 0)
+
+
+15 14 13   12 11 10 9 8 7 6 5  4 3 2 1 0
 
 Reserved FCW** 0**
 
- MXCSR_MASK MXCSR Reserved FDS FDP[31:0]** 16**
+   MXCSR_MASK MXCSR Reserved FDS FDP[31:0]** 16**
 
-     Reserved ST0/MM0** 32**
+                 Reserved ST0/MM0** 32**
 
-     Reserved ST1/MM1** 48**
+                 Reserved ST1/MM1** 48**
 
-     Reserved ST2/MM2** 64**
+                 Reserved ST2/MM2** 64**
 
-     Reserved ST3/MM3** 80**
+                 Reserved ST3/MM3** 80**
 
-     Reserved ST4/MM4** 96**
+                 Reserved ST4/MM4** 96**
 
-     Reserved ST5/MM5** 112**
+                 Reserved ST5/MM5** 112**
 
-     Reserved ST6/MM6** 128**
+                 Reserved ST6/MM6** 128**
 
-     Reserved ST7/MM7** 144**
+                 Reserved ST7/MM7** 144**
 
-                    XMM0** 160**
+                                                                    XMM0** 160**
 
-                    XMM1** 176**
+                                                                    XMM1** 176**
 
-                    XMM2** 192**
+                                                                    XMM2** 192**
 
-                    XMM3** 208**
+                                                                    XMM3** 208**
 
-                    XMM4** 224**
+                                                                    XMM4** 224**
 
-                    XMM5** 240**
+                                                                    XMM5** 240**
 
-                    XMM6** 256**
+                                                                    XMM6** 256**
 
-                    XMM7** 272**
+                                                                    XMM7** 272**
 
-                    XMM8** 288**
+                                                                    XMM8** 288**
 
-                    XMM9** 304**
+                                                                    XMM9** 304**
 
-                    XMM10** 320**
+                                                                    XMM10** 320**
 
-                    XMM11** 336**
+                                                                    XMM11** 336**
 
-                    XMM12** 352**
+                                                                    XMM12** 352**
 
-                    XMM13** 368**
+                                                                    XMM13** 368**
 
-                    XMM14** 384**
+                                                                    XMM14** 384**
 
-                    XMM15** 400**
+                                                                    XMM15** 400**
 
-                    Reserved** 416**
+                                                                  Reserved** 416**
 
-                    Reserved** 432**
+                                                                  Reserved** 432**
 
-                    Reserved** 448**
+                                                                  Reserved** 448**
 
-                    Available** 464**
+                                                                   Available** 464**
 
-                    Available** 480**
+                                                                   Available** 480**
 
-                    Available** 496**
+                                                                   Available** 496**
 
 
 
@@ -378,15 +378,15 @@ Reserved FCW** 0**
 
 ```info-verb
 IF 64-Bit Mode
- THEN
-   IF REX.W = 1
     THEN
-      DEST <- Save64BitPromotedFxsave(x87 FPU, MMX, XMM15-XMM0,MXCSR);
+          IF REX.W = 1
+                THEN
+                      DEST <- Save64BitPromotedFxsave(x87 FPU, MMX, XMM15-XMM0,MXCSR);
+                ELSE
+                      DEST <- Save64BitDefaultFxsave(x87 FPU, MMX, XMM15-XMM0, MXCSR);
+          FI;
     ELSE
-      DEST <- Save64BitDefaultFxsave(x87 FPU, MMX, XMM15-XMM0, MXCSR);
-   FI;
- ELSE
-   DEST <- SaveLegacyFxsave(x87 FPU, MMX, XMM7-XMM0, MXCSR);
+          DEST <- SaveLegacyFxsave(x87 FPU, MMX, XMM7-XMM0, MXCSR);
 FI;
 ```
 

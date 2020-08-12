@@ -32,8 +32,8 @@ This instruction executes as described in compatibility mode and legacy mode. It
 
 ```info-verb
 IF 64-Bit ModeTHEN#UD;ELSEtempAL <- AL;
-   AH <- tempAL / imm8; (* imm8 is set to 0AH for the AAM mnemonic *)
-   AL <- tempAL MOD imm8;
+          AH <- tempAL / imm8; (* imm8 is set to 0AH for the AAM mnemonic *)
+          AL <- tempAL MOD imm8;
 FI;
 The immediate value (imm8) is taken from the second byte of the instruction.
 ```

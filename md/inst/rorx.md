@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|VEX.LZ.F2.0F3A.W0 F0 /r ibRORX r32, r/m32, imm8|RMI|V/V|BMI2|Rotate 32-bit r/m32 right imm8 times without affecting arithmetic flags.|
-|VEX.LZ.F2.0F3A.W1 F0 /r ibRORX r64, r/m64, imm8|RMI|V/N.E.|BMI2|Rotate 64-bit r/m64 right imm8 times without affecting arithmetic flags.|
+|VEX.LZ.F2.0F3A.W0 F0 /r ib\newline{}RORX r32, r/m32, imm8|RMI|V/V|BMI2|Rotate 32-bit r/m32 right imm8 times without affecting arithmetic flags.|
+|VEX.LZ.F2.0F3A.W1 F0 /r ib\newline{}RORX r64, r/m64, imm8|RMI|V/N.E.|BMI2|Rotate 64-bit r/m64 right imm8 times without affecting arithmetic flags.|
 ### Instruction Operand Encoding
 
 
@@ -30,11 +30,11 @@ This instruction is not supported in real mode and virtual-8086 mode. The operan
 
 ```info-verb
 IF (OperandSize = 32)
- y <- imm8 AND 1FH;
- DEST <- (SRC >> y) | (SRC << (32-y));
+    y <- imm8 AND 1FH;
+    DEST <- (SRC >> y) | (SRC << (32-y));
 ELSEIF (OperandSize = 64 ) 
- y <- imm8 AND 3FH;
- DEST <- (SRC >> y) | (SRC << (64-y));
+    y <- imm8 AND 3FH;
+    DEST <- (SRC >> y) | (SRC << (64-y));
 ENDIF
 ```
 ### Flags Affected

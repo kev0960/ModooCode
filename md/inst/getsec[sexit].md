@@ -50,27 +50,27 @@ At completion of `GETSEC[SEXIT]` by the ILP, execution proceeds to the next inst
 
 IF (CR4.SMXE=0)
 
- THEN #UD;
+    THEN #UD;
 
 ELSE IF (in VMX non-root operation)
 
- THEN VM Exit (reason="GETSEC instruction");
+    THEN VM Exit (reason="GETSEC instruction");
 
 ELSE IF (GETSEC leaf unsupported)
 
- THEN #UD;
+    THEN #UD;
 
 ELSE IF ((in VMX root operation) or
 
- (CR0.PE=0) or (CPL>0) or (EFLAGS.VM=1) or
+    (CR0.PE=0) or (CPL>0) or (EFLAGS.VM=1) or
 
- (IA32_APIC_BASE.BSP=0) or
+    (IA32_APIC_BASE.BSP=0) or
 
- (TXT chipset not present) or
+    (TXT chipset not present) or
 
- (SENTERFLAG=0) or (ACMODEFLAG=1) or (IN_SMM=1))
+    (SENTERFLAG=0) or (ACMODEFLAG=1) or (IN_SMM=1))
 
-   THEN #GP(0);
+          THEN #GP(0);
 
 SignalTXTMsg(SEXIT);
 
@@ -88,19 +88,19 @@ Unmask SignalSENTER event;
 
 IF (in VMX operation)
 
- THEN TXT-SHUTDOWN(#IllegalEvent);
+    THEN TXT-SHUTDOWN(#IllegalEvent);
 
 SignalTXTMsg(SEXITAck);
 
 IF (logical processor is not ILP)
 
- THEN GOTO RLP_SEXIT_ROUTINE;
+    THEN GOTO RLP_SEXIT_ROUTINE;
 
 (\htmlonly{*} ILP waits for all logical processors to ACK \htmlonly{*})
 
 DO
 
- DONE<- READ(LT.STS);
+    DONE<- READ(LT.STS);
 
 WHILE (NOT DONE);
 
@@ -122,21 +122,21 @@ Unmask SMI, INIT, A20M, and NMI external pin events;
 
 IF (prior execution state = HLT)
 
- THEN reenter HLT state;
+    THEN reenter HLT state;
 
 IF (prior execution state = SENTER sleep)
 
- THEN
+    THEN
 
-   IA32_APIC_BASE.BSP<- 0;
+          IA32_APIC_BASE.BSP<- 0;
 
-   Clear pending SIPI state;
+          Clear pending SIPI state;
 
-   Call INIT_PROCESSOR_STATE;
+          Call INIT_PROCESSOR_STATE;
 
-   Unmask SIPI event;
+          Unmask SIPI event;
 
-   GOTO WAIT-FOR-SIPI;
+          GOTO WAIT-FOR-SIPI;
 
 FI;
 
@@ -158,7 +158,7 @@ REP\htmlonly{*} Cause #UD (includes REPNE/REPNZ and REP/REPE/REPZ).
 
 Operand size Causes #UD.
 
-Segment overridesIgnored.
+Segment overrides Ignored.
 
 Address size Ignored.
 

@@ -24,7 +24,7 @@ path : /X86-64 명령어 레퍼런스
 
 Computes the effective address of the second operand (the source operand) and stores it in the first operand (destination operand). The source operand is a memory address (offset part) specified with one of the processors addressing modes; the destination operand is a general-purpose register. The address-size and operand-size attri-butes affect the action performed by this instruction, as shown in the following table. The operand-size attribute of the instruction is determined by the chosen register; the address-size attribute is determined by the attribute of the code segment.
 
-###       Table 3-53.  Non-64-bit Mode LEA Operation with Address and Operand Size Attributes
+###                     Table 3-53.  Non-64-bit Mode LEA Operation with Address and Operand Size Attributes
 
 
 Different assemblers may use different algorithms based on the size attribute and symbolic reference of the source operand.
@@ -55,36 +55,36 @@ In 64-bit mode, the instruction's destination operand is governed by operand siz
 
 ```info-verb
 IF OperandSize = 16 and AddressSize = 16
- THEN 
-   DEST <- EffectiveAddress(SRC); (* 16-bit address *)
- ELSE IF OperandSize = 16 and AddressSize = 32
-   THEN
-    temp <- EffectiveAddress(SRC); (* 32-bit address *)
-    DEST <- temp[0:15]; (* 16-bit address *)
-   FI;
- ELSE IF OperandSize = 32 and AddressSize = 16
-   THEN
-    temp <- EffectiveAddress(SRC); (* 16-bit address *)
-    DEST <- ZeroExtend(temp); (* 32-bit address *)
-   FI;
- ELSE IF OperandSize = 32 and AddressSize = 32
-   THEN 
-    DEST <- EffectiveAddress(SRC); (* 32-bit address *)
-   FI;
- ELSE IF OperandSize = 16 and AddressSize = 64
-   THEN 
-    temp <- EffectiveAddress(SRC); (* 64-bit address *)
-    DEST <- temp[0:15]; (* 16-bit address *)
-   FI;
- ELSE IF OperandSize = 32 and AddressSize = 64
-   THEN 
-    temp <- EffectiveAddress(SRC); (* 64-bit address *)
-    DEST <- temp[0:31]; (* 16-bit address *)
-   FI;
- ELSE IF OperandSize = 64 and AddressSize = 64
-   THEN 
-    DEST <- EffectiveAddress(SRC); (* 64-bit address *)
-   FI;
+    THEN 
+          DEST <- EffectiveAddress(SRC); (* 16-bit address *)
+    ELSE IF OperandSize = 16 and AddressSize = 32
+          THEN
+                temp <- EffectiveAddress(SRC); (* 32-bit address *)
+                DEST <- temp[0:15]; (* 16-bit address *)
+          FI;
+    ELSE IF OperandSize = 32 and AddressSize = 16
+          THEN
+                temp <- EffectiveAddress(SRC); (* 16-bit address *)
+                DEST <- ZeroExtend(temp); (* 32-bit address *)
+          FI;
+    ELSE IF OperandSize = 32 and AddressSize = 32
+          THEN 
+                DEST <- EffectiveAddress(SRC); (* 32-bit address *)
+          FI;
+    ELSE IF OperandSize = 16 and AddressSize = 64
+          THEN 
+                temp <- EffectiveAddress(SRC); (* 64-bit address *)
+                DEST <- temp[0:15]; (* 16-bit address *)
+          FI;
+    ELSE IF OperandSize = 32 and AddressSize = 64
+          THEN 
+                temp <- EffectiveAddress(SRC); (* 64-bit address *)
+                DEST <- temp[0:31]; (* 16-bit address *)
+          FI;
+    ELSE IF OperandSize = 64 and AddressSize = 64
+          THEN 
+                DEST <- EffectiveAddress(SRC); (* 64-bit address *)
+          FI;
 FI;
 ```
 ### Flags Affected

@@ -28,12 +28,12 @@ Computes the approximate tangent of the source operand in register ST(0), stores
 |+ F|- F to + F|
 |+ $$\infty$$|\htmlonly{*}|
 |NaN|NaN |
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-\htmlonly{*}Indicates floating-point invalid-arithmetic-operand (#IA) exception.
+ \htmlonly{*} Indicates floating-point invalid-arithmetic-operand (#IA) exception.
 
 If the source operand is outside the acceptable range, the C2 flag in the FPU status word is set, and the value in register ST(0) remains unchanged. The instruction does not raise an exception when the source operand is out of range. It is up to the program to check the C2 flag for out-of-range conditions. Source values outside the range -2\footnote{63}  to +2\footnote{63}  can be reduced to the range of the instruction by subtracting an appropriate integer multiple of 2. However, even within the range -2\footnote{63}  to +2\footnote{63} , inaccurate results can occur because the finite approximation of  used internally for argument reduction is not sufficient in all cases. Therefore, for accurate results it is safe to apply FPTAN only to arguments reduced accurately in software, to a value smaller in absolute value than 3/8. See the sections titled "Approximation of Pi" and "Transcendental Instruction Accuracy" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1, for a discussion of the proper value to use for  in performing such reductions.
 
@@ -46,13 +46,13 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF ST(0) < 2\footnote{63}
- THEN
-   C2 <- 0;
-   ST(0) <- fptan(ST(0)); // approximation of tan
-   TOP <- TOP - 1;
-   ST(0) <- 1.0;
- ELSE (* Source operand is out-of-range *)
-   C2 <- 1;
+    THEN
+          C2 <- 0;
+          ST(0) <- fptan(ST(0)); // approximation of tan
+          TOP <- TOP - 1;
+          ST(0) <- 1.0;
+    ELSE (* Source operand is out-of-range *)
+          C2 <- 1;
 FI;
 ```
 ### FPU Flags Affected
@@ -60,7 +60,7 @@ FI;
 
 C1 Set to 0 if stack underflow occurred; set to 1 if stack overflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C2 Set to 1 if outside range (-2\footnote{63}  < source operand < +2\footnote{63} ); otherwise, set to 0.
 

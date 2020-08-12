@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.128.66.0F3A.W1 09 /r ibVRNDSCALEPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Rounds packed double-precision floating point values in xmm2/m128/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in xmm1 register. Under writemask.|
-|EVEX.256.66.0F3A.W1 09 /r ibVRNDSCALEPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Rounds packed double-precision floating point values in ymm2/m256/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in ymm1 register. Under writemask.|
-|EVEX.512.66.0F3A.W1 09 /r ibVRNDSCALEPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8|FV|V/V|AVX512F|Rounds packed double-precision floating-point values in zmm2/m512/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in zmm1 register using writemask k1.|
+|EVEX.128.66.0F3A.W1 09 /r ib\newline{}VRNDSCALEPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Rounds packed double-precision floating point values in xmm2/m128/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in xmm1 register. Under writemask.|
+|EVEX.256.66.0F3A.W1 09 /r ib\newline{}VRNDSCALEPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Rounds packed double-precision floating point values in ymm2/m256/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in ymm1 register. Under writemask.|
+|EVEX.512.66.0F3A.W1 09 /r ib\newline{}VRNDSCALEPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8|FV|V/V|AVX512F|Rounds packed double-precision floating-point values in zmm2/m512/m64bcst to a number of fraction bits specified by the imm8 field. Stores the result in zmm1 register using writemask k1.|
 ### Instruction Operand Encoding
 
 
@@ -22,7 +22,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Round the double-precision floating-point values in the source operand by the rounding mode specified in the immediate operand (see Figure5-29) and places the result in the destination operand.
+Round the double-precision floating-point values in the source operand by the rounding mode specified in the immediate operand (see Figure 5-29) and places the result in the destination operand.
 
 The destination operand (the first operand) is a ZMM/YMM/XMM register conditionally updated according to the writemask. The source operand (the second operand) can be a ZMM/YMM/XMM register, a 512/256/128-bit memory location, or a 512/256/128-bit vector broadcasted from a 64-bit memory location.
 
@@ -38,11 +38,11 @@ The sign of the result of this instruction is preserved, including the sign of z
 
 The formula of the operation on each data element for `VRNDSCALEPD` is
 
- ROUND(x) = 2\footnote{-M} \htmlonly{*}Round_to_INT(x\htmlonly{*}2\footnote{M} , round_ctrl), 
+     ROUND(x) = 2\footnote{-M} \htmlonly{*}Round_to_INT(x\htmlonly{*}2\footnote{M} , round_ctrl), 
 
- round_ctrl = imm[3:0];
+     round_ctrl = imm[3:0];
 
- M=imm[7:4];
+     M=imm[7:4];
 
 The operation of x\htmlonly{*}2\footnote{M}  is computed as if the exponent range is unlimited (i.e. no overflow ever occurs).
 
@@ -50,9 +50,9 @@ The operation of x\htmlonly{*}2\footnote{M}  is computed as if the exponent rang
 
 VRNDSCALEPD is a more general form of the VEX-encoded VROUNDPD instruction. In VROUNDPD, the formula of the operation on each element is
 
- ROUND(x) = Round_to_INT(x, round_ctrl), 
+     ROUND(x) = Round_to_INT(x, round_ctrl), 
 
- round_ctrl = imm[3:0];
+     round_ctrl = imm[3:0];
 
 Note: EVEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.
 
@@ -498,22 +498,22 @@ Handling of special case of input values are listed in Table 5-22.
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
 IF *src is a memory operand*
- THEN TMP_SRC <-  BROADCAST64(SRC, VL, k1)
- ELSE TMP_SRC <-  SRC
+    THEN TMP_SRC <-   BROADCAST64(SRC, VL, k1)
+    ELSE TMP_SRC <-   SRC
 FI;
-FOR j <-  0 TO KL-1
- i  <- j * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i]  <- RoundToIntegerDP((TMP_SRC[i+63:i], imm8[7:0])
- ELSE 
-   IF *merging-masking* ; merging-masking
-    THEN *DEST[i+63:i] remains unchanged*
-    ELSE  ; zeroing-masking
-      DEST[i+63:i]  <- 0
-   FI;
- FI;
+FOR j <-   0 TO KL-1
+    i  <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i]  <-  RoundToIntegerDP((TMP_SRC[i+63:i], imm8[7:0])
+    ELSE 
+          IF *merging-masking* ; merging-masking
+                THEN *DEST[i+63:i] remains unchanged*
+                ELSE  ; zeroing-masking
+                      DEST[i+63:i]  <-  0
+          FI;
+    FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

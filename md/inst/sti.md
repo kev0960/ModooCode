@@ -45,51 +45,50 @@ Operation is the same in all modes.
 |1|1|< 3|X|X|0|1|**VIF = 1**|
 |1|1|< 3|X|X|1|X|**GP Fault**|
 |1|1|< 3|X|X|X|0|**GP Fault**|
-### NOTES:
+
+```note
+X = This setting has no impact
+```
+```sidenote
 
 
-X = This setting has no impact.
+1. The STI instruction delays recognition of interrupts only if it is executed with EFLAGS.IF = 0. In a sequence of STI instructions, only the first instruction in the sequence is guaranteed to delay interrupts.
 
-
-
-1.The STI instruction delays recognition of interrupts only if it is executed with EFLAGS.IF = 0. In a sequence of STI instructions, only the first instruction in the sequence is guaranteed to delay interrupts.
-
- In the following instruction sequence, interrupts may be recognized before RET executes:STISTIRET
-
-
+    In the following instruction sequence, interrupts may be recognized before RET executes:STISTIRET
+```
 ### Operation
 
 ```info-verb
 IF PE = 0  (* Executing in real-address mode *)
- THEN 
-   IF <- 1; (* Set Interrupt Flag *)
- ELSE  (* Executing in protected mode or virtual-8086 mode *)
-   IF VM = 0  (* Executing in protected mode*)
-    THEN
-      IF IOPL >= CPL
-        THEN
-          IF <- 1;  (* Set Interrupt Flag *)
-      ELSE
-        IF (IOPL < CPL) and (CPL = 3) and (PVI = 1)
-          THEN 
-            VIF <- 1;  (* Set Virtual Interrupt Flag *)
-          ELSE 
-            #GP(0);
-        FI;
-      FI;
-    ELSE  (* Executing in Virtual-8086 mode *)
-      IF IOPL = 3
-        THEN
-          IF <- 1;  (* Set Interrupt Flag *)
-      ELSE 
-        IF ((IOPL < 3) and (VIP = 0) and (VME = 1))
-          THEN
-            VIF <- 1;  (* Set Virtual Interrupt Flag *)
-        ELSE
-          #GP(0); (* Trap to virtual-8086 monitor *)
-        FI;)
-      FI;
-   FI; 
+    THEN 
+          IF <- 1; (* Set Interrupt Flag *)
+    ELSE  (* Executing in protected mode or virtual-8086 mode *)
+          IF VM = 0  (* Executing in protected mode*)
+                THEN
+                      IF IOPL >= CPL
+                            THEN
+                                  IF <- 1;  (* Set Interrupt Flag *)
+                      ELSE
+                            IF (IOPL < CPL) and (CPL = 3) and (PVI = 1)
+                                  THEN 
+                                        VIF <- 1;  (* Set Virtual Interrupt Flag *)
+                                  ELSE 
+                                        #GP(0);
+                            FI;
+                      FI;
+                ELSE  (* Executing in Virtual-8086 mode *)
+                      IF IOPL = 3
+                            THEN
+                                  IF <- 1;  (* Set Interrupt Flag *)
+                      ELSE 
+                            IF ((IOPL < 3) and (VIP = 0) and (VME = 1))
+                                  THEN
+                                        VIF <- 1;  (* Set Virtual Interrupt Flag *)
+                            ELSE
+                                  #GP(0); (* Trap to virtual-8086 monitor *)
+                            FI;)
+                      FI;
+          FI; 
 FI;
 ```
 ### Flags Affected

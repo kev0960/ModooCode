@@ -16,11 +16,10 @@ path : /X86-64 명령어 레퍼런스
 |EE|OUT DX, AL|NP|Valid|Valid|Output byte in AL to I/O port address in DX.|
 |EF|OUT DX, AX|NP|Valid|Valid|Output word in AX to I/O port address in DX.|
 |EF|OUT DX, EAX|NP|Valid|Valid|Output doubleword in EAX to I/O port address in DX.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Instruction Operand Encoding
 
 
@@ -51,15 +50,15 @@ After executing an OUT instruction, the Pentium\footnote{(R)}  processor ensures
 
 ```info-verb
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
- THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
-   IF (Any I/O Permission Bit for I/O port being accessed = 1)
-    THEN (* I/O operation is not allowed *)
-      #GP(0);
-    ELSE ( * I/O operation is allowed *) 
-      DEST <- SRC; (* Writes to selected I/O port *)
-   FI;
- ELSE (Real Mode or Protected Mode with CPL <= IOPL *)
-   DEST <- SRC; (* Writes to selected I/O port *)
+    THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
+          IF (Any I/O Permission Bit for I/O port being accessed = 1)
+                THEN (* I/O operation is not allowed *)
+                      #GP(0);
+                ELSE ( * I/O operation is allowed *) 
+                      DEST <- SRC; (* Writes to selected I/O port *)
+          FI;
+    ELSE (Real Mode or Protected Mode with CPL <= IOPL *)
+          DEST <- SRC; (* Writes to selected I/O port *)
 FI;
 ```
 ### Flags Affected

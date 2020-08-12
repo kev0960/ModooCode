@@ -10,18 +10,17 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F F5 /r\footnote{1}\newline{}PMADDWD mm, mm/m64|RM|V/V|MMX|Multiply the packed words in mm by the packed words in mm/m64, add adjacent doubleword results, and store in mm.|
-|66 0F F5 /r\newline{}PMADDWD xmm1, xmm2/m128|RM|V/V|SSE2|Multiply the packed word integers in xmm1 by the packed word integers in xmm2/m128, add adjacent doubleword results, and store in xmm1.|
-|VEX.NDS.128.66.0F.WIG F5 /r\newline{}VPMADDWD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Multiply the packed word integers in xmm2 by the packed word integers in xmm3/m128, add adjacent doubleword results, and store in xmm1.|
-|VEX.NDS.256.66.0F.WIG F5 /r\newline{}VPMADDWD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Multiply the packed word integers in ymm2 by the packed word integers in ymm3/m256, add adjacent doubleword results, and store in ymm1.|
-|EVEX.NDS.128.66.0F.WIG F5 /rVPMADDWD xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Multiply the packed word integers in xmm2 by the packed word integers in xmm3/m128, add adjacent doubleword results, and store in xmm1 under writemask k1.|
-|EVEX.NDS.256.66.0F.WIG F5 /rVPMADDWD ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Multiply the packed word integers in ymm2 by the packed word integers in ymm3/m256, add adjacent doubleword results, and store in ymm1 under writemask k1.|
-|EVEX.NDS.512.66.0F.WIG F5 /rVPMADDWD zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Multiply the packed word integers in zmm2 by the packed word integers in zmm3/m512, add adjacent doubleword results, and store in zmm1 under writemask k1.|
-### NOTES:
+|0F F5 /r\footnote{1}\newline{}\newline{}PMADDWD mm, mm/m64|RM|V/V|MMX|Multiply the packed words in mm by the packed words in mm/m64, add adjacent doubleword results, and store in mm.|
+|66 0F F5 /r\newline{}\newline{}PMADDWD xmm1, xmm2/m128|RM|V/V|SSE2|Multiply the packed word integers in xmm1 by the packed word integers in xmm2/m128, add adjacent doubleword results, and store in xmm1.|
+|VEX.NDS.128.66.0F.WIG F5 /r\newline{}\newline{}VPMADDWD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Multiply the packed word integers in xmm2 by the packed word integers in xmm3/m128, add adjacent doubleword results, and store in xmm1.|
+|VEX.NDS.256.66.0F.WIG F5 /r\newline{}\newline{}VPMADDWD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Multiply the packed word integers in ymm2 by the packed word integers in ymm3/m256, add adjacent doubleword results, and store in ymm1.|
+|EVEX.NDS.128.66.0F.WIG F5 /r\newline{}VPMADDWD xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Multiply the packed word integers in xmm2 by the packed word integers in xmm3/m128, add adjacent doubleword results, and store in xmm1 under writemask k1.|
+|EVEX.NDS.256.66.0F.WIG F5 /r\newline{}VPMADDWD ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Multiply the packed word integers in ymm2 by the packed word integers in ymm3/m256, add adjacent doubleword results, and store in ymm1 under writemask k1.|
+|EVEX.NDS.512.66.0F.WIG F5 /r\newline{}VPMADDWD zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Multiply the packed word integers in zmm2 by the packed word integers in zmm3/m512, add adjacent doubleword results, and store in zmm1 under writemask k1.|
 
-
-1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
-
+```note
+1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A
+```
 ### Instruction Operand Encoding
 
 
@@ -33,7 +32,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Multiplies the individual signed words of the destination operand (first operand) by the corresponding signed words of the source operand (second operand), producing temporary signed, doubleword results. The adjacent double-word results are then summed and stored in the destination operand. For example, the corresponding low-order words (15-0) and (31-16) in the source and destination operands are multiplied by one another and the double-word results are added together and stored in the low doubleword of the destination register (31-0). The same operation is performed on the other pairs of adjacent words. (Figure4-11 shows this operation when using 64-bit operands).
+Multiplies the individual signed words of the destination operand (first operand) by the corresponding signed words of the source operand (second operand), producing temporary signed, doubleword results. The adjacent double-word results are then summed and stored in the destination operand. For example, the corresponding low-order words (15-0) and (31-16) in the source and destination operands are multiplied by one another and the double-word results are added together and stored in the low doubleword of the destination register (31-0). The same operation is performed on the other pairs of adjacent words. (Figure 4-11 shows this operation when using 64-bit operands).
 
 
 
@@ -223,59 +222,59 @@ EVEX.512 encoded version: The second source operand can be an ZMM register or a 
 <text x="150.779999" y="116.680023" textLength="5.329997" font-size="8px">Y</text>
 <text x="181.079498" y="31.779999" textLength="4.442996" font-size="8px">2</text>
 </svg>
-<figcaption>Figure 4-11.  `PMADDWD` Execution Model Using 64-bit Operands
+<figcaption>Figure 4-11.  PMADDWD Execution Model Using 64-bit Operands
 </figcaption></figure>
 ```
 
 ### Operation
 #### PMADDWD (with 64-bit operands)
 ```info-verb
- DEST[31:0] <- (DEST[15:0] `*` SRC[15:0]) + (DEST[31:16] `*` SRC[31:16]);
- DEST[63:32] <- (DEST[47:32] `*` SRC[47:32]) + (DEST[63:48] `*` SRC[63:48]);
+    DEST[31:0] <- (DEST[15:0] `*` SRC[15:0]) + (DEST[31:16] `*` SRC[31:16]);
+    DEST[63:32] <- (DEST[47:32] `*` SRC[47:32]) + (DEST[63:48] `*` SRC[63:48]);
 ```
 #### PMADDWD (with 128-bit operands)
 ```info-verb
- DEST[31:0] <- (DEST[15:0] `*` SRC[15:0]) + (DEST[31:16] `*` SRC[31:16]);
- DEST[63:32] <- (DEST[47:32] `*` SRC[47:32]) + (DEST[63:48] `*` SRC[63:48]);
- DEST[95:64] <- (DEST[79:64] `*` SRC[79:64]) + (DEST[95:80] `*` SRC[95:80]);
- DEST[127:96] <- (DEST[111:96] `*` SRC[111:96]) + (DEST[127:112] `*` SRC[127:112]);
+    DEST[31:0] <- (DEST[15:0] `*` SRC[15:0]) + (DEST[31:16] `*` SRC[31:16]);
+    DEST[63:32] <- (DEST[47:32] `*` SRC[47:32]) + (DEST[63:48] `*` SRC[63:48]);
+    DEST[95:64] <- (DEST[79:64] `*` SRC[79:64]) + (DEST[95:80] `*` SRC[95:80]);
+    DEST[127:96] <- (DEST[111:96] `*` SRC[111:96]) + (DEST[127:112] `*` SRC[127:112]);
 ```
 #### VPMADDWD (VEX.128 encoded version)
 ```info-verb
-DEST[31:0]  <- (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
-DEST[63:32]  <- (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
-DEST[95:64]  <- (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
-DEST[127:96] <-  (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
-DEST[VLMAX-1:128]  <- 0
+DEST[31:0]  <-  (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
+DEST[63:32]  <-  (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
+DEST[95:64]  <-  (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
+DEST[127:96] <-   (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
+DEST[VLMAX-1:128]  <-  0
 ```
 #### VPMADDWD (VEX.256 encoded version)
 ```info-verb
-DEST[31:0] <-  (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
-DEST[63:32]  <- (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
-DEST[95:64]  <- (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
-DEST[127:96] <-  (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
-DEST[159:128]  <- (SRC1[143:128] * SRC2[143:128]) + (SRC1[159:144] * SRC2[159:144])
-DEST[191:160]  <- (SRC1[175:160] * SRC2[175:160]) + (SRC1[191:176] * SRC2[191:176])
-DEST[223:192]  <- (SRC1[207:192] * SRC2[207:192]) + (SRC1[223:208] * SRC2[223:208])
-DEST[255:224] <-  (SRC1[239:224] * SRC2[239:224]) + (SRC1[255:240] * SRC2[255:240])
-DEST[VLMAX-1:256]  <- 0
+DEST[31:0] <-   (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
+DEST[63:32]  <-  (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
+DEST[95:64]  <-  (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
+DEST[127:96] <-   (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
+DEST[159:128]  <-  (SRC1[143:128] * SRC2[143:128]) + (SRC1[159:144] * SRC2[159:144])
+DEST[191:160]  <-  (SRC1[175:160] * SRC2[175:160]) + (SRC1[191:176] * SRC2[191:176])
+DEST[223:192]  <-  (SRC1[207:192] * SRC2[207:192]) + (SRC1[223:208] * SRC2[223:208])
+DEST[255:224] <-   (SRC1[239:224] * SRC2[239:224]) + (SRC1[255:240] * SRC2[255:240])
+DEST[VLMAX-1:256]  <-  0
 ```
 #### VPMADDWD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j <-  0 TO KL-1
- i <-  j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i] <-  (SRC2[i+31:i+16]* SRC1[i+31:i+16]) + (SRC2[i+15:i]*SRC1[i+15:i])
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE *zeroing-masking* ; zeroing-masking
-        DEST[i+31:i] = 0
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i <-   j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i] <-   (SRC2[i+31:i+16]* SRC1[i+31:i+16]) + (SRC2[i+15:i]*SRC1[i+15:i])
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE *zeroing-masking* ; zeroing-masking
+                            DEST[i+31:i] = 0
+                FI
+    FI;
 ENDFOR;
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

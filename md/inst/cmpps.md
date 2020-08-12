@@ -10,12 +10,12 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F C2 /r ibCMPPS xmm1, xmm2/m128, imm8|RMI|V/V|SSE|Compare packed single-precision floating-point values in xmm2/m128 and xmm1 using bits 2:0 of imm8 as a comparison predicate.|
-|VEX.NDS.128.0F.WIG C2 /r ibVCMPPS xmm1, xmm2, xmm3/m128, imm8|RVMI|V/V|AVX|Compare packed single-precision floating-point values in xmm3/m128 and xmm2 using bits 4:0 of imm8 as a comparison predicate.|
-|VEX.NDS.256.0F.WIG C2 /r ibVCMPPS ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX|Compare packed single-precision floating-point values in ymm3/m256 and ymm2 using bits 4:0 of imm8 as a comparison predicate.|
-|EVEX.NDS.128.0F.W0 C2 /r ibVCMPPS k1 {k2}, xmm2, xmm3/m128/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Compare packed single-precision floating-point values in xmm3/m128/m32bcst and xmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
-|EVEX.NDS.256.0F.W0 C2 /r ibVCMPPS k1 {k2}, ymm2, ymm3/m256/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Compare packed single-precision floating-point values in ymm3/m256/m32bcst and ymm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
-|EVEX.NDS.512.0F.W0 C2 /r ibVCMPPS k1 {k2}, zmm2, zmm3/m512/m32bcst{sae}, imm8|FV|V/V|AVX512F|Compare packed single-precision floating-point values in zmm3/m512/m32bcst and zmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
+|0F C2 /r ib\newline{}CMPPS xmm1, xmm2/m128, imm8|RMI|V/V|SSE|Compare packed single-precision floating-point values in xmm2/m128 and xmm1 using bits 2:0 of imm8 as a comparison predicate.|
+|VEX.NDS.128.0F.WIG C2 /r ib\newline{}VCMPPS xmm1, xmm2, xmm3/m128, imm8|RVMI|V/V|AVX|Compare packed single-precision floating-point values in xmm3/m128 and xmm2 using bits 4:0 of imm8 as a comparison predicate.|
+|VEX.NDS.256.0F.WIG C2 /r ib\newline{}VCMPPS ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX|Compare packed single-precision floating-point values in ymm3/m256 and ymm2 using bits 4:0 of imm8 as a comparison predicate.|
+|EVEX.NDS.128.0F.W0 C2 /r ib\newline{}VCMPPS k1 {k2}, xmm2, xmm3/m128/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Compare packed single-precision floating-point values in xmm3/m128/m32bcst and xmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
+|EVEX.NDS.256.0F.W0 C2 /r ib\newline{}VCMPPS k1 {k2}, ymm2, ymm3/m256/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Compare packed single-precision floating-point values in ymm3/m256/m32bcst and ymm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
+|EVEX.NDS.512.0F.W0 C2 /r ib\newline{}VCMPPS k1 {k2}, zmm2, zmm3/m512/m32bcst{sae}, imm8|FV|V/V|AVX512F|Compare packed single-precision floating-point values in zmm3/m512/m32bcst and zmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
 ### Instruction Operand Encoding
 
 
@@ -41,7 +41,7 @@ VEX.128 encoded version: The first source operand (second operand) is an XMM reg
 
 The comparison predicate operand is an 8-bit immediate: 
 
-*  For instructions encoded using the VEX prefix and EVEX prefix, bits 4:0 define the type of comparison to be performed (see Table3-1). Bits 5 through 7 of the immediate are reserved. 
+*  For instructions encoded using the VEX prefix and EVEX prefix, bits 4:0 define the type of comparison to be performed (see Table 3-1). Bits 5 through 7 of the immediate are reserved. 
 
 *  For instruction encodings that do not use VEX prefix, bits 2:0 define the type of comparison to be made (see the first 8 rows of Table 3-1). Bits 3 through 7 of the immediate are reserved. 
 
@@ -53,12 +53,12 @@ Note that processors with "CPUID.1H:ECX.AVX =0" do not implement the "greater-th
 
 Compilers and assemblers may implement the following two-operand pseudo-ops in addition to the three-operand `CMPPS` instruction, for processors with "CPUID.1H:ECX.AVX =0". See Table 3-4. Compiler should treat reserved Imm8 values as illegal syntax.:
 
-###               Table 3-4. Pseudo-Op and CMPPS Implementation
+###                                                 Table 3-4. Pseudo-Op and CMPPS Implementation
 
 
 The greater-than relations that the processor does not implement require more than one instruction to emulate in software and therefore should not be implemented as pseudo-ops. (For these, the programmer should reverse the operands of the corresponding less than relations and use move instructions to ensure that the mask is moved to the correct destination register and that the source operand is left intact.) 
 
-Processors with "CPUID.1H:ECX.AVX =1" implement the full complement of 32 predicates shown in Table 3-5, soft-ware emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPPS instruction. See Table 3-5, where the notation of reg1 and reg2 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic inter-face. Compilers and assemblers may implement three-operand pseudo-ops for EVEX encoded VCMPPS instructions in a similar fashion by extending the syntax listed in Table3-5.:
+Processors with "CPUID.1H:ECX.AVX =1" implement the full complement of 32 predicates shown in Table 3-5, soft-ware emulation is no longer needed. Compilers and assemblers may implement the following three-operand pseudo-ops in addition to the four-operand VCMPPS instruction. See Table 3-5, where the notation of reg1 and reg2 represent either XMM registers or YMM registers. Compiler should treat reserved Imm8 values as illegal syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants to support a simpler intrinsic inter-face. Compilers and assemblers may implement three-operand pseudo-ops for EVEX encoded VCMPPS instructions in a similar fashion by extending the syntax listed in Table 3-5.:
 
 
 
@@ -111,98 +111,98 @@ Processors with "CPUID.1H:ECX.AVX =1" implement the full complement of 32 predic
 #### VCMPPS (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 32
- IF k2[j] OR *no writemask*
-   THEN 
-    IF (EVEX.b = 1) AND (SRC2 *is memory*)
-      THEN
-        CMP <-  SRC1[i+31:i] OP5 SRC2[31:0]
-      ELSE 
-        CMP  <- SRC1[i+31:i] OP5 SRC2[i+31:i]
+FOR j  <-  0 TO KL-1
+    i  <-  j * 32
+    IF k2[j] OR *no writemask*
+          THEN 
+                IF (EVEX.b = 1) AND (SRC2 *is memory*)
+                      THEN
+                            CMP <-   SRC1[i+31:i] OP5 SRC2[31:0]
+                      ELSE 
+                            CMP  <-  SRC1[i+31:i] OP5 SRC2[i+31:i]
+                FI;
+                IF CMP = TRUE
+                      THEN DEST[j]  <-  1;
+                      ELSE DEST[j]  <-  0; FI;
+          ELSE  DEST[j]  <-  0 ; zeroing-masking onlyFI;
     FI;
-    IF CMP = TRUE
-      THEN DEST[j]  <- 1;
-      ELSE DEST[j]  <- 0; FI;
-   ELSE  DEST[j]  <- 0 ; zeroing-masking onlyFI;
- FI;
 ENDFOR
-DEST[MAX_KL-1:KL] <-  0
+DEST[MAX_KL-1:KL] <-   0
 ```
 #### VCMPPS (VEX.256 encoded version)
 ```info-verb
-CMP0 <-  SRC1[31:0] OP5 SRC2[31:0];
-CMP1  <- SRC1[63:32] OP5 SRC2[63:32];
-CMP2  <- SRC1[95:64] OP5 SRC2[95:64];
-CMP3  <- SRC1[127:96] OP5 SRC2[127:96];
-CMP4 <-  SRC1[159:128] OP5 SRC2[159:128];
-CMP5 <-  SRC1[191:160] OP5 SRC2[191:160];
-CMP6 <-  SRC1[223:192] OP5 SRC2[223:192];
-CMP7  <- SRC1[255:224] OP5 SRC2[255:224];
+CMP0 <-   SRC1[31:0] OP5 SRC2[31:0];
+CMP1  <-  SRC1[63:32] OP5 SRC2[63:32];
+CMP2  <-  SRC1[95:64] OP5 SRC2[95:64];
+CMP3  <-  SRC1[127:96] OP5 SRC2[127:96];
+CMP4 <-   SRC1[159:128] OP5 SRC2[159:128];
+CMP5 <-   SRC1[191:160] OP5 SRC2[191:160];
+CMP6 <-   SRC1[223:192] OP5 SRC2[223:192];
+CMP7  <-  SRC1[255:224] OP5 SRC2[255:224];
 IF CMP0 = TRUE
- THEN DEST[31:0] <- FFFFFFFFH;
- ELSE DEST[31:0]  <- 000000000H; FI;
+    THEN DEST[31:0] <-  FFFFFFFFH;
+    ELSE DEST[31:0]  <-  000000000H; FI;
 IF CMP1 = TRUE
- THEN DEST[63:32]  <- FFFFFFFFH;
- ELSE DEST[63:32] <- 000000000H; FI;
+    THEN DEST[63:32]  <-  FFFFFFFFH;
+    ELSE DEST[63:32] <-  000000000H; FI;
 IF CMP2 = TRUE
- THEN DEST[95:64] <-  FFFFFFFFH;
- ELSE DEST[95:64]  <- 000000000H; FI;
+    THEN DEST[95:64] <-   FFFFFFFFH;
+    ELSE DEST[95:64]  <-  000000000H; FI;
 IF CMP3 = TRUE
- THEN DEST[127:96]  <- FFFFFFFFH;
- ELSE DEST[127:96]  <- 000000000H; FI;
+    THEN DEST[127:96]  <-  FFFFFFFFH;
+    ELSE DEST[127:96]  <-  000000000H; FI;
 IF CMP4 = TRUE
- THEN DEST[159:128]  <- FFFFFFFFH;
- ELSE DEST[159:128]  <- 000000000H; FI;
+    THEN DEST[159:128]  <-  FFFFFFFFH;
+    ELSE DEST[159:128]  <-  000000000H; FI;
 IF CMP5 = TRUE
- THEN DEST[191:160]  <- FFFFFFFFH;
- ELSE DEST[191:160] <-  000000000H; FI;
+    THEN DEST[191:160]  <-  FFFFFFFFH;
+    ELSE DEST[191:160] <-   000000000H; FI;
 IF CMP6 = TRUE
- THEN DEST[223:192]  <- FFFFFFFFH;
- ELSE DEST[223:192] <- 000000000H; FI;
+    THEN DEST[223:192]  <-  FFFFFFFFH;
+    ELSE DEST[223:192] <-  000000000H; FI;
 IF CMP7 = TRUE
- THEN DEST[255:224]  <- FFFFFFFFH;
- ELSE DEST[255:224]  <- 000000000H; FI;
-DEST[MAX_VL-1:256]  <- 0
+    THEN DEST[255:224]  <-  FFFFFFFFH;
+    ELSE DEST[255:224]  <-  000000000H; FI;
+DEST[MAX_VL-1:256]  <-  0
 ```
 #### VCMPPS (VEX.128 encoded version)
 ```info-verb
-CMP0 <-  SRC1[31:0] OP5 SRC2[31:0];
-CMP1 <-  SRC1[63:32] OP5 SRC2[63:32];
-CMP2  <- SRC1[95:64] OP5 SRC2[95:64];
-CMP3 <-  SRC1[127:96] OP5 SRC2[127:96];
+CMP0 <-   SRC1[31:0] OP5 SRC2[31:0];
+CMP1 <-   SRC1[63:32] OP5 SRC2[63:32];
+CMP2  <-  SRC1[95:64] OP5 SRC2[95:64];
+CMP3 <-   SRC1[127:96] OP5 SRC2[127:96];
 IF CMP0 = TRUE
- THEN DEST[31:0] <- FFFFFFFFH;
- ELSE DEST[31:0]  <- 000000000H; FI;
+    THEN DEST[31:0] <-  FFFFFFFFH;
+    ELSE DEST[31:0]  <-  000000000H; FI;
 IF CMP1 = TRUE
- THEN DEST[63:32] <-  FFFFFFFFH;
- ELSE DEST[63:32]  <- 000000000H; FI;
+    THEN DEST[63:32] <-   FFFFFFFFH;
+    ELSE DEST[63:32]  <-  000000000H; FI;
 IF CMP2 = TRUE
- THEN DEST[95:64]  <- FFFFFFFFH;
- ELSE DEST[95:64] <-  000000000H; FI;
+    THEN DEST[95:64]  <-  FFFFFFFFH;
+    ELSE DEST[95:64] <-   000000000H; FI;
 IF CMP3 = TRUE
- THEN DEST[127:96] <-  FFFFFFFFH;
- ELSE DEST[127:96] <- 000000000H; FI;
-DEST[MAX_VL-1:128]  <- 0
+    THEN DEST[127:96] <-   FFFFFFFFH;
+    ELSE DEST[127:96] <-  000000000H; FI;
+DEST[MAX_VL-1:128]  <-  0
 ```
 #### CMPPS (128-bit Legacy SSE version)
 ```info-verb
-CMP0  <- SRC1[31:0] OP3 SRC2[31:0];
-CMP1 <-  SRC1[63:32] OP3 SRC2[63:32];
-CMP2  <- SRC1[95:64] OP3 SRC2[95:64];
-CMP3 <-  SRC1[127:96] OP3 SRC2[127:96];
+CMP0  <-  SRC1[31:0] OP3 SRC2[31:0];
+CMP1 <-   SRC1[63:32] OP3 SRC2[63:32];
+CMP2  <-  SRC1[95:64] OP3 SRC2[95:64];
+CMP3 <-   SRC1[127:96] OP3 SRC2[127:96];
 IF CMP0 = TRUE
- THEN DEST[31:0] <- FFFFFFFFH;
- ELSE DEST[31:0]  <- 000000000H; FI;
+    THEN DEST[31:0] <-  FFFFFFFFH;
+    ELSE DEST[31:0]  <-  000000000H; FI;
 IF CMP1 = TRUE
- THEN DEST[63:32]  <- FFFFFFFFH;
- ELSE DEST[63:32] <-  000000000H; FI;
+    THEN DEST[63:32]  <-  FFFFFFFFH;
+    ELSE DEST[63:32] <-   000000000H; FI;
 IF CMP2 = TRUE
- THEN DEST[95:64]  <- FFFFFFFFH;
- ELSE DEST[95:64]  <- 000000000H; FI;
+    THEN DEST[95:64]  <-  FFFFFFFFH;
+    ELSE DEST[95:64]  <-  000000000H; FI;
 IF CMP3 = TRUE
- THEN DEST[127:96]  <- FFFFFFFFH;
- ELSE DEST[127:96]  <-000000000H; FI;
+    THEN DEST[127:96]  <-  FFFFFFFFH;
+    ELSE DEST[127:96]  <- 000000000H; FI;
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 
@@ -223,7 +223,7 @@ CMPPS __m128 _mm_cmp_ps(__m128 a, __m128 b, int imm)
 ### SIMD Floating-Point Exceptions
 
 
-Invalid if SNaN operand and invalid if QNaN and predicate as listed in Table3-1.
+Invalid if SNaN operand and invalid if QNaN and predicate as listed in Table 3-1.
 
 Denormal
 

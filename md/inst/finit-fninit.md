@@ -12,11 +12,10 @@ path : /X86-64 명령어 레퍼런스
 |----------|---------------|-----------------------------|---------------------------------|---------------|
 |9B DB E3|FINIT|Valid|Valid|Initialize FPU after checking for pending unmasked floating-point exceptions.|
 |DB E3|FNINIT\footnote{*}|Valid|Valid|Initialize FPU without checking for pending unmasked floating-point exceptions.|
-### NOTES:
 
-
-\htmlonly{*}See IA-32 Architecture Compatibility section below.
-
+```note
+\htmlonly{*} See IA-32 Architecture Compatibility section below
+```
 ### Description
 
 

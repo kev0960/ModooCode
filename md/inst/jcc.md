@@ -136,15 +136,15 @@ Because a particular state of the status flags can sometimes be interpreted in t
 
 The `Jcc` instruction does not support far jumps (jumps to other code segments). When the target for the conditional jump is in a different segment, use the opposite condition from the condition being tested for the `Jcc` instruction, and then access the target with an unconditional far jump (JMP instruction) to the other segment. For example, the following conditional far jump is illegal:
 
- JZ FARLABEL;
+    JZ FARLABEL;
 
 To accomplish this far jump, use the following two instructions:
 
- JNZ BEYOND;
+    JNZ BEYOND;
 
- `JMP` FARLABEL;
+    `JMP` FARLABEL;
 
- BEYOND:
+    BEYOND:
 
 The JRCXZ, JECXZ and JCXZ instructions differ from other `Jcc` instructions because they do not check status flags. Instead, they check RCX, ECX or CX for 0. The register checked is determined by the address-size attribute. These instructions are useful when used at the beginning of a loop that terminates with a conditional loop instruction (such as LOOPNE). They can be used to prevent an instruction sequence from entering a loop when RCX, ECX or CX is 0. This would cause the loop to execute 2\footnote{64} , 2\footnote{32}  or 64K times (not zero times).
 
@@ -157,13 +157,13 @@ In 64-bit mode, operand size is fixed at 64 bits. `JMP` Short is RIP = RIP + 8-b
 
 ```info-verb
 IF condition
- THEN
+    THEN
   tempEIP <- EIP + SignExtend(DEST);
   IF OperandSize = 16
-    THEN tempEIP <- tempEIP AND 0000FFFFH;
+                THEN tempEIP <- tempEIP AND 0000FFFFH;
   FI;
- IF tempEIP is not within code segment limit
-   THEN #GP(0);
+    IF tempEIP is not within code segment limit
+          THEN #GP(0);
   ELSE EIP <- tempEIP
   FI;
 FI;

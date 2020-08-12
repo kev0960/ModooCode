@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F 38 F6 /rADOX r32, r/m32|RM|V/V|ADX|Unsigned addition of r32 with OF, r/m32 to r32, writes OF.|
-|F3 REX.w 0F 38 F6 /rADOX r64, r/m64|RM|V/NE|ADX|Unsigned addition of r64 with OF, r/m64 to r64, writes OF.|
+|F3 0F 38 F6 /r\newline{}ADOX r32, r/m32|RM|V/V|ADX|Unsigned addition of r32 with OF, r/m32 to r32, writes OF.|
+|F3 REX.w 0F 38 F6 /r\newline{}ADOX r64, r/m64|RM|V/NE|ADX|Unsigned addition of r64 with OF, r/m64 to r64, writes OF.|
 ### Instruction Operand Encoding
 
 
@@ -38,8 +38,8 @@ Note: `ADOX` defines the CF and OF flags differently than the ADD/ADC instructio
 
 ```info-verb
 IF OperandSize is 64-bit
- THEN OF:DEST[63:0] <- DEST[63:0] + SRC[63:0] + OF;
- ELSE OF:DEST[31:0] <- DEST[31:0] + SRC[31:0] + OF;
+    THEN OF:DEST[63:0] <- DEST[63:0] + SRC[63:0] + OF;
+    ELSE OF:DEST[31:0] <- DEST[31:0] + SRC[31:0] + OF;
 FI;
 ```
 ### Flags Affected

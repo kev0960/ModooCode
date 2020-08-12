@@ -10,12 +10,12 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 5A /rCVTPS2PD xmm1, xmm2/m64|RM|V/V|SSE2|Convert two packed single-precision floating-point values in xmm2/m64 to two packed double-precision floating-point values in xmm1.|
-|VEX.128.0F.WIG 5A /rVCVTPS2PD xmm1, xmm2/m64|RM|V/V|AVX|Convert two packed single-precision floating-point values in xmm2/m64 to two packed double-precision floating-point values in xmm1.|
-|VEX.256.0F.WIG 5A /rVCVTPS2PD ymm1, xmm2/m128|RM|V/V|AVX|Convert four packed single-precision floating-point values in xmm2/m128 to four packed double-precision floating-point values in ymm1.|
-|EVEX.128.0F.W0 5A /rVCVTPS2PD xmm1 {k1}{z}, xmm2/m64/m32bcst |HV|V/V|AVX512VLAVX512F|Convert two packed single-precision floating-point values in xmm2/m64/m32bcst to packed double-precision floating-point values in xmm1 with writemask k1.|
-|EVEX.256.0F.W0 5A /rVCVTPS2PD ymm1 {k1}{z}, xmm2/m128/m32bcst |HV|V/V|AVX512VL|Convert four packed single-precision floating-point values in xmm2/m128/m32bcst to packed double-precision floating-point values in ymm1 with writemask k1.|
-|EVEX.512.0F.W0 5A /rVCVTPS2PD zmm1 {k1}{z}, ymm2/m256/m32bcst{sae} |HV|V/V|AVX512F|Convert eight packed single-precision floating-point values in ymm2/m256/b32bcst to eight packed double-precision floating-point values in zmm1 with writemask k1.|
+|0F 5A /r\newline{}CVTPS2PD xmm1, xmm2/m64|RM|V/V|SSE2|Convert two packed single-precision floating-point values in xmm2/m64 to two packed double-precision floating-point values in xmm1.|
+|VEX.128.0F.WIG 5A /r\newline{}VCVTPS2PD xmm1, xmm2/m64|RM|V/V|AVX|Convert two packed single-precision floating-point values in xmm2/m64 to two packed double-precision floating-point values in xmm1.|
+|VEX.256.0F.WIG 5A /r\newline{}VCVTPS2PD ymm1, xmm2/m128|RM|V/V|AVX|Convert four packed single-precision floating-point values in xmm2/m128 to four packed double-precision floating-point values in ymm1.|
+|EVEX.128.0F.W0 5A /r\newline{}VCVTPS2PD xmm1 {k1}{z}, xmm2/m64/m32bcst |HV|V/V|AVX512VLAVX512F|Convert two packed single-precision floating-point values in xmm2/m64/m32bcst to packed double-precision floating-point values in xmm1 with writemask k1.|
+|EVEX.256.0F.W0 5A /r\newline{}VCVTPS2PD ymm1 {k1}{z}, xmm2/m128/m32bcst |HV|V/V|AVX512VL|Convert four packed single-precision floating-point values in xmm2/m128/m32bcst to packed double-precision floating-point values in ymm1 with writemask k1.|
+|EVEX.512.0F.W0 5A /r\newline{}VCVTPS2PD zmm1 {k1}{z}, ymm2/m256/m32bcst{sae} |HV|V/V|AVX512F|Convert eight packed single-precision floating-point values in ymm2/m256/b32bcst to eight packed double-precision floating-point values in zmm1 with writemask k1.|
 ### Instruction Operand Encoding
 
 
@@ -129,7 +129,7 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 <text x="25.678497" y="129.160034" textLength="4.582500" font-size="8px">T</text>
 <text x="142.919998" y="125.799988" textLength="4.170000" font-size="8px">2</text>
 </svg>
-<figcaption>Figure 3-14.  `CVTPS2PD` (VEX.256 encoded version)
+<figcaption>Figure 3-14.  CVTPS2PD (VEX.256 encoded version)
 </figcaption></figure>
 ```
 
@@ -137,66 +137,66 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 #### VCVTPS2PD (EVEX encoded versions) when src operand is a register
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
- i  <- j * 64
- k <-  j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i] <- 
-    Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[k+31:k])
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+63:i]  <- 0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <-  j * 64
+    k <-   j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i] <- 
+                Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[k+31:k])
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+63:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VCVTPS2PD (EVEX encoded versions) when src operand is a memory source
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-  0 TO KL-1
- i  <- j * 64
- k  <- j * 32
- IF k1[j] OR *no writemask*
-   THEN 
-    IF (EVEX.b = 1) 
-      THEN
-        DEST[i+63:i]  <-
-    Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
-      ELSE 
-        DEST[i+63:i]  <-
-    Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[k+31:k])
-    FI;
-   ELSE 
+FOR j <-   0 TO KL-1
+    i  <-  j * 64
+    k  <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN 
+                IF (EVEX.b = 1) 
+                      THEN
+                            DEST[i+63:i]  <-
+                Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
+                      ELSE 
+                            DEST[i+63:i]  <-
+                Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[k+31:k])
+                FI;
+          ELSE 
 IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+63:i]  <- 0
-    FI
- FI;
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+63:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VCVTPS2PD (VEX.256 encoded version)
 ```info-verb
-DEST[63:0] <-  Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
-DEST[127:64] <-  Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[63:32])
-DEST[191:128]  <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[95:64])
-DEST[255:192]  <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[127:96)
-DEST[MAX_VL-1:256] <-  0
+DEST[63:0] <-   Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
+DEST[127:64] <-   Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[63:32])
+DEST[191:128]  <-  Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[95:64])
+DEST[255:192]  <-  Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[127:96)
+DEST[MAX_VL-1:256] <-   0
 ```
 #### VCVTPS2PD (VEX.128 encoded version)
 ```info-verb
-DEST[63:0]  <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
-DEST[127:64] <-  Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[63:32])
-DEST[MAX_VL-1:128] <-  0
+DEST[63:0]  <-  Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
+DEST[127:64] <-   Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[63:32])
+DEST[MAX_VL-1:128] <-   0
 ```
 #### CVTPS2PD (128-bit Legacy SSE version)
 ```info-verb
-DEST[63:0]  <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
-DEST[127:64] <-  Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[63:32])
+DEST[63:0]  <-  Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
+DEST[127:64] <-   Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[63:32])
 DEST[MAX_VL-1:128] (unmodified)
 ```
 

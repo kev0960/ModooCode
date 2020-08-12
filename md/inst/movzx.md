@@ -15,11 +15,10 @@ path : /X86-64 명령어 레퍼런스
 |REX.W + 0F B6 /r|MOVZX r64, r/m8\htmlonly{*}|RM|Valid|N.E.|Move byte to quadword, zero-extension.|
 |0F B7 /r|MOVZX r32, r/m16|RM|Valid|Valid|Move word to doubleword, zero-extension.|
 |REX.W + 0F B7 /r|MOVZX r64, r/m16|RM|Valid |N.E.|Move word to quadword, zero-extension.|
-### NOTES:
 
-
-\htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if the REX prefix is used: AH, BH, CH, DH. 
-
+```note
+\htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if the REX prefix is used: AH, BH, CH, DH.
+```
 ### Instruction Operand Encoding
 
 

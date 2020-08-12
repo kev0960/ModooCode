@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
-|66 0F 38 F6 /rADCX r32, r/m32|RM|V/V|ADX|Unsigned addition of r32 with CF, r/m32 to r32, writes CF.|
-|66 REX.w 0F 38 F6 /rADCX r64, r/m64|RM|V/NE|ADX|Unsigned addition of r64 with CF, r/m64 to r64, writes CF.|
+|66 0F 38 F6 /r\newline{}ADCX r32, r/m32|RM|V/V|ADX|Unsigned addition of r32 with CF, r/m32 to r32, writes CF.|
+|66 REX.w 0F 38 F6 /r\newline{}ADCX r64, r/m64|RM|V/NE|ADX|Unsigned addition of r64 with CF, r/m64 to r64, writes CF.|
 ### Instruction Operand Encoding
 
 
@@ -38,8 +38,8 @@ Note: `ADCX` defines the OF flag differently than the ADD/ADC instructions as de
 
 ```info-verb
 IF OperandSize is 64-bit
- THEN CF:DEST[63:0] <- DEST[63:0] + SRC[63:0] + CF;
- ELSE CF:DEST[31:0] <- DEST[31:0] + SRC[31:0] + CF;
+    THEN CF:DEST[63:0] <- DEST[63:0] + SRC[63:0] + CF;
+    ELSE CF:DEST[31:0] <- DEST[31:0] + SRC[31:0] + CF;
 FI;
 ```
 ### Flags Affected

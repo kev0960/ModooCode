@@ -24,13 +24,13 @@ The EAX register is loaded with the low-order 32 bits. The EDX register is loade
 
 The ECX register specifies the counter type (if the processor supports architectural performance monitoring) and counter index. Counter type is specified in ECX[30] to select one of two type of performance counters. If the processor does not support architectural performance monitoring, ECX[30:0] specifies the counter index; other-wise ECX[29:0] specifies the index relative to the base of each counter type. ECX[31] selects "fast" read mode if supported. The two counter types are: 
 
-*  General-purpose or special-purpose performance counters are specified with ECX[30] = 0: The number of general-purpose performance counters on processor supporting architectural performance monitoring are reported by `CPUID` 0AH leaf. The number of general-purpose counters is model specific if the processor does not support architectural performance monitoring, see Chapter 18, "Performance Monitoring" of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B. Special-purpose counters are available only in selected processor members, see Table4-16.
+*  General-purpose or special-purpose performance counters are specified with ECX[30] = 0: The number of general-purpose performance counters on processor supporting architectural performance monitoring are reported by `CPUID` 0AH leaf. The number of general-purpose counters is model specific if the processor does not support architectural performance monitoring, see Chapter 18, "Performance Monitoring" of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B. Special-purpose counters are available only in selected processor members, see Table 4-16.
 
 *  Fixed-function performance counter are specified with ECX[30] = 1. The number fixed-function performance counters is enumerated by `CPUID` 0AH leaf. See Chapter 30 of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3B. This counter type is selected if ECX[30] is set.
 
 The width of fixed-function performance counters and general-purpose performance counters on processor supporting architectural performance monitoring are reported by `CPUID` 0AH leaf. The width of general-purpose performance counters are 40-bits for processors that do not support architectural performance monitoring coun-ters. The width of special-purpose performance counters are implementation specific. 
 
-Table4-16 lists valid indices of the general-purpose and special-purpose performance counters according to the DisplayFamily_DisplayModel values of `CPUID` encoding for each processor family (see `CPUID` instruction in Chapter 3, "Instruction Set Reference, A-L" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A). 
+Table 4-16 lists valid indices of the general-purpose and special-purpose performance counters according to the DisplayFamily_DisplayModel values of `CPUID` encoding for each processor family (see `CPUID` instruction in Chapter 3, "Instruction Set Reference, A-L" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A). 
 
 ### Table 4-16.  Valid General and Special Purpose Performance Counter Index Range for RDPMC
 
@@ -41,10 +41,10 @@ Table4-16 lists valid indices of the general-purpose and special-purpose perform
 |Processors Based on Intel NetBurst microarchitecture (No L3)|0FH_00H, 0FH_01H, 0FH_02H, 0FH_03H, 0FH_04H, 0FH_06H|>= 0 and <= 17|>= 0 and <= 17|
 |Pentium M processors|06H_09H, 06H_0DH|0, 1|0, 1|
 |Processors Based on Intel NetBurst microarchitecture (No L3)|0FH_03H, 0FH_04H) and (L3 is present)|>= 0 and <= 25|>= 0 and <= 17|
-###    Table 4-16.  Valid General and Special Purpose Performance Counter Index Range for RDPMC (Contd.)
+###           Table 4-16.  Valid General and Special Purpose Performance Counter Index Range for RDPMC (Contd.)
 
 
-Processors based on Intel NetBurst microarchitecture support "fast" (32-bit) and "slow" (40-bit) reads on the first 18 performance counters. Selected this option using ECX[31]. If bit31 is set, RDPMC reads only the low 32 bits of the selected performance counter. If bit31 is clear, all 40 bits are read. A 32-bit result is returned in EAX and EDX is set to 0. A 32-bit read executes faster on these processors than a full 40-bit read.
+Processors based on Intel NetBurst microarchitecture support "fast" (32-bit) and "slow" (40-bit) reads on the first 18 performance counters. Selected this option using ECX[31]. If bit 31 is set, RDPMC reads only the low 32 bits of the selected performance counter. If bit 31 is clear, all 40 bits are read. A 32-bit result is returned in EAX and EDX is set to 0. A 32-bit read executes faster on these processors than a full 40-bit read.
 
 On processors based on Intel NetBurst microarchitecture with L3, performance counters with indices 18-25 are 32-bit counters. EDX is cleared after executing RDPMC for these counters. 
 
@@ -89,59 +89,59 @@ The RDPMC instruction can execute in 16-bit addressing mode or virtual-8086 mode
 (* Intel processors that support architectural performance monitoring *)
 Most significant counter bit (MSCB) = 47
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
- THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
-   EAX <- IA32_FIXED_CTR(ECX)[30:0];
-   EDX <- IA32_FIXED_CTR(ECX)[MSCB:32];
- ELSE IF (ECX[30] = 0 and ECX[29:0] in valid general-purpose counter range)
-   EAX <- PMC(ECX[30:0])[31:0];
-   EDX <- PMC(ECX[30:0])[MSCB:32];
- ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
-   #GP(0); 
+    THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
+          EAX <- IA32_FIXED_CTR(ECX)[30:0];
+          EDX <- IA32_FIXED_CTR(ECX)[MSCB:32];
+    ELSE IF (ECX[30] = 0 and ECX[29:0] in valid general-purpose counter range)
+          EAX <- PMC(ECX[30:0])[31:0];
+          EDX <- PMC(ECX[30:0])[MSCB:32];
+    ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
+          #GP(0); 
 FI;
 (* Intel Core 2 Duo processor family and Intel Xeon processor 3000, 5100, 5300, 7400 series*)
 Most significant counter bit (MSCB) = 39
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
- THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
-   EAX <- IA32_FIXED_CTR(ECX)[30:0];
-   EDX <- IA32_FIXED_CTR(ECX)[MSCB:32];
- ELSE IF (ECX[30] = 0 and ECX[29:0] in valid general-purpose counter range)
-   EAX <- PMC(ECX[30:0])[31:0];
-   EDX <- PMC(ECX[30:0])[MSCB:32];
- ELSE IF (ECX[30] = 0 and ECX[29:0] in valid special-purpose counter range)
-   EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
- ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
-   #GP(0); 
+    THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
+          EAX <- IA32_FIXED_CTR(ECX)[30:0];
+          EDX <- IA32_FIXED_CTR(ECX)[MSCB:32];
+    ELSE IF (ECX[30] = 0 and ECX[29:0] in valid general-purpose counter range)
+          EAX <- PMC(ECX[30:0])[31:0];
+          EDX <- PMC(ECX[30:0])[MSCB:32];
+    ELSE IF (ECX[30] = 0 and ECX[29:0] in valid special-purpose counter range)
+          EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+    ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
+          #GP(0); 
 FI;
 (* P6 family processors and Pentium processor with MMX technology *)
 IF (ECX = 0 or 1) and ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
- THEN 
-   EAX <- PMC(ECX)[31:0];
-   EDX <- PMC(ECX)[39:32];
- ELSE (* ECX is not 0 or 1 or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
-   #GP(0); 
+    THEN 
+          EAX <- PMC(ECX)[31:0];
+          EDX <- PMC(ECX)[39:32];
+    ELSE (* ECX is not 0 or 1 or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
+          #GP(0); 
 FI;
 (* Processors based on Intel NetBurst microarchitecture *)
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
- THEN IF (ECX[30:0] = 0:17)
-   THEN IF ECX[31] = 0
+    THEN IF (ECX[30:0] = 0:17)
+          THEN IF ECX[31] = 0
 THEN
-      EAX <- PMC(ECX[30:0])[31:0]; (* 40-bit read *)
-      EDX <- PMC(ECX[30:0])[39:32];
-   ELSE (* ECX[31] = 1*)
-    THEN
-      EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
-      EDX <- 0;
-   FI;
- ELSE IF (*64-bit Intel processor based on Intel NetBurst microarchitecture with L3 *)
-   THEN IF (ECX[30:0] = 18:25 )
-    EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
-    EDX <- 0;
-   FI;
- ELSE (* Invalid PMC index in ECX[30:0], see Table 4-19. *)
-   GP(0); 
- FI;
+                      EAX <- PMC(ECX[30:0])[31:0]; (* 40-bit read *)
+                      EDX <- PMC(ECX[30:0])[39:32];
+          ELSE (* ECX[31] = 1*)
+                THEN
+                      EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+                      EDX <- 0;
+          FI;
+    ELSE IF (*64-bit Intel processor based on Intel NetBurst microarchitecture with L3 *)
+          THEN IF (ECX[30:0] = 18:25 )
+                EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+                EDX <- 0;
+          FI;
+    ELSE (* Invalid PMC index in ECX[30:0], see Table 4-19. *)
+          GP(0); 
+    FI;
 ELSE (* CR4.PCE = 0 and (CPL = 1, 2, or 3) and CR0.PE = 1 *)
- #GP(0); 
+    #GP(0); 
 FI; 
 ```
 ### Flags Affected
@@ -154,7 +154,7 @@ None.
 
 #### #GP(0)
 * If the current privilege level is not 0 and the PCE flag in the CR4 register is clear.
-* If an invalid performance counter index is specified (see Table4-16).
+* If an invalid performance counter index is specified (see Table 4-16).
 
 #### #UD
 * If the LOCK prefix is used.
@@ -162,7 +162,7 @@ None.
 ### Real-Address Mode Exceptions
 
 #### #GP
-* If an invalid performance counter index is specified (see Table4-16).
+* If an invalid performance counter index is specified (see Table 4-16).
 
 #### #UD
 * If the LOCK prefix is used.
@@ -171,7 +171,7 @@ None.
 
 #### #GP(0)
 * If the PCE flag in the CR4 register is clear.
-* If an invalid performance counter index is specified (see Table4-16).
+* If an invalid performance counter index is specified (see Table 4-16).
 
 #### #UD
 * If the LOCK prefix is used.
@@ -187,7 +187,7 @@ Same exceptions as in protected mode.
 
 #### #GP(0)
 * If the current privilege level is not 0 and the PCE flag in the CR4 register is clear.
-* If an invalid performance counter index is specified (see Table4-16).
+* If an invalid performance counter index is specified (see Table 4-16).
 
 #### #UD
 * If the LOCK prefix is used.

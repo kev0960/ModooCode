@@ -29,9 +29,9 @@ Prior to executing `SYSEXIT`, software must specify the privilege level 3 code s
 
 *  IA32_SYSENTER_CS (MSR address 174H) -- Contains a 32-bit value that is used to determine the segment selectors for the privilege level 3 code and stack segments (see the Operation section)
 
-*  RDX -- The canonical address in this register is loaded into RIP (thus, this value references the first instruction to be executed in the user code). If the return is not to 64-bit mode, only bits31:0 are loaded.
+*  RDX -- The canonical address in this register is loaded into RIP (thus, this value references the first instruction to be executed in the user code). If the return is not to 64-bit mode, only bits 31:0 are loaded.
 
-*  ECX -- The canonical address in this register is loaded into RSP (thus, this value contains the stack pointer for the privilege level 3 stack). If the return is not to 64-bit mode, only bits31:0 are loaded.
+*  ECX -- The canonical address in this register is loaded into RSP (thus, this value contains the stack pointer for the privilege level 3 stack). If the return is not to 64-bit mode, only bits 31:0 are loaded.
 
 The IA32_SYSENTER_CS MSR can be read from and written to using `RDMSR` and `WRMSR`.
 
@@ -43,15 +43,15 @@ The `SYSENTER` and `SYSEXIT` instructions were introduced into the IA-32 archite
 
 IF `CPUID` SEP bit is set
 
- THEN IF (Family = 6) and (Model < 3) and (Stepping < 3) 
+    THEN IF (Family = 6) and (Model < 3) and (Stepping < 3) 
 
-   THEN
+          THEN
 
-    SYSENTER/SYSEXIT_Not_Supported; FI;
+                SYSENTER/SYSEXIT_Not_Supported; FI;
 
-   ELSE 
+          ELSE 
 
-    SYSENTER/SYSEXIT_Supported; FI;
+                SYSENTER/SYSEXIT_Supported; FI;
 
 FI;
 
@@ -63,16 +63,16 @@ When the `CPUID` instruction is executed on the Pentium Pro processor (model 1),
 ```info-verb
 IF IA32_SYSENTER_CS[15:2] = 0 OR CR0.PE = 0 OR CPL != 0 THEN #GP(0); FI;
 IF operand size is 64-bit
- THEN (* Return to 64-bit mode *)
-   RSP <- RCX;
-   RIP <- RDX;
- ELSE (* Return to protected mode or compatibility mode *)
-   RSP <- ECX;
-   RIP <- EDX;
+    THEN (* Return to 64-bit mode *)
+          RSP <- RCX;
+          RIP <- RDX;
+    ELSE (* Return to protected mode or compatibility mode *)
+          RSP <- ECX;
+          RIP <- EDX;
 FI;
 IF operand size is 64-bit (* Operating system provides CS; RPL forced to 3 *)
- THEN CS.Selector <- IA32_SYSENTER_CS[15:0] + 32;
- ELSE CS.Selector <- IA32_SYSENTER_CS[15:0] + 16;
+    THEN CS.Selector <- IA32_SYSENTER_CS[15:0] + 32;
+    ELSE CS.Selector <- IA32_SYSENTER_CS[15:0] + 16;
 FI;
 CS.Selector <- CS.Selector OR 3; (* RPL forced to 3 *)
 (* Set rest of CS to a fixed value *)
@@ -83,12 +83,12 @@ CS.S <- 1;
 CS.DPL <- 3;
 CS.P <- 1;
 IF operand size is 64-bit
- THEN (* return to 64-bit mode *)
-   CS.L <- 1; (* 64-bit code segment *)
-   CS.D <- 0; (* Required if CS.L = 1 *)
- ELSE (* return to protected mode or compatibility mode *)
-   CS.L <- 0;
-   CS.D <- 1; (* 32-bit code segment*)
+    THEN (* return to 64-bit mode *)
+          CS.L <- 1; (* 64-bit code segment *)
+          CS.D <- 0; (* Required if CS.L = 1 *)
+    ELSE (* return to protected mode or compatibility mode *)
+          CS.L <- 0;
+          CS.D <- 1; (* 32-bit code segment*)
 FI;
 CS.G <- 1; (* 4-KByte granularity *)
 CPL <- 3;

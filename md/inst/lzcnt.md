@@ -39,18 +39,18 @@ temp <- OperandSize - 1
 DEST <- 0
 WHILE (temp >= 0) AND (Bit(SRC, temp) = 0)
 DO
- temp <- temp - 1
- DEST <- DEST+ 1
+    temp <- temp - 1
+    DEST <- DEST+ 1
 OD
 IF DEST = OperandSize
- CF <- 1
+    CF <- 1
 ELSE
- CF <- 0
+    CF <- 0
 FI
 IF DEST = 0
- ZF <- 1
+    ZF <- 1
 ELSE
- ZF <- 0
+    ZF <- 0
 FI
 ```
 ### Flags Affected

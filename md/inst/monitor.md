@@ -6,12 +6,12 @@ path : /X86-64 명령어 레퍼런스
 ----------------------------
 #@ MONITOR
 
-**Set Up Monitor Address**###                  Instruction Operand Encoding
+**Set Up Monitor Address**###                                                            Instruction Operand Encoding
 
 
 Op/En Operand 1 Operand 2 Operand 3 Operand 4
 
-NP NA NA NA NA
+  NP NA NA NA NA
 
 ### Description
 
@@ -69,7 +69,7 @@ None
 
 #GP  If the CS, DS, ES, FS, or GS register is used to access memory and the value in EAX is outside of the effective address space from 0 to FFFFH.
 
-         If ECX != 0.
+                              If ECX != 0.
 
 #SS  If the SS register is used to access memory and the value in EAX is outside of the effective address space from 0 to FFFFH.
 

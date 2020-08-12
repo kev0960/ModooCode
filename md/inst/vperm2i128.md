@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDS.256.66.0F3A.W0 46 /r ibVPERM2I128 ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX2|Permute 128-bit integer data in ymm2 and ymm3/mem using controls from imm8 and store result in ymm1.|
+|VEX.NDS.256.66.0F3A.W0 46 /r ib\newline{}VPERM2I128 ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX2|Permute 128-bit integer data in ymm2 and ymm3/mem using controls from imm8 and store result in ymm1.|
 ### Instruction Operand Encoding
 
 
@@ -154,7 +154,7 @@ VEX.L must be 1, otherwise the instruction will #UD.
 <text x="79.491745" y="129.640015" textLength="2.085000" font-size="8px">,</text>
 <text x="119.052750" y="129.640015" textLength="5.002500" font-size="8px">Y</text>
 </svg>
-<figcaption>Figure 5-22.  `VPERM2I128` Operation
+<figcaption>Figure 5-22.  VPERM2I128 Operation
 </figcaption></figure>
 ```
 
@@ -162,22 +162,22 @@ VEX.L must be 1, otherwise the instruction will #UD.
 #### VPERM2I128
 ```info-verb
 CASE IMM8[1:0] of 
-0: DEST[127:0]  <- SRC1[127:0]
-1: DEST[127:0]  <- SRC1[255:128]
-2: DEST[127:0]  <- SRC2[127:0]
-3: DEST[127:0]  <- SRC2[255:128]
+0: DEST[127:0]  <-  SRC1[127:0]
+1: DEST[127:0]  <-  SRC1[255:128]
+2: DEST[127:0]  <-  SRC2[127:0]
+3: DEST[127:0]  <-  SRC2[255:128]
 ESAC
 CASE IMM8[5:4] of 
-0: DEST[255:128]  <- SRC1[127:0]
-1: DEST[255:128] <-  SRC1[255:128]
-2: DEST[255:128] <-  SRC2[127:0]
-3: DEST[255:128] <-  SRC2[255:128]
+0: DEST[255:128]  <-  SRC1[127:0]
+1: DEST[255:128] <-   SRC1[255:128]
+2: DEST[255:128] <-   SRC2[127:0]
+3: DEST[255:128] <-   SRC2[255:128]
 ESAC
 IF (imm8[3])
-DEST[127:0] <-  0
+DEST[127:0] <-   0
 FI
 IF (imm8[7])
-DEST[255:128] <-  0
+DEST[255:128] <-   0
 FI
 ```
 
@@ -198,5 +198,5 @@ See Exceptions Type 6; additionally
 
 #UD If VEX.L = 0,
 
-         If VEX.W = 1.
+                              If VEX.W = 1.
 

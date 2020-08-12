@@ -36,8 +36,8 @@ The following table shows the results obtained when multiplying various classes 
 ### Table 3-29.  FMUL/FMULP/FIMUL Results
 
 
-|- $$\infty$$\newline{}- $$\infty$$ + $$\infty$$|- F\newline{}+ $$\infty$$|**DE**\newline{}- 0\newline{}\htmlonly{*}|**ST**\newline{}  + 0\newline{}  \htmlonly{*}|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}- $$\infty$$|NaN\newline{}NaN|
-|-----------------------------------------------|-------------------------|-----------------------------------------|---------------------------------------------|-------------------------|----------------------------------|----------------|
+|- $$\infty$$\newline{}- $$\infty$$ + $$\infty$$|- F\newline{}+ $$\infty$$|**DE**\newline{}- 0\newline{} \htmlonly{*}|**ST**\newline{}       + 0\newline{}        \htmlonly{*}|+ F\newline{}- $$\infty$$|+ $$\infty$$\newline{}- $$\infty$$|NaN\newline{}NaN|
+|-----------------------------------------------|-------------------------|------------------------------------------|--------------------------------------------------------|-------------------------|----------------------------------|----------------|
 |- F + $$\infty$$|+ F|+ 0|- 0|- F|- $$\infty$$|NaN|
 |- I + $$\infty$$|+ F|+ 0|- 0|- F|- $$\infty$$|NaN|
 |**SRC** - 0 \htmlonly{*}|+ 0|+ 0|- 0|- 0|\htmlonly{*}|NaN|
@@ -46,14 +46,14 @@ The following table shows the results obtained when multiplying various classes 
 |+ F - $$\infty$$|- F|- 0|+ 0|+ F|+ $$\infty$$|NaN|
 |+ $$\infty$$ - $$\infty$$|- $$\infty$$|\htmlonly{*}|\htmlonly{*}|+ $$\infty$$|+ $$\infty$$|NaN|
 |NaN NaN|NaN|NaN|NaN|NaN|NaN|NaN|
-### NOTES:
+###  NOTES:
 
 
-FMeans finite floating-point value.
+F Means finite floating-point value.
 
-IMeans Integer.
+ I Means Integer.
 
-\htmlonly{*}Indicates invalid-arithmetic-operand (#IA) exception.
+ \htmlonly{*} Indicates invalid-arithmetic-operand (#IA) exception.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
@@ -62,14 +62,14 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 ```info-verb
 IF Instruction = FIMUL
- THEN
-   DEST <- DEST `*` ConvertToDoubleExtendedPrecisionFP(SRC);
- ELSE (* Source operand is floating-point value *)
-   DEST <- DEST `*` SRC;
+    THEN
+          DEST <- DEST `*` ConvertToDoubleExtendedPrecisionFP(SRC);
+    ELSE (* Source operand is floating-point value *)
+          DEST <- DEST `*` SRC;
 FI;
 IF Instruction = FMULP 
- THEN 
-   PopRegisterStack;
+    THEN 
+          PopRegisterStack;
 FI;
 ```
 ### FPU Flags Affected
@@ -77,7 +77,7 @@ FI;
 
 C1 Set to 0 if stack underflow occurred.
 
-         Set if result was rounded up; cleared otherwise.
+                              Set if result was rounded up; cleared otherwise.
 
 C0, C2, C3  Undefined.
 
@@ -88,7 +88,7 @@ C0, C2, C3  Undefined.
 
 #IA Operand is an SNaN value or unsupported format.
 
-         One operand is $$\pm$$0 and the other is $$\pm$$$$\infty$$.
+                              One operand is $$\pm$$0 and the other is $$\pm$$$$\infty$$.
 
 #D Source operand is a denormal value.
 

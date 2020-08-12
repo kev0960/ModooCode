@@ -10,23 +10,23 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|--------------------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.128.66.0F38.W0 18 /rVBROADCASTSS xmm1, m32|RM|V/V|AVX|Broadcast single-precision floating-point element in mem to four locations in xmm1.|
-|VEX.256.66.0F38.W0 18 /rVBROADCASTSS ymm1, m32|RM|V/V|AVX|Broadcast single-precision floating-point element in mem to eight locations in ymm1.|
-|VEX.256.66.0F38.W0 19 /rVBROADCASTSD ymm1, m64|RM|V/V|AVX|Broadcast double-precision floating-point element in mem to four locations in ymm1.|
-|VEX.256.66.0F38.W0 1A /rVBROADCASTF128 ymm1, m128|RM|V/V|AVX|Broadcast 128 bits of floating-point data in mem to low and high 128-bits in ymm1.|
-|EVEX.256.66.0F38.W1 19 /rVBROADCASTSD ymm1 {k1}{z}, xmm2/m64|T1S|V/V|AVX512VLAVX512F|Broadcast low double-precision floating-point element in xmm2/m64 to four locations in ymm1 using writemask k1.|
-|EVEX.512.66.0F38.W1 19 /rVBROADCASTSD zmm1 {k1}{z}, xmm2/m64|T1S|V/V|AVX512F|Broadcast low double-precision floating-point element in xmm2/m64 to eight locations in zmm1 using writemask k1.|
-|EVEX.256.66.0F38.W0 19 /rVBROADCASTF32X2 ymm1 {k1}{z}, xmm2/m64|T2|V/V|AVX512VLAVX512DQ|Broadcast two single-precision floating-point elements in xmm2/m64 to locations in ymm1 using writemask k1.|
-|EVEX.512.66.0F38.W0 19 /rVBROADCASTF32X2 zmm1 {k1}{z}, xmm2/m64|T2|V/V|AVX512DQ|Broadcast two single-precision floating-point elements in xmm2/m64 to locations in zmm1 using writemask k1.|
-|EVEX.128.66.0F38.W0 18 /rVBROADCASTSS xmm1 {k1}{z}, xmm2/m32|T1S|V/V|AVX512VLAVX512F|Broadcast low single-precision floating-point element in xmm2/m32 to all locations in xmm1 using writemask k1.|
-|EVEX.256.66.0F38.W0 18 /rVBROADCASTSS ymm1 {k1}{z}, xmm2/m32|T1S|V/V|AVX512VLAVX512F|Broadcast low single-precision floating-point element in xmm2/m32 to all locations in ymm1 using writemask k1.|
-|EVEX.512.66.0F38.W0 18 /rVBROADCASTSS zmm1 {k1}{z}, xmm2/m32|T1S|V/V|AVX512F|Broadcast low single-precision floating-point element in xmm2/m32 to all locations in zmm1 using writemask k1.|
-|EVEX.256.66.0F38.W0 1A /rVBROADCASTF32X4 ymm1 {k1}{z}, m128|T4|V/V|AVX512VLAVX512F|Broadcast 128 bits of 4 single-precision floating-point data in mem to locations in ymm1 using writemask k1.|
-|EVEX.512.66.0F38.W0 1A /rVBROADCASTF32X4 zmm1 {k1}{z}, m128|T4|V/V|AVX512F|Broadcast 128 bits of 4 single-precision floating-point data in mem to locations in zmm1 using writemask k1.|
-|EVEX.256.66.0F38.W1 1A /rVBROADCASTF64X2 ymm1 {k1}{z}, m128|T2|V/V|AVX512VLAVX512DQ|Broadcast 128 bits of 2 double-precision floating-point data in mem to locations in ymm1 using writemask k1.|
-|EVEX.512.66.0F38.W1 1A /rVBROADCASTF64X2 zmm1 {k1}{z}, m128|T2|V/V|AVX512DQ|Broadcast 128 bits of 2 double-precision floating-point data in mem to locations in zmm1 using writemask k1.|
-|EVEX.512.66.0F38.W0 1B /rVBROADCASTF32X8 zmm1 {k1}{z}, m256|T8|V/V|AVX512DQ|Broadcast 256 bits of 8 single-precision floating-point data in mem to locations in zmm1 using writemask k1.|
-|EVEX.512.66.0F38.W1 1B /rVBROADCASTF64X4 zmm1 {k1}{z}, m256|T4|V/V|AVX512F|Broadcast 256 bits of 4 double-precision floating-point data in mem to locations in zmm1 using writemask k1.|
+|VEX.128.66.0F38.W0 18 /r\newline{}VBROADCASTSS xmm1, m32|RM|V/V|AVX|Broadcast single-precision floating-point element in mem to four locations in xmm1.|
+|VEX.256.66.0F38.W0 18 /r\newline{}VBROADCASTSS ymm1, m32|RM|V/V|AVX|Broadcast single-precision floating-point element in mem to eight locations in ymm1.|
+|VEX.256.66.0F38.W0 19 /r\newline{}VBROADCASTSD ymm1, m64|RM|V/V|AVX|Broadcast double-precision floating-point element in mem to four locations in ymm1.|
+|VEX.256.66.0F38.W0 1A /r\newline{}VBROADCASTF128 ymm1, m128|RM|V/V|AVX|Broadcast 128 bits of floating-point data in mem to low and high 128-bits in ymm1.|
+|EVEX.256.66.0F38.W1 19 /r\newline{}VBROADCASTSD ymm1 {k1}{z}, xmm2/m64|T1S|V/V|AVX512VLAVX512F|Broadcast low double-precision floating-point element in xmm2/m64 to four locations in ymm1 using writemask k1.|
+|EVEX.512.66.0F38.W1 19 /r\newline{}VBROADCASTSD zmm1 {k1}{z}, xmm2/m64|T1S|V/V|AVX512F|Broadcast low double-precision floating-point element in xmm2/m64 to eight locations in zmm1 using writemask k1.|
+|EVEX.256.66.0F38.W0 19 /r\newline{}VBROADCASTF32X2 ymm1 {k1}{z}, xmm2/m64|T2|V/V|AVX512VLAVX512DQ|Broadcast two single-precision floating-point elements in xmm2/m64 to locations in ymm1 using writemask k1.|
+|EVEX.512.66.0F38.W0 19 /r\newline{}VBROADCASTF32X2 zmm1 {k1}{z}, xmm2/m64|T2|V/V|AVX512DQ|Broadcast two single-precision floating-point elements in xmm2/m64 to locations in zmm1 using writemask k1.|
+|EVEX.128.66.0F38.W0 18 /r\newline{}VBROADCASTSS xmm1 {k1}{z}, xmm2/m32|T1S|V/V|AVX512VLAVX512F|Broadcast low single-precision floating-point element in xmm2/m32 to all locations in xmm1 using writemask k1.|
+|EVEX.256.66.0F38.W0 18 /r\newline{}VBROADCASTSS ymm1 {k1}{z}, xmm2/m32|T1S|V/V|AVX512VLAVX512F|Broadcast low single-precision floating-point element in xmm2/m32 to all locations in ymm1 using writemask k1.|
+|EVEX.512.66.0F38.W0 18 /r\newline{}VBROADCASTSS zmm1 {k1}{z}, xmm2/m32|T1S|V/V|AVX512F|Broadcast low single-precision floating-point element in xmm2/m32 to all locations in zmm1 using writemask k1.|
+|EVEX.256.66.0F38.W0 1A /r\newline{}VBROADCASTF32X4 ymm1 {k1}{z}, m128|T4|V/V|AVX512VLAVX512F|Broadcast 128 bits of 4 single-precision floating-point data in mem to locations in ymm1 using writemask k1.|
+|EVEX.512.66.0F38.W0 1A /r\newline{}VBROADCASTF32X4 zmm1 {k1}{z}, m128|T4|V/V|AVX512F|Broadcast 128 bits of 4 single-precision floating-point data in mem to locations in zmm1 using writemask k1.|
+|EVEX.256.66.0F38.W1 1A /r\newline{}VBROADCASTF64X2 ymm1 {k1}{z}, m128|T2|V/V|AVX512VLAVX512DQ|Broadcast 128 bits of 2 double-precision floating-point data in mem to locations in ymm1 using writemask k1.|
+|EVEX.512.66.0F38.W1 1A /r\newline{}VBROADCASTF64X2 zmm1 {k1}{z}, m128|T2|V/V|AVX512DQ|Broadcast 128 bits of 2 double-precision floating-point data in mem to locations in zmm1 using writemask k1.|
+|EVEX.512.66.0F38.W0 1B /r\newline{}VBROADCASTF32X8 zmm1 {k1}{z}, m256|T8|V/V|AVX512DQ|Broadcast 256 bits of 8 single-precision floating-point data in mem to locations in zmm1 using writemask k1.|
+|EVEX.512.66.0F38.W1 1B /r\newline{}VBROADCASTF64X4 zmm1 {k1}{z}, m256|T4|V/V|AVX512F|Broadcast 256 bits of 4 double-precision floating-point data in mem to locations in zmm1 using writemask k1.|
 ### Instruction Operand Encoding
 
 
@@ -39,9 +39,9 @@ path : /X86-64 명령어 레퍼런스
 
 VBROADCASTSD/VBROADCASTSS/VBROADCASTF128 load floating-point values as one tuple from the source operand (second operand) in memory and broadcast to all elements of the destination operand (first operand). 
 
- VEX256-encoded versions: The destination operand is a YMM register. The source operand is either a 32-bit,64-bit, or 128-bit memory location. Register source encodings are reserved and will #UD. Bits (MAX_VL-1:256) of the destination register are zeroed.
+     VEX256-encoded versions: The destination operand is a YMM register. The source operand is either a 32-bit,64-bit, or 128-bit memory location. Register source encodings are reserved and will #UD. Bits (MAX_VL-1:256) of the destination register are zeroed.
 
- EVEX-encoded versions: The destination operand is a ZMM/YMM/XMM register and updated according to thewritemask k1. The source operand is either a 32-bit, 64-bit memory location or the lowdoubleword/quadword element of an XMM register. 
+     EVEX-encoded versions: The destination operand is a ZMM/YMM/XMM register and updated according to thewritemask  k1.  The  source  operand  is  either  a  32-bit,  64-bit  memory  location  or  the  lowdoubleword/quadword element of an XMM register. 
 
 VBROADCASTF32X2/VBROADCASTF32X4/VBROADCASTF64X2/VBROADCASTF32X8/VBROADCASTF64X4 load floating-point values as tuples from the source operand (the second operand) in memory or register and broadcast to all elements of the destination operand (the first operand). The destination operand is a YMM/ZMM register updated according to the writemask k1. The source operand is either a register or 64-bit/128-bit/256-bit memory location.
 
@@ -448,162 +448,162 @@ If VBROADCASTSD or VBROADCASTF128 is encoded with VEX.L= 0, an attempt to execut
 ### Operation
 #### VBROADCASTSS (128 bit version VEX and legacy)
 ```info-verb
-temp <-  SRC[31:0]
-DEST[31:0]  <- temp
-DEST[63:32]  <- temp
-DEST[95:64] <-  temp
-DEST[127:96] <-  temp
-DEST[MAX_VL-1:128]  <- 0
+temp <-   SRC[31:0]
+DEST[31:0]  <-  temp
+DEST[63:32]  <-  temp
+DEST[95:64] <-   temp
+DEST[127:96] <-   temp
+DEST[MAX_VL-1:128]  <-  0
 ```
 #### VBROADCASTSS (VEX.256 encoded version)
 ```info-verb
-temp  <- SRC[31:0]
-DEST[31:0] <-  temp
-DEST[63:32]  <- temp
-DEST[95:64]  <- temp
-DEST[127:96] <-  temp
-DEST[159:128]  <- temp
-DEST[191:160] <-  temp
-DEST[223:192] <-  temp
-DEST[255:224] <-  temp
-DEST[MAX_VL-1:256] <-  0
+temp  <-  SRC[31:0]
+DEST[31:0] <-   temp
+DEST[63:32]  <-  temp
+DEST[95:64]  <-  temp
+DEST[127:96] <-   temp
+DEST[159:128]  <-  temp
+DEST[191:160] <-   temp
+DEST[223:192] <-   temp
+DEST[255:224] <-   temp
+DEST[MAX_VL-1:256] <-   0
 ```
 #### VBROADCASTSS (EVEX encoded versions)
 ```info-verb
 (KL, VL) (4, 128), (8, 256),= (16, 512)
-FOR j <-  0 TO KL-1
- i <- j * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i] <-  SRC[31:0]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i]  <- 0
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i <-  j * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i] <-   SRC[31:0]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VBROADCASTSD (VEX.256 encoded version)
 ```info-verb
-temp  <- SRC[63:0]
-DEST[63:0] <-  temp
-DEST[127:64] <-  temp
-DEST[191:128] <-  temp
-DEST[255:192] <-  temp
-DEST[MAX_VL-1:256] <-  0
+temp  <-  SRC[63:0]
+DEST[63:0] <-   temp
+DEST[127:64] <-   temp
+DEST[191:128] <-   temp
+DEST[255:192] <-   temp
+DEST[MAX_VL-1:256] <-   0
 ```
 #### VBROADCASTSD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
- i <- j * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i]  <- SRC[63:0]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+63:i] <-  0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i <-  j * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i]  <-  SRC[63:0]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+63:i] <-   0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VBROADCASTF32x2 (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (8, 256), (16, 512)
-FOR j <-  0 TO KL-1
- i  <- != j * 32
- n  <- != (j mod 2) * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i]  <- SRC[n+31:n]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i]  <- 0
-    FI
- FI;
+FOR j <-   0 TO KL-1
+    i  <- != j * 32
+    n  <- != (j mod 2) * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i]  <-  SRC[n+31:n]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VBROADCASTF128 (VEX.256 encoded version)
 ```info-verb
-temp <-  SRC[127:0]
-DEST[127:0]  <- temp
-DEST[255:128] <-  temp
-DEST[MAX_VL-1:256]  <- 0
+temp <-   SRC[127:0]
+DEST[127:0]  <-  temp
+DEST[255:128] <-   temp
+DEST[MAX_VL-1:256]  <-  0
 ```
 #### VBROADCASTF32X4 (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (8, 256), (16, 512)
-FOR j  <- 0 TO KL-1
- i  <- != j* 32
- n  <- != (j modulo 4) * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i]  <- SRC[n+31:n]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i]  <- 0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i  <- != j* 32
+    n  <- != (j modulo 4) * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i]  <-  SRC[n+31:n]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 #### VBROADCASTF64X2 (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 256), (8, 512)
-FOR j  <- 0 TO KL-1
- i <-  j * 64
- n <- (j modulo 2) * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i] <-  SRC[n+63:n]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+63:i] = 0
-    FI
- FI;
+FOR j  <-  0 TO KL-1
+    i <-   j * 64
+    n <-  (j modulo 2) * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i] <-   SRC[n+63:n]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+63:i] = 0
+                FI
+    FI;
 ENDFOR;
 ```
 #### VBROADCASTF32X8 (EVEX.U1.512 encoded version)
 ```info-verb
-FOR j <-  0 TO 15
- i  <- j * 32
- n  <-(j modulo 8) * 32
- IF k1[j] OR *no writemask*
-   THEN DEST[i+31:i] <-  SRC[n+31:n]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+31:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+31:i] <-  0
-    FI
- FI;
+FOR j <-   0 TO 15
+    i  <-  j * 32
+    n  <- (j modulo 8) * 32
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+31:i] <-   SRC[n+31:n]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+31:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+31:i] <-   0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] <-   0
 ```
 #### VBROADCASTF64X4 (EVEX.512 encoded version)
 ```info-verb
-FOR j  <- 0 TO 7
- i  <- j * 64
- n  <- != (j modulo 4) * 64
- IF k1[j] OR *no writemask*
-   THEN DEST[i+63:i] <-  SRC[n+63:n]
-   ELSE 
-    IF *merging-masking* ; merging-masking
-      THEN *DEST[i+63:i] remains unchanged*
-      ELSE  ; zeroing-masking
-        DEST[i+63:i]  <- 0
-    FI
- FI;
+FOR j  <-  0 TO 7
+    i  <-  j * 64
+    n  <- != (j modulo 4) * 64
+    IF k1[j] OR *no writemask*
+          THEN DEST[i+63:i] <-   SRC[n+63:n]
+          ELSE 
+                IF *merging-masking* ; merging-masking
+                      THEN *DEST[i+63:i] remains unchanged*
+                      ELSE  ; zeroing-masking
+                            DEST[i+63:i]  <-  0
+                FI
+    FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL]  <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -663,7 +663,7 @@ EVEX-encoded instructions, see Exceptions Type E6.
 
 #UD If VEX.L = 0 for VBROADCASTSD or VBROADCASTF128.
 
-         If EVEX.L'L = 0 for VBROADCASTSD/VBROADCASTF32X2/VBROADCASTF32X4/VBROADCASTF64X2.
+                              If EVEX.L'L = 0 for VBROADCASTSD/VBROADCASTF32X2/VBROADCASTF32X4/VBROADCASTF64X2.
 
-         If EVEX.L'L < 10b for VBROADCASTF32X8/VBROADCASTF64X4.
+                              If EVEX.L'L < 10b for VBROADCASTF32X8/VBROADCASTF64X4.
 

@@ -28,10 +28,10 @@ Complements the sign bit of ST(0). This operation changes a positive value into 
 |+ F|- F|
 |+ $$\infty$$|- $$\infty$$|
 |NaN|NaN |
-### NOTES:
+###  NOTES:
 
 
-\htmlonly{*}F means finite floating-point value.
+\htmlonly{*} F means finite floating-point value.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

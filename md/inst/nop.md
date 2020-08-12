@@ -23,7 +23,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-This instruction performs no operation. It is a one-byte or multi-byte `NOP` that takes up space in the instruction stream but does not impact machine context, except for the EIPregister.
+This instruction performs no operation. It is a one-byte or multi-byte `NOP` that takes up space in the instruction stream but does not impact machine context, except for the EIP register.
 
 The multi-byte form of `NOP` is available on processors with model encoding:
 
