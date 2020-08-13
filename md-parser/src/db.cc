@@ -235,37 +235,15 @@ bool Database::TryUpdateFileToDatabase(const string& article_url,
     bool updated = false;
     string prev_hash = itr->second.current_content_sha256;
     if (prev_hash != current_hash) {
-      // Calculate the diff.
-      std::vector<Database::ArticleContent> prev_articles =
-          RetrievePrevContents(article_url);
-      bool should_add_full_content = false;
-      if (prev_articles.size() >= 5 && !prev_articles[0].is_diff) {
-        should_add_full_content = true;
-      }
-
       // Now insert into the database.
       pqxx::work append_new_article_info(*conn_);
-      string prev_article_content = GeneratePrevArticle(prev_articles);
-      Diff diff(prev_article_content, content);
-      string patch_str = diff.CreatePatch();
+      append_new_article_info.exec(
+          StrCat("UPDATE articles SET contents = contents || "
+                 "row(now(), '",
+                 /* content */ append_new_article_info.esc(content),
+                 "', '', false)::article_content WHERE article_url = '",
+                 append_new_article_info.esc(article_url), "';"));
 
-      if (should_add_full_content) {
-        append_new_article_info.exec(
-            StrCat("UPDATE articles SET contents = contents || "
-                   "row(now(), '",
-                   /* content */ append_new_article_info.esc(content), "', '",
-                   /* diff */ append_new_article_info.esc(patch_str),
-                   "', false)::article_content WHERE article_url = '",
-                   append_new_article_info.esc(article_url), "';"));
-      } else {
-        // Otherwise we only add the diff.
-        append_new_article_info.exec(
-            StrCat("UPDATE articles SET contents = contents || "
-                   "row(now(), '', '",
-                   append_new_article_info.esc(patch_str),
-                   "', true)::article_content WHERE article_url = '",
-                   append_new_article_info.esc(article_url), "';"));
-      }
       append_new_article_info.exec(
           StrCat("UPDATE articles SET current_content_sha256 = '", current_hash,
                  "' WHERE article_url = '",

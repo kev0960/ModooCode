@@ -162,22 +162,22 @@ VEX.L must be 1, otherwise the instruction will #UD.
 #### VPERM2I128
 ```info-verb
 CASE IMM8[1:0] of 
-0: DEST[127:0]  <-  SRC1[127:0]
-1: DEST[127:0]  <-  SRC1[255:128]
-2: DEST[127:0]  <-  SRC2[127:0]
-3: DEST[127:0]  <-  SRC2[255:128]
+0: DEST[127:0] <-  SRC1[127:0]
+1: DEST[127:0] <-  SRC1[255:128]
+2: DEST[127:0] <-  SRC2[127:0]
+3: DEST[127:0] <-  SRC2[255:128]
 ESAC
 CASE IMM8[5:4] of 
-0: DEST[255:128]  <-  SRC1[127:0]
-1: DEST[255:128] <-   SRC1[255:128]
-2: DEST[255:128] <-   SRC2[127:0]
-3: DEST[255:128] <-   SRC2[255:128]
+0: DEST[255:128] <-  SRC1[127:0]
+1: DEST[255:128] <-  SRC1[255:128]
+2: DEST[255:128] <-  SRC2[127:0]
+3: DEST[255:128] <-  SRC2[255:128]
 ESAC
 IF (imm8[3])
-DEST[127:0] <-   0
+DEST[127:0] <-  0
 FI
 IF (imm8[7])
-DEST[255:128] <-   0
+DEST[255:128] <-  0
 FI
 ```
 

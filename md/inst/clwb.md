@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|------------------------------------|---------------|
-|66 0F AE /6\newline{}CLWB m8|M|V/V|\newline{}CLWB|Writes back modified cache line containing m8, and may retain the line in cache hierarchy in non-modified state.|
+|66 0F AE /6\newline{}CLWB m8|M|V/V|CLWB|Writes back modified cache line containing m8, and may retain the line in cache hierarchy in non-modified state.|
 ###                                                       Instruction Operand Encoding\footnote{1}
 
 

@@ -12,8 +12,8 @@ path : /X86-64 명령어 레퍼런스
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
 |VEX.128.66.0F3A.W0 1D /r ib\newline{}VCVTPS2PH xmm1/m64, xmm2, imm8|MRI|V/V|F16C|Convert four packed single-precision floating-point values in xmm2 to packed half-precision (16-bit) floating-point values in xmm1/m64. Imm8 provides rounding controls.|
 |VEX.256.66.0F3A.W0 1D /r ib\newline{}VCVTPS2PH xmm1/m128, ymm2, imm8|MRI|V/V|F16C|Convert eight packed single-precision floating-point values in ymm2 to packed half-precision (16-bit) floating-point values in xmm1/m128. Imm8 provides rounding controls.|
-|EVEX.128.66.0F3A.W0 1D /r ib\newline{}VCVTPS2PH xmm1/m64 {k1}{z}, xmm2, imm8|HVM|V/V|AVX512VLAVX512F|Convert four packed single-precision floating-point values in xmm2 to packed half-precision (16-bit) floating-point values in xmm1/m64. Imm8 provides rounding controls.|
-|EVEX.256.66.0F3A.W0 1D /r ib\newline{}VCVTPS2PH xmm1/m128 {k1}{z}, ymm2, imm8|HVM|V/V|AVX512VLAVX512F|Convert eight packed single-precision floating-point values in ymm2 to packed half-precision (16-bit) floating-point values in xmm1/m128. Imm8 provides rounding controls.|
+|EVEX.128.66.0F3A.W0 1D /r ib\newline{}VCVTPS2PH xmm1/m64 {k1}{z}, xmm2, imm8|HVM|V/V|AVX512VL\newline{}AVX512F|Convert four packed single-precision floating-point values in xmm2 to packed half-precision (16-bit) floating-point values in xmm1/m64. Imm8 provides rounding controls.|
+|EVEX.256.66.0F3A.W0 1D /r ib\newline{}VCVTPS2PH xmm1/m128 {k1}{z}, ymm2, imm8|HVM|V/V|AVX512VL\newline{}AVX512F|Convert eight packed single-precision floating-point values in ymm2 to packed half-precision (16-bit) floating-point values in xmm1/m128. Imm8 provides rounding controls.|
 |EVEX.512.66.0F3A.W0 1D /r ib\newline{}VCVTPS2PH ymm1/m256 {k1}{z}, zmm2{sae}, imm8|HVM|V/V|AVX512F|Convert sixteen packed single-precision floating-point values in zmm2 to packed half-precision (16-bit) floating-point values in ymm1/m256. Imm8 provides rounding controls.|
 ###                                                      Instruction Operand Encoding
 
@@ -474,30 +474,30 @@ EVEX encoded versions: The source operand is a ZMM/YMM/XMM register. The destina
 #### VCVTPS2PH (EVEX encoded versions) when dest is a register
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i  <-  j * 16
-    k <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 16
+    k <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+15:i]  <-
+          THEN DEST[i+15:i] <-
                 vCvt_s2h(SRC[k+31:k])
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+15:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+15:i] <-   0
+                            DEST[i+15:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL/2]  <-  0
+DEST[MAX_VL-1:VL/2] <-  0
 ```
 #### VCVTPS2PH (EVEX encoded versions) when dest is memory
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 16
-    k <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 16
+    k <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+15:i]  <-
+          THEN DEST[i+15:i] <-
                 vCvt_s2h(SRC[k+31:k])
           ELSE 
                 *DEST[i+15:i] remains unchanged* ; merging-masking
@@ -506,23 +506,23 @@ ENDFOR
 ```
 #### VCVTPS2PH (VEX.256 encoded version)
 ```info-verb
-DEST[15:0]  <- vCvt_s2h(SRC1[31:0]);
-DEST[31:16]  <- vCvt_s2h(SRC1[63:32]);
-DEST[47:32]  <- vCvt_s2h(SRC1[95:64]);
-DEST[63:48] <-  vCvt_s2h(SRC1[127:96]);
-DEST[79:64] <-  vCvt_s2h(SRC1[159:128]);
-DEST[95:80]  <- vCvt_s2h(SRC1[191:160]);
-DEST[111:96] <-  vCvt_s2h(SRC1[223:192]);
-DEST[127:112] <-  vCvt_s2h(SRC1[255:224]);
-DEST[MAX_VL-1:128]  <-  0
+DEST[15:0] <- vCvt_s2h(SRC1[31:0]);
+DEST[31:16] <- vCvt_s2h(SRC1[63:32]);
+DEST[47:32] <- vCvt_s2h(SRC1[95:64]);
+DEST[63:48] <- vCvt_s2h(SRC1[127:96]);
+DEST[79:64] <- vCvt_s2h(SRC1[159:128]);
+DEST[95:80] <- vCvt_s2h(SRC1[191:160]);
+DEST[111:96] <- vCvt_s2h(SRC1[223:192]);
+DEST[127:112] <- vCvt_s2h(SRC1[255:224]);
+DEST[MAX_VL-1:128] <-  0
 ```
 #### VCVTPS2PH (VEX.128 encoded version) 
 ```info-verb
-DEST[15:0] <-  vCvt_s2h(SRC1[31:0]);
-DEST[31:16]  <- vCvt_s2h(SRC1[63:32]);
-DEST[47:32]  <- vCvt_s2h(SRC1[95:64]);
-DEST[63:48] <-  vCvt_s2h(SRC1[127:96]);
-DEST[MAX_VL-1:64] <-   0
+DEST[15:0] <- vCvt_s2h(SRC1[31:0]);
+DEST[31:16] <- vCvt_s2h(SRC1[63:32]);
+DEST[47:32] <- vCvt_s2h(SRC1[95:64]);
+DEST[63:48] <- vCvt_s2h(SRC1[127:96]);
+DEST[MAX_VL-1:64] <-  0
 ```
 ### Flags Affected
 

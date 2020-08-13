@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/**\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.128.66.0F3A.W1 26 /r ib\newline{}VGETMANTPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Get Normalized Mantissa from float64 vector xmm2/m128/m64bcst and store the result in xmm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
-|EVEX.256.66.0F3A.W1 26 /r ib\newline{}VGETMANTPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Get Normalized Mantissa from float64 vector ymm2/m256/m64bcst and store the result in ymm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
+|EVEX.128.66.0F3A.W1 26 /r ib\newline{}VGETMANTPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512F|Get Normalized Mantissa from float64 vector xmm2/m128/m64bcst and store the result in xmm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
+|EVEX.256.66.0F3A.W1 26 /r ib\newline{}VGETMANTPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512F|Get Normalized Mantissa from float64 vector ymm2/m256/m64bcst and store the result in ymm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
 |EVEX.512.66.0F3A.W1 26 /r ib\newline{}VGETMANTPD zmm1 {k1}{z}, zmm2/m512/m64bcst{sae}, imm8|FV|V/V|AVX512F|Get Normalized Mantissa from float64 vector zmm2/m512/m64bcst and store the result in zmm1, using imm8 for sign control and mantissa interval normalization, under writemask.|
 ### Instruction Operand Encoding
 
@@ -418,35 +418,35 @@ This instruction is writemasked, so only those elements with the corresponding b
 |**Input**|**Result**|**Exceptions / Comments**|
 |---------|----------|-------------------------|
 |NaN|QNaN(SRC)|Ignore intervIf (SRC = SNaN) then #IE|
-|+ '|1.0|Ignore interv|
+|+'|1.0|Ignore interv|
 |+0|1.0 |Ignore interv|
 |-0|IF (SC[0]) THEN +1.0                  ELSE -1.0|Ignore interv|
-|- '|IF (SC[1]) THEN {QNaN_Indefinite} ELSE {   IF (SC[0]) THEN +1.0                     ELSE -1.0|Ignore intervIf (SC[1]) then #IE|
+|-'|IF (SC[1]) THEN {QNaN_Indefinite} ELSE {   IF (SC[0]) THEN +1.0                     ELSE -1.0|Ignore intervIf (SC[1]) then #IE|
 |negative|SC[1] ? QNaN_Indefinite : Getmant(SRC)|If (SC[1]) then #IE|
 
 ### Operation
 #### VGETMANTPD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <-  0 TO KL-1
-    i  <-  j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
           THEN 
                 IF (EVEX.b = 1) AND (SRC *is memory*)
                       THEN
-                            DEST[i+63:i] != <-  GetNormalizedMantissaDP(SRC[63:0], sc, interv)
+                            DEST[i+63:i] !=<- GetNormalizedMantissaDP(SRC[63:0], sc, interv)
                       ELSE 
-                            DEST[i+63:i] != <-  GetNormalizedMantissaDP(SRC[i+63:i], sc, interv)
+                            DEST[i+63:i] !=<- GetNormalizedMantissaDP(SRC[i+63:i], sc, interv)
                 FI;
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+63:i] <-   0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

@@ -14,8 +14,8 @@ path : /X86-64 명령어 레퍼런스
 |66 0F F5 /r\newline{}\newline{}PMADDWD xmm1, xmm2/m128|RM|V/V|SSE2|Multiply the packed word integers in xmm1 by the packed word integers in xmm2/m128, add adjacent doubleword results, and store in xmm1.|
 |VEX.NDS.128.66.0F.WIG F5 /r\newline{}\newline{}VPMADDWD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Multiply the packed word integers in xmm2 by the packed word integers in xmm3/m128, add adjacent doubleword results, and store in xmm1.|
 |VEX.NDS.256.66.0F.WIG F5 /r\newline{}\newline{}VPMADDWD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Multiply the packed word integers in ymm2 by the packed word integers in ymm3/m256, add adjacent doubleword results, and store in ymm1.|
-|EVEX.NDS.128.66.0F.WIG F5 /r\newline{}VPMADDWD xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Multiply the packed word integers in xmm2 by the packed word integers in xmm3/m128, add adjacent doubleword results, and store in xmm1 under writemask k1.|
-|EVEX.NDS.256.66.0F.WIG F5 /r\newline{}VPMADDWD ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Multiply the packed word integers in ymm2 by the packed word integers in ymm3/m256, add adjacent doubleword results, and store in ymm1 under writemask k1.|
+|EVEX.NDS.128.66.0F.WIG F5 /r\newline{}VPMADDWD xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Multiply the packed word integers in xmm2 by the packed word integers in xmm3/m128, add adjacent doubleword results, and store in xmm1 under writemask k1.|
+|EVEX.NDS.256.66.0F.WIG F5 /r\newline{}VPMADDWD ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VL\newline{}AVX512BW|Multiply the packed word integers in ymm2 by the packed word integers in ymm3/m256, add adjacent doubleword results, and store in ymm1 under writemask k1.|
 |EVEX.NDS.512.66.0F.WIG F5 /r\newline{}VPMADDWD zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Multiply the packed word integers in zmm2 by the packed word integers in zmm3/m512, add adjacent doubleword results, and store in zmm1 under writemask k1.|
 
 ```note
@@ -131,18 +131,18 @@ EVEX.512 encoded version: The second source operand can be an ZMM register or a 
 <text x="31.680626" y="88.299988" textLength="4.882501" font-size="8px">T</text>
 <text x="198.275391" y="116.680023" textLength="2.661003" font-size="8px">)</text>
 <text x="188.519989" y="116.680023" textLength="5.329997" font-size="8px">Y</text>
-<text x="184.500000" y="116.680023" textLength="3.990000" font-size="8px"></text>
+<text x="184.500000" y="116.680023" textLength="3.990000" font-size="8px">`*`</text>
 <text x="180.066101" y="116.680023" textLength="4.442996" font-size="8px">2</text>
 <text x="174.739288" y="116.680023" textLength="5.329997" font-size="8px">X</text>
 <text x="172.081482" y="116.680023" textLength="2.661003" font-size="8px">(</text>
 <text x="169.859985" y="116.680023" textLength="2.221498" font-size="8px"> </text>
 <text x="163.187622" y="116.680023" textLength="2.221498" font-size="8px"> </text>
 <text x="160.535400" y="116.680023" textLength="2.661003" font-size="8px">)</text>
-<text x="146.759979" y="116.680023" textLength="3.990000" font-size="8px"></text>
+<text x="146.759979" y="116.680023" textLength="3.990000" font-size="8px">`*`</text>
 <text x="136.995728" y="116.680389" textLength="5.329997" font-size="8px">X</text>
 <text x="134.340302" y="116.680389" textLength="2.661003" font-size="8px">(</text>
 <text x="260.339996" y="116.320007" textLength="5.329997" font-size="8px">Y</text>
-<text x="256.320007" y="116.320007" textLength="3.990000" font-size="8px"></text>
+<text x="256.320007" y="116.320007" textLength="3.990000" font-size="8px">`*`</text>
 <text x="246.559296" y="116.320007" textLength="5.329997" font-size="8px">X</text>
 <text x="243.901489" y="116.320007" textLength="2.661003" font-size="8px">(</text>
 <text x="241.679993" y="116.320007" textLength="2.221498" font-size="8px"> </text>
@@ -166,7 +166,7 @@ EVEX.512 encoded version: The second source operand can be an ZMM register or a 
 <text x="319.858673" y="87.460022" textLength="4.442996" font-size="8px">0</text>
 <text x="314.521484" y="87.460022" textLength="5.329997" font-size="8px">Y</text>
 <text x="312.299988" y="87.460022" textLength="2.221498" font-size="8px"> </text>
-<text x="308.279999" y="87.460022" textLength="3.990000" font-size="8px"></text>
+<text x="308.279999" y="87.460022" textLength="3.990000" font-size="8px">`*`</text>
 <text x="306.059723" y="87.460022" textLength="2.221498" font-size="8px"> </text>
 <text x="301.611145" y="87.460022" textLength="4.442996" font-size="8px">0</text>
 <text x="296.275543" y="87.460022" textLength="5.329997" font-size="8px">X</text>
@@ -206,18 +206,18 @@ EVEX.512 encoded version: The second source operand can be an ZMM register or a 
 <text x="156.101196" y="116.680023" textLength="4.442996" font-size="8px">3</text>
 <text x="41.920296" y="88.299988" textLength="6.656503" font-size="8px">M</text>
 <text x="145.500366" y="31.779999" textLength="4.442996" font-size="8px">3</text>
-<text x="239.279999" y="87.460022" textLength="3.990000" font-size="8px"></text>
+<text x="239.279999" y="87.460022" textLength="3.990000" font-size="8px">`*`</text>
 <text x="221.278625" y="59.080017" textLength="4.442996" font-size="8px">1</text>
 <text x="142.320129" y="116.680389" textLength="4.442996" font-size="8px">3</text>
 <text x="193.841187" y="116.680023" textLength="4.442996" font-size="8px">2</text>
 <text x="250.857086" y="87.460022" textLength="4.442996" font-size="8px">1</text>
-<text x="166.019989" y="87.460022" textLength="3.990000" font-size="8px"></text>
+<text x="166.019989" y="87.460022" textLength="3.990000" font-size="8px">`*`</text>
 <text x="206.160004" y="116.320007" textLength="2.661003" font-size="8px">(</text>
 <text x="169.979980" y="87.460022" textLength="2.221498" font-size="8px"> </text>
-<text x="92.879997" y="87.460022" textLength="3.990000" font-size="8px"></text>
+<text x="92.879997" y="87.460022" textLength="3.990000" font-size="8px">`*`</text>
 <text x="101.038719" y="31.120270" textLength="5.769502" font-size="8px">C</text>
 <text x="140.160004" y="31.779999" textLength="5.329997" font-size="8px">X</text>
-<text x="218.639984" y="116.320007" textLength="3.990000" font-size="8px"></text>
+<text x="218.639984" y="116.320007" textLength="3.990000" font-size="8px">`*`</text>
 <text x="89.940819" y="57.880524" textLength="5.769502" font-size="8px">D</text>
 <text x="150.779999" y="116.680023" textLength="5.329997" font-size="8px">Y</text>
 <text x="181.079498" y="31.779999" textLength="4.442996" font-size="8px">2</text>
@@ -241,31 +241,31 @@ EVEX.512 encoded version: The second source operand can be an ZMM register or a 
 ```
 #### VPMADDWD (VEX.128 encoded version)
 ```info-verb
-DEST[31:0]  <-  (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
-DEST[63:32]  <-  (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
-DEST[95:64]  <-  (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
-DEST[127:96] <-   (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
-DEST[VLMAX-1:128]  <-  0
+DEST[31:0] <-  (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
+DEST[63:32] <-  (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
+DEST[95:64] <-  (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
+DEST[127:96] <-  (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
+DEST[VLMAX-1:128] <-  0
 ```
 #### VPMADDWD (VEX.256 encoded version)
 ```info-verb
-DEST[31:0] <-   (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
-DEST[63:32]  <-  (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
-DEST[95:64]  <-  (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
-DEST[127:96] <-   (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
-DEST[159:128]  <-  (SRC1[143:128] * SRC2[143:128]) + (SRC1[159:144] * SRC2[159:144])
-DEST[191:160]  <-  (SRC1[175:160] * SRC2[175:160]) + (SRC1[191:176] * SRC2[191:176])
-DEST[223:192]  <-  (SRC1[207:192] * SRC2[207:192]) + (SRC1[223:208] * SRC2[223:208])
-DEST[255:224] <-   (SRC1[239:224] * SRC2[239:224]) + (SRC1[255:240] * SRC2[255:240])
-DEST[VLMAX-1:256]  <-  0
+DEST[31:0] <-  (SRC1[15:0] * SRC2[15:0]) + (SRC1[31:16] * SRC2[31:16])
+DEST[63:32] <-  (SRC1[47:32] * SRC2[47:32]) + (SRC1[63:48] * SRC2[63:48])
+DEST[95:64] <-  (SRC1[79:64] * SRC2[79:64]) + (SRC1[95:80] * SRC2[95:80])
+DEST[127:96] <-  (SRC1[111:96] * SRC2[111:96]) + (SRC1[127:112] * SRC2[127:112])
+DEST[159:128] <-  (SRC1[143:128] * SRC2[143:128]) + (SRC1[159:144] * SRC2[159:144])
+DEST[191:160] <-  (SRC1[175:160] * SRC2[175:160]) + (SRC1[191:176] * SRC2[191:176])
+DEST[223:192] <-  (SRC1[207:192] * SRC2[207:192]) + (SRC1[223:208] * SRC2[223:208])
+DEST[255:224] <-  (SRC1[239:224] * SRC2[239:224]) + (SRC1[255:240] * SRC2[255:240])
+DEST[VLMAX-1:256] <-  0
 ```
 #### VPMADDWD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i] <-   (SRC2[i+31:i+16]* SRC1[i+31:i+16]) + (SRC2[i+15:i]*SRC1[i+15:i])
+          THEN DEST[i+31:i] <-  (SRC2[i+31:i+16]* SRC1[i+31:i+16]) + (SRC2[i+15:i]*SRC1[i+15:i])
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
@@ -274,7 +274,7 @@ FOR j <-   0 TO KL-1
                 FI
     FI;
 ENDFOR;
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

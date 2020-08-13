@@ -10,8 +10,8 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.128.66.0F3A.W1 66 /r ib\newline{}VFPCLASSPD k2 {k1}, xmm2/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512DQ|Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.|
-|EVEX.256.66.0F3A.W1 66 /r ib\newline{}VFPCLASSPD k2 {k1}, ymm2/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512DQ|Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.|
+|EVEX.128.66.0F3A.W1 66 /r ib\newline{}VFPCLASSPD k2 {k1}, xmm2/m128/m64bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512DQ|Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.|
+|EVEX.256.66.0F3A.W1 66 /r ib\newline{}VFPCLASSPD k2 {k1}, ymm2/m256/m64bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512DQ|Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.|
 |EVEX.512.66.0F3A.W1 66 /r ib\newline{}VFPCLASSPD k2 {k1}, zmm2/m512/m64bcst, imm8|FV|V/V|AVX512DQ|Tests the input for the following categories: NaN, +0, -0, +Infinity, -Infinity, denormal, finite negative. The immediate field provides a mask bit for each of these category tests. The masked test results are OR-ed together to form a mask result.|
 ### Instruction Operand Encoding
 
@@ -128,20 +128,20 @@ EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 #### VFPCLASSPD (EVEX Encoded versions)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
           THEN 
                 IF (EVEX.b == 1) AND (SRC *is memory*)
                       THEN
-                            DEST[j]  <-  CheckFPClassDP(SRC1[63:0], imm8[7:0]);
+                            DEST[j] <-  CheckFPClassDP(SRC1[63:0], imm8[7:0]);
                       ELSE 
-                            DEST[j] <-   CheckFPClassDP(SRC1[i+63:i], imm8[7:0]);
+                            DEST[j] <-  CheckFPClassDP(SRC1[i+63:i], imm8[7:0]);
                 FI;
-          ELSE DEST[j] <-   0 ; zeroing-masking only
+          ELSE DEST[j] <-  0 ; zeroing-masking only
     FI;
 ENDFOR
-DEST[MAX_KL-1:KL]  <-  0
+DEST[MAX_KL-1:KL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

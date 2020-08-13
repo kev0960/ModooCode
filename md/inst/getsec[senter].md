@@ -174,11 +174,11 @@ ELSE IF ((in VMX root operation) or
 
     (TPM interface is not present) or
 
-    (EDX  ->  (SENTER_EDX_support_mask & EDX)) or
+    (EDX ->  (SENTER_EDX_support_mask & EDX)) or
 
     (IA32_FEATURE_CONTROL[0]=0) or (IA32_FEATURE_CONTROL[15]=0) or
 
-    ((IA32_FEATURE_CONTROL[14:8] & EDX[6:0]) ->   EDX[6:0]))
+    ((IA32_FEATURE_CONTROL[14:8] & EDX[6:0]) ->  EDX[6:0]))
 
           THEN #GP(0);
 
@@ -206,7 +206,7 @@ ACBASE<- EBX;
 
 ACSIZE<- ECX;
 
-IF (((ACBASE MOD 4096) ->   0) or ((ACSIZE MOD 64)  ->  0 ) or (ACSIZE < minimum 
+IF (((ACBASE MOD 4096) ->  0) or ((ACSIZE MOD 64) ->  0 ) or (ACSIZE < minimum 
 
     module size) or (ACSIZE > AC RAM capacity) or ((ACBASE+ACSIZE) > (2^32 -1)))
 
@@ -302,11 +302,11 @@ OD;
 
 
 
-IF (ACRAM memory type ->   WB)
+IF (ACRAM memory type ->  WB)
 
     THEN TXT-SHUTDOWN(#BadACMMType);
 
-IF (AC module header version is not supported) OR (ACRAM[ModuleType]  ->  2)
+IF (AC module header version is not supported) OR (ACRAM[ModuleType] ->  2)
 
     THEN TXT-SHUTDOWN(#UnsupportedACM);
 
@@ -316,7 +316,7 @@ KEYHASH<- HASH(KEY);
 
 CSKEYHASH<- LT.READ(LT.PUBLIC.KEY);
 
-IF (KEYHASH ->   CSKEYHASH)
+IF (KEYHASH ->  CSKEYHASH)
 
     THEN TXT-SHUTDOWN(#AuthenticateFail);
 
@@ -334,7 +334,7 @@ FOR I=0 to SIGNATURE_LEN_CONST - 1 DO
 
     ACRAM[SCRATCH.SIGNATURE_LEN_CONST+I]<- COMPUTEDSIGNATURE[I];
 
-IF (SIGNATURE  ->  COMPUTEDSIGNATURE)
+IF (SIGNATURE ->  COMPUTEDSIGNATURE)
 
     THEN TXT-SHUTDOWN(#AuthenticateFail);
 
@@ -372,7 +372,7 @@ IF ((ACRAM[SegSel] > (ACRAM[GDTLimit] - 15)) or (ACRAM[SegSel] < 8))
 
     THEN TXT-SHUTDOWN(#BadACMFormat);
 
-IF ((ACRAM[SegSel].TI=1) or (ACRAM[SegSel].RPL->  0))
+IF ((ACRAM[SegSel].TI=1) or (ACRAM[SegSel].RPL-> 0))
 
     THEN TXT-SHUTDOWN(#BadACMFormat);
 

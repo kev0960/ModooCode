@@ -14,8 +14,8 @@ path : /X86-64 명령어 레퍼런스
 |66 0F E4 /r\newline{}\newline{}PMULHUW xmm1, xmm2/m128|RM|V/V|SSE2|Multiply the packed unsigned word integers in xmm1 and xmm2/m128, and store the high 16 bits of the results in xmm1.|
 |VEX.NDS.128.66.0F.WIG E4 /r\newline{}\newline{}VPMULHUW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1.|
 |VEX.NDS.256.66.0F.WIG E4 /r\newline{}\newline{}VPMULHUW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1.|
-|EVEX.NDS.128.66.0F.WIG E4 /r\newline{}VPMULHUW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1 under writemask k1.|
-|EVEX.NDS.256.66.0F.WIG E4 /r\newline{}VPMULHUW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1 under writemask k1.|
+|EVEX.NDS.128.66.0F.WIG E4 /r\newline{}VPMULHUW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Multiply the packed unsigned word integers in xmm2 and xmm3/m128, and store the high 16 bits of the results in xmm1 under writemask k1.|
+|EVEX.NDS.256.66.0F.WIG E4 /r\newline{}VPMULHUW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VL\newline{}AVX512BW|Multiply the packed unsigned word integers in ymm2 and ymm3/m256, and store the high 16 bits of the results in ymm1 under writemask k1.|
 |EVEX.NDS.512.66.0F.WIG E4 /r\newline{}VPMULHUW zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Multiply the packed unsigned word integers in zmm2 and zmm3/m512, and store the high 16 bits of the results in zmm1 under writemask k1.|
 
 ```note
@@ -179,7 +179,7 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 <text x="250.800003" y="87.460022" textLength="2.221498" font-size="8px"> </text>
 <text x="244.559311" y="87.460022" textLength="2.221498" font-size="8px"> </text>
 <text x="177.539993" y="87.460022" textLength="2.221498" font-size="8px"> </text>
-<text x="173.520004" y="87.460022" textLength="3.990000" font-size="8px"></text>
+<text x="173.520004" y="87.460022" textLength="3.990000" font-size="8px">`*`</text>
 <text x="166.801163" y="87.460022" textLength="4.442996" font-size="8px">2</text>
 <text x="161.521500" y="87.460022" textLength="5.329997" font-size="8px">X</text>
 <text x="159.300003" y="87.460022" textLength="2.221498" font-size="8px"> </text>
@@ -204,19 +204,19 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 <text x="214.073563" y="115.240021" textLength="2.136720" font-size="8px">[</text>
 <text x="179.207443" y="115.240021" textLength="4.071600" font-size="8px">3</text>
 <text x="229.841446" y="115.240021" textLength="4.071600" font-size="8px">6</text>
-<text x="315.840027" y="87.460022" textLength="3.990000" font-size="8px"></text>
+<text x="315.840027" y="87.460022" textLength="3.990000" font-size="8px">`*`</text>
 <text x="102.909866" y="113.200653" textLength="5.329997" font-size="8px">S</text>
 <text x="221.555222" y="87.460022" textLength="4.442996" font-size="8px">1</text>
 <text x="171.300095" y="87.460022" textLength="2.221498" font-size="8px"> </text>
 <text x="147.716232" y="115.240021" textLength="4.071600" font-size="8px">1</text>
 <text x="79.560349" y="87.459717" textLength="2.221498" font-size="8px"> </text>
-<text x="100.380005" y="87.460022" textLength="3.990000" font-size="8px"></text>
+<text x="100.380005" y="87.460022" textLength="3.990000" font-size="8px">`*`</text>
 <text x="216.661545" y="87.460022" textLength="4.882501" font-size="8px">Z</text>
 <text x="111.975464" y="87.460022" textLength="4.442996" font-size="8px">3</text>
 <text x="75.061417" y="87.459717" textLength="4.442996" font-size="8px">3</text>
 <text x="185.102676" y="87.460022" textLength="4.442996" font-size="8px">2</text>
 <text x="143.353729" y="87.460022" textLength="4.882501" font-size="8px">Z</text>
-<text x="246.780014" y="87.460022" textLength="3.990000" font-size="8px"></text>
+<text x="246.780014" y="87.460022" textLength="3.990000" font-size="8px">`*`</text>
 <text x="240.113907" y="87.460022" textLength="4.442996" font-size="8px">1</text>
 <text x="188.743332" y="115.240021" textLength="4.071600" font-size="8px">1</text>
 <text x="168.954666" y="115.240021" textLength="4.008960" font-size="8px">Z</text>
@@ -288,78 +288,78 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 ```
 #### VPMULHUW (VEX.128 encoded version)
 ```info-verb
-TEMP0[31:0] <-   SRC1[15:0] * SRC2[15:0]
-TEMP1[31:0] <-   SRC1[31:16] * SRC2[31:16]
-TEMP2[31:0]  <-  SRC1[47:32] * SRC2[47:32]
-TEMP3[31:0]  <-  SRC1[63:48] * SRC2[63:48]
-TEMP4[31:0] <-   SRC1[79:64] * SRC2[79:64]
-TEMP5[31:0]  <-  SRC1[95:80] * SRC2[95:80]
-TEMP6[31:0] <-   SRC1[111:96] * SRC2[111:96]
-TEMP7[31:0]  <-  SRC1[127:112] * SRC2[127:112]
-DEST[15:0]  <-  TEMP0[31:16]
-DEST[31:16]  <-  TEMP1[31:16]
-DEST[47:32]  <-  TEMP2[31:16]
-DEST[63:48]  <-  TEMP3[31:16]
-DEST[79:64]  <-  TEMP4[31:16]
-DEST[95:80]  <-  TEMP5[31:16]
-DEST[111:96]  <-  TEMP6[31:16]
-DEST[127:112] <-   TEMP7[31:16]
-DEST[VLMAX-1:128] <-   0
+TEMP0[31:0] <-  SRC1[15:0] * SRC2[15:0]
+TEMP1[31:0] <-  SRC1[31:16] * SRC2[31:16]
+TEMP2[31:0] <-  SRC1[47:32] * SRC2[47:32]
+TEMP3[31:0] <-  SRC1[63:48] * SRC2[63:48]
+TEMP4[31:0] <-  SRC1[79:64] * SRC2[79:64]
+TEMP5[31:0] <-  SRC1[95:80] * SRC2[95:80]
+TEMP6[31:0] <-  SRC1[111:96] * SRC2[111:96]
+TEMP7[31:0] <-  SRC1[127:112] * SRC2[127:112]
+DEST[15:0] <-  TEMP0[31:16]
+DEST[31:16] <-  TEMP1[31:16]
+DEST[47:32] <-  TEMP2[31:16]
+DEST[63:48] <-  TEMP3[31:16]
+DEST[79:64] <-  TEMP4[31:16]
+DEST[95:80] <-  TEMP5[31:16]
+DEST[111:96] <-  TEMP6[31:16]
+DEST[127:112] <-  TEMP7[31:16]
+DEST[VLMAX-1:128] <-  0
 ```
 #### PMULHUW (VEX.256 encoded version)
 ```info-verb
-TEMP0[31:0]  <-  SRC1[15:0] * SRC2[15:0]
-TEMP1[31:0] <-   SRC1[31:16] * SRC2[31:16]
-TEMP2[31:0] <-   SRC1[47:32] * SRC2[47:32]
-TEMP3[31:0] <-   SRC1[63:48] * SRC2[63:48]
-TEMP4[31:0]  <-  SRC1[79:64] * SRC2[79:64]
-TEMP5[31:0]  <-  SRC1[95:80] * SRC2[95:80]
-TEMP6[31:0]  <-  SRC1[111:96] * SRC2[111:96]
-TEMP7[31:0] <-   SRC1[127:112] * SRC2[127:112]
-TEMP8[31:0]  <-  SRC1[143:128] * SRC2[143:128]
-TEMP9[31:0] <-   SRC1[159:144] * SRC2[159:144]
-TEMP10[31:0] <-   SRC1[175:160] * SRC2[175:160]
-TEMP11[31:0]  <-  SRC1[191:176] * SRC2[191:176]
-TEMP12[31:0] <-   SRC1[207:192] * SRC2[207:192]
-TEMP13[31:0]  <-  SRC1[223:208] * SRC2[223:208]
-TEMP14[31:0]  <-  SRC1[239:224] * SRC2[239:224]
-TEMP15[31:0]  <-  SRC1[255:240] * SRC2[255:240]
-DEST[15:0] <-   TEMP0[31:16]
-DEST[31:16]  <-  TEMP1[31:16]
-DEST[47:32] <-   TEMP2[31:16]
-DEST[63:48]  <-  TEMP3[31:16]
-DEST[79:64] <-   TEMP4[31:16]
-DEST[95:80]  <-  TEMP5[31:16]
-DEST[111:96] <-   TEMP6[31:16]
-DEST[127:112] <-   TEMP7[31:16]
-DEST[143:128]  <-  TEMP8[31:16]
-DEST[159:144] <-   TEMP9[31:16]
-DEST[175:160]  <-  TEMP10[31:16]
-DEST[191:176] <-   TEMP11[31:16]
-DEST[207:192]  <-  TEMP12[31:16]
-DEST[223:208]  <-  TEMP13[31:16]
-DEST[239:224] <-   TEMP14[31:16]
-DEST[255:240] <-   TEMP15[31:16]
-DEST[MAX_VL-1:256] <-   0
+TEMP0[31:0] <-  SRC1[15:0] * SRC2[15:0]
+TEMP1[31:0] <-  SRC1[31:16] * SRC2[31:16]
+TEMP2[31:0] <-  SRC1[47:32] * SRC2[47:32]
+TEMP3[31:0] <-  SRC1[63:48] * SRC2[63:48]
+TEMP4[31:0] <-  SRC1[79:64] * SRC2[79:64]
+TEMP5[31:0] <-  SRC1[95:80] * SRC2[95:80]
+TEMP6[31:0] <-  SRC1[111:96] * SRC2[111:96]
+TEMP7[31:0] <-  SRC1[127:112] * SRC2[127:112]
+TEMP8[31:0] <-  SRC1[143:128] * SRC2[143:128]
+TEMP9[31:0] <-  SRC1[159:144] * SRC2[159:144]
+TEMP10[31:0] <-  SRC1[175:160] * SRC2[175:160]
+TEMP11[31:0] <-  SRC1[191:176] * SRC2[191:176]
+TEMP12[31:0] <-  SRC1[207:192] * SRC2[207:192]
+TEMP13[31:0] <-  SRC1[223:208] * SRC2[223:208]
+TEMP14[31:0] <-  SRC1[239:224] * SRC2[239:224]
+TEMP15[31:0] <-  SRC1[255:240] * SRC2[255:240]
+DEST[15:0] <-  TEMP0[31:16]
+DEST[31:16] <-  TEMP1[31:16]
+DEST[47:32] <-  TEMP2[31:16]
+DEST[63:48] <-  TEMP3[31:16]
+DEST[79:64] <-  TEMP4[31:16]
+DEST[95:80] <-  TEMP5[31:16]
+DEST[111:96] <-  TEMP6[31:16]
+DEST[127:112] <-  TEMP7[31:16]
+DEST[143:128] <-  TEMP8[31:16]
+DEST[159:144] <-  TEMP9[31:16]
+DEST[175:160] <-  TEMP10[31:16]
+DEST[191:176] <-  TEMP11[31:16]
+DEST[207:192] <-  TEMP12[31:16]
+DEST[223:208] <-  TEMP13[31:16]
+DEST[239:224] <-  TEMP14[31:16]
+DEST[255:240] <-  TEMP15[31:16]
+DEST[MAX_VL-1:256] <-  0
 ```
 #### PMULHUW (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 16
+FOR j <-  0 TO KL-1
+    i <-  j * 16
     IF k1[j] OR *no writemask*
           THEN 
-                temp[31:0]  <-  SRC1[i+15:i] * SRC2[i+15:i]
-                DEST[i+15:i] <-   tmp[31:16]
+                temp[31:0] <-  SRC1[i+15:i] * SRC2[i+15:i]
+                DEST[i+15:i] <-  tmp[31:16]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+15:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+15:i] <-   0
+                            DEST[i+15:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

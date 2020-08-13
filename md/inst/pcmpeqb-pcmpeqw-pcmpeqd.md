@@ -22,17 +22,17 @@ path : /X86-64 명령어 레퍼런스
 |VEX.NDS.256.66.0F.WIG 74 /r\newline{}VPCMPEQB ymm1, ymm2, ymm3 /m256|RVM|V/V|AVX2|Compare packed bytes in ymm3/m256 and ymm2 for equality.|
 |VEX.NDS.256.66.0F.WIG 75 /r\newline{}\newline{}VPCMPEQW ymm1, ymm2, ymm3 /m256|RVM|V/V|AVX2|Compare packed words in ymm3/m256 and ymm2 for equality.|
 |VEX.NDS.256.66.0F.WIG 76 /r\newline{}\newline{}VPCMPEQD ymm1, ymm2, ymm3 /m256|RVM|V/V|AVX2|Compare packed doublewords in ymm3/m256 and ymm2 for equality.|
-|EVEX.NDS.128.66.0F.W0 76 /r\newline{}VPCMPEQD k1 {k2}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Compare Equal between int32 vector xmm2 and int32 vector xmm3/m128/m32bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
-|EVEX.NDS.256.66.0F.W0 76 /r\newline{}VPCMPEQD k1 {k2}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Compare Equal between int32 vector ymm2 and int32 vector ymm3/m256/m32bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
+|EVEX.NDS.128.66.0F.W0 76 /r\newline{}VPCMPEQD k1 {k2}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Compare Equal between int32 vector xmm2 and int32 vector xmm3/m128/m32bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
+|EVEX.NDS.256.66.0F.W0 76 /r\newline{}VPCMPEQD k1 {k2}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Compare Equal between int32 vector ymm2 and int32 vector ymm3/m256/m32bcst, and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
 |EVEX.NDS.512.66.0F.W0 76 /r\newline{}VPCMPEQD k1 {k2}, zmm2, zmm3/m512/m32bcst|FV|V/V|AVX512F|Compare Equal between int32 vectors in zmm2 and zmm3/m512/m32bcst, and set destination k1 according to the comparison results under writemask k2.|
-|EVEX.NDS.128.66.0F.WIG 74 /r\newline{}VPCMPEQB k1 {k2}, xmm2, xmm3 /m128|FVM|V/V|AVX512VLAVX512BW|Compare packed bytes in xmm3/m128 and xmm2 for equality and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
+|EVEX.NDS.128.66.0F.WIG 74 /r\newline{}VPCMPEQB k1 {k2}, xmm2, xmm3 /m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Compare packed bytes in xmm3/m128 and xmm2 for equality and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
 
 
 |EVEX.NDS.256.66.0F.WIG 74 /r\newline{}VPCMPEQB k1 {k2}, ymm2, ymm3 /m256|FVM|V/V|AVX512V\newline{}L\newline{}AVX512B\newline{}W|Compare packed bytes in ymm3/m256 and \newline{}ymm2 for equality and set vector mask k1 to \newline{}reflect the zero/nonzero status of each \newline{}element of the result, under writemask.|
 |------------------------------------------------------------------------|---|---|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |EVEX.NDS.512.66.0F.WIG 74 /rVPCMPEQB k1 {k2}, zmm2, zmm3 /m512|FVM|V/V|AVX512BW|Compare packed bytes in zmm3/m512 and zmm2 for equality and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
-|EVEX.NDS.128.66.0F.WIG 75 /rVPCMPEQW k1 {k2}, xmm2, xmm3 /m128|FVM|V/V|AVX512VLAVX512BW|Compare packed words in xmm3/m128 and xmm2 for equality and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
-|EVEX.NDS.256.66.0F.WIG 75 /rVPCMPEQW k1 {k2}, ymm2, ymm3 /m256|FVM|V/V|AVX512VLAVX512BW|Compare packed words in ymm3/m256 and ymm2 for equality and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
+|EVEX.NDS.128.66.0F.WIG 75 /rVPCMPEQW k1 {k2}, xmm2, xmm3 /m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Compare packed words in xmm3/m128 and xmm2 for equality and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
+|EVEX.NDS.256.66.0F.WIG 75 /rVPCMPEQW k1 {k2}, ymm2, ymm3 /m256|FVM|V/V|AVX512VL\newline{}AVX512BW|Compare packed words in ymm3/m256 and ymm2 for equality and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
 |EVEX.NDS.512.66.0F.WIG 75 /rVPCMPEQW k1 {k2}, zmm2, zmm3 /m512|FVM|V/V|AVX512BW|Compare packed words in zmm3/m512 and zmm2 for equality and set vector mask k1 to reflect the zero/nonzero status of each element of the result, under writemask.|
 
 ```note
@@ -85,65 +85,65 @@ EVEX encoded VPCMPEQB/W: The first source operand (second operand) is a ZMM/YMM/
 #### COMPARE_BYTES_EQUAL (SRC1, SRC2)
 ```info-verb
     IF SRC1[7:0] = SRC2[7:0]
-    THEN DEST[7:0] <-  FFH;
-    ELSE DEST[7:0] <-  0; FI;
+    THEN DEST[7:0] <- FFH;
+    ELSE DEST[7:0] <- 0; FI;
 (* Continue comparison of 2nd through 15th bytes in SRC1 and SRC2 *)
     IF SRC1[127:120] = SRC2[127:120]
-    THEN DEST[127:120]  <- FFH;
-    ELSE DEST[127:120]  <- 0; FI;
+    THEN DEST[127:120] <- FFH;
+    ELSE DEST[127:120] <- 0; FI;
 ```
 #### COMPARE_WORDS_EQUAL (SRC1, SRC2)
 ```info-verb
     IF SRC1[15:0] = SRC2[15:0]
-    THEN DEST[15:0] <-  FFFFH;
-    ELSE DEST[15:0]  <- 0; FI;
+    THEN DEST[15:0] <- FFFFH;
+    ELSE DEST[15:0] <- 0; FI;
 (* Continue comparison of 2nd through 7th 16-bit words in SRC1 and SRC2 *)
     IF SRC1[127:112] = SRC2[127:112]
-    THEN DEST[127:112]  <- FFFFH;
-    ELSE DEST[127:112]  <- 0; FI;
+    THEN DEST[127:112] <- FFFFH;
+    ELSE DEST[127:112] <- 0; FI;
 ```
 #### COMPARE_DWORDS_EQUAL (SRC1, SRC2)
 ```info-verb
     IF SRC1[31:0] = SRC2[31:0]
-    THEN DEST[31:0] <-  FFFFFFFFH;
-    ELSE DEST[31:0] <-  0; FI;
+    THEN DEST[31:0] <- FFFFFFFFH;
+    ELSE DEST[31:0] <- 0; FI;
 (* Continue comparison of 2nd through 3rd 32-bit dwords in SRC1 and SRC2 *)
     IF SRC1[127:96] = SRC2[127:96]
-    THEN DEST[127:96] <-  FFFFFFFFH;
-    ELSE DEST[127:96] <-  0; FI;
+    THEN DEST[127:96] <- FFFFFFFFH;
+    ELSE DEST[127:96] <- 0; FI;
 ```
 #### PCMPEQB (with 128-bit operands)
 ```info-verb
-DEST[127:0]  <- COMPARE_BYTES_EQUAL(DEST[127:0],SRC[127:0])
+DEST[127:0] <- COMPARE_BYTES_EQUAL(DEST[127:0],SRC[127:0])
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPCMPEQB (VEX.128 encoded version)
 ```info-verb
-DEST[127:0] <-  COMPARE_BYTES_EQUAL(SRC1[127:0],SRC2[127:0])
-DEST[VLMAX-1:128]  <-  0
+DEST[127:0] <- COMPARE_BYTES_EQUAL(SRC1[127:0],SRC2[127:0])
+DEST[VLMAX-1:128] <-  0
 ```
 #### VPCMPEQB (VEX.256 encoded version)
 ```info-verb
-DEST[127:0]  <- COMPARE_BYTES_EQUAL(SRC1[127:0],SRC2[127:0])
-DEST[255:128]  <- COMPARE_BYTES_EQUAL(SRC1[255:128],SRC2[255:128])
-DEST[VLMAX-1:256]  <-  0
+DEST[127:0] <- COMPARE_BYTES_EQUAL(SRC1[127:0],SRC2[127:0])
+DEST[255:128] <- COMPARE_BYTES_EQUAL(SRC1[255:128],SRC2[255:128])
+DEST[VLMAX-1:256] <-  0
 ```
 #### VPCMPEQB (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 8
+FOR j <-  0 TO KL-1
+    i <-  j * 8
     IF k2[j] OR *no writemask*
           THEN 
                 /* signed comparison */
-                CMP  <-  SRC1[i+7:i] == SRC2[i+7:i];
+                CMP <-  SRC1[i+7:i] == SRC2[i+7:i];
                 IF CMP = TRUE
-                      THEN DEST[j] <-   1;
-                      ELSE DEST[j] <-   0; FI;
-          ELSE  DEST[j]  <-  0 ; zeroing-masking onlyFI;
+                      THEN DEST[j] <-  1;
+                      ELSE DEST[j] <-  0; FI;
+          ELSE  DEST[j] <-  0 ; zeroing-masking onlyFI;
     FI;
 ENDFOR
-DEST[MAX_KL-1:KL] <-   0
+DEST[MAX_KL-1:KL] <-  0
 ```
 #### PCMPEQW (with 64-bit operands)
 ```info-verb
@@ -156,36 +156,36 @@ DEST[MAX_KL-1:KL] <-   0
 ```
 #### PCMPEQW (with 128-bit operands)
 ```info-verb
-DEST[127:0]  <- COMPARE_WORDS_EQUAL(DEST[127:0],SRC[127:0])
+DEST[127:0] <- COMPARE_WORDS_EQUAL(DEST[127:0],SRC[127:0])
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPCMPEQW (VEX.128 encoded version)
 ```info-verb
-DEST[127:0]  <- COMPARE_WORDS_EQUAL(SRC1[127:0],SRC2[127:0])
-DEST[VLMAX-1:128] <-   0
+DEST[127:0] <- COMPARE_WORDS_EQUAL(SRC1[127:0],SRC2[127:0])
+DEST[VLMAX-1:128] <-  0
 ```
 #### VPCMPEQW (VEX.256 encoded version)
 ```info-verb
-DEST[127:0]  <- COMPARE_WORDS_EQUAL(SRC1[127:0],SRC2[127:0])
-DEST[255:128] <-  COMPARE_WORDS_EQUAL(SRC1[255:128],SRC2[255:128])
-DEST[VLMAX-1:256] <-   0
+DEST[127:0] <- COMPARE_WORDS_EQUAL(SRC1[127:0],SRC2[127:0])
+DEST[255:128] <- COMPARE_WORDS_EQUAL(SRC1[255:128],SRC2[255:128])
+DEST[VLMAX-1:256] <-  0
 ```
 #### VPCMPEQW (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j <-   0 TO KL-1
-    i  <-  j * 16
+FOR j <-  0 TO KL-1
+    i <-  j * 16
     IF k2[j] OR *no writemask*
           THEN 
                 /* signed comparison */
-                CMP <-   SRC1[i+15:i] == SRC2[i+15:i];
+                CMP <-  SRC1[i+15:i] == SRC2[i+15:i];
                 IF CMP = TRUE
-THEN DEST[j]  <-  1;
-                      ELSE DEST[j]  <-  0; FI;
-          ELSE  DEST[j] <-   0 ; zeroing-masking onlyFI;
+THEN DEST[j] <-  1;
+                      ELSE DEST[j] <-  0; FI;
+          ELSE  DEST[j] <-  0 ; zeroing-masking onlyFI;
     FI;
 ENDFOR
-DEST[MAX_KL-1:KL] <-   0
+DEST[MAX_KL-1:KL] <-  0
 ```
 #### PCMPEQD (with 64-bit operands)
 ```info-verb
@@ -198,39 +198,39 @@ DEST[MAX_KL-1:KL] <-   0
 ```
 #### PCMPEQD (with 128-bit operands)
 ```info-verb
-DEST[127:0]  <- COMPARE_DWORDS_EQUAL(DEST[127:0],SRC[127:0])
+DEST[127:0] <- COMPARE_DWORDS_EQUAL(DEST[127:0],SRC[127:0])
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPCMPEQD (VEX.128 encoded version)
 ```info-verb
-DEST[127:0]  <- COMPARE_DWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
-DEST[VLMAX-1:128]  <-  0
+DEST[127:0] <- COMPARE_DWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
+DEST[VLMAX-1:128] <-  0
 ```
 #### VPCMPEQD (VEX.256 encoded version)
 ```info-verb
-DEST[127:0] <-  COMPARE_DWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
-DEST[255:128] <-  COMPARE_DWORDS_EQUAL(SRC1[255:128],SRC2[255:128])
-DEST[VLMAX-1:256]  <-  0
+DEST[127:0] <- COMPARE_DWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
+DEST[255:128] <- COMPARE_DWORDS_EQUAL(SRC1[255:128],SRC2[255:128])
+DEST[VLMAX-1:256] <-  0
 ```
 #### VPCMPEQD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k2[j] OR *no writemask*
           THEN 
                 /* signed comparison */
                 IF (EVEX.b = 1) AND (SRC2 *is memory*)
-                      THEN CMP  <-  SRC1[i+31:i] = SRC2[31:0];
-                      ELSE CMP  <-  SRC1[i+31:i] = SRC2[i+31:i];
+                      THEN CMP <-  SRC1[i+31:i] = SRC2[31:0];
+                      ELSE CMP <-  SRC1[i+31:i] = SRC2[i+31:i];
                 FI;
                 IF CMP = TRUE
-                      THEN DEST[j]  <-  1;
-                      ELSE DEST[j] <-   0; FI;
-          ELSE  DEST[j]  <-  0 ; zeroing-masking only
+                      THEN DEST[j] <-  1;
+                      ELSE DEST[j] <-  0; FI;
+          ELSE  DEST[j] <-  0 ; zeroing-masking only
     FI;
 ENDFOR
-DEST[MAX_KL-1:KL]  <-  0
+DEST[MAX_KL-1:KL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalents

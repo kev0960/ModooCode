@@ -13,8 +13,8 @@ path : /X86-64 명령어 레퍼런스
 |F2 0F E6 /rCVTPD2DQ xmm1, xmm2/m128|RM|V/V|SSE2|Convert two packed double-precision floating-point values in xmm2/mem to two signed doubleword integers in xmm1.|
 |VEX.128.F2.0F.WIG E6 /rVCVTPD2DQ xmm1, xmm2/m128|RM|V/V|AVX|Convert two packed double-precision floating-point values in xmm2/mem to two signed doubleword integers in xmm1.|
 |VEX.256.F2.0F.WIG E6 /rVCVTPD2DQ xmm1, ymm2/m256|RM|V/V|AVX|Convert four packed double-precision floating-point values in ymm2/mem to four signed doubleword integers in xmm1.|
-|EVEX.128.F2.0F.W1 E6 /rVCVTPD2DQ xmm1 {k1}{z}, xmm2/m128/m64bcst|FV|V/V|AVX512VLAVX512F|Convert two packed double-precision floating-point values in xmm2/m128/m64bcst to two signed doubleword integers in xmm1 subject to writemask k1.|
-|EVEX.256.F2.0F.W1 E6 /rVCVTPD2DQ xmm1 {k1}{z}, ymm2/m256/m64bcst|FV|V/V|AVX512VLAVX512F|Convert four packed double-precision floating-point values in ymm2/m256/m64bcst to four signed doubleword integers in xmm1 subject to writemask k1.|
+|EVEX.128.F2.0F.W1 E6 /rVCVTPD2DQ xmm1 {k1}{z}, xmm2/m128/m64bcst|FV|V/V|AVX512VL\newline{}AVX512F|Convert two packed double-precision floating-point values in xmm2/m128/m64bcst to two signed doubleword integers in xmm1 subject to writemask k1.|
+|EVEX.256.F2.0F.W1 E6 /rVCVTPD2DQ xmm1 {k1}{z}, ymm2/m256/m64bcst|FV|V/V|AVX512VL\newline{}AVX512F|Convert four packed double-precision floating-point values in ymm2/m256/m64bcst to four signed doubleword integers in xmm1 subject to writemask k1.|
 |EVEX.512.F2.0F.W1 E6 /rVCVTPD2DQ ymm1 {k1}{z}, zmm2/m512/m64bcst{er}|FV|V/V|AVX512F|Convert eight packed double-precision floating-point values in zmm2/m512/m64bcst to eight signed doubleword integers in ymm1 subject to writemask k1.|
 ### Instruction Operand Encoding
 
@@ -151,67 +151,67 @@ IF (VL = 512) AND (EVEX.b = 1)
     ELSE 
           SET_RM(MXCSR.RM);
 FI;
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
-    k  <-  j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 32
+    k <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i]  <-
+          THEN DEST[i+31:i] <-
                 Convert_Double_Precision_Floating_Point_To_Integer(SRC[k+63:k])
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+31:i] <-   0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL/2] <-   0
+DEST[MAX_VL-1:VL/2] <-  0
 ```
 #### VCVTPD2DQ (EVEX encoded versions) when src operand is a memory source
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 32
-    k  <-  j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 32
+    k <-  j * 64
     IF k1[j] OR *no writemask*
           THEN 
                 IF (EVEX.b = 1) 
                       THEN
-                            DEST[i+31:i]  <-
+                            DEST[i+31:i] <-
                 Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
                       ELSE 
-                            DEST[i+31:i]  <-
+                            DEST[i+31:i] <-
                 Convert_Double_Precision_Floating_Point_To_Integer(SRC[k+63:k])
                 FI;
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL/2] <-   0
+DEST[MAX_VL-1:VL/2] <-  0
 ```
 #### VCVTPD2DQ (VEX.256 encoded version)
 ```info-verb
-DEST[31:0]  <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
-DEST[63:32] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
-DEST[95:64] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[191:128])
-DEST[127:96] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[255:192)
-DEST[MAX_VL-1:128]<-  0
+DEST[31:0] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
+DEST[63:32] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
+DEST[95:64] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[191:128])
+DEST[127:96] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[255:192)
+DEST[MAX_VL-1:128]<- 0
 ```
 #### VCVTPD2DQ (VEX.128 encoded version)
 ```info-verb
-DEST[31:0] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
-DEST[63:32]  <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
-DEST[MAX_VL-1:64] <- 0
+DEST[31:0] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
+DEST[63:32] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
+DEST[MAX_VL-1:64]<- 0
 ```
 #### CVTPD2DQ (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0] <-  Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
-DEST[63:32]  <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
-DEST[127:64] <-  0
+DEST[31:0] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[63:0])
+DEST[63:32] <- Convert_Double_Precision_Floating_Point_To_Integer(SRC[127:64])
+DEST[127:64] <- 0
 DEST[MAX_VL-1:128] (unmodified)
 ```
 

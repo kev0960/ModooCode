@@ -87,7 +87,7 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise
 <text x="144.635834" y="96.819641" textLength="4.442996" font-size="8px">d</text>
 <text x="122.438416" y="96.819641" textLength="4.442996" font-size="8px">n</text>
 <text x="116.226212" y="96.819641" textLength="4.442996" font-size="8px">d</text>
-<text x="86.826523" y="96.819641" textLength="7.991000" font-size="8px">—</text>
+<text x="86.826523" y="96.819641" textLength="7.991000" font-size="8px">--</text>
 <text x="245.085114" y="88.000000" textLength="5.769502" font-size="8px">R</text>
 <text x="231.766510" y="88.000000" textLength="6.656503" font-size="8px">m</text>
 <text x="222.890106" y="88.000000" textLength="2.221498" font-size="8px">I</text>
@@ -113,7 +113,7 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise
 <text x="153.512238" y="88.000000" textLength="2.221498" font-size="8px">;</text>
 <text x="164.674866" y="88.000000" textLength="2.221498" font-size="8px"> </text>
 <text x="202.658356" y="77.980042" textLength="4.442996" font-size="8px">e</text>
-<text x="80.880341" y="77.980042" textLength="7.991000" font-size="8px">—</text>
+<text x="80.880341" y="77.980042" textLength="7.991000" font-size="8px">--</text>
 <text x="97.086166" y="96.819641" textLength="5.769502" font-size="8px">R</text>
 <text x="158.160004" y="42.820007" textLength="5.769502" font-size="8px">R</text>
 <text x="187.910522" y="42.820007" textLength="4.442996" font-size="8px">d</text>
@@ -165,7 +165,7 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise
 <text x="113.338974" y="77.980042" textLength="1.774002" font-size="8px">i</text>
 <text x="321.419403" y="23.440002" textLength="3.887607" font-size="8px">0</text>
 <text x="166.896362" y="88.000000" textLength="6.656503" font-size="8px">M</text>
-<text x="86.038605" y="88.000000" textLength="7.991000" font-size="8px">—</text>
+<text x="86.038605" y="88.000000" textLength="7.991000" font-size="8px">--</text>
 <text x="191.998383" y="77.980042" textLength="2.221498" font-size="8px">:</text>
 <text x="109.343475" y="77.980042" textLength="3.995500" font-size="8px">s</text>
 <text x="140.195221" y="96.819641" textLength="4.442996" font-size="8px">o</text>
@@ -188,22 +188,22 @@ Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise
 ### Operation
 #### ROUNDPD (128-bit Legacy SSE version)
 ```info-verb
-DEST[63:0] <-   RoundToInteger(SRC[63:0]], ROUND_CONTROL)
-DEST[127:64] <-   RoundToInteger(SRC[127:64]], ROUND_CONTROL)
+DEST[63:0] <-  RoundToInteger(SRC[63:0]], ROUND_CONTROL)
+DEST[127:64] <-  RoundToInteger(SRC[127:64]], ROUND_CONTROL)
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VROUNDPD (VEX.128 encoded version)
 ```info-verb
-DEST[63:0]  <-  RoundToInteger(SRC[63:0]], ROUND_CONTROL)
-DEST[127:64]  <-  RoundToInteger(SRC[127:64]], ROUND_CONTROL)
-DEST[VLMAX-1:128]  <-  0
+DEST[63:0] <-  RoundToInteger(SRC[63:0]], ROUND_CONTROL)
+DEST[127:64] <-  RoundToInteger(SRC[127:64]], ROUND_CONTROL)
+DEST[VLMAX-1:128] <-  0
 ```
 #### VROUNDPD (VEX.256 encoded version)
 ```info-verb
-DEST[63:0] <-   RoundToInteger(SRC[63:0], ROUND_CONTROL)
-DEST[127:64] <-   RoundToInteger(SRC[127:64]], ROUND_CONTROL)
-DEST[191:128]  <-  RoundToInteger(SRC[191:128]], ROUND_CONTROL)
-DEST[255:192] <-   RoundToInteger(SRC[255:192] ], ROUND_CONTROL)
+DEST[63:0] <-  RoundToInteger(SRC[63:0], ROUND_CONTROL)
+DEST[127:64] <-  RoundToInteger(SRC[127:64]], ROUND_CONTROL)
+DEST[191:128] <-  RoundToInteger(SRC[191:128]], ROUND_CONTROL)
+DEST[255:192] <-  RoundToInteger(SRC[255:192] ], ROUND_CONTROL)
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -230,5 +230,5 @@ Note that Denormal is not signaled by ROUNDPD.
 
 See Exceptions Type 2; additionally
 
-#UD If VEX.vvvv  ->  1111B.
+#UD If VEX.vvvv ->  1111B.
 

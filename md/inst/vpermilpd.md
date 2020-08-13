@@ -12,13 +12,13 @@ path : /X86-64 명령어 레퍼런스
 |------------------------------------|-----------|------------------------------------------------------|--------------------------------------------------|---------------|
 |VEX.NDS.128.66.0F38.W0 0D /r\newline{}VPERMILPD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Permute double-precision floating-point values in xmm2 using controls from xmm3/m128 and store result in xmm1.|
 |VEX.NDS.256.66.0F38.W0 0D /r\newline{}VPERMILPD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX|Permute double-precision floating-point values in ymm2 using controls from ymm3/m256 and store result in ymm1.|
-|EVEX.NDS.128.66.0F38.W1 0D /r\newline{}VPERMILPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst|FV-RVM|V/V|AVX512VLAVX512F|Permute double-precision floating-point values in xmm2 using control from xmm3/m128/m64bcst and store the result in xmm1 using writemask k1. |
-|EVEX.NDS.256.66.0F38.W1 0D /r\newline{}VPERMILPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst|FV-RVM|V/V|AVX512VLAVX512F|Permute double-precision floating-point values in ymm2 using control from ymm3/m256/m64bcst and store the result in ymm1 using writemask k1. |
+|EVEX.NDS.128.66.0F38.W1 0D /r\newline{}VPERMILPD xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst|FV-RVM|V/V|AVX512VL\newline{}AVX512F|Permute double-precision floating-point values in xmm2 using control from xmm3/m128/m64bcst and store the result in xmm1 using writemask k1. |
+|EVEX.NDS.256.66.0F38.W1 0D /r\newline{}VPERMILPD ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst|FV-RVM|V/V|AVX512VL\newline{}AVX512F|Permute double-precision floating-point values in ymm2 using control from ymm3/m256/m64bcst and store the result in ymm1 using writemask k1. |
 |EVEX.NDS.512.66.0F38.W1 0D /r \newline{}VPERMILPD zmm1 {k1}{z}, zmm2, zmm3/m512/m64bcst|FV-RVM|V/V|AVX512F|Permute double-precision floating-point values in zmm2 using control from zmm3/m512/m64bcst and store the result in zmm1 using writemask k1. |
 |VEX.128.66.0F3A.W0 05 /r ib\newline{}VPERMILPD xmm1, xmm2/m128, imm8|RM|V/V|AVX|Permute double-precision floating-point values in xmm2/m128 using controls from imm8.|
 |VEX.256.66.0F3A.W0 05 /r ib\newline{}VPERMILPD ymm1, ymm2/m256, imm8|RM|V/V|AVX|Permute double-precision floating-point values in ymm2/m256 using controls from imm8.|
-|EVEX.128.66.0F3A.W1 05 /r ib\newline{}VPERMILPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FV-RM|V/V|AVX512VLAVX512F|Permute double-precision floating-point values in xmm2/m128/m64bcst using controls from imm8 and store the result in xmm1 using writemask k1. |
-|EVEX.256.66.0F3A.W1 05 /r ib\newline{}VPERMILPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FV-RM|V/V|AVX512VLAVX512F|Permute double-precision floating-point values in ymm2/m256/m64bcst using controls from imm8 and store the result in ymm1 using writemask k1. |
+|EVEX.128.66.0F3A.W1 05 /r ib\newline{}VPERMILPD xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FV-RM|V/V|AVX512VL\newline{}AVX512F|Permute double-precision floating-point values in xmm2/m128/m64bcst using controls from imm8 and store the result in xmm1 using writemask k1. |
+|EVEX.256.66.0F3A.W1 05 /r ib\newline{}VPERMILPD ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FV-RM|V/V|AVX512VL\newline{}AVX512F|Permute double-precision floating-point values in ymm2/m256/m64bcst using controls from imm8 and store the result in ymm1 using writemask k1. |
 |EVEX.512.66.0F3A.W1 05 /r ib\newline{}VPERMILPD zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8|FV-RM|V/V|AVX512F|Permute double-precision floating-point values in zmm2/m512/m64bcst using controls from imm8 and store the result in zmm1 using writemask k1. |
 ### Instruction Operand Encoding
 
@@ -350,130 +350,130 @@ Note: For the imm8 versions, VEX.vvvv and EVEX.vvvv are reserved and must be 111
 #### VPERMILPD (EVEX immediate versions)
 ```info-verb
 (KL, VL) = (8, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF (EVEX.b = 1) AND (SRC1 *is memory*)
-          THEN TMP_SRC1[i+63:i] <-   SRC1[63:0];
-          ELSE TMP_SRC1[i+63:i]  <-  SRC1[i+63:i];
+          THEN TMP_SRC1[i+63:i] <-  SRC1[63:0];
+          ELSE TMP_SRC1[i+63:i] <-  SRC1[i+63:i];
     FI;
 ENDFOR;
-IF (imm8[0] = 0) THEN TMP_DEST[63:0] <-   SRC1[63:0]; FI;
-IF (imm8[0] = 1) THEN TMP_DEST[63:0] <-   TMP_SRC1[127:64]; FI;
-IF (imm8[1] = 0) THEN TMP_DEST[127:64]  <-  TMP_SRC1[63:0]; FI;
-IF (imm8[1] = 1) THEN TMP_DEST[127:64] <-   TMP_SRC1[127:64]; FI;
+IF (imm8[0] = 0) THEN TMP_DEST[63:0] <-  SRC1[63:0]; FI;
+IF (imm8[0] = 1) THEN TMP_DEST[63:0] <-  TMP_SRC1[127:64]; FI;
+IF (imm8[1] = 0) THEN TMP_DEST[127:64] <-  TMP_SRC1[63:0]; FI;
+IF (imm8[1] = 1) THEN TMP_DEST[127:64] <-  TMP_SRC1[127:64]; FI;
 IF VL >= 256
-    IF (imm8[2] = 0) THEN TMP_DEST[191:128] <-   TMP_SRC1[191:128]; FI;
-    IF (imm8[2] = 1) THEN TMP_DEST[191:128]  <-  TMP_SRC1[255:192]; FI;
-    IF (imm8[3] = 0) THEN TMP_DEST[255:192] <-   TMP_SRC1[191:128]; FI;
-    IF (imm8[3] = 1) THEN TMP_DEST[255:192] <-   TMP_SRC1[255:192]; FI;
+    IF (imm8[2] = 0) THEN TMP_DEST[191:128] <-  TMP_SRC1[191:128]; FI;
+    IF (imm8[2] = 1) THEN TMP_DEST[191:128] <-  TMP_SRC1[255:192]; FI;
+    IF (imm8[3] = 0) THEN TMP_DEST[255:192] <-  TMP_SRC1[191:128]; FI;
+    IF (imm8[3] = 1) THEN TMP_DEST[255:192] <-  TMP_SRC1[255:192]; FI;
 FI;
 IF VL >= 512
-    IF (imm8[4] = 0) THEN TMP_DEST[319:256] <-   TMP_SRC1[319:256]; FI;
-    IF (imm8[4] = 1) THEN TMP_DEST[319:256] <-   TMP_SRC1[383:320]; FI;
-    IF (imm8[5] = 0) THEN TMP_DEST[383:320]  <-  TMP_SRC1[319:256]; FI;
-    IF (imm8[5] = 1) THEN TMP_DEST[383:320]  <-  TMP_SRC1[383:320]; FI;
-    IF (imm8[6] = 0) THEN TMP_DEST[447:384]  <-  TMP_SRC1[447:384]; FI;
-    IF (imm8[6] = 1) THEN TMP_DEST[447:384] <-   TMP_SRC1[511:448]; FI;
-    IF (imm8[7] = 0) THEN TMP_DEST[511:448]  <-  TMP_SRC1[447:384]; FI;
-    IF (imm8[7] = 1) THEN TMP_DEST[511:448]  <-  TMP_SRC1[511:448]; FI;
+    IF (imm8[4] = 0) THEN TMP_DEST[319:256] <-  TMP_SRC1[319:256]; FI;
+    IF (imm8[4] = 1) THEN TMP_DEST[319:256] <-  TMP_SRC1[383:320]; FI;
+    IF (imm8[5] = 0) THEN TMP_DEST[383:320] <-  TMP_SRC1[319:256]; FI;
+    IF (imm8[5] = 1) THEN TMP_DEST[383:320] <-  TMP_SRC1[383:320]; FI;
+    IF (imm8[6] = 0) THEN TMP_DEST[447:384] <-  TMP_SRC1[447:384]; FI;
+    IF (imm8[6] = 1) THEN TMP_DEST[447:384] <-  TMP_SRC1[511:448]; FI;
+    IF (imm8[7] = 0) THEN TMP_DEST[511:448] <-  TMP_SRC1[447:384]; FI;
+    IF (imm8[7] = 1) THEN TMP_DEST[511:448] <-  TMP_SRC1[511:448]; FI;
 FI;
-FOR j <-   0 TO KL-1
-    i  <-  j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i] <-   TMP_DEST[i+63:i]
+          THEN DEST[i+63:i] <-  TMP_DEST[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+63:i] <-   0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- != 0 
+DEST[MAX_VL-1:VL] <-!= 0 
 ```
 #### VPERMILPD (256-bit immediate version)
 ```info-verb
-IF (imm8[0] = 0) THEN DEST[63:0] <- SRC1[63:0]
-IF (imm8[0] = 1) THEN DEST[63:0] <- SRC1[127:64]
-IF (imm8[1] = 0) THEN DEST[127:64]<-  SRC1[63:0]
-IF (imm8[1] = 1) THEN DEST[127:64]<-  SRC1[127:64]
-IF (imm8[2] = 0) THEN DEST[191:128] <- SRC1[191:128]
-IF (imm8[2] = 1) THEN DEST[191:128] <- SRC1[255:192]
-IF (imm8[3] = 0) THEN DEST[255:192]<-  SRC1[191:128]
-IF (imm8[3] = 1) THEN DEST[255:192]<-  SRC1[255:192]
-DEST[MAX_VL-1:256] <- 0
+IF (imm8[0] = 0) THEN DEST[63:0]<- SRC1[63:0]
+IF (imm8[0] = 1) THEN DEST[63:0]<- SRC1[127:64]
+IF (imm8[1] = 0) THEN DEST[127:64]<- SRC1[63:0]
+IF (imm8[1] = 1) THEN DEST[127:64]<- SRC1[127:64]
+IF (imm8[2] = 0) THEN DEST[191:128]<- SRC1[191:128]
+IF (imm8[2] = 1) THEN DEST[191:128]<- SRC1[255:192]
+IF (imm8[3] = 0) THEN DEST[255:192]<- SRC1[191:128]
+IF (imm8[3] = 1) THEN DEST[255:192]<- SRC1[255:192]
+DEST[MAX_VL-1:256]<- 0
 ```
 #### VPERMILPD (128-bit immediate version)
 ```info-verb
-IF (imm8[0] = 0) THEN DEST[63:0] <- SRC1[63:0]
-IF (imm8[0] = 1) THEN DEST[63:0]<-  SRC1[127:64]
-IF (imm8[1] = 0) THEN DEST[127:64] <- SRC1[63:0]
-IF (imm8[1] = 1) THEN DEST[127:64]<-  SRC1[127:64]
-DEST[MAX_VL-1:128] <- 0
+IF (imm8[0] = 0) THEN DEST[63:0]<- SRC1[63:0]
+IF (imm8[0] = 1) THEN DEST[63:0]<- SRC1[127:64]
+IF (imm8[1] = 0) THEN DEST[127:64]<- SRC1[63:0]
+IF (imm8[1] = 1) THEN DEST[127:64]<- SRC1[127:64]
+DEST[MAX_VL-1:128]<- 0
 ```
 #### VPERMILPD (EVEX variable versions)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF (EVEX.b = 1) AND (SRC2 *is memory*)
-          THEN TMP_SRC2[i+63:i] <-   SRC2[63:0];
-          ELSE TMP_SRC2[i+63:i] <-   SRC2[i+63:i];
+          THEN TMP_SRC2[i+63:i] <-  SRC2[63:0];
+          ELSE TMP_SRC2[i+63:i] <-  SRC2[i+63:i];
     FI;
 ENDFOR;
-IF (TMP_SRC2[1] = 0) THEN TMP_DEST[63:0]  <-  SRC1[63:0]; FI;
-IF (TMP_SRC2[1] = 1) THEN TMP_DEST[63:0]  <-  SRC1[127:64]; FI;
-IF (TMP_SRC2[65] = 0) THEN TMP_DEST[127:64]  <-  SRC1[63:0]; FI;
-IF (TMP_SRC2[65] = 1) THEN TMP_DEST[127:64] <-   SRC1[127:64]; FI;
+IF (TMP_SRC2[1] = 0) THEN TMP_DEST[63:0] <-  SRC1[63:0]; FI;
+IF (TMP_SRC2[1] = 1) THEN TMP_DEST[63:0] <-  SRC1[127:64]; FI;
+IF (TMP_SRC2[65] = 0) THEN TMP_DEST[127:64] <-  SRC1[63:0]; FI;
+IF (TMP_SRC2[65] = 1) THEN TMP_DEST[127:64] <-  SRC1[127:64]; FI;
 IF VL >= 256
-    IF (TMP_SRC2[129] = 0) THEN TMP_DEST[191:128]  <-  SRC1[191:128]; FI;
-    IF (TMP_SRC2[129] = 1) THEN TMP_DEST[191:128] <-   SRC1[255:192]; FI;
-    IF (TMP_SRC2[193] = 0) THEN TMP_DEST[255:192]  <-  SRC1[191:128]; FI;
-    IF (TMP_SRC2[193] = 1) THEN TMP_DEST[255:192] <-   SRC1[255:192]; FI;
+    IF (TMP_SRC2[129] = 0) THEN TMP_DEST[191:128] <-  SRC1[191:128]; FI;
+    IF (TMP_SRC2[129] = 1) THEN TMP_DEST[191:128] <-  SRC1[255:192]; FI;
+    IF (TMP_SRC2[193] = 0) THEN TMP_DEST[255:192] <-  SRC1[191:128]; FI;
+    IF (TMP_SRC2[193] = 1) THEN TMP_DEST[255:192] <-  SRC1[255:192]; FI;
 FI;
 IF VL >= 512
-    IF (TMP_SRC2[257] = 0) THEN TMP_DEST[319:256] <-   SRC1[319:256]; FI;
-    IF (TMP_SRC2[257] = 1) THEN TMP_DEST[319:256] <-   SRC1[383:320]; FI;
-    IF (TMP_SRC2[321] = 0) THEN TMP_DEST[383:320]  <-  SRC1[319:256]; FI;
-    IF (TMP_SRC2[321] = 1) THEN TMP_DEST[383:320] <-   SRC1[383:320]; FI;
-    IF (TMP_SRC2[385] = 0) THEN TMP_DEST[447:384]  <-  SRC1[447:384]; FI;
-    IF (TMP_SRC2[385] = 1) THEN TMP_DEST[447:384]  <-  SRC1[511:448]; FI;
-    IF (TMP_SRC2[449] = 0) THEN TMP_DEST[511:448]  <-  SRC1[447:384]; FI;
-    IF (TMP_SRC2[449] = 1) THEN TMP_DEST[511:448] <-   SRC1[511:448]; FI;
+    IF (TMP_SRC2[257] = 0) THEN TMP_DEST[319:256] <-  SRC1[319:256]; FI;
+    IF (TMP_SRC2[257] = 1) THEN TMP_DEST[319:256] <-  SRC1[383:320]; FI;
+    IF (TMP_SRC2[321] = 0) THEN TMP_DEST[383:320] <-  SRC1[319:256]; FI;
+    IF (TMP_SRC2[321] = 1) THEN TMP_DEST[383:320] <-  SRC1[383:320]; FI;
+    IF (TMP_SRC2[385] = 0) THEN TMP_DEST[447:384] <-  SRC1[447:384]; FI;
+    IF (TMP_SRC2[385] = 1) THEN TMP_DEST[447:384] <-  SRC1[511:448]; FI;
+    IF (TMP_SRC2[449] = 0) THEN TMP_DEST[511:448] <-  SRC1[447:384]; FI;
+    IF (TMP_SRC2[449] = 1) THEN TMP_DEST[511:448] <-  SRC1[511:448]; FI;
 FI;
-FOR j <-   0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i] <-   TMP_DEST[i+63:i]
+          THEN DEST[i+63:i] <-  TMP_DEST[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+63:i] <-   0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- != 0
+DEST[MAX_VL-1:VL] <-!= 0
 ```
 #### VPERMILPD (256-bit variable version)
 ```info-verb
-IF (SRC2[1] = 0) THEN DEST[63:0]<-  SRC1[63:0]
-IF (SRC2[1] = 1) THEN DEST[63:0]<-  SRC1[127:64]
-IF (SRC2[65] = 0) THEN DEST[127:64]<-  SRC1[63:0]
-IF (SRC2[65] = 1) THEN DEST[127:64] <- SRC1[127:64]
-IF (SRC2[129] = 0) THEN DEST[191:128] <- SRC1[191:128]
-IF (SRC2[129] = 1) THEN DEST[191:128]<-  SRC1[255:192]
-IF (SRC2[193] = 0) THEN DEST[255:192]<-  SRC1[191:128]
-IF (SRC2[193] = 1) THEN DEST[255:192]<-  SRC1[255:192]
-DEST[MAX_VL-1:256]<-  0
+IF (SRC2[1] = 0) THEN DEST[63:0]<- SRC1[63:0]
+IF (SRC2[1] = 1) THEN DEST[63:0]<- SRC1[127:64]
+IF (SRC2[65] = 0) THEN DEST[127:64]<- SRC1[63:0]
+IF (SRC2[65] = 1) THEN DEST[127:64]<- SRC1[127:64]
+IF (SRC2[129] = 0) THEN DEST[191:128]<- SRC1[191:128]
+IF (SRC2[129] = 1) THEN DEST[191:128]<- SRC1[255:192]
+IF (SRC2[193] = 0) THEN DEST[255:192]<- SRC1[191:128]
+IF (SRC2[193] = 1) THEN DEST[255:192]<- SRC1[255:192]
+DEST[MAX_VL-1:256]<- 0
 ```
 #### VPERMILPD (128-bit variable version)
 ```info-verb
-IF (SRC2[1] = 0) THEN DEST[63:0]<-  SRC1[63:0]
-IF (SRC2[1] = 1) THEN DEST[63:0] <- SRC1[127:64]
-IF (SRC2[65] = 0) THEN DEST[127:64]<-  SRC1[63:0]
-IF (SRC2[65] = 1) THEN DEST[127:64] <- SRC1[127:64]
-DEST[MAX_VL-1:128] <- 0
+IF (SRC2[1] = 0) THEN DEST[63:0]<- SRC1[63:0]
+IF (SRC2[1] = 1) THEN DEST[63:0]<- SRC1[127:64]
+IF (SRC2[65] = 0) THEN DEST[127:64]<- SRC1[63:0]
+IF (SRC2[65] = 1) THEN DEST[127:64]<- SRC1[127:64]
+DEST[MAX_VL-1:128]<- 0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

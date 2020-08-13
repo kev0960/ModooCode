@@ -256,27 +256,27 @@ This instruction does not change flags.
 ### Operation
 #### BNDMOV register to register
 ```info-verb
-DEST.LB <-   SRC.LB; 
-DEST.UB <-   SRC.UB; 
+DEST.LB <-  SRC.LB; 
+DEST.UB <-  SRC.UB; 
 ```
 #### BNDMOV from memory
 ```info-verb
 IF 64-bit mode THEN
-          DEST.LB <-   LOAD_QWORD(SRC); 
-          DEST.UB <-   LOAD_QWORD(SRC+8); 
+          DEST.LB <-  LOAD_QWORD(SRC); 
+          DEST.UB <-  LOAD_QWORD(SRC+8); 
     ELSE
-          DEST.LB <-   LOAD_DWORD_ZERO_EXT(SRC); 
-          DEST.UB  <-  LOAD_DWORD_ZERO_EXT(SRC+4); 
+          DEST.LB <-  LOAD_DWORD_ZERO_EXT(SRC); 
+          DEST.UB <-  LOAD_DWORD_ZERO_EXT(SRC+4); 
 FI;
 ```
 #### BNDMOV to memory
 ```info-verb
 IF 64-bit mode THEN
-          DEST[63:0]  <-  SRC.LB; 
-          DEST[127:64]  <-  SRC.UB; 
+          DEST[63:0] <-  SRC.LB; 
+          DEST[127:64] <-  SRC.UB; 
     ELSE
-          DEST[31:0] <-   SRC.LB; 
-          DEST[63:32] <-   SRC.UB; 
+          DEST[31:0] <-  SRC.LB; 
+          DEST[63:32] <-  SRC.UB; 
 FI;
 ```
 

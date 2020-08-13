@@ -25,17 +25,17 @@ path : /X86-64 명령어 레퍼런스
 |VEX.NDS.256.66.0F.WIG 69 /r\newline{}VPUNPCKHWD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Interleave high-order words from ymm2 and ymm3/m256 into ymm1 register.|
 |VEX.NDS.256.66.0F.WIG 6A /r\newline{}VPUNPCKHDQ ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Interleave high-order doublewords from ymm2 and ymm3/m256 into ymm1 register.|
 |VEX.NDS.256.66.0F.WIG 6D /r\newline{}VPUNPCKHQDQ ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Interleave high-order quadword from ymm2 and ymm3/m256 into ymm1 register.|
-|EVEX.NDS.128.66.0F.WIG 68 /r\newline{}VPUNPCKHBW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Interleave high-order bytes from xmm2 and xmm3/m128 into xmm1 register using k1 write mask.|
-|EVEX.NDS.128.66.0F.WIG 69 /r\newline{}VPUNPCKHWD xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Interleave high-order words from xmm2 and xmm3/m128 into xmm1 register using k1 write mask.|
-|EVEX.NDS.128.66.0F.W0 6A /r\newline{}VPUNPCKHDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Interleave high-order doublewords from xmm2 and xmm3/m128/m32bcst into xmm1 register using k1 write mask.|
-|EVEX.NDS.128.66.0F.W1 6D /r\newline{}VPUNPCKHQDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst|FV|V/V|AVX512VLAVX512F|Interleave high-order quadword from xmm2 and xmm3/m128/m64bcst into xmm1 register using k1 write mask.|
+|EVEX.NDS.128.66.0F.WIG 68 /r\newline{}VPUNPCKHBW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Interleave high-order bytes from xmm2 and xmm3/m128 into xmm1 register using k1 write mask.|
+|EVEX.NDS.128.66.0F.WIG 69 /r\newline{}VPUNPCKHWD xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Interleave high-order words from xmm2 and xmm3/m128 into xmm1 register using k1 write mask.|
+|EVEX.NDS.128.66.0F.W0 6A /r\newline{}VPUNPCKHDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Interleave high-order doublewords from xmm2 and xmm3/m128/m32bcst into xmm1 register using k1 write mask.|
+|EVEX.NDS.128.66.0F.W1 6D /r\newline{}VPUNPCKHQDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst|FV|V/V|AVX512VL\newline{}AVX512F|Interleave high-order quadword from xmm2 and xmm3/m128/m64bcst into xmm1 register using k1 write mask.|
 
 
-|EVEX.NDS.256.66.0F.WIG 68 /r\newline{}VPUNPCKHBW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VL\newline{}AVX512BW|Interleave high-order bytes from ymm2 and \newline{}ymm3/m256 into ymm1 register using k1 \newline{}write mask.|
-|------------------------------------------------------------------------------|---|---|--------------------------|---------------------------------------------------------------------------------------------------------------|
-|EVEX.NDS.256.66.0F.WIG 69 /rVPUNPCKHWD ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Interleave high-order words from ymm2 and ymm3/m256 into ymm1 register using k1 write mask.|
-|EVEX.NDS.256.66.0F.W0 6A /rVPUNPCKHDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Interleave high-order doublewords from ymm2 and ymm3/m256/m32bcst into ymm1 register using k1 write mask.|
-|EVEX.NDS.256.66.0F.W1 6D /rVPUNPCKHQDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst|FV|V/V|AVX512VLAVX512F|Interleave high-order quadword from ymm2 and ymm3/m256/m64bcst into ymm1 register using k1 write mask.|
+|EVEX.NDS.256.66.0F.WIG 68 /r\newline{}VPUNPCKHBW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VL\newline{}\newline{}AVX512BW|Interleave high-order bytes from ymm2 and \newline{}ymm3/m256 into ymm1 register using k1 \newline{}write mask.|
+|------------------------------------------------------------------------------|---|---|------------------------------------|---------------------------------------------------------------------------------------------------------------|
+|EVEX.NDS.256.66.0F.WIG 69 /rVPUNPCKHWD ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VL\newline{}AVX512BW|Interleave high-order words from ymm2 and ymm3/m256 into ymm1 register using k1 write mask.|
+|EVEX.NDS.256.66.0F.W0 6A /rVPUNPCKHDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Interleave high-order doublewords from ymm2 and ymm3/m256/m32bcst into ymm1 register using k1 write mask.|
+|EVEX.NDS.256.66.0F.W1 6D /rVPUNPCKHQDQ ymm1 {k1}{z}, ymm2, ymm3/m256/m64bcst|FV|V/V|AVX512VL\newline{}AVX512F|Interleave high-order quadword from ymm2 and ymm3/m256/m64bcst into ymm1 register using k1 write mask.|
 |EVEX.NDS.512.66.0F.WIG 68/rVPUNPCKHBW zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Interleave high-order bytes from zmm2 and zmm3/m512 into zmm1 register.|
 |EVEX.NDS.512.66.0F.WIG 69/rVPUNPCKHWD zmm1 {k1}{z}, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Interleave high-order words from zmm2 and zmm3/m512 into zmm1 register.|
 |EVEX.NDS.512.66.0F.W0 6A /rVPUNPCKHDQ zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst|FV|V/V|AVX512F|Interleave high-order doublewords from zmm2 and zmm3/m512/m32bcst into zmm1 register using k1 write mask.|
@@ -460,291 +460,291 @@ EVEX encoded VPUNPCKHWD/BW: The second source operand is a ZMM/YMM/XMM register,
     DEST[31:0] <- DEST[63:32];
     DEST[63:32] <- SRC[63:32];
 INTERLEAVE_HIGH_BYTES_512b (SRC1, SRC2)
-TMP_DEST[255:0] <-   INTERLEAVE_HIGH_BYTES_256b(SRC1[255:0], SRC[255:0])
-TMP_DEST[511:256]  <-  INTERLEAVE_HIGH_BYTES_256b(SRC1[511:256], SRC[511:256])
+TMP_DEST[255:0] <-  INTERLEAVE_HIGH_BYTES_256b(SRC1[255:0], SRC[255:0])
+TMP_DEST[511:256] <-  INTERLEAVE_HIGH_BYTES_256b(SRC1[511:256], SRC[511:256])
 INTERLEAVE_HIGH_BYTES_256b (SRC1, SRC2) 
-DEST[7:0]  <-  SRC1[71:64]
-DEST[15:8]  <-  SRC2[71:64]
-DEST[23:16] <-   SRC1[79:72]
-DEST[31:24]  <-  SRC2[79:72]
-DEST[39:32]  <-  SRC1[87:80]
-DEST[47:40] <-   SRC2[87:80]
-DEST[55:48]  <-  SRC1[95:88]
-DEST[63:56] <-   SRC2[95:88]
-DEST[71:64] <-   SRC1[103:96]
-DEST[79:72] <-   SRC2[103:96]
-DEST[87:80] <-   SRC1[111:104]
-DEST[95:88]  <-  SRC2[111:104]
-DEST[103:96]  <-  SRC1[119:112]
-DEST[111:104]  <-  SRC2[119:112]
-DEST[119:112] <-   SRC1[127:120]
-DEST[127:120] <-   SRC2[127:120]
-DEST[135:128] <-   SRC1[199:192]
-DEST[143:136] <-   SRC2[199:192]
-DEST[151:144]  <-  SRC1[207:200]
-DEST[159:152]  <-  SRC2[207:200]
-DEST[167:160] <-   SRC1[215:208]
-DEST[175:168]  <-  SRC2[215:208]
-DEST[183:176]  <-  SRC1[223:216]
-DEST[191:184]  <-  SRC2[223:216]
-DEST[199:192] <-   SRC1[231:224]
-DEST[207:200] <-   SRC2[231:224]
-DEST[215:208]  <-  SRC1[239:232]
-DEST[223:216]  <-  SRC2[239:232]
-DEST[231:224]  <-  SRC1[247:240]
-DEST[239:232] <-   SRC2[247:240]
-DEST[247:240] <-   SRC1[255:248]
-DEST[255:248]  <-  SRC2[255:248]
+DEST[7:0] <-  SRC1[71:64]
+DEST[15:8] <-  SRC2[71:64]
+DEST[23:16] <-  SRC1[79:72]
+DEST[31:24] <-  SRC2[79:72]
+DEST[39:32] <-  SRC1[87:80]
+DEST[47:40] <-  SRC2[87:80]
+DEST[55:48] <-  SRC1[95:88]
+DEST[63:56] <-  SRC2[95:88]
+DEST[71:64] <-  SRC1[103:96]
+DEST[79:72] <-  SRC2[103:96]
+DEST[87:80] <-  SRC1[111:104]
+DEST[95:88] <-  SRC2[111:104]
+DEST[103:96] <-  SRC1[119:112]
+DEST[111:104] <-  SRC2[119:112]
+DEST[119:112] <-  SRC1[127:120]
+DEST[127:120] <-  SRC2[127:120]
+DEST[135:128] <-  SRC1[199:192]
+DEST[143:136] <-  SRC2[199:192]
+DEST[151:144] <-  SRC1[207:200]
+DEST[159:152] <-  SRC2[207:200]
+DEST[167:160] <-  SRC1[215:208]
+DEST[175:168] <-  SRC2[215:208]
+DEST[183:176] <-  SRC1[223:216]
+DEST[191:184] <-  SRC2[223:216]
+DEST[199:192] <-  SRC1[231:224]
+DEST[207:200] <-  SRC2[231:224]
+DEST[215:208] <-  SRC1[239:232]
+DEST[223:216] <-  SRC2[239:232]
+DEST[231:224] <-  SRC1[247:240]
+DEST[239:232] <-  SRC2[247:240]
+DEST[247:240] <-  SRC1[255:248]
+DEST[255:248] <-  SRC2[255:248]
 INTERLEAVE_HIGH_BYTES (SRC1, SRC2) 
-DEST[7:0] <-   SRC1[71:64]
-DEST[15:8]  <-  SRC2[71:64]
-DEST[23:16]  <-  SRC1[79:72]
-DEST[31:24]  <-  SRC2[79:72]
-DEST[39:32] <-   SRC1[87:80]
-DEST[47:40] <-   SRC2[87:80]
-DEST[55:48] <-   SRC1[95:88]
-DEST[63:56]  <-  SRC2[95:88]
-DEST[71:64] <-   SRC1[103:96]
-DEST[79:72]  <-  SRC2[103:96]
-DEST[87:80]  <-  SRC1[111:104]
-DEST[95:88] <-   SRC2[111:104]
-DEST[103:96] <-   SRC1[119:112]
-DEST[111:104]  <-  SRC2[119:112]
-DEST[119:112]  <-  SRC1[127:120]
-DEST[127:120] <-   SRC2[127:120]
+DEST[7:0] <-  SRC1[71:64]
+DEST[15:8] <-  SRC2[71:64]
+DEST[23:16] <-  SRC1[79:72]
+DEST[31:24] <-  SRC2[79:72]
+DEST[39:32] <-  SRC1[87:80]
+DEST[47:40] <-  SRC2[87:80]
+DEST[55:48] <-  SRC1[95:88]
+DEST[63:56] <-  SRC2[95:88]
+DEST[71:64] <-  SRC1[103:96]
+DEST[79:72] <-  SRC2[103:96]
+DEST[87:80] <-  SRC1[111:104]
+DEST[95:88] <-  SRC2[111:104]
+DEST[103:96] <-  SRC1[119:112]
+DEST[111:104] <-  SRC2[119:112]
+DEST[119:112] <-  SRC1[127:120]
+DEST[127:120] <-  SRC2[127:120]
 INTERLEAVE_HIGH_WORDS_512b (SRC1, SRC2)
-TMP_DEST[255:0] <-   INTERLEAVE_HIGH_WORDS_256b(SRC1[255:0], SRC[255:0])
-TMP_DEST[511:256]  <-  INTERLEAVE_HIGH_WORDS_256b(SRC1[511:256], SRC[511:256])
+TMP_DEST[255:0] <-  INTERLEAVE_HIGH_WORDS_256b(SRC1[255:0], SRC[255:0])
+TMP_DEST[511:256] <-  INTERLEAVE_HIGH_WORDS_256b(SRC1[511:256], SRC[511:256])
 INTERLEAVE_HIGH_WORDS_256b(SRC1, SRC2)
-DEST[15:0] <-   SRC1[79:64]
-DEST[31:16]  <-  SRC2[79:64]
-DEST[47:32] <-   SRC1[95:80]
-DEST[63:48]  <-  SRC2[95:80]
-DEST[79:64]  <-  SRC1[111:96]
-DEST[95:80]  <-  SRC2[111:96]
-DEST[111:96] <-   SRC1[127:112]
-DEST[127:112] <-   SRC2[127:112]
-DEST[143:128] <-   SRC1[207:192]
-DEST[159:144]  <-  SRC2[207:192]
-DEST[175:160]  <-  SRC1[223:208]
-DEST[191:176]  <-  SRC2[223:208]
-DEST[207:192] <-   SRC1[239:224]
-DEST[223:208] <-   SRC2[239:224]
-DEST[239:224] <-   SRC1[255:240]
-DEST[255:240] <-   SRC2[255:240]
+DEST[15:0] <-  SRC1[79:64]
+DEST[31:16] <-  SRC2[79:64]
+DEST[47:32] <-  SRC1[95:80]
+DEST[63:48] <-  SRC2[95:80]
+DEST[79:64] <-  SRC1[111:96]
+DEST[95:80] <-  SRC2[111:96]
+DEST[111:96] <-  SRC1[127:112]
+DEST[127:112] <-  SRC2[127:112]
+DEST[143:128] <-  SRC1[207:192]
+DEST[159:144] <-  SRC2[207:192]
+DEST[175:160] <-  SRC1[223:208]
+DEST[191:176] <-  SRC2[223:208]
+DEST[207:192] <-  SRC1[239:224]
+DEST[223:208] <-  SRC2[239:224]
+DEST[239:224] <-  SRC1[255:240]
+DEST[255:240] <-  SRC2[255:240]
 INTERLEAVE_HIGH_WORDS (SRC1, SRC2)
-DEST[15:0] <-   SRC1[79:64]
-DEST[31:16] <-   SRC2[79:64]
-DEST[47:32]  <-  SRC1[95:80]
-DEST[63:48]  <-  SRC2[95:80]
-DEST[79:64]  <-  SRC1[111:96]
-DEST[95:80] <-   SRC2[111:96]
-DEST[111:96]  <-  SRC1[127:112]
-DEST[127:112]  <-  SRC2[127:112]
+DEST[15:0] <-  SRC1[79:64]
+DEST[31:16] <-  SRC2[79:64]
+DEST[47:32] <-  SRC1[95:80]
+DEST[63:48] <-  SRC2[95:80]
+DEST[79:64] <-  SRC1[111:96]
+DEST[95:80] <-  SRC2[111:96]
+DEST[111:96] <-  SRC1[127:112]
+DEST[127:112] <-  SRC2[127:112]
 INTERLEAVE_HIGH_DWORDS_512b (SRC1, SRC2)
-TMP_DEST[255:0] <-   INTERLEAVE_HIGH_DWORDS_256b(SRC1[255:0], SRC2[255:0])
-TMP_DEST[511:256]  <-  INTERLEAVE_HIGH_DWORDS_256b(SRC1[511:256], SRC2[511:256])
+TMP_DEST[255:0] <-  INTERLEAVE_HIGH_DWORDS_256b(SRC1[255:0], SRC2[255:0])
+TMP_DEST[511:256] <-  INTERLEAVE_HIGH_DWORDS_256b(SRC1[511:256], SRC2[511:256])
 INTERLEAVE_HIGH_DWORDS_256b(SRC1, SRC2)
-DEST[31:0] <-   SRC1[95:64]
-DEST[63:32] <-   SRC2[95:64]
-DEST[95:64]  <-  SRC1[127:96]
-DEST[127:96]  <-  SRC2[127:96]
-DEST[159:128]  <-  SRC1[223:192]
-DEST[191:160]  <-  SRC2[223:192]
-DEST[223:192] <-   SRC1[255:224]
-DEST[255:224] <-   SRC2[255:224]
+DEST[31:0] <-  SRC1[95:64]
+DEST[63:32] <-  SRC2[95:64]
+DEST[95:64] <-  SRC1[127:96]
+DEST[127:96] <-  SRC2[127:96]
+DEST[159:128] <-  SRC1[223:192]
+DEST[191:160] <-  SRC2[223:192]
+DEST[223:192] <-  SRC1[255:224]
+DEST[255:224] <-  SRC2[255:224]
 INTERLEAVE_HIGH_DWORDS(SRC1, SRC2)
-DEST[31:0] <-   SRC1[95:64]
-DEST[63:32]  <-  SRC2[95:64]
-DEST[95:64]  <-  SRC1[127:96]
-DEST[127:96] <-   SRC2[127:96]
+DEST[31:0] <-  SRC1[95:64]
+DEST[63:32] <-  SRC2[95:64]
+DEST[95:64] <-  SRC1[127:96]
+DEST[127:96] <-  SRC2[127:96]
 INTERLEAVE_HIGH_QWORDS_512b (SRC1, SRC2)
-TMP_DEST[255:0]  <-  INTERLEAVE_HIGH_QWORDS_256b(SRC1[255:0], SRC2[255:0])
-TMP_DEST[511:256] <-   INTERLEAVE_HIGH_QWORDS_256b(SRC1[511:256], SRC2[511:256])
+TMP_DEST[255:0] <-  INTERLEAVE_HIGH_QWORDS_256b(SRC1[255:0], SRC2[255:0])
+TMP_DEST[511:256] <-  INTERLEAVE_HIGH_QWORDS_256b(SRC1[511:256], SRC2[511:256])
 INTERLEAVE_HIGH_QWORDS_256b(SRC1, SRC2)
-DEST[63:0]  <-  SRC1[127:64]
-DEST[127:64]  <-  SRC2[127:64]
-DEST[191:128] <-   SRC1[255:192]
-DEST[255:192] <-   SRC2[255:192]
+DEST[63:0] <-  SRC1[127:64]
+DEST[127:64] <-  SRC2[127:64]
+DEST[191:128] <-  SRC1[255:192]
+DEST[255:192] <-  SRC2[255:192]
 INTERLEAVE_HIGH_QWORDS(SRC1, SRC2)
-DEST[63:0] <-   SRC1[127:64]
-DEST[127:64]  <-  SRC2[127:64]
+DEST[63:0] <-  SRC1[127:64]
+DEST[127:64] <-  SRC2[127:64]
 ```
 #### PUNPCKHBW (128-bit Legacy SSE Version)
 ```info-verb
-DEST[127:0] <-  INTERLEAVE_HIGH_BYTES(DEST, SRC)
+DEST[127:0] <- INTERLEAVE_HIGH_BYTES(DEST, SRC)
 DEST[255:127] (Unmodified)
 ```
 #### VPUNPCKHBW (VEX.128 encoded version)
 ```info-verb
-DEST[127:0] <-  INTERLEAVE_HIGH_BYTES(SRC1, SRC2)
-DEST[511:127]  <- 0
+DEST[127:0] <- INTERLEAVE_HIGH_BYTES(SRC1, SRC2)
+DEST[511:127] <- 0
 ```
 #### VPUNPCKHBW (VEX.256 encoded version)
 ```info-verb
-DEST[255:0]  <- INTERLEAVE_HIGH_BYTES_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256]  <- 0
+DEST[255:0] <- INTERLEAVE_HIGH_BYTES_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <- 0
 ```
 #### VPUNPCKHBW (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
 IF VL = 128
-    TMP_DEST[VL-1:0]  <-  INTERLEAVE_HIGH_BYTES(SRC1[VL-1:0], SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_BYTES(SRC1[VL-1:0], SRC2[VL-1:0])
 FI;
 IF VL = 256
-    TMP_DEST[VL-1:0] <-   INTERLEAVE_HIGH_BYTES_256b(SRC1[VL-1:0], SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_BYTES_256b(SRC1[VL-1:0], SRC2[VL-1:0])
 FI;
 IF VL = 512
-    TMP_DEST[VL-1:0]  <-  INTERLEAVE_HIGH_BYTES_512b(SRC1[VL-1:0], SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_BYTES_512b(SRC1[VL-1:0], SRC2[VL-1:0])
 FI;
-FOR j <-   0 TO KL-1
-    i <-   j * 8
+FOR j <-  0 TO KL-1
+    i <-  j * 8
     IF k1[j] OR *no writemask*
-          THEN DEST[i+7:i] <-   TMP_DEST[i+7:i]
+          THEN DEST[i+7:i] <-  TMP_DEST[i+7:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+7:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+7:i]  <-  0
+                            DEST[i+7:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### PUNPCKHWD (128-bit Legacy SSE Version)
 ```info-verb
-DEST[127:0] <-  INTERLEAVE_HIGH_WORDS(DEST, SRC)
+DEST[127:0] <- INTERLEAVE_HIGH_WORDS(DEST, SRC)
 DEST[255:127] (Unmodified)
 ```
 #### VPUNPCKHWD (VEX.128 encoded version)
 ```info-verb
-DEST[127:0] <-  INTERLEAVE_HIGH_WORDS(SRC1, SRC2)
-DEST[511:127] <-  0
+DEST[127:0] <- INTERLEAVE_HIGH_WORDS(SRC1, SRC2)
+DEST[511:127] <- 0
 ```
 #### VPUNPCKHWD (VEX.256 encoded version)
 ```info-verb
-DEST[255:0] <-  INTERLEAVE_HIGH_WORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256] <-  0
+DEST[255:0] <- INTERLEAVE_HIGH_WORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <- 0
 VPUNPCKHWD (EVEX encoded versions)
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 IF VL = 128
-    TMP_DEST[VL-1:0]  <-  INTERLEAVE_HIGH_WORDS(SRC1[VL-1:0], SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_WORDS(SRC1[VL-1:0], SRC2[VL-1:0])
 FI;
 IF VL = 256
-    TMP_DEST[VL-1:0] <-   INTERLEAVE_HIGH_WORDS_256b(SRC1[VL-1:0], SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_WORDS_256b(SRC1[VL-1:0], SRC2[VL-1:0])
 FI;
 IF VL = 512
-    TMP_DEST[VL-1:0]  <-  INTERLEAVE_HIGH_WORDS_512b(SRC1[VL-1:0], SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_WORDS_512b(SRC1[VL-1:0], SRC2[VL-1:0])
 FI;
-FOR j <-   0 TO KL-1
-    i <-   j * 16
+FOR j <-  0 TO KL-1
+    i <-  j * 16
     IF k1[j] OR *no writemask*
-          THEN DEST[i+15:i] <-   TMP_DEST[i+15:i]
+          THEN DEST[i+15:i] <-  TMP_DEST[i+15:i]
 ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+15:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+15:i]  <-  0
+                            DEST[i+15:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### PUNPCKHDQ (128-bit LegacySSE Version)
 ```info-verb
-DEST[127:0] <-  INTERLEAVE_HIGH_DWORDS(DEST, SRC)
+DEST[127:0] <- INTERLEAVE_HIGH_DWORDS(DEST, SRC)
 DEST[255:127] (Unmodified)
 ```
 #### VPUNPCKHDQ (VEX.128 encoded version)
 ```info-verb
-DEST[127:0] <-  INTERLEAVE_HIGH_DWORDS(SRC1, SRC2)
-DEST[511:127] <-  0
+DEST[127:0] <- INTERLEAVE_HIGH_DWORDS(SRC1, SRC2)
+DEST[511:127] <- 0
 ```
 #### VPUNPCKHDQ (VEX.256 encoded version)
 ```info-verb
-DEST[255:0]  <- INTERLEAVE_HIGH_DWORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256]  <- 0
+DEST[255:0] <- INTERLEAVE_HIGH_DWORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <- 0
 ```
 #### VPUNPCKHDQ (EVEX.512 encoded version)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF (EVEX.b = 1) AND (SRC2 *is memory*)
-          THEN TMP_SRC2[i+31:i] <-   SRC2[31:0]
-          ELSE TMP_SRC2[i+31:i] <-   SRC2[i+31:i]
+          THEN TMP_SRC2[i+31:i] <-  SRC2[31:0]
+          ELSE TMP_SRC2[i+31:i] <-  SRC2[i+31:i]
     FI;
 ENDFOR;
 IF VL = 128
-    TMP_DEST[VL-1:0] <-   INTERLEAVE_HIGH_DWORDS(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_DWORDS(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
 FI;
 IF VL = 256
-    TMP_DEST[VL-1:0]  <-  INTERLEAVE_HIGH_DWORDS_256b(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_DWORDS_256b(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
 FI;
 IF VL = 512
-    TMP_DEST[VL-1:0] <-   INTERLEAVE_HIGH_DWORDS_512b(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_DWORDS_512b(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
 FI;
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i]  <-  TMP_DEST[i+31:i]
+          THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+31:i] <-   0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### PUNPCKHQDQ (128-bit Legacy SSE Version)
 ```info-verb
-DEST[127:0]  <- INTERLEAVE_HIGH_QWORDS(DEST, SRC)
+DEST[127:0] <- INTERLEAVE_HIGH_QWORDS(DEST, SRC)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPUNPCKHQDQ (VEX.128 encoded version)
 ```info-verb
-DEST[127:0]  <- INTERLEAVE_HIGH_QWORDS(SRC1, SRC2)
-DEST[MAX_VL-1:128] <-  0
+DEST[127:0] <- INTERLEAVE_HIGH_QWORDS(SRC1, SRC2)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### VPUNPCKHQDQ (VEX.256 encoded version)
 ```info-verb
-DEST[255:0] <-  INTERLEAVE_HIGH_QWORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256]  <- 0
+DEST[255:0] <- INTERLEAVE_HIGH_QWORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <- 0
 ```
 #### VPUNPCKHQDQ (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF (EVEX.b = 1) AND (SRC2 *is memory*)
-          THEN TMP_SRC2[i+63:i] <-   SRC2[63:0]
-          ELSE TMP_SRC2[i+63:i]  <-  SRC2[i+63:i]
+          THEN TMP_SRC2[i+63:i] <-  SRC2[63:0]
+          ELSE TMP_SRC2[i+63:i] <-  SRC2[i+63:i]
     FI;
 ENDFOR;
 IF VL = 128
-    TMP_DEST[VL-1:0] <-   INTERLEAVE_HIGH_QWORDS(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_QWORDS(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
 FI;
 IF VL = 256
-    TMP_DEST[VL-1:0]  <-  INTERLEAVE_HIGH_QWORDS_256b(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_QWORDS_256b(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
 FI;
 IF VL = 512
-    TMP_DEST[VL-1:0] <-   INTERLEAVE_HIGH_QWORDS_512b(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
+    TMP_DEST[VL-1:0] <-  INTERLEAVE_HIGH_QWORDS_512b(SRC1[VL-1:0], TMP_SRC2[VL-1:0])
 FI;
-FOR j  <-  0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i] <-   TMP_DEST[i+63:i]
+          THEN DEST[i+63:i] <-  TMP_DEST[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+63:i] <-   0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalents

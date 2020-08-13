@@ -191,22 +191,22 @@ VEX.256 encoded version: The first source operand is a YMM register. The second 
 ### Operation
 #### ADDSUBPD (128-bit Legacy SSE version)
 ```info-verb
-DEST[63:0] <-   DEST[63:0] - SRC[63:0]
-DEST[127:64]  <-  DEST[127:64] + SRC[127:64]
+DEST[63:0] <-  DEST[63:0] - SRC[63:0]
+DEST[127:64] <-  DEST[127:64] + SRC[127:64]
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VADDSUBPD (VEX.128 encoded version)
 ```info-verb
-DEST[63:0] <-   SRC1[63:0] - SRC2[63:0]
-DEST[127:64]  <-  SRC1[127:64] + SRC2[127:64]
-DEST[VLMAX-1:128] <-   0
+DEST[63:0] <-  SRC1[63:0] - SRC2[63:0]
+DEST[127:64] <-  SRC1[127:64] + SRC2[127:64]
+DEST[VLMAX-1:128] <-  0
 ```
 #### VADDSUBPD (VEX.256 encoded version)
 ```info-verb
-DEST[63:0]  <-  SRC1[63:0] - SRC2[63:0]
-DEST[127:64]  <-  SRC1[127:64] + SRC2[127:64]
-DEST[191:128] <-   SRC1[191:128] - SRC2[191:128]
-DEST[255:192]  <-  SRC1[255:192] + SRC2[255:192]
+DEST[63:0] <-  SRC1[63:0] - SRC2[63:0]
+DEST[127:64] <-  SRC1[127:64] + SRC2[127:64]
+DEST[191:128] <-  SRC1[191:128] - SRC2[191:128]
+DEST[255:192] <-  SRC1[255:192] + SRC2[255:192]
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

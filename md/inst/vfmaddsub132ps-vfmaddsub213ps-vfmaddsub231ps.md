@@ -16,12 +16,12 @@ path : /X86-64 명령어 레퍼런스
 |VEX.DDS.256.66.0F38.W0 96 /r \newline{}VFMADDSUB132PS ymm1, ymm2, ymm3/m256|RVM|V/V|FMA|Multiply packed single-precision floating-point values from ymm1 and ymm3/mem, add/subtract elements in ymm2 and put result in ymm1.|
 |VEX.DDS.256.66.0F38.W0 A6 /r \newline{}VFMADDSUB213PS ymm1, ymm2, ymm3/m256|RVM|V/V|FMA|Multiply packed single-precision floating-point values from ymm1 and ymm2, add/subtract elements in ymm3/mem and put result in ymm1.|
 |VEX.DDS.256.66.0F38.W0 B6 /r \newline{}VFMADDSUB231PS ymm1, ymm2, ymm3/m256|RVM|V/V|FMA|Multiply packed single-precision floating-point values from ymm2 and ymm3/mem, add/subtract elements in ymm1 and put result in ymm1.|
-|EVEX.DDS.128.66.0F38.W0 A6 /r \newline{}VFMADDSUB213PS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Multiply packed single-precision floating-point values from xmm1 and xmm2, add/subtract elements in xmm3/m128/m32bcst and put result in xmm1 subject to writemask k1.|
-|EVEX.DDS.128.66.0F38.W0 B6 /r \newline{}VFMADDSUB231PS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Multiply packed single-precision floating-point values from xmm2 and xmm3/m128/m32bcst, add/subtract elements in xmm1 and put result in xmm1 subject to writemask k1.|
-|EVEX.DDS.128.66.0F38.W0 96 /r\newline{}VFMADDSUB132PS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Multiply packed single-precision floating-point values from xmm1 and xmm3/m128/m32bcst, add/subtract elements in zmm2 and put result in xmm1 subject to writemask k1.|
-|EVEX.DDS.256.66.0F38.W0 A6 /r \newline{}VFMADDSUB213PS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Multiply packed single-precision floating-point values from ymm1 and ymm2, add/subtract elements in ymm3/m256/m32bcst and put result in ymm1 subject to writemask k1.|
-|EVEX.DDS.256.66.0F38.W0 B6 /r\newline{}VFMADDSUB231PS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Multiply packed single-precision floating-point values from ymm2 and ymm3/m256/m32bcst, add/subtract elements in ymm1 and put result in ymm1 subject to writemask k1.|
-|EVEX.DDS.256.66.0F38.W0 96 /r \newline{}VFMADDSUB132PS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Multiply packed single-precision floating-point values from ymm1 and ymm3/m256/m32bcst, add/subtract elements in ymm2 and put result in ymm1 subject to writemask k1.|
+|EVEX.DDS.128.66.0F38.W0 A6 /r \newline{}VFMADDSUB213PS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Multiply packed single-precision floating-point values from xmm1 and xmm2, add/subtract elements in xmm3/m128/m32bcst and put result in xmm1 subject to writemask k1.|
+|EVEX.DDS.128.66.0F38.W0 B6 /r \newline{}VFMADDSUB231PS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Multiply packed single-precision floating-point values from xmm2 and xmm3/m128/m32bcst, add/subtract elements in xmm1 and put result in xmm1 subject to writemask k1.|
+|EVEX.DDS.128.66.0F38.W0 96 /r\newline{}VFMADDSUB132PS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Multiply packed single-precision floating-point values from xmm1 and xmm3/m128/m32bcst, add/subtract elements in zmm2 and put result in xmm1 subject to writemask k1.|
+|EVEX.DDS.256.66.0F38.W0 A6 /r \newline{}VFMADDSUB213PS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Multiply packed single-precision floating-point values from ymm1 and ymm2, add/subtract elements in ymm3/m256/m32bcst and put result in ymm1 subject to writemask k1.|
+|EVEX.DDS.256.66.0F38.W0 B6 /r\newline{}VFMADDSUB231PS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Multiply packed single-precision floating-point values from ymm2 and ymm3/m256/m32bcst, add/subtract elements in ymm1 and put result in ymm1 subject to writemask k1.|
+|EVEX.DDS.256.66.0F38.W0 96 /r \newline{}VFMADDSUB132PS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Multiply packed single-precision floating-point values from ymm1 and ymm3/m256/m32bcst, add/subtract elements in ymm2 and put result in ymm1 subject to writemask k1.|
 |EVEX.DDS.512.66.0F38.W0 A6 /r \newline{}VFMADDSUB213PS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}|FV|V/V|AVX512F|Multiply packed single-precision floating-point values from zmm1 and zmm2, add/subtract elements in zmm3/m512/m32bcst and put result in zmm1 subject to writemask k1.|
 |EVEX.DDS.512.66.0F38.W0 B6 /r \newline{}VFMADDSUB231PS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}|FV|V/V|AVX512F|Multiply packed single-precision floating-point values from zmm2 and zmm3/m512/m32bcst, add/subtract elements in zmm1 and put result in zmm1 subject to writemask k1.|
 |EVEX.DDS.512.66.0F38.W0 96 /r \newline{}VFMADDSUB132PS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst{er}|FV|V/V|AVX512F|Multiply packed single-precision floating-point values from zmm1 and zmm3/m512/m32bcst, add/subtract elements in zmm2 and put result in zmm1 subject to writemask k1.|
@@ -54,55 +54,55 @@ Compiler tools may optionally support a complementary mnemonic for each instruct
 #### VFMADDSUB132PS DEST, SRC2, SRC3 
 ```info-verb
 IF (VEX.128) THEN 
-    MAXNUM <-  2
+    MAXNUM <- 2
 ELSEIF (VEX.256)
-    MAXNUM <-   4
+    MAXNUM <-  4
 FI
 For i = 0 to MAXNUM -1{
-    n <-   64*i;
-    DEST[n+31:n]  <- RoundFPControl_MXCSR(DEST[n+31:n]*SRC3[n+31:n] - SRC2[n+31:n])
-    DEST[n+63:n+32]  <- RoundFPControl_MXCSR(DEST[n+63:n+32]*SRC3[n+63:n+32] + SRC2[n+63:n+32])
+    n <-  64*i;
+    DEST[n+31:n] <- RoundFPControl_MXCSR(DEST[n+31:n]*SRC3[n+31:n] - SRC2[n+31:n])
+    DEST[n+63:n+32] <- RoundFPControl_MXCSR(DEST[n+63:n+32]*SRC3[n+63:n+32] + SRC2[n+63:n+32])
 }
 IF (VEX.128) THEN
-    DEST[MAX_VL-1:128] <-  0
+    DEST[MAX_VL-1:128] <- 0
 ELSEIF (VEX.256)
-    DEST[MAX_VL-1:256]  <-  0
+    DEST[MAX_VL-1:256] <-  0
 FI
 ```
 #### VFMADDSUB213PS DEST, SRC2, SRC3 
 ```info-verb
 IF (VEX.128) THEN 
-    MAXNUM <-  2
+    MAXNUM <- 2
 ELSEIF (VEX.256)
-    MAXNUM <-   4
+    MAXNUM <-  4
 FI
 For i = 0 to MAXNUM -1{
-    n <-   64*i;
-    DEST[n+31:n] <-  RoundFPControl_MXCSR(SRC2[n+31:n]*DEST[n+31:n] - SRC3[n+31:n])
-    DEST[n+63:n+32]  <- RoundFPControl_MXCSR(SRC2[n+63:n+32]*DEST[n+63:n+32] + SRC3[n+63:n+32])
+    n <-  64*i;
+    DEST[n+31:n] <- RoundFPControl_MXCSR(SRC2[n+31:n]*DEST[n+31:n] - SRC3[n+31:n])
+    DEST[n+63:n+32] <- RoundFPControl_MXCSR(SRC2[n+63:n+32]*DEST[n+63:n+32] + SRC3[n+63:n+32])
 }
 IF (VEX.128) THEN
-    DEST[MAX_VL-1:128] <-  0
+    DEST[MAX_VL-1:128] <- 0
 ELSEIF (VEX.256)
-    DEST[MAX_VL-1:256]  <-  0
+    DEST[MAX_VL-1:256] <-  0
 FI
 ```
 #### VFMADDSUB231PS DEST, SRC2, SRC3 
 ```info-verb
 IF (VEX.128) THEN 
-    MAXNUM  <- 2
+    MAXNUM <- 2
 ELSEIF (VEX.256)
-    MAXNUM  <-  4
+    MAXNUM <-  4
 FI
 For i = 0 to MAXNUM -1{
-    n  <-  64*i;
-    DEST[n+31:n]  <- RoundFPControl_MXCSR(SRC2[n+31:n]*SRC3[n+31:n] - DEST[n+31:n])
-    DEST[n+63:n+32]  <- RoundFPControl_MXCSR(SRC2[n+63:n+32]*SRC3[n+63:n+32] + DEST[n+63:n+32])
+    n <-  64*i;
+    DEST[n+31:n] <- RoundFPControl_MXCSR(SRC2[n+31:n]*SRC3[n+31:n] - DEST[n+31:n])
+    DEST[n+63:n+32] <- RoundFPControl_MXCSR(SRC2[n+63:n+32]*SRC3[n+63:n+32] + DEST[n+63:n+32])
 }
 IF (VEX.128) THEN
-    DEST[MAX_VL-1:128] <-  0
+    DEST[MAX_VL-1:128] <- 0
 ELSEIF (VEX.256)
-    DEST[MAX_VL-1:256] <-   0
+    DEST[MAX_VL-1:256] <-  0
 FI
 ```
 #### VFMADDSUB132PS DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a register)
@@ -114,50 +114,50 @@ IF (VL = 512) AND (EVEX.b = 1)
     ELSE 
           SET_RM(MXCSR.RM);
 FI;
-FOR j  <-  0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
           THEN 
                 IF j *is even*
-                      THEN DEST[i+31:i]  <-  
+                      THEN DEST[i+31:i] <-  
                             RoundFPControl(DEST[i+31:i]*SRC3[i+31:i] - SRC2[i+31:i])
-                      ELSE DEST[i+31:i]  <-  
+                      ELSE DEST[i+31:i] <-  
                             RoundFPControl(DEST[i+31:i]*SRC3[i+31:i] + SRC2[i+31:i])
                 FI
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VFMADDSUB132PS DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
           THEN 
                 IF j *is even*
                       THEN 
                             IF (EVEX.b = 1) 
                                   THEN
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(DEST[i+31:i]*SRC3[31:0] - SRC2[i+31:i])
                                   ELSE 
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(DEST[i+31:i]*SRC3[i+31:i] - SRC2[i+31:i])
                             FI;
                       ELSE 
                             IF (EVEX.b = 1) 
                                   THEN
-                                        DEST[i+31:i] <-   
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(DEST[i+31:i]*SRC3[31:0] + SRC2[i+31:i])
                                   ELSE 
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(DEST[i+31:i]*SRC3[i+31:i] + SRC2[i+31:i])
                             FI;
                 FI
@@ -165,11 +165,11 @@ FOR j  <-  0 TO KL-1
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+31:i] <-   0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VFMADDSUB213PS DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a register)
 ```info-verb
@@ -180,50 +180,50 @@ IF (VL = 512) AND (EVEX.b = 1)
     ELSE 
           SET_RM(MXCSR.RM);
 FI;
-FOR j <-   0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
           THEN 
                 IF j *is even*
-                      THEN DEST[i+31:i]  <-  
+                      THEN DEST[i+31:i] <-  
                             RoundFPControl(SRC2[i+31:i]*DEST[i+31:i] - SRC3[i+31:i])
-                      ELSE DEST[i+31:i]  <-  
+                      ELSE DEST[i+31:i] <-  
                             RoundFPControl(SRC2[i+31:i]*DEST[i+31:i] + SRC3[i+31:i])
                 FI
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+31:i] <-   0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VFMADDSUB213PS DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
           THEN 
                 IF j *is even*
                       THEN 
                             IF (EVEX.b = 1) 
                                   THEN
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(SRC2[i+31:i]*DEST[i+31:i] - SRC3[31:0])
                                   ELSE 
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(SRC2[i+31:i]*DEST[i+31:i] - SRC3[i+31:i])
                             FI;
                       ELSE 
                             IF (EVEX.b = 1) 
                                   THEN
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(SRC2[i+31:i]*DEST[i+31:i] + SRC3[31:0])
                                   ELSE 
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(SRC2[i+31:i]*DEST[i+31:i] + SRC3[i+31:i])
                             FI;
 FI
@@ -231,11 +231,11 @@ FI
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VFMADDSUB231PS DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a register)
 ```info-verb
@@ -246,50 +246,50 @@ IF (VL = 512) AND (EVEX.b = 1)
     ELSE 
           SET_RM(MXCSR.RM);
 FI;
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
           THEN 
                 IF j *is even*
-                      THEN DEST[i+31:i] <-   
+                      THEN DEST[i+31:i] <-  
                             RoundFPControl(SRC2[i+31:i]*SRC3[i+31:i] - DEST[i+31:i])
-                      ELSE DEST[i+31:i] <-   
+                      ELSE DEST[i+31:i] <-  
                             RoundFPControl(SRC2[i+31:i]*SRC3[i+31:i] + DEST[i+31:i])
                 FI
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VFMADDSUB231PS DEST, SRC2, SRC3 (EVEX encoded version, when src3 operand is a memory source)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
           THEN 
                 IF j *is even*
                       THEN 
                             IF (EVEX.b = 1) 
                                   THEN
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(SRC2[i+31:i]*SRC3[31:0] - DEST[i+31:i])
                                   ELSE 
-                                        DEST[i+31:i] <-   
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(SRC2[i+31:i]*SRC3[i+31:i] - DEST[i+31:i])
                             FI;
                       ELSE 
                             IF (EVEX.b = 1) 
                                   THEN
-                                        DEST[i+31:i]  <-  
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(SRC2[i+31:i]*SRC3[31:0] + DEST[i+31:i])
                                   ELSE 
-                                        DEST[i+31:i] <-   
+                                        DEST[i+31:i] <-  
                             RoundFPControl_MXCSR(SRC2[i+31:i]*SRC3[i+31:i] + DEST[i+31:i])
                             FI;
                 FI
@@ -297,11 +297,11 @@ FOR j  <-  0 TO KL-1
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

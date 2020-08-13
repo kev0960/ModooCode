@@ -13,8 +13,8 @@ path : /X86-64 명령어 레퍼런스
 |0F 14 /r\newline{}UNPCKLPS xmm1, xmm2/m128|RM|V/V|SSE|Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm1 and xmm2/m128.|
 |VEX.NDS.128.0F.WIG 14 /r\newline{}VUNPCKLPS xmm1,xmm2, xmm3/m128|RVM|V/V|AVX|Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm2 and xmm3/m128.|
 |VEX.NDS.256.0F.WIG 14 /r\newline{}VUNPCKLPS ymm1,ymm2,ymm3/m256|RVM|V/V|AVX|Unpacks and Interleaves single-precision floating-point values from low quadwords of ymm2 and ymm3/m256.|
-|EVEX.NDS.128.0F.W0 14 /r\newline{}VUNPCKLPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm2 and xmm3/mem and write result to xmm1 subject to write mask k1.|
-|EVEX.NDS.256.0F.W0 14 /r\newline{}VUNPCKLPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Unpacks and Interleaves single-precision floating-point values from low quadwords of ymm2 and ymm3/mem and write result to ymm1 subject to write mask k1.|
+|EVEX.NDS.128.0F.W0 14 /r\newline{}VUNPCKLPS xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Unpacks and Interleaves single-precision floating-point values from low quadwords of xmm2 and xmm3/mem and write result to xmm1 subject to write mask k1.|
+|EVEX.NDS.256.0F.W0 14 /r\newline{}VUNPCKLPS ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Unpacks and Interleaves single-precision floating-point values from low quadwords of ymm2 and ymm3/mem and write result to ymm1 subject to write mask k1.|
 |EVEX.NDS.512.0F.W0 14 /r\newline{}VUNPCKLPS zmm1 {k1}{z}, zmm2, zmm3/m512/m32bcst|FV|V/V|AVX512F|Unpacks and Interleaves single-precision floating-point values from low quadwords of zmm2 and zmm3/m512/m32bcst and write result to zmm1 subject to write mask k1.|
 ### Instruction Operand Encoding
 
@@ -280,113 +280,113 @@ EVEX.128 encoded version: The first source operand is an XMM register. The secon
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
 IF VL >= 128
-    TMP_DEST[31:0] <-   SRC1[31:0]
-    TMP_DEST[63:32]  <-  SRC2[31:0]
-    TMP_DEST[95:64]  <-  SRC1[63:32]
-    TMP_DEST[127:96] <-   SRC2[63:32]
+    TMP_DEST[31:0] <-  SRC1[31:0]
+    TMP_DEST[63:32] <-  SRC2[31:0]
+    TMP_DEST[95:64] <-  SRC1[63:32]
+    TMP_DEST[127:96] <-  SRC2[63:32]
 FI;
 IF VL >= 256
-    TMP_DEST[159:128]  <-  SRC1[159:128]
-    TMP_DEST[191:160] <-   SRC2[159:128]
-    TMP_DEST[223:192] <-   SRC1[191:160]
-    TMP_DEST[255:224] <-   SRC2[191:160]
+    TMP_DEST[159:128] <-  SRC1[159:128]
+    TMP_DEST[191:160] <-  SRC2[159:128]
+    TMP_DEST[223:192] <-  SRC1[191:160]
+    TMP_DEST[255:224] <-  SRC2[191:160]
 FI;
 IF VL >= 512
-    TMP_DEST[287:256] <-   SRC1[287:256]
-    TMP_DEST[319:288] <-   SRC2[287:256]
-    TMP_DEST[351:320]  <-  SRC1[319:288]
-    TMP_DEST[383:352]  <-  SRC2[319:288]
-    TMP_DEST[415:384] <-   SRC1[415:384]
-    TMP_DEST[447:416]  <-  SRC2[415:384]
-    TMP_DEST[479:448] <-   SRC1[447:416]
-    TMP_DEST[511:480]  <-  SRC2[447:416]
+    TMP_DEST[287:256] <-  SRC1[287:256]
+    TMP_DEST[319:288] <-  SRC2[287:256]
+    TMP_DEST[351:320] <-  SRC1[319:288]
+    TMP_DEST[383:352] <-  SRC2[319:288]
+    TMP_DEST[415:384] <-  SRC1[415:384]
+    TMP_DEST[447:416] <-  SRC2[415:384]
+    TMP_DEST[479:448] <-  SRC1[447:416]
+    TMP_DEST[511:480] <-  SRC2[447:416]
 FI;
-FOR j <-   0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
 IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i] <-   TMP_DEST[i+31:i]
+          THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+31:i] <-   0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VUNPCKLPS (EVEX encoded version when SRC2 is memory)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i  <-  j * 31
+FOR j <-  0 TO KL-1
+    i <-  j * 31
     IF (EVEX.b = 1)
-          THEN TMP_SRC2[i+31:i] <-   SRC2[31:0]
-          ELSE TMP_SRC2[i+31:i] <-   SRC2[i+31:i]
+          THEN TMP_SRC2[i+31:i] <-  SRC2[31:0]
+          ELSE TMP_SRC2[i+31:i] <-  SRC2[i+31:i]
     FI;
 ENDFOR;
 IF VL >= 128
-TMP_DEST[31:0]  <-  SRC1[31:0]
-TMP_DEST[63:32]  <-  TMP_SRC2[31:0]
-TMP_DEST[95:64]  <-  SRC1[63:32]
-TMP_DEST[127:96]  <-  TMP_SRC2[63:32]
+TMP_DEST[31:0] <-  SRC1[31:0]
+TMP_DEST[63:32] <-  TMP_SRC2[31:0]
+TMP_DEST[95:64] <-  SRC1[63:32]
+TMP_DEST[127:96] <-  TMP_SRC2[63:32]
 FI;
 IF VL >= 256
-    TMP_DEST[159:128]  <-  SRC1[159:128]
-    TMP_DEST[191:160] <-   TMP_SRC2[159:128]
-    TMP_DEST[223:192] <-   SRC1[191:160]
-    TMP_DEST[255:224]  <-  TMP_SRC2[191:160]
+    TMP_DEST[159:128] <-  SRC1[159:128]
+    TMP_DEST[191:160] <-  TMP_SRC2[159:128]
+    TMP_DEST[223:192] <-  SRC1[191:160]
+    TMP_DEST[255:224] <-  TMP_SRC2[191:160]
 FI;
 IF VL >= 512
-    TMP_DEST[287:256]  <-  SRC1[287:256]
-    TMP_DEST[319:288] <-   TMP_SRC2[287:256]
-    TMP_DEST[351:320] <-   SRC1[319:288]
-    TMP_DEST[383:352] <-   TMP_SRC2[319:288]
-    TMP_DEST[415:384]  <-  SRC1[415:384]
-    TMP_DEST[447:416] <-   TMP_SRC2[415:384]
-    TMP_DEST[479:448]  <-  SRC1[447:416]
-    TMP_DEST[511:480]  <-  TMP_SRC2[447:416]
+    TMP_DEST[287:256] <-  SRC1[287:256]
+    TMP_DEST[319:288] <-  TMP_SRC2[287:256]
+    TMP_DEST[351:320] <-  SRC1[319:288]
+    TMP_DEST[383:352] <-  TMP_SRC2[319:288]
+    TMP_DEST[415:384] <-  SRC1[415:384]
+    TMP_DEST[447:416] <-  TMP_SRC2[415:384]
+    TMP_DEST[479:448] <-  SRC1[447:416]
+    TMP_DEST[511:480] <-  TMP_SRC2[447:416]
 FI;
-FOR j <-   0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i] <-   TMP_DEST[i+31:i]
+          THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+31:i] <-   0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### UNPCKLPS (VEX.256 encoded version)
 ```info-verb
-DEST[31:0] <-  SRC1[31:0]
-DEST[63:32] <-  SRC2[31:0]
-DEST[95:64] <-  SRC1[63:32]
-DEST[127:96]  <- SRC2[63:32]
-DEST[159:128]  <- SRC1[159:128]
-DEST[191:160] <-  SRC2[159:128]
-DEST[223:192]  <- SRC1[191:160]
-DEST[255:224]  <- SRC2[191:160]
-DEST[MAX_VL-1:256]  <-  0
+DEST[31:0] <- SRC1[31:0]
+DEST[63:32] <- SRC2[31:0]
+DEST[95:64] <- SRC1[63:32]
+DEST[127:96] <- SRC2[63:32]
+DEST[159:128] <- SRC1[159:128]
+DEST[191:160] <- SRC2[159:128]
+DEST[223:192] <- SRC1[191:160]
+DEST[255:224] <- SRC2[191:160]
+DEST[MAX_VL-1:256] <-  0
 ```
 #### VUNPCKLPS (VEX.128 encoded version)
 ```info-verb
-DEST[31:0] <-  SRC1[31:0]
-DEST[63:32] <-  SRC2[31:0]
-DEST[95:64]  <- SRC1[63:32]
-DEST[127:96] <-  SRC2[63:32]
-DEST[MAX_VL-1:128] <-  0
+DEST[31:0] <- SRC1[31:0]
+DEST[63:32] <- SRC2[31:0]
+DEST[95:64] <- SRC1[63:32]
+DEST[127:96] <- SRC2[63:32]
+DEST[MAX_VL-1:128] <- 0
 ```
 #### UNPCKLPS (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0]  <- SRC1[31:0]
-DEST[63:32]  <- SRC2[31:0]
-DEST[95:64]  <- SRC1[63:32]
-DEST[127:96]  <- SRC2[63:32]
+DEST[31:0] <- SRC1[31:0]
+DEST[63:32] <- SRC2[31:0]
+DEST[95:64] <- SRC1[63:32]
+DEST[127:96] <- SRC2[63:32]
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 

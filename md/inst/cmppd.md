@@ -13,8 +13,8 @@ path : /X86-64 명령어 레퍼런스
 |66 0F C2 /r ib\newline{}CMPPD xmm1, xmm2/m128, imm8|RMI|V/V|SSE2|Compare packed double-precision floating-point values in xmm2/m128 and xmm1 using bits 2:0 of imm8 as a comparison predicate.|
 |VEX.NDS.128.66.0F.WIG C2 /r ib\newline{}VCMPPD xmm1, xmm2, xmm3/m128, imm8|RVMI|V/V|AVX|Compare packed double-precision floating-point values in xmm3/m128 and xmm2 using bits 4:0 of imm8 as a comparison predicate.|
 |VEX.NDS.256.66.0F.WIG C2 /r ib\newline{}VCMPPD ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX|Compare packed double-precision floating-point values in ymm3/m256 and ymm2 using bits 4:0 of imm8 as a comparison predicate.|
-|EVEX.NDS.128.66.0F.W1 C2 /r ib\newline{}VCMPPD k1 {k2}, xmm2, xmm3/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Compare packed double-precision floating-point values in xmm3/m128/m64bcst and xmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
-|EVEX.NDS.256.66.0F.W1 C2 /r ib\newline{}VCMPPD k1 {k2}, ymm2, ymm3/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Compare packed double-precision floating-point values in ymm3/m256/m64bcst and ymm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
+|EVEX.NDS.128.66.0F.W1 C2 /r ib\newline{}VCMPPD k1 {k2}, xmm2, xmm3/m128/m64bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512F|Compare packed double-precision floating-point values in xmm3/m128/m64bcst and xmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
+|EVEX.NDS.256.66.0F.W1 C2 /r ib\newline{}VCMPPD k1 {k2}, ymm2, ymm3/m256/m64bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512F|Compare packed double-precision floating-point values in ymm3/m256/m64bcst and ymm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
 |EVEX.NDS.512.66.0F.W1 C2 /r ib\newline{}VCMPPD k1 {k2}, zmm2, zmm3/m512/m64bcst{sae}, imm8|FV|V/V|AVX512F|Compare packed double-precision floating-point values in zmm3/m512/m64bcst and zmm2 using bits 4:0 of imm8 as a comparison predicate with writemask k2 and leave the result in mask register k1.|
 ### Instruction Operand Encoding
 
@@ -164,66 +164,66 @@ syntax. Alternately, intrinsics can map the pseudo-ops to pre-defined constants 
 #### VCMPPD (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k2[j] OR *no writemask*
           THEN 
                 IF (EVEX.b = 1) AND (SRC2 *is memory*)
                       THEN
-                            CMP <-   SRC1[i+63:i] OP5 SRC2[63:0]
+                            CMP <-  SRC1[i+63:i] OP5 SRC2[63:0]
                       ELSE 
-                            CMP <-   SRC1[i+63:i] OP5 SRC2[i+63:i]
+                            CMP <-  SRC1[i+63:i] OP5 SRC2[i+63:i]
                 FI;
                 IF CMP = TRUE
-                      THEN DEST[j] <-   1;
-                      ELSE DEST[j]  <-  0; FI;
-          ELSE  DEST[j] <-   0  ; zeroing-masking only
+                      THEN DEST[j] <-  1;
+                      ELSE DEST[j] <-  0; FI;
+          ELSE  DEST[j] <-  0  ; zeroing-masking only
     FI;
 ENDFOR
-DEST[MAX_KL-1:KL]  <-  0
+DEST[MAX_KL-1:KL] <-  0
 ```
 #### VCMPPD (VEX.256 encoded version)
 ```info-verb
-CMP0 <-   SRC1[63:0] OP5 SRC2[63:0];
-CMP1  <-  SRC1[127:64] OP5 SRC2[127:64];
-CMP2  <-  SRC1[191:128] OP5 SRC2[191:128];
-CMP3 <-   SRC1[255:192] OP5 SRC2[255:192];
+CMP0 <-  SRC1[63:0] OP5 SRC2[63:0];
+CMP1 <-  SRC1[127:64] OP5 SRC2[127:64];
+CMP2 <-  SRC1[191:128] OP5 SRC2[191:128];
+CMP3 <-  SRC1[255:192] OP5 SRC2[255:192];
 IF CMP0 = TRUE
-    THEN DEST[63:0]  <-  FFFFFFFFFFFFFFFFH;
-    ELSE DEST[63:0]  <-  0000000000000000H; FI;
+    THEN DEST[63:0] <-  FFFFFFFFFFFFFFFFH;
+    ELSE DEST[63:0] <-  0000000000000000H; FI;
 IF CMP1 = TRUE
-    THEN DEST[127:64] <-   FFFFFFFFFFFFFFFFH;
-    ELSE DEST[127:64]  <-  0000000000000000H; FI;
+    THEN DEST[127:64] <-  FFFFFFFFFFFFFFFFH;
+    ELSE DEST[127:64] <-  0000000000000000H; FI;
 IF CMP2 = TRUE
-    THEN DEST[191:128]  <-  FFFFFFFFFFFFFFFFH;
-    ELSE DEST[191:128]  <-  0000000000000000H; FI;
+    THEN DEST[191:128] <-  FFFFFFFFFFFFFFFFH;
+    ELSE DEST[191:128] <-  0000000000000000H; FI;
 IF CMP3 = TRUE
-    THEN DEST[255:192]  <-  FFFFFFFFFFFFFFFFH;
-    ELSE DEST[255:192] <-   0000000000000000H; FI;
-DEST[MAX_VL-1:256] <-   0
+    THEN DEST[255:192] <-  FFFFFFFFFFFFFFFFH;
+    ELSE DEST[255:192] <-  0000000000000000H; FI;
+DEST[MAX_VL-1:256] <-  0
 ```
 #### VCMPPD (VEX.128 encoded version)
 ```info-verb
-CMP0 <-   SRC1[63:0] OP5 SRC2[63:0];
-CMP1  <-  SRC1[127:64] OP5 SRC2[127:64];
+CMP0 <-  SRC1[63:0] OP5 SRC2[63:0];
+CMP1 <-  SRC1[127:64] OP5 SRC2[127:64];
 IF CMP0 = TRUE
-    THEN DEST[63:0] <-   FFFFFFFFFFFFFFFFH;
-    ELSE DEST[63:0]  <-  0000000000000000H; FI;
+    THEN DEST[63:0] <-  FFFFFFFFFFFFFFFFH;
+    ELSE DEST[63:0] <-  0000000000000000H; FI;
 IF CMP1 = TRUE
-    THEN DEST[127:64]  <-  FFFFFFFFFFFFFFFFH;
-    ELSE DEST[127:64]  <-  0000000000000000H; FI;
-DEST[MAX_VL-1:128]  <-  0
+    THEN DEST[127:64] <-  FFFFFFFFFFFFFFFFH;
+    ELSE DEST[127:64] <-  0000000000000000H; FI;
+DEST[MAX_VL-1:128] <-  0
 ```
 #### CMPPD (128-bit Legacy SSE version)
 ```info-verb
-CMP0  <-  SRC1[63:0] OP3 SRC2[63:0];
-CMP1  <-  SRC1[127:64] OP3 SRC2[127:64];
+CMP0 <-  SRC1[63:0] OP3 SRC2[63:0];
+CMP1 <-  SRC1[127:64] OP3 SRC2[127:64];
 IF CMP0 = TRUE
-    THEN DEST[63:0]  <-  FFFFFFFFFFFFFFFFH;
-    ELSE DEST[63:0]  <-  0000000000000000H; FI;
+    THEN DEST[63:0] <-  FFFFFFFFFFFFFFFFH;
+    ELSE DEST[63:0] <-  0000000000000000H; FI;
 IF CMP1 = TRUE
-    THEN DEST[127:64]  <-  FFFFFFFFFFFFFFFFH;
-    ELSE DEST[127:64]  <-  0000000000000000H; FI;
+    THEN DEST[127:64] <-  FFFFFFFFFFFFFFFFH;
+    ELSE DEST[127:64] <-  0000000000000000H; FI;
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 

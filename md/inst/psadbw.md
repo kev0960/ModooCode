@@ -14,8 +14,8 @@ path : /X86-64 명령어 레퍼런스
 |66 0F F6 /r\newline{}\newline{}PSADBW xmm1, xmm2/m128|RM|V/V|SSE2|Computes the absolute differences of the packed unsigned byte integers from xmm2 /m128 and xmm1; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.|
 |VEX.NDS.128.66.0F.WIG F6 /r\newline{}\newline{}VPSADBW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Computes the absolute differences of the packed unsigned byte integers from xmm3 /m128 and xmm2; the 8 low differences and 8 high differences are then summed separately to produce two unsigned word integer results.|
 |VEX.NDS.256.66.0F.WIG F6 /r\newline{}\newline{}VPSADBW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Computes the absolute differences of the packed unsigned byte integers from ymm3 /m256 and ymm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.|
-|EVEX.NDS.128.66.0F.WIG F6 /r\newline{}VPSADBW xmm1, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Computes the absolute differences of the packed unsigned byte integers from xmm3 /m128 and xmm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.|
-|EVEX.NDS.256.66.0F.WIG F6 /r\newline{}VPSADBW ymm1, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Computes the absolute differences of the packed unsigned byte integers from ymm3 /m256 and ymm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.|
+|EVEX.NDS.128.66.0F.WIG F6 /r\newline{}VPSADBW xmm1, xmm2, xmm3/m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Computes the absolute differences of the packed unsigned byte integers from xmm3 /m128 and xmm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.|
+|EVEX.NDS.256.66.0F.WIG F6 /r\newline{}VPSADBW ymm1, ymm2, ymm3/m256|FVM|V/V|AVX512VL\newline{}AVX512BW|Computes the absolute differences of the packed unsigned byte integers from ymm3 /m256 and ymm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.|
 |EVEX.NDS.512.66.0F.WIG F6 /r\newline{}VPSADBW zmm1, zmm2, zmm3/m512|FVM|V/V|AVX512BW|Computes the absolute differences of the packed unsigned byte integers from zmm3 /m512 and zmm2; then each consecutive 8 differences are summed separately to produce four unsigned word integer results.|
 
 ```note
@@ -392,79 +392,79 @@ EVEX.512 encoded version: The first source operand and destination register are 
 #### VPSADBW (EVEX encoded versions)
 ```info-verb
 VL = 128, 256, 512
-TEMP0 <-   ABS(SRC1[7:0] - SRC2[7:0])
+TEMP0 <-  ABS(SRC1[7:0] - SRC2[7:0])
 (* Repeat operation for bytes 1 through 15 *)
-TEMP15  <-  ABS(SRC1[127:120] - SRC2[127:120])
-DEST[15:0]  <- SUM(TEMP0:TEMP7)
-DEST[63:16] <-   000000000000H
-DEST[79:64]  <-  SUM(TEMP8:TEMP15)
-DEST[127:80] <-   00000000000H
+TEMP15 <-  ABS(SRC1[127:120] - SRC2[127:120])
+DEST[15:0] <- SUM(TEMP0:TEMP7)
+DEST[63:16] <-  000000000000H
+DEST[79:64] <-  SUM(TEMP8:TEMP15)
+DEST[127:80] <-  00000000000H
 IF VL >= 256
     (* Repeat operation for bytes 16 through 31*)
-    TEMP31 <-   ABS(SRC1[255:248] - SRC2[255:248])
-    DEST[143:128] <-  SUM(TEMP16:TEMP23)
-    DEST[191:144] <-   000000000000H
-    DEST[207:192]  <-  SUM(TEMP24:TEMP31)
-    DEST[223:208]  <-  00000000000H
+    TEMP31 <-  ABS(SRC1[255:248] - SRC2[255:248])
+    DEST[143:128] <- SUM(TEMP16:TEMP23)
+    DEST[191:144] <-  000000000000H
+    DEST[207:192] <-  SUM(TEMP24:TEMP31)
+    DEST[223:208] <-  00000000000H
 FI;
 IF VL >= 512
 (* Repeat operation for bytes 32 through 63*)
-    TEMP63 <-   ABS(SRC1[511:504] - SRC2[511:504])
-    DEST[271:256]  <- SUM(TEMP0:TEMP7)
-    DEST[319:272]  <-  000000000000H
-    DEST[335:320]  <-  SUM(TEMP8:TEMP15)
-    DEST[383:336] <-   00000000000H
-    DEST[399:384]  <- SUM(TEMP16:TEMP23)
-    DEST[447:400] <-   000000000000H
-    DEST[463:448]  <-  SUM(TEMP24:TEMP31)
-    DEST[511:464]  <-  00000000000H
+    TEMP63 <-  ABS(SRC1[511:504] - SRC2[511:504])
+    DEST[271:256] <- SUM(TEMP0:TEMP7)
+    DEST[319:272] <-  000000000000H
+    DEST[335:320] <-  SUM(TEMP8:TEMP15)
+    DEST[383:336] <-  00000000000H
+    DEST[399:384] <- SUM(TEMP16:TEMP23)
+    DEST[447:400] <-  000000000000H
+    DEST[463:448] <-  SUM(TEMP24:TEMP31)
+    DEST[511:464] <-  00000000000H
 FI;
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSADBW (VEX.256 encoded version)
 ```info-verb
-TEMP0  <-  ABS(SRC1[7:0] - SRC2[7:0])
+TEMP0 <-  ABS(SRC1[7:0] - SRC2[7:0])
 (* Repeat operation for bytes 2 through 30*)
-TEMP31 <-   ABS(SRC1[255:248] - SRC2[255:248])
-DEST[15:0]  <- SUM(TEMP0:TEMP7)
-DEST[63:16]  <-  000000000000H
-DEST[79:64]  <-  SUM(TEMP8:TEMP15)
-DEST[127:80] <-   00000000000H
-DEST[143:128] <-  SUM(TEMP16:TEMP23)
-DEST[191:144] <-   000000000000H
-DEST[207:192] <-   SUM(TEMP24:TEMP31)
-DEST[223:208]  <-  00000000000H
-DEST[MAX_VL-1:256]  <-  0
+TEMP31 <-  ABS(SRC1[255:248] - SRC2[255:248])
+DEST[15:0] <- SUM(TEMP0:TEMP7)
+DEST[63:16] <-  000000000000H
+DEST[79:64] <-  SUM(TEMP8:TEMP15)
+DEST[127:80] <-  00000000000H
+DEST[143:128] <- SUM(TEMP16:TEMP23)
+DEST[191:144] <-  000000000000H
+DEST[207:192] <-  SUM(TEMP24:TEMP31)
+DEST[223:208] <-  00000000000H
+DEST[MAX_VL-1:256] <-  0
 ```
 #### VPSADBW (VEX.128 encoded version)
 ```info-verb
-TEMP0 <-   ABS(SRC1[7:0] - SRC2[7:0])
+TEMP0 <-  ABS(SRC1[7:0] - SRC2[7:0])
 (* Repeat operation for bytes 2 through 14 *)
-TEMP15 <-   ABS(SRC1[127:120] - SRC2[127:120])
-DEST[15:0] <-  SUM(TEMP0:TEMP7)
-DEST[63:16] <-   000000000000H
-DEST[79:64] <-   SUM(TEMP8:TEMP15)
-DEST[127:80]  <-  00000000000H
-DEST[MAX_VL-1:128] <-   0
+TEMP15 <-  ABS(SRC1[127:120] - SRC2[127:120])
+DEST[15:0] <- SUM(TEMP0:TEMP7)
+DEST[63:16] <-  000000000000H
+DEST[79:64] <-  SUM(TEMP8:TEMP15)
+DEST[127:80] <-  00000000000H
+DEST[MAX_VL-1:128] <-  0
 ```
 #### PSADBW (128-bit Legacy SSE version)
 ```info-verb
-TEMP0  <-  ABS(DEST[7:0] - SRC[7:0])
+TEMP0 <-  ABS(DEST[7:0] - SRC[7:0])
 (* Repeat operation for bytes 2 through 14 *)
-TEMP15 <-   ABS(DEST[127:120] - SRC[127:120])
-DEST[15:0]  <- SUM(TEMP0:TEMP7)
-DEST[63:16]  <-  000000000000H
-DEST[79:64] <-   SUM(TEMP8:TEMP15)
-DEST[127:80]  <-  00000000000
+TEMP15 <-  ABS(DEST[127:120] - SRC[127:120])
+DEST[15:0] <- SUM(TEMP0:TEMP7)
+DEST[63:16] <-  000000000000H
+DEST[79:64] <-  SUM(TEMP8:TEMP15)
+DEST[127:80] <-  00000000000
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PSADBW (64-bit operand)
 ```info-verb
-TEMP0  <-  ABS(DEST[7:0] - SRC[7:0])
+TEMP0 <-  ABS(DEST[7:0] - SRC[7:0])
 (* Repeat operation for bytes 2 through 6 *)
-TEMP7 <-   ABS(DEST[63:56] - SRC[63:56])
-DEST[15:0]  <- SUM(TEMP0:TEMP7)
-DEST[63:16] <-   000000000000H
+TEMP7 <-  ABS(DEST[63:56] - SRC[63:56])
+DEST[15:0] <- SUM(TEMP0:TEMP7)
+DEST[63:16] <-  000000000000H
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

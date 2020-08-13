@@ -37,26 +37,26 @@ path : /X86-64 명령어 레퍼런스
 |VEX.NDD.256.66.0F.WIG 72 /6 ib\newline{}VPSLLD ymm1, ymm2, imm8|VMI|V/V|AVX2|Shift doublewords in ymm2 left by imm8 while shifting in 0s.|
 |VEX.NDS.256.66.0F.WIG F3 /r\newline{}VPSLLQ ymm1, ymm2, xmm3/m128|RVM|V/V|AVX2|Shift quadwords in ymm2 left by amount specified in xmm3/m128 while shifting in 0s.|
 |VEX.NDD.256.66.0F.WIG 73 /6 ib\newline{}VPSLLQ ymm1, ymm2, imm8|VMI|V/V|AVX2|Shift quadwords in ymm2 left by imm8 while shifting in 0s.|
-|EVEX.NDS.128.66.0F.WIG F1 /rVPSLLW xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VLAVX512BW|Shift words in xmm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG F1 /rVPSLLW ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VLAVX512BW|Shift words in ymm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
+|EVEX.NDS.128.66.0F.WIG F1 /rVPSLLW xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512BW|Shift words in xmm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG F1 /rVPSLLW ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512BW|Shift words in ymm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
 |EVEX.NDS.512.66.0F.WIG F1 /rVPSLLW zmm1 {k1}{z}, zmm2, xmm3/m128|M128|V/V|AVX512BW|Shift words in zmm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
-|EVEX.NDD.128.66.0F.WIG 71 /6 ibVPSLLW xmm1 {k1}{z}, xmm2/m128, imm8|FVMI|V/V|AVX512VLAVX512BW|Shift words in xmm2/m128 left by imm8 while shifting in 0s using writemask k1.|
-|EVEX.NDD.256.66.0F.WIG 71 /6 ibVPSLLW ymm1 {k1}{z}, ymm2/m256, imm8|FVMI|V/V|AVX512VLAVX512BW|Shift words in ymm2/m256 left by imm8 while shifting in 0s using writemask k1.|
+|EVEX.NDD.128.66.0F.WIG 71 /6 ibVPSLLW xmm1 {k1}{z}, xmm2/m128, imm8|FVMI|V/V|AVX512VL\newline{}AVX512BW|Shift words in xmm2/m128 left by imm8 while shifting in 0s using writemask k1.|
+|EVEX.NDD.256.66.0F.WIG 71 /6 ibVPSLLW ymm1 {k1}{z}, ymm2/m256, imm8|FVMI|V/V|AVX512VL\newline{}AVX512BW|Shift words in ymm2/m256 left by imm8 while shifting in 0s using writemask k1.|
 |EVEX.NDD.512.66.0F.WIG 71 /6 ibVPSLLW zmm1 {k1}{z}, zmm2/m512, imm8|FVMI|V/V|AVX512BW|Shift words in zmm2/m512 left by imm8 while shifting in 0 using writemask k1.|
-|EVEX.NDS.128.66.0F.W0 F2 /rVPSLLD xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VLAVX512F|Shift doublewords in xmm2 left by amount specified in xmm3/m128 while shifting in 0s under writemask k1.|
-|EVEX.NDS.256.66.0F.W0 F2 /rVPSLLD ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VLAVX512F|Shift doublewords in ymm2 left by amount specified in xmm3/m128 while shifting in 0s under writemask k1.|
+|EVEX.NDS.128.66.0F.W0 F2 /rVPSLLD xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512F|Shift doublewords in xmm2 left by amount specified in xmm3/m128 while shifting in 0s under writemask k1.|
+|EVEX.NDS.256.66.0F.W0 F2 /rVPSLLD ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512F|Shift doublewords in ymm2 left by amount specified in xmm3/m128 while shifting in 0s under writemask k1.|
 |EVEX.NDS.512.66.0F.W0 F2 /rVPSLLD zmm1 {k1}{z}, zmm2, xmm3/m128|M128|V/V|AVX512F|Shift doublewords in zmm2 left by amount specified in xmm3/m128 while shifting in 0s under writemask k1.|
-|EVEX.NDD.128.66.0F.W0 72 /6 ibVPSLLD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift doublewords in xmm2/m128/m32bcst left by imm8 while shifting in 0s using writemask k1.|
-|EVEX.NDD.256.66.0F.W0 72 /6 ibVPSLLD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift doublewords in ymm2/m256/m32bcst left by imm8 while shifting in 0s using writemask k1.|
+|EVEX.NDD.128.66.0F.W0 72 /6 ibVPSLLD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8|FVI|V/V|AVX512VL\newline{}AVX512F|Shift doublewords in xmm2/m128/m32bcst left by imm8 while shifting in 0s using writemask k1.|
+|EVEX.NDD.256.66.0F.W0 72 /6 ibVPSLLD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8|FVI|V/V|AVX512VL\newline{}AVX512F|Shift doublewords in ymm2/m256/m32bcst left by imm8 while shifting in 0s using writemask k1.|
 |EVEX.NDD.512.66.0F.W0 72 /6 ibVPSLLD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8|FVI|V/V|AVX512F|Shift doublewords in zmm2/m512/m32bcst left by imm8 while shifting in 0s using writemask k1.|
-|EVEX.NDS.128.66.0F.W1 F3 /rVPSLLQ xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VLAVX512F|Shift quadwords in xmm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
-|EVEX.NDS.256.66.0F.W1 F3 /rVPSLLQ ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VLAVX512F|Shift quadwords in ymm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
+|EVEX.NDS.128.66.0F.W1 F3 /rVPSLLQ xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512F|Shift quadwords in xmm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
+|EVEX.NDS.256.66.0F.W1 F3 /rVPSLLQ ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512F|Shift quadwords in ymm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
 |EVEX.NDS.512.66.0F.W1 F3 /rVPSLLQ zmm1 {k1}{z}, zmm2, xmm3/m128|M128|V/V|AVX512F|Shift quadwords in zmm2 left by amount specified in xmm3/m128 while shifting in 0s using writemask k1.|
 
 
-|EVEX.NDD.128.66.0F.W1 73 /6 ib\newline{}VPSLLQ xmm1 {k1}{z}, xmm2/m128/m64bcst, \newline{}imm8|FVI|V/V|AVX512VL\newline{}AVX512F|Shift quadwords in xmm2/m128/m64bcst left \newline{}by imm8 while shifting in 0s using writemask k1.|
-|----------------------------------------------------------------------------------------------|---|---|-------------------------|----------------------------------------------------------------------------------------------------|
-|EVEX.NDD.256.66.0F.W1 73 /6 ibVPSLLQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift quadwords in ymm2/m256/m64bcst left by imm8 while shifting in 0s using writemask k1.|
+|EVEX.NDD.128.66.0F.W1 73 /6 ib\newline{}VPSLLQ xmm1 {k1}{z}, xmm2/m128/m64bcst, \newline{}imm8|FVI|V/V|AVX512VL\newline{}\newline{}AVX512F|Shift quadwords in xmm2/m128/m64bcst left \newline{}by imm8 while shifting in 0s using writemask k1.|
+|----------------------------------------------------------------------------------------------|---|---|-----------------------------------|----------------------------------------------------------------------------------------------------|
+|EVEX.NDD.256.66.0F.W1 73 /6 ibVPSLLQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FVI|V/V|AVX512VL\newline{}AVX512F|Shift quadwords in ymm2/m256/m64bcst left by imm8 while shifting in 0s using writemask k1.|
 |EVEX.NDD.512.66.0F.W1 73 /6 ibVPSLLQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8|FVI|V/V|AVX512F|Shift quadwords in zmm2/m512/m64bcst left by imm8 while shifting in 0s using writemask k1.|
 
 ```note
@@ -317,102 +317,102 @@ Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /6, or EVEX.128.66
           DEST <- ZeroExtend(DEST << COUNT);
     FI;
 LOGICAL_LEFT_SHIFT_WORDS(SRC, COUNT_SRC)
-COUNT  <- COUNT_SRC[63:0];
+COUNT <- COUNT_SRC[63:0];
 IF (COUNT > 15)
 THEN
-DEST[127:0]  <- 00000000000000000000000000000000H
+DEST[127:0] <- 00000000000000000000000000000000H
 ELSE
-    DEST[15:0]  <- ZeroExtend(SRC[15:0] << COUNT);
+    DEST[15:0] <- ZeroExtend(SRC[15:0] << COUNT);
     (* Repeat shift operation for 2nd through 7th words *)
-    DEST[127:112] <-  ZeroExtend(SRC[127:112] << COUNT);
+    DEST[127:112] <- ZeroExtend(SRC[127:112] << COUNT);
 FI;
 LOGICAL_LEFT_SHIFT_DWORDS1(SRC, COUNT_SRC)
-COUNT  <-  COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 31)
 THEN
-    DEST[31:0]  <-  0
+    DEST[31:0] <-  0
 ELSE
-    DEST[31:0] <-   ZeroExtend(SRC[31:0] << COUNT);
+    DEST[31:0] <-  ZeroExtend(SRC[31:0] << COUNT);
 FI;
 LOGICAL_LEFT_SHIFT_DWORDS(SRC, COUNT_SRC)
-COUNT  <- COUNT_SRC[63:0];
+COUNT <- COUNT_SRC[63:0];
 IF (COUNT > 31)
 THEN
-    DEST[127:0]  <- 00000000000000000000000000000000H
+    DEST[127:0] <- 00000000000000000000000000000000H
 ELSE
-    DEST[31:0]  <- ZeroExtend(SRC[31:0] << COUNT);
+    DEST[31:0] <- ZeroExtend(SRC[31:0] << COUNT);
     (* Repeat shift operation for 2nd through 3rd words *)
-    DEST[127:96] <-  ZeroExtend(SRC[127:96] << COUNT);
+    DEST[127:96] <- ZeroExtend(SRC[127:96] << COUNT);
 FI;
 LOGICAL_LEFT_SHIFT_QWORDS1(SRC, COUNT_SRC)
-COUNT  <-  COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 63)
 THEN
-    DEST[63:0]  <-  0
+    DEST[63:0] <-  0
 ELSE
-    DEST[63:0]  <-  ZeroExtend(SRC[63:0] << COUNT);
+    DEST[63:0] <-  ZeroExtend(SRC[63:0] << COUNT);
 FI;
 LOGICAL_LEFT_SHIFT_QWORDS(SRC, COUNT_SRC)
-COUNT  <- COUNT_SRC[63:0];
+COUNT <- COUNT_SRC[63:0];
 IF (COUNT > 63)
 THEN
-    DEST[127:0] <-  00000000000000000000000000000000H
+    DEST[127:0] <- 00000000000000000000000000000000H
 ELSE
-    DEST[63:0]  <- ZeroExtend(SRC[63:0] << COUNT);
-    DEST[127:64] <-  ZeroExtend(SRC[127:64] << COUNT);
+    DEST[63:0] <- ZeroExtend(SRC[63:0] << COUNT);
+    DEST[127:64] <- ZeroExtend(SRC[127:64] << COUNT);
 FI;
 LOGICAL_LEFT_SHIFT_WORDS_256b(SRC, COUNT_SRC)
-COUNT <-  COUNT_SRC[63:0];
+COUNT <- COUNT_SRC[63:0];
 IF (COUNT > 15)
 THEN
-    DEST[127:0]  <- 00000000000000000000000000000000H
-    DEST[255:128] <-  00000000000000000000000000000000H
+    DEST[127:0] <- 00000000000000000000000000000000H
+    DEST[255:128] <- 00000000000000000000000000000000H
 ELSE
-    DEST[15:0]  <- ZeroExtend(SRC[15:0] << COUNT);
+    DEST[15:0] <- ZeroExtend(SRC[15:0] << COUNT);
     (* Repeat shift operation for 2nd through 15th words *)
-DEST[255:240]  <- ZeroExtend(SRC[255:240] << COUNT);
+DEST[255:240] <- ZeroExtend(SRC[255:240] << COUNT);
 FI;
 LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC, COUNT_SRC)
-COUNT  <- COUNT_SRC[63:0];
+COUNT <- COUNT_SRC[63:0];
 IF (COUNT > 31)
 THEN
-    DEST[127:0]  <- 00000000000000000000000000000000H
-    DEST[255:128] <-  00000000000000000000000000000000H
+    DEST[127:0] <- 00000000000000000000000000000000H
+    DEST[255:128] <- 00000000000000000000000000000000H
 ELSE
-    DEST[31:0] <-  ZeroExtend(SRC[31:0] << COUNT);
+    DEST[31:0] <- ZeroExtend(SRC[31:0] << COUNT);
     (* Repeat shift operation for 2nd through 7th words *)
-    DEST[255:224]  <- ZeroExtend(SRC[255:224] << COUNT);
+    DEST[255:224] <- ZeroExtend(SRC[255:224] << COUNT);
 FI;
 LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC, COUNT_SRC)
-COUNT <-  COUNT_SRC[63:0];
+COUNT <- COUNT_SRC[63:0];
 IF (COUNT > 63)
 THEN
-    DEST[127:0] <-  00000000000000000000000000000000H
-    DEST[255:128] <-  00000000000000000000000000000000H
+    DEST[127:0] <- 00000000000000000000000000000000H
+    DEST[255:128] <- 00000000000000000000000000000000H
 ELSE
-    DEST[63:0] <-  ZeroExtend(SRC[63:0] << COUNT);
-    DEST[127:64] <-  ZeroExtend(SRC[127:64] << COUNT)
-    DEST[191:128]  <- ZeroExtend(SRC[191:128] << COUNT);
-    DEST[255:192] <-  ZeroExtend(SRC[255:192] << COUNT);
+    DEST[63:0] <- ZeroExtend(SRC[63:0] << COUNT);
+    DEST[127:64] <- ZeroExtend(SRC[127:64] << COUNT)
+    DEST[191:128] <- ZeroExtend(SRC[191:128] << COUNT);
+    DEST[255:192] <- ZeroExtend(SRC[255:192] << COUNT);
 FI;
 ```
 #### VPSLLW (EVEX versions, xmm/m128)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 IF VL = 128
-    TMP_DEST[127:0] <-   LOGICAL_LEFT_SHIFT_WORDS_128b(SRC1[127:0], SRC2)
+    TMP_DEST[127:0] <-  LOGICAL_LEFT_SHIFT_WORDS_128b(SRC1[127:0], SRC2)
 FI;
 IF VL = 256
-    TMP_DEST[255:0]  <-  LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[255:0] <-  LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
 FI;
 IF VL = 512
-    TMP_DEST[255:0]  <-  LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
-    TMP_DEST[511:256] <-   LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[511:256], SRC2)
+    TMP_DEST[255:0] <-  LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[511:256] <-  LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[511:256], SRC2)
 FI;
-FOR j  <-  0 TO KL-1
-    i <-   j * 16
+FOR j <-  0 TO KL-1
+    i <-  j * 16
     IF k1[j] OR *no writemask*
-          THEN DEST[i+15:i]  <-  TMP_DEST[i+15:i]
+          THEN DEST[i+15:i] <-  TMP_DEST[i+15:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+15:i] remains unchanged*
@@ -421,25 +421,25 @@ FOR j  <-  0 TO KL-1
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSLLW (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 IF VL = 128
-    TMP_DEST[127:0] <-   LOGICAL_LEFT_SHIFT_WORDS_128b(SRC1[127:0], imm8)
+    TMP_DEST[127:0] <-  LOGICAL_LEFT_SHIFT_WORDS_128b(SRC1[127:0], imm8)
 FI;
 IF VL = 256
-    TMP_DEST[255:0] <-   LOGICAL_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
+    TMP_DEST[255:0] <-  LOGICAL_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
 FI;
 IF VL = 512
-    TMP_DEST[255:0] <-   LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
-    TMP_DEST[511:256] <-   LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[511:256], imm8)
+    TMP_DEST[255:0] <-  LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
+    TMP_DEST[511:256] <-  LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1[511:256], imm8)
 FI;
-FOR j  <-  0 TO KL-1
-    i  <-  j * 16
+FOR j <-  0 TO KL-1
+    i <-  j * 16
     IF k1[j] OR *no writemask*
-          THEN DEST[i+15:i]  <-  TMP_DEST[i+15:i]
+          THEN DEST[i+15:i] <-  TMP_DEST[i+15:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+15:i] remains unchanged*
@@ -448,130 +448,130 @@ FOR j  <-  0 TO KL-1
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSLLW (ymm, ymm, xmm/m128) - VEX.256 encoding
 ```info-verb
-DEST[255:0]  <- LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256]  <- 0;
+DEST[255:0] <- LOGICAL_LEFT_SHIFT_WORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <- 0;
 ```
 #### VPSLLW (ymm, imm8) - VEX.256 encoding
 ```info-verb
-DEST[255:0] <-  LOGICAL_LEFT_SHIFT_WORD_256b(SRC1, imm8)
-DEST[MAX_VL-1:256]  <- 0;
+DEST[255:0] <- LOGICAL_LEFT_SHIFT_WORD_256b(SRC1, imm8)
+DEST[MAX_VL-1:256] <- 0;
 ```
 #### VPSLLW (xmm, xmm, xmm/m128) - VEX.128 encoding
 ```info-verb
-DEST[127:0] <-  LOGICAL_LEFT_SHIFT_WORDS(SRC1, SRC2)
-DEST[MAX_VL-1:128]  <- 0
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_WORDS(SRC1, SRC2)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### VPSLLW (xmm, imm8) - VEX.128 encoding
 ```info-verb
-DEST[127:0] <-  LOGICAL_LEFT_SHIFT_WORDS(SRC1, imm8)
-DEST[MAX_VL-1:128]  <- 0
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_WORDS(SRC1, imm8)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### PSLLW (xmm, xmm, xmm/m128) 
 ```info-verb
-DEST[127:0] <-  LOGICAL_LEFT_SHIFT_WORDS(DEST, SRC)
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_WORDS(DEST, SRC)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PSLLW (xmm, imm8)
 ```info-verb
-DEST[127:0] <-  LOGICAL_LEFT_SHIFT_WORDS(DEST, imm8)
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_WORDS(DEST, imm8)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPSLLD (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask* THEN
                 IF (EVEX.b = 1) AND (SRC1 *is memory*)
-                      THEN DEST[i+31:i] <-   LOGICAL_LEFT_SHIFT_DWORDS1(SRC1[31:0], imm8)
-                      ELSE DEST[i+31:i]  <-  LOGICAL_LEFT_SHIFT_DWORDS1(SRC1[i+31:i], imm8)
+                      THEN DEST[i+31:i] <-  LOGICAL_LEFT_SHIFT_DWORDS1(SRC1[31:0], imm8)
+                      ELSE DEST[i+31:i] <-  LOGICAL_LEFT_SHIFT_DWORDS1(SRC1[i+31:i], imm8)
                 FI;
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking 
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSLLD (EVEX versions, xmm/m128)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
 IF VL = 128
-    TMP_DEST[127:0] <-   LOGICAL_LEFT_SHIFT_DWORDS_128b(SRC1[127:0], SRC2)
+    TMP_DEST[127:0] <-  LOGICAL_LEFT_SHIFT_DWORDS_128b(SRC1[127:0], SRC2)
 FI;
 IF VL = 256
-    TMP_DEST[255:0]  <-  LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[255:0] <-  LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
 FI;
 IF VL = 512
-    TMP_DEST[255:0] <-   LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
-    TMP_DEST[511:256] <-   LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1[511:256], SRC2)
+    TMP_DEST[255:0] <-  LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[511:256] <-  LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1[511:256], SRC2)
 FI;
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i] <-   TMP_DEST[i+31:i]
+          THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking 
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSLLD (ymm, ymm, xmm/m128) - VEX.256 encoding
 ```info-verb
-DEST[255:0] <-  LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256] <-  0;
+DEST[255:0] <- LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <- 0;
 ```
 #### VPSLLD (ymm, imm8) - VEX.256 encoding
 ```info-verb
-DEST[255:0] <-  LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1, imm8)
-DEST[MAX_VL-1:256] <-  0;
+DEST[255:0] <- LOGICAL_LEFT_SHIFT_DWORDS_256b(SRC1, imm8)
+DEST[MAX_VL-1:256] <- 0;
 ```
 #### VPSLLD (xmm, xmm, xmm/m128) - VEX.128 encoding
 ```info-verb
-DEST[127:0]  <- LOGICAL_LEFT_SHIFT_DWORDS(SRC1, SRC2)
-DEST[MAX_VL-1:128] <-  0
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_DWORDS(SRC1, SRC2)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### VPSLLD (xmm, imm8) - VEX.128 encoding
 ```info-verb
-DEST[127:0]  <- LOGICAL_LEFT_SHIFT_DWORDS(SRC1, imm8)
-DEST[MAX_VL-1:128] <-  0
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_DWORDS(SRC1, imm8)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### PSLLD (xmm, xmm, xmm/m128)
 ```info-verb
-DEST[127:0]  <- LOGICAL_LEFT_SHIFT_DWORDS(DEST, SRC)
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_DWORDS(DEST, SRC)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PSLLD (xmm, imm8)
 ```info-verb
-DEST[127:0]  <- LOGICAL_LEFT_SHIFT_DWORDS(DEST, imm8)
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_DWORDS(DEST, imm8)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPSLLQ (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <-  0 TO KL-1
-    i  <-  j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask* THEN
                 IF (EVEX.b = 1) AND (SRC1 *is memory*)
-                      THEN DEST[i+63:i]  <-  LOGICAL_LEFT_SHIFT_QWORDS1(SRC1[63:0], imm8)
-                      ELSE DEST[i+63:i]  <-  LOGICAL_LEFT_SHIFT_QWORDS1(SRC1[i+63:i], imm8)
+                      THEN DEST[i+63:i] <-  LOGICAL_LEFT_SHIFT_QWORDS1(SRC1[63:0], imm8)
+                      ELSE DEST[i+63:i] <-  LOGICAL_LEFT_SHIFT_QWORDS1(SRC1[i+63:i], imm8)
                 FI;
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking 
-                            DEST[i+63:i]  <-  0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
@@ -580,58 +580,58 @@ ENDFOR
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
 IF VL = 128
-    TMP_DEST[127:0] <-   LOGICAL_LEFT_SHIFT_QWORDS_128b(SRC1[127:0], SRC2)
+    TMP_DEST[127:0] <-  LOGICAL_LEFT_SHIFT_QWORDS_128b(SRC1[127:0], SRC2)
 FI;
 IF VL = 256
-    TMP_DEST[255:0]  <-  LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[255:0] <-  LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1[255:0], SRC2)
 FI;
 IF VL = 512
-    TMP_DEST[255:0] <-  LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1[255:0], SRC2)
-    TMP_DEST[511:256]  <- LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1[511:256], SRC2)
+    TMP_DEST[255:0] <- LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[511:256] <- LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1[511:256], SRC2)
 FI;
-FOR j  <-  0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i]  <-  TMP_DEST[i+63:i]
+          THEN DEST[i+63:i] <-  TMP_DEST[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking 
-                            DEST[i+63:i]  <-  0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <- 0
+DEST[MAX_VL-1:VL] <- 0
 ```
 #### VPSLLQ (ymm, ymm, xmm/m128) - VEX.256 encoding
 ```info-verb
-DEST[255:0]  <- LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256]  <- 0;
+DEST[255:0] <- LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <- 0;
 VPSLLQ (ymm, imm8) - VEX.256 
 ```
 #### encoding
 ```info-verb
-DEST[255:0] <-  LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, imm8)
-DEST[MAX_VL-1:256]  <- 0;
+DEST[255:0] <- LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, imm8)
+DEST[MAX_VL-1:256] <- 0;
 ```
 #### VPSLLQ (xmm, xmm, xmm/m128) - VEX.128 encoding
 ```info-verb
-DEST[127:0]  <- LOGICAL_LEFT_SHIFT_QWORDS(SRC1, SRC2)
-DEST[MAX_VL-1:128]  <- 0
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_QWORDS(SRC1, SRC2)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### VPSLLQ (xmm, imm8) - VEX.128 encoding
 ```info-verb
-DEST[127:0] <-  LOGICAL_LEFT_SHIFT_QWORDS(SRC1, imm8)
-DEST[MAX_VL-1:128]  <- 0
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_QWORDS(SRC1, imm8)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### PSLLQ (xmm, xmm, xmm/m128)
 ```info-verb
-DEST[127:0] <-  LOGICAL_LEFT_SHIFT_QWORDS(DEST, SRC)
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_QWORDS(DEST, SRC)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PSLLQ (xmm, imm8)
 ```info-verb
-DEST[127:0] <-  LOGICAL_LEFT_SHIFT_QWORDS(DEST, imm8)
+DEST[127:0] <- LOGICAL_LEFT_SHIFT_QWORDS(DEST, imm8)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 

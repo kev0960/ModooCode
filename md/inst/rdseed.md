@@ -10,9 +10,9 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F C7 /7\newline{}RDSEED r16|M|V/V|\newline{}RDSEED|Read a 16-bit NIST SP800-90B & C compliant random value and store in the destination register.|
-|0F C7 /7\newline{}RDSEED r32|M|V/V|\newline{}RDSEED|Read a 32-bit NIST SP800-90B & C compliant random value and store in the destination register.|
-|REX.W + 0F C7 /7\newline{}RDSEED r64|M|V/I|\newline{}RDSEED|Read a 64-bit NIST SP800-90B & C compliant random value and store in the destination register.|
+|0F C7 /7\newline{}RDSEED r16|M|V/V|RDSEED|Read a 16-bit NIST SP800-90B & C compliant random value and store in the destination register.|
+|0F C7 /7\newline{}RDSEED r32|M|V/V|RDSEED|Read a 32-bit NIST SP800-90B & C compliant random value and store in the destination register.|
+|REX.W + 0F C7 /7\newline{}RDSEED r64|M|V/I|RDSEED|Read a 64-bit NIST SP800-90B & C compliant random value and store in the destination register.|
 ### Instruction Operand Encoding
 
 

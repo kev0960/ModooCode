@@ -26,26 +26,26 @@ path : /X86-64 명령어 레퍼런스
 |VEX.NDD.256.66.0F.WIG 71 /4 ib\newline{}\newline{}VPSRAW ymm1, ymm2, imm8|VMI|V/V|AVX2|Shift words in ymm2 right by imm8 while shifting in sign bits.|
 |VEX.NDS.256.66.0F.WIG E2 /r\newline{}\newline{}VPSRAD ymm1, ymm2, xmm3/m128|RVM|V/V|AVX2|Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits.|
 |VEX.NDD.256.66.0F.WIG 72 /4 ib\newline{}\newline{}VPSRAD ymm1, ymm2, imm8|VMI|V/V|AVX2|Shift doublewords in ymm2 right by imm8 while shifting in sign bits.|
-|EVEX.NDS.128.66.0F.WIG E1 /r\newline{}VPSRAW xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VLAVX512BW|Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG E1 /r\newline{}VPSRAW ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VLAVX512BW|Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|EVEX.NDS.128.66.0F.WIG E1 /r\newline{}VPSRAW xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512BW|Shift words in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG E1 /r\newline{}VPSRAW ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512BW|Shift words in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
 |EVEX.NDS.512.66.0F.WIG E1 /r\newline{}VPSRAW zmm1 {k1}{z}, zmm2, xmm3/m128|M128|V/V|AVX512BW|Shift words in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
 
 
-|EVEX.NDD.128.66.0F.WIG 71 /4 ib\newline{}VPSRAW xmm1 {k1}{z}, xmm2/m128, imm8|FVMI|V/V|AVX512VL\newline{}AVX512BW|Shift words in xmm2/m128 right by imm8 while \newline{}shifting in sign bits using writemask k1.|
-|-----------------------------------------------------------------------------|----|---|--------------------------|------------------------------------------------------------------------------------------------|
-|EVEX.NDD.256.66.0F.WIG 71 /4 ibVPSRAW ymm1 {k1}{z}, ymm2/m256, imm8|FVMI|V/V|AVX512VLAVX512BW|Shift words in ymm2/m256 right by imm8 while shifting in sign bits using writemask k1.|
+|EVEX.NDD.128.66.0F.WIG 71 /4 ib\newline{}VPSRAW xmm1 {k1}{z}, xmm2/m128, imm8|FVMI|V/V|AVX512VL\newline{}\newline{}AVX512BW|Shift words in xmm2/m128 right by imm8 while \newline{}shifting in sign bits using writemask k1.|
+|-----------------------------------------------------------------------------|----|---|------------------------------------|------------------------------------------------------------------------------------------------|
+|EVEX.NDD.256.66.0F.WIG 71 /4 ibVPSRAW ymm1 {k1}{z}, ymm2/m256, imm8|FVMI|V/V|AVX512VL\newline{}AVX512BW|Shift words in ymm2/m256 right by imm8 while shifting in sign bits using writemask k1.|
 |EVEX.NDD.512.66.0F.WIG 71 /4 ibVPSRAW zmm1 {k1}{z}, zmm2/m512, imm8|FVMI|V/V|AVX512BW|Shift words in zmm2/m512 right by imm8 while shifting in sign bits using writemask k1.|
-|EVEX.NDS.128.66.0F.W0 E2 /rVPSRAD xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VLAVX512F|Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
-|EVEX.NDS.256.66.0F.W0 E2 /rVPSRAD ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VLAVX512F|Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|EVEX.NDS.128.66.0F.W0 E2 /rVPSRAD xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512F|Shift doublewords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|EVEX.NDS.256.66.0F.W0 E2 /rVPSRAD ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512F|Shift doublewords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
 |EVEX.NDS.512.66.0F.W0 E2 /rVPSRAD zmm1 {k1}{z}, zmm2, xmm3/m128|M128|V/V|AVX512F|Shift doublewords in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
-|EVEX.NDD.128.66.0F.W0 72 /4 ibVPSRAD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift doublewords in xmm2/m128/m32bcst right by imm8 while shifting in sign bits using writemask k1.|
-|EVEX.NDD.256.66.0F.W0 72 /4 ibVPSRAD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift doublewords in ymm2/m256/m32bcst right by imm8 while shifting in sign bits using writemask k1.|
+|EVEX.NDD.128.66.0F.W0 72 /4 ibVPSRAD xmm1 {k1}{z}, xmm2/m128/m32bcst, imm8|FVI|V/V|AVX512VL\newline{}AVX512F|Shift doublewords in xmm2/m128/m32bcst right by imm8 while shifting in sign bits using writemask k1.|
+|EVEX.NDD.256.66.0F.W0 72 /4 ibVPSRAD ymm1 {k1}{z}, ymm2/m256/m32bcst, imm8|FVI|V/V|AVX512VL\newline{}AVX512F|Shift doublewords in ymm2/m256/m32bcst right by imm8 while shifting in sign bits using writemask k1.|
 |EVEX.NDD.512.66.0F.W0 72 /4 ibVPSRAD zmm1 {k1}{z}, zmm2/m512/m32bcst, imm8|FVI|V/V|AVX512F|Shift doublewords in zmm2/m512/m32bcst right by imm8 while shifting in sign bits using writemask k1.|
-|EVEX.NDS.128.66.0F.W1 E2 /rVPSRAQ xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VLAVX512F|Shift quadwords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
-|EVEX.NDS.256.66.0F.W1 E2 /rVPSRAQ ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VLAVX512F|Shift quadwords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|EVEX.NDS.128.66.0F.W1 E2 /rVPSRAQ xmm1 {k1}{z}, xmm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512F|Shift quadwords in xmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
+|EVEX.NDS.256.66.0F.W1 E2 /rVPSRAQ ymm1 {k1}{z}, ymm2, xmm3/m128|M128|V/V|AVX512VL\newline{}AVX512F|Shift quadwords in ymm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
 |EVEX.NDS.512.66.0F.W1 E2 /rVPSRAQ zmm1 {k1}{z}, zmm2, xmm3/m128|M128|V/V|AVX512F|Shift quadwords in zmm2 right by amount specified in xmm3/m128 while shifting in sign bits using writemask k1.|
-|EVEX.NDD.128.66.0F.W1 72 /4 ibVPSRAQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift quadwords in xmm2/m128/m64bcst right by imm8 while shifting in sign bits using writemask k1.|
-|EVEX.NDD.256.66.0F.W1 72 /4 ibVPSRAQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FVI|V/V|AVX512VLAVX512F|Shift quadwords in ymm2/m256/m64bcst right by imm8 while shifting in sign bits using writemask k1.|
+|EVEX.NDD.128.66.0F.W1 72 /4 ibVPSRAQ xmm1 {k1}{z}, xmm2/m128/m64bcst, imm8|FVI|V/V|AVX512VL\newline{}AVX512F|Shift quadwords in xmm2/m128/m64bcst right by imm8 while shifting in sign bits using writemask k1.|
+|EVEX.NDD.256.66.0F.W1 72 /4 ibVPSRAQ ymm1 {k1}{z}, ymm2/m256/m64bcst, imm8|FVI|V/V|AVX512VL\newline{}AVX512F|Shift quadwords in ymm2/m256/m64bcst right by imm8 while shifting in sign bits using writemask k1.|
 |EVEX.NDD.512.66.0F.W1 72 /4 ibVPSRAQ zmm1 {k1}{z}, zmm2/m512/m64bcst, imm8|FVI|V/V|AVX512F|Shift quadwords in zmm2/m512/m64bcst right by imm8 while shifting in sign bits using writemask k1.|
 
 ```note
@@ -296,79 +296,79 @@ Note: For shifts with an immediate count (VEX.128.66.0F 71-73 /4, EVEX.128.66.0F
     DEST[31:0] <- SignExtend(DEST[31:0] >> COUNT);
     DEST[63:32] <- SignExtend(DEST[63:32] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC, COUNT_SRC)
-COUNT  <-  COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 31)
 THEN
-    DEST[31:0] <-   SignBit
+    DEST[31:0] <-  SignBit
 ELSE
-    DEST[31:0]  <-  SignExtend(SRC[31:0] >> COUNT);
+    DEST[31:0] <-  SignExtend(SRC[31:0] >> COUNT);
 FI;
 ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC, COUNT_SRC)
-COUNT <-   COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 63)
 THEN
-    DEST[63:0] <-   SignBit
+    DEST[63:0] <-  SignBit
 ELSE
-    DEST[63:0]  <-  SignExtend(SRC[63:0] >> COUNT);
+    DEST[63:0] <-  SignExtend(SRC[63:0] >> COUNT);
 FI;
 ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC, COUNT_SRC)
-COUNT  <-  COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 15)
-    THEN COUNT  <-  16;
+    THEN COUNT <-  16;
 FI;
-DEST[15:0]  <-  SignExtend(SRC[15:0] >> COUNT);
+DEST[15:0] <-  SignExtend(SRC[15:0] >> COUNT);
     (* Repeat shift operation for 2nd through 15th words *)
-DEST[255:240] <-   SignExtend(SRC[255:240] >> COUNT);
+DEST[255:240] <-  SignExtend(SRC[255:240] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC, COUNT_SRC)
-COUNT <-   COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 31)
-    THEN COUNT  <-  32;
+    THEN COUNT <-  32;
 FI;
-DEST[31:0] <-   SignExtend(SRC[31:0] >> COUNT);
+DEST[31:0] <-  SignExtend(SRC[31:0] >> COUNT);
     (* Repeat shift operation for 2nd through 7th words *)
-DEST[255:224]  <-  SignExtend(SRC[255:224] >> COUNT);
+DEST[255:224] <-  SignExtend(SRC[255:224] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_QWORDS(SRC, COUNT_SRC, VL)  ; VL: 128b, 256b or 512b
-COUNT  <-  COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 63)
-    THEN COUNT  <-  64;
+    THEN COUNT <-  64;
 FI;
-DEST[63:0] <-   SignExtend(SRC[63:0] >> COUNT);
+DEST[63:0] <-  SignExtend(SRC[63:0] >> COUNT);
     (* Repeat shift operation for 2nd through 7th words *)
-DEST[VL-1:VL-64]  <-  SignExtend(SRC[VL-1:VL-64] >> COUNT);
+DEST[VL-1:VL-64] <-  SignExtend(SRC[VL-1:VL-64] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_WORDS(SRC, COUNT_SRC)
-COUNT  <-  COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 15)
-    THEN COUNT <-   16;
+    THEN COUNT <-  16;
 FI;
-DEST[15:0]  <-  SignExtend(SRC[15:0] >> COUNT);
+DEST[15:0] <-  SignExtend(SRC[15:0] >> COUNT);
     (* Repeat shift operation for 2nd through 7th words *)
-DEST[127:112] <-   SignExtend(SRC[127:112] >> COUNT);
+DEST[127:112] <-  SignExtend(SRC[127:112] >> COUNT);
 ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC, COUNT_SRC)
-COUNT  <-  COUNT_SRC[63:0];
+COUNT <-  COUNT_SRC[63:0];
 IF (COUNT > 31)
-    THEN COUNT  <-  32;
+    THEN COUNT <-  32;
 FI;
-DEST[31:0] <-   SignExtend(SRC[31:0] >> COUNT);
+DEST[31:0] <-  SignExtend(SRC[31:0] >> COUNT);
     (* Repeat shift operation for 2nd through 3rd words *)
-DEST[127:96]  <-  SignExtend(SRC[127:96] >> COUNT);
+DEST[127:96] <-  SignExtend(SRC[127:96] >> COUNT);
 ```
 #### VPSRAW (EVEX versions, xmm/m128)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 IF VL = 128
-    TMP_DEST[127:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_128b(SRC1[127:0], SRC2)
+    TMP_DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_128b(SRC1[127:0], SRC2)
 FI;
 IF VL = 256
-    TMP_DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
 FI;
 IF VL = 512
-    TMP_DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
-    TMP_DEST[511:256]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[511:256], SRC2)
+    TMP_DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[511:256] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[511:256], SRC2)
 FI;
-FOR j <-   0 TO KL-1
-    i  <-  j * 16
+FOR j <-  0 TO KL-1
+    i <-  j * 16
     IF k1[j] OR *no writemask*
-          THEN DEST[i+15:i]  <-  TMP_DEST[i+15:i]
+          THEN DEST[i+15:i] <-  TMP_DEST[i+15:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+15:i] remains unchanged*
@@ -377,25 +377,25 @@ FOR j <-   0 TO KL-1
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSRAW (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
 IF VL = 128
-    TMP_DEST[127:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_128b(SRC1[127:0], imm8)
+    TMP_DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_128b(SRC1[127:0], imm8)
 FI;
 IF VL = 256
-    TMP_DEST[255:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
+    TMP_DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
 FI;
 IF VL = 512
-    TMP_DEST[255:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
-    TMP_DEST[511:256]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[511:256], imm8)
+    TMP_DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[255:0], imm8)
+    TMP_DEST[511:256] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1[511:256], imm8)
 FI;
-FOR j  <-  0 TO KL-1
-    i  <-  j * 16
+FOR j <-  0 TO KL-1
+    i <-  j * 16
     IF k1[j] OR *no writemask*
-          THEN DEST[i+15:i]  <-  TMP_DEST[i+15:i]
+          THEN DEST[i+15:i] <-  TMP_DEST[i+15:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+15:i] remains unchanged*
@@ -404,152 +404,152 @@ FOR j  <-  0 TO KL-1
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSRAW (ymm, ymm, xmm/m128) - VEX
 ```info-verb
-DEST[255:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256] <-   0
+DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <-  0
 ```
 #### VPSRAW (ymm, imm8) - VEX
 ```info-verb
-DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, imm8)
-DEST[MAX_VL-1:256]  <-  0
+DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS_256b(SRC1, imm8)
+DEST[MAX_VL-1:256] <-  0
 ```
 #### VPSRAW (xmm, xmm, xmm/m128) - VEX
 ```info-verb
-DEST[127:0]  <-  ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, SRC2)
-DEST[MAX_VL-1:128]  <-  0
+DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, SRC2)
+DEST[MAX_VL-1:128] <-  0
 ```
 #### VPSRAW (xmm, imm8) - VEX
 ```info-verb
-DEST[127:0] <-   ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, imm8)
-DEST[MAX_VL-1:128]  <-  0
+DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_WORDS(SRC1, imm8)
+DEST[MAX_VL-1:128] <-  0
 ```
 #### PSRAW (xmm, xmm, xmm/m128)
 ```info-verb
-DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, SRC)
+DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, SRC)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PSRAW (xmm, imm8)
 ```info-verb
-DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, imm8)
+DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, imm8)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPSRAD (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask* THEN
                 IF (EVEX.b = 1) AND (SRC1 *is memory*)
-                      THEN DEST[i+31:i]  <-  ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC1[31:0], imm8)
-                      ELSE DEST[i+31:i] <-   ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC1[i+31:i], imm8)
+                      THEN DEST[i+31:i] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC1[31:0], imm8)
+                      ELSE DEST[i+31:i] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS1(SRC1[i+31:i], imm8)
                 FI;
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking 
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSRAD (EVEX versions, xmm/m128)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
 IF VL = 128
-    TMP_DEST[127:0] <-   ARITHMETIC_RIGHT_SHIFT_DWORDS_128b(SRC1[127:0], SRC2)
+    TMP_DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_128b(SRC1[127:0], SRC2)
 FI;
 IF VL = 256
-    TMP_DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
 FI;
 IF VL = 512
-    TMP_DEST[255:0]  <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
-    TMP_DEST[511:256] <-   ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[511:256], SRC2)
+    TMP_DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[255:0], SRC2)
+    TMP_DEST[511:256] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1[511:256], SRC2)
 FI;
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i] <-   TMP_DEST[i+31:i]
+          THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking 
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSRAD (ymm, ymm, xmm/m128) - VEX
 ```info-verb
-DEST[255:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
-DEST[MAX_VL-1:256]  <-  0
+DEST[255:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
+DEST[MAX_VL-1:256] <-  0
 ```
 #### VPSRAD (ymm, imm8) - VEX
 ```info-verb
-DEST[255:0]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
-DEST[MAX_VL-1:256]  <-  0
+DEST[255:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
+DEST[MAX_VL-1:256] <-  0
 ```
 #### VPSRAD (xmm, xmm, xmm/m128) - VEX
 ```info-verb
-DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, SRC2)
-DEST[MAX_VL-1:128] <-  0
+DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, SRC2)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### VPSRAD (xmm, imm8) - VEX
 ```info-verb
-DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, imm8)
-DEST[MAX_VL-1:128] <-  0
+DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS(SRC1, imm8)
+DEST[MAX_VL-1:128] <- 0
 ```
 #### PSRAD (xmm, xmm, xmm/m128)
 ```info-verb
-DEST[127:0] <-  ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, SRC)
+DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, SRC)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### PSRAD (xmm, imm8)
 ```info-verb
-DEST[127:0]  <- ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, imm8)
+DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS(DEST, imm8)
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### VPSRAQ (EVEX versions, imm8)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask* THEN
                 IF (EVEX.b = 1) AND (SRC1 *is memory*)
-                      THEN DEST[i+63:i] <-   ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC1[63:0], imm8)
-                      ELSE DEST[i+63:i] <-   ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC1[i+63:i], imm8)
+                      THEN DEST[i+63:i] <-  ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC1[63:0], imm8)
+                      ELSE DEST[i+63:i] <-  ARITHMETIC_RIGHT_SHIFT_QWORDS1(SRC1[i+63:i], imm8)
                 FI;
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking 
-                            DEST[i+63:i]  <-  0
+                            DEST[i+63:i] <-  0
 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSRAQ (EVEX versions, xmm/m128)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-TMP_DEST[VL-1:0] <-   ARITHMETIC_RIGHT_SHIFT_QWORDS(SRC1[VL-1:0], SRC2, VL)
-FOR j  <-  0 TO 7
-    i <-   j * 64
+TMP_DEST[VL-1:0] <-  ARITHMETIC_RIGHT_SHIFT_QWORDS(SRC1[VL-1:0], SRC2, VL)
+FOR j <-  0 TO 7
+    i <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i]  <-  TMP_DEST[i+63:i]
+          THEN DEST[i+63:i] <-  TMP_DEST[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking 
-                            DEST[i+63:i]  <-  0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalents

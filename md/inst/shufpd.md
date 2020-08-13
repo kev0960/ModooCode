@@ -13,8 +13,8 @@ path : /X86-64 명령어 레퍼런스
 |66 0F C6 /r ib\newline{}SHUFPD xmm1, xmm2/m128, imm8|RMI|V/V|SSE2|Shuffle two pairs of double-precision floating-point values from xmm1 and xmm2/m128 using imm8 to select from each pair, interleaved result is stored in xmm1.|
 |VEX.NDS.128.66.0F.WIG C6 /r ib\newline{}VSHUFPD xmm1, xmm2, xmm3/m128, imm8|RVMI|V/V|AVX|Shuffle two pairs of double-precision floating-point values from xmm2 and xmm3/m128 using imm8 to select from each pair, interleaved result is stored in xmm1.|
 |VEX.NDS.256.66.0F.WIG C6 /r ib\newline{}VSHUFPD ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX|Shuffle four pairs of double-precision floating-point values from ymm2 and ymm3/m256 using imm8 to select from each pair, interleaved result is stored in xmm1.|
-|EVEX.NDS.128.66.0F.W1 C6 /r ib\newline{}VSHUFPD xmm1{k1}{z}, xmm2, xmm3/m128/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Shuffle two paris of double-precision floating-point values from xmm2 and xmm3/m128/m64bcst using imm8 to select from each pair. store interleaved results in xmm1 subject to writemask k1.|
-|EVEX.NDS.256.66.0F.W1 C6 /r ib\newline{}VSHUFPD ymm1{k1}{z}, ymm2, ymm3/m256/m64bcst, imm8|FV|V/V|AVX512VLAVX512F|Shuffle four paris of double-precision floating-point values from ymm2 and ymm3/m256/m64bcst using imm8 to select from each pair. store interleaved results in ymm1 subject to writemask k1.|
+|EVEX.NDS.128.66.0F.W1 C6 /r ib\newline{}VSHUFPD xmm1{k1}{z}, xmm2, xmm3/m128/m64bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512F|Shuffle two paris of double-precision floating-point values from xmm2 and xmm3/m128/m64bcst using imm8 to select from each pair. store interleaved results in xmm1 subject to writemask k1.|
+|EVEX.NDS.256.66.0F.W1 C6 /r ib\newline{}VSHUFPD ymm1{k1}{z}, ymm2, ymm3/m256/m64bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512F|Shuffle four paris of double-precision floating-point values from ymm2 and ymm3/m256/m64bcst using imm8 to select from each pair. store interleaved results in ymm1 subject to writemask k1.|
 |EVEX.NDS.512.66.0F.W1 C6 /r ib\newline{}VSHUFPD zmm1{k1}{z}, zmm2, zmm3/m512/m64bcst, imm8|FV|V/V|AVX512F|Shuffle eight paris of double-precision floating-point values from zmm2 and zmm3/m512/m64bcst using imm8 to select from each pair. store interleaved results in zmm1 subject to writemask k1.|
 ### Instruction Operand Encoding
 
@@ -218,133 +218,133 @@ VEX.128 encoded version: The first source operand is a XMM register. The second 
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
 IF IMM0[0] = 0
-    THEN TMP_DEST[63:0] <-   SRC1[63:0]
-    ELSE TMP_DEST[63:0]  <-  SRC1[127:64] FI;
+    THEN TMP_DEST[63:0] <-  SRC1[63:0]
+    ELSE TMP_DEST[63:0] <-  SRC1[127:64] FI;
 IF IMM0[1] = 0
-    THEN TMP_DEST[127:64] <-   SRC2[63:0]
-    ELSE TMP_DEST[127:64] <-   SRC2[127:64] FI;
+    THEN TMP_DEST[127:64] <-  SRC2[63:0]
+    ELSE TMP_DEST[127:64] <-  SRC2[127:64] FI;
 IF VL >= 256
     IF IMM0[2] = 0
-          THEN TMP_DEST[191:128] <-   SRC1[191:128]
-          ELSE TMP_DEST[191:128]  <-  SRC1[255:192] FI;
+          THEN TMP_DEST[191:128] <-  SRC1[191:128]
+          ELSE TMP_DEST[191:128] <-  SRC1[255:192] FI;
     IF IMM0[3] = 0
-          THEN TMP_DEST[255:192] <-   SRC2[191:128]
-          ELSE TMP_DEST[255:192] <-   SRC2[255:192] FI;
+          THEN TMP_DEST[255:192] <-  SRC2[191:128]
+          ELSE TMP_DEST[255:192] <-  SRC2[255:192] FI;
 FI;
 IF VL >= 512
     IF IMM0[4] = 0
-          THEN TMP_DEST[319:256] <-   SRC1[319:256]
-          ELSE TMP_DEST[319:256]  <-  SRC1[383:320] FI;
+          THEN TMP_DEST[319:256] <-  SRC1[319:256]
+          ELSE TMP_DEST[319:256] <-  SRC1[383:320] FI;
     IF IMM0[5] = 0
-          THEN TMP_DEST[383:320] <-   SRC2[319:256]
-          ELSE TMP_DEST[383:320]  <-  SRC2[383:320] FI;
+          THEN TMP_DEST[383:320] <-  SRC2[319:256]
+          ELSE TMP_DEST[383:320] <-  SRC2[383:320] FI;
     IF IMM0[6] = 0
-          THEN TMP_DEST[447:384]  <-  SRC1[447:384]
-          ELSE TMP_DEST[447:384]  <-  SRC1[511:448] FI;
+          THEN TMP_DEST[447:384] <-  SRC1[447:384]
+          ELSE TMP_DEST[447:384] <-  SRC1[511:448] FI;
     IF IMM0[7] = 0
-          THEN TMP_DEST[511:448]  <-  SRC2[447:384]
-          ELSE TMP_DEST[511:448] <-   SRC2[511:448] FI;
+          THEN TMP_DEST[511:448] <-  SRC2[447:384]
+          ELSE TMP_DEST[511:448] <-  SRC2[511:448] FI;
 FI;
-FOR j <-   0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i]  <-  TMP_DEST[i+63:i]
+          THEN DEST[i+63:i] <-  TMP_DEST[i+63:i]
           ELSE 
 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+63:i]  <-  0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VSHUFPD (EVEX encoded versions when SRC2 is memory)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-   0 TO KL-1
-    i  <-  j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF (EVEX.b = 1) 
-          THEN TMP_SRC2[i+63:i] <-   SRC2[63:0]
-          ELSE TMP_SRC2[i+63:i] <-   SRC2[i+63:i]
+          THEN TMP_SRC2[i+63:i] <-  SRC2[63:0]
+          ELSE TMP_SRC2[i+63:i] <-  SRC2[i+63:i]
     FI;
 ENDFOR;
 IF IMM0[0] = 0
-    THEN TMP_DEST[63:0]  <-  SRC1[63:0]
-    ELSE TMP_DEST[63:0]  <-  SRC1[127:64] FI;
+    THEN TMP_DEST[63:0] <-  SRC1[63:0]
+    ELSE TMP_DEST[63:0] <-  SRC1[127:64] FI;
 IF IMM0[1] = 0
-    THEN TMP_DEST[127:64]  <-  TMP_SRC2[63:0]
-    ELSE TMP_DEST[127:64]  <-  TMP_SRC2[127:64] FI;
+    THEN TMP_DEST[127:64] <-  TMP_SRC2[63:0]
+    ELSE TMP_DEST[127:64] <-  TMP_SRC2[127:64] FI;
 IF VL >= 256
     IF IMM0[2] = 0
-          THEN TMP_DEST[191:128]  <-  SRC1[191:128]
-          ELSE TMP_DEST[191:128] <-   SRC1[255:192] FI;
+          THEN TMP_DEST[191:128] <-  SRC1[191:128]
+          ELSE TMP_DEST[191:128] <-  SRC1[255:192] FI;
     IF IMM0[3] = 0
-          THEN TMP_DEST[255:192]  <-  TMP_SRC2[191:128]
-          ELSE TMP_DEST[255:192] <-   TMP_SRC2[255:192] FI;
+          THEN TMP_DEST[255:192] <-  TMP_SRC2[191:128]
+          ELSE TMP_DEST[255:192] <-  TMP_SRC2[255:192] FI;
 FI;
 IF VL >= 512
     IF IMM0[4] = 0
-          THEN TMP_DEST[319:256]  <-  SRC1[319:256]
-          ELSE TMP_DEST[319:256] <-   SRC1[383:320] FI;
+          THEN TMP_DEST[319:256] <-  SRC1[319:256]
+          ELSE TMP_DEST[319:256] <-  SRC1[383:320] FI;
     IF IMM0[5] = 0
-          THEN TMP_DEST[383:320] <-   TMP_SRC2[319:256]
-          ELSE TMP_DEST[383:320]  <-  TMP_SRC2[383:320] FI;
+          THEN TMP_DEST[383:320] <-  TMP_SRC2[319:256]
+          ELSE TMP_DEST[383:320] <-  TMP_SRC2[383:320] FI;
     IF IMM0[6] = 0
-          THEN TMP_DEST[447:384] <-   SRC1[447:384]
-          ELSE TMP_DEST[447:384] <-   SRC1[511:448] FI;
+          THEN TMP_DEST[447:384] <-  SRC1[447:384]
+          ELSE TMP_DEST[447:384] <-  SRC1[511:448] FI;
     IF IMM0[7] = 0
-          THEN TMP_DEST[511:448] <-   TMP_SRC2[447:384]
-          ELSE TMP_DEST[511:448] <-   TMP_SRC2[511:448] FI;
+          THEN TMP_DEST[511:448] <-  TMP_SRC2[447:384]
+          ELSE TMP_DEST[511:448] <-  TMP_SRC2[511:448] FI;
 FI;
-FOR j <-   0 TO KL-1
-    i  <-  j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i] <-   TMP_DEST[i+63:i]
+          THEN DEST[i+63:i] <-  TMP_DEST[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
 ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+63:i] <-   0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VSHUFPD (VEX.256 encoded version)
 ```info-verb
 IF IMM0[0] = 0
-    THEN DEST[63:0]  <- SRC1[63:0]
-    ELSE DEST[63:0]  <- SRC1[127:64] FI;
+    THEN DEST[63:0] <- SRC1[63:0]
+    ELSE DEST[63:0] <- SRC1[127:64] FI;
 IF IMM0[1] = 0
-    THEN DEST[127:64]  <- SRC2[63:0]
-    ELSE DEST[127:64] <-  SRC2[127:64] FI;
+    THEN DEST[127:64] <- SRC2[63:0]
+    ELSE DEST[127:64] <- SRC2[127:64] FI;
 IF IMM0[2] = 0
-    THEN DEST[191:128]  <- SRC1[191:128]
-    ELSE DEST[191:128] <-  SRC1[255:192] FI;
+    THEN DEST[191:128] <- SRC1[191:128]
+    ELSE DEST[191:128] <- SRC1[255:192] FI;
 IF IMM0[3] = 0
-    THEN DEST[255:192] <-  SRC2[191:128]
-    ELSE DEST[255:192]  <- SRC2[255:192] FI;
+    THEN DEST[255:192] <- SRC2[191:128]
+    ELSE DEST[255:192] <- SRC2[255:192] FI;
 DEST[MAX_VL-1:256] (Unmodified)
 ```
 #### VSHUFPD (VEX.128 encoded version)
 ```info-verb
 IF IMM0[0] = 0
-    THEN DEST[63:0] <-  SRC1[63:0]
-    ELSE DEST[63:0]  <- SRC1[127:64] FI;
+    THEN DEST[63:0] <- SRC1[63:0]
+    ELSE DEST[63:0] <- SRC1[127:64] FI;
 IF IMM0[1] = 0
-    THEN DEST[127:64] <-  SRC2[63:0]
-    ELSE DEST[127:64] <-  SRC2[127:64] FI;
-DEST[MAX_VL-1:128] <-  0
+    THEN DEST[127:64] <- SRC2[63:0]
+    ELSE DEST[127:64] <- SRC2[127:64] FI;
+DEST[MAX_VL-1:128] <- 0
 ```
 #### VSHUFPD (128-bit Legacy SSE version)
 ```info-verb
 IF IMM0[0] = 0
-    THEN DEST[63:0]  <- SRC1[63:0]
-    ELSE DEST[63:0]  <- SRC1[127:64] FI;
+    THEN DEST[63:0] <- SRC1[63:0]
+    ELSE DEST[63:0] <- SRC1[127:64] FI;
 IF IMM0[1] = 0
-    THEN DEST[127:64] <-  SRC2[63:0]
-    ELSE DEST[127:64] <-  SRC2[127:64] FI;
+    THEN DEST[127:64] <- SRC2[63:0]
+    ELSE DEST[127:64] <- SRC2[127:64] FI;
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 

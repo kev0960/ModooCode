@@ -13,8 +13,8 @@ path : /X86-64 명령어 레퍼런스
 |0F C6 /r ib\newline{}SHUFPS xmm1, xmm3/m128, imm8|RMI|V/V|SSE|Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1.|
 |VEX.NDS.128.0F.WIG C6 /r ib\newline{}VSHUFPS xmm1, xmm2, xmm3/m128, imm8|RVMI|V/V|AVX|Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1.|
 |VEX.NDS.256.0F.WIG C6 /r ib\newline{}VSHUFPS ymm1, ymm2, ymm3/m256, imm8|RVMI|V/V|AVX|Select from quadruplet of single-precision floating-point values in ymm2 and ymm3/m256 using imm8, interleaved result pairs are stored in ymm1.|
-|EVEX.NDS.128.0F.W0 C6 /r ib\newline{}VSHUFPS xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1, subject to writemask k1.|
-|EVEX.NDS.256.0F.W0 C6 /r ib\newline{}VSHUFPS ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst, imm8|FV|V/V|AVX512VLAVX512F|Select from quadruplet of single-precision floating-point values in ymm2 and ymm3/m256 using imm8, interleaved result pairs are stored in ymm1, subject to writemask k1.|
+|EVEX.NDS.128.0F.W0 C6 /r ib\newline{}VSHUFPS xmm1{k1}{z}, xmm2, xmm3/m128/m32bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512F|Select from quadruplet of single-precision floating-point values in xmm1 and xmm2/m128 using imm8, interleaved result pairs are stored in xmm1, subject to writemask k1.|
+|EVEX.NDS.256.0F.W0 C6 /r ib\newline{}VSHUFPS ymm1{k1}{z}, ymm2, ymm3/m256/m32bcst, imm8|FV|V/V|AVX512VL\newline{}AVX512F|Select from quadruplet of single-precision floating-point values in ymm2 and ymm3/m256 using imm8, interleaved result pairs are stored in ymm1, subject to writemask k1.|
 |EVEX.NDS.512.0F.W0 C6 /r ib\newline{}VSHUFPS zmm1{k1}{z}, zmm2, zmm3/m512/m32bcst, imm8|FV|V/V|AVX512F|Select from quadruplet of single-precision floating-point values in zmm2 and zmm3/m512 using imm8, interleaved result pairs are stored in zmm1, subject to writemask k1.|
 ### Instruction Operand Encoding
 
@@ -321,110 +321,110 @@ VEX.128 encoded version: The first source operand is a XMM register. The second 
 #### VPSHUFPS (EVEX encoded versions when SRC2 is a vector register)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-TMP_DEST[31:0]  <-  Select4(SRC1[127:0], imm8[1:0]);
-TMP_DEST[63:32] <-   Select4(SRC1[127:0], imm8[3:2]);
-TMP_DEST[95:64]  <-  Select4(SRC2[127:0], imm8[5:4]);
-TMP_DEST[127:96] <-   Select4(SRC2[127:0], imm8[7:6]);
+TMP_DEST[31:0] <-  Select4(SRC1[127:0], imm8[1:0]);
+TMP_DEST[63:32] <-  Select4(SRC1[127:0], imm8[3:2]);
+TMP_DEST[95:64] <-  Select4(SRC2[127:0], imm8[5:4]);
+TMP_DEST[127:96] <-  Select4(SRC2[127:0], imm8[7:6]);
 IF VL >= 256
-    TMP_DEST[159:128] <-   Select4(SRC1[255:128], imm8[1:0]);
-    TMP_DEST[191:160] <-   Select4(SRC1[255:128], imm8[3:2]);
-    TMP_DEST[223:192] <-   Select4(SRC2[255:128], imm8[5:4]);
-    TMP_DEST[255:224] <-   Select4(SRC2[255:128], imm8[7:6]);
+    TMP_DEST[159:128] <-  Select4(SRC1[255:128], imm8[1:0]);
+    TMP_DEST[191:160] <-  Select4(SRC1[255:128], imm8[3:2]);
+    TMP_DEST[223:192] <-  Select4(SRC2[255:128], imm8[5:4]);
+    TMP_DEST[255:224] <-  Select4(SRC2[255:128], imm8[7:6]);
 FI;
 IF VL >= 512
-    TMP_DEST[287:256] <-   Select4(SRC1[383:256], imm8[1:0]);
-    TMP_DEST[319:288]  <-  Select4(SRC1[383:256], imm8[3:2]);
-    TMP_DEST[351:320] <-   Select4(SRC2[383:256], imm8[5:4]);
-    TMP_DEST[383:352]  <-  Select4(SRC2[383:256], imm8[7:6]);
-    TMP_DEST[415:384] <-   Select4(SRC1[511:384], imm8[1:0]);
-    TMP_DEST[447:416] <-   Select4(SRC1[511:384], imm8[3:2]);
-    TMP_DEST[479:448] <-  Select4(SRC2[511:384], imm8[5:4]);
-    TMP_DEST[511:480]  <-  Select4(SRC2[511:384], imm8[7:6]);
+    TMP_DEST[287:256] <-  Select4(SRC1[383:256], imm8[1:0]);
+    TMP_DEST[319:288] <-  Select4(SRC1[383:256], imm8[3:2]);
+    TMP_DEST[351:320] <-  Select4(SRC2[383:256], imm8[5:4]);
+    TMP_DEST[383:352] <-  Select4(SRC2[383:256], imm8[7:6]);
+    TMP_DEST[415:384] <-  Select4(SRC1[511:384], imm8[1:0]);
+    TMP_DEST[447:416] <-  Select4(SRC1[511:384], imm8[3:2]);
+    TMP_DEST[479:448] <- Select4(SRC2[511:384], imm8[5:4]);
+    TMP_DEST[511:480] <-  Select4(SRC2[511:384], imm8[7:6]);
 FI;
-FOR j  <-  0 TO KL-1
-i  <-  j * 32
+FOR j <-  0 TO KL-1
+i <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i] <-   TMP_DEST[i+31:i]
+          THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPSHUFPS (EVEX encoded versions when SRC2 is memory)
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF (EVEX.b = 1) 
-          THEN TMP_SRC2[i+31:i]  <-  SRC2[31:0]
-          ELSE TMP_SRC2[i+31:i] <-   SRC2[i+31:i]
+          THEN TMP_SRC2[i+31:i] <-  SRC2[31:0]
+          ELSE TMP_SRC2[i+31:i] <-  SRC2[i+31:i]
     FI;
 ENDFOR;
-TMP_DEST[31:0] <-   Select4(SRC1[127:0], imm8[1:0]);
-TMP_DEST[63:32]  <-  Select4(SRC1[127:0], imm8[3:2]);
-TMP_DEST[95:64]  <-  Select4(TMP_SRC2[127:0], imm8[5:4]);
-TMP_DEST[127:96]  <-  Select4(TMP_SRC2[127:0], imm8[7:6]);
+TMP_DEST[31:0] <-  Select4(SRC1[127:0], imm8[1:0]);
+TMP_DEST[63:32] <-  Select4(SRC1[127:0], imm8[3:2]);
+TMP_DEST[95:64] <-  Select4(TMP_SRC2[127:0], imm8[5:4]);
+TMP_DEST[127:96] <-  Select4(TMP_SRC2[127:0], imm8[7:6]);
 IF VL >= 256
-    TMP_DEST[159:128]  <-  Select4(SRC1[255:128], imm8[1:0]);
-    TMP_DEST[191:160] <-   Select4(SRC1[255:128], imm8[3:2]);
-    TMP_DEST[223:192] <-   Select4(TMP_SRC2[255:128], imm8[5:4]);
-    TMP_DEST[255:224]  <-  Select4(TMP_SRC2[255:128], imm8[7:6]);
+    TMP_DEST[159:128] <-  Select4(SRC1[255:128], imm8[1:0]);
+    TMP_DEST[191:160] <-  Select4(SRC1[255:128], imm8[3:2]);
+    TMP_DEST[223:192] <-  Select4(TMP_SRC2[255:128], imm8[5:4]);
+    TMP_DEST[255:224] <-  Select4(TMP_SRC2[255:128], imm8[7:6]);
 FI;
 IF VL >= 512
-    TMP_DEST[287:256]  <-  Select4(SRC1[383:256], imm8[1:0]);
-    TMP_DEST[319:288]  <-  Select4(SRC1[383:256], imm8[3:2]);
-    TMP_DEST[351:320] <-   Select4(TMP_SRC2[383:256], imm8[5:4]);
-    TMP_DEST[383:352]  <-  Select4(TMP_SRC2[383:256], imm8[7:6]);
-    TMP_DEST[415:384] <-   Select4(SRC1[511:384], imm8[1:0]);
-    TMP_DEST[447:416] <-   Select4(SRC1[511:384], imm8[3:2]);
-    TMP_DEST[479:448]  <- Select4(TMP_SRC2[511:384], imm8[5:4]);
-    TMP_DEST[511:480]  <-  Select4(TMP_SRC2[511:384], imm8[7:6]);
+    TMP_DEST[287:256] <-  Select4(SRC1[383:256], imm8[1:0]);
+    TMP_DEST[319:288] <-  Select4(SRC1[383:256], imm8[3:2]);
+    TMP_DEST[351:320] <-  Select4(TMP_SRC2[383:256], imm8[5:4]);
+    TMP_DEST[383:352] <-  Select4(TMP_SRC2[383:256], imm8[7:6]);
+    TMP_DEST[415:384] <-  Select4(SRC1[511:384], imm8[1:0]);
+    TMP_DEST[447:416] <-  Select4(SRC1[511:384], imm8[3:2]);
+    TMP_DEST[479:448] <- Select4(TMP_SRC2[511:384], imm8[5:4]);
+    TMP_DEST[511:480] <-  Select4(TMP_SRC2[511:384], imm8[7:6]);
 FI;
-FOR j  <-  0 TO KL-1
-    i <-   j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
-          THEN DEST[i+31:i] <-   TMP_DEST[i+31:i]
+          THEN DEST[i+31:i] <-  TMP_DEST[i+31:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+31:i]  <-  0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VSHUFPS (VEX.256 encoded version)
 ```info-verb
-DEST[31:0]  <- Select4(SRC1[127:0], imm8[1:0]);
-DEST[63:32]  <- Select4(SRC1[127:0], imm8[3:2]);
-DEST[95:64]  <- Select4(SRC2[127:0], imm8[5:4]);
-DEST[127:96] <-  Select4(SRC2[127:0], imm8[7:6]);
-DEST[159:128]  <- Select4(SRC1[255:128], imm8[1:0]);
-DEST[191:160] <-  Select4(SRC1[255:128], imm8[3:2]);
-DEST[223:192] <-  Select4(SRC2[255:128], imm8[5:4]);
-DEST[255:224]  <- Select4(SRC2[255:128], imm8[7:6]);
-DEST[MAX_VL-1:256]  <- 0
+DEST[31:0] <- Select4(SRC1[127:0], imm8[1:0]);
+DEST[63:32] <- Select4(SRC1[127:0], imm8[3:2]);
+DEST[95:64] <- Select4(SRC2[127:0], imm8[5:4]);
+DEST[127:96] <- Select4(SRC2[127:0], imm8[7:6]);
+DEST[159:128] <- Select4(SRC1[255:128], imm8[1:0]);
+DEST[191:160] <- Select4(SRC1[255:128], imm8[3:2]);
+DEST[223:192] <- Select4(SRC2[255:128], imm8[5:4]);
+DEST[255:224] <- Select4(SRC2[255:128], imm8[7:6]);
+DEST[MAX_VL-1:256] <- 0
 ```
 #### VSHUFPS (VEX.128 encoded version)
 ```info-verb
-DEST[31:0] <-  Select4(SRC1[127:0], imm8[1:0]);
-DEST[63:32] <-  Select4(SRC1[127:0], imm8[3:2]);
-DEST[95:64] <-  Select4(SRC2[127:0], imm8[5:4]);
-DEST[127:96] <-  Select4(SRC2[127:0], imm8[7:6]);
-DEST[MAX_VL-1:128] <-  0
+DEST[31:0] <- Select4(SRC1[127:0], imm8[1:0]);
+DEST[63:32] <- Select4(SRC1[127:0], imm8[3:2]);
+DEST[95:64] <- Select4(SRC2[127:0], imm8[5:4]);
+DEST[127:96] <- Select4(SRC2[127:0], imm8[7:6]);
+DEST[MAX_VL-1:128] <- 0
 ```
 #### SHUFPS (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0] <-  Select4(SRC1[127:0], imm8[1:0]);
-DEST[63:32] <-  Select4(SRC1[127:0], imm8[3:2]);
-DEST[95:64]  <- Select4(SRC2[127:0], imm8[5:4]);
-DEST[127:96] <-  Select4(SRC2[127:0], imm8[7:6]);
+DEST[31:0] <- Select4(SRC1[127:0], imm8[1:0]);
+DEST[63:32] <- Select4(SRC1[127:0], imm8[3:2]);
+DEST[95:64] <- Select4(SRC2[127:0], imm8[5:4]);
+DEST[127:96] <- Select4(SRC2[127:0], imm8[7:6]);
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 

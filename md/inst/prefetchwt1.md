@@ -10,7 +10,7 @@ path : /X86-64 명령어 레퍼런스
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|------------------------------------|---------------|
-|0F 0D /2\newline{}PREFETCHWT1 m8|M|V/V|\newline{}PREFETCHWT1|Move data from m8 closer to the processor using T1 hint with intent to write.|
+|0F 0D /2\newline{}PREFETCHWT1 m8|M|V/V|PREFETCHWT1|Move data from m8 closer to the processor using T1 hint with intent to write.|
 ### Instruction Operand Encoding
 
 

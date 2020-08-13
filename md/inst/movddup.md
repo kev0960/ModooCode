@@ -13,8 +13,8 @@ path : /X86-64 명령어 레퍼런스
 |F2 0F 12 /r\newline{}MOVDDUP xmm1, xmm2/m64|RM|V/V|SSE3|Move double-precision floating-point value from xmm2/m64 and duplicate into xmm1.|
 |VEX.128.F2.0F.WIG 12 /r\newline{}VMOVDDUP xmm1, xmm2/m64|RM|V/V|AVX|Move double-precision floating-point value from xmm2/m64 and duplicate into xmm1.|
 |VEX.256.F2.0F.WIG 12 /r\newline{}VMOVDDUP ymm1, ymm2/m256|RM|V/V|AVX|Move even index double-precision floating-point values from ymm2/mem and duplicate each element into ymm1.|
-|EVEX.128.F2.0F.W1 12 /r\newline{}VMOVDDUP xmm1 {k1}{z}, xmm2/m64|DUP-RM|V/V|AVX512VLAVX512F|Move double-precision floating-point value from xmm2/m64 and duplicate each element into xmm1 subject to writemask k1.|
-|EVEX.256.F2.0F.W1 12 /r\newline{}VMOVDDUP ymm1 {k1}{z}, ymm2/m256|DUP-RM|V/V|AVX512VLAVX512F|Move even index double-precision floating-point values from ymm2/m256 and duplicate each element into ymm1 subject to writemask k1.|
+|EVEX.128.F2.0F.W1 12 /r\newline{}VMOVDDUP xmm1 {k1}{z}, xmm2/m64|DUP-RM|V/V|AVX512VL\newline{}AVX512F|Move double-precision floating-point value from xmm2/m64 and duplicate each element into xmm1 subject to writemask k1.|
+|EVEX.256.F2.0F.W1 12 /r\newline{}VMOVDDUP ymm1 {k1}{z}, ymm2/m256|DUP-RM|V/V|AVX512VL\newline{}AVX512F|Move even index double-precision floating-point values from ymm2/m256 and duplicate each element into ymm1 subject to writemask k1.|
 |EVEX.512.F2.0F.W1 12 /r\newline{}VMOVDDUP zmm1 {k1}{z}, zmm2/m512|DUP-RM|V/V|AVX512F|Move even index double-precision floating-point values from zmm2/m512 and duplicate each element into zmm1 subject to writemask k1.|
 ### Instruction Operand Encoding
 
@@ -141,50 +141,50 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 #### VMOVDDUP (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-TMP_SRC[63:0] <-   SRC[63:0] 
-TMP_SRC[127:64] <-   SRC[63:0]
+TMP_SRC[63:0] <-  SRC[63:0] 
+TMP_SRC[127:64] <-  SRC[63:0]
 IF VL >= 256
-    TMP_SRC[191:128]  <-  SRC[191:128]
-    TMP_SRC[255:192] <-   SRC[191:128]
+    TMP_SRC[191:128] <-  SRC[191:128]
+    TMP_SRC[255:192] <-  SRC[191:128]
 FI;
 IF VL >= 512
-    TMP_SRC[319:256]  <-  SRC[319:256]
-    TMP_SRC[383:320]  <-  SRC[319:256]
-    TMP_SRC[477:384]  <-  SRC[477:384]
-    TMP_SRC[511:484]  <-  SRC[477:384]
+    TMP_SRC[319:256] <-  SRC[319:256]
+    TMP_SRC[383:320] <-  SRC[319:256]
+    TMP_SRC[477:384] <-  SRC[477:384]
+    TMP_SRC[511:484] <-  SRC[477:384]
 FI;
-FOR j <-   0 TO KL-1
-    i <-   j * 64
+FOR j <-  0 TO KL-1
+    i <-  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i] <-   TMP_SRC[i+63:i]
+          THEN DEST[i+63:i] <-  TMP_SRC[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE  ; zeroing-masking
-                            DEST[i+63:i] <-   0  ; zeroing-masking
+                            DEST[i+63:i] <-  0  ; zeroing-masking
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VMOVDDUP (VEX.256 encoded version)
 ```info-verb
-DEST[63:0]  <- SRC[63:0]
-DEST[127:64] <-  SRC[63:0]
-DEST[191:128] <-  SRC[191:128]
-DEST[255:192]  <- SRC[191:128]
-DEST[MAX_VL-1:256]  <- 0
+DEST[63:0] <- SRC[63:0]
+DEST[127:64] <- SRC[63:0]
+DEST[191:128] <- SRC[191:128]
+DEST[255:192] <- SRC[191:128]
+DEST[MAX_VL-1:256] <- 0
 ```
 #### VMOVDDUP (VEX.128 encoded version)
 ```info-verb
-DEST[63:0]  <- SRC[63:0]
-DEST[127:64] <-  SRC[63:0]
-DEST[MAX_VL-1:128] <-  0
+DEST[63:0] <- SRC[63:0]
+DEST[127:64] <- SRC[63:0]
+DEST[MAX_VL-1:128] <- 0
 ```
 #### MOVDDUP (128-bit Legacy SSE version)
 ```info-verb
-DEST[63:0]  <- SRC[63:0]
-DEST[127:64]  <- SRC[63:0]
+DEST[63:0] <- SRC[63:0]
+DEST[127:64] <- SRC[63:0]
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 

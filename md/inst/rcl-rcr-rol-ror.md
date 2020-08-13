@@ -157,7 +157,7 @@ WHILE (tempCOUNT != 0)
           tempCOUNT <- tempCOUNT - 1;
     OD;
 ELIHW;
-IF (COUNT & COUNTMASK) ->   0
+IF (COUNT & COUNTMASK) ->  0
     THEN CF <- LSB(DEST);
 FI;
 IF (COUNT & COUNTMASK) = 1
@@ -173,7 +173,7 @@ WHILE (tempCOUNT != 0)
           tempCOUNT <- tempCOUNT - 1;
     OD;
 ELIHW;
-IF (COUNT & COUNTMASK)  ->  0
+IF (COUNT & COUNTMASK) ->  0
     THEN CF <- MSB(DEST);
 FI;
 IF (COUNT & COUNTMASK) = 1

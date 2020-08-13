@@ -134,7 +134,7 @@ See also:
 |--------------------------------------|--------------------------------------------|
 ||Processor Extended State Enumeration Sub-leaves (EAX = 0DH, ECX = n, n > 1)|
 |0DH|###                NOTES:
-\newline{}\newline{}Leaf 0DH output depends on the initial value in ECX. \newline{}                  Each sub-leaf index (starting at position 2) is supported if it corresponds to a supported bit in either the XCR0 register or the IA32_XSS MSR.\newline{}                  \htmlonly{*} If ECX contains an invalid sub-leaf index, EAX/EBX/ECX/EDX return 0. Sub-leaf n (0  "  n  "  31) is invalid if sub-leaf 0 returns 0 in EAX[n] and sub-leaf 1 returns 0 in ECX[n]. Sub-leaf n (32 "   n "   63) is invalid if sub-leaf 0 returns 0 in EDX[n-32] and sub-leaf 1 returns 0 in EDX[n-32].\newline{}EAX Bits 31 - 0: The size in bytes (from the offset specified in EBX) of the save area for an extended state feature associated with a valid sub-leaf index, n.\newline{}EBX Bits 31 - 0: The offset in bytes of this extended state component's save area from the beginning of the XSAVE/XRSTOR area.This field reports 0 if the sub-leaf index, n, does not map to a valid bit in the XCR0 register\htmlonly{*}.\newline{}ECX Bit 00 is set if the bit n (corresponding to the sub-leaf index) is supported in the IA32_XSS MSR; it is clear if bit n is instead supported in XCR0.Bit 01 is set if, when the compacted format of an XSAVE area is used, this extended state component located on the next 64-byte boundary following the preceding state component (otherwise, it is located immediately following the preceding state component).Bits 31 - 02 are reserved.This field reports 0 if the sub-leaf index, n, is invalid\htmlonly{*}.\newline{}EDX This field reports 0 if the sub-leaf index, n, is invalid\htmlonly{*}; otherwise it is reserved.|
+\newline{}\newline{}Leaf 0DH output depends on the initial value in ECX. \newline{}                  Each sub-leaf index (starting at position 2) is supported if it corresponds to a supported bit in either the XCR0 register or the IA32_XSS MSR.\newline{}                  \htmlonly{*} If ECX contains an invalid sub-leaf index, EAX/EBX/ECX/EDX return 0. Sub-leaf n (0 "  n "  31) is invalid if sub-leaf 0 returns 0 in EAX[n] and sub-leaf 1 returns 0 in ECX[n]. Sub-leaf n (32 "  n "  63) is invalid if sub-leaf 0 returns 0 in EDX[n-32] and sub-leaf 1 returns 0 in EDX[n-32].\newline{}EAX Bits 31 - 0: The size in bytes (from the offset specified in EBX) of the save area for an extended state feature associated with a valid sub-leaf index, n.\newline{}EBX Bits 31 - 0: The offset in bytes of this extended state component's save area from the beginning of the XSAVE/XRSTOR area.This field reports 0 if the sub-leaf index, n, does not map to a valid bit in the XCR0 register\htmlonly{*}.\newline{}ECX Bit 00 is set if the bit n (corresponding to the sub-leaf index) is supported in the IA32_XSS MSR; it is clear if bit n is instead supported in XCR0.Bit 01 is set if, when the compacted format of an XSAVE area is used, this extended state component located on the next 64-byte boundary following the preceding state component (otherwise, it is located immediately following the preceding state component).Bits 31 - 02 are reserved.This field reports 0 if the sub-leaf index, n, is invalid\htmlonly{*}.\newline{}EDX This field reports 0 if the sub-leaf index, n, is invalid\htmlonly{*}; otherwise it is reserved.|
 ||Intel Resource Director Technology (Intel RDT) Monitoring Enumeration Sub-leaf (EAX = 0FH, ECX = 0)|
 |0FH|###                NOTES:
 \newline{}\newline{}Leaf 0FH output depends on the initial value in ECX. \newline{}                  Sub-leaf index 0 reports valid resource type starting at bit position 1 of EDX.\newline{}EAX Reserved.\newline{}EBX Bits 31 - 00: Maximum range (zero-based) of RMID within this physical processor of all types.\newline{}ECX Reserved.\newline{}EDX Bit 00: Reserved.Bit 01: Supports L3 Cache Intel RDT Monitoring if 1.Bits 31 - 02: Reserved.|
@@ -708,7 +708,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="54.156204" y="233.380005" textLength="3.901300" font-size="8px">s</text>
 <text x="45.003754" y="233.380005" textLength="4.767388" font-size="8px">F</text>
 <text x="40.681122" y="233.380005" textLength="2.169123" font-size="8px"> </text>
-<text x="32.855118" y="233.380005" textLength="7.802600" font-size="8px">—</text>
+<text x="32.855118" y="233.380005" textLength="7.802600" font-size="8px">--</text>
 <text x="18.890793" y="233.380005" textLength="6.499566" font-size="8px">M</text>
 <text x="24.959793" y="128.379761" textLength="5.204334" font-size="8px">S</text>
 <text x="34.268951" y="348.280304" textLength="2.169123" font-size="8px"> </text>
@@ -730,11 +730,11 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="59.450638" y="189.519958" textLength="3.901300" font-size="8px">c</text>
 <text x="55.071823" y="189.519958" textLength="4.338245" font-size="8px">e</text>
 <text x="52.432205" y="189.519958" textLength="2.598266" font-size="8px">r</text>
-<text x="32.871872" y="189.519958" textLength="7.802600" font-size="8px">—</text>
+<text x="32.871872" y="189.519958" textLength="7.802600" font-size="8px">--</text>
 <text x="19.731506" y="189.519958" textLength="5.633477" font-size="8px">C</text>
 <text x="55.379242" y="171.939941" textLength="2.169123" font-size="8px"> </text>
 <text x="53.217926" y="171.939941" textLength="2.169123" font-size="8px"> </text>
-<text x="45.357590" y="171.939941" textLength="7.802600" font-size="8px">—</text>
+<text x="45.357590" y="171.939941" textLength="7.802600" font-size="8px">--</text>
 <text x="30.119888" y="171.939941" textLength="4.338245" font-size="8px">4</text>
 <text x="19.680008" y="171.939941" textLength="5.204334" font-size="8px">S</text>
 <text x="35.986679" y="110.439880" textLength="5.204334" font-size="8px">A</text>
@@ -754,7 +754,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="83.030609" y="300.399994" textLength="4.338245" font-size="8px">h</text>
 <text x="68.155746" y="300.399994" textLength="6.499566" font-size="8px">M</text>
 <text x="50.701340" y="300.399994" textLength="2.598266" font-size="8px">r</text>
-<text x="33.781403" y="300.399994" textLength="7.802600" font-size="8px">—</text>
+<text x="33.781403" y="300.399994" textLength="7.802600" font-size="8px">--</text>
 <text x="26.340073" y="300.399994" textLength="5.204334" font-size="8px">X</text>
 <text x="14.579994" y="300.399994" textLength="5.204334" font-size="8px">V</text>
 <text x="136.846603" y="207.039978" textLength="5.204334" font-size="8px">S</text>
@@ -769,7 +769,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="56.795837" y="207.039978" textLength="4.338245" font-size="8px">e</text>
 <text x="51.554047" y="207.039978" textLength="5.204334" font-size="8px">P</text>
 <text x="47.171326" y="207.039978" textLength="2.169123" font-size="8px"> </text>
-<text x="39.331268" y="207.039978" textLength="7.802600" font-size="8px">—</text>
+<text x="39.331268" y="207.039978" textLength="7.802600" font-size="8px">--</text>
 <text x="37.230026" y="207.039978" textLength="2.169123" font-size="8px"> </text>
 <text x="30.629807" y="207.039978" textLength="6.499566" font-size="8px">M</text>
 <text x="111.299301" y="263.620483" textLength="4.338245" font-size="8px">n</text>
@@ -811,7 +811,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="81.980240" y="198.279968" textLength="4.338245" font-size="8px">o</text>
 <text x="59.414383" y="290.920258" textLength="2.598266" font-size="8px">r</text>
 <text x="52.834442" y="290.920258" textLength="2.169123" font-size="8px">f</text>
-<text x="33.257736" y="290.920258" textLength="7.802600" font-size="8px">—</text>
+<text x="33.257736" y="290.920258" textLength="7.802600" font-size="8px">--</text>
 <text x="25.816391" y="290.920258" textLength="5.204334" font-size="8px">X</text>
 <text x="19.276245" y="290.920258" textLength="6.499566" font-size="8px">M</text>
 <text x="14.099998" y="290.920258" textLength="5.204334" font-size="8px">S</text>
@@ -926,7 +926,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="14.100113" y="310.660797" textLength="5.633477" font-size="8px">D</text>
 <text x="46.713425" y="273.100647" textLength="4.338245" font-size="8px">h</text>
 <text x="39.809677" y="273.100647" textLength="2.169123" font-size="8px"> </text>
-<text x="31.971970" y="273.100647" textLength="7.802600" font-size="8px">—</text>
+<text x="31.971970" y="273.100647" textLength="7.802600" font-size="8px">--</text>
 <text x="29.810654" y="273.100647" textLength="2.169123" font-size="8px"> </text>
 <text x="18.902618" y="273.100647" textLength="6.499566" font-size="8px">M</text>
 <text x="78.207718" y="207.039978" textLength="4.338245" font-size="8px">b</text>
@@ -999,7 +999,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="47.162720" y="198.279968" textLength="5.204334" font-size="8px">P</text>
 <text x="125.890259" y="300.399994" textLength="4.338245" font-size="8px">o</text>
 <text x="88.525223" y="320.080872" textLength="6.070423" font-size="8px">O</text>
-<text x="53.337051" y="320.080872" textLength="7.802600" font-size="8px">—</text>
+<text x="53.337051" y="320.080872" textLength="7.802600" font-size="8px">--</text>
 <text x="120.908936" y="198.279968" textLength="2.169123" font-size="8px">t</text>
 <text x="31.036331" y="290.920258" textLength="2.169123" font-size="8px"> </text>
 <text x="34.564774" y="320.080872" textLength="4.767388" font-size="8px">T</text>
@@ -1029,13 +1029,13 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="43.792007" y="329.500000" textLength="2.169123" font-size="8px"> </text>
 <text x="25.437302" y="273.100647" textLength="4.338245" font-size="8px">2</text>
 <text x="120.252106" y="300.399994" textLength="3.901300" font-size="8px">s</text>
-<text x="48.010880" y="254.380005" textLength="7.802600" font-size="8px">—</text>
+<text x="48.010880" y="254.380005" textLength="7.802600" font-size="8px">--</text>
 <text x="64.260681" y="282.460632" textLength="4.338245" font-size="8px">n</text>
 <text x="140.116013" y="338.921021" textLength="3.901300" font-size="8px">c</text>
 <text x="308.099731" y="33.279968" textLength="3.253656" font-size="8px">5</text>
 <text x="110.036926" y="282.460632" textLength="4.338245" font-size="8px">p</text>
 <text x="89.516785" y="33.279968" textLength="3.253656" font-size="8px">0</text>
-<text x="35.049973" y="198.279968" textLength="7.802600" font-size="8px">—</text>
+<text x="35.049973" y="198.279968" textLength="7.802600" font-size="8px">--</text>
 <text x="88.408188" y="273.100647" textLength="1.732177" font-size="8px">i</text>
 <text x="24.959793" y="101.619995" textLength="5.204334" font-size="8px">X</text>
 <text x="108.989883" y="320.080872" textLength="7.365654" font-size="8px">W</text>
@@ -1115,7 +1115,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="70.773392" y="348.280304" textLength="2.169123" font-size="8px"> </text>
 <text x="343.319946" y="33.279968" textLength="3.253656" font-size="8px">1</text>
 <text x="35.873260" y="338.921021" textLength="5.633477" font-size="8px">U</text>
-<text x="38.531509" y="348.280304" textLength="7.802600" font-size="8px">—</text>
+<text x="38.531509" y="348.280304" textLength="7.802600" font-size="8px">--</text>
 <text x="101.237823" y="198.279968" textLength="2.169123" font-size="8px">t</text>
 <text x="42.840088" y="198.279968" textLength="2.169123" font-size="8px"> </text>
 <text x="88.518051" y="348.280304" textLength="4.338245" font-size="8px">n</text>
@@ -1132,7 +1132,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="57.540558" y="171.939941" textLength="5.204334" font-size="8px">S</text>
 <text x="75.134277" y="290.920258" textLength="4.338245" font-size="8px">d</text>
 <text x="14.460075" y="171.939941" textLength="5.204334" font-size="8px">S</text>
-<text x="143.752701" y="282.460632" textLength="5.750516" font-size="8px">®</text>
+<text x="143.752701" y="282.460632" textLength="5.750516" font-size="8px">(R)</text>
 <text x="352.671997" y="363.699982" textLength="3.253656" font-size="8px">5</text>
 <text x="14.099998" y="136.719971" textLength="4.767388" font-size="8px">T</text>
 <text x="38.771408" y="180.760010" textLength="4.338245" font-size="8px">1</text>
@@ -1140,7 +1140,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="48.455627" y="290.920258" textLength="4.338245" font-size="8px">a</text>
 <text x="77.583878" y="171.939941" textLength="2.169123" font-size="8px">.</text>
 <text x="123.228775" y="282.460632" textLength="4.338245" font-size="8px">d</text>
-<text x="45.311539" y="180.760010" textLength="7.802600" font-size="8px">—</text>
+<text x="45.311539" y="180.760010" textLength="7.802600" font-size="8px">--</text>
 <text x="163.045425" y="282.460632" textLength="3.901300" font-size="8px">c</text>
 <text x="218.398941" y="33.279968" textLength="3.253656" font-size="8px">1</text>
 <text x="35.046860" y="329.500000" textLength="4.338245" font-size="8px">6</text>
@@ -1154,7 +1154,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="19.768707" y="310.660797" textLength="5.204334" font-size="8px">S</text>
 <text x="121.497986" y="33.279968" textLength="3.253656" font-size="8px">2</text>
 <text x="66.881470" y="233.380005" textLength="2.169123" font-size="8px"> </text>
-<text x="68.037918" y="338.921021" textLength="7.802600" font-size="8px">—</text>
+<text x="68.037918" y="338.921021" textLength="7.802600" font-size="8px">--</text>
 <text x="42.357910" y="224.619995" textLength="5.633477" font-size="8px">H</text>
 <text x="31.382095" y="282.460632" textLength="2.169123" font-size="8px"> </text>
 <text x="35.400467" y="163.179993" textLength="5.633477" font-size="8px">C</text>
@@ -1166,7 +1166,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="24.486038" y="263.620483" textLength="5.204334" font-size="8px">S</text>
 <text x="90.333740" y="263.620483" textLength="2.169123" font-size="8px">t</text>
 <text x="91.289551" y="290.920258" textLength="3.901300" font-size="8px">x</text>
-<text x="45.001511" y="310.660797" textLength="7.802600" font-size="8px">—</text>
+<text x="45.001511" y="310.660797" textLength="7.802600" font-size="8px">--</text>
 <text x="113.452957" y="338.921021" textLength="2.169123" font-size="8px"> </text>
 <text x="53.340958" y="300.399994" textLength="2.169123" font-size="8px">t</text>
 <text x="142.006470" y="207.039978" textLength="5.633477" font-size="8px">R</text>
@@ -1179,7 +1179,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="79.513092" y="290.920258" textLength="4.338245" font-size="8px">e</text>
 <text x="87.805771" y="282.460632" textLength="4.338245" font-size="8px">n</text>
 <text x="81.760254" y="233.380005" textLength="2.169123" font-size="8px">t</text>
-<text x="41.592453" y="263.620483" textLength="7.802600" font-size="8px">—</text>
+<text x="41.592453" y="263.620483" textLength="7.802600" font-size="8px">--</text>
 <text x="87.409424" y="300.399994" textLength="1.732177" font-size="8px">i</text>
 <text x="102.435699" y="320.080872" textLength="6.499566" font-size="8px">M</text>
 <text x="67.677689" y="189.519958" textLength="5.633477" font-size="8px">C</text>
@@ -1258,7 +1258,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="85.574936" y="254.380005" textLength="4.338245" font-size="8px">e</text>
 <text x="100.274384" y="320.080872" textLength="2.169123" font-size="8px">/</text>
 <text x="39.419434" y="329.500000" textLength="4.338245" font-size="8px">4</text>
-<text x="47.994476" y="329.500000" textLength="7.802600" font-size="8px">—</text>
+<text x="47.994476" y="329.500000" textLength="7.802600" font-size="8px">--</text>
 <text x="124.737015" y="33.279968" textLength="3.253656" font-size="8px">6</text>
 <text x="70.899933" y="273.100647" textLength="2.169123" font-size="8px"> </text>
 <text x="48.902847" y="300.399994" textLength="1.732177" font-size="8px">i</text>
@@ -1267,7 +1267,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="62.875610" y="224.619995" textLength="5.204334" font-size="8px">B</text>
 <text x="253.619156" y="33.279968" textLength="3.253656" font-size="8px">1</text>
 <text x="25.008148" y="310.660797" textLength="2.598266" font-size="8px">-</text>
-<text x="33.784515" y="282.460632" textLength="7.802600" font-size="8px">—</text>
+<text x="33.784515" y="282.460632" textLength="7.802600" font-size="8px">--</text>
 <text x="33.227402" y="310.660797" textLength="5.204334" font-size="8px">P</text>
 <text x="84.139236" y="348.280304" textLength="4.338245" font-size="8px">e</text>
 <text x="49.392715" y="263.620483" textLength="2.169123" font-size="8px"> </text>
@@ -1455,7 +1455,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="69.434059" y="337.305878" textLength="3.995500" font-size="8px">x</text>
 <text x="51.205788" y="337.305878" textLength="1.774002" font-size="8px">i</text>
 <text x="46.711647" y="337.305878" textLength="4.442996" font-size="8px">g</text>
-<text x="18.420296" y="337.305878" textLength="4.442996" font-size="8px">–</text>
+<text x="18.420296" y="337.305878" textLength="4.442996" font-size="8px">-</text>
 <text x="13.140648" y="337.305878" textLength="5.329997" font-size="8px">E</text>
 <text x="7.320000" y="337.305878" textLength="5.769502" font-size="8px">D</text>
 <text x="97.389717" y="328.426270" textLength="4.442996" font-size="8px">n</text>
@@ -1483,7 +1483,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="41.228203" y="319.306152" textLength="4.442996" font-size="8px">e</text>
 <text x="33.229225" y="337.305878" textLength="4.442996" font-size="8px">b</text>
 <text x="32.718590" y="319.306152" textLength="1.774002" font-size="8px">i</text>
-<text x="23.360329" y="319.306152" textLength="4.442996" font-size="8px">–</text>
+<text x="23.360329" y="319.306152" textLength="4.442996" font-size="8px">-</text>
 <text x="41.948997" y="374.985840" textLength="4.442996" font-size="8px">e</text>
 <text x="17.536491" y="319.306152" textLength="5.769502" font-size="8px">C</text>
 <text x="12.256844" y="319.306152" textLength="5.329997" font-size="8px">S</text>
@@ -1501,7 +1501,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="70.168419" y="310.365814" textLength="4.442996" font-size="8px">d</text>
 <text x="61.175346" y="310.365814" textLength="4.442996" font-size="8px">a</text>
 <text x="53.195534" y="310.365814" textLength="5.769502" font-size="8px">R</text>
-<text x="25.132744" y="310.365814" textLength="4.442996" font-size="8px">–</text>
+<text x="25.132744" y="310.365814" textLength="4.442996" font-size="8px">-</text>
 <text x="19.309700" y="310.365814" textLength="5.769502" font-size="8px">R</text>
 <text x="14.030045" y="310.365814" textLength="5.329997" font-size="8px">S</text>
 <text x="122.332100" y="301.365540" textLength="4.442996" font-size="8px">n</text>
@@ -1522,7 +1522,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="45.579308" y="301.365540" textLength="1.774002" font-size="8px">i</text>
 <text x="41.618965" y="301.365540" textLength="3.995500" font-size="8px">s</text>
 <text x="33.080589" y="301.365540" textLength="4.442996" font-size="8px">h</text>
-<text x="23.313988" y="301.365540" textLength="4.442996" font-size="8px">–</text>
+<text x="23.313988" y="301.365540" textLength="4.442996" font-size="8px">-</text>
 <text x="17.940041" y="301.365540" textLength="5.329997" font-size="8px">E</text>
 <text x="7.320000" y="301.365540" textLength="5.329997" font-size="8px">P</text>
 <text x="118.079979" y="292.365265" textLength="4.442996" font-size="8px">n</text>
@@ -1557,7 +1557,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="84.613762" y="337.305878" textLength="3.995500" font-size="8px">s</text>
 <text x="39.821800" y="283.364990" textLength="5.329997" font-size="8px">P</text>
 <text x="33.114159" y="283.364990" textLength="6.656503" font-size="8px">M</text>
-<text x="22.914436" y="283.364990" textLength="4.442996" font-size="8px">–</text>
+<text x="22.914436" y="283.364990" textLength="4.442996" font-size="8px">-</text>
 <text x="13.140648" y="283.364990" textLength="5.329997" font-size="8px">X</text>
 <text x="7.320000" y="283.364990" textLength="5.769502" font-size="8px">C</text>
 <text x="74.565865" y="274.364716" textLength="4.442996" font-size="8px">p</text>
@@ -1606,7 +1606,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="64.007362" y="256.424103" textLength="2.221498" font-size="8px"> </text>
 <text x="59.963112" y="256.424103" textLength="3.995500" font-size="8px">y</text>
 <text x="57.253365" y="256.424103" textLength="2.661003" font-size="8px">r</text>
-<text x="30.413185" y="256.424103" textLength="4.442996" font-size="8px">–</text>
+<text x="30.413185" y="256.424103" textLength="4.442996" font-size="8px">-</text>
 <text x="122.553444" y="256.424103" textLength="4.442996" font-size="8px">g</text>
 <text x="14.025246" y="256.424103" textLength="4.882501" font-size="8px">T</text>
 <text x="7.320000" y="256.424103" textLength="6.656503" font-size="8px">M</text>
@@ -1633,12 +1633,12 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="37.118446" y="166.421509" textLength="6.656503" font-size="8px">M</text>
 <text x="12.660385" y="130.420532" textLength="5.329997" font-size="8px">S</text>
 <text x="210.296478" y="44.559998" textLength="3.887607" font-size="8px">7</text>
-<text x="18.956490" y="112.479980" textLength="4.442996" font-size="8px">–</text>
+<text x="18.956490" y="112.479980" textLength="4.442996" font-size="8px">-</text>
 <text x="77.115791" y="157.421265" textLength="5.769502" font-size="8px">R</text>
 <text x="65.264366" y="121.420288" textLength="4.442996" font-size="8px">d</text>
 <text x="49.139320" y="121.420288" textLength="4.442996" font-size="8px">h</text>
 <text x="41.205849" y="310.365814" textLength="6.656503" font-size="8px">M</text>
-<text x="26.039711" y="175.361816" textLength="4.442996" font-size="8px">–</text>
+<text x="26.039711" y="175.361816" textLength="4.442996" font-size="8px">-</text>
 <text x="135.049774" y="256.424103" textLength="4.442996" font-size="8px">e</text>
 <text x="44.217659" y="121.420288" textLength="2.661003" font-size="8px">-</text>
 <text x="358.920197" y="389.139984" textLength="3.332219" font-size="8px">6</text>
@@ -1651,7 +1651,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="37.731361" y="184.362061" textLength="4.442996" font-size="8px">u</text>
 <text x="60.099739" y="175.361816" textLength="2.221498" font-size="8px"> </text>
 <text x="7.320000" y="355.366333" textLength="4.882501" font-size="8px">F</text>
-<text x="22.925636" y="121.420288" textLength="4.442996" font-size="8px">–</text>
+<text x="22.925636" y="121.420288" textLength="4.442996" font-size="8px">-</text>
 <text x="59.232735" y="157.421265" textLength="5.329997" font-size="8px">E</text>
 <text x="13.135849" y="121.420288" textLength="4.882501" font-size="8px">T</text>
 <text x="107.097221" y="211.422729" textLength="1.774002" font-size="8px">i</text>
@@ -1702,7 +1702,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="49.118538" y="166.421509" textLength="2.221498" font-size="8px"> </text>
 <text x="101.884651" y="328.426270" textLength="3.995500" font-size="8px">s</text>
 <text x="280.379059" y="44.559998" textLength="3.887607" font-size="8px">9</text>
-<text x="23.340355" y="265.364441" textLength="4.442996" font-size="8px">–</text>
+<text x="23.340355" y="265.364441" textLength="4.442996" font-size="8px">-</text>
 <text x="12.660385" y="211.422729" textLength="5.329997" font-size="8px">S</text>
 <text x="40.769524" y="238.423553" textLength="3.995500" font-size="8px">c</text>
 <text x="17.531700" y="355.366333" textLength="5.769502" font-size="8px">U</text>
@@ -1744,7 +1744,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="103.054573" y="211.422729" textLength="3.995500" font-size="8px">s</text>
 <text x="92.565544" y="319.306152" textLength="2.221498" font-size="8px">t</text>
 <text x="17.940041" y="139.420776" textLength="5.329997" font-size="8px">E</text>
-<text x="23.333153" y="103.479980" textLength="4.442996" font-size="8px">–</text>
+<text x="23.333153" y="103.479980" textLength="4.442996" font-size="8px">-</text>
 <text x="45.599297" y="346.306152" textLength="4.442996" font-size="8px">a</text>
 <text x="138.354706" y="44.559998" textLength="3.887607" font-size="8px">5</text>
 <text x="260.458557" y="44.559998" textLength="3.887607" font-size="8px">1</text>
@@ -1754,7 +1754,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="87.021400" y="328.426270" textLength="3.995500" font-size="8px">s</text>
 <text x="13.142242" y="184.362061" textLength="5.329997" font-size="8px">S</text>
 <text x="12.660385" y="346.306152" textLength="6.656503" font-size="8px">M</text>
-<text x="23.350746" y="355.366333" textLength="4.442996" font-size="8px">–</text>
+<text x="23.350746" y="355.366333" textLength="4.442996" font-size="8px">-</text>
 <text x="62.261299" y="175.361816" textLength="6.656503" font-size="8px">M</text>
 <text x="7.320000" y="112.479980" textLength="4.882501" font-size="8px">T</text>
 <text x="161.449585" y="229.423279" textLength="1.774002" font-size="8px">i</text>
@@ -1777,7 +1777,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="150.760040" y="229.423279" textLength="4.442996" font-size="8px">u</text>
 <text x="133.552216" y="310.365814" textLength="2.661003" font-size="8px">r</text>
 <text x="57.597771" y="374.985840" textLength="4.442996" font-size="8px">d</text>
-<text x="24.705223" y="346.306152" textLength="4.442996" font-size="8px">–</text>
+<text x="24.705223" y="346.306152" textLength="4.442996" font-size="8px">-</text>
 <text x="106.405235" y="202.362549" textLength="4.442996" font-size="8px">b</text>
 <text x="82.600807" y="355.366333" textLength="1.774002" font-size="8px">i</text>
 <text x="62.245323" y="238.423553" textLength="5.769502" font-size="8px">C</text>
@@ -1791,7 +1791,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="65.575188" y="355.366333" textLength="4.442996" font-size="8px">n</text>
 <text x="104.485802" y="193.362305" textLength="4.442996" font-size="8px">o</text>
 <text x="174.355652" y="44.559998" textLength="3.887607" font-size="8px">1</text>
-<text x="26.040520" y="274.364716" textLength="4.442996" font-size="8px">–</text>
+<text x="26.040520" y="274.364716" textLength="4.442996" font-size="8px">-</text>
 <text x="83.125847" y="193.362305" textLength="3.995500" font-size="8px">s</text>
 <text x="35.005623" y="211.422729" textLength="2.221498" font-size="8px"> </text>
 <text x="93.178490" y="283.364990" textLength="2.221498" font-size="8px">.</text>
@@ -1802,14 +1802,14 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="47.915886" y="310.365814" textLength="5.329997" font-size="8px">S</text>
 <text x="34.904930" y="256.424103" textLength="6.656503" font-size="8px">M</text>
 <text x="273.357605" y="44.559998" textLength="3.887607" font-size="8px">0</text>
-<text x="23.324379" y="148.421021" textLength="4.442996" font-size="8px">–</text>
+<text x="23.324379" y="148.421021" textLength="4.442996" font-size="8px">-</text>
 <text x="76.886452" y="310.365814" textLength="7.543504" font-size="8px">W</text>
 <text x="41.597404" y="211.422729" textLength="2.221498" font-size="8px"> </text>
 <text x="126.819054" y="301.365540" textLength="3.995500" font-size="8px">s</text>
 <text x="352.320129" y="44.559998" textLength="3.887607" font-size="8px">1</text>
 <text x="269.458801" y="44.559998" textLength="3.887607" font-size="8px">1</text>
 <text x="140.007294" y="175.361816" textLength="1.774002" font-size="8px">l</text>
-<text x="28.739891" y="157.421265" textLength="4.442996" font-size="8px">–</text>
+<text x="28.739891" y="157.421265" textLength="4.442996" font-size="8px">-</text>
 <text x="78.161034" y="220.363068" textLength="2.221498" font-size="8px"> </text>
 <text x="72.745522" y="274.364716" textLength="1.774002" font-size="8px">i</text>
 <text x="56.285667" y="121.420288" textLength="4.442996" font-size="8px">e</text>
@@ -1820,7 +1820,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="58.037285" y="211.422729" textLength="4.442996" font-size="8px">e</text>
 <text x="92.049416" y="193.362305" textLength="4.442996" font-size="8px">u</text>
 <text x="19.835503" y="229.423279" textLength="6.216998" font-size="8px">O</text>
-<text x="18.060707" y="130.420532" textLength="4.442996" font-size="8px">–</text>
+<text x="18.060707" y="130.420532" textLength="4.442996" font-size="8px">-</text>
 <text x="60.881294" y="184.362061" textLength="2.661003" font-size="8px">r</text>
 <text x="97.532814" y="229.423279" textLength="2.221498" font-size="8px">/</text>
 <text x="127.097832" y="175.361816" textLength="2.221498" font-size="8px"> </text>
@@ -1839,12 +1839,12 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="99.874184" y="229.423279" textLength="5.769502" font-size="8px">C</text>
 <text x="18.841423" y="247.423828" textLength="5.329997" font-size="8px">E</text>
 <text x="7.320000" y="265.364441" textLength="5.329997" font-size="8px">S</text>
-<text x="27.821709" y="139.420776" textLength="4.442996" font-size="8px">–</text>
+<text x="27.821709" y="139.420776" textLength="4.442996" font-size="8px">-</text>
 <text x="58.914680" y="103.479980" textLength="3.995500" font-size="8px">k</text>
 <text x="72.711143" y="103.479980" textLength="5.769502" font-size="8px">N</text>
 <text x="123.137489" y="175.361816" textLength="3.995500" font-size="8px">k</text>
 <text x="20.161537" y="274.364716" textLength="5.769502" font-size="8px">C</text>
-<text x="24.224953" y="247.423828" textLength="4.442996" font-size="8px">–</text>
+<text x="24.224953" y="247.423828" textLength="4.442996" font-size="8px">-</text>
 <text x="80.391304" y="211.422729" textLength="2.221498" font-size="8px"> </text>
 <text x="129.055695" y="310.365814" textLength="4.442996" font-size="8px">o</text>
 <text x="28.735085" y="337.305878" textLength="4.442996" font-size="8px">e</text>
@@ -1862,7 +1862,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="12.251244" y="112.479980" textLength="6.656503" font-size="8px">M</text>
 <text x="228.296967" y="44.559998" textLength="3.887607" font-size="8px">5</text>
 <text x="96.911110" y="301.365540" textLength="3.995500" font-size="8px">x</text>
-<text x="23.321983" y="328.426270" textLength="4.442996" font-size="8px">–</text>
+<text x="23.321983" y="328.426270" textLength="4.442996" font-size="8px">-</text>
 <text x="120.354240" y="44.559998" textLength="3.887607" font-size="8px">7</text>
 <text x="68.246590" y="274.364716" textLength="4.442996" font-size="8px">h</text>
 <text x="38.921989" y="247.423828" textLength="5.329997" font-size="8px">E</text>
@@ -1905,7 +1905,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="35.391579" y="175.361816" textLength="4.442996" font-size="8px">h</text>
 <text x="99.269218" y="238.423553" textLength="4.442996" font-size="8px">h</text>
 <text x="33.416206" y="374.985840" textLength="4.442996" font-size="8px">e</text>
-<text x="26.019737" y="166.421509" textLength="4.442996" font-size="8px">–</text>
+<text x="26.019737" y="166.421509" textLength="4.442996" font-size="8px">-</text>
 <text x="92.114906" y="256.424103" textLength="4.442996" font-size="8px">a</text>
 <text x="53.598289" y="211.422729" textLength="4.442996" font-size="8px">g</text>
 <text x="7.320000" y="139.420776" textLength="5.329997" font-size="8px">S</text>
@@ -1985,7 +1985,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="84.486702" y="166.421509" textLength="4.442996" font-size="8px">g</text>
 <text x="88.983238" y="166.421509" textLength="3.995500" font-size="8px">y</text>
 <text x="86.489998" y="175.361816" textLength="2.661003" font-size="8px">r</text>
-<text x="22.921623" y="220.363068" textLength="4.442996" font-size="8px">–</text>
+<text x="22.921623" y="220.363068" textLength="4.442996" font-size="8px">-</text>
 <text x="56.831444" y="229.423279" textLength="2.221498" font-size="8px">t</text>
 <text x="18.418694" y="175.361816" textLength="5.329997" font-size="8px">P</text>
 <text x="30.530647" y="175.361816" textLength="4.882501" font-size="8px">T</text>
@@ -2017,7 +2017,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="17.940041" y="220.363068" textLength="4.882501" font-size="8px">T</text>
 <text x="100.563728" y="292.365265" textLength="4.442996" font-size="8px">e</text>
 <text x="137.298340" y="175.361816" textLength="2.661003" font-size="8px">r</text>
-<text x="18.421898" y="184.362061" textLength="4.442996" font-size="8px">–</text>
+<text x="18.421898" y="184.362061" textLength="4.442996" font-size="8px">-</text>
 <text x="22.917641" y="184.362061" textLength="5.769502" font-size="8px">D</text>
 <text x="55.779823" y="220.363068" textLength="2.221498" font-size="8px">t</text>
 <text x="28.739876" y="184.362061" textLength="4.442996" font-size="8px">e</text>
@@ -2060,7 +2060,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="98.454994" y="44.559998" textLength="3.887607" font-size="8px">2</text>
 <text x="76.849724" y="193.362305" textLength="1.774002" font-size="8px">i</text>
 <text x="298.379547" y="44.559998" textLength="3.887607" font-size="8px">7</text>
-<text x="37.107262" y="211.422729" textLength="4.442996" font-size="8px">–</text>
+<text x="37.107262" y="211.422729" textLength="4.442996" font-size="8px">-</text>
 <text x="87.124550" y="193.362305" textLength="2.221498" font-size="8px">t</text>
 <text x="89.349251" y="193.362305" textLength="2.661003" font-size="8px">r</text>
 <text x="96.548347" y="193.362305" textLength="3.995500" font-size="8px">c</text>
@@ -2070,7 +2070,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="70.898781" y="139.420776" textLength="4.442996" font-size="8px">n</text>
 <text x="12.660385" y="202.362549" textLength="5.329997" font-size="8px">S</text>
 <text x="27.843285" y="355.366333" textLength="3.995500" font-size="8px">x</text>
-<text x="23.819023" y="202.362549" textLength="4.442996" font-size="8px">–</text>
+<text x="23.819023" y="202.362549" textLength="4.442996" font-size="8px">-</text>
 <text x="7.320000" y="229.423279" textLength="5.769502" font-size="8px">C</text>
 <text x="28.198097" y="202.362549" textLength="5.329997" font-size="8px">P</text>
 <text x="33.538490" y="202.362549" textLength="2.661003" font-size="8px">r</text>
@@ -2096,7 +2096,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="20.740089" y="166.421509" textLength="5.329997" font-size="8px">X</text>
 <text x="110.894585" y="202.362549" textLength="4.442996" font-size="8px">e</text>
 <text x="128.633820" y="346.306152" textLength="6.656503" font-size="8px">m</text>
-<text x="33.611198" y="193.362305" textLength="4.442996" font-size="8px">–</text>
+<text x="33.611198" y="193.362305" textLength="4.442996" font-size="8px">-</text>
 <text x="23.317192" y="211.422729" textLength="2.661003" font-size="8px">-</text>
 <text x="26.025337" y="211.422729" textLength="4.442996" font-size="8px">3</text>
 <text x="118.420433" y="238.423553" textLength="4.442996" font-size="8px">u</text>
@@ -2104,7 +2104,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="163.268341" y="229.423279" textLength="4.442996" font-size="8px">o</text>
 <text x="99.473839" y="337.305878" textLength="3.995500" font-size="8px">s</text>
 <text x="82.582405" y="328.426270" textLength="4.442996" font-size="8px">n</text>
-<text x="25.121544" y="292.365265" textLength="4.442996" font-size="8px">–</text>
+<text x="25.121544" y="292.365265" textLength="4.442996" font-size="8px">-</text>
 <text x="60.083763" y="238.423553" textLength="2.221498" font-size="8px"> </text>
 <text x="43.758965" y="211.422729" textLength="5.329997" font-size="8px">P</text>
 <text x="93.045845" y="157.421265" textLength="6.216998" font-size="8px">O</text>
@@ -2115,7 +2115,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="46.423134" y="247.423828" textLength="6.216998" font-size="8px">G</text>
 <text x="82.612801" y="211.422729" textLength="5.329997" font-size="8px">E</text>
 <text x="91.852791" y="211.422729" textLength="2.221498" font-size="8px">t</text>
-<text x="25.111961" y="238.423553" textLength="4.442996" font-size="8px">–</text>
+<text x="25.111961" y="238.423553" textLength="4.442996" font-size="8px">-</text>
 <text x="89.409157" y="301.365540" textLength="2.221498" font-size="8px"> </text>
 <text x="94.074287" y="211.422729" textLength="4.442996" font-size="8px">e</text>
 <text x="73.315239" y="319.306152" textLength="5.769502" font-size="8px">C</text>
@@ -2144,7 +2144,7 @@ Software must confirm that a processor feature is present using feature flags re
 <text x="26.016548" y="229.423279" textLength="5.329997" font-size="8px">V</text>
 <text x="115.566078" y="310.365814" textLength="4.442996" font-size="8px">u</text>
 <text x="76.922417" y="301.365540" textLength="4.442996" font-size="8px">e</text>
-<text x="31.296196" y="229.423279" textLength="4.442996" font-size="8px">–</text>
+<text x="31.296196" y="229.423279" textLength="4.442996" font-size="8px">-</text>
 <text x="59.052940" y="229.423279" textLength="1.774002" font-size="8px">i</text>
 <text x="69.847191" y="229.423279" textLength="4.442996" font-size="8px">a</text>
 <text x="80.198708" y="283.364990" textLength="2.221498" font-size="8px">I</text>
@@ -2301,9 +2301,9 @@ When CPUID executes with EAX set to 02H, the processor returns information about
 |6BH|Cache|DTLB: 4 KByte pages, 8-way set associative, 256 entries|
 |6CH|Cache|DTLB: 2M/4M pages, 8-way set associative, 128 entries|
 |6DH|Cache|DTLB: 1 GByte pages, fully associative, 16 entries|
-|70H|Cache|Trace cache: 12 K-µop, 8-way set associative|
-|71H|Cache|Trace cache: 16 K-µop, 8-way set associative|
-|72H|Cache|Trace cache: 32 K-µop, 8-way set associative|
+|70H|Cache|Trace cache: 12 K-Î¼op, 8-way set associative|
+|71H|Cache|Trace cache: 16 K-Î¼op, 8-way set associative|
+|72H|Cache|Trace cache: 32 K-Î¼op, 8-way set associative|
 |76H|TLB|Instruction TLB: 2M/4M pages, fully associative, 8 entries |
 |78H|Cache|2nd-level cache: 1 MByte, 4-way set associative, 64byte line size|
 |79H|Cache|2nd-level cache: 128 KByte, 8-way set associative, 64 byte line size, 2 lines per sector|
@@ -2386,7 +2386,7 @@ Which means:
 
      -- 00H - NULL descriptor.
 
-     -- 70H - Trace cache: 12 K-µop, 8-way set associative.
+     -- 70H - Trace cache: 12 K-Î¼op, 8-way set associative.
 
      -- 7AH - a 256-KByte 2nd level cache, 8-way set associative, with a sectored, 64-byte cache line size.
 
@@ -2638,7 +2638,7 @@ This method (introduced with Pentium 4 processors) returns an ASCII brand identi
 <text x="185.941544" y="264.519989" textLength="2.972891" font-size="8px">r</text>
 <text x="87.845215" y="109.539978" textLength="4.963746" font-size="8px">8</text>
 <text x="110.940536" y="153.339905" textLength="0.000000" font-size="8px"> </text>
-<text x="110.940536" y="153.339905" textLength="0.000000" font-size="8px">•</text>
+<text x="110.940536" y="153.339905" textLength="0.000000" font-size="8px">* </text>
 <text x="256.141235" y="278.319855" textLength="2.972891" font-size="8px">r</text>
 <text x="91.018066" y="193.119995" textLength="2.481873" font-size="8px"> </text>
 <text x="64.681656" y="193.119995" textLength="6.445727" font-size="8px">R</text>
@@ -2682,7 +2682,7 @@ This method (introduced with Pentium 4 processors) returns an ASCII brand identi
 <text x="96.603088" y="270.220001" textLength="4.963746" font-size="8px">n</text>
 <text x="104.570099" y="280.779877" textLength="4.963746" font-size="8px">4</text>
 <text x="53.520309" y="280.779877" textLength="0.000000" font-size="8px"> </text>
-<text x="53.520309" y="280.779877" textLength="0.000000" font-size="8px">•</text>
+<text x="53.520309" y="280.779877" textLength="0.000000" font-size="8px">* </text>
 <text x="55.140366" y="159.039856" textLength="4.963746" font-size="8px">n</text>
 <text x="55.920105" y="214.239746" textLength="5.454763" font-size="8px">F</text>
 <text x="91.020386" y="163.899780" textLength="5.954709" font-size="8px">E</text>

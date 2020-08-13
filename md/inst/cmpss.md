@@ -116,31 +116,31 @@ Software should ensure VCMPSS is encoded with VEX.L=0. Encoding VCMPSS with VEX.
 ### Operation
 #### VCMPSS (EVEX encoded version) 
 ```info-verb
-CMP0 <-   SRC1[31:0] OP5 SRC2[31:0];
+CMP0 <-  SRC1[31:0] OP5 SRC2[31:0];
 IF k2[0] or *no writemask*
     THEN IF CMP0 = TRUE
-                      THEN DEST[0]  <-  1;
-                      ELSE DEST[0] <-   0; FI;
-    ELSE  DEST[0]  <-  0 ; zeroing-masking only
+                      THEN DEST[0] <-  1;
+                      ELSE DEST[0] <-  0; FI;
+    ELSE  DEST[0] <-  0 ; zeroing-masking only
 FI;
-DEST[MAX_KL-1:1]  <-  0
+DEST[MAX_KL-1:1] <-  0
 ```
 #### CMPSS (128-bit Legacy SSE version)
 ```info-verb
-CMP0 <-  DEST[31:0] OP3 SRC[31:0];
+CMP0 <- DEST[31:0] OP3 SRC[31:0];
 IF CMP0 = TRUE
-THEN DEST[31:0]  <- FFFFFFFFH;
-ELSE DEST[31:0] <-  00000000H; FI;
+THEN DEST[31:0] <- FFFFFFFFH;
+ELSE DEST[31:0] <- 00000000H; FI;
 DEST[MAX_VL-1:32] (Unmodified)
 ```
 #### VCMPSS (VEX.128 encoded version)
 ```info-verb
-CMP0  <- SRC1[31:0] OP5 SRC2[31:0];
+CMP0 <- SRC1[31:0] OP5 SRC2[31:0];
 IF CMP0 = TRUE
-THEN DEST[31:0]  <- FFFFFFFFH;
-ELSE DEST[31:0]  <- 00000000H; FI;
-DEST[127:32] <-  SRC1[127:32]
-DEST[MAX_VL-1:128]  <- 0
+THEN DEST[31:0] <- FFFFFFFFH;
+ELSE DEST[31:0] <- 00000000H; FI;
+DEST[127:32] <- SRC1[127:32]
+DEST[MAX_VL-1:128] <- 0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent

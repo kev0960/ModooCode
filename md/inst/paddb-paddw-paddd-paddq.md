@@ -24,13 +24,13 @@ path : /X86-64 명령어 레퍼런스
 |VEX.NDS.256.66.0F.WIG FD /r\newline{}VPADDW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed word integers from ymm2, ymm3/m256 and store in ymm1.|
 |VEX.NDS.256.66.0F.WIG FE /r\newline{}VPADDD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed doubleword integers from ymm2, ymm3/m256 and store in ymm1.|
 |VEX.NDS.256.66.0F.WIG D4 /r\newline{}VPADDQ ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add packed quadword integers from ymm2, ymm3/m256 and store in ymm1.|
-|EVEX.NDS.128.66.0F.WIG FC /r\newline{}VPADDB xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Add packed byte integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.|
-|EVEX.NDS.128.66.0F.WIG FD /r\newline{}VPADDW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VLAVX512BW|Add packed word integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.|
-|EVEX.NDS.128.66.0F.W0 FE /r\newline{}VPADDD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VLAVX512F|Add packed doubleword integers from xmm2, and xmm3/m128/m32bcst and store in xmm1 using writemask k1.|
-|EVEX.NDS.128.66.0F.W1 D4 /r\newline{}VPADDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst|FV|V/V|AVX512VLAVX512F|Add packed quadword integers from xmm2, and xmm3/m128/m64bcst and store in xmm1 using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG FC /r\newline{}VPADDB ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.|
-|EVEX.NDS.256.66.0F.WIG FD /r\newline{}VPADDW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VLAVX512BW|Add packed word integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.|
-|EVEX.NDS.256.66.0F.W0 FE /r\newline{}VPADDD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VLAVX512F|Add packed doubleword integers from ymm2, ymm3/m256/m32bcst and store in ymm1 using writemask k1.|
+|EVEX.NDS.128.66.0F.WIG FC /r\newline{}VPADDB xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Add packed byte integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.|
+|EVEX.NDS.128.66.0F.WIG FD /r\newline{}VPADDW xmm1 {k1}{z}, xmm2, xmm3/m128|FVM|V/V|AVX512VL\newline{}AVX512BW|Add packed word integers from xmm2, and xmm3/m128 and store in xmm1 using writemask k1.|
+|EVEX.NDS.128.66.0F.W0 FE /r\newline{}VPADDD xmm1 {k1}{z}, xmm2, xmm3/m128/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Add packed doubleword integers from xmm2, and xmm3/m128/m32bcst and store in xmm1 using writemask k1.|
+|EVEX.NDS.128.66.0F.W1 D4 /r\newline{}VPADDQ xmm1 {k1}{z}, xmm2, xmm3/m128/m64bcst|FV|V/V|AVX512VL\newline{}AVX512F|Add packed quadword integers from xmm2, and xmm3/m128/m64bcst and store in xmm1 using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG FC /r\newline{}VPADDB ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VL\newline{}AVX512BW|Add packed byte integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.|
+|EVEX.NDS.256.66.0F.WIG FD /r\newline{}VPADDW ymm1 {k1}{z}, ymm2, ymm3/m256|FVM|V/V|AVX512VL\newline{}AVX512BW|Add packed word integers from ymm2, and ymm3/m256 and store in ymm1 using writemask k1.|
+|EVEX.NDS.256.66.0F.W0 FE /r\newline{}VPADDD ymm1 {k1}{z}, ymm2, ymm3/m256/m32bcst|FV|V/V|AVX512VL\newline{}AVX512F|Add packed doubleword integers from ymm2, ymm3/m256/m32bcst and store in ymm1 using writemask k1.|
 
 
 |**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|
@@ -199,10 +199,10 @@ DEST[MAX_VL-1:128] (Unmodified)
 #### VPADDB (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (16, 128), (32, 256), (64, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 8
+FOR j <-  0 TO KL-1
+    i <-  j * 8
     IF k1[j] OR *no writemask*
-          THEN DEST[i+7:i] <-   SRC1[i+7:i] + SRC2[i+7:i]
+          THEN DEST[i+7:i] <-  SRC1[i+7:i] + SRC2[i+7:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+7:i] remains unchanged*
@@ -211,15 +211,15 @@ FOR j <-   0 TO KL-1
                 FI
     FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPADDW (EVEX encoded versions)
 ```info-verb
 (KL, VL) = (8, 128), (16, 256), (32, 512)
-FOR j <-   0 TO KL-1
-    i <-   j * 16
+FOR j <-  0 TO KL-1
+    i <-  j * 16
     IF k1[j] OR *no writemask*
-          THEN DEST[i+15:i]  <-  SRC1[i+15:i] + SRC2[i+15:i]
+          THEN DEST[i+15:i] <-  SRC1[i+15:i] + SRC2[i+15:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+15:i] remains unchanged*
@@ -228,49 +228,49 @@ FOR j <-   0 TO KL-1
                 FI
     FI;
 ENDFOR;
-DEST[MAX_VL-1:VL] <-   0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPADDD (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (4, 128), (8, 256), (16, 512)
-FOR j  <-  0 TO KL-1
-    i  <-  j * 32
+FOR j <-  0 TO KL-1
+    i <-  j * 32
     IF k1[j] OR *no writemask*
           THEN 
                 IF (EVEX.b = 1) AND (SRC2 *is memory*)
-                      THEN DEST[i+31:i]  <-  SRC1[i+31:i] + SRC2[31:0]
-                      ELSE DEST[i+31:i]  <-  SRC1[i+31:i] + SRC2[i+31:i]
+                      THEN DEST[i+31:i] <-  SRC1[i+31:i] + SRC2[31:0]
+                      ELSE DEST[i+31:i] <-  SRC1[i+31:i] + SRC2[i+31:i]
                 FI;
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+31:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+31:i] <-   0
+                            DEST[i+31:i] <-  0
                 FI
     FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 #### VPADDQ (EVEX encoded versions) 
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j  <-  0 TO KL-1
-i  <-  j * 64
+FOR j <-  0 TO KL-1
+i <-  j * 64
     IF k1[j] OR *no writemask*
           THEN 
                 IF (EVEX.b = 1) AND (SRC2 *is memory*)
-                      THEN DEST[i+63:i] <-   SRC1[i+63:i] + SRC2[63:0]
-                      ELSE DEST[i+63:i] <-   SRC1[i+63:i] + SRC2[i+63:i]
+                      THEN DEST[i+63:i] <-  SRC1[i+63:i] + SRC2[63:0]
+                      ELSE DEST[i+63:i] <-  SRC1[i+63:i] + SRC2[i+63:i]
                 FI;
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
                       ELSE *zeroing-masking* ; zeroing-masking
-                            DEST[i+63:i] <-   0
+                            DEST[i+63:i] <-  0
                 FI
     FI;
 ENDFOR;
-DEST[MAX_VL-1:VL]  <-  0
+DEST[MAX_VL-1:VL] <-  0
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalents

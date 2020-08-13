@@ -641,30 +641,30 @@ VEX.256 encoded version: The first source operand is a YMM register. The second 
 ### Operation
 #### HSUBPS (128-bit Legacy SSE version)
 ```info-verb
-DEST[31:0] <-   SRC1[31:0] - SRC1[63:32]
-DEST[63:32]  <-  SRC1[95:64] - SRC1[127:96]
-DEST[95:64] <-   SRC2[31:0] - SRC2[63:32]
-DEST[127:96] <-   SRC2[95:64] - SRC2[127:96] 
+DEST[31:0] <-  SRC1[31:0] - SRC1[63:32]
+DEST[63:32] <-  SRC1[95:64] - SRC1[127:96]
+DEST[95:64] <-  SRC2[31:0] - SRC2[63:32]
+DEST[127:96] <-  SRC2[95:64] - SRC2[127:96] 
 DEST[VLMAX-1:128] (Unmodified)
 ```
 #### VHSUBPS (VEX.128 encoded version)
 ```info-verb
-DEST[31:0] <-   SRC1[31:0] - SRC1[63:32]
-DEST[63:32]  <-  SRC1[95:64] - SRC1[127:96]
-DEST[95:64]  <-  SRC2[31:0] - SRC2[63:32]
-DEST[127:96]  <-  SRC2[95:64] - SRC2[127:96] 
-DEST[VLMAX-1:128] <-   0
+DEST[31:0] <-  SRC1[31:0] - SRC1[63:32]
+DEST[63:32] <-  SRC1[95:64] - SRC1[127:96]
+DEST[95:64] <-  SRC2[31:0] - SRC2[63:32]
+DEST[127:96] <-  SRC2[95:64] - SRC2[127:96] 
+DEST[VLMAX-1:128] <-  0
 ```
 #### VHSUBPS (VEX.256 encoded version)
 ```info-verb
-DEST[31:0] <-   SRC1[31:0] - SRC1[63:32]
-DEST[63:32]  <-  SRC1[95:64] - SRC1[127:96]
-DEST[95:64] <-   SRC2[31:0] - SRC2[63:32]
-DEST[127:96] <-   SRC2[95:64] - SRC2[127:96] 
-DEST[159:128] <-   SRC1[159:128] - SRC1[191:160]
-DEST[191:160] <-   SRC1[223:192] - SRC1[255:224]
-DEST[223:192] <-   SRC2[159:128] - SRC2[191:160]
-DEST[255:224] <-   SRC2[223:192] - SRC2[255:224]
+DEST[31:0] <-  SRC1[31:0] - SRC1[63:32]
+DEST[63:32] <-  SRC1[95:64] - SRC1[127:96]
+DEST[95:64] <-  SRC2[31:0] - SRC2[63:32]
+DEST[127:96] <-  SRC2[95:64] - SRC2[127:96] 
+DEST[159:128] <-  SRC1[159:128] - SRC1[191:160]
+DEST[191:160] <-  SRC1[223:192] - SRC1[255:224]
+DEST[223:192] <-  SRC2[159:128] - SRC2[191:160]
+DEST[255:224] <-  SRC2[223:192] - SRC2[255:224]
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
