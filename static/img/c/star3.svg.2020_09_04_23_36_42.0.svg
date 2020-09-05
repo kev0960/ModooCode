@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="297mm"
+   viewBox="0 0 297 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (262b4497e3, 2020-09-04)"
+   sodipodi:docname="star3.svg">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="DotL"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="DotL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,5.92,0.8)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
+         id="path2971" />
+    </marker>
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="27.893747"
+       height="9.1261311"
+       id="rect1566" />
+    <rect
+       x="78.66095"
+       y="55.343513"
+       width="93.317543"
+       height="23.226501"
+       id="rect1498" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1423"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1421" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1145" />
+    </marker>
+    <rect
+       x="124.83281"
+       y="17.491388"
+       width="87.533562"
+       height="21.336433"
+       id="rect945" />
+    <rect
+       x="144.16423"
+       y="73.615463"
+       width="50.197479"
+       height="9.3854589"
+       id="rect939" />
+    <rect
+       x="144.84236"
+       y="118.48189"
+       width="46.263035"
+       height="23.200268"
+       id="rect892" />
+    <rect
+       x="153.53951"
+       y="81.04808"
+       width="24.771585"
+       height="8.9433746"
+       id="rect852" />
+    <rect
+       x="153.53951"
+       y="81.04808"
+       width="52.250813"
+       height="8.9246311"
+       id="rect852-5" />
+    <rect
+       x="153.53951"
+       y="81.04808"
+       width="24.771585"
+       height="8.9433746"
+       id="rect865" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath913">
+      <path
+         id="path915"
+         style="opacity:0.96;fill:#74cc00;fill-opacity:0.351517;stroke:#000000;stroke-width:0.499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+         d="m 49.58025,23.397257 h 56.51346 V 69.663686 H 49.58025 Z" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath933">
+      <rect
+         style="opacity:0.96;fill:#74cc00;fill-opacity:0.351517;stroke:#000000;stroke-width:0.499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+         id="rect935"
+         width="21.335745"
+         height="17.073195"
+         x="70.753593"
+         y="63.697792" />
+    </clipPath>
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="27.893747"
+       height="9.1261311"
+       id="rect1566-7" />
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="27.893747"
+       height="9.1261311"
+       id="rect1579" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-7"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148-8" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-6"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-71"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148-84" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-3"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-72"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-70"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1148-1" />
+    </marker>
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="27.893747"
+       height="9.1261311"
+       id="rect1566-7-1" />
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="27.893747"
+       height="9.1261311"
+       id="rect2928" />
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="63.092161"
+       height="8.1846164"
+       id="rect1566-7-14" />
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="27.893747"
+       height="9.1261311"
+       id="rect3044" />
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="63.092159"
+       height="8.1846161"
+       id="rect1566-7-14-7" />
+    <rect
+       x="12.28072"
+       y="138.54253"
+       width="63.092159"
+       height="8.1846161"
+       id="rect3102" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.67051382"
+     inkscape:cx="370.75606"
+     inkscape:cy="525.69975"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1862"
+     inkscape:window-height="1051"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:0.96;fill:none;fill-opacity:0.351517;stroke:#000000;stroke-width:0.363307;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect1141"
+       width="60.454376"
+       height="103.55634"
+       x="32.477314"
+       y="15.197192" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="47.33054"
+       y="10.413963"
+       id="text1530"><tspan
+         sodipodi:role="line"
+         id="tspan2791"
+         x="47.33054"
+         y="10.413963">구글 크롬</tspan></text>
+    <rect
+       style="opacity:0.96;fill:#74cc00;fill-opacity:0.351517;stroke:#000000;stroke-width:0.265747;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect833-4"
+       width="60.720955"
+       height="13.766282"
+       x="32.344028"
+       y="34.587994" />
+    <text
+       xml:space="preserve"
+       id="text1564-3"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect1566-7);fill:#000000;fill-opacity:1;stroke:none"
+       transform="translate(-7.6658449,-99.063281)"><tspan
+         x="12.28125"
+         y="142.8645"
+         id="tspan1050"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           id="tspan1048">0x12F000</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.08654px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.153246"
+       x="20.946747"
+       y="-62.408222"
+       id="text1601-1"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan1599-4"
+         x="20.946747"
+         y="-62.408222"
+         style="stroke-width:0.153246">...</tspan></text>
+    <rect
+       style="opacity:0.96;fill:none;fill-opacity:0.351517;stroke:#000000;stroke-width:0.483362;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect1141-5"
+       width="60.334328"
+       height="183.66972"
+       x="202.3353"
+       y="18.487165" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="202.24303"
+       y="13.323829"
+       id="text1530-4"><tspan
+         sodipodi:role="line"
+         id="tspan2631-9"
+         x="202.24303"
+         y="13.323829"
+         style="stroke-width:0.264583">실제 램에서의 모습</tspan></text>
+    <rect
+       style="opacity:0.96;fill:#74cc00;fill-opacity:0.351517;stroke:#000000;stroke-width:0.253215;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect833-4-9"
+       width="59.957584"
+       height="12.657661"
+       x="202.3353"
+       y="18.487165" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.08654px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.153246"
+       x="78.731422"
+       y="-62.408222"
+       id="text1601-1-9"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan1599-4-3"
+         x="78.731422"
+         y="-62.408222"
+         style="stroke-width:0.153246">...</tspan></text>
+    <rect
+       style="opacity:0.96;fill:none;fill-opacity:0.351517;stroke:#000000;stroke-width:0.363307;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect1141-7"
+       width="60.454376"
+       height="103.55634"
+       x="32.477314"
+       y="166.07202" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="52.714161"
+       y="161.28879"
+       id="text1530-0"><tspan
+         sodipodi:role="line"
+         id="tspan2973"
+         x="52.714161"
+         y="161.28879">그림판</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1564-3-4"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect1566-7-1);fill:#000000;fill-opacity:1;stroke:none"
+       transform="translate(-7.870838,50.912522)"><tspan
+         x="12.28125"
+         y="142.8645"
+         id="tspan2952"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+           id="tspan2950">0x12F000</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.08654px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.153246"
+       x="171.82158"
+       y="-62.408222"
+       id="text1601-1-1"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan1599-4-30"
+         x="171.82158"
+         y="-62.408222"
+         style="stroke-width:0.153246">...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.08654px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.153246"
+       x="229.60626"
+       y="-62.408222"
+       id="text1601-1-9-2"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan1599-4-3-9"
+         x="229.60626"
+         y="-62.408222"
+         style="stroke-width:0.153246">...</tspan></text>
+    <rect
+       style="opacity:0.96;fill:#ffcc00;fill-opacity:0.351517;stroke:#000000;stroke-width:0.258942;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect833-3-2-1-4-0"
+       width="60.345081"
+       height="13.151767"
+       x="32.531963"
+       y="186.18991" />
+    <rect
+       style="opacity:0.96;fill:none;fill-opacity:0.351517;stroke:#000000;stroke-width:0.274189;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect1141-8"
+       width="70.939598"
+       height="50.26545"
+       x="109.85521"
+       y="32.999577" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="105.83535"
+       y="26.365204"
+       id="text1530-45"><tspan
+         sodipodi:role="line"
+         id="tspan3033"
+         x="105.83535"
+         y="26.365204">구글 크롬 페이지 테이블</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1564-3-0"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect1566-7-14);fill:#000000;fill-opacity:1;stroke:none"
+       transform="translate(101.94802,-87.98508)"><tspan
+         sodipodi:role="line"
+         id="tspan3065">0x12F000 --&gt; 0x403000</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.08654px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.153246"
+       x="38.392288"
+       y="-145.02876"
+       id="text1601-1-9-5"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan1599-4-3-4"
+         x="38.392288"
+         y="-145.02876"
+         style="stroke-width:0.153246">...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.08654px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.153246"
+       x="63.394943"
+       y="-145.02876"
+       id="text1601-1-9-8"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan1599-4-3-7"
+         x="63.394943"
+         y="-145.02876"
+         style="stroke-width:0.153246">...</tspan></text>
+    <rect
+       style="opacity:0.96;fill:none;fill-opacity:0.351517;stroke:#000000;stroke-width:0.274188;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect1141-8-3"
+       width="70.939598"
+       height="50.265453"
+       x="107.10963"
+       y="183.65083" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="103.08977"
+       y="177.01646"
+       id="text1530-45-9"><tspan
+         sodipodi:role="line"
+         id="tspan3033-1"
+         x="103.08977"
+         y="177.01646"
+         style="stroke-width:0.264583">구글 크롬 페이지 테이블</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1564-3-0-2"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;white-space:pre;shape-inside:url(#rect1566-7-14-7);fill:#000000;fill-opacity:1;stroke:none"
+       transform="translate(99.20244,62.666184)"><tspan
+         x="12.28125"
+         y="142.8645"
+         id="tspan3123"><tspan
+           id="tspan3121">0x12F000 --&gt; 0x403000</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.08654px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.153246"
+       x="189.04355"
+       y="-142.28319"
+       id="text1601-1-9-5-6"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan1599-4-3-4-2"
+         x="189.04355"
+         y="-142.28319"
+         style="stroke-width:0.153246">...</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.08654px;line-height:1.25;font-family:'Source Code Pro';-inkscape-font-specification:'Source Code Pro, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.153246"
+       x="214.0462"
+       y="-142.28319"
+       id="text1601-1-9-8-6"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan1599-4-3-7-6"
+         x="214.0462"
+         y="-142.28319"
+         style="stroke-width:0.153246">...</tspan></text>
+  </g>
+</svg>

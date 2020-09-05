@@ -495,6 +495,7 @@ module.exports = class Server {
 
       this.comment_manager.getLatestComments(150).then(function(comments) {
         let category_files = this.getCategoryFiles(category_path);
+        
         res.render('./category.ejs', {
           header_category: this.header_category.BuildPageHeader(),
           category_info: this.getCategoryHtml(category_files),

@@ -956,7 +956,7 @@
 ,
 	"231" : {
 	"cat_title" : "씹어먹는 C 언어 시작하기",
-	"next_page" : "5",
+	"next_page" : "315",
 	"path" : "/C",
 	"publish_date" : "2009-04-16",
 	"title" : "씹어먹는 C 언어 시작하기"
@@ -1718,7 +1718,10 @@
 }
 ,
 	"315" : {
+	"next_page" : "5",
 	"path" : "/C",
+	"prev_page" : "231",
+	"publish_date" : "2020-09-06",
 	"title" : "내가 C 언어를 공부하기 전에 알았으면 좋았을 것들"
 }
 ,
@@ -1840,7 +1843,7 @@
 	"cat_title" : "1. C 언어가 뭐야?",
 	"chapter" : "C 언어의 세계로",
 	"next_page" : "6",
-	"prev_page" : "231",
+	"prev_page" : "315",
 	"publish_date" : "2009-04-16",
 	"title" : "씹어먹는 C 언어 - <1. C 언어가 뭐야?>",
 	"updated_date" : "09/12/2018"

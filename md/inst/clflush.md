@@ -49,8 +49,6 @@ Flush_Cache_Line(SRC);
 CLFLUSH: void _mm_clflush(void const *p)
 ```
 ```sidenote
-
-
 1. Earlier versions of this manual specified that executions of the CLFLUSH instruction were ordered only by the MFENCE instruction. All processors implementing the CLFLUSH instruction also order it relative to the other operations enumerated above.
 ```
 ### Protected Mode Exceptions
