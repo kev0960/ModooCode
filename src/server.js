@@ -2,6 +2,8 @@ const zmq = require('zeromq');
 const {ZmqManager} = require('./zmq_manager.js');
 const {PathHierarchy} = require('./path_hierarchy.js');
 const HeaderCategory = require('./header_category.js');
+const InstructionManager = require('./instruction');
+
 const util = require('./util.js');
 
 const jsdom = require('jsdom');
@@ -45,6 +47,7 @@ module.exports = class Server {
     this.client = client;
     this.comment_manager = comment_manager;
     this.pageview_manager = pageview_manager;
+    this.instruction_manager = new InstructionManager(this.file_infos);
 
     // Flush Page View Cnt every minute.
     setInterval(function() {
@@ -515,7 +518,6 @@ module.exports = class Server {
 
     this.app.get('/en/inst/:inst_name', function(req, res) {
       let inst_name = req.params.inst_name;
-      console.log(inst_name);
 
       let user = req.user;
       if (!inst_name) {
@@ -555,6 +557,12 @@ module.exports = class Server {
     }.bind(this));
 
     this.app.get('/:id', function(req, res) {
+      let maybe_inst = this.instruction_manager.getInstruction(req.params.id);
+      if (maybe_inst) {
+        req.url = "/en/inst" + req.url;
+        return this.app.handle(req, res);
+      }
+
       let page_id = parseInt(req.params.id);
       let user = req.user;
       if (!page_id) {
