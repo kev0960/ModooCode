@@ -182,11 +182,16 @@ for (i = 0; i < student; i++) {
 ###  2 차원 배열의 동적 할당
 
 
-그렇다면 좀더 높은 난이도의 문제에 도전해봅시다. 2 차원 배열을 동적으로 할당할 수 있을까요? 물론 가능합니다. 여러분은 지금 머리속으로 마구 어떻게 할지 생각하고 있으실 텐데 의외로 간단합니다. 바로 포인터 배열을 이용하면 됩니다.
+그렇다면 좀더 높은 난이도의 문제에 도전해봅시다. 2 차원 배열을 동적으로 할당할 수 있을까요? 물론 가능합니다. 2 차원 배열을 동적으로 할당하는 방법으로 크게 두 가지 방법을 생각할 수 있습니다.
 
-포인터 배열이라 함은 이전에도 이야기 했었지만 배열의 각 원소들이 모두 포인터 인 것이지요. 따라서, 각 원소들이 다른 일차원 배열들을 가리킬 수 있습니다. 따라서, 이 배열은 2  차원 배열이 되겠지요. 따라서 우리가 해야할 일은 먼저 포인터 배열을 동적으로 할당한 뒤에 다시 포인터 배열의 각각의 원소들이 가리키는 일차원 배열을 다시 동적으로 할당해 주면 됩니다.
+* 포인터 배열을 사용해서 2 차원 배열 처럼 동작하는 배열을 만드는 방법
+* 실제로 2 차원 배열 크기의 메모리를 할당한 뒤 2 차원 배열 포인터로 참조하는 방법
 
-그럼 이를 실행에 옮기도록 하겠습니다.
+로 꼽을 수 있습니다. 먼저 포인터 배열을 사용하는 방법 부터 살펴봅시다.
+
+#### 포인터 배열을 이용해서 2 차원 배열 할당하기
+
+포인터 배열이라 함은 이전에도 이야기 했었지만 배열의 각 원소들이 모두 포인터 인 배열 입니다. 따라서, 각 원소들이 다른 일차원 배열들을 가리킬 수 있습니다. 따라서 우리가 해야할 일은 먼저 포인터 배열을 동적으로 할당한 뒤에 다시 포인터 배열의 각각의 원소들이 가리키는 일차원 배열을 다시 동적으로 할당해 주면, 마치 2 차원 배열을 만든 것과 같은 효과를 낼 수 있습니다.
 
 ```cpp-formatted
 /* 2 차원 배열의 동적 할당 */
@@ -237,7 +242,7 @@ int **arr;  // 우리는 arr[x][y] 를 만들 것이다.
 ```
 
 
-일단 `int **arr` 부터 봅시다. 만일 `int array[3];` 이란 배열을 만들었다면 `array` 의 형은 무엇일까요. 네 맞습니다. `int *` 입니다. 그렇다면 `int * arr[10];` 이란 배열을 만들었다면 `arr` 의 형은? 네. `int **arr` 이죠. 따라서 우리는 `int **arr;` 과 같이 선언하였습니다.
+일단 `int **arr` 부터 봅시다. 만일 `int array[3];` 이란 배열을 만들었다면 `array` 의 형은 무엇일까요. 네 맞습니다. `int *` 이죠. 그렇다면 `int * arr[10];` 이란 배열을 만들었다면 `arr` 의 형은? 네. `int **arr` 이죠. 따라서 우리는 `int **arr;` 과 같이 선언하였습니다.
 
 ```cpp-formatted
 arr = (int **)malloc(sizeof(int *) * x);
@@ -255,7 +260,6 @@ for (i = 0; i < x; i++) {
   arr[i] = (int *)malloc(sizeof(int) * y);
 }
 ```
-
 
 각각의 원소들에 대해 메모리 공간을 할당하고 있습니다. `arr[i]` 는 `malloc` 이 정의한 또다른 공간을 가리키겠네요.
 
@@ -492,7 +496,277 @@ void get_average(int **arr, int numStudent, int numSubject)
 
 일단 `void` 형이고 `int **arr` 와 `numStudent, numSubject` 를 인자로 받고 있습니다. 앞에서 설명 했지만 `arr` 은 2 차원 배열 처럼 행동함에도 불구하고 사실은 단순히 원소가 `int *` 형인 배열이기 때문에 (1 차원 배열의 경우 단순히 배열의 타입에 `*` 만 붙이면 된다는 사실은 다 알고계시죠?)  위와 같이 `int **arr` 로 기존의 2 차원 배열 처럼 열의 개수에 대한 정보가 없어도 됩니다. (2 차원 배열의 경우 `int (*arr)[3]`과 같이 열에 관한 정보가 있어야 함)
 
-물론 함수 내부에서 총 학생의 명수와 총 과목의 개수를 알아야 하므로 위와 같이 `numStudent` 와 `numSubject` 를 넣어주었지만요. 이제 여러분은 C 언어의 대부분을 배웠다고 해도 무방합니다만, 아직 몇 가지 재미있는 것들이 남아있으니 다음 강좌가 나올 때 까지 생각해 볼 문제나 풀어보세요 :)
+물론 함수 내부에서 총 학생의 명수와 총 과목의 개수를 알아야 하므로 위와 같이 `numStudent` 와 `numSubject` 를 넣어주었지만요. 
+
+#### 진짜 2 차원 배열 할당하기
+
+앞서 보았던 방식으로는 진짜 2 차원 배열 처럼 메모리에 연속적으로 존재하는 배열을 만들 수 는 없습니다. 왜냐하면 1 차원 배열들을 쭈르륵 계속 할당하면서 메모리에 여기 저기에 퍼져서 만들어질 것이기 때문이죠.
+
+따라서 메모리에 연속적으로 존재하는 *진짜* 2 차원 배열을 만들기 위해서는 반드시 `malloc` 을 통해 해당 크기의 공간을 할당해야 합니다. 예를 들어서
+
+```cpp
+int arr[height][width];
+```
+
+와 같이 생긴 배열을 할당하고자 합시다. 이 경우 필요한 메모리의 크기는
+
+```cpp
+height * width * sizeof(int)
+```
+
+가 되겠죠? 이렇게 메모리를 할당했으면, 이제 해당 메모리를 **2 차원 배열이라고 생각해라!** 라고 컴파일러에게 알려줘야 합니다. 따라서 이 경우 해당 메모리 주소값으 2 차원 배열을 가리키는 포인터에 전달하면 됩니다.
+
+이전 강좌에서도 이야기 하였지만 2 차원 배열 포인터의 경우 포인터 연산을 수행하기 위해선 반드시 포인터 타입 안에 **행 길이** 가 들어가야 한다고 하였습니다. 따라서, 아래와 같이 2 차원 배열 포인터 `arr` 을 정의할 수 있습니다.
+
+```cpp
+int (*arr)[width] = (int(*)[width])malloc(height * width * sizeof(int));
+```
+
+이제 `arr` 은 컴파일러 입장에서 **아 행의 크기가 `width` 인 2 차원 배열을 가리키는구나!` 라고 생각할 수 있겠죠. 한 가지 주의해야 할 점은 `arr` 을 정의할 때 반드시 `width` 에 실제 배열의 넓이 값이 들어간 후에 정의해야 합니다. 예를 들어서
+
+```cpp
+int width;
+  int(*arr)[width] = (int(*)[width])malloc(height * width * sizeof(int));
+scanf("%d", &width);
+```
+
+를 하게 되면 `arr` 이 제대로 2 차원 배열을 참조할 수 없습니다. 반드시 
+
+```cpp
+int width;
+scanf("%d", &width);
+int(*arr)[width] = (int(*)[width])malloc(height * width * sizeof(int));
+```
+
+와 같이 `width` 에 실제 2 차원 배열의 행 길이가 들어간 후에 배열 포인터를 선언해야겠죠.
+
+```lec-warning
+`arr` 을 정의할 때 반드시 `width` 에 실제 배열의 넓이 값이 들어간 후에 정의합시다. 
+```
+
+실제로 작동하는 코드를 살펴보면 다음과 같습니다.
+
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  int width, height;
+  printf("배열 행 크기 : ");
+  scanf("%d", &width);
+  printf("배열 열 크기 : ");
+  scanf("%d", &height);
+
+  int(*arr)[width] = (int(*)[width])malloc(height * width * sizeof(int));
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      int data;
+      scanf("%d", &data);
+      arr[i][j] = data;
+    }
+  }
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      printf("%d ", arr[i][j]);
+    }
+    printf("\n");
+  }
+
+  free(arr);
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+배열 행 크기 : 3
+배열 열 크기 : 2
+1 2 3 4 5 6
+1 2 3 
+4 5 6 
+```
+
+와 같이 나옴을 알 수 있습니다. `arr` 의 모든 데이터가 메모리에 연속적으로 있으므로 `free` 역시 `arr` 에 대해 딱 한 번만 수행하면 됩니다. 간단하죠!
+
+한 가지 주의할 점은 위 배열 포인터를 다른 함수에 인자로 전달하고 싶을 때 입니다.
+
+예를 들어서 배열의 모든 원소들을 출력하는 함수를 만들고 싶다고 해봅시다. 그렇다면 다음과 같이 함수를 작성할 수 도 있을 것입니다.
+
+```cpp
+void print_array(int (*arr)[width], int width, int height) {
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      printf("%d ", arr[i][j]);
+    }
+    printf("\n");
+  }
+}
+```
+
+그런데 문제가 있습니다. 컴파일러가 배열의 정의인 `int (*arr)[width]` 을 보고 `width` 가 뭔지 알 수 없다는 것입니다. 실제로도 아래와 같은 컴파일 오류가 발생합니다. 
+
+```compiler-warning
+test.c:12:29: error: ‘width’ undeclared here (not in a function)
+   12 | void print_array(int (*arr)[width], int width, int height) {
+```
+
+해결책은 간단합니다. 컴파일러가 `arr` 의 정의를 볼 때 `width` 의 정체를 알 수 있도록, `width` 가 `arr` 의 정의 앞으로 오도록 순서를 바꿔주면 됩니다. 아래 처럼요.
+
+```cpp
+void print_array(int width, int (*arr)[width], int height) {
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      printf("%d ", arr[i][j]);
+    }
+    printf("\n");
+  }
+}
+```
+
+실제로 컴파일 해보면 잘 작동함을 알 수 있습니다.
+
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+void add_one(int width, int (*arr)[width], int height) {
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      arr[i][j]++;
+    }
+  }
+}
+
+void print_array(int width, int (*arr)[width], int height) {
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      printf("%d ", arr[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+int main() {
+  int width, height;
+  printf("배열 행 크기 : ");
+  scanf("%d", &width);
+  printf("배열 열 크기 : ");
+  scanf("%d", &height);
+
+  int(*arr)[width] = (int(*)[width])malloc(height * width * sizeof(int));
+  for (int i = 0; i < height; i++) {
+    for (int j = 0; j < width; j++) {
+      int data;
+      scanf("%d", &data);
+      arr[i][j] = data;
+    }
+  }
+
+  printf("----- Array ----- \n");
+  print_array(width, arr, height);
+  printf("----- Add one ----- \n");
+  add_one(width, arr, height);
+  print_array(width, arr, height);
+
+  free(arr);
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+배열 행 크기 : 3
+배열 열 크기 : 2
+1 2 3 4 5 6
+----- Array ----- 
+1 2 3 
+4 5 6 
+----- Add one ----- 
+2 3 4 
+5 6 7 
+```
+
+와 같이 잘 처리됨을 알 수 있습니다.
+
+이를 바탕으로 이전의 점수 계산 코드를 수정해 본다면 아래와 같습니다.
+
+```cpp
+#include <stdio.h>
+#include <stdlib.h>
+
+void get_average(int num_student, int num_subject, int (*scores)[num_student]);
+
+int main(int argc, char **argv) {
+  int subject, students;
+
+  printf("과목 수 : ");
+  scanf("%d", &subject);
+
+  printf("학생의 수 : ");
+  scanf("%d", &students);
+
+  // students 의 값이 정해진 후에 scores 을 정의해야 한다.
+  int(*scores)[students];
+  scores = (int(*)[students])malloc(sizeof(int) * subject * students);
+
+  for (int i = 0; i < subject; i++) {
+    printf("과목 %d 점수 --------- \n", i);
+
+    for (int j = 0; j < students; j++) {
+      printf("학생 %d 점수 입력 : ", j);
+      scanf("%d", &scores[i][j]);
+    }
+  }
+
+  get_average(students, subject, scores);
+  free(scores);
+
+  return 0;
+}
+
+void get_average(int num_student, int num_subject, int (*scores)[num_student]) {
+  int i, j, sum;
+
+  for (i = 0; i < num_subject; i++) {
+    sum = 0;
+    for (j = 0; j < num_student; j++) {
+      sum += arr[i][j];
+    }
+    printf("과목 %d 평균 점수 : %d \n", i, sum / num_student);
+  }
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+과목 수 : 2
+학생의 수 : 3
+과목 0 점수 --------- 
+학생 0 점수 입력 : 100
+학생 1 점수 입력 : 90
+학생 2 점수 입력 : 80
+과목 1 점수 --------- 
+학생 0 점수 입력 : 80
+학생 1 점수 입력 : 90
+학생 2 점수 입력 : 99
+과목 0 평균 점수 : 90 
+과목 1 평균 점수 : 89 
+```
+
+와 같이 잘 작동됩니다.
+
+### 그래서 어떠한 방식을 사용해야 하나?
+
+**되도록이면 연속된 공간에 2 차원 배열을 할당하는 후자의 방법을 취하는 것이 좋습니다.**
+
+* `malloc` 은 상당히 느린 함수들 중에 하나 입니다. 따라서 `malloc` 의 호출 횟수를 최소한으로 하는 것이 좋습니다. 따라서 배열의 높이 만큼 `malloc` 을 호출해야 하는 전자의 방법은 `height` 가 커질 수록 상당히 느려집니다.
+* 전자의 방법으로 메모리의 원소에 접근하기 위해서는 두 단계의 메모리 접근이 필요합니다. 예를 들어서 `arr[3][2]` 의 경우 먼저 `arr[3]` 을 읽은 뒤에, 해당 주소에서 다시 `[2]` 연산을 해야 하죠. 반면에 후자의 경우 컴파일러가 다이렉트로 메모리 `arr[3][2]` 에 접근할 수 있습니다.
+* 메모리가 연속적으로 있을 경우 접근이 더 빠릅니다.
+
+물론 후자의 방식의 경우 배열 포인터를 사용하기 때문에 배열의 선언이 조금 길어지는 면이 있지만 그 정도의 귀찮음은 감수할 만하다고 생각합니다.
+
+이 강좌를 끝으로 여러분은 C 언어의 대부분을 배웠다고 해도 무방합니다만, 아직 몇 가지 재미있는 것들이 남아있으니 다음 강좌가 나올 때 까지 생각해 볼 문제나 풀어보세요 :)
 
 
 ### 생각해보기

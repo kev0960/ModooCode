@@ -263,13 +263,11 @@ while (next) {
 
 이 과정을 한 소스에 정리하면
 
-
-
 ```cpp-formatted
 #include <stdio.h>
 #include <stdlib.h>
 struct Node* InsertNode(struct Node* current, int data);
-void DestroyNode(struct Node* destroy);
+void DestroyNode(struct Node* destroy, struct Node* head);
 struct Node* CreateNode(int data);
 void PrintNodeFrom(struct Node* from);
 

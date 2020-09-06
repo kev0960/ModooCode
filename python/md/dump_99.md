@@ -457,22 +457,4 @@ int main(int argc, char **argv) {
 
 앞으로 여러분들은 단순한 작업들을 보기 편하게 함수로 처리하고 싶을 때 에는 인라인 함수들을 적극적으로 사용하였으면 합니다 :)
 
-
-### 생각 해 보기
-
-#### 문제 1
-
-다음과 같은 인라인 함수를 하나의 문장으로 바꿀 수 있는지 생각해보세요.
-
-```cpp-formatted
-__inline int some_function(int a) {
-  if (a == 0)
-    return 1;
-  else if (a == 1)
-    return 3;
-  else
-    return a * 2;
-}
-```
-
 ##@ chewing-c-end

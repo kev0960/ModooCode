@@ -357,7 +357,7 @@ scanf("%c", &c);
 놀랍게도 배열을 할당하지 않고도 다음과 같이 문자열을 지정할 수 있습니다.
 
 ```cpp-formatted
-char *str = "abcdefghi";
+const char *str = "abcdefghi";
 printf("%s", str); /* 하면 잘 출력된다.*/
 ```
 
