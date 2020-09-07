@@ -2,7 +2,9 @@
 title : VPMASKMOV (Intel x86/64 assembly instruction)
 cat_title : VPMASKMOV
 ref_title : VPMASKMOV
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPMASKMOV
 
@@ -46,9 +48,9 @@ VMASKMOV should not be used to access memory mapped I/O as the ordering of the i
 
 In cases where mask bits indicate data should not be loaded or stored paging A and D bits will be set in an imple-mentation dependent way. However, A and D bits are always set for pages where data is actually loaded/stored.
 
-Note: for load forms, the first source (the mask) is encoded in VEX.vvvv; the second source is encoded in rm_field, and the destination register is encoded in reg_field.
+Note: for load forms, the first source (the mask) is encoded in VEX.vvvv; the second source is encoded in rm\esc{_}field, and the destination register is encoded in reg\esc{_}field.
 
-Note: for store forms, the first source (the mask) is encoded in VEX.vvvv; the second source register is encoded in reg_field, and the destination memory location is encoded in rm_field.
+Note: for store forms, the first source (the mask) is encoded in VEX.vvvv; the second source register is encoded in reg\esc{_}field, and the destination memory location is encoded in rm\esc{_}field.
 
 
 ### Operation

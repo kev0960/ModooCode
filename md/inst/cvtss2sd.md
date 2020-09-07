@@ -2,7 +2,9 @@
 title : CVTSS2SD (Intel x86/64 assembly instruction)
 cat_title : CVTSS2SD
 ref_title : CVTSS2SD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CVTSS2SD
 
@@ -26,9 +28,9 @@ path : /X86-64 명령어 레퍼런스
 
 Converts a single-precision floating-point value in the "convert-from" source operand to a double-precision floating-point value in the destination operand. When the "convert-from" source operand is an XMM register, the single-precision floating-point value is contained in the low doubleword of the register. The result is stored in the low quadword of the destination operand.
 
-128-bit Legacy SSE version: The "convert-from" source operand (the second operand) is an XMM register or memory location. Bits (MAX_VL-1:64) of the corresponding destination register remain unchanged. The destina-tion operand is an XMM register. 
+128-bit Legacy SSE version: The "convert-from" source operand (the second operand) is an XMM register or memory location. Bits (MAX\esc{_}VL-1:64) of the corresponding destination register remain unchanged. The destina-tion operand is an XMM register. 
 
-VEX.128 and EVEX encoded versions: The "convert-from" source operand (the third operand) can be an XMM register or a 32-bit memory location. The first source and destination operands are XMM registers. Bits (127:64) of the XMM register destination are copied from the corresponding bits in the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 and EVEX encoded versions: The "convert-from" source operand (the third operand) can be an XMM register or a 32-bit memory location. The first source and destination operands are XMM registers. Bits (127:64) of the XMM register destination are copied from the corresponding bits in the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 Software should ensure VCVTSS2SD is encoded with VEX.L=0. Encoding VCVTSS2SD with VEX.L=1 may encounter unpredictable behavior across different processor generations.
 

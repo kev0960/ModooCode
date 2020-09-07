@@ -2,7 +2,9 @@
 title : WRMSR (Intel x86/64 assembly instruction)
 cat_title : WRMSR
 ref_title : WRMSR
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/W
+publish_date: 2020-09-01
 ----------------------------
 #@ WRMSR
 
@@ -28,7 +30,7 @@ When the `WRMSR` instruction is used to write to an MTRR, the TLBs are invalidat
 
 MSRs control functions for testability, execution tracing, performance-monitoring and machine check errors. Chapter 35, "Model-Specific Registers (MSRs)", in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3C, lists all MSRs that can be written with this instruction and their addresses. Note that each processor family has its own set of MSRs.
 
-The `WRMSR` instruction is a serializing instruction (see "Serializing Instructions" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A). Note that `WRMSR` to the IA32_TSC_DEADLINE MSR (MSR index 6E0H) and the X2APIC MSRs (MSR indices 802H to 83FH) are not serializing.
+The `WRMSR` instruction is a serializing instruction (see "Serializing Instructions" in Chapter 8 of the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A). Note that `WRMSR` to the IA32\esc{_}TSC\esc{_}DEADLINE MSR (MSR index 6E0H) and the X2APIC MSRs (MSR indices 802H to 83FH) are not serializing.
 
 The `CPUID` instruction should be used to determine whether MSRs are supported (CPUID.01H:EDX[5] = 1) before using this instruction.
 

@@ -2,7 +2,9 @@
 title : PAVGB, PAVGWs (Intel x86/64 assembly instruction)
 cat_title : PAVGB, PAVGW
 ref_title : PAVGB, PAVGW
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/P
+publish_date: 2020-09-01
 ----------------------------
 #@ PAVGB, PAVGW
 
@@ -51,13 +53,13 @@ In 64-bit mode and not encoded with VEX/EVEX, using a REX prefix in the form of 
 
 Legacy SSE instructions: The source operand can be an MMX technology register or a 64-bit memory location. The destination operand can be an MMX technology register.
 
-128-bit Legacy SSE version: The first source operand is an XMM register. The second operand can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (MAX_VL-1:128) of the corresponding register destination are unmodified.
+128-bit Legacy SSE version: The first source operand is an XMM register. The second operand can be an XMM register or an 128-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (MAX\esc{_}VL-1:128) of the corresponding register destination are unmodified.
 
 EVEX.512 encoded version: The first source operand is a ZMM register. The second source operand is a ZMM register or a 512-bit memory location. The destination operand is a ZMM register.
 
 VEX.256 and EVEX.256 encoded versions: The first source operand is a YMM register. The second source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register. 
 
-VEX.128 and EVEX.128 encoded versions: The first source operand is an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (MAX_VL-1:128) of the corresponding register destination are zeroed.
+VEX.128 and EVEX.128 encoded versions: The first source operand is an XMM register. The second source operand is an XMM register or 128-bit memory location. The destination operand is an XMM register. The upper bits (MAX\esc{_}VL-1:128) of the corresponding register destination are zeroed.
 
 
 ### Operation

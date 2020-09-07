@@ -2,7 +2,9 @@
 title : PMOVZX (Intel x86/64 assembly instruction)
 cat_title : PMOVZX
 ref_title : PMOVZX
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/P
+publish_date: 2020-09-01
 ----------------------------
 #@ PMOVZX
 
@@ -66,11 +68,11 @@ path : /X86-64 명령어 레퍼런스
 
 Legacy, VEX and EVEX encoded versions: Packed byte, word, or dword integers starting from the low bytes of the source operand (second operand) are zero extended to word, dword, or quadword integers and stored in packed signed bytes the destination operand.
 
-128-bit Legacy SSE version: Bits (MAX_VL-1:128) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: Bits (MAX\esc{_}VL-1:128) of the corresponding destination register remain unchanged.
 
-VEX.128 encoded version: Bits (MAX_VL-1:128) of the corresponding destination register are zeroed.
+VEX.128 encoded version: Bits (MAX\esc{_}VL-1:128) of the corresponding destination register are zeroed.
 
-VEX.256 encoded version: Bits (MAX_VL-1:256) of the corresponding destination register are zeroed. 
+VEX.256 encoded version: Bits (MAX\esc{_}VL-1:256) of the corresponding destination register are zeroed. 
 
 EVEX encoded versions: Packed dword integers starting from the low bytes of the source operand (second operand) are zero extended to quadword integers and stored to the destination operand under the writemask.The destination register is XMM, YMM or ZMM Register.
 

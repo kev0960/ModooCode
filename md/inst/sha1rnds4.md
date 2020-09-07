@@ -2,7 +2,9 @@
 title : SHA1RNDS4 (Intel x86/64 assembly instruction)
 cat_title : SHA1RNDS4
 ref_title : SHA1RNDS4
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SHA1RNDS4
 

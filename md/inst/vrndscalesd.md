@@ -2,7 +2,9 @@
 title : VRNDSCALESD (Intel x86/64 assembly instruction)
 cat_title : VRNDSCALESD
 ref_title : VRNDSCALESD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VRNDSCALESD
 
@@ -22,7 +24,7 @@ path : /X86-64 명령어 레퍼런스
 
 Rounds a double-precision floating-point value in the low quadword (see Figure 5-29) element the second source operand (the third operand) by the rounding mode specified in the immediate operand and places the result in the corresponding element of the destination operand (the third operand) according to the writemask. The quadword element at bits 127:64 of the destination is copied from the first source operand (the second operand).
 
-The destination and first source operands are XMM registers, the 2nd source operand can be an XMM register or memory location. Bits MAX_VL-1:128 of the destination register are cleared.
+The destination and first source operands are XMM registers, the 2nd source operand can be an XMM register or memory location. Bits MAX\esc{_}VL-1:128 of the destination register are cleared.
 
 The rounding process rounds the input to an integral value, plus number bits of fraction that are specified by imm8[7:4] (to be included in the result) and returns the result as a double-precision floating-point value.
 
@@ -36,19 +38,19 @@ The sign of the result of this instruction is preserved, including the sign of z
 
 The formula of the operation for `VRNDSCALESD` is
 
-     ROUND(x) = 2\footnote{-M} \htmlonly{*}Round_to_INT(x\htmlonly{*}2\footnote{M} , round_ctrl), 
+     ROUND(x) = 2\footnote{-M} \htmlonly{\esc{*}}Round\esc{_}to\esc{_}INT(x\htmlonly{\esc{*}}2\footnote{M} , round\esc{_}ctrl), 
 
-     round_ctrl = imm[3:0];
+     round\esc{_}ctrl = imm[3:0];
 
      M=imm[7:4];
 
-The operation of x\htmlonly{*}2\footnote{M}  is computed as if the exponent range is unlimited (i.e. no overflow ever occurs).
+The operation of x\htmlonly{\esc{*}}2\footnote{M}  is computed as if the exponent range is unlimited (i.e. no overflow ever occurs).
 
 VRNDSCALESD is a more general form of the VEX-encoded VROUNDSD instruction. In VROUNDSD, the formula of the operation is
 
-     ROUND(x) = Round_to_INT(x, round_ctrl), 
+     ROUND(x) = Round\esc{_}to\esc{_}INT(x, round\esc{_}ctrl), 
 
-     round_ctrl = imm[3:0];
+     round\esc{_}ctrl = imm[3:0];
 
 EVEX encoded version: The source operand is a XMM register or a 64-bit memory location. The destination operand is a XMM register.
 

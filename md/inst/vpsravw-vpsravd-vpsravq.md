@@ -2,7 +2,9 @@
 title : VPSRAVW, VPSRAVD, VPSRAVQs (Intel x86/64 assembly instruction)
 cat_title : VPSRAVW, VPSRAVD, VPSRAVQ
 ref_title : VPSRAVW, VPSRAVD, VPSRAVQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPSRAVW, VPSRAVD, VPSRAVQ
 
@@ -38,9 +40,9 @@ The count values are specified individually in each data element of the second s
 
 The count values are specified individually in each data element of the second source operand. If the unsigned integer value specified in the respective data element of the second source operand is greater than 16 (for word), 31 (for doublewords), or 63 (for a quadword), then the destination data element are written with 0. 
 
-VEX.128 encoded version: The destination and first source operands are XMM registers. The count operand can be either an XMM register or a 128-bit memory location. Bits (MAX_VL-1:128) of the corresponding destination register are zeroed.
+VEX.128 encoded version: The destination and first source operands are XMM registers. The count operand can be either an XMM register or a 128-bit memory location. Bits (MAX\esc{_}VL-1:128) of the corresponding destination register are zeroed.
 
-VEX.256 encoded version: The destination and first source operands are YMM registers. The count operand can be either an YMM register or a 256-bit memory. Bits (MAX_VL-1:256) of the corresponding destination register are zeroed.
+VEX.256 encoded version: The destination and first source operands are YMM registers. The count operand can be either an YMM register or a 256-bit memory. Bits (MAX\esc{_}VL-1:256) of the corresponding destination register are zeroed.
 
 EVEX.512/256/128 encoded VPSRAVD/W: The destination and first source operands are ZMM/YMM/XMM registers. The count operand can be either a ZMM/YMM/XMM register, a 512/256/128-bit memory location or a 512/256/128-bit vector broadcasted from a 32/64-bit memory location. The destination is conditionally updated with writemask k1.
 

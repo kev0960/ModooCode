@@ -2,7 +2,9 @@
 title : SYSCALL (Intel x86/64 assembly instruction)
 cat_title : SYSCALL
 ref_title : SYSCALL
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SYSCALL
 
@@ -20,11 +22,11 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-SYSCALL invokes an OS system-call handler at privilege level 0. It does so by loading RIP from the IA32_LSTAR MSR (after saving the address of the instruction following `SYSCALL` into RCX). (The `WRMSR` instruction ensures that the IA32_LSTAR MSR always contain a canonical address.)
+SYSCALL invokes an OS system-call handler at privilege level 0. It does so by loading RIP from the IA32\esc{_}LSTAR MSR (after saving the address of the instruction following `SYSCALL` into RCX). (The `WRMSR` instruction ensures that the IA32\esc{_}LSTAR MSR always contain a canonical address.)
 
-SYSCALL also saves RFLAGS into R11 and then masks RFLAGS using the IA32_FMASK MSR (MSR address C0000084H); specifically, the processor clears in RFLAGS every bit corresponding to a bit that is set in the IA32_FMASK MSR.
+SYSCALL also saves RFLAGS into R11 and then masks RFLAGS using the IA32\esc{_}FMASK MSR (MSR address C0000084H); specifically, the processor clears in RFLAGS every bit corresponding to a bit that is set in the IA32\esc{_}FMASK MSR.
 
-SYSCALL loads the CS and SS selectors with values derived from bits 47:32 of the IA32_STAR MSR. However, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the respon-sibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values corre-spond to the fixed values loaded into the descriptor caches; the `SYSCALL` instruction does not ensure this correspondence.
+SYSCALL loads the CS and SS selectors with values derived from bits 47:32 of the IA32\esc{_}STAR MSR. However, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the respon-sibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values corre-spond to the fixed values loaded into the descriptor caches; the `SYSCALL` instruction does not ensure this correspondence.
 
 The `SYSCALL` instruction does not save the stack pointer (RSP). If the OS system-call handler will change the stack pointer, it is the responsibility of software to save the previous value of the stack pointer. This might be done prior to executing `SYSCALL`, with software restoring the stack pointer with the instruction following `SYSCALL` (which will be executed after SYSRET). Alternatively, the OS system-call handler may save the stack pointer and restore it before executing `SYSRET`.
 

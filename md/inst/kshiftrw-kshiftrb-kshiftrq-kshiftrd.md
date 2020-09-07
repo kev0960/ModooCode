@@ -2,7 +2,9 @@
 title : KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRDs (Intel x86/64 assembly instruction)
 cat_title : KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRD
 ref_title : KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/K
+publish_date: 2020-09-01
 ----------------------------
 #@ KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRD
 

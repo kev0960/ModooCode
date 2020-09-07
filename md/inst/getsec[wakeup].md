@@ -2,7 +2,9 @@
 title : GETSEC[WAKEUP] (Intel x86/64 assembly instruction)
 cat_title : GETSEC[WAKEUP]
 ref_title : GETSEC[WAKEUP]
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/G
+publish_date: 2020-09-01
 ----------------------------
 #@ GETSEC[WAKEUP]
 
@@ -19,7 +21,7 @@ The `GETSEC[WAKEUP]` instruction may only be executed:
 
 *  Execution is not allowed unless the processor is in protected mode with CPL = 0 and EFLAGS.VM = 0. 
 
-*  In addition, the logical processor must be designated as the boot-strap processor as configured by setting IA32_APIC_BASE.BSP = 1. 
+*  In addition, the logical processor must be designated as the boot-strap processor as configured by setting IA32\esc{_}APIC\esc{_}BASE.BSP = 1. 
 
 If these conditions are not met, attempts to execute `GETSEC[WAKEUP]` result in a general protection violation.
 

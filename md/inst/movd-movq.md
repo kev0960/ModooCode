@@ -2,7 +2,9 @@
 title : MOVD, MOVQs (Intel x86/64 assembly instruction)
 cat_title : MOVD, MOVQ
 ref_title : MOVD, MOVQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVD, MOVQ
 
@@ -53,11 +55,11 @@ MOVD/Q with XMM destination:
 
 Moves a dword/qword integer from the source operand and stores it in the low 32/64-bits of the destination XMM register. The upper bits of the destination are zeroed. The source operand can be a 32/64-bit register or 32/64-bit memory location. 
 
-128-bit Legacy SSE version: Bits (MAX_VL-1:128) of the corresponding YMM destination register remain unchanged. Qword operation requires the use of REX.W=1.
+128-bit Legacy SSE version: Bits (MAX\esc{_}VL-1:128) of the corresponding YMM destination register remain unchanged. Qword operation requires the use of REX.W=1.
 
-VEX.128 encoded version: Bits (MAX_VL-1:128) of the destination register are zeroed. Qword operation requires the use of VEX.W=1.
+VEX.128 encoded version: Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed. Qword operation requires the use of VEX.W=1.
 
-EVEX.128 encoded version: Bits (MAX_VL-1:128) of the destination register are zeroed. Qword operation requires the use of EVEX.W=1.
+EVEX.128 encoded version: Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed. Qword operation requires the use of EVEX.W=1.
 
 MOVD/Q with 32/64 reg/mem destination:
 

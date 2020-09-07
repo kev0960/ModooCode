@@ -2,7 +2,9 @@
 title : SHUFPD (Intel x86/64 assembly instruction)
 cat_title : SHUFPD
 ref_title : SHUFPD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SHUFPD
 
@@ -33,11 +35,11 @@ EVEX encoded versions: The first source operand is a ZMM/YMM/XMM register. The s
 
 VEX.256 encoded version: The first source operand is a YMM register. The second source operand can be a YMM register or a 256-bit memory location. The destination operand is a YMM register. The select controls are the bit 3:0 of the imm8 byte, imm8[7:4) are ignored.
 
-VEX.128 encoded version: The first source operand is a XMM register. The second source operand can be a XMM register or a 128-bit memory location. The destination operand is a XMM register. The upper bits (MAX_VL-1:128) of the corresponding ZMM register destination are zeroed. The select controls are the bit 1:0 of the imm8 byte, imm8[7:2) are ignored.
+VEX.128 encoded version: The first source operand is a XMM register. The second source operand can be a XMM register or a 128-bit memory location. The destination operand is a XMM register. The upper bits (MAX\esc{_}VL-1:128) of the corresponding ZMM register destination are zeroed. The select controls are the bit 1:0 of the imm8 byte, imm8[7:2) are ignored.
 
 
 
-128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The desti-nation operand and the first source operand is the same and is an XMM register. The upper bits (MAX_VL-1:128) of the corresponding ZMM register destination are unmodified. The select controls are the bit 1:0 of the imm8 byte, imm8[7:2) are ignored.
+128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The desti-nation operand and the first source operand is the same and is an XMM register. The upper bits (MAX\esc{_}VL-1:128) of the corresponding ZMM register destination are unmodified. The select controls are the bit 1:0 of the imm8 byte, imm8[7:2) are ignored.
 
 ```embed
 <figure>

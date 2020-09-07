@@ -2,7 +2,9 @@
 title : KORTESTW, KORTESTB, KORTESTQ, KORTESTDs (Intel x86/64 assembly instruction)
 cat_title : KORTESTW, KORTESTB, KORTESTQ, KORTESTD
 ref_title : KORTESTW, KORTESTB, KORTESTQ, KORTESTD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/K
+publish_date: 2020-09-01
 ----------------------------
 #@ KORTESTW, KORTESTB, KORTESTQ, KORTESTD
 

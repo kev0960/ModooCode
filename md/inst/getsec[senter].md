@@ -2,7 +2,9 @@
 title : GETSEC[SENTER] (Intel x86/64 assembly instruction)
 cat_title : GETSEC[SENTER]
 ref_title : GETSEC[SENTER]
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/G
+publish_date: 2020-09-01
 ----------------------------
 #@ GETSEC[SENTER]
 
@@ -13,7 +15,7 @@ The `GETSEC[SENTER]` instruction initiates the launch of a measured environment 
 
 The authenticated code base address and size parameters (in bytes) are passed to the `GETSEC[SENTER]` instruc-tion using EBX and ECX respectively. The ILP evaluates the contents of these registers according to the rules for the AC module address in GETSEC[ENTERACCS]. AC module execution follows the same rules, as set by GETSEC[ENTERACCS].
 
-The launching software must ensure that the TPM.ACCESS_0.activeLocality bit is clear before executing the `GETSEC[SENTER]` instruction.
+The launching software must ensure that the TPM.ACCESS\esc{_}0.activeLocality bit is clear before executing the `GETSEC[SENTER]` instruction.
 
 There are restrictions enforced by the processor for execution of the `GETSEC[SENTER]` instruction: 
 
@@ -29,7 +31,7 @@ There are restrictions enforced by the processor for execution of the `GETSEC[SE
 
 *  To avoid potential operability conflicts between modes, the processor is not allowed to execute this instruction if it currently is in SMM or VMX operation. 
 
-*  To insure consistent handling of SIPI messages, the processor executing the `GETSEC[SENTER]` instruction must also be designated the BSP (boot-strap processor) as defined by A32_APIC_BASE.BSP (Bit 8). 
+*  To insure consistent handling of SIPI messages, the processor executing the `GETSEC[SENTER]` instruction must also be designated the BSP (boot-strap processor) as defined by A32\esc{_}APIC\esc{_}BASE.BSP (Bit 8). 
 
 *  EDX must be initialized to a setting supportable by the processor. Unless enumeration by the GETSEC[PARAM-ETERS] leaf reports otherwise, only a value of zero is supported.
 
@@ -37,7 +39,7 @@ Failure to abide by the above conditions results in the processor signaling a ge
 
 This instruction leaf starts the launch of a measured environment by initiating a rendezvous sequence for all logical processors in the platform. The rendezvous sequence involves the initiating logical processor sending a message (by executing GETSEC[SENTER]) and other responding logical processors (RLPs) acknowledging the message, thus synchronizing the RLP(s) with the ILP.
 
-In response to a message signaling the completion of rendezvous, RLPs clear the bootstrap processor indicator flag (IA32_APIC_BASE.BSP) and enter an SENTER sleep state. In this sleep state, RLPs enter an idle processor condi-tion while waiting to be activated after a measured environment has been established by the system executive. RLPs in the SENTER sleep state can only be activated by the GETSEC leaf function WAKEUP in a measured environ-ment.
+In response to a message signaling the completion of rendezvous, RLPs clear the bootstrap processor indicator flag (IA32\esc{_}APIC\esc{_}BASE.BSP) and enter an SENTER sleep state. In this sleep state, RLPs enter an idle processor condi-tion while waiting to be activated after a measured environment has been established by the system executive. RLPs in the SENTER sleep state can only be activated by the GETSEC leaf function WAKEUP in a measured environ-ment.
 
 A successful launch of the measured environment results in the initiating logical processor entering the authenti-cated code execution mode. Prior to reaching this point, the ILP performs the following steps internally: 
 
@@ -67,9 +69,9 @@ A successful launch of the measured environment results in the initiating logica
 
 *  Begin execution in the authenticated code module at the defined entry point.
 
-As an integrity check for proper processor hardware operation, execution of `GETSEC[SENTER]` will also check the contents of all the machine check status registers (as reported by the MSRs IA32_MCi_STATUS) for any valid uncorrectable error condition. In addition, the global machine check status register IA32_MCG_STATUS MCIP bit must be cleared and the IERR processor package pin (or its equivalent) must be not asserted, indicating that no machine check exception processing is currently in-progress. These checks are performed twice: once by the ILP prior to the broadcast of the rendezvous message to RLPs, and later in response to RLPs acknowledging the rendez-vous message. Any outstanding valid uncorrectable machine check error condition present in the machine check status registers at the first check point will result in the ILP signaling a general protection violation. If an outstanding valid uncorrectable machine check error condition is present at the second check point, then this will result in the corresponding logical processor signaling the more severe TXT-shutdown condition with an error code of 12.
+As an integrity check for proper processor hardware operation, execution of `GETSEC[SENTER]` will also check the contents of all the machine check status registers (as reported by the MSRs IA32\esc{_}MCi\esc{_}STATUS) for any valid uncorrectable error condition. In addition, the global machine check status register IA32\esc{_}MCG\esc{_}STATUS MCIP bit must be cleared and the IERR processor package pin (or its equivalent) must be not asserted, indicating that no machine check exception processing is currently in-progress. These checks are performed twice: once by the ILP prior to the broadcast of the rendezvous message to RLPs, and later in response to RLPs acknowledging the rendez-vous message. Any outstanding valid uncorrectable machine check error condition present in the machine check status registers at the first check point will result in the ILP signaling a general protection violation. If an outstanding valid uncorrectable machine check error condition is present at the second check point, then this will result in the corresponding logical processor signaling the more severe TXT-shutdown condition with an error code of 12.
 
-Before loading and authentication of the target code module is performed, the processor also checks that the current voltage and bus ratio encodings correspond to known good values supportable by the processor. The MSR IA32_PERF_STATUS values are compared against either the processor supported maximum operating target setting, system reset setting, or the thermal monitor operating target. If the current settings do not meet any of these criteria then the SENTER function will attempt to change the voltage and bus ratio select controls in a processor-specific manner. This adjustment may be to the thermal monitor, minimum (if different), or maximum operating target depending on the processor.
+Before loading and authentication of the target code module is performed, the processor also checks that the current voltage and bus ratio encodings correspond to known good values supportable by the processor. The MSR IA32\esc{_}PERF\esc{_}STATUS values are compared against either the processor supported maximum operating target setting, system reset setting, or the thermal monitor operating target. If the current settings do not meet any of these criteria then the SENTER function will attempt to change the voltage and bus ratio select controls in a processor-specific manner. This adjustment may be to the thermal monitor, minimum (if different), or maximum operating target depending on the processor.
 
 This implies that some thermal operating target parameters configured by BIOS may be overridden by SENTER. The measured environment software may need to take responsibility for restoring such settings that are deemed to be safe, but not necessarily recognized by SENTER. If an adjustment is not possible when an out of range setting is discovered, then the processor will abort the measured launch. This may be the case for chipset controlled settings of these values or if the controllability is not enabled on the processor. In this case it is the responsibility of the external software to program the chipset voltage ID and/or bus ratio select settings to known good values recognized by the processor, prior to executing SENTER.
 

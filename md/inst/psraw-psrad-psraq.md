@@ -2,7 +2,9 @@
 title : PSRAW, PSRAD, PSRAQs (Intel x86/64 assembly instruction)
 cat_title : PSRAW, PSRAD, PSRAQ
 ref_title : PSRAW, PSRAD, PSRAQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/P
+publish_date: 2020-09-01
 ----------------------------
 #@ PSRAW, PSRAD, PSRAQ
 
@@ -80,7 +82,7 @@ Legacy SSE instructions 64-bit operand: The destination operand is an MMX techno
 
 VEX.128 encoded version: The destination and first source operands are XMM registers. Bits (VLMAX-1:128) of the destination YMM register are zeroed. The count operand can be either an XMM register or a 128-bit memory loca-tion or an 8-bit immediate. If the count operand is a memory address, 128 bits are loaded but the upper 64 bits are ignored.
 
-VEX.256 encoded version: The destination operand is a YMM register. The source operand is a YMM register or a memory location. The count operand can come either from an XMM register or a memory location or an 8-bit immediate. Bits (MAX_VL-1:256) of the corresponding ZMM register are zeroed.
+VEX.256 encoded version: The destination operand is a YMM register. The source operand is a YMM register or a memory location. The count operand can come either from an XMM register or a memory location or an 8-bit immediate. Bits (MAX\esc{_}VL-1:256) of the corresponding ZMM register are zeroed.
 
 ```embed
 <figure>

@@ -2,7 +2,9 @@
 title : VCVTPD2UDQ (Intel x86/64 assembly instruction)
 cat_title : VCVTPD2UDQ
 ref_title : VCVTPD2UDQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VCVTPD2UDQ
 
@@ -27,7 +29,7 @@ Converts packed double-precision floating-point values in the source operand (th
 
 When a conversion is inexact, the value returned is rounded according to the rounding control bits in the MXCSR register or the embedded rounding control bits. If a converted result cannot be represented in the destination format, the floating-point invalid exception is raised, and if this exception is masked, the integer value 2\footnote{w}  - 1 is returned, where w represents the number of bits in the destination format.
 
-The source operand is a ZMM/YMM/XMM register, a 512/256/128-bit memory location, or a 512/256/128-bit vector broadcasted from a 64-bit memory location. The destination operand is a ZMM/YMM/XMM register conditionally updated with writemask k1. The upper bits (MAX_VL-1:256) of the corresponding destination are zeroed.
+The source operand is a ZMM/YMM/XMM register, a 512/256/128-bit memory location, or a 512/256/128-bit vector broadcasted from a 64-bit memory location. The destination operand is a ZMM/YMM/XMM register conditionally updated with writemask k1. The upper bits (MAX\esc{_}VL-1:256) of the corresponding destination are zeroed.
 
 EVEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 

@@ -2,7 +2,9 @@
 title : FCHS (Intel x86/64 assembly instruction)
 cat_title : FCHS
 ref_title : FCHS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/F
+publish_date: 2020-09-01
 ----------------------------
 #@ FCHS
 

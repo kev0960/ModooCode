@@ -2,7 +2,9 @@
 title : MONITOR (Intel x86/64 assembly instruction)
 cat_title : MONITOR
 ref_title : MONITOR
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MONITOR
 
@@ -26,7 +28,7 @@ The address range must use memory of the write-back type. Only write-back memory
 
 The `MONITOR` instruction is ordered as a load operation with respect to other memory transactions. The instruction is subject to the permission checking and faults associated with a byte load. Like a load, `MONITOR` sets the A-bit but not the D-bit in page tables. 
 
-CPUID.01H:ECX.MONITOR[bit 3] indicates the availability of `MONITOR` and `MWAIT` in the processor. When set, `MONITOR` may be executed only at privilege level 0 (use at any other privilege level results in an invalid-opcode exception). The operating system or system BIOS may disable this instruction by using the IA32_MISC_ENABLE MSR; disabling `MONITOR` clears the `CPUID` feature flag and causes execution to generate an invalid-opcode excep-tion. 
+CPUID.01H:ECX.MONITOR[bit 3] indicates the availability of `MONITOR` and `MWAIT` in the processor. When set, `MONITOR` may be executed only at privilege level 0 (use at any other privilege level results in an invalid-opcode exception). The operating system or system BIOS may disable this instruction by using the IA32\esc{_}MISC\esc{_}ENABLE MSR; disabling `MONITOR` clears the `CPUID` feature flag and causes execution to generate an invalid-opcode excep-tion. 
 
 The instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

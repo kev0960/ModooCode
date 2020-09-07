@@ -2,7 +2,9 @@
 title : MOVSS (Intel x86/64 assembly instruction)
 cat_title : MOVSS
 ref_title : MOVSS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVSS
 
@@ -38,11 +40,11 @@ path : /X86-64 명령어 레퍼런스
 
 Moves a scalar single-precision floating-point value from the source operand (second operand) to the destination operand (first operand). The source and destination operands can be XMM registers or 32-bit memory locations. This instruction can be used to move a single-precision floating-point value to and from the low doubleword of an XMM register and a 32-bit memory location, or to move a single-precision floating-point value between the low doublewords of two XMM registers. The instruction cannot be used to transfer data between memory locations.
 
-Legacy version: When the source and destination operands are XMM registers, bits (MAX_VL-1:32) of the corre-sponding destination register are unmodified. When the source operand is a memory location and destination operand is an XMM registers, Bits (127:32) of the destination operand is cleared to all 0s, bits MAX_VL:128 of the destination operand remains unchanged. 
+Legacy version: When the source and destination operands are XMM registers, bits (MAX\esc{_}VL-1:32) of the corre-sponding destination register are unmodified. When the source operand is a memory location and destination operand is an XMM registers, Bits (127:32) of the destination operand is cleared to all 0s, bits MAX\esc{_}VL:128 of the destination operand remains unchanged. 
 
-VEX and EVEX encoded register-register syntax: Moves a scalar single-precision floating-point value from the second source operand (the third operand) to the low doubleword element of the destination operand (the first operand). Bits 127:32 of the destination operand are copied from the first source operand (the second operand). Bits (MAX_VL-1:128) of the corresponding destination register are zeroed.
+VEX and EVEX encoded register-register syntax: Moves a scalar single-precision floating-point value from the second source operand (the third operand) to the low doubleword element of the destination operand (the first operand). Bits 127:32 of the destination operand are copied from the first source operand (the second operand). Bits (MAX\esc{_}VL-1:128) of the corresponding destination register are zeroed.
 
-VEX and EVEX encoded memory load syntax: When the source operand is a memory location and destination operand is an XMM registers, bits MAX_VL:32 of the destination operand is cleared to all 0s.
+VEX and EVEX encoded memory load syntax: When the source operand is a memory location and destination operand is an XMM registers, bits MAX\esc{_}VL:32 of the destination operand is cleared to all 0s.
 
 EVEX encoded versions: The low doubleword of the destination is updated according to the writemask.
 

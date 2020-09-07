@@ -2,7 +2,9 @@
 title : VSCALEFPD (Intel x86/64 assembly instruction)
 cat_title : VSCALEFPD
 ref_title : VSCALEFPD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VSCALEFPD
 
@@ -26,7 +28,7 @@ Performs a floating-point scale of the packed double-precision floating-point va
 
 The equation of this operation is given by:
 
-zmm1 := zmm2\htmlonly{*}2\footnote{floor(zmm3)} .
+zmm1 := zmm2\htmlonly{\esc{*}}2\footnote{floor(zmm3)} .
 
 Floor(zmm3) means maximum integer value "  zmm3.
 

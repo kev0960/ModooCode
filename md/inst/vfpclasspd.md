@@ -2,7 +2,9 @@
 title : VFPCLASSPD (Intel x86/64 assembly instruction)
 cat_title : VFPCLASSPD
 ref_title : VFPCLASSPD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VFPCLASSPD
 
@@ -22,7 +24,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-The FPCLASSPD instruction checks the packed double precision floating point values for special categories, speci-fied by the set bits in the imm8 byte. Each set bit in imm8 specifies a category of floating-point values that the input data element is classified against. The classified results of all specified categories of an input value are ORed together to form the final boolean result for the input element. The result of each element is written to the corre-sponding bit in a mask register k2 according to the writemask k1. Bits [MAX_KL-1:8/4/2] of the destination are cleared.
+The FPCLASSPD instruction checks the packed double precision floating point values for special categories, speci-fied by the set bits in the imm8 byte. Each set bit in imm8 specifies a category of floating-point values that the input data element is classified against. The classified results of all specified categories of an input value are ORed together to form the final boolean result for the input element. The result of each element is written to the corre-sponding bit in a mask register k2 according to the writemask k1. Bits [MAX\esc{_}KL-1:8/4/2] of the destination are cleared.
 
 The classification categories specified by imm8 are shown in Figure 5-13. The classification test for each category is listed in Table 5-6.
 

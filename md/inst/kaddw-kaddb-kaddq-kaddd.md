@@ -2,7 +2,9 @@
 title : KADDW, KADDB, KADDQ, KADDDs (Intel x86/64 assembly instruction)
 cat_title : KADDW, KADDB, KADDQ, KADDD
 ref_title : KADDW, KADDB, KADDQ, KADDD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/K
+publish_date: 2020-09-01
 ----------------------------
 #@ KADDW, KADDB, KADDQ, KADDD
 

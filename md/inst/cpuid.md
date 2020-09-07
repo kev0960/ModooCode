@@ -2,7 +2,9 @@
 title : CPUID (Intel x86/64 assembly instruction)
 cat_title : CPUID
 ref_title : CPUID
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CPUID
 
@@ -32,17 +34,17 @@ Table 3-8 shows information returned, depending on the initial value loaded into
 
 Two types of information are returned: basic and extended function information. If a value entered for `CPUID`.EAX is higher than the maximum input value for basic or extended function for that processor then the data for the highest basic information leaf is returned. For example, using the Intel Core i7 processor, the following is true:
 
-    `CPUID`.EAX = 05H (\htmlonly{*} Returns MONITOR/MWAIT leaf. \htmlonly{*}) 
+    `CPUID`.EAX = 05H (\htmlonly{\esc{*}} Returns MONITOR/MWAIT leaf. \htmlonly{\esc{*}}) 
 
-    `CPUID`.EAX = 0AH (\htmlonly{*} Returns Architectural Performance Monitoring leaf. \htmlonly{*}) 
+    `CPUID`.EAX = 0AH (\htmlonly{\esc{*}} Returns Architectural Performance Monitoring leaf. \htmlonly{\esc{*}}) 
 
-    `CPUID`.EAX = 0BH (\htmlonly{*} Returns Extended Topology Enumeration leaf. \htmlonly{*}) 
+    `CPUID`.EAX = 0BH (\htmlonly{\esc{*}} Returns Extended Topology Enumeration leaf. \htmlonly{\esc{*}}) 
 
-    `CPUID`.EAX = 0CH (\htmlonly{*} INVALID: Returns the same information as `CPUID`.EAX = 0BH. \htmlonly{*}) 
+    `CPUID`.EAX = 0CH (\htmlonly{\esc{*}} INVALID: Returns the same information as `CPUID`.EAX = 0BH. \htmlonly{\esc{*}}) 
 
-    `CPUID`.EAX = 80000008H (\htmlonly{*} Returns linear/physical address size data. \htmlonly{*})
+    `CPUID`.EAX = 80000008H (\htmlonly{\esc{*}} Returns linear/physical address size data. \htmlonly{\esc{*}})
 
-    `CPUID`.EAX = 8000000AH (\htmlonly{*} INVALID: Returns same information as `CPUID`.EAX = 0BH. \htmlonly{*})
+    `CPUID`.EAX = 8000000AH (\htmlonly{\esc{*}} INVALID: Returns same information as `CPUID`.EAX = 0BH. \htmlonly{\esc{*}})
 
 If a value entered for `CPUID`.EAX is less than or equal to the maximum input value and the leaf is not supported on that processor then 0 is returned in all the registers.
 

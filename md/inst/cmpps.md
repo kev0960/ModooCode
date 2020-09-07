@@ -2,7 +2,9 @@
 title : CMPPS (Intel x86/64 assembly instruction)
 cat_title : CMPPS
 ref_title : CMPPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CMPPS
 
@@ -33,11 +35,11 @@ EVEX encoded versions: The first source operand (second operand) is a ZMM/YMM/XM
 
 VEX.256 encoded version: The first source operand (second operand) is a YMM register. The second source operand (third operand) can be a YMM register or a 256-bit memory location. The destination operand (first operand) is a YMM register. Eight comparisons are performed with results written to the destination operand. The result of each comparison is a doubleword mask of all 1s (comparison true) or all 0s (comparison false).
 
-128-bit Legacy SSE version: The first source and destination operand (first operand) is an XMM register. The second source operand (second operand) can be an XMM register or 128-bit memory location. Bits (MAX_VL-1:128) of the corresponding ZMM destination register remain unchanged. Four comparisons are performed with results written to bits 127:0 of the destination operand. The result of each comparison is a doubleword mask of all 1s (comparison true) or all 0s (comparison false).
+128-bit Legacy SSE version: The first source and destination operand (first operand) is an XMM register. The second source operand (second operand) can be an XMM register or 128-bit memory location. Bits (MAX\esc{_}VL-1:128) of the corresponding ZMM destination register remain unchanged. Four comparisons are performed with results written to bits 127:0 of the destination operand. The result of each comparison is a doubleword mask of all 1s (comparison true) or all 0s (comparison false).
 
 
 
-VEX.128 encoded version: The first source operand (second operand) is an XMM register. The second source operand (third operand) can be an XMM register or a 128-bit memory location. Bits (MAX_VL-1:128) of the desti-nation ZMM register are zeroed. Four comparisons are performed with results written to bits 127:0 of the destina-tion operand.
+VEX.128 encoded version: The first source operand (second operand) is an XMM register. The second source operand (third operand) can be an XMM register or a 128-bit memory location. Bits (MAX\esc{_}VL-1:128) of the desti-nation ZMM register are zeroed. Four comparisons are performed with results written to bits 127:0 of the destina-tion operand.
 
 The comparison predicate operand is an 8-bit immediate: 
 

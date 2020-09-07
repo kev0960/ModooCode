@@ -2,7 +2,9 @@
 title : KMOVW, KMOVB, KMOVQ, KMOVDs (Intel x86/64 assembly instruction)
 cat_title : KMOVW, KMOVB, KMOVQ, KMOVD
 ref_title : KMOVW, KMOVB, KMOVQ, KMOVD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/K
+publish_date: 2020-09-01
 ----------------------------
 #@ KMOVW, KMOVB, KMOVQ, KMOVD
 
@@ -39,7 +41,7 @@ path : /X86-64 명령어 레퍼런스
 
 Copies values from the source operand (second operand) to the destination operand (first operand). The source and destination operands can be mask registers, memory location or general purpose. The instruction cannot be used to transfer data between general purpose registers and or memory locations.
 
-When moving to a mask register, the result is zero extended to MAX_KL size (i.e., 64 bits currently). When moving to a general-purpose register (GPR), the result is zero-extended to the size of the destination. In 32-bit mode, the default GPR destination's size is 32 bits. In 64-bit mode, the default GPR destination's size is 64 bits. Note that REX.W cannot be used to modify the size of the general-purpose destination.
+When moving to a mask register, the result is zero extended to MAX\esc{_}KL size (i.e., 64 bits currently). When moving to a general-purpose register (GPR), the result is zero-extended to the size of the destination. In 32-bit mode, the default GPR destination's size is 32 bits. In 64-bit mode, the default GPR destination's size is 64 bits. Note that REX.W cannot be used to modify the size of the general-purpose destination.
 
 
 ### Operation

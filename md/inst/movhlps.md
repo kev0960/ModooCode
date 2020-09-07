@@ -2,7 +2,9 @@
 title : MOVHLPS (Intel x86/64 assembly instruction)
 cat_title : MOVHLPS
 ref_title : MOVHLPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVHLPS
 
@@ -27,11 +29,11 @@ This instruction cannot be used for memory to register moves.
 
 128-bit two-argument form:
 
-Moves two packed single-precision floating-point values from the high quadword of the second XMM argument (second operand) to the low quadword of the first XMM register (first argument). The quadword at bits 127:64 of the destination operand is left unchanged. Bits (MAX_VL-1:128) of the corresponding destination register remain unchanged.
+Moves two packed single-precision floating-point values from the high quadword of the second XMM argument (second operand) to the low quadword of the first XMM register (first argument). The quadword at bits 127:64 of the destination operand is left unchanged. Bits (MAX\esc{_}VL-1:128) of the corresponding destination register remain unchanged.
 
 128-bit and EVEX three-argument form
 
-Moves two packed single-precision floating-point values from the high quadword of the third XMM argument (third operand) to the low quadword of the destination (first operand). Copies the high quadword from the second XMM argument (second operand) to the high quadword of the destination (first operand). Bits (MAX_VL-1:128) of the corresponding destination register are zeroed.
+Moves two packed single-precision floating-point values from the high quadword of the third XMM argument (third operand) to the low quadword of the destination (first operand). Copies the high quadword from the second XMM argument (second operand) to the high quadword of the destination (first operand). Bits (MAX\esc{_}VL-1:128) of the corresponding destination register are zeroed.
 
 If VMOVHLPS is encoded with VEX.L or EVEX.L'L= 1, an attempt to execute the instruction encoded with VEX.L or EVEX.L'L= 1 will cause an #UD exception.
 

@@ -358,6 +358,11 @@ module.exports = class Server {
     let div = document.createElement('div');
     div.className = `inner-menu${path.length}`;
 
+    // x86 레퍼런스의 경우 A...Z 까지 그냥 알파벳 순으로 정렬해서 보여준다.
+    if (full_path[0] == 'X86-64 명령어 레퍼런스') {
+      folders.sort();
+    }
+
     for (let i = 0; i < folders.length; i++) {
       if (folders[i] !== 'files') {
         const dir_folders = Object.keys(current_dir[folders[i]]);
@@ -559,8 +564,8 @@ module.exports = class Server {
     this.app.get('/:id', function(req, res) {
       let maybe_inst = this.instruction_manager.getInstruction(req.params.id);
       if (maybe_inst) {
-        req.url = "/en/inst" + req.url;
-        return this.app.handle(req, res);
+        let url = "/en/inst" + req.url;
+        return res.redirect(url);
       }
 
       let page_id = parseInt(req.params.id);

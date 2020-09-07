@@ -2,7 +2,9 @@
 title : VRANGESD (Intel x86/64 assembly instruction)
 cat_title : VRANGESD
 ref_title : VRANGESD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VRANGESD
 
@@ -34,9 +36,9 @@ Bits 128:63 of the destination operand are copied from the respective element of
 
 When one or more of the input value is a NAN, the comparison operation may signal invalid exception (IE). Details with one of more input value is NAN is listed in Table 5-12. If the comparison raises an IE, the sign select control (Imm8[3:2] has no effect to the range operation output, this is indicated also in Table 5-12.
 
-When both input values are zeros of opposite signs, the comparison operation of MIN/MAX in the range compare operation is slightly different from the conceptually similar FP MIN/MAX operation that are found in the instructions VMAXPD/VMINPD. The details of MIN/MAX/MIN_ABS/MAX_ABS operation for VRANGEPD/PS/SD/SS for magni-tude-0, opposite-signed input cases are listed in Table 5-13.
+When both input values are zeros of opposite signs, the comparison operation of MIN/MAX in the range compare operation is slightly different from the conceptually similar FP MIN/MAX operation that are found in the instructions VMAXPD/VMINPD. The details of MIN/MAX/MIN\esc{_}ABS/MAX\esc{_}ABS operation for VRANGEPD/PS/SD/SS for magni-tude-0, opposite-signed input cases are listed in Table 5-13.
 
-Additionally, non-zero, equal-magnitude with opposite-sign input values perform MIN_ABS or MAX_ABS compar-ison operation with result listed in Table 5-14.
+Additionally, non-zero, equal-magnitude with opposite-sign input values perform MIN\esc{_}ABS or MAX\esc{_}ABS compar-ison operation with result listed in Table 5-14.
 
 
 ### Operation

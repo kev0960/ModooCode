@@ -2,7 +2,9 @@
 title : MOVLPS (Intel x86/64 assembly instruction)
 cat_title : MOVLPS
 ref_title : MOVLPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVLPS
 
@@ -33,11 +35,11 @@ This instruction cannot be used for register to register or memory to memory mov
 
 128-bit Legacy SSE load:
 
-Moves two packed single-precision floating-point values from the source 64-bit memory operand and stores them in the low 64-bits of the destination XMM register. The upper 64bits of the XMM register are preserved. Bits (MAX_VL-1:128) of the corresponding destination register are preserved.
+Moves two packed single-precision floating-point values from the source 64-bit memory operand and stores them in the low 64-bits of the destination XMM register. The upper 64bits of the XMM register are preserved. Bits (MAX\esc{_}VL-1:128) of the corresponding destination register are preserved.
 
 VEX.128 & EVEX encoded load:
 
-Loads two packed single-precision floating-point values from the source 64-bit memory operand (the third operand), merges them with the upper 64-bits of the first source operand (the second operand), and stores them in the low 128-bits of the destination register (the first operand). Bits (MAX_VL-1:128) of the corresponding desti-nation register are zeroed.
+Loads two packed single-precision floating-point values from the source 64-bit memory operand (the third operand), merges them with the upper 64-bits of the first source operand (the second operand), and stores them in the low 128-bits of the destination register (the first operand). Bits (MAX\esc{_}VL-1:128) of the corresponding desti-nation register are zeroed.
 
 128-bit store:
 

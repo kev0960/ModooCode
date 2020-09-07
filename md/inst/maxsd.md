@@ -2,7 +2,9 @@
 title : MAXSD (Intel x86/64 assembly instruction)
 cat_title : MAXSD
 ref_title : MAXSD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MAXSD
 
@@ -30,9 +32,9 @@ If the values being compared are both 0.0s (of either sign), the value in the se
 
 If only one value is a NaN (SNaN or QNaN) for this instruction, the second source operand, either a NaN or a valid floating-point value, is written to the result. If instead of this behavior, it is required that the NaN of either source operand be returned, the action of `MAXSD` can be emulated using a sequence of instructions, such as, a comparison followed by `AND`, `ANDN` and `OR`. 
 
-128-bit Legacy SSE version: The destination and first source operand are the same. Bits (MAX_VL-1:64) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: The destination and first source operand are the same. Bits (MAX\esc{_}VL-1:64) of the corresponding destination register remain unchanged.
 
-VEX.128 and EVEX encoded version: Bits (127:64) of the XMM register destination are copied from corresponding bits in the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 and EVEX encoded version: Bits (127:64) of the XMM register destination are copied from corresponding bits in the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 EVEX encoded version: The low quadword element of the destination operand is updated according to the writemask.
 

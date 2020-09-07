@@ -2,7 +2,9 @@
 title : SQRTSD (Intel x86/64 assembly instruction)
 cat_title : SQRTSD
 ref_title : SQRTSD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SQRTSD
 
@@ -26,9 +28,9 @@ path : /X86-64 명령어 레퍼런스
 
 Computes the square root of the low double-precision floating-point value in the second source operand and stores the double-precision floating-point result in the destination operand. The second source operand can be an XMM register or a 64-bit memory location. The first source and destination operands are XMM registers. 
 
-128-bit Legacy SSE version: The first source operand and the destination operand are the same. The quadword at bits 127:64 of the destination operand remains unchanged. Bits (MAX_VL-1:64) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: The first source operand and the destination operand are the same. The quadword at bits 127:64 of the destination operand remains unchanged. Bits (MAX\esc{_}VL-1:64) of the corresponding destination register remain unchanged.
 
-VEX.128 and EVEX encoded versions: Bits 127:64 of the destination operand are copied from the corresponding bits of the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 and EVEX encoded versions: Bits 127:64 of the destination operand are copied from the corresponding bits of the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 EVEX encoded version: The low quadword element of the destination operand is updated according to the writemask.
 

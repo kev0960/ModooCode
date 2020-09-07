@@ -2,7 +2,9 @@
 title : CVTSD2SI (Intel x86/64 assembly instruction)
 cat_title : CVTSD2SI
 ref_title : CVTSD2SI
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CVTSD2SI
 
@@ -37,7 +39,7 @@ When a conversion is inexact, the value returned is rounded according to the rou
 
 If a converted result exceeds the range limits of signed doubleword integer (in non-64-bit modes or 64-bit mode with REX.W/VEX.W/EVEX.W=0), the floating-point invalid exception is raised, and if this exception is masked, the indefinite integer value (80000000H) is returned.
 
-If a converted result exceeds the range limits of signed quadword integer (in 64-bit mode and REX.W/VEX.W/EVEX.W = 1), the floating-point invalid exception is raised, and if this exception is masked, the indefinite integer value (80000000_00000000H) is returned.
+If a converted result exceeds the range limits of signed quadword integer (in 64-bit mode and REX.W/VEX.W/EVEX.W = 1), the floating-point invalid exception is raised, and if this exception is masked, the indefinite integer value (80000000\esc{_}00000000H) is returned.
 
 Legacy SSE instruction: Use of the REX.W prefix promotes the instruction to produce 64-bit data in 64-bit mode. See the summary chart at the beginning of this section for encoding data and limits.
 

@@ -2,7 +2,9 @@
 title : SQRTPS (Intel x86/64 assembly instruction)
 cat_title : SQRTPS
 ref_title : SQRTPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SQRTPS
 
@@ -30,11 +32,11 @@ Performs a SIMD computation of the square roots of the four, eight or sixteen pa
 
 EVEX.512 encoded versions: The source operand is a ZMM/YMM/XMM register, a 512/256/128-bit memory location or a 512/256/128-bit vector broadcasted from a 32-bit memory location. The destination operand is a ZMM/YMM/XMM register updated according to the writemask.
 
-VEX.256 encoded version: The source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register. The upper bits (MAX_VL-1:256) of the corresponding ZMM register destination are zeroed.
+VEX.256 encoded version: The source operand is a YMM register or a 256-bit memory location. The destination operand is a YMM register. The upper bits (MAX\esc{_}VL-1:256) of the corresponding ZMM register destination are zeroed.
 
-VEX.128 encoded version: the source operand second source operand or a 128-bit memory location. The destina-tion operand is an XMM register. The upper bits (MAX_VL-1:128) of the corresponding ZMM register destination are zeroed.
+VEX.128 encoded version: the source operand second source operand or a 128-bit memory location. The destina-tion operand is an XMM register. The upper bits (MAX\esc{_}VL-1:128) of the corresponding ZMM register destination are zeroed.
 
-128-bit Legacy SSE version: The second source can be an XMM register or 128-bit memory location. The destina-tion is not distinct from the first source XMM register and the upper bits (MAX_VL-1:128) of the corresponding ZMM register destination are unmodified.
+128-bit Legacy SSE version: The second source can be an XMM register or 128-bit memory location. The destina-tion is not distinct from the first source XMM register and the upper bits (MAX\esc{_}VL-1:128) of the corresponding ZMM register destination are unmodified.
 
 Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructions will #UD.
 

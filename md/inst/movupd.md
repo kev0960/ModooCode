@@ -2,7 +2,9 @@
 title : MOVUPD (Intel x86/64 assembly instruction)
 cat_title : MOVUPD
 ref_title : MOVUPD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVUPD
 
@@ -44,17 +46,17 @@ Moves 512 bits of packed double-precision floating-point values from the source 
 
 VEX.256 encoded version:
 
-Moves 256 bits of packed double-precision floating-point values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load a YMM register from a 256-bit memory location, to store the contents of a YMM register into a 256-bit memory location, or to move data between two YMM registers. Bits (MAX_VL-1:256) of the destination register are zeroed.
+Moves 256 bits of packed double-precision floating-point values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load a YMM register from a 256-bit memory location, to store the contents of a YMM register into a 256-bit memory location, or to move data between two YMM registers. Bits (MAX\esc{_}VL-1:256) of the destination register are zeroed.
 
 128-bit versions:
 
 Moves 128 bits of packed double-precision floating-point values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load an XMM register from a 128-bit memory location, to store the contents of an XMM register into a 128-bit memory location, or to move data between two XMM registers. 
 
-128-bit Legacy SSE version: Bits (MAX_VL-1:128) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: Bits (MAX\esc{_}VL-1:128) of the corresponding destination register remain unchanged.
 
 When the source or destination operand is a memory operand, the operand may be unaligned on a 16-byte boundary without causing a general-protection exception (#GP) to be generated
 
-VEX.128 and EVEX.128 encoded versions: Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 and EVEX.128 encoded versions: Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 
 ### Operation

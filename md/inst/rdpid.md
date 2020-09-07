@@ -2,7 +2,9 @@
 title : RDPID (Intel x86/64 assembly instruction)
 cat_title : RDPID
 ref_title : RDPID
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/R
+publish_date: 2020-09-01
 ----------------------------
 #@ RDPID
 
@@ -21,7 +23,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Reads the value of the IA32_TSC_AUX MSR (address C0000103H) into the destination register. The value of CS.D and operand-size prefixes (66H and REX.W) do not affect the behavior of the `RDPID` instruction.
+Reads the value of the IA32\esc{_}TSC\esc{_}AUX MSR (address C0000103H) into the destination register. The value of CS.D and operand-size prefixes (66H and REX.W) do not affect the behavior of the `RDPID` instruction.
 
 
 ### Operation

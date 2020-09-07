@@ -2,7 +2,9 @@
 title : VRNDSCALESS (Intel x86/64 assembly instruction)
 cat_title : VRNDSCALESS
 ref_title : VRNDSCALESS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VRNDSCALESS
 
@@ -22,7 +24,7 @@ path : /X86-64 명령어 레퍼런스
 
 Rounds the single-precision floating-point value in the low doubleword element of the second source operand (the third operand) by the rounding mode specified in the immediate operand (see Figure 5-29) and places the result in the corresponding element of the destination operand (the first operand) according to the writemask. The double-word elements at bits 127:32 of the destination are copied from the first source operand (the second operand).
 
-The destination and first source operands are XMM registers, the 2nd source operand can be an XMM register or memory location. Bits MAX_VL-1:128 of the destination register are cleared.
+The destination and first source operands are XMM registers, the 2nd source operand can be an XMM register or memory location. Bits MAX\esc{_}VL-1:128 of the destination register are cleared.
 
 The rounding process rounds the input to an integral value, plus number bits of fraction that are specified by imm8[7:4] (to be included in the result) and returns the result as a single-precision floating-point value.
 
@@ -36,19 +38,19 @@ The sign of the result of this instruction is preserved, including the sign of z
 
 The formula of the operation for `VRNDSCALESS` is
 
-     ROUND(x) = 2\footnote{-M} \htmlonly{*}Round_to_INT(x\htmlonly{*}2\footnote{M} , round_ctrl), 
+     ROUND(x) = 2\footnote{-M} \htmlonly{\esc{*}}Round\esc{_}to\esc{_}INT(x\htmlonly{\esc{*}}2\footnote{M} , round\esc{_}ctrl), 
 
-     round_ctrl = imm[3:0];
+     round\esc{_}ctrl = imm[3:0];
 
      M=imm[7:4];
 
-The operation of x\htmlonly{*}2\footnote{M}  is computed as if the exponent range is unlimited (i.e. no overflow ever occurs).
+The operation of x\htmlonly{\esc{*}}2\footnote{M}  is computed as if the exponent range is unlimited (i.e. no overflow ever occurs).
 
 VRNDSCALESS is a more general form of the VEX-encoded VROUNDSS instruction. In VROUNDSS, the formula of the operation on each element is
 
-     ROUND(x) = Round_to_INT(x, round_ctrl), 
+     ROUND(x) = Round\esc{_}to\esc{_}INT(x, round\esc{_}ctrl), 
 
-     round_ctrl = imm[3:0];
+     round\esc{_}ctrl = imm[3:0];
 
 EVEX encoded version: The source operand is a XMM register or a 32-bit memory location. The destination operand is a XMM register.
 

@@ -4,7 +4,7 @@ module.exports = class InstructionManager {
 
     for (const file_name in file_info) {
       let file = file_info[file_name];
-      if (file.path == '/X86-64 명령어 레퍼런스') {
+      if (file.path && file.path.startsWith('/X86-64 명령어 레퍼런스')) {
         this.inst_map[file_name] = file;
       }
     }

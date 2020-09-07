@@ -2,7 +2,9 @@
 title : XSAVEOPT (Intel x86/64 assembly instruction)
 cat_title : XSAVEOPT
 ref_title : XSAVEOPT
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/X
+publish_date: 2020-09-01
 ----------------------------
 #@ XSAVEOPT
 
@@ -29,11 +31,11 @@ Section 13.9, "Operation of `XSAVEOPT`," of Intel(R) 64 and IA-32 Architectures 
 
 *  Execution of `XSAVEOPT` is similar to that of `XSAVE`. `XSAVEOPT` differs from `XSAVE` in that it uses compaction and that it may use the init and modified optimizations. The performance of `XSAVEOPT` will be equal to or better than that of `XSAVE`.
 
-*  `XSAVEOPT` saves state component i only if RFBM[i] = 1 and XINUSE[i] = 1.\footnote{1}  (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") Even if both bits are 1, `XSAVEOPT` may optimize and not save state component i if (1) state component i has not been modified since the last execution of XRTOR or XRSTORS; and (2) this execution of `XSAVES` corresponds to that last execution of XRTOR or `XRSTORS` as determined by the internal value XRSTOR_INFO (see the Operation section below).
+*  `XSAVEOPT` saves state component i only if RFBM[i] = 1 and XINUSE[i] = 1.\footnote{1}  (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") Even if both bits are 1, `XSAVEOPT` may optimize and not save state component i if (1) state component i has not been modified since the last execution of XRTOR or XRSTORS; and (2) this execution of `XSAVES` corresponds to that last execution of XRTOR or `XRSTORS` as determined by the internal value XRSTOR\esc{_}INFO (see the Operation section below).
 
 *  `XSAVEOPT` does not modify bytes 511:464 of the legacy region of the `XSAVE` area (see Section 13.4.1, "Legacy Region of an `XSAVE` Area").
 
-*  `XSAVEOPT` reads the XSTATE_BV field of the `XSAVE` header (see Section 13.4.2, "XSAVE Header") and writes a modified value back to memory as follows. If RFBM[i] = 1, `XSAVEOPT` writes XSTATE_BV[i] with the value of XINUSE[i]. If RFBM[i] = 0, `XSAVEOPT` writes XSTATE_BV[i] with the value that it read from memory (it does not modify the bit). `XSAVEOPT` does not write to any part of the `XSAVE` header other than the XSTATE_BV field.
+*  `XSAVEOPT` reads the XSTATE\esc{_}BV field of the `XSAVE` header (see Section 13.4.2, "XSAVE Header") and writes a modified value back to memory as follows. If RFBM[i] = 1, `XSAVEOPT` writes XSTATE\esc{_}BV[i] with the value of XINUSE[i]. If RFBM[i] = 0, `XSAVEOPT` writes XSTATE\esc{_}BV[i] with the value that it read from memory (it does not modify the bit). `XSAVEOPT` does not write to any part of the `XSAVE` header other than the XSTATE\esc{_}BV field.
 
 *  `XSAVEOPT` always uses the standard format of the extended region of the `XSAVE` area (see Section 13.4.3, "Extended Region of an `XSAVE` Area").
 

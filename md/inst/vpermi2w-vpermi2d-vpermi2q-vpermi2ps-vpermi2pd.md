@@ -2,7 +2,9 @@
 title : VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PDs (Intel x86/64 assembly instruction)
 cat_title : VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PD
 ref_title : VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PD
 
@@ -43,9 +45,9 @@ Permutes 16-bit/32-bit/64-bit values in the second operand (the first source ope
 
 The first and second operands are ZMM/YMM/XMM registers. The first operand contains input indices to select elements from the two input tables in the 2nd and 3rd operands. The first operand is also the destination of the result. 
 
-D/Q/PS/PD element versions: The second source operand can be a ZMM/YMM/XMM register, a 512/256/128-bit memory location or a 512/256/128-bit vector broadcasted from a 32/64-bit memory location. Broadcast from the low 32/64-bit memory location is performed if EVEX.b and the id bit for table selection are set (selecting table_2).
+D/Q/PS/PD element versions: The second source operand can be a ZMM/YMM/XMM register, a 512/256/128-bit memory location or a 512/256/128-bit vector broadcasted from a 32/64-bit memory location. Broadcast from the low 32/64-bit memory location is performed if EVEX.b and the id bit for table selection are set (selecting table\esc{_}2).
 
-Dword/PS versions: The id bit for table selection is bit 4/3/2, depending on VL=512, 256, 128. Bits [3:0]/[2:0]/[1:0] of each element in the input index vector select an element within the two source operands, If the id bit is 0, table_1 (the first source) is selected; otherwise the second source operand is selected.
+Dword/PS versions: The id bit for table selection is bit 4/3/2, depending on VL=512, 256, 128. Bits [3:0]/[2:0]/[1:0] of each element in the input index vector select an element within the two source operands, If the id bit is 0, table\esc{_}1 (the first source) is selected; otherwise the second source operand is selected.
 
 Qword/PD versions: The id bit for table selection is bit 3/2/1, and bits [2:0]/[1:0] /bit 0 selects element within each input table.
 
@@ -53,7 +55,7 @@ Word element versions: The second source operand can be a ZMM/YMM/XMM register, 
 
 Note that these instructions permit a 16-bit/32-bit/64-bit value in the source operands to be copied to more than one location in the destination operand. Note also that in this case, the same table can be reused for example for a second iteration, while the index elements are overwritten.
 
-Bits (MAX_VL-1:256/128) of the destination are zeroed for VL=256,128. 
+Bits (MAX\esc{_}VL-1:256/128) of the destination are zeroed for VL=256,128. 
 
 
 ### Operation

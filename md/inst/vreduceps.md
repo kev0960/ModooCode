@@ -2,7 +2,9 @@
 title : VREDUCEPS (Intel x86/64 assembly instruction)
 cat_title : VREDUCEPS
 ref_title : VREDUCEPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VREDUCEPS
 
@@ -26,11 +28,11 @@ Perform reduction transformation of the packed binary encoded single-precision F
 
 The reduction transformation subtracts the integer part and the leading M fractional bits from the binary FP source value, where M is a unsigned integer specified by imm8[7:4], see Figure 5-28. Specifically, the reduction transfor-mation can be expressed as:
 
-dest = src - (ROUND(2\footnote{M} \htmlonly{*}src))\htmlonly{*}2\footnote{-M} ;
+dest = src - (ROUND(2\footnote{M} \htmlonly{\esc{*}}src))\htmlonly{\esc{*}}2\footnote{-M} ;
 
 where "Round()" treats "src", "2\footnote{M} ", and their product as binary FP numbers with normalized significand and bi-ased exponents.
 
-The magnitude of the reduced result can be expressed by considering src= 2\footnote{p} \htmlonly{*}man2,
+The magnitude of the reduced result can be expressed by considering src= 2\footnote{p} \htmlonly{\esc{*}}man2,
 
 where 'man2' is the normalized significand and 'p' is the unbiased exponent 
 

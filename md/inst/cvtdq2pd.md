@@ -2,7 +2,9 @@
 title : CVTDQ2PD (Intel x86/64 assembly instruction)
 cat_title : CVTDQ2PD
 ref_title : CVTDQ2PD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CVTDQ2PD
 
@@ -32,9 +34,9 @@ EVEX encoded versions: The source operand can be a YMM/XMM/XMM (low 64 bits) reg
 
 VEX.256 encoded version: The source operand is an XMM register or 128- bit memory location. The destination operand is a YMM register. 
 
-VEX.128 encoded version: The source operand is an XMM register or 64- bit memory location. The destination operand is a XMM register. The upper Bits (MAX_VL-1:128) of the corresponding ZMM register destination are zeroed.
+VEX.128 encoded version: The source operand is an XMM register or 64- bit memory location. The destination operand is a XMM register. The upper Bits (MAX\esc{_}VL-1:128) of the corresponding ZMM register destination are zeroed.
 
-128-bit Legacy SSE version: The source operand is an XMM register or 64- bit memory location. The destination operand is an XMM register. The upper Bits (MAX_VL-1:128) of the corresponding ZMM register destination are unmodified.
+128-bit Legacy SSE version: The source operand is an XMM register or 64- bit memory location. The destination operand is an XMM register. The upper Bits (MAX\esc{_}VL-1:128) of the corresponding ZMM register destination are unmodified.
 
 VEX.vvvv and EVEX.vvvv are reserved and must be 1111b, otherwise instructions will #UD.
 

@@ -2,7 +2,9 @@
 title : CVTDQ2PS (Intel x86/64 assembly instruction)
 cat_title : CVTDQ2PS
 ref_title : CVTDQ2PS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CVTDQ2PS
 
@@ -30,11 +32,11 @@ Converts four, eight or sixteen packed signed doubleword integers in the source 
 
 EVEX encoded versions: The source operand can be a ZMM/YMM/XMM register, a 512/256/128-bit memory loca-tion or a 512/256/128-bit vector broadcasted from a 32-bit memory location. The destination operand is a ZMM/YMM/XMM register conditionally updated with writemask k1.
 
-VEX.256 encoded version: The source operand is a YMM register or 256- bit memory location. The destination operand is a YMM register. Bits (MAX_VL-1:256) of the corresponding register destination are zeroed.
+VEX.256 encoded version: The source operand is a YMM register or 256- bit memory location. The destination operand is a YMM register. Bits (MAX\esc{_}VL-1:256) of the corresponding register destination are zeroed.
 
-VEX.128 encoded version: The source operand is an XMM register or 128- bit memory location. The destination operand is a XMM register. The upper bits (MAX_VL-1:128) of the corresponding register destination are zeroed.
+VEX.128 encoded version: The source operand is an XMM register or 128- bit memory location. The destination operand is a XMM register. The upper bits (MAX\esc{_}VL-1:128) of the corresponding register destination are zeroed.
 
-128-bit Legacy SSE version: The source operand is an XMM register or 128- bit memory location. The destination operand is an XMM register. The upper Bits (MAX_VL-1:128) of the corresponding register destination are unmod-ified.
+128-bit Legacy SSE version: The source operand is an XMM register or 128- bit memory location. The destination operand is an XMM register. The upper Bits (MAX\esc{_}VL-1:128) of the corresponding register destination are unmod-ified.
 
 VEX.vvvv and EVEX.vvvv are reserved and must be 1111b, otherwise instructions will #UD.
 

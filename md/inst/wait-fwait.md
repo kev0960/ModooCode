@@ -2,7 +2,9 @@
 title : WAIT, FWAITs (Intel x86/64 assembly instruction)
 cat_title : WAIT, FWAIT
 ref_title : WAIT, FWAIT
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/W
+publish_date: 2020-09-01
 ----------------------------
 #@ WAIT, FWAIT
 

@@ -2,7 +2,9 @@
 title : RSQRTSS (Intel x86/64 assembly instruction)
 cat_title : RSQRTSS
 ref_title : RSQRTSS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/R
+publish_date: 2020-09-01
 ----------------------------
 #@ RSQRTSS
 
@@ -26,7 +28,7 @@ Computes an approximate reciprocal of the square root of the low single-precisio
 
 The relative error for this approximation is:
 
-    |Relative Error| <= 1.5 `*` 2\footnote{-12}  
+    |Relative Error| <= 1.5 `\esc{*}` 2\footnote{-12}  
 
 The `RSQRTSS` instruction is not affected by the rounding control bits in the MXCSR register. When a source value is a 0.0, an $$\infty$$ of the sign of the source value is returned. A denormal source value is treated as a 0.0 (of the same sign). When a source value is a negative value (other than -0.0), a floating-point indefinite is returned. When a source value is an SNaN or QNaN, the SNaN is converted to a QNaN or the source QNaN is returned. 
 

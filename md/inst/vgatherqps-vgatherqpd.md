@@ -2,7 +2,9 @@
 title : VGATHERQPS, VGATHERQPDs (Intel x86/64 assembly instruction)
 cat_title : VGATHERQPS, VGATHERQPD
 ref_title : VGATHERQPS, VGATHERQPD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VGATHERQPS, VGATHERQPD
 
@@ -25,7 +27,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-A set of 8 single-precision/double-precision faulting-point memory locations pointed by base address BASE_ADDR and index vector V_INDEX with scale SCALE are gathered. The result is written into vector a register. The elements are specified via the VSIB (i.e., the index register is a vector register, holding packed indices). Elements will only be loaded if their corresponding mask bit is one. If an element's mask bit is not set, the corresponding element of the destination register is left unchanged. The entire mask register will be set to zero by this instruction unless it trig-gers an exception.
+A set of 8 single-precision/double-precision faulting-point memory locations pointed by base address BASE\esc{_}ADDR and index vector V\esc{_}INDEX with scale SCALE are gathered. The result is written into vector a register. The elements are specified via the VSIB (i.e., the index register is a vector register, holding packed indices). Elements will only be loaded if their corresponding mask bit is one. If an element's mask bit is not set, the corresponding element of the destination register is left unchanged. The entire mask register will be set to zero by this instruction unless it trig-gers an exception.
 
 This instruction can be suspended by an exception if at least one element is already gathered (i.e., if the exception is triggered by an element other than the rightmost one with its mask bit set). When this happens, the destination register and the mask register (k1) are partially updated; those elements that have been gathered are placed into the destination register and have their mask bits set to zero. If any traps or interrupts are pending from already gathered elements, they will be delivered in lieu of the exception; in this case, EFLAG.RF is set to one so an instruc-tion breakpoint is not re-triggered when the instruction is continued.
 
@@ -47,7 +49,7 @@ Note that:
 
 Note that the presence of VSIB byte is enforced in this instruction. Hence, the instruction will #UD fault if ModRM.rm is different than 100b.
 
-This instruction has special disp8\htmlonly{*}N and alignment rules. N is considered to be the size of a single vector element.
+This instruction has special disp8\htmlonly{\esc{*}}N and alignment rules. N is considered to be the size of a single vector element.
 
 The scaled index may require more bits to represent than the address bits used by the processor (e.g., in 32-bit mode, if the scale is greater than one). In this case, the most significant bits beyond the number of address bits are ignored.
 

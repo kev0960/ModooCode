@@ -2,7 +2,9 @@
 title : VRCP28SS (Intel x86/64 assembly instruction)
 cat_title : VRCP28SS
 ref_title : VRCP28SS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VRCP28SS
 

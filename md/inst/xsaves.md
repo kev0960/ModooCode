@@ -2,7 +2,9 @@
 title : XSAVES (Intel x86/64 assembly instruction)
 cat_title : XSAVES
 ref_title : XSAVES
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/X
+publish_date: 2020-09-01
 ----------------------------
 #@ XSAVES
 
@@ -21,19 +23,19 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Performs a full or partial save of processor state components to the `XSAVE` area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), the logical-AND of EDX:EAX and the logical-OR of XCR0 with the IA32_XSS MSR. `XSAVES` may be executed only if CPL = 0.
+Performs a full or partial save of processor state components to the `XSAVE` area located at the memory address specified by the destination operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components saved correspond to the bits set in the requested-feature bitmap (RFBM), the logical-AND of EDX:EAX and the logical-OR of XCR0 with the IA32\esc{_}XSS MSR. `XSAVES` may be executed only if CPL = 0.
 
 The format of the `XSAVE` area is detailed in Section 13.4, "XSAVE Area," of Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1.
 
 Section 13.11, "Operation of `XSAVES`," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 provides a detailed description of the operation of the `XSAVES` instruction. The following items provide a high-level outline:
 
-*  Execution of `XSAVES` is similar to that of `XSAVEC`. `XSAVES` differs from `XSAVEC` in that it can save state components corresponding to bits set in the IA32_XSS MSR and that it may use the modified optimization.
+*  Execution of `XSAVES` is similar to that of `XSAVEC`. `XSAVES` differs from `XSAVEC` in that it can save state components corresponding to bits set in the IA32\esc{_}XSS MSR and that it may use the modified optimization.
 
-*  `XSAVES` saves state component i only if RFBM[i] = 1 and XINUSE[i] = 1.\footnote{1}  (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") Even if both bits are 1, `XSAVES` may optimize and not save state component i if (1) state component i has not been modified since the last execution of XRTOR or XRSTORS; and (2) this execution of `XSAVES` correspond to that last execution of XRTOR or `XRSTORS` as determined by XRSTOR_INFO (see the Operation section below).
+*  `XSAVES` saves state component i only if RFBM[i] = 1 and XINUSE[i] = 1.\footnote{1}  (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") Even if both bits are 1, `XSAVES` may optimize and not save state component i if (1) state component i has not been modified since the last execution of XRTOR or XRSTORS; and (2) this execution of `XSAVES` correspond to that last execution of XRTOR or `XRSTORS` as determined by XRSTOR\esc{_}INFO (see the Operation section below).
 
 *  `XSAVES` does not modify bytes 511:464 of the legacy region of the `XSAVE` area (see Section 13.4.1, "Legacy Region of an `XSAVE` Area").
 
-*  `XSAVES` writes the logical `AND` of RFBM and XINUSE to the XSTATE_BV field of the `XSAVE` header.\footnote{2}  (See Section 13.4.2, "XSAVE Header.") `XSAVES` sets bit 63 of the XCOMP_BV field and sets bits 62:0 of that field to RFBM[62:0]. `XSAVES` does not write to any parts of the `XSAVE` header other than the XSTATE_BV and XCOMP_BV fields.
+*  `XSAVES` writes the logical `AND` of RFBM and XINUSE to the XSTATE\esc{_}BV field of the `XSAVE` header.\footnote{2}  (See Section 13.4.2, "XSAVE Header.") `XSAVES` sets bit 63 of the XCOMP\esc{_}BV field and sets bits 62:0 of that field to RFBM[62:0]. `XSAVES` does not write to any parts of the `XSAVE` header other than the XSTATE\esc{_}BV and XCOMP\esc{_}BV fields.
 
 *  `XSAVES` always uses the compacted format of the extended region of the `XSAVE` area (see Section 13.4.3, "Extended Region of an `XSAVE` Area").
 

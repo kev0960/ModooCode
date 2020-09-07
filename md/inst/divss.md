@@ -2,7 +2,9 @@
 title : DIVSS (Intel x86/64 assembly instruction)
 cat_title : DIVSS
 ref_title : DIVSS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/D
+publish_date: 2020-09-01
 ----------------------------
 #@ DIVSS
 
@@ -26,11 +28,11 @@ path : /X86-64 명령어 레퍼런스
 
 Divides the low single-precision floating-point value in the first source operand by the low single-precision floating-point value in the second source operand, and stores the single-precision floating-point result in the destination operand. The second source operand can be an XMM register or a 32-bit memory location.
 
-128-bit Legacy SSE version: The first source operand and the destination operand are the same. Bits (MAX_VL-1:32) of the corresponding YMM destination register remain unchanged. 
+128-bit Legacy SSE version: The first source operand and the destination operand are the same. Bits (MAX\esc{_}VL-1:32) of the corresponding YMM destination register remain unchanged. 
 
-VEX.128 encoded version: The first source operand is an xmm register encoded by VEX.vvvv. The three high-order doublewords of the destination operand are copied from the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 encoded version: The first source operand is an xmm register encoded by VEX.vvvv. The three high-order doublewords of the destination operand are copied from the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
-EVEX.128 encoded version: The first source operand is an xmm register encoded by EVEX.vvvv. The doubleword elements of the destination operand at bits 127:32 are copied from the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed.
+EVEX.128 encoded version: The first source operand is an xmm register encoded by EVEX.vvvv. The doubleword elements of the destination operand at bits 127:32 are copied from the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 EVEX version: The low doubleword element of the destination is updated according to the writemask.
 

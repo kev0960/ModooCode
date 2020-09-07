@@ -2,7 +2,9 @@
 title : CLFLUSH (Intel x86/64 assembly instruction)
 cat_title : CLFLUSH
 ref_title : CLFLUSH
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CLFLUSH
 
@@ -49,6 +51,8 @@ Flush_Cache_Line(SRC);
 CLFLUSH: void _mm_clflush(void const *p)
 ```
 ```sidenote
+
+
 1. Earlier versions of this manual specified that executions of the CLFLUSH instruction were ordered only by the MFENCE instruction. All processors implementing the CLFLUSH instruction also order it relative to the other operations enumerated above.
 ```
 ### Protected Mode Exceptions

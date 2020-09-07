@@ -2,7 +2,9 @@
 title : SUBPS (Intel x86/64 assembly instruction)
 cat_title : SUBPS
 ref_title : SUBPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SUBPS
 
@@ -29,13 +31,13 @@ path : /X86-64 명령어 레퍼런스
 
 Performs a SIMD subtract of the packed single-precision floating-point values in the second Source operand from the First Source operand, and stores the packed single-precision floating-point results in the destination operand.
 
-VEX.128 and EVEX.128 encoded versions: The second source operand is an XMM register or an 128-bit memory location. The first source operand and destination operands are XMM registers. Bits (MAX_VL-1:128) of the corre-sponding destination register are zeroed.
+VEX.128 and EVEX.128 encoded versions: The second source operand is an XMM register or an 128-bit memory location. The first source operand and destination operands are XMM registers. Bits (MAX\esc{_}VL-1:128) of the corre-sponding destination register are zeroed.
 
-VEX.256 and EVEX.256 encoded versions: The second source operand is an YMM register or an 256-bit memory location. The first source operand and destination operands are YMM registers. Bits (MAX_VL-1:256) of the corre-sponding destination register are zeroed.
+VEX.256 and EVEX.256 encoded versions: The second source operand is an YMM register or an 256-bit memory location. The first source operand and destination operands are YMM registers. Bits (MAX\esc{_}VL-1:256) of the corre-sponding destination register are zeroed.
 
 EVEX.512 encoded version: The second source operand is a ZMM register, a 512-bit memory location or a 512-bit vector broadcasted from a 32-bit memory location. The first source operand and destination operands are ZMM registers. The destination operand is conditionally updated according to the writemask.
 
-128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The desti-nation is not distinct from the first source XMM register and the upper Bits (MAX_VL-1:128) of the corresponding register destination are unmodified.
+128-bit Legacy SSE version: The second source can be an XMM register or an 128-bit memory location. The desti-nation is not distinct from the first source XMM register and the upper Bits (MAX\esc{_}VL-1:128) of the corresponding register destination are unmodified.
 
 
 ### Operation

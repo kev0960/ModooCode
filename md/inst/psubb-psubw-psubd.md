@@ -2,7 +2,9 @@
 title : PSUBB, PSUBW, PSUBDs (Intel x86/64 assembly instruction)
 cat_title : PSUBB, PSUBW, PSUBD
 ref_title : PSUBB, PSUBW, PSUBD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/P
+publish_date: 2020-09-01
 ----------------------------
 #@ PSUBB, PSUBW, PSUBD
 
@@ -70,7 +72,7 @@ VEX.128 encoded version: The second source operand is an XMM register or a 128-b
 
 
 
-VEX.256 encoded versions: The second source operand is an YMM register or an 256-bit memory location. The first source operand and destination operands are YMM registers. Bits (MAX_VL-1:256) of the corresponding ZMM register are zeroed.
+VEX.256 encoded versions: The second source operand is an YMM register or an 256-bit memory location. The first source operand and destination operands are YMM registers. Bits (MAX\esc{_}VL-1:256) of the corresponding ZMM register are zeroed.
 
 EVEX encoded VPSUBD: The second source operand is a ZMM/YMM/XMM register, a 512/256/128-bit memory loca-tion or a 512/256/128-bit vector broadcasted from a 32/64-bit memory location. The first source operand and destination operands are ZMM/YMM/XMM registers. The destination is conditionally updated with writemask k1.
 

@@ -2,7 +2,9 @@
 title : PHADDSW (Intel x86/64 assembly instruction)
 cat_title : PHADDSW
 ref_title : PHADDSW
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/P
+publish_date: 2020-09-01
 ----------------------------
 #@ PHADDSW
 

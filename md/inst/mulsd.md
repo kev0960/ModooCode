@@ -2,7 +2,9 @@
 title : MULSD (Intel x86/64 assembly instruction)
 cat_title : MULSD
 ref_title : MULSD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MULSD
 
@@ -26,9 +28,9 @@ path : /X86-64 명령어 레퍼런스
 
 Multiplies the low double-precision floating-point value in the second source operand by the low double-precision floating-point value in the first source operand, and stores the double-precision floating-point result in the destina-tion operand. The second source operand can be an XMM register or a 64-bit memory location. The first source operand and the destination operands are XMM registers. 
 
-128-bit Legacy SSE version: The first source operand and the destination operand are the same. Bits (MAX_VL-1:64) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: The first source operand and the destination operand are the same. Bits (MAX\esc{_}VL-1:64) of the corresponding destination register remain unchanged.
 
-VEX.128 and EVEX encoded version: The quadword at bits 127:64 of the destination operand is copied from the same bits of the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 and EVEX encoded version: The quadword at bits 127:64 of the destination operand is copied from the same bits of the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 EVEX encoded version: The low quadword element of the destination operand is updated according to the writemask.
 

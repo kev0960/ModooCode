@@ -2,7 +2,9 @@
 title : VPERMILPD (Intel x86/64 assembly instruction)
 cat_title : VPERMILPD
 ref_title : VPERMILPD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPERMILPD
 
@@ -40,7 +42,7 @@ The control bits are located at bit 0 of each quadword element (see Figure 5-24)
 
 EVEX version: The second source operand (third operand) is a ZMM/YMM/XMM register, a 512/256/128-bit memory location or a 512/256/128-bit vector broadcasted from a 64-bit memory location. Permuted results are written to the destination under the writemask.
 
-VEX.256 encoded version: Bits (MAX_VL-1:256) of the corresponding ZMM register are zeroed. 
+VEX.256 encoded version: Bits (MAX\esc{_}VL-1:256) of the corresponding ZMM register are zeroed. 
 
 (immediate control version)
 

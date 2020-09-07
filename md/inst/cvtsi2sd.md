@@ -2,7 +2,9 @@
 title : CVTSI2SD (Intel x86/64 assembly instruction)
 cat_title : CVTSI2SD
 ref_title : CVTSI2SD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CVTSI2SD
 
@@ -36,9 +38,9 @@ Converts a signed doubleword integer (or signed quadword integer if operand size
 
 The second source operand can be a general-purpose register or a 32/64-bit memory location. The first source and destination operands are XMM registers. 
 
-128-bit Legacy SSE version: Use of the REX.W prefix promotes the instruction to 64-bit operands. The "convert-from" source operand (the second operand) is a general-purpose register or memory location. The destination is an XMM register Bits (MAX_VL-1:64) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: Use of the REX.W prefix promotes the instruction to 64-bit operands. The "convert-from" source operand (the second operand) is a general-purpose register or memory location. The destination is an XMM register Bits (MAX\esc{_}VL-1:64) of the corresponding destination register remain unchanged.
 
-VEX.128 and EVEX encoded versions: The "convert-from" source operand (the third operand) can be a general-purpose register or a memory location. The first source and destination operands are XMM registers. Bits (127:64) of the XMM register destination are copied from the corresponding bits in the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 and EVEX encoded versions: The "convert-from" source operand (the third operand) can be a general-purpose register or a memory location. The first source and destination operands are XMM registers. Bits (127:64) of the XMM register destination are copied from the corresponding bits in the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 EVEX.W0 version: attempt to encode this instruction with EVEX embedded rounding is ignored.
 

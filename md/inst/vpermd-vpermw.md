@@ -2,7 +2,9 @@
 title : VPERMD, VPERMWs (Intel x86/64 assembly instruction)
 cat_title : VPERMD, VPERMW
 ref_title : VPERMD, VPERMW
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPERMD, VPERMW
 
@@ -29,13 +31,13 @@ path : /X86-64 명령어 레퍼런스
 
 Copies doublewords (or words) from the second source operand (the third operand) to the destination operand (the first operand) according to the indices in the first source operand (the second operand). Note that this instruction permits a doubleword (word) in the source operand to be copied to more than one location in the destination operand.
 
-VEX.256 encoded VPERMD: The first and second operands are YMM registers, the third operand can be a YMM register or memory location. Bits (MAX_VL-1:256) of the corresponding destination register are zeroed. 
+VEX.256 encoded VPERMD: The first and second operands are YMM registers, the third operand can be a YMM register or memory location. Bits (MAX\esc{_}VL-1:256) of the corresponding destination register are zeroed. 
 
 EVEX encoded VPERMD: The first and second operands are ZMM/YMM registers, the third operand can be a ZMM/YMM register, a 512/256-bit memory location or a 512/256-bit vector broadcasted from a 32-bit memory location. The elements in the destination are updated using the writemask k1.
 
 VPERMW: first and second operands are ZMM/YMM/XMM registers, the third operand can be a ZMM/YMM/XMM register, or a 512/256/128-bit memory location. The destination is updated using the writemask k1.
 
-EVEX.128 encoded versions: Bits (MAX_VL-1:128) of the corresponding ZMM register are zeroed.
+EVEX.128 encoded versions: Bits (MAX\esc{_}VL-1:128) of the corresponding ZMM register are zeroed.
 
 
 ### Operation

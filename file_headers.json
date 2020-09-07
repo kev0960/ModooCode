@@ -2204,4403 +2204,5661 @@
 ,
 	"aaa" : {
 	"cat_title" : "AAA",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AAA",
 	"title" : "AAA (Intel x86/64 assembly instruction)"
 }
 ,
 	"aad" : {
 	"cat_title" : "AAD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AAD",
 	"title" : "AAD (Intel x86/64 assembly instruction)"
 }
 ,
 	"aam" : {
 	"cat_title" : "AAM",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AAM",
 	"title" : "AAM (Intel x86/64 assembly instruction)"
 }
 ,
 	"aas" : {
 	"cat_title" : "AAS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AAS",
 	"title" : "AAS (Intel x86/64 assembly instruction)"
 }
 ,
 	"adc" : {
 	"cat_title" : "ADC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADC",
 	"title" : "ADC (Intel x86/64 assembly instruction)"
 }
 ,
 	"adcx" : {
 	"cat_title" : "ADCX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADCX",
 	"title" : "ADCX (Intel x86/64 assembly instruction)"
 }
 ,
 	"add" : {
 	"cat_title" : "ADD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADD",
 	"title" : "ADD (Intel x86/64 assembly instruction)"
 }
 ,
 	"addpd" : {
 	"cat_title" : "ADDPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADDPD",
 	"title" : "ADDPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"addps" : {
 	"cat_title" : "ADDPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADDPS",
 	"title" : "ADDPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"addsd" : {
 	"cat_title" : "ADDSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADDSD",
 	"title" : "ADDSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"addss" : {
 	"cat_title" : "ADDSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADDSS",
 	"title" : "ADDSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"addsubpd" : {
 	"cat_title" : "ADDSUBPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADDSUBPD",
 	"title" : "ADDSUBPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"addsubps" : {
 	"cat_title" : "ADDSUBPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADDSUBPS",
 	"title" : "ADDSUBPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"adox" : {
 	"cat_title" : "ADOX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ADOX",
 	"title" : "ADOX (Intel x86/64 assembly instruction)"
 }
 ,
 	"aesdec" : {
 	"cat_title" : "AESDEC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AESDEC",
 	"title" : "AESDEC (Intel x86/64 assembly instruction)"
 }
 ,
 	"aesdeclast" : {
 	"cat_title" : "AESDECLAST",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AESDECLAST",
 	"title" : "AESDECLAST (Intel x86/64 assembly instruction)"
 }
 ,
 	"aesenc" : {
 	"cat_title" : "AESENC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AESENC",
 	"title" : "AESENC (Intel x86/64 assembly instruction)"
 }
 ,
 	"aesenclast" : {
 	"cat_title" : "AESENCLAST",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AESENCLAST",
 	"title" : "AESENCLAST (Intel x86/64 assembly instruction)"
 }
 ,
 	"aesimc" : {
 	"cat_title" : "AESIMC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AESIMC",
 	"title" : "AESIMC (Intel x86/64 assembly instruction)"
 }
 ,
 	"aeskeygenassist" : {
 	"cat_title" : "AESKEYGENASSIST",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AESKEYGENASSIST",
 	"title" : "AESKEYGENASSIST (Intel x86/64 assembly instruction)"
 }
 ,
 	"and" : {
 	"cat_title" : "AND",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "AND",
 	"title" : "AND (Intel x86/64 assembly instruction)"
 }
 ,
 	"andn" : {
 	"cat_title" : "ANDN",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ANDN",
 	"title" : "ANDN (Intel x86/64 assembly instruction)"
 }
 ,
 	"andnpd" : {
 	"cat_title" : "ANDNPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ANDNPD",
 	"title" : "ANDNPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"andnps" : {
 	"cat_title" : "ANDNPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ANDNPS",
 	"title" : "ANDNPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"andpd" : {
 	"cat_title" : "ANDPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ANDPD",
 	"title" : "ANDPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"andps" : {
 	"cat_title" : "ANDPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ANDPS",
 	"title" : "ANDPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"arpl" : {
 	"cat_title" : "ARPL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/A",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ARPL",
 	"title" : "ARPL (Intel x86/64 assembly instruction)"
 }
 ,
 	"bextr" : {
 	"cat_title" : "BEXTR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BEXTR",
 	"title" : "BEXTR (Intel x86/64 assembly instruction)"
 }
 ,
 	"blendpd" : {
 	"cat_title" : "BLENDPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BLENDPD",
 	"title" : "BLENDPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"blendps" : {
 	"cat_title" : "BLENDPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BLENDPS",
 	"title" : "BLENDPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"blendvpd" : {
 	"cat_title" : "BLENDVPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BLENDVPD",
 	"title" : "BLENDVPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"blendvps" : {
 	"cat_title" : "BLENDVPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BLENDVPS",
 	"title" : "BLENDVPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"blsi" : {
 	"cat_title" : "BLSI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BLSI",
 	"title" : "BLSI (Intel x86/64 assembly instruction)"
 }
 ,
 	"blsmsk" : {
 	"cat_title" : "BLSMSK",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BLSMSK",
 	"title" : "BLSMSK (Intel x86/64 assembly instruction)"
 }
 ,
 	"blsr" : {
 	"cat_title" : "BLSR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BLSR",
 	"title" : "BLSR (Intel x86/64 assembly instruction)"
 }
 ,
 	"bndcl" : {
 	"cat_title" : "BNDCL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BNDCL",
 	"title" : "BNDCL (Intel x86/64 assembly instruction)"
 }
 ,
 	"bndcu-bndcn" : {
 	"cat_title" : "BNDCU, BNDCN",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BNDCU, BNDCN",
 	"title" : "BNDCU, BNDCNs (Intel x86/64 assembly instruction)"
 }
 ,
 	"bndldx" : {
 	"cat_title" : "BNDLDX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BNDLDX",
 	"title" : "BNDLDX (Intel x86/64 assembly instruction)"
 }
 ,
 	"bndmk" : {
 	"cat_title" : "BNDMK",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BNDMK",
 	"title" : "BNDMK (Intel x86/64 assembly instruction)"
 }
 ,
 	"bndmov" : {
 	"cat_title" : "BNDMOV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BNDMOV",
 	"title" : "BNDMOV (Intel x86/64 assembly instruction)"
 }
 ,
 	"bndstx" : {
 	"cat_title" : "BNDSTX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BNDSTX",
 	"title" : "BNDSTX (Intel x86/64 assembly instruction)"
 }
 ,
 	"bound" : {
 	"cat_title" : "BOUND",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BOUND",
 	"title" : "BOUND (Intel x86/64 assembly instruction)"
 }
 ,
 	"bsf" : {
 	"cat_title" : "BSF",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BSF",
 	"title" : "BSF (Intel x86/64 assembly instruction)"
 }
 ,
 	"bsr" : {
 	"cat_title" : "BSR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BSR",
 	"title" : "BSR (Intel x86/64 assembly instruction)"
 }
 ,
 	"bswap" : {
 	"cat_title" : "BSWAP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BSWAP",
 	"title" : "BSWAP (Intel x86/64 assembly instruction)"
 }
 ,
 	"bt" : {
 	"cat_title" : "BT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BT",
 	"title" : "BT (Intel x86/64 assembly instruction)"
 }
 ,
 	"btc" : {
 	"cat_title" : "BTC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BTC",
 	"title" : "BTC (Intel x86/64 assembly instruction)"
 }
 ,
 	"btr" : {
 	"cat_title" : "BTR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BTR",
 	"title" : "BTR (Intel x86/64 assembly instruction)"
 }
 ,
 	"bts" : {
 	"cat_title" : "BTS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BTS",
 	"title" : "BTS (Intel x86/64 assembly instruction)"
 }
 ,
 	"bzhi" : {
 	"cat_title" : "BZHI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/B",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "BZHI",
 	"title" : "BZHI (Intel x86/64 assembly instruction)"
 }
 ,
 	"call" : {
 	"cat_title" : "CALL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CALL",
 	"title" : "CALL (Intel x86/64 assembly instruction)"
 }
 ,
 	"cbw-cwde-cdqe" : {
 	"cat_title" : "CBW, CWDE, CDQE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CBW, CWDE, CDQE",
 	"title" : "CBW, CWDE, CDQEs (Intel x86/64 assembly instruction)"
 }
 ,
 	"clac" : {
 	"cat_title" : "CLAC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CLAC",
 	"title" : "CLAC (Intel x86/64 assembly instruction)"
 }
 ,
 	"clc" : {
 	"cat_title" : "CLC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CLC",
 	"title" : "CLC (Intel x86/64 assembly instruction)"
 }
 ,
 	"cld" : {
 	"cat_title" : "CLD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CLD",
 	"title" : "CLD (Intel x86/64 assembly instruction)"
 }
 ,
 	"clflush" : {
 	"cat_title" : "CLFLUSH",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CLFLUSH",
 	"title" : "CLFLUSH (Intel x86/64 assembly instruction)"
 }
 ,
 	"clflushopt" : {
 	"cat_title" : "CLFLUSHOPT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CLFLUSHOPT",
 	"title" : "CLFLUSHOPT (Intel x86/64 assembly instruction)"
 }
 ,
 	"cli" : {
 	"cat_title" : "CLI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CLI",
 	"title" : "CLI (Intel x86/64 assembly instruction)"
 }
 ,
 	"clts" : {
 	"cat_title" : "CLTS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CLTS",
 	"title" : "CLTS (Intel x86/64 assembly instruction)"
 }
 ,
 	"clwb" : {
 	"cat_title" : "CLWB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CLWB",
 	"title" : "CLWB (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmc" : {
 	"cat_title" : "CMC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMC",
 	"title" : "CMC (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmovcc" : {
 	"cat_title" : "CMOVcc",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMOVcc",
 	"title" : "CMOVcc (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmp" : {
 	"cat_title" : "CMP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMP",
 	"title" : "CMP (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmppd" : {
 	"cat_title" : "CMPPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMPPD",
 	"title" : "CMPPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpps" : {
 	"cat_title" : "CMPPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMPPS",
 	"title" : "CMPPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmps-cmpsb-cmpsw-cmpsd-cmpsq" : {
 	"cat_title" : "CMPS, CMPSB, CMPSW, CMPSD, CMPSQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMPS, CMPSB, CMPSW, CMPSD, CMPSQ",
 	"title" : "CMPS, CMPSB, CMPSW, CMPSD, CMPSQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpsd" : {
 	"cat_title" : "CMPSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMPSD",
 	"title" : "CMPSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpss" : {
 	"cat_title" : "CMPSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMPSS",
 	"title" : "CMPSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpxchg" : {
 	"cat_title" : "CMPXCHG",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMPXCHG",
 	"title" : "CMPXCHG (Intel x86/64 assembly instruction)"
 }
 ,
 	"cmpxchg8b-cmpxchg16b" : {
 	"cat_title" : "CMPXCHG8B, CMPXCHG16B",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CMPXCHG8B, CMPXCHG16B",
 	"title" : "CMPXCHG8B, CMPXCHG16Bs (Intel x86/64 assembly instruction)"
 }
 ,
 	"comisd" : {
 	"cat_title" : "COMISD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "COMISD",
 	"title" : "COMISD (Intel x86/64 assembly instruction)"
 }
 ,
 	"comiss" : {
 	"cat_title" : "COMISS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "COMISS",
 	"title" : "COMISS (Intel x86/64 assembly instruction)"
 }
 ,
 	"cpuid" : {
 	"cat_title" : "CPUID",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CPUID",
 	"title" : "CPUID (Intel x86/64 assembly instruction)"
 }
 ,
 	"crc32" : {
 	"cat_title" : "CRC32",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CRC32",
 	"title" : "CRC32 (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtdq2pd" : {
 	"cat_title" : "CVTDQ2PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTDQ2PD",
 	"title" : "CVTDQ2PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtdq2ps" : {
 	"cat_title" : "CVTDQ2PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTDQ2PS",
 	"title" : "CVTDQ2PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpd2dq" : {
 	"cat_title" : "CVTPD2DQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTPD2DQ",
 	"title" : "CVTPD2DQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpd2pi" : {
 	"cat_title" : "CVTPD2PI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTPD2PI",
 	"title" : "CVTPD2PI (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpd2ps" : {
 	"cat_title" : "CVTPD2PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTPD2PS",
 	"title" : "CVTPD2PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpi2pd" : {
 	"cat_title" : "CVTPI2PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTPI2PD",
 	"title" : "CVTPI2PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtpi2ps" : {
 	"cat_title" : "CVTPI2PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTPI2PS",
 	"title" : "CVTPI2PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtps2dq" : {
 	"cat_title" : "CVTPS2DQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTPS2DQ",
 	"title" : "CVTPS2DQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtps2pd" : {
 	"cat_title" : "CVTPS2PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTPS2PD",
 	"title" : "CVTPS2PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtps2pi" : {
 	"cat_title" : "CVTPS2PI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTPS2PI",
 	"title" : "CVTPS2PI (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtsd2si" : {
 	"cat_title" : "CVTSD2SI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTSD2SI",
 	"title" : "CVTSD2SI (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtsd2ss" : {
 	"cat_title" : "CVTSD2SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTSD2SS",
 	"title" : "CVTSD2SS (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtsi2sd" : {
 	"cat_title" : "CVTSI2SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTSI2SD",
 	"title" : "CVTSI2SD (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtsi2ss" : {
 	"cat_title" : "CVTSI2SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTSI2SS",
 	"title" : "CVTSI2SS (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtss2sd" : {
 	"cat_title" : "CVTSS2SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTSS2SD",
 	"title" : "CVTSS2SD (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvtss2si" : {
 	"cat_title" : "CVTSS2SI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTSS2SI",
 	"title" : "CVTSS2SI (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttpd2dq" : {
 	"cat_title" : "CVTTPD2DQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTTPD2DQ",
 	"title" : "CVTTPD2DQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttpd2pi" : {
 	"cat_title" : "CVTTPD2PI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTTPD2PI",
 	"title" : "CVTTPD2PI (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttps2dq" : {
 	"cat_title" : "CVTTPS2DQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTTPS2DQ",
 	"title" : "CVTTPS2DQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttps2pi" : {
 	"cat_title" : "CVTTPS2PI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTTPS2PI",
 	"title" : "CVTTPS2PI (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttsd2si" : {
 	"cat_title" : "CVTTSD2SI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTTSD2SI",
 	"title" : "CVTTSD2SI (Intel x86/64 assembly instruction)"
 }
 ,
 	"cvttss2si" : {
 	"cat_title" : "CVTTSS2SI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CVTTSS2SI",
 	"title" : "CVTTSS2SI (Intel x86/64 assembly instruction)"
 }
 ,
 	"cwd-cdq-cqo" : {
 	"cat_title" : "CWD, CDQ, CQO",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/C",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "CWD, CDQ, CQO",
 	"title" : "CWD, CDQ, CQOs (Intel x86/64 assembly instruction)"
 }
 ,
 	"daa" : {
 	"cat_title" : "DAA",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DAA",
 	"title" : "DAA (Intel x86/64 assembly instruction)"
 }
 ,
 	"das" : {
 	"cat_title" : "DAS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DAS",
 	"title" : "DAS (Intel x86/64 assembly instruction)"
 }
 ,
 	"dec" : {
 	"cat_title" : "DEC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DEC",
 	"title" : "DEC (Intel x86/64 assembly instruction)"
 }
 ,
 	"div" : {
 	"cat_title" : "DIV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DIV",
 	"title" : "DIV (Intel x86/64 assembly instruction)"
 }
 ,
 	"divpd" : {
 	"cat_title" : "DIVPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DIVPD",
 	"title" : "DIVPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"divps" : {
 	"cat_title" : "DIVPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DIVPS",
 	"title" : "DIVPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"divsd" : {
 	"cat_title" : "DIVSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DIVSD",
 	"title" : "DIVSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"divss" : {
 	"cat_title" : "DIVSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DIVSS",
 	"title" : "DIVSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"dppd" : {
 	"cat_title" : "DPPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DPPD",
 	"title" : "DPPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"dpps" : {
 	"cat_title" : "DPPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/D",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "DPPS",
 	"title" : "DPPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"emms" : {
 	"cat_title" : "EMMS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/E",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "EMMS",
 	"title" : "EMMS (Intel x86/64 assembly instruction)"
 }
 ,
 	"enter" : {
 	"cat_title" : "ENTER",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/E",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ENTER",
 	"title" : "ENTER (Intel x86/64 assembly instruction)"
 }
 ,
 	"extractps" : {
 	"cat_title" : "EXTRACTPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/E",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "EXTRACTPS",
 	"title" : "EXTRACTPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"f2xm1" : {
 	"cat_title" : "F2XM1",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "F2XM1",
 	"title" : "F2XM1 (Intel x86/64 assembly instruction)"
 }
 ,
 	"fabs" : {
 	"cat_title" : "FABS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FABS",
 	"title" : "FABS (Intel x86/64 assembly instruction)"
 }
 ,
 	"fadd-faddp-fiadd" : {
 	"cat_title" : "FADD, FADDP, FIADD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FADD, FADDP, FIADD",
 	"title" : "FADD, FADDP, FIADDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fbld" : {
 	"cat_title" : "FBLD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FBLD",
 	"title" : "FBLD (Intel x86/64 assembly instruction)"
 }
 ,
 	"fbstp" : {
 	"cat_title" : "FBSTP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FBSTP",
 	"title" : "FBSTP (Intel x86/64 assembly instruction)"
 }
 ,
 	"fchs" : {
 	"cat_title" : "FCHS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FCHS",
 	"title" : "FCHS (Intel x86/64 assembly instruction)"
 }
 ,
 	"fclex-fnclex" : {
 	"cat_title" : "FCLEX, FNCLEX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FCLEX, FNCLEX",
 	"title" : "FCLEX, FNCLEXs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fcmovcc" : {
 	"cat_title" : "FCMOVcc",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FCMOVcc",
 	"title" : "FCMOVcc (Intel x86/64 assembly instruction)"
 }
 ,
 	"fcom-fcomp-fcompp" : {
 	"cat_title" : "FCOM, FCOMP, FCOMPP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FCOM, FCOMP, FCOMPP",
 	"title" : "FCOM, FCOMP, FCOMPPs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fcomi-fcomip--fucomip" : {
 	"cat_title" : "FCOMI, FCOMIP, , FUCOMIP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FCOMI, FCOMIP, , FUCOMIP",
 	"title" : "FCOMI, FCOMIP, , FUCOMIPs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fcos" : {
 	"cat_title" : "FCOS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FCOS",
 	"title" : "FCOS (Intel x86/64 assembly instruction)"
 }
 ,
 	"fdecstp" : {
 	"cat_title" : "FDECSTP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FDECSTP",
 	"title" : "FDECSTP (Intel x86/64 assembly instruction)"
 }
 ,
 	"fdiv-fdivp-fidiv" : {
 	"cat_title" : "FDIV, FDIVP, FIDIV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FDIV, FDIVP, FIDIV",
 	"title" : "FDIV, FDIVP, FIDIVs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fdivr-fdivrp-fidivr" : {
 	"cat_title" : "FDIVR, FDIVRP, FIDIVR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FDIVR, FDIVRP, FIDIVR",
 	"title" : "FDIVR, FDIVRP, FIDIVRs (Intel x86/64 assembly instruction)"
 }
 ,
 	"ffree" : {
 	"cat_title" : "FFREE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FFREE",
 	"title" : "FFREE (Intel x86/64 assembly instruction)"
 }
 ,
 	"ficom-ficomp" : {
 	"cat_title" : "FICOM, FICOMP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FICOM, FICOMP",
 	"title" : "FICOM, FICOMPs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fild" : {
 	"cat_title" : "FILD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FILD",
 	"title" : "FILD (Intel x86/64 assembly instruction)"
 }
 ,
 	"fincstp" : {
 	"cat_title" : "FINCSTP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FINCSTP",
 	"title" : "FINCSTP (Intel x86/64 assembly instruction)"
 }
 ,
 	"finit-fninit" : {
 	"cat_title" : "FINIT, FNINIT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FINIT, FNINIT",
 	"title" : "FINIT, FNINITs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fist-fistp" : {
 	"cat_title" : "FIST, FISTP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FIST, FISTP",
 	"title" : "FIST, FISTPs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fisttp" : {
 	"cat_title" : "FISTTP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FISTTP",
 	"title" : "FISTTP (Intel x86/64 assembly instruction)"
 }
 ,
 	"fld" : {
 	"cat_title" : "FLD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FLD",
 	"title" : "FLD (Intel x86/64 assembly instruction)"
 }
 ,
 	"fld1-fldl2t-fldl2e-fldpi-fldlg2-fldln2-fldz" : {
 	"cat_title" : "FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZ",
 	"title" : "FLD1, FLDL2T, FLDL2E, FLDPI, FLDLG2, FLDLN2, FLDZs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fldcw" : {
 	"cat_title" : "FLDCW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FLDCW",
 	"title" : "FLDCW (Intel x86/64 assembly instruction)"
 }
 ,
 	"fldenv" : {
 	"cat_title" : "FLDENV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FLDENV",
 	"title" : "FLDENV (Intel x86/64 assembly instruction)"
 }
 ,
 	"fmul-fmulp-fimul" : {
 	"cat_title" : "FMUL, FMULP, FIMUL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FMUL, FMULP, FIMUL",
 	"title" : "FMUL, FMULP, FIMULs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fnop" : {
 	"cat_title" : "FNOP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FNOP",
 	"title" : "FNOP (Intel x86/64 assembly instruction)"
 }
 ,
 	"fpatan" : {
 	"cat_title" : "FPATAN",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FPATAN",
 	"title" : "FPATAN (Intel x86/64 assembly instruction)"
 }
 ,
 	"fprem" : {
 	"cat_title" : "FPREM",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FPREM",
 	"title" : "FPREM (Intel x86/64 assembly instruction)"
 }
 ,
 	"fprem1" : {
 	"cat_title" : "FPREM1",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FPREM1",
 	"title" : "FPREM1 (Intel x86/64 assembly instruction)"
 }
 ,
 	"fptan" : {
 	"cat_title" : "FPTAN",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FPTAN",
 	"title" : "FPTAN (Intel x86/64 assembly instruction)"
 }
 ,
 	"frndint" : {
 	"cat_title" : "FRNDINT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FRNDINT",
 	"title" : "FRNDINT (Intel x86/64 assembly instruction)"
 }
 ,
 	"frstor" : {
 	"cat_title" : "FRSTOR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FRSTOR",
 	"title" : "FRSTOR (Intel x86/64 assembly instruction)"
 }
 ,
 	"fsave-fnsave" : {
 	"cat_title" : "FSAVE, FNSAVE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSAVE, FNSAVE",
 	"title" : "FSAVE, FNSAVEs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fscale" : {
 	"cat_title" : "FSCALE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSCALE",
 	"title" : "FSCALE (Intel x86/64 assembly instruction)"
 }
 ,
 	"fsin" : {
 	"cat_title" : "FSIN",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSIN",
 	"title" : "FSIN (Intel x86/64 assembly instruction)"
 }
 ,
 	"fsincos" : {
 	"cat_title" : "FSINCOS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSINCOS",
 	"title" : "FSINCOS (Intel x86/64 assembly instruction)"
 }
 ,
 	"fsqrt" : {
 	"cat_title" : "FSQRT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSQRT",
 	"title" : "FSQRT (Intel x86/64 assembly instruction)"
 }
 ,
 	"fst-fstp" : {
 	"cat_title" : "FST, FSTP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FST, FSTP",
 	"title" : "FST, FSTPs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fstcw-fnstcw" : {
 	"cat_title" : "FSTCW, FNSTCW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSTCW, FNSTCW",
 	"title" : "FSTCW, FNSTCWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fstenv-fnstenv" : {
 	"cat_title" : "FSTENV, FNSTENV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSTENV, FNSTENV",
 	"title" : "FSTENV, FNSTENVs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fstsw-fnstsw" : {
 	"cat_title" : "FSTSW, FNSTSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSTSW, FNSTSW",
 	"title" : "FSTSW, FNSTSWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fsub-fsubp-fisub" : {
 	"cat_title" : "FSUB, FSUBP, FISUB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSUB, FSUBP, FISUB",
 	"title" : "FSUB, FSUBP, FISUBs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fsubr-fsubrp-fisubr" : {
 	"cat_title" : "FSUBR, FSUBRP, FISUBR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FSUBR, FSUBRP, FISUBR",
 	"title" : "FSUBR, FSUBRP, FISUBRs (Intel x86/64 assembly instruction)"
 }
 ,
 	"ftst" : {
 	"cat_title" : "FTST",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FTST",
 	"title" : "FTST (Intel x86/64 assembly instruction)"
 }
 ,
 	"fucom-fucomp-fucompp" : {
 	"cat_title" : "FUCOM, FUCOMP, FUCOMPP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FUCOM, FUCOMP, FUCOMPP",
 	"title" : "FUCOM, FUCOMP, FUCOMPPs (Intel x86/64 assembly instruction)"
 }
 ,
 	"fxam" : {
 	"cat_title" : "FXAM",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FXAM",
 	"title" : "FXAM (Intel x86/64 assembly instruction)"
 }
 ,
 	"fxch" : {
 	"cat_title" : "FXCH",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FXCH",
 	"title" : "FXCH (Intel x86/64 assembly instruction)"
 }
 ,
 	"fxrstor" : {
 	"cat_title" : "FXRSTOR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FXRSTOR",
 	"title" : "FXRSTOR (Intel x86/64 assembly instruction)"
 }
 ,
 	"fxsave" : {
 	"cat_title" : "FXSAVE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FXSAVE",
 	"title" : "FXSAVE (Intel x86/64 assembly instruction)"
 }
 ,
 	"fxtract" : {
 	"cat_title" : "FXTRACT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FXTRACT",
 	"title" : "FXTRACT (Intel x86/64 assembly instruction)"
 }
 ,
 	"fyl2x" : {
 	"cat_title" : "FYL2X",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FYL2X",
 	"title" : "FYL2X (Intel x86/64 assembly instruction)"
 }
 ,
 	"fyl2xp1" : {
 	"cat_title" : "FYL2XP1",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/F",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "FYL2XP1",
 	"title" : "FYL2XP1 (Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[exitac]" : {
 	"cat_title" : "GETSEC[EXITAC]",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/G",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "GETSEC[EXITAC]",
 	"title" : "GETSEC[EXITAC] (Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[parameters]" : {
 	"cat_title" : "GETSEC[PARAMETERS]",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/G",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "GETSEC[PARAMETERS]",
 	"title" : "GETSEC[PARAMETERS] (Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[senter]" : {
 	"cat_title" : "GETSEC[SENTER]",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/G",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "GETSEC[SENTER]",
 	"title" : "GETSEC[SENTER] (Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[sexit]" : {
 	"cat_title" : "GETSEC[SEXIT]",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/G",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "GETSEC[SEXIT]",
 	"title" : "GETSEC[SEXIT] (Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[smctrl]" : {
 	"cat_title" : "GETSEC[SMCTRL]",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/G",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "GETSEC[SMCTRL]",
 	"title" : "GETSEC[SMCTRL] (Intel x86/64 assembly instruction)"
 }
 ,
 	"getsec[wakeup]" : {
 	"cat_title" : "GETSEC[WAKEUP]",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/G",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "GETSEC[WAKEUP]",
 	"title" : "GETSEC[WAKEUP] (Intel x86/64 assembly instruction)"
 }
 ,
 	"haddpd" : {
 	"cat_title" : "HADDPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/H",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "HADDPD",
 	"title" : "HADDPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"haddps" : {
 	"cat_title" : "HADDPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/H",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "HADDPS",
 	"title" : "HADDPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"hlt" : {
 	"cat_title" : "HLT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/H",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "HLT",
 	"title" : "HLT (Intel x86/64 assembly instruction)"
 }
 ,
 	"hsubpd" : {
 	"cat_title" : "HSUBPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/H",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "HSUBPD",
 	"title" : "HSUBPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"hsubps" : {
 	"cat_title" : "HSUBPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/H",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "HSUBPS",
 	"title" : "HSUBPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"idiv" : {
 	"cat_title" : "IDIV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "IDIV",
 	"title" : "IDIV (Intel x86/64 assembly instruction)"
 }
 ,
 	"imul" : {
 	"cat_title" : "IMUL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "IMUL",
 	"title" : "IMUL (Intel x86/64 assembly instruction)"
 }
 ,
 	"in" : {
 	"cat_title" : "IN",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "IN",
 	"title" : "IN (Intel x86/64 assembly instruction)"
 }
 ,
 	"inc" : {
 	"cat_title" : "INC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "INC",
 	"title" : "INC (Intel x86/64 assembly instruction)"
 }
 ,
 	"ins-insb-insw-insd" : {
 	"cat_title" : "INS, INSB, INSW, INSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "INS, INSB, INSW, INSD",
 	"title" : "INS, INSB, INSW, INSDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"insertps" : {
 	"cat_title" : "INSERTPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "INSERTPS",
 	"title" : "INSERTPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"int n-into-int 3" : {
 	"cat_title" : "INT n, INTO, INT 3",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "INT n, INTO, INT 3",
 	"title" : "INT n, INTO, INT 3s (Intel x86/64 assembly instruction)"
 }
 ,
 	"invd" : {
 	"cat_title" : "INVD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "INVD",
 	"title" : "INVD (Intel x86/64 assembly instruction)"
 }
 ,
 	"invlpg" : {
 	"cat_title" : "INVLPG",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "INVLPG",
 	"title" : "INVLPG (Intel x86/64 assembly instruction)"
 }
 ,
 	"invpcid" : {
 	"cat_title" : "INVPCID",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "INVPCID",
 	"title" : "INVPCID (Intel x86/64 assembly instruction)"
 }
 ,
 	"iret-iretd" : {
 	"cat_title" : "IRET, IRETD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/I",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "IRET, IRETD",
 	"title" : "IRET, IRETDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"jcc" : {
 	"cat_title" : "Jcc",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/J",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "Jcc",
 	"title" : "Jcc (Intel x86/64 assembly instruction)"
 }
 ,
 	"jmp" : {
 	"cat_title" : "JMP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/J",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "JMP",
 	"title" : "JMP (Intel x86/64 assembly instruction)"
 }
 ,
 	"kaddw-kaddb-kaddq-kaddd" : {
 	"cat_title" : "KADDW, KADDB, KADDQ, KADDD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KADDW, KADDB, KADDQ, KADDD",
 	"title" : "KADDW, KADDB, KADDQ, KADDDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kandnw-kandnb-kandnq-kandnd" : {
 	"cat_title" : "KANDNW, KANDNB, KANDNQ, KANDND",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KANDNW, KANDNB, KANDNQ, KANDND",
 	"title" : "KANDNW, KANDNB, KANDNQ, KANDNDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kandw-kandb-kandq-kandd" : {
 	"cat_title" : "KANDW, KANDB, KANDQ, KANDD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KANDW, KANDB, KANDQ, KANDD",
 	"title" : "KANDW, KANDB, KANDQ, KANDDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kmovw-kmovb-kmovq-kmovd" : {
 	"cat_title" : "KMOVW, KMOVB, KMOVQ, KMOVD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KMOVW, KMOVB, KMOVQ, KMOVD",
 	"title" : "KMOVW, KMOVB, KMOVQ, KMOVDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"knotw-knotb-knotq-knotd" : {
 	"cat_title" : "KNOTW, KNOTB, KNOTQ, KNOTD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KNOTW, KNOTB, KNOTQ, KNOTD",
 	"title" : "KNOTW, KNOTB, KNOTQ, KNOTDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kortestw-kortestb-kortestq-kortestd" : {
 	"cat_title" : "KORTESTW, KORTESTB, KORTESTQ, KORTESTD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KORTESTW, KORTESTB, KORTESTQ, KORTESTD",
 	"title" : "KORTESTW, KORTESTB, KORTESTQ, KORTESTDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"korw-korb-korq-kord" : {
 	"cat_title" : "KORW, KORB, KORQ, KORD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KORW, KORB, KORQ, KORD",
 	"title" : "KORW, KORB, KORQ, KORDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kshiftlw-kshiftlb-kshiftlq-kshiftld" : {
 	"cat_title" : "KSHIFTLW, KSHIFTLB, KSHIFTLQ, KSHIFTLD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KSHIFTLW, KSHIFTLB, KSHIFTLQ, KSHIFTLD",
 	"title" : "KSHIFTLW, KSHIFTLB, KSHIFTLQ, KSHIFTLDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kshiftrw-kshiftrb-kshiftrq-kshiftrd" : {
 	"cat_title" : "KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRD",
 	"title" : "KSHIFTRW, KSHIFTRB, KSHIFTRQ, KSHIFTRDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"ktestw-ktestb-ktestq-ktestd" : {
 	"cat_title" : "KTESTW, KTESTB, KTESTQ, KTESTD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KTESTW, KTESTB, KTESTQ, KTESTD",
 	"title" : "KTESTW, KTESTB, KTESTQ, KTESTDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kunpckbw-kunpckwd-kunpckdq" : {
 	"cat_title" : "KUNPCKBW, KUNPCKWD, KUNPCKDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KUNPCKBW, KUNPCKWD, KUNPCKDQ",
 	"title" : "KUNPCKBW, KUNPCKWD, KUNPCKDQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kxnorw-kxnorb-kxnorq-kxnord" : {
 	"cat_title" : "KXNORW, KXNORB, KXNORQ, KXNORD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KXNORW, KXNORB, KXNORQ, KXNORD",
 	"title" : "KXNORW, KXNORB, KXNORQ, KXNORDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"kxorw-kxorb-kxorq-kxord" : {
 	"cat_title" : "KXORW, KXORB, KXORQ, KXORD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/K",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "KXORW, KXORB, KXORQ, KXORD",
 	"title" : "KXORW, KXORB, KXORQ, KXORDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"lahf" : {
 	"cat_title" : "LAHF",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LAHF",
 	"title" : "LAHF (Intel x86/64 assembly instruction)"
 }
 ,
 	"lar" : {
 	"cat_title" : "LAR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LAR",
 	"title" : "LAR (Intel x86/64 assembly instruction)"
 }
 ,
 	"lddqu" : {
 	"cat_title" : "LDDQU",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LDDQU",
 	"title" : "LDDQU (Intel x86/64 assembly instruction)"
 }
 ,
 	"ldmxcsr" : {
 	"cat_title" : "LDMXCSR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LDMXCSR",
 	"title" : "LDMXCSR (Intel x86/64 assembly instruction)"
 }
 ,
 	"lds-les-lfs-lgs-lss" : {
 	"cat_title" : "LDS, LES, LFS, LGS, LSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LDS, LES, LFS, LGS, LSS",
 	"title" : "LDS, LES, LFS, LGS, LSSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"lea" : {
 	"cat_title" : "LEA",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LEA",
 	"title" : "LEA (Intel x86/64 assembly instruction)"
 }
 ,
 	"leave" : {
 	"cat_title" : "LEAVE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LEAVE",
 	"title" : "LEAVE (Intel x86/64 assembly instruction)"
 }
 ,
 	"lfence" : {
 	"cat_title" : "LFENCE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LFENCE",
 	"title" : "LFENCE (Intel x86/64 assembly instruction)"
 }
 ,
 	"lgdt-lidt" : {
 	"cat_title" : "LGDT, LIDT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LGDT, LIDT",
 	"title" : "LGDT, LIDTs (Intel x86/64 assembly instruction)"
 }
 ,
 	"lldt" : {
 	"cat_title" : "LLDT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LLDT",
 	"title" : "LLDT (Intel x86/64 assembly instruction)"
 }
 ,
 	"lmsw" : {
 	"cat_title" : "LMSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LMSW",
 	"title" : "LMSW (Intel x86/64 assembly instruction)"
 }
 ,
 	"lock" : {
 	"cat_title" : "LOCK",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LOCK",
 	"title" : "LOCK (Intel x86/64 assembly instruction)"
 }
 ,
 	"lods-lodsb-lodsw-lodsd-lodsq" : {
 	"cat_title" : "LODS, LODSB, LODSW, LODSD, LODSQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LODS, LODSB, LODSW, LODSD, LODSQ",
 	"title" : "LODS, LODSB, LODSW, LODSD, LODSQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"loop-loopcc" : {
 	"cat_title" : "LOOP, LOOPcc",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LOOP, LOOPcc",
 	"title" : "LOOP, LOOPccs (Intel x86/64 assembly instruction)"
 }
 ,
 	"lsl" : {
 	"cat_title" : "LSL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LSL",
 	"title" : "LSL (Intel x86/64 assembly instruction)"
 }
 ,
 	"ltr" : {
 	"cat_title" : "LTR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LTR",
 	"title" : "LTR (Intel x86/64 assembly instruction)"
 }
 ,
 	"lzcnt" : {
 	"cat_title" : "LZCNT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/L",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "LZCNT",
 	"title" : "LZCNT (Intel x86/64 assembly instruction)"
 }
 ,
 	"maskmovdqu" : {
 	"cat_title" : "MASKMOVDQU",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MASKMOVDQU",
 	"title" : "MASKMOVDQU (Intel x86/64 assembly instruction)"
 }
 ,
 	"maskmovq" : {
 	"cat_title" : "MASKMOVQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MASKMOVQ",
 	"title" : "MASKMOVQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"maxpd" : {
 	"cat_title" : "MAXPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MAXPD",
 	"title" : "MAXPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"maxps" : {
 	"cat_title" : "MAXPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MAXPS",
 	"title" : "MAXPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"maxsd" : {
 	"cat_title" : "MAXSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MAXSD",
 	"title" : "MAXSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"maxss" : {
 	"cat_title" : "MAXSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MAXSS",
 	"title" : "MAXSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"mfence" : {
 	"cat_title" : "MFENCE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MFENCE",
 	"title" : "MFENCE (Intel x86/64 assembly instruction)"
 }
 ,
 	"minpd" : {
 	"cat_title" : "MINPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MINPD",
 	"title" : "MINPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"minps" : {
 	"cat_title" : "MINPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MINPS",
 	"title" : "MINPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"minsd" : {
 	"cat_title" : "MINSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MINSD",
 	"title" : "MINSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"minss" : {
 	"cat_title" : "MINSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MINSS",
 	"title" : "MINSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"monitor" : {
 	"cat_title" : "MONITOR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MONITOR",
 	"title" : "MONITOR (Intel x86/64 assembly instruction)"
 }
 ,
 	"mov" : {
 	"cat_title" : "MOV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOV",
 	"title" : "MOV (Intel x86/64 assembly instruction)"
 }
 ,
 	"mov_1" : {
 	"cat_title" : "MOV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOV",
 	"title" : "MOV (Intel x86/64 assembly instruction)"
 }
 ,
 	"mov_2" : {
 	"cat_title" : "MOV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOV",
 	"title" : "MOV (Intel x86/64 assembly instruction)"
 }
 ,
 	"movapd" : {
 	"cat_title" : "MOVAPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVAPD",
 	"title" : "MOVAPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"movaps" : {
 	"cat_title" : "MOVAPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVAPS",
 	"title" : "MOVAPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movbe" : {
 	"cat_title" : "MOVBE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVBE",
 	"title" : "MOVBE (Intel x86/64 assembly instruction)"
 }
 ,
 	"movd-movq" : {
 	"cat_title" : "MOVD, MOVQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVD, MOVQ",
 	"title" : "MOVD, MOVQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"movddup" : {
 	"cat_title" : "MOVDDUP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVDDUP",
 	"title" : "MOVDDUP (Intel x86/64 assembly instruction)"
 }
 ,
 	"movdq2q" : {
 	"cat_title" : "MOVDQ2Q",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVDQ2Q",
 	"title" : "MOVDQ2Q (Intel x86/64 assembly instruction)"
 }
 ,
 	"movdqa-vmovdqa32-vmovdqa64" : {
 	"cat_title" : "MOVDQA, VMOVDQA32, VMOVDQA64",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVDQA, VMOVDQA32, VMOVDQA64",
 	"title" : "MOVDQA, VMOVDQA32, VMOVDQA64s (Intel x86/64 assembly instruction)"
 }
 ,
 	"movdqu-vmovdqu8-vmovdqu16-vmovdqu32-vmovdqu64" : {
 	"cat_title" : "MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64",
 	"title" : "MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64s (Intel x86/64 assembly instruction)"
 }
 ,
 	"movhlps" : {
 	"cat_title" : "MOVHLPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVHLPS",
 	"title" : "MOVHLPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movhpd" : {
 	"cat_title" : "MOVHPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVHPD",
 	"title" : "MOVHPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"movhps" : {
 	"cat_title" : "MOVHPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVHPS",
 	"title" : "MOVHPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movlhps" : {
 	"cat_title" : "MOVLHPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVLHPS",
 	"title" : "MOVLHPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movlpd" : {
 	"cat_title" : "MOVLPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVLPD",
 	"title" : "MOVLPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"movlps" : {
 	"cat_title" : "MOVLPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVLPS",
 	"title" : "MOVLPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movmskpd" : {
 	"cat_title" : "MOVMSKPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVMSKPD",
 	"title" : "MOVMSKPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"movmskps" : {
 	"cat_title" : "MOVMSKPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVMSKPS",
 	"title" : "MOVMSKPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movntdq" : {
 	"cat_title" : "MOVNTDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVNTDQ",
 	"title" : "MOVNTDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"movntdqa" : {
 	"cat_title" : "MOVNTDQA",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVNTDQA",
 	"title" : "MOVNTDQA (Intel x86/64 assembly instruction)"
 }
 ,
 	"movnti" : {
 	"cat_title" : "MOVNTI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVNTI",
 	"title" : "MOVNTI (Intel x86/64 assembly instruction)"
 }
 ,
 	"movntpd" : {
 	"cat_title" : "MOVNTPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVNTPD",
 	"title" : "MOVNTPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"movntps" : {
 	"cat_title" : "MOVNTPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVNTPS",
 	"title" : "MOVNTPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movntq" : {
 	"cat_title" : "MOVNTQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVNTQ",
 	"title" : "MOVNTQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"movq" : {
 	"cat_title" : "MOVQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVQ",
 	"title" : "MOVQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"movq2dq" : {
 	"cat_title" : "MOVQ2DQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVQ2DQ",
 	"title" : "MOVQ2DQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"movs-movsb-movsw-movsd-movsq" : {
 	"cat_title" : "MOVS, MOVSB, MOVSW, MOVSD, MOVSQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVS, MOVSB, MOVSW, MOVSD, MOVSQ",
 	"title" : "MOVS, MOVSB, MOVSW, MOVSD, MOVSQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"movsd" : {
 	"cat_title" : "MOVSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVSD",
 	"title" : "MOVSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"movshdup" : {
 	"cat_title" : "MOVSHDUP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVSHDUP",
 	"title" : "MOVSHDUP (Intel x86/64 assembly instruction)"
 }
 ,
 	"movsldup" : {
 	"cat_title" : "MOVSLDUP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVSLDUP",
 	"title" : "MOVSLDUP (Intel x86/64 assembly instruction)"
 }
 ,
 	"movss" : {
 	"cat_title" : "MOVSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVSS",
 	"title" : "MOVSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movsx-movsxd" : {
 	"cat_title" : "MOVSX, MOVSXD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVSX, MOVSXD",
 	"title" : "MOVSX, MOVSXDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"movupd" : {
 	"cat_title" : "MOVUPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVUPD",
 	"title" : "MOVUPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"movups" : {
 	"cat_title" : "MOVUPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVUPS",
 	"title" : "MOVUPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"movzx" : {
 	"cat_title" : "MOVZX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MOVZX",
 	"title" : "MOVZX (Intel x86/64 assembly instruction)"
 }
 ,
 	"mpsadbw" : {
 	"cat_title" : "MPSADBW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MPSADBW",
 	"title" : "MPSADBW (Intel x86/64 assembly instruction)"
 }
 ,
 	"mul" : {
 	"cat_title" : "MUL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MUL",
 	"title" : "MUL (Intel x86/64 assembly instruction)"
 }
 ,
 	"mulpd" : {
 	"cat_title" : "MULPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MULPD",
 	"title" : "MULPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"mulps" : {
 	"cat_title" : "MULPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MULPS",
 	"title" : "MULPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"mulsd" : {
 	"cat_title" : "MULSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MULSD",
 	"title" : "MULSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"mulss" : {
 	"cat_title" : "MULSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MULSS",
 	"title" : "MULSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"mulx" : {
 	"cat_title" : "MULX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MULX",
 	"title" : "MULX (Intel x86/64 assembly instruction)"
 }
 ,
 	"mwait" : {
 	"cat_title" : "MWAIT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/M",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "MWAIT",
 	"title" : "MWAIT (Intel x86/64 assembly instruction)"
 }
 ,
 	"neg" : {
 	"cat_title" : "NEG",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/N",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "NEG",
 	"title" : "NEG (Intel x86/64 assembly instruction)"
 }
 ,
 	"nop" : {
 	"cat_title" : "NOP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/N",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "NOP",
 	"title" : "NOP (Intel x86/64 assembly instruction)"
 }
 ,
 	"not" : {
 	"cat_title" : "NOT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/N",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "NOT",
 	"title" : "NOT (Intel x86/64 assembly instruction)"
 }
 ,
 	"or" : {
 	"cat_title" : "OR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/O",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "OR",
 	"title" : "OR (Intel x86/64 assembly instruction)"
 }
 ,
 	"orpd" : {
 	"cat_title" : "ORPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/O",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ORPD",
 	"title" : "ORPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"orps" : {
 	"cat_title" : "ORPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/O",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ORPS",
 	"title" : "ORPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"out" : {
 	"cat_title" : "OUT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/O",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "OUT",
 	"title" : "OUT (Intel x86/64 assembly instruction)"
 }
 ,
 	"outs-outsb-outsw-outsd" : {
 	"cat_title" : "OUTS, OUTSB, OUTSW, OUTSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/O",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "OUTS, OUTSB, OUTSW, OUTSD",
 	"title" : "OUTS, OUTSB, OUTSW, OUTSDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pabsb-pabsw-pabsd-pabsq" : {
 	"cat_title" : "PABSB, PABSW, PABSD, PABSQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PABSB, PABSW, PABSD, PABSQ",
 	"title" : "PABSB, PABSW, PABSD, PABSQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"packsswb-packssdw" : {
 	"cat_title" : "PACKSSWB, PACKSSDW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PACKSSWB, PACKSSDW",
 	"title" : "PACKSSWB, PACKSSDWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"packusdw" : {
 	"cat_title" : "PACKUSDW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PACKUSDW",
 	"title" : "PACKUSDW (Intel x86/64 assembly instruction)"
 }
 ,
 	"packuswb" : {
 	"cat_title" : "PACKUSWB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PACKUSWB",
 	"title" : "PACKUSWB (Intel x86/64 assembly instruction)"
 }
 ,
 	"paddb-paddw-paddd-paddq" : {
 	"cat_title" : "PADDB, PADDW, PADDD, PADDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PADDB, PADDW, PADDD, PADDQ",
 	"title" : "PADDB, PADDW, PADDD, PADDQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"paddsb-paddsw" : {
 	"cat_title" : "PADDSB, PADDSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PADDSB, PADDSW",
 	"title" : "PADDSB, PADDSWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"paddusb-paddusw" : {
 	"cat_title" : "PADDUSB, PADDUSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PADDUSB, PADDUSW",
 	"title" : "PADDUSB, PADDUSWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"palignr" : {
 	"cat_title" : "PALIGNR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PALIGNR",
 	"title" : "PALIGNR (Intel x86/64 assembly instruction)"
 }
 ,
 	"pand" : {
 	"cat_title" : "PAND",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PAND",
 	"title" : "PAND (Intel x86/64 assembly instruction)"
 }
 ,
 	"pandn" : {
 	"cat_title" : "PANDN",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PANDN",
 	"title" : "PANDN (Intel x86/64 assembly instruction)"
 }
 ,
 	"pause" : {
 	"cat_title" : "PAUSE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PAUSE",
 	"title" : "PAUSE (Intel x86/64 assembly instruction)"
 }
 ,
 	"pavgb-pavgw" : {
 	"cat_title" : "PAVGB, PAVGW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PAVGB, PAVGW",
 	"title" : "PAVGB, PAVGWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pblendvb" : {
 	"cat_title" : "PBLENDVB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PBLENDVB",
 	"title" : "PBLENDVB (Intel x86/64 assembly instruction)"
 }
 ,
 	"pblendw" : {
 	"cat_title" : "PBLENDW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PBLENDW",
 	"title" : "PBLENDW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pcmpeqb-pcmpeqw-pcmpeqd" : {
 	"cat_title" : "PCMPEQB, PCMPEQW, PCMPEQD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PCMPEQB, PCMPEQW, PCMPEQD",
 	"title" : "PCMPEQB, PCMPEQW, PCMPEQDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pcmpeqq" : {
 	"cat_title" : "PCMPEQQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PCMPEQQ",
 	"title" : "PCMPEQQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"pcmpestri" : {
 	"cat_title" : "PCMPESTRI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PCMPESTRI",
 	"title" : "PCMPESTRI (Intel x86/64 assembly instruction)"
 }
 ,
 	"pcmpestrm" : {
 	"cat_title" : "PCMPESTRM",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PCMPESTRM",
 	"title" : "PCMPESTRM (Intel x86/64 assembly instruction)"
 }
 ,
 	"pcmpgtb-pcmpgtw-pcmpgtd" : {
 	"cat_title" : "PCMPGTB, PCMPGTW, PCMPGTD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PCMPGTB, PCMPGTW, PCMPGTD",
 	"title" : "PCMPGTB, PCMPGTW, PCMPGTDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pcmpgtq" : {
 	"cat_title" : "PCMPGTQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PCMPGTQ",
 	"title" : "PCMPGTQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"pcmpistri" : {
 	"cat_title" : "PCMPISTRI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PCMPISTRI",
 	"title" : "PCMPISTRI (Intel x86/64 assembly instruction)"
 }
 ,
 	"pcmpistrm" : {
 	"cat_title" : "PCMPISTRM",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PCMPISTRM",
 	"title" : "PCMPISTRM (Intel x86/64 assembly instruction)"
 }
 ,
 	"pdep" : {
 	"cat_title" : "PDEP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PDEP",
 	"title" : "PDEP (Intel x86/64 assembly instruction)"
 }
 ,
 	"pext" : {
 	"cat_title" : "PEXT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PEXT",
 	"title" : "PEXT (Intel x86/64 assembly instruction)"
 }
 ,
 	"pextrb-pextrd-pextrq" : {
 	"cat_title" : "PEXTRB, PEXTRD, PEXTRQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PEXTRB, PEXTRD, PEXTRQ",
 	"title" : "PEXTRB, PEXTRD, PEXTRQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pextrw" : {
 	"cat_title" : "PEXTRW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PEXTRW",
 	"title" : "PEXTRW (Intel x86/64 assembly instruction)"
 }
 ,
 	"phaddsw" : {
 	"cat_title" : "PHADDSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PHADDSW",
 	"title" : "PHADDSW (Intel x86/64 assembly instruction)"
 }
 ,
 	"phaddw-phaddd" : {
 	"cat_title" : "PHADDW, PHADDD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PHADDW, PHADDD",
 	"title" : "PHADDW, PHADDDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"phminposuw" : {
 	"cat_title" : "PHMINPOSUW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PHMINPOSUW",
 	"title" : "PHMINPOSUW (Intel x86/64 assembly instruction)"
 }
 ,
 	"phsubsw" : {
 	"cat_title" : "PHSUBSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PHSUBSW",
 	"title" : "PHSUBSW (Intel x86/64 assembly instruction)"
 }
 ,
 	"phsubw-phsubd" : {
 	"cat_title" : "PHSUBW, PHSUBD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PHSUBW, PHSUBD",
 	"title" : "PHSUBW, PHSUBDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pinsrb-pinsrd-pinsrq" : {
 	"cat_title" : "PINSRB, PINSRD, PINSRQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PINSRB, PINSRD, PINSRQ",
 	"title" : "PINSRB, PINSRD, PINSRQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pinsrw" : {
 	"cat_title" : "PINSRW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PINSRW",
 	"title" : "PINSRW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmaddubsw" : {
 	"cat_title" : "PMADDUBSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMADDUBSW",
 	"title" : "PMADDUBSW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmaddwd" : {
 	"cat_title" : "PMADDWD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMADDWD",
 	"title" : "PMADDWD (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmaxsb-pmaxsw-pmaxsd-pmaxsq" : {
 	"cat_title" : "PMAXSB, PMAXSW, PMAXSD, PMAXSQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMAXSB, PMAXSW, PMAXSD, PMAXSQ",
 	"title" : "PMAXSB, PMAXSW, PMAXSD, PMAXSQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmaxub-pmaxuw" : {
 	"cat_title" : "PMAXUB, PMAXUW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMAXUB, PMAXUW",
 	"title" : "PMAXUB, PMAXUWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmaxud-pmaxuq" : {
 	"cat_title" : "PMAXUD, PMAXUQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMAXUD, PMAXUQ",
 	"title" : "PMAXUD, PMAXUQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pminsb-pminsw" : {
 	"cat_title" : "PMINSB, PMINSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMINSB, PMINSW",
 	"title" : "PMINSB, PMINSWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pminsd-pminsq" : {
 	"cat_title" : "PMINSD, PMINSQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMINSD, PMINSQ",
 	"title" : "PMINSD, PMINSQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pminub-pminuw" : {
 	"cat_title" : "PMINUB, PMINUW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMINUB, PMINUW",
 	"title" : "PMINUB, PMINUWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pminud-pminuq" : {
 	"cat_title" : "PMINUD, PMINUQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMINUD, PMINUQ",
 	"title" : "PMINUD, PMINUQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmovmskb" : {
 	"cat_title" : "PMOVMSKB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMOVMSKB",
 	"title" : "PMOVMSKB (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmovsx" : {
 	"cat_title" : "PMOVSX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMOVSX",
 	"title" : "PMOVSX (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmovzx" : {
 	"cat_title" : "PMOVZX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMOVZX",
 	"title" : "PMOVZX (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmuldq" : {
 	"cat_title" : "PMULDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMULDQ",
 	"title" : "PMULDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmulhrsw" : {
 	"cat_title" : "PMULHRSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMULHRSW",
 	"title" : "PMULHRSW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmulhuw" : {
 	"cat_title" : "PMULHUW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMULHUW",
 	"title" : "PMULHUW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmulhw" : {
 	"cat_title" : "PMULHW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMULHW",
 	"title" : "PMULHW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmulld-pmullq" : {
 	"cat_title" : "PMULLD, PMULLQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMULLD, PMULLQ",
 	"title" : "PMULLD, PMULLQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmullw" : {
 	"cat_title" : "PMULLW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMULLW",
 	"title" : "PMULLW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pmuludq" : {
 	"cat_title" : "PMULUDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PMULUDQ",
 	"title" : "PMULUDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"pop" : {
 	"cat_title" : "POP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "POP",
 	"title" : "POP (Intel x86/64 assembly instruction)"
 }
 ,
 	"popa-popad" : {
 	"cat_title" : "POPA, POPAD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "POPA, POPAD",
 	"title" : "POPA, POPADs (Intel x86/64 assembly instruction)"
 }
 ,
 	"popcnt" : {
 	"cat_title" : "POPCNT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "POPCNT",
 	"title" : "POPCNT (Intel x86/64 assembly instruction)"
 }
 ,
 	"popf-popfd-popfq" : {
 	"cat_title" : "POPF, POPFD, POPFQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "POPF, POPFD, POPFQ",
 	"title" : "POPF, POPFD, POPFQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"por" : {
 	"cat_title" : "POR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "POR",
 	"title" : "POR (Intel x86/64 assembly instruction)"
 }
 ,
 	"prefetchh" : {
 	"cat_title" : "PREFETCHh",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PREFETCHh",
 	"title" : "PREFETCHh (Intel x86/64 assembly instruction)"
 }
 ,
 	"prefetchw" : {
 	"cat_title" : "PREFETCHW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PREFETCHW",
 	"title" : "PREFETCHW (Intel x86/64 assembly instruction)"
 }
 ,
 	"prefetchwt1" : {
 	"cat_title" : "PREFETCHWT1",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PREFETCHWT1",
 	"title" : "PREFETCHWT1 (Intel x86/64 assembly instruction)"
 }
 ,
 	"prold-prolvd-prolq-prolvq" : {
 	"cat_title" : "PROLD, PROLVD, PROLQ, PROLVQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PROLD, PROLVD, PROLQ, PROLVQ",
 	"title" : "PROLD, PROLVD, PROLQ, PROLVQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"prord-prorvd-prorq-prorvq" : {
 	"cat_title" : "PRORD, PRORVD, PRORQ, PRORVQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PRORD, PRORVD, PRORQ, PRORVQ",
 	"title" : "PRORD, PRORVD, PRORQ, PRORVQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"psadbw" : {
 	"cat_title" : "PSADBW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSADBW",
 	"title" : "PSADBW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pshufb" : {
 	"cat_title" : "PSHUFB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSHUFB",
 	"title" : "PSHUFB (Intel x86/64 assembly instruction)"
 }
 ,
 	"pshufd" : {
 	"cat_title" : "PSHUFD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSHUFD",
 	"title" : "PSHUFD (Intel x86/64 assembly instruction)"
 }
 ,
 	"pshufhw" : {
 	"cat_title" : "PSHUFHW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSHUFHW",
 	"title" : "PSHUFHW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pshuflw" : {
 	"cat_title" : "PSHUFLW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSHUFLW",
 	"title" : "PSHUFLW (Intel x86/64 assembly instruction)"
 }
 ,
 	"pshufw" : {
 	"cat_title" : "PSHUFW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSHUFW",
 	"title" : "PSHUFW (Intel x86/64 assembly instruction)"
 }
 ,
 	"psignb-psignw-psignd" : {
 	"cat_title" : "PSIGNB, PSIGNW, PSIGND",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSIGNB, PSIGNW, PSIGND",
 	"title" : "PSIGNB, PSIGNW, PSIGNDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pslldq" : {
 	"cat_title" : "PSLLDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSLLDQ",
 	"title" : "PSLLDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"psllw-pslld-psllq" : {
 	"cat_title" : "PSLLW, PSLLD, PSLLQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSLLW, PSLLD, PSLLQ",
 	"title" : "PSLLW, PSLLD, PSLLQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"psraw-psrad-psraq" : {
 	"cat_title" : "PSRAW, PSRAD, PSRAQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSRAW, PSRAD, PSRAQ",
 	"title" : "PSRAW, PSRAD, PSRAQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"psrldq" : {
 	"cat_title" : "PSRLDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSRLDQ",
 	"title" : "PSRLDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"psrlw-psrld-psrlq" : {
 	"cat_title" : "PSRLW, PSRLD, PSRLQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSRLW, PSRLD, PSRLQ",
 	"title" : "PSRLW, PSRLD, PSRLQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"psubb-psubw-psubd" : {
 	"cat_title" : "PSUBB, PSUBW, PSUBD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSUBB, PSUBW, PSUBD",
 	"title" : "PSUBB, PSUBW, PSUBDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"psubq" : {
 	"cat_title" : "PSUBQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSUBQ",
 	"title" : "PSUBQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"psubsb-psubsw" : {
 	"cat_title" : "PSUBSB, PSUBSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSUBSB, PSUBSW",
 	"title" : "PSUBSB, PSUBSWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"psubusb-psubusw" : {
 	"cat_title" : "PSUBUSB, PSUBUSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PSUBUSB, PSUBUSW",
 	"title" : "PSUBUSB, PSUBUSWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"punpckhbw-punpckhwd-punpckhdq-punpckhqdq" : {
 	"cat_title" : "PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQ",
 	"title" : "PUNPCKHBW, PUNPCKHWD, PUNPCKHDQ, PUNPCKHQDQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"punpcklbw-punpcklwd-punpckldq-punpcklqdq" : {
 	"cat_title" : "PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQ",
 	"title" : "PUNPCKLBW, PUNPCKLWD, PUNPCKLDQ, PUNPCKLQDQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"push" : {
 	"cat_title" : "PUSH",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PUSH",
 	"title" : "PUSH (Intel x86/64 assembly instruction)"
 }
 ,
 	"pusha-pushad" : {
 	"cat_title" : "PUSHA, PUSHAD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PUSHA, PUSHAD",
 	"title" : "PUSHA, PUSHADs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pushf-pushfd" : {
 	"cat_title" : "PUSHF, PUSHFD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PUSHF, PUSHFD",
 	"title" : "PUSHF, PUSHFDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"pxor" : {
 	"cat_title" : "PXOR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/P",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "PXOR",
 	"title" : "PXOR (Intel x86/64 assembly instruction)"
 }
 ,
 	"rcl-rcr-rol-ror" : {
 	"cat_title" : "RCL, RCR, ROL, ROR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RCL, RCR, ROL, ROR",
 	"title" : "RCL, RCR, ROL, RORs (Intel x86/64 assembly instruction)"
 }
 ,
 	"rcpps" : {
 	"cat_title" : "RCPPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RCPPS",
 	"title" : "RCPPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"rcpss" : {
 	"cat_title" : "RCPSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RCPSS",
 	"title" : "RCPSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdfsbase-rdgsbase" : {
 	"cat_title" : "RDFSBASE, RDGSBASE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDFSBASE, RDGSBASE",
 	"title" : "RDFSBASE, RDGSBASEs (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdmsr" : {
 	"cat_title" : "RDMSR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDMSR",
 	"title" : "RDMSR (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdpid" : {
 	"cat_title" : "RDPID",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDPID",
 	"title" : "RDPID (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdpkru" : {
 	"cat_title" : "RDPKRU",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDPKRU",
 	"title" : "RDPKRU (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdpmc" : {
 	"cat_title" : "RDPMC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDPMC",
 	"title" : "RDPMC (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdrand" : {
 	"cat_title" : "RDRAND",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDRAND",
 	"title" : "RDRAND (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdseed" : {
 	"cat_title" : "RDSEED",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDSEED",
 	"title" : "RDSEED (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdtsc" : {
 	"cat_title" : "RDTSC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDTSC",
 	"title" : "RDTSC (Intel x86/64 assembly instruction)"
 }
 ,
 	"rdtscp" : {
 	"cat_title" : "RDTSCP",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RDTSCP",
 	"title" : "RDTSCP (Intel x86/64 assembly instruction)"
 }
 ,
 	"rep-repe-repz-repne-repnz" : {
 	"cat_title" : "REP, REPE, REPZ, REPNE, REPNZ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "REP, REPE, REPZ, REPNE, REPNZ",
 	"title" : "REP, REPE, REPZ, REPNE, REPNZs (Intel x86/64 assembly instruction)"
 }
 ,
 	"ret" : {
 	"cat_title" : "RET",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RET",
 	"title" : "RET (Intel x86/64 assembly instruction)"
 }
 ,
 	"rorx" : {
 	"cat_title" : "RORX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RORX",
 	"title" : "RORX (Intel x86/64 assembly instruction)"
 }
 ,
 	"roundpd" : {
 	"cat_title" : "ROUNDPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ROUNDPD",
 	"title" : "ROUNDPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"roundps" : {
 	"cat_title" : "ROUNDPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ROUNDPS",
 	"title" : "ROUNDPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"roundsd" : {
 	"cat_title" : "ROUNDSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ROUNDSD",
 	"title" : "ROUNDSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"roundss" : {
 	"cat_title" : "ROUNDSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "ROUNDSS",
 	"title" : "ROUNDSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"rsm" : {
 	"cat_title" : "RSM",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RSM",
 	"title" : "RSM (Intel x86/64 assembly instruction)"
 }
 ,
 	"rsqrtps" : {
 	"cat_title" : "RSQRTPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RSQRTPS",
 	"title" : "RSQRTPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"rsqrtss" : {
 	"cat_title" : "RSQRTSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/R",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "RSQRTSS",
 	"title" : "RSQRTSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"sahf" : {
 	"cat_title" : "SAHF",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SAHF",
 	"title" : "SAHF (Intel x86/64 assembly instruction)"
 }
 ,
 	"sal-sar-shl-shr" : {
 	"cat_title" : "SAL, SAR, SHL, SHR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SAL, SAR, SHL, SHR",
 	"title" : "SAL, SAR, SHL, SHRs (Intel x86/64 assembly instruction)"
 }
 ,
 	"sarx-shlx-shrx" : {
 	"cat_title" : "SARX, SHLX, SHRX",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SARX, SHLX, SHRX",
 	"title" : "SARX, SHLX, SHRXs (Intel x86/64 assembly instruction)"
 }
 ,
 	"sbb" : {
 	"cat_title" : "SBB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SBB",
 	"title" : "SBB (Intel x86/64 assembly instruction)"
 }
 ,
 	"scas-scasb-scasw-scasd" : {
 	"cat_title" : "SCAS, SCASB, SCASW, SCASD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SCAS, SCASB, SCASW, SCASD",
 	"title" : "SCAS, SCASB, SCASW, SCASDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"setcc" : {
 	"cat_title" : "SETcc",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SETcc",
 	"title" : "SETcc (Intel x86/64 assembly instruction)"
 }
 ,
 	"sfence" : {
 	"cat_title" : "SFENCE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SFENCE",
 	"title" : "SFENCE (Intel x86/64 assembly instruction)"
 }
 ,
 	"sgdt" : {
 	"cat_title" : "SGDT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SGDT",
 	"title" : "SGDT (Intel x86/64 assembly instruction)"
 }
 ,
 	"sha1msg1" : {
 	"cat_title" : "SHA1MSG1",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHA1MSG1",
 	"title" : "SHA1MSG1 (Intel x86/64 assembly instruction)"
 }
 ,
 	"sha1msg2" : {
 	"cat_title" : "SHA1MSG2",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHA1MSG2",
 	"title" : "SHA1MSG2 (Intel x86/64 assembly instruction)"
 }
 ,
 	"sha1nexte" : {
 	"cat_title" : "SHA1NEXTE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHA1NEXTE",
 	"title" : "SHA1NEXTE (Intel x86/64 assembly instruction)"
 }
 ,
 	"sha1rnds4" : {
 	"cat_title" : "SHA1RNDS4",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHA1RNDS4",
 	"title" : "SHA1RNDS4 (Intel x86/64 assembly instruction)"
 }
 ,
 	"sha256msg1" : {
 	"cat_title" : "SHA256MSG1",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHA256MSG1",
 	"title" : "SHA256MSG1 (Intel x86/64 assembly instruction)"
 }
 ,
 	"sha256msg2" : {
 	"cat_title" : "SHA256MSG2",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHA256MSG2",
 	"title" : "SHA256MSG2 (Intel x86/64 assembly instruction)"
 }
 ,
 	"sha256rnds2" : {
 	"cat_title" : "SHA256RNDS2",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHA256RNDS2",
 	"title" : "SHA256RNDS2 (Intel x86/64 assembly instruction)"
 }
 ,
 	"shld" : {
 	"cat_title" : "SHLD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHLD",
 	"title" : "SHLD (Intel x86/64 assembly instruction)"
 }
 ,
 	"shrd" : {
 	"cat_title" : "SHRD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHRD",
 	"title" : "SHRD (Intel x86/64 assembly instruction)"
 }
 ,
 	"shufpd" : {
 	"cat_title" : "SHUFPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHUFPD",
 	"title" : "SHUFPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"shufps" : {
 	"cat_title" : "SHUFPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SHUFPS",
 	"title" : "SHUFPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"sidt" : {
 	"cat_title" : "SIDT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SIDT",
 	"title" : "SIDT (Intel x86/64 assembly instruction)"
 }
 ,
 	"sldt" : {
 	"cat_title" : "SLDT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SLDT",
 	"title" : "SLDT (Intel x86/64 assembly instruction)"
 }
 ,
 	"smsw" : {
 	"cat_title" : "SMSW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SMSW",
 	"title" : "SMSW (Intel x86/64 assembly instruction)"
 }
 ,
 	"sqrtpd" : {
 	"cat_title" : "SQRTPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SQRTPD",
 	"title" : "SQRTPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"sqrtps" : {
 	"cat_title" : "SQRTPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SQRTPS",
 	"title" : "SQRTPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"sqrtsd" : {
 	"cat_title" : "SQRTSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SQRTSD",
 	"title" : "SQRTSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"sqrtss" : {
 	"cat_title" : "SQRTSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SQRTSS",
 	"title" : "SQRTSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"stac" : {
 	"cat_title" : "STAC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "STAC",
 	"title" : "STAC (Intel x86/64 assembly instruction)"
 }
 ,
 	"stc" : {
 	"cat_title" : "STC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "STC",
 	"title" : "STC (Intel x86/64 assembly instruction)"
 }
 ,
 	"std" : {
 	"cat_title" : "STD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "STD",
 	"title" : "STD (Intel x86/64 assembly instruction)"
 }
 ,
 	"sti" : {
 	"cat_title" : "STI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "STI",
 	"title" : "STI (Intel x86/64 assembly instruction)"
 }
 ,
 	"stmxcsr" : {
 	"cat_title" : "STMXCSR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "STMXCSR",
 	"title" : "STMXCSR (Intel x86/64 assembly instruction)"
 }
 ,
 	"stos-stosb-stosw-stosd-stosq" : {
 	"cat_title" : "STOS, STOSB, STOSW, STOSD, STOSQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "STOS, STOSB, STOSW, STOSD, STOSQ",
 	"title" : "STOS, STOSB, STOSW, STOSD, STOSQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"str" : {
 	"cat_title" : "STR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "STR",
 	"title" : "STR (Intel x86/64 assembly instruction)"
 }
 ,
 	"sub" : {
 	"cat_title" : "SUB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SUB",
 	"title" : "SUB (Intel x86/64 assembly instruction)"
 }
 ,
 	"subpd" : {
 	"cat_title" : "SUBPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SUBPD",
 	"title" : "SUBPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"subps" : {
 	"cat_title" : "SUBPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SUBPS",
 	"title" : "SUBPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"subsd" : {
 	"cat_title" : "SUBSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SUBSD",
 	"title" : "SUBSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"subss" : {
 	"cat_title" : "SUBSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SUBSS",
 	"title" : "SUBSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"swapgs" : {
 	"cat_title" : "SWAPGS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SWAPGS",
 	"title" : "SWAPGS (Intel x86/64 assembly instruction)"
 }
 ,
 	"syscall" : {
 	"cat_title" : "SYSCALL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SYSCALL",
 	"title" : "SYSCALL (Intel x86/64 assembly instruction)"
 }
 ,
 	"sysenter" : {
 	"cat_title" : "SYSENTER",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SYSENTER",
 	"title" : "SYSENTER (Intel x86/64 assembly instruction)"
 }
 ,
 	"sysexit" : {
 	"cat_title" : "SYSEXIT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SYSEXIT",
 	"title" : "SYSEXIT (Intel x86/64 assembly instruction)"
 }
 ,
 	"sysret" : {
 	"cat_title" : "SYSRET",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/S",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "SYSRET",
 	"title" : "SYSRET (Intel x86/64 assembly instruction)"
 }
 ,
 	"test" : {
 	"cat_title" : "TEST",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/T",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "TEST",
 	"title" : "TEST (Intel x86/64 assembly instruction)"
 }
 ,
 	"tzcnt" : {
 	"cat_title" : "TZCNT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/T",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "TZCNT",
 	"title" : "TZCNT (Intel x86/64 assembly instruction)"
 }
 ,
 	"ucomisd" : {
 	"cat_title" : "UCOMISD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/U",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "UCOMISD",
 	"title" : "UCOMISD (Intel x86/64 assembly instruction)"
 }
 ,
 	"ucomiss" : {
 	"cat_title" : "UCOMISS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/U",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "UCOMISS",
 	"title" : "UCOMISS (Intel x86/64 assembly instruction)"
 }
 ,
 	"ud2" : {
 	"cat_title" : "UD2",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/U",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "UD2",
 	"title" : "UD2 (Intel x86/64 assembly instruction)"
 }
 ,
 	"unpckhpd" : {
 	"cat_title" : "UNPCKHPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/U",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "UNPCKHPD",
 	"title" : "UNPCKHPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"unpckhps" : {
 	"cat_title" : "UNPCKHPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/U",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "UNPCKHPS",
 	"title" : "UNPCKHPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"unpcklpd" : {
 	"cat_title" : "UNPCKLPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/U",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "UNPCKLPD",
 	"title" : "UNPCKLPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"unpcklps" : {
 	"cat_title" : "UNPCKLPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/U",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "UNPCKLPS",
 	"title" : "UNPCKLPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"valignd-valignq" : {
 	"cat_title" : "VALIGND, VALIGNQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VALIGND, VALIGNQ",
 	"title" : "VALIGND, VALIGNQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vblendmpd-vblendmps" : {
 	"cat_title" : "VBLENDMPD, VBLENDMPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VBLENDMPD, VBLENDMPS",
 	"title" : "VBLENDMPD, VBLENDMPSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vbroadcast" : {
 	"cat_title" : "VBROADCAST",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VBROADCAST",
 	"title" : "VBROADCAST (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcompresspd" : {
 	"cat_title" : "VCOMPRESSPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCOMPRESSPD",
 	"title" : "VCOMPRESSPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcompressps" : {
 	"cat_title" : "VCOMPRESSPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCOMPRESSPS",
 	"title" : "VCOMPRESSPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtpd2qq" : {
 	"cat_title" : "VCVTPD2QQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTPD2QQ",
 	"title" : "VCVTPD2QQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtpd2udq" : {
 	"cat_title" : "VCVTPD2UDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTPD2UDQ",
 	"title" : "VCVTPD2UDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtpd2uqq" : {
 	"cat_title" : "VCVTPD2UQQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTPD2UQQ",
 	"title" : "VCVTPD2UQQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtph2ps" : {
 	"cat_title" : "VCVTPH2PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTPH2PS",
 	"title" : "VCVTPH2PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtps2ph" : {
 	"cat_title" : "VCVTPS2PH",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTPS2PH",
 	"title" : "VCVTPS2PH (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtps2qq" : {
 	"cat_title" : "VCVTPS2QQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTPS2QQ",
 	"title" : "VCVTPS2QQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtps2udq" : {
 	"cat_title" : "VCVTPS2UDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTPS2UDQ",
 	"title" : "VCVTPS2UDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtps2uqq" : {
 	"cat_title" : "VCVTPS2UQQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTPS2UQQ",
 	"title" : "VCVTPS2UQQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtqq2pd" : {
 	"cat_title" : "VCVTQQ2PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTQQ2PD",
 	"title" : "VCVTQQ2PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtqq2ps" : {
 	"cat_title" : "VCVTQQ2PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTQQ2PS",
 	"title" : "VCVTQQ2PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtsd2usi" : {
 	"cat_title" : "VCVTSD2USI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTSD2USI",
 	"title" : "VCVTSD2USI (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtss2usi" : {
 	"cat_title" : "VCVTSS2USI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTSS2USI",
 	"title" : "VCVTSS2USI (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttpd2qq" : {
 	"cat_title" : "VCVTTPD2QQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTTPD2QQ",
 	"title" : "VCVTTPD2QQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttpd2udq" : {
 	"cat_title" : "VCVTTPD2UDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTTPD2UDQ",
 	"title" : "VCVTTPD2UDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttpd2uqq" : {
 	"cat_title" : "VCVTTPD2UQQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTTPD2UQQ",
 	"title" : "VCVTTPD2UQQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttps2qq" : {
 	"cat_title" : "VCVTTPS2QQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTTPS2QQ",
 	"title" : "VCVTTPS2QQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttps2udq" : {
 	"cat_title" : "VCVTTPS2UDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTTPS2UDQ",
 	"title" : "VCVTTPS2UDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttps2uqq" : {
 	"cat_title" : "VCVTTPS2UQQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTTPS2UQQ",
 	"title" : "VCVTTPS2UQQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttsd2usi" : {
 	"cat_title" : "VCVTTSD2USI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTTSD2USI",
 	"title" : "VCVTTSD2USI (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvttss2usi" : {
 	"cat_title" : "VCVTTSS2USI",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTTSS2USI",
 	"title" : "VCVTTSS2USI (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtudq2pd" : {
 	"cat_title" : "VCVTUDQ2PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTUDQ2PD",
 	"title" : "VCVTUDQ2PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtudq2ps" : {
 	"cat_title" : "VCVTUDQ2PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTUDQ2PS",
 	"title" : "VCVTUDQ2PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtuqq2pd" : {
 	"cat_title" : "VCVTUQQ2PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTUQQ2PD",
 	"title" : "VCVTUQQ2PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtuqq2ps" : {
 	"cat_title" : "VCVTUQQ2PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTUQQ2PS",
 	"title" : "VCVTUQQ2PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtusi2sd" : {
 	"cat_title" : "VCVTUSI2SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTUSI2SD",
 	"title" : "VCVTUSI2SD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vcvtusi2ss" : {
 	"cat_title" : "VCVTUSI2SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VCVTUSI2SS",
 	"title" : "VCVTUSI2SS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vdbpsadbw" : {
 	"cat_title" : "VDBPSADBW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VDBPSADBW",
 	"title" : "VDBPSADBW (Intel x86/64 assembly instruction)"
 }
 ,
 	"verr-verw" : {
 	"cat_title" : "VERR, VERW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VERR, VERW",
 	"title" : "VERR, VERWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vexp2pd" : {
 	"cat_title" : "VEXP2PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VEXP2PD",
 	"title" : "VEXP2PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vexp2ps" : {
 	"cat_title" : "VEXP2PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VEXP2PS",
 	"title" : "VEXP2PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vexpandpd" : {
 	"cat_title" : "VEXPANDPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VEXPANDPD",
 	"title" : "VEXPANDPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vexpandps" : {
 	"cat_title" : "VEXPANDPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VEXPANDPS",
 	"title" : "VEXPANDPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vextractf128-vextractf32x4-vextractf64x2-vextractf32x8-vextractf64x4" : {
 	"cat_title" : "VEXTRACTF128, VEXTRACTF32x4, VEXTRACTF64x2, VEXTRACTF32x8, VEXTRACTF64x4",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VEXTRACTF128, VEXTRACTF32x4, VEXTRACTF64x2, VEXTRACTF32x8, VEXTRACTF64x4",
 	"title" : "VEXTRACTF128, VEXTRACTF32x4, VEXTRACTF64x2, VEXTRACTF32x8, VEXTRACTF64x4s (Intel x86/64 assembly instruction)"
 }
 ,
 	"vextracti128-vextracti32x4-vextracti64x2-vextracti32x8-vextracti64x4" : {
 	"cat_title" : "VEXTRACTI128, VEXTRACTI32x4, VEXTRACTI64x2, VEXTRACTI32x8, VEXTRACTI64x4",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VEXTRACTI128, VEXTRACTI32x4, VEXTRACTI64x2, VEXTRACTI32x8, VEXTRACTI64x4",
 	"title" : "VEXTRACTI128, VEXTRACTI32x4, VEXTRACTI64x2, VEXTRACTI32x8, VEXTRACTI64x4s (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfixupimmpd" : {
 	"cat_title" : "VFIXUPIMMPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFIXUPIMMPD",
 	"title" : "VFIXUPIMMPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfixupimmps" : {
 	"cat_title" : "VFIXUPIMMPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFIXUPIMMPS",
 	"title" : "VFIXUPIMMPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfixupimmsd" : {
 	"cat_title" : "VFIXUPIMMSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFIXUPIMMSD",
 	"title" : "VFIXUPIMMSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfixupimmss" : {
 	"cat_title" : "VFIXUPIMMSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFIXUPIMMSS",
 	"title" : "VFIXUPIMMSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmadd132pd-vfmadd213pd-vfmadd231pd" : {
 	"cat_title" : "VFMADD132PD, VFMADD213PD, VFMADD231PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMADD132PD, VFMADD213PD, VFMADD231PD",
 	"title" : "VFMADD132PD, VFMADD213PD, VFMADD231PDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmadd132ps-vfmadd213ps-vfmadd231ps" : {
 	"cat_title" : "VFMADD132PS, VFMADD213PS, VFMADD231PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMADD132PS, VFMADD213PS, VFMADD231PS",
 	"title" : "VFMADD132PS, VFMADD213PS, VFMADD231PSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmadd132sd-vfmadd213sd-vfmadd231sd" : {
 	"cat_title" : "VFMADD132SD, VFMADD213SD, VFMADD231SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMADD132SD, VFMADD213SD, VFMADD231SD",
 	"title" : "VFMADD132SD, VFMADD213SD, VFMADD231SDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmadd132ss-vfmadd213ss-vfmadd231ss" : {
 	"cat_title" : "VFMADD132SS, VFMADD213SS, VFMADD231SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMADD132SS, VFMADD213SS, VFMADD231SS",
 	"title" : "VFMADD132SS, VFMADD213SS, VFMADD231SSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmaddsub132pd-vfmaddsub213pd-vfmaddsub231pd" : {
 	"cat_title" : "VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PD",
 	"title" : "VFMADDSUB132PD, VFMADDSUB213PD, VFMADDSUB231PDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmaddsub132ps-vfmaddsub213ps-vfmaddsub231ps" : {
 	"cat_title" : "VFMADDSUB132PS, VFMADDSUB213PS, VFMADDSUB231PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMADDSUB132PS, VFMADDSUB213PS, VFMADDSUB231PS",
 	"title" : "VFMADDSUB132PS, VFMADDSUB213PS, VFMADDSUB231PSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmsub132pd-vfmsub213pd-vfmsub231pd" : {
 	"cat_title" : "VFMSUB132PD, VFMSUB213PD, VFMSUB231PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMSUB132PD, VFMSUB213PD, VFMSUB231PD",
 	"title" : "VFMSUB132PD, VFMSUB213PD, VFMSUB231PDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmsub132ps-vfmsub213ps-vfmsub231ps" : {
 	"cat_title" : "VFMSUB132PS, VFMSUB213PS, VFMSUB231PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMSUB132PS, VFMSUB213PS, VFMSUB231PS",
 	"title" : "VFMSUB132PS, VFMSUB213PS, VFMSUB231PSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmsub132sd-vfmsub213sd-vfmsub231sd" : {
 	"cat_title" : "VFMSUB132SD, VFMSUB213SD, VFMSUB231SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMSUB132SD, VFMSUB213SD, VFMSUB231SD",
 	"title" : "VFMSUB132SD, VFMSUB213SD, VFMSUB231SDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmsub132ss-vfmsub213ss-vfmsub231ss" : {
 	"cat_title" : "VFMSUB132SS, VFMSUB213SS, VFMSUB231SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMSUB132SS, VFMSUB213SS, VFMSUB231SS",
 	"title" : "VFMSUB132SS, VFMSUB213SS, VFMSUB231SSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmsubadd132pd-vfmsubadd213pd-vfmsubadd231pd" : {
 	"cat_title" : "VFMSUBADD132PD, VFMSUBADD213PD, VFMSUBADD231PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMSUBADD132PD, VFMSUBADD213PD, VFMSUBADD231PD",
 	"title" : "VFMSUBADD132PD, VFMSUBADD213PD, VFMSUBADD231PDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfmsubadd132ps-vfmsubadd213ps-vfmsubadd231ps" : {
 	"cat_title" : "VFMSUBADD132PS, VFMSUBADD213PS, VFMSUBADD231PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFMSUBADD132PS, VFMSUBADD213PS, VFMSUBADD231PS",
 	"title" : "VFMSUBADD132PS, VFMSUBADD213PS, VFMSUBADD231PSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfnmadd132pd-vfnmadd213pd-vfnmadd231pd" : {
 	"cat_title" : "VFNMADD132PD, VFNMADD213PD, VFNMADD231PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFNMADD132PD, VFNMADD213PD, VFNMADD231PD",
 	"title" : "VFNMADD132PD, VFNMADD213PD, VFNMADD231PDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfnmadd132ps-vfnmadd213ps-vfnmadd231ps" : {
 	"cat_title" : "VFNMADD132PS, VFNMADD213PS, VFNMADD231PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFNMADD132PS, VFNMADD213PS, VFNMADD231PS",
 	"title" : "VFNMADD132PS, VFNMADD213PS, VFNMADD231PSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfnmadd132sd-vfnmadd213sd-vfnmadd231sd" : {
 	"cat_title" : "VFNMADD132SD, VFNMADD213SD, VFNMADD231SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFNMADD132SD, VFNMADD213SD, VFNMADD231SD",
 	"title" : "VFNMADD132SD, VFNMADD213SD, VFNMADD231SDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfnmadd132ss-vfnmadd213ss-vfnmadd231ss" : {
 	"cat_title" : "VFNMADD132SS, VFNMADD213SS, VFNMADD231SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFNMADD132SS, VFNMADD213SS, VFNMADD231SS",
 	"title" : "VFNMADD132SS, VFNMADD213SS, VFNMADD231SSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfnmsub132pd-vfnmsub213pd-vfnmsub231pd" : {
 	"cat_title" : "VFNMSUB132PD, VFNMSUB213PD, VFNMSUB231PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFNMSUB132PD, VFNMSUB213PD, VFNMSUB231PD",
 	"title" : "VFNMSUB132PD, VFNMSUB213PD, VFNMSUB231PDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfnmsub132ps-vfnmsub213ps-vfnmsub231ps" : {
 	"cat_title" : "VFNMSUB132PS, VFNMSUB213PS, VFNMSUB231PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFNMSUB132PS, VFNMSUB213PS, VFNMSUB231PS",
 	"title" : "VFNMSUB132PS, VFNMSUB213PS, VFNMSUB231PSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfnmsub132sd-vfnmsub213sd-vfnmsub231sd" : {
 	"cat_title" : "VFNMSUB132SD, VFNMSUB213SD, VFNMSUB231SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFNMSUB132SD, VFNMSUB213SD, VFNMSUB231SD",
 	"title" : "VFNMSUB132SD, VFNMSUB213SD, VFNMSUB231SDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfnmsub132ss-vfnmsub213ss-vfnmsub231ss" : {
 	"cat_title" : "VFNMSUB132SS, VFNMSUB213SS, VFNMSUB231SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFNMSUB132SS, VFNMSUB213SS, VFNMSUB231SS",
 	"title" : "VFNMSUB132SS, VFNMSUB213SS, VFNMSUB231SSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfpclasspd" : {
 	"cat_title" : "VFPCLASSPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFPCLASSPD",
 	"title" : "VFPCLASSPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfpclassps" : {
 	"cat_title" : "VFPCLASSPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFPCLASSPS",
 	"title" : "VFPCLASSPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfpclasssd" : {
 	"cat_title" : "VFPCLASSSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFPCLASSSD",
 	"title" : "VFPCLASSSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vfpclassss" : {
 	"cat_title" : "VFPCLASSSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VFPCLASSSS",
 	"title" : "VFPCLASSSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgatherdpd-vgatherqpd" : {
 	"cat_title" : "VGATHERDPD, VGATHERQPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGATHERDPD, VGATHERQPD",
 	"title" : "VGATHERDPD, VGATHERQPDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgatherdps-vgatherdpd" : {
 	"cat_title" : "VGATHERDPS, VGATHERDPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGATHERDPS, VGATHERDPD",
 	"title" : "VGATHERDPS, VGATHERDPDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgatherdps-vgatherqps" : {
 	"cat_title" : "VGATHERDPS, VGATHERQPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGATHERDPS, VGATHERQPS",
 	"title" : "VGATHERDPS, VGATHERQPSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgatherpf0dps-vgatherpf0qps-vgatherpf0dpd-vgatherpf0qpd" : {
 	"cat_title" : "VGATHERPF0DPS, VGATHERPF0QPS, VGATHERPF0DPD, VGATHERPF0QPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGATHERPF0DPS, VGATHERPF0QPS, VGATHERPF0DPD, VGATHERPF0QPD",
 	"title" : "VGATHERPF0DPS, VGATHERPF0QPS, VGATHERPF0DPD, VGATHERPF0QPDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgatherpf1dps-vgatherpf1qps-vgatherpf1dpd-vgatherpf1qpd" : {
 	"cat_title" : "VGATHERPF1DPS, VGATHERPF1QPS, VGATHERPF1DPD, VGATHERPF1QPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGATHERPF1DPS, VGATHERPF1QPS, VGATHERPF1DPD, VGATHERPF1QPD",
 	"title" : "VGATHERPF1DPS, VGATHERPF1QPS, VGATHERPF1DPD, VGATHERPF1QPDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgatherqps-vgatherqpd" : {
 	"cat_title" : "VGATHERQPS, VGATHERQPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGATHERQPS, VGATHERQPD",
 	"title" : "VGATHERQPS, VGATHERQPDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetexppd" : {
 	"cat_title" : "VGETEXPPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGETEXPPD",
 	"title" : "VGETEXPPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetexpps" : {
 	"cat_title" : "VGETEXPPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGETEXPPS",
 	"title" : "VGETEXPPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetexpsd" : {
 	"cat_title" : "VGETEXPSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGETEXPSD",
 	"title" : "VGETEXPSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetexpss" : {
 	"cat_title" : "VGETEXPSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGETEXPSS",
 	"title" : "VGETEXPSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetmantpd" : {
 	"cat_title" : "VGETMANTPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGETMANTPD",
 	"title" : "VGETMANTPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetmantps" : {
 	"cat_title" : "VGETMANTPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGETMANTPS",
 	"title" : "VGETMANTPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetmantsd" : {
 	"cat_title" : "VGETMANTSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGETMANTSD",
 	"title" : "VGETMANTSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vgetmantss" : {
 	"cat_title" : "VGETMANTSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VGETMANTSS",
 	"title" : "VGETMANTSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vinsertf128-vinsertf32x4-vinsertf64x2-vinsertf32x8-vinsertf64x4" : {
 	"cat_title" : "VINSERTF128, VINSERTF32x4, VINSERTF64x2, VINSERTF32x8, VINSERTF64x4",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VINSERTF128, VINSERTF32x4, VINSERTF64x2, VINSERTF32x8, VINSERTF64x4",
 	"title" : "VINSERTF128, VINSERTF32x4, VINSERTF64x2, VINSERTF32x8, VINSERTF64x4s (Intel x86/64 assembly instruction)"
 }
 ,
 	"vinserti128-vinserti32x4-vinserti64x2-vinserti32x8-vinserti64x4" : {
 	"cat_title" : "VINSERTI128, VINSERTI32x4, VINSERTI64x2, VINSERTI32x8, VINSERTI64x4",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VINSERTI128, VINSERTI32x4, VINSERTI64x2, VINSERTI32x8, VINSERTI64x4",
 	"title" : "VINSERTI128, VINSERTI32x4, VINSERTI64x2, VINSERTI32x8, VINSERTI64x4s (Intel x86/64 assembly instruction)"
 }
 ,
 	"vmaskmov" : {
 	"cat_title" : "VMASKMOV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VMASKMOV",
 	"title" : "VMASKMOV (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpblendd" : {
 	"cat_title" : "VPBLENDD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPBLENDD",
 	"title" : "VPBLENDD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpblendmb-vpblendmw" : {
 	"cat_title" : "VPBLENDMB, VPBLENDMW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPBLENDMB, VPBLENDMW",
 	"title" : "VPBLENDMB, VPBLENDMWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpblendmd-vpblendmq" : {
 	"cat_title" : "VPBLENDMD, VPBLENDMQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPBLENDMD, VPBLENDMQ",
 	"title" : "VPBLENDMD, VPBLENDMQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpbroadcast" : {
 	"cat_title" : "VPBROADCAST",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPBROADCAST",
 	"title" : "VPBROADCAST (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpbroadcastb-vpbroadcastw-vpbroadcastd-vpbroadcastq" : {
 	"cat_title" : "VPBROADCASTB, VPBROADCASTW, VPBROADCASTD, VPBROADCASTQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPBROADCASTB, VPBROADCASTW, VPBROADCASTD, VPBROADCASTQ",
 	"title" : "VPBROADCASTB, VPBROADCASTW, VPBROADCASTD, VPBROADCASTQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpbroadcastm" : {
 	"cat_title" : "VPBROADCASTM",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPBROADCASTM",
 	"title" : "VPBROADCASTM (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpcmpb-vpcmpub" : {
 	"cat_title" : "VPCMPB, VPCMPUB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPCMPB, VPCMPUB",
 	"title" : "VPCMPB, VPCMPUBs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpcmpd-vpcmpud" : {
 	"cat_title" : "VPCMPD, VPCMPUD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPCMPD, VPCMPUD",
 	"title" : "VPCMPD, VPCMPUDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpcmpq-vpcmpuq" : {
 	"cat_title" : "VPCMPQ, VPCMPUQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPCMPQ, VPCMPUQ",
 	"title" : "VPCMPQ, VPCMPUQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpcmpw-vpcmpuw" : {
 	"cat_title" : "VPCMPW, VPCMPUW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPCMPW, VPCMPUW",
 	"title" : "VPCMPW, VPCMPUWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpcompressd" : {
 	"cat_title" : "VPCOMPRESSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPCOMPRESSD",
 	"title" : "VPCOMPRESSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpcompressq" : {
 	"cat_title" : "VPCOMPRESSQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPCOMPRESSQ",
 	"title" : "VPCOMPRESSQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpconflictd-vpconflictq" : {
 	"cat_title" : "VPCONFLICTD, VPCONFLICTQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPCONFLICTD, VPCONFLICTQ",
 	"title" : "VPCONFLICTD, VPCONFLICTQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vperm2f128" : {
 	"cat_title" : "VPERM2F128",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERM2F128",
 	"title" : "VPERM2F128 (Intel x86/64 assembly instruction)"
 }
 ,
 	"vperm2i128" : {
 	"cat_title" : "VPERM2I128",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERM2I128",
 	"title" : "VPERM2I128 (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermd-vpermw" : {
 	"cat_title" : "VPERMD, VPERMW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERMD, VPERMW",
 	"title" : "VPERMD, VPERMWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermi2w-vpermi2d-vpermi2q-vpermi2ps-vpermi2pd" : {
 	"cat_title" : "VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PD",
 	"title" : "VPERMI2W, VPERMI2D, VPERMI2Q, VPERMI2PS, VPERMI2PDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermilpd" : {
 	"cat_title" : "VPERMILPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERMILPD",
 	"title" : "VPERMILPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermilps" : {
 	"cat_title" : "VPERMILPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERMILPS",
 	"title" : "VPERMILPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermpd" : {
 	"cat_title" : "VPERMPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERMPD",
 	"title" : "VPERMPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermps" : {
 	"cat_title" : "VPERMPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERMPS",
 	"title" : "VPERMPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpermq" : {
 	"cat_title" : "VPERMQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPERMQ",
 	"title" : "VPERMQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpexpandd" : {
 	"cat_title" : "VPEXPANDD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPEXPANDD",
 	"title" : "VPEXPANDD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpexpandq" : {
 	"cat_title" : "VPEXPANDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPEXPANDQ",
 	"title" : "VPEXPANDQ (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpgatherdd-vpgatherdq" : {
 	"cat_title" : "VPGATHERDD, VPGATHERDQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPGATHERDD, VPGATHERDQ",
 	"title" : "VPGATHERDD, VPGATHERDQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpgatherdd-vpgatherqd" : {
 	"cat_title" : "VPGATHERDD, VPGATHERQD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPGATHERDD, VPGATHERQD",
 	"title" : "VPGATHERDD, VPGATHERQDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpgatherdq-vpgatherqq" : {
 	"cat_title" : "VPGATHERDQ, VPGATHERQQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPGATHERDQ, VPGATHERQQ",
 	"title" : "VPGATHERDQ, VPGATHERQQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpgatherqd-vpgatherqq" : {
 	"cat_title" : "VPGATHERQD, VPGATHERQQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPGATHERQD, VPGATHERQQ",
 	"title" : "VPGATHERQD, VPGATHERQQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vplzcntd-vplzcntq" : {
 	"cat_title" : "VPLZCNTD, VPLZCNTQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPLZCNTD, VPLZCNTQ",
 	"title" : "VPLZCNTD, VPLZCNTQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmaskmov" : {
 	"cat_title" : "VPMASKMOV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMASKMOV",
 	"title" : "VPMASKMOV (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmovb2m-vpmovw2m-vpmovd2m-vpmovq2m" : {
 	"cat_title" : "VPMOVB2M, VPMOVW2M, VPMOVD2M, VPMOVQ2M",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMOVB2M, VPMOVW2M, VPMOVD2M, VPMOVQ2M",
 	"title" : "VPMOVB2M, VPMOVW2M, VPMOVD2M, VPMOVQ2Ms (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmovdb-vpmovsdb-vpmovusdb" : {
 	"cat_title" : "VPMOVDB, VPMOVSDB, VPMOVUSDB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMOVDB, VPMOVSDB, VPMOVUSDB",
 	"title" : "VPMOVDB, VPMOVSDB, VPMOVUSDBs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmovdw-vpmovsdw-vpmovusdw" : {
 	"cat_title" : "VPMOVDW, VPMOVSDW, VPMOVUSDW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMOVDW, VPMOVSDW, VPMOVUSDW",
 	"title" : "VPMOVDW, VPMOVSDW, VPMOVUSDWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmovm2b-vpmovm2w-vpmovm2d-vpmovm2q" : {
 	"cat_title" : "VPMOVM2B, VPMOVM2W, VPMOVM2D, VPMOVM2Q",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMOVM2B, VPMOVM2W, VPMOVM2D, VPMOVM2Q",
 	"title" : "VPMOVM2B, VPMOVM2W, VPMOVM2D, VPMOVM2Qs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmovqb-vpmovsqb-vpmovusqb" : {
 	"cat_title" : "VPMOVQB, VPMOVSQB, VPMOVUSQB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMOVQB, VPMOVSQB, VPMOVUSQB",
 	"title" : "VPMOVQB, VPMOVSQB, VPMOVUSQBs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmovqd-vpmovsqd-vpmovusqd" : {
 	"cat_title" : "VPMOVQD, VPMOVSQD, VPMOVUSQD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMOVQD, VPMOVSQD, VPMOVUSQD",
 	"title" : "VPMOVQD, VPMOVSQD, VPMOVUSQDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmovqw-vpmovsqw-vpmovusqw" : {
 	"cat_title" : "VPMOVQW, VPMOVSQW, VPMOVUSQW",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMOVQW, VPMOVSQW, VPMOVUSQW",
 	"title" : "VPMOVQW, VPMOVSQW, VPMOVUSQWs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpmovwb-vpmovswb-vpmovuswb" : {
 	"cat_title" : "VPMOVWB, VPMOVSWB, VPMOVUSWB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPMOVWB, VPMOVSWB, VPMOVUSWB",
 	"title" : "VPMOVWB, VPMOVSWB, VPMOVUSWBs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpscatterdd-vpscatterdq-vpscatterqd-vpscatterqq" : {
 	"cat_title" : "VPSCATTERDD, VPSCATTERDQ, VPSCATTERQD, VPSCATTERQQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPSCATTERDD, VPSCATTERDQ, VPSCATTERQD, VPSCATTERQQ",
 	"title" : "VPSCATTERDD, VPSCATTERDQ, VPSCATTERQD, VPSCATTERQQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpsllvw-vpsllvd-vpsllvq" : {
 	"cat_title" : "VPSLLVW, VPSLLVD, VPSLLVQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPSLLVW, VPSLLVD, VPSLLVQ",
 	"title" : "VPSLLVW, VPSLLVD, VPSLLVQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpsravw-vpsravd-vpsravq" : {
 	"cat_title" : "VPSRAVW, VPSRAVD, VPSRAVQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPSRAVW, VPSRAVD, VPSRAVQ",
 	"title" : "VPSRAVW, VPSRAVD, VPSRAVQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpsrlvw-vpsrlvd-vpsrlvq" : {
 	"cat_title" : "VPSRLVW, VPSRLVD, VPSRLVQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPSRLVW, VPSRLVD, VPSRLVQ",
 	"title" : "VPSRLVW, VPSRLVD, VPSRLVQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vpternlogd-vpternlogq" : {
 	"cat_title" : "VPTERNLOGD, VPTERNLOGQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPTERNLOGD, VPTERNLOGQ",
 	"title" : "VPTERNLOGD, VPTERNLOGQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vptestmb-vptestmw-vptestmd-vptestmq" : {
 	"cat_title" : "VPTESTMB, VPTESTMW, VPTESTMD, VPTESTMQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPTESTMB, VPTESTMW, VPTESTMD, VPTESTMQ",
 	"title" : "VPTESTMB, VPTESTMW, VPTESTMD, VPTESTMQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vptestnmb-vptestnmw-vptestnmd-vptestnmq" : {
 	"cat_title" : "VPTESTNMB, VPTESTNMW, VPTESTNMD, VPTESTNMQ",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VPTESTNMB, VPTESTNMW, VPTESTNMD, VPTESTNMQ",
 	"title" : "VPTESTNMB, VPTESTNMW, VPTESTNMD, VPTESTNMQs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrangepd" : {
 	"cat_title" : "VRANGEPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRANGEPD",
 	"title" : "VRANGEPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrangesd" : {
 	"cat_title" : "VRANGESD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRANGESD",
 	"title" : "VRANGESD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrangess" : {
 	"cat_title" : "VRANGESS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRANGESS",
 	"title" : "VRANGESS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp14pd" : {
 	"cat_title" : "VRCP14PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRCP14PD",
 	"title" : "VRCP14PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp14ps" : {
 	"cat_title" : "VRCP14PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRCP14PS",
 	"title" : "VRCP14PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp14sd" : {
 	"cat_title" : "VRCP14SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRCP14SD",
 	"title" : "VRCP14SD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp14ss" : {
 	"cat_title" : "VRCP14SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRCP14SS",
 	"title" : "VRCP14SS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp28pd" : {
 	"cat_title" : "VRCP28PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRCP28PD",
 	"title" : "VRCP28PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp28ps" : {
 	"cat_title" : "VRCP28PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRCP28PS",
 	"title" : "VRCP28PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp28sd" : {
 	"cat_title" : "VRCP28SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRCP28SD",
 	"title" : "VRCP28SD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrcp28ss" : {
 	"cat_title" : "VRCP28SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRCP28SS",
 	"title" : "VRCP28SS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vreducepd" : {
 	"cat_title" : "VREDUCEPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VREDUCEPD",
 	"title" : "VREDUCEPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vreduceps" : {
 	"cat_title" : "VREDUCEPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VREDUCEPS",
 	"title" : "VREDUCEPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vreducess" : {
 	"cat_title" : "VREDUCESS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VREDUCESS",
 	"title" : "VREDUCESS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrndscalepd" : {
 	"cat_title" : "VRNDSCALEPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRNDSCALEPD",
 	"title" : "VRNDSCALEPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrndscaleps" : {
 	"cat_title" : "VRNDSCALEPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRNDSCALEPS",
 	"title" : "VRNDSCALEPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrndscalesd" : {
 	"cat_title" : "VRNDSCALESD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRNDSCALESD",
 	"title" : "VRNDSCALESD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrndscaless" : {
 	"cat_title" : "VRNDSCALESS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRNDSCALESS",
 	"title" : "VRNDSCALESS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt14pd" : {
 	"cat_title" : "VRSQRT14PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRSQRT14PD",
 	"title" : "VRSQRT14PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt14ps" : {
 	"cat_title" : "VRSQRT14PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRSQRT14PS",
 	"title" : "VRSQRT14PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt14sd" : {
 	"cat_title" : "VRSQRT14SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRSQRT14SD",
 	"title" : "VRSQRT14SD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt14ss" : {
 	"cat_title" : "VRSQRT14SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRSQRT14SS",
 	"title" : "VRSQRT14SS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt28pd" : {
 	"cat_title" : "VRSQRT28PD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRSQRT28PD",
 	"title" : "VRSQRT28PD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt28ps" : {
 	"cat_title" : "VRSQRT28PS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRSQRT28PS",
 	"title" : "VRSQRT28PS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt28sd" : {
 	"cat_title" : "VRSQRT28SD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRSQRT28SD",
 	"title" : "VRSQRT28SD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vrsqrt28ss" : {
 	"cat_title" : "VRSQRT28SS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VRSQRT28SS",
 	"title" : "VRSQRT28SS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vscalefpd" : {
 	"cat_title" : "VSCALEFPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VSCALEFPD",
 	"title" : "VSCALEFPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vscalefps" : {
 	"cat_title" : "VSCALEFPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VSCALEFPS",
 	"title" : "VSCALEFPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vscalefsd" : {
 	"cat_title" : "VSCALEFSD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VSCALEFSD",
 	"title" : "VSCALEFSD (Intel x86/64 assembly instruction)"
 }
 ,
 	"vscalefss" : {
 	"cat_title" : "VSCALEFSS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VSCALEFSS",
 	"title" : "VSCALEFSS (Intel x86/64 assembly instruction)"
 }
 ,
 	"vscatterdps-vscatterdpd-vscatterqps-vscatterqpd" : {
 	"cat_title" : "VSCATTERDPS, VSCATTERDPD, VSCATTERQPS, VSCATTERQPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VSCATTERDPS, VSCATTERDPD, VSCATTERQPS, VSCATTERQPD",
 	"title" : "VSCATTERDPS, VSCATTERDPD, VSCATTERQPS, VSCATTERQPDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vscatterpf0dps-vscatterpf0qps-vscatterpf0dpd-vscatterpf0qpd" : {
 	"cat_title" : "VSCATTERPF0DPS, VSCATTERPF0QPS, VSCATTERPF0DPD, VSCATTERPF0QPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VSCATTERPF0DPS, VSCATTERPF0QPS, VSCATTERPF0DPD, VSCATTERPF0QPD",
 	"title" : "VSCATTERPF0DPS, VSCATTERPF0QPS, VSCATTERPF0DPD, VSCATTERPF0QPDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vscatterpf1dps-vscatterpf1qps-vscatterpf1dpd-vscatterpf1qpd" : {
 	"cat_title" : "VSCATTERPF1DPS, VSCATTERPF1QPS, VSCATTERPF1DPD, VSCATTERPF1QPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VSCATTERPF1DPS, VSCATTERPF1QPS, VSCATTERPF1DPD, VSCATTERPF1QPD",
 	"title" : "VSCATTERPF1DPS, VSCATTERPF1QPS, VSCATTERPF1DPD, VSCATTERPF1QPDs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vshuff32x4-vshuff64x2-vshufi32x4-vshufi64x2" : {
 	"cat_title" : "VSHUFF32x4, VSHUFF64x2, VSHUFI32x4, VSHUFI64x2",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VSHUFF32x4, VSHUFF64x2, VSHUFI32x4, VSHUFI64x2",
 	"title" : "VSHUFF32x4, VSHUFF64x2, VSHUFI32x4, VSHUFI64x2s (Intel x86/64 assembly instruction)"
 }
 ,
 	"vtestpd-vtestps" : {
 	"cat_title" : "VTESTPD, VTESTPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VTESTPD, VTESTPS",
 	"title" : "VTESTPD, VTESTPSs (Intel x86/64 assembly instruction)"
 }
 ,
 	"vzeroall" : {
 	"cat_title" : "VZEROALL",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VZEROALL",
 	"title" : "VZEROALL (Intel x86/64 assembly instruction)"
 }
 ,
 	"vzeroupper" : {
 	"cat_title" : "VZEROUPPER",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/V",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "VZEROUPPER",
 	"title" : "VZEROUPPER (Intel x86/64 assembly instruction)"
 }
 ,
 	"wait-fwait" : {
 	"cat_title" : "WAIT, FWAIT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/W",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "WAIT, FWAIT",
 	"title" : "WAIT, FWAITs (Intel x86/64 assembly instruction)"
 }
 ,
 	"wbinvd" : {
 	"cat_title" : "WBINVD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/W",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "WBINVD",
 	"title" : "WBINVD (Intel x86/64 assembly instruction)"
 }
 ,
 	"wrfsbase-wrgsbase" : {
 	"cat_title" : "WRFSBASE, WRGSBASE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/W",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "WRFSBASE, WRGSBASE",
 	"title" : "WRFSBASE, WRGSBASEs (Intel x86/64 assembly instruction)"
 }
 ,
 	"wrmsr" : {
 	"cat_title" : "WRMSR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/W",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "WRMSR",
 	"title" : "WRMSR (Intel x86/64 assembly instruction)"
 }
 ,
 	"wrpkru" : {
 	"cat_title" : "WRPKRU",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/W",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "WRPKRU",
 	"title" : "WRPKRU (Intel x86/64 assembly instruction)"
 }
 ,
 	"xabort" : {
 	"cat_title" : "XABORT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XABORT",
 	"title" : "XABORT (Intel x86/64 assembly instruction)"
 }
 ,
 	"xacquire-xrelease" : {
 	"cat_title" : "XACQUIRE, XRELEASE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XACQUIRE, XRELEASE",
 	"title" : "XACQUIRE, XRELEASEs (Intel x86/64 assembly instruction)"
 }
 ,
 	"xadd" : {
 	"cat_title" : "XADD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XADD",
 	"title" : "XADD (Intel x86/64 assembly instruction)"
 }
 ,
 	"xbegin" : {
 	"cat_title" : "XBEGIN",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XBEGIN",
 	"title" : "XBEGIN (Intel x86/64 assembly instruction)"
 }
 ,
 	"xchg" : {
 	"cat_title" : "XCHG",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XCHG",
 	"title" : "XCHG (Intel x86/64 assembly instruction)"
 }
 ,
 	"xend" : {
 	"cat_title" : "XEND",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XEND",
 	"title" : "XEND (Intel x86/64 assembly instruction)"
 }
 ,
 	"xgetbv" : {
 	"cat_title" : "XGETBV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XGETBV",
 	"title" : "XGETBV (Intel x86/64 assembly instruction)"
 }
 ,
 	"xlat-xlatb" : {
 	"cat_title" : "XLAT, XLATB",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XLAT, XLATB",
 	"title" : "XLAT, XLATBs (Intel x86/64 assembly instruction)"
 }
 ,
 	"xor" : {
 	"cat_title" : "XOR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XOR",
 	"title" : "XOR (Intel x86/64 assembly instruction)"
 }
 ,
 	"xorpd" : {
 	"cat_title" : "XORPD",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XORPD",
 	"title" : "XORPD (Intel x86/64 assembly instruction)"
 }
 ,
 	"xorps" : {
 	"cat_title" : "XORPS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XORPS",
 	"title" : "XORPS (Intel x86/64 assembly instruction)"
 }
 ,
 	"xrstor" : {
 	"cat_title" : "XRSTOR",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XRSTOR",
 	"title" : "XRSTOR (Intel x86/64 assembly instruction)"
 }
 ,
 	"xrstors" : {
 	"cat_title" : "XRSTORS",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XRSTORS",
 	"title" : "XRSTORS (Intel x86/64 assembly instruction)"
 }
 ,
 	"xsave" : {
 	"cat_title" : "XSAVE",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XSAVE",
 	"title" : "XSAVE (Intel x86/64 assembly instruction)"
 }
 ,
 	"xsavec" : {
 	"cat_title" : "XSAVEC",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XSAVEC",
 	"title" : "XSAVEC (Intel x86/64 assembly instruction)"
 }
 ,
 	"xsaveopt" : {
 	"cat_title" : "XSAVEOPT",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XSAVEOPT",
 	"title" : "XSAVEOPT (Intel x86/64 assembly instruction)"
 }
 ,
 	"xsaves" : {
 	"cat_title" : "XSAVES",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XSAVES",
 	"title" : "XSAVES (Intel x86/64 assembly instruction)"
 }
 ,
 	"xsetbv" : {
 	"cat_title" : "XSETBV",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XSETBV",
 	"title" : "XSETBV (Intel x86/64 assembly instruction)"
 }
 ,
 	"xtest" : {
 	"cat_title" : "XTEST",
-	"path" : "/X86-64 명령어 레퍼런스",
+	"path" : "/X86-64 명령어 레퍼런스/X",
+	"publish_date" : "2020-09-01",
+	"published" : "2020-09-01",
 	"ref_title" : "XTEST",
 	"title" : "XTEST (Intel x86/64 assembly instruction)"
 }

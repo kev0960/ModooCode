@@ -2,7 +2,9 @@
 title : F2XM1 (Intel x86/64 assembly instruction)
 cat_title : F2XM1
 ref_title : F2XM1
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/F
+publish_date: 2020-09-01
 ----------------------------
 #@ F2XM1
 

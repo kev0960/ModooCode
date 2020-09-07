@@ -2,7 +2,9 @@
 title : VSCALEFSS (Intel x86/64 assembly instruction)
 cat_title : VSCALEFSS
 ref_title : VSCALEFSS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VSCALEFSS
 
@@ -24,7 +26,7 @@ Performs a floating-point scale of the scalar single-precision floating-point va
 
 The equation of this operation is given by:
 
-xmm1 := xmm2\htmlonly{*}2\footnote{floor(xmm3)} .
+xmm1 := xmm2\htmlonly{\esc{*}}2\footnote{floor(xmm3)} .
 
 Floor(xmm3) means maximum integer value "  xmm3.
 

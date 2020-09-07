@@ -2,7 +2,9 @@
 title : XSAVEC (Intel x86/64 assembly instruction)
 cat_title : XSAVEC
 ref_title : XSAVEC
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/X
+publish_date: 2020-09-01
 ----------------------------
 #@ XSAVEC
 
@@ -33,7 +35,7 @@ Section 13.10, "Operation of `XSAVEC`," of Intel(R) 64 and IA-32 Architectures S
 
 *  `XSAVEC` does not modify bytes 511:464 of the legacy region of the `XSAVE` area (see Section 13.4.1, "Legacy Region of an `XSAVE` Area").
 
-*  `XSAVEC` writes the logical `AND` of RFBM and XINUSE to the XSTATE_BV field of the `XSAVE` header.\footnote{2,3}  (See Section 13.4.2, "XSAVE Header.") `XSAVEC` sets bit 63 of the XCOMP_BV field and sets bits 62:0 of that field to RFBM[62:0]. `XSAVEC` does not write to any parts of the `XSAVE` header other than the XSTATE_BV and XCOMP_BV fields.
+*  `XSAVEC` writes the logical `AND` of RFBM and XINUSE to the XSTATE\esc{_}BV field of the `XSAVE` header.\footnote{2,3}  (See Section 13.4.2, "XSAVE Header.") `XSAVEC` sets bit 63 of the XCOMP\esc{_}BV field and sets bits 62:0 of that field to RFBM[62:0]. `XSAVEC` does not write to any parts of the `XSAVE` header other than the XSTATE\esc{_}BV and XCOMP\esc{_}BV fields.
 
 *  `XSAVEC` always uses the compacted format of the extended region of the `XSAVE` area (see Section 13.4.3, "Extended Region of an `XSAVE` Area").
 

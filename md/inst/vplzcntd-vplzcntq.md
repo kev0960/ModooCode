@@ -2,7 +2,9 @@
 title : VPLZCNTD, VPLZCNTQs (Intel x86/64 assembly instruction)
 cat_title : VPLZCNTD, VPLZCNTQ
 ref_title : VPLZCNTD, VPLZCNTQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPLZCNTD, VPLZCNTQ
 
@@ -25,7 +27,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Counts the number of leading most significant zero bits in each dword or qword element of the source operand (the second operand) and stores the results in the destination register (the first operand) according to the writemask. If an element is zero, the result for that element is the operand size of the element.** **
+Counts the number of leading most significant zero bits in each dword or qword element of the source operand (the second operand) and stores the results in the destination register (the first operand) according to the writemask. If an element is zero, the result for that element is the operand size of the element.\esc{*}\esc{*} \esc{*}\esc{*}
 
 EVEX.512 encoded version: The source operand is a ZMM register, a 512-bit memory location, or a 512-bit vector broadcasted from a 32/64-bit memory location. The destination operand is a ZMM register, conditionally updated using writemask k1. 
 

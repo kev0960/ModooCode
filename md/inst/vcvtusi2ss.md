@@ -2,7 +2,9 @@
 title : VCVTUSI2SS (Intel x86/64 assembly instruction)
 cat_title : VCVTUSI2SS
 ref_title : VCVTUSI2SS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VCVTUSI2SS
 
@@ -28,7 +30,7 @@ path : /X86-64 명령어 레퍼런스
 
 Converts a unsigned doubleword integer (or unsigned quadword integer if operand size is 64 bits) in the source operand (second operand) to a single-precision floating-point value in the destination operand (first operand). The source operand can be a general-purpose register or a memory location. The destination operand is an XMM register. The result is stored in the low doubleword of the destination operand. When a conversion is inexact, the value returned is rounded according to the rounding control bits in the MXCSR register or the embedded rounding control bits.
 
-The second source operand can be a general-purpose register or a 32/64-bit memory location. The first source and destination operands are XMM registers. Bits (127:32) of the XMM register destination are copied from corre-sponding bits in the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed.
+The second source operand can be a general-purpose register or a 32/64-bit memory location. The first source and destination operands are XMM registers. Bits (127:32) of the XMM register destination are copied from corre-sponding bits in the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 EVEX.W1 version: promotes the instruction to use 64-bit input value in 64-bit mode.
 

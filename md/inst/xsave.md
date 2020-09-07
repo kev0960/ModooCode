@@ -2,7 +2,9 @@
 title : XSAVE (Intel x86/64 assembly instruction)
 cat_title : XSAVE
 ref_title : XSAVE
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/X
+publish_date: 2020-09-01
 ----------------------------
 #@ XSAVE
 
@@ -25,11 +27,11 @@ Performs a full or partial save of processor state components to the `XSAVE` are
 
 The format of the `XSAVE` area is detailed in Section 13.4, "XSAVE Area," of Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1.
 
-Section 13.7, "Operation of `XSAVE`," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 provides a detailed description of the operation of the `XSAVE` instruction. The following items provide a high-level outline:*  `XSAVE` saves state component i if and only if RFBM[i] = 1.\footnote{1}
+Section 13.7, "Operation of `XSAVE`," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 provides a detailed description of the operation of the `XSAVE` instruction. The following items provide a high-level outline:\esc{*}  `XSAVE` saves state component i if and only if RFBM[i] = 1.\footnote{1}
 
 *  `XSAVE` does not modify bytes 511:464 of the legacy region of the `XSAVE` area (see Section 13.4.1, "Legacy Region of an `XSAVE` Area").
 
-*  `XSAVE` reads the XSTATE_BV field of the `XSAVE` header (see Section 13.4.2, "XSAVE Header") and writes a modified value back to memory as follows. If RFBM[i] = 1, `XSAVE` writes XSTATE_BV[i] with the value of XINUSE[i]. (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") If RFBM[i] = 0, `XSAVE` writes XSTATE_BV[i] with the value that it read from memory (it does not modify the bit). `XSAVE` does not write to any part of the `XSAVE` header other than the XSTATE_BV field.
+*  `XSAVE` reads the XSTATE\esc{_}BV field of the `XSAVE` header (see Section 13.4.2, "XSAVE Header") and writes a modified value back to memory as follows. If RFBM[i] = 1, `XSAVE` writes XSTATE\esc{_}BV[i] with the value of XINUSE[i]. (XINUSE is a bitmap by which the processor tracks the status of various state components. See Section 13.6, "Processor Tracking of XSAVE-Managed State.") If RFBM[i] = 0, `XSAVE` writes XSTATE\esc{_}BV[i] with the value that it read from memory (it does not modify the bit). `XSAVE` does not write to any part of the `XSAVE` header other than the XSTATE\esc{_}BV field.
 
 *  `XSAVE` always uses the standard format of the extended region of the `XSAVE` area (see Section 13.4.3, "Extended Region of an `XSAVE` Area").
 

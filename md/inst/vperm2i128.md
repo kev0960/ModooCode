@@ -2,7 +2,9 @@
 title : VPERM2I128 (Intel x86/64 assembly instruction)
 cat_title : VPERM2I128
 ref_title : VPERM2I128
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPERM2I128
 

@@ -2,7 +2,9 @@
 title : MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64s (Intel x86/64 assembly instruction)
 cat_title : MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64
 ref_title : MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVDQU, VMOVDQU8, VMOVDQU16, VMOVDQU32, VMOVDQU64
 
@@ -70,17 +72,17 @@ VEX.256 encoded version:
 
 Moves 256 bits of packed integer values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load a YMM register from a 256-bit memory location, to store the contents of a YMM register into a 256-bit memory location, or to move data between two YMM registers. 
 
-Bits (MAX_VL-1:256) of the destination register are zeroed.
+Bits (MAX\esc{_}VL-1:256) of the destination register are zeroed.
 
 128-bit versions:
 
 Moves 128 bits of packed integer values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load an XMM register from a 128-bit memory location, to store the contents of an XMM register into a 128-bit memory location, or to move data between two XMM registers. 
 
-128-bit Legacy SSE version: Bits (MAX_VL-1:128) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: Bits (MAX\esc{_}VL-1:128) of the corresponding destination register remain unchanged.
 
 When the source or destination operand is a memory operand, the operand may be unaligned to any alignment without causing a general-protection exception (#GP) to be generated
 
-VEX.128 encoded version: Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 encoded version: Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 
 ### Operation

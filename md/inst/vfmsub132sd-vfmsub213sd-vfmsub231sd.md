@@ -2,7 +2,9 @@
 title : VFMSUB132SD, VFMSUB213SD, VFMSUB231SDs (Intel x86/64 assembly instruction)
 cat_title : VFMSUB132SD, VFMSUB213SD, VFMSUB231SD
 ref_title : VFMSUB132SD, VFMSUB213SD, VFMSUB231SD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VFMSUB132SD, VFMSUB213SD, VFMSUB231SD
 
@@ -34,7 +36,7 @@ VFMSUB213SD: Multiplies the low packed double-precision floating-point value fro
 
 VFMSUB231SD: Multiplies the low packed double-precision floating-point value from the second source to the low packed double-precision floating-point value in the third source operand. From the infinite precision intermediate result, subtracts the low packed double-precision floating-point value in the first source operand, performs rounding and stores the resulting packed double-precision floating-point value to the destination operand (first source operand).
 
-VEX.128 and EVEX encoded version: The destination operand (also first source operand) is encoded in reg_field. The second source operand is encoded in VEX.vvvv/EVEX.vvvv. The third source operand is encoded in rm_field. Bits 127:64 of the destination are unchanged. Bits MAXVL-1:128 of the destination register are zeroed.
+VEX.128 and EVEX encoded version: The destination operand (also first source operand) is encoded in reg\esc{_}field. The second source operand is encoded in VEX.vvvv/EVEX.vvvv. The third source operand is encoded in rm\esc{_}field. Bits 127:64 of the destination are unchanged. Bits MAXVL-1:128 of the destination register are zeroed.
 
 
 

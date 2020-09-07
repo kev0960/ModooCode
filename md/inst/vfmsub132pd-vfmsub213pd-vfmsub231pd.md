@@ -2,7 +2,9 @@
 title : VFMSUB132PD, VFMSUB213PD, VFMSUB231PDs (Intel x86/64 assembly instruction)
 cat_title : VFMSUB132PD, VFMSUB213PD, VFMSUB231PD
 ref_title : VFMSUB132PD, VFMSUB213PD, VFMSUB231PD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VFMSUB132PD, VFMSUB213PD, VFMSUB231PD
 
@@ -45,9 +47,9 @@ VFMSUB231PD: Multiplies the two, four or eight packed double-precision floating-
 
 EVEX encoded versions: The destination operand (also first source operand) and the second source operand are ZMM/YMM/XMM register. The third source operand is a ZMM/YMM/XMM register, a 512/256/128-bit memory loca-tion or a 512/256/128-bit vector broadcasted from a 64-bit memory location. The destination operand is condition-ally updated with write mask k1.
 
-VEX.256 encoded version: The destination operand (also first source operand) is a YMM register and encoded in reg_field. The second source operand is a YMM register and encoded in VEX.vvvv. The third source operand is a YMM register or a 256-bit memory location and encoded in rm_field. 
+VEX.256 encoded version: The destination operand (also first source operand) is a YMM register and encoded in reg\esc{_}field. The second source operand is a YMM register and encoded in VEX.vvvv. The third source operand is a YMM register or a 256-bit memory location and encoded in rm\esc{_}field. 
 
-VEX.128 encoded version: The destination operand (also first source operand) is a XMM register and encoded in reg_field. The second source operand is a XMM register and encoded in VEX.vvvv. The third source operand is a XMM register or a 128-bit memory location and encoded in rm_field. The upper 128 bits of the YMM destination register are zeroed.
+VEX.128 encoded version: The destination operand (also first source operand) is a XMM register and encoded in reg\esc{_}field. The second source operand is a XMM register and encoded in VEX.vvvv. The third source operand is a XMM register or a 128-bit memory location and encoded in rm\esc{_}field. The upper 128 bits of the YMM destination register are zeroed.
 
 
 ### Operation

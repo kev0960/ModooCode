@@ -2,7 +2,9 @@
 title : RCPPS (Intel x86/64 assembly instruction)
 cat_title : RCPPS
 ref_title : RCPPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/R
+publish_date: 2020-09-01
 ----------------------------
 #@ RCPPS
 
@@ -26,9 +28,9 @@ Performs a SIMD computation of the approximate reciprocals of the four packed si
 
 The relative error for this approximation is:
 
-    |Relative Error| <= 1.5 `*` 2\footnote{-12}  
+    |Relative Error| <= 1.5 `\esc{*}` 2\footnote{-12}  
 
-The `RCPPS` instruction is not affected by the rounding control bits in the MXCSR register. When a source value is a 0.0, an $$\infty$$ of the sign of the source value is returned. A denormal source value is treated as a 0.0 (of the same sign). Tiny results (see Section 4.9.1.5, "Numeric Underflow Exception (#U)" in Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1) are always flushed to 0.0, with the sign of the operand. (Input values greater than or equal to |1.11111111110100000000000B`*`2\footnote{125} | are guaranteed to not produce tiny results; input values less than or equal to |1.00000000000110000000001B\htmlonly{*}2\footnote{126} | are guaranteed to produce tiny results, which are in turn flushed to 0.0; and input values in between this range may or may not produce tiny results, depending on the implementation.) When a source value is an SNaN or QNaN, the SNaN is converted to a QNaN or the source QNaN is returned.
+The `RCPPS` instruction is not affected by the rounding control bits in the MXCSR register. When a source value is a 0.0, an $$\infty$$ of the sign of the source value is returned. A denormal source value is treated as a 0.0 (of the same sign). Tiny results (see Section 4.9.1.5, "Numeric Underflow Exception (#U)" in Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1) are always flushed to 0.0, with the sign of the operand. (Input values greater than or equal to |1.11111111110100000000000B`\esc{*}`2\footnote{125} | are guaranteed to not produce tiny results; input values less than or equal to |1.00000000000110000000001B\htmlonly{\esc{*}}2\footnote{126} | are guaranteed to produce tiny results, which are in turn flushed to 0.0; and input values in between this range may or may not produce tiny results, depending on the implementation.) When a source value is an SNaN or QNaN, the SNaN is converted to a QNaN or the source QNaN is returned.
 
 In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction to access additional registers (XMM8-XMM15).
 

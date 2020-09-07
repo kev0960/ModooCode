@@ -2,7 +2,9 @@
 title : PSLLDQ (Intel x86/64 assembly instruction)
 cat_title : PSLLDQ
 ref_title : PSLLDQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/P
+publish_date: 2020-09-01
 ----------------------------
 #@ PSLLDQ
 
@@ -33,7 +35,7 @@ Shifts the destination operand (first operand) to the left by the number of byte
 
 VEX.128 encoded version: The source and destination operands are XMM registers. Bits (VLMAX-1:128) of the destination YMM register are zeroed. 
 
-VEX.256 encoded version: The source operand is YMM register. The destination operand is an YMM register. Bits (MAX_VL-1:256) of the corresponding ZMM register are zeroed. The count operand applies to both the low and high 128-bit lanes.
+VEX.256 encoded version: The source operand is YMM register. The destination operand is an YMM register. Bits (MAX\esc{_}VL-1:256) of the corresponding ZMM register are zeroed. The count operand applies to both the low and high 128-bit lanes.
 
 EVEX encoded versions: The source operand is a ZMM/YMM/XMM register or a 512/256/128-bit memory location. The destination operand is a ZMM/YMM/XMM register. The count operand applies to each 128-bit lanes.
 

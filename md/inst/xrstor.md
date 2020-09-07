@@ -2,7 +2,9 @@
 title : XRSTOR (Intel x86/64 assembly instruction)
 cat_title : XRSTOR
 ref_title : XRSTOR
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/X
+publish_date: 2020-09-01
 ----------------------------
 #@ XRSTOR
 
@@ -27,17 +29,17 @@ The format of the `XSAVE` area is detailed in Section 13.4, "XSAVE Area," of Int
 
 Section 13.8, "Operation of `XRSTOR`," of Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 1 provides a detailed description of the operation of the `XRSTOR` instruction. The following items provide a high-level outline:
 
-*  Execution of `XRSTOR` may take one of two forms: standard and compacted. Bit 63 of the XCOMP_BV field in the `XSAVE` header determines which form is used: value 0 specifies the standard form, while value 1 specifies the compacted form.*  If RFBM[i] = 0, `XRSTOR` does not update state component i.\footnote{1}
+*  Execution of `XRSTOR` may take one of two forms: standard and compacted. Bit 63 of the XCOMP\esc{_}BV field in the `XSAVE` header determines which form is used: value 0 specifies the standard form, while value 1 specifies the compacted form.\esc{*}  If RFBM[i] = 0, `XRSTOR` does not update state component i.\footnote{1}
 
-*  If RFBM[i] = 1 and bit i is clear in the XSTATE_BV field in the `XSAVE` header, `XRSTOR` initializes state component i.
+*  If RFBM[i] = 1 and bit i is clear in the XSTATE\esc{_}BV field in the `XSAVE` header, `XRSTOR` initializes state component i.
 
-*  If RFBM[i] = 1 and XSTATE_BV[i] = 1, `XRSTOR` loads state component i from the `XSAVE` area.
+*  If RFBM[i] = 1 and XSTATE\esc{_}BV[i] = 1, `XRSTOR` loads state component i from the `XSAVE` area.
 
 *  The standard form of `XRSTOR` treats MXCSR (which is part of state component 1 -- SSE) differently from the XMM registers. If either form attempts to load MXCSR with an illegal value, a general-protection exception (#GP) occurs.
 
-*  `XRSTOR` loads the internal value XRSTOR_INFO, which may be used to optimize a subsequent execution of `XSAVEOPT` or `XSAVES`.
+*  `XRSTOR` loads the internal value XRSTOR\esc{_}INFO, which may be used to optimize a subsequent execution of `XSAVEOPT` or `XSAVES`.
 
-*  Immediately following an execution of `XRSTOR`, the processor tracks as in-use (not in initial configuration) any state component i for which RFBM[i] = 1 and XSTATE_BV[i] = 1; it tracks as modified any state component i for which RFBM[i] = 0.
+*  Immediately following an execution of `XRSTOR`, the processor tracks as in-use (not in initial configuration) any state component i for which RFBM[i] = 1 and XSTATE\esc{_}BV[i] = 1; it tracks as modified any state component i for which RFBM[i] = 0.
 
 Use of a source operand not aligned to 64-byte boundary (for 64-bit and 32-bit modes) results in a general-protec-tion (#GP) exception. In 64-bit mode, the upper 32 bits of RDX and RAX are ignored.
 

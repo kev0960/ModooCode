@@ -2,7 +2,9 @@
 title : VPERMQ (Intel x86/64 assembly instruction)
 cat_title : VPERMQ
 ref_title : VPERMQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPERMQ
 
@@ -28,7 +30,7 @@ path : /X86-64 명령어 레퍼런스
 
 The imm8 version: Copies quadwords from the source operand (the second operand) to the destination operand (the first operand) according to the indices specified by the immediate operand (the third operand). Each two-bit value in the immediate byte selects a qword element in the source operand. 
 
-VEX version: The source operand can be a YMM register or a memory location. Bits (MAX_VL-1:256) of the corre-sponding destination register are zeroed.
+VEX version: The source operand can be a YMM register or a memory location. Bits (MAX\esc{_}VL-1:256) of the corre-sponding destination register are zeroed.
 
 In EVEX.512 encoded version, The elements in the destination are updated using the writemask k1 and the imm8 bits are reused as control bits for the upper 256-bit half when the control bits are coming from immediate. The source operand can be a ZMM register, a 512-bit memory location or a 512-bit vector broadcasted from a 64-bit memory location.
 

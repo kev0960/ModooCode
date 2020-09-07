@@ -2,7 +2,9 @@
 title : ADDSD (Intel x86/64 assembly instruction)
 cat_title : ADDSD
 ref_title : ADDSD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/A
+publish_date: 2020-09-01
 ----------------------------
 #@ ADDSD
 
@@ -28,9 +30,9 @@ Adds the low double-precision floating-point values from the second source opera
 
 The second source operand can be an XMM register or a 64-bit memory location. The first source and destination operands are XMM registers. 
 
-128-bit Legacy SSE version: The first source and destination operands are the same. Bits (MAX_VL-1:64) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: The first source and destination operands are the same. Bits (MAX\esc{_}VL-1:64) of the corresponding destination register remain unchanged.
 
-EVEX and VEX.128 encoded version: The first source operand is encoded by EVEX.vvvv/VEX.vvvv. Bits (127:64) of the XMM register destination are copied from corresponding bits in the first source operand. Bits (MAX_VL-1:128) of the destination register are zeroed. 
+EVEX and VEX.128 encoded version: The first source operand is encoded by EVEX.vvvv/VEX.vvvv. Bits (127:64) of the XMM register destination are copied from corresponding bits in the first source operand. Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed. 
 
 EVEX version: The low quadword element of the destination is updated according to the writemask.
 

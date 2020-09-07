@@ -20,7 +20,8 @@
 #include "util.h"
 
 static const std::unordered_set<string> kSpecialCommands = {
-    "sidenote", "sc", "newline", "serif", "htmlonly", "latexonly", "footnote"};
+    "sidenote", "sc",        "newline",  "serif",
+    "htmlonly", "latexonly", "footnote", "esc"};
 
 namespace md_parser {
 
@@ -349,6 +350,8 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
                      GetHtmlFragmentText(content_, fragments_[i]), "</span>");
     } else if (fragments_[i].type == Fragments::Types::HTML_ONLY) {
       html += GetHtmlFragmentText(content_, fragments_[i]);
+    } else if (fragments_[i].type == Fragments::Types::ESCAPE) {
+      html += GetHtmlFragmentText(content_, fragments_[i]);
     } else if (fragments_[i].type == Fragments::Types::FOOTNOTE) {
       html += StrCat("<sup>", GetHtmlFragmentText(content_, fragments_[i]),
                      "</sup>");
@@ -492,6 +495,8 @@ string Content::OutputLatex(ParserEnvironment* parser_env) {
     } else if (fragment.type == Fragments::Types::SERIF) {
       latex += StrCat("\\emph{", GetLatexFragmentText(content_, fragment), "}");
     } else if (fragment.type == Fragments::Types::LATEX_ONLY) {
+      latex += GetLatexFragmentText(content_, fragment);
+    } else if (fragment.type == Fragments::Types::ESCAPE) {
       latex += GetLatexFragmentText(content_, fragment);
     } else if (fragment.type == Fragments::Types::FORCE_NEWLINE) {
       latex += "\\newline";
@@ -642,6 +647,10 @@ size_t Content::HandleSpecialCommands(const size_t start_pos, int* text_start) {
     return body_end;
   } else if (delimiter == "footnote") {
     fragments_.emplace_back(Fragments::Types::FOOTNOTE, delimiter_pos + 1,
+                            body_end - 1);
+    return body_end;
+  } else if (delimiter == "esc") {
+    fragments_.emplace_back(Fragments::Types::ESCAPE, delimiter_pos + 1,
                             body_end - 1);
     return body_end;
   }

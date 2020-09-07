@@ -2,7 +2,9 @@
 title : SYSRET (Intel x86/64 assembly instruction)
 cat_title : SYSRET
 ref_title : SYSRET
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SYSRET
 
@@ -23,7 +25,7 @@ path : /X86-64 명령어 레퍼런스
 
 SYSRET is a companion instruction to the `SYSCALL` instruction. It returns from an OS system-call handler to user code at privilege level 3. It does so by loading RIP from RCX and loading RFLAGS from R11.\footnote{1}  With a 64-bit operand size, `SYSRET` remains in 64-bit mode; otherwise, it enters compatibility mode and only the low 32 bits of the regis-ters are loaded.
 
-SYSRET loads the CS and SS selectors with values derived from bits 63:48 of the IA32_STAR MSR. However, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the respon-sibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values corre-spond to the fixed values loaded into the descriptor caches; the `SYSRET` instruction does not ensure this correspondence.
+SYSRET loads the CS and SS selectors with values derived from bits 63:48 of the IA32\esc{_}STAR MSR. However, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the respon-sibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values corre-spond to the fixed values loaded into the descriptor caches; the `SYSRET` instruction does not ensure this correspondence.
 
 The `SYSRET` instruction does not modify the stack pointer (ESP or RSP). For that reason, it is necessary for software to switch to the user stack. The OS may load the user stack pointer (if it was saved after SYSCALL) before executing SYSRET; alternatively, user code may load the stack pointer (if it was saved before SYSCALL) after receiving control from `SYSRET`.
 

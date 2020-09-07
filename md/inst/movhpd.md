@@ -2,7 +2,9 @@
 title : MOVHPD (Intel x86/64 assembly instruction)
 cat_title : MOVHPD
 ref_title : MOVHPD
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVHPD
 
@@ -33,11 +35,11 @@ This instruction cannot be used for register to register or memory to memory mov
 
 128-bit Legacy SSE load:
 
-Moves a double-precision floating-point value from the source 64-bit memory operand and stores it in the high 64-bits of the destination XMM register. The lower 64bits of the XMM register are preserved. Bits (MAX_VL-1:128) of the corresponding destination register are preserved.
+Moves a double-precision floating-point value from the source 64-bit memory operand and stores it in the high 64-bits of the destination XMM register. The lower 64bits of the XMM register are preserved. Bits (MAX\esc{_}VL-1:128) of the corresponding destination register are preserved.
 
 VEX.128 & EVEX encoded load:
 
-Loads a double-precision floating-point value from the source 64-bit memory operand (the third operand) and stores it in the upper 64-bits of the destination XMM register (first operand). The low 64-bits from the first source operand (second operand) are copied to the low 64-bits of the destination. Bits (MAX_VL-1:128) of the corre-sponding destination register are zeroed.
+Loads a double-precision floating-point value from the source 64-bit memory operand (the third operand) and stores it in the upper 64-bits of the destination XMM register (first operand). The low 64-bits from the first source operand (second operand) are copied to the low 64-bits of the destination. Bits (MAX\esc{_}VL-1:128) of the corre-sponding destination register are zeroed.
 
 128-bit store:
 

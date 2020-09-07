@@ -2,7 +2,9 @@
 title : INSERTPS (Intel x86/64 assembly instruction)
 cat_title : INSERTPS
 ref_title : INSERTPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/I
+publish_date: 2020-09-01
 ----------------------------
 #@ INSERTPS
 
@@ -26,15 +28,15 @@ path : /X86-64 명령어 레퍼런스
 
 (register source form)
 
-Select a single-precision floating-point element from second source as indicated by Count_S bits of the immediate operand and destination operand it into the first source at the location indicated by the Count_D bits of the imme-diate operand. Store in the destination and zero out destination elements based on the ZMask bits of the immediate operand. 
+Select a single-precision floating-point element from second source as indicated by Count\esc{_}S bits of the immediate operand and destination operand it into the first source at the location indicated by the Count\esc{_}D bits of the imme-diate operand. Store in the destination and zero out destination elements based on the ZMask bits of the immediate operand. 
 
 (memory source form)
 
-Load a floating-point element from a 32-bit memory location and destination operand it into the first source at the location indicated by the Count_D bits of the immediate operand. Store in the destination and zero out destination elements based on the ZMask bits of the immediate operand. 
+Load a floating-point element from a 32-bit memory location and destination operand it into the first source at the location indicated by the Count\esc{_}D bits of the immediate operand. Store in the destination and zero out destination elements based on the ZMask bits of the immediate operand. 
 
-128-bit Legacy SSE version: The first source register is an XMM register. The second source operand is either an XMM register or a 32-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (MAX_VL-1:128) of the corresponding register destination are unmodified.
+128-bit Legacy SSE version: The first source register is an XMM register. The second source operand is either an XMM register or a 32-bit memory location. The destination is not distinct from the first source XMM register and the upper bits (MAX\esc{_}VL-1:128) of the corresponding register destination are unmodified.
 
-VEX.128 and EVEX encoded version: The destination and first source register is an XMM register. The second source operand is either an XMM register or a 32-bit memory location. The upper bits (MAX_VL-1:128) of the corre-sponding register destination are zeroed.
+VEX.128 and EVEX encoded version: The destination and first source register is an XMM register. The second source operand is either an XMM register or a 32-bit memory location. The upper bits (MAX\esc{_}VL-1:128) of the corre-sponding register destination are zeroed.
 
 If VINSERTPS is encoded with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an #UD exception.
 

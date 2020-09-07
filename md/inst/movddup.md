@@ -2,7 +2,9 @@
 title : MOVDDUP (Intel x86/64 assembly instruction)
 cat_title : MOVDDUP
 ref_title : MOVDDUP
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVDDUP
 
@@ -30,11 +32,11 @@ For 256-bit or higher versions: Duplicates even-indexed double-precision floatin
 
 For 128-bit versions: Duplicates the low double-precision floating-point value from the source operand (the second operand) and store to the destination operand (the first operand).
 
-128-bit Legacy SSE version: Bits (MAX_VL-1:128) of the corresponding destination register are unchanged. The source operand is XMM register or a 64-bit memory location.
+128-bit Legacy SSE version: Bits (MAX\esc{_}VL-1:128) of the corresponding destination register are unchanged. The source operand is XMM register or a 64-bit memory location.
 
-VEX.128 and EVEX.128 encoded version: Bits (MAX_VL-1:128) of the destination register are zeroed. The source operand is XMM register or a 64-bit memory location. The destination is updated conditionally under the writemask for EVEX version.
+VEX.128 and EVEX.128 encoded version: Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed. The source operand is XMM register or a 64-bit memory location. The destination is updated conditionally under the writemask for EVEX version.
 
-VEX.256 and EVEX.256 encoded version: Bits (MAX_VL-1:256) of the destination register are zeroed. The source operand is YMM register or a 256-bit memory location. The destination is updated conditionally under the writemask for EVEX version.
+VEX.256 and EVEX.256 encoded version: Bits (MAX\esc{_}VL-1:256) of the destination register are zeroed. The source operand is YMM register or a 256-bit memory location. The destination is updated conditionally under the writemask for EVEX version.
 
 EVEX.512 encoded version: The destination is updated according to the writemask. The source operand is ZMM register or a 512-bit memory location.
 

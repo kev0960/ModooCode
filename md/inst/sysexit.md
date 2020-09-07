@@ -2,7 +2,9 @@
 title : SYSEXIT (Intel x86/64 assembly instruction)
 cat_title : SYSEXIT
 ref_title : SYSEXIT
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SYSEXIT
 
@@ -27,15 +29,15 @@ With a 64-bit operand size, `SYSEXIT` remains in 64-bit mode; otherwise, it eith
 
 Prior to executing `SYSEXIT`, software must specify the privilege level 3 code segment and code entry point, and the privilege level 3 stack segment and stack pointer by writing values into the following MSR and general-purpose registers:
 
-*  IA32_SYSENTER_CS (MSR address 174H) -- Contains a 32-bit value that is used to determine the segment selectors for the privilege level 3 code and stack segments (see the Operation section)
+*  IA32\esc{_}SYSENTER\esc{_}CS (MSR address 174H) -- Contains a 32-bit value that is used to determine the segment selectors for the privilege level 3 code and stack segments (see the Operation section)
 
 *  RDX -- The canonical address in this register is loaded into RIP (thus, this value references the first instruction to be executed in the user code). If the return is not to 64-bit mode, only bits 31:0 are loaded.
 
 *  ECX -- The canonical address in this register is loaded into RSP (thus, this value contains the stack pointer for the privilege level 3 stack). If the return is not to 64-bit mode, only bits 31:0 are loaded.
 
-The IA32_SYSENTER_CS MSR can be read from and written to using `RDMSR` and `WRMSR`.
+The IA32\esc{_}SYSENTER\esc{_}CS MSR can be read from and written to using `RDMSR` and `WRMSR`.
 
-While `SYSEXIT` loads the CS and SS selectors with values derived from the IA32_SYSENTER_CS MSR, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the responsibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values correspond to the fixed values loaded into the descriptor caches; the `SYSEXIT` instruction does not ensure this correspondence.
+While `SYSEXIT` loads the CS and SS selectors with values derived from the IA32\esc{_}SYSENTER\esc{_}CS MSR, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the responsibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values correspond to the fixed values loaded into the descriptor caches; the `SYSEXIT` instruction does not ensure this correspondence.
 
 The `SYSEXIT` instruction can be invoked from all operating modes except real-address mode and virtual-8086 mode. 
 
@@ -47,11 +49,11 @@ IF `CPUID` SEP bit is set
 
           THEN
 
-                SYSENTER/SYSEXIT_Not_Supported; FI;
+                SYSENTER/SYSEXIT\esc{_}Not\esc{_}Supported; FI;
 
           ELSE 
 
-                SYSENTER/SYSEXIT_Supported; FI;
+                SYSENTER/SYSEXIT\esc{_}Supported; FI;
 
 FI;
 

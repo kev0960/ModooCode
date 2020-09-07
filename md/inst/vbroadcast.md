@@ -2,7 +2,9 @@
 title : VBROADCAST (Intel x86/64 assembly instruction)
 cat_title : VBROADCAST
 ref_title : VBROADCAST
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VBROADCAST
 
@@ -39,7 +41,7 @@ path : /X86-64 명령어 레퍼런스
 
 VBROADCASTSD/VBROADCASTSS/VBROADCASTF128 load floating-point values as one tuple from the source operand (second operand) in memory and broadcast to all elements of the destination operand (first operand). 
 
-     VEX256-encoded versions: The destination operand is a YMM register. The source operand is either a 32-bit,64-bit, or 128-bit memory location. Register source encodings are reserved and will #UD. Bits (MAX_VL-1:256) of the destination register are zeroed.
+     VEX256-encoded versions: The destination operand is a YMM register. The source operand is either a 32-bit,64-bit, or 128-bit memory location. Register source encodings are reserved and will #UD. Bits (MAX\esc{_}VL-1:256) of the destination register are zeroed.
 
      EVEX-encoded versions: The destination operand is a ZMM/YMM/XMM register and updated according to thewritemask  k1.  The  source  operand  is  either  a  32-bit,  64-bit  memory  location  or  the  lowdoubleword/quadword element of an XMM register. 
 

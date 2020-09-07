@@ -2,7 +2,9 @@
 title : MOVSHDUP (Intel x86/64 assembly instruction)
 cat_title : MOVSHDUP
 ref_title : MOVSHDUP
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVSHDUP
 
@@ -28,11 +30,11 @@ path : /X86-64 명령어 레퍼런스
 
 Duplicates odd-indexed single-precision floating-point values from the source operand (the second operand) to adjacent element pair in the destination operand (the first operand). See Figure 4-3. The source operand is an XMM, YMM or ZMM register or 128, 256 or 512-bit memory location and the destination operand is an XMM, YMM or ZMM register.
 
-128-bit Legacy SSE version: Bits (MAX_VL-1:128) of the corresponding destination register remain unchanged.
+128-bit Legacy SSE version: Bits (MAX\esc{_}VL-1:128) of the corresponding destination register remain unchanged.
 
-VEX.128 encoded version: Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 encoded version: Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
-VEX.256 encoded version: Bits (MAX_VL-1:256) of the destination register are zeroed.
+VEX.256 encoded version: Bits (MAX\esc{_}VL-1:256) of the destination register are zeroed.
 
 EVEX encoded version: The destination operand is updated at 32-bit granularity according to the writemask.
 

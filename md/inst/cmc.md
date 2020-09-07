@@ -2,7 +2,9 @@
 title : CMC (Intel x86/64 assembly instruction)
 cat_title : CMC
 ref_title : CMC
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CMC
 

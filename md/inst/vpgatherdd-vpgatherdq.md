@@ -2,7 +2,9 @@
 title : VPGATHERDD, VPGATHERDQs (Intel x86/64 assembly instruction)
 cat_title : VPGATHERDD, VPGATHERDQ
 ref_title : VPGATHERDD, VPGATHERDQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VPGATHERDD, VPGATHERDQ
 
@@ -25,7 +27,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-A set of 16 or 8 doubleword/quadword memory locations pointed to by base address BASE_ADDR and index vector VINDEX with scale SCALE are gathered. The result is written into vector zmm1. The elements are specified via the VSIB (i.e., the index register is a zmm, holding packed indices). Elements will only be loaded if their corresponding mask bit is one. If an element's mask bit is not set, the corresponding element of the destination register (zmm1) is left unchanged. The entire mask register will be set to zero by this instruction unless it triggers an exception.
+A set of 16 or 8 doubleword/quadword memory locations pointed to by base address BASE\esc{_}ADDR and index vector VINDEX with scale SCALE are gathered. The result is written into vector zmm1. The elements are specified via the VSIB (i.e., the index register is a zmm, holding packed indices). Elements will only be loaded if their corresponding mask bit is one. If an element's mask bit is not set, the corresponding element of the destination register (zmm1) is left unchanged. The entire mask register will be set to zero by this instruction unless it triggers an exception.
 
 This instruction can be suspended by an exception if at least one element is already gathered (i.e., if the exception is triggered by an element other than the rightmost one with its mask bit set). When this happens, the destination register and the mask register (k1) are partially updated; those elements that have been gathered are placed into the destination register and have their mask bits set to zero. If any traps or interrupts are pending from already gathered elements, they will be delivered in lieu of the exception; in this case, EFLAG.RF is set to one so an instruc-tion breakpoint is not re-triggered when the instruction is continued.
 
@@ -49,7 +51,7 @@ Note that:
 
 Note that the presence of VSIB byte is enforced in this instruction. Hence, the instruction will #UD fault if ModRM.rm is different than 100b.
 
-This instruction has the same disp8\htmlonly{*}N and alignment rules as for scalar instructions (Tuple 1).
+This instruction has the same disp8\htmlonly{\esc{*}}N and alignment rules as for scalar instructions (Tuple 1).
 
 The instruction will #UD fault if the destination vector zmm1 is the same as index vector VINDEX. The instruction will #UD fault if the k0 mask register is specified.
 

@@ -2,7 +2,9 @@
 title : GETSEC[SEXIT] (Intel x86/64 assembly instruction)
 cat_title : GETSEC[SEXIT]
 ref_title : GETSEC[SEXIT]
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/G
+publish_date: 2020-09-01
 ----------------------------
 #@ GETSEC[SEXIT]
 
@@ -19,7 +21,7 @@ There are restrictions enforced by the processor for the execution of the `GETSE
 
 *  To avoid potential inter-operability conflicts between modes, the processor is not allowed to execute this instruction if it currently is in SMM or in VMX operation. 
 
-*  To insure consistent handling of SIPI messages, the processor executing the `GETSEC[SEXIT]` instruction must also be designated the BSP (bootstrap processor) as defined by the register bit IA32_APIC_BASE.BSP (bit 8). 
+*  To insure consistent handling of SIPI messages, the processor executing the `GETSEC[SEXIT]` instruction must also be designated the BSP (bootstrap processor) as defined by the register bit IA32\esc{_}APIC\esc{_}BASE.BSP (bit 8). 
 
 Failure to abide by the above conditions results in the processor signaling a general protection violation.
 
@@ -33,7 +35,7 @@ In response to a message signaling the completion of rendezvous, all RLPs restar
 
 *  If an RLP was executing an intermediate iteration of a string instruction, then the processor resumes execution of the string instruction at the point which the message initiated by `GETSEC[SEXIT]` was recognized. 
 
-*  If an RLP is still in the SENTER sleep state (never awakened with GETSEC[WAKEUP]), it will be sent to the wait-for-SIPI state after first clearing the bootstrap processor indicator flag (IA32_APIC_BASE.BSP) and any pending SIPI state. In this case, such RLPs are initialized to an architectural state consistent with having taken a soft reset using the INIT# pin. 
+*  If an RLP is still in the SENTER sleep state (never awakened with GETSEC[WAKEUP]), it will be sent to the wait-for-SIPI state after first clearing the bootstrap processor indicator flag (IA32\esc{_}APIC\esc{_}BASE.BSP) and any pending SIPI state. In this case, such RLPs are initialized to an architectural state consistent with having taken a soft reset using the INIT# pin. 
 
 Prior to completion of the `GETSEC[SEXIT]` operation, both the ILP and any active RLPs unmask the response of the external event signals INIT#, A20M, NMI#, and SMI#. This unmasking is performed unconditionally to recognize pin events which are masked after a `GETSEC[SENTER]`. The state of A20M is unmasked, as the A20M pin is not recognized while the measured environment is active.
 

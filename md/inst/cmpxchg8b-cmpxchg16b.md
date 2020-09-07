@@ -2,7 +2,9 @@
 title : CMPXCHG8B, CMPXCHG16Bs (Intel x86/64 assembly instruction)
 cat_title : CMPXCHG8B, CMPXCHG16B
 ref_title : CMPXCHG8B, CMPXCHG16B
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/C
+publish_date: 2020-09-01
 ----------------------------
 #@ CMPXCHG8B, CMPXCHG16B
 

@@ -2,7 +2,9 @@
 title : RDPMC (Intel x86/64 assembly instruction)
 cat_title : RDPMC
 ref_title : RDPMC
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/R
+publish_date: 2020-09-01
 ----------------------------
 #@ RDPMC
 
@@ -30,7 +32,7 @@ The ECX register specifies the counter type (if the processor supports architect
 
 The width of fixed-function performance counters and general-purpose performance counters on processor supporting architectural performance monitoring are reported by `CPUID` 0AH leaf. The width of general-purpose performance counters are 40-bits for processors that do not support architectural performance monitoring coun-ters. The width of special-purpose performance counters are implementation specific. 
 
-Table 4-16 lists valid indices of the general-purpose and special-purpose performance counters according to the DisplayFamily_DisplayModel values of `CPUID` encoding for each processor family (see `CPUID` instruction in Chapter 3, "Instruction Set Reference, A-L" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A). 
+Table 4-16 lists valid indices of the general-purpose and special-purpose performance counters according to the DisplayFamily\esc{_}DisplayModel values of `CPUID` encoding for each processor family (see `CPUID` instruction in Chapter 3, "Instruction Set Reference, A-L" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A). 
 
 ### Table 4-16.  Valid General and Special Purpose Performance Counter Index Range for RDPMC
 

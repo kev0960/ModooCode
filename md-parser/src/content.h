@@ -26,7 +26,8 @@ struct Fragments {
     SERIF,
     HTML_ONLY,
     LATEX_ONLY,
-    FOOTNOTE
+    FOOTNOTE,
+    ESCAPE
   } type;
 
   // Start and end are inclusive.

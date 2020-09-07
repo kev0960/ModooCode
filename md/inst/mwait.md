@@ -2,7 +2,9 @@
 title : MWAIT (Intel x86/64 assembly instruction)
 cat_title : MWAIT
 ref_title : MWAIT
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MWAIT
 
@@ -22,7 +24,7 @@ path : /X86-64 명령어 레퍼런스
 
 MWAIT instruction provides hints to allow the processor to enter an implementation-dependent optimized state. There are two principal targeted usages: address-range monitor and advanced power management. Both usages of `MWAIT` require the use of the `MONITOR` instruction.
 
-CPUID.01H:ECX.MONITOR[bit 3] indicates the availability of `MONITOR` and `MWAIT` in the processor. When set, `MWAIT` may be executed only at privilege level 0 (use at any other privilege level results in an invalid-opcode exception). The operating system or system BIOS may disable this instruction by using the IA32_MISC_ENABLE MSR; disabling `MWAIT` clears the `CPUID` feature flag and causes execution to generate an invalid-opcode excep-tion. 
+CPUID.01H:ECX.MONITOR[bit 3] indicates the availability of `MONITOR` and `MWAIT` in the processor. When set, `MWAIT` may be executed only at privilege level 0 (use at any other privilege level results in an invalid-opcode exception). The operating system or system BIOS may disable this instruction by using the IA32\esc{_}MISC\esc{_}ENABLE MSR; disabling `MWAIT` clears the `CPUID` feature flag and causes execution to generate an invalid-opcode excep-tion. 
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

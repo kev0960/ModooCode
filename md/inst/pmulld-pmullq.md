@@ -2,7 +2,9 @@
 title : PMULLD, PMULLQs (Intel x86/64 assembly instruction)
 cat_title : PMULLD, PMULLQ
 ref_title : PMULLD, PMULLQ
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/P
+publish_date: 2020-09-01
 ----------------------------
 #@ PMULLD, PMULLQ
 
@@ -32,11 +34,11 @@ path : /X86-64 명령어 레퍼런스
 
 Performs a SIMD signed multiply of the packed signed dword/qword integers from each element of the first source operand with the corresponding element in the second source operand. The low 32/64 bits of each 64/128-bit intermediate results are stored to the destination operand. 
 
-128-bit Legacy SSE version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (MAX_VL-1:128) of the corresponding ZMM destina-tion register remain unchanged.
+128-bit Legacy SSE version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (MAX\esc{_}VL-1:128) of the corresponding ZMM destina-tion register remain unchanged.
 
-VEX.128 encoded version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (MAX_VL-1:128) of the corresponding ZMM register are zeroed.
+VEX.128 encoded version: The first source and destination operands are XMM registers. The second source operand is an XMM register or a 128-bit memory location. Bits (MAX\esc{_}VL-1:128) of the corresponding ZMM register are zeroed.
 
-VEX.256 encoded version: The first source operand is a YMM register; The second source operand is a YMM register or 256-bit memory location. Bits (MAX_VL-1:256) of the corresponding destination ZMM register are zeroed.
+VEX.256 encoded version: The first source operand is a YMM register; The second source operand is a YMM register or 256-bit memory location. Bits (MAX\esc{_}VL-1:256) of the corresponding destination ZMM register are zeroed.
 
 
 

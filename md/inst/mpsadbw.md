@@ -2,7 +2,9 @@
 title : MPSADBW (Intel x86/64 assembly instruction)
 cat_title : MPSADBW
 ref_title : MPSADBW
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MPSADBW
 
@@ -23,15 +25,15 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-(V)MPSADBW calculates packed word results of sum-absolute-difference (SAD) of unsigned bytes from two blocks of 32-bit dword elements, using two select fields in the immediate byte to select the offsets of the two blocks within the first source operand and the second operand. Packed SAD word results are calculated within each 128-bit lane. Each SAD word result is calculated between a stationary block_2 (whose offset within the second source operand is selected by a two bit select control, multiplied by 32 bits) and a sliding block_1 at consecutive byte-granular position within the first source operand. The offset of the first 32-bit block of block_1 is selectable using a one bit select control, multiplied by 32 bits.
+(V)MPSADBW calculates packed word results of sum-absolute-difference (SAD) of unsigned bytes from two blocks of 32-bit dword elements, using two select fields in the immediate byte to select the offsets of the two blocks within the first source operand and the second operand. Packed SAD word results are calculated within each 128-bit lane. Each SAD word result is calculated between a stationary block\esc{_}2 (whose offset within the second source operand is selected by a two bit select control, multiplied by 32 bits) and a sliding block\esc{_}1 at consecutive byte-granular position within the first source operand. The offset of the first 32-bit block of block\esc{_}1 is selectable using a one bit select control, multiplied by 32 bits.
 
-128-bit Legacy SSE version: Imm8[1:0]\htmlonly{*}32 specifies the bit offset of block_2 within the second source operand. Imm[2]\htmlonly{*}32 specifies the initial bit offset of the block_1 within the first source operand. The first source operand and destination operand are the same. The first source and destination operands are XMM registers. The second source operand is either an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. Bits 7:3 of the immediate byte are ignored.
+128-bit Legacy SSE version: Imm8[1:0]\htmlonly{\esc{*}}32 specifies the bit offset of block\esc{_}2 within the second source operand. Imm[2]\htmlonly{\esc{*}}32 specifies the initial bit offset of the block\esc{_}1 within the first source operand. The first source operand and destination operand are the same. The first source and destination operands are XMM registers. The second source operand is either an XMM register or a 128-bit memory location. Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged. Bits 7:3 of the immediate byte are ignored.
 
-VEX.128 encoded version: Imm8[1:0]\htmlonly{*}32 specifies the bit offset of block_2 within the second source operand. Imm[2]\htmlonly{*}32 specifies the initial bit offset of the block_1 within the first source operand. The first source and desti-nation operands are XMM registers. The second source operand is either an XMM register or a 128-bit memory location. Bits (127:128) of the corresponding YMM register are zeroed. Bits 7:3 of the immediate byte are ignored.
+VEX.128 encoded version: Imm8[1:0]\htmlonly{\esc{*}}32 specifies the bit offset of block\esc{_}2 within the second source operand. Imm[2]\htmlonly{\esc{*}}32 specifies the initial bit offset of the block\esc{_}1 within the first source operand. The first source and desti-nation operands are XMM registers. The second source operand is either an XMM register or a 128-bit memory location. Bits (127:128) of the corresponding YMM register are zeroed. Bits 7:3 of the immediate byte are ignored.
 
-VEX.256 encoded version: The sum-absolute-difference (SAD) operation is repeated 8 times for MPSADW between the same block_2 (fixed offset within the second source operand) and a variable block_1 (offset is shifted by 8 bits for each SAD operation) in the first source operand. Each 16-bit result of eight SAD operations between block_2 and block_1 is written to the respective word in the lower 128 bits of the destination operand. 
+VEX.256 encoded version: The sum-absolute-difference (SAD) operation is repeated 8 times for MPSADW between the same block\esc{_}2 (fixed offset within the second source operand) and a variable block\esc{_}1 (offset is shifted by 8 bits for each SAD operation) in the first source operand. Each 16-bit result of eight SAD operations between block\esc{_}2 and block\esc{_}1 is written to the respective word in the lower 128 bits of the destination operand. 
 
-Additionally, VMPSADBW performs another eight SAD operations on block_4 of the second source operand and block_3 of the first source operand. (Imm8[4:3]\htmlonly{*}32 + 128) specifies the bit offset of block_4 within the second source operand. (Imm[5]\htmlonly{*}32+128) specifies the initial bit offset of the block_3 within the first source operand. Each 16-bit result of eight SAD operations between block_4 and block_3 is written to the respective word in the upper 128 bits of the destination operand. 
+Additionally, VMPSADBW performs another eight SAD operations on block\esc{_}4 of the second source operand and block\esc{_}3 of the first source operand. (Imm8[4:3]\htmlonly{\esc{*}}32 + 128) specifies the bit offset of block\esc{_}4 within the second source operand. (Imm[5]\htmlonly{\esc{*}}32+128) specifies the initial bit offset of the block\esc{_}3 within the first source operand. Each 16-bit result of eight SAD operations between block\esc{_}4 and block\esc{_}3 is written to the respective word in the upper 128 bits of the destination operand. 
 
 
 

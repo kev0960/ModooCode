@@ -2,7 +2,9 @@
 title : SYSENTER (Intel x86/64 assembly instruction)
 cat_title : SYSENTER
 ref_title : SYSENTER
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/S
+publish_date: 2020-09-01
 ----------------------------
 #@ SYSENTER
 
@@ -26,15 +28,15 @@ When executed in IA-32e mode, the `SYSENTER` instruction transitions the logical
 
 Prior to executing the `SYSENTER` instruction, software must specify the privilege level 0 code segment and code entry point, and the privilege level 0 stack segment and stack pointer by writing values to the following MSRs:
 
-*  IA32_SYSENTER_CS (MSR address 174H) -- The lower 16 bits of this MSR are the segment selector for the privilege level 0 code segment. This value is also used to determine the segment selector of the privilege level 0 stack segment (see the Operation section). This value cannot indicate a null selector.
+*  IA32\esc{_}SYSENTER\esc{_}CS (MSR address 174H) -- The lower 16 bits of this MSR are the segment selector for the privilege level 0 code segment. This value is also used to determine the segment selector of the privilege level 0 stack segment (see the Operation section). This value cannot indicate a null selector.
 
-*  IA32_SYSENTER_EIP (MSR address 176H) -- The value of this MSR is loaded into RIP (thus, this value references the first instruction of the selected operating procedure or routine). In protected mode, only bits 31:0 are loaded.
+*  IA32\esc{_}SYSENTER\esc{_}EIP (MSR address 176H) -- The value of this MSR is loaded into RIP (thus, this value references the first instruction of the selected operating procedure or routine). In protected mode, only bits 31:0 are loaded.
 
-*  IA32_SYSENTER_ESP (MSR address 175H) -- The value of this MSR is loaded into RSP (thus, this value contains the stack pointer for the privilege level 0 stack). This value cannot represent a non-canonical address. In protected mode, only bits 31:0 are loaded.
+*  IA32\esc{_}SYSENTER\esc{_}ESP (MSR address 175H) -- The value of this MSR is loaded into RSP (thus, this value contains the stack pointer for the privilege level 0 stack). This value cannot represent a non-canonical address. In protected mode, only bits 31:0 are loaded.
 
-These MSRs can be read from and written to using RDMSR/WRMSR. The `WRMSR` instruction ensures that the IA32_SYSENTER_EIP and IA32_SYSENTER_ESP MSRs always contain canonical addresses.
+These MSRs can be read from and written to using RDMSR/WRMSR. The `WRMSR` instruction ensures that the IA32\esc{_}SYSENTER\esc{_}EIP and IA32\esc{_}SYSENTER\esc{_}ESP MSRs always contain canonical addresses.
 
-While `SYSENTER` loads the CS and SS selectors with values derived from the IA32_SYSENTER_CS MSR, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the responsibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values correspond to the fixed values loaded into the descriptor caches; the `SYSENTER` instruction does not ensure this correspondence.
+While `SYSENTER` loads the CS and SS selectors with values derived from the IA32\esc{_}SYSENTER\esc{_}CS MSR, the CS and SS descriptor caches are not loaded from the descriptors (in GDT or LDT) referenced by those selectors. Instead, the descriptor caches are loaded with fixed values. See the Operation section for details. It is the responsibility of OS software to ensure that the descriptors (in GDT or LDT) referenced by those selector values correspond to the fixed values loaded into the descriptor caches; the `SYSENTER` instruction does not ensure this correspondence.
 
 The `SYSENTER` instruction can be invoked from all operating modes except real-address mode. 
 
@@ -42,7 +44,7 @@ The `SYSENTER` and `SYSEXIT` instructions are companion instructions, but they d
 
 To use the `SYSENTER` and `SYSEXIT` instructions as companion instructions for transitions between privilege level 3 code and privilege level 0 operating system procedures, the following conventions must be followed:
 
-*  The segment descriptors for the privilege level 0 code and stack segments and for the privilege level 3 code and stack segments must be contiguous in a descriptor table. This convention allows the processor to compute the segment selectors from the value entered in the SYSENTER_CS_MSR MSR.
+*  The segment descriptors for the privilege level 0 code and stack segments and for the privilege level 3 code and stack segments must be contiguous in a descriptor table. This convention allows the processor to compute the segment selectors from the value entered in the SYSENTER\esc{_}CS\esc{_}MSR MSR.
 
 *  The fast system call "stub" routines executed by user code (typically in shared libraries or DLLs) must save the required return IP and processor state information if a return to the calling procedure is required. Likewise, the operating system or executive procedures called with `SYSENTER` instructions must have access to and use this saved return and state information when returning to the user code.
 
@@ -56,11 +58,11 @@ IF `CPUID` SEP bit is set
 
           THEN
 
-                SYSENTER/SYSEXIT_Not_Supported; FI;
+                SYSENTER/SYSEXIT\esc{_}Not\esc{_}Supported; FI;
 
           ELSE 
 
-                SYSENTER/SYSEXIT_Supported; FI;
+                SYSENTER/SYSEXIT\esc{_}Supported; FI;
 
 FI;
 

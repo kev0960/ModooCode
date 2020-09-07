@@ -2,7 +2,9 @@
 title : BLENDVPS (Intel x86/64 assembly instruction)
 cat_title : BLENDVPS
 ref_title : BLENDVPS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/B
+publish_date: 2020-09-01
 ----------------------------
 #@ BLENDVPS
 

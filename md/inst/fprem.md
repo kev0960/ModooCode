@@ -2,7 +2,9 @@
 title : FPREM (Intel x86/64 assembly instruction)
 cat_title : FPREM
 ref_title : FPREM
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/F
+publish_date: 2020-09-01
 ----------------------------
 #@ FPREM
 
@@ -16,7 +18,7 @@ path : /X86-64 명령어 레퍼런스
 
 Computes the remainder obtained from dividing the value in the ST(0) register (the dividend) by the value in the ST(1) register (the divisor or modulus), and stores the result in ST(0). The remainder represents the following value:
 
-Remainder <- ST(0) - (Q `*` ST(1))
+Remainder <- ST(0) - (Q `\esc{*}` ST(1))
 
 Here, Q is an integer value that is obtained by truncating the floating-point number quotient of [ST(0) / ST(1)] toward zero. The sign of the remainder is the same as the sign of the dividend. The magnitude of the remainder is less than that of the modulus, unless a partial remainder was computed (as described below).
 

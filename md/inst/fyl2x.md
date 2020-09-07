@@ -2,7 +2,9 @@
 title : FYL2X (Intel x86/64 assembly instruction)
 cat_title : FYL2X
 ref_title : FYL2X
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/F
+publish_date: 2020-09-01
 ----------------------------
 #@ FYL2X
 
@@ -14,7 +16,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Computes (ST(1) `*` log2 (ST(0))), stores the result in resister ST(1), and pops the FPU register stack. The source operand in ST(0) must be a non-zero positive number.
+Computes (ST(1) `\esc{*}` log2 (ST(0))), stores the result in resister ST(1), and pops the FPU register stack. The source operand in ST(0) must be a non-zero positive number.
 
 The following table shows the results obtained when taking the log of various classes of numbers, assuming that neither overflow nor underflow occurs.
 

@@ -2,7 +2,9 @@
 title : XRSTORS (Intel x86/64 assembly instruction)
 cat_title : XRSTORS
 ref_title : XRSTORS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/X
+publish_date: 2020-09-01
 ----------------------------
 #@ XRSTORS
 
@@ -21,7 +23,7 @@ path : /X86-64 명령어 레퍼런스
 ### Description
 
 
-Performs a full or partial restore of processor state components from the `XSAVE` area located at the memory address specified by the source operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components restored correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and the logical-OR of XCR0 with the IA32_XSS MSR. `XRSTORS` may be executed only if CPL = 0.
+Performs a full or partial restore of processor state components from the `XSAVE` area located at the memory address specified by the source operand. The implicit EDX:EAX register pair specifies a 64-bit instruction mask. The specific state components restored correspond to the bits set in the requested-feature bitmap (RFBM), which is the logical-AND of EDX:EAX and the logical-OR of XCR0 with the IA32\esc{_}XSS MSR. `XRSTORS` may be executed only if CPL = 0.
 
 The format of the `XSAVE` area is detailed in Section 13.4, "XSAVE Area," of Intel(R) 64 and IA-32 Architectures Soft-ware Developer's Manual, Volume 1.
 
@@ -29,19 +31,19 @@ Section 13.12, "Operation of `XRSTORS`," of Intel(R) 64 and IA-32 Architectures 
 
 *  Execution of `XRSTORS` is similar to that of the compacted form of XRSTOR; `XRSTORS` cannot restore from an `XSAVE` area in which the extended region is in the standard format (see Section 13.4.3, "Extended Region of an `XSAVE` Area").
 
-*  `XRSTORS` differs from `XRSTOR` in that it can restore state components corresponding to bits set in the IA32_XSS MSR.
+*  `XRSTORS` differs from `XRSTOR` in that it can restore state components corresponding to bits set in the IA32\esc{_}XSS MSR.
 
 *  If RFBM[i] = 0, `XRSTORS` does not update state component i.
 
-*  If RFBM[i] = 1 and bit i is clear in the XSTATE_BV field in the `XSAVE` header, `XRSTORS` initializes state component i.
+*  If RFBM[i] = 1 and bit i is clear in the XSTATE\esc{_}BV field in the `XSAVE` header, `XRSTORS` initializes state component i.
 
-*  If RFBM[i] = 1 and XSTATE_BV[i] = 1, `XRSTORS` loads state component i from the `XSAVE` area.
+*  If RFBM[i] = 1 and XSTATE\esc{_}BV[i] = 1, `XRSTORS` loads state component i from the `XSAVE` area.
 
 *  If `XRSTORS` attempts to load MXCSR with an illegal value, a general-protection exception (#GP) occurs.
 
-*  `XRSTORS` loads the internal value XRSTOR_INFO, which may be used to optimize a subsequent execution of `XSAVEOPT` or `XSAVES`.
+*  `XRSTORS` loads the internal value XRSTOR\esc{_}INFO, which may be used to optimize a subsequent execution of `XSAVEOPT` or `XSAVES`.
 
-*  Immediately following an execution of `XRSTORS`, the processor tracks as in-use (not in initial configuration) any state component i for which RFBM[i] = 1 and XSTATE_BV[i] = 1; it tracks as modified any state component i for which RFBM[i] = 0.
+*  Immediately following an execution of `XRSTORS`, the processor tracks as in-use (not in initial configuration) any state component i for which RFBM[i] = 1 and XSTATE\esc{_}BV[i] = 1; it tracks as modified any state component i for which RFBM[i] = 0.
 
 Use of a source operand not aligned to 64-byte boundary (for 64-bit and 32-bit modes) results in a general-protec-tion (#GP) exception. In 64-bit mode, the upper 32 bits of RDX and RAX are ignored.
 

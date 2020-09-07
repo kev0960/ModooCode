@@ -2,7 +2,9 @@
 title : MOVDQA, VMOVDQA32, VMOVDQA64s (Intel x86/64 assembly instruction)
 cat_title : MOVDQA, VMOVDQA32, VMOVDQA64
 ref_title : MOVDQA, VMOVDQA32, VMOVDQA64
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/M
+publish_date: 2020-09-01
 ----------------------------
 #@ MOVDQA, VMOVDQA32, VMOVDQA64
 
@@ -52,7 +54,7 @@ VEX.256 encoded version:
 
 Moves 256 bits of packed integer values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load a YMM register from a 256-bit memory location, to store the contents of a YMM register into a 256-bit memory location, or to move data between two YMM registers. 
 
-When the source or destination operand is a memory operand, the operand must be aligned on a 32-byte boundary or a general-protection exception (#GP) will be generated. To move integer data to and from unaligned memory locations, use the VMOVDQU instruction. Bits (MAX_VL-1:256) of the destination register are zeroed.
+When the source or destination operand is a memory operand, the operand must be aligned on a 32-byte boundary or a general-protection exception (#GP) will be generated. To move integer data to and from unaligned memory locations, use the VMOVDQU instruction. Bits (MAX\esc{_}VL-1:256) of the destination register are zeroed.
 
 128-bit versions:
 
@@ -60,9 +62,9 @@ Moves 128 bits of packed integer values from the source operand (second operand)
 
 When the source or destination operand is a memory operand, the operand must be aligned on a 16-byte boundary or a general-protection exception (#GP) will be generated. To move integer data to and from unaligned memory locations, use the VMOVDQU instruction.
 
-128-bit Legacy SSE version: Bits (MAX_VL-1:128) of the corresponding ZMM destination register remain unchanged.
+128-bit Legacy SSE version: Bits (MAX\esc{_}VL-1:128) of the corresponding ZMM destination register remain unchanged.
 
-VEX.128 encoded version: Bits (MAX_VL-1:128) of the destination register are zeroed.
+VEX.128 encoded version: Bits (MAX\esc{_}VL-1:128) of the destination register are zeroed.
 
 
 ### Operation

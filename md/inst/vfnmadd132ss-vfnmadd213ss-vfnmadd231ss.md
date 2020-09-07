@@ -2,7 +2,9 @@
 title : VFNMADD132SS, VFNMADD213SS, VFNMADD231SSs (Intel x86/64 assembly instruction)
 cat_title : VFNMADD132SS, VFNMADD213SS, VFNMADD231SS
 ref_title : VFNMADD132SS, VFNMADD213SS, VFNMADD231SS
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/V
+publish_date: 2020-09-01
 ----------------------------
 #@ VFNMADD132SS, VFNMADD213SS, VFNMADD231SS
 
@@ -32,7 +34,7 @@ VFNMADD213SS: Multiplies the low packed single-precision floating-point value fr
 
 VFNMADD231SS: Multiplies the low packed single-precision floating-point value from the second source operand to the low packed single-precision floating-point value in the third source operand, adds the negated infinite preci-sion intermediate result to the low packed single-precision floating-point value in the first source operand, performs rounding and stores the resulting packed single-precision floating-point value to the destination operand (first source operand).
 
-VEX.128 and EVEX encoded version: The destination operand (also first source operand) is encoded in reg_field. The second source operand is encoded in VEX.vvvv/EVEX.vvvv. The third source operand is encoded in rm_field. Bits 127:32 of the destination are unchanged. Bits MAXVL-1:128 of the destination register are zeroed.
+VEX.128 and EVEX encoded version: The destination operand (also first source operand) is encoded in reg\esc{_}field. The second source operand is encoded in VEX.vvvv/EVEX.vvvv. The third source operand is encoded in rm\esc{_}field. Bits 127:32 of the destination are unchanged. Bits MAXVL-1:128 of the destination register are zeroed.
 
 
 

@@ -2,7 +2,9 @@
 title : UD2 (Intel x86/64 assembly instruction)
 cat_title : UD2
 ref_title : UD2
-path : /X86-64 명령어 레퍼런스
+published : 2020-09-01
+path : /X86-64 명령어 레퍼런스/U
+publish_date: 2020-09-01
 ----------------------------
 #@ UD2
 
