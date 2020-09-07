@@ -1,5 +1,5 @@
 
-const uuidv4 = require('uuid/v4');
+const uuidv4 = require('uuid').v4;
 
 class ZmqManager {
   constructor(send_sock, recv_sock) {
