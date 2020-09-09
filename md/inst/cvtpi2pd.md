@@ -6,9 +6,15 @@ published : 2020-09-01
 path : /X86-64 명령어 레퍼런스/C
 publish_date: 2020-09-01
 ----------------------------
+
+
 #@ CVTPI2PD
 
 **Convert Packed Dword Integers to Packed Double-Precision FP Values**
+
+```lec-info
+아래 표를 해석하는 방법은 [x86-64 명령어 레퍼런스 읽는 법](/316) 글을 참조하시기 바랍니다.
+```
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|

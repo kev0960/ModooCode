@@ -6,6 +6,8 @@ published : 2020-09-01
 path : /X86-64 명령어 레퍼런스/G
 publish_date: 2020-09-01
 ----------------------------
+
+
 #@ GETSEC[WAKEUP]
 
 **Wake up sleeping processors in measured environment**### Description
@@ -33,6 +35,10 @@ An RLP exits the SENTER sleep state and start execution in response to a WAKEUP 
 The MLE JOIN data structure contains the information necessary to initialize RLP processor state and permit the processor to join the measured environment. The GDTR, LIP, and CS, DS, SS, and ES selector values are initialized using this data structure. The CS selector index is derived directly from the segment selector initializer field; DS, SS, and ES selectors are initialized to CS+8. The segment descriptor fields are initialized implicitly with BASE = 0, LIMIT = FFFFFH, G = 1, D = 1, P = 1, S = 1; read/write/access for DS, SS, and ES; and execute/read/access for CS. It is the responsibility of external software to establish a GDT pointed to by the MLE JOIN data structure that contains descriptor entries consistent with the implicit settings initialized by the processor (see Table 6-6). Certain states from the content of Table 6-12 are checked for consistency by the processor prior to execution. A failure of any consistency check results in the RLP aborting entry into the protected environment and signaling an Intel(R) TXT shutdown condition. The specific checks performed are documented later in this section. After successful comple-tion of processor consistency checks and subsequent initialization, RLP execution in the measured environment begins from the entry point at offset 12 (as indicated in Table 6-12).
 
 
+
+```lec-info
+아래 표를 해석하는 방법은 [x86-64 명령어 레퍼런스 읽는 법](/316) 글을 참조하시기 바랍니다.
+```
 
 |**Offset **|**Field**|
 |-----------|---------|

@@ -6,10 +6,16 @@ published : 2020-09-01
 path : /X86-64 명령어 레퍼런스/M
 publish_date: 2020-09-01
 ----------------------------
+
+
 #@ MOVBE
 
 **Move Data After Swapping Bytes**### Instruction Operand Encoding
 
+
+```lec-info
+아래 표를 해석하는 방법은 [x86-64 명령어 레퍼런스 읽는 법](/316) 글을 참조하시기 바랍니다.
+```
 
 |Op/En|Operand 1|Operand 2|Operand 3|Operand 4|
 |-----|---------|---------|---------|---------|

@@ -6,9 +6,15 @@ published : 2020-09-01
 path : /X86-64 명령어 레퍼런스/M
 publish_date: 2020-09-01
 ----------------------------
+
+
 #@ MOVUPS
 
 **Move Unaligned Packed Single-Precision Floating-Point Values**
+
+```lec-info
+아래 표를 해석하는 방법은 [x86-64 명령어 레퍼런스 읽는 법](/316) 글을 참조하시기 바랍니다.
+```
 
 |**Opcode/**\newline{}**Instruction**|**Op / En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------|------------------------------------------------------|--------------------------------------------------|---------------|

@@ -113,6 +113,10 @@ function initCategory() {
       // Add directories.
       const folders = Object.keys(current_dir);
       const div = $('<div>', {class: 'inner-menu' + path.length});
+      if (path.length > 0 && path[0] == 'X86-64 명령어 레퍼런스') {
+        folders.sort();
+      }
+
       for (let i = 0; i < folders.length; i++) {
         if (folders[i] !== 'files') {
           const dir_folders = Object.keys(current_dir[folders[i]]);

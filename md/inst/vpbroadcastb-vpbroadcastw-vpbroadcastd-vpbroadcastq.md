@@ -6,9 +6,15 @@ published : 2020-09-01
 path : /X86-64 명령어 레퍼런스/V
 publish_date: 2020-09-01
 ----------------------------
+
+
 #@ VPBROADCASTB, VPBROADCASTW, VPBROADCASTD, VPBROADCASTQ
 
 **Load with Broadcast Integer Data from General Purpose Register**
+
+```lec-info
+아래 표를 해석하는 방법은 [x86-64 명령어 레퍼런스 읽는 법](/316) 글을 참조하시기 바랍니다.
+```
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|--------------------------------------------------------------------|--------------------------------------------------|---------------|

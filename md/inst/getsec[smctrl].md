@@ -6,6 +6,8 @@ published : 2020-09-01
 path : /X86-64 명령어 레퍼런스/G
 publish_date: 2020-09-01
 ----------------------------
+
+
 #@ GETSEC[SMCTRL]
 
 **SMX Mode Control**### Description
@@ -27,6 +29,10 @@ Table 6-11 defines the processor context in which GETSEC[SMCTRL(0)] can be used 
 
 ### Table 6-11.  Supported Actions for GETSEC[SMCTRL(0)]
 
+
+```lec-info
+아래 표를 해석하는 방법은 [x86-64 명령어 레퍼런스 읽는 법](/316) 글을 참조하시기 바랍니다.
+```
 
 |**ILP Mode of Operation**\newline{}In VMX non-root operation\newline{}SENTERFLAG = 0\newline{}In authenticated code execution mode \newline{}(ACMODEFLAG = 1)\newline{}SENTERFLAG = 1, not in VMX operation, not in \newline{}SMM \newline{}SENTERFLAG = 1, in VMX root operation, not in \newline{}SMM \newline{}SENTERFLAG = 1, In VMX root operation, in SMM|**SMCTRL execution action**\newline{}VM exit\newline{}#GP(0), illegal context\newline{}#GP(0), illegal context\newline{}Unmask SMI \newline{}Unmask SMI if SMM monitor is not configured, otherwise #GP(0)\newline{}#GP(0), illegal context|
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

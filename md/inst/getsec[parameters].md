@@ -6,6 +6,8 @@ published : 2020-09-01
 path : /X86-64 명령어 레퍼런스/G
 publish_date: 2020-09-01
 ----------------------------
+
+
 #@ GETSEC[PARAMETERS]
 
 **Report the SMX Parameters**### Description
@@ -19,6 +21,10 @@ Table 6-7 defines the parameter types supported in current and future implementa
 
 ### Table 6-7.  SMX Reporting Parameters Format 
 
+
+```lec-info
+아래 표를 해석하는 방법은 [x86-64 명령어 레퍼런스 읽는 법](/316) 글을 참조하시기 바랍니다.
+```
 
 |**Parameter **\newline{}**Type EAX[4:0]**|**Parameter Description**|**EAX[31:5]**|**EBX[31:0]**|**ECX[31:0]**|
 |-----------------------------------------|-------------------------|-------------|-------------|-------------|

@@ -114,6 +114,29 @@ pre.info-verb {
     border-bottom-right-radius: 8px;
 }
 
+.lec-info-title {
+    background-color: #24b92f;
+    margin-bottom: 0px;
+    color: white;
+    padding: 8px 0px 8px 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-weight: bold;
+}
+
+.lec-info-title i {
+    padding-right: 5px;
+}
+
+.lec-info {
+    background-color : #f0fde8;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+
 .lec-warning {
     background-color:  #fdf3f2;
     border-bottom-left-radius: 8px;

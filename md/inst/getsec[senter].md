@@ -6,6 +6,8 @@ published : 2020-09-01
 path : /X86-64 명령어 레퍼런스/G
 publish_date: 2020-09-01
 ----------------------------
+
+
 #@ GETSEC[SENTER]
 
 **Enter a Measured Environment**### Description
@@ -106,6 +108,10 @@ Table 6-6 provides a summary of processor state initialization for the ILP and R
 
 ### Table 6-6.  Register State Initialization after GETSEC[SENTER] and GETSEC[WAKEUP]
 
+
+```lec-info
+아래 표를 해석하는 방법은 [x86-64 명령어 레퍼런스 읽는 법](/316) 글을 참조하시기 바랍니다.
+```
 
 |**Register State**|**ILP after GETSEC[SENTER]**|**RLP after GETSEC[WAKEUP]**|
 |------------------|----------------------------|----------------------------|

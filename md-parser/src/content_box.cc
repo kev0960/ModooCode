@@ -233,6 +233,8 @@ BoxContent::BoxContent(const string& content, const string& box_name)
     box_type_ = BOX_CONTENT_TYPES::COMPILER_WARNING;
   } else if (box_name == "lec-warning") {
     box_type_ = BOX_CONTENT_TYPES::LEC_WARNING;
+  } else if (box_name == "lec-info") {
+    box_type_ = BOX_CONTENT_TYPES::LEC_INFO;
   } else if (box_name == "lec-summary") {
     box_type_ = BOX_CONTENT_TYPES::LEC_SUMMARY;
   } else if (box_name == "html-only") {
@@ -335,6 +337,15 @@ string BoxContent::OutputHtml(ParserEnvironment* parser_env) {
       return StrCat(
           "<p class='compiler-warning-title'><i class='xi-warning'></i>주의 "
           "사항</p><div class='lec-warning'>",
+          output_html, "</div>");
+    }
+    case LEC_INFO: {
+      Content::Preprocess(parser_env);
+      string output_html = Content::OutputHtml(parser_env);
+      NewlineToBrBr(&output_html);
+      return StrCat(
+          "<p class='lec-info-title'><i class='xi-info'></i>참고 "
+          "사항</p><div class='lec-info'>",
           output_html, "</div>");
     }
     case LEC_SUMMARY: {
