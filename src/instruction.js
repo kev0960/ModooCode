@@ -11,12 +11,11 @@ module.exports = class InstructionManager {
   }
 
   getInstruction(inst) {
-    // First check it is all alphabet or - or []
-    if(!/^[a-zA-Z\-\[\]]+$/.test(inst)) {
+    if(/^[0-9]+$/.test(inst)) {
       return null;
     }
-
+    
     inst = inst.toLowerCase();
     return this.inst_map[inst];
   }
-} 
+}

@@ -506,8 +506,8 @@ a.link-code {
 }
 
 .adsense-container-top {
-    display: flex;
-    display: -ms-flexbox;
+    display: inline-block;
+    width: 100%;
 }
 
 .adsense-content-bottom {
