@@ -1731,6 +1731,22 @@
 	"title" : "x86-64 명령어 레퍼런스 읽는 법"
 }
 ,
+	"317" : {
+	"cat_title" : "replace, replace_if",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2020-09-20",
+	"ref_title" : "std::replace, replace, std::replace_if, replace_if",
+	"title" : "C++ 레퍼런스 - std::replace 와 std::replace_if (<algorithm>)"
+}
+,
+	"318" : {
+	"cat_title" : "generate, generate",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2020-09-23",
+	"ref_title" : "std::generate, generate",
+	"title" : "C++ 레퍼런스 - std::generate (<algorithm>)"
+}
+,
 	"32" : {
 	"cat_title" : "15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해",
 	"next_page" : "33",
