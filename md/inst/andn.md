@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDS.LZ.0F38.W0 F2 /rANDN r32a, r32b, r/m32|RVM|V/V|BMI1|Bitwise AND of inverted r32b with r/m32, store result in r32a.|
-|VEX.NDS.LZ. 0F38.W1 F2 /rANDN r64a, r64b, r/m64|RVM|V/NE|BMI1|Bitwise AND of inverted r64b with r/m64, store result in r64a.|
+|`VEX.NDS.LZ.0F38.W0 F2 /r`\newline{}`ANDN` r32a r32b \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RVM|V/V|BMI1|Bitwise AND of inverted r32b with r/m32, store result in r32a.|
+|`VEX.NDS.LZ. 0F38.W1 F2 /r`\newline{}`ANDN` r64a r64b \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RVM|V/NE|BMI1|Bitwise AND of inverted r64b with r/m64, store result in r64a.|
 ### Instruction Operand Encoding
 
 

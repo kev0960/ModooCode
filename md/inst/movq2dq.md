@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|F3 0F D6 /r|MOVQ2DQ xmm, mm|RM|Valid|Valid|Move quadword from mmx to low quadword of xmm.|
+|F3 0F D6 /r|`MOVQ2DQ` \tooltip{xmm}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } |RM|Valid|Valid|Move quadword from mmx to low quadword of xmm.|
 ### Instruction Operand Encoding
 
 

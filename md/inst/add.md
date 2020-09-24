@@ -18,28 +18,28 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|04 ib|ADD AL, imm8|I|Valid|Valid|Add imm8 to AL.|
-|05 iw|ADD AX, imm16|I|Valid|Valid|Add imm16 to AX.|
-|05 id|ADD EAX, imm32|I|Valid|Valid|Add imm32 to EAX.|
-|REX.W + 05 id|ADD RAX, imm32|I|Valid|N.E.|Add imm32 sign-extended to 64-bits to RAX.|
-|80 /0 ib|ADD r/m8, imm8|MI|Valid|Valid|Add imm8 to r/m8.|
-|REX + 80 /0 ib|ADD r/m8\footnote{*} , imm8|MI|Valid|N.E.|Add sign-extended imm8 to r/m64.|
-|81 /0 iw|ADD r/m16, imm16|MI|Valid|Valid|Add imm16 to r/m16.|
-|81 /0 id|ADD r/m32, imm32|MI|Valid|Valid|Add imm32 to r/m32.|
-|REX.W + 81 /0 id|ADD r/m64, imm32|MI|Valid|N.E.|Add imm32 sign-extended to 64-bits to r/m64.|
-|83 /0 ib|ADD r/m16, imm8|MI|Valid|Valid|Add sign-extended imm8 to r/m16.|
-|83 /0 ib|ADD r/m32, imm8|MI|Valid|Valid|Add sign-extended imm8 to r/m32.|
-|REX.W + 83 /0 ib|ADD r/m64, imm8|MI|Valid|N.E.|Add sign-extended imm8 to r/m64.|
-|00 /r|ADD r/m8, r8|MR|Valid|Valid|Add r8 to r/m8.|
-|REX + 00 /r|ADD r/m8\footnote{*} , r8\footnote{*}|MR|Valid|N.E.|Add r8 to r/m8.|
-|01 /r|ADD r/m16, r16|MR|Valid|Valid|Add r16 to r/m16.|
-|01 /r|ADD r/m32, r32|MR|Valid|Valid|Add r32 to r/m32.|
-|REX.W + 01 /r|ADD r/m64, r64|MR|Valid|N.E.|Add r64 to r/m64.|
-|02 /r|ADD r8, r/m8|RM|Valid|Valid|Add r/m8 to r8.|
-|REX + 02 /r|ADD r8\footnote{*} , r/m8\footnote{*}|RM|Valid|N.E.|Add r/m8 to r8.|
-|03 /r|ADD r16, r/m16|RM|Valid|Valid|Add r/m16 to r16.|
-|03 /r|ADD r32, r/m32|RM|Valid|Valid|Add r/m32 to r32.|
-|REX.W + 03 /r|ADD r64, r/m64|RM|Valid|N.E.|Add r/m64 to r64.|
+|04 ib|`ADD` AL \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |I|Valid|Valid|Add imm8 to AL.|
+|05 iw|`ADD` AX \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |I|Valid|Valid|Add imm16 to AX.|
+|05 id|`ADD` EAX \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |I|Valid|Valid|Add imm32 to EAX.|
+|REX.W + 05 id|`ADD` RAX \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |I|Valid|N.E.|Add imm32 sign-extended to 64-bits to RAX.|
+|80 /0 ib|`ADD` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|Valid|Add imm8 to r/m8.|
+|REX + 80 /0 ib|`ADD` r/m8\footnote{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Add sign-extended imm8 to r/m64.|
+|81 /0 iw|`ADD` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |MI|Valid|Valid|Add imm16 to r/m16.|
+|81 /0 id|`ADD` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |MI|Valid|Valid|Add imm32 to r/m32.|
+|REX.W + 81 /0 id|`ADD` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |MI|Valid|N.E.|Add imm32 sign-extended to 64-bits to r/m64.|
+|83 /0 ib|`ADD` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|Valid|Add sign-extended imm8 to r/m16.|
+|83 /0 ib|`ADD` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|Valid|Add sign-extended imm8 to r/m32.|
+|REX.W + 83 /0 ib|`ADD` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Add sign-extended imm8 to r/m64.|
+|00 /r|`ADD` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} |MR|Valid|Valid|Add r8 to r/m8.|
+|REX + 00 /r|`ADD` r/m8\footnote{*} r8\footnote{*} |MR|Valid|N.E.|Add r8 to r/m8.|
+|01 /r|`ADD` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |MR|Valid|Valid|Add r16 to r/m16.|
+|01 /r|`ADD` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |MR|Valid|Valid|Add r32 to r/m32.|
+|REX.W + 01 /r|`ADD` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |MR|Valid|N.E.|Add r64 to r/m64.|
+|02 /r|`ADD` \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Add r/m8 to r8.|
+|REX + 02 /r|`ADD` r8\footnote{*} r/m8\footnote{*} |RM|Valid|N.E.|Add r/m8 to r8.|
+|03 /r|`ADD` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Add r/m16 to r16.|
+|03 /r|`ADD` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Add r/m32 to r32.|
+|REX.W + 03 /r|`ADD` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Add r/m64 to r64.|
 
 ```note
 \htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.

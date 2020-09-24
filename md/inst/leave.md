@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|C9|LEAVE|NP|Valid|Valid|Set SP to BP, then pop BP.|
-|C9|LEAVE|NP|N.E.|Valid|Set ESP to EBP, then pop EBP.|
-|C9|LEAVE|NP|Valid|N.E.|Set RSP to RBP, then pop RBP.|
+|C9|`LEAVE` |NP|Valid|Valid|Set SP to BP, then pop BP.|
+|C9|`LEAVE` |NP|N.E.|Valid|Set ESP to EBP, then pop EBP.|
+|C9|`LEAVE` |NP|Valid|N.E.|Set RSP to RBP, then pop RBP.|
 ### Instruction Operand Encoding
 
 

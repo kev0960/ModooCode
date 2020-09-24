@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDS.L1.0F.W0 45 /r \newline{}KORW k1, k2, k3|RVR|V/V|AVX512F|Bitwise OR 16 bits masks k2 and k3 and place result in k1.|
-|VEX.L1.66.0F.W0 45 /r \newline{}KORB k1, k2, k3|RVR|V/V|AVX512DQ|Bitwise OR 8 bits masks k2 and k3 and place result in k1.|
-|VEX.L1.0F.W1 45 /r \newline{}KORQ k1, k2, k3|RVR|V/V|AVX512BW|Bitwise OR 64 bits masks k2 and k3 and place result in k1.|
-|VEX.L1.66.0F.W1 45 /r \newline{}KORD k1, k2, k3|RVR|V/V|AVX512BW|Bitwise OR 32 bits masks k2 and k3 and place result in k1.|
+|`VEX.NDS.L1.0F.W0 45 /r `\newline{}`KORW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512F|Bitwise OR 16 bits masks k2 and k3 and place result in k1.|
+|`VEX.L1.66.0F.W0 45 /r `\newline{}`KORB` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512DQ|Bitwise OR 8 bits masks k2 and k3 and place result in k1.|
+|`VEX.L1.0F.W1 45 /r `\newline{}`KORQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512BW|Bitwise OR 64 bits masks k2 and k3 and place result in k1.|
+|`VEX.L1.66.0F.W1 45 /r `\newline{}`KORD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512BW|Bitwise OR 32 bits masks k2 and k3 and place result in k1.|
 ### Instruction Operand Encoding
 
 

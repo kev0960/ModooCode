@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|FD|STD|NP|Valid|Valid|Set DF flag.|
+|FD|`STD` |NP|Valid|Valid|Set DF flag.|
 ### Instruction Operand Encoding
 
 

@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|90|NOP|NP|Valid|Valid|One byte no-operation instruction.|
-|0F 1F /0|NOP r/m16|M|Valid|Valid|Multi-byte no-operation instruction.|
-|0F 1F /0|NOP r/m32|M|Valid|Valid|Multi-byte no-operation instruction.|
+|90|`NOP` |NP|Valid|Valid|One byte no-operation instruction.|
+|0F 1F /0|`NOP` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Multi-byte no-operation instruction.|
+|0F 1F /0|`NOP` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|Valid|Valid|Multi-byte no-operation instruction.|
 ### Instruction Operand Encoding
 
 

@@ -18,19 +18,19 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|F6 /5|IMUL r/m8\htmlonly{*}|M|Valid|Valid|AX<- AL `*` r/m byte.|
-|F7 /5|IMUL r/m16|M|Valid|Valid|DX:AX <- AX `*` r/m word.|
-|F7 /5|IMUL r/m32|M|Valid|Valid|EDX:EAX <- EAX `*` r/m32.|
-|REX.W + F7 /5|IMUL r/m64|M|Valid|N.E.|RDX:RAX <- RAX `*` r/m64.|
-|0F AF /r|IMUL r16, r/m16|RM|Valid|Valid|word register <- word register `*` r/m16.|
-|0F AF /r|IMUL r32, r/m32|RM|Valid|Valid|doubleword register <- doubleword register `*` r/m32.|
-|REX.W + 0F AF /r|IMUL r64, r/m64|RM|Valid|N.E.|Quadword register <- Quadword register `*` r/m64.|
-|6B /r ib|IMUL r16, r/m16, imm8|RMI|Valid|Valid|word register <- r/m16 `*` sign-extended immediate byte.|
-|6B /r ib|IMUL r32, r/m32, imm8|RMI|Valid|Valid|doubleword register <- r/m32 `*` sign-extended immediate byte.|
-|REX.W + 6B /r ib|IMUL r64, r/m64, imm8|RMI|Valid|N.E.|Quadword register <- r/m64 `*` sign-extended immediate byte.|
-|69 /r iw|IMUL r16, r/m16, imm16|RMI|Valid|Valid|word register <- r/m16 `*` immediate word.|
-|69 /r id|IMUL r32, r/m32, imm32|RMI|Valid|Valid|doubleword register <- r/m32 `*` immediate doubleword.|
-|REX.W + 69 /r id|IMUL r64, r/m64, imm32|RMI|Valid|N.E.|Quadword register <- r/m64 `*` immediate doubleword.|
+|F6 /5|`IMUL` r/m8\htmlonly{*} |M|Valid|Valid|AX<- AL `*` r/m byte.|
+|F7 /5|`IMUL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|DX:AX <- AX `*` r/m word.|
+|F7 /5|`IMUL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|Valid|Valid|EDX:EAX <- EAX `*` r/m32.|
+|REX.W + F7 /5|`IMUL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid|N.E.|RDX:RAX <- RAX `*` r/m64.|
+|0F AF /r|`IMUL` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|word register <- word register `*` r/m16.|
+|0F AF /r|`IMUL` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|doubleword register <- doubleword register `*` r/m32.|
+|REX.W + 0F AF /r|`IMUL` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Quadword register <- Quadword register `*` r/m64.|
+|6B /r ib|`IMUL` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |RMI|Valid|Valid|word register <- r/m16 `*` sign-extended immediate byte.|
+|6B /r ib|`IMUL` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |RMI|Valid|Valid|doubleword register <- r/m32 `*` sign-extended immediate byte.|
+|REX.W + 6B /r ib|`IMUL` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |RMI|Valid|N.E.|Quadword register <- r/m64 `*` sign-extended immediate byte.|
+|69 /r iw|`IMUL` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |RMI|Valid|Valid|word register <- r/m16 `*` immediate word.|
+|69 /r id|`IMUL` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |RMI|Valid|Valid|doubleword register <- r/m32 `*` immediate doubleword.|
+|REX.W + 69 /r id|`IMUL` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |RMI|Valid|N.E.|Quadword register <- r/m64 `*` immediate doubleword.|
 
 ```note
 \htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH

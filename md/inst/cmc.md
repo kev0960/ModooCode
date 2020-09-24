@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|F5|CMC|NP|Valid|Valid|Complement CF flag.|
+|F5|`CMC` |NP|Valid|Valid|Complement CF flag.|
 ### Instruction Operand Encoding
 
 

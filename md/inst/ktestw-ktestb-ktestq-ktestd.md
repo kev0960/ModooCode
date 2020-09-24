@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.L0.0F.W0 99 /r\newline{}KTESTW k1, k2|RR|V/V|AVX512DQ|Set ZF and CF depending on sign bit AND and ANDN of 16 bits mask register sources.|
-|VEX.L0.66.0F.W0 99 /r\newline{}KTESTB k1, k2|RR|V/V|AVX512DQ|Set ZF and CF depending on sign bit AND and ANDN of 8 bits mask register sources.|
-|VEX.L0.0F.W1 99 /r\newline{}KTESTQ k1, k2|RR|V/V|AVX512BW|Set ZF and CF depending on sign bit AND and ANDN of 64 bits mask register sources.|
-|VEX.L0.66.0F.W1 99 /r\newline{}KTESTD k1, k2|RR|V/V|AVX512BW|Set ZF and CF depending on sign bit AND and ANDN of 32 bits mask register sources.|
+|`VEX.L0.0F.W0 99 /r`\newline{}`KTESTW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512DQ|Set ZF and CF depending on sign bit AND and ANDN of 16 bits mask register sources.|
+|`VEX.L0.66.0F.W0 99 /r`\newline{}`KTESTB` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512DQ|Set ZF and CF depending on sign bit AND and ANDN of 8 bits mask register sources.|
+|`VEX.L0.0F.W1 99 /r`\newline{}`KTESTQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512BW|Set ZF and CF depending on sign bit AND and ANDN of 64 bits mask register sources.|
+|`VEX.L0.66.0F.W1 99 /r`\newline{}`KTESTD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512BW|Set ZF and CF depending on sign bit AND and ANDN of 32 bits mask register sources.|
 ### Instruction Operand Encoding
 
 

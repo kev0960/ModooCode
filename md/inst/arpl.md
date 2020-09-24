@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|63 /r|ARPL r/m16, r16|NP|N. E.|Valid|Adjust RPL of r/m16 to not less than RPL of r16.|
+|63 /r|`ARPL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |NP|N. E.|Valid|Adjust RPL of r/m16 to not less than RPL of r16.|
 ### Instruction Operand Encoding
 
 

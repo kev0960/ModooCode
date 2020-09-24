@@ -18,45 +18,45 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 97|SETA r/m8|M|Valid |Valid|Set byte if above (CF=0 and ZF=0).|
-|REX + 0F 97|SETA r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if above (CF=0 and ZF=0).|
-|0F 93|SETAE r/m8|M|Valid |Valid|Set byte if above or equal (CF=0).|
-|REX + 0F 93|SETAE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if above or equal (CF=0).|
-|0F 92|SETB r/m8|M|Valid |Valid|Set byte if below (CF=1).|
-|REX + 0F 92|SETB r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if below (CF=1).|
-|0F 96|SETBE r/m8|M|Valid |Valid|Set byte if below or equal (CF=1 or ZF=1).|
-|REX + 0F 96|SETBE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if below or equal (CF=1 or ZF=1).|
-|0F 92|SETC r/m8|M|Valid |Valid|Set byte if carry (CF=1).|
-|REX + 0F 92|SETC r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if carry (CF=1).|
-|0F 94|SETE r/m8|M|Valid |Valid|Set byte if equal (ZF=1).|
-|REX + 0F 94|SETE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if equal (ZF=1).|
-|0F 9F|SETG r/m8|M|Valid |Valid|Set byte if greater (ZF=0 and SF=OF).|
-|REX + 0F 9F|SETG r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if greater (ZF=0 and SF=OF).|
-|0F 9D|SETGE r/m8|M|Valid |Valid|Set byte if greater or equal (SF=OF).|
-|REX + 0F 9D|SETGE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if greater or equal (SF=OF).|
-|0F 9C|SETL r/m8|M|Valid |Valid|Set byte if less (SF!= OF).|
-|REX + 0F 9C|SETL r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if less (SF!= OF).|
-|0F 9E|SETLE r/m8|M|Valid |Valid|Set byte if less or equal (ZF=1 or SF!= OF).|
-|REX + 0F 9E|SETLE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if less or equal (ZF=1 or SF!= OF).|
-|0F 96|SETNA r/m8|M|Valid |Valid|Set byte if not above (CF=1 or ZF=1).|
-|REX + 0F 96|SETNA r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not above (CF=1 or ZF=1).|
-|0F 92|SETNAE r/m8|M|Valid |Valid|Set byte if not above or equal (CF=1).|
-|REX + 0F 92|SETNAE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not above or equal (CF=1).|
-|0F 93|SETNB r/m8|M|Valid |Valid|Set byte if not below (CF=0).|
-|REX + 0F 93|SETNB r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not below (CF=0).|
-|0F 97|SETNBE r/m8|M|Valid |Valid|Set byte if not below or equal (CF=0 and ZF=0).|
-|REX + 0F 97|SETNBE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not below or equal (CF=0 and ZF=0).|
-|0F 93|SETNC r/m8|M|Valid |Valid|Set byte if not carry (CF=0).|
-|REX + 0F 93|SETNC r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not carry (CF=0).|
-|0F 95|SETNE r/m8|M|Valid |Valid|Set byte if not equal (ZF=0).|
-|REX + 0F 95|SETNE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not equal (ZF=0).|
-|0F 9E|SETNG r/m8|M|Valid |Valid|Set byte if not greater (ZF=1 or SF!= OF)|
-|REX + 0F 9E|SETNG r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not greater (ZF=1 or SF!= OF).|
-|0F 9C|SETNGE r/m8|M|Valid |Valid|Set byte if not greater or equal (SF!= OF).|
-|REX + 0F 9C|SETNGE r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not greater or equal (SF!= OF).|
-|0F 9D|SETNL r/m8|M|Valid |Valid|Set byte if not less (SF=OF).|
-|REX + 0F 9D|SETNL r/m8\htmlonly{*}|M|Valid|N.E.|Set byte if not less (SF=OF).|
-|0F 9F|SETNLE r/m8|M|Valid |Valid|Set byte if not less or equal (ZF=0 and SF=OF).|
+|0F 97|SETA \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if above (CF=0 and ZF=0).|
+|REX + 0F 97|SETA r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if above (CF=0 and ZF=0).|
+|0F 93|SETAE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if above or equal (CF=0).|
+|REX + 0F 93|SETAE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if above or equal (CF=0).|
+|0F 92|SETB \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if below (CF=1).|
+|REX + 0F 92|SETB r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if below (CF=1).|
+|0F 96|SETBE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if below or equal (CF=1 or ZF=1).|
+|REX + 0F 96|SETBE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if below or equal (CF=1 or ZF=1).|
+|0F 92|SETC \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if carry (CF=1).|
+|REX + 0F 92|SETC r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if carry (CF=1).|
+|0F 94|SETE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if equal (ZF=1).|
+|REX + 0F 94|SETE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if equal (ZF=1).|
+|0F 9F|SETG \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if greater (ZF=0 and SF=OF).|
+|REX + 0F 9F|SETG r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if greater (ZF=0 and SF=OF).|
+|0F 9D|SETGE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if greater or equal (SF=OF).|
+|REX + 0F 9D|SETGE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if greater or equal (SF=OF).|
+|0F 9C|SETL \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if less (SF!= OF).|
+|REX + 0F 9C|SETL r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if less (SF!= OF).|
+|0F 9E|SETLE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if less or equal (ZF=1 or SF!= OF).|
+|REX + 0F 9E|SETLE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if less or equal (ZF=1 or SF!= OF).|
+|0F 96|SETNA \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not above (CF=1 or ZF=1).|
+|REX + 0F 96|SETNA r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not above (CF=1 or ZF=1).|
+|0F 92|SETNAE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not above or equal (CF=1).|
+|REX + 0F 92|SETNAE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not above or equal (CF=1).|
+|0F 93|SETNB \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not below (CF=0).|
+|REX + 0F 93|SETNB r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not below (CF=0).|
+|0F 97|SETNBE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not below or equal (CF=0 and ZF=0).|
+|REX + 0F 97|SETNBE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not below or equal (CF=0 and ZF=0).|
+|0F 93|SETNC \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not carry (CF=0).|
+|REX + 0F 93|SETNC r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not carry (CF=0).|
+|0F 95|SETNE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not equal (ZF=0).|
+|REX + 0F 95|SETNE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not equal (ZF=0).|
+|0F 9E|SETNG \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not greater (ZF=1 or SF!= OF)|
+|REX + 0F 9E|SETNG r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not greater (ZF=1 or SF!= OF).|
+|0F 9C|SETNGE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not greater or equal (SF!= OF).|
+|REX + 0F 9C|SETNGE r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not greater or equal (SF!= OF).|
+|0F 9D|SETNL \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not less (SF=OF).|
+|REX + 0F 9D|SETNL r/m8\htmlonly{*} |M|Valid|N.E.|Set byte if not less (SF=OF).|
+|0F 9F|SETNLE \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Set byte if not less or equal (ZF=0 and SF=OF).|
 
 
 |**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|

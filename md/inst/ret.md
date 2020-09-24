@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/**\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|-----------------------|-----------------------------|---------------------------------|---------------|
-|C3|RET|NP|Valid |Valid|Near return to calling procedure.|
-|CB|RET|NP|Valid |Valid|Far return to calling procedure.|
-|C2 iw|RET imm16|I|Valid |Valid|Near return to calling procedure and pop imm16 bytes from stack.|
-|CA iw|RET imm16|I|Valid|Valid|Far return to calling procedure and pop imm16 bytes from stack.|
+|C3|`RET` |NP|Valid |Valid|Near return to calling procedure.|
+|CB|`RET` |NP|Valid |Valid|Far return to calling procedure.|
+|C2 iw|`RET` \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |I|Valid |Valid|Near return to calling procedure and pop imm16 bytes from stack.|
+|CA iw|`RET` \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |I|Valid|Valid|Far return to calling procedure and pop imm16 bytes from stack.|
 ### Instruction Operand Encoding
 
 

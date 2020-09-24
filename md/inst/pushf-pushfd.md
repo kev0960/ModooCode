@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|9C|PUSHF|NP|Valid|Valid|Push lower 16 bits of EFLAGS.|
-|9C|PUSHFD|NP|N.E.|Valid|Push EFLAGS.|
-|9C|PUSHFQ|NP|Valid|N.E.|Push RFLAGS.|
+|9C|`PUSHF` |NP|Valid|Valid|Push lower 16 bits of EFLAGS.|
+|9C|`PUSHFD` |NP|N.E.|Valid|Push EFLAGS.|
+|9C|PUSHFQ |NP|Valid|N.E.|Push RFLAGS.|
 ### Instruction Operand Encoding
 
 

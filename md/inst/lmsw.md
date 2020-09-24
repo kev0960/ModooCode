@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01 /6|LMSW r/m16|M|Valid|Valid|Loads r/m16 in machine status word of CR0.|
+|0F 01 /6|`LMSW` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Loads r/m16 in machine status word of CR0.|
 ### Instruction Operand Encoding
 
 

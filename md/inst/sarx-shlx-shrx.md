@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDS.LZ.F3.0F38.W0 F7 /r\newline{}SARX r32a, r/m32, r32b|RMV|V/V|BMI2|Shift r/m32 arithmetically right with count specified in r32b.|
-|VEX.NDS.LZ.66.0F38.W0 F7 /r\newline{}SHLX r32a, r/m32, r32b|RMV|V/V|BMI2|Shift r/m32 logically left with count specified in r32b.|
-|VEX.NDS.LZ.F2.0F38.W0 F7 /r\newline{}SHRX r32a, r/m32, r32b|RMV|V/V|BMI2|Shift r/m32 logically right with count specified in r32b.|
-|VEX.NDS.LZ.F3.0F38.W1 F7 /r\newline{}SARX r64a, r/m64, r64b|RMV|V/N.E.|BMI2|Shift r/m64 arithmetically right with count specified in r64b.|
-|VEX.NDS.LZ.66.0F38.W1 F7 /r\newline{}SHLX r64a, r/m64, r64b|RMV|V/N.E.|BMI2|Shift r/m64 logically left with count specified in r64b.|
-|VEX.NDS.LZ.F2.0F38.W1 F7 /r\newline{}SHRX r64a, r/m64, r64b|RMV|V/N.E.|BMI2|Shift r/m64 logically right with count specified in r64b.|
+|`VEX.NDS.LZ.F3.0F38.W0 F7 /r`\newline{}`SARX` r32a \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} r32b |RMV|V/V|BMI2|Shift r/m32 arithmetically right with count specified in r32b.|
+|`VEX.NDS.LZ.66.0F38.W0 F7 /r`\newline{}`SHLX` r32a \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} r32b |RMV|V/V|BMI2|Shift r/m32 logically left with count specified in r32b.|
+|`VEX.NDS.LZ.F2.0F38.W0 F7 /r`\newline{}`SHRX` r32a \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} r32b |RMV|V/V|BMI2|Shift r/m32 logically right with count specified in r32b.|
+|`VEX.NDS.LZ.F3.0F38.W1 F7 /r`\newline{}`SARX` r64a \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} r64b |RMV|V/N.E.|BMI2|Shift r/m64 arithmetically right with count specified in r64b.|
+|`VEX.NDS.LZ.66.0F38.W1 F7 /r`\newline{}`SHLX` r64a \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} r64b |RMV|V/N.E.|BMI2|Shift r/m64 logically left with count specified in r64b.|
+|`VEX.NDS.LZ.F2.0F38.W1 F7 /r`\newline{}`SHRX` r64a \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} r64b |RMV|V/N.E.|BMI2|Shift r/m64 logically right with count specified in r64b.|
 ### Instruction Operand Encoding
 
 

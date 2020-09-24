@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|60|PUSHA|NP|Invalid|Valid|Push AX, CX, DX, BX, original SP, BP, SI, and DI.|
-|60|PUSHAD|NP|Invalid|Valid|Push EAX, ECX, EDX, EBX, original ESP, EBP, ESI, and EDI.|
+|60|`PUSHA` |NP|Invalid|Valid|Push AX, CX, DX, BX, original SP, BP, SI, and DI.|
+|60|`PUSHAD` |NP|Invalid|Valid|Push EAX, ECX, EDX, EBX, original ESP, EBP, ESI, and EDI.|
 ### Instruction Operand Encoding
 
 

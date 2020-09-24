@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.L1.0F.W0 4A /r \newline{}KADDW k1, k2, k3|RVR|V/V|AVX512DQ|Add 16 bits masks in k2 and k3 and place result in k1.|
-|VEX.L1.66.0F.W0 4A /r \newline{}KADDB k1, k2, k3|RVR|V/V|AVX512DQ|Add 8 bits masks in k2 and k3 and place result in k1.|
-|VEX.L1.0F.W1 4A /r \newline{}KADDQ k1, k2, k3|RVR|V/V|AVX512BW|Add 64 bits masks in k2 and k3 and place result in k1. |
-|VEX.L1.66.0F.W1 4A /r \newline{}KADDD k1, k2, k3|RVR|V/V|AVX512BW|Add 32 bits masks in k2 and k3 and place result in k1.|
+|`VEX.L1.0F.W0 4A /r `\newline{}`KADDW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512DQ|Add 16 bits masks in k2 and k3 and place result in k1.|
+|`VEX.L1.66.0F.W0 4A /r `\newline{}`KADDB` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512DQ|Add 8 bits masks in k2 and k3 and place result in k1.|
+|`VEX.L1.0F.W1 4A /r `\newline{}`KADDQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512BW|Add 64 bits masks in k2 and k3 and place result in k1. |
+|`VEX.L1.66.0F.W1 4A /r `\newline{}`KADDD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512BW|Add 32 bits masks in k2 and k3 and place result in k1.|
 ### Instruction Operand Encoding
 
 

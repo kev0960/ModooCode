@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|---------------|---------------------------------|---------------|
-|DF /1|FISTTP m16int|Valid|Valid|Store ST(0) in m16int with truncation.|
-|DB /1|FISTTP m32int|Valid|Valid|Store ST(0) in m32int with truncation.|
-|DD /1|FISTTP m64int|Valid|Valid|Store ST(0) in m64int with truncation.|
+|DF /1|`FISTTP` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Store ST(0) in m16int with truncation.|
+|DB /1|`FISTTP` \tooltip{m32int}{To-m16int} |Valid|Valid|Store ST(0) in m32int with truncation.|
+|DD /1|`FISTTP` \tooltip{m64int}{To-m16int} |Valid|Valid|Store ST(0) in m64int with truncation.|
 ### Description
 
 

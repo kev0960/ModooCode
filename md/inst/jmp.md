@@ -18,17 +18,17 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|EB cb|JMP rel8|D|Valid|Valid|Jump short, RIP = RIP + 8-bit displacement sign extended to 64-bits|
-|E9 cw|JMP rel16|D|N.S.|Valid|Jump near, relative, displacement relative to next instruction. Not supported in 64-bit mode.|
-|E9 cd|JMP rel32|D|Valid|Valid|Jump near, relative, RIP = RIP + 32-bit displacement sign extended to 64-bits|
-|FF /4|JMP r/m16|M|N.S.|Valid|Jump near, absolute indirect, address = zero-extended r/m16. Not supported in 64-bit mode.|
-|FF /4|JMP r/m32|M|N.S.|Valid|Jump near, absolute indirect, address given in r/m32. Not supported in 64-bit mode.|
-|FF /4|JMP r/m64|M|Valid|N.E.|Jump near, absolute indirect, RIP = 64-Bit offset from register or memory|
-|EA cd|JMP ptr16:16|D|Inv.|Valid|Jump far, absolute, address given in operand|
-|EA cp|JMP ptr16:32|D|Inv.|Valid|Jump far, absolute, address given in operand|
-|FF /5|JMP m16:16|D|Valid|Valid|Jump far, absolute indirect, address given in m16:16|
-|FF /5|JMP m16:32|D|Valid |Valid|Jump far, absolute indirect, address given in m16:32.|
-|REX.W + FF /5|JMP m16:64|D|Valid |N.E.|Jump far, absolute indirect, address given in m16:64.|
+|EB cb|`JMP` \tooltip{rel8}{현재 명령어로 부터 최대 128 바이트 이전 혹은 127 바이트 이후 까지의 주소} |D|Valid|Valid|Jump short, RIP = RIP + 8-bit displacement sign extended to 64-bits|
+|E9 cw|`JMP` \tooltip{rel16}{현재 명령어가 포함되어 있는 코드 세그먼트 안의 상대 주소값. rel16 은 피연사자 크기가 16 비트인 명령어들에, rel32 는 피연산자 크기가 32 비트인 명령어들에 적용된다.} |D|N.S.|Valid|Jump near, relative, displacement relative to next instruction. Not supported in 64-bit mode.|
+|E9 cd|`JMP` \tooltip{rel32}{To-rel16} |D|Valid|Valid|Jump near, relative, RIP = RIP + 32-bit displacement sign extended to 64-bits|
+|FF /4|`JMP` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|N.S.|Valid|Jump near, absolute indirect, address = zero-extended r/m16. Not supported in 64-bit mode.|
+|FF /4|`JMP` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|N.S.|Valid|Jump near, absolute indirect, address given in r/m32. Not supported in 64-bit mode.|
+|FF /4|`JMP` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid|N.E.|Jump near, absolute indirect, RIP = 64-Bit offset from register or memory|
+|EA cd|`JMP` \tooltip{ptr16:16}{*far pointer* 로 보통 현재 명령어의 코드 세그먼트와 다른 세그먼트를 의미한다. : 왼쪽에 있는 값이 코드 세그먼트 레지스터 값을 지칭하고, 오른쪽에 있는 값은 해당 세그먼트에서의 오프셋을 의미한다. 위의 rel16 과 rel32 처럼 ptr16:16 의 경우 명령어 피연산자 크기가 16 비트인 곳에서 사용하며, ptr16:32 의 경우 32 비트 피연산자를 가지는 명령어에서 쓰인다.} |D|Inv.|Valid|Jump far, absolute, address given in operand|
+|EA cp|`JMP` \tooltip{ptr16:32}{To-ptr16:16} |D|Inv.|Valid|Jump far, absolute, address given in operand|
+|FF /5|`JMP` \tooltip{m16:16}{Far pointer 로 표현된 메모리 데이터로, : 왼쪽에 있는 값은 포인터의 세그먼트 셀렉터를, 오른쪽 값은 해당 세그먼트 안의 오프셋을 의미한다.} |D|Valid|Valid|Jump far, absolute indirect, address given in m16:16|
+|FF /5|`JMP` \tooltip{m16:32}{To-m16:16} |D|Valid |Valid|Jump far, absolute indirect, address given in m16:32.|
+|REX.W + FF /5|`JMP` \tooltip{m16:64}{To-m16:16} |D|Valid |N.E.|Jump far, absolute indirect, address given in m16:64.|
 ### Instruction Operand Encoding
 
 

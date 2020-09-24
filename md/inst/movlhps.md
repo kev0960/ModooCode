@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 16 /r\newline{}MOVLHPS xmm1, xmm2|RM|V/V|SSE|Move two packed single-precision floating-point values from low quadword of xmm2 to high quadword of xmm1.|
-|VEX.NDS.128.0F.WIG 16 /r\newline{}VMOVLHPS xmm1, xmm2, xmm3|RVM|V/V|AVX|Merge two packed single-precision floating-point values from low quadword of xmm3 and low quadword of xmm2.|
-|EVEX.NDS.128.0F.W0 16 /r\newline{}VMOVLHPS xmm1, xmm2, xmm3|RVM|V/V|AVX512F|Merge two packed single-precision floating-point values from low quadword of xmm3 and low quadword of xmm2.|
+|`0F 16 /r`\newline{}`MOVLHPS` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |RM|V/V|SSE|Move two packed single-precision floating-point values from low quadword of xmm2 to high quadword of xmm1.|
+|`VEX.NDS.128.0F.WIG 16 /r`\newline{}VMOVLHPS \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm3}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |RVM|V/V|AVX|Merge two packed single-precision floating-point values from low quadword of xmm3 and low quadword of xmm2.|
+|`EVEX.NDS.128.0F.W0 16 /r`\newline{}VMOVLHPS \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm3}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |RVM|V/V|AVX512F|Merge two packed single-precision floating-point values from low quadword of xmm3 and low quadword of xmm2.|
 ### Instruction Operand Encoding\footnote{1}
 
 

@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|62 /r|BOUND r16, m16&16|RM|Invalid|Valid|Check if r16 (array index) is within bounds specified by m16&16.|
-|62 /r|BOUND r32, m32&32|RM|Invalid|Valid|Check if r32 (array index) is within bounds specified by m32&32.|
+|62 /r|`BOUND` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{m16&16}{To-m16&32} |RM|Invalid|Valid|Check if r16 (array index) is within bounds specified by m16&16.|
+|62 /r|`BOUND` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{m32&32}{To-m16&32} |RM|Invalid|Valid|Check if r32 (array index) is within bounds specified by m32&32.|
 ### Instruction Operand Encoding
 
 

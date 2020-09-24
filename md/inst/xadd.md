@@ -18,11 +18,11 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F C0 /r|XADD r/m8, r8|MR|Valid |Valid|Exchange r8 and r/m8; load sum into r/m8.|
-|REX + 0F C0 /r|XADD r/m8\htmlonly{*}, r8\htmlonly{*}|MR|Valid|N.E.|Exchange r8 and r/m8; load sum into r/m8.|
-|0F C1 /r|XADD r/m16, r16|MR|Valid|Valid|Exchange r16 and r/m16; load sum into r/m16.|
-|0F C1 /r|XADD r/m32, r32|MR|Valid |Valid|Exchange r32 and r/m32; load sum into r/m32.|
-|REX.W + 0F C1 /r|XADD r/m64, r64|MR|Valid |N.E.|Exchange r64 and r/m64; load sum into r/m64.|
+|0F C0 /r|`XADD` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} |MR|Valid |Valid|Exchange r8 and r/m8; load sum into r/m8.|
+|REX + 0F C0 /r|`XADD` r/m8\htmlonly{*} r8\htmlonly{*} |MR|Valid|N.E.|Exchange r8 and r/m8; load sum into r/m8.|
+|0F C1 /r|`XADD` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |MR|Valid|Valid|Exchange r16 and r/m16; load sum into r/m16.|
+|0F C1 /r|`XADD` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |MR|Valid |Valid|Exchange r32 and r/m32; load sum into r/m32.|
+|REX.W + 0F C1 /r|`XADD` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |MR|Valid |N.E.|Exchange r64 and r/m64; load sum into r/m64.|
 
 ```note
 \htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.

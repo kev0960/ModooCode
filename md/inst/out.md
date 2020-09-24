@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|E6 ib|OUT imm8, AL|I|Valid|Valid|Output byte in AL to I/O port address imm8.|
-|E7 ib|OUT imm8, AX|I|Valid|Valid|Output word in AX to I/O port address imm8. |
-|E7 ib|OUT imm8, EAX|I|Valid|Valid|Output doubleword in EAX to I/O port address imm8.|
-|EE|OUT DX, AL|NP|Valid|Valid|Output byte in AL to I/O port address in DX.|
-|EF|OUT DX, AX|NP|Valid|Valid|Output word in AX to I/O port address in DX.|
-|EF|OUT DX, EAX|NP|Valid|Valid|Output doubleword in EAX to I/O port address in DX.|
+|E6 ib|`OUT` \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} AL |I|Valid|Valid|Output byte in AL to I/O port address imm8.|
+|E7 ib|`OUT` \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} AX |I|Valid|Valid|Output word in AX to I/O port address imm8. |
+|E7 ib|`OUT` \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} EAX |I|Valid|Valid|Output doubleword in EAX to I/O port address imm8.|
+|EE|`OUT` DX AL |NP|Valid|Valid|Output byte in AL to I/O port address in DX.|
+|EF|`OUT` DX AX |NP|Valid|Valid|Output word in AX to I/O port address in DX.|
+|EF|`OUT` DX EAX |NP|Valid|Valid|Output doubleword in EAX to I/O port address in DX.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

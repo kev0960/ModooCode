@@ -18,16 +18,16 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|E8 cw|CALL rel16|M|N.S.|Valid|Call near, relative, displacement relative to next instruction.|
-|E8 cd|CALL rel32|M|Valid|Valid|Call near, relative, displacement relative to next instruction. 32-bit displacement sign extended to 64-bits in 64-bit mode.|
-|FF /2|CALL r/m16|M|N.E.|Valid|Call near, absolute indirect, address given in r/m16. |
-|FF /2|CALL r/m32|M|N.E.|Valid|Call near, absolute indirect, address given in r/m32. |
-|FF /2|CALL r/m64|M|Valid|N.E.|Call near, absolute indirect, address given in r/m64.|
-|9A cd|CALL ptr16:16|D|Invalid|Valid|Call far, absolute, address given in operand.|
-|9A cp|CALL ptr16:32|D|Invalid|Valid|Call far, absolute, address given in operand.|
-|FF /3|CALL m16:16|M|Valid|Valid|Call far, absolute indirect address given in m16:16.\newline{}In 32-bit mode: if selector points to a gate, then RIP = 32-bit zero extended displacement taken from gate; else RIP = zero extended 16-bit offset from far pointer referenced in the instruction.|
-|FF /3|CALL m16:32|M|Valid|Valid|In 64-bit mode: If selector points to a gate, then RIP = 64-bit displacement taken from gate; else RIP = zero extended 32-bit offset from far pointer referenced in the instruction. |
-|REX.W + FF /3|CALL m16:64|M|Valid|N.E.|In 64-bit mode: If selector points to a gate, then RIP = 64-bit displacement taken from gate; else RIP = 64-bit offset from far pointer referenced in the instruction. |
+|E8 cw|`CALL` \tooltip{rel16}{현재 명령어가 포함되어 있는 코드 세그먼트 안의 상대 주소값. rel16 은 피연사자 크기가 16 비트인 명령어들에, rel32 는 피연산자 크기가 32 비트인 명령어들에 적용된다.} |M|N.S.|Valid|Call near, relative, displacement relative to next instruction.|
+|E8 cd|`CALL` \tooltip{rel32}{To-rel16} |M|Valid|Valid|Call near, relative, displacement relative to next instruction. 32-bit displacement sign extended to 64-bits in 64-bit mode.|
+|FF /2|`CALL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|N.E.|Valid|Call near, absolute indirect, address given in r/m16. |
+|FF /2|`CALL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|N.E.|Valid|Call near, absolute indirect, address given in r/m32. |
+|FF /2|`CALL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid|N.E.|Call near, absolute indirect, address given in r/m64.|
+|9A cd|`CALL` \tooltip{ptr16:16}{*far pointer* 로 보통 현재 명령어의 코드 세그먼트와 다른 세그먼트를 의미한다. : 왼쪽에 있는 값이 코드 세그먼트 레지스터 값을 지칭하고, 오른쪽에 있는 값은 해당 세그먼트에서의 오프셋을 의미한다. 위의 rel16 과 rel32 처럼 ptr16:16 의 경우 명령어 피연산자 크기가 16 비트인 곳에서 사용하며, ptr16:32 의 경우 32 비트 피연산자를 가지는 명령어에서 쓰인다.} |D|Invalid|Valid|Call far, absolute, address given in operand.|
+|9A cp|`CALL` \tooltip{ptr16:32}{To-ptr16:16} |D|Invalid|Valid|Call far, absolute, address given in operand.|
+|FF /3|`CALL` \tooltip{m16:16}{Far pointer 로 표현된 메모리 데이터로, : 왼쪽에 있는 값은 포인터의 세그먼트 셀렉터를, 오른쪽 값은 해당 세그먼트 안의 오프셋을 의미한다.} |M|Valid|Valid|Call far, absolute indirect address given in m16:16.\newline{}In 32-bit mode: if selector points to a gate, then RIP = 32-bit zero extended displacement taken from gate; else RIP = zero extended 16-bit offset from far pointer referenced in the instruction.|
+|FF /3|`CALL` \tooltip{m16:32}{To-m16:16} |M|Valid|Valid|In 64-bit mode: If selector points to a gate, then RIP = 64-bit displacement taken from gate; else RIP = zero extended 32-bit offset from far pointer referenced in the instruction. |
+|REX.W + FF /3|`CALL` \tooltip{m16:64}{To-m16:16} |M|Valid|N.E.|In 64-bit mode: If selector points to a gate, then RIP = 64-bit displacement taken from gate; else RIP = 64-bit offset from far pointer referenced in the instruction. |
 ### Instruction Operand Encoding
 
 

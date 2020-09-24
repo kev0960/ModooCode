@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 C8+i|FXCH ST(i)|Valid|Valid|Exchange the contents of ST(0) and ST(i).|
-|D9 C9|FXCH|Valid|Valid|Exchange the contents of ST(0) and ST(1).|
+|D9 C8+i|`FXCH` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Exchange the contents of ST(0) and ST(i).|
+|D9 C9|`FXCH` |Valid|Valid|Exchange the contents of ST(0) and ST(1).|
 ### Description
 
 

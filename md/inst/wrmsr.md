@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 30|WRMSR|NP|Valid |Valid|Write the value in EDX:EAX to MSR specified by ECX.|
+|0F 30|`WRMSR` |NP|Valid |Valid|Write the value in EDX:EAX to MSR specified by ECX.|
 ### Instruction Operand Encoding
 
 

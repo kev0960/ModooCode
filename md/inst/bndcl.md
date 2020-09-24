@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F 1A /r\newline{}BNDCL bnd, r/m32|RM|NE/V|MPX|Generate a #BR if the address in r/m32 is lower than the lower bound in bnd.LB.|
-|F3 0F 1A /r\newline{}BNDCL bnd, r/m64|RM|V/NE|MPX|Generate a #BR if the address in r/m64 is lower than the lower bound in bnd.LB.|
+|`F3 0F 1A /r`\newline{}`BNDCL` \tooltip{bnd}{128 비트 바운드 레지스터. BND0 부터 BND3 까지 가능하다. } \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|NE/V|MPX|Generate a #BR if the address in r/m32 is lower than the lower bound in bnd.LB.|
+|`F3 0F 1A /r`\newline{}`BNDCL` \tooltip{bnd}{128 비트 바운드 레지스터. BND0 부터 BND3 까지 가능하다. } \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|V/NE|MPX|Generate a #BR if the address in r/m64 is lower than the lower bound in bnd.LB.|
 ### Instruction Operand Encoding
 
 

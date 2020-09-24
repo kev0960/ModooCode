@@ -18,21 +18,21 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|8F /0|POP r/m16|M|Valid|Valid|Pop top of stack into m16; increment stack pointer.|
-|8F /0|POP r/m32|M|N.E.|Valid|Pop top of stack into m32; increment stack pointer.|
-|8F /0|POP r/m64|M|Valid|N.E.|Pop top of stack into m64; increment stack pointer. Cannot encode 32-bit operand size.|
-|58+ rw|POP r16|O|Valid|Valid|Pop top of stack into r16; increment stack pointer.|
-|58+ rd|POP r32|O|N.E.|Valid|Pop top of stack into r32; increment stack pointer.|
-|58+ rd|POP r64|O|Valid|N.E.|Pop top of stack into r64; increment stack pointer. Cannot encode 32-bit operand size.|
-|1F|POP DS|NP|Invalid|Valid|Pop top of stack into DS; increment stack pointer.|
-|07|POP ES|NP|Invalid|Valid|Pop top of stack into ES; increment stack pointer.|
-|17|POP SS|NP|Invalid|Valid|Pop top of stack into SS; increment stack pointer.|
-|0F A1|POP FS |NP|Valid|Valid|Pop top of stack into FS; increment stack pointer by 16 bits. |
-|0F A1|POP FS |NP|N.E.|Valid|Pop top of stack into FS; increment stack pointer by 32 bits. |
-|0F A1|POP FS |NP|Valid|N.E.|Pop top of stack into FS; increment stack pointer by 64 bits. |
-|0F A9|POP GS |NP|Valid|Valid|Pop top of stack into GS; increment stack pointer by 16 bits. |
-|0F A9|POP GS |NP|N.E.|Valid|Pop top of stack into GS; increment stack pointer by 32 bits. |
-|0F A9|POP GS |NP|Valid|N.E.|Pop top of stack into GS; increment stack pointer by 64 bits. |
+|8F /0|`POP` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Pop top of stack into m16; increment stack pointer.|
+|8F /0|`POP` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|N.E.|Valid|Pop top of stack into m32; increment stack pointer.|
+|8F /0|`POP` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid|N.E.|Pop top of stack into m64; increment stack pointer. Cannot encode 32-bit operand size.|
+|58+ rw|`POP` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |O|Valid|Valid|Pop top of stack into r16; increment stack pointer.|
+|58+ rd|`POP` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |O|N.E.|Valid|Pop top of stack into r32; increment stack pointer.|
+|58+ rd|`POP` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |O|Valid|N.E.|Pop top of stack into r64; increment stack pointer. Cannot encode 32-bit operand size.|
+|1F|`POP` DS |NP|Invalid|Valid|Pop top of stack into DS; increment stack pointer.|
+|07|`POP` ES |NP|Invalid|Valid|Pop top of stack into ES; increment stack pointer.|
+|17|`POP` SS |NP|Invalid|Valid|Pop top of stack into SS; increment stack pointer.|
+|0F A1|`POP` FS |NP|Valid|Valid|Pop top of stack into FS; increment stack pointer by 16 bits. |
+|0F A1|`POP` FS |NP|N.E.|Valid|Pop top of stack into FS; increment stack pointer by 32 bits. |
+|0F A1|`POP` FS |NP|Valid|N.E.|Pop top of stack into FS; increment stack pointer by 64 bits. |
+|0F A9|`POP` GS |NP|Valid|Valid|Pop top of stack into GS; increment stack pointer by 16 bits. |
+|0F A9|`POP` GS |NP|N.E.|Valid|Pop top of stack into GS; increment stack pointer by 32 bits. |
+|0F A9|`POP` GS |NP|Valid|N.E.|Pop top of stack into GS; increment stack pointer by 64 bits. |
 ### Instruction Operand Encoding
 
 

@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 E1|FABS|Valid|Valid|Replace ST with its absolute value.|
+|D9 E1|`FABS` |Valid|Valid|Replace ST with its absolute value.|
 ### Description
 
 

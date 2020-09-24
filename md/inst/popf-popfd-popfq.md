@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|9D|POPF|NP|Valid|Valid|Pop top of stack into lower 16 bits of EFLAGS.|
-|9D|POPFD|NP|N.E.|Valid|Pop top of stack into EFLAGS.|
-|9D|POPFQ|NP|Valid |N.E.|Pop top of stack and zero-extend into RFLAGS. |
+|9D|`POPF` |NP|Valid|Valid|Pop top of stack into lower 16 bits of EFLAGS.|
+|9D|`POPFD` |NP|N.E.|Valid|Pop top of stack into EFLAGS.|
+|9D|`POPFQ` |NP|Valid |N.E.|Pop top of stack and zero-extend into RFLAGS. |
 ### Instruction Operand Encoding
 
 

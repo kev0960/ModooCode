@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 38 01 /r\footnote{1}  \newline{}\newline{}PHADDW mm1, mm2/m64|RM|V/V|SSSE3|Add 16-bit integers horizontally, pack to mm1. |
-|66 0F 38 01 /r\newline{}\newline{}PHADDW xmm1, xmm2/m128|RM|V/V|SSSE3|Add 16-bit integers horizontally, pack to xmm1.|
-|0F 38 02 /r \newline{}\newline{}PHADDD mm1, mm2/m64|RM|V/V|SSSE3|Add 32-bit integers horizontally, pack to mm1. |
-|66 0F 38 02 /r\newline{}\newline{}PHADDD xmm1, xmm2/m128|RM|V/V|SSSE3|Add 32-bit integers horizontally, pack to xmm1. |
-|VEX.NDS.128.66.0F38.WIG 01 /r\newline{}\newline{}VPHADDW xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add 16-bit integers horizontally, pack to xmm1.|
-|VEX.NDS.128.66.0F38.WIG 02 /r\newline{}\newline{}VPHADDD xmm1, xmm2, xmm3/m128|RVM|V/V|AVX|Add 32-bit integers horizontally, pack to xmm1.|
-|VEX.NDS.256.66.0F38.WIG 01 /r\newline{}\newline{}VPHADDW ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add 16-bit signed integers horizontally, pack to ymm1.|
-|VEX.NDS.256.66.0F38.WIG 02 /r\newline{}\newline{}VPHADDD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX2|Add 32-bit signed integers horizontally, pack to ymm1.|
+|`0F 38 01 /r\footnote{1}  `\newline{}`PHADDW` mm1 mm2/m64 |RM|V/V|SSSE3|Add 16-bit integers horizontally, pack to mm1. |
+|`66 0F 38 01 /r`\newline{}`PHADDW` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m128}{128 비트 XMM 레지스터 혹은 128 비트 메모리 데이터.} |RM|V/V|SSSE3|Add 16-bit integers horizontally, pack to xmm1.|
+|`0F 38 02 /r `\newline{}`PHADDD` mm1 mm2/m64 |RM|V/V|SSSE3|Add 32-bit integers horizontally, pack to mm1. |
+|`66 0F 38 02 /r`\newline{}`PHADDD` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m128}{128 비트 XMM 레지스터 혹은 128 비트 메모리 데이터.} |RM|V/V|SSSE3|Add 32-bit integers horizontally, pack to xmm1. |
+|`VEX.NDS.128.66.0F38.WIG 01 /r`\newline{}VPHADDW \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm3/m128}{128 비트 XMM 레지스터 혹은 128 비트 메모리 데이터.} |RVM|V/V|AVX|Add 16-bit integers horizontally, pack to xmm1.|
+|`VEX.NDS.128.66.0F38.WIG 02 /r`\newline{}VPHADDD \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm3/m128}{128 비트 XMM 레지스터 혹은 128 비트 메모리 데이터.} |RVM|V/V|AVX|Add 32-bit integers horizontally, pack to xmm1.|
+|`VEX.NDS.256.66.0F38.WIG 01 /r`\newline{}VPHADDW \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm3/m256}{YMM 레지스터나 256 비트 메모리 데이터.} |RVM|V/V|AVX2|Add 16-bit signed integers horizontally, pack to ymm1.|
+|`VEX.NDS.256.66.0F38.WIG 02 /r`\newline{}VPHADDD \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm3/m256}{YMM 레지스터나 256 비트 메모리 데이터.} |RVM|V/V|AVX2|Add 32-bit signed integers horizontally, pack to ymm1.|
 
 ```note
 1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A

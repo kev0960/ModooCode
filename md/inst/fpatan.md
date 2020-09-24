@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 F3|FPATAN|Valid|Valid|Replace ST(1) with arctan(ST(1)/ST(0)) and pop the register stack.|
+|D9 F3|`FPATAN` |Valid|Valid|Replace ST(1) with arctan(ST(1)/ST(0)) and pop the register stack.|
 ### Description
 
 

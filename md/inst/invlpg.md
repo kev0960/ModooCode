@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01/7|INVLPG m|M|Valid|Valid|Invalidate TLB entries for page containing m.|
+|0F 01/7|`INVLPG` \tooltip{m}{16- 혹은 32- 혹은 64 비트 짜리 메모리 데이터를 의미한다.} |M|Valid|Valid|Invalidate TLB entries for page containing m.|
 
 ```note
 \htmlonly{*} See the IA-32 Architecture Compatibility section below

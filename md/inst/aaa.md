@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|37|AAA|NP|Invalid|Valid|ASCII adjust AL after addition.|
+|37|`AAA` |NP|Invalid|Valid|ASCII adjust AL after addition.|
 ### Instruction Operand Encoding
 
 

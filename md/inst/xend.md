@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
-|0F 01 D5XEND|A|V/V|RTM|Specifies the end of an RTM code region.|
+|`0F 01 D5`\newline{}`XEND` |A|V/V|RTM|Specifies the end of an RTM code region.|
 ### Instruction Operand Encoding
 
 

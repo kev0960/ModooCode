@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 35|SYSEXIT|NP|Valid|Valid|Fast return to privilege level 3 user code.|
-|REX.W + 0F 35|SYSEXIT|NP|Valid|Valid|Fast return to 64-bit mode privilege level 3 user code.|
+|0F 35|`SYSEXIT` |NP|Valid|Valid|Fast return to privilege level 3 user code.|
+|REX.W + 0F 35|`SYSEXIT` |NP|Valid|Valid|Fast return to 64-bit mode privilege level 3 user code.|
 ### Instruction Operand Encoding
 
 

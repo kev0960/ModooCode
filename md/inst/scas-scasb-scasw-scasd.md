@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|AE|SCAS m8|NP|Valid |Valid|Compare AL with byte at ES:(E)DI or RDI, then set status flags.\htmlonly{*}|
-|AF|SCAS m16|NP|Valid |Valid|Compare AX with word at ES:(E)DI or RDI, then set status flags.\htmlonly{*}|
-|AF|SCAS m32|NP|Valid |Valid|Compare EAX with doubleword at ES(E)DI or RDI then set status flags.\htmlonly{*}|
-|REX.W + AF|SCAS m64|NP|Valid|N.E.|Compare RAX with quadword at RDI or EDI then set status flags.|
-|AE|SCASB|NP|Valid |Valid|Compare AL with byte at ES:(E)DI or RDI then set status flags.\htmlonly{*}|
-|AF|SCASW|NP|Valid |Valid|Compare AX with word at ES:(E)DI or RDI then set status flags.\htmlonly{*}|
-|AF|SCASD|NP|Valid |Valid|Compare EAX with doubleword at ES:(E)DI or RDI then set status flags.\htmlonly{*}|
-|REX.W + AF|SCASQ|NP|Valid |N.E.|Compare RAX with quadword at RDI or EDI then set status flags.|
+|AE|`SCAS` \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |NP|Valid |Valid|Compare AL with byte at ES:(E)DI or RDI, then set status flags.\htmlonly{*}|
+|AF|`SCAS` \tooltip{m16}{DS:(E)SI, ES:(E)DI 로 표현되는 2 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |NP|Valid |Valid|Compare AX with word at ES:(E)DI or RDI, then set status flags.\htmlonly{*}|
+|AF|`SCAS` \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} |NP|Valid |Valid|Compare EAX with doubleword at ES(E)DI or RDI then set status flags.\htmlonly{*}|
+|REX.W + AF|`SCAS` \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} |NP|Valid|N.E.|Compare RAX with quadword at RDI or EDI then set status flags.|
+|AE|`SCASB` |NP|Valid |Valid|Compare AL with byte at ES:(E)DI or RDI then set status flags.\htmlonly{*}|
+|AF|`SCASW` |NP|Valid |Valid|Compare AX with word at ES:(E)DI or RDI then set status flags.\htmlonly{*}|
+|AF|`SCASD` |NP|Valid |Valid|Compare EAX with doubleword at ES:(E)DI or RDI then set status flags.\htmlonly{*}|
+|REX.W + AF|SCASQ |NP|Valid |N.E.|Compare RAX with quadword at RDI or EDI then set status flags.|
 
 ```note
 \htmlonly{*} In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes are supported

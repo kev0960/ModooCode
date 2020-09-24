@@ -18,11 +18,11 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|DF /2|FIST m16int|Valid|Valid|Store ST(0) in m16int.|
-|DB /2|FIST m32int|Valid|Valid|Store ST(0) in m32int.|
-|DF /3|FISTP m16int|Valid|Valid|Store ST(0) in m16int and pop register stack.|
-|DB /3|FISTP m32int|Valid|Valid|Store ST(0) in m32int and pop register stack.|
-|DF /7|FISTP m64int|Valid|Valid|Store ST(0) in m64int and pop register stack.|
+|DF /2|`FIST` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Store ST(0) in m16int.|
+|DB /2|`FIST` \tooltip{m32int}{To-m16int} |Valid|Valid|Store ST(0) in m32int.|
+|DF /3|`FISTP` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Store ST(0) in m16int and pop register stack.|
+|DB /3|`FISTP` \tooltip{m32int}{To-m16int} |Valid|Valid|Store ST(0) in m32int and pop register stack.|
+|DF /7|`FISTP` \tooltip{m64int}{To-m16int} |Valid|Valid|Store ST(0) in m64int and pop register stack.|
 ### Description
 
 

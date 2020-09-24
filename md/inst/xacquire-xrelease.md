@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/Instruction**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
-|F2XACQUIRE|V/V|HLE\footnote{1}|**A hint used with an "XACQUIRE-eanbled" instruction to start lock ****elision on the instruction memory operand address.**|
-|**F3****XRELEASE**|**V/V**|**HLE**|**A hint used with an "XRELEAES-enabled" instruction to end lock ****elision on the instruction memory operand address.**|
-|||||
+|`F2`\newline{}`XACQUIRE` |V/V|HLE\footnote{1}|**A hint used with an "XACQUIRE-eanbled" instruction to start lock ****elision on the instruction memory operand address.**|
+|`**F3****`\newline{}XRELEASE** |**V/V**|**HLE**|**A hint used with an "XRELEAES-enabled" instruction to end lock ****elision on the instruction memory operand address.**|
+|``\newline{} ||||
 
 ```note
 **1. Software is not required to check the HLE feature flag to use XACQUIRE or XRELEASE, as they are treated as regular p rHeLfiEx if****feature flag reports 0.*

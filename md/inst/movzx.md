@@ -18,11 +18,11 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F B6 /r|MOVZX r16, r/m8|RM|Valid|Valid|Move byte to word with zero-extension.|
-|0F B6 /r|MOVZX r32, r/m8|RM|Valid|Valid|Move byte to doubleword, zero-extension.|
-|REX.W + 0F B6 /r|MOVZX r64, r/m8\htmlonly{*}|RM|Valid|N.E.|Move byte to quadword, zero-extension.|
-|0F B7 /r|MOVZX r32, r/m16|RM|Valid|Valid|Move word to doubleword, zero-extension.|
-|REX.W + 0F B7 /r|MOVZX r64, r/m16|RM|Valid |N.E.|Move word to quadword, zero-extension.|
+|0F B6 /r|`MOVZX` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move byte to word with zero-extension.|
+|0F B6 /r|`MOVZX` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move byte to doubleword, zero-extension.|
+|REX.W + 0F B6 /r|`MOVZX` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} r/m8\htmlonly{*} |RM|Valid|N.E.|Move byte to quadword, zero-extension.|
+|0F B7 /r|`MOVZX` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move word to doubleword, zero-extension.|
+|REX.W + 0F B7 /r|`MOVZX` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid |N.E.|Move word to quadword, zero-extension.|
 
 ```note
 \htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if the REX prefix is used: AH, BH, CH, DH.

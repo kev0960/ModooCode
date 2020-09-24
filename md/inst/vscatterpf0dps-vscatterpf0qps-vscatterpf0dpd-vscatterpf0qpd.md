@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/**\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.512.66.0F38.W0 C6 /5 /vsib \newline{}VSCATTERPF0DPS vm32z {k1}|T1S|V/V|AVX512PF|Using signed dword indices, prefetch sparse byte memory locations containing single-precision data using writemask k1 and T0 hint with intent to write.|
-|EVEX.512.66.0F38.W0 C7 /5 /vsib \newline{}VSCATTERPF0QPS vm64z {k1}|T1S|V/V|AVX512PF|Using signed qword indices, prefetch sparse byte memory locations containing single-precision data using writemask k1 and T0 hint with intent to write.|
-|EVEX.512.66.0F38.W1 C6 /5 /vsib \newline{}VSCATTERPF0DPD vm32y {k1}|T1S|V/V|AVX512PF|Using signed dword indices, prefetch sparse byte memory locations containing double-precision data using writemask k1 and T0 hint with intent to write.|
-|EVEX.512.66.0F38.W1 C7 /5 /vsib\newline{}VSCATTERPF0QPD vm64z {k1}|T1S|V/V|AVX512PF|Using signed qword indices, prefetch sparse byte memory locations containing double-precision data using writemask k1 and T0 hint with intent to write.|
+|`EVEX.512.66.0F38.W0 C6 /5 /vsib `\newline{}`VSCATTERPF0DPS` \tooltip{vm32z}{To-vm32x} \tooltip{\{k1\}}{\{k1\}\{z\} 와는 다르게 \{z\} 가 없다. 이 경우 병합 마스크 방식만 지원하고 zeroing mask 는 지원하지 않는다.} |T1S|V/V|AVX512PF|Using signed dword indices, prefetch sparse byte memory locations containing single-precision data using writemask k1 and T0 hint with intent to write.|
+|`EVEX.512.66.0F38.W0 C7 /5 /vsib `\newline{}`VSCATTERPF0QPS` \tooltip{vm64z}{To-vm64x} \tooltip{\{k1\}}{\{k1\}\{z\} 와는 다르게 \{z\} 가 없다. 이 경우 병합 마스크 방식만 지원하고 zeroing mask 는 지원하지 않는다.} |T1S|V/V|AVX512PF|Using signed qword indices, prefetch sparse byte memory locations containing single-precision data using writemask k1 and T0 hint with intent to write.|
+|`EVEX.512.66.0F38.W1 C6 /5 /vsib `\newline{}`VSCATTERPF0DPD` \tooltip{vm32y}{To-vm32x} \tooltip{\{k1\}}{\{k1\}\{z\} 와는 다르게 \{z\} 가 없다. 이 경우 병합 마스크 방식만 지원하고 zeroing mask 는 지원하지 않는다.} |T1S|V/V|AVX512PF|Using signed dword indices, prefetch sparse byte memory locations containing double-precision data using writemask k1 and T0 hint with intent to write.|
+|`EVEX.512.66.0F38.W1 C7 /5 /vsib`\newline{}`VSCATTERPF0QPD` \tooltip{vm64z}{To-vm64x} \tooltip{\{k1\}}{\{k1\}\{z\} 와는 다르게 \{z\} 가 없다. 이 경우 병합 마스크 방식만 지원하고 zeroing mask 는 지원하지 않는다.} |T1S|V/V|AVX512PF|Using signed qword indices, prefetch sparse byte memory locations containing double-precision data using writemask k1 and T0 hint with intent to write.|
 ### Instruction Operand Encoding
 
 

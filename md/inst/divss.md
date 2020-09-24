@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F 5E /r\newline{}DIVSS xmm1, xmm2/m32|RM|V/V|SSE|Divide low single-precision floating-point value in xmm1 by low single-precision floating-point value in xmm2/m32.|
-|VEX.NDS.128.F3.0F.WIG 5E /r\newline{}VDIVSS xmm1, xmm2, xmm3/m32|RVM|V/V|AVX|Divide low single-precision floating-point value in xmm2 by low single-precision floating-point value in xmm3/m32.|
-|EVEX.NDS.LIG.F3.0F.W0 5E /r\newline{}VDIVSS xmm1 {k1}{z}, xmm2, xmm3/m32{er}|T1S|V/V|AVX512F|Divide low single-precision floating-point value in xmm2 by low single-precision floating-point value in xmm3/m32.|
+|`F3 0F 5E /r`\newline{}`DIVSS` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m32}{8 비트 XMM 레지스터 혹은 32 비트 메모리 데이터.} |RM|V/V|SSE|Divide low single-precision floating-point value in xmm1 by low single-precision floating-point value in xmm2/m32.|
+|`VEX.NDS.128.F3.0F.WIG 5E /r`\newline{}VDIVSS \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm3/m32}{8 비트 XMM 레지스터 혹은 32 비트 메모리 데이터.} |RVM|V/V|AVX|Divide low single-precision floating-point value in xmm2 by low single-precision floating-point value in xmm3/m32.|
+|`EVEX.NDS.LIG.F3.0F.W0 5E /r`\newline{}VDIVSS \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{\{k1\}\{z\}}{쓰기 마스크 (write mask) 레지스터로 64 비트 k 레지스터로 k1 부터 k7 까지 사용 가능하다. 쓰기 마스크는 오직 EVEX 접두사가 있을 경우에만 사용 가능하다. 마스크 방식으로 마스크 되지 않는 부분의 값을 유지하는 병합 마스크 (merge mask) 가 있고, 해당 부분을 아예 0 으로 지워버리는 zeroing mask 방식이 있다. 어떤 식으로 마스크를 할 지는 EVEX.z 필드의 비트값에 따라 달라진다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} xmm3/m32{er} |T1S|V/V|AVX512F|Divide low single-precision floating-point value in xmm2 by low single-precision floating-point value in xmm3/m32.|
 ### Instruction Operand Encoding
 
 

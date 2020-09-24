@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-**\newline{}**bit **\newline{}**Mode**|**CPUID**\newline{}**Feature Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|-----------------------------------|---------------|
-|F3 0F C7 /7\newline{}RDPID r32|M|N.E./V|RDPID|Read IA32_TSC_AUX into r32.|
-|F3 0F C7 /7\newline{}RDPID r64|M|V/N.E.|RDPID|Read IA32_TSC_AUX into r64.|
+|`F3 0F C7 /7`\newline{}`RDPID` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |M|N.E./V|RDPID|Read IA32_TSC_AUX into r32.|
+|`F3 0F C7 /7`\newline{}`RDPID` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |M|V/N.E.|RDPID|Read IA32_TSC_AUX into r64.|
 ### Instruction Operand Encoding
 
 

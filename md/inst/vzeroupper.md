@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.128.0F.WIG 77\newline{}\newline{}VZEROUPPER|NP|V/V|AVX|Zero upper 128 bits of all YMM registers.|
+|`VEX.128.0F.WIG 77`\newline{}`VZEROUPPER` |NP|V/V|AVX|Zero upper 128 bits of all YMM registers.|
 ### Instruction Operand Encoding
 
 

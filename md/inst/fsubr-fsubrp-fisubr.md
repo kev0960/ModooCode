@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D8 /5|FSUBR m32fp|Valid|Valid|Subtract ST(0) from m32fp and store result in ST(0).|
-|DC /5|FSUBR m64fp|Valid|Valid|Subtract ST(0) from m64fp and store result in ST(0).|
-|D8 E8+i|FSUBR ST(0), ST(i)|Valid|Valid|Subtract ST(0) from ST(i) and store result in ST(0).|
-|DC E0+i|FSUBR ST(i), ST(0)|Valid|Valid|Subtract ST(i) from ST(0) and store result in ST(i).|
-|DE E0+i|FSUBRP ST(i), ST(0)|Valid|Valid|Subtract ST(i) from ST(0), store result in ST(i), and pop register stack.|
-|DE E1|FSUBRP|Valid|Valid|Subtract ST(1) from ST(0), store result in ST(1), and pop register stack.|
-|DA /5|FISUBR m32int|Valid|Valid|Subtract ST(0) from m32int and store result in ST(0).|
-|DE /5|FISUBR m16int|Valid|Valid|Subtract ST(0) from m16int and store result in ST(0).|
+|D8 /5|`FSUBR` m32fp |Valid|Valid|Subtract ST(0) from m32fp and store result in ST(0).|
+|DC /5|`FSUBR` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Subtract ST(0) from m64fp and store result in ST(0).|
+|D8 E8+i|`FSUBR` \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Subtract ST(0) from ST(i) and store result in ST(0).|
+|DC E0+i|`FSUBR` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} \tooltip{ST(0)}{To-ST} |Valid|Valid|Subtract ST(i) from ST(0) and store result in ST(i).|
+|DE E0+i|`FSUBRP` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} \tooltip{ST(0)}{To-ST} |Valid|Valid|Subtract ST(i) from ST(0), store result in ST(i), and pop register stack.|
+|DE E1|`FSUBRP` |Valid|Valid|Subtract ST(1) from ST(0), store result in ST(1), and pop register stack.|
+|DA /5|`FISUBR` \tooltip{m32int}{To-m16int} |Valid|Valid|Subtract ST(0) from m32int and store result in ST(0).|
+|DE /5|`FISUBR` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Subtract ST(0) from m16int and store result in ST(0).|
 ### Description
 
 

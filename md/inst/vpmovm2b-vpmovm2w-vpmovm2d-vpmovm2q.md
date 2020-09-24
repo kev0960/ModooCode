@@ -18,18 +18,18 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/**\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.128.F3.0F38.W0 28 /r \newline{}VPMOVM2B xmm1, k1|RM|V/V|AVX512VL\newline{}AVX512BW|Sets each byte in XMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.256.F3.0F38.W0 28 /r \newline{}VPMOVM2B ymm1, k1|RM|V/V|AVX512VL\newline{}AVX512BW|Sets each byte in YMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.512.F3.0F38.W0 28 /r \newline{}VPMOVM2B zmm1, k1|RM|V/V|AVX512BW|Sets each byte in ZMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.128.F3.0F38.W1 28 /r \newline{}VPMOVM2W xmm1, k1 |RM|V/V|AVX512VL\newline{}AVX512BW|Sets each word in XMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.256.F3.0F38.W1 28 /r\newline{}VPMOVM2W ymm1, k1 |RM|V/V|AVX512VL\newline{}AVX512BW|Sets each word in YMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.512.F3.0F38.W1 28 /r \newline{}VPMOVM2W zmm1, k1 |RM|V/V|AVX512BW|Sets each word in ZMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.128.F3.0F38.W0 38 /r \newline{}VPMOVM2D xmm1, k1|RM|V/V|AVX512VL\newline{}AVX512DQ|Sets each doubleword in XMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.256.F3.0F38.W0 38 /r \newline{}VPMOVM2D ymm1, k1|RM|V/V|AVX512VL\newline{}AVX512DQ|Sets each doubleword in YMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.512.F3.0F38.W0 38 /r \newline{}VPMOVM2D zmm1, k1|RM|V/V|AVX512DQ|Sets each doubleword in ZMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.128.F3.0F38.W1 38 /r \newline{}VPMOVM2Q xmm1, k1 |RM|V/V|AVX512VL\newline{}AVX512DQ|Sets each quadword in XMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.256.F3.0F38.W1 38 /r \newline{}VPMOVM2Q ymm1, k1 |RM|V/V|AVX512VL\newline{}AVX512DQ|Sets each quadword in YMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
-|EVEX.512.F3.0F38.W1 38 /r \newline{}VPMOVM2Q zmm1, k1 |RM|V/V|AVX512DQ|Sets each quadword in ZMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.128.F3.0F38.W0 28 /r `\newline{}`VPMOVM2B` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512VL\newline{}AVX512BW|Sets each byte in XMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.256.F3.0F38.W0 28 /r `\newline{}`VPMOVM2B` \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512VL\newline{}AVX512BW|Sets each byte in YMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.512.F3.0F38.W0 28 /r `\newline{}`VPMOVM2B` zmm1 \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512BW|Sets each byte in ZMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.128.F3.0F38.W1 28 /r `\newline{}`VPMOVM2W` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512VL\newline{}AVX512BW|Sets each word in XMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.256.F3.0F38.W1 28 /r`\newline{}`VPMOVM2W` \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512VL\newline{}AVX512BW|Sets each word in YMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.512.F3.0F38.W1 28 /r `\newline{}`VPMOVM2W` zmm1 \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512BW|Sets each word in ZMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.128.F3.0F38.W0 38 /r `\newline{}`VPMOVM2D` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512VL\newline{}AVX512DQ|Sets each doubleword in XMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.256.F3.0F38.W0 38 /r `\newline{}`VPMOVM2D` \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512VL\newline{}AVX512DQ|Sets each doubleword in YMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.512.F3.0F38.W0 38 /r `\newline{}`VPMOVM2D` zmm1 \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512DQ|Sets each doubleword in ZMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.128.F3.0F38.W1 38 /r `\newline{}`VPMOVM2Q` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512VL\newline{}AVX512DQ|Sets each quadword in XMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.256.F3.0F38.W1 38 /r `\newline{}`VPMOVM2Q` \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512VL\newline{}AVX512DQ|Sets each quadword in YMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
+|`EVEX.512.F3.0F38.W1 38 /r `\newline{}`VPMOVM2Q` zmm1 \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM|V/V|AVX512DQ|Sets each quadword in ZMM1 to all 1's or all 0's based on the value of the corresponding bit in k1. |
 ### Instruction Operand Encoding
 
 

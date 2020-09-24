@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F C7 /1 m64\newline{}\newline{}CMPXCHG8B m64|M|Valid|Valid\htmlonly{*}|Compare EDX:EAX with m64. If equal, set ZF and load ECX:EBX into m64. Else, clear ZF and load m64 into EDX:EAX.|
-|REX.W + 0F C7 /1 m128\newline{}\newline{}CMPXCHG16B m128|M|Valid|N.E.|Compare RDX:RAX with m128. If equal, set ZF and load RCX:RBX into m128. Else, clear ZF and load m128 into RDX:RAX.|
+|`0F C7 /1 m64`\newline{}`CMPXCHG8B` \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} |M|Valid|Valid\htmlonly{*}|Compare EDX:EAX with m64. If equal, set ZF and load ECX:EBX into m64. Else, clear ZF and load m64 into EDX:EAX.|
+|`REX.W + 0F C7 /1 m128`\newline{}`CMPXCHG16B` \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} |M|Valid|N.E.|Compare RDX:RAX with m128. If equal, set ZF and load RCX:RBX into m128. Else, clear ZF and load m128 into RDX:RAX.|
 
 ```note
 \htmlonly{*}See IA-32 Architecture Compatibility section below

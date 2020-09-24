@@ -18,11 +18,11 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|F6 /2|NOT r/m8|M|Valid|Valid|Reverse each bit of r/m8.|
-|REX + F6 /2|NOT r/m8\htmlonly{*}|M|Valid|N.E.|Reverse each bit of r/m8.|
-|F7 /2|NOT r/m16|M|Valid|Valid|Reverse each bit of r/m16.|
-|F7 /2|NOT r/m32|M|Valid|Valid|Reverse each bit of r/m32.|
-|REX.W + F7 /2|NOT r/m64|M|Valid |N.E.|Reverse each bit of r/m64.|
+|F6 /2|`NOT` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Reverse each bit of r/m8.|
+|REX + F6 /2|`NOT` r/m8\htmlonly{*} |M|Valid|N.E.|Reverse each bit of r/m8.|
+|F7 /2|`NOT` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Reverse each bit of r/m16.|
+|F7 /2|`NOT` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|Valid|Valid|Reverse each bit of r/m32.|
+|REX.W + F7 /2|`NOT` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid |N.E.|Reverse each bit of r/m64.|
 
 ```note
 \htmlonly{*}  In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.

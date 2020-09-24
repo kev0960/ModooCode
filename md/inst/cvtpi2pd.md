@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|66 0F 2A /r\newline{}\newline{}CVTPI2PD xmm, mm/m64\htmlonly{*}|RM|Valid|Valid|Convert two packed signed doubleword integers from mm/mem64 to two packed double-precision floating-point values in xmm.|
+|`66 0F 2A /r`\newline{}`CVTPI2PD` \tooltip{xmm}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} mm/m64\htmlonly{*} |RM|Valid|Valid|Convert two packed signed doubleword integers from mm/mem64 to two packed double-precision floating-point values in xmm.|
 
 ```note
 \htmlonly{*}Operation is different for different operand sets; see the Description section

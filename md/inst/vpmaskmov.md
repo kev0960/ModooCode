@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDS.128.66.0F38.W0 8C /rVPMASK-MOVD xmm1, xmm2, m128|RVM|V/V|AVX2|Conditionally load dword values from m128 using mask in xmm2 and store in xmm1.|
-|VEX.NDS.256.66.0F38.W0 8C /r\newline{}VPMASKMOVD ymm1, ymm2, m256|RVM|V/V|AVX2|Conditionally load dword values from m256 using mask in ymm2 and store in ymm1.|
-|VEX.NDS.128.66.0F38.W1 8C /r\newline{}VPMASKMOVQ xmm1, xmm2, m128|RVM|V/V|AVX2|Conditionally load qword values from m128 using mask in xmm2 and store in xmm1.|
-|VEX.NDS.256.66.0F38.W1 8C /r\newline{}VPMASKMOVQ ymm1, ymm2, m256|RVM|V/V|AVX2|Conditionally load qword values from m256 using mask in ymm2 and store in ymm1.|
-|VEX.NDS.128.66.0F38.W0 8E /r\newline{}VPMASKMOVD m128, xmm1, xmm2|MVR|V/V|AVX2|Conditionally store dword values from xmm2 using mask in xmm1.|
-|VEX.NDS.256.66.0F38.W0 8E /r\newline{}VPMASKMOVD m256, ymm1, ymm2|MVR|V/V|AVX2|Conditionally store dword values from ymm2 using mask in ymm1.|
-|VEX.NDS.128.66.0F38.W1 8E /r\newline{}VPMASKMOVQ m128, xmm1, xmm2|MVR|V/V|AVX2|Conditionally store qword values from xmm2 using mask in xmm1.|
-|VEX.NDS.256.66.0F38.W1 8E /r\newline{}VPMASKMOVQ m256, ymm1, ymm2|MVR|V/V|AVX2|Conditionally store qword values from ymm2 using mask in ymm1.|
+|`VEX.NDS.128.66.0F38.W0 8C /rVPMASK-MOVD xmm1, xmm2, m128`\newline{} |RVM|V/V|AVX2|Conditionally load dword values from m128 using mask in xmm2 and store in xmm1.|
+|`VEX.NDS.256.66.0F38.W0 8C /r`\newline{}VPMASKMOVD \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} |RVM|V/V|AVX2|Conditionally load dword values from m256 using mask in ymm2 and store in ymm1.|
+|`VEX.NDS.128.66.0F38.W1 8C /r`\newline{}VPMASKMOVQ \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} |RVM|V/V|AVX2|Conditionally load qword values from m128 using mask in xmm2 and store in xmm1.|
+|`VEX.NDS.256.66.0F38.W1 8C /r`\newline{}VPMASKMOVQ \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} |RVM|V/V|AVX2|Conditionally load qword values from m256 using mask in ymm2 and store in ymm1.|
+|`VEX.NDS.128.66.0F38.W0 8E /r`\newline{}VPMASKMOVD \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MVR|V/V|AVX2|Conditionally store dword values from xmm2 using mask in xmm1.|
+|`VEX.NDS.256.66.0F38.W0 8E /r`\newline{}VPMASKMOVD \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} |MVR|V/V|AVX2|Conditionally store dword values from ymm2 using mask in ymm1.|
+|`VEX.NDS.128.66.0F38.W1 8E /r`\newline{}VPMASKMOVQ \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MVR|V/V|AVX2|Conditionally store qword values from xmm2 using mask in xmm1.|
+|`VEX.NDS.256.66.0F38.W1 8E /r`\newline{}VPMASKMOVQ \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} |MVR|V/V|AVX2|Conditionally store qword values from ymm2 using mask in ymm1.|
 ### Instruction Operand Encoding
 
 

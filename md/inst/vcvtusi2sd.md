@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.NDS.LIG.F2.0F.W0 7B /r\newline{}VCVTUSI2SD xmm1, xmm2, r/m32|T1S|V/V|AVX512F|Convert one unsigned doubleword integer from r/m32 to one double-precision floating-point value in xmm1.|
-|EVEX.NDS.LIG.F2.0F.W1 7B /r\newline{}VCVTUSI2SD xmm1, xmm2, r/m64{er}|T1S|V/N.E.\footnote{1}|AVX512F|Convert one unsigned quadword integer from r/m64 to one double-precision floating-point value in xmm1.|
-||||||
+|`EVEX.NDS.LIG.F2.0F.W0 7B /r`\newline{}`VCVTUSI2SD` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |T1S|V/V|AVX512F|Convert one unsigned doubleword integer from r/m32 to one double-precision floating-point value in xmm1.|
+|`EVEX.NDS.LIG.F2.0F.W1 7B /r`\newline{}`VCVTUSI2SD` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} r/m64{er} |T1S|V/N.E.\footnote{1}|AVX512F|Convert one unsigned quadword integer from r/m64 to one double-precision floating-point value in xmm1.|
+|``\newline{} |||||
 
 ```note
 1. For this specific instruction, EVEX.W in non-64 bit is ignored; the instructions behaves as if the W0 version isused

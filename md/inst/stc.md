@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|F9|STC|NP|Valid|Valid|Set CF flag.|
+|F9|`STC` |NP|Valid|Valid|Set CF flag.|
 ### Instruction Operand Encoding
 
 

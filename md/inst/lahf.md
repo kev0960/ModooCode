@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|9F |LAHF|NP|Invalid\htmlonly{*}|Valid|Load: AH <- EFLAGS(SF:ZF:0:AF:0:PF:1:CF).|
+|9F |`LAHF` |NP|Invalid\htmlonly{*}|Valid|Load: AH <- EFLAGS(SF:ZF:0:AF:0:PF:1:CF).|
 
 ```note
 \htmlonly{*}Valid in specific steppings. See Description section

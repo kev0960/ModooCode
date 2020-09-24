@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|DF /6|FBSTP m80bcd|Valid|Valid|Store ST(0) in m80bcd and pop ST(0).|
+|DF /6|`FBSTP` m80bcd |Valid|Valid|Store ST(0) in m80bcd and pop ST(0).|
 ### Description
 
 

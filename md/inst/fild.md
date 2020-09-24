@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|DF /0|FILD m16int|Valid|Valid|Push m16int onto the FPU register stack.|
-|DB /0|FILD m32int|Valid|Valid|Push m32int onto the FPU register stack.|
-|DF /5|FILD m64int|Valid|Valid|Push m64int onto the FPU register stack.|
+|DF /0|`FILD` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Push m16int onto the FPU register stack.|
+|DB /0|`FILD` \tooltip{m32int}{To-m16int} |Valid|Valid|Push m32int onto the FPU register stack.|
+|DF /5|`FILD` \tooltip{m64int}{To-m16int} |Valid|Valid|Push m64int onto the FPU register stack.|
 ### Description
 
 

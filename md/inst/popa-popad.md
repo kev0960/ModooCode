@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|61|POPA|NP|Invalid|Valid|Pop DI, SI, BP, BX, DX, CX, and AX.|
-|61|POPAD|NP|Invalid|Valid|Pop EDI, ESI, EBP, EBX, EDX, ECX, and EAX.|
+|61|`POPA` |NP|Invalid|Valid|Pop DI, SI, BP, BX, DX, CX, and AX.|
+|61|`POPAD` |NP|Invalid|Valid|Pop EDI, ESI, EBP, EBX, EDX, ECX, and EAX.|
 ### Instruction Operand Encoding
 
 

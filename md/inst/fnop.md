@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 D0|FNOP|Valid|Valid|No operation is performed.|
+|D9 D0|`FNOP` |Valid|Valid|No operation is performed.|
 ### Description
 
 

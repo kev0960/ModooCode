@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 /0|FLD m32fp|Valid|Valid|Push m32fp onto the FPU register stack.|
-|DD /0|FLD m64fp|Valid|Valid|Push m64fp onto the FPU register stack.|
-|DB /5|FLD m80fp|Valid|Valid|Push m80fp onto the FPU register stack.|
-|D9 C0+i|FLD ST(i)|Valid|Valid|Push ST(i) onto the FPU register stack.|
+|D9 /0|`FLD` m32fp |Valid|Valid|Push m32fp onto the FPU register stack.|
+|DD /0|`FLD` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Push m64fp onto the FPU register stack.|
+|DB /5|`FLD` \tooltip{m80fp}{To-m32fp} |Valid|Valid|Push m80fp onto the FPU register stack.|
+|D9 C0+i|`FLD` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Push ST(i) onto the FPU register stack.|
 ### Description
 
 

@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
-|66 0F 38 F6 /r\newline{}ADCX r32, r/m32|RM|V/V|ADX|Unsigned addition of r32 with CF, r/m32 to r32, writes CF.|
-|66 REX.w 0F 38 F6 /r\newline{}ADCX r64, r/m64|RM|V/NE|ADX|Unsigned addition of r64 with CF, r/m64 to r64, writes CF.|
+|`66 0F 38 F6 /r`\newline{}`ADCX` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|V/V|ADX|Unsigned addition of r32 with CF, r/m32 to r32, writes CF.|
+|`66 REX.w 0F 38 F6 /r`\newline{}`ADCX` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|V/NE|ADX|Unsigned addition of r64 with CF, r/m64 to r64, writes CF.|
 ### Instruction Operand Encoding
 
 

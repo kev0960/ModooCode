@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 33|RDPMC|NP|Valid |Valid|Read performance-monitoring counter specified by ECX into EDX:EAX.|
+|0F 33|`RDPMC` |NP|Valid |Valid|Read performance-monitoring counter specified by ECX into EDX:EAX.|
 ### Instruction Operand Encoding
 
 

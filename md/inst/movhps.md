@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 16 /r\newline{}MOVHPS xmm1, m64|RM|V/V|SSE|Move two packed single-precision floating-point values from m64 to high quadword of xmm1.|
-|VEX.NDS.128.0F.WIG 16 /r\newline{}VMOVHPS xmm2, xmm1, m64|RVM|V/V|AVX|Merge two packed single-precision floating-point values from m64 and the low quadword of xmm1.|
-|EVEX.NDS.128.0F.W0 16 /r\newline{}VMOVHPS xmm2, xmm1, m64|T2|V/V|AVX512F|Merge two packed single-precision floating-point values from m64 and the low quadword of xmm1.|
-|0F 17 /r\newline{}MOVHPS m64, xmm1|MR|V/V|SSE|Move two packed single-precision floating-point values from high quadword of xmm1 to m64.|
-|VEX.128.0F.WIG 17 /r\newline{}VMOVHPS m64, xmm1|MR|V/V|AVX|Move two packed single-precision floating-point values from high quadword of xmm1 to m64.|
-|EVEX.128.0F.W0 17 /r\newline{}VMOVHPS m64, xmm1|T2-MR|V/V|AVX512F|Move two packed single-precision floating-point values from high quadword of xmm1 to m64.|
+|`0F 16 /r`\newline{}`MOVHPS` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} |RM|V/V|SSE|Move two packed single-precision floating-point values from m64 to high quadword of xmm1.|
+|`VEX.NDS.128.0F.WIG 16 /r`\newline{}VMOVHPS \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} |RVM|V/V|AVX|Merge two packed single-precision floating-point values from m64 and the low quadword of xmm1.|
+|`EVEX.NDS.128.0F.W0 16 /r`\newline{}VMOVHPS \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} |T2|V/V|AVX512F|Merge two packed single-precision floating-point values from m64 and the low quadword of xmm1.|
+|`0F 17 /r`\newline{}`MOVHPS` \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|SSE|Move two packed single-precision floating-point values from high quadword of xmm1 to m64.|
+|`VEX.128.0F.WIG 17 /r`\newline{}VMOVHPS \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|AVX|Move two packed single-precision floating-point values from high quadword of xmm1 to m64.|
+|`EVEX.128.0F.W0 17 /r`\newline{}VMOVHPS \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |T2-MR|V/V|AVX512F|Move two packed single-precision floating-point values from high quadword of xmm1 to m64.|
 ### Instruction Operand Encoding
 
 

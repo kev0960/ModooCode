@@ -18,13 +18,13 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 /2|FST m32fp|Valid|Valid|Copy ST(0) to m32fp.|
-|DD /2|FST m64fp|Valid|Valid|Copy ST(0) to m64fp.|
-|DD D0+i|FST ST(i)|Valid|Valid|Copy ST(0) to ST(i).|
-|D9 /3|FSTP m32fp|Valid|Valid|Copy ST(0) to m32fp and pop register stack.|
-|DD /3|FSTP m64fp|Valid|Valid|Copy ST(0) to m64fp and pop register stack.|
-|DB /7|FSTP m80fp|Valid|Valid|Copy ST(0) to m80fp and pop register stack.|
-|DD D8+i|FSTP ST(i)|Valid|Valid|Copy ST(0) to ST(i) and pop register stack.|
+|D9 /2|`FST` m32fp |Valid|Valid|Copy ST(0) to m32fp.|
+|DD /2|`FST` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Copy ST(0) to m64fp.|
+|DD D0+i|`FST` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Copy ST(0) to ST(i).|
+|D9 /3|`FSTP` m32fp |Valid|Valid|Copy ST(0) to m32fp and pop register stack.|
+|DD /3|`FSTP` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Copy ST(0) to m64fp and pop register stack.|
+|DB /7|`FSTP` \tooltip{m80fp}{To-m32fp} |Valid|Valid|Copy ST(0) to m80fp and pop register stack.|
+|DD D8+i|`FSTP` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Copy ST(0) to ST(i) and pop register stack.|
 ### Description
 
 

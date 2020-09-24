@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDS.L1.66.0F.W0 4B /r\newline{}KUNPCKBW k1, k2, k3|RVR|V/V|AVX512F|Unpack and interleave 8 bits masks in k2 and k3 and write word result in k1.|
-|VEX.NDS.L1.0F.W0 4B /r \newline{}KUNPCKWD k1, k2, k3|RVR|V/V|AVX512BW|Unpack and interleave 16 bits in k2 and k3 and write double-word result in k1.|
-|VEX.NDS.L1.0F.W1 4B /r \newline{}KUNPCKDQ k1, k2, k3|RVR|V/V|AVX512BW|Unpack and interleave 32 bits masks in k2 and k3 and write quadword result in k1.|
+|`VEX.NDS.L1.66.0F.W0 4B /r`\newline{}`KUNPCKBW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512F|Unpack and interleave 8 bits masks in k2 and k3 and write word result in k1.|
+|`VEX.NDS.L1.0F.W0 4B /r `\newline{}`KUNPCKWD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512BW|Unpack and interleave 16 bits in k2 and k3 and write double-word result in k1.|
+|`VEX.NDS.L1.0F.W1 4B /r `\newline{}`KUNPCKDQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 k3 |RVR|V/V|AVX512BW|Unpack and interleave 32 bits masks in k2 and k3 and write quadword result in k1.|
 ### Instruction Operand Encoding
 
 

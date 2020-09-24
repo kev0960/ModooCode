@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 20/r\newline{}\newline{}MOV r32, CR0-CR7|MR|N.E.|Valid|Move control register to r32.|
-|0F 20/r\newline{}\newline{}MOV r64, CR0-CR7|MR|Valid|N.E.|Move extended control register to r64. |
-|REX.R + 0F 20 /0\newline{}\newline{}MOV r64, CR8|MR|Valid |N.E.|Move extended CR8 to r64.\footnote{1}|
-|0F 22 /r\newline{}\newline{}MOV CR0-CR7, r32|RM|N.E.|Valid|Move r32 to control register.|
-|0F 22 /r\newline{}\newline{}MOV CR0-CR7, r64|RM|Valid |N.E.|Move r64 to extended control register.|
-|REX.R + 0F 22 /0\newline{}\newline{}MOV CR8, r64|RM|Valid|N.E.|Move r64 to extended CR8.\footnote{1}|
+|`0F 20/r`\newline{}`MOV` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} CR0-CR7 |MR|N.E.|Valid|Move control register to r32.|
+|`0F 20/r`\newline{}`MOV` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} CR0-CR7 |MR|Valid|N.E.|Move extended control register to r64. |
+|`REX.R + 0F 20 /0`\newline{}`MOV` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} CR8 |MR|Valid |N.E.|Move extended CR8 to r64.\footnote{1}|
+|`0F 22 /r`\newline{}`MOV` CR0-CR7 \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |RM|N.E.|Valid|Move r32 to control register.|
+|`0F 22 /r`\newline{}`MOV` CR0-CR7 \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |RM|Valid |N.E.|Move r64 to extended control register.|
+|`REX.R + 0F 22 /0`\newline{}`MOV` CR8 \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |RM|Valid|N.E.|Move r64 to extended CR8.\footnote{1}|
 ### NOTE:
 
 

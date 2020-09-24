@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F C7 /5|XSAVES mem|M|Valid|Valid|Save state components specified by EDX:EAX to mem with compaction, optimizing if possible.|
-|REX.W+ 0F C7 /5|XSAVES64 mem|M|Valid|N.E.|Save state components specified by EDX:EAX to mem with compaction, optimizing if possible.|
+|0F C7 /5|`XSAVES` mem |M|Valid|Valid|Save state components specified by EDX:EAX to mem with compaction, optimizing if possible.|
+|REX.W+ 0F C7 /5|XSAVES64 mem |M|Valid|N.E.|Save state components specified by EDX:EAX to mem with compaction, optimizing if possible.|
 ### Instruction Operand Encoding
 
 

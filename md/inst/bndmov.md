@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|66 0F 1A /r\newline{}BNDMOV bnd1, bnd2/m64|RM|NE/V|MPX|Move lower and upper bound from bnd2/m64 to bound register bnd1.|
-|66 0F 1A /r\newline{}BNDMOV bnd1, bnd2/m128|RM|V/NE|MPX|Move lower and upper bound from bnd2/m128 to bound register bnd1.|
-|66 0F 1B /r\newline{}BNDMOV bnd1/m64, bnd2|MR|NE/V|MPX|Move lower and upper bound from bnd2 to bnd1/m64.|
-|66 0F 1B /r\newline{}BNDMOV bnd1/m128, bnd2|MR|V/NE|MPX|Move lower and upper bound from bnd2 to bound register bnd1/m128.|
+|`66 0F 1A /r`\newline{}`BNDMOV` bnd1 bnd2/m64 |RM|NE/V|MPX|Move lower and upper bound from bnd2/m64 to bound register bnd1.|
+|`66 0F 1A /r`\newline{}`BNDMOV` bnd1 bnd2/m128 |RM|V/NE|MPX|Move lower and upper bound from bnd2/m128 to bound register bnd1.|
+|`66 0F 1B /r`\newline{}`BNDMOV` bnd1/m64 bnd2 |MR|NE/V|MPX|Move lower and upper bound from bnd2 to bnd1/m64.|
+|`66 0F 1B /r`\newline{}`BNDMOV` bnd1/m128 bnd2 |MR|V/NE|MPX|Move lower and upper bound from bnd2 to bound register bnd1/m128.|
 ### Instruction Operand Encoding
 
 

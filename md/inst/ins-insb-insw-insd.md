@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|6C|INS m8, DX |NP|Valid|Valid|Input byte from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\htmlonly{*}|
-|6D|INS m16, DX|NP|Valid|Valid|Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
-|6D|INS m32, DX|NP|Valid|Valid|Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
-|6C|INSB|NP|Valid|Valid|Input byte from I/O port specified in DX into memory location specified with ES:(E)DI or RDI.\footnote{1}|
-|6D|INSW|NP|Valid|Valid|Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
-|6D|INSD|NP|Valid|Valid|Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
+|6C|`INS` \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } DX |NP|Valid|Valid|Input byte from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\htmlonly{*}|
+|6D|`INS` \tooltip{m16}{DS:(E)SI, ES:(E)DI 로 표현되는 2 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } DX |NP|Valid|Valid|Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
+|6D|`INS` \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} DX |NP|Valid|Valid|Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
+|6C|`INSB` |NP|Valid|Valid|Input byte from I/O port specified in DX into memory location specified with ES:(E)DI or RDI.\footnote{1}|
+|6D|`INSW` |NP|Valid|Valid|Input word from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
+|6D|`INSD` |NP|Valid|Valid|Input doubleword from I/O port specified in DX into memory location specified in ES:(E)DI or RDI.\footnote{1}|
 
 ```note
 \htmlonly{*} In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes are supported

@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F 1B /r\newline{}BNDMK bnd, m32|RM|NE/V|MPX|Make lower and upper bounds from m32 and store them in bnd.|
-|F3 0F 1B /r\newline{}BNDMK bnd, m64|RM|V/NE|MPX|Make lower and upper bounds from m64 and store them in bnd.|
+|`F3 0F 1B /r`\newline{}`BNDMK` \tooltip{bnd}{128 비트 바운드 레지스터. BND0 부터 BND3 까지 가능하다. } \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} |RM|NE/V|MPX|Make lower and upper bounds from m32 and store them in bnd.|
+|`F3 0F 1B /r`\newline{}`BNDMK` \tooltip{bnd}{128 비트 바운드 레지스터. BND0 부터 BND3 까지 가능하다. } \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} |RM|V/NE|MPX|Make lower and upper bounds from m64 and store them in bnd.|
 ### Instruction Operand Encoding
 
 

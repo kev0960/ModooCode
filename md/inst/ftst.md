@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 E4|FTST|Valid|Valid|Compare ST(0) with 0.0.|
+|D9 E4|`FTST` |Valid|Valid|Compare ST(0) with 0.0.|
 ### Description
 
 

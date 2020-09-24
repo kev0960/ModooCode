@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 F6|FDECSTP|Valid|Valid|Decrement TOP field in FPU status word.|
+|D9 F6|`FDECSTP` |Valid|Valid|Decrement TOP field in FPU status word.|
 ### Description
 
 

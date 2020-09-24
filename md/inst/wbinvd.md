@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 09|WBINVD|NP|Valid|Valid|Write back and flush Internal caches; initiate writing-back and flushing of external caches.|
+|0F 09|`WBINVD` |NP|Valid|Valid|Write back and flush Internal caches; initiate writing-back and flushing of external caches.|
 ### Instruction Operand Encoding
 
 

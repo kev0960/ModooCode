@@ -21,7 +21,7 @@ tex_title : C++ 표준 알고리즘 라이브러리
 
 ![](/img/ChewingCpplogo.png)
 
-```warning
+```lec-info
 그냥 C++ 의 `<algorithm>` 라이브러리의 함수들 목록을 보고 싶다면 [여기를 클릭해주세요](/256)
 ```
 

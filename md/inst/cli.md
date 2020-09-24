@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|FA|CLI|NP|Valid|Valid|Clear interrupt flag; interrupts disabled when interrupt flag cleared.|
+|FA|`CLI` |NP|Valid|Valid|Clear interrupt flag; interrupts disabled when interrupt flag cleared.|
 ### Instruction Operand Encoding
 
 

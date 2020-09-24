@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01 D0|XGETBV|NP|Valid|Valid|Reads an XCR specified by ECX into EDX:EAX.|
+|0F 01 D0|`XGETBV` |NP|Valid|Valid|Reads an XCR specified by ECX into EDX:EAX.|
 ### Instruction Operand Encoding
 
 

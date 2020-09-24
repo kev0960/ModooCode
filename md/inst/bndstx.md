@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 1B /r\newline{}BNDSTX mib, bnd|MR|V/V|MPX|Store the bounds in bnd and the pointer value in the index regis-ter of mib to a bound table entry (BTE) with address translation using the base of mib.|
+|`0F 1B /r`\newline{}`BNDSTX` \tooltip{mib}{SIB 주소 표현 형태를 사용하는 메모리 데이터로, 인덱스 레지스터가 주소값 계산에 사용되지 않으며 scale 역시 무시된다. 오직 베이스 와 변위 값만 유효 주소값을 계산하는데 사용된다. } \tooltip{bnd}{128 비트 바운드 레지스터. BND0 부터 BND3 까지 가능하다. } |MR|V/V|MPX|Store the bounds in bnd and the pointer value in the index regis-ter of mib to a bound table entry (BTE) with address translation using the base of mib.|
 ### Instruction Operand Encoding
 
 

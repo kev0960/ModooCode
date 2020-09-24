@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|27|DAA|NP|Invalid|Valid|Decimal adjust AL after addition.|
+|27|`DAA` |NP|Invalid|Valid|Decimal adjust AL after addition.|
 ### Instruction Operand Encoding
 
 

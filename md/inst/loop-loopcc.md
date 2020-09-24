@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|E2 cb|LOOP rel8|D|Valid|Valid|Decrement count; jump short if count != 0.|
-|E1 cb|LOOPE rel8|D|Valid|Valid|Decrement count; jump short if count != 0 and ZF = 1.|
-|E0 cb|LOOPNE rel8|D|Valid|Valid|Decrement count; jump short if count != 0 and ZF = 0.|
+|E2 cb|`LOOP` \tooltip{rel8}{현재 명령어로 부터 최대 128 바이트 이전 혹은 127 바이트 이후 까지의 주소} |D|Valid|Valid|Decrement count; jump short if count != 0.|
+|E1 cb|LOOPE \tooltip{rel8}{현재 명령어로 부터 최대 128 바이트 이전 혹은 127 바이트 이후 까지의 주소} |D|Valid|Valid|Decrement count; jump short if count != 0 and ZF = 1.|
+|E0 cb|LOOPNE \tooltip{rel8}{현재 명령어로 부터 최대 128 바이트 이전 혹은 127 바이트 이후 까지의 주소} |D|Valid|Valid|Decrement count; jump short if count != 0 and ZF = 0.|
 ### Instruction Operand Encoding
 
 

@@ -27,7 +27,8 @@ struct Fragments {
     HTML_ONLY,
     LATEX_ONLY,
     FOOTNOTE,
-    ESCAPE
+    ESCAPE,
+    TOOLTIP
   } type;
 
   // Start and end are inclusive.

@@ -18,13 +18,13 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|F2 0F 2D /r\newline{}CVTSD2SI r32, xmm1/m64|RM|V/V|SSE2|Convert one double-precision floating-point value from xmm1/m64 to one signed doubleword integer r32.|
-|F2 REX.W 0F 2D /r\newline{}CVTSD2SI r64, xmm1/m64|RM|V/N.E.|SSE2|Convert one double-precision floating-point value from xmm1/m64 to one signed quadword integer sign-extended into r64.|
-|VEX.128.F2.0F.W0 2D /r\newline{}VCVTSD2SI r32, xmm1/m64|RM|V/V|AVX|Convert one double-precision floating-point value from xmm1/m64 to one signed doubleword integer r32.|
-|VEX.128.F2.0F.W1 2D /r\newline{}VCVTSD2SI r64, xmm1/m64|RM|V/N.E.\footnote{1}|AVX|Convert one double-precision floating-point value from xmm1/m64 to one signed quadword integer sign-extended into r64.|
-|EVEX.LIG.F2.0F.W0 2D /r\newline{}VCVTSD2SI r32, xmm1/m64{er}|T1F|V/V|AVX512F|Convert one double-precision floating-point value from xmm1/m64 to one signed doubleword integer r32.|
-|EVEX.LIG.F2.0F.W1 2D /r\newline{}VCVTSD2SI r64, xmm1/m64{er}|T1F|V/N.E.\footnote{1}|AVX512F|Convert one double-precision floating-point value from xmm1/m64 to one signed quadword integer sign-extended into r64.|
-||||||
+|`F2 0F 2D /r`\newline{}`CVTSD2SI` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{xmm1/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} |RM|V/V|SSE2|Convert one double-precision floating-point value from xmm1/m64 to one signed doubleword integer r32.|
+|`F2 REX.W 0F 2D /r`\newline{}`CVTSD2SI` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{xmm1/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} |RM|V/N.E.|SSE2|Convert one double-precision floating-point value from xmm1/m64 to one signed quadword integer sign-extended into r64.|
+|`VEX.128.F2.0F.W0 2D /r`\newline{}VCVTSD2SI \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{xmm1/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} |RM|V/V|AVX|Convert one double-precision floating-point value from xmm1/m64 to one signed doubleword integer r32.|
+|`VEX.128.F2.0F.W1 2D /r`\newline{}VCVTSD2SI \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{xmm1/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} |RM|V/N.E.\footnote{1}|AVX|Convert one double-precision floating-point value from xmm1/m64 to one signed quadword integer sign-extended into r64.|
+|`EVEX.LIG.F2.0F.W0 2D /r`\newline{}VCVTSD2SI \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} xmm1/m64{er} |T1F|V/V|AVX512F|Convert one double-precision floating-point value from xmm1/m64 to one signed doubleword integer r32.|
+|`EVEX.LIG.F2.0F.W1 2D /r`\newline{}VCVTSD2SI \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} xmm1/m64{er} |T1F|V/N.E.\footnote{1}|AVX512F|Convert one double-precision floating-point value from xmm1/m64 to one signed quadword integer sign-extended into r64.|
+|``\newline{} |||||
 
 ```note
 1. VEX.W1/EVEX.W1 in non-64 bit is ignored; the instructions behaves as if the W0 version is used

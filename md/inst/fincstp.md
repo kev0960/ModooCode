@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 F7|FINCSTP|Valid|Valid|Increment the TOP field in the FPU status register.|
+|D9 F7|`FINCSTP` |Valid|Valid|Increment the TOP field in the FPU status register.|
 ### Description
 
 

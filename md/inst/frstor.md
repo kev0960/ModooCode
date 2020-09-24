@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|DD /4|FRSTOR m94/108byte|Valid|Valid|Load FPU state from m94byte or m108byte.|
+|DD /4|`FRSTOR` m94/108byte |Valid|Valid|Load FPU state from m94byte or m108byte.|
 ### Description
 
 

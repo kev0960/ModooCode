@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|------------------------------------|---------------|
-|66 0F 38 2A /r\newline{}MOVNTDQA xmm1, m128|RM|V/V|SSE4_1|Move double quadword from m128 to xmm1 using non-temporal hint if WC memory type.|
-|VEX.128.66.0F38.WIG 2A /r\newline{}VMOVNTDQA xmm1, m128|RM|V/V|AVX|Move double quadword from m128 to xmm using non-temporal hint if WC memory type.|
-|VEX.256.66.0F38.WIG 2A /r\newline{}VMOVNTDQA ymm1, m256|RM|V/V|AVX2|Move 256-bit data from m256 to ymm using non-temporal hint if WC memory type.|
-|EVEX.128.66.0F38.W0 2A /r\newline{}VMOVNTDQA xmm1, m128|FVM|V/V|AVX512VL\newline{}AVX512F|Move 128-bit data from m128 to xmm using non-temporal hint if WC memory type.|
-|EVEX.256.66.0F38.W0 2A /r\newline{}VMOVNTDQA ymm1, m256|FVM|V/V|AVX512VL\newline{}AVX512F|Move 256-bit data from m256 to ymm using non-temporal hint if WC memory type.|
-|EVEX.512.66.0F38.W0 2A /r\newline{}VMOVNTDQA zmm1, m512|FVM|V/V|AVX512F|Move 512-bit data from m512 to zmm using non-temporal hint if WC memory type.|
+|`66 0F 38 2A /r`\newline{}`MOVNTDQA` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} |RM|V/V|SSE4_1|Move double quadword from m128 to xmm1 using non-temporal hint if WC memory type.|
+|`VEX.128.66.0F38.WIG 2A /r`\newline{}VMOVNTDQA \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} |RM|V/V|AVX|Move double quadword from m128 to xmm using non-temporal hint if WC memory type.|
+|`VEX.256.66.0F38.WIG 2A /r`\newline{}VMOVNTDQA \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} |RM|V/V|AVX2|Move 256-bit data from m256 to ymm using non-temporal hint if WC memory type.|
+|`EVEX.128.66.0F38.W0 2A /r`\newline{}VMOVNTDQA \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} |FVM|V/V|AVX512VL\newline{}AVX512F|Move 128-bit data from m128 to xmm using non-temporal hint if WC memory type.|
+|`EVEX.256.66.0F38.W0 2A /r`\newline{}VMOVNTDQA \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} |FVM|V/V|AVX512VL\newline{}AVX512F|Move 256-bit data from m256 to ymm using non-temporal hint if WC memory type.|
+|`EVEX.512.66.0F38.W0 2A /r`\newline{}VMOVNTDQA zmm1 \tooltip{m512}{64 바이트 메모리 데이터} |FVM|V/V|AVX512F|Move 512-bit data from m512 to zmm using non-temporal hint if WC memory type.|
 ### Instruction Operand Encoding\footnote{1}
 
 

@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|C8 iw 00|ENTER imm16, 0|II|Valid|Valid|Create a stack frame for a procedure.|
-|C8 iw 01|ENTER imm16,1|II|Valid|Valid|Create a stack frame with a nested pointer for a procedure.|
-|C8 iw ib|ENTER imm16, imm8|II|Valid |Valid|Create a stack frame with nested pointers for a procedure.|
+|C8 iw 00|`ENTER` \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } 0 |II|Valid|Valid|Create a stack frame for a procedure.|
+|C8 iw 01|`ENTER` \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } 1 |II|Valid|Valid|Create a stack frame with a nested pointer for a procedure.|
+|C8 iw ib|`ENTER` \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |II|Valid |Valid|Create a stack frame with nested pointers for a procedure.|
 ### Instruction Operand Encoding
 
 

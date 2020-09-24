@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 FF|FCOS|Valid|Valid|Replace ST(0) with its approximate cosine.|
+|D9 FF|`FCOS` |Valid|Valid|Replace ST(0) with its approximate cosine.|
 ### Description
 
 

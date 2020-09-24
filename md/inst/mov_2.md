@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 21/r\newline{}\newline{}MOV r32, DR0-DR7|MR|N.E.|Valid|Move debug register to r32.|
-|0F 21/r\newline{}\newline{}MOV r64, DR0-DR7|MR|Valid|N.E.|Move extended debug register to r64. |
-|0F 23 /r\newline{}\newline{}MOV DR0-DR7, r32|RM|N.E.|Valid|Move r32 to debug register.|
-|0F 23 /r\newline{}\newline{}MOV DR0-DR7, r64|RM|Valid |N.E.|Move r64 to extended debug register. |
+|`0F 21/r`\newline{}`MOV` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} DR0-DR7 |MR|N.E.|Valid|Move debug register to r32.|
+|`0F 21/r`\newline{}`MOV` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} DR0-DR7 |MR|Valid|N.E.|Move extended debug register to r64. |
+|`0F 23 /r`\newline{}`MOV` DR0-DR7 \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |RM|N.E.|Valid|Move r32 to debug register.|
+|`0F 23 /r`\newline{}`MOV` DR0-DR7 \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |RM|Valid |N.E.|Move r64 to extended debug register. |
 ### Instruction Operand Encoding
 
 

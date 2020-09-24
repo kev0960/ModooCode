@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|66 0F 2B /r\newline{}MOVNTPD m128, xmm1|MR|V/V|SSE2|Move packed double-precision values in xmm1 to m128 using non-temporal hint.|
-|VEX.128.66.0F.WIG 2B /r\newline{}VMOVNTPD m128, xmm1|MR|V/V|AVX|Move packed double-precision values in xmm1 to m128 using non-temporal hint.|
-|VEX.256.66.0F.WIG 2B /r\newline{}VMOVNTPD m256, ymm1|MR|V/V|AVX|Move packed double-precision values in ymm1 to m256 using non-temporal hint.|
-|EVEX.128.66.0F.W1 2B /r\newline{}VMOVNTPD m128, xmm1|FVM|V/V|AVX512VL\newline{}AVX512F|Move packed double-precision values in xmm1 to m128 using non-temporal hint.|
-|EVEX.256.66.0F.W1 2B /r\newline{}VMOVNTPD m256, ymm1|FVM|V/V|AVX512VL\newline{}AVX512F|Move packed double-precision values in ymm1 to m256 using non-temporal hint.|
-|EVEX.512.66.0F.W1 2B /r\newline{}VMOVNTPD m512, zmm1|FVM|V/V|AVX512F|Move packed double-precision values in zmm1 to m512 using non-temporal hint.|
+|`66 0F 2B /r`\newline{}`MOVNTPD` \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|SSE2|Move packed double-precision values in xmm1 to m128 using non-temporal hint.|
+|`VEX.128.66.0F.WIG 2B /r`\newline{}VMOVNTPD \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|AVX|Move packed double-precision values in xmm1 to m128 using non-temporal hint.|
+|`VEX.256.66.0F.WIG 2B /r`\newline{}VMOVNTPD \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|AVX|Move packed double-precision values in ymm1 to m256 using non-temporal hint.|
+|`EVEX.128.66.0F.W1 2B /r`\newline{}VMOVNTPD \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |FVM|V/V|AVX512VL\newline{}AVX512F|Move packed double-precision values in xmm1 to m128 using non-temporal hint.|
+|`EVEX.256.66.0F.W1 2B /r`\newline{}VMOVNTPD \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} |FVM|V/V|AVX512VL\newline{}AVX512F|Move packed double-precision values in ymm1 to m256 using non-temporal hint.|
+|`EVEX.512.66.0F.W1 2B /r`\newline{}VMOVNTPD \tooltip{m512}{64 바이트 메모리 데이터} zmm1 |FVM|V/V|AVX512F|Move packed double-precision values in zmm1 to m512 using non-temporal hint.|
 ### Instruction Operand Encoding\footnote{1}
 
 

@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F C7 /7\newline{}RDSEED r16|M|V/V|RDSEED|Read a 16-bit NIST SP800-90B & C compliant random value and store in the destination register.|
-|0F C7 /7\newline{}RDSEED r32|M|V/V|RDSEED|Read a 32-bit NIST SP800-90B & C compliant random value and store in the destination register.|
-|REX.W + 0F C7 /7\newline{}RDSEED r64|M|V/I|RDSEED|Read a 64-bit NIST SP800-90B & C compliant random value and store in the destination register.|
+|`0F C7 /7`\newline{}`RDSEED` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |M|V/V|RDSEED|Read a 16-bit NIST SP800-90B & C compliant random value and store in the destination register.|
+|`0F C7 /7`\newline{}`RDSEED` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |M|V/V|RDSEED|Read a 32-bit NIST SP800-90B & C compliant random value and store in the destination register.|
+|`REX.W + 0F C7 /7`\newline{}`RDSEED` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |M|V/I|RDSEED|Read a 64-bit NIST SP800-90B & C compliant random value and store in the destination register.|
 ### Instruction Operand Encoding
 
 

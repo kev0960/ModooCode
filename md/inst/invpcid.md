@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32-**\newline{}**bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|66 0F 38 82 /rINVPCID r32, m128|RM|NE/V|INVPCID|Invalidates entries in the TLBs and paging-structure caches based on invalidation type in r32 and descrip-tor in m128.|
-|66 0F 38 82 /rINVPCID r64, m128|RM|V/NE|INVPCID|Invalidates entries in the TLBs and paging-structure caches based on invalidation type in r64 and descrip-tor in m128.|
+|`66 0F 38 82 /r`\newline{}`INVPCID` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} |RM|NE/V|INVPCID|Invalidates entries in the TLBs and paging-structure caches based on invalidation type in r32 and descrip-tor in m128.|
+|`66 0F 38 82 /r`\newline{}`INVPCID` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} |RM|V/NE|INVPCID|Invalidates entries in the TLBs and paging-structure caches based on invalidation type in r64 and descrip-tor in m128.|
 ### Instruction Operand Encoding
 
 

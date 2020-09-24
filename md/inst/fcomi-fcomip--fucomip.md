@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|DB F0+i|FCOMI ST, ST(i)|Valid|Valid|Compare ST(0) with ST(i) and set status flags accordingly.|
-|DF F0+i|FCOMIP ST, ST(i)|Valid|Valid|Compare ST(0) with ST(i), set status flags accordingly, and pop register stack.|
-|DB E8+i|FUCOMI ST, ST(i)|Valid|Valid|Compare ST(0) with ST(i), check for ordered values, and set status flags accordingly.|
-|DF E8+i|FUCOMIP ST, ST(i)|Valid|Valid|Compare ST(0) with ST(i), check for ordered values, set status flags accordingly, and pop register stack.|
+|DB F0+i|`FCOMI` \tooltip{ST}{FPU 레지스터 스택의 가장 최상단에 위치한 원소.} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Compare ST(0) with ST(i) and set status flags accordingly.|
+|DF F0+i|`FCOMIP` \tooltip{ST}{FPU 레지스터 스택의 가장 최상단에 위치한 원소.} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Compare ST(0) with ST(i), set status flags accordingly, and pop register stack.|
+|DB E8+i|FUCOMI \tooltip{ST}{FPU 레지스터 스택의 가장 최상단에 위치한 원소.} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Compare ST(0) with ST(i), check for ordered values, and set status flags accordingly.|
+|DF E8+i|`FUCOMIP` \tooltip{ST}{FPU 레지스터 스택의 가장 최상단에 위치한 원소.} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Compare ST(0) with ST(i), check for ordered values, set status flags accordingly, and pop register stack.|
 ### Description
 
 

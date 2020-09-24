@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01 C9|MWAIT|NP|Valid|Valid|A hint that allow the processor to stop instruction execution and enter an implementation-dependent optimized state until occurrence of a class of events.|
+|0F 01 C9|`MWAIT` |NP|Valid|Valid|A hint that allow the processor to stop instruction execution and enter an implementation-dependent optimized state until occurrence of a class of events.|
 ### Instruction Operand Encoding
 
 

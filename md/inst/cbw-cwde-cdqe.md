@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|98|CBW|NP|Valid|Valid|AX <- sign-extend of AL.|
-|98|CWDE|NP|Valid|Valid|EAX <- sign-extend of AX.|
-|REX.W + 98|CDQE|NP|Valid|N.E.|RAX <- sign-extend of EAX.|
+|98|`CBW` |NP|Valid|Valid|AX <- sign-extend of AL.|
+|98|`CWDE` |NP|Valid|Valid|EAX <- sign-extend of AX.|
+|REX.W + 98|`CDQE` |NP|Valid|N.E.|RAX <- sign-extend of EAX.|
 ### Instruction Operand Encoding
 
 

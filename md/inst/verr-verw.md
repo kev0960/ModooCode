@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 00 /4|VERR r/m16|M|Valid|Valid|Set ZF=1 if segment specified with r/m16 can be read.|
-|0F 00 /5|VERW r/m16|M|Valid|Valid|Set ZF=1 if segment specified with r/m16 can be written.|
+|0F 00 /4|`VERR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Set ZF=1 if segment specified with r/m16 can be read.|
+|0F 00 /5|`VERW` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Set ZF=1 if segment specified with r/m16 can be written.|
 ### Instruction Operand Encoding
 
 

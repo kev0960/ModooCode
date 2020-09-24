@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 01 CB\newline{}\newline{}STAC|NP|V/V|SMAP|Set the AC flag in the EFLAGS register.|
+|`0F 01 CB`\newline{}`STAC` |NP|V/V|SMAP|Set the AC flag in the EFLAGS register.|
 ### Instruction Operand Encoding
 
 

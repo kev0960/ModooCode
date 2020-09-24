@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.L0.66.0F3A.W1 32 /r \newline{}KSHIFTLW k1, k2, imm8|RRI|V/V|AVX512F|Shift left 16 bits in k2 by immediate and write result in k1.|
-|VEX.L0.66.0F3A.W0 32 /r \newline{}KSHIFTLB k1, k2, imm8|RRI|V/V|AVX512DQ|Shift left 8 bits in k2 by immediate and write result in k1.|
-|VEX.L0.66.0F3A.W1 33 /r \newline{}KSHIFTLQ k1, k2, imm8|RRI|V/V|AVX512BW|Shift left 64 bits in k2 by immediate and write result in k1.|
-|VEX.L0.66.0F3A.W0 33 /r \newline{}KSHIFTLD k1, k2, imm8|RRI|V/V|AVX512BW|Shift left 32 bits in k2 by immediate and write result in k1.|
+|`VEX.L0.66.0F3A.W1 32 /r `\newline{}`KSHIFTLW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |RRI|V/V|AVX512F|Shift left 16 bits in k2 by immediate and write result in k1.|
+|`VEX.L0.66.0F3A.W0 32 /r `\newline{}`KSHIFTLB` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |RRI|V/V|AVX512DQ|Shift left 8 bits in k2 by immediate and write result in k1.|
+|`VEX.L0.66.0F3A.W1 33 /r `\newline{}`KSHIFTLQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |RRI|V/V|AVX512BW|Shift left 64 bits in k2 by immediate and write result in k1.|
+|`VEX.L0.66.0F3A.W0 33 /r `\newline{}`KSHIFTLD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |RRI|V/V|AVX512BW|Shift left 32 bits in k2 by immediate and write result in k1.|
 ### Instruction Operand Encoding
 
 

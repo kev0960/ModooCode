@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F AE /4|XSAVE mem|M|Valid|Valid|Save state components specified by EDX:EAX to mem.|
-|REX.W+ 0F AE /4|XSAVE64 mem|M|Valid|N.E.|Save state components specified by EDX:EAX to mem.|
+|0F AE /4|`XSAVE` mem |M|Valid|Valid|Save state components specified by EDX:EAX to mem.|
+|REX.W+ 0F AE /4|XSAVE64 mem |M|Valid|N.E.|Save state components specified by EDX:EAX to mem.|
 ### Instruction Operand Encoding
 
 

@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F D7 /r\footnote{1}\newline{}\newline{}PMOVMSKB reg, mm|RM|V/V |SSE|Move a byte mask of mm to reg. The upper bits of r32 or r64 are zeroed|
-|66 0F D7 /r\newline{}\newline{}PMOVMSKB reg, xmm|RM|V/V |SSE2|Move a byte mask of xmm to reg. The upper bits of r32 or r64 are zeroed|
-|VEX.128.66.0F.WIG D7 /r\newline{}\newline{}VPMOVMSKB reg, xmm1|RM|V/V|AVX|Move a byte mask of xmm1 to reg. The upper bits of r32 or r64 are filled with zeros.|
-|VEX.256.66.0F.WIG D7 /r\newline{}\newline{}VPMOVMSKB reg, ymm1|RM|V/V|AVX2|Move a 32-bit mask of ymm1 to reg. The upper bits of r64 are filled with zeros.|
+|`0F D7 /r\footnote{1}`\newline{}`PMOVMSKB` reg \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } |RM|V/V |SSE|Move a byte mask of mm to reg. The upper bits of r32 or r64 are zeroed|
+|`66 0F D7 /r`\newline{}`PMOVMSKB` reg \tooltip{xmm}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |RM|V/V |SSE2|Move a byte mask of xmm to reg. The upper bits of r32 or r64 are zeroed|
+|`VEX.128.66.0F.WIG D7 /r`\newline{}VPMOVMSKB reg \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |RM|V/V|AVX|Move a byte mask of xmm1 to reg. The upper bits of r32 or r64 are filled with zeros.|
+|`VEX.256.66.0F.WIG D7 /r`\newline{}VPMOVMSKB reg \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} |RM|V/V|AVX2|Move a 32-bit mask of ymm1 to reg. The upper bits of r64 are filled with zeros.|
 
 ```note
 1. See note in Section 2.4, "AVX and SSE Instruction Exception Specification" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 2A and Section 22.25.3, "Exception Conditions of Legacy SIMD Instructions Operating on MMX Registers" in the Intel(R) 64 and IA-32 Architectures Software Developer's Manual, Volume 3A

@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 18 /1|PREFETCHT0 m8|M|Valid|Valid|Move data from m8 closer to the processor using T0 hint.|
-|0F 18 /2|PREFETCHT1 m8|M|Valid|Valid|Move data from m8 closer to the processor using T1 hint.|
-|0F 18 /3|PREFETCHT2 m8|M|Valid|Valid|Move data from m8 closer to the processor using T2 hint.|
-|0F 18 /0|PREFETCHNTA m8|M|Valid|Valid|Move data from m8 closer to the processor using NTA hint.|
+|0F 18 /1|PREFETCHT0 \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |M|Valid|Valid|Move data from m8 closer to the processor using T0 hint.|
+|0F 18 /2|PREFETCHT1 \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |M|Valid|Valid|Move data from m8 closer to the processor using T1 hint.|
+|0F 18 /3|PREFETCHT2 \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |M|Valid|Valid|Move data from m8 closer to the processor using T2 hint.|
+|0F 18 /0|PREFETCHNTA \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |M|Valid|Valid|Move data from m8 closer to the processor using NTA hint.|
 ### Instruction Operand Encoding
 
 

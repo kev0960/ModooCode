@@ -18,11 +18,11 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|DD E0+i|FUCOM ST(i)|Valid|Valid|Compare ST(0) with ST(i).|
-|DD E1|FUCOM|Valid|Valid|Compare ST(0) with ST(1).|
-|DD E8+i|FUCOMP ST(i)|Valid|Valid|Compare ST(0) with ST(i) and pop register stack.|
-|DD E9|FUCOMP|Valid|Valid|Compare ST(0) with ST(1) and pop register stack.|
-|DA E9|FUCOMPP|Valid|Valid|Compare ST(0) with ST(1) and pop register stack twice.|
+|DD E0+i|`FUCOM` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Compare ST(0) with ST(i).|
+|DD E1|`FUCOM` |Valid|Valid|Compare ST(0) with ST(1).|
+|DD E8+i|`FUCOMP` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Compare ST(0) with ST(i) and pop register stack.|
+|DD E9|`FUCOMP` |Valid|Valid|Compare ST(0) with ST(1) and pop register stack.|
+|DA E9|`FUCOMPP` |Valid|Valid|Compare ST(0) with ST(1) and pop register stack twice.|
 ### Description
 
 

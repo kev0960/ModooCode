@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 08|INVD|NP|Valid|Valid|Flush internal caches; initiate flushing of external caches.|
+|0F 08|`INVD` |NP|Valid|Valid|Flush internal caches; initiate flushing of external caches.|
 
 ```note
 \htmlonly{*} See the IA-32 Architecture Compatibility section below

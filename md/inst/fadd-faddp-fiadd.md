@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D8 /0|FADD m32fp|Valid|Valid|Add m32fp to ST(0) and store result in ST(0).|
-|DC /0|FADD m64fp|Valid|Valid|Add m64fp to ST(0) and store result in ST(0).|
-|D8 C0+i|FADD ST(0), ST(i)|Valid|Valid|Add ST(0) to ST(i) and store result in ST(0).|
-|DC C0+i|FADD ST(i), ST(0)|Valid|Valid|Add ST(i) to ST(0) and store result in ST(i).|
-|DE C0+i|FADDP ST(i), ST(0)|Valid|Valid|Add ST(0) to ST(i), store result in ST(i), and pop the register stack.|
-|DE C1|FADDP|Valid|Valid|Add ST(0) to ST(1), store result in ST(1), and pop the register stack.|
-|DA /0|FIADD m32int|Valid|Valid|Add m32int to ST(0) and store result in ST(0).|
-|DE /0|FIADD m16int|Valid|Valid|Add m16int to ST(0) and store result in ST(0).|
+|D8 /0|`FADD` m32fp |Valid|Valid|Add m32fp to ST(0) and store result in ST(0).|
+|DC /0|`FADD` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Add m64fp to ST(0) and store result in ST(0).|
+|D8 C0+i|`FADD` \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Add ST(0) to ST(i) and store result in ST(0).|
+|DC C0+i|`FADD` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} \tooltip{ST(0)}{To-ST} |Valid|Valid|Add ST(i) to ST(0) and store result in ST(i).|
+|DE C0+i|`FADDP` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} \tooltip{ST(0)}{To-ST} |Valid|Valid|Add ST(0) to ST(i), store result in ST(i), and pop the register stack.|
+|DE C1|`FADDP` |Valid|Valid|Add ST(0) to ST(1), store result in ST(1), and pop the register stack.|
+|DA /0|`FIADD` \tooltip{m32int}{To-m16int} |Valid|Valid|Add m32int to ST(0) and store result in ST(0).|
+|DE /0|`FIADD` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Add m16int to ST(0) and store result in ST(0).|
 ### Description
 
 

@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 02 /r|LAR r16, r16/m16|RM|Valid|Valid|r16 <- access rights referenced by r16/m16|
-|0F 02 /r|LAR reg, r32/m16\footnote{1}|RM|Valid|Valid|reg <- access rights referenced by r32/m16|
+|0F 02 /r|`LAR` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} r16/m16 |RM|Valid|Valid|r16 <- access rights referenced by r16/m16|
+|0F 02 /r|`LAR` reg r32/m16\footnote{1} |RM|Valid|Valid|reg <- access rights referenced by r32/m16|
 
 ```note
 1. For all loads (regardless of source or destination sizing) only bits 16-0 are used. Other bits are ignored

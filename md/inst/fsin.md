@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 FE|FSIN|Valid|Valid|Replace ST(0) with the approximate of its sine.|
+|D9 FE|`FSIN` |Valid|Valid|Replace ST(0) with the approximate of its sine.|
 ### Description
 
 

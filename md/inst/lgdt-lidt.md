@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01 /2|LGDT m16&32|M|N.E.|Valid|Load m into GDTR.|
-|0F 01 /3|LIDT m16&32|M|N.E.|Valid|Load m into IDTR.|
-|0F 01 /2|LGDT m16&64|M|Valid|N.E.|Load m into GDTR.|
-|0F 01 /3|LIDT m16&64|M|Valid|N.E.|Load m into IDTR.|
+|0F 01 /2|`LGDT` \tooltip{m16&32}{메모리 데이터 쌍을 나타내며, & 왼쪽과 오른쪽에 메모리 데이터의 크기를 나타낸다. 예를 들어서 m16&32 는 16 비트 와 32비트 메모리 데이터 쌍을 의미한다. m16&16 과 m32&32 의 경우 BOUND 명령어에서 사용되는데, 배열 인덱스의 상한과 하한을 나타내기 위해서 사용된다. m16&32 와 m16&64 의 경우 LIDT 와 LGDT 명령어에서 사용되는데, 등록할 GDTR 과 IDTR 레지스터의 주소와 limit 필드 값을 로드하기 위해 사용된다.} |M|N.E.|Valid|Load m into GDTR.|
+|0F 01 /3|`LIDT` \tooltip{m16&32}{메모리 데이터 쌍을 나타내며, & 왼쪽과 오른쪽에 메모리 데이터의 크기를 나타낸다. 예를 들어서 m16&32 는 16 비트 와 32비트 메모리 데이터 쌍을 의미한다. m16&16 과 m32&32 의 경우 BOUND 명령어에서 사용되는데, 배열 인덱스의 상한과 하한을 나타내기 위해서 사용된다. m16&32 와 m16&64 의 경우 LIDT 와 LGDT 명령어에서 사용되는데, 등록할 GDTR 과 IDTR 레지스터의 주소와 limit 필드 값을 로드하기 위해 사용된다.} |M|N.E.|Valid|Load m into IDTR.|
+|0F 01 /2|`LGDT` \tooltip{m16&64}{To-m16&32} |M|Valid|N.E.|Load m into GDTR.|
+|0F 01 /3|`LIDT` \tooltip{m16&64}{To-m16&32} |M|Valid|N.E.|Load m into IDTR.|
 ### Instruction Operand Encoding
 
 

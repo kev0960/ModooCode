@@ -18,19 +18,19 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|C5 /r|LDS r16,m16:16|RM|Invalid|Valid|Load DS:r16 with far pointer from memory.|
-|C5 /r|LDS r32,m16:32|RM|Invalid|Valid|Load DS:r32 with far pointer from memory.|
-|0F B2 /r|LSS r16,m16:16|RM|Valid|Valid|Load SS:r16 with far pointer from memory.|
-|0F B2 /r|LSS r32,m16:32|RM|Valid|Valid|Load SS:r32 with far pointer from memory.|
-|REX + 0F B2 /r|LSS r64,m16:64|RM|Valid|N.E.|Load SS:r64 with far pointer from memory.|
-|C4 /r|LES r16,m16:16|RM|Invalid|Valid|Load ES:r16 with far pointer from memory.|
-|C4 /r|LES r32,m16:32|RM|Invalid|Valid|Load ES:r32 with far pointer from memory.|
-|0F B4 /r|LFS r16,m16:16|RM|Valid|Valid|Load FS:r16 with far pointer from memory.|
-|0F B4 /r|LFS r32,m16:32|RM|Valid|Valid|Load FS:r32 with far pointer from memory.|
-|REX + 0F B4 /r|LFS r64,m16:64|RM|Valid|N.E.|Load FS:r64 with far pointer from memory.|
-|0F B5 /r|LGS r16,m16:16|RM|Valid|Valid|Load GS:r16 with far pointer from memory.|
-|0F B5 /r|LGS r32,m16:32|RM|Valid|Valid|Load GS:r32 with far pointer from memory.|
-|REX + 0F B5 /r|LGS r64,m16:64|RM|Valid|N.E.|Load GS:r64 with far pointer from memory.|
+|C5 /r|`LDS` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{m16:16}{Far pointer 로 표현된 메모리 데이터로, : 왼쪽에 있는 값은 포인터의 세그먼트 셀렉터를, 오른쪽 값은 해당 세그먼트 안의 오프셋을 의미한다.} |RM|Invalid|Valid|Load DS:r16 with far pointer from memory.|
+|C5 /r|`LDS` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{m16:32}{To-m16:16} |RM|Invalid|Valid|Load DS:r32 with far pointer from memory.|
+|0F B2 /r|`LSS` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{m16:16}{Far pointer 로 표현된 메모리 데이터로, : 왼쪽에 있는 값은 포인터의 세그먼트 셀렉터를, 오른쪽 값은 해당 세그먼트 안의 오프셋을 의미한다.} |RM|Valid|Valid|Load SS:r16 with far pointer from memory.|
+|0F B2 /r|`LSS` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{m16:32}{To-m16:16} |RM|Valid|Valid|Load SS:r32 with far pointer from memory.|
+|REX + 0F B2 /r|`LSS` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{m16:64}{To-m16:16} |RM|Valid|N.E.|Load SS:r64 with far pointer from memory.|
+|C4 /r|`LES` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{m16:16}{Far pointer 로 표현된 메모리 데이터로, : 왼쪽에 있는 값은 포인터의 세그먼트 셀렉터를, 오른쪽 값은 해당 세그먼트 안의 오프셋을 의미한다.} |RM|Invalid|Valid|Load ES:r16 with far pointer from memory.|
+|C4 /r|`LES` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{m16:32}{To-m16:16} |RM|Invalid|Valid|Load ES:r32 with far pointer from memory.|
+|0F B4 /r|`LFS` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{m16:16}{Far pointer 로 표현된 메모리 데이터로, : 왼쪽에 있는 값은 포인터의 세그먼트 셀렉터를, 오른쪽 값은 해당 세그먼트 안의 오프셋을 의미한다.} |RM|Valid|Valid|Load FS:r16 with far pointer from memory.|
+|0F B4 /r|`LFS` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{m16:32}{To-m16:16} |RM|Valid|Valid|Load FS:r32 with far pointer from memory.|
+|REX + 0F B4 /r|`LFS` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{m16:64}{To-m16:16} |RM|Valid|N.E.|Load FS:r64 with far pointer from memory.|
+|0F B5 /r|`LGS` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{m16:16}{Far pointer 로 표현된 메모리 데이터로, : 왼쪽에 있는 값은 포인터의 세그먼트 셀렉터를, 오른쪽 값은 해당 세그먼트 안의 오프셋을 의미한다.} |RM|Valid|Valid|Load GS:r16 with far pointer from memory.|
+|0F B5 /r|`LGS` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{m16:32}{To-m16:16} |RM|Valid|Valid|Load GS:r32 with far pointer from memory.|
+|REX + 0F B5 /r|`LGS` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{m16:64}{To-m16:16} |RM|Valid|N.E.|Load GS:r64 with far pointer from memory.|
 ### Instruction Operand Encoding
 
 

@@ -18,104 +18,104 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 47 /r|CMOVA r16, r/m16|RM|Valid|Valid|Move if above (CF=0 and ZF=0).|
-|0F 47 /r|CMOVA r32, r/m32|RM|Valid|Valid|Move if above (CF=0 and ZF=0).|
-|REX.W + 0F 47 /r|CMOVA r64, r/m64|RM|Valid|N.E.|Move if above (CF=0 and ZF=0).|
-|0F 43 /r|CMOVAE r16, r/m16|RM|Valid|Valid|Move if above or equal (CF=0).|
-|0F 43 /r|CMOVAE r32, r/m32|RM|Valid|Valid|Move if above or equal (CF=0).|
-|REX.W + 0F 43 /r|CMOVAE r64, r/m64|RM|Valid|N.E.|Move if above or equal (CF=0).|
-|0F 42 /r|CMOVB r16, r/m16|RM|Valid|Valid|Move if below (CF=1).|
-|0F 42 /r|CMOVB r32, r/m32|RM|Valid|Valid|Move if below (CF=1).|
-|REX.W + 0F 42 /r|CMOVB r64, r/m64|RM|Valid|N.E.|Move if below (CF=1).|
-|0F 46 /r|CMOVBE r16, r/m16|RM|Valid|Valid|Move if below or equal (CF=1 or ZF=1).|
-|0F 46 /r|CMOVBE r32, r/m32|RM|Valid|Valid|Move if below or equal (CF=1 or ZF=1).|
-|REX.W + 0F 46 /r|CMOVBE r64, r/m64|RM|Valid|N.E.|Move if below or equal (CF=1 or ZF=1).|
-|0F 42 /r|CMOVC r16, r/m16|RM|Valid|Valid|Move if carry (CF=1).|
-|0F 42 /r|CMOVC r32, r/m32|RM|Valid|Valid|Move if carry (CF=1).|
-|REX.W + 0F 42 /r|CMOVC r64, r/m64|RM|Valid|N.E.|Move if carry (CF=1).|
-|0F 44 /r|CMOVE r16, r/m16|RM|Valid|Valid|Move if equal (ZF=1).|
-|0F 44 /r|CMOVE r32, r/m32|RM|Valid|Valid|Move if equal (ZF=1).|
-|REX.W + 0F 44 /r|CMOVE r64, r/m64|RM|Valid|N.E.|Move if equal (ZF=1).|
-|0F 4F /r|CMOVG r16, r/m16|RM|Valid|Valid|Move if greater (ZF=0 and SF=OF).|
-|0F 4F /r|CMOVG r32, r/m32|RM|Valid|Valid|Move if greater (ZF=0 and SF=OF).|
-|REX.W + 0F 4F /r|CMOVG r64, r/m64|RM|V/N.E.|NA|Move if greater (ZF=0 and SF=OF).|
-|0F 4D /r|CMOVGE r16, r/m16|RM|Valid|Valid|Move if greater or equal (SF=OF).|
-|0F 4D /r|CMOVGE r32, r/m32|RM|Valid|Valid|Move if greater or equal (SF=OF).|
-|REX.W + 0F 4D /r|CMOVGE r64, r/m64|RM|Valid|N.E.|Move if greater or equal (SF=OF).|
-|0F 4C /r|CMOVL r16, r/m16|RM|Valid|Valid|Move if less (SF!= OF).|
-|0F 4C /r|CMOVL r32, r/m32|RM|Valid|Valid|Move if less (SF!= OF).|
-|REX.W + 0F 4C /r|CMOVL r64, r/m64|RM|Valid|N.E.|Move if less (SF!= OF).|
-|0F 4E /r|CMOVLE r16, r/m16|RM|Valid|Valid|Move if less or equal (ZF=1 or SF!= OF).|
-|0F 4E /r|CMOVLE r32, r/m32|RM|Valid|Valid|Move if less or equal (ZF=1 or SF!= OF).|
-|REX.W + 0F 4E /r|CMOVLE r64, r/m64|RM|Valid|N.E.|Move if less or equal (ZF=1 or SF!= OF).|
-|0F 46 /r|CMOVNA r16, r/m16|RM|Valid|Valid|Move if not above (CF=1 or ZF=1).|
-|0F 46 /r|CMOVNA r32, r/m32|RM|Valid|Valid|Move if not above (CF=1 or ZF=1).|
-|REX.W + 0F 46 /r|CMOVNA r64, r/m64|RM|Valid|N.E.|Move if not above (CF=1 or ZF=1).|
-|0F 42 /r|CMOVNAE r16, r/m16|RM|Valid|Valid|Move if not above or equal (CF=1).|
-|0F 42 /r|CMOVNAE r32, r/m32|RM|Valid|Valid|Move if not above or equal (CF=1).|
-|REX.W + 0F 42 /r|CMOVNAE r64, r/m64|RM|Valid|N.E.|Move if not above or equal (CF=1).|
-|0F 43 /r|CMOVNB r16, r/m16|RM|Valid|Valid|Move if not below (CF=0).|
-|0F 43 /r|CMOVNB r32, r/m32|RM|Valid|Valid|Move if not below (CF=0).|
-|REX.W + 0F 43 /r|CMOVNB r64, r/m64|RM|Valid|N.E.|Move if not below (CF=0).|
-|0F 47 /r|CMOVNBE r16, r/m16|RM|Valid|Valid|Move if not below or equal (CF=0 and ZF=0).|
+|0F 47 /r|CMOVA \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if above (CF=0 and ZF=0).|
+|0F 47 /r|CMOVA \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if above (CF=0 and ZF=0).|
+|REX.W + 0F 47 /r|CMOVA \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if above (CF=0 and ZF=0).|
+|0F 43 /r|CMOVAE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if above or equal (CF=0).|
+|0F 43 /r|CMOVAE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if above or equal (CF=0).|
+|REX.W + 0F 43 /r|CMOVAE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if above or equal (CF=0).|
+|0F 42 /r|CMOVB \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if below (CF=1).|
+|0F 42 /r|CMOVB \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if below (CF=1).|
+|REX.W + 0F 42 /r|CMOVB \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if below (CF=1).|
+|0F 46 /r|CMOVBE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if below or equal (CF=1 or ZF=1).|
+|0F 46 /r|CMOVBE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if below or equal (CF=1 or ZF=1).|
+|REX.W + 0F 46 /r|CMOVBE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if below or equal (CF=1 or ZF=1).|
+|0F 42 /r|CMOVC \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if carry (CF=1).|
+|0F 42 /r|CMOVC \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if carry (CF=1).|
+|REX.W + 0F 42 /r|CMOVC \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if carry (CF=1).|
+|0F 44 /r|CMOVE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if equal (ZF=1).|
+|0F 44 /r|CMOVE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if equal (ZF=1).|
+|REX.W + 0F 44 /r|CMOVE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if equal (ZF=1).|
+|0F 4F /r|CMOVG \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if greater (ZF=0 and SF=OF).|
+|0F 4F /r|CMOVG \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if greater (ZF=0 and SF=OF).|
+|REX.W + 0F 4F /r|CMOVG \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|V/N.E.|NA|Move if greater (ZF=0 and SF=OF).|
+|0F 4D /r|CMOVGE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if greater or equal (SF=OF).|
+|0F 4D /r|CMOVGE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if greater or equal (SF=OF).|
+|REX.W + 0F 4D /r|CMOVGE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if greater or equal (SF=OF).|
+|0F 4C /r|CMOVL \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if less (SF!= OF).|
+|0F 4C /r|CMOVL \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if less (SF!= OF).|
+|REX.W + 0F 4C /r|CMOVL \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if less (SF!= OF).|
+|0F 4E /r|CMOVLE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if less or equal (ZF=1 or SF!= OF).|
+|0F 4E /r|CMOVLE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if less or equal (ZF=1 or SF!= OF).|
+|REX.W + 0F 4E /r|CMOVLE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if less or equal (ZF=1 or SF!= OF).|
+|0F 46 /r|CMOVNA \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not above (CF=1 or ZF=1).|
+|0F 46 /r|CMOVNA \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not above (CF=1 or ZF=1).|
+|REX.W + 0F 46 /r|CMOVNA \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not above (CF=1 or ZF=1).|
+|0F 42 /r|CMOVNAE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not above or equal (CF=1).|
+|0F 42 /r|CMOVNAE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not above or equal (CF=1).|
+|REX.W + 0F 42 /r|CMOVNAE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not above or equal (CF=1).|
+|0F 43 /r|CMOVNB \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not below (CF=0).|
+|0F 43 /r|CMOVNB \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not below (CF=0).|
+|REX.W + 0F 43 /r|CMOVNB \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not below (CF=0).|
+|0F 47 /r|CMOVNBE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not below or equal (CF=0 and ZF=0).|
 
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 47 /r|CMOVNBE r32, r/m32|RM|Valid|Valid|Move if not below or equal (CF=0 and ZF=0).|
-|REX.W + 0F 47 /r|CMOVNBE r64, r/m64|RM|Valid|N.E.|Move if not below or equal (CF=0 and ZF=0).|
-|0F 43 /r|CMOVNC r16, r/m16|RM|Valid|Valid|Move if not carry (CF=0).|
-|0F 43 /r|CMOVNC r32, r/m32|RM|Valid|Valid|Move if not carry (CF=0).|
-|REX.W + 0F 43 /r|CMOVNC r64, r/m64|RM|Valid|N.E.|Move if not carry (CF=0).|
-|0F 45 /r|CMOVNE r16, r/m16|RM|Valid|Valid|Move if not equal (ZF=0).|
-|0F 45 /r|CMOVNE r32, r/m32|RM|Valid|Valid|Move if not equal (ZF=0).|
-|REX.W + 0F 45 /r|CMOVNE r64, r/m64|RM|Valid|N.E.|Move if not equal (ZF=0).|
-|0F 4E /r|CMOVNG r16, r/m16|RM|Valid|Valid|Move if not greater (ZF=1 or SF!= OF).|
-|0F 4E /r|CMOVNG r32, r/m32|RM|Valid|Valid|Move if not greater (ZF=1 or SF!= OF).|
-|REX.W + 0F 4E /r|CMOVNG r64, r/m64|RM|Valid|N.E.|Move if not greater (ZF=1 or SF!= OF).|
-|0F 4C /r|CMOVNGE r16, r/m16|RM|Valid|Valid|Move if not greater or equal (SF!= OF).|
-|0F 4C /r|CMOVNGE r32, r/m32|RM|Valid|Valid|Move if not greater or equal (SF!= OF).|
-|REX.W + 0F 4C /r|CMOVNGE r64, r/m64|RM|Valid|N.E.|Move if not greater or equal (SF!= OF).|
-|0F 4D /r|CMOVNL r16, r/m16|RM|Valid|Valid|Move if not less (SF=OF).|
-|0F 4D /r|CMOVNL r32, r/m32|RM|Valid|Valid|Move if not less (SF=OF).|
-|REX.W + 0F 4D /r|CMOVNL r64, r/m64|RM|Valid|N.E.|Move if not less (SF=OF).|
-|0F 4F /r|CMOVNLE r16, r/m16|RM|Valid|Valid|Move if not less or equal (ZF=0 and SF=OF).|
-|0F 4F /r|CMOVNLE r32, r/m32|RM|Valid|Valid|Move if not less or equal (ZF=0 and SF=OF).|
-|REX.W + 0F 4F /r|CMOVNLE r64, r/m64|RM|Valid|N.E.|Move if not less or equal (ZF=0 and SF=OF).|
-|0F 41 /r|CMOVNO r16, r/m16|RM|Valid|Valid|Move if not overflow (OF=0).|
-|0F 41 /r|CMOVNO r32, r/m32|RM|Valid|Valid|Move if not overflow (OF=0).|
-|REX.W + 0F 41 /r|CMOVNO r64, r/m64|RM|Valid|N.E.|Move if not overflow (OF=0).|
-|0F 4B /r|CMOVNP r16, r/m16|RM|Valid|Valid|Move if not parity (PF=0).|
-|0F 4B /r|CMOVNP r32, r/m32|RM|Valid|Valid|Move if not parity (PF=0).|
-|REX.W + 0F 4B /r|CMOVNP r64, r/m64|RM|Valid|N.E.|Move if not parity (PF=0).|
-|0F 49 /r|CMOVNS r16, r/m16|RM|Valid|Valid|Move if not sign (SF=0).|
-|0F 49 /r|CMOVNS r32, r/m32|RM|Valid|Valid|Move if not sign (SF=0).|
-|REX.W + 0F 49 /r|CMOVNS r64, r/m64|RM|Valid|N.E.|Move if not sign (SF=0).|
-|0F 45 /r|CMOVNZ r16, r/m16|RM|Valid|Valid|Move if not zero (ZF=0).|
-|0F 45 /r|CMOVNZ r32, r/m32|RM|Valid|Valid|Move if not zero (ZF=0).|
-|REX.W + 0F 45 /r|CMOVNZ r64, r/m64|RM|Valid|N.E.|Move if not zero (ZF=0).|
-|0F 40 /r|CMOVO r16, r/m16|RM|Valid|Valid|Move if overflow (OF=1).|
-|0F 40 /r|CMOVO r32, r/m32|RM|Valid|Valid|Move if overflow (OF=1).|
-|REX.W + 0F 40 /r|CMOVO r64, r/m64|RM|Valid|N.E.|Move if overflow (OF=1).|
-|0F 4A /r|CMOVP r16, r/m16|RM|Valid|Valid|Move if parity (PF=1).|
-|0F 4A /r|CMOVP r32, r/m32|RM|Valid|Valid|Move if parity (PF=1).|
-|REX.W + 0F 4A /r|CMOVP r64, r/m64|RM|Valid|N.E.|Move if parity (PF=1).|
-|0F 4A /r|CMOVPE r16, r/m16|RM|Valid|Valid|Move if parity even (PF=1).|
-|0F 4A /r|CMOVPE r32, r/m32|RM|Valid|Valid|Move if parity even (PF=1).|
-|REX.W + 0F 4A /r|CMOVPE r64, r/m64|RM|Valid|N.E.|Move if parity even (PF=1).|
+|0F 47 /r|CMOVNBE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not below or equal (CF=0 and ZF=0).|
+|REX.W + 0F 47 /r|CMOVNBE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not below or equal (CF=0 and ZF=0).|
+|0F 43 /r|CMOVNC \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not carry (CF=0).|
+|0F 43 /r|CMOVNC \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not carry (CF=0).|
+|REX.W + 0F 43 /r|CMOVNC \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not carry (CF=0).|
+|0F 45 /r|CMOVNE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not equal (ZF=0).|
+|0F 45 /r|CMOVNE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not equal (ZF=0).|
+|REX.W + 0F 45 /r|CMOVNE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not equal (ZF=0).|
+|0F 4E /r|CMOVNG \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not greater (ZF=1 or SF!= OF).|
+|0F 4E /r|CMOVNG \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not greater (ZF=1 or SF!= OF).|
+|REX.W + 0F 4E /r|CMOVNG \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not greater (ZF=1 or SF!= OF).|
+|0F 4C /r|CMOVNGE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not greater or equal (SF!= OF).|
+|0F 4C /r|CMOVNGE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not greater or equal (SF!= OF).|
+|REX.W + 0F 4C /r|CMOVNGE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not greater or equal (SF!= OF).|
+|0F 4D /r|CMOVNL \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not less (SF=OF).|
+|0F 4D /r|CMOVNL \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not less (SF=OF).|
+|REX.W + 0F 4D /r|CMOVNL \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not less (SF=OF).|
+|0F 4F /r|CMOVNLE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not less or equal (ZF=0 and SF=OF).|
+|0F 4F /r|CMOVNLE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not less or equal (ZF=0 and SF=OF).|
+|REX.W + 0F 4F /r|CMOVNLE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not less or equal (ZF=0 and SF=OF).|
+|0F 41 /r|CMOVNO \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not overflow (OF=0).|
+|0F 41 /r|CMOVNO \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not overflow (OF=0).|
+|REX.W + 0F 41 /r|CMOVNO \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not overflow (OF=0).|
+|0F 4B /r|CMOVNP \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not parity (PF=0).|
+|0F 4B /r|CMOVNP \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not parity (PF=0).|
+|REX.W + 0F 4B /r|CMOVNP \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not parity (PF=0).|
+|0F 49 /r|CMOVNS \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not sign (SF=0).|
+|0F 49 /r|CMOVNS \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not sign (SF=0).|
+|REX.W + 0F 49 /r|CMOVNS \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not sign (SF=0).|
+|0F 45 /r|CMOVNZ \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if not zero (ZF=0).|
+|0F 45 /r|CMOVNZ \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if not zero (ZF=0).|
+|REX.W + 0F 45 /r|CMOVNZ \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if not zero (ZF=0).|
+|0F 40 /r|CMOVO \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if overflow (OF=1).|
+|0F 40 /r|CMOVO \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if overflow (OF=1).|
+|REX.W + 0F 40 /r|CMOVO \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if overflow (OF=1).|
+|0F 4A /r|CMOVP \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if parity (PF=1).|
+|0F 4A /r|CMOVP \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if parity (PF=1).|
+|REX.W + 0F 4A /r|CMOVP \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if parity (PF=1).|
+|0F 4A /r|CMOVPE \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if parity even (PF=1).|
+|0F 4A /r|CMOVPE \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if parity even (PF=1).|
+|REX.W + 0F 4A /r|CMOVPE \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if parity even (PF=1).|
 
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 4B /r|CMOVPO r16, r/m16|RM|Valid|Valid|Move if parity odd (PF=0).|
-|0F 4B /r|CMOVPO r32, r/m32|RM|Valid|Valid|Move if parity odd (PF=0).|
-|REX.W + 0F 4B /r|CMOVPO r64, r/m64|RM|Valid|N.E.|Move if parity odd (PF=0).|
-|0F 48 /r|CMOVS r16, r/m16|RM|Valid|Valid|Move if sign (SF=1).|
-|0F 48 /r|CMOVS r32, r/m32|RM|Valid|Valid|Move if sign (SF=1).|
-|REX.W + 0F 48 /r|CMOVS r64, r/m64|RM|Valid|N.E.|Move if sign (SF=1).|
-|0F 44 /r|CMOVZ r16, r/m16|RM|Valid|Valid|Move if zero (ZF=1).|
-|0F 44 /r|CMOVZ r32, r/m32|RM|Valid|Valid|Move if zero (ZF=1).|
-|REX.W + 0F 44 /r|CMOVZ r64, r/m64|RM|Valid|N.E.|Move if zero (ZF=1).|
+|0F 4B /r|CMOVPO \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if parity odd (PF=0).|
+|0F 4B /r|CMOVPO \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if parity odd (PF=0).|
+|REX.W + 0F 4B /r|CMOVPO \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if parity odd (PF=0).|
+|0F 48 /r|CMOVS \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if sign (SF=1).|
+|0F 48 /r|CMOVS \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if sign (SF=1).|
+|REX.W + 0F 48 /r|CMOVS \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if sign (SF=1).|
+|0F 44 /r|CMOVZ \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Move if zero (ZF=1).|
+|0F 44 /r|CMOVZ \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Move if zero (ZF=1).|
+|REX.W + 0F 44 /r|CMOVZ \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Move if zero (ZF=1).|
 ### Instruction Operand Encoding
 
 

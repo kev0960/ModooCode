@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 F9|FYL2XP1|Valid|Valid|Replace ST(1) with ST(1) `*` log2(ST(0) + 1.0) and pop the register stack.|
+|D9 F9|`FYL2XP1` |Valid|Valid|Replace ST(1) with ST(1) `*` log2(ST(0) + 1.0) and pop the register stack.|
 ### Description
 
 

@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/**\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.128.F3.0F38.W1 2A /r\newline{}VPBROADCASTMB2Q xmm1, k1|RM |V/V |AVX512VL\newline{}AVX512CD|Broadcast low byte value in k1 to two locations in xmm1.|
-|EVEX.256.F3.0F38.W1 2A /r\newline{}VPBROADCASTMB2Q ymm1, k1|RM |V/V |AVX512VL\newline{}AVX512CD|Broadcast low byte value in k1 to four locations in ymm1.|
-|EVEX.512.F3.0F38.W1 2A /r\newline{}VPBROADCASTMB2Q zmm1, k1|RM |V/V |AVX512CD|Broadcast low byte value in k1 to eight locations in zmm1.|
-|EVEX.128.F3.0F38.W0 3A /r\newline{}VPBROADCASTMW2D xmm1, k1|RM |V/V |AVX512VL\newline{}AVX512CD|Broadcast low word value in k1 to four locations in xmm1.|
-|EVEX.256.F3.0F38.W0 3A /r\newline{}VPBROADCASTMW2D ymm1, k1|RM |V/V |AVX512VL\newline{}AVX512CD|Broadcast low word value in k1 to eight locations in ymm1.|
-|EVEX.512.F3.0F38.W0 3A /r\newline{}VPBROADCASTMW2D zmm1, k1|RM |V/V |AVX512CD|Broadcast low word value in k1 to sixteen locations in zmm1.|
+|`EVEX.128.F3.0F38.W1 2A /r`\newline{}VPBROADCASTMB2Q \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM |V/V |AVX512VL\newline{}AVX512CD|Broadcast low byte value in k1 to two locations in xmm1.|
+|`EVEX.256.F3.0F38.W1 2A /r`\newline{}VPBROADCASTMB2Q \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM |V/V |AVX512VL\newline{}AVX512CD|Broadcast low byte value in k1 to four locations in ymm1.|
+|`EVEX.512.F3.0F38.W1 2A /r`\newline{}VPBROADCASTMB2Q zmm1 \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM |V/V |AVX512CD|Broadcast low byte value in k1 to eight locations in zmm1.|
+|`EVEX.128.F3.0F38.W0 3A /r`\newline{}VPBROADCASTMW2D \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM |V/V |AVX512VL\newline{}AVX512CD|Broadcast low word value in k1 to four locations in xmm1.|
+|`EVEX.256.F3.0F38.W0 3A /r`\newline{}VPBROADCASTMW2D \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM |V/V |AVX512VL\newline{}AVX512CD|Broadcast low word value in k1 to eight locations in ymm1.|
+|`EVEX.512.F3.0F38.W0 3A /r`\newline{}VPBROADCASTMW2D zmm1 \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RM |V/V |AVX512CD|Broadcast low word value in k1 to sixteen locations in zmm1.|
 ### Instruction Operand Encoding
 
 

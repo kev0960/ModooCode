@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 FA|FSQRT|Valid|Valid|Computes square root of ST(0) and stores the result in ST(0).|
+|D9 FA|`FSQRT` |Valid|Valid|Computes square root of ST(0) and stores the result in ST(0).|
 ### Description
 
 

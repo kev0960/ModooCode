@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.LIG.F3.0F.W0 79 /r\newline{}VCVTSS2USI r32, xmm1/m32{er}|T1F|V/V|AVX512F|Convert one single-precision floating-point value from xmm1/m32 to one unsigned doubleword integer in r32.|
-|EVEX.LIG.F3.0F.W1 79 /r\newline{}VCVTSS2USI r64, xmm1/m32{er}|T1F|V/N.E.\footnote{1}|AVX512F|Convert one single-precision floating-point value from xmm1/m32 to one unsigned quadword integer in r64.|
-||||||
+|`EVEX.LIG.F3.0F.W0 79 /r`\newline{}`VCVTSS2USI` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} xmm1/m32{er} |T1F|V/V|AVX512F|Convert one single-precision floating-point value from xmm1/m32 to one unsigned doubleword integer in r32.|
+|`EVEX.LIG.F3.0F.W1 79 /r`\newline{}`VCVTSS2USI` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} xmm1/m32{er} |T1F|V/N.E.\footnote{1}|AVX512F|Convert one single-precision floating-point value from xmm1/m32 to one unsigned quadword integer in r64.|
+|``\newline{} |||||
 
 ```note
 1. EVEX.W1 in non-64 bit is ignored; the instructions behaves as if the W0 version is used

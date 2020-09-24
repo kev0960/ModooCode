@@ -18,13 +18,13 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 E8|FLD1|Valid|Valid|Push +1.0 onto the FPU register stack.|
-|D9 E9|FLDL2T|Valid|Valid|Push log210 onto the FPU register stack.|
-|D9 EA|FLDL2E|Valid|Valid|Push log2e onto the FPU register stack.|
-|D9 EB|FLDPI|Valid|Valid|Push  onto the FPU register stack.|
-|D9 EC|FLDLG2|Valid|Valid|Push log102 onto the FPU register stack.|
-|D9 ED|FLDLN2|Valid|Valid|Push loge2 onto the FPU register stack.|
-|D9 EE|FLDZ|Valid|Valid|Push +0.0 onto the FPU register stack.|
+|D9 E8|`FLD1` |Valid|Valid|Push +1.0 onto the FPU register stack.|
+|D9 E9|`FLDL2T` |Valid|Valid|Push log210 onto the FPU register stack.|
+|D9 EA|`FLDL2E` |Valid|Valid|Push log2e onto the FPU register stack.|
+|D9 EB|`FLDPI` |Valid|Valid|Push  onto the FPU register stack.|
+|D9 EC|`FLDLG2` |Valid|Valid|Push log102 onto the FPU register stack.|
+|D9 ED|`FLDLN2` |Valid|Valid|Push loge2 onto the FPU register stack.|
+|D9 EE|`FLDZ` |Valid|Valid|Push +0.0 onto the FPU register stack.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

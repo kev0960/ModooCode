@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F E7 /r|MOVNTQ m64, mm|MR|Valid|Valid|Move quadword from mm to m64 using non-temporal hint.|
+|0F E7 /r|`MOVNTQ` \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } |MR|Valid|Valid|Move quadword from mm to m64 using non-temporal hint.|
 ### Instruction Operand Encoding
 
 

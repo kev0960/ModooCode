@@ -18,20 +18,20 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|A8 ib|TEST AL, imm8|I|Valid |Valid|AND imm8 with AL; set SF, ZF, PF according to result.|
-|A9 iw|TEST AX, imm16|I|Valid |Valid|AND imm16 with AX; set SF, ZF, PF according to result.|
-|A9 id|TEST EAX, imm32|I|Valid |Valid|AND imm32 with EAX; set SF, ZF, PF according to result.|
-|REX.W + A9 id|TEST RAX, imm32|I|Valid |N.E.|AND imm32 sign-extended to 64-bits with RAX; set SF, ZF, PF according to result.|
-|F6 /0 ib|TEST r/m8, imm8|MI|Valid |Valid|AND imm8 with r/m8; set SF, ZF, PF according to result.|
-|REX + F6 /0 ib|TEST r/m8\htmlonly{*}, imm8|MI|Valid |N.E.|AND imm8 with r/m8; set SF, ZF, PF according to result.|
-|F7 /0 iw|TEST r/m16, imm16|MI|Valid |Valid|AND imm16 with r/m16; set SF, ZF, PF according to result.|
-|F7 /0 id|TEST r/m32, imm32|MI|Valid |Valid|AND imm32 with r/m32; set SF, ZF, PF according to result.|
-|REX.W + F7 /0 id|TEST r/m64, imm32|MI|Valid |N.E.|AND imm32 sign-extended to 64-bits with r/m64; set SF, ZF, PF according to result.|
-|84 /r|TEST r/m8, r8|MR|Valid |Valid|AND r8 with r/m8; set SF, ZF, PF according to result.|
-|REX + 84 /r|TEST r/m8\htmlonly{*}, r8\htmlonly{*}|MR|Valid |N.E.|AND r8 with r/m8; set SF, ZF, PF according to result.|
-|85 /r|TEST r/m16, r16|MR|Valid |Valid|AND r16 with r/m16; set SF, ZF, PF according to result.|
-|85 /r|TEST r/m32, r32|MR|Valid |Valid|AND r32 with r/m32; set SF, ZF, PF according to result.|
-|REX.W + 85 /r|TEST r/m64, r64|MR|Valid |N.E.|AND r64 with r/m64; set SF, ZF, PF according to result.|
+|A8 ib|`TEST` AL \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |I|Valid |Valid|AND imm8 with AL; set SF, ZF, PF according to result.|
+|A9 iw|`TEST` AX \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |I|Valid |Valid|AND imm16 with AX; set SF, ZF, PF according to result.|
+|A9 id|`TEST` EAX \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |I|Valid |Valid|AND imm32 with EAX; set SF, ZF, PF according to result.|
+|REX.W + A9 id|`TEST` RAX \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |I|Valid |N.E.|AND imm32 sign-extended to 64-bits with RAX; set SF, ZF, PF according to result.|
+|F6 /0 ib|`TEST` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|AND imm8 with r/m8; set SF, ZF, PF according to result.|
+|REX + F6 /0 ib|`TEST` r/m8\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |N.E.|AND imm8 with r/m8; set SF, ZF, PF according to result.|
+|F7 /0 iw|`TEST` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |MI|Valid |Valid|AND imm16 with r/m16; set SF, ZF, PF according to result.|
+|F7 /0 id|`TEST` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |MI|Valid |Valid|AND imm32 with r/m32; set SF, ZF, PF according to result.|
+|REX.W + F7 /0 id|`TEST` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |MI|Valid |N.E.|AND imm32 sign-extended to 64-bits with r/m64; set SF, ZF, PF according to result.|
+|84 /r|`TEST` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} |MR|Valid |Valid|AND r8 with r/m8; set SF, ZF, PF according to result.|
+|REX + 84 /r|`TEST` r/m8\htmlonly{*} r8\htmlonly{*} |MR|Valid |N.E.|AND r8 with r/m8; set SF, ZF, PF according to result.|
+|85 /r|`TEST` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |MR|Valid |Valid|AND r16 with r/m16; set SF, ZF, PF according to result.|
+|85 /r|`TEST` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |MR|Valid |Valid|AND r32 with r/m32; set SF, ZF, PF according to result.|
+|REX.W + 85 /r|`TEST` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |MR|Valid |N.E.|AND r64 with r/m64; set SF, ZF, PF according to result.|
 
 ```note
 \htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.

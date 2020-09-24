@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D8 /7|FDIVR m32fp|Valid|Valid|Divide m32fp by ST(0) and store result in ST(0).|
-|DC /7|FDIVR m64fp|Valid|Valid|Divide m64fp by ST(0) and store result in ST(0).|
-|D8 F8+i|FDIVR ST(0), ST(i)|Valid|Valid|Divide ST(i) by ST(0) and store result in ST(0).|
-|DC F0+i|FDIVR ST(i), ST(0)|Valid|Valid|Divide ST(0) by ST(i) and store result in ST(i).|
-|DE F0+i|FDIVRP ST(i), ST(0)|Valid|Valid|Divide ST(0) by ST(i), store result in ST(i), and pop the register stack.|
-|DE F1|FDIVRP|Valid|Valid|Divide ST(0) by ST(1), store result in ST(1), and pop the register stack.|
-|DA /7|FIDIVR m32int|Valid|Valid|Divide m32int by ST(0) and store result in ST(0).|
-|DE /7|FIDIVR m16int|Valid|Valid|Divide m16int by ST(0) and store result in ST(0).|
+|D8 /7|`FDIVR` m32fp |Valid|Valid|Divide m32fp by ST(0) and store result in ST(0).|
+|DC /7|`FDIVR` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Divide m64fp by ST(0) and store result in ST(0).|
+|D8 F8+i|`FDIVR` \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Divide ST(i) by ST(0) and store result in ST(0).|
+|DC F0+i|`FDIVR` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} \tooltip{ST(0)}{To-ST} |Valid|Valid|Divide ST(0) by ST(i) and store result in ST(i).|
+|DE F0+i|`FDIVRP` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} \tooltip{ST(0)}{To-ST} |Valid|Valid|Divide ST(0) by ST(i), store result in ST(i), and pop the register stack.|
+|DE F1|`FDIVRP` |Valid|Valid|Divide ST(0) by ST(1), store result in ST(1), and pop the register stack.|
+|DA /7|`FIDIVR` \tooltip{m32int}{To-m16int} |Valid|Valid|Divide m32int by ST(0) and store result in ST(0).|
+|DE /7|`FIDIVR` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Divide m16int by ST(0) and store result in ST(0).|
 ### Description
 
 

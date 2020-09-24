@@ -18,23 +18,23 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|----------|--------------------------------|--------------------------------------------------|---------------|
-|0F 6E /r\newline{}\newline{}MOVD mm, r/m32|RM|V/V|MMX|Move doubleword from r/m32 to mm.|
-|REX.W + 0F 6E /r\newline{}\newline{}MOVQ mm, r/m64|RM|V/N.E.|MMX|Move quadword from r/m64 to mm.|
-|0F 7E /r\newline{}\newline{}MOVD r/m32, mm|MR|V/V|MMX|Move doubleword from mm to r/m32.|
-|REX.W + 0F 7E /r\newline{}\newline{}MOVQ r/m64, mm|MR|V/N.E.|MMX|Move quadword from mm to r/m64.|
-|66 0F 6E /r\newline{}\newline{}MOVD xmm, r/m32|RM|V/V|SSE2|Move doubleword from r/m32 to xmm.|
-|66 REX.W 0F 6E /r\newline{}\newline{}MOVQ xmm, r/m64|RM|V/N.E.|SSE2|Move quadword from r/m64 to xmm.|
-|66 0F 7E /r\newline{}\newline{}MOVD r/m32, xmm|MR|V/V|SSE2|Move doubleword from xmm register to r/m32.|
-| 66 REX.W 0F 7E /r\newline{}\newline{}MOVQ r/m64, xmm|MR|V/N.E.|SSE2|Move quadword from xmm register to r/m64.|
-|VEX.128.66.0F.W0 6E /\newline{}\newline{}VMOVD xmm1, r32/m32|RM|V/V|AVX|Move doubleword from r/m32 to xmm1.|
-|VEX.128.66.0F.W1 6E /r\newline{}\newline{}VMOVQ xmm1, r64/m64|RM|V/N.E\footnote{1} .|AVX|Move quadword from r/m64 to xmm1.|
-|VEX.128.66.0F.W0 7E /r\newline{}\newline{}VMOVD r32/m32, xmm1|MR|V/V|AVX|Move doubleword from xmm1 register to r/m32.|
-|VEX.128.66.0F.W1 7E /r\newline{}\newline{}VMOVQ r64/m64, xmm1|MR|V/N.E\footnote{1} .|AVX|Move quadword from xmm1 register to r/m64.|
-|EVEX.128.66.0F.W0 6E /r\newline{}VMOVD xmm1, r32/m32|T1S-RM|V/V|AVX512F|Move doubleword from r/m32 to xmm1.|
-|EVEX.128.66.0F.W1 6E /r\newline{}VMOVQ xmm1, r64/m64|T1S-RM|V/N.E.\footnote{1}|AVX512F|Move quadword from r/m64 to xmm1.|
-|EVEX.128.66.0F.W0 7E /r\newline{}VMOVD r32/m32, xmm1|T1S-MR|V/V|AVX512F|Move doubleword from xmm1 register to r/m32.|
-|EVEX.128.66.0F.W1 7E /r\newline{}VMOVQ r64/m64, xmm1|T1S-MR|V/N.E.\footnote{1}|AVX512F|Move quadword from xmm1 register to r/m64.|
-||||||
+|`0F 6E /r`\newline{}`MOVD` \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|V/V|MMX|Move doubleword from r/m32 to mm.|
+|`REX.W + 0F 6E /r`\newline{}`MOVQ` \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|V/N.E.|MMX|Move quadword from r/m64 to mm.|
+|`0F 7E /r`\newline{}`MOVD` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } |MR|V/V|MMX|Move doubleword from mm to r/m32.|
+|`REX.W + 0F 7E /r`\newline{}`MOVQ` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } |MR|V/N.E.|MMX|Move quadword from mm to r/m64.|
+|`66 0F 6E /r`\newline{}`MOVD` \tooltip{xmm}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|V/V|SSE2|Move doubleword from r/m32 to xmm.|
+|`66 REX.W 0F 6E /r`\newline{}`MOVQ` \tooltip{xmm}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|V/N.E.|SSE2|Move quadword from r/m64 to xmm.|
+|`66 0F 7E /r`\newline{}`MOVD` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{xmm}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|SSE2|Move doubleword from xmm register to r/m32.|
+|` 66 REX.W 0F 7E /r`\newline{}`MOVQ` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{xmm}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/N.E.|SSE2|Move quadword from xmm register to r/m64.|
+|`VEX.128.66.0F.W0 6E /`\newline{}VMOVD \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} r32/m32 |RM|V/V|AVX|Move doubleword from r/m32 to xmm1.|
+|`VEX.128.66.0F.W1 6E /r`\newline{}VMOVQ \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} r64/m64 |RM|V/N.E\footnote{1} .|AVX|Move quadword from r/m64 to xmm1.|
+|`VEX.128.66.0F.W0 7E /r`\newline{}VMOVD r32/m32 \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|AVX|Move doubleword from xmm1 register to r/m32.|
+|`VEX.128.66.0F.W1 7E /r`\newline{}VMOVQ r64/m64 \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/N.E\footnote{1} .|AVX|Move quadword from xmm1 register to r/m64.|
+|`EVEX.128.66.0F.W0 6E /r`\newline{}VMOVD \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} r32/m32 |T1S-RM|V/V|AVX512F|Move doubleword from r/m32 to xmm1.|
+|`EVEX.128.66.0F.W1 6E /r`\newline{}VMOVQ \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} r64/m64 |T1S-RM|V/N.E.\footnote{1}|AVX512F|Move quadword from r/m64 to xmm1.|
+|`EVEX.128.66.0F.W0 7E /r`\newline{}VMOVD r32/m32 \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |T1S-MR|V/V|AVX512F|Move doubleword from xmm1 register to r/m32.|
+|`EVEX.128.66.0F.W1 7E /r`\newline{}VMOVQ r64/m64 \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |T1S-MR|V/N.E.\footnote{1}|AVX512F|Move quadword from xmm1 register to r/m64.|
+|``\newline{} |||||
 
 ```note
 1. For this specific instruction, VEX.W/EVEX.W in non-64 bit is ignored; the instructions behaves as if the W0 ver-sion is used

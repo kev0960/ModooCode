@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D8 /1|FMUL m32fp|Valid|Valid|Multiply ST(0) by m32fp and store result in ST(0).|
-|DC /1|FMUL m64fp|Valid|Valid|Multiply ST(0) by m64fp and store result in ST(0).|
-|D8 C8+i|FMUL ST(0), ST(i)|Valid|Valid|Multiply ST(0) by ST(i) and store result in ST(0).|
-|DC C8+i|FMUL ST(i), ST(0)|Valid|Valid|Multiply ST(i) by ST(0) and store result in ST(i).|
-|DE C8+i|FMULP ST(i), ST(0)|Valid|Valid|Multiply ST(i) by ST(0), store result in ST(i), and pop the register stack.|
-|DE C9|FMULP|Valid|Valid|Multiply ST(1) by ST(0), store result in ST(1), and pop the register stack.|
-|DA /1|FIMUL m32int|Valid|Valid|Multiply ST(0) by m32int and store result in ST(0).|
-|DE /1|FIMUL m16int|Valid|Valid|Multiply ST(0) by m16int and store result in ST(0).|
+|D8 /1|`FMUL` m32fp |Valid|Valid|Multiply ST(0) by m32fp and store result in ST(0).|
+|DC /1|`FMUL` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Multiply ST(0) by m64fp and store result in ST(0).|
+|D8 C8+i|`FMUL` \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Multiply ST(0) by ST(i) and store result in ST(0).|
+|DC C8+i|`FMUL` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} \tooltip{ST(0)}{To-ST} |Valid|Valid|Multiply ST(i) by ST(0) and store result in ST(i).|
+|DE C8+i|`FMULP` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} \tooltip{ST(0)}{To-ST} |Valid|Valid|Multiply ST(i) by ST(0), store result in ST(i), and pop the register stack.|
+|DE C9|`FMULP` |Valid|Valid|Multiply ST(1) by ST(0), store result in ST(1), and pop the register stack.|
+|DA /1|`FIMUL` \tooltip{m32int}{To-m16int} |Valid|Valid|Multiply ST(0) by m32int and store result in ST(0).|
+|DE /1|`FIMUL` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Multiply ST(0) by m16int and store result in ST(0).|
 ### Description
 
 

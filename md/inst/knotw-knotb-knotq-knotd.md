@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|------------------------------------|---------------|
-|VEX.L0.0F.W0 44 /r \newline{}KNOTW k1, k2|RR|V/V|AVX512F|Bitwise NOT of 16 bits mask k2.|
-|VEX.L0.66.0F.W0 44 /r \newline{}KNOTB k1, k2|RR|V/V|AVX512DQ|Bitwise NOT of 8 bits mask k2.|
-|VEX.L0.0F.W1 44 /r \newline{}KNOTQ k1, k2|RR|V/V|AVX512BW|Bitwise NOT of 64 bits mask k2.|
-|VEX.L0.66.0F.W1 44 /r \newline{}KNOTD k1, k2|RR|V/V|AVX512BW|Bitwise NOT of 32 bits mask k2.|
+|`VEX.L0.0F.W0 44 /r `\newline{}`KNOTW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512F|Bitwise NOT of 16 bits mask k2.|
+|`VEX.L0.66.0F.W0 44 /r `\newline{}`KNOTB` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512DQ|Bitwise NOT of 8 bits mask k2.|
+|`VEX.L0.0F.W1 44 /r `\newline{}`KNOTQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512BW|Bitwise NOT of 64 bits mask k2.|
+|`VEX.L0.66.0F.W1 44 /r `\newline{}`KNOTD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512BW|Bitwise NOT of 32 bits mask k2.|
 ### Instruction Operand Encoding
 
 

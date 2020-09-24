@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F AA|RSM|NP|Valid|Valid|Resume operation of interrupted program.|
+|0F AA|`RSM` |NP|Valid|Valid|Resume operation of interrupted program.|
 ### Instruction Operand Encoding
 
 

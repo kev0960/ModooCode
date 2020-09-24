@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
-|0F 50 /r\newline{}\newline{}MOVMSKPS reg, xmm|RM|V/V|SSE|Extract 4-bit sign mask from xmm and store in reg. The upper bits of r32 or r64 are filled with zeros.|
-|VEX.128.0F.WIG 50 /r\newline{}\newline{}VMOVMSKPS reg, xmm2|RM|V/V|AVX|Extract 4-bit sign mask from xmm2 and store in reg. The upper bits of r32 or r64 are zeroed.|
-|VEX.256.0F.WIG 50 /r\newline{}\newline{}VMOVMSKPS reg, ymm2|RM|V/V|AVX|Extract 8-bit sign mask from ymm2 and store in reg. The upper bits of r32 or r64 are zeroed.|
+|`0F 50 /r`\newline{}`MOVMSKPS` reg \tooltip{xmm}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |RM|V/V|SSE|Extract 4-bit sign mask from xmm and store in reg. The upper bits of r32 or r64 are filled with zeros.|
+|`VEX.128.0F.WIG 50 /r`\newline{}VMOVMSKPS reg \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |RM|V/V|AVX|Extract 4-bit sign mask from xmm2 and store in reg. The upper bits of r32 or r64 are zeroed.|
+|`VEX.256.0F.WIG 50 /r`\newline{}VMOVMSKPS reg \tooltip{ymm2}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} |RM|V/V|AVX|Extract 8-bit sign mask from ymm2 and store in reg. The upper bits of r32 or r64 are zeroed.|
 ### Instruction Operand Encoding\footnote{1}
 
 

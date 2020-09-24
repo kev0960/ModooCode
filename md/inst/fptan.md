@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 F2|FPTAN|Valid|Valid|Replace ST(0) with its approximate tangent and push 1 onto the FPU stack.|
+|D9 F2|`FPTAN` |Valid|Valid|Replace ST(0) with its approximate tangent and push 1 onto the FPU stack.|
 ### Description
 
 

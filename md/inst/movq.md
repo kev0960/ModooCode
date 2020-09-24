@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|----------|--------------------------------|--------------------------------------------------|---------------|
-|0F 6F /r\newline{}\newline{}MOVQ mm, mm/m64|RM|V/V|MMX|Move quadword from mm/m64 to mm.|
-|0F 7F /r\newline{}\newline{}MOVQ mm/m64, mm|MR|V/V|MMX|Move quadword from mm to mm/m64.|
-|F3 0F 7E /r\newline{}\newline{}MOVQ xmm1, xmm2/m64|RM|V/V|SSE2|Move quadword from xmm2/mem64 to xmm1.|
-|VEX.128.F3.0F.WIG 7E /r\newline{}\newline{}VMOVQ xmm1, xmm2/m64|RM|V/V|AVX|Move quadword from xmm2 to xmm1.|
-|EVEX.128.F3.0F.W1 7E /r\newline{}VMOVQ xmm1, xmm2/m64|T1S-RM|V/V|AVX512F|Move quadword from xmm2/m64 to xmm1.|
-|66 0F D6 /r\newline{}\newline{}MOVQ xmm2/m64, xmm1|MR|V/V|SSE2|Move quadword from xmm1 to xmm2/mem64.|
-|VEX.128.66.0F.WIG D6 /r\newline{}\newline{}VMOVQ xmm1/m64, xmm2|MR|V/V|AVX|Move quadword from xmm2 register to xmm1/m64.|
-|EVEX.128.66.0F.W1 D6 /r\newline{}VMOVQ xmm1/m64, xmm2|T1S-MR|V/V|AVX512F|Move quadword from xmm2 register to xmm1/m64.|
+|`0F 6F /r`\newline{}`MOVQ` \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } \tooltip{mm/m64}{MMX 레지스터 혹은 64 비트 메모리 데이터.} |RM|V/V|MMX|Move quadword from mm/m64 to mm.|
+|`0F 7F /r`\newline{}`MOVQ` \tooltip{mm/m64}{MMX 레지스터 혹은 64 비트 메모리 데이터.} \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } |MR|V/V|MMX|Move quadword from mm to mm/m64.|
+|`F3 0F 7E /r`\newline{}`MOVQ` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} |RM|V/V|SSE2|Move quadword from xmm2/mem64 to xmm1.|
+|`VEX.128.F3.0F.WIG 7E /r`\newline{}VMOVQ \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} |RM|V/V|AVX|Move quadword from xmm2 to xmm1.|
+|`EVEX.128.F3.0F.W1 7E /r`\newline{}VMOVQ \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} |T1S-RM|V/V|AVX512F|Move quadword from xmm2/m64 to xmm1.|
+|`66 0F D6 /r`\newline{}`MOVQ` \tooltip{xmm2/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|SSE2|Move quadword from xmm1 to xmm2/mem64.|
+|`VEX.128.66.0F.WIG D6 /r`\newline{}VMOVQ \tooltip{xmm1/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |MR|V/V|AVX|Move quadword from xmm2 register to xmm1/m64.|
+|`EVEX.128.66.0F.W1 D6 /r`\newline{}VMOVQ \tooltip{xmm1/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} |T1S-MR|V/V|AVX512F|Move quadword from xmm2 register to xmm1/m64.|
 ### Instruction Operand Encoding
 
 

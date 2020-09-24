@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 /4|FLDENV m14/28byte|Valid|Valid|Load FPU environment from m14byte or m28byte.|
+|D9 /4|`FLDENV` m14/28byte |Valid|Valid|Load FPU environment from m14byte or m28byte.|
 ### Description
 
 

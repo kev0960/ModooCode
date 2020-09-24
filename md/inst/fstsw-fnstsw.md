@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|9B DD /7|FSTSW m2byte|Valid|Valid|Store FPU status word at m2byte after checking for pending unmasked floating-point exceptions.|
-|9B DF E0|FSTSW AX|Valid|Valid|Store FPU status word in AX register after checking for pending unmasked floating-point exceptions.|
-|DD /7|FNSTSW\footnote{*}  m2byte|Valid|Valid|Store FPU status word at m2byte without checking for pending unmasked floating-point exceptions.|
-|DF E0|FNSTSW\footnote{*}  AX|Valid|Valid|Store FPU status word in AX register without checking for pending unmasked floating-point exceptions.|
+|9B DD /7|`FSTSW` m2byte |Valid|Valid|Store FPU status word at m2byte after checking for pending unmasked floating-point exceptions.|
+|9B DF E0|`FSTSW` AX |Valid|Valid|Store FPU status word in AX register after checking for pending unmasked floating-point exceptions.|
+|DD /7|FNSTSW\footnote{*} m2byte |Valid|Valid|Store FPU status word at m2byte without checking for pending unmasked floating-point exceptions.|
+|DF E0|FNSTSW\footnote{*} AX |Valid|Valid|Store FPU status word in AX register without checking for pending unmasked floating-point exceptions.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

@@ -18,22 +18,22 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.L0.0F.W0 90 /r\newline{}KMOVW k1, k2/m16|RM|V/V|AVX512F|Move 16 bits mask from k2/m16 and store the result in k1.|
-|VEX.L0.66.0F.W0 90 /r \newline{}KMOVB k1, k2/m8|RM|V/V|AVX512DQ|Move 8 bits mask from k2/m8 and store the result in k1. |
-|VEX.L0.0F.W1 90 /r \newline{}KMOVQ k1, k2/m64|RM|V/V|AVX512BW|Move 64 bits mask from k2/m64 and store the result in k1.|
-|VEX.L0.66.0F.W1 90 /r \newline{}KMOVD k1, k2/m32|RM|V/V|AVX512BW|Move 32 bits mask from k2/m32 and store the result in k1. |
-|VEX.L0.0F.W0 91 /r \newline{}KMOVW m16, k1|MR|V/V|AVX512F|Move 16 bits mask from k1 and store the result in m16.|
-|VEX.L0.66.0F.W0 91 /r \newline{}KMOVB m8, k1|MR|V/V|AVX512DQ|Move 8 bits mask from k1 and store the result in m8. |
-|VEX.L0.0F.W1 91 /r \newline{}KMOVQ m64, k1|MR|V/V|AVX512BW|Move 64 bits mask from k1 and store the result in m64.|
-|VEX.L0.66.0F.W1 91 /r \newline{}KMOVD m32, k1|MR|V/V|AVX512BW|Move 32 bits mask from k1 and store the result in m32.|
-|VEX.L0.0F.W0 92 /r \newline{}KMOVW k1, r32|RR|V/V|AVX512F|Move 16 bits mask from r32 to k1.|
-|VEX.L0.66.0F.W0 92 /r \newline{}KMOVB k1, r32|RR|V/V|AVX512DQ|Move 8 bits mask from r32 to k1.|
-|VEX.L0.F2.0F.W1 92 /r \newline{}KMOVQ k1, r64|RR|V/I|AVX512BW|Move 64 bits mask from r64 to k1.|
-|VEX.L0.F2.0F.W0 92 /r \newline{}KMOVD k1, r32|RR|V/V|AVX512BW|Move 32 bits mask from r32 to k1.|
-|VEX.L0.0F.W0 93 /r \newline{}KMOVW r32, k1|RR|V/V|AVX512F|Move 16 bits mask from k1 to r32.|
-|VEX.L0.66.0F.W0 93 /r \newline{}KMOVB r32, k1|RR|V/V|AVX512DQ|Move 8 bits mask from k1 to r32.|
-|VEX.L0.F2.0F.W1 93 /r \newline{}KMOVQ r64, k1|RR|V/I|AVX512BW|Move 64 bits mask from k1 to r64.|
-|VEX.L0.F2.0F.W0 93 /r \newline{}KMOVD r32, k1|RR|V/V|AVX512BW|Move 32 bits mask from k1 to r32.|
+|`VEX.L0.0F.W0 90 /r`\newline{}`KMOVW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2/m16 |RM|V/V|AVX512F|Move 16 bits mask from k2/m16 and store the result in k1.|
+|`VEX.L0.66.0F.W0 90 /r `\newline{}`KMOVB` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2/m8 |RM|V/V|AVX512DQ|Move 8 bits mask from k2/m8 and store the result in k1. |
+|`VEX.L0.0F.W1 90 /r `\newline{}`KMOVQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2/m64 |RM|V/V|AVX512BW|Move 64 bits mask from k2/m64 and store the result in k1.|
+|`VEX.L0.66.0F.W1 90 /r `\newline{}`KMOVD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2/m32 |RM|V/V|AVX512BW|Move 32 bits mask from k2/m32 and store the result in k1. |
+|`VEX.L0.0F.W0 91 /r `\newline{}`KMOVW` \tooltip{m16}{DS:(E)SI, ES:(E)DI 로 표현되는 2 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |MR|V/V|AVX512F|Move 16 bits mask from k1 and store the result in m16.|
+|`VEX.L0.66.0F.W0 91 /r `\newline{}`KMOVB` \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |MR|V/V|AVX512DQ|Move 8 bits mask from k1 and store the result in m8. |
+|`VEX.L0.0F.W1 91 /r `\newline{}`KMOVQ` \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |MR|V/V|AVX512BW|Move 64 bits mask from k1 and store the result in m64.|
+|`VEX.L0.66.0F.W1 91 /r `\newline{}`KMOVD` \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |MR|V/V|AVX512BW|Move 32 bits mask from k1 and store the result in m32.|
+|`VEX.L0.0F.W0 92 /r `\newline{}`KMOVW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |RR|V/V|AVX512F|Move 16 bits mask from r32 to k1.|
+|`VEX.L0.66.0F.W0 92 /r `\newline{}`KMOVB` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |RR|V/V|AVX512DQ|Move 8 bits mask from r32 to k1.|
+|`VEX.L0.F2.0F.W1 92 /r `\newline{}`KMOVQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |RR|V/I|AVX512BW|Move 64 bits mask from r64 to k1.|
+|`VEX.L0.F2.0F.W0 92 /r `\newline{}`KMOVD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |RR|V/V|AVX512BW|Move 32 bits mask from r32 to k1.|
+|`VEX.L0.0F.W0 93 /r `\newline{}`KMOVW` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RR|V/V|AVX512F|Move 16 bits mask from k1 to r32.|
+|`VEX.L0.66.0F.W0 93 /r `\newline{}`KMOVB` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RR|V/V|AVX512DQ|Move 8 bits mask from k1 to r32.|
+|`VEX.L0.F2.0F.W1 93 /r `\newline{}`KMOVQ` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RR|V/I|AVX512BW|Move 64 bits mask from k1 to r64.|
+|`VEX.L0.F2.0F.W0 93 /r `\newline{}`KMOVD` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} |RR|V/V|AVX512BW|Move 32 bits mask from k1 to r32.|
 ### Instruction Operand Encoding
 
 

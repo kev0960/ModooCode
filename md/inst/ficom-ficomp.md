@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|DE /2|FICOM m16int|Valid|Valid|Compare ST(0) with m16int.|
-|DA /2|FICOM m32int|Valid|Valid|Compare ST(0) with m32int.|
-|DE /3|FICOMP m16int|Valid|Valid|Compare ST(0) with m16int and pop stack register.|
-|DA /3|FICOMP m32int|Valid|Valid|Compare ST(0) with m32int and pop stack register.|
+|DE /2|`FICOM` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Compare ST(0) with m16int.|
+|DA /2|`FICOM` \tooltip{m32int}{To-m16int} |Valid|Valid|Compare ST(0) with m32int.|
+|DE /3|`FICOMP` \tooltip{m16int}{메모리 상에 위치한 2 바이트, 4 바이트, 8 바이트 정수 데이터로, 위와 마찬가지로 x87 FPU 부동 소수점 명령어에서 사용된다. } |Valid|Valid|Compare ST(0) with m16int and pop stack register.|
+|DA /3|`FICOMP` \tooltip{m32int}{To-m16int} |Valid|Valid|Compare ST(0) with m32int and pop stack register.|
 ### Description
 
 

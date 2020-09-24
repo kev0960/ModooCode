@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
-|C7 F8XBEGIN rel16|A|V/V|RTM|Specifies the start of an RTM region. Provides a 16-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.|
-|C7 F8XBEGIN rel32|A|V/V|RTM|Specifies the start of an RTM region. Provides a 32-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.|
+|`C7 F8`\newline{}`XBEGIN` \tooltip{rel16}{현재 명령어가 포함되어 있는 코드 세그먼트 안의 상대 주소값. rel16 은 피연사자 크기가 16 비트인 명령어들에, rel32 는 피연산자 크기가 32 비트인 명령어들에 적용된다.} |A|V/V|RTM|Specifies the start of an RTM region. Provides a 16-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.|
+|`C7 F8`\newline{}`XBEGIN` \tooltip{rel32}{To-rel16} |A|V/V|RTM|Specifies the start of an RTM region. Provides a 32-bit relative offset to compute the address of the fallback instruction address at which execution resumes following an RTM abort.|
 ### Instruction Operand Encoding
 
 

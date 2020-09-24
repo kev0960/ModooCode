@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F AE /6\newline{}\newline{}XSAVEOPT mem|M|V/V|XSAVEOPT|Save state components specified by EDX:EAX to mem, optimizing if possible.|
-|REX.W + 0F AE /6\newline{}\newline{}XSAVEOPT64 mem|M|V/V|XSAVEOPT|Save state components specified by EDX:EAX to mem, optimizing if possible.|
+|`0F AE /6`\newline{}`XSAVEOPT` mem |M|V/V|XSAVEOPT|Save state components specified by EDX:EAX to mem, optimizing if possible.|
+|`REX.W + 0F AE /6`\newline{}XSAVEOPT64 mem |M|V/V|XSAVEOPT|Save state components specified by EDX:EAX to mem, optimizing if possible.|
 ### Instruction Operand Encoding
 
 

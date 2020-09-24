@@ -18,28 +18,28 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|1C ib|SBB AL, imm8|I|Valid |Valid|Subtract with borrow imm8 from AL.|
-|1D iw|SBB AX, imm16|I|Valid |Valid|Subtract with borrow imm16 from AX.|
-|1D id|SBB EAX, imm32|I|Valid |Valid|Subtract with borrow imm32 from EAX.|
-|REX.W + 1D id|SBB RAX, imm32|I|Valid|N.E.|Subtract with borrow sign-extended imm.32 to 64-bits from RAX.|
-|80 /3 ib|SBB r/m8, imm8|MI|Valid |Valid|Subtract with borrow imm8 from r/m8.|
-|REX + 80 /3 ib|SBB r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Subtract with borrow imm8 from r/m8.|
-|81 /3 iw|SBB r/m16, imm16|MI|Valid |Valid|Subtract with borrow imm16 from r/m16.|
-|81 /3 id|SBB r/m32, imm32|MI|Valid |Valid|Subtract with borrow imm32 from r/m32.|
-|REX.W + 81 /3 id|SBB r/m64, imm32|MI|Valid|N.E.|Subtract with borrow sign-extended imm32 to 64-bits from r/m64.|
-|83 /3 ib|SBB r/m16, imm8|MI|Valid |Valid|Subtract with borrow sign-extended imm8 from r/m16.|
-|83 /3 ib|SBB r/m32, imm8|MI|Valid |Valid|Subtract with borrow sign-extended imm8 from r/m32.|
-|REX.W + 83 /3 ib|SBB r/m64, imm8|MI|Valid|N.E.|Subtract with borrow sign-extended imm8 from r/m64.|
-|18 /r|SBB r/m8, r8|MR|Valid |Valid|Subtract with borrow r8 from r/m8.|
-|REX + 18 /r|SBB r/m8\htmlonly{*}, r8|MR|Valid|N.E.|Subtract with borrow r8 from r/m8.|
-|19 /r|SBB r/m16, r16|MR|Valid |Valid|Subtract with borrow r16 from r/m16.|
-|19 /r|SBB r/m32, r32|MR|Valid |Valid|Subtract with borrow r32 from r/m32.|
-|REX.W + 19 /r|SBB r/m64, r64|MR|Valid|N.E.|Subtract with borrow r64 from r/m64.|
-|1A /r|SBB r8, r/m8|RM|Valid |Valid|Subtract with borrow r/m8 from r8.|
-|REX + 1A /r|SBB r8\htmlonly{*}, r/m8\htmlonly{*}|RM|Valid|N.E.|Subtract with borrow r/m8 from r8.|
-|1B /r|SBB r16, r/m16|RM|Valid |Valid|Subtract with borrow r/m16 from r16.|
-|1B /r|SBB r32, r/m32|RM|Valid |Valid|Subtract with borrow r/m32 from r32.|
-|REX.W + 1B /r|SBB r64, r/m64|RM|Valid |N.E.|Subtract with borrow r/m64 from r64.|
+|1C ib|`SBB` AL \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |I|Valid |Valid|Subtract with borrow imm8 from AL.|
+|1D iw|`SBB` AX \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |I|Valid |Valid|Subtract with borrow imm16 from AX.|
+|1D id|`SBB` EAX \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |I|Valid |Valid|Subtract with borrow imm32 from EAX.|
+|REX.W + 1D id|`SBB` RAX \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |I|Valid|N.E.|Subtract with borrow sign-extended imm.32 to 64-bits from RAX.|
+|80 /3 ib|`SBB` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Subtract with borrow imm8 from r/m8.|
+|REX + 80 /3 ib|`SBB` r/m8\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Subtract with borrow imm8 from r/m8.|
+|81 /3 iw|`SBB` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |MI|Valid |Valid|Subtract with borrow imm16 from r/m16.|
+|81 /3 id|`SBB` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |MI|Valid |Valid|Subtract with borrow imm32 from r/m32.|
+|REX.W + 81 /3 id|`SBB` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |MI|Valid|N.E.|Subtract with borrow sign-extended imm32 to 64-bits from r/m64.|
+|83 /3 ib|`SBB` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Subtract with borrow sign-extended imm8 from r/m16.|
+|83 /3 ib|`SBB` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Subtract with borrow sign-extended imm8 from r/m32.|
+|REX.W + 83 /3 ib|`SBB` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Subtract with borrow sign-extended imm8 from r/m64.|
+|18 /r|`SBB` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} |MR|Valid |Valid|Subtract with borrow r8 from r/m8.|
+|REX + 18 /r|`SBB` r/m8\htmlonly{*} \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} |MR|Valid|N.E.|Subtract with borrow r8 from r/m8.|
+|19 /r|`SBB` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |MR|Valid |Valid|Subtract with borrow r16 from r/m16.|
+|19 /r|`SBB` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |MR|Valid |Valid|Subtract with borrow r32 from r/m32.|
+|REX.W + 19 /r|`SBB` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |MR|Valid|N.E.|Subtract with borrow r64 from r/m64.|
+|1A /r|`SBB` \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |RM|Valid |Valid|Subtract with borrow r/m8 from r8.|
+|REX + 1A /r|`SBB` r8\htmlonly{*} r/m8\htmlonly{*} |RM|Valid|N.E.|Subtract with borrow r/m8 from r8.|
+|1B /r|`SBB` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid |Valid|Subtract with borrow r/m16 from r16.|
+|1B /r|`SBB` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid |Valid|Subtract with borrow r/m32 from r32.|
+|REX.W + 1B /r|`SBB` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid |N.E.|Subtract with borrow r/m64 from r64.|
 
 ```note
 \htmlonly{*}  In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.

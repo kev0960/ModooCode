@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|6E|OUTS DX, m8|NP|Valid|Valid|Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
-|6F|OUTS DX, m16|NP|Valid|Valid|Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
-|6F|OUTS DX, m32|NP|Valid|Valid|Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
-|6E|OUTSB|NP|Valid|Valid|Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
-|6F|OUTSW|NP|Valid|Valid|Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
-|6F|OUTSD|NP|Valid|Valid|Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
+|6E|`OUTS` DX \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |NP|Valid|Valid|Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
+|6F|`OUTS` DX \tooltip{m16}{DS:(E)SI, ES:(E)DI 로 표현되는 2 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |NP|Valid|Valid|Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
+|6F|`OUTS` DX \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} |NP|Valid|Valid|Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
+|6E|`OUTSB` |NP|Valid|Valid|Output byte from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
+|6F|`OUTSW` |NP|Valid|Valid|Output word from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
+|6F|`OUTSD` |NP|Valid|Valid|Output doubleword from memory location specified in DS:(E)SI or RSI to I/O port specified in DX\htmlonly{*}\htmlonly{*}.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below.

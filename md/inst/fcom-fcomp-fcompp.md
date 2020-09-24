@@ -18,15 +18,15 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D8 /2|FCOM m32fp|Valid|Valid|Compare ST(0) with m32fp.|
-|DC /2|FCOM m64fp|Valid|Valid|Compare ST(0) with m64fp.|
-|D8 D0+i|FCOM ST(i)|Valid|Valid|Compare ST(0) with ST(i).|
-|D8 D1|FCOM|Valid|Valid|Compare ST(0) with ST(1).|
-|D8 /3|FCOMP m32fp|Valid|Valid|Compare ST(0) with m32fp and pop register stack.|
-|DC /3|FCOMP m64fp|Valid|Valid|Compare ST(0) with m64fp and pop register stack.|
-|D8 D8+i|FCOMP ST(i)|Valid|Valid|Compare ST(0) with ST(i) and pop register stack.|
-|D8 D9|FCOMP|Valid|Valid|Compare ST(0) with ST(1) and pop register stack.|
-|DE D9|FCOMPP|Valid|Valid|Compare ST(0) with ST(1) and pop register stack twice.|
+|D8 /2|`FCOM` m32fp |Valid|Valid|Compare ST(0) with m32fp.|
+|DC /2|`FCOM` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Compare ST(0) with m64fp.|
+|D8 D0+i|`FCOM` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Compare ST(0) with ST(i).|
+|D8 D1|`FCOM` |Valid|Valid|Compare ST(0) with ST(1).|
+|D8 /3|`FCOMP` m32fp |Valid|Valid|Compare ST(0) with m32fp and pop register stack.|
+|DC /3|`FCOMP` \tooltip{m64fp}{To-m32fp} |Valid|Valid|Compare ST(0) with m64fp and pop register stack.|
+|D8 D8+i|`FCOMP` \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Compare ST(0) with ST(i) and pop register stack.|
+|D8 D9|`FCOMP` |Valid|Valid|Compare ST(0) with ST(1) and pop register stack.|
+|DE D9|`FCOMPP` |Valid|Valid|Compare ST(0) with ST(1) and pop register stack twice.|
 ### Description
 
 

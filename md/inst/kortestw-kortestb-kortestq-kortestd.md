@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/**\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-----------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.L0.0F.W0 98 /r \newline{}KORTESTW k1, k2|RR|V/V|AVX512F|Bitwise OR 16 bits masks k1 and k2 and update ZF and CF accordingly.|
-|VEX.L0.66.0F.W0 98 /r\newline{}KORTESTB k1, k2|RR|V/V|AVX512DQ|Bitwise OR 8 bits masks k1 and k2 and update ZF and CF accordingly.|
-|VEX.L0.0F.W1 98 /r \newline{}KORTESTQ k1, k2|RR|V/V|AVX512BW|Bitwise OR 64 bits masks k1 and k2 and update ZF and CF accordingly.|
-|VEX.L0.66.0F.W1 98 /r \newline{}KORTESTD k1, k2|RR|V/V|AVX512BW|Bitwise OR 32 bits masks k1 and k2 and update ZF and CF accordingly.|
+|`VEX.L0.0F.W0 98 /r `\newline{}`KORTESTW` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512F|Bitwise OR 16 bits masks k1 and k2 and update ZF and CF accordingly.|
+|`VEX.L0.66.0F.W0 98 /r`\newline{}`KORTESTB` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512DQ|Bitwise OR 8 bits masks k1 and k2 and update ZF and CF accordingly.|
+|`VEX.L0.0F.W1 98 /r `\newline{}`KORTESTQ` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512BW|Bitwise OR 64 bits masks k1 and k2 and update ZF and CF accordingly.|
+|`VEX.L0.66.0F.W1 98 /r `\newline{}`KORTESTD` \tooltip{k1}{마스크 레지스터를 지칭 (k0 부터 k7 까지 가능)} k2 |RR|V/V|AVX512BW|Bitwise OR 32 bits masks k1 and k2 and update ZF and CF accordingly.|
 ### Instruction Operand Encoding
 
 

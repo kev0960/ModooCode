@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 0B|UD2|NP|Valid|Valid|Raise invalid opcode exception.|
+|0F 0B|`UD2` |NP|Valid|Valid|Raise invalid opcode exception.|
 ### Instruction Operand Encoding
 
 

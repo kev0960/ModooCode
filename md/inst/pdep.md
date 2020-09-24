@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|VEX.NDS.LZ.F2.0F38.W0 F5 /r\newline{}PDEP r32a, r32b, r/m32|RVM|V/V|BMI2|Parallel deposit of bits from r32b using mask in r/m32, result is writ-ten to r32a.|
-|VEX.NDS.LZ.F2.0F38.W1 F5 /r\newline{}PDEP r64a, r64b, r/m64|RVM|V/N.E.|BMI2|Parallel deposit of bits from r64b using mask in r/m64, result is writ-ten to r64a.|
+|`VEX.NDS.LZ.F2.0F38.W0 F5 /r`\newline{}`PDEP` r32a r32b \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RVM|V/V|BMI2|Parallel deposit of bits from r32b using mask in r/m32, result is writ-ten to r32a.|
+|`VEX.NDS.LZ.F2.0F38.W1 F5 /r`\newline{}`PDEP` r64a r64b \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RVM|V/N.E.|BMI2|Parallel deposit of bits from r64b using mask in r/m64, result is writ-ten to r64a.|
 ### Instruction Operand Encoding
 
 

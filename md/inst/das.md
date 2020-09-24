@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|2F|DAS|NP|Invalid|Valid|Decimal adjust AL after subtraction.|
+|2F|`DAS` |NP|Invalid|Valid|Decimal adjust AL after subtraction.|
 ### Instruction Operand Encoding
 
 

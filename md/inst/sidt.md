@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01 /1|SIDT m|M|Valid|Valid|Store IDTR to m.|
+|0F 01 /1|`SIDT` \tooltip{m}{16- 혹은 32- 혹은 64 비트 짜리 메모리 데이터를 의미한다.} |M|Valid|Valid|Store IDTR to m.|
 ### Instruction Operand Encoding
 
 

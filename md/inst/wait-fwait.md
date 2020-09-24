@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|9B|WAIT|NP|Valid|Valid|Check pending unmasked floating-point exceptions.|
-|9B|FWAIT|NP|Valid|Valid|Check pending unmasked floating-point exceptions.|
+|9B|`WAIT` |NP|Valid|Valid|Check pending unmasked floating-point exceptions.|
+|9B|`FWAIT` |NP|Valid|Valid|Check pending unmasked floating-point exceptions.|
 ### Instruction Operand Encoding
 
 

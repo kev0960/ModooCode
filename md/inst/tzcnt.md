@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32**\newline{}**-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|----------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F BC /r\newline{}TZCNT r16, r/m16|RM|V/V|BMI1|Count the number of trailing zero bits in r/m16, return result in r16.|
-|F3 0F BC /r\newline{}TZCNT r32, r/m32|RM|V/V|BMI1|Count the number of trailing zero bits in r/m32, return result in r32.|
-|F3 REX.W 0F BC /r\newline{}TZCNT r64, r/m64|RM|V/N.E.|BMI1|Count the number of trailing zero bits in r/m64, return result in r64.|
+|`F3 0F BC /r`\newline{}`TZCNT` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|V/V|BMI1|Count the number of trailing zero bits in r/m16, return result in r16.|
+|`F3 0F BC /r`\newline{}`TZCNT` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|V/V|BMI1|Count the number of trailing zero bits in r/m32, return result in r32.|
+|`F3 REX.W 0F BC /r`\newline{}`TZCNT` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|V/N.E.|BMI1|Count the number of trailing zero bits in r/m64, return result in r64.|
 ### Instruction Operand Encoding
 
 

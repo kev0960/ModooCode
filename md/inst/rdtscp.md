@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01 F9|RDTSCP|NP|Valid |Valid|Read 64-bit time-stamp counter and IA32_TSC_AUX value into EDX:EAX and ECX.|
+|0F 01 F9|`RDTSCP` |NP|Valid |Valid|Read 64-bit time-stamp counter and IA32_TSC_AUX value into EDX:EAX and ECX.|
 ### Instruction Operand Encoding
 
 

@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|DF /4|FBLD m80dec|Valid|Valid|Convert BCD value to floating-point and push onto the FPU stack.|
+|DF /4|`FBLD` m80dec |Valid|Valid|Convert BCD value to floating-point and push onto the FPU stack.|
 ### Description
 
 

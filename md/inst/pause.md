@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|F3 90|PAUSE|NP|Valid|Valid |Gives hint to processor that improves performance of spin-wait loops.|
+|F3 90|`PAUSE` |NP|Valid|Valid |Gives hint to processor that improves performance of spin-wait loops.|
 ### Instruction Operand Encoding
 
 

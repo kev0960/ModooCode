@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 FC|FRNDINT|Valid|Valid|Round ST(0) to an integer.|
+|D9 FC|`FRNDINT` |Valid|Valid|Round ST(0) to an integer.|
 ### Description
 
 

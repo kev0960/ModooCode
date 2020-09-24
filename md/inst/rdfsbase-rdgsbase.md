@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**||**Op/ **\newline{}**En**|**64/32-**\newline{}**bit **\newline{}**Mode**|**CPUID Fea-**\newline{}**ture Flag**|**Description**|
 |------------------------------------||------------------------|----------------------------------------------|-------------------------------------|---------------|
-|F3 0F AE /0\newline{}RDFSBASE r32||M|V/I|FSGSBASE|Load the 32-bit destination register with the FS base address.|
-|F3 REX.W 0F AE /0\newline{}RDFSBASE r64||M|V/I|FSGSBASE|Load the 64-bit destination register with the FS base address.|
-|F3 0F AE /1\newline{}RDGSBASE r32||M|V/I|FSGSBASE|Load the 32-bit destination register with the GS base address.|
-|F3 REX.W 0F AE /1\newline{}RDGSBASE r64||M|V/I|FSGSBASE|Load the 64-bit destination register with the GS base address.|
+|`F3 0F AE /0`\newline{}`RDFSBASE` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} ||M|V/I|FSGSBASE|Load the 32-bit destination register with the FS base address.|
+|`F3 REX.W 0F AE /0`\newline{}`RDFSBASE` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} ||M|V/I|FSGSBASE|Load the 64-bit destination register with the FS base address.|
+|`F3 0F AE /1`\newline{}`RDGSBASE` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} ||M|V/I|FSGSBASE|Load the 32-bit destination register with the GS base address.|
+|`F3 REX.W 0F AE /1`\newline{}`RDGSBASE` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} ||M|V/I|FSGSBASE|Load the 64-bit destination register with the GS base address.|
 ### Instruction Operand Encoding
 
 

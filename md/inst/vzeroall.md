@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.256.0F.WIG 77\newline{}\newline{}VZEROALL|NP|V/V|AVX|Zero all YMM registers.|
+|`VEX.256.0F.WIG 77`\newline{}`VZEROALL` |NP|V/V|AVX|Zero all YMM registers.|
 ### Instruction Operand Encoding
 
 

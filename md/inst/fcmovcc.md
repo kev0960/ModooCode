@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode\htmlonly{*}**|**Description**|
 |----------------------|---------------|-----------------------------|---------------------------------------------|---------------|
-|DA C0+i|FCMOVB ST(0), ST(i)|Valid|Valid|Move if below (CF=1).|
-|DA C8+i|FCMOVE ST(0), ST(i)|Valid|Valid|Move if equal (ZF=1).|
-|DA D0+i|FCMOVBE ST(0), ST(i)|Valid|Valid|Move if below or equal (CF=1 or ZF=1).|
-|DA D8+i|FCMOVU ST(0), ST(i)|Valid|Valid|Move if unordered (PF=1).|
-|DB C0+i|FCMOVNB ST(0), ST(i)|Valid|Valid|Move if not below (CF=0).|
-|DB C8+i|FCMOVNE ST(0), ST(i)|Valid|Valid|Move if not equal (ZF=0).|
-|DB D0+i|FCMOVNBE ST(0), ST(i)|Valid|Valid|Move if not below or equal (CF=0 and ZF=0).|
-|DB D8+i|FCMOVNU ST(0), ST(i)|Valid|Valid|Move if not unordered (PF=0).|
+|DA C0+i|FCMOVB \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Move if below (CF=1).|
+|DA C8+i|FCMOVE \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Move if equal (ZF=1).|
+|DA D0+i|FCMOVBE \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Move if below or equal (CF=1 or ZF=1).|
+|DA D8+i|FCMOVU \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Move if unordered (PF=1).|
+|DB C0+i|FCMOVNB \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Move if not below (CF=0).|
+|DB C8+i|FCMOVNE \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Move if not equal (ZF=0).|
+|DB D0+i|FCMOVNBE \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Move if not below or equal (CF=0 and ZF=0).|
+|DB D8+i|FCMOVNU \tooltip{ST(0)}{To-ST} \tooltip{ST(i)}{FPU 레지스터 스택에서 최상단으로 부터 i 번째 원소로 i 의 값으로 0 부터 7 까지가 가능하다.} |Valid|Valid|Move if not unordered (PF=0).|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

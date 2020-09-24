@@ -18,14 +18,14 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|AA|STOS m8|NA|Valid |Valid|For legacy mode, store AL at address ES:(E)DI; For 64-bit mode store AL at address RDI or EDI.|
-|AB|STOS m16|NA|Valid |Valid|For legacy mode, store AX at address ES:(E)DI; For 64-bit mode store AX at address RDI or EDI.|
-|AB|STOS m32|NA|Valid |Valid|For legacy mode, store EAX at address ES:(E)DI; For 64-bit mode store EAX at address RDI or EDI.|
-|REX.W + AB|STOS m64|NA|Valid |N.E.|Store RAX at address RDI or EDI.|
-|AA|STOSB|NA|Valid |Valid|For legacy mode, store AL at address ES:(E)DI; For 64-bit mode store AL at address RDI or EDI.|
-|AB|STOSW|NA|Valid |Valid|For legacy mode, store AX at address ES:(E)DI; For 64-bit mode store AX at address RDI or EDI.|
-|AB|STOSD|NA|Valid |Valid|For legacy mode, store EAX at address ES:(E)DI; For 64-bit mode store EAX at address RDI or EDI.|
-|REX.W + AB|STOSQ|NA|Valid |N.E.|Store RAX at address RDI or EDI.|
+|AA|`STOS` \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |NA|Valid |Valid|For legacy mode, store AL at address ES:(E)DI; For 64-bit mode store AL at address RDI or EDI.|
+|AB|`STOS` \tooltip{m16}{DS:(E)SI, ES:(E)DI 로 표현되는 2 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |NA|Valid |Valid|For legacy mode, store AX at address ES:(E)DI; For 64-bit mode store AX at address RDI or EDI.|
+|AB|`STOS` \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} |NA|Valid |Valid|For legacy mode, store EAX at address ES:(E)DI; For 64-bit mode store EAX at address RDI or EDI.|
+|REX.W + AB|`STOS` \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} |NA|Valid |N.E.|Store RAX at address RDI or EDI.|
+|AA|`STOSB` |NA|Valid |Valid|For legacy mode, store AL at address ES:(E)DI; For 64-bit mode store AL at address RDI or EDI.|
+|AB|`STOSW` |NA|Valid |Valid|For legacy mode, store AX at address ES:(E)DI; For 64-bit mode store AX at address RDI or EDI.|
+|AB|`STOSD` |NA|Valid |Valid|For legacy mode, store EAX at address ES:(E)DI; For 64-bit mode store EAX at address RDI or EDI.|
+|REX.W + AB|`STOSQ` |NA|Valid |N.E.|Store RAX at address RDI or EDI.|
 ### Instruction Operand Encoding
 
 

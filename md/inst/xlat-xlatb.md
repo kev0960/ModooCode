@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|D7|XLAT m8|NP|Valid|Valid|Set AL to memory byte DS:[(E)BX + unsigned AL].|
-|D7|XLATB|NP|Valid |Valid|Set AL to memory byte DS:[(E)BX + unsigned AL].|
-|REX.W + D7|XLATB|NP|Valid |N.E.|Set AL to memory byte [RBX + unsigned AL].|
+|D7|`XLAT` \tooltip{m8}{DS:(E)SI, ES:(E)DI 로 표현되는 1 바이트 짜리 메모리를 나타낸다. 주로 배열의 이름을 나타내는데 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다. } |NP|Valid|Valid|Set AL to memory byte DS:[(E)BX + unsigned AL].|
+|D7|`XLATB` |NP|Valid |Valid|Set AL to memory byte DS:[(E)BX + unsigned AL].|
+|REX.W + D7|`XLATB` |NP|Valid |N.E.|Set AL to memory byte [RBX + unsigned AL].|
 ### Instruction Operand Encoding
 
 

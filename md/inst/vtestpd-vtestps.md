@@ -18,10 +18,10 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32 bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|VEX.128.66.0F38.W0 0E /r\newline{}VTESTPS xmm1, xmm2/m128|RM|V/V|AVX|Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.|
-|VEX.256.66.0F38.W0 0E /r\newline{}VTESTPS ymm1, ymm2/m256|RM|V/V|AVX|Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.|
-|VEX.128.66.0F38.W0 0F /r\newline{}VTESTPD xmm1, xmm2/m128|RM|V/V|AVX|Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.|
-|VEX.256.66.0F38.W0 0F /r\newline{}VTESTPD ymm1, ymm2/m256|RM|V/V|AVX|Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.|
+|`VEX.128.66.0F38.W0 0E /r`\newline{}`VTESTPS` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m128}{128 비트 XMM 레지스터 혹은 128 비트 메모리 데이터.} |RM|V/V|AVX|Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.|
+|`VEX.256.66.0F38.W0 0E /r`\newline{}`VTESTPS` \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2/m256}{YMM 레지스터나 256 비트 메모리 데이터.} |RM|V/V|AVX|Set ZF and CF depending on sign bit AND and ANDN of packed single-precision floating-point sources.|
+|`VEX.128.66.0F38.W0 0F /r`\newline{}`VTESTPD` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m128}{128 비트 XMM 레지스터 혹은 128 비트 메모리 데이터.} |RM|V/V|AVX|Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.|
+|`VEX.256.66.0F38.W0 0F /r`\newline{}`VTESTPD` \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2/m256}{YMM 레지스터나 256 비트 메모리 데이터.} |RM|V/V|AVX|Set ZF and CF depending on sign bit AND and ANDN of packed double-precision floating-point sources.|
 ### Instruction Operand Encoding
 
 

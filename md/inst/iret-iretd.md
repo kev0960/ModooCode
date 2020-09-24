@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|CF|IRET|NP|Valid|Valid|Interrupt return (16-bit operand size).|
-|CF|IRETD|NP|Valid|Valid|Interrupt return (32-bit operand size).|
-|REX.W + CF|IRETQ|NP|Valid|N.E.|Interrupt return (64-bit operand size).|
+|CF|`IRET` |NP|Valid|Valid|Interrupt return (16-bit operand size).|
+|CF|`IRETD` |NP|Valid|Valid|Interrupt return (32-bit operand size).|
+|REX.W + CF|IRETQ |NP|Valid|N.E.|Interrupt return (64-bit operand size).|
 ### Instruction Operand Encoding
 
 

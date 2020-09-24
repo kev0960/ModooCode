@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
-|F2 0F F0 /r\newline{}\newline{}LDDQU xmm1, mem|RM|V/V|SSE3|Load unaligned data from mem and return double quadword in xmm1.|
-|VEX.128.F2.0F.WIG F0 /r\newline{}\newline{}VLDDQU xmm1, m128|RM|V/V|AVX|Load unaligned packed integer values from mem to xmm1.|
-|VEX.256.F2.0F.WIG F0 /r\newline{}\newline{}VLDDQU ymm1, m256|RM|V/V|AVX|Load unaligned packed integer values from mem to ymm1.|
+|`F2 0F F0 /r`\newline{}`LDDQU` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} mem |RM|V/V|SSE3|Load unaligned data from mem and return double quadword in xmm1.|
+|`VEX.128.F2.0F.WIG F0 /r`\newline{}VLDDQU \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m128}{메모리 상의 16 바이트 데이터를 표현한다.} |RM|V/V|AVX|Load unaligned packed integer values from mem to xmm1.|
+|`VEX.256.F2.0F.WIG F0 /r`\newline{}VLDDQU \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{m256}{32 바이트 메모리 데이터. 이는 AVX 명령어들에만 사용된다.} |RM|V/V|AVX|Load unaligned packed integer values from mem to ymm1.|
 ### Instruction Operand Encoding
 
 

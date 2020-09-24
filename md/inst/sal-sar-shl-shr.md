@@ -18,70 +18,70 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}\htmlonly{*}\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------------------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|D0 /4|SAL r/m8, 1|M1|Valid |Valid|Multiply r/m8 by 2, once. |
-|REX + D0 /4|SAL r/m8\htmlonly{*}\htmlonly{*}, 1|M1|Valid|N.E.|Multiply r/m8 by 2, once. |
-|D2 /4|SAL r/m8, CL|MC|Valid |Valid|Multiply r/m8 by 2, CL times.|
-|REX + D2 /4|SAL r/m8\htmlonly{*}\htmlonly{*}, CL|MC|Valid|N.E.|Multiply r/m8 by 2, CL times.|
-|C0 /4 ib|SAL r/m8, imm8|MI|Valid |Valid|Multiply r/m8 by 2, imm8 times.|
-|REX + C0 /4 ib|SAL r/m8\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Multiply r/m8 by 2, imm8 times.|
-|D1 /4|SAL r/m16, 1|M1|Valid |Valid|Multiply r/m16 by 2, once.|
-|D3 /4|SAL r/m16, CL|MC|Valid |Valid|Multiply r/m16 by 2, CL times.|
-|C1 /4 ib|SAL r/m16, imm8|MI|Valid |Valid|Multiply r/m16 by 2, imm8 times.|
-|D1 /4|SAL r/m32, 1|M1|Valid |Valid|Multiply r/m32 by 2, once.|
-|REX.W + D1 /4|SAL r/m64, 1|M1|Valid|N.E.|Multiply r/m64 by 2, once.|
-|D3 /4|SAL r/m32, CL|MC|Valid |Valid|Multiply r/m32 by 2, CL times.|
-|REX.W + D3 /4|SAL r/m64, CL|MC|Valid|N.E.|Multiply r/m64 by 2, CL times.|
-|C1 /4 ib|SAL r/m32, imm8|MI|Valid |Valid|Multiply r/m32 by 2, imm8 times.|
-|REX.W + C1 /4 ib|SAL r/m64, imm8|MI|Valid|N.E.|Multiply r/m64 by 2, imm8 times.|
-|D0 /7|SAR r/m8, 1|M1|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, once.|
-|REX + D0 /7|SAR r/m8\htmlonly{*}\htmlonly{*}, 1|M1|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, once.|
-|D2 /7|SAR r/m8, CL|MC|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, CL times.|
-|REX + D2 /7|SAR r/m8\htmlonly{*}\htmlonly{*}, CL|MC|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, CL times.|
-|C0 /7 ib|SAR r/m8, imm8|MI|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, imm8 time.|
-|REX + C0 /7 ib|SAR r/m8\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, imm8 times.|
-|D1 /7|SAR r/m16,1|M1|Valid |Valid|Signed divide\htmlonly{*} r/m16 by 2, once.|
-|D3 /7|SAR r/m16, CL|MC|Valid |Valid|Signed divide\htmlonly{*} r/m16 by 2, CL times.|
-|C1 /7 ib|SAR r/m16, imm8|MI|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m16 by 2, imm8 times.|
-|D1 /7|SAR r/m32, 1|M1|Valid |Valid|Signed divide\htmlonly{*} r/m32 by 2, once.|
-|REX.W + D1 /7|SAR r/m64, 1|M1|Valid|N.E.|Signed divide\htmlonly{*} r/m64 by 2, once.|
-|D3 /7|SAR r/m32, CL|MC|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m32 by 2, CL times.|
-|REX.W + D3 /7|SAR r/m64, CL|MC|Valid|N.E.|Signed divide\htmlonly{*}\footnote{ } r/m64 by 2, CL times.|
-|C1 /7 ib|SAR r/m32, imm8|MI|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m32 by 2, imm8 times.|
-|REX.W + C1 /7 ib|SAR r/m64, imm8|MI|Valid|N.E.|Signed divide\htmlonly{*}\footnote{ } r/m64 by 2, imm8 times|
-|D0 /4|SHL r/m8, 1|M1|Valid |Valid|Multiply r/m8 by 2, once.|
-|REX + D0 /4|SHL r/m8\htmlonly{*}\htmlonly{*}, 1|M1|Valid|N.E.|Multiply r/m8 by 2, once.|
-|D2 /4|SHL r/m8, CL|MC|Valid |Valid|Multiply r/m8 by 2, CL times.|
-|REX + D2 /4|SHL r/m8\htmlonly{*}\htmlonly{*}, CL|MC|Valid|N.E.|Multiply r/m8 by 2, CL times.|
-|C0 /4 ib|SHL r/m8, imm8|MI|Valid |Valid|Multiply r/m8 by 2, imm8 times.|
-|REX + C0 /4 ib|SHL r/m8\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Multiply r/m8 by 2, imm8 times.|
-|D1 /4|SHL r/m16,1|M1|Valid |Valid|Multiply r/m16 by 2, once.|
-|D3 /4|SHL r/m16, CL|MC|Valid |Valid|Multiply r/m16 by 2, CL times.|
-|C1 /4 ib|SHL r/m16, imm8|MI|Valid |Valid|Multiply r/m16 by 2, imm8 times.|
-|D1 /4|SHL r/m32,1|M1|Valid |Valid|Multiply r/m32 by 2, once.|
+|D0 /4|`SAL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Multiply r/m8 by 2, once. |
+|REX + D0 /4|`SAL` r/m8\htmlonly{*}\htmlonly{*} 1 |M1|Valid|N.E.|Multiply r/m8 by 2, once. |
+|D2 /4|`SAL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Multiply r/m8 by 2, CL times.|
+|REX + D2 /4|`SAL` r/m8\htmlonly{*}\htmlonly{*} CL |MC|Valid|N.E.|Multiply r/m8 by 2, CL times.|
+|C0 /4 ib|`SAL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Multiply r/m8 by 2, imm8 times.|
+|REX + C0 /4 ib|`SAL` r/m8\htmlonly{*}\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Multiply r/m8 by 2, imm8 times.|
+|D1 /4|`SAL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Multiply r/m16 by 2, once.|
+|D3 /4|`SAL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Multiply r/m16 by 2, CL times.|
+|C1 /4 ib|`SAL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Multiply r/m16 by 2, imm8 times.|
+|D1 /4|`SAL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid |Valid|Multiply r/m32 by 2, once.|
+|REX.W + D1 /4|`SAL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid|N.E.|Multiply r/m64 by 2, once.|
+|D3 /4|`SAL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} CL |MC|Valid |Valid|Multiply r/m32 by 2, CL times.|
+|REX.W + D3 /4|`SAL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} CL |MC|Valid|N.E.|Multiply r/m64 by 2, CL times.|
+|C1 /4 ib|`SAL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Multiply r/m32 by 2, imm8 times.|
+|REX.W + C1 /4 ib|`SAL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Multiply r/m64 by 2, imm8 times.|
+|D0 /7|`SAR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, once.|
+|REX + D0 /7|`SAR` r/m8\htmlonly{*}\htmlonly{*} 1 |M1|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, once.|
+|D2 /7|`SAR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, CL times.|
+|REX + D2 /7|`SAR` r/m8\htmlonly{*}\htmlonly{*} CL |MC|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, CL times.|
+|C0 /7 ib|`SAR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Signed divide\htmlonly{*} r/m8 by 2, imm8 time.|
+|REX + C0 /7 ib|`SAR` r/m8\htmlonly{*}\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Signed divide\htmlonly{*} r/m8 by 2, imm8 times.|
+|D1 /7|`SAR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Signed divide\htmlonly{*} r/m16 by 2, once.|
+|D3 /7|`SAR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Signed divide\htmlonly{*} r/m16 by 2, CL times.|
+|C1 /7 ib|`SAR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m16 by 2, imm8 times.|
+|D1 /7|`SAR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid |Valid|Signed divide\htmlonly{*} r/m32 by 2, once.|
+|REX.W + D1 /7|`SAR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid|N.E.|Signed divide\htmlonly{*} r/m64 by 2, once.|
+|D3 /7|`SAR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} CL |MC|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m32 by 2, CL times.|
+|REX.W + D3 /7|`SAR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} CL |MC|Valid|N.E.|Signed divide\htmlonly{*}\footnote{ } r/m64 by 2, CL times.|
+|C1 /7 ib|`SAR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Signed divide\htmlonly{*}\footnote{ } r/m32 by 2, imm8 times.|
+|REX.W + C1 /7 ib|`SAR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Signed divide\htmlonly{*}\footnote{ } r/m64 by 2, imm8 times|
+|D0 /4|`SHL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Multiply r/m8 by 2, once.|
+|REX + D0 /4|`SHL` r/m8\htmlonly{*}\htmlonly{*} 1 |M1|Valid|N.E.|Multiply r/m8 by 2, once.|
+|D2 /4|`SHL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Multiply r/m8 by 2, CL times.|
+|REX + D2 /4|`SHL` r/m8\htmlonly{*}\htmlonly{*} CL |MC|Valid|N.E.|Multiply r/m8 by 2, CL times.|
+|C0 /4 ib|`SHL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Multiply r/m8 by 2, imm8 times.|
+|REX + C0 /4 ib|`SHL` r/m8\htmlonly{*}\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Multiply r/m8 by 2, imm8 times.|
+|D1 /4|`SHL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Multiply r/m16 by 2, once.|
+|D3 /4|`SHL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Multiply r/m16 by 2, CL times.|
+|C1 /4 ib|`SHL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Multiply r/m16 by 2, imm8 times.|
+|D1 /4|`SHL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid |Valid|Multiply r/m32 by 2, once.|
 
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|REX.W + D1 /4|SHL r/m64,1|M1|Valid|N.E.|Multiply r/m64 by 2, once.|
-|D3 /4|SHL r/m32, CL|MC|Valid |Valid|Multiply r/m32 by 2, CL times.|
-|REX.W + D3 /4|SHL r/m64, CL|MC|Valid|N.E.|Multiply r/m64 by 2, CL times.|
-|C1 /4 ib|SHL r/m32, imm8|MI|Valid |Valid|Multiply r/m32 by 2, imm8 times.|
-|REX.W + C1 /4 ib|SHL r/m64, imm8|MI|Valid|N.E.|Multiply r/m64 by 2, imm8 times.|
-|D0 /5|SHR r/m8,1|M1|Valid |Valid|Unsigned divide r/m8 by 2, once.|
-|REX + D0 /5|SHR r/m8\htmlonly{*}\htmlonly{*}, 1|M1|Valid|N.E.|Unsigned divide r/m8 by 2, once.|
-|D2 /5|SHR r/m8, CL|MC|Valid |Valid|Unsigned divide r/m8 by 2, CL times.|
-|REX + D2 /5|SHR r/m8\htmlonly{*}\htmlonly{*}, CL|MC|Valid|N.E.|Unsigned divide r/m8 by 2, CL times.|
-|C0 /5 ib|SHR r/m8, imm8|MI|Valid |Valid|Unsigned divide r/m8 by 2, imm8 times.|
-|REX + C0 /5 ib|SHR r/m8\htmlonly{*}\htmlonly{*}, imm8|MI|Valid|N.E.|Unsigned divide r/m8 by 2, imm8 times.|
-|D1 /5|SHR r/m16, 1|M1|Valid |Valid|Unsigned divide r/m16 by 2, once.|
-|D3 /5|SHR r/m16, CL|MC|Valid |Valid|Unsigned divide r/m16 by 2, CL times|
-|C1 /5 ib|SHR r/m16, imm8|MI|Valid |Valid|Unsigned divide r/m16 by 2, imm8 times.|
-|D1 /5|SHR r/m32, 1|M1|Valid |Valid|Unsigned divide r/m32 by 2, once.|
-|REX.W + D1 /5|SHR r/m64, 1|M1|Valid|N.E.|Unsigned divide r/m64 by 2, once.|
-|D3 /5|SHR r/m32, CL|MC|Valid |Valid|Unsigned divide r/m32 by 2, CL times.|
-|REX.W + D3 /5|SHR r/m64, CL|MC|Valid|N.E.|Unsigned divide r/m64 by 2, CL times.|
-|C1 /5 ib|SHR r/m32, imm8|MI|Valid |Valid|Unsigned divide r/m32 by 2, imm8 times.|
-|REX.W + C1 /5 ib|SHR r/m64, imm8|MI|Valid |N.E.|Unsigned divide r/m64 by 2, imm8 times.|
+|REX.W + D1 /4|`SHL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid|N.E.|Multiply r/m64 by 2, once.|
+|D3 /4|`SHL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} CL |MC|Valid |Valid|Multiply r/m32 by 2, CL times.|
+|REX.W + D3 /4|`SHL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} CL |MC|Valid|N.E.|Multiply r/m64 by 2, CL times.|
+|C1 /4 ib|`SHL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Multiply r/m32 by 2, imm8 times.|
+|REX.W + C1 /4 ib|`SHL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Multiply r/m64 by 2, imm8 times.|
+|D0 /5|`SHR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Unsigned divide r/m8 by 2, once.|
+|REX + D0 /5|`SHR` r/m8\htmlonly{*}\htmlonly{*} 1 |M1|Valid|N.E.|Unsigned divide r/m8 by 2, once.|
+|D2 /5|`SHR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Unsigned divide r/m8 by 2, CL times.|
+|REX + D2 /5|`SHR` r/m8\htmlonly{*}\htmlonly{*} CL |MC|Valid|N.E.|Unsigned divide r/m8 by 2, CL times.|
+|C0 /5 ib|`SHR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Unsigned divide r/m8 by 2, imm8 times.|
+|REX + C0 /5 ib|`SHR` r/m8\htmlonly{*}\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Unsigned divide r/m8 by 2, imm8 times.|
+|D1 /5|`SHR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Unsigned divide r/m16 by 2, once.|
+|D3 /5|`SHR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Unsigned divide r/m16 by 2, CL times|
+|C1 /5 ib|`SHR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Unsigned divide r/m16 by 2, imm8 times.|
+|D1 /5|`SHR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid |Valid|Unsigned divide r/m32 by 2, once.|
+|REX.W + D1 /5|`SHR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid|N.E.|Unsigned divide r/m64 by 2, once.|
+|D3 /5|`SHR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} CL |MC|Valid |Valid|Unsigned divide r/m32 by 2, CL times.|
+|REX.W + D3 /5|`SHR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} CL |MC|Valid|N.E.|Unsigned divide r/m64 by 2, CL times.|
+|C1 /5 ib|`SHR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Unsigned divide r/m32 by 2, imm8 times.|
+|REX.W + C1 /5 ib|`SHR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |N.E.|Unsigned divide r/m64 by 2, imm8 times.|
 
 ```note
 \htmlonly{*} Not the same form of division as IDIV; rounding is toward negative infinity.

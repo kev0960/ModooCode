@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 E5|FXAM|Valid|Valid|Classify value or number in ST(0).|
+|D9 E5|`FXAM` |Valid|Valid|Classify value or number in ST(0).|
 ### Description
 
 

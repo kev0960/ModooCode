@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|FB|STI|NP|Valid|Valid|Set interrupt flag; external, maskable interrupts enabled at the end of the next instruction.|
+|FB|`STI` |NP|Valid|Valid|Set interrupt flag; external, maskable interrupts enabled at the end of the next instruction.|
 ### Instruction Operand Encoding
 
 

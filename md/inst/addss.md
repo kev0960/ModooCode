@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|F3 0F 58 /r\newline{}ADDSS xmm1, xmm2/m32|RM|V/V|SSE|Add the low single-precision floating-point value from xmm2/mem to xmm1 and store the result in xmm1.|
-|VEX.NDS.128.F3.0F.WIG 58 /r\newline{}VADDSS xmm1,xmm2, xmm3/m32|RVM|V/V|AVX|Add the low single-precision floating-point value from xmm3/mem to xmm2 and store the result in xmm1.|
-|EVEX.NDS.LIG.F3.0F.W0 58 /r\newline{}VADDSS xmm1{k1}{z}, xmm2, xmm3/m32{er}|T1S|V/V|AVX512F|Add the low single-precision floating-point value from xmm3/m32 to xmm2 and store the result in xmm1with writemask k1.|
+|`F3 0F 58 /r`\newline{}`ADDSS` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m32}{8 비트 XMM 레지스터 혹은 32 비트 메모리 데이터.} |RM|V/V|SSE|Add the low single-precision floating-point value from xmm2/mem to xmm1 and store the result in xmm1.|
+|`VEX.NDS.128.F3.0F.WIG 58 /r`\newline{}VADDSS \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm3/m32}{8 비트 XMM 레지스터 혹은 32 비트 메모리 데이터.} |RVM|V/V|AVX|Add the low single-precision floating-point value from xmm3/mem to xmm2 and store the result in xmm1.|
+|`EVEX.NDS.LIG.F3.0F.W0 58 /r`\newline{}VADDSS xmm1{k1}{z} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} xmm3/m32{er} |T1S|V/V|AVX512F|Add the low single-precision floating-point value from xmm3/m32 to xmm2 and store the result in xmm1with writemask k1.|
 ### Instruction Operand Encoding
 
 

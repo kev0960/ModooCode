@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F C3 /r|MOVNTI m32, r32|MR|Valid|Valid|Move doubleword from r32 to m32 using non-temporal hint.|
-|REX.W + 0F C3 /r|MOVNTI m64, r64|MR|Valid |N.E.|Move quadword from r64 to m64 using non-temporal hint.|
+|0F C3 /r|`MOVNTI` \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |MR|Valid|Valid|Move doubleword from r32 to m32 using non-temporal hint.|
+|REX.W + 0F C3 /r|`MOVNTI` \tooltip{m64}{메모리 상의 8 바이트 데이터를 표현한다.} \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |MR|Valid |N.E.|Move quadword from r64 to m64 using non-temporal hint.|
 ### Instruction Operand Encoding
 
 

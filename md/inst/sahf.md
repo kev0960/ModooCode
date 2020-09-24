@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|9E|SAHF|NP|Invalid\htmlonly{*}|Valid|Loads SF, ZF, AF, PF, and CF from AH into EFLAGS register.|
+|9E|`SAHF` |NP|Invalid\htmlonly{*}|Valid|Loads SF, ZF, AF, PF, and CF from AH into EFLAGS register.|
 
 ```note
 \htmlonly{*} Valid in specific steppings. See Description section

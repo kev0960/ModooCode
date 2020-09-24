@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
-|66 0F 7C /r\newline{}\newline{}HADDPD xmm1, xmm2/m128|RM|V/V|SSE3|Horizontal add packed double-precision floating-point values from xmm2/m128 to xmm1.|
-|VEX.NDS.128.66.0F.WIG 7C /r\newline{}\newline{}VHADDPD xmm1,xmm2, xmm3/m128|RVM|V/V|AVX|Horizontal add packed double-precision floating-point values from xmm2 and xmm3/mem.|
-|VEX.NDS.256.66.0F.WIG 7C /r\newline{}\newline{}VHADDPD ymm1, ymm2, ymm3/m256|RVM|V/V|AVX|Horizontal add packed double-precision floating-point values from ymm2 and ymm3/mem.|
+|`66 0F 7C /r`\newline{}`HADDPD` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2/m128}{128 비트 XMM 레지스터 혹은 128 비트 메모리 데이터.} |RM|V/V|SSE3|Horizontal add packed double-precision floating-point values from xmm2/m128 to xmm1.|
+|`VEX.NDS.128.66.0F.WIG 7C /r`\newline{}VHADDPD \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm3/m128}{128 비트 XMM 레지스터 혹은 128 비트 메모리 데이터.} |RVM|V/V|AVX|Horizontal add packed double-precision floating-point values from xmm2 and xmm3/mem.|
+|`VEX.NDS.256.66.0F.WIG 7C /r`\newline{}VHADDPD \tooltip{ymm1}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm2}{256 비트 YMM 레지스터로 YMM0 부터 YMM7 까지 있다. 64 비트 모드에서는 YMM8 부터 YMM15 까지 추가적으로 사용할 수 있다.} \tooltip{ymm3/m256}{YMM 레지스터나 256 비트 메모리 데이터.} |RVM|V/V|AVX|Horizontal add packed double-precision floating-point values from ymm2 and ymm3/mem.|
 ### Instruction Operand Encoding
 
 

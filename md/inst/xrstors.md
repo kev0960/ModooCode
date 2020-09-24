@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F C7 /3|XRSTORS mem|M|Valid|Valid|Restore state components specified by EDX:EAX from mem.|
-|REX.W+ 0F C7 /3|XRSTORS64 mem|M|Valid|N.E.|Restore state components specified by EDX:EAX from mem.|
+|0F C7 /3|`XRSTORS` mem |M|Valid|Valid|Restore state components specified by EDX:EAX from mem.|
+|REX.W+ 0F C7 /3|XRSTORS64 mem |M|Valid|N.E.|Restore state components specified by EDX:EAX from mem.|
 ### Instruction Operand Encoding
 
 

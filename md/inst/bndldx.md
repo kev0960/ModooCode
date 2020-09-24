@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|---------|------------------------------------------------------|--------------------------------------------------|---------------|
-|0F 1A /r\newline{}BNDLDX bnd, mib|RM|V/V|MPX|Load the bounds stored in a bound table entry (BTE) into bnd with address translation using the base of mib and conditional on the index of mib matching the pointer value in the BTE.|
+|`0F 1A /r`\newline{}`BNDLDX` \tooltip{bnd}{128 비트 바운드 레지스터. BND0 부터 BND3 까지 가능하다. } \tooltip{mib}{SIB 주소 표현 형태를 사용하는 메모리 데이터로, 인덱스 레지스터가 주소값 계산에 사용되지 않으며 scale 역시 무시된다. 오직 베이스 와 변위 값만 유효 주소값을 계산하는데 사용된다. } |RM|V/V|MPX|Load the bounds stored in a bound table entry (BTE) into bnd with address translation using the base of mib and conditional on the index of mib matching the pointer value in the BTE.|
 ### Instruction Operand Encoding
 
 

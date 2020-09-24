@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op / **\newline{}**En**|**64/32 **\newline{}**bit Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|---------------|
-|EVEX.NDS.LIG.F3.0F.W0 7B /r\newline{}VCVTUSI2SS xmm1, xmm2, r/m32{er}|T1S|V/V|AVX512F|Convert one signed doubleword integer from r/m32 to one single-precision floating-point value in xmm1.|
-|EVEX.NDS.LIG.F3.0F.W1 7B /r\newline{}VCVTUSI2SS xmm1, xmm2, r/m64{er}|T1S|V/N.E.\footnote{1}|AVX512F|Convert one signed quadword integer from r/m64 to one single-precision floating-point value in xmm1.|
-||||||
+|`EVEX.NDS.LIG.F3.0F.W0 7B /r`\newline{}`VCVTUSI2SS` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} r/m32{er} |T1S|V/V|AVX512F|Convert one signed doubleword integer from r/m32 to one single-precision floating-point value in xmm1.|
+|`EVEX.NDS.LIG.F3.0F.W1 7B /r`\newline{}`VCVTUSI2SS` \tooltip{xmm1}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} \tooltip{xmm2}{128 비트 XMM 레지스터로 XMM0 부터 XMM7 까지 있다. 64 비트 모드에서는 XMM8 부터 XMM15 까지 추가적으로 사용할 수 있다.} r/m64{er} |T1S|V/N.E.\footnote{1}|AVX512F|Convert one signed quadword integer from r/m64 to one single-precision floating-point value in xmm1.|
+|``\newline{} |||||
 
 ```note
 1. For this specific instruction, EVEX.W in non-64 bit is ignored; the instructions behaves as if the W0 version isused

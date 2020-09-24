@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64/32bit **\newline{}**Mode **\newline{}**Support**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------------------------------|--------------------------------------------------|---------------|
-|0F 01 EF|WRPKRU|NP|V/V|OSPKE|Writes EAX into PKRU.|
+|0F 01 EF|`WRPKRU` |NP|V/V|OSPKE|Writes EAX into PKRU.|
 ### Instruction Operand Encoding
 
 

@@ -18,21 +18,21 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|FF /6|PUSH r/m16|M|Valid|Valid|Push r/m16.|
-|FF /6|PUSH r/m32|M|N.E.|Valid|Push r/m32.|
-|FF /6|PUSH r/m64|M|Valid|N.E.|Push r/m64. |
-|50+rw|PUSH r16|O|Valid |Valid|Push r16.|
-|50+rd|PUSH r32|O|N.E.|Valid|Push r32.|
-|50+rd|PUSH r64|O|Valid|N.E.|Push r64.|
-|6A ib|PUSH imm8|I|Valid|Valid|Push imm8.|
-|68 iw|PUSH imm16|I|Valid|Valid|Push imm16.|
-|68 id|PUSH imm32|I|Valid|Valid|Push imm32.|
-|0E|PUSH CS|NP|Invalid|Valid|Push CS.|
-|16|PUSH SS|NP|Invalid|Valid|Push SS.|
-|1E|PUSH DS|NP|Invalid|Valid|Push DS.|
-|06|PUSH ES|NP|Invalid|Valid|Push ES.|
-|0F A0|PUSH FS|NP|Valid|Valid|Push FS.|
-|0F A8|PUSH GS|NP|Valid|Valid|Push GS.|
+|FF /6|`PUSH` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Push r/m16.|
+|FF /6|`PUSH` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|N.E.|Valid|Push r/m32.|
+|FF /6|`PUSH` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid|N.E.|Push r/m64. |
+|50+rw|`PUSH` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |O|Valid |Valid|Push r16.|
+|50+rd|`PUSH` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |O|N.E.|Valid|Push r32.|
+|50+rd|`PUSH` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |O|Valid|N.E.|Push r64.|
+|6A ib|`PUSH` \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |I|Valid|Valid|Push imm8.|
+|68 iw|`PUSH` \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |I|Valid|Valid|Push imm16.|
+|68 id|`PUSH` \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |I|Valid|Valid|Push imm32.|
+|0E|`PUSH` CS |NP|Invalid|Valid|Push CS.|
+|16|`PUSH` SS |NP|Invalid|Valid|Push SS.|
+|1E|`PUSH` DS |NP|Invalid|Valid|Push DS.|
+|06|`PUSH` ES |NP|Invalid|Valid|Push ES.|
+|0F A0|`PUSH` FS |NP|Valid|Valid|Push FS.|
+|0F A8|`PUSH` GS |NP|Valid|Valid|Push GS.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

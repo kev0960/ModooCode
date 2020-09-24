@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01 F8|SWAPGS|NP|Valid|Invalid|Exchanges the current GS base register value with the value contained in MSR address C0000102H.|
+|0F 01 F8|`SWAPGS` |NP|Valid|Invalid|Exchanges the current GS base register value with the value contained in MSR address C0000102H.|
 ### Instruction Operand Encoding
 
 

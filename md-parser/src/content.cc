@@ -20,8 +20,8 @@
 #include "util.h"
 
 static const std::unordered_set<string> kSpecialCommands = {
-    "sidenote", "sc",        "newline",  "serif",
-    "htmlonly", "latexonly", "footnote", "esc"};
+    "sidenote",  "sc",       "newline", "serif",  "htmlonly",
+    "latexonly", "footnote", "esc",     "tooltip"};
 
 namespace md_parser {
 
@@ -65,6 +65,39 @@ void EscapeHtmlString(string* s) {
   }
   c_str[s.size()] = '\0';
   return c_str;
+}
+
+size_t FindNonEscapedChar(const string& content, char c, size_t start) {
+  size_t pos = start;
+  while (pos < content.size()) {
+    pos = content.find(c, pos);
+    if (pos == string::npos) {
+      break;
+    }
+
+    if (pos == 0 || content[pos - 1] != '\\') {
+      return pos;
+    }
+    pos++;
+  }
+
+  return std::string::npos;
+}
+
+string UnescapeEscapedString(const string& content) {
+  std::string s;
+  s.reserve(content.size());
+
+  for (size_t i = 0; i < content.size(); i++) {
+    if (content[i] == '\\' && i + 1 < content.size()) {
+      s.push_back(content[i + 1]);
+      i++;
+    } else {
+      s.push_back(content[i]);
+    }
+  }
+
+  return s;
 }
 
 string GetHtmlFragmentText(const string& content, const Fragments& fragment,
@@ -355,6 +388,14 @@ string Content::OutputHtml(ParserEnvironment* parser_env) {
     } else if (fragments_[i].type == Fragments::Types::FOOTNOTE) {
       html += StrCat("<sup>", GetHtmlFragmentText(content_, fragments_[i]),
                      "</sup>");
+    } else if (fragments_[i].type == Fragments::Types::TOOLTIP) {
+      html += StrCat(
+          "<span class='page-tooltip' data-tooltip='",
+          UnescapeEscapedString(
+              GetHtmlFragmentText(content_, fragments_[i], false)),
+          "' data-tooltip-position='bottom'>",
+          UnescapeEscapedString(GetHtmlFragmentText(content_, fragments_[i])),
+          "</span>");
     } else if (fragments_[i].type == Fragments::Types::FORCE_NEWLINE) {
       html += "<br>";
     } else if (fragments_[i].type == Fragments::Types::LINK) {
@@ -604,11 +645,11 @@ size_t Content::HandleSpecialCommands(const size_t start_pos, int* text_start) {
   if (content_[start_pos] != '\\') {
     return start_pos;
   }
-  const auto delimiter_pos = content_.find("{", start_pos + 1);
+  const auto delimiter_pos = FindNonEscapedChar(content_, '{', start_pos + 1);
   if (delimiter_pos == string::npos) {
     return start_pos;
   }
-  const auto body_end = content_.find("}", delimiter_pos + 1);
+  const auto body_end = FindNonEscapedChar(content_, '}', delimiter_pos + 1);
   if (body_end == string::npos) {
     return start_pos;
   }
@@ -653,6 +694,22 @@ size_t Content::HandleSpecialCommands(const size_t start_pos, int* text_start) {
     fragments_.emplace_back(Fragments::Types::ESCAPE, delimiter_pos + 1,
                             body_end - 1);
     return body_end;
+  } else if (delimiter == "tooltip") {
+    const auto tooltip_desc_start =
+        FindNonEscapedChar(content_, '{', body_end + 1);
+    if (tooltip_desc_start == string::npos) {
+      return start_pos;
+    }
+    const auto tooltip_desc_end =
+        FindNonEscapedChar(content_, '}', tooltip_desc_start + 1);
+    if (tooltip_desc_end == string::npos) {
+      return start_pos;
+    }
+
+    fragments_.emplace_back(Fragments::Types::TOOLTIP, delimiter_pos + 1,
+                            body_end - 1, tooltip_desc_start + 1,
+                            tooltip_desc_end - 1);
+    return tooltip_desc_end;
   }
 
   return start_pos;

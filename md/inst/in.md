@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|E4 ib|IN AL, imm8|I|Valid|Valid|Input byte from imm8 I/O port address into AL.|
-|E5 ib|IN AX, imm8|I|Valid|Valid|Input word from imm8 I/O port address into AX.|
-|E5 ib|IN EAX, imm8|I|Valid|Valid|Input dword from imm8 I/O port address into EAX.|
-|EC|IN AL,DX|NP|Valid|Valid|Input byte from I/O port in DX into AL.|
-|ED|IN AX,DX|NP|Valid|Valid|Input word from I/O port in DX into AX.|
-|ED|IN EAX,DX|NP|Valid|Valid|Input doubleword from I/O port in DX into EAX.|
+|E4 ib|`IN` AL \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |I|Valid|Valid|Input byte from imm8 I/O port address into AL.|
+|E5 ib|`IN` AX \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |I|Valid|Valid|Input word from imm8 I/O port address into AX.|
+|E5 ib|`IN` EAX \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |I|Valid|Valid|Input dword from imm8 I/O port address into EAX.|
+|EC|`IN` AL DX |NP|Valid|Valid|Input byte from I/O port in DX into AL.|
+|ED|`IN` AX DX |NP|Valid|Valid|Input word from I/O port in DX into AX.|
+|ED|`IN` EAX DX |NP|Valid|Valid|Input doubleword from I/O port in DX into EAX.|
 ### Instruction Operand Encoding
 
 

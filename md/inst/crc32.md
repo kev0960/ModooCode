@@ -18,12 +18,12 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|F2 0F 38 F0 /r\newline{}\newline{}CRC32 r32, r/m8|RM|Valid|Valid|Accumulate CRC32 on r/m8.|
-|F2 REX 0F 38 F0 /r\newline{}\newline{}CRC32 r32, r/m8\htmlonly{*}|RM|Valid|N.E.|Accumulate CRC32 on r/m8.|
-|F2 0F 38 F1 /r\newline{}\newline{}CRC32 r32, r/m16|RM|Valid|Valid|Accumulate CRC32 on r/m16.|
-|F2 0F 38 F1 /r\newline{}\newline{}CRC32 r32, r/m32|RM|Valid|Valid|Accumulate CRC32 on r/m32.|
-|F2 REX.W 0F 38 F0 /r\newline{}\newline{}CRC32 r64, r/m8|RM|Valid|N.E.|Accumulate CRC32 on r/m8.|
-|F2 REX.W 0F 38 F1 /r\newline{}\newline{}CRC32 r64, r/m64|RM|Valid|N.E.|Accumulate CRC32 on r/m64.|
+|`F2 0F 38 F0 /r`\newline{}`CRC32` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Accumulate CRC32 on r/m8.|
+|`F2 REX 0F 38 F0 /r`\newline{}`CRC32` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} r/m8\htmlonly{*} |RM|Valid|N.E.|Accumulate CRC32 on r/m8.|
+|`F2 0F 38 F1 /r`\newline{}`CRC32` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |RM|Valid|Valid|Accumulate CRC32 on r/m16.|
+|`F2 0F 38 F1 /r`\newline{}`CRC32` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |RM|Valid|Valid|Accumulate CRC32 on r/m32.|
+|`F2 REX.W 0F 38 F0 /r`\newline{}`CRC32` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |RM|Valid|N.E.|Accumulate CRC32 on r/m8.|
+|`F2 REX.W 0F 38 F1 /r`\newline{}`CRC32` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Accumulate CRC32 on r/m64.|
 
 ```note
 \htmlonly{*}In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.

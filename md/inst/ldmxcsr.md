@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64/32-bit **\newline{}**Mode**|**CPUID **\newline{}**Feature **\newline{}**Flag**|**Description**|
 |------------------------------------|------------------------|--------------------------------|--------------------------------------------------|---------------|
-|0F AE /2\newline{}\newline{}LDMXCSR m32|M|V/V|SSE|Load MXCSR register from m32.|
-|VEX.LZ.0F.WIG AE /2\newline{}\newline{}VLDMXCSR m32|M|V/V|AVX|Load MXCSR register from m32.|
+|`0F AE /2`\newline{}`LDMXCSR` \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} |M|V/V|SSE|Load MXCSR register from m32.|
+|`VEX.LZ.0F.WIG AE /2`\newline{}VLDMXCSR \tooltip{m32}{DS:(E)SI, ES:(E)DI 로 표현되는 4 바이트 짜리 메모리를 나타낸다. 주로 문자열 연산에서 사용된다. 64 비트의 경우 RSI 또는 RDI 레지스터로 표현된다.} |M|V/V|AVX|Load MXCSR register from m32.|
 ### Instruction Operand Encoding
 
 

@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 F5|FPREM1|Valid|Valid|Replace ST(0) with the IEEE remainder obtained from dividing ST(0) by ST(1).|
+|D9 F5|`FPREM1` |Valid|Valid|Replace ST(0) with the IEEE remainder obtained from dividing ST(0) by ST(1).|
 ### Description
 
 

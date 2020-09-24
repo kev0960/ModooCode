@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|3F|AAS|NP|Invalid|Valid|ASCII adjust AL after subtraction.|
+|3F|`AAS` |NP|Invalid|Valid|ASCII adjust AL after subtraction.|
 ### Instruction Operand Encoding
 
 

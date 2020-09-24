@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|8D /r|LEA r16,m|RM|Valid|Valid|Store effective address for m in register r16.|
-|8D /r|LEA r32,m|RM|Valid|Valid|Store effective address for m in register r32.|
-|REX.W + 8D /r|LEA r64,m|RM|Valid|N.E.|Store effective address for m in register r64. |
+|8D /r|`LEA` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{m}{16- 혹은 32- 혹은 64 비트 짜리 메모리 데이터를 의미한다.} |RM|Valid|Valid|Store effective address for m in register r16.|
+|8D /r|`LEA` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{m}{16- 혹은 32- 혹은 64 비트 짜리 메모리 데이터를 의미한다.} |RM|Valid|Valid|Store effective address for m in register r32.|
+|REX.W + 8D /r|`LEA` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{m}{16- 혹은 32- 혹은 64 비트 짜리 메모리 데이터를 의미한다.} |RM|Valid|N.E.|Store effective address for m in register r64. |
 ### Instruction Operand Encoding
 
 

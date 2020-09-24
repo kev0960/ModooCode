@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 06|CLTS|NP|Valid|Valid|Clears TS flag in CR0.|
+|0F 06|`CLTS` |NP|Valid|Valid|Clears TS flag in CR0.|
 ### Instruction Operand Encoding
 
 

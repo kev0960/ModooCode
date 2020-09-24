@@ -18,8 +18,8 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 07|SYSRET|NP|Valid|Invalid|Return to compatibility mode from fast system call |
-|REX.W + 0F 07|SYSRET|NP|Valid|Invalid|Return to 64-bit mode from fast system call |
+|0F 07|`SYSRET` |NP|Valid|Invalid|Return to compatibility mode from fast system call |
+|REX.W + 0F 07|`SYSRET` |NP|Valid|Invalid|Return to 64-bit mode from fast system call |
 ### Instruction Operand Encoding
 
 

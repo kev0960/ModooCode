@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode/**\newline{}**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |------------------------------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 2C /r\newline{}\newline{}CVTTPS2PI mm, xmm/m64|RM|Valid|Valid|Convert two single-precision floating-point values from xmm/m64 to two signed doubleword signed integers in mm using truncation.|
+|`0F 2C /r`\newline{}`CVTTPS2PI` \tooltip{mm}{64 비트 MMX 레지스터로 MM0 부터 MM7 까지 가능하다. } \tooltip{xmm/m64}{128 비트 XMM 레지스터 혹은 64 비트 메모리 데이터.} |RM|Valid|Valid|Convert two single-precision floating-point values from xmm/m64 to two signed doubleword signed integers in mm using truncation.|
 ### Instruction Operand Encoding
 
 

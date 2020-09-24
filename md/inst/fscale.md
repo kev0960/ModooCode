@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 FD|FSCALE|Valid|Valid|Scale ST(0) by ST(1).|
+|D9 FD|`FSCALE` |Valid|Valid|Scale ST(0) by ST(1).|
 ### Description
 
 

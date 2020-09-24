@@ -18,70 +18,70 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|D0 /2|RCL r/m8, 1|M1|Valid |Valid|Rotate 9 bits (CF, r/m8) left once.|
-|REX + D0 /2|RCL r/m8\htmlonly{*}, 1|M1|Valid|N.E.|Rotate 9 bits (CF, r/m8) left once. |
-|D2 /2|RCL r/m8, CL|MC|Valid |Valid|Rotate 9 bits (CF, r/m8) left CL times. |
-|REX + D2 /2|RCL r/m8\htmlonly{*}, CL|MC|Valid|N.E.|Rotate 9 bits (CF, r/m8) left CL times. |
-|C0 /2 ib|RCL r/m8, imm8|MI|Valid |Valid|Rotate 9 bits (CF, r/m8) left imm8 times.|
-|REX + C0 /2 ib|RCL r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Rotate 9 bits (CF, r/m8) left imm8 times.|
-|D1 /2|RCL r/m16, 1|M1|Valid |Valid|Rotate 17 bits (CF, r/m16) left once.|
-|D3 /2|RCL r/m16, CL|MC|Valid |Valid|Rotate 17 bits (CF, r/m16) left CL times.|
-|C1 /2 ib|RCL r/m16, imm8|MI|Valid |Valid|Rotate 17 bits (CF, r/m16) left imm8 times.|
-|D1 /2|RCL r/m32, 1|M1|Valid |Valid|Rotate 33 bits (CF, r/m32) left once.|
-|REX.W + D1 /2|RCL r/m64, 1|M1|Valid|N.E.|Rotate 65 bits (CF, r/m64) left once. Uses a 6 bit count.|
-|D3 /2|RCL r/m32, CL|MC|Valid |Valid|Rotate 33 bits (CF, r/m32) left CL times.|
-|REX.W + D3 /2|RCL r/m64, CL|MC|Valid|N.E.|Rotate 65 bits (CF, r/m64) left CL times. Uses a 6 bit count.|
-|C1 /2 ib|RCL r/m32, imm8|MI|Valid |Valid|Rotate 33 bits (CF, r/m32) left imm8 times.|
-|REX.W + C1 /2 ib|RCL r/m64, imm8|MI|Valid|N.E.|Rotate 65 bits (CF, r/m64) left imm8 times. Uses a 6 bit count.|
-|D0 /3|RCR r/m8, 1|M1|Valid |Valid|Rotate 9 bits (CF, r/m8) right once. |
-|REX + D0 /3|RCR r/m8\htmlonly{*}, 1|M1|Valid|N.E.|Rotate 9 bits (CF, r/m8) right once. |
-|D2 /3|RCR r/m8, CL|MC|Valid |Valid|Rotate 9 bits (CF, r/m8) right CL times. |
-|REX + D2 /3|RCR r/m8\htmlonly{*}, CL|MC|Valid|N.E.|Rotate 9 bits (CF, r/m8) right CL times. |
-|C0 /3 ib|RCR r/m8, imm8|MI|Valid |Valid|Rotate 9 bits (CF, r/m8) right imm8 times. |
-|REX + C0 /3 ib|RCR r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Rotate 9 bits (CF, r/m8) right imm8 times. |
-|D1 /3|RCR r/m16, 1|M1|Valid |Valid|Rotate 17 bits (CF, r/m16) right once.|
-|D3 /3|RCR r/m16, CL|MC|Valid |Valid|Rotate 17 bits (CF, r/m16) right CL times.|
-|C1 /3 ib|RCR r/m16, imm8|MI|Valid |Valid|Rotate 17 bits (CF, r/m16) right imm8 times.|
-|D1 /3|RCR r/m32, 1|M1|Valid |Valid|Rotate 33 bits (CF, r/m32) right once. Uses a 6 bit count.|
-|REX.W + D1 /3|RCR r/m64, 1|M1|Valid|N.E.|Rotate 65 bits (CF, r/m64) right once. Uses a 6 bit count.|
-|D3 /3|RCR r/m32, CL|MC|Valid |Valid|Rotate 33 bits (CF, r/m32) right CL times.|
-|REX.W + D3 /3|RCR r/m64, CL|MC|Valid|N.E.|Rotate 65 bits (CF, r/m64) right CL times. Uses a 6 bit count.|
-|C1 /3 ib|RCR r/m32, imm8|MI|Valid |Valid|Rotate 33 bits (CF, r/m32) right imm8 times.|
-|REX.W + C1 /3 ib|RCR r/m64, imm8|MI|Valid|N.E.|Rotate 65 bits (CF, r/m64) right imm8 times. Uses a 6 bit count.|
-|D0 /0|ROL r/m8, 1|M1|Valid |Valid|Rotate 8 bits r/m8 left once.|
-|REX + D0 /0|ROL r/m8\htmlonly{*}, 1|M1|Valid|N.E.|Rotate 8 bits r/m8 left once|
-|D2 /0|ROL r/m8, CL|MC|Valid |Valid|Rotate 8 bits r/m8 left CL times.|
-|REX + D2 /0|ROL r/m8\htmlonly{*}, CL|MC|Valid|N.E.|Rotate 8 bits r/m8 left CL times.|
-|C0 /0 ib|ROL r/m8, imm8|MI|Valid |Valid|Rotate 8 bits r/m8 left imm8 times.|
+|D0 /2|`RCL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Rotate 9 bits (CF, r/m8) left once.|
+|REX + D0 /2|`RCL` r/m8\htmlonly{*} 1 |M1|Valid|N.E.|Rotate 9 bits (CF, r/m8) left once. |
+|D2 /2|`RCL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Rotate 9 bits (CF, r/m8) left CL times. |
+|REX + D2 /2|`RCL` r/m8\htmlonly{*} CL |MC|Valid|N.E.|Rotate 9 bits (CF, r/m8) left CL times. |
+|C0 /2 ib|`RCL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 9 bits (CF, r/m8) left imm8 times.|
+|REX + C0 /2 ib|`RCL` r/m8\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Rotate 9 bits (CF, r/m8) left imm8 times.|
+|D1 /2|`RCL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Rotate 17 bits (CF, r/m16) left once.|
+|D3 /2|`RCL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Rotate 17 bits (CF, r/m16) left CL times.|
+|C1 /2 ib|`RCL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 17 bits (CF, r/m16) left imm8 times.|
+|D1 /2|`RCL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid |Valid|Rotate 33 bits (CF, r/m32) left once.|
+|REX.W + D1 /2|`RCL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid|N.E.|Rotate 65 bits (CF, r/m64) left once. Uses a 6 bit count.|
+|D3 /2|`RCL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} CL |MC|Valid |Valid|Rotate 33 bits (CF, r/m32) left CL times.|
+|REX.W + D3 /2|`RCL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} CL |MC|Valid|N.E.|Rotate 65 bits (CF, r/m64) left CL times. Uses a 6 bit count.|
+|C1 /2 ib|`RCL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 33 bits (CF, r/m32) left imm8 times.|
+|REX.W + C1 /2 ib|`RCL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Rotate 65 bits (CF, r/m64) left imm8 times. Uses a 6 bit count.|
+|D0 /3|`RCR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Rotate 9 bits (CF, r/m8) right once. |
+|REX + D0 /3|`RCR` r/m8\htmlonly{*} 1 |M1|Valid|N.E.|Rotate 9 bits (CF, r/m8) right once. |
+|D2 /3|`RCR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Rotate 9 bits (CF, r/m8) right CL times. |
+|REX + D2 /3|`RCR` r/m8\htmlonly{*} CL |MC|Valid|N.E.|Rotate 9 bits (CF, r/m8) right CL times. |
+|C0 /3 ib|`RCR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 9 bits (CF, r/m8) right imm8 times. |
+|REX + C0 /3 ib|`RCR` r/m8\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Rotate 9 bits (CF, r/m8) right imm8 times. |
+|D1 /3|`RCR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Rotate 17 bits (CF, r/m16) right once.|
+|D3 /3|`RCR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Rotate 17 bits (CF, r/m16) right CL times.|
+|C1 /3 ib|`RCR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 17 bits (CF, r/m16) right imm8 times.|
+|D1 /3|`RCR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid |Valid|Rotate 33 bits (CF, r/m32) right once. Uses a 6 bit count.|
+|REX.W + D1 /3|`RCR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid|N.E.|Rotate 65 bits (CF, r/m64) right once. Uses a 6 bit count.|
+|D3 /3|`RCR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} CL |MC|Valid |Valid|Rotate 33 bits (CF, r/m32) right CL times.|
+|REX.W + D3 /3|`RCR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} CL |MC|Valid|N.E.|Rotate 65 bits (CF, r/m64) right CL times. Uses a 6 bit count.|
+|C1 /3 ib|`RCR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 33 bits (CF, r/m32) right imm8 times.|
+|REX.W + C1 /3 ib|`RCR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Rotate 65 bits (CF, r/m64) right imm8 times. Uses a 6 bit count.|
+|D0 /0|`ROL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Rotate 8 bits r/m8 left once.|
+|REX + D0 /0|`ROL` r/m8\htmlonly{*} 1 |M1|Valid|N.E.|Rotate 8 bits r/m8 left once|
+|D2 /0|`ROL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Rotate 8 bits r/m8 left CL times.|
+|REX + D2 /0|`ROL` r/m8\htmlonly{*} CL |MC|Valid|N.E.|Rotate 8 bits r/m8 left CL times.|
+|C0 /0 ib|`ROL` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 8 bits r/m8 left imm8 times.|
 
 
 |**Opcode\htmlonly{*}\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|REX + C0 /0 ib|ROL r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Rotate 8 bits r/m8 left imm8 times.|
-|D1 /0|ROL r/m16, 1|M1|Valid |Valid|Rotate 16 bits r/m16 left once.|
-|D3 /0|ROL r/m16, CL|MC|Valid |Valid|Rotate 16 bits r/m16 left CL times.|
-|C1 /0 ib|ROL r/m16, imm8|MI|Valid |Valid|Rotate 16 bits r/m16 left imm8 times.|
-|D1 /0|ROL r/m32, 1|M1|Valid |Valid|Rotate 32 bits r/m32 left once.|
-|REX.W + D1 /0|ROL r/m64, 1|M1|Valid|N.E.|Rotate 64 bits r/m64 left once. Uses a 6 bit count.|
-|D3 /0|ROL r/m32, CL|MC|Valid |Valid|Rotate 32 bits r/m32 left CL times.|
-|REX.W + D3 /0|ROL r/m64, CL|MC|Valid|N.E.|Rotate 64 bits r/m64 left CL times. Uses a 6 bit count.|
-|C1 /0 ib|ROL r/m32, imm8|MI|Valid |Valid|Rotate 32 bits r/m32 left imm8 times.|
-|REX.W + C1 /0 ib|ROL r/m64, imm8|MI|Valid|N.E.|Rotate 64 bits r/m64 left imm8 times. Uses a 6 bit count.|
-|D0 /1|ROR r/m8, 1|M1|Valid |Valid|Rotate 8 bits r/m8 right once.|
-|REX + D0 /1|ROR r/m8\htmlonly{*}, 1|M1|Valid|N.E.|Rotate 8 bits r/m8 right once.|
-|D2 /1|ROR r/m8, CL|MC|Valid |Valid|Rotate 8 bits r/m8 right CL times.|
-|REX + D2 /1|ROR r/m8\htmlonly{*}, CL|MC|Valid|N.E.|Rotate 8 bits r/m8 right CL times.|
-|C0 /1 ib|ROR r/m8, imm8|MI|Valid |Valid|Rotate 8 bits r/m16 right imm8 times.|
-|REX + C0 /1 ib|ROR r/m8\htmlonly{*}, imm8|MI|Valid|N.E.|Rotate 8 bits r/m16 right imm8 times.|
-|D1 /1|ROR r/m16, 1|M1|Valid |Valid|Rotate 16 bits r/m16 right once.|
-|D3 /1|ROR r/m16, CL|MC|Valid |Valid|Rotate 16 bits r/m16 right CL times.|
-|C1 /1 ib|ROR r/m16, imm8|MI|Valid |Valid|Rotate 16 bits r/m16 right imm8 times.|
-|D1 /1|ROR r/m32, 1|M1|Valid |Valid|Rotate 32 bits r/m32 right once.|
-|REX.W + D1 /1|ROR r/m64, 1|M1|Valid|N.E.|Rotate 64 bits r/m64 right once. Uses a 6 bit count.|
-|D3 /1|ROR r/m32, CL|MC|Valid |Valid|Rotate 32 bits r/m32 right CL times.|
-|REX.W + D3 /1|ROR r/m64, CL|MC|Valid|N.E.|Rotate 64 bits r/m64 right CL times. Uses a 6 bit count.|
-|C1 /1 ib|ROR r/m32, imm8|MI|Valid |Valid|Rotate 32 bits r/m32 right imm8 times.|
-|REX.W + C1 /1 ib|ROR r/m64, imm8|MI|Valid |N.E.|Rotate 64 bits r/m64 right imm8 times. Uses a 6 bit count.|
+|REX + C0 /0 ib|`ROL` r/m8\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Rotate 8 bits r/m8 left imm8 times.|
+|D1 /0|`ROL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Rotate 16 bits r/m16 left once.|
+|D3 /0|`ROL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Rotate 16 bits r/m16 left CL times.|
+|C1 /0 ib|`ROL` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 16 bits r/m16 left imm8 times.|
+|D1 /0|`ROL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid |Valid|Rotate 32 bits r/m32 left once.|
+|REX.W + D1 /0|`ROL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid|N.E.|Rotate 64 bits r/m64 left once. Uses a 6 bit count.|
+|D3 /0|`ROL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} CL |MC|Valid |Valid|Rotate 32 bits r/m32 left CL times.|
+|REX.W + D3 /0|`ROL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} CL |MC|Valid|N.E.|Rotate 64 bits r/m64 left CL times. Uses a 6 bit count.|
+|C1 /0 ib|`ROL` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 32 bits r/m32 left imm8 times.|
+|REX.W + C1 /0 ib|`ROL` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Rotate 64 bits r/m64 left imm8 times. Uses a 6 bit count.|
+|D0 /1|`ROR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Rotate 8 bits r/m8 right once.|
+|REX + D0 /1|`ROR` r/m8\htmlonly{*} 1 |M1|Valid|N.E.|Rotate 8 bits r/m8 right once.|
+|D2 /1|`ROR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Rotate 8 bits r/m8 right CL times.|
+|REX + D2 /1|`ROR` r/m8\htmlonly{*} CL |MC|Valid|N.E.|Rotate 8 bits r/m8 right CL times.|
+|C0 /1 ib|`ROR` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 8 bits r/m16 right imm8 times.|
+|REX + C0 /1 ib|`ROR` r/m8\htmlonly{*} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid|N.E.|Rotate 8 bits r/m16 right imm8 times.|
+|D1 /1|`ROR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } 1 |M1|Valid |Valid|Rotate 16 bits r/m16 right once.|
+|D3 /1|`ROR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } CL |MC|Valid |Valid|Rotate 16 bits r/m16 right CL times.|
+|C1 /1 ib|`ROR` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 16 bits r/m16 right imm8 times.|
+|D1 /1|`ROR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid |Valid|Rotate 32 bits r/m32 right once.|
+|REX.W + D1 /1|`ROR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} 1 |M1|Valid|N.E.|Rotate 64 bits r/m64 right once. Uses a 6 bit count.|
+|D3 /1|`ROR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} CL |MC|Valid |Valid|Rotate 32 bits r/m32 right CL times.|
+|REX.W + D3 /1|`ROR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} CL |MC|Valid|N.E.|Rotate 64 bits r/m64 right CL times. Uses a 6 bit count.|
+|C1 /1 ib|`ROR` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |Valid|Rotate 32 bits r/m32 right imm8 times.|
+|REX.W + C1 /1 ib|`ROR` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |MI|Valid |N.E.|Rotate 64 bits r/m64 right imm8 times. Uses a 6 bit count.|
 
 ```note
 \htmlonly{*} In 64-bit mode, r/m8 can not be encoded to access the following byte registers if a REX prefix is used: AH, BH, CH, DH.

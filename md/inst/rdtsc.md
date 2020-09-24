@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 31|RDTSC|NP|Valid |Valid|Read time-stamp counter into EDX:EAX.|
+|0F 31|`RDTSC` |NP|Valid |Valid|Read time-stamp counter into EDX:EAX.|
 ### Instruction Operand Encoding
 
 

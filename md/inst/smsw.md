@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode\htmlonly{*}**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 01 /4|SMSW r/m16|M|Valid |Valid|Store machine status word to r/m16.|
-|0F 01 /4|SMSW r32/m16|M|Valid|Valid|Store machine status word in low-order 16 bits of r32/m16; high-order 16 bits of r32 are undefined.|
-|REX.W + 0F 01 /4|SMSW r64/m16|M|Valid|Valid|Store machine status word in low-order 16 bits of r64/m16; high-order 16 bits of r32 are undefined.|
+|0F 01 /4|`SMSW` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid |Valid|Store machine status word to r/m16.|
+|0F 01 /4|`SMSW` r32/m16 |M|Valid|Valid|Store machine status word in low-order 16 bits of r32/m16; high-order 16 bits of r32 are undefined.|
+|REX.W + 0F 01 /4|`SMSW` r64/m16 |M|Valid|Valid|Store machine status word in low-order 16 bits of r64/m16; high-order 16 bits of r32 are undefined.|
 ### Instruction Operand Encoding
 
 

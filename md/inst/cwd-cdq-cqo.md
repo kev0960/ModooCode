@@ -18,9 +18,9 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|99|CWD|NP|Valid|Valid|DX:AX <- sign-extend of AX.|
-|99|CDQ|NP|Valid|Valid|EDX:EAX <- sign-extend of EAX.|
-|REX.W + 99|CQO|NP|Valid|N.E.|RDX:RAX<- sign-extend of RAX.|
+|99|`CWD` |NP|Valid|Valid|DX:AX <- sign-extend of AX.|
+|99|`CDQ` |NP|Valid|Valid|EDX:EAX <- sign-extend of EAX.|
+|REX.W + 99|`CQO` |NP|Valid|N.E.|RDX:RAX<- sign-extend of RAX.|
 ### Instruction Operand Encoding
 
 

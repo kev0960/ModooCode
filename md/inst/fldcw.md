@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
-|D9 /5|FLDCW m2byte|Valid|Valid|Load FPU control word from m2byte.|
+|D9 /5|`FLDCW` m2byte |Valid|Valid|Load FPU control word from m2byte.|
 ### Description
 
 

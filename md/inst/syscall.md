@@ -18,7 +18,7 @@ publish_date: 2020-09-01
 
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
-|0F 05|SYSCALL|NP|Valid|Invalid|Fast call to privilege level 0 system procedures.|
+|0F 05|`SYSCALL` |NP|Valid|Invalid|Fast call to privilege level 0 system procedures.|
 ### Instruction Operand Encoding
 
 
