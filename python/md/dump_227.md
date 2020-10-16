@@ -138,6 +138,7 @@ MyString::MyString(const char *str) {
 MyString::MyString(const MyString &str) {
   std::cout << "복사 생성자 호출 ! " << std::endl;
   string_length = str.string_length;
+  memory_capacity = str.string_length;
   string_content = new char[string_length];
 
   for (int i = 0; i != string_length; i++)
@@ -437,6 +438,7 @@ MyString::MyString(const char *str) {
 MyString::MyString(const MyString &str) {
   std::cout << "복사 생성자 호출 ! " << std::endl;
   string_length = str.string_length;
+  memory_capacity = str.string_length;
   string_content = new char[string_length];
 
   for (int i = 0; i != string_length; i++)
@@ -638,6 +640,7 @@ MyString::MyString(const char *str) {
 MyString::MyString(const MyString &str) {
   std::cout << "복사 생성자 호출 ! " << std::endl;
   string_length = str.string_length;
+  memory_capacity = str.string_length;
   string_content = new char[string_length];
 
   for (int i = 0; i != string_length; i++)
@@ -732,6 +735,7 @@ MyString::MyString(const char *str) {
 MyString::MyString(const MyString &str) {
   std::cout << "복사 생성자 호출 ! " << std::endl;
   string_length = str.string_length;
+  memory_capacity = str.string_length;
   string_content = new char[string_length];
 
   for (int i = 0; i != string_length; i++)
