@@ -5,7 +5,7 @@
 "files": ["184","187","195","214","220","231","315","5","6","19","21","7","8","308","9","10","12","14","16","17","18","20","23","24","25","26","27","28","30","31","29","32","33","43","55","60","71","83","87","88","89","98","100","99","103","117","123","125","129","130"]
 },
 "C++": {
-"files": ["135","134","136","138","141","169","172","173","188","197","198","253","202","203","204","209","210","211","213","215","217","218","219","290","221","222","223","224","225","292","230","227","228","229","252","254","269","270","271","284","285","286","293","294","295","303","304","306","309","310","311","189","196","255","312"]
+"files": ["135","134","136","138","141","169","172","173","188","197","198","253","202","203","204","209","210","211","213","215","217","218","219","290","221","222","223","224","225","292","230","227","228","229","252","254","269","270","271","284","285","286","293","294","295","303","304","306","309","310","311","189","196","255","312","319","320"]
 },
 "C Reference": {
 "files": [],
@@ -27,32 +27,32 @@
 "iostream": {
 "files": ["143","144","145","146","147","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","170","171","179","180","181","182","190","191","192","193","194","276","277","278","279","280","281","282","283"]
 },
-"string": {
-"files": ["233","234","235","236","237","238","240","241","249","250","296","297","307"]
-},
-"Containers": {
-"files": ["174"],
-"list": {
-"files": ["177"]
-},
-"vector": {
-"files": ["175","183","185","186"]
-},
-"deque": {
-"files": ["176"]
-}
-},
 "algorithm": {
 "files": ["256","257","258","259","260","261","262","263","264","265","266","267","268","272","273","275","288","289","291","298","305","317","318"]
-},
-"utility": {
-"files": ["299","301","302"]
 },
 "string_view": {
 "files": ["239","242"]
 },
 "array": {
 "files": ["314"]
+},
+"Containers": {
+"files": ["174"],
+"vector": {
+"files": ["175","183","185","186"]
+},
+"deque": {
+"files": ["176"]
+},
+"list": {
+"files": ["177"]
+}
+},
+"string": {
+"files": ["233","234","235","236","237","238","240","241","249","250","296","297","307"]
+},
+"utility": {
+"files": ["299","301","302"]
 }
 },
 "X86-64 명령어 레퍼런스": {
@@ -60,59 +60,50 @@
 "V": {
 "files": ["valignd-valignq","vblendmpd-vblendmps","vbroadcast","vcompresspd","vcompressps","vcvtpd2qq","vcvtpd2udq","vcvtpd2uqq","vcvtph2ps","vcvtps2ph","vcvtps2qq","vcvtps2udq","vcvtps2uqq","vcvtqq2pd","vcvtqq2ps","vcvtsd2usi","vcvtss2usi","vcvttpd2qq","vcvttpd2udq","vcvttpd2uqq","vcvttps2qq","vcvttps2udq","vcvttps2uqq","vcvttsd2usi","vcvttss2usi","vcvtudq2pd","vcvtudq2ps","vcvtuqq2pd","vcvtuqq2ps","vcvtusi2sd","vcvtusi2ss","vdbpsadbw","verr-verw","vexp2pd","vexp2ps","vexpandpd","vexpandps","vextractf128-vextractf32x4-vextractf64x2-vextractf32x8-vextractf64x4","vextracti128-vextracti32x4-vextracti64x2-vextracti32x8-vextracti64x4","vfixupimmpd","vfixupimmps","vfixupimmsd","vfixupimmss","vfmadd132pd-vfmadd213pd-vfmadd231pd","vfmadd132ps-vfmadd213ps-vfmadd231ps","vfmadd132sd-vfmadd213sd-vfmadd231sd","vfmadd132ss-vfmadd213ss-vfmadd231ss","vfmaddsub132pd-vfmaddsub213pd-vfmaddsub231pd","vfmaddsub132ps-vfmaddsub213ps-vfmaddsub231ps","vfmsub132pd-vfmsub213pd-vfmsub231pd","vfmsub132ps-vfmsub213ps-vfmsub231ps","vfmsub132sd-vfmsub213sd-vfmsub231sd","vfmsub132ss-vfmsub213ss-vfmsub231ss","vfmsubadd132pd-vfmsubadd213pd-vfmsubadd231pd","vfmsubadd132ps-vfmsubadd213ps-vfmsubadd231ps","vfnmadd132pd-vfnmadd213pd-vfnmadd231pd","vfnmadd132ps-vfnmadd213ps-vfnmadd231ps","vfnmadd132sd-vfnmadd213sd-vfnmadd231sd","vfnmadd132ss-vfnmadd213ss-vfnmadd231ss","vfnmsub132pd-vfnmsub213pd-vfnmsub231pd","vfnmsub132ps-vfnmsub213ps-vfnmsub231ps","vfnmsub132sd-vfnmsub213sd-vfnmsub231sd","vfnmsub132ss-vfnmsub213ss-vfnmsub231ss","vfpclasspd","vfpclassps","vfpclasssd","vfpclassss","vgatherdpd-vgatherqpd","vgatherdps-vgatherdpd","vgatherdps-vgatherqps","vgatherpf0dps-vgatherpf0qps-vgatherpf0dpd-vgatherpf0qpd","vgatherpf1dps-vgatherpf1qps-vgatherpf1dpd-vgatherpf1qpd","vgatherqps-vgatherqpd","vgetexppd","vgetexpps","vgetexpsd","vgetexpss","vgetmantpd","vgetmantps","vgetmantsd","vgetmantss","vinsertf128-vinsertf32x4-vinsertf64x2-vinsertf32x8-vinsertf64x4","vinserti128-vinserti32x4-vinserti64x2-vinserti32x8-vinserti64x4","vmaskmov","vpblendd","vpblendmb-vpblendmw","vpblendmd-vpblendmq","vpbroadcast","vpbroadcastb-vpbroadcastw-vpbroadcastd-vpbroadcastq","vpbroadcastm","vpcmpb-vpcmpub","vpcmpd-vpcmpud","vpcmpq-vpcmpuq","vpcmpw-vpcmpuw","vpcompressd","vpcompressq","vpconflictd-vpconflictq","vperm2f128","vperm2i128","vpermd-vpermw","vpermi2w-vpermi2d-vpermi2q-vpermi2ps-vpermi2pd","vpermilpd","vpermilps","vpermpd","vpermps","vpermq","vpexpandd","vpexpandq","vpgatherdd-vpgatherdq","vpgatherdd-vpgatherqd","vpgatherdq-vpgatherqq","vpgatherqd-vpgatherqq","vplzcntd-vplzcntq","vpmaskmov","vpmovb2m-vpmovw2m-vpmovd2m-vpmovq2m","vpmovdb-vpmovsdb-vpmovusdb","vpmovdw-vpmovsdw-vpmovusdw","vpmovm2b-vpmovm2w-vpmovm2d-vpmovm2q","vpmovqb-vpmovsqb-vpmovusqb","vpmovqd-vpmovsqd-vpmovusqd","vpmovqw-vpmovsqw-vpmovusqw","vpmovwb-vpmovswb-vpmovuswb","vpscatterdd-vpscatterdq-vpscatterqd-vpscatterqq","vpsllvw-vpsllvd-vpsllvq","vpsravw-vpsravd-vpsravq","vpsrlvw-vpsrlvd-vpsrlvq","vpternlogd-vpternlogq","vptestmb-vptestmw-vptestmd-vptestmq","vptestnmb-vptestnmw-vptestnmd-vptestnmq","vrangepd","vrangesd","vrangess","vrcp14pd","vrcp14ps","vrcp14sd","vrcp14ss","vrcp28pd","vrcp28ps","vrcp28sd","vrcp28ss","vreducepd","vreduceps","vreducess","vrndscalepd","vrndscaleps","vrndscalesd","vrndscaless","vrsqrt14pd","vrsqrt14ps","vrsqrt14sd","vrsqrt14ss","vrsqrt28pd","vrsqrt28ps","vrsqrt28sd","vrsqrt28ss","vscalefpd","vscalefps","vscalefsd","vscalefss","vscatterdps-vscatterdpd-vscatterqps-vscatterqpd","vscatterpf0dps-vscatterpf0qps-vscatterpf0dpd-vscatterpf0qpd","vscatterpf1dps-vscatterpf1qps-vscatterpf1dpd-vscatterpf1qpd","vshuff32x4-vshuff64x2-vshufi32x4-vshufi64x2","vtestpd-vtestps","vzeroall","vzeroupper"]
 },
-"M": {
-"files": ["maskmovdqu","maskmovq","maxpd","maxps","maxsd","maxss","mfence","minpd","minps","minsd","minss","monitor","mov","mov_1","mov_2","movapd","movaps","movbe","movd-movq","movddup","movdq2q","movdqa-vmovdqa32-vmovdqa64","movdqu-vmovdqu8-vmovdqu16-vmovdqu32-vmovdqu64","movhlps","movhpd","movhps","movlhps","movlpd","movlps","movmskpd","movmskps","movntdq","movntdqa","movnti","movntpd","movntps","movntq","movq","movq2dq","movs-movsb-movsw-movsd-movsq","movsd","movshdup","movsldup","movss","movsx-movsxd","movupd","movups","movzx","mpsadbw","mul","mulpd","mulps","mulsd","mulss","mulx","mwait"]
-},
-"L": {
-"files": ["lahf","lar","lddqu","ldmxcsr","lds-les-lfs-lgs-lss","lea","leave","lfence","lgdt-lidt","lldt","lmsw","lock","lods-lodsb-lodsw-lodsd-lodsq","loop-loopcc","lsl","ltr","lzcnt"]
+"F": {
+"files": ["f2xm1","fabs","fadd-faddp-fiadd","fbld","fbstp","fchs","fclex-fnclex","fcmovcc","fcom-fcomp-fcompp","fcomi-fcomip--fucomip","fcos","fdecstp","fdiv-fdivp-fidiv","fdivr-fdivrp-fidivr","ffree","ficom-ficomp","fild","fincstp","finit-fninit","fist-fistp","fisttp","fld","fld1-fldl2t-fldl2e-fldpi-fldlg2-fldln2-fldz","fldcw","fldenv","fmul-fmulp-fimul","fnop","fpatan","fprem","fprem1","fptan","frndint","frstor","fsave-fnsave","fscale","fsin","fsincos","fsqrt","fst-fstp","fstcw-fnstcw","fstenv-fnstenv","fstsw-fnstsw","fsub-fsubp-fisub","fsubr-fsubrp-fisubr","ftst","fucom-fucomp-fucompp","fxam","fxch","fxrstor","fxsave","fxtract","fyl2x","fyl2xp1"]
 },
 "B": {
 "files": ["bextr","blendpd","blendps","blendvpd","blendvps","blsi","blsmsk","blsr","bndcl","bndcu-bndcn","bndldx","bndmk","bndmov","bndstx","bound","bsf","bsr","bswap","bt","btc","btr","bts","bzhi"]
 },
-"H": {
-"files": ["haddpd","haddps","hlt","hsubpd","hsubps"]
-},
-"E": {
-"files": ["emms","enter","extractps"]
-},
-"R": {
-"files": ["rcl-rcr-rol-ror","rcpps","rcpss","rdfsbase-rdgsbase","rdmsr","rdpid","rdpkru","rdpmc","rdrand","rdseed","rdtsc","rdtscp","rep-repe-repz-repne-repnz","ret","rorx","roundpd","roundps","roundsd","roundss","rsm","rsqrtps","rsqrtss"]
-},
-"F": {
-"files": ["f2xm1","fabs","fadd-faddp-fiadd","fbld","fbstp","fchs","fclex-fnclex","fcmovcc","fcom-fcomp-fcompp","fcomi-fcomip--fucomip","fcos","fdecstp","fdiv-fdivp-fidiv","fdivr-fdivrp-fidivr","ffree","ficom-ficomp","fild","fincstp","finit-fninit","fist-fistp","fisttp","fld","fld1-fldl2t-fldl2e-fldpi-fldlg2-fldln2-fldz","fldcw","fldenv","fmul-fmulp-fimul","fnop","fpatan","fprem","fprem1","fptan","frndint","frstor","fsave-fnsave","fscale","fsin","fsincos","fsqrt","fst-fstp","fstcw-fnstcw","fstenv-fnstenv","fstsw-fnstsw","fsub-fsubp-fisub","fsubr-fsubrp-fisubr","ftst","fucom-fucomp-fucompp","fxam","fxch","fxrstor","fxsave","fxtract","fyl2x","fyl2xp1"]
-},
-"S": {
-"files": ["sahf","sal-sar-shl-shr","sarx-shlx-shrx","sbb","scas-scasb-scasw-scasd","setcc","sfence","sgdt","sha1msg1","sha1msg2","sha1nexte","sha1rnds4","sha256msg1","sha256msg2","sha256rnds2","shld","shrd","shufpd","shufps","sidt","sldt","smsw","sqrtpd","sqrtps","sqrtsd","sqrtss","stac","stc","std","sti","stmxcsr","stos-stosb-stosw-stosd-stosq","str","sub","subpd","subps","subsd","subss","swapgs","syscall","sysenter","sysexit","sysret"]
-},
-"A": {
-"files": ["aaa","aad","aam","aas","adc","adcx","add","addpd","addps","addsd","addss","addsubpd","addsubps","adox","aesdec","aesdeclast","aesenc","aesenclast","aesimc","aeskeygenassist","and","andn","andnpd","andnps","andpd","andps","arpl"]
-},
-"C": {
-"files": ["call","cbw-cwde-cdqe","clac","clc","cld","clflush","clflushopt","cli","clts","clwb","cmc","cmovcc","cmp","cmppd","cmpps","cmps-cmpsb-cmpsw-cmpsd-cmpsq","cmpsd","cmpss","cmpxchg","cmpxchg8b-cmpxchg16b","comisd","comiss","cpuid","crc32","cvtdq2pd","cvtdq2ps","cvtpd2dq","cvtpd2pi","cvtpd2ps","cvtpi2pd","cvtpi2ps","cvtps2dq","cvtps2pd","cvtps2pi","cvtsd2si","cvtsd2ss","cvtsi2sd","cvtsi2ss","cvtss2sd","cvtss2si","cvttpd2dq","cvttpd2pi","cvttps2dq","cvttps2pi","cvttsd2si","cvttss2si","cwd-cdq-cqo"]
-},
-"N": {
-"files": ["neg","nop","not"]
+"P": {
+"files": ["pabsb-pabsw-pabsd-pabsq","packsswb-packssdw","packusdw","packuswb","paddb-paddw-paddd-paddq","paddsb-paddsw","paddusb-paddusw","palignr","pand","pandn","pause","pavgb-pavgw","pblendvb","pblendw","pcmpeqb-pcmpeqw-pcmpeqd","pcmpeqq","pcmpestri","pcmpestrm","pcmpgtb-pcmpgtw-pcmpgtd","pcmpgtq","pcmpistri","pcmpistrm","pdep","pext","pextrb-pextrd-pextrq","pextrw","phaddsw","phaddw-phaddd","phminposuw","phsubsw","phsubw-phsubd","pinsrb-pinsrd-pinsrq","pinsrw","pmaddubsw","pmaddwd","pmaxsb-pmaxsw-pmaxsd-pmaxsq","pmaxub-pmaxuw","pmaxud-pmaxuq","pminsb-pminsw","pminsd-pminsq","pminub-pminuw","pminud-pminuq","pmovmskb","pmovsx","pmovzx","pmuldq","pmulhrsw","pmulhuw","pmulhw","pmulld-pmullq","pmullw","pmuludq","pop","popa-popad","popcnt","popf-popfd-popfq","por","prefetchh","prefetchw","prefetchwt1","prold-prolvd-prolq-prolvq","prord-prorvd-prorq-prorvq","psadbw","pshufb","pshufd","pshufhw","pshuflw","pshufw","psignb-psignw-psignd","pslldq","psllw-pslld-psllq","psraw-psrad-psraq","psrldq","psrlw-psrld-psrlq","psubb-psubw-psubd","psubq","psubsb-psubsw","psubusb-psubusw","punpckhbw-punpckhwd-punpckhdq-punpckhqdq","punpcklbw-punpcklwd-punpckldq-punpcklqdq","push","pusha-pushad","pushf-pushfd","pxor"]
 },
 "I": {
 "files": ["idiv","imul","in","inc","ins-insb-insw-insd","insertps","int n-into-int 3","invd","invlpg","invpcid","iret-iretd"]
 },
+"M": {
+"files": ["maskmovdqu","maskmovq","maxpd","maxps","maxsd","maxss","mfence","minpd","minps","minsd","minss","monitor","mov","mov_1","mov_2","movapd","movaps","movbe","movd-movq","movddup","movdq2q","movdqa-vmovdqa32-vmovdqa64","movdqu-vmovdqu8-vmovdqu16-vmovdqu32-vmovdqu64","movhlps","movhpd","movhps","movlhps","movlpd","movlps","movmskpd","movmskps","movntdq","movntdqa","movnti","movntpd","movntps","movntq","movq","movq2dq","movs-movsb-movsw-movsd-movsq","movsd","movshdup","movsldup","movss","movsx-movsxd","movupd","movups","movzx","mpsadbw","mul","mulpd","mulps","mulsd","mulss","mulx","mwait"]
+},
+"C": {
+"files": ["call","cbw-cwde-cdqe","clac","clc","cld","clflush","clflushopt","cli","clts","clwb","cmc","cmovcc","cmp","cmppd","cmpps","cmps-cmpsb-cmpsw-cmpsd-cmpsq","cmpsd","cmpss","cmpxchg","cmpxchg8b-cmpxchg16b","comisd","comiss","cpuid","crc32","cvtdq2pd","cvtdq2ps","cvtpd2dq","cvtpd2pi","cvtpd2ps","cvtpi2pd","cvtpi2ps","cvtps2dq","cvtps2pd","cvtps2pi","cvtsd2si","cvtsd2ss","cvtsi2sd","cvtsi2ss","cvtss2sd","cvtss2si","cvttpd2dq","cvttpd2pi","cvttps2dq","cvttps2pi","cvttsd2si","cvttss2si","cwd-cdq-cqo"]
+},
+"S": {
+"files": ["sahf","sal-sar-shl-shr","sarx-shlx-shrx","sbb","scas-scasb-scasw-scasd","setcc","sfence","sgdt","sha1msg1","sha1msg2","sha1nexte","sha1rnds4","sha256msg1","sha256msg2","sha256rnds2","shld","shrd","shufpd","shufps","sidt","sldt","smsw","sqrtpd","sqrtps","sqrtsd","sqrtss","stac","stc","std","sti","stmxcsr","stos-stosb-stosw-stosd-stosq","str","sub","subpd","subps","subsd","subss","swapgs","syscall","sysenter","sysexit","sysret"]
+},
+"J": {
+"files": ["jcc","jmp"]
+},
 "X": {
 "files": ["xabort","xacquire-xrelease","xadd","xbegin","xchg","xend","xgetbv","xlat-xlatb","xor","xorpd","xorps","xrstor","xrstors","xsave","xsavec","xsaveopt","xsaves","xsetbv","xtest"]
-},
-"P": {
-"files": ["pabsb-pabsw-pabsd-pabsq","packsswb-packssdw","packusdw","packuswb","paddb-paddw-paddd-paddq","paddsb-paddsw","paddusb-paddusw","palignr","pand","pandn","pause","pavgb-pavgw","pblendvb","pblendw","pcmpeqb-pcmpeqw-pcmpeqd","pcmpeqq","pcmpestri","pcmpestrm","pcmpgtb-pcmpgtw-pcmpgtd","pcmpgtq","pcmpistri","pcmpistrm","pdep","pext","pextrb-pextrd-pextrq","pextrw","phaddsw","phaddw-phaddd","phminposuw","phsubsw","phsubw-phsubd","pinsrb-pinsrd-pinsrq","pinsrw","pmaddubsw","pmaddwd","pmaxsb-pmaxsw-pmaxsd-pmaxsq","pmaxub-pmaxuw","pmaxud-pmaxuq","pminsb-pminsw","pminsd-pminsq","pminub-pminuw","pminud-pminuq","pmovmskb","pmovsx","pmovzx","pmuldq","pmulhrsw","pmulhuw","pmulhw","pmulld-pmullq","pmullw","pmuludq","pop","popa-popad","popcnt","popf-popfd-popfq","por","prefetchh","prefetchw","prefetchwt1","prold-prolvd-prolq-prolvq","prord-prorvd-prorq-prorvq","psadbw","pshufb","pshufd","pshufhw","pshuflw","pshufw","psignb-psignw-psignd","pslldq","psllw-pslld-psllq","psraw-psrad-psraq","psrldq","psrlw-psrld-psrlq","psubb-psubw-psubd","psubq","psubsb-psubsw","psubusb-psubusw","punpckhbw-punpckhwd-punpckhdq-punpckhqdq","punpcklbw-punpcklwd-punpckldq-punpcklqdq","push","pusha-pushad","pushf-pushfd","pxor"]
 },
 "K": {
 "files": ["kaddw-kaddb-kaddq-kaddd","kandnw-kandnb-kandnq-kandnd","kandw-kandb-kandq-kandd","kmovw-kmovb-kmovq-kmovd","knotw-knotb-knotq-knotd","kortestw-kortestb-kortestq-kortestd","korw-korb-korq-kord","kshiftlw-kshiftlb-kshiftlq-kshiftld","kshiftrw-kshiftrb-kshiftrq-kshiftrd","ktestw-ktestb-ktestq-ktestd","kunpckbw-kunpckwd-kunpckdq","kxnorw-kxnorb-kxnorq-kxnord","kxorw-kxorb-kxorq-kxord"]
 },
+"R": {
+"files": ["rcl-rcr-rol-ror","rcpps","rcpss","rdfsbase-rdgsbase","rdmsr","rdpid","rdpkru","rdpmc","rdrand","rdseed","rdtsc","rdtscp","rep-repe-repz-repne-repnz","ret","rorx","roundpd","roundps","roundsd","roundss","rsm","rsqrtps","rsqrtss"]
+},
+"L": {
+"files": ["lahf","lar","lddqu","ldmxcsr","lds-les-lfs-lgs-lss","lea","leave","lfence","lgdt-lidt","lldt","lmsw","lock","lods-lodsb-lodsw-lodsd-lodsq","loop-loopcc","lsl","ltr","lzcnt"]
+},
+"A": {
+"files": ["aaa","aad","aam","aas","adc","adcx","add","addpd","addps","addsd","addss","addsubpd","addsubps","adox","aesdec","aesdeclast","aesenc","aesenclast","aesimc","aeskeygenassist","and","andn","andnpd","andnps","andpd","andps","arpl"]
+},
 "O": {
 "files": ["or","orpd","orps","out","outs-outsb-outsw-outsd"]
 },
-"U": {
-"files": ["ucomisd","ucomiss","ud2","unpckhpd","unpckhps","unpcklpd","unpcklps"]
-},
-"J": {
-"files": ["jcc","jmp"]
+"N": {
+"files": ["neg","nop","not"]
 },
 "G": {
 "files": ["getsec[exitac]","getsec[parameters]","getsec[senter]","getsec[sexit]","getsec[smctrl]","getsec[wakeup]"]
@@ -120,11 +111,20 @@
 "D": {
 "files": ["daa","das","dec","div","divpd","divps","divsd","divss","dppd","dpps"]
 },
-"T": {
-"files": ["test","tzcnt"]
+"H": {
+"files": ["haddpd","haddps","hlt","hsubpd","hsubps"]
+},
+"E": {
+"files": ["emms","enter","extractps"]
+},
+"U": {
+"files": ["ucomisd","ucomiss","ud2","unpckhpd","unpckhps","unpcklpd","unpcklps"]
 },
 "W": {
 "files": ["wait-fwait","wbinvd","wrfsbase-wrgsbase","wrmsr","wrpkru"]
+},
+"T": {
+"files": ["test","tzcnt"]
 }
 },
 "잡담": {

@@ -1264,9 +1264,9 @@
 	"268" : {
 	"cat_title" : "search",
 	"path" : "/C++ Reference/algorithm",
-	"publish_date" : "2019-02-18",
-	"ref_title" : "search, std::search",
-	"title" : "C++ 레퍼런스 - search 함수 (<algorithm>)"
+	"publish_date" : "2020-10-16",
+	"ref_title" : "std::search, search",
+	"title" : "C++ 레퍼런스 - std::search (<algorithm>)"
 }
 ,
 	"269" : {
@@ -1740,11 +1740,18 @@
 }
 ,
 	"318" : {
-	"cat_title" : "generate, generate",
+	"cat_title" : "generate",
 	"path" : "/C++ Reference/algorithm",
 	"publish_date" : "2020-09-23",
 	"ref_title" : "std::generate, generate",
 	"title" : "C++ 레퍼런스 - std::generate (<algorithm>)"
+}
+,
+	"319" : {
+	"cat_title" : "20 - 1. 코드 부터 실행 파일 까지",
+	"path" : "/C++",
+	"publish_date" : "2020-10-20",
+	"title" : "씹어먹는 C++ - <20 - 1. 코드 부터 실행 파일 까지 - 전체적인 개요>"
 }
 ,
 	"32" : {
@@ -1754,6 +1761,13 @@
 	"publish_date" : "2010-01-25",
 	"tex_title" : "버퍼에 대한 이해",
 	"title" : "씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>"
+}
+,
+	"320" : {
+	"cat_title" : "20 - 2.코드 부터 실행 파일 까지 - 컴파일 (Compile)",
+	"path" : "/C++",
+	"publish_date" : "2020-10-20",
+	"title" : "씹어먹는 C++ - <20 - 2. 코드 부터 실행 파일 까지 - 컴파일 (Compile)>"
 }
 ,
 	"33" : {
