@@ -25,19 +25,13 @@ publish_date : 2011-08-17
 
 #### 서식 정보(Formatting information)
 
-* 서식 플래그(format flag) : 입출력 작업들이 어떠한 형식으로 해석되어야 할지를 지시하는 내부 지시자들의 집합이다. 이 지시자들의 상태는
- [flags](http://itguru.tistory.com/153), 
- [setf](http://itguru.tistory.com/155) 나
- [unsetf](http://itguru.tistory.com/156) 함수들을 호출함으로써 알아내거나 수정될 수 있다.
+* 서식 플래그(format flag) : 입출력 작업들이 어떠한 형식으로 해석되어야 할지를 지시하는 내부 지시자들의 집합이다. 이 지시자들의 상태는 [flags](http://itguru.tistory.com/153), [setf](http://itguru.tistory.com/155) 나 [unsetf](http://itguru.tistory.com/156) 함수들을 호출함으로써 알아내거나 수정될 수 있다.
 
-* 필드 너비(field width) : 출력될 다음 원소의 너비에 대한 정보이다. 이 값은
- [width](http://itguru.tistory.com/152) 함수 호출을 통해 수정되거나 얻어질 수 있다.
+* 필드 너비(field width) : 출력될 다음 원소의 너비에 대한 정보이다. 이 값은 [width](http://itguru.tistory.com/152) 함수 호출을 통해 수정되거나 얻어질 수 있다.
 
-* 출력 정밀도(display precision) : 부동 소수점 데이터를 출력시 어떠한 정밀도로 표시할 것인지를 나타낸다. 이 값은
- [precision](http://itguru.tistory.com/157)함수를 통해 얻어질 수 있다.
+* 출력 정밀도(display precision) : 부동 소수점 데이터를 출력시 어떠한 정밀도로 표시할 것인지를 나타낸다. 이 값은 [precision](http://itguru.tistory.com/157)함수를 통해 얻어질 수 있다.
 
-* 로케일 객체(locale object) : 입출력 작업을 서식화 할 때 고려해야 할 로케일 정보(언어 문화권의 차이에 따라 달라지는 특성) 들을 담고 있다. 로케일 객체는
- [getloc](http://itguru.tistory.com/160)함수를 호출함으로써 얻어진다.
+* 로케일 객체(locale object) : 입출력 작업을 서식화 할 때 고려해야 할 로케일 정보(언어 문화권의 차이에 따라 달라지는 특성) 들을 담고 있다. 로케일 객체는 [getloc](http://itguru.tistory.com/160)함수를 호출함으로써 얻어진다.
 
 
 
@@ -46,12 +40,7 @@ publish_date : 2011-08-17
 
 
 * 오류 상태(error state) : 내부 지시자가 현재 스트림의 오류 상태를 나타내고 있다. 객체는
- [ios::rdstate](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, `ios::clear` 와
- [ios::setstate](http://itguru.tistory.com/179) 함수를 호출함을 통해 수정될 수 있다. 각각의 값은
- [ios::good](http://itguru.tistory.com/164), 
- [ios::eof](http://itguru.tistory.com/167), 
- [ios::fail](http://itguru.tistory.com/165), 
- [ios::bad](http://itguru.tistory.com/166) 를 호출함으로써 얻어진다.
+[ios::rdstate](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, `ios::clear` 와 [ios::setstate](http://itguru.tistory.com/179) 함수를 호출함을 통해 수정될 수 있다. 각각의 값은[ios::good](http://itguru.tistory.com/164), [ios::eof](http://itguru.tistory.com/167), [ios::fail](http://itguru.tistory.com/165), [ios::bad](http://itguru.tistory.com/166) 를 호출함으로써 얻어진다.
 
 * 예외 마스크(exception mask) : 내부 예외 상태 지시자.
  [ios::exceptions](http://itguru.tistory.com/150) 를 통해 이 값을 얻어낼거나 수정할 수 있다.
@@ -61,10 +50,7 @@ publish_date : 2011-08-17
 * 이벤트 함수 스택(event function stack) : 특정 이벤트가 일어낼 때 호출되었던 콜백 함수들을 가리키는 포인터들의 스택. 추가적인 콜백 함수들은
  [register_callback](http://itguru.tistory.com/159)함수를 호출함으로써 스택에 등록할 수 있다.
 
-* 내부 확장 가능 배열(internal extensible arrays) : 두 개의 배열로 `long` 객체와 `void` 포인터들을 저장하기 위한 것이다. 이 배열은
- [xalloc](http://itguru.tistory.com/162)함수를 호출함으로써 확장될 수 있고, 각각의 객체들의 레퍼런스는
- [iword](http://itguru.tistory.com/161)나
- [pword](http://itguru.tistory.com/163)함수를 호출함으로써 얻어진다.
+* 내부 확장 가능 배열(internal extensible arrays) : 두 개의 배열로 `long` 객체와 `void` 포인터들을 저장하기 위한 것이다. 이 배열은 [xalloc](http://itguru.tistory.com/162)함수를 호출함으로써 확장될 수 있고, 각각의 객체들의 레퍼런스는 [iword](http://itguru.tistory.com/161)나 [pword](http://itguru.tistory.com/163)함수를 호출함으로써 얻어진다.
 
 
 

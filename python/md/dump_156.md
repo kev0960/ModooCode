@@ -1,7 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios_base::unsetf 함수
 cat_title :  ios_base::unsetf
-ref_title : unsetf
+ref_title : unsetf, ios_base::unsetf
 publish_date : 2011-08-19
 --------------
 

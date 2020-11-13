@@ -1,7 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::clear
 cat_title :  ios::clear
-ref_title : clear
+ref_title : clear, ios::clear
 publish_date : 2012-03-25
 --------------
 

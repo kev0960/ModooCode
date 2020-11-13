@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::exceptions
 cat_title :  ios::exceptions
+ref_title: ios::exceptions
 publish_date : 2011-08-18
 --------------
 

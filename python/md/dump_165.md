@@ -1,7 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::fail 함수
 cat_title :  ios::fail
-ref_title : fail
+ref_title : fail, ios::fail
 publish_date : 2011-10-23
 --------------
 
@@ -90,7 +90,7 @@ int main() {
 
 ###  참고 자료
 
-* ios_base::iostate  :  스트림 상태 플래그들을 위한 타입
+* `ios_base::iostate`  :  스트림 상태 플래그들을 위한 타입
 *  [ios::bad](http://itguru.tistory.com/166)  :  `badbit` 이 설정되어 있는지 확인한다.
 *  [ios::good](http://itguru.tistory.com/164):  스트림에 어떠한 오류 플래그도 설정되지 않았는지 확인한다.
 *  [ios::eof](http://itguru.tistory.com/167)  :  `eofbit` 이 설정되어 있는지 확인한다.

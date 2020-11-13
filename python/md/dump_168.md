@@ -1,6 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::operator!
 cat_title :  ios::operator!
+ref_title : ios::operator!
 publish_date : 2011-10-23
 --------------
 

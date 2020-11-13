@@ -1,7 +1,7 @@
 ----------------
 title : C++ 레퍼런스 - ios::bad 함수
 cat_title :  ios::bad
-ref_title : bad
+ref_title : bad, ios::bad
 publish_date : 2011-10-23
 --------------
 

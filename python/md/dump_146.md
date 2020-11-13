@@ -37,23 +37,12 @@ publish_date : 2011-08-17
 #### 서식 정보(Formatting information)
 
 
-* 서식 플래그(format flag) : 입출력 작업들이 어떠한 형식으로 해석되어야 할지를 지시하는 내부 지시자들의 집합이다. 이 지시자들의 상태는
- [flags](http://itguru.tistory.com/153),
- [setf](http://itguru.tistory.com/155)나
- [unsetf](http://itguru.tistory.com/156)함수들을 호출하거나 조작자(manipulator) 들을 사용함으로써 바뀔 수 있다.
-
-
-
+* 서식 플래그(format flag) : 입출력 작업들이 어떠한 형식으로 해석되어야 할지를 지시하는 내부 지시자들의 집합이다. 이 지시자들의 상태는[flags](http://itguru.tistory.com/153),[setf](http://itguru.tistory.com/155)나 [unsetf](http://itguru.tistory.com/156)함수들을 호출하거나 조작자(manipulator) 들을 사용함으로써 바뀔 수 있다.
 * 필드 너비(field width) : 출력될 다음 원소의 너비에 대한 정보이다. 이 값은 멤버 함수인
  [width](http://itguru.tistory.com/152)를 호출하거나, 인자 있는 조작자인 `setw` 를 사용함으로써 얻어지거나 수정될 수 있다.
-
-
-
 * 채우기 문자(fill character) : 필드의 너비를 맞추기 위해 부가적으로 채워지는 문자. 이는
  [fill](http://itguru.tistory.com/181)함수를 호출하거나, 인자가 있는 조작자인 `setfill` 을 사용하므로써 얻어지거나 수정될 수 있다.
-
 * 출력 정밀도(display precision) : 부동 소수점 데이터를 출력시 어떠한 정밀도로 표시할 것인지를 나타낸다. 이 값은 [precision](http://itguru.tistory.com/157)함수나 인자 있는 조작자인 `setprecision` 을 통해 얻어지거나 수정될 수 있다.
-
 * 로케일 객체(locale object) : 입출력 작업을 서식화 할 때 고려해야 할 로케일 정보(언어 문화권의 차이에 따라 달라지는 특성) 들을 담고 있다. 로케일 객체는 [getloc](http://itguru.tistory.com/160)함수를 호출함으로써 얻어지고 [imbue](http://itguru.tistory.com/158)함수를 통해 조작할 수 있다.
 
 
@@ -63,15 +52,7 @@ publish_date : 2011-08-17
 
 
 * 오류 상태(error state) : 내부 지시자가 현재 스트림의 오류 상태를 나타내고 있다. 객체는
- [rdstate](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, `clear$iostream` 와
- [setstate](http://itguru.tistory.com/179) 함수를 호출함을 통해 수정될 수 있다. 각각의 값은
- [good](http://itguru.tistory.com/164), 
- [eof](http://itguru.tistory.com/167), 
- [fail](http://itguru.tistory.com/165), 
- [bad](http://itguru.tistory.com/166) 를 호출함으로써 얻어진다.
-
-
-
+[rdstate](http://itguru.tistory.com/171) 함수를 호출함으로써 얻어지고, `clear$iostream` 와[setstate](http://itguru.tistory.com/179) 함수를 호출함을 통해 수정될 수 있다. 각각의 값은[good](http://itguru.tistory.com/164), [eof](http://itguru.tistory.com/167), [fail](http://itguru.tistory.com/165), [bad](http://itguru.tistory.com/166) 를 호출함으로써 얻어진다.
 * 예외 마스크(exception mask) : 내부 예외 상태 지시자. `exceptions` 를 통해 이 값을 얻어낼거나 수정할 수 있다.
 
 
@@ -80,8 +61,7 @@ publish_date : 2011-08-17
 #### 그 외
 
 
-* 이벤트 함수 스택(event function stack) : 특정 이벤트가 일어낼 때 호출되었던 콜백 함수들을 가리키는 포인터들의 스택. 추가적인 콜백 함수들은
- [register_callback](http://itguru.tistory.com/159) 함수를 호출함으로써 스택에 등록할 수 있다.
+* 이벤트 함수 스택(event function stack) : 특정 이벤트가 일어낼 때 호출되었던 콜백 함수들을 가리키는 포인터들의 스택. 추가적인 콜백 함수들은 [register_callback](http://itguru.tistory.com/159) 함수를 호출함으로써 스택에 등록할 수 있다.
 
 * 내부 확장 가능 배열(internal extensible arrays) : 두 개의 배열로 `long` 객체와 `void` 포인터들을 저장하기 위한 것이다. 이 배열은 [xalloc](http://itguru.tistory.com/162) 함수를 호출함으로써 확장될 수 있고, 각각의 객체들의 레퍼런스는 [iword](http://itguru.tistory.com/161) 나 [pword](http://itguru.tistory.com/163) 함수를 호출함으로써 얻어진다.
 
@@ -162,7 +142,7 @@ publish_date : 2011-08-17
 
 *  [ios::operator!](http://itguru.tistory.com/168) : 스트림 객체에 오류 플래그(fail 비트나 `bad` 비트)가 설정되었는지 확인한다.
 
-*  [ios::operator void*](http://itguru.tistory.com/170) : 포인터로 변환한다.
+*  `ios::operator void*` : 포인터로 변환한다.
 
 *  [rdstate](http://itguru.tistory.com/171) : 오류 상태 플래그(error state flag)를 얻어온다.
 
@@ -191,7 +171,7 @@ publish_date : 2011-08-17
 * `widen` : 표준 `wchar_t` 형으로 문자를 변환한다.
 
 
- [ios_base](http://itguru.tistory.com/144) 로 부터 상속된 함수들
+#### ios_base 로 부터 상속된 함수들
 
 
 *  [flags](http://itguru.tistory.com/153) : 서식 플래그를 수정하거나 얻어온다.

@@ -56,7 +56,7 @@ publish_date : 2011-08-17
 
 * [ios::operator!](http://itguru.tistory.com/168): 스트림 객체에 오류 플래그(`fail` 비트나 `bad` 비트)가 설정되었는지 확인한다.
 
-* [ios::operator void*](http://itguru.tistory.com/170): 포인터로 변환한다.
+* `ios::operator void*` : 포인터로 변환한다.
 
 * [rdstate](http://itguru.tistory.com/171) : 오류 상태 플래그(error state flag)를 얻어온다.
 
