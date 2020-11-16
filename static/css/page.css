@@ -861,3 +861,9 @@ li p br {
     display: block;
     z-index: 50;
 }
+
+.video-container > iframe {
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 30px;
+}
