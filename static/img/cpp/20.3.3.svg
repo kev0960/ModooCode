@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="420mm"
+   height="420mm"
+   viewBox="0 0 420 420"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (1.0.1+r73)"
+   sodipodi:docname="20.3.3.svg"
+   inkscape:export-filename="/home/jaebum/ModooCode/static/img/cpp/20.3.2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker2121"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2119" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2005"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2003" />
+    </marker>
+    <rect
+       x="6.8954118"
+       y="115.79863"
+       width="46.994083"
+       height="18.903408"
+       id="rect1898" />
+    <rect
+       x="3.6815953"
+       y="119.1396"
+       width="26.003009"
+       height="15.953509"
+       id="rect1892" />
+    <marker
+       style="overflow:visible"
+       id="marker2419"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2417" />
+    </marker>
+    <rect
+       x="115.15844"
+       y="90.58815"
+       width="74.594131"
+       height="29.869938"
+       id="rect2085" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1599" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-1"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1599-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2093-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2091-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2093-0-4"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2091-4-4" />
+    </marker>
+    <rect
+       x="115.15844"
+       y="90.58815"
+       width="74.594131"
+       height="29.869938"
+       id="rect2085-6" />
+    <rect
+       x="115.15844"
+       y="90.58815"
+       width="74.594131"
+       height="29.869938"
+       id="rect2502" />
+    <rect
+       x="6.895412"
+       y="115.79863"
+       width="46.994083"
+       height="18.903408"
+       id="rect1898-5" />
+    <rect
+       x="6.895412"
+       y="115.79863"
+       width="46.994083"
+       height="18.903408"
+       id="rect1911" />
+    <rect
+       x="6.895412"
+       y="115.79863"
+       width="46.994083"
+       height="18.903408"
+       id="rect1898-5-7" />
+    <rect
+       x="6.895412"
+       y="115.79863"
+       width="46.994083"
+       height="18.903408"
+       id="rect1940" />
+    <marker
+       style="overflow:visible"
+       id="marker2419-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2417-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2419-8-8"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2417-3-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2005-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2003-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker2005-0-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2003-3-2" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="874.56801"
+     inkscape:cy="546.74804"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     height="250mm"
+     inkscape:window-width="1848"
+     inkscape:window-height="1056"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311137"
+       id="rect880-5"
+       width="91.227943"
+       height="14.545455"
+       x="255.23125"
+       y="185.07928" />
+    <rect
+       style="fill:#ff9955;stroke:#000000;stroke-width:0.311137"
+       id="rect878-5-9"
+       width="91.328461"
+       height="36.448345"
+       x="51.859367"
+       y="200.0247" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="291.46597"
+       y="196.8826"
+       id="text902-8-7"><tspan
+         sodipodi:role="line"
+         id="tspan926-8"
+         x="291.46597"
+         y="196.8826"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="62.133125"
+       y="223.77197"
+       id="text902-81-5"><tspan
+         sodipodi:role="line"
+         id="tspan946-7"
+         x="62.133125"
+         y="223.77197"
+         style="stroke-width:0.264583">프로그램 2 코드 </tspan></text>
+    <rect
+       style="fill:#ff2a2a;stroke:#000000;stroke-width:0.311137"
+       id="rect878-5-4-8"
+       width="91.328461"
+       height="36.448345"
+       x="51.859367"
+       y="366.96408" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="62.133125"
+       y="390.71133"
+       id="text902-81-4-9"><tspan
+         sodipodi:role="line"
+         id="tspan996-7"
+         x="62.133125"
+         y="390.71133"
+         style="stroke-width:0.264583">프로그램 3 코드 </tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.31268;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect833-8"
+       width="90.84053"
+       height="315.30173"
+       x="255.42496"
+       y="53.365269" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.666358;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect833-8-1"
+       width="91.296906"
+       height="80.843811"
+       x="51.875145"
+       y="68.596756" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="28.679367"
+       y="56.38789"
+       id="text840-3-5"><tspan
+         sodipodi:role="line"
+         id="tspan2081-9"
+         x="28.679367"
+         y="56.38789"
+         style="stroke-width:0.264583">프로세스 1 이 보는 메모리 세상</tspan></text>
+    <rect
+       style="fill:#e9afaf;stroke:#000000;stroke-width:0.311137"
+       id="rect878-7-4"
+       width="91.328461"
+       height="36.448345"
+       x="51.859367"
+       y="-105.02933"
+       transform="scale(1,-1)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="62.133125"
+       y="91.860977"
+       id="text902-2-8"><tspan
+         sodipodi:role="line"
+         x="62.133125"
+         y="91.860977"
+         style="stroke-width:0.264583"
+         id="tspan904-1-1">프로그램 1 코드 </tspan></text>
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311137"
+       id="rect880-5-0"
+       width="91.227943"
+       height="14.545455"
+       x="51.909626"
+       y="120.54765" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="88.144356"
+       y="132.35095"
+       id="text902-8-7-3"><tspan
+         sodipodi:role="line"
+         id="tspan926-8-0"
+         x="88.144356"
+         y="132.35095"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.666358;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect833-8-1-4"
+       width="91.296906"
+       height="80.843811"
+       x="51.875145"
+       y="193.14563" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="28.679367"
+       y="180.93677"
+       id="text840-3-5-4"><tspan
+         sodipodi:role="line"
+         id="tspan2081-9-4"
+         x="28.679367"
+         y="180.93677"
+         style="stroke-width:0.264583">프로세스 2 가 보는 메모리 세상</tspan></text>
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311137"
+       id="rect880-5-0-3"
+       width="91.227943"
+       height="14.545455"
+       x="51.909626"
+       y="250.38812" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="88.144356"
+       y="262.19144"
+       id="text902-8-7-3-1"><tspan
+         sodipodi:role="line"
+         id="tspan926-8-0-7"
+         x="88.144356"
+         y="262.19144"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.666358;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect833-8-1-5"
+       width="91.296906"
+       height="80.843811"
+       x="51.875145"
+       y="322.5686" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="28.679367"
+       y="310.35974"
+       id="text840-3-5-9"><tspan
+         sodipodi:role="line"
+         id="tspan2081-9-6"
+         x="28.679367"
+         y="310.35974"
+         style="stroke-width:0.264583">프로세스 3 이 보는 메모리 세상</tspan></text>
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311137"
+       id="rect880-5-0-8"
+       width="91.227943"
+       height="14.545455"
+       x="51.909626"
+       y="335.79797" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="88.144356"
+       y="347.60129"
+       id="text902-8-7-3-5"><tspan
+         sodipodi:role="line"
+         id="tspan926-8-0-74"
+         x="88.144356"
+         y="347.60129"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.165;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.165, 2.33;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 229.17517,41.026611 V 393.20829"
+       id="path1818" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:bold;font-size:10.58330002px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;-inkscape-font-specification:'sans-serif, Bold';font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;"
+       x="275.44006"
+       y="29.171085"
+       id="text1870"><tspan
+         sodipodi:role="line"
+         id="tspan1868"
+         x="275.44006"
+         y="29.171085"
+         style="stroke-width:0.264583;-inkscape-font-specification:'sans-serif, Bold';font-family:sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:10.58330002px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;">물리 메모리</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:bold;font-size:10.58330002px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;-inkscape-font-specification:'sans-serif, Bold';font-stretch:normal;font-variant:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;"
+       x="72.08139"
+       y="29.171085"
+       id="text1870-1"><tspan
+         sodipodi:role="line"
+         id="tspan1868-8"
+         x="72.08139"
+         y="29.171085"
+         style="stroke-width:0.264583;-inkscape-font-specification:'sans-serif, Bold';font-family:sans-serif;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:10.58330002px;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;">가상 메모리</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1890"
+       style="fill:black;fill-opacity:1;line-height:1.25;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:10.58333333px;white-space:pre;shape-inside:url(#rect1892);" />
+    <text
+       xml:space="preserve"
+       id="text1896"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1898);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="translate(1.7435433,-0.89418814)"><tspan
+         x="6.8945312"
+         y="125.16257"><tspan>0x1234</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1896-9"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1898-5);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="translate(0.29919111,128.60614)"><tspan
+         x="6.8945312"
+         y="125.16257"><tspan>0xABCD</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1896-9-5"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1898-5-7);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="translate(1.7978034,216.14769)"><tspan
+         x="6.8945312"
+         y="125.16257"><tspan>0x0010</tspan></tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.165;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1961"
+       width="47.4837"
+       height="31.731077"
+       x="167.05858"
+       y="105.68499" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="161.17778"
+       y="82.110352"
+       id="text1965"><tspan
+         sodipodi:role="line"
+         id="tspan1963"
+         x="161.17778"
+         y="82.110352"
+         style="stroke-width:0.264583">프로세스 1</tspan><tspan
+         sodipodi:role="line"
+         x="161.17778"
+         y="96.611954"
+         style="stroke-width:0.264583"
+         id="tspan1967">페이지 테이블</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2419)"
+       d="m 146.45262,129.21974 18.01629,-3.10722"
+       id="path1969"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="353.92166"
+       y="186.34209"
+       id="text1981"><tspan
+         sodipodi:role="line"
+         id="tspan1979"
+         x="353.92166"
+         y="186.34209"
+         style="stroke-width:0.264583">0x89A0</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.17955;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker2005)"
+       d="m 217.21577,121.10647 33.54635,68.85019"
+       id="path2001" />
+    <rect
+       style="fill:#c8b7b7;fill-opacity:1;stroke:#000000;stroke-width:0.365;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2103"
+       width="47.626926"
+       height="6.4582906"
+       x="166.95578"
+       y="122.24255" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.165;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2105"
+       width="47.4837"
+       height="31.731077"
+       x="167.05858"
+       y="105.68499" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="161.17778"
+       y="82.110352"
+       id="text2111"><tspan
+         sodipodi:role="line"
+         id="tspan2107"
+         x="161.17778"
+         y="82.110352"
+         style="stroke-width:0.264583">프로세스 1</tspan><tspan
+         sodipodi:role="line"
+         x="161.17778"
+         y="96.611954"
+         style="stroke-width:0.264583"
+         id="tspan2109">페이지 테이블</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="181.7057"
+       y="126.98026"
+       id="text2117"><tspan
+         sodipodi:role="line"
+         id="tspan2115"
+         x="181.7057"
+         y="126.98026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">0x89A0</tspan></text>
+    <rect
+       style="fill:#c8b7b7;fill-opacity:1;stroke:#000000;stroke-width:0.365001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1977-1"
+       width="47.626926"
+       height="6.4582911"
+       x="167.64755"
+       y="254.55914" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.165;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1961-8"
+       width="47.4837"
+       height="31.731077"
+       x="167.75035"
+       y="234.29753" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="161.86955"
+       y="210.72289"
+       id="text1965-9"><tspan
+         sodipodi:role="line"
+         id="tspan1963-6"
+         x="161.86955"
+         y="210.72289"
+         style="stroke-width:0.264583">프로세스 2</tspan><tspan
+         sodipodi:role="line"
+         x="161.86955"
+         y="225.22449"
+         style="stroke-width:0.264583"
+         id="tspan1967-4">페이지 테이블</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2419-8)"
+       d="m 147.14439,257.83227 18.49476,-0.18258"
+       id="path1969-3"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="182.39748"
+       y="259.29697"
+       id="text1981-3-3"><tspan
+         sodipodi:role="line"
+         id="tspan1979-8-3"
+         x="182.39748"
+         y="259.29697"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">0x89A0</tspan></text>
+    <rect
+       style="fill:#c8b7b7;fill-opacity:1;stroke:#000000;stroke-width:0.365001;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1977-1-0"
+       width="47.626926"
+       height="6.4582911"
+       x="167.77921"
+       y="363.24991" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.165;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect1961-8-4"
+       width="47.4837"
+       height="31.731077"
+       x="167.882"
+       y="358.86356" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="162.00121"
+       y="335.28888"
+       id="text1965-9-8"><tspan
+         sodipodi:role="line"
+         id="tspan1963-6-8"
+         x="162.00121"
+         y="335.28888"
+         style="stroke-width:0.264583">프로세스 3</tspan><tspan
+         sodipodi:role="line"
+         x="162.00121"
+         y="349.79047"
+         style="stroke-width:0.264583"
+         id="tspan1967-4-8">페이지 테이블</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker2419-8-8)"
+       d="m 147.14631,343.13735 15.9337,23.37451"
+       id="path1969-3-9"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="182.52913"
+       y="367.98773"
+       id="text1981-3-3-7"><tspan
+         sodipodi:role="line"
+         id="tspan1979-8-3-7"
+         x="182.52913"
+         y="367.98773"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">0x89A0</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.17955;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker2005-0)"
+       d="m 220.69145,257.32258 29.05769,-61.15967"
+       id="path2001-0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.17955;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker2005-0-9)"
+       d="M 220.5522,367.86391 250.95469,204.0658"
+       id="path2001-0-5"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>

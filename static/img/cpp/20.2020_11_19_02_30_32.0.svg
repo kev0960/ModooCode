@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="250mm"
+   viewBox="0 0 297 250"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (1.0.1+r73)"
+   sodipodi:docname="20.3.2.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="387.05335"
+     inkscape:cy="438.0822"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     height="250mm"
+     inkscape:window-width="1427"
+     inkscape:window-height="1056"
+     inkscape:window-x="1970"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="11.479733"
+       y="21.319927"
+       id="text840"><tspan
+         sodipodi:role="line"
+         id="tspan838"
+         x="11.479733"
+         y="21.319927"
+         style="stroke-width:0.264583">정적 라이브러리 사용 시</tspan></text>
+    <rect
+       style="fill:#e9afaf;stroke:#000000;stroke-width:0.311136"
+       id="rect878"
+       width="91.328461"
+       height="36.448345"
+       x="15.551246"
+       y="-73.414421"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311136"
+       id="rect880"
+       width="91.227943"
+       height="14.545455"
+       x="15.601504"
+       y="73.414421" />
+    <rect
+       style="fill:#ff9955;stroke:#000000;stroke-width:0.311136"
+       id="rect878-5"
+       width="91.328461"
+       height="36.448345"
+       x="15.734858"
+       y="106.384" />
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311136"
+       id="rect880-9"
+       width="91.227943"
+       height="14.545455"
+       x="15.785115"
+       y="142.83234" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="25.825003"
+       y="60.246082"
+       id="text902"><tspan
+         sodipodi:role="line"
+         x="25.825003"
+         y="60.246082"
+         style="stroke-width:0.264583"
+         id="tspan904">프로그램 1 코드 </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="51.836235"
+       y="85.217712"
+       id="text902-8"><tspan
+         sodipodi:role="line"
+         id="tspan926"
+         x="51.836235"
+         y="85.217712">libc</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="26.008615"
+       y="130.13126"
+       id="text902-81"><tspan
+         sodipodi:role="line"
+         id="tspan946"
+         x="26.008615"
+         y="130.13126">프로그램 2 코드 </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="52.019848"
+       y="154.41638"
+       id="text902-8-3"><tspan
+         sodipodi:role="line"
+         id="tspan926-0"
+         x="52.019848"
+         y="154.41638"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <rect
+       style="fill:#ff2a2a;stroke:#000000;stroke-width:0.311137"
+       id="rect878-5-4"
+       width="91.328461"
+       height="36.448345"
+       x="15.491877"
+       y="184.83885" />
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311137"
+       id="rect880-9-4"
+       width="91.227943"
+       height="14.545455"
+       x="15.542135"
+       y="221.28719" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583;"
+       x="25.765633"
+       y="208.58611"
+       id="text902-81-4"><tspan
+         sodipodi:role="line"
+         id="tspan996">프로그램 3 코드 </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="51.776863"
+       y="232.87123"
+       id="text902-8-3-7"><tspan
+         sodipodi:role="line"
+         id="tspan926-0-6"
+         x="51.776863"
+         y="232.87123"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.044;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect833"
+       width="91.109215"
+       height="198.85025"
+       x="15.66087"
+       y="36.982399" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="172.78754"
+       y="22.227962"
+       id="text840-3"><tspan
+         sodipodi:role="line"
+         id="tspan838-1"
+         x="172.78754"
+         y="22.227962"
+         style="stroke-width:0.264583">정적 라이브러리 사용 시</tspan></text>
+    <rect
+       style="fill:#e9afaf;stroke:#000000;stroke-width:0.311137"
+       id="rect878-7"
+       width="91.328461"
+       height="36.448345"
+       x="176.85905"
+       y="-74.322464"
+       transform="scale(1,-1)" />
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311137"
+       id="rect880-5"
+       width="91.227943"
+       height="14.545455"
+       x="176.90932"
+       y="74.322464" />
+    <rect
+       style="fill:#ff9955;stroke:#000000;stroke-width:0.311137"
+       id="rect878-5-9"
+       width="91.328461"
+       height="36.448345"
+       x="177.04266"
+       y="107.29204" />
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311137"
+       id="rect880-9-6"
+       width="91.227943"
+       height="14.545455"
+       x="177.09293"
+       y="143.74037" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="187.13281"
+       y="61.154114"
+       id="text902-2"><tspan
+         sodipodi:role="line"
+         x="187.13281"
+         y="61.154114"
+         style="stroke-width:0.264583"
+         id="tspan904-1">프로그램 1 코드 </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="213.14404"
+       y="86.125755"
+       id="text902-8-7"><tspan
+         sodipodi:role="line"
+         id="tspan926-8"
+         x="213.14404"
+         y="86.125755"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="187.31642"
+       y="131.03929"
+       id="text902-81-5"><tspan
+         sodipodi:role="line"
+         id="tspan946-7"
+         x="187.31642"
+         y="131.03929"
+         style="stroke-width:0.264583">프로그램 2 코드 </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="213.32765"
+       y="155.32443"
+       id="text902-8-3-4"><tspan
+         sodipodi:role="line"
+         id="tspan926-0-1"
+         x="213.32765"
+         y="155.32443"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <rect
+       style="fill:#ff2a2a;stroke:#000000;stroke-width:0.311137"
+       id="rect878-5-4-8"
+       width="91.328461"
+       height="36.448345"
+       x="176.79968"
+       y="185.74689" />
+    <rect
+       style="fill:#e9c6af;stroke:#000000;stroke-width:0.311137"
+       id="rect880-9-4-5"
+       width="91.227943"
+       height="14.545455"
+       x="176.84995"
+       y="222.19522" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="187.07344"
+       y="209.49416"
+       id="text902-81-4-9"><tspan
+         sodipodi:role="line"
+         id="tspan996-7"
+         x="187.07344"
+         y="209.49416"
+         style="stroke-width:0.264583">프로그램 3 코드 </tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="213.08467"
+       y="233.77927"
+       id="text902-8-3-7-5"><tspan
+         sodipodi:role="line"
+         id="tspan926-0-6-3"
+         x="213.08467"
+         y="233.77927"
+         style="stroke-width:0.264583">libc</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.044;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect833-8"
+       width="91.109215"
+       height="198.85025"
+       x="176.96867"
+       y="37.89043" />
+  </g>
+</svg>

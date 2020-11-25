@@ -340,6 +340,7 @@
 	"150" : {
 	"cat_title" : "ios::exceptions",
 	"publish_date" : "2011-08-18",
+	"ref_title" : "ios::exceptions",
 	"title" : "C++ 레퍼런스 - ios::exceptions"
 }
 ,
@@ -360,7 +361,7 @@
 	"153" : {
 	"cat_title" : "ios_base::flags",
 	"publish_date" : "2011-08-19",
-	"ref_title" : "flags",
+	"ref_title" : "flags, ios_base::flags",
 	"title" : "C++ 레퍼런스 - ios_base::flags 함수"
 }
 ,
@@ -381,7 +382,7 @@
 	"156" : {
 	"cat_title" : "ios_base::unsetf",
 	"publish_date" : "2011-08-19",
-	"ref_title" : "unsetf",
+	"ref_title" : "unsetf, ios_base::unsetf",
 	"title" : "C++ 레퍼런스 - ios_base::unsetf 함수"
 }
 ,
@@ -395,7 +396,7 @@
 	"158" : {
 	"cat_title" : "ios_base::imbue",
 	"publish_date" : "2011-08-20",
-	"ref_title" : "imbue",
+	"ref_title" : "imbue, ios_base::imbue",
 	"title" : "C++ 레퍼런스 - ios_base::imbue"
 }
 ,
@@ -446,34 +447,35 @@
 	"164" : {
 	"cat_title" : "ios::good",
 	"publish_date" : "2011-10-23",
-	"ref_title" : "good",
+	"ref_title" : "good, ios::good",
 	"title" : "C++ 레퍼런스 - ios::good 함수"
 }
 ,
 	"165" : {
 	"cat_title" : "ios::fail",
 	"publish_date" : "2011-10-23",
-	"ref_title" : "fail",
+	"ref_title" : "fail, ios::fail",
 	"title" : "C++ 레퍼런스 - ios::fail 함수"
 }
 ,
 	"166" : {
 	"cat_title" : "ios::bad",
 	"publish_date" : "2011-10-23",
-	"ref_title" : "bad",
+	"ref_title" : "bad, ios::bad",
 	"title" : "C++ 레퍼런스 - ios::bad 함수"
 }
 ,
 	"167" : {
 	"cat_title" : "ios::eof",
 	"publish_date" : "2011-10-23",
-	"ref_title" : "eof",
+	"ref_title" : "eof, ios::eof",
 	"title" : "C++ 레퍼런스 - ios::eof 함수"
 }
 ,
 	"168" : {
 	"cat_title" : "ios::operator!",
 	"publish_date" : "2011-10-23",
+	"ref_title" : "ios::operator!",
 	"title" : "C++ 레퍼런스 - ios::operator!"
 }
 ,
@@ -498,13 +500,14 @@
 	"170" : {
 	"cat_title" : "ios::operator void*",
 	"publish_date" : "2012-01-01",
+	"ref_title" : "ios::operator void*",
 	"title" : "C++ 레퍼런스 - ios::operator void*"
 }
 ,
 	"171" : {
 	"cat_title" : "ios::rdstate",
 	"publish_date" : "2012-03-25",
-	"ref_title" : "rdstate",
+	"ref_title" : "rdstate, ios::rdstate",
 	"title" : "C++ 레퍼런스 - ios::rdstate 함수"
 }
 ,
@@ -556,13 +559,15 @@
 }
 ,
 	"178" : {
+	"cat_title" : "vector 생성자",
+	"publish_date" : "2012-03-25",
 	"title" : "C++ 레퍼런스 - STL 컨테이너 - vector 생성자"
 }
 ,
 	"179" : {
 	"cat_title" : "ios::setstate",
 	"publish_date" : "2012-03-25",
-	"ref_title" : "setstate",
+	"ref_title" : "setstate, ios::setstate",
 	"title" : "C++ 레퍼런스 - ios::setstate 함수"
 }
 ,
@@ -578,13 +583,14 @@
 	"180" : {
 	"cat_title" : "ios::clear",
 	"publish_date" : "2012-03-25",
-	"ref_title" : "clear",
+	"ref_title" : "clear, ios::clear",
 	"title" : "C++ 레퍼런스 - ios::clear"
 }
 ,
 	"181" : {
 	"cat_title" : "ios::fill",
 	"publish_date" : "2012-03-25",
+	"ref_title" : "ios::fill",
 	"title" : "C++ 레퍼런스 - ios::fill 함수"
 }
 ,
@@ -1688,6 +1694,7 @@
 	"311" : {
 	"cat_title" : "Make 사용 가이드 (Makefile 만들기)",
 	"chapter" : "C++ 개발자가 알면 좋을 것들",
+	"next_page" : "319",
 	"path" : "/C++",
 	"prev_page" : "310",
 	"publish_date" : "2020-06-10",
@@ -1749,7 +1756,9 @@
 ,
 	"319" : {
 	"cat_title" : "20 - 1. 코드 부터 실행 파일 까지",
+	"next_page" : "320",
 	"path" : "/C++",
+	"prev_page" : "311",
 	"publish_date" : "2020-10-20",
 	"title" : "씹어먹는 C++ - <20 - 1. 코드 부터 실행 파일 까지 - 전체적인 개요>"
 }
@@ -1765,9 +1774,19 @@
 ,
 	"320" : {
 	"cat_title" : "20 - 2.코드 부터 실행 파일 까지 - 컴파일 (Compile)",
+	"next_page" : "321",
 	"path" : "/C++",
+	"prev_page" : "319",
 	"publish_date" : "2020-10-20",
 	"title" : "씹어먹는 C++ - <20 - 2. 코드 부터 실행 파일 까지 - 컴파일 (Compile)>"
+}
+,
+	"321" : {
+	"cat_title" : "20 - 3. 코드 부터 실행 파일 까지 - 링킹 (Linking)",
+	"path" : "/C++",
+	"prev_page" : "320",
+	"publish_date" : "2020-11-25",
+	"title" : "씹어먹는 C++ - <20 - 3. 코드 부터 실행 파일 까지 - 링킹 (Linking)>"
 }
 ,
 	"33" : {

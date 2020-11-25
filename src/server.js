@@ -3,6 +3,7 @@ const {ZmqManager} = require('./zmq_manager.js');
 const {PathHierarchy} = require('./path_hierarchy.js');
 const HeaderCategory = require('./header_category.js');
 const InstructionManager = require('./instruction');
+const fs = require('fs');
 
 const util = require('./util.js');
 
@@ -468,7 +469,6 @@ module.exports = class Server {
           res.send(html);
         }
       }.bind(this);
-
       if (page_id <= 228) {
         if (page_id == 15) {
           this.pageview_manager.addPageViewCnt('231');
@@ -478,12 +478,24 @@ module.exports = class Server {
                   './new/231.html', 231, page_id, user, CheckMobile(req)));
         }
         this.pageview_manager.addPageViewCnt(page_id);
-        res.render(
-            'new_page.ejs',
-            this.generateInfoToPassEJS(
-                './old/blog_' + page_id + '.html', page_id, page_id, user,
-                CheckMobile(req)),
-            fallbackToIndexOnFailOrPass);
+        fs.access(__dirname + '/../views/new/dump_' + page_id + '.html', fs.F_OK, (err) => {
+          console.log(err);
+          if (err) {
+            res.render(
+              'new_page.ejs',
+              this.generateInfoToPassEJS(
+                  './old/blog_' + page_id + '.html', page_id, page_id, user,
+                  CheckMobile(req)),
+              fallbackToIndexOnFailOrPass);
+          } else {
+            res.render(
+              'new_page.ejs',
+              this.generateInfoToPassEJS(
+                './new/dump_' + page_id + '.html', page_id, page_id, user,
+                  CheckMobile(req)),
+              fallbackToIndexOnFailOrPass);
+          }
+        });
       } else {
         this.pageview_manager.addPageViewCnt(page_id);
         res.render(
@@ -605,12 +617,24 @@ module.exports = class Server {
                   './new/231.html', 231, page_id, user, CheckMobile(req)));
         }
         this.pageview_manager.addPageViewCnt(page_id);
-        res.render(
-            'page.ejs',
-            this.generateInfoToPassEJS(
-                './old/blog_' + page_id + '.html', page_id, page_id, user,
-                CheckMobile(req)),
-            fallbackToIndexOnFailOrPass);
+        fs.access(__dirname + '/../views/new/dump_' + page_id + '.html', fs.F_OK, (err) => {
+          console.log(err);
+          if (err) {
+            res.render(
+              'page.ejs',
+              this.generateInfoToPassEJS(
+                  './old/blog_' + page_id + '.html', page_id, page_id, user,
+                  CheckMobile(req)),
+              fallbackToIndexOnFailOrPass);
+          } else {
+            res.render(
+              'page.ejs',
+              this.generateInfoToPassEJS(
+                './new/dump_' + page_id + '.html', page_id, page_id, user,
+                  CheckMobile(req)),
+              fallbackToIndexOnFailOrPass);
+          }
+        });
       } else {
         this.pageview_manager.addPageViewCnt(page_id);
         res.render(
