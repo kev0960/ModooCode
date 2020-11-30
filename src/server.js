@@ -479,7 +479,6 @@ module.exports = class Server {
         }
         this.pageview_manager.addPageViewCnt(page_id);
         fs.access(__dirname + '/../views/new/dump_' + page_id + '.html', fs.F_OK, (err) => {
-          console.log(err);
           if (err) {
             res.render(
               'new_page.ejs',
@@ -618,7 +617,6 @@ module.exports = class Server {
         }
         this.pageview_manager.addPageViewCnt(page_id);
         fs.access(__dirname + '/../views/new/dump_' + page_id + '.html', fs.F_OK, (err) => {
-          console.log(err);
           if (err) {
             res.render(
               'page.ejs',
