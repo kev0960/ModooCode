@@ -1,2 +1,249 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="351px" height="131px" viewBox="-0.5 -0.5 351 131" content="&lt;mxfile modified=&quot;2018-12-19T07:53:38.800Z&quot; host=&quot;www.draw.io&quot; agent=&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36&quot; etag=&quot;omaZSlthEwG7q_1lQS0G&quot; version=&quot;10.0.2&quot;&gt;&lt;diagram id=&quot;SMYDm0neZGTIYeB1ldLz&quot; name=&quot;Page-1&quot;&gt;7VfBjtMwEP0aS3BYFCfbtD222S4gBEIqgsIFmXg2seTEkeNuWr4eO7GTpt5CQXS1h+2hGj+Px573npUERUmxey1Jlb8XFDgKA7pD0Q0Kw/kk0P8G2HdAHIcdkElGOwgPwJr9BAvaddmWUahHiUoIrlg1BlNRlpCqEUakFM047U7w8a4VycAD1inhPvqFUZV36CycDvgbYFnudsbxvJspiEu2ndQ5oaI5gKIVihIphOqiYpcAN9w5Xrp1tydm+4NJKNU5CxY0qmabq7eL7FNQf5vN38Hn+Apfd2XuCd/ajtFqgZYBmt+gVYKWIVrqlMDuVqu9I0aKbUnB1A5QtGxypmBdkdTMNtoJGstVwfUI6/BOlCoRXMh2bRS0P43bzUEq2J1sC/dkaZOBKEDJvU5xC5zDrMGmdtgMamEnQX6g1LXFiDVI1lceONSBpfFvKJ14lGrpJdDvlZIojLk+wPKHiTITvZBw1/p3q/vVB40Whu6XfuJlFDD4LSkYN/QlYisZ6B2DD9BcRh6Mz9RnfjF94vMsHz6WBP+B5Wj21C7B9PkSnJbnCVyCmX8JjqmFki7ME1SPUk7qmqU+mydZO0U17JjaWLVM/NXEryZmVOrGNrZ2OxjmKKnzVmTcCwLUe3AfyaGb0YdK4QybKiIzUH98TvoCHwg4eUA/h0ngRLH78YEfEtXu8FGw9iJY/xzZR7M5rtD1aRcdvgIc1cHRuFB/Pleo48Er1Fqs7/rfXecs/viuc94KfG85R2LPkRdz3eRc18XPrvud6/RweH/u0oePkGj1Cw==&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);"><defs/><rect x="0" y="0" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(44.5,13.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="30" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 32px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">객체 1</div></div></foreignObject><text x="15" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">객체 1</text></switch></g><rect x="0" y="40" width="120" height="90" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(5.5,71.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="108" height="26" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: &quot;Courier New&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 110px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">shared_ptr<br />(ref count : 1)<br /></div></div></foreignObject><text x="54" y="19" fill="#000000" text-anchor="middle" font-size="12px" font-family="Courier New">shared_ptr&lt;br&gt;(ref count : 1)&lt;br&gt;</text></switch></g><rect x="230" y="0" width="120" height="40" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(274.5,13.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="30" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 32px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">객체 2<br /></div></div></foreignObject><text x="15" y="12" fill="#000000" text-anchor="middle" font-size="12px" font-family="Helvetica">객체 2&lt;br&gt;</text></switch></g><rect x="230" y="40" width="120" height="90" fill="#ffffff" stroke="#000000" pointer-events="none"/><g transform="translate(235.5,71.5)"><switch><foreignObject style="overflow:visible;" pointer-events="all" width="108" height="26" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; font-size: 12px; font-family: &quot;Courier New&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 110px; white-space: nowrap; overflow-wrap: normal; text-align: center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">shared_ptr<br />(ref count : 1)<br /></div></div></foreignObject><text x="54" y="19" fill="#000000" text-anchor="middle" font-size="12px" font-family="Courier New">shared_ptr&lt;br&gt;(ref count : 1)&lt;br&gt;</text></switch></g><path d="M 230 85 L 125.48 23.24" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/><path d="M 120.96 20.57 L 128.77 21.12 L 125.48 23.24 L 125.21 27.14 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 120 85 L 224.52 23.24" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="3 3" pointer-events="none"/><path d="M 229.04 20.57 L 224.79 27.14 L 224.52 23.24 L 221.23 21.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="351px"
+   height="131px"
+   viewBox="-0.5 -0.5 351 131"
+   content="&lt;mxfile modified=&quot;2018-12-19T07:53:38.800Z&quot; host=&quot;www.draw.io&quot; agent=&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36&quot; etag=&quot;omaZSlthEwG7q_1lQS0G&quot; version=&quot;10.0.2&quot;&gt;&lt;diagram id=&quot;SMYDm0neZGTIYeB1ldLz&quot; name=&quot;Page-1&quot;&gt;7VfBjtMwEP0aS3BYFCfbtD222S4gBEIqgsIFmXg2seTEkeNuWr4eO7GTpt5CQXS1h+2hGj+Px573npUERUmxey1Jlb8XFDgKA7pD0Q0Kw/kk0P8G2HdAHIcdkElGOwgPwJr9BAvaddmWUahHiUoIrlg1BlNRlpCqEUakFM047U7w8a4VycAD1inhPvqFUZV36CycDvgbYFnudsbxvJspiEu2ndQ5oaI5gKIVihIphOqiYpcAN9w5Xrp1tydm+4NJKNU5CxY0qmabq7eL7FNQf5vN38Hn+Apfd2XuCd/ajtFqgZYBmt+gVYKWIVrqlMDuVqu9I0aKbUnB1A5QtGxypmBdkdTMNtoJGstVwfUI6/BOlCoRXMh2bRS0P43bzUEq2J1sC/dkaZOBKEDJvU5xC5zDrMGmdtgMamEnQX6g1LXFiDVI1lceONSBpfFvKJ14lGrpJdDvlZIojLk+wPKHiTITvZBw1/p3q/vVB40Whu6XfuJlFDD4LSkYN/QlYisZ6B2DD9BcRh6Mz9RnfjF94vMsHz6WBP+B5Wj21C7B9PkSnJbnCVyCmX8JjqmFki7ME1SPUk7qmqU+mydZO0U17JjaWLVM/NXEryZmVOrGNrZ2OxjmKKnzVmTcCwLUe3AfyaGb0YdK4QybKiIzUH98TvoCHwg4eUA/h0ngRLH78YEfEtXu8FGw9iJY/xzZR7M5rtD1aRcdvgIc1cHRuFB/Pleo48Er1Fqs7/rfXecs/viuc94KfG85R2LPkRdz3eRc18XPrvud6/RweH/u0oePkGj1Cw==&lt;/diagram&gt;&lt;/mxfile&gt;"
+   style="background-color: rgb(255, 255, 255);"
+   id="svg44"
+   sodipodi:docname="13.2.6.svg"
+   inkscape:version="1.0.1 (1.0.1+r74)">
+  <metadata
+     id="metadata48">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1848"
+     inkscape:window-height="1056"
+     id="namedview46"
+     showgrid="false"
+     inkscape:zoom="1.8732194"
+     inkscape:cx="194.48688"
+     inkscape:cy="99.325821"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g26" />
+  <defs
+     id="defs2" />
+  <rect
+     x="0"
+     y="0"
+     width="120"
+     height="40"
+     fill="#ffffff"
+     stroke="#000000"
+     pointer-events="none"
+     id="rect4" />
+  <g
+     transform="translate(44.5,13.5)"
+     id="g10">
+    <switch
+       id="switch8">
+      <foreignObject
+         style="overflow:visible;"
+         pointer-events="all"
+         width="30"
+         height="12"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 32px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">객체 1</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="15"
+         y="12"
+         fill="#000000"
+         text-anchor="middle"
+         font-size="12px"
+         font-family="Helvetica"
+         id="text6">객체 1</text>
+    </switch>
+  </g>
+  <rect
+     x="0"
+     y="40"
+     width="120"
+     height="90"
+     fill="#ffffff"
+     stroke="#000000"
+     pointer-events="none"
+     id="rect12" />
+  <g
+     transform="translate(5.5,71.015052)"
+     id="g18">
+    <switch
+       id="switch16">
+      <foreignObject
+         style="overflow:visible;"
+         pointer-events="all"
+         width="108"
+         height="26"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: inline-block; font-size: 12px; font-family: &quot;Courier New&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 110px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">shared_ptr<xhtml:br />
+(ref count : 1)<xhtml:br />
+</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="54"
+         y="19"
+         fill="#000000"
+         text-anchor="middle"
+         font-size="12px"
+         font-family="'Courier New'"
+         id="text14"><tspan
+           sodipodi:role="line"
+           id="tspan873"
+           x="54"
+           y="19">shared_ptr</tspan><tspan
+           sodipodi:role="line"
+           id="tspan875"
+           x="54"
+           y="34">(ref count : 2)</tspan></text>
+    </switch>
+  </g>
+  <rect
+     x="230"
+     y="0"
+     width="120"
+     height="40"
+     fill="#ffffff"
+     stroke="#000000"
+     pointer-events="none"
+     id="rect20" />
+  <g
+     transform="translate(274.5,13.5)"
+     id="g26">
+    <switch
+       id="switch24">
+      <foreignObject
+         style="overflow:visible;"
+         pointer-events="all"
+         width="30"
+         height="12"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 32px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">객체 2<xhtml:br />
+</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="15"
+         y="12"
+         fill="#000000"
+         text-anchor="middle"
+         font-size="12px"
+         font-family="Helvetica"
+         id="text22">객체 2</text>
+    </switch>
+  </g>
+  <rect
+     x="230"
+     y="40"
+     width="120"
+     height="90"
+     fill="#ffffff"
+     stroke="#000000"
+     pointer-events="none"
+     id="rect28" />
+  <path
+     d="M 230 85 L 125.48 23.24"
+     fill="none"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     stroke-dasharray="3 3"
+     pointer-events="none"
+     id="path36" />
+  <path
+     d="M 120.96 20.57 L 128.77 21.12 L 125.48 23.24 L 125.21 27.14 Z"
+     fill="#000000"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     pointer-events="none"
+     id="path38" />
+  <path
+     d="M 120 85 L 224.52 23.24"
+     fill="none"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     stroke-dasharray="3 3"
+     pointer-events="none"
+     id="path40" />
+  <path
+     d="M 229.04 20.57 L 224.79 27.14 L 224.52 23.24 L 221.23 21.12 Z"
+     fill="#000000"
+     stroke="#000000"
+     stroke-miterlimit="10"
+     pointer-events="none"
+     id="path42" />
+  <g
+     transform="translate(235.46224,71.015052)"
+     id="g18-9">
+    <switch
+       id="switch16-8">
+      <foreignObject
+         style="overflow:visible;"
+         pointer-events="all"
+         width="108"
+         height="26"
+         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+        <xhtml:div
+           style="display: inline-block; font-size: 12px; font-family: &quot;Courier New&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 110px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
+          <xhtml:div
+             style="display:inline-block;text-align:inherit;text-decoration:inherit;">shared_ptr<xhtml:br />
+
+(ref count : 1)<xhtml:br />
+</xhtml:div>
+        </xhtml:div>
+      </foreignObject>
+      <text
+         x="54"
+         y="19"
+         fill="#000000"
+         text-anchor="middle"
+         font-size="12px"
+         font-family="'Courier New'"
+         id="text14-4"><tspan
+           sodipodi:role="line"
+           id="tspan873-8"
+           x="54"
+           y="19">shared_ptr</tspan><tspan
+           sodipodi:role="line"
+           id="tspan875-1"
+           x="54"
+           y="34">(ref count : 2)</tspan></text>
+    </switch>
+  </g>
+</svg>

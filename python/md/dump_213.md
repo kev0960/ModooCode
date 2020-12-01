@@ -300,19 +300,31 @@ int main() {
       std::cin.clear();            // 플래그들을 초기화 하고
       std::cin.ignore(100, '\n');  // 개행문자가 나올 때 까지 무시한다
     }
-    if (t == 0) break;
+    if (t == 1) break;
   }
 }
 ```
 
-
-
 성공적으로 컴파일 하였다면
 
-
-![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile10.uf.tistory.com%2Fimage%2F264A894254A0FE1E2ADE3E)
-
-
+```exec
+a
+입력 :: 0
+제대로 입력해주세요
+x
+입력 :: 0
+제대로 입력해주세요
+d
+입력 :: 0
+제대로 입력해주세요
+asdf
+입력 :: 0
+제대로 입력해주세요
+2
+입력 :: 2
+1
+입력 :: 1
+```
 
 위와 같이 잘 처리됩니다. 위 과정이 어떻게 가능한지 자세히 살펴보도록 합시다.
 
@@ -320,8 +332,6 @@ int main() {
 ```cpp-formatted
 if (std::cin.fail()) {
 ```
-
-
 
 먼저 `fail` 함수는 `ios` 에 정의되어 있으며, `failbit` 가 `true` 거나 `badbit` 가 `true` 면 `true` 를 리턴합니다. 만일 숫자가 아닌 것을 입력한다면 `failbit` 가 `true` 이므로, `std::cin.fail()` 은 `true` 가 되어 조건문을 실행하게 됩니다.
 
@@ -341,21 +351,12 @@ std::cin.ignore(100, '\n');  // 버퍼를 비워버린다
 this is a very bad input\n
 ```
 
-
-
 이렇게 들어가 있고, `ignore` 함수를 통해 (최대 100 자 까지) 개행문자가 나올 때 까지 무시할 수 있게 됩니다.
-
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile30.uf.tistory.com%2Fimage%2F212B393A54A100292F4FA5)
 
 
-
-
-
 만일 버퍼에 100자 이상을 집어 넣는다면 위와 같이 `ignore` 함수가 총 3번 호출됨을 알 수 있습니다. (버퍼에 남아 있는 문자들이 다 지워질때 까지)
-
-
-
 
 
 ###  형식 플래그(format `flag)` 와 조작자 (Manipulator)
