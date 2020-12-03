@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - puts 함수
 cat_title :  puts
 publish_date : 2010-02-04
+ref_title : puts
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-04
 
 #@ puts
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int puts ( const char * str );

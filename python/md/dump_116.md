@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - asctime 함수
 cat_title :  asctime
 publish_date : 2010-12-26
+ref_title : asctime
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-12-26
 
 #@ asctime
 
-```info-format
+```cpp
 #include <time.h> // C++ 에서는 <ctime>
 
 char * asctime ( const struct tm * timeptr );

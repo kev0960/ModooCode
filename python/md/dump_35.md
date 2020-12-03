@@ -14,8 +14,8 @@ ref_title : printf
 
 #@ printf
 
-```info-format
-<stdio.h> // C++ 의 경우 <cstdio>
+```cpp
+#include <stdio.h> // C++ 의 경우 <cstdio>
 int printf ( const char * format, ... );
 ```
 

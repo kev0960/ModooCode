@@ -11,7 +11,7 @@ publish_date : 2012-03-25
 
 #@ ios::rdstate
 
-```info-format
+```cpp
 iostate rdstate ( ) const;
 
 ```

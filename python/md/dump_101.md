@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - strstr 함수
 cat_title :  strstr
 publish_date : 2010-11-27
+ref_title : strstr
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-11-27
 
 #@ strstr
 
-```info-format
+```cpp
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strstr ( const char * str1, const char * str2 );

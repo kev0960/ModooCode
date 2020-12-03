@@ -11,7 +11,7 @@ ref_title : ios::rdbuf, rdbuf
 
 #@ ios::rdbuf
 
-```info-format
+```cpp
 streambuf* rdbuf ( ) const;
 streambuf* rdbuf ( streambuf* sb );
 

@@ -11,7 +11,7 @@ ref_title : xalloc, ios_base::xalloc
 
 #@ ios_base::xalloc  (static member function)
 
-```info-format
+```cpp
 int xalloc ( );
 ```
 

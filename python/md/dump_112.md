@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - mktime 함수
 cat_title :  mktime
 publish_date : 2010-12-26
+ref_title : mktime
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-12-26
 
 #@ mktime
 
-```info-format
+```cpp
 #include <time.h> // C++ 에서는 <ctime>
 
 time_t mktime ( struct tm * timeptr );

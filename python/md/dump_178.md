@@ -11,7 +11,7 @@ publish_date : 2012-03-25
 #@ vector::vector
 
 
-```info-format
+```cpp
 explicit vector ( const Allocator& = Allocator() );
 explicit vector ( size_type n, const T& value= T(), const Allocator& = Allocator() );
 template <class InputIterator>

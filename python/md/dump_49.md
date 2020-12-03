@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - ungetc 함수
 cat_title :  ungetc
 publish_date : 2010-02-04
+ref_title : ungetc
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-04
 
 #@ ungetc
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int ungetc ( int character, FILE * stream );

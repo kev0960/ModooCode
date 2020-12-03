@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - fclose 함수
 cat_title :  fclose
 publish_date : 2010-02-08
+ref_title : fclose
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-08
 
 #@ fclose
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fclose ( FILE * stream );

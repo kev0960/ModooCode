@@ -3,12 +3,13 @@ title : C 언어 레퍼런스 - atoi 함수
 path : /C Reference/stdlib.h
 cat_title :  atoi
 publish_date : 2011-01-27
+ref_title : atoi
 --------------
 
 
 #@ atoi
 
-```info-format
+```cpp
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 int atoi ( const char * str );

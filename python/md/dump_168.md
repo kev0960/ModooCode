@@ -11,7 +11,7 @@ publish_date : 2011-10-23
 
 `<istream>` 에 정의됨
 
-```info-format
+```cpp
 bool operator ! ( ) const;
 ```
 

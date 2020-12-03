@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - strrchr 함수
 cat_title :  strrchr
 publish_date : 2010-08-02
+ref_title : strrchr
 --------------
 
 
@@ -15,7 +16,7 @@ publish_date : 2010-08-02
 
 
 
-```info-format
+```cpp
 #include <string.h> // C++ 에서는 <cstring>
 
 const char * strrchr ( const char * str, int character );
@@ -28,7 +29,7 @@ const char * strrchr ( const char * str, int character );
 
 C++ 에서는 함수 오버로딩이 가능하므로 위와 같이 두 개의 원형을 가져도 되지만 C 에서는 불가능 하므로 아래와 같은 하나의 원형만을 가진다 C++ 에서는 함수 오버로딩이 가능하므로 위와 같이 두 개의 원형을 가져도 되지만 C 에서는 불가능 하므로 아래와 같은 하나의 원형만을 가진다.
 
-```info-format
+```cpp
 char * strrchr ( const char *, int );
 ```
 

@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - difftime 함수
 cat_title :  difftime
 publish_date : 2010-12-25
+ref_title : difftime
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-12-25
 
 #@ difftime
 
-```info-format
+```cpp
 #include <time.h> // C++ 에서는 <ctime>
 
 double difftime ( time_t time2, time_t time1 );

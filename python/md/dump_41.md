@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - getc 함수
 cat_title :  getc
 publish_date : 2010-02-02
+ref_title : getc
 --------------
 
 
@@ -9,7 +10,7 @@ publish_date : 2010-02-02
 
 
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 의 경우 <cstdio>
 int getc ( FILE * stream );
 ```

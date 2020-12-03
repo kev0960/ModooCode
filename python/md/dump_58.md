@@ -13,7 +13,7 @@ ref_title : fopen
 
 #@ fopen
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 FILE * fopen ( const char * filename, const char * mode );
 ```

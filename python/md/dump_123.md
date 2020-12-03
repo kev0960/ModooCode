@@ -75,7 +75,7 @@ There is some data in this FILE!!!!
 
 이렇게 파일 위치 지시자가 다음으로 한 칸 씩 움직이는 바람에 데이터를 순차적으로 읽어들일 수 있게 되는 것이지요. 하지만 놀랍게도 C 언어에서는 파일 위치 지시자의 위치를 사용자 마음대로 바꿀 수 있게 해주는 여러가지 함수들을 지원해주고 있습니다. 그 중 대표적으로 가장 많이 사용하는 `fseek` 함수가 있지요. `fseek` 함수는 다음과 같이 생겼습니다. (자세한 설명은 [ C 언어 함수 레퍼런스 - fseek 함수](http://itguru.tistory.com/72)를 참조하세요)
 
-```info-format
+```cpp
 int fseek ( FILE * stream, long int offset, int origin );
 ```
 

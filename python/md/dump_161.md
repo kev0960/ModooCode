@@ -11,7 +11,7 @@ ref_title : ios_base::iword, iword
 
 #@ ios_base::iword
 
-```info-format
+```cpp
 long& iword (int idx);
 ```
 

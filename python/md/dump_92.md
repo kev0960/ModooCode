@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - memchr 함수
 cat_title :  memchr
 publish_date : 2010-08-01
+ref_title : memchr
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-08-01
 
 #@ memchr
 
-```info-format
+```cpp
 #include <string.h> // C++ 에서는 <cstring>
 
 const void * memchr ( const void * ptr, int value, size_t num );
@@ -27,7 +28,7 @@ const void * memchr ( const void * ptr, int value, size_t num );
 
 참고적으로 위에 나타난 두 함수의 원형은 C++ 에서 정의된 방식으로 경우에 따라 오버로딩 되어서 나타난다. C 에서는 함수 오버로딩이 없기 때문에 다음과 같이 하나의 원형만을 가진다.
 
-```info-format
+```cpp
 void * memchr ( const void *, int, size_t );
 ```
 

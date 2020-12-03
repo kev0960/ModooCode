@@ -2,12 +2,13 @@
 title : C 언어 레퍼런스 - freopen 함수
 cat_title :  freopen
 publish_date : 2010-02-13
+ref_title : freopen
 --------------
 
 
 #@ freopen
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 FILE * freopen ( const char * filename, const char * mode, FILE * stream );

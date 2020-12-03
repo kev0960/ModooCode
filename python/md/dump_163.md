@@ -11,7 +11,7 @@ ref_title : ios_base::pword, pword
 
 #@ ios_base::pword
 
-```info-format
+```cpp
 void* & pword (int idx);
 
 ```

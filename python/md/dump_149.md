@@ -13,7 +13,7 @@ publish_date : 2011-08-18
 
 `<istream>` 에 정의됨
 
-```info-format
+```cpp
 istream& getline (char* s, streamsize n );
 istream& getline (char* s, streamsize n, char delim );
 ```

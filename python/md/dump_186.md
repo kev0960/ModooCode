@@ -14,7 +14,7 @@ publish_date : 2012-08-05
 #@ vector::insert
 
 
-```info-format
+```cpp
 iterator insert ( iterator position, const T& x );
     void insert ( iterator position, size_type n, const T& x );
 template <class InputIterator>

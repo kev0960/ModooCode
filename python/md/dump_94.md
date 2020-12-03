@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - strcspn 함수
 cat_title :  strcspn
 publish_date : 2010-08-02
+ref_title : strcspn
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-08-02
 
 #@ strcspn
 
-```info-format
+```cpp
 #include <string.h> // C++ 에서는 <cstring>
 
 size_t strcspn ( const char * str1, const char * str2 );

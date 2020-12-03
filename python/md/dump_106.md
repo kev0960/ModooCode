@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - strlen 함수
 cat_title :  strlen
 publish_date : 2010-12-12
+ref_title : strlen
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-12-12
 
 #@ strlen
 
-```info-format
+```cpp
 #include <string.h> // C++ 에서는 <cstring>
 
 size_t strlen ( const char * str );

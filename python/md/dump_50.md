@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - clearerr 함수
 cat_title :  clearerr
 publish_date : 2010-02-05
+ref_title : clearerr
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-05
 
 #@ clearerr
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 void clearerr ( FILE * stream );

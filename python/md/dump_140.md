@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - srand 함수
 path : /C Reference/stdlib.h
 cat_title :  srand
 publish_date : 2011-05-05
+ref_title : srand
 --------------
 
 
@@ -14,7 +15,7 @@ publish_date : 2011-05-05
 
 #@ srand
 
-```info-format
+```cpp
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 void srand ( unsigned int seed );

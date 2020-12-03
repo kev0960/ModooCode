@@ -11,7 +11,7 @@ publish_date : 2012-03-25
 
 #@ ios::clear
 
-```info-format
+```cpp
 void clear ( iostate state = goodbit );
 ```
 

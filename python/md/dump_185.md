@@ -10,7 +10,7 @@ publish_date : 2012-08-05
 
 #@ vector::push_back
 
-```info-format
+```cpp
 void push_back ( const T& x );
 
 ```

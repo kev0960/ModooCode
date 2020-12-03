@@ -10,7 +10,7 @@ publish_date : 2011-08-17
 
 #@ istream::operator>>
 
-```info-format
+```cpp
 istream& operator>> (bool& val );
 istream& operator>> (short& val );
 istream& operator>> (unsigned short& val );

@@ -11,7 +11,7 @@ publish_date : 2012-01-01
 
 #@ ios::operator `void*`
 
-```info-format
+```cpp
 operator void * ( ) const;
 ```
 

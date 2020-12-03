@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - fseek 함수
 cat_title :  fseek
 publish_date : 2010-04-24
+ref_title : fseek
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-04-24
 
 #@ fseek
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fseek ( FILE * stream, long int offset, int origin );

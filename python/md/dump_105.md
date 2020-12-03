@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - strerror 함수
 cat_title :  strerror
 publish_date : 2010-12-12
+ref_title : strerror
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-12-12
 
 #@ strerror
 
-```info-format
+```cpp
 #include <string.h> // C++ 에서는 <cstring>
 
 char * strerror ( int errnum );

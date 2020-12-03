@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - putchar 함수
 cat_title :  putchar
 publish_date : 2010-02-04
+ref_title : putchar
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-04
 
 #@ putchar
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int putchar ( int character );

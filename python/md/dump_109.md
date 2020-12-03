@@ -12,7 +12,7 @@ publish_date : 2010-12-25
 
 #@ struct tm
 
-```info-format
+```cpp
 #include <time.h> // C++ 에서는 <ctime>
 struct tm
 {

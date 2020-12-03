@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - ferror 함수
 cat_title :  ferror
 publish_date : 2010-02-05
+ref_title : ferror
 --------------
 
 ```warning
@@ -11,7 +12,7 @@ publish_date : 2010-02-05
 
 #@ ferror
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 int ferror ( FILE * stream );
 ```

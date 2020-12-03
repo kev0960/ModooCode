@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - strcmp 함수
 cat_title :  strcmp
 publish_date : 2010-06-25
+ref_title : strcmp
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-06-25
 
 #@ strcmp
 
-```info-format
+```cpp
 #include <string.h> // C++ 에서는 <cstring>
 
 int strcmp ( const char * str1, const char * str2 );

@@ -11,7 +11,7 @@ publish_date : 2012-11-07
 
 `<istream>` 에 정의됨
 
-```info-format
+```cpp
 istream&  ignore ( streamsize n = 1, int delim = EOF );
 ```
 

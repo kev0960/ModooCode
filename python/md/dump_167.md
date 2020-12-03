@@ -11,7 +11,7 @@ publish_date : 2011-10-23
 
 #@ ios::eof
 
-```info-format
+```cpp
 bool eof ( ) const;
 ```
 

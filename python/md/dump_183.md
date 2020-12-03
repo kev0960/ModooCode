@@ -12,7 +12,7 @@ publish_date : 2012-03-25
 
 #@ vector::assign
 
-```info-format
+```cpp
 template <class InputIterator>
   void assign ( InputIterator first, InputIterator last );
 void assign ( size_type n, const T& u );

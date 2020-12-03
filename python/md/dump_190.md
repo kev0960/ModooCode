@@ -10,7 +10,7 @@ ref_title  : ios::tie, tie
 #@ ios::tie
 
 
-```info-format
+```cpp
 ostream* tie ( ) const;
 ostream* tie ( ostream* tiestr );
 ```

@@ -659,7 +659,7 @@ kg + meter;
 
 위 부분에서 오류가 발생하는데, `kg` 와 `meter` 의 단위가 다르기 때문에 발생하게 됩니다. 반면에
 
-```info-format
+```cpp
 // Good
 kg + kg;
 ```

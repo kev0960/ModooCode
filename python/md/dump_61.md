@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - setbuf 함수
 cat_title :  setbuf
 publish_date : 2010-02-16
+ref_title : setbuf
 --------------
 
 
@@ -15,7 +16,7 @@ publish_date : 2010-02-16
 
 
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 void setbuf ( FILE * stream, char * buffer );

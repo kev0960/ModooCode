@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - gmtime 함수
 cat_title :  gmtime
 publish_date : 2010-12-29
+ref_title : gmtime
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-12-29
 
 #@ gmtime
 
-```info-format
+```cpp
 #include <time.h> // C++ 에서는 <ctime>
 
 struct tm * gmtime ( const time_t * timer );

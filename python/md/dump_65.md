@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - fscanf 함수
 cat_title :  fscanf
 publish_date : 2010-02-22
+ref_title: fscanf
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-22
 
 #@ fscanf
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fscanf ( FILE * stream, const char * format, ... );

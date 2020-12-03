@@ -9,7 +9,7 @@ publish_date : 2012-11-09
 
 #@ istream::peek
 
-```info-format
+```cpp
 
 int peek ( );
 ```

@@ -2,7 +2,7 @@
 title : C 언어 레퍼런스 - scanf 함수
 cat_title :  scanf
 publish_date : 2010-02-03
-ref_title : printf
+ref_title : scanf
 --------------
 
 
@@ -17,8 +17,8 @@ ref_title : printf
 
 #@ scanf
 
-```info-format
-<stdio.h> // C++ 의 경우<cstdio>
+```cpp
+#include <stdio.h> // C++ 의 경우<cstdio>
 int  scanf ( const char * format, ... );
 ```
 

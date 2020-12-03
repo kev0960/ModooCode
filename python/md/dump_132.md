@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - atol 함수
 path : /C Reference/stdlib.h
 cat_title :  atol
 publish_date : 2011-01-27
+ref_title : atol
 --------------
 
 
@@ -14,7 +15,7 @@ publish_date : 2011-01-27
 
 #@ atol
 
-```info-format
+```cpp
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 long int atol ( const char * str ); // long atol (const char *str) 인 경우도 있음

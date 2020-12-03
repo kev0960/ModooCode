@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - rand 함수
 path : /C Reference/stdlib.h
 cat_title :  rand
 publish_date : 2011-05-05
+ref_title : rand
 --------------
 
 ```warning
@@ -12,7 +13,7 @@ publish_date : 2011-05-05
 
 #@ rand
 
-```info-format
+```cpp
 #include <stdlib.h> // C++ 에서는 <cstdlib>
 
 int rand ( void );

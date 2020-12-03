@@ -9,7 +9,7 @@ publish_date : 2012-11-07
 
 #@ istream::get
 
-```info-format
+```cpp
 int get();
 istream& get ( char& c );
 istream& get ( char* s, streamsize n );

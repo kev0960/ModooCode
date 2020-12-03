@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - strncat 함수
 cat_title :  strncat
 publish_date : 2010-05-23
+ref_title : strncat
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-05-23
 
 #@ strncat
 
-```info-format
+```cpp
 #include <string.h> // C++ 에서는 <cstring>
 
 char * strncat ( char * destination, char * source, size_t num );

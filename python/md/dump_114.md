@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - time 함수
 cat_title :  time
 publish_date : 2010-12-26
+ref_title : time
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-12-26
 
 #@ time
 
-```info-format
+```cpp
 #include <time.h> // C++ 에서는 <ctime>
 
 time_t time ( time_t * timer );

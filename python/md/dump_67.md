@@ -2,12 +2,13 @@
 title : C 언어 레퍼런스 - sscanf 함수
 cat_title :  sscanf
 publish_date : 2011-01-03
+ref_title : sscanf
 --------------
 
 
 #@ sscanf
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int sscanf ( const char * str, const char * format, ...);

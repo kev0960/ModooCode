@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - fprintf 함수
 cat_title :  fprintf
 publish_date : 2010-02-19
+ref_title: fprintf
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-19
 
 #@ fprintf
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 int fprintf ( FILE * stream, const char * format, ... );

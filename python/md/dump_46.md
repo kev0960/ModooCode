@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - putc 함수
 cat_title :  putc
 publish_date : 2010-02-04
+ref_title : putc
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-04
 
 #@ putc
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 int putc ( int character, FILE * stream );
 ```

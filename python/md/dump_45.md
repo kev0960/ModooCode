@@ -2,6 +2,7 @@
 title : C 언어 레퍼런스 - gets 함수
 cat_title :  gets
 publish_date : 2010-02-03
+ref_title : gets
 --------------
 
 
@@ -13,7 +14,7 @@ publish_date : 2010-02-03
 
 #@ gets
 
-```info-format
+```cpp
 #include <stdio.h> // C++ 에서는 <cstdio>
 
 char * gets ( char * str );

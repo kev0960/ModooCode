@@ -11,7 +11,7 @@ publish_date : 2011-10-23
 
 #@ ios::good
 
-```info-format
+```cpp
 bool good ( ) const;
 ```
 
