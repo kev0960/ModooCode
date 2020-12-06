@@ -23,12 +23,14 @@
 	"101" : {
 	"cat_title" : "strstr",
 	"publish_date" : "2010-11-27",
+	"ref_title" : "strstr",
 	"title" : "C 언어 레퍼런스 - strstr 함수"
 }
 ,
 	"102" : {
 	"cat_title" : "strtok",
 	"publish_date" : "2010-11-27",
+	"ref_title" : "strtok",
 	"title" : "C 언어 레퍼런스 - strtok 함수"
 }
 ,
@@ -44,18 +46,21 @@
 	"104" : {
 	"cat_title" : "memset",
 	"publish_date" : "2010-11-28",
+	"ref_title" : "memset",
 	"title" : "C 언어 레퍼런스 - memset 함수"
 }
 ,
 	"105" : {
 	"cat_title" : "strerror",
 	"publish_date" : "2010-12-12",
+	"ref_title" : "strerror",
 	"title" : "C 언어 레퍼런스 - strerror 함수"
 }
 ,
 	"106" : {
 	"cat_title" : "strlen",
 	"publish_date" : "2010-12-12",
+	"ref_title" : "strlen",
 	"title" : "C 언어 레퍼런스 - strlen 함수"
 }
 ,
@@ -76,18 +81,21 @@
 	"110" : {
 	"cat_title" : "clock",
 	"publish_date" : "2010-12-25",
+	"ref_title" : "clock",
 	"title" : "C 언어 레퍼런스 - clock 함수"
 }
 ,
 	"111" : {
 	"cat_title" : "difftime",
 	"publish_date" : "2010-12-25",
+	"ref_title" : "difftime",
 	"title" : "C 언어 레퍼런스 - difftime 함수"
 }
 ,
 	"112" : {
 	"cat_title" : "mktime",
 	"publish_date" : "2010-12-26",
+	"ref_title" : "mktime",
 	"title" : "C 언어 레퍼런스 - mktime 함수"
 }
 ,
@@ -101,6 +109,7 @@
 	"114" : {
 	"cat_title" : "time",
 	"publish_date" : "2010-12-26",
+	"ref_title" : "time",
 	"title" : "C 언어 레퍼런스 - time 함수"
 }
 ,
@@ -112,6 +121,7 @@
 	"116" : {
 	"cat_title" : "asctime",
 	"publish_date" : "2010-12-26",
+	"ref_title" : "asctime",
 	"title" : "C 언어 레퍼런스 - asctime 함수"
 }
 ,
@@ -127,12 +137,14 @@
 	"118" : {
 	"cat_title" : "ctime",
 	"publish_date" : "2010-12-29",
+	"ref_title" : "ctime",
 	"title" : "C 언어 레퍼런스 - ctime 함수"
 }
 ,
 	"119" : {
 	"cat_title" : "gmtime",
 	"publish_date" : "2010-12-29",
+	"ref_title" : "gmtime",
 	"title" : "C 언어 레퍼런스 - gmtime 함수"
 }
 ,
@@ -148,6 +160,7 @@
 	"120" : {
 	"cat_title" : "localtime",
 	"publish_date" : "2010-12-30",
+	"ref_title" : "localtime",
 	"title" : "C 언어 레퍼런스 - localtime 함수"
 }
 ,
@@ -162,6 +175,7 @@
 	"122" : {
 	"cat_title" : "strftime",
 	"publish_date" : "2011-01-05",
+	"ref_title" : "strftime",
 	"title" : "C 언어 레퍼런스 - strftime 함수"
 }
 ,
@@ -178,6 +192,7 @@
 	"cat_title" : "atof",
 	"path" : "/C Reference/stdlib.h",
 	"publish_date" : "2011-01-09",
+	"ref_title" : "atof",
 	"title" : "C 언어 레퍼런스 - atof 함수"
 }
 ,
@@ -209,6 +224,7 @@
 	"cat_title" : "atoi",
 	"path" : "/C Reference/stdlib.h",
 	"publish_date" : "2011-01-27",
+	"ref_title" : "atoi",
 	"title" : "C 언어 레퍼런스 - atoi 함수"
 }
 ,
@@ -216,6 +232,7 @@
 	"cat_title" : "atol",
 	"path" : "/C Reference/stdlib.h",
 	"publish_date" : "2011-01-27",
+	"ref_title" : "atol",
 	"title" : "C 언어 레퍼런스 - atol 함수"
 }
 ,
@@ -262,6 +279,7 @@
 	"cat_title" : "rand",
 	"path" : "/C Reference/stdlib.h",
 	"publish_date" : "2011-05-05",
+	"ref_title" : "rand",
 	"title" : "C 언어 레퍼런스 - rand 함수"
 }
 ,
@@ -278,6 +296,7 @@
 	"cat_title" : "srand",
 	"path" : "/C Reference/stdlib.h",
 	"publish_date" : "2011-05-05",
+	"ref_title" : "srand",
 	"title" : "C 언어 레퍼런스 - srand 함수"
 }
 ,
@@ -1798,6 +1817,22 @@
 	"title" : "씹어먹는 C++ - <20 - 4. 코드 부터 실행 파일 까지 - main 으로의 여정>"
 }
 ,
+	"323" : {
+	"cat_title" : "stable_sort",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2020-12-06",
+	"ref_title" : "std::stable_sort, stable_sort",
+	"title" : "C++ 레퍼런스 - std::stable_sort (<algorithm>)"
+}
+,
+	"324" : {
+	"cat_title" : "partial_sort",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2020-12-06",
+	"ref_title" : "std::partial_sort, partial_sort",
+	"title" : "C++ 레퍼런스 - std::partial_sort (<algorithm>)"
+}
+,
 	"33" : {
 	"cat_title" : "15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴",
 	"next_page" : "43",
@@ -1824,37 +1859,42 @@
 	"36" : {
 	"cat_title" : "scanf",
 	"publish_date" : "2010-02-03",
-	"ref_title" : "printf",
+	"ref_title" : "scanf",
 	"title" : "C 언어 레퍼런스 - scanf 함수"
 }
 ,
 	"37" : {
 	"cat_title" : "fgetc",
 	"publish_date" : "2010-01-28",
+	"ref_title" : "fgetc",
 	"title" : "C 언어 레퍼런스 - fgetc 함수"
 }
 ,
 	"38" : {
 	"cat_title" : "fgets",
 	"publish_date" : "2010-01-28",
+	"ref_title" : "fgets",
 	"title" : "C 언어 레퍼런스 - fgets 함수"
 }
 ,
 	"39" : {
 	"cat_title" : "fputc",
 	"publish_date" : "2010-01-29",
+	"ref_title" : "fputc",
 	"title" : "C 언어 레퍼런스 -  fputc 함수"
 }
 ,
 	"40" : {
 	"cat_title" : "fputs",
 	"publish_date" : "2010-02-02",
+	"ref_title" : "fputs",
 	"title" : "C 언어 레퍼런스 - fputs 함수"
 }
 ,
 	"41" : {
 	"cat_title" : "getc",
 	"publish_date" : "2010-02-02",
+	"ref_title" : "getc",
 	"title" : "C 언어 레퍼런스 - getc 함수"
 }
 ,
@@ -1870,36 +1910,42 @@
 	"44" : {
 	"cat_title" : "getchar",
 	"publish_date" : "2010-02-03",
+	"ref_title" : "getchar",
 	"title" : "C 언어 레퍼런스 - getchar 함수"
 }
 ,
 	"45" : {
 	"cat_title" : "gets",
 	"publish_date" : "2010-02-03",
+	"ref_title" : "gets",
 	"title" : "C 언어 레퍼런스 - gets 함수"
 }
 ,
 	"46" : {
 	"cat_title" : "putc",
 	"publish_date" : "2010-02-04",
+	"ref_title" : "putc",
 	"title" : "C 언어 레퍼런스 - putc 함수"
 }
 ,
 	"47" : {
 	"cat_title" : "putchar",
 	"publish_date" : "2010-02-04",
+	"ref_title" : "putchar",
 	"title" : "C 언어 레퍼런스 - putchar 함수"
 }
 ,
 	"48" : {
 	"cat_title" : "puts",
 	"publish_date" : "2010-02-04",
+	"ref_title" : "puts",
 	"title" : "C 언어 레퍼런스 - puts 함수"
 }
 ,
 	"49" : {
 	"cat_title" : "ungetc",
 	"publish_date" : "2010-02-04",
+	"ref_title" : "ungetc",
 	"title" : "C 언어 레퍼런스 - ungetc 함수"
 }
 ,
@@ -1916,30 +1962,35 @@
 	"50" : {
 	"cat_title" : "clearerr",
 	"publish_date" : "2010-02-05",
+	"ref_title" : "clearerr",
 	"title" : "C 언어 레퍼런스 - clearerr 함수"
 }
 ,
 	"51" : {
 	"cat_title" : "feof",
 	"publish_date" : "2010-02-05",
+	"ref_title" : "feof",
 	"title" : "C 언어 레퍼런스 - feof 함수"
 }
 ,
 	"52" : {
 	"cat_title" : "ferror",
 	"publish_date" : "2010-02-05",
+	"ref_title" : "ferror",
 	"title" : "C 언어 레퍼런스 - ferror 함수"
 }
 ,
 	"53" : {
 	"cat_title" : "perror",
 	"publish_date" : "2010-02-08",
+	"ref_title" : "perror",
 	"title" : "C 언어 레퍼런스 - perror 함수"
 }
 ,
 	"54" : {
 	"cat_title" : "fclose",
 	"publish_date" : "2010-02-08",
+	"ref_title" : "fclose",
 	"title" : "C 언어 레퍼런스 - fclose 함수"
 }
 ,
@@ -1955,6 +2006,7 @@
 	"57" : {
 	"cat_title" : "fflush",
 	"publish_date" : "2010-02-10",
+	"ref_title" : "fflush",
 	"title" : "C 언어 레퍼런스 - fflush 함수"
 }
 ,
@@ -1968,6 +2020,7 @@
 	"59" : {
 	"cat_title" : "freopen",
 	"publish_date" : "2010-02-13",
+	"ref_title" : "freopen",
 	"title" : "C 언어 레퍼런스 - freopen 함수"
 }
 ,
@@ -1992,48 +2045,56 @@
 	"61" : {
 	"cat_title" : "setbuf",
 	"publish_date" : "2010-02-16",
+	"ref_title" : "setbuf",
 	"title" : "C 언어 레퍼런스 - setbuf 함수"
 }
 ,
 	"62" : {
 	"cat_title" : "setvbuf",
 	"publish_date" : "2010-02-18",
+	"ref_title" : "setvbuf",
 	"title" : "C 언어 레퍼런스 - setvbuf 함수"
 }
 ,
 	"64" : {
 	"cat_title" : "fprintf",
 	"publish_date" : "2010-02-19",
+	"ref_title" : "fprintf",
 	"title" : "C 언어 레퍼런스 - fprintf 함수"
 }
 ,
 	"65" : {
 	"cat_title" : "fscanf",
 	"publish_date" : "2010-02-22",
+	"ref_title" : "fscanf",
 	"title" : "C 언어 레퍼런스 - fscanf 함수"
 }
 ,
 	"66" : {
 	"cat_title" : "sprintf",
 	"publish_date" : "2010-02-22",
+	"ref_title" : "sprintf",
 	"title" : "C 언어 레퍼런스 - sprintf 함수"
 }
 ,
 	"67" : {
 	"cat_title" : "sscanf",
 	"publish_date" : "2011-01-03",
+	"ref_title" : "sscanf",
 	"title" : "C 언어 레퍼런스 - sscanf 함수"
 }
 ,
 	"68" : {
 	"cat_title" : "fread",
 	"publish_date" : "2010-03-21",
+	"ref_title" : "fread",
 	"title" : "C 언어 레퍼런스 - fread 함수"
 }
 ,
 	"69" : {
 	"cat_title" : "fwrite",
 	"publish_date" : "2010-04-11",
+	"ref_title" : "fwrite",
 	"title" : "C 언어 레퍼런스 - fwrite 함수"
 }
 ,
@@ -2049,6 +2110,7 @@
 	"70" : {
 	"cat_title" : "fgetpos",
 	"publish_date" : "2010-04-18",
+	"ref_title" : "fgetpos",
 	"title" : "C 언어 레퍼런스 - fgetpos 함수"
 }
 ,
@@ -2064,24 +2126,28 @@
 	"72" : {
 	"cat_title" : "fseek",
 	"publish_date" : "2010-04-24",
+	"ref_title" : "fseek",
 	"title" : "C 언어 레퍼런스 - fseek 함수"
 }
 ,
 	"73" : {
 	"cat_title" : "fsetpos",
 	"publish_date" : "2010-04-24",
+	"ref_title" : "fsetpos",
 	"title" : "C 언어 레퍼런스 - fsetpos 함수"
 }
 ,
 	"74" : {
 	"cat_title" : "ftell",
 	"publish_date" : "2010-04-24",
+	"ref_title" : "ftell",
 	"title" : "C 언어 레퍼런스 - ftell 함수"
 }
 ,
 	"75" : {
 	"cat_title" : "rewind",
 	"publish_date" : "2010-04-24",
+	"ref_title" : "rewind",
 	"title" : "C 언어 레퍼런스 - rewind 함수"
 }
 ,
@@ -2095,18 +2161,21 @@
 	"77" : {
 	"cat_title" : "memcpy",
 	"publish_date" : "2010-04-24",
+	"ref_title" : "memcpy",
 	"title" : "C 언어 레퍼런스 - memcpy 함수"
 }
 ,
 	"78" : {
 	"cat_title" : "memmove",
 	"publish_date" : "2010-04-25",
+	"ref_title" : "memmove",
 	"title" : "C 언어 레퍼런스 - memmove 함수"
 }
 ,
 	"79" : {
 	"cat_title" : "strcpy",
 	"publish_date" : "2010-05-02",
+	"ref_title" : "strcpy",
 	"title" : "C 언어 레퍼런스 - strcpy 함수"
 }
 ,
@@ -2122,18 +2191,21 @@
 	"80" : {
 	"cat_title" : "strncpy",
 	"publish_date" : "2010-05-09",
+	"ref_title" : "strncpy",
 	"title" : "C 언어 레퍼런스 - strncpy 함수"
 }
 ,
 	"81" : {
 	"cat_title" : "strcat",
 	"publish_date" : "2010-05-21",
+	"ref_title" : "strcat",
 	"title" : "C 언어 레퍼런스 - strcat 함수"
 }
 ,
 	"82" : {
 	"cat_title" : "strncat",
 	"publish_date" : "2010-05-23",
+	"ref_title" : "strncat",
 	"title" : "C 언어 레퍼런스 - strncat 함수"
 }
 ,
@@ -2149,18 +2221,21 @@
 	"84" : {
 	"cat_title" : "memcmp",
 	"publish_date" : "2010-06-25",
+	"ref_title" : "memcmp",
 	"title" : "C 언어 레퍼런스 - memcmp 함수"
 }
 ,
 	"85" : {
 	"cat_title" : "strcmp",
 	"publish_date" : "2010-06-25",
+	"ref_title" : "strcmp",
 	"title" : "C 언어 레퍼런스 - strcmp 함수"
 }
 ,
 	"86" : {
 	"cat_title" : "strcoll",
 	"publish_date" : "2010-07-10",
+	"ref_title" : "strcoll",
 	"title" : "C 언어 레퍼런스- strcoll 함수"
 }
 ,
@@ -2203,48 +2278,56 @@
 	"90" : {
 	"cat_title" : "strncmp",
 	"publish_date" : "2010-08-01",
+	"ref_title" : "strncmp",
 	"title" : "C 언어 레퍼런스 - strncmp 함수"
 }
 ,
 	"91" : {
 	"cat_title" : "strxfrm",
 	"publish_date" : "2010-08-01",
+	"ref_title" : "strxfrm",
 	"title" : "C 언어 레퍼런스 - strxfrm 함수"
 }
 ,
 	"92" : {
 	"cat_title" : "memchr",
 	"publish_date" : "2010-08-01",
+	"ref_title" : "memchr",
 	"title" : "C 언어 레퍼런스 - memchr 함수"
 }
 ,
 	"93" : {
 	"cat_title" : "strchr",
 	"publish_date" : "2010-08-02",
+	"ref_title" : "strchr",
 	"title" : "C 언어 레퍼런스 - strchr 함수"
 }
 ,
 	"94" : {
 	"cat_title" : "strcspn",
 	"publish_date" : "2010-08-02",
+	"ref_title" : "strcspn",
 	"title" : "C 언어 레퍼런스 - strcspn 함수"
 }
 ,
 	"95" : {
 	"cat_title" : "strpbrk",
 	"publish_date" : "2010-08-02",
+	"ref_title" : "strpbrk",
 	"title" : "C 언어 레퍼런스 - strpbrk 함수"
 }
 ,
 	"96" : {
 	"cat_title" : "strrchr",
 	"publish_date" : "2010-08-02",
+	"ref_title" : "strrchr",
 	"title" : "C 언어 레퍼런스 - strrchr 함수"
 }
 ,
 	"97" : {
 	"cat_title" : "strspn",
 	"publish_date" : "2010-11-21",
+	"ref_title" : "strspn",
 	"title" : "C 언어 레퍼런스 - strspn 함수"
 }
 ,
