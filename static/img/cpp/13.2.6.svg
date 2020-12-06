@@ -16,7 +16,10 @@
    style="background-color: rgb(255, 255, 255);"
    id="svg44"
    sodipodi:docname="13.2.6.svg"
-   inkscape:version="1.0.1 (1.0.1+r74)">
+   inkscape:version="1.0.1 (1.0.1+r74)"
+   inkscape:export-filename="/home/jaebum/ModooCode/static/img/cpp/13.2.6.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <metadata
      id="metadata48">
     <rdf:RDF>
@@ -47,7 +50,8 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g26" />
+     inkscape:current-layer="g26"
+     inkscape:document-rotation="0" />
   <defs
      id="defs2" />
   <rect
@@ -110,6 +114,7 @@
            style="display: inline-block; font-size: 12px; font-family: &quot;Courier New&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 110px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
           <xhtml:div
              style="display:inline-block;text-align:inherit;text-decoration:inherit;">shared_ptr<xhtml:br />
+
 (ref count : 1)<xhtml:br />
 </xhtml:div>
         </xhtml:div>
@@ -223,6 +228,7 @@
            style="display: inline-block; font-size: 12px; font-family: &quot;Courier New&quot;; color: rgb(0, 0, 0); line-height: 1.2; vertical-align: top; width: 110px; white-space: nowrap; overflow-wrap: normal; text-align: center;">
           <xhtml:div
              style="display:inline-block;text-align:inherit;text-decoration:inherit;">shared_ptr<xhtml:br />
+
 
 (ref count : 1)<xhtml:br />
 </xhtml:div>
