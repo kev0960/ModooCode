@@ -1833,6 +1833,14 @@
 	"title" : "C++ 레퍼런스 - std::partial_sort (<algorithm>)"
 }
 ,
+	"325" : {
+	"cat_title" : "binary_search",
+	"path" : "/C++ Reference/algorithm",
+	"publish_date" : "2020-12-07",
+	"ref_title" : "std::binary_search, binary_search",
+	"title" : "C++ 레퍼런스 - std::binary_search (<algorithm>)"
+}
+,
 	"33" : {
 	"cat_title" : "15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴",
 	"next_page" : "43",
