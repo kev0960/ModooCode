@@ -507,6 +507,193 @@ str2 : abc
 다시 한번 강조하지만 이동 자체는 `std::move` 를 실행함으로써 발생하는 것이 아니라 우측값을 받는 함수들이 오버로딩 되면서 수행되는 것입니다.
 ```
 
+### 퀴즈
+
+예를 들어서 아래와 같은 두 클래스가 있다고 해봅시다.
+
+```cpp
+class A {
+ public:
+  A() { std::cout << "ctor\n"; }
+  A(const A& a) { std::cout << "copy ctor\n"; }
+  A(A&& a) { std::cout << "move ctor\n"; }
+};
+
+class B {
+ public:
+  A a_;
+};
+```
+클래스 `A` 의 경우 편의상 어떠한 종류의 생성자가 호출되는지 나타내고 있는 단순한 클래스 이고, 클래스 `B` 에는 그냥 `A` 객체를 보관하고 있습니다.
+
+만약에 `B` 객체를 생성할 때, 이미 생성되어 있는 `A` 객체를 `B` 의 객체 안으로 집어 넣고 싶다면 어떨까요?
+
+```cpp
+int main() {
+  A a;
+
+  std::cout << "create B-- \n";
+  B b(/* ?? */);
+}
+```
+
+예를 들어서 위의 경우 이미 `A` 객체인 `a` 가 생성되어 있는데, 아래에서 `B` 객체인 `b` 를 생성하면서 `a` 를 `B` 에 이동 시켜야 합니다. 
+
+그렇다면 `B` 의 생성자를 어떠한 방식으로 작성해야 할까요?
+
+#### 첫 번째 시도
+
+먼저 가장 단순하게 `B` 의 생성자를 `const A&` 타입으로 만들어봅시다.
+
+```cpp
+#include <iostream>
+
+class A {
+ public:
+  A() { std::cout << "ctor\n"; }
+  A(const A& a) { std::cout << "copy ctor\n"; }
+  A(A&& a) { std::cout << "move ctor\n"; }
+};
+
+class B {
+ public:
+  B(const A& a) : a_(a) {}
+
+  A a_;
+};
+
+int main() {
+  A a;
+  std::cout << "create B-- \n";
+  B b(a);
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+ctor
+create B-- 
+copy ctor
+```
+
+예상했던 대로 복사 생성자가 호출되었습니다. 하지만 우리가 원하던 것은 이게 아니죠. 우리는 `main` 안에서 이미 생성되어 있는 `A` 라는 객체를 새로 생성된 `b` 의 **안으로** 이동 시키고 싶을 뿐입니다. 복사 생성을 원하는 것이 아니였죠. 그럼 다시 해봅시다.
+
+#### 두 번째 시도
+
+> 아 이동 시킬려면 std::move 를 해야 되니까 그냥 `a_(std::move(a))` 로 해볼까?
+
+```cpp
+#include <iostream>
+
+class A {
+ public:
+  A() { std::cout << "ctor\n"; }
+  A(const A& a) { std::cout << "copy ctor\n"; }
+  A(A&& a) { std::cout << "move ctor\n"; }
+};
+
+class B {
+ public:
+  B(const A& a) : a_(std::move(a)) {}
+
+  A a_;
+};
+
+int main() {
+  A a;
+  std::cout << "create B-- \n";
+  B b(a);
+}
+```
+
+성공적으로 컴파일 하였다면 
+
+```exec
+ctor
+create B-- 
+copy ctor
+```
+
+동일한 결과가 나옵니다. 아니 왜 `std::move(a)` 를 해서 우측값으로 바꾸었는데 왜 이동 생성자가 호출이 되지 않고 복사 생성자가 호출이 되었을까요? 
+
+일단 `std::move(a)` 가 우측값으로 바꾸는 것은 맞습니다. 그런데 문제는 `a` 가 `const A&` 이므로, `std::move(a)` 의 타입은 `const A&&` 가 된다는 것입니다. 그런데 `A` 의 생성자에는 `const A&` 와 `A&&` 두 개 밖에 없죠. 따라서 여기선 컴파일러가 `const A&` 를 택하게 됩니다. 따라서 복사 생성자가 호출이 되겠죠.
+
+#### 세 번째 시도
+
+> 아 그렇다면 B 생성자에서 아예 우측값을 받는 수 받게 없구나.
+
+```cpp
+#include <iostream>
+
+class A {
+ public:
+  A() { std::cout << "ctor\n"; }
+  A(const A& a) { std::cout << "copy ctor\n"; }
+  A(A&& a) { std::coaut << "move ctor\n"; }
+};
+
+class B {
+ public:
+  B(A&& a) : a_(a) {}
+
+  A a_;
+};
+
+int main() {
+  A a;
+  std::cout << "create B-- \n";
+  B b(std::move(a));
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+ctor
+create B-- 
+copy ctor
+```
+
+와 같이 나옵니다. 엥? 아니 왜 `a` 를 우측값 레퍼런스로 받았는데, 왜 이동 생성자 대신에 복사 생성자가 호출이 되었을까요? 그 이유는 간단합니다. 앞서 이야기 하였듯이 `a` 는 우측값 레퍼런스 이지만 그 자체로는 **좌측값** 이기 때문이죠 (이름이 있으니까요). 따라서 `a` 를 다시 한 번 우측값으로 캐스팅 시켜줘야 합니다.
+
+#### 정답
+
+```cpp
+#include <iostream>
+
+class A {
+ public:
+  A() { std::cout << "ctor\n"; }
+  A(const A& a) { std::cout << "copy ctor\n"; }
+  A(A&& a) { std::cout << "move ctor\n"; }
+};
+
+class B {
+ public:
+  B(A&& a) : a_(std::move(a)) {}
+
+  A a_;
+};
+
+int main() {
+  A a;
+  std::cout << "create B-- \n";
+  B b(std::move(a));
+}
+```
+
+성공적으로 컴파일 하였다면
+
+```exec
+ctor
+create B-- 
+move ctor
+```
+
+와 같이 비로소 제대로 `A` 의 이동 생성자가 호출이 되어서 `a` 가 `b` 의 `a_` 로 잘 이동되었음을 알 수 있습니다. 
+
+
 ###  완벽한 전달 (perfect forwarding)
 
 우측값 레퍼런스를 도입함으로써 해결할 수 있었던 또 다른 문제가 있습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다 C++ 11 에 우측값 레퍼런스가 도입되기 전 까지 해결할 수 없었던 문제가 있었습니다. 예를 들어서 아래와 같은 `wrapper` 함수를 생각해봅시다.
@@ -535,11 +722,7 @@ vec.push_back(A(1, 2, 3));
 vec.emplace_back(1, 2, 3);  // 위와 동일한 작업을 수행한다.
 ```
 
-`emplace_back` 함수는 인자를 직접 전달받아서, 내부에서 `A` 의 생성자를 호출한 뒤에 이를 벡터 원소 뒤에 추가하게 되지요. 이 과정에서 불필요한 이동/복사 모두 발생하지 않습니다. 참고로 새로 생성한 객체를 벡터 뒤에 추가할 경우 위와 같이 `push_back` 을 이용하는 것 보다 `emplace_back` 을 이용하는 것이 권장되는 방식입니다.
-
-```lec-warning
-`emplace_back` 을 사용 시에 주의할 점으로 어떤 생성자가 호출되는지 명확히 알고 있어야 합니다. 가끔 의도하지 않은 생성자가 호출되어서 디버깅시 난항을 겪는 경우가 있습니다.
-```
+`emplace_back` 함수는 인자를 직접 전달받아서, 내부에서 `A` 의 생성자를 호출한 뒤에 이를 벡터 원소 뒤에 추가하게 되지요. ~~이 과정에서 불필요한 이동/복사 모두 발생하지 않습니다. 참고로 새로 생성한 객체를 벡터 뒤에 추가할 경우 위와 같이 `push_back` 을 이용하는 것 보다 `emplace_back` 을 이용하는 것이 권장되는 방식입니다.~~ 사실 `push_back` 함수를 사용할 경우 컴파일러가 알아서 최적화를 해주기 때문에 불필요한 복사-이동을 수행하지 않고 `emplace_back` 을 사용했을 때와 동일한 어셈블리를 생성합니다. 따라서 `push_back` 을 사용하는 것이 훨씬 낫습니다. (`emplace_back` 은 예상치 못한 생성자가 호출될 위험이 있습니다)
 
 그렇다면 문제는 `emplace_back` 함수가 받은 인자들을 `A` 의 생성자에 제대로 전달해야 한다는 점입니다. 그렇지 않을 경우 사용자가 의도하지 않은 생성자가 호출될 수 있기 때문입니다. 그렇다면 위와 같은 `wrapper` 함수를 어떻게 하면 잘 정의할 수 있을까요?
 
