@@ -19,7 +19,7 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |88 /r|`MOV` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} |MR|Valid|Valid|Move r8 to r/m8.|
-|REX + 88 /r|`MOV` r/m8\footnote{*** } r8\footnote{***} |MR|Valid|N.E.|Move r8 to r/m8.|
+|REX + 88 /r|`MOV` r/m8\footnote{\htmlonly{*}\htmlonly{*}\htmlonly{*} } r8\footnote{\htmlonly{*}\htmlonly{*}\htmlonly{*}} |MR|Valid|N.E.|Move r8 to r/m8.|
 |89 /r|`MOV` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |MR|Valid|Valid|Move r16 to r/m16.|
 |89 /r|`MOV` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |MR|Valid|Valid|Move r32 to r/m32.|
 |REX.W + 89 /r|`MOV` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} |MR|Valid|N.E.|Move r64 to r/m64.|
@@ -38,12 +38,12 @@ publish_date: 2020-09-01
 |A1|`MOV` EAX moffs32\htmlonly{*} |FD|Valid|Valid|Move doubleword at (seg:offset) to EAX.|
 |REX.W + A1|`MOV` RAX moffs64\htmlonly{*} |FD|Valid|N.E.|Move quadword at (offset) to RAX.|
 |A2|`MOV` \tooltip{moffs8}{MOV 명령어에서만 사용되는데, 현재 세그먼트 베이스로 부터의 오프셋을 표현한다. 이 때 해당 명령어의 경우 ModR/M 은 사용되지 않는다.} AL |TD| Valid|Valid|Move AL to (seg:offset).|
-|REX.W + A2|`MOV` moffs8\footnote{***} AL |TD|Valid|N.E.|Move AL to (offset).|
+|REX.W + A2|`MOV` moffs8\footnote{\htmlonly{*}\htmlonly{*}\htmlonly{*}} AL |TD|Valid|N.E.|Move AL to (offset).|
 |A3|`MOV` moffs16\htmlonly{*} AX |TD|Valid|Valid|Move AX to (seg:offset).|
 |A3|`MOV` moffs32\htmlonly{*} EAX |TD|Valid|Valid|Move EAX to (seg:offset).|
 |REX.W + A3|`MOV` moffs64\htmlonly{*} RAX |TD|Valid|N.E.|Move RAX to (offset).|
 |B0+ rb ib|`MOV` \tooltip{r8}{1 바이트 짜리 범용 레지스터를 의미 (AL, CL, DL, BL, AH, CH, DH, BH, BPL, SPL, DIL, SIL). 64 비트 모드에 경우 추가적으로 R8L 부터 R16L 까지 가능} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |OI|Valid|Valid|Move imm8 to r8.|
-|REX + B0+ rb ib|`MOV` r8\footnote{***} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |OI|Valid|N.E.|Move imm8 to r8.|
+|REX + B0+ rb ib|`MOV` r8\footnote{\htmlonly{*}\htmlonly{*}\htmlonly{*}} \tooltip{imm8}{1 바이트 짜리 명시적 데이터 (immediate value). imm8 의 경우 부호 있는 정수를 의미하며, -128 부터 127 까지의 값을 표현할 수 있다. 참고로 만일 imm8 이 1 바이트 보다 큰 피연산자를 가지는 명령어와 사용될 경우, 명시적 데이터는 부호를 유지한채 해당 크기로 확장이 된다. (쉽게 말해 0b11000000 은 0b11111111 11000000 로 확장되며 0b00110000 은 0b00000000 00110000 으로 확장된다.)} |OI|Valid|N.E.|Move imm8 to r8.|
 |B8+ rw iw|`MOV` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} \tooltip{imm16}{2 바이트 짜리 명시적 데이터. -32,768 부터 32,767 까지의 정수를 표현한다. } |OI|Valid|Valid|Move imm16 to r16.|
 |B8+ rd id|`MOV` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} \tooltip{imm32}{4 바이트 짜리 명시적 데이터. -2,147,483,648 부터 2,147,483,647 까지의 정수를 표현한다. } |OI|Valid|Valid|Move imm32 to r32.|
 |REX.W + B8+ rd io|`MOV` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} \tooltip{imm64}{8 바이트 짜리 명시적 데이터. -9,223,372,036,854,775,808 부터 9,223,372,036,854,775,807 까지의 정수를 표현한다. } |OI|Valid|N.E.|Move imm64 to r64.|

@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - time 함수
 cat_title :  time
 publish_date : 2010-12-26
 ref_title : time
+path : /C Reference/time.h
 --------------
 
 

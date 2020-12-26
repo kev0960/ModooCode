@@ -4,6 +4,7 @@ cat_title: 1 - 3. C++ 은 C 친구 - C 와 공통점
 next_page : 141
 publish_date : 2011-05-15
 tex_title : C++ 와 C 언어의 공통 문법 구조
+path : /C++
 --------------
 
 

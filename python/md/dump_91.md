@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - strxfrm 함수
 cat_title :  strxfrm
 publish_date : 2010-08-01
 ref_title : strxfrm
+path : /C Reference/string.h
 --------------
 
 

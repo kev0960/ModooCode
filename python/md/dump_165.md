@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios::fail 함수
 cat_title :  ios::fail
 ref_title : fail, ios::fail
 publish_date : 2011-10-23
+path : /C++ Reference/iostream
 --------------
 
 

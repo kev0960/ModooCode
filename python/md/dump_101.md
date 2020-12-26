@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - strstr 함수
 cat_title :  strstr
 publish_date : 2010-11-27
 ref_title : strstr
+path : /C Reference/string.h
 --------------
 
 

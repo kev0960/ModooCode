@@ -4,6 +4,7 @@ cat_title : 11 - 1. C 언어의 아파트 (배열), 상수
 next_page : 20
 publish_date : 2009-11-14
 chapter : C 언어의 아파트 - 배열
+path : /C
 --------------
 
 

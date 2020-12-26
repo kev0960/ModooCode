@@ -5,12 +5,13 @@ next_page : 228
 publish_date : 2018-03-24
 chapter : 우측값과 이동 연산
 tex_title : 우측값 레퍼런스와 이동 생성자
+path : /C++
 --------------
 
 이번 강좌에서는
 * 복사 생략 (Copy elision)
 
-* 우측값 레퍼런스 (rvalue reference)
+* 우측값 레퍼런스 (rvalue referen ce)
 
 * 이동 생성자 (move constructor)
 

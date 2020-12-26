@@ -4,6 +4,7 @@ cat_title: 12 - 2. Move 문법 (std::move semantics) 과 완벽한 전달 (perfe
 next_page: 229
 publish_date : 2018-03-27
 tex_title : move 문법과 완벽한 전달
+path : /C++
 --------------
 
 

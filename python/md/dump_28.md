@@ -3,7 +3,8 @@ title : 씹어먹는 C 언어 - <13 - 3. 마술 상자 함수 3 (function)>
 cat_title : 13 - 3. 마술 상자 함수 3 (function)
 next_page : 30
 publish_date : 2009-12-22
-tex_title : 여러가지 인자들 
+tex_title : 여러가지 인자들
+path : /C
 --------------
 
 

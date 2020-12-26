@@ -4,6 +4,7 @@ cat_title : 16 - 3. 구조체와 친구들(공용체(union), 열거형(enum)
 next_page : 83
 publish_date : 2010-06-13
 tex_title : 공용체(union)와 열거형(enum)
+path : /C
 --------------
 
 

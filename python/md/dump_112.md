@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - mktime 함수
 cat_title :  mktime
 publish_date : 2010-12-26
 ref_title : mktime
+path : /C Reference/time.h
 --------------
 
 

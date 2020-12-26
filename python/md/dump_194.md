@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - istream::peek 함수
 cat_title :  istream::peek
 ref_title : peek
 publish_date : 2012-11-09
+path : /C++ Reference/iostream
 --------------
 
 ##@ cpp-ref-start

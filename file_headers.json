@@ -3,24 +3,28 @@
   "cat_title": "6. 만약에... (if 문)",
   "chapter": "만약에... (조건문)",
   "next_page": "12",
+  "path": "/C",
   "publish_date": "2009-04-28",
   "title": "씹어먹는 C 언어 - <6. 만약에...(if 문)>"
  },
  "100": {
   "cat_title": "20 - 2. 메모리 동적할당 + 메모리 갖고 놀기",
   "next_page": "99",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-09-13",
   "tex_title": "구조체의 동적 할당과 메모리 관리 함수",
   "title": "씹어먹는 C 언어 - <20 - 2. 메모리 동적할당 + 메모리 갖고 놀기>"
  },
  "101": {
   "cat_title": "strstr",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-11-27",
   "ref_title": "strstr",
   "title": "C 언어 레퍼런스 - strstr 함수"
  },
  "102": {
   "cat_title": "strtok",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-11-27",
   "ref_title": "strtok",
   "title": "C 언어 레퍼런스 - strtok 함수"
@@ -29,75 +33,88 @@
   "cat_title": "22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)",
   "chapter": "그 밖에 키워드들",
   "next_page": "117",
+  "path": "/C",
   "publish_date": "2010-12-25",
   "title": "씹어먹는 C 언어 - <22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)>"
  },
  "104": {
   "cat_title": "memset",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-11-28",
   "ref_title": "memset",
   "title": "C 언어 레퍼런스 - memset 함수"
  },
  "105": {
   "cat_title": "strerror",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-12-12",
   "ref_title": "strerror",
   "title": "C 언어 레퍼런스 - strerror 함수"
  },
  "106": {
   "cat_title": "strlen",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-12-12",
   "ref_title": "strlen",
   "title": "C 언어 레퍼런스 - strlen 함수"
  },
  "108": {
   "cat_title": "time.h",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-25",
   "ref_title": "<time.h>",
   "title": "C 언어 레퍼런스 - time.h 헤더파일"
  },
  "109": {
   "cat_title": "struct tm",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-25",
   "ref_title": "tm 구조체, tm, struct tm",
   "title": "C 언어 레퍼런스 - struct tm ( tm 구조체 )"
  },
  "110": {
   "cat_title": "clock",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-25",
   "ref_title": "clock",
   "title": "C 언어 레퍼런스 - clock 함수"
  },
  "111": {
   "cat_title": "difftime",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-25",
   "ref_title": "difftime",
   "title": "C 언어 레퍼런스 - difftime 함수"
  },
  "112": {
   "cat_title": "mktime",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-26",
   "ref_title": "mktime",
   "title": "C 언어 레퍼런스 - mktime 함수"
  },
  "113": {
   "cat_title": "time_t 형",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-25",
   "ref_title": "time_t",
   "title": "C 언어 레퍼런스 - time_t 형"
  },
  "114": {
   "cat_title": "time",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-26",
   "ref_title": "time",
   "title": "C 언어 레퍼런스 - time 함수"
  },
  "115": {
+  "path": "/잡담",
   "publish_date": "2010-12-28",
   "title": "100 번째 글을 돌파하며"
  },
  "116": {
   "cat_title": "asctime",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-26",
   "ref_title": "asctime",
   "title": "C 언어 레퍼런스 - asctime 함수"
@@ -106,17 +123,20 @@
   "cat_title": "23 - 1. 파일 하고 이야기 하기 (파일 입출력에 대한 기본적 이해)",
   "chapter": "파일 입출력",
   "next_page": "123",
+  "path": "/C",
   "publish_date": "2010-12-28",
   "title": "씹어먹는 C 언어 - <23 - 1. 파일 하고 이야기 하기 (파일 입출력에 대한 기본적 이해)>"
  },
  "118": {
   "cat_title": "ctime",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-29",
   "ref_title": "ctime",
   "title": "C 언어 레퍼런스 - ctime 함수"
  },
  "119": {
   "cat_title": "gmtime",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-29",
   "ref_title": "gmtime",
   "title": "C 언어 레퍼런스 - gmtime 함수"
@@ -125,11 +145,13 @@
   "cat_title": "7. 뱅글 뱅글 (for, while)",
   "chapter": "반복문 (for, while)",
   "next_page": "14",
+  "path": "/C",
   "publish_date": "2009-08-06",
   "title": "씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >"
  },
  "120": {
   "cat_title": "localtime",
+  "path": "/C Reference/time.h",
   "publish_date": "2010-12-30",
   "ref_title": "localtime",
   "title": "C 언어 레퍼런스 - localtime 함수"
@@ -143,6 +165,7 @@
  },
  "122": {
   "cat_title": "strftime",
+  "path": "/C Reference/time.h",
   "publish_date": "2011-01-05",
   "ref_title": "strftime",
   "title": "C 언어 레퍼런스 - strftime 함수"
@@ -150,6 +173,7 @@
  "123": {
   "cat_title": "23 - 2. 파일 하고 이야기 하기 (파일 입출력)",
   "next_page": "125",
+  "path": "/C",
   "publish_date": "2011-01-10",
   "tex_title": "파일 안에서 이동하기",
   "title": "씹어먹는 C 언어 - <23 - 2. 파일 하고 이야기 하기 (파일 입출력)>"
@@ -164,6 +188,7 @@
  "125": {
   "cat_title": "23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)",
   "next_page": "129",
+  "path": "/C",
   "publish_date": "2011-01-17",
   "tex_title": "도서 관리 프로그램의 완성",
   "title": "씹어먹는 C 언어 - <23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)>"
@@ -172,10 +197,12 @@
   "cat_title": "24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)",
   "chapter": "C 코드 최적화",
   "next_page": "130",
+  "path": "/C",
   "publish_date": "2011-01-18",
   "title": "씹어먹는 C 언어 - <24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)>"
  },
  "130": {
+  "path": "/C",
   "publish_date": "2011-01-20",
   "title": "초보자를 위한 C 언어 강좌 - 씹어먹는 C 언어 (완결)"
  },
@@ -201,18 +228,21 @@
   "cat_title": "1. 자~ C++ 의 세계로",
   "chapter": "C++ 시작하기",
   "next_page": "136",
+  "path": "/C++",
   "publish_date": "2011-03-06",
   "title": "씹어먹는 C++ - <1. 자~ C++ 의 세계로>"
  },
  "135": {
   "chapter": "C++ 을 시작하기에 앞서",
   "next_page": "134",
-  "publish_date": "2011-03-06",
+  "path": "/C++",
+  "publish_date": "2011-03-05",
   "title": "씹어먹는 C++ 강좌 계획"
  },
  "136": {
   "cat_title": "1 - 2. 첫 C++ 프로그램 분석하기",
   "next_page": "138",
+  "path": "/C++",
   "publish_date": "2011-03-06",
   "tex_title": "첫 C++ 프로그램 분석하기",
   "title": "씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>"
@@ -220,6 +250,7 @@
  "138": {
   "cat_title": "1 - 3. C++ 은 C 친구 - C 와 공통점",
   "next_page": "141",
+  "path": "/C++",
   "publish_date": "2011-05-15",
   "tex_title": "C++ 와 C 언어의 공통 문법 구조",
   "title": "씹어먹는 C++ - <1 - 3. C++ 은 C 친구 - C 와 공통점>"
@@ -234,6 +265,7 @@
  "14": {
   "cat_title": "8. 우분투 리눅스에서 C 프로그래밍 하기",
   "next_page": "16",
+  "path": "/C",
   "publish_date": "2009-08-06",
   "tex_title": "리눅스에서 C 프로그래밍 하기",
   "title": "씹어 먹는 C 언어 - <8. 우분투 리눅스에서 C 프로그래밍 하기>"
@@ -249,6 +281,7 @@
   "cat_title": "2. C++ 참조자(레퍼런스)의 도입",
   "chapter": "C++ 의 참조자 (레퍼런스)",
   "next_page": "169",
+  "path": "/C++",
   "publish_date": "2012-01-01",
   "title": "씹어먹는 C++ - <2. C++ 참조자(레퍼런스)의 도입>"
  },
@@ -258,96 +291,112 @@
   "title": "비주얼 스튜디오에서 소스 한꺼번에 정렬하기"
  },
  "143": {
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-17",
   "ref_title": "iostream, <iostream>",
   "title": "C++ IOstream (입출력) 라이브러리"
  },
  "144": {
   "cat_title": "ios_base 클래스",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-17",
   "ref_title": "ios_base",
   "title": "C++ 레퍼런스 - ios_base 클래스"
  },
  "145": {
   "cat_title": "ios 클래스",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-17",
   "ref_title": "ios, <ios>",
   "title": "C++ 레퍼런스 - ios 클래스"
  },
  "146": {
   "cat_title": "istream 클래스",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-17",
   "ref_title": "istream, <istream>, std::basic_istream, basic_istream",
   "title": "C++ 레퍼런스 - istream 클래스"
  },
  "147": {
   "cat_title": "istream::operator>> (추출 연산자)",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-17",
   "ref_title": "istream::operator>>",
   "title": "C++ 레퍼런스 - istream::operator>> (추출 연산자)"
  },
  "149": {
   "cat_title": "istream::getline",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-18",
   "ref_title": "getline",
   "title": "C++ 레퍼런스 - istream::getline 함수"
  },
  "150": {
   "cat_title": "ios::exceptions",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-18",
   "ref_title": "ios::exceptions",
   "title": "C++ 레퍼런스 - ios::exceptions"
  },
  "151": {
   "cat_title": "ifstream 클래스",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-18",
   "ref_title": "ifstream",
   "title": "C++ 레퍼런스 - ifstream 클래스"
  },
  "152": {
   "cat_title": "ios_base::width",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-18",
   "ref_title": "ios_base::width, width",
   "title": "C++ 레퍼런스 - ios_base::width"
  },
  "153": {
   "cat_title": "ios_base::flags",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-19",
   "ref_title": "flags, ios_base::flags",
   "title": "C++ 레퍼런스 - ios_base::flags 함수"
  },
  "154": {
   "cat_title": "ios_base::fmtflags 타입",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-19",
   "ref_title": "ios_base::fmtflags, fmtflags",
   "title": "C++ 레퍼런스 - ios_base::fmtflags 타입"
  },
  "155": {
   "cat_title": "ios_base::setf",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-19",
   "ref_title": "setf",
   "title": "C++ 레퍼런스 - ios_base::setf 함수"
  },
  "156": {
   "cat_title": "ios_base::unsetf",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-19",
   "ref_title": "unsetf, ios_base::unsetf",
   "title": "C++ 레퍼런스 - ios_base::unsetf 함수"
  },
  "157": {
   "cat_title": "ios_base::precision",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-19",
   "ref_title": "precision",
   "title": "C++ 레퍼런스 - ios_base::precision 함수"
  },
  "158": {
   "cat_title": "ios_base::imbue",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-20",
   "ref_title": "imbue, ios_base::imbue",
   "title": "C++ 레퍼런스 - ios_base::imbue"
  },
  "159": {
   "cat_title": "ios_base::register_callback",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-20",
   "ref_title": "ios_base::register_callback, register_callback",
   "title": "C++ 레퍼런스 - ios_base::register_callback 함수"
@@ -356,59 +405,69 @@
   "cat_title": "9. 만약에... 2탄 (switch 문)",
   "chapter": "switch 문",
   "next_page": "17",
+  "path": "/C",
   "publish_date": "2009-08-15",
   "title": "씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>"
  },
  "160": {
   "cat_title": "ios_base::getloc",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-08-20",
   "ref_title": "getloc, ios_base::getloc",
   "title": "C++ 레퍼런스 - ios_base::getloc 함수"
  },
  "161": {
   "cat_title": "ios_base::iword",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-10-22",
   "ref_title": "ios_base::iword, iword",
   "title": "C++ 레퍼런스 - ios_base::iword"
  },
  "162": {
   "cat_title": "ios_base::xalloc",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-10-22",
   "ref_title": "xalloc, ios_base::xalloc",
   "title": "C++ 레퍼런스 - ios_base::xalloc 함수"
  },
  "163": {
   "cat_title": "ios_base::pword",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-10-22",
   "ref_title": "ios_base::pword, pword",
   "title": "C++ 레퍼런스 - ios_base::pword 함수"
  },
  "164": {
   "cat_title": "ios::good",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-10-23",
   "ref_title": "good, ios::good",
   "title": "C++ 레퍼런스 - ios::good 함수"
  },
  "165": {
   "cat_title": "ios::fail",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-10-23",
   "ref_title": "fail, ios::fail",
   "title": "C++ 레퍼런스 - ios::fail 함수"
  },
  "166": {
   "cat_title": "ios::bad",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-10-23",
   "ref_title": "bad, ios::bad",
   "title": "C++ 레퍼런스 - ios::bad 함수"
  },
  "167": {
   "cat_title": "ios::eof",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-10-23",
   "ref_title": "eof, ios::eof",
   "title": "C++ 레퍼런스 - ios::eof 함수"
  },
  "168": {
   "cat_title": "ios::operator!",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2011-10-23",
   "ref_title": "ios::operator!",
   "title": "C++ 레퍼런스 - ios::operator!"
@@ -417,6 +476,7 @@
   "cat_title": "3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)",
   "chapter": "C++ 의 세계로",
   "next_page": "172",
+  "path": "/C++",
   "publish_date": "2012-01-01",
   "title": "씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>"
  },
@@ -424,31 +484,36 @@
   "cat_title": "10. 연예인 캐스팅(?) (C 언어에서의 형 변환)",
   "chapter": "형 변환 (타입 캐스팅)",
   "next_page": "18",
+  "path": "/C",
   "publish_date": "2009-08-15",
   "title": "씹어 먹는 C 언어 - <10. 연예인 캐스팅(?) (C 언어에서의 형 변환)>"
  },
  "170": {
   "cat_title": "ios::operator void*",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-01-01",
   "ref_title": "ios::operator void*",
   "title": "C++ 레퍼런스 - ios::operator void*"
  },
  "171": {
   "cat_title": "ios::rdstate",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-03-25",
   "ref_title": "rdstate, ios::rdstate",
   "title": "C++ 레퍼런스 - ios::rdstate 함수"
  },
  "172": {
   "cat_title": "4 - 1. 이 세상은 객체로 이루어져 있다",
-  "chapter": "객체지향프로그래밍의 시작",
+  "chapter": "객체지향프로그래밍의 시작세계로",
   "next_page": "173",
+  "path": "/C++",
   "publish_date": "2012-02-29",
   "title": "씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>"
  },
  "173": {
   "cat_title": "4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자)",
   "next_page": "188",
+  "path": "/C++",
   "publish_date": "2012-08-04",
   "tex_title": "생성자와 함수의 오버로딩",
   "title": "씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자)>"
@@ -480,11 +545,13 @@
  },
  "178": {
   "cat_title": "vector 생성자",
+  "path": "/C++ Reference/Containers/vector",
   "publish_date": "2012-03-25",
   "title": "C++ 레퍼런스 - STL 컨테이너 - vector 생성자"
  },
  "179": {
   "cat_title": "ios::setstate",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-03-25",
   "ref_title": "setstate, ios::setstate",
   "title": "C++ 레퍼런스 - ios::setstate 함수"
@@ -493,23 +560,27 @@
   "cat_title": "11 - 1. C 언어의 아파트 (배열), 상수",
   "chapter": "C 언어의 아파트 - 배열",
   "next_page": "20",
+  "path": "/C",
   "publish_date": "2009-11-14",
   "title": "씹어먹는 C 언어 - <11 - 1. C 언어의 아파트 (배열), 상수>"
  },
  "180": {
   "cat_title": "ios::clear",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-03-25",
   "ref_title": "clear, ios::clear",
   "title": "C++ 레퍼런스 - ios::clear"
  },
  "181": {
   "cat_title": "ios::fill",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-03-25",
   "ref_title": "ios::fill",
   "title": "C++ 레퍼런스 - ios::fill 함수"
  },
  "182": {
   "cat_title": "ios::rdbuf",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-03-25",
   "ref_title": "ios::rdbuf, rdbuf",
   "title": "C++ 레퍼런스 - ios::rdbuf 함수"
@@ -522,6 +593,7 @@
   "title": "C++ 레퍼런스 - STL 컨테이너 - vector::assign 함수"
  },
  "184": {
+  "path": "/C",
   "publish_date": "2012-03-25",
   "title": "씹어먹는 C 언어 - 찾아보기"
  },
@@ -547,62 +619,73 @@
  "188": {
   "cat_title": "4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)",
   "next_page": "197",
+  "path": "/C++",
   "publish_date": "2013-01-06",
   "tex_title": "복사 생성자와 소멸자",
   "title": "씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>"
  },
  "189": {
+  "path": "/C++",
   "publish_date": "2012-11-03",
   "title": "씹어먹는 C++ 토막글 ① - Rvalue(우측값) 레퍼런스에 관해"
  },
  "19": {
   "cat_title": "2 - 2. 주석(Comment)에 대한 이해",
   "next_page": "21",
+  "path": "/C",
   "publish_date": "2009-09-24",
   "tex_title": "주석(Comment)",
   "title": "씹어먹는 C 언어 - <2 - 2. 주석(Comment)에 대한 이해>"
  },
  "190": {
   "cat_title": "ios::tie",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-11-07",
   "ref_title": "ios::tie, tie",
   "title": "C++ 레퍼런스 - ios::tie 함수"
  },
  "191": {
   "cat_title": "istream::get",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-11-07",
   "ref_title": "get",
   "title": "C++ 레퍼런스 - istream::get 함수"
  },
  "192": {
   "cat_title": "istream::gcount",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-11-07",
   "ref_title": "gcount",
   "title": "C++ 레퍼런스 - istream::gcount 함수"
  },
  "193": {
   "cat_title": "istream::ignore",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-11-07",
   "ref_title": "ignore",
   "title": "C++ 레퍼런스 - istream::ignore 함수"
  },
  "194": {
   "cat_title": "istream::peek",
+  "path": "/C++ Reference/iostream",
   "publish_date": "2012-11-09",
   "ref_title": "peek",
   "title": "C++ 레퍼런스 - istream::peek 함수"
  },
  "195": {
+  "path": "/C++",
   "publish_date": "2013-01-05",
   "title": "비주얼 스튜디오 2010 에서 C 및 C++ 프로그래밍 하기"
  },
  "196": {
+  "path": "/C++",
   "publish_date": "2013-01-08",
   "title": "씹어먹는 C++ 토막글 ② - 람다(lambda) 함수"
  },
  "197": {
   "cat_title": "4 - 4. 스타크래프트를 만들자 ② (const, static)",
   "next_page": "198",
+  "path": "/C++",
   "publish_date": "2013-05-26",
   "tex_title": "const, const, const!",
   "title": "씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>"
@@ -610,22 +693,26 @@
  "198": {
   "cat_title": "4 - 5. 내가 만드는 String 클래스",
   "next_page": "253",
+  "path": "/C++",
   "publish_date": "2013-08-15",
   "tex_title": "내가 만들어보는 문자열 클래스",
   "title": "씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>"
  },
  "199": {
+  "path": "/프로그래밍",
   "publish_date": "2013-08-04",
   "title": "모든 컴퓨터 과학자가 알아야 할 부동 소수점의 모든 것(What Every Computer Scientists Should Know About Floating Point Arithmetic)"
  },
  "20": {
   "cat_title": "11 - 2. C 언어의 아파트2 (고차원의 배열)",
   "next_page": "23",
+  "path": "/C",
   "publish_date": "2009-10-29",
   "tex_title": "다차원 배열",
   "title": "씹어먹는 C 언어 - <11 - 2. C 언어의 아파트2 (고차원의 배열)>"
  },
  "201": {
+  "path": "/프로그래밍",
   "publish_date": "2013-08-04",
   "title": "오픈북 프로젝트 - 양질의 컴퓨터 문서 공급 프로젝트"
  },
@@ -633,12 +720,14 @@
   "cat_title": "5 - 1. 내가 만든 연산자 - 연산자 오버로딩",
   "chapter": "연산자 오버로딩(overloading)",
   "next_page": "203",
+  "path": "/C++",
   "publish_date": "2013-08-25",
   "title": "씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>"
  },
  "203": {
   "cat_title": "5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩",
   "next_page": "204",
+  "path": "/C++",
   "publish_date": "2013-08-29",
   "tex_title": "잡다한 연산자들의 오버로딩",
   "title": "씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>"
@@ -646,11 +735,13 @@
  "204": {
   "cat_title": "5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열",
   "next_page": "209",
+  "path": "/C++",
   "publish_date": "2013-09-04",
   "tex_title": "N 차원 배열 만들기 프로젝트",
   "title": "씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>"
  },
  "208": {
+  "path": "/C++",
   "publish_date": "2013-10-02",
   "title": "C++ 11 자주 질문되는 것들 모음 (C++ 11 FAQs - Bjarne Stroustup)"
  },
@@ -658,12 +749,14 @@
   "cat_title": "6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속",
   "chapter": "클래스의 상속",
   "next_page": "210",
+  "path": "/C++",
   "publish_date": "2014-03-30",
   "title": "씹어먹는 C++ - <6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속>"
  },
  "21": {
   "cat_title": "2 - 3. 수를 표현하는 방법(기수법)",
   "next_page": "7",
+  "path": "/C",
   "publish_date": "2009-10-12",
   "tex_title": "컴퓨터에서 수를 표현하는 방법",
   "title": "씹어먹는 C 언어 - <2 - 3. 수를 표현하는 방법(기수법)>"
@@ -671,6 +764,7 @@
  "210": {
   "cat_title": "6 - 2.  가상(virtual) 함수와 다형성",
   "next_page": "211",
+  "path": "/C++",
   "publish_date": "2014-03-31",
   "tex_title": "가상 함수와 다형성",
   "title": "씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>"
@@ -678,6 +772,7 @@
  "211": {
   "cat_title": "6 - 3. 가상함수와 상속에 관련한 잡다한 내용들",
   "next_page": "213",
+  "path": "/C++",
   "publish_date": "2014-04-13",
   "tex_title": "상속에 관련된 잡다한 내용들",
   "title": "씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한 내용들>"
@@ -686,16 +781,19 @@
   "cat_title": "7 - 1. C++ 에서의 입출력 (istream, ostream)",
   "chapter": "C++ 표준 입출력 라이브러리",
   "next_page": "215",
+  "path": "/C++",
   "publish_date": "2015-05-04",
   "title": "씹어먹는 C++ - <7 - 1. C++ 에서의 입출력 (istream, ostream)>"
  },
  "214": {
+  "path": "/C",
   "publish_date": "2015-08-11",
   "title": "C 언어 및 강좌 관련 자주 질문되는 것들에 대한 답변"
  },
  "215": {
   "cat_title": "7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream",
   "next_page": "217",
+  "path": "/C++",
   "publish_date": "2016-07-14",
   "tex_title": "C++ 파일 입출력",
   "title": "씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream>"
@@ -704,12 +802,14 @@
   "cat_title": "8 - 1. Excel 만들기 프로젝트 1부",
   "chapter": "엑셀 만들기 프로젝트",
   "next_page": "218",
+  "path": "/C++",
   "publish_date": "2016-07-18",
   "title": "씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>"
  },
  "218": {
   "cat_title": "8 - 2. Excel 만들기 프로젝트 2부",
   "next_page": "219",
+  "path": "/C++",
   "publish_date": "2016-07-19",
   "tex_title": "엑셀 만들기 프로젝트 2부",
   "title": "씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>"
@@ -718,18 +818,20 @@
   "cat_title": "9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)",
   "chapter": "C++ 템플릿",
   "next_page": "290",
+  "path": "/C++",
   "publish_date": "2017-04-07",
   "title": "씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>"
  },
  "220": {
   "cat_title": "비주얼 스튜디오 2017 커뮤니티에서 C/C++ 프로그래밍 하기",
-  "path": "/C",
+  "path": "/C++",
   "publish_date": "2017-03-30",
   "title": "비주얼 스튜디오 2017 커뮤니티에서 C/C++ 프로그래밍 하기"
  },
  "221": {
   "cat_title": "9 - 3. 템플릿 메타 프로그래밍 (Template Meta programming)",
   "next_page": "222",
+  "path": "/C++",
   "publish_date": "2017-06-26",
   "tex_title": "템플릿 메타프로그래밍 1 부",
   "title": "씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 (Template Meta programming)>"
@@ -737,6 +839,7 @@
  "222": {
   "cat_title": "9 - 4. 템플릿 메타 프로그래밍 2",
   "next_page": "223",
+  "path": "/C++",
   "publish_date": "2017-07-02",
   "tex_title": "템플릿 메타프로그래밍 2 부",
   "title": "씹어먹는 C++ - <9 - 4. 템플릿 메타 프로그래밍 2>"
@@ -745,6 +848,7 @@
   "cat_title": "10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)",
   "chapter": "C++ 표준 라이브러리 (컨테이너와 알고리즘)",
   "next_page": "224",
+  "path": "/C++",
   "publish_date": "2017-07-04",
   "tex_title": "C++ 표준 컨테이너",
   "title": "씹어먹는 C++ - <10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)>"
@@ -752,6 +856,7 @@
  "224": {
   "cat_title": "10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map",
   "next_page": "225",
+  "path": "/C++",
   "publish_date": "2017-07-08",
   "tex_title": "C++ 의 표준 연관 컨테이너들",
   "title": "씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map>"
@@ -759,6 +864,7 @@
  "225": {
   "cat_title": "10 - 3. C++ STL - 알고리즘(algorithm)",
   "next_page": "292",
+  "path": "/C++",
   "publish_date": "2017-07-09",
   "tex_title": "C++ 표준 알고리즘 라이브러리",
   "title": "씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>"
@@ -767,6 +873,7 @@
   "cat_title": "12 - 1. 우측값 레퍼런스와 이동 생성자",
   "chapter": "우측값과 이동 연산",
   "next_page": "228",
+  "path": "/C++",
   "publish_date": "2018-03-24",
   "tex_title": "우측값 레퍼런스와 이동 생성자",
   "title": "씹어먹는 C++ - <12 - 1. 우측값 레퍼런스와 이동 생성자>"
@@ -774,6 +881,7 @@
  "228": {
   "cat_title": "12 - 2. Move 문법 (std::move semantics) 과 완벽한 전달 (perfect forwarding)",
   "next_page": "229",
+  "path": "/C++",
   "publish_date": "2018-03-27",
   "tex_title": "move 문법과 완벽한 전달",
   "title": "씹어먹는 C++ - <12 - 2. Move 문법 (std::move semantics) 과 완벽한 전달 (perfect forwarding)>"
@@ -783,13 +891,14 @@
   "chapter": "스마트 포인터",
   "next_page": "252",
   "path": "/C++",
-  "title": "씹어먹는 C ++ - <13 - 1. 객체의 유일한 소유권 - unique_ptr>",
-  "updated_date": "2018-09-18"
+  "publish_date": "2018-09-18",
+  "title": "씹어먹는 C ++ - <13 - 1. 객체의 유일한 소유권 - unique_ptr>"
  },
  "23": {
   "cat_title": "12 - 1. 포인터는 영희이다! (포인터)",
   "chapter": "포인터",
   "next_page": "24",
+  "path": "/C",
   "publish_date": "2009-11-09",
   "title": "씹어먹는 C 언어 - <12 - 1. 포인터는 영희이다! (포인터)>"
  },
@@ -798,15 +907,21 @@
   "chapter": "C++ 에서의 예외 처리",
   "next_page": "227",
   "path": "/C++",
-  "title": "씹어먹는 C ++ - <11. C++ 에서 예외 처리>",
-  "updated_date": "09/17/2018"
+  "publish_date": "2018-09-17",
+  "title": "씹어먹는 C ++ - <11. C++ 에서 예외 처리>"
  },
  "231": {
   "cat_title": "씹어먹는 C 언어 시작하기",
   "next_page": "315",
   "path": "/C",
-  "publish_date": "2009-04-16",
+  "publish_date": "2009-04-15",
   "title": "씹어먹는 C 언어 시작하기"
+ },
+ "232": {
+  "is_published": "false",
+  "path": "/잡담",
+  "publish_date": "2010-09-01",
+  "title": "옛날 본인 소개"
  },
  "233": {
   "cat_title": "<string>",
@@ -853,6 +968,7 @@
  "24": {
   "cat_title": "12 - 2. 포인터는 영희이다! (포인터)",
   "next_page": "25",
+  "path": "/C",
   "publish_date": "2009-11-14",
   "tex_title": "상수 포인터, 포인터의 덧셈 뺄셈, 배열과 포인터",
   "title": "씹어먹는 C 언어 - <12 - 2. 포인터는 영희이다! (포인터)>"
@@ -920,6 +1036,7 @@
  "25": {
   "cat_title": "12 - 3. 포인터는 영희이다! (포인터)",
   "next_page": "26",
+  "path": "/C",
   "publish_date": "2009-11-26",
   "tex_title": "포인터의 포인터",
   "title": "씹어먹는 C 언어 - <12 - 3. 포인터는 영희이다! (포인터)>"
@@ -998,6 +1115,7 @@
   "cat_title": "13 - 1. 마술 상자 함수(function)",
   "chapter": "함수 (function)",
   "next_page": "27",
+  "path": "/C",
   "publish_date": "2009-12-14",
   "title": "씹어먹는 C 언어 - <13 - 1. 마술 상자 함수(function)>"
  },
@@ -1075,6 +1193,7 @@
  "27": {
   "cat_title": "13 - 2. 마술 상자 함수 2 (function)",
   "next_page": "28",
+  "path": "/C",
   "publish_date": "2009-12-19",
   "tex_title": "포인터로 받는 인자",
   "title": "씹어먹는 C 언어 - <13 - 2. 마술 상자 함수 2 (function)>"
@@ -1154,6 +1273,7 @@
  "28": {
   "cat_title": "13 - 3. 마술 상자 함수 3 (function)",
   "next_page": "30",
+  "path": "/C",
   "publish_date": "2009-12-22",
   "tex_title": "여러가지 인자들",
   "title": "씹어먹는 C 언어 - <13 - 3. 마술 상자 함수 3 (function)>"
@@ -1234,6 +1354,7 @@
   "cat_title": "15 - 1. 일로와봐, 문자열(string)",
   "chapter": "문자열 (string)",
   "next_page": "32",
+  "path": "/C",
   "publish_date": "2009-12-29",
   "title": "씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>"
  },
@@ -1316,6 +1437,7 @@
  "30": {
   "cat_title": "13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)",
   "next_page": "31",
+  "path": "/C",
   "publish_date": "2009-12-27",
   "tex_title": "생각해볼 문제에 대한 아이디어",
   "title": "씹어먹는 C 언어 - <13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)>"
@@ -1398,6 +1520,7 @@
   "cat_title": "14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)",
   "chapter": "디버깅(Debugging)",
   "next_page": "29",
+  "path": "/C",
   "publish_date": "2009-12-29",
   "title": "씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>"
  },
@@ -1472,6 +1595,7 @@
  "32": {
   "cat_title": "15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해",
   "next_page": "33",
+  "path": "/C",
   "publish_date": "2010-01-25",
   "tex_title": "버퍼에 대한 이해",
   "title": "씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>"
@@ -1517,57 +1641,70 @@
   "ref_title": "std::binary_search, binary_search",
   "title": "C++ 레퍼런스 - std::binary_search (<algorithm>)"
  },
+ "326": {
+  "cat_title": "21. 표준 라이브러리에서 자주 쓰이는 패턴 모음",
+  "title": "씹어먹는 C++ - <21. 표준 라이브러리에서 자주 쓰이는 패턴 모음>"
+ },
  "33": {
   "cat_title": "15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴",
   "next_page": "43",
+  "path": "/C",
   "publish_date": "2010-02-01",
   "tex_title": "문자열 리터럴에 대한 이해",
   "title": "씹어먹는 C 언어 - <15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴>"
  },
  "34": {
   "cat_title": "stdio.h (cstdio)",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-01-25",
   "ref_title": "<stdio.h>, <cstdio>, stdio.h, cstdio",
   "title": "C 언어 레퍼런스 - stdio.h (cstdio) 헤더파일"
  },
  "35": {
   "cat_title": "printf",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-11-27",
   "ref_title": "printf",
   "title": "C 언어 레퍼런스 - printf 함수"
  },
  "36": {
   "cat_title": "scanf",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-03",
   "ref_title": "scanf",
   "title": "C 언어 레퍼런스 - scanf 함수"
  },
  "37": {
   "cat_title": "fgetc",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-01-28",
   "ref_title": "fgetc",
   "title": "C 언어 레퍼런스 - fgetc 함수"
  },
  "38": {
   "cat_title": "fgets",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-01-28",
   "ref_title": "fgets",
   "title": "C 언어 레퍼런스 - fgets 함수"
  },
  "39": {
   "cat_title": "fputc",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-01-29",
   "ref_title": "fputc",
   "title": "C 언어 레퍼런스 -  fputc 함수"
  },
  "40": {
   "cat_title": "fputs",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-02",
   "ref_title": "fputs",
   "title": "C 언어 레퍼런스 - fputs 함수"
  },
  "41": {
   "cat_title": "getc",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-02",
   "ref_title": "getc",
   "title": "C 언어 레퍼런스 - getc 함수"
@@ -1575,42 +1712,49 @@
  "43": {
   "cat_title": "15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트",
   "next_page": "55",
+  "path": "/C",
   "publish_date": "2010-02-08",
   "tex_title": "도서 관리 프로젝트",
   "title": "씹어먹는 C 언어 - <15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트>"
  },
  "44": {
   "cat_title": "getchar",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-03",
   "ref_title": "getchar",
   "title": "C 언어 레퍼런스 - getchar 함수"
  },
  "45": {
   "cat_title": "gets",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-03",
   "ref_title": "gets",
   "title": "C 언어 레퍼런스 - gets 함수"
  },
  "46": {
   "cat_title": "putc",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-04",
   "ref_title": "putc",
   "title": "C 언어 레퍼런스 - putc 함수"
  },
  "47": {
   "cat_title": "putchar",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-04",
   "ref_title": "putchar",
   "title": "C 언어 레퍼런스 - putchar 함수"
  },
  "48": {
   "cat_title": "puts",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-04",
   "ref_title": "puts",
   "title": "C 언어 레퍼런스 - puts 함수"
  },
  "49": {
   "cat_title": "ungetc",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-04",
   "ref_title": "ungetc",
   "title": "C 언어 레퍼런스 - ungetc 함수"
@@ -1619,36 +1763,41 @@
   "cat_title": "1. C 언어가 뭐야?",
   "chapter": "C 언어의 세계로",
   "next_page": "6",
+  "path": "/C",
   "publish_date": "2009-04-16",
-  "title": "씹어먹는 C 언어 - <1. C 언어가 뭐야?>",
-  "updated_date": "09/12/2018"
+  "title": "씹어먹는 C 언어 - <1. C 언어가 뭐야?>"
  },
  "50": {
   "cat_title": "clearerr",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-05",
   "ref_title": "clearerr",
   "title": "C 언어 레퍼런스 - clearerr 함수"
  },
  "51": {
   "cat_title": "feof",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-05",
   "ref_title": "feof",
   "title": "C 언어 레퍼런스 - feof 함수"
  },
  "52": {
   "cat_title": "ferror",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-05",
   "ref_title": "ferror",
   "title": "C 언어 레퍼런스 - ferror 함수"
  },
  "53": {
   "cat_title": "perror",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-08",
   "ref_title": "perror",
   "title": "C 언어 레퍼런스 - perror 함수"
  },
  "54": {
   "cat_title": "fclose",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-08",
   "ref_title": "fclose",
   "title": "C 언어 레퍼런스 - fclose 함수"
@@ -1657,23 +1806,27 @@
   "cat_title": "16 - 1. 모아 모아 구조체(struct)",
   "chapter": "구조체 (struct)",
   "next_page": "60",
+  "path": "/C",
   "publish_date": "2010-02-14",
   "title": "씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>"
  },
  "57": {
   "cat_title": "fflush",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-10",
   "ref_title": "fflush",
   "title": "C 언어 레퍼런스 - fflush 함수"
  },
  "58": {
   "cat_title": "fopen",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-11",
   "ref_title": "fopen",
   "title": "C 언어 레퍼런스 - fopen 함수"
  },
  "59": {
   "cat_title": "freopen",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-13",
   "ref_title": "freopen",
   "title": "C 언어 레퍼런스 - freopen 함수"
@@ -1681,6 +1834,7 @@
  "6": {
   "cat_title": "2 - 1. C 언어가 본격 맛보기",
   "next_page": "19",
+  "path": "/C",
   "publish_date": "2009-04-17",
   "tex_title": "C 언어 본격 맛보기",
   "title": "씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>"
@@ -1688,54 +1842,63 @@
  "60": {
   "cat_title": "16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수",
   "next_page": "71",
+  "path": "/C",
   "publish_date": "2010-04-11",
   "tex_title": "구조체를 인자로 받는 함수",
   "title": "씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>"
  },
  "61": {
   "cat_title": "setbuf",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-16",
   "ref_title": "setbuf",
   "title": "C 언어 레퍼런스 - setbuf 함수"
  },
  "62": {
   "cat_title": "setvbuf",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-18",
   "ref_title": "setvbuf",
   "title": "C 언어 레퍼런스 - setvbuf 함수"
  },
  "64": {
   "cat_title": "fprintf",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-19",
   "ref_title": "fprintf",
   "title": "C 언어 레퍼런스 - fprintf 함수"
  },
  "65": {
   "cat_title": "fscanf",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-22",
   "ref_title": "fscanf",
   "title": "C 언어 레퍼런스 - fscanf 함수"
  },
  "66": {
   "cat_title": "sprintf",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-02-22",
   "ref_title": "sprintf",
   "title": "C 언어 레퍼런스 - sprintf 함수"
  },
  "67": {
   "cat_title": "sscanf",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2011-01-03",
   "ref_title": "sscanf",
   "title": "C 언어 레퍼런스 - sscanf 함수"
  },
  "68": {
   "cat_title": "fread",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-03-21",
   "ref_title": "fread",
   "title": "C 언어 레퍼런스 - fread 함수"
  },
  "69": {
   "cat_title": "fwrite",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-04-11",
   "ref_title": "fwrite",
   "title": "C 언어 레퍼런스 - fwrite 함수"
@@ -1744,11 +1907,13 @@
   "cat_title": "3. 변수가 뭐지?",
   "chapter": "변수 (variable)",
   "next_page": "8",
+  "path": "/C",
   "publish_date": "2009-04-22",
   "title": "씹어먹는 C 언어 - <3. 변수가 뭐지? >"
  },
  "70": {
   "cat_title": "fgetpos",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-04-18",
   "ref_title": "fgetpos",
   "title": "C 언어 레퍼런스 - fgetpos 함수"
@@ -1756,54 +1921,63 @@
  "71": {
   "cat_title": "16 - 3. 구조체와 친구들(공용체(union), 열거형(enum)",
   "next_page": "83",
+  "path": "/C",
   "publish_date": "2010-06-13",
   "tex_title": "공용체(union)와 열거형(enum)",
   "title": "씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>"
  },
  "72": {
   "cat_title": "fseek",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-04-24",
   "ref_title": "fseek",
   "title": "C 언어 레퍼런스 - fseek 함수"
  },
  "73": {
   "cat_title": "fsetpos",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-04-24",
   "ref_title": "fsetpos",
   "title": "C 언어 레퍼런스 - fsetpos 함수"
  },
  "74": {
   "cat_title": "ftell",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-04-24",
   "ref_title": "ftell",
   "title": "C 언어 레퍼런스 - ftell 함수"
  },
  "75": {
   "cat_title": "rewind",
+  "path": "/C Reference/stdio.h",
   "publish_date": "2010-04-24",
   "ref_title": "rewind",
   "title": "C 언어 레퍼런스 - rewind 함수"
  },
  "76": {
   "cat_title": "string.h (cstring)",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-04-24",
   "ref_title": "<string.h>, <cstring>, string.h, cstring",
   "title": "C 언어 레퍼런스 - string.h (cstring) 헤더파일"
  },
  "77": {
   "cat_title": "memcpy",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-04-24",
   "ref_title": "memcpy",
   "title": "C 언어 레퍼런스 - memcpy 함수"
  },
  "78": {
   "cat_title": "memmove",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-04-25",
   "ref_title": "memmove",
   "title": "C 언어 레퍼런스 - memmove 함수"
  },
  "79": {
   "cat_title": "strcpy",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-05-02",
   "ref_title": "strcpy",
   "title": "C 언어 레퍼런스 - strcpy 함수"
@@ -1812,23 +1986,27 @@
   "cat_title": "4 - 1. 계산하리",
   "chapter": "계산 하기",
   "next_page": "308",
+  "path": "/C",
   "publish_date": "2009-04-24",
   "title": "씹어먹는 C 언어 - <4 - 1. 계산하리>"
  },
  "80": {
   "cat_title": "strncpy",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-05-09",
   "ref_title": "strncpy",
   "title": "C 언어 레퍼런스 - strncpy 함수"
  },
  "81": {
   "cat_title": "strcat",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-05-21",
   "ref_title": "strcat",
   "title": "C 언어 레퍼런스 - strcat 함수"
  },
  "82": {
   "cat_title": "strncat",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-05-23",
   "ref_title": "strncat",
   "title": "C 언어 레퍼런스 - strncat 함수"
@@ -1837,23 +2015,27 @@
   "cat_title": "17. 변수의 생존 조건 및 데이터 세그먼트의 구조",
   "chapter": "변수의 생존 조건과 데이터 세그먼트의 구조",
   "next_page": "87",
+  "path": "/C",
   "publish_date": "2010-06-19",
   "title": "씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>"
  },
  "84": {
   "cat_title": "memcmp",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-06-25",
   "ref_title": "memcmp",
   "title": "C 언어 레퍼런스 - memcmp 함수"
  },
  "85": {
   "cat_title": "strcmp",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-06-25",
   "ref_title": "strcmp",
   "title": "C 언어 레퍼런스 - strcmp 함수"
  },
  "86": {
   "cat_title": "strcoll",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-07-10",
   "ref_title": "strcoll",
   "title": "C 언어 레퍼런스- strcoll 함수"
@@ -1862,12 +2044,14 @@
   "cat_title": "18 - 1. 파일 뽀개기 (헤더파일과 #include)",
   "chapter": "여러 파일로 나누기",
   "next_page": "88",
+  "path": "/C",
   "publish_date": "2010-07-16",
   "title": "씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >"
  },
  "88": {
   "cat_title": "18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)",
   "next_page": "89",
+  "path": "/C",
   "publish_date": "2010-07-20",
   "tex_title": "여러 전처리기 구문과 라이브러리 사용법",
   "title": "씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>"
@@ -1876,6 +2060,7 @@
   "cat_title": "19. main 함수의 인자, 텅 빈 void 형",
   "chapter": "void 타입과 main 함수에 대한 이해",
   "next_page": "98",
+  "path": "/C",
   "publish_date": "2010-08-02",
   "title": "씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>"
  },
@@ -1883,53 +2068,62 @@
   "cat_title": "5. 문자 입력 받기",
   "chapter": "문자 입력 받기",
   "next_page": "10",
+  "path": "/C",
   "publish_date": "2009-04-27",
   "title": "씹어먹는 C 언어 - <5. 문자 입력 받기>"
  },
  "90": {
   "cat_title": "strncmp",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-08-01",
   "ref_title": "strncmp",
   "title": "C 언어 레퍼런스 - strncmp 함수"
  },
  "91": {
   "cat_title": "strxfrm",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-08-01",
   "ref_title": "strxfrm",
   "title": "C 언어 레퍼런스 - strxfrm 함수"
  },
  "92": {
   "cat_title": "memchr",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-08-01",
   "ref_title": "memchr",
   "title": "C 언어 레퍼런스 - memchr 함수"
  },
  "93": {
   "cat_title": "strchr",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-08-02",
   "ref_title": "strchr",
   "title": "C 언어 레퍼런스 - strchr 함수"
  },
  "94": {
   "cat_title": "strcspn",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-08-02",
   "ref_title": "strcspn",
   "title": "C 언어 레퍼런스 - strcspn 함수"
  },
  "95": {
   "cat_title": "strpbrk",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-08-02",
   "ref_title": "strpbrk",
   "title": "C 언어 레퍼런스 - strpbrk 함수"
  },
  "96": {
   "cat_title": "strrchr",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-08-02",
   "ref_title": "strrchr",
   "title": "C 언어 레퍼런스 - strrchr 함수"
  },
  "97": {
   "cat_title": "strspn",
+  "path": "/C Reference/string.h",
   "publish_date": "2010-11-21",
   "ref_title": "strspn",
   "title": "C 언어 레퍼런스 - strspn 함수"
@@ -1938,6 +2132,7 @@
   "cat_title": "20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)",
   "chapter": "동적 메모리 할당 (dynamic memory allocation)",
   "next_page": "100",
+  "path": "/C",
   "publish_date": "2010-08-03",
   "title": "씹어먹는 C 언어 - <20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)>"
  },
@@ -1945,6 +2140,7 @@
   "cat_title": "21. 매크로 함수, 인라인 함수",
   "chapter": "매크로 함수, 인라인 함수",
   "next_page": "103",
+  "path": "/C",
   "publish_date": "2010-11-21",
   "title": "씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>"
  },

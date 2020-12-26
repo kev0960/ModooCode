@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios_base::getloc 함수
 cat_title :  ios_base::getloc
 publish_date : 2011-08-20
 ref_title : getloc, ios_base::getloc
+path : /C++ Reference/iostream
 --------------
 
 

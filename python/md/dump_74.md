@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - ftell 함수
 cat_title :  ftell
 publish_date : 2010-04-24
 ref_title : ftell
+path : /C Reference/stdio.h
 --------------
 
 

@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - istream 클래스
 cat_title :  istream 클래스
 ref_title : istream, <istream>, std::basic_istream, basic_istream
 publish_date : 2011-08-17
+path : /C++ Reference/iostream
 --------------
 
 

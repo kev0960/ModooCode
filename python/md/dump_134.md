@@ -4,6 +4,7 @@ cat_title: 1. 자~ C++ 의 세계로
 next_page : 136
 publish_date : 2011-03-06
 chapter : C++ 시작하기
+path : /C++
 --------------
 
 이번 강좌에서는

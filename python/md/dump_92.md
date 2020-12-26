@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - memchr 함수
 cat_title :  memchr
 publish_date : 2010-08-01
 ref_title : memchr
+path : /C Reference/string.h
 --------------
 
 

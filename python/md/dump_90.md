@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - strncmp 함수
 cat_title :  strncmp
 publish_date : 2010-08-01
 ref_title : strncmp
+path : /C Reference/string.h
 --------------
 
 

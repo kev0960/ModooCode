@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios::good 함수
 cat_title :  ios::good
 ref_title : good, ios::good
 publish_date : 2011-10-23
+path : /C++ Reference/iostream
 --------------
 
 

@@ -1,6 +1,7 @@
 ----------------
 title : 오픈북 프로젝트 - 양질의 컴퓨터 문서 공급 프로젝트
 publish_date : 2013-08-04
+path : /프로그래밍
 --------------
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F2109C74751FE5B5311F6B3)

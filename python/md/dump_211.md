@@ -4,6 +4,7 @@ cat_title: 6 - 3. 가상함수와 상속에 관련한 잡다한 내용들
 next_page : 213
 publish_date : 2014-04-13
 tex_title : 상속에 관련된 잡다한 내용들
+path : /C++
 --------------
 
 이번 강좌에서는

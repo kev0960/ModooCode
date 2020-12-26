@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios_base::flags 함수
 cat_title :  ios_base::flags
 ref_title : flags, ios_base::flags
 publish_date : 2011-08-19
+path : /C++ Reference/iostream
 --------------
 
 ##@ cpp-ref-start

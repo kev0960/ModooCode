@@ -4,6 +4,7 @@ cat_title : 16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진
 next_page : 71
 publish_date : 2010-04-11
 tex_title : 구조체를 인자로 받는 함수
+path : /C
 --------------
 
 

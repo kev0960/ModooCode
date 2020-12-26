@@ -4,6 +4,7 @@ cat_title: 10 - 3. C++ STL - 알고리즘(algorithm)
 publish_date : 2017-07-09
 next_page : 292
 tex_title : C++ 표준 알고리즘 라이브러리
+path : /C++
 --------------
 
 

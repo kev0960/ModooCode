@@ -50,3 +50,30 @@
 .lang-asm .c {
   color: #d6d6d6;
 }
+
+.lang-objdump .in {
+  color: #6dbeff;
+}
+.lang-objdump .rg {
+  color: #78dce8;
+}
+.lang-objdump .u {
+  color: #ffb97c;
+}
+.lang-objdump .lb {
+  color: #f19798;
+}
+.lang-objdump .dr {
+  color: #ff3133;
+}
+.lang-objdump .c {
+  color: #d6d6d6;
+}
+
+.lang-objdump {
+  font-size: 14px;
+}
+
+.in > a {
+  padding:0;
+}

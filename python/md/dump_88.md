@@ -4,6 +4,7 @@ cat_title : 18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)
 next_page : 89
 publish_date : 2010-07-20
 tex_title : 여러 전처리기 구문과 라이브러리 사용법
+path : /C
 --------------
 
 

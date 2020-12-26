@@ -4,6 +4,7 @@ cat_title : 15 - 1. 일로와봐, 문자열(string)
 next_page : 32
 publish_date : 2009-12-29
 chapter : 문자열 (string)
+path : /C
 --------------
 
 

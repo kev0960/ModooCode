@@ -4,6 +4,7 @@ cat_title: 7 - 1. C++ 에서의 입출력 (istream, ostream)
 next_page : 215
 publish_date : 2015-05-04
 chapter : C++ 표준 입출력 라이브러리
+path : /C++
 --------------
 
 

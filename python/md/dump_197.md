@@ -4,6 +4,7 @@ cat_title: 4 - 4. 스타크래프트를 만들자 ② (const, static)
 next_page : 198
 publish_date : 2013-05-26
 tex_title : const, const, const!
+path : /C++
 --------------
 
 이번 강좌에서는

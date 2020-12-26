@@ -19,11 +19,11 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |FE /0|`INC` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Increment r/m byte by 1.|
-|REX + FE /0|`INC` r/m8\footnote{*} |M|Valid|N.E.|Increment r/m byte by 1.|
+|REX + FE /0|`INC` r/m8\footnote{\htmlonly{*}} |M|Valid|N.E.|Increment r/m byte by 1.|
 |FF /0|`INC` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Increment r/m word by 1.|
 |FF /0|`INC` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|Valid|Valid|Increment r/m doubleword by 1.|
 |REX.W + FF /0|`INC` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid|N.E.|Increment r/m quadword by 1.|
-|40+ rw\footnote{**}|`INC` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |O|N.E.|Valid|Increment word register by 1.|
+|40+ rw\footnote{\htmlonly{*}\htmlonly{*}}|`INC` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} |O|N.E.|Valid|Increment word register by 1.|
 |40+ rd|`INC` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} |O|N.E.|Valid|Increment doubleword register by 1.|
 
 ```note

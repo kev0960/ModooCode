@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - strtok 함수
 cat_title :  strtok
 publish_date : 2010-11-27
 ref_title : strtok
+path : /C Reference/string.h
 --------------
 
 

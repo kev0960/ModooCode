@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios::setstate 함수
 cat_title :  ios::setstate
 ref_title : setstate, ios::setstate
 publish_date : 2012-03-25
+path : /C++ Reference/iostream
 --------------
 
 

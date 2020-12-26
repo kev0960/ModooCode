@@ -4,6 +4,7 @@ cat_title: 2. C++ 참조자(레퍼런스)의 도입
 next_page : 169
 publish_date : 2012-01-01
 chapter : C++ 의 참조자 (레퍼런스)
+path : /C++
 --------------
 
 이번 강좌에서는

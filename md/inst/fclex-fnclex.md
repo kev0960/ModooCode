@@ -19,7 +19,7 @@ publish_date: 2020-09-01
 |**Opcode\htmlonly{*}**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------------------|---------------|-----------------------------|---------------------------------|---------------|
 |9B DB E2|`FCLEX` |Valid|Valid|Clear floating-point exception flags after checking for pending unmasked floating-point exceptions.|
-|DB E2|FNCLEX\footnote{*} |Valid|Valid|Clear floating-point exception flags without checking for pending unmasked floating-point exceptions.|
+|DB E2|FNCLEX\footnote{\htmlonly{*}} |Valid|Valid|Clear floating-point exception flags without checking for pending unmasked floating-point exceptions.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - memcmp 함수
 cat_title :  memcmp
 publish_date : 2010-06-25
 ref_title : memcmp
+path : /C Reference/string.h
 --------------
 
 

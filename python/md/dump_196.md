@@ -1,6 +1,7 @@
 ----------------
 title : 씹어먹는 C++ 토막글 ② - 람다(lambda) 함수
 publish_date : 2013-01-08
+path : /C++
 --------------
 
 ```warning

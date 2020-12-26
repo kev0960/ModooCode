@@ -4,6 +4,7 @@ cat_title : 12 - 1. 포인터는 영희이다! (포인터)
 next_page : 24
 publish_date : 2009-11-09
 chapter : 포인터
+path : /C
 --------------
 
 

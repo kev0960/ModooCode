@@ -4,6 +4,7 @@ cat_title : 23 - 2. 파일 하고 이야기 하기 (파일 입출력)
 next_page : 125
 publish_date : 2011-01-10
 tex_title : 파일 안에서 이동하기
+path : /C
 --------------
 
 이번 강좌에서는

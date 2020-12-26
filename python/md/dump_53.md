@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - perror 함수
 cat_title :  perror
 publish_date : 2010-02-08
 ref_title : perror
+path : /C Reference/stdio.h
 --------------
 
 

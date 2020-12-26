@@ -4,6 +4,7 @@ cat_title : 12 - 3. 포인터는 영희이다! (포인터)
 next_page : 26
 publish_date : 2009-11-26
 tex_title : 포인터의 포인터
+path : /C
 --------------
 
 

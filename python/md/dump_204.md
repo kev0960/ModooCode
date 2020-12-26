@@ -4,6 +4,7 @@ cat_title: 5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열
 next_page : 209
 publish_date : 2013-09-04
 tex_title : N 차원 배열 만들기 프로젝트
+path : /C++
 --------------
 
 이번 강좌에서는

@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - istream::ignore 함수
 cat_title :  istream::ignore
 ref_title : ignore
 publish_date : 2012-11-07
+path : /C++ Reference/iostream
 --------------
 
 ##@ cpp-ref-start

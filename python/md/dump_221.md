@@ -4,6 +4,7 @@ cat_title: 9 - 3. 템플릿 메타 프로그래밍 (Template Meta programming)
 next_page : 222
 publish_date : 2017-06-26
 tex_title : 템플릿 메타프로그래밍 1 부
+path : /C++
 --------------
 
 이번 강좌에서는

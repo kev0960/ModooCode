@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - strchr 함수
 cat_title :  strchr
 publish_date : 2010-08-02
 ref_title : strchr
+path : /C Reference/string.h
 --------------
 
 

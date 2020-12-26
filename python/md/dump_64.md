@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - fprintf 함수
 cat_title :  fprintf
 publish_date : 2010-02-19
 ref_title: fprintf
+path : /C Reference/stdio.h
 --------------
 
 

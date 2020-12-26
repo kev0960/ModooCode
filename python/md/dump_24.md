@@ -4,6 +4,7 @@ cat_title : 12 - 2. 포인터는 영희이다! (포인터)
 next_page : 25
 publish_date : 2009-11-14
 tex_title : 상수 포인터, 포인터의 덧셈 뺄셈, 배열과 포인터
+path : /C
 --------------
 
 

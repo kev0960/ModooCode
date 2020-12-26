@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios_base::width
 cat_title :  ios_base::width
 publish_date : 2011-08-18
 ref_title : ios_base::width, width
+path : /C++ Reference/iostream
 --------------
 
 

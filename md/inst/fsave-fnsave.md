@@ -19,7 +19,7 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
 |9B DD /6|`FSAVE` m94/108byte |Valid|Valid|Store FPU state to m94byte or m108byte after checking for pending unmasked floating-point exceptions. Then re-initialize the FPU.|
-|DD /6|FNSAVE\footnote{* } m94/108byte |Valid|Valid|Store FPU environment to m94byte or m108byte without checking for pending unmasked floating-point exceptions. Then re-initialize the FPU.|
+|DD /6|FNSAVE\footnote{\htmlonly{*} } m94/108byte |Valid|Valid|Store FPU environment to m94byte or m108byte without checking for pending unmasked floating-point exceptions. Then re-initialize the FPU.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

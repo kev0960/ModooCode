@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - fflush 함수
 cat_title :  fflush
 publish_date : 2010-02-10
 ref_title : fflush
+path : /C Reference/stdio.h
 --------------
 
 

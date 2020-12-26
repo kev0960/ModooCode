@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - putchar 함수
 cat_title :  putchar
 publish_date : 2010-02-04
 ref_title : putchar
+path : /C Reference/stdio.h
 --------------
 
 

@@ -1,6 +1,7 @@
 ----------------
 title : 씹어먹는 C 언어 - 찾아보기
 publish_date : 2012-03-25
+path : /C
 --------------
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F1740D8454F6EF9B4012A93)
