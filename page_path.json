@@ -634,9 +634,9 @@
      "minsd",
      "minss",
      "monitor",
-     "mov",
      "mov_1",
      "mov_2",
+     "mov",
      "movapd",
      "movaps",
      "movbe",
@@ -1097,6 +1097,7 @@
   },
   "잡담": {
    "files": [
+    "327",
     "232",
     "115",
     "142",

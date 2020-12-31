@@ -5,7 +5,6 @@ next_page : 99
 publish_date : 2010-09-13
 path : /C
 tex_title : 구조체의 동적 할당과 메모리 관리 함수
-path : /C Reference/string.h
 --------------
 
 

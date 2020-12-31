@@ -314,7 +314,7 @@ int main() {
 for (typename std::vector<T>::iterator itr = vec.begin(); itr != vec.end(); ++itr) {
 ```
 
-와 같이 앞에 `typename` 을 추가해줘야만 합니다. 그 이유는, `iterator` 가 `std::vector<T>` 의 의존 타입이기 때문입니다. [의존 타입이 무엇인지 기억 안나시는 분은 이 강좌를 참조하시기 바랍니다](http://itguru.tistory.com/222?category=361027)`. .
+와 같이 앞에 `typename` 을 추가해줘야만 합니다. 그 이유는, `iterator` 가 `std::vector<T>` 의 의존 타입이기 때문입니다. [의존 타입이 무엇인지 기억 안나시는 분은 이 강좌를 참조하시기 바랍니다](http://itguru.tistory.com/222?category=361027)
 
 ```cpp-formatted
 // vec[2] 앞에 15 추가
