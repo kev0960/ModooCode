@@ -321,18 +321,22 @@ initialize_address(static_cast<Address *>(current->next) + i);
 
 생성자를 만들었으므로, 소멸자도 비슷한 방식으로 만들어주면 됩니다. 다만, 소멸자의 경우 주의할 점이, 생성자는 '위에서 아래로' 메모리들을 점차 확장 시켜 나갔지만, 소멸자는 '아래에서 위로' 메모리를 점차 소멸시켜 나가야 된다는 점입니다. 물론, 이로 살짝 바꾸는 것은 별로 어려운 일이 아닙니다.
 
-```cpp-formatted
+```cpp
 void delete_address(Address *current) {
   if (!current) return;
   for (int i = 0; current->level < dim - 1 && i < size[current->level]; i++) {
     delete_address(static_cast<Address *>(current->next) + i);
   }
 
+  if(current->level==dim-1) {
+        delete[] static_cast<int *>(current->next);
+  }
+
   delete[] static_cast<Address*>(current->next);
 }
 ```
 
-위와 같이 `delete_address` 함수를 생각해 볼 수 있습니다. (여러분들이 한 번 직접 생각해보세요)
+위와 같이 `delete_address` 함수를 생각해 볼 수 있습니다. (여러분들이 한 번 직접 생각해보세요) 마지막 레벨에서는 `int` 들이 정의되어 있기 때문에 `int*` 로 캐스팅해서 `delete` 를 해야 하고, 그 전까지는 `Adress` 들을 `delete` 해야 겠죠. 
 
 이들을 조합해서, 우리의 `Array` 클래스의 생성자를 수정해보도록 합시다.
 
@@ -727,6 +731,9 @@ void copy_address(Address *dst, Address *src) {
       delete_address(static_cast<Address*>(current->next) + i);
     }
 
+    if(current->level==dim-1) {
+          delete[] static_cast<int *>(current->next);
+    }
     delete[] static_cast<Address*>(current->next);
   }
   Int operator[](const int index);
@@ -1009,7 +1016,7 @@ Iterator end() {
 
 
 
-```cpp-formatted
+```cpp
 #include <iostream>
 
 namespace MyArray {
@@ -1149,6 +1156,9 @@ class Array {
       delete_address(static_cast<Address*>(current->next) + i);
     }
 
+  if(current->level==dim-1) {
+        delete[] static_cast<int *>(current->next);
+  }
     delete[] static_cast<Address*>(current->next);
   }
   Int operator[](const int index);
