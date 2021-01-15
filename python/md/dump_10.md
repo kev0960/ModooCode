@@ -340,7 +340,7 @@ if (/* 조건 */)
 
 와 같이 됩니다. 잊지 마세요!
 
-### `if - else` 문 시작하기
+### if - else 문 시작하기
 
 ```cpp-formatted
 #include <stdio.h>

@@ -425,7 +425,7 @@ fflush(fp);
 
 
 
-### `fopen` 함수의 기타 인자 사용
+### fopen 함수의 기타 인자 사용
 
 
 ```cpp-formatted
@@ -467,7 +467,7 @@ FILE *fp = fopen("some_data.txt", "a");
 
 
 
-### `fscanf` 사용하기
+### fscanf 사용하기
 
 
 ```cpp-formatted
