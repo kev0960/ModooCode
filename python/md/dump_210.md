@@ -4,6 +4,7 @@ cat_title: 6 - 2.  가상(virtual) 함수와 다형성
 next_page : 211
 publish_date : 2014-03-31
 tex_title : 가상 함수와 다형성
+path : /C++
 --------------
 
 

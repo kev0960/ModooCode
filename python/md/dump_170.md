@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios::operator void*
 cat_title :  ios::operator void*
 ref_title :  ios::operator void*
 publish_date : 2012-01-01
+path : /C++ Reference/iostream
 --------------
 
 

@@ -4,6 +4,7 @@ cat_title : 21. 매크로 함수, 인라인 함수
 next_page : 103
 publish_date : 2010-11-21
 chapter : 매크로 함수, 인라인 함수
+path : /C
 --------------
 
 이번 강좌에서는

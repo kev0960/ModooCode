@@ -3,6 +3,7 @@ title : 씹어 먹는 C 언어 - <8. 우분투 리눅스에서 C 프로그래밍
 cat_title: 8. 우분투 리눅스에서 C 프로그래밍 하기
 next_page : 16
 publish_date : 2009-08-06
+path : /C
 tex_title : 리눅스에서 C 프로그래밍 하기
 --------------
 

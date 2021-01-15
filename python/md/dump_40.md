@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - fputs 함수
 cat_title :  fputs
 publish_date : 2010-02-02
 ref_title : fputs
+path : /C Reference/stdio.h
 --------------
 
 

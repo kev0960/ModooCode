@@ -4,6 +4,7 @@ cat_title : 20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)
 next_page : 100
 publish_date : 2010-08-03
 chapter : 동적 메모리 할당 (dynamic memory allocation)
+path : /C
 --------------
 
 

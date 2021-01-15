@@ -4,6 +4,7 @@ cat_title : 15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기
 next_page : 43
 publish_date : 2010-02-01
 tex_title : 문자열 리터럴에 대한 이해
+path : /C
 --------------
 
 

@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 -  fputc 함수
 cat_title :   fputc
 publish_date : 2010-01-29
 ref_title : fputc
+path : /C Reference/stdio.h
 --------------
 
 

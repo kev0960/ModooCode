@@ -4,6 +4,7 @@ cat_title: 9 - 4. 템플릿 메타 프로그래밍 2
 next_page : 223
 publish_date : 2017-07-02
 tex_title : 템플릿 메타프로그래밍 2 부
+path : /C++
 --------------
 
 이번 강좌에서는

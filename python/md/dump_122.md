@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - strftime 함수
 cat_title :  strftime
 publish_date : 2011-01-05
 ref_title : strftime
+path : /C Reference/time.h
 --------------
 
 

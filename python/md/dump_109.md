@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - struct tm ( tm 구조체 )
 cat_title :  struct tm
 ref_title : tm 구조체, tm, struct tm
 publish_date : 2010-12-25
+path : /C Reference/time.h
 --------------
 
 ```warning

@@ -19,7 +19,7 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
 |9B D9 /7|`FSTCW` m2byte |Valid|Valid|Store FPU control word to m2byte after checking for pending unmasked floating-point exceptions.|
-|D9 /7|FNSTCW\footnote{*} m2byte |Valid|Valid|Store FPU control word to m2byte without checking for pending unmasked floating-point exceptions.|
+|D9 /7|FNSTCW\footnote{\htmlonly{*}} m2byte |Valid|Valid|Store FPU control word to m2byte without checking for pending unmasked floating-point exceptions.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

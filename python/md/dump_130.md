@@ -1,6 +1,7 @@
 ----------------
 title : 초보자를 위한 C 언어 강좌 - 씹어먹는 C 언어 (완결)
 publish_date : 2011-01-20
+path : /C
 --------------
 
 ![씹어먹는 C 언어](/img/ChewingClogo.png)

@@ -4,6 +4,7 @@ cat_title: 5 - 1. 내가 만든 연산자 - 연산자 오버로딩
 next_page : 203
 publish_date : 2013-08-25
 chapter : 연산자 오버로딩(overloading)
+path : /C++
 --------------
 
 이번 강좌에서는

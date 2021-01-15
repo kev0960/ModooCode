@@ -3,6 +3,7 @@ title : 씹어먹는 C 언어 - <5. 문자 입력 받기>
 cat_title : 5. 문자 입력 받기
 next_page : 10
 publish_date : 2009-04-27
+path : /C
 chapter : 문자 입력 받기
 --------------
 

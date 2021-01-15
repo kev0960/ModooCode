@@ -2,6 +2,7 @@
 title : C++ IOstream (입출력) 라이브러리
 ref_title : iostream, <iostream>
 publish_date : 2011-08-17
+path : /C++ Reference/iostream
 --------------
 
 
@@ -57,8 +58,7 @@ publish_date : 2011-08-17
 
 라이브러리와 이들와 관계로 분류하였다.
 
-* [ios](http://itguru.tistory.com/145),
- [istream](http://itguru.tistory.com/146), `<ostream>`, `<streambuf>`, `<iosfwd>` 들은 C++ 프로그램들에서 직접적으로 사용되지 않는다. 이들은 단순히 기초 클래스(base class) 로 파생 클래스들을 사용시 자동으로 헤더에 포함된다.
+* [ios](http://itguru.tistory.com/145), [istream](http://itguru.tistory.com/146), `<ostream>`, `<streambuf>`, `<iosfwd>` 들은 C++ 프로그램들에서 직접적으로 사용되지 않는다. 이들은 단순히 기초 클래스(base class) 로 파생 클래스들을 사용시 자동으로 헤더에 포함된다.
 * `<iostream>` 은 표준 입력과 출력에 소통할 수 있도록 하는 객체들을 정의하게 된다 (`cin`, `cout` 등)
 * `<fstream>` 은 파일 스트림 클래스 및 템플릿 (예컨대 템플릿 `basic_ifstream` 이나 `ofstream` 클래스 등) 들과 `basic_filebuf` 와 사용되는 버퍼 객체들을 정의하고 있다. 이 클래스들은 스트림을 이용하여 파일을 조작하는데 사용된다.
 * `<sstream>` 에 들어있는 클래스들은 스트림에 들어있는 문자열 객체들을 조작하는데 사용된다.

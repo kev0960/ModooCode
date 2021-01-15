@@ -4,6 +4,7 @@ cat_title : 23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리
 next_page : 129
 publish_date : 2011-01-17
 tex_title : 도서 관리 프로그램의 완성
+path : /C
 --------------
 
 

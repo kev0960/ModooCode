@@ -19,8 +19,8 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |0F 03 /r|`LSL` \tooltip{r16}{2 바이트 짜리 범용 레지스터를 의미 (AX, CX, DX, BX, SP, BP, SI, DI). 64 비트 모드의 경우 추가적으로 R8 부터 R15 까지 가능.} r16/m16 |RM|Valid|Valid|Load: r16 <- segment limit, selector r16/m16.|
-|0F 03 /r|`LSL` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} r32/m16\footnote{*} |RM|Valid|Valid|Load: r32 <- segment limit, selector r32/m16.|
-|REX.W + 0F 03 /r|`LSL` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} r32/m16\footnote{*} |RM|Valid|Valid|Load: r64 <- segment limit, selector r32/m16|
+|0F 03 /r|`LSL` \tooltip{r32}{4 바이트 짜리 범용 레지스터를 의미 (EAX, ECX, EDX, EBX, ESP, EBP, ESI, EDI). 64 비트 모드의 경우 추가적으로 R8D 부터 R15D 까지 가능.} r32/m16\footnote{\htmlonly{*}} |RM|Valid|Valid|Load: r32 <- segment limit, selector r32/m16.|
+|REX.W + 0F 03 /r|`LSL` \tooltip{r64}{8 바이트 짜리 범용 레지스터를 의미 (RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8–R15). 이들은 64비트 모드에서만 사용 가능하다.} r32/m16\footnote{\htmlonly{*}} |RM|Valid|Valid|Load: r64 <- segment limit, selector r32/m16|
 
 ```note
 \htmlonly{*} For all loads (regardless of destination sizing), only bits 16-0 are used. Other bits are ignored

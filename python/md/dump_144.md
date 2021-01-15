@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios_base 클래스
 cat_title :  ios_base 클래스
 ref_title : ios_base
 publish_date : 2011-08-17
+path : /C++ Reference/iostream
 --------------
 
 

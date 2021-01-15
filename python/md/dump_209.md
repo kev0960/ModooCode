@@ -4,6 +4,7 @@ cat_title: 6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속
 next_page : 210
 publish_date : 2014-03-30
 chapter : 클래스의 상속
+path : /C++
 --------------
 
 

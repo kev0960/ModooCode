@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - fgets 함수
 cat_title :  fgets
 publish_date : 2010-01-28
 ref_title : fgets
+path : /C Reference/stdio.h
 --------------
 
 ```warning

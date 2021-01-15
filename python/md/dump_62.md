@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - setvbuf 함수
 cat_title :  setvbuf
 publish_date : 2010-02-18
 ref_title : setvbuf
+path : /C Reference/stdio.h
 --------------
 
 

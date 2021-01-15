@@ -19,7 +19,7 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
 |9B D9 /6|`FSTENV` m14/28byte |Valid|Valid|Store FPU environment to m14byte or m28byte after checking for pending unmasked floating-point exceptions. Then mask all floating-pointexceptions.|
-|D9 /6|FNSTENV\footnote{*} m14/28byte |Valid|Valid|Store FPU environment to m14byte or m28byte without checking for pending unmasked floating-point exceptions. Then mask all floating-pointexceptions.|
+|D9 /6|FNSTENV\footnote{\htmlonly{*}} m14/28byte |Valid|Valid|Store FPU environment to m14byte or m28byte without checking for pending unmasked floating-point exceptions. Then mask all floating-pointexceptions.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - string.h (cstring) 헤더파일
 cat_title :  string.h (cstring)
 ref_title : <string.h>, <cstring>, string.h, cstring
 publish_date : 2010-04-24
+path : /C Reference/string.h
 --------------
 
 

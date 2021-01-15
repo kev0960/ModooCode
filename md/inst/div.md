@@ -19,7 +19,7 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |F6 /6|`DIV` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Unsigned divide AX by r/m8, with result stored in AL <- Quotient, AH <- Remainder.|
-|REX + F6 /6|`DIV` r/m8\footnote{*} |M|Valid|N.E.|Unsigned divide AX by r/m8, with result stored in AL <- Quotient, AH <- Remainder.|
+|REX + F6 /6|`DIV` r/m8\footnote{\htmlonly{*}} |M|Valid|N.E.|Unsigned divide AX by r/m8, with result stored in AL <- Quotient, AH <- Remainder.|
 |F7 /6|`DIV` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Unsigned divide DX:AX by r/m16, with result stored in AX <- Quotient, DX <- Remainder.|
 |F7 /6|`DIV` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|Valid|Valid|Unsigned divide EDX:EAX by r/m32, with result stored in EAX <- Quotient, EDX <- Remainder.|
 |REX.W + F7 /6|`DIV` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid|N.E.|Unsigned divide RDX:RAX by r/m64, with result stored in RAX <- Quotient, RDX <- Remainder.|

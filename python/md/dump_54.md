@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - fclose 함수
 cat_title :  fclose
 publish_date : 2010-02-08
 ref_title : fclose
+path : /C Reference/stdio.h
 --------------
 
 

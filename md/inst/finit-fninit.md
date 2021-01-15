@@ -19,7 +19,7 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|-----------------------------|---------------------------------|---------------|
 |9B DB E3|`FINIT` |Valid|Valid|Initialize FPU after checking for pending unmasked floating-point exceptions.|
-|DB E3|FNINIT\footnote{*} |Valid|Valid|Initialize FPU without checking for pending unmasked floating-point exceptions.|
+|DB E3|FNINIT\footnote{\htmlonly{*}} |Valid|Valid|Initialize FPU without checking for pending unmasked floating-point exceptions.|
 
 ```note
 \htmlonly{*} See IA-32 Architecture Compatibility section below

@@ -3,6 +3,7 @@ title : C++ 레퍼런스 - ios_base::register_callback 함수
 cat_title :  ios_base::register_callback
 publish_date : 2011-08-20
 ref_title : ios_base::register_callback, register_callback
+path : /C++ Reference/iostream
 --------------
 
 

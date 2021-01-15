@@ -19,7 +19,7 @@ publish_date: 2020-09-01
 |**Opcode**|**Instruction**|**Op/ **\newline{}**En**|**64-Bit **\newline{}**Mode**|**Compat/**\newline{}**Leg Mode**|**Description**|
 |----------|---------------|------------------------|-----------------------------|---------------------------------|---------------|
 |FE /1|`DEC` \tooltip{r/m8}{1 바이트 짜리 피연산자로, 1 바이트 범용 레지스터나 (r8 의 레지스터들), 1 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Decrement r/m8 by 1.|
-|REX + FE /1|`DEC` r/m8\footnote{*} |M|Valid|N.E.|Decrement r/m8 by 1.|
+|REX + FE /1|`DEC` r/m8\footnote{\htmlonly{*}} |M|Valid|N.E.|Decrement r/m8 by 1.|
 |FF /1|`DEC` \tooltip{r/m16}{2 바이트 짜리 피연산자로, 2 바이트 범용 레지스터나 (r16 의 레지스터들), 2 바이트 메모리 데이터를 의미한다. } |M|Valid|Valid|Decrement r/m16 by 1.|
 |FF /1|`DEC` \tooltip{r/m32}{4 바이트 짜리 피연산자로, 4 바이트 범용 레지스터나 (r32 의 레지스터들), 4 바이트 메모리 데이터를 의미한다.} |M|Valid|Valid|Decrement r/m32 by 1.|
 |REX.W + FF /1|`DEC` \tooltip{r/m64}{8 바이트 짜리 피연산자로, 8 바이트 범용 레지스터나 (r64 의 레지스터들), 8 바이트 메모리 데이터를 의미한다.} |M|Valid|N.E.|Decrement r/m64 by 1.|

@@ -4,6 +4,7 @@ cat_title: 1 - 2. 첫 C++ 프로그램 분석하기
 next_page : 138
 publish_date : 2011-03-06
 tex_title : 첫 C++ 프로그램 분석하기
+path : /C++
 --------------
 
 

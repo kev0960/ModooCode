@@ -4,6 +4,7 @@ cat_title : 16 - 1. 모아 모아 구조체(struct)
 next_page : 60
 publish_date : 2010-02-14
 chapter : 구조체 (struct)
+path : /C
 --------------
 
 

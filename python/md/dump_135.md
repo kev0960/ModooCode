@@ -1,8 +1,9 @@
 ----------------
 title : 씹어먹는 C++ 강좌 계획
 next_page: 134
-publish_date : 2011-03-06
+publish_date : 2011-03-05
 chapter : C++ 을 시작하기에 앞서
+path : /C++
 --------------
 
 ![](/img/ChewingCpplogo.png)

@@ -1,6 +1,7 @@
 ----------------
 title : 모든 컴퓨터 과학자가 알아야 할 부동 소수점의 모든 것(What Every Computer Scientists Should Know About Floating Point Arithmetic)
 publish_date : 2013-08-04
+path : /프로그래밍
 --------------
 
 

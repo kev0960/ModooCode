@@ -3,6 +3,7 @@ title : C 언어 레퍼런스 - fseek 함수
 cat_title :  fseek
 publish_date : 2010-04-24
 ref_title : fseek
+path : /C Reference/stdio.h
 --------------
 
 

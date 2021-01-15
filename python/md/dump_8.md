@@ -3,6 +3,7 @@ title : 씹어먹는 C 언어 - <4 - 1. 계산하리>
 cat_title : 4 - 1. 계산하리
 next_page : 308
 publish_date : 2009-04-24
+path : /C
 chapter : 계산 하기
 --------------
 

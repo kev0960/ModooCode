@@ -2,8 +2,8 @@
 title : 씹어먹는 C 언어 - <1. C 언어가 뭐야?>
 next_page : 6
 cat_title : 1. C 언어가 뭐야?
-updated_date : 09/12/2018
 publish_date : 2009-04-16
+path : /C
 chapter : C 언어의 세계로
 --------------
 
