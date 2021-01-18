@@ -4,6 +4,7 @@
   "chapter": "만약에... (조건문)",
   "next_page": "12",
   "path": "/C",
+  "prev_page": "9",
   "publish_date": "2009-04-28",
   "title": "씹어먹는 C 언어 - <6. 만약에...(if 문)>"
  },
@@ -11,6 +12,7 @@
   "cat_title": "20 - 2. 메모리 동적할당 + 메모리 갖고 놀기",
   "next_page": "99",
   "path": "/C",
+  "prev_page": "98",
   "publish_date": "2010-09-13",
   "tex_title": "구조체의 동적 할당과 메모리 관리 함수",
   "title": "씹어먹는 C 언어 - <20 - 2. 메모리 동적할당 + 메모리 갖고 놀기>"
@@ -34,6 +36,7 @@
   "chapter": "그 밖에 키워드들",
   "next_page": "117",
   "path": "/C",
+  "prev_page": "99",
   "publish_date": "2010-12-25",
   "title": "씹어먹는 C 언어 - <22. C 언어의 잡다한 키워드들 (typedef, volatile, #pragma)>"
  },
@@ -124,6 +127,7 @@
   "chapter": "파일 입출력",
   "next_page": "123",
   "path": "/C",
+  "prev_page": "103",
   "publish_date": "2010-12-28",
   "title": "씹어먹는 C 언어 - <23 - 1. 파일 하고 이야기 하기 (파일 입출력에 대한 기본적 이해)>"
  },
@@ -146,6 +150,7 @@
   "chapter": "반복문 (for, while)",
   "next_page": "14",
   "path": "/C",
+  "prev_page": "10",
   "publish_date": "2009-08-06",
   "title": "씹어먹는 C 언어 - <7. 뱅글 뱅글 (for, while) >"
  },
@@ -174,6 +179,7 @@
   "cat_title": "23 - 2. 파일 하고 이야기 하기 (파일 입출력)",
   "next_page": "125",
   "path": "/C",
+  "prev_page": "117",
   "publish_date": "2011-01-10",
   "tex_title": "파일 안에서 이동하기",
   "title": "씹어먹는 C 언어 - <23 - 2. 파일 하고 이야기 하기 (파일 입출력)>"
@@ -189,6 +195,7 @@
   "cat_title": "23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)",
   "next_page": "129",
   "path": "/C",
+  "prev_page": "123",
   "publish_date": "2011-01-17",
   "tex_title": "도서 관리 프로그램의 완성",
   "title": "씹어먹는 C 언어 - <23 - 3. 파일 하고 이야기 하기 (파일 입출력 - 마무리)>"
@@ -198,11 +205,13 @@
   "chapter": "C 코드 최적화",
   "next_page": "130",
   "path": "/C",
+  "prev_page": "125",
   "publish_date": "2011-01-18",
   "title": "씹어먹는 C 언어 - <24. 더 빠르게 실행되는 코드를 위하여 (C 코드 최적화)>"
  },
  "130": {
   "path": "/C",
+  "prev_page": "129",
   "publish_date": "2011-01-20",
   "title": "초보자를 위한 C 언어 강좌 - 씹어먹는 C 언어 (완결)"
  },
@@ -229,6 +238,7 @@
   "chapter": "C++ 시작하기",
   "next_page": "136",
   "path": "/C++",
+  "prev_page": "135",
   "publish_date": "2011-03-06",
   "title": "씹어먹는 C++ - <1. 자~ C++ 의 세계로>"
  },
@@ -243,6 +253,7 @@
   "cat_title": "1 - 2. 첫 C++ 프로그램 분석하기",
   "next_page": "138",
   "path": "/C++",
+  "prev_page": "134",
   "publish_date": "2011-03-06",
   "tex_title": "첫 C++ 프로그램 분석하기",
   "title": "씹어먹는 C++ - <1 - 2. 첫 C++ 프로그램 분석하기>"
@@ -251,6 +262,7 @@
   "cat_title": "1 - 3. C++ 은 C 친구 - C 와 공통점",
   "next_page": "141",
   "path": "/C++",
+  "prev_page": "136",
   "publish_date": "2011-05-15",
   "tex_title": "C++ 와 C 언어의 공통 문법 구조",
   "title": "씹어먹는 C++ - <1 - 3. C++ 은 C 친구 - C 와 공통점>"
@@ -266,6 +278,7 @@
   "cat_title": "8. 우분투 리눅스에서 C 프로그래밍 하기",
   "next_page": "16",
   "path": "/C",
+  "prev_page": "12",
   "publish_date": "2009-08-06",
   "tex_title": "리눅스에서 C 프로그래밍 하기",
   "title": "씹어 먹는 C 언어 - <8. 우분투 리눅스에서 C 프로그래밍 하기>"
@@ -282,6 +295,7 @@
   "chapter": "C++ 의 참조자 (레퍼런스)",
   "next_page": "169",
   "path": "/C++",
+  "prev_page": "138",
   "publish_date": "2012-01-01",
   "title": "씹어먹는 C++ - <2. C++ 참조자(레퍼런스)의 도입>"
  },
@@ -406,6 +420,7 @@
   "chapter": "switch 문",
   "next_page": "17",
   "path": "/C",
+  "prev_page": "14",
   "publish_date": "2009-08-15",
   "title": "씹어먹는 C 언어 - <9. 만약에... 2탄 (switch 문)>"
  },
@@ -477,6 +492,7 @@
   "chapter": "C++ 의 세계로",
   "next_page": "172",
   "path": "/C++",
+  "prev_page": "141",
   "publish_date": "2012-01-01",
   "title": "씹어먹는 C++ - <3. C++ 의 세계로 오신 것을 환영합니다. (new, delete)>"
  },
@@ -485,6 +501,7 @@
   "chapter": "형 변환 (타입 캐스팅)",
   "next_page": "18",
   "path": "/C",
+  "prev_page": "16",
   "publish_date": "2009-08-15",
   "title": "씹어 먹는 C 언어 - <10. 연예인 캐스팅(?) (C 언어에서의 형 변환)>"
  },
@@ -507,6 +524,7 @@
   "chapter": "객체지향프로그래밍의 시작",
   "next_page": "173",
   "path": "/C++",
+  "prev_page": "169",
   "publish_date": "2012-02-29",
   "title": "씹어먹는 C++ - <4 - 1. 이 세상은 객체로 이루어져 있다>"
  },
@@ -514,6 +532,7 @@
   "cat_title": "4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자)",
   "next_page": "188",
   "path": "/C++",
+  "prev_page": "172",
   "publish_date": "2012-08-04",
   "tex_title": "생성자와 함수의 오버로딩",
   "title": "씹어먹는 C++ - <4 - 2. 클래스의 세계로 오신 것을 환영합니다. (함수의 오버로딩, 생성자)>"
@@ -561,6 +580,7 @@
   "chapter": "C 언어의 아파트 - 배열",
   "next_page": "20",
   "path": "/C",
+  "prev_page": "17",
   "publish_date": "2009-11-14",
   "title": "씹어먹는 C 언어 - <11 - 1. C 언어의 아파트 (배열), 상수>"
  },
@@ -620,6 +640,7 @@
   "cat_title": "4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)",
   "next_page": "197",
   "path": "/C++",
+  "prev_page": "173",
   "publish_date": "2013-01-06",
   "tex_title": "복사 생성자와 소멸자",
   "title": "씹어먹는 C++ - <4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)>"
@@ -633,6 +654,7 @@
   "cat_title": "2 - 2. 주석(Comment)에 대한 이해",
   "next_page": "21",
   "path": "/C",
+  "prev_page": "6",
   "publish_date": "2009-09-24",
   "tex_title": "주석(Comment)",
   "title": "씹어먹는 C 언어 - <2 - 2. 주석(Comment)에 대한 이해>"
@@ -686,6 +708,7 @@
   "cat_title": "4 - 4. 스타크래프트를 만들자 ② (const, static)",
   "next_page": "198",
   "path": "/C++",
+  "prev_page": "188",
   "publish_date": "2013-05-26",
   "tex_title": "const, const, const!",
   "title": "씹어먹는 C++ - <4 - 4. 스타크래프트를 만들자 ② (const, static)>"
@@ -694,6 +717,7 @@
   "cat_title": "4 - 5. 내가 만드는 String 클래스",
   "next_page": "253",
   "path": "/C++",
+  "prev_page": "197",
   "publish_date": "2013-08-15",
   "tex_title": "내가 만들어보는 문자열 클래스",
   "title": "씹어먹는 C++ - <4 - 5. 내가 만드는 String 클래스>"
@@ -707,6 +731,7 @@
   "cat_title": "11 - 2. C 언어의 아파트2 (고차원의 배열)",
   "next_page": "23",
   "path": "/C",
+  "prev_page": "18",
   "publish_date": "2009-10-29",
   "tex_title": "다차원 배열",
   "title": "씹어먹는 C 언어 - <11 - 2. C 언어의 아파트2 (고차원의 배열)>"
@@ -721,6 +746,7 @@
   "chapter": "연산자 오버로딩(overloading)",
   "next_page": "203",
   "path": "/C++",
+  "prev_page": "253",
   "publish_date": "2013-08-25",
   "title": "씹어먹는 C++ - <5 - 1. 내가 만든 연산자 - 연산자 오버로딩>"
  },
@@ -728,6 +754,7 @@
   "cat_title": "5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩",
   "next_page": "204",
   "path": "/C++",
+  "prev_page": "202",
   "publish_date": "2013-08-29",
   "tex_title": "잡다한 연산자들의 오버로딩",
   "title": "씹어먹는 C++ - <5 - 2. 입출력, 첨자, 타입변환, 증감 연산자 오버로딩>"
@@ -736,6 +763,7 @@
   "cat_title": "5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열",
   "next_page": "209",
   "path": "/C++",
+  "prev_page": "203",
   "publish_date": "2013-09-04",
   "tex_title": "N 차원 배열 만들기 프로젝트",
   "title": "씹어먹는 C++ - <5 - 3. 연산자 오버로딩 프로젝트 - N 차원 배열>"
@@ -750,6 +778,7 @@
   "chapter": "클래스의 상속",
   "next_page": "210",
   "path": "/C++",
+  "prev_page": "204",
   "publish_date": "2014-03-30",
   "title": "씹어먹는 C++ - <6 - 1. C++ 표준 문자열 & 부모의 것을 물려쓰자 - 상속>"
  },
@@ -757,6 +786,7 @@
   "cat_title": "2 - 3. 수를 표현하는 방법(기수법)",
   "next_page": "7",
   "path": "/C",
+  "prev_page": "19",
   "publish_date": "2009-10-12",
   "tex_title": "컴퓨터에서 수를 표현하는 방법",
   "title": "씹어먹는 C 언어 - <2 - 3. 수를 표현하는 방법(기수법)>"
@@ -765,6 +795,7 @@
   "cat_title": "6 - 2.  가상(virtual) 함수와 다형성",
   "next_page": "211",
   "path": "/C++",
+  "prev_page": "209",
   "publish_date": "2014-03-31",
   "tex_title": "가상 함수와 다형성",
   "title": "씹어먹는 C++ - <6 - 2.  가상(virtual) 함수와 다형성>"
@@ -773,6 +804,7 @@
   "cat_title": "6 - 3. 가상함수와 상속에 관련한 잡다한 내용들",
   "next_page": "213",
   "path": "/C++",
+  "prev_page": "210",
   "publish_date": "2014-04-13",
   "tex_title": "상속에 관련된 잡다한 내용들",
   "title": "씹어먹는 C++ - <6 - 3. 가상함수와 상속에 관련한 잡다한 내용들>"
@@ -782,6 +814,7 @@
   "chapter": "C++ 표준 입출력 라이브러리",
   "next_page": "215",
   "path": "/C++",
+  "prev_page": "211",
   "publish_date": "2015-05-04",
   "title": "씹어먹는 C++ - <7 - 1. C++ 에서의 입출력 (istream, ostream)>"
  },
@@ -794,6 +827,7 @@
   "cat_title": "7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream",
   "next_page": "217",
   "path": "/C++",
+  "prev_page": "213",
   "publish_date": "2016-07-14",
   "tex_title": "C++ 파일 입출력",
   "title": "씹어먹는 C++ - <7 - 2. C++ 에서 파일 입출력 - std::ifstream. std::ofstream, std::stringstream>"
@@ -803,6 +837,7 @@
   "chapter": "엑셀 만들기 프로젝트",
   "next_page": "218",
   "path": "/C++",
+  "prev_page": "215",
   "publish_date": "2016-07-18",
   "title": "씹어먹는 C++ - <8 - 1. Excel 만들기 프로젝트 1부>"
  },
@@ -810,6 +845,7 @@
   "cat_title": "8 - 2. Excel 만들기 프로젝트 2부",
   "next_page": "219",
   "path": "/C++",
+  "prev_page": "217",
   "publish_date": "2016-07-19",
   "tex_title": "엑셀 만들기 프로젝트 2부",
   "title": "씹어먹는 C++ - <8 - 2. Excel 만들기 프로젝트 2부>"
@@ -819,6 +855,7 @@
   "chapter": "C++ 템플릿",
   "next_page": "290",
   "path": "/C++",
+  "prev_page": "218",
   "publish_date": "2017-04-07",
   "title": "씹어먹는 C++ - <9 - 1. 코드를 찍어내는 틀 - C++ 템플릿(template)>"
  },
@@ -832,6 +869,7 @@
   "cat_title": "9 - 3. 템플릿 메타 프로그래밍 (Template Meta programming)",
   "next_page": "222",
   "path": "/C++",
+  "prev_page": "290",
   "publish_date": "2017-06-26",
   "tex_title": "템플릿 메타프로그래밍 1 부",
   "title": "씹어먹는 C++ - <9 - 3. 템플릿 메타 프로그래밍 (Template Meta programming)>"
@@ -840,6 +878,7 @@
   "cat_title": "9 - 4. 템플릿 메타 프로그래밍 2",
   "next_page": "223",
   "path": "/C++",
+  "prev_page": "221",
   "publish_date": "2017-07-02",
   "tex_title": "템플릿 메타프로그래밍 2 부",
   "title": "씹어먹는 C++ - <9 - 4. 템플릿 메타 프로그래밍 2>"
@@ -849,6 +888,7 @@
   "chapter": "C++ 표준 라이브러리 (컨테이너와 알고리즘)",
   "next_page": "224",
   "path": "/C++",
+  "prev_page": "222",
   "publish_date": "2017-07-04",
   "tex_title": "C++ 표준 컨테이너",
   "title": "씹어먹는 C++ - <10 - 1. C++ STL - 벡터(std::vector), 리스트(list), 데크(deque)>"
@@ -857,6 +897,7 @@
   "cat_title": "10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map",
   "next_page": "225",
   "path": "/C++",
+  "prev_page": "223",
   "publish_date": "2017-07-08",
   "tex_title": "C++ 의 표준 연관 컨테이너들",
   "title": "씹어먹는 C++ - <10 - 2. C++ STL - 셋(set), 맵(map), unordered_set, unordered_map>"
@@ -865,6 +906,7 @@
   "cat_title": "10 - 3. C++ STL - 알고리즘(algorithm)",
   "next_page": "292",
   "path": "/C++",
+  "prev_page": "224",
   "publish_date": "2017-07-09",
   "tex_title": "C++ 표준 알고리즘 라이브러리",
   "title": "씹어먹는 C++ - <10 - 3. C++ STL - 알고리즘(algorithm)>"
@@ -874,6 +916,7 @@
   "chapter": "우측값과 이동 연산",
   "next_page": "228",
   "path": "/C++",
+  "prev_page": "230",
   "publish_date": "2018-03-24",
   "tex_title": "우측값 레퍼런스와 이동 생성자",
   "title": "씹어먹는 C++ - <12 - 1. 우측값 레퍼런스와 이동 생성자>"
@@ -882,6 +925,7 @@
   "cat_title": "12 - 2. Move 문법 (std::move semantics) 과 완벽한 전달 (perfect forwarding)",
   "next_page": "229",
   "path": "/C++",
+  "prev_page": "227",
   "publish_date": "2018-03-27",
   "tex_title": "move 문법과 완벽한 전달",
   "title": "씹어먹는 C++ - <12 - 2. Move 문법 (std::move semantics) 과 완벽한 전달 (perfect forwarding)>"
@@ -891,6 +935,7 @@
   "chapter": "스마트 포인터",
   "next_page": "252",
   "path": "/C++",
+  "prev_page": "228",
   "publish_date": "2018-09-18",
   "title": "씹어먹는 C ++ - <13 - 1. 객체의 유일한 소유권 - unique_ptr>"
  },
@@ -899,6 +944,7 @@
   "chapter": "포인터",
   "next_page": "24",
   "path": "/C",
+  "prev_page": "20",
   "publish_date": "2009-11-09",
   "title": "씹어먹는 C 언어 - <12 - 1. 포인터는 영희이다! (포인터)>"
  },
@@ -907,6 +953,7 @@
   "chapter": "C++ 에서의 예외 처리",
   "next_page": "227",
   "path": "/C++",
+  "prev_page": "292",
   "publish_date": "2018-09-17",
   "title": "씹어먹는 C ++ - <11. C++ 에서 예외 처리>"
  },
@@ -969,6 +1016,7 @@
   "cat_title": "12 - 2. 포인터는 영희이다! (포인터)",
   "next_page": "25",
   "path": "/C",
+  "prev_page": "23",
   "publish_date": "2009-11-14",
   "tex_title": "상수 포인터, 포인터의 덧셈 뺄셈, 배열과 포인터",
   "title": "씹어먹는 C 언어 - <12 - 2. 포인터는 영희이다! (포인터)>"
@@ -1013,18 +1061,21 @@
   "cat_title": "1. 어떤 알고리즘이 효율적인가?",
   "next_page": "247",
   "path": "/알고리즘",
+  "prev_page": "245",
   "title": "모두의 알고리즘 - 1. 어떤 알고리즘이 효율적인가?"
  },
  "247": {
   "cat_title": "2 - 1. 정렬 알고리즘과 분할 정복",
   "next_page": "248",
   "path": "/알고리즘",
+  "prev_page": "246",
   "title": "모두의 알고리즘 - 2 - 1. 정렬 알고리즘과 분할 정복"
  },
  "248": {
   "cat_title": "2 - 2. 정렬 알고리즘의 꽃 - 퀵 소트(Quicksort)",
   "next_page": "274",
   "path": "/알고리즘",
+  "prev_page": "247",
   "title": "모두의 알고리즘 - 2 - 2. 정렬 알고리즘의 꽃 - 퀵 소트(Quicksort)"
  },
  "249": {
@@ -1037,6 +1088,7 @@
   "cat_title": "12 - 3. 포인터는 영희이다! (포인터)",
   "next_page": "26",
   "path": "/C",
+  "prev_page": "24",
   "publish_date": "2009-11-26",
   "tex_title": "포인터의 포인터",
   "title": "씹어먹는 C 언어 - <12 - 3. 포인터는 영희이다! (포인터)>"
@@ -1057,6 +1109,7 @@
   "cat_title": "13 - 2. 자원을 공유할 때 - shared_ptr 와 weak_ptr",
   "next_page": "254",
   "path": "/C++",
+  "prev_page": "229",
   "publish_date": "2018-12-21",
   "tex_title": "여러 객체가 소유할 수 있는 포인터",
   "title": "씹어먹는 C ++ - <13 - 2. 자원을 공유할 때 - shared_ptr 와 weak_ptr>"
@@ -1065,6 +1118,7 @@
   "cat_title": "4 - 6. 클래스의 explicit 과 mutable 키워드",
   "next_page": "202",
   "path": "/C++",
+  "prev_page": "198",
   "publish_date": "2018-12-26",
   "tex_title": "클래스의 explicit 과 mutable 키워드",
   "title": "씹어먹는 C ++ - <4 - 6. 클래스의 explicit 과 mutable 키워드>"
@@ -1074,6 +1128,7 @@
   "chapter": "함수 객체",
   "next_page": "269",
   "path": "/C++",
+  "prev_page": "252",
   "publish_date": "2019-02-24",
   "title": "씹어먹는 C ++ - <14. 함수를 객체로! (C++ std::function, std::mem_fn, std::bind)>"
  },
@@ -1116,6 +1171,7 @@
   "chapter": "함수 (function)",
   "next_page": "27",
   "path": "/C",
+  "prev_page": "25",
   "publish_date": "2009-12-14",
   "title": "씹어먹는 C 언어 - <13 - 1. 마술 상자 함수(function)>"
  },
@@ -1187,6 +1243,7 @@
   "chapter": "C++ 쓰레드",
   "next_page": "270",
   "path": "/C++",
+  "prev_page": "254",
   "publish_date": "2019-04-01",
   "title": "씹어먹는 C ++ - <15 - 1. 동시에 실행을 시킨다고? - C++ 쓰레드(thread)>"
  },
@@ -1194,6 +1251,7 @@
   "cat_title": "13 - 2. 마술 상자 함수 2 (function)",
   "next_page": "28",
   "path": "/C",
+  "prev_page": "26",
   "publish_date": "2009-12-19",
   "tex_title": "포인터로 받는 인자",
   "title": "씹어먹는 C 언어 - <13 - 2. 마술 상자 함수 2 (function)>"
@@ -1202,6 +1260,7 @@
   "cat_title": "15 - 2. C++ 뮤텍스(mutex) 와 조건 변수(condition variable)",
   "next_page": "271",
   "path": "/C++",
+  "prev_page": "269",
   "publish_date": "2019-04-03",
   "tex_title": "뮤텍스와 조건변수",
   "title": "씹어먹는 C ++ - <15 - 2. C++ 뮤텍스(mutex) 와 조건 변수(condition variable)>"
@@ -1210,6 +1269,7 @@
   "cat_title": "15 - 3. C++ memory order 와 atomic 객체",
   "next_page": "284",
   "path": "/C++",
+  "prev_page": "270",
   "publish_date": "2019-04-07",
   "tex_title": "atomic 객체와 명령어 재배치",
   "title": "씹어먹는 C++ - <15 - 3. C++ memory order 와 atomic 객체>"
@@ -1232,6 +1292,7 @@
   "cat_title": "2 - 3. 비교 기반 정렬 알고리즘의 한계와 정수 정렬 알고리즘들",
   "next_page": "287",
   "path": "/알고리즘",
+  "prev_page": "248",
   "publish_date": "2019-04-17",
   "title": "모두의 알고리즘 - 2 - 3. 비교 기반 정렬 알고리즘의 한계와 정수 정렬 알고리즘들"
  },
@@ -1274,6 +1335,7 @@
   "cat_title": "13 - 3. 마술 상자 함수 3 (function)",
   "next_page": "30",
   "path": "/C",
+  "prev_page": "27",
   "publish_date": "2009-12-22",
   "tex_title": "여러가지 인자들",
   "title": "씹어먹는 C 언어 - <13 - 3. 마술 상자 함수 3 (function)>"
@@ -1310,6 +1372,7 @@
   "cat_title": "15 - 4. C++ future, promise, packaged_task, async",
   "next_page": "285",
   "path": "/C++",
+  "prev_page": "271",
   "publish_date": "2019-05-18",
   "tex_title": "비동기 연산을 위한 도구들",
   "title": "씹어먹는 C++ - <15 - 4. C++ future, promise, packaged_task, async>"
@@ -1318,6 +1381,7 @@
   "cat_title": "15 - 5. C++ 쓰레드풀(ThreadPool) 만들기",
   "next_page": "286",
   "path": "/C++",
+  "prev_page": "284",
   "publish_date": "2019-05-19",
   "tex_title": "ThreadPool 만들기",
   "title": "씹어먹는 C++ - <15 - 5. C++ 쓰레드풀(ThreadPool) 만들기>"
@@ -1327,12 +1391,14 @@
   "chapter": "C++ 유니폼 초기화",
   "next_page": "293",
   "path": "/C++",
+  "prev_page": "285",
   "publish_date": "2019-06-23",
   "title": "씹어먹는 C++ - <16 - 1. C++ 유니폼 초기화(Uniform Initialization)>"
  },
  "287": {
   "cat_title": "2 - 4. k 번째 원소를 찾는 알고리즘 - QuickSelect",
   "path": "/알고리즘",
+  "prev_page": "274",
   "publish_date": "2019-06-28",
   "title": "모두의 알고리즘 - 2 - 4. k 번째 원소를 찾는 알고리즘 - QuickSelect"
  },
@@ -1355,6 +1421,7 @@
   "chapter": "문자열 (string)",
   "next_page": "32",
   "path": "/C",
+  "prev_page": "31",
   "publish_date": "2009-12-29",
   "title": "씹어먹는 C 언어 - <15 - 1. 일로와봐, 문자열(string)>"
  },
@@ -1362,6 +1429,7 @@
   "cat_title": "9 - 2. 가변 길이 템플릿 (Variadic template)",
   "next_page": "221",
   "path": "/C++",
+  "prev_page": "219",
   "publish_date": "2019-07-08",
   "tex_title": "가변 길이 템플릿",
   "title": "씹어먹는 C++ - <9 - 2. 가변 길이 템플릿 (Variadic template)>"
@@ -1377,6 +1445,7 @@
   "cat_title": "10 - 4. C++ 문자열의 모든 것 (string 과 string_view)",
   "next_page": "230",
   "path": "/C++",
+  "prev_page": "225",
   "publish_date": "2019-07-17",
   "tex_title": "C++ 문자열의 모든 것 (string 과 string_view)",
   "title": "씹어먹는 C++ - <10 - 4. C++ 문자열의 모든 것 (string 과 string_view)>"
@@ -1386,6 +1455,7 @@
   "chapter": "컴파일 타임 상수 constexpr",
   "next_page": "294",
   "path": "/C++",
+  "prev_page": "286",
   "publish_date": "2019-08-18",
   "title": "씹어먹는 C++ - <16 - 2. constexpr 와 함께라면 컴파일 타임 상수는 문제없어>"
  },
@@ -1394,6 +1464,7 @@
   "chapter": "decltype 와 std::decval",
   "next_page": "295",
   "path": "/C++",
+  "prev_page": "293",
   "publish_date": "2019-09-15",
   "title": "씹어먹는 C++ - <16 - 3. 타입을 알려주는 키워드 decltype 와 친구 std::declval>"
  },
@@ -1402,6 +1473,7 @@
   "chapter": "다양한 C++ 표준 라이브러리 소개",
   "next_page": "303",
   "path": "/C++",
+  "prev_page": "294",
   "publish_date": "2019-12-2",
   "tex_title": "type_traits 라이브러리, SFINAE, enable_if",
   "title": "씹어먹는 C++ - <17 - 1. type_traits 라이브러리, SFINAE, enable_if>"
@@ -1438,6 +1510,7 @@
   "cat_title": "13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)",
   "next_page": "31",
   "path": "/C",
+  "prev_page": "28",
   "publish_date": "2009-12-27",
   "tex_title": "생각해볼 문제에 대한 아이디어",
   "title": "씹어먹는 C 언어 - <13 - 4. 마술 상자 함수 (생각해볼 문제에 대한 아이디어)>"
@@ -1466,6 +1539,7 @@
   "cat_title": "17 - 2. C++ 정규 표현식(<regex>) 라이브러리 소개",
   "next_page": "304",
   "path": "/C++",
+  "prev_page": "295",
   "publish_date": "2020-1-3",
   "tex_title": "정규 표현식(<regex>) 라이브러리 소개",
   "title": "씹어먹는 C++ - <17 - 2. C++ 정규 표현식(<regex>) 라이브러리 소개>"
@@ -1474,6 +1548,7 @@
   "cat_title": "17 - 3. 난수 생성(<random>)과 시간 관련 라이브러리(<chrono>) 소개",
   "next_page": "306",
   "path": "/C++",
+  "prev_page": "303",
   "publish_date": "2020-1-6",
   "tex_title": "난수 생성(<random>)과 시간 관련 라이브러리(<chrono>) 소개",
   "title": "씹어먹는 C++ - <17 - 3. 난수 생성(<random>)과 시간 관련 라이브러리(<chrono>) 소개>"
@@ -1489,6 +1564,7 @@
   "cat_title": "17 - 4. C++ 파일 시스템(<filesystem>) 라이브러리 소개",
   "next_page": "309",
   "path": "/C++",
+  "prev_page": "304",
   "publish_date": "2020-03-11",
   "tex_title": "C++ 파일 시스템(<filesystem>) 라이브러리 소개",
   "title": "씹어먹는 C++ - <17 - 4. C++ 파일 시스템(<filesystem>) 라이브러리 소개>"
@@ -1504,6 +1580,7 @@
   "cat_title": "4 - 2. 컴퓨터가 수를 표현하는 방법 (2의 보수)",
   "next_page": "9",
   "path": "/C",
+  "prev_page": "8",
   "publish_date": "2020-04-29",
   "tex_title": "컴퓨터가 음수를 표현하는 방법 (2의 보수)",
   "title": "씹어먹는 C 언어 - <4 - 2. 컴퓨터가 음수를 표현하는 방법 (2의 보수)>"
@@ -1512,6 +1589,7 @@
   "cat_title": "17 - 5. C++ 17 의 std::optional, variant, tuple 살펴보기",
   "next_page": "310",
   "path": "/C++",
+  "prev_page": "306",
   "publish_date": "2020-05-05",
   "tex_title": "C++ 유틸리티 라이브러리 소개",
   "title": "씹어먹는 C++ - <17 - 5. C++ 17 의 std::optional, variant, tuple 살펴보기>"
@@ -1521,6 +1599,7 @@
   "chapter": "디버깅(Debugging)",
   "next_page": "29",
   "path": "/C",
+  "prev_page": "30",
   "publish_date": "2009-12-29",
   "title": "씹어먹는 C 언어 - <14. 컴퓨터의 머리로 따라가보자 - 디버깅(debugging)>"
  },
@@ -1529,6 +1608,7 @@
   "chapter": "강의를 마무리 하면서",
   "next_page": "311",
   "path": "/C++",
+  "prev_page": "309",
   "publish_date": "2020-05-10",
   "title": "초보자를 위한 C++ 강좌 - 씹어먹는 C++ (완결)"
  },
@@ -1537,6 +1617,7 @@
   "chapter": "C++ 개발자가 알면 좋을 것들",
   "next_page": "319",
   "path": "/C++",
+  "prev_page": "310",
   "publish_date": "2020-06-10",
   "tex_title": "Make 사용 가이드 (Makefile 만들기)",
   "title": "씹어먹는 C++ - <19 - 1. Make 사용 가이드 (Makefile 만들기)>"
@@ -1563,6 +1644,7 @@
  "315": {
   "next_page": "5",
   "path": "/C",
+  "prev_page": "231",
   "publish_date": "2020-09-06",
   "title": "내가 C 언어를 공부하기 전에 알았으면 좋았을 것들"
  },
@@ -1589,6 +1671,7 @@
   "cat_title": "20 - 1. 코드 부터 실행 파일 까지",
   "next_page": "320",
   "path": "/C++",
+  "prev_page": "311",
   "publish_date": "2020-10-20",
   "title": "씹어먹는 C++ - <20 - 1. 코드 부터 실행 파일 까지 - 전체적인 개요>"
  },
@@ -1596,6 +1679,7 @@
   "cat_title": "15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해",
   "next_page": "33",
   "path": "/C",
+  "prev_page": "29",
   "publish_date": "2010-01-25",
   "tex_title": "버퍼에 대한 이해",
   "title": "씹어먹는 C 언어 - <15 - 2. 일로와봐, 문자열(string) - 버퍼에 관한 이해>"
@@ -1604,6 +1688,7 @@
   "cat_title": "20 - 2.코드 부터 실행 파일 까지 - 컴파일 (Compile)",
   "next_page": "321",
   "path": "/C++",
+  "prev_page": "319",
   "publish_date": "2020-10-20",
   "title": "씹어먹는 C++ - <20 - 2. 코드 부터 실행 파일 까지 - 컴파일 (Compile)>"
  },
@@ -1611,6 +1696,7 @@
   "cat_title": "20 - 3. 코드 부터 실행 파일 까지 - 링킹 (Linking)",
   "next_page": "322",
   "path": "/C++",
+  "prev_page": "320",
   "publish_date": "2020-11-25",
   "title": "씹어먹는 C++ - <20 - 3. 코드 부터 실행 파일 까지 - 링킹 (Linking)>"
  },
@@ -1618,6 +1704,7 @@
   "cat_title": "20 - 4. 코드 부터 실행 파일 까지 - main 으로의 여정",
   "next_page": "326",
   "path": "/C++",
+  "prev_page": "321",
   "publish_date": "2020-11-30",
   "title": "씹어먹는 C++ - <20 - 4. 코드 부터 실행 파일 까지 - main 으로의 여정>"
  },
@@ -1645,13 +1732,14 @@
  "326": {
   "cat_title": "21. C++ 표준 라이브러리에서 자주 쓰이는 패턴 모음",
   "path": "/C++",
+  "prev_page": "322",
   "publish_date": "2021-01-15",
   "title": "씹어먹는 C++ - <21. C++ 표준 라이브러리에서 자주 쓰이는 패턴 모음>"
  },
  "327": {
-  "is_published": "false",
   "path": "/잡담",
-  "title": "2020년 마무리"
+  "publish_date": "2021-01-18",
+  "title": "2020년 마무리 및 2021년 계획"
  },
  "328": {
   "path": "/자료 구조",
@@ -1661,6 +1749,7 @@
   "cat_title": "15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴",
   "next_page": "43",
   "path": "/C",
+  "prev_page": "32",
   "publish_date": "2010-02-01",
   "tex_title": "문자열 리터럴에 대한 이해",
   "title": "씹어먹는 C 언어 - <15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴>"
@@ -1725,6 +1814,7 @@
   "cat_title": "15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트",
   "next_page": "55",
   "path": "/C",
+  "prev_page": "33",
   "publish_date": "2010-02-08",
   "tex_title": "도서 관리 프로젝트",
   "title": "씹어먹는 C 언어 - <15 - 4. 일로와봐, 문자열(string) - 도서 관리 프로젝트>"
@@ -1776,6 +1866,7 @@
   "chapter": "C 언어의 세계로",
   "next_page": "6",
   "path": "/C",
+  "prev_page": "315",
   "publish_date": "2009-04-16",
   "title": "씹어먹는 C 언어 - <1. C 언어가 뭐야?>"
  },
@@ -1819,6 +1910,7 @@
   "chapter": "구조체 (struct)",
   "next_page": "60",
   "path": "/C",
+  "prev_page": "43",
   "publish_date": "2010-02-14",
   "title": "씹어먹는 C 언어 - <16 - 1. 모아 모아 구조체(struct)>"
  },
@@ -1847,6 +1939,7 @@
   "cat_title": "2 - 1. C 언어가 본격 맛보기",
   "next_page": "19",
   "path": "/C",
+  "prev_page": "5",
   "publish_date": "2009-04-17",
   "tex_title": "C 언어 본격 맛보기",
   "title": "씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>"
@@ -1855,6 +1948,7 @@
   "cat_title": "16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수",
   "next_page": "71",
   "path": "/C",
+  "prev_page": "55",
   "publish_date": "2010-04-11",
   "tex_title": "구조체를 인자로 받는 함수",
   "title": "씹어먹는 C 언어 - <16 - 2. 모아 모아 구조체(struct) - 구조체 인자로 가진 함수>"
@@ -1920,6 +2014,7 @@
   "chapter": "변수 (variable)",
   "next_page": "8",
   "path": "/C",
+  "prev_page": "21",
   "publish_date": "2009-04-22",
   "title": "씹어먹는 C 언어 - <3. 변수가 뭐지? >"
  },
@@ -1934,6 +2029,7 @@
   "cat_title": "16 - 3. 구조체와 친구들(공용체(union), 열거형(enum)",
   "next_page": "83",
   "path": "/C",
+  "prev_page": "60",
   "publish_date": "2010-06-13",
   "tex_title": "공용체(union)와 열거형(enum)",
   "title": "씹어먹는 C 언어 - <16 - 3. 구조체와 친구들(공용체(union), 열거형(enum))>"
@@ -1999,6 +2095,7 @@
   "chapter": "계산 하기",
   "next_page": "308",
   "path": "/C",
+  "prev_page": "7",
   "publish_date": "2009-04-24",
   "title": "씹어먹는 C 언어 - <4 - 1. 계산하리>"
  },
@@ -2028,6 +2125,7 @@
   "chapter": "변수의 생존 조건과 데이터 세그먼트의 구조",
   "next_page": "87",
   "path": "/C",
+  "prev_page": "71",
   "publish_date": "2010-06-19",
   "title": "씹어먹는 C 언어 - <17. 변수의 생존 조건 및 데이터 세그먼트의 구조>"
  },
@@ -2057,6 +2155,7 @@
   "chapter": "여러 파일로 나누기",
   "next_page": "88",
   "path": "/C",
+  "prev_page": "83",
   "publish_date": "2010-07-16",
   "title": "씹어먹는 C 언어 - <18 - 1. 파일 뽀개기 (헤더파일과 #include) >"
  },
@@ -2064,6 +2163,7 @@
   "cat_title": "18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)",
   "next_page": "89",
   "path": "/C",
+  "prev_page": "87",
   "publish_date": "2010-07-20",
   "tex_title": "여러 전처리기 구문과 라이브러리 사용법",
   "title": "씹어먹는 C 언어 - <18 - 2. 파일 뽀개기 (# 친구들, 라이브러리)>"
@@ -2073,6 +2173,7 @@
   "chapter": "void 타입과 main 함수에 대한 이해",
   "next_page": "98",
   "path": "/C",
+  "prev_page": "88",
   "publish_date": "2010-08-02",
   "title": "씹어먹는 C 언어 - <19. main 함수의 인자, 텅 빈 void 형>"
  },
@@ -2081,6 +2182,7 @@
   "chapter": "문자 입력 받기",
   "next_page": "10",
   "path": "/C",
+  "prev_page": "308",
   "publish_date": "2009-04-27",
   "title": "씹어먹는 C 언어 - <5. 문자 입력 받기>"
  },
@@ -2145,6 +2247,7 @@
   "chapter": "동적 메모리 할당 (dynamic memory allocation)",
   "next_page": "100",
   "path": "/C",
+  "prev_page": "89",
   "publish_date": "2010-08-03",
   "title": "씹어먹는 C 언어 - <20 - 1. 동동동 메모리 동적할당(Dynamic Memory Allocation)>"
  },
@@ -2153,6 +2256,7 @@
   "chapter": "매크로 함수, 인라인 함수",
   "next_page": "103",
   "path": "/C",
+  "prev_page": "100",
   "publish_date": "2010-11-21",
   "title": "씹어먹는 C 언어 - <21. 매크로 함수, 인라인 함수>"
  },
