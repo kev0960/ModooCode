@@ -73,13 +73,13 @@ int main() {
   ptm = gmtime(&rawtime);
 
   puts("Current time around the World:");
-  printf("Phoenix, AZ (U.S.) :  %2d:%02d\n", (ptm->tm_hour + MST) % 24,
+  printf("Phoenix, AZ (U.S.) :  %2d:%02d\n", (ptm->tm_hour + MST + 24) % 24,
          ptm->tm_min);
-  printf("Reykjavik (Iceland) : %2d:%02d\n", (ptm->tm_hour + UTC) % 24,
+  printf("Reykjavik (Iceland) : %2d:%02d\n", (ptm->tm_hour + UTC + 24) % 24,
          ptm->tm_min);
-  printf("Beijing (China) :     %2d:%02d\n", (ptm->tm_hour + CCT) % 24,
+  printf("Beijing (China) :     %2d:%02d\n", (ptm->tm_hour + CCT + 24) % 24,
          ptm->tm_min);
-  printf("Seoul (Korea) :       %2d:%02d\n", (ptm->tm_hour + GMT) % 24,
+  printf("Seoul (Korea) :       %2d:%02d\n", (ptm->tm_hour + KST + 24) % 24,
          ptm->tm_min);
 
   return 0;

@@ -35,10 +35,10 @@ publish_date: 2020-09-01
 
 |Op/En|Operand 1|Operand 2|Operand 3|Operand 4|
 |-----|---------|---------|---------|---------|
-|RM|ModRM:reg (w)|ModRM:r/m (r)|NA|NA|
-|MR|ModRM:r/m (w)|ModRM:reg (r)|NA|NA|
-|FVM-RM|ModRM:reg (w)|ModRM:r/m (r)|NA|NA|
-|FVM-MR|ModRM:r/m (w)|ModRM:reg (r)|NA|NA|
+|RM|ModRM:reg (wê|ModRM:r/m (r)|NA|NA|
+|MR|ModRM:r/m (w)|ModRM:reg (rê|NA|NA|
+|FVM-RM|ModRM:reg (wê|ModRM:r/m (r)|NA|NA|
+|FVM-MR|ModRM:r/m (w)|ModRM:reg (rê|NA|NA|
 ### Description
 
 
@@ -50,15 +50,15 @@ Note: VEX.vvvv and EVEX.vvvv are reserved and must be 1111b otherwise instructio
 
 EVEX.512 encoded version:
 
-Moves 512 bits of packed double-precision floating-point values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load a ZMM register from a 512-bit float64 memory location, to store the contents of a ZMM register into a 512-bit float64 memory location, or to move data between two ZMM registers. When the source or destination operand is a memory operand, the operand must be aligned on a 64-byte boundary or a general-protection exception (#GP) will be generated. To move single-precision floating-point values to and from unaligned memory locations, use the VMOVUPD instruction.
+Moves 512 bits of packed double-precision floating-point values from the source operand (second operandÄª to the destination operand (first operand). This instruction can be used to load a ZMM register from a 512-bit float64 memory location, to store the contents of a ZMM register into a 512-bit float64 memory location, or to move data between two ZMM registers. When the source or destination operand is a memory operand, the operand must be aligned on a 64-byte boundary or a general-protection exception (#GP) will be generated. To move single-precision floating-point values to and from unaligned memory locations, use the VMOVUPD instruction.
 
 VEX.256 and EVEX.256 encoded versions:
 
-Moves 256 bits of packed double-precision floating-point values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load a YMM register from a 256-bit memory location, to store the contents of a YMM register into a 256-bit memory location, or to move data between two YMM registers. When the source or destination operand is a memory operand, the operand must be aligned on a 32-byte boundary or a general-protection exception (#GP) will be generated. To move double-precision floating-point values to and from unaligned memory locations, use the VMOVUPD instruction.
+Moves 256 bits of packed double-precision floating-point values from the source operand (second operandÄª to the destination operand (first operand). This instruction can be used to load a YMM register from a 256-bit memory location, to store the contents of a YMM register into a 256-bit memory location, or to move data between two YMM registers. When the source or destination operand is a memory operand, the operand must be aligned on a 32-byte boundary or a general-protection exception (#GP) will be generated. To move double-precision floating-point values to and from unaligned memory locations, use the VMOVUPD instruction.
 
 128-bit versions:
 
-Moves 128 bits of packed double-precision floating-point values from the source operand (second operand) to the destination operand (first operand). This instruction can be used to load an XMM register from a 128-bit memory location, to store the contents of an XMM register into a 128-bit memory location, or to move data between two XMM registers. When the source or destination operand is a memory operand, the operand must be aligned on a 16-byte boundary or a general-protection exception (#GP) will be generated. To move single-precision floating-point values to and from unaligned memory locations, use the VMOVUPD instruction.
+Moves 128 bits of packed double-precision floating-point values from the source operand (second operandÄª to the destination operand (first operand). This instruction can be used to load an XMM register from a 128-bit memory location, to store the contents of an XMM register into a 128-bit memory location, or to move data between two XMM registers. When the source or destination operand is a memory operand, the operand must be aligned on a 16-byte boundary or a general-protection exception (#GP) will be generated. To move single-precision floating-point values to and from unaligned memory locations, use the VMOVUPD instruction.
 
 128-bit Legacy SSE version: Bits (MAX\esc{_}VL-1:128) of the corresponding ZMM destination register remain unchanged. 
 
@@ -69,87 +69,87 @@ Moves 128 bits of packed double-precision floating-point values from the source 
 #### VMOVAPD (EVEX encoded versions, register-copy form)
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-  0 TO KL-1
-    i <-  j * 64
+FOR j 0  0 TO KL-1
+    i 0  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i] <-  SRC[i+63:i]
+          THEN DEST[i+63:i] 0  SRC[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
-                      ELSE  DEST[i+63:i] <-  0  ; zeroing-masking
+                      ELSE  DEST[i+63:i] 0  0  ; zeroing-masking
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] 0  0
 ```
 #### VMOVAPD (EVEX encoded versions, store-form) 
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-  0 TO KL-1
-    i <-  j * 64
+FOR j 0  0 TO KL-1
+    i 0  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i]<-  SRC[i+63:i]
+          THEN DEST[i+63:i]0  SRC[i+63:i]
           ELSE 
           ELSE *DEST[i+63:i] remains unchanged* ; merging-masking
     FI;
 ENDFOR;
 ```
-#### VMOVAPD (EVEX encoded versions, load-form) 
+#### VMOVAPD (EVEX encoded versions, load-form∞ b
 ```info-verb
 (KL, VL) = (2, 128), (4, 256), (8, 512)
-FOR j <-  0 TO KL-1
-    i <-  j * 64
+FOR j 0  0 TO KL-1
+    i 0  j * 64
     IF k1[j] OR *no writemask*
-          THEN DEST[i+63:i] <-  SRC[i+63:i]
+          THEN DEST[i+63:i] 0  SRC[i+63:i]
           ELSE 
                 IF *merging-masking* ; merging-masking
                       THEN *DEST[i+63:i] remains unchanged*
-                      ELSE  DEST[i+63:i] <-  0  ; zeroing-masking
+                      ELSE  DEST[i+63:i] 0  0  ; zeroing-masking
                 FI
     FI;
 ENDFOR
-DEST[MAX_VL-1:VL] <-  0
+DEST[MAX_VL-1:VL] 0  0
 ```
 #### VMOVAPD (VEX.256 encoded version, load - and register copy)
 ```info-verb
-DEST[255:0] <-  SRC[255:0]
-DEST[MAX_VL-1:256] <-  0
+DEST[255:0] 0  SRC[255:0]
+DEST[MAX_VL-1:256] 0  0
 ```
 #### VMOVAPD (VEX.256 encoded version, store-form)
 ```info-verb
-DEST[255:0] <-  SRC[255:0]
+DEST[255:0] 0  SRC[255:0]
 ```
 #### VMOVAPD (VEX.128 encoded version, load - and register copy)
 ```info-verb
-DEST[127:0] <-  SRC[127:0]
-DEST[MAX_VL-1:128] <-  0
+DEST[127:0] 0  SRC[127:0]
+DEST[MAX_VL-1:128] 0  0
 ```
 #### MOVAPD (128-bit load- and register-copy- form Legacy SSE version)
 ```info-verb
-DEST[127:0] <-  SRC[127:0]
+DEST[127:0] 0  SRC[127:0]
 DEST[MAX_VL-1:128] (Unmodified)
 ```
 #### (V)MOVAPD (128-bit store-form version)
 ```info-verb
-DEST[127:0] <-  SRC[127:0]
+DEST[127:0] 0  SRC[127:0]
 ```
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
 
 ```cpp
-VMOVAPD __m512d _mm512_load_pd( void * m);
-VMOVAPD __m512d _mm512_mask_load_pd(__m512d s, __mmask8 k, void * m);
+VMOVAPD __m512d _mm512_load_pd( void * m->;
+VMOVAPD __m512d _mm512_mask_load_pd(__m512d s, __mmask8 k, void * m;->
 VMOVAPD __m512d _mm512_maskz_load_pd( __mmask8 k, void * m);
-VMOVAPD void _mm512_store_pd( void * d, __m512d a);
+VMOVAPD void _mm512_store_pd( void * d, __m512d a;->
 VMOVAPD void _mm512_mask_store_pd( void * d, __mmask8 k, __m512d a);
-VMOVAPD __m256d _mm256_mask_load_pd(__m256d s, __mmask8 k, void * m);
+VMOVAPD __m256d _mm256_mask_load_pd(__m256d s, __mmask8 k, void * m;->
 VMOVAPD __m256d _mm256_maskz_load_pd( __mmask8 k, void * m);
 VMOVAPD void _mm256_mask_store_pd( void * d, __mmask8 k, __m256d a);
-VMOVAPD __m128d _mm_mask_load_pd(__m128d s, __mmask8 k, void * m);
-VMOVAPD __m128d _mm_maskz_load_pd( __mmask8 k, void * m);
-VMOVAPD void _mm_mask_store_pd( void * d, __mmask8 k, __m128d a);
+VMOVAPD __m128d _mm_mask_load_pd(__m128d s, __mmask8 k, void * m;->
+VMOVAPD __m128d _mm_maskz_load_pd ->__mmask8 k, void * m);
+VMOVAPD void _mm_mask_store_pd( void * d, __mmask8 k, __m128d a;->
 MOVAPD __m256d _mm256_load_pd (double * p);
-MOVAPD void _mm256_store_pd(double * p, __m256d a);
+MOVAPD void _mm256_store_pdd-> ouble * p, __m256d a->;
 MOVAPD __m128d _mm_load_pd (double * p);
 MOVAPD void _mm_store_pd(double * p, __m128d a);
 ```
