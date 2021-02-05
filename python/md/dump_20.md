@@ -48,7 +48,7 @@ int arr[3][2];
 앞에서 말했듯이 위 배열은 '배열의 각 원소 3 개가 원소를 2 개 가지는 `int` 형의 배열이고 이름은 `arr` 이다.' 을 의미 합니다. 따라서,
 
 
-![배열을 원소로 하는 배열을 생각하면 됩니다. 즉, 원소가 두 개인 배열을 원소로 하여, 이 원소를 3 개 가진 배열이 바로 arr[3[2 에 해당하는 이차원 배열 입니다.  ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F197646024AE8E7E3483008)
+![caption=배열을 원소로 하는 배열을 생각하면 됩니다. 즉, 원소가 두 개인 배열을 원소로 하여, 이 원소를 3 개 가진 배열이 바로 `arr[3][2]` 에 해당하는 이차원 배열 입니다.](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F197646024AE8E7E3483008)
 
 가 됩니다.
 
@@ -57,7 +57,7 @@ int arr[3][2];
 일차원 배열과 이차원 배열을 한 눈에 비교하자면 아래와 같습니다.
 
 
-![arr[3 은 그냥 아파트에 집이 3개, arr[3[2 는 집이 3 개 인데, 각 집에 방이 2개 ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F2075D8024AE8EB2657AF92)
+![caption=`arr[3]` 은 그냥 아파트에 집이 3개, `arr[3][2]` 는 집이 3 개 인데, 각 집에 방이 2개 ](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile6.uf.tistory.com%2Fimage%2F2075D8024AE8EB2657AF92)
 
 어때요, 간단하죠? 따라서, `arr[m][n];` 과 같이 배열을 선언한다면 (`m` 과 `n` 은 임의의 정수값), $$m\times n$$ 개의 변수를 가지는 배열을 선언한 것이 됩니다.
 
