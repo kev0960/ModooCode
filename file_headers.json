@@ -1615,7 +1615,7 @@
  "311": {
   "cat_title": "19 - 1. Make 사용 가이드 (Makefile 만들기)",
   "chapter": "C++ 개발자가 알면 좋을 것들",
-  "next_page": "319",
+  "next_page": "332",
   "path": "/C++",
   "prev_page": "310",
   "publish_date": "2020-06-10",
@@ -1671,7 +1671,7 @@
   "cat_title": "20 - 1. 코드 부터 실행 파일 까지",
   "next_page": "320",
   "path": "/C++",
-  "prev_page": "311",
+  "prev_page": "332",
   "publish_date": "2020-10-20",
   "title": "씹어먹는 C++ - <20 - 1. 코드 부터 실행 파일 까지 - 전체적인 개요>"
  },
@@ -1742,11 +1742,15 @@
   "title": "2020년 마무리 및 2021년 계획"
  },
  "328": {
+  "next_page": "329",
   "path": "/자료 구조",
-  "publish_date": "2021-02-04",
+  "publish_date": "2021-02-05",
   "title": "모두를 위한 자료구조"
  },
  "329": {
+  "path": "/자료 구조",
+  "prev_page": "328",
+  "publish_date": "2021-02-05",
   "title": "모두의 자료구조 - 1. 배열(Array)"
  },
  "33": {
@@ -1759,7 +1763,22 @@
   "title": "씹어먹는 C 언어 - <15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴>"
  },
  "330": {
+  "is_published": "false",
   "title": "모두의 자료구조 - 1 - 2. 크기가 바뀌는 배열; 동적 배열 (Vector)"
+ },
+ "331": {
+  "cat_title": "3. 이진 탐색 (Binary search)",
+  "is_published": "false",
+  "title": "모두의 알고리즘 - 3. 이진 탐색 (Binary search)"
+ },
+ "332": {
+  "cat_title": "19 - 2. C++ 프로젝트를 위한 CMake 사용법",
+  "next_page": "319",
+  "path": "/C++",
+  "prev_page": "311",
+  "publish_date": "2021-02-24",
+  "tex_title": "CMake 사용 가이드",
+  "title": "씹어먹는 C++ - <19 - 2. C++ 프로젝트를 위한 CMake 사용법>"
  },
  "34": {
   "cat_title": "stdio.h (cstdio)",
