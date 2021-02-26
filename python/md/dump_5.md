@@ -68,6 +68,12 @@ C 언어도 마찬가지 입니다. 더군다나 우리는 C 언어를 매우 �
 
 ### 컴파일러?
 
+```embed
+<div class="video-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XrWOVkO3yJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+```
+
 컴파일러, 영어로는 *Compiler* 라고 씁니다. 말그대로 컴파일(Compile) 해주는 것(-r) 입니다. 그렇다면 컴파일은 도대체 무엇일까요?
 
 아마 여러분은 컴퓨터는 0 과 1 밖에 모르는 바보(?) 라고 들었을 것입니다. 맞습니다. 컴퓨터의 두뇌라고 할 수 있는 **CPU** 에서는 수 많은 0 과 1 들이 이리저리 돌아다니고 있을 것입니다. 만약에 이런 컴퓨터에 명령을 내리려면 오직 0 과 1 로만 써야겠지요? 010101010111 이런식으로 말입니다.
