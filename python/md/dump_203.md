@@ -123,7 +123,7 @@ a = "-1.1 + i3.923" + a;  // ②
 
 ```cpp-formatted
 Complex operator+(const Complex& a, const Complex& b) {
-  return a + b;
+  // ...
 }
 ```
 

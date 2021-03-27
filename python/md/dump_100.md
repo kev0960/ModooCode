@@ -550,7 +550,7 @@ if (memcmp(arr, arr2, 5) == 0)
 
 #### 문제 2 
 
-`head` 와 원하는 노드가 주어질 때 원하는 노드의 데이터 값을 출력하는 `int SearchNode(Node* head, Node *search)` 함수를 작성하시오 (난이도 : 下)
+`head` 와 원하는 노드가 주어질 때 특정 `data` 를 가지는 노드가 존재하는지 확인하는 `bool HasNode(Node* head)` 함수를 작성하세요.
 
 
 #### 문제 3

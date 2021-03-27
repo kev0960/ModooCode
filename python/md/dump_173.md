@@ -523,7 +523,7 @@ Date() {
 }
 ```
 
-즉 `year` 에는 2012, `month` 에는 7, `day` 에는 2 를 대입합니다.
+즉 `year` 에는 2012, `month` 에는 7, `day` 에는 12 를 대입합니다.
 
 ```cpp-formatted
 Date day = Date();
@@ -635,14 +635,14 @@ class Point {
 };
 
 class Geometry {
-  // 점 100 개를 보관하는 배열.
-  Point* point_array[100];
-
  public:
-  Geometry(Point **point_list);
-  Geometry();
+  Geometry() {
+    num_points = 0;
+  }
 
-  void AddPoint(const Point &point);
+  void AddPoint(const Point &point) {
+    point_array[num_points ++] = new Point(point.x, point.y);
+  }
 
   // 모든 점들 간의 거리를 출력하는 함수 입니다.
   void PrintDistance();
@@ -652,6 +652,11 @@ class Geometry {
   // 이라고 할 때 임의의 다른 두 점 (x1, y1) 과 (x2, y2) 가 f(x,y)=0 을 기준으로
   // 서로 다른 부분에 있을 조건은 f(x1, y1) * f(x2, y2) <= 0 이면 됩니다.
   void PrintNumMeets();
+
+private:
+  // 점 100 개를 보관하는 배열.
+  Point* point_array[100];
+  int num_points;
 };
 ```
 
