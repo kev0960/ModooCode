@@ -37,7 +37,7 @@
     "googleapis": "^59.0.0",
     "is-mobile": "^2.2.2",
     "jsdom": "^16.4.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "minimist": "^1.2.5",
     "mobile-detect": "^1.4.4",
     "monaco-editor": "^0.20.0",
