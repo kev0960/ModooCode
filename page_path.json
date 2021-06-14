@@ -356,6 +356,11 @@
     ]
    }
   },
+  "Rust": {
+   "files": [
+    "333"
+   ]
+  },
   "X86-64 명령어 레퍼런스": {
    "A": {
     "files": [
@@ -636,8 +641,8 @@
      "minsd",
      "minss",
      "monitor",
-     "mov_1",
      "mov_2",
+     "mov_1",
      "mov",
      "movapd",
      "movaps",

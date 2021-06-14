@@ -1780,6 +1780,12 @@
   "tex_title": "CMake 사용 가이드",
   "title": "씹어먹는 C++ - <19 - 2. C++ 프로젝트를 위한 CMake 사용법>"
  },
+ "333": {
+  "cat_title": "Rust 의 static 키워드",
+  "path": "/Rust",
+  "publish_date": "2021-06-10",
+  "title": "Rust 의 static 키워드"
+ },
  "34": {
   "cat_title": "stdio.h (cstdio)",
   "path": "/C Reference/stdio.h",
