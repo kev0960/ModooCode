@@ -157,7 +157,7 @@ module.exports = class Server {
           },
           function(err, result) {
             if (err) {
-              console.log('Google Analytics Error : ', err);
+              console.log('[', util.getDateTime(), '] Google Analytics Error : ', err);
               return;
             }
             that.visitor_counts = result.data.rows;
@@ -247,9 +247,6 @@ module.exports = class Server {
           return -1;
         });
         for (let i = 0; i < file_info.length; i++) {
-          console.log(
-              file_info[i].info.title, 'and', file_info[i].info.publish_date,
-              'and', Date.parse(file_info[i].info.publish_date), file_info[i])
           html += `<div class="category-article-entry"><p class="category-article-info"><span class="publish-date">${
               util.normalizeDate(
                   file_info[i]
@@ -669,10 +666,10 @@ module.exports = class Server {
         if (result.exec_result.length > 0) {
           console.log(
               'Executed Code : \n', code, '\nExecution result : \n',
-              truncateString(result.exec_result, 128));
+              truncateString(result.exec_result, 256));
         } else {
           console.log(
-              'Executed Code : \n', truncateString(code, 128),
+              'Executed Code : \n', code,
               'Compile error : \n', result.compile_error);
         }
         res.send(result);
