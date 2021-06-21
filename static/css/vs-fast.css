@@ -74,6 +74,14 @@
   font-size: 14px;
 }
 
+.lang-rust .mc {
+  color: #cece1c;
+}
+
+.lang-rust .lf {
+  color: #ff9d9d;
+}
+
 .in > a {
   padding:0;
 }
