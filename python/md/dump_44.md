@@ -24,7 +24,7 @@ int getchar ( void );
 
 `stdin` 에서 한 문자를 가져온다.
 
-표준 입력에서 다음 문자를 리턴한다.
+표준 입력에서 다음 문자를 리턴한다. 정확히 말하자면, `unsigned char` 로 받은 문자를 `int` 로 변환해서 리턴한다. 오류 발생시에 `EOF` 를 리턴한다. 
 이는 인자가 `stdin` 인 `getc` 함수와 동일하다.
 
 
@@ -43,14 +43,11 @@ int getchar ( void );
 
 ###  실행 예제
 
-
-
-
 ```cpp-formatted
 /* 한 문자를 읽는다.*/
 #include <stdio.h>
 int main() {
-  char ch = getchar();
+  int ch = getchar();
   printf("문자 : %c \n", ch);
 
   return 0;
@@ -58,7 +55,7 @@ int main() {
 ```
 
 
-실행 결과
+#### 실행 결과
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F1465C7154B685E0307EE2B)
@@ -81,8 +78,7 @@ int main() {
 }
 ```
 
-실행 결과
-
+#### 실행 결과
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile8.uf.tistory.com%2Fimage%2F190939164B685E7E02CEC7)
 
@@ -103,7 +99,7 @@ int main() {
 */
 #include <stdio.h>
 int main() {
-  char c;
+  int c;
   puts("Enter text. Include a dot ('.') in a sentence to exit:");
   do {
     c = getchar();
@@ -114,7 +110,7 @@ int main() {
 }
 ```
 
-실행 결과
+#### 실행 결과
 
 
 ![](http://img1.daumcdn.net/thumb/R1920x0/?fname=http%3A%2F%2Fcfile27.uf.tistory.com%2Fimage%2F173C481F4B685F6E015E38)

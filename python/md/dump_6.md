@@ -1,6 +1,6 @@
 ----------------
 title : 씹어먹는 C 언어 - <2 - 1. C 언어 본격 맛보기>
-cat_title : 2 - 1. C 언어가 본격 맛보기
+cat_title : 2 - 1. C 언어 본격 맛보기
 next_page : 19
 publish_date : 2009-04-17
 path : /C
