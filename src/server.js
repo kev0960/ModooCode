@@ -308,7 +308,7 @@ module.exports = class Server {
     }
 
     let category_html = document.body.innerHTML;
-
+ 
     this.cached_category_html.set(page_id, category_html);
     return category_html;
   }
@@ -466,41 +466,22 @@ module.exports = class Server {
           res.send(html);
         }
       }.bind(this);
-      if (page_id <= 228) {
-        if (page_id == 15) {
-          this.pageview_manager.addPageViewCnt('231');
-          return res.render(
-              'new_page.ejs',
-              this.generateInfoToPassEJS(
-                  './new/231.html', 231, page_id, user, CheckMobile(req)));
-        }
-        this.pageview_manager.addPageViewCnt(page_id);
-        fs.access(__dirname + '/../views/new/dump_' + page_id + '.html', fs.F_OK, (err) => {
-          if (err) {
-            res.render(
-              'new_page.ejs',
-              this.generateInfoToPassEJS(
-                  './old/blog_' + page_id + '.html', page_id, page_id, user,
-                  CheckMobile(req)),
-              fallbackToIndexOnFailOrPass);
-          } else {
-            res.render(
-              'new_page.ejs',
-              this.generateInfoToPassEJS(
-                './new/dump_' + page_id + '.html', page_id, page_id, user,
-                  CheckMobile(req)),
-              fallbackToIndexOnFailOrPass);
-          }
-        });
-      } else {
-        this.pageview_manager.addPageViewCnt(page_id);
-        res.render(
+
+      if (page_id == 15) {
+        this.pageview_manager.addPageViewCnt('231');
+        return res.render(
             'new_page.ejs',
             this.generateInfoToPassEJS(
-                './new/' + page_id + '.html', page_id, page_id, user,
-                CheckMobile(req)),
-            fallbackToIndexOnFailOrPass);
+                './new/231.html', 231, page_id, user, CheckMobile(req)));
       }
+
+      this.pageview_manager.addPageViewCnt(page_id);
+      res.render(
+          'new_page.ejs',
+          this.generateInfoToPassEJS(
+              './new/' + page_id + '.html', page_id, page_id, user,
+              CheckMobile(req)),
+          fallbackToIndexOnFailOrPass);
     }.bind(this));
 
     this.app.get('/category/:cat_name(*)', async function(req, res) {
@@ -564,7 +545,7 @@ module.exports = class Server {
       res.render(
           'page.ejs',
           this.generateInfoToPassEJS(
-              './new/inst/' + inst_name + '.html', inst_name, inst_name, user,
+              './new/' + inst_name + '.html', inst_name, inst_name, user,
               CheckMobile(req)),
           fallbackToIndexOnFailOrPass);
     }.bind(this));
@@ -604,41 +585,21 @@ module.exports = class Server {
         }
       }.bind(this);
 
-      if (page_id <= 228) {
-        if (page_id == 15) {
-          this.pageview_manager.addPageViewCnt('231');
-          return res.render(
-              'page.ejs',
-              this.generateInfoToPassEJS(
-                  './new/231.html', 231, page_id, user, CheckMobile(req)));
-        }
-        this.pageview_manager.addPageViewCnt(page_id);
-        fs.access(__dirname + '/../views/new/dump_' + page_id + '.html', fs.F_OK, (err) => {
-          if (err) {
-            res.render(
-              'page.ejs',
-              this.generateInfoToPassEJS(
-                  './old/blog_' + page_id + '.html', page_id, page_id, user,
-                  CheckMobile(req)),
-              fallbackToIndexOnFailOrPass);
-          } else {
-            res.render(
-              'page.ejs',
-              this.generateInfoToPassEJS(
-                './new/dump_' + page_id + '.html', page_id, page_id, user,
-                  CheckMobile(req)),
-              fallbackToIndexOnFailOrPass);
-          }
-        });
-      } else {
-        this.pageview_manager.addPageViewCnt(page_id);
-        res.render(
+      if (page_id == 15) {
+        this.pageview_manager.addPageViewCnt('231');
+        return res.render(
             'page.ejs',
             this.generateInfoToPassEJS(
-                './new/' + page_id + '.html', page_id, page_id, user,
-                CheckMobile(req)),
-            fallbackToIndexOnFailOrPass);
+                './new/231.html', 231, page_id, user, CheckMobile(req)));
       }
+
+      this.pageview_manager.addPageViewCnt(page_id);
+      res.render(
+          'page.ejs',
+          this.generateInfoToPassEJS(
+              './new/' + page_id + '.html', page_id, page_id, user,
+              CheckMobile(req)),
+          fallbackToIndexOnFailOrPass);
     }.bind(this));
 
     this.app.get('/notice/:id', function(req, res) {

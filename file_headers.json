@@ -229,10 +229,6 @@
   "ref_title": "atol",
   "title": "C 언어 레퍼런스 - atol 함수"
  },
- "133": {
-  "publish_date": "2011-02-05",
-  "title": "티스토리용 통계 프로그램 (댓글, 포스트, 방문자 등등) - tistory_stat (v.0.1)"
- },
  "134": {
   "cat_title": "1. 자~ C++ 의 세계로",
   "chapter": "C++ 시작하기",
@@ -630,11 +626,6 @@
   "publish_date": "2012-08-05",
   "ref_title": "insert",
   "title": "C++ 레퍼런스 - vector::insert"
- },
- "187": {
-  "cat_title": "씹어먹는 C 언어 강좌 - PDF 파일",
-  "publish_date": "2012-08-06",
-  "title": "씹어먹는 C 언어 강좌 - PDF 파일 (2020 업데이트)"
  },
  "188": {
   "cat_title": "4 - 3. 스타크래프트를 만들자 ① (복사 생성자, 소멸자)",
@@ -1762,15 +1753,6 @@
   "tex_title": "문자열 리터럴에 대한 이해",
   "title": "씹어먹는 C 언어 - <15 - 3. 일로와봐, 문자열(string) - 문자열 지지고 볶기 & 리터럴>"
  },
- "330": {
-  "is_published": "false",
-  "title": "모두의 자료구조 - 1 - 2. 크기가 바뀌는 배열; 동적 배열 (Vector)"
- },
- "331": {
-  "cat_title": "3. 이진 탐색 (Binary search)",
-  "is_published": "false",
-  "title": "모두의 알고리즘 - 3. 이진 탐색 (Binary search)"
- },
  "332": {
   "cat_title": "19 - 2. C++ 프로젝트를 위한 CMake 사용법",
   "next_page": "319",
@@ -1968,7 +1950,7 @@
   "title": "C 언어 레퍼런스 - freopen 함수"
  },
  "6": {
-  "cat_title": "2 - 1. C 언어가 본격 맛보기",
+  "cat_title": "2 - 1. C 언어 본격 맛보기",
   "next_page": "19",
   "path": "/C",
   "prev_page": "5",
