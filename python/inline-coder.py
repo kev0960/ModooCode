@@ -173,7 +173,10 @@ class InlineCoder:
                                                            9] == '\\sidenote':
         i = chunk.find('}', i + 9) + 1
         continue
-
+      if chunk[i] == '\\' and i + 4 < len(chunk) and chunk[i:i +
+                                                           4] == '\\ref':
+        i = chunk.find('}', i + 4) + 1
+        continue
       if check_char(chunk[i]) and (chunk[i] != '.' and chunk[i] != ',' and
                                    chunk[i] != '!' and chunk[i] != '?'):
         inline_code_begin = i
@@ -243,4 +246,4 @@ class InlineCoder:
 if __name__ == "__main__":
   if len(sys.argv) > 1:
     file_name = sys.argv[1]
-    coder = InlineCoder('../md/' + file_name)
+    coder = InlineCoder(file_name)

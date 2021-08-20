@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (1:1.1+202105261517+ce6663b3b7)"
+   sodipodi:docname="1.1.svg"
+   inkscape:export-filename="/home/jaebum/ModooCode/static/img/rust/1.1.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0973349"
+     inkscape:cx="299.36167"
+     inkscape:cy="309.38595"
+     inkscape:window-width="1848"
+     inkscape:window-height="1056"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="62.58669"
+       y="431.39287"
+       width="168.79911"
+       height="49.158798"
+       id="rect15174" />
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path11907" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-0"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path11907-2" />
+    </marker>
+    <rect
+       x="62.586689"
+       y="431.39288"
+       width="168.7991"
+       height="49.158798"
+       id="rect15174-7" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.11244;stroke-opacity:1"
+       id="rect57"
+       width="52.919952"
+       height="90.070625"
+       x="9.5473709"
+       y="15.897702" />
+    <rect
+       style="fill:#ffff00;stroke:#000000;stroke-width:0.560985;stroke-opacity:1"
+       id="rect57-3"
+       width="44.217194"
+       height="27.413324"
+       x="13.89875"
+       y="37.341286" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="25.297441"
+       y="29.096888"
+       id="text4246"><tspan
+         sodipodi:role="line"
+         id="tspan4244"
+         style="stroke-width:0.264583"
+         x="25.297441"
+         y="29.096888">Dog</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="18.150614"
+       y="54.993431"
+       id="text4246-6"><tspan
+         sodipodi:role="line"
+         id="tspan4244-7"
+         style="stroke-width:0.264583"
+         x="18.150614"
+         y="54.993431">Animal</tspan></text>
+    <rect
+       style="fill:#ffaaaa;stroke:#000000;stroke-width:0.560985;stroke-opacity:1"
+       id="rect57-3-3"
+       width="44.217194"
+       height="27.413324"
+       x="13.89875"
+       y="71.104614" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="27.281809"
+       y="88.593979"
+       id="text4246-6-5"><tspan
+         sodipodi:role="line"
+         id="tspan4244-7-6"
+         style="stroke-width:0.264583"
+         x="27.281809"
+         y="88.593979">Pet</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.54942;stroke-opacity:1"
+       id="rect57-0"
+       width="53.482971"
+       height="21.739128"
+       x="136.06085"
+       y="49.794086" />
+    <rect
+       style="fill:#ffff00;stroke:#000000;stroke-width:0.560985;stroke-opacity:1"
+       id="rect57-3-6"
+       width="44.217194"
+       height="27.413324"
+       x="161.1132"
+       y="5.6479115" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="152.09244"
+       y="63.420578"
+       id="text4246-2"><tspan
+         sodipodi:role="line"
+         id="tspan4244-6"
+         style="stroke-width:0.264583"
+         x="152.09244"
+         y="63.420578">Dog</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="165.36507"
+       y="23.300056"
+       id="text4246-6-1"><tspan
+         sodipodi:role="line"
+         id="tspan4244-7-8"
+         style="stroke-width:0.264583"
+         x="165.36507"
+         y="23.300056">Animal</tspan></text>
+    <rect
+       style="fill:#ffaaaa;stroke:#000000;stroke-width:0.508678;stroke-opacity:1"
+       id="rect57-3-3-7"
+       width="44.269501"
+       height="22.512939"
+       x="104.44562"
+       y="86.08696" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="118.68846"
+       y="101.12613"
+       id="text4246-6-5-9"><tspan
+         sodipodi:role="line"
+         id="tspan4244-7-6-2"
+         style="stroke-width:0.264583"
+         x="118.68846"
+         y="101.12613">Pet</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow1Lend)"
+       d="m 184.62518,34.19489 c -6.70665,5.23174 -13.41331,10.463481 -20.11996,15.695221"
+       id="path11869" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.615559;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Lend-0)"
+       d="m 133.43231,85.820341 c 9.28963,-4.48327 18.57926,-8.96654 27.86889,-13.44981"
+       id="path11869-3" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.32071;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 87.954997,111.6316 V 9.1810475"
+       id="path12428" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,8.4735611,0.79867701)"
+       id="text15172"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15174);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="62.585938"
+         y="466.7832"
+         id="tspan16436">C++</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,118.92465,1.7822206)"
+       id="text15172-5"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15174-7);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="62.585938"
+         y="466.7832"
+         id="tspan16438">Rust</tspan></text>
+  </g>
+</svg>

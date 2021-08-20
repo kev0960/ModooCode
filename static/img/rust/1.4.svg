@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (1:1.1+202105261517+ce6663b3b7)"
+   sodipodi:docname="1.4.svg"
+   inkscape:export-filename="/home/jaebum/ModooCode/static/img/rust/1.4.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.79909512"
+     inkscape:cx="469.90651"
+     inkscape:cy="384.81026"
+     inkscape:window-width="1848"
+     inkscape:window-height="1056"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <rect
+       x="552.79178"
+       y="161.05807"
+       width="539.6342"
+       height="110.49192"
+       id="rect77799" />
+    <rect
+       x="628.53314"
+       y="182.89612"
+       width="418.69541"
+       height="277.98006"
+       id="rect31546" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path7874" />
+    </marker>
+    <rect
+       x="118.30627"
+       y="157.29446"
+       width="443.78177"
+       height="77.645927"
+       id="rect11001" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path7871" />
+    </marker>
+    <rect
+       x="118.30627"
+       y="157.29446"
+       width="402.18527"
+       height="150.09225"
+       id="rect11001-6" />
+    <rect
+       x="118.30627"
+       y="157.29446"
+       width="402.18527"
+       height="150.09225"
+       id="rect11001-6-5" />
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lstart-2"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path7871-9" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.1384"
+       id="rect846"
+       width="106.11424"
+       height="130.40347"
+       x="13.308249"
+       y="42.156483" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.36922;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 13.493735,78.076056 H 119.237"
+       id="path7789"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.37396;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 13.127026,123.37789 H 119.60371"
+       id="path7789-3" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.26737;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 180.96203,89.749585 h 88.73551"
+       id="path7789-3-6" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-9.6967146,11.640803)"
+       id="text10999"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11001);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="118.30664"
+         y="197.49492"
+         id="tspan12239">Dog 의 데이터 필드</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,4.116975,45.950964)"
+       id="text10999-7"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11001-6);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="118.30664"
+         y="192.68555"
+         id="tspan12241">Animal trait
+</tspan><tspan
+         x="118.30664"
+         y="247.49492"
+         id="tspan12243">함수 테이블</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,9.2401188,93.417805)"
+       id="text10999-7-6"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11001-6-5);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="118.30664"
+         y="192.68555"
+         id="tspan12245">Cute trait
+</tspan><tspan
+         x="118.30664"
+         y="247.49492"
+         id="tspan12247">함수 테이블</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.524348;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart)"
+       d="m 126.58795,47.651183 66.48094,14.876961"
+       id="path67801"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.524348;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow1Lstart-2)"
+       d="m 125.79952,85.816383 63.4829,32.828937"
+       id="path67801-1"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="189.02605"
+       y="24.611528"
+       id="text70613"><tspan
+         sodipodi:role="line"
+         id="tspan70611"
+         style="stroke-width:0.264583"
+         x="189.02605"
+         y="24.611528">&amp;dyn Animal</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.03829"
+       id="rect1188"
+       width="88.248184"
+       height="109.98693"
+       x="181.20569"
+       y="36.24036" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="199.40074"
+       y="66.391693"
+       id="text3323"><tspan
+         sodipodi:role="line"
+         id="tspan3321"
+         style="stroke-width:0.264583"
+         x="199.40074"
+         y="66.391693">객체 주소값</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="194.59694"
+       y="117.12564"
+       id="text8027"><tspan
+         sodipodi:role="line"
+         id="tspan8025"
+         style="stroke-width:0.264583"
+         x="194.59694"
+         y="117.12564">Animal 함수 </tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="194.59694"
+         y="131.62724"
+         id="tspan10623">테이블 주소값 </tspan></text>
+  </g>
+</svg>
