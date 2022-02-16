@@ -321,21 +321,24 @@ function postGenericComment(parent_id, content, password, name) {
         .execute(
             '6LeE_nYUAAAAAGm9qTa71IwvvayWV9Q7flqNkto2', {action: 'Comment'})
         .then(function(token) {
-          $.ajax({
-            url: '/write-comment',
-            type: 'POST',
-            data: {
+          fetch('/write-comment', {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
               parent_id: parent_id,
               content: content,
               password: password,
-              name: name,
+              author_name: name,
               article_url: article_url,
               token: token,
-            },
-            success: function(result) {
-              $('#adding-comment').hide();
+            })
+          }).then(data => {
+            $('#adding-comment').hide();
               location.reload();
-            },
           });
         });
   });
