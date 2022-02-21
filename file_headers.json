@@ -1728,6 +1728,7 @@
  },
  "326": {
   "cat_title": "21. C++ 표준 라이브러리에서 자주 쓰이는 패턴 모음",
+  "next_page": "335",
   "path": "/C++",
   "prev_page": "322",
   "publish_date": "2021-01-15",
@@ -1779,6 +1780,14 @@
   "path": "/Rust",
   "publish_date": "2021-08-15",
   "title": "Rust 의 다형성 - static 과 dynamic dispatch (C++ 을 곁들인..)"
+ },
+ "335": {
+  "cat_title": "22. 구글에서는 C++ 을 어떻게 쓰는가?",
+  "path": "/C++",
+  "prev_page": "326",
+  "publish_date": "2022-02-15",
+  "tex_title": "구글에서는 C++ 을 어떻게 쓰는가?",
+  "title": "씹어먹는 C++ - <22. 구글에서는 C++ 을 어떻게 쓰는가?>"
  },
  "34": {
   "cat_title": "stdio.h (cstdio)",
