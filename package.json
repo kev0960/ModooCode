@@ -36,7 +36,7 @@
     "express-session": "^1.17.1",
     "googleapis": "^59.0.0",
     "is-mobile": "^2.2.2",
-    "jsdom": "^16.4.0",
+    "jsdom": "^16.5.0",
     "lodash": "^4.17.20",
     "minimist": "^1.2.5",
     "mobile-detect": "^1.4.4",
