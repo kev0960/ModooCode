@@ -2,7 +2,7 @@
   "name": "ModooCode Frontent App",
   "version": "0.0.1",
   "devDependencies": {
-    "ts-loader": "^6.1.0",
+    "ts-loader": "^9.4.2",
     "typescript": "^3.6.3"
   }
 }
