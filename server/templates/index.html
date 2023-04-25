@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Source+Code+Pro&display=swap" rel="stylesheet">
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="canonical" href="https://modoocode.com">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="/css/index.css">
+
+  <!-- Icons -->
+  <link rel="icon" href="/img/ChewingCppFav.png" type="image/png">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128245994-1"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-128245994-1');
+  </script>
+
+  <title>모두의 코드</title>
+</head>
+<body>
+  <section class="header">
+  <div class="header-img">
+    <img src="/img/tux.jpeg" alt="모두의 코드">
+  </div>
+  <div class="header-title">
+  <a href="/">모두의 코드</a>
+  </div>
+  </section>
+  <main>
+    <div class="content">
+      <div class="row-content">
+        <div class="item">
+          <div class="item-img">
+          <a href="/notice/15">
+            <picture>
+              <source type="image/webp" srcset="/img/ChewingClogo.webp">
+              <img src="/img/ChewingClogo.png" alt="씹어먹는 C 언어 강좌 보러가기">
+            </picture>
+          </a>
+          </div>
+          <div class="item-text">
+            <div class="item-text-header">
+            <a href="/notice/15">씹어먹는 C 언어 강좌</a>
+            </div>
+            <div class="item-text-content">
+              <p>
+                총 42 개의 강의로 준비된 <span class="text-bold">씹어먹는 C 언어 강좌</span>를 통해 C 언어의 처음부터 끝까지 배우실 수 있습니다! 특히 악명 높은 C 언어의 포인터나, 어려운 개념들을 충실히 짚고 넘어갑니다.
+              </p>
+              <p>
+                이 강좌는 2010년에 완결되었지만, 지속적으로 개선 및 보완하고 있습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-img">
+            <a href="/135">
+              <picture>
+              <source type="image/webp" srcset="/img/ChewingCpplogo.webp">
+                <img src="/img/ChewingCpplogo.png"  alt="씹어먹는 C ++ 강좌 보러가기">
+              </picture>
+            </a>
+            </div>
+            <div class="item-text">
+              <div class="item-text-header">
+              <a href="/135">씹어먹는 C++ 강좌</a>
+              </div>
+              <div class="item-text-content">
+              <p>
+                C 언어 문법을 아시는 분들이라면, <span class="text-bold">씹어먹는 C++ 강좌</span>를 통해 C++ 기초 부터 최근의 C++ 17 까지 모든 내용을 배우실 수 있습니다. C 언어와 C++ 의 기본적인 문법이 비슷하기 때문에, C 언어를 어느 정도 아는 독자를 가정하여 쓰여져 있습니다.
+              </p>
+              <p>
+                이 강좌는 2020년에 완결되었고 총 50 개의 강좌가 준비되어 있습니다.
+              </p>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row-content">
+        <div class="item">
+          <div class="item-img">
+            <a href="/245">
+              <picture>
+              <source type="image/webp" srcset="/img/ModooAlgo.webp">
+                <img src="/img/ModooAlgo.png"  alt="씹어먹는 C ++ 강좌 보러가기">
+              </picture>
+            </a>
+          </div>
+        </div>
+        <div class="item" style="display:flex;">
+          <div class="enter-community">
+            <a href="https://forum.modoocode.com">모두의 코드 대화방 들어가기</a>
+          </div>
+        </div>
+      </div>
+      <div class="row-content">
+        <div class="item">
+          <div class="search-bar-text">
+          사이트 내에서 검색 하기
+          </div>
+          <div class="cse">
+            <script>
+            (function() {
+              var cx = '003869586044905610715:visr8hwbmrq';
+              var gcse = document.createElement('script');
+              gcse.type = 'text/javascript';
+              gcse.async = true;
+              gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(gcse, s);
+            })();
+            </script>
+            <gcse:search></gcse:search>
+          </div>
+        </div>
+      </div>
+      <div class="row-content">
+        <div class="item">
+          <div class="new-article">
+            <div class="item-text-header">
+            최근 글<span class="new-article-deco">Recent Articles</span>
+            </div>
+            <% for i in range(0) { %>
+            <div class="new-article-entry">
+              <a href="<%= recent_articles[i].url %>"><%= recent_articles[i].title %></a>
+              <% if (i < 2) { %>
+              <span class="new-article-new">New</span>
+              <% } %>
+            </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="visitor-box">
+            <canvas id="visitors"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ref-box">
+          <div class="ref-header">
+            C 언어 레퍼런스
+          </div>
+          <div class="ref-content">
+            <div class="ref-col">
+              <div class="ref-col-header">
+              표준 입출력 라이브러리 <a href="/34">stdio.h</a>
+              </div>
+              <div class="ref-col-content">
+                <ul>
+                  <li><a href="/35">printf</a></li>
+                  <li><a href="/36">scanf</a></li>
+                  <li><a href="/66">sprintf</a></li>
+                  <li><a href="/58">fopen</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="ref-col">
+              <div class="ref-col-header">
+              문자열 관련 라이브러리 <a href="/76">string.h</a>
+              </div>
+              <div class="ref-col-content">
+                <ul>
+                  <li><a href="/106">strlen</a></li>
+                  <li><a href="/36">strncmp</a></li>
+                  <li><a href="/101">strstr</a></li>
+                  <li><a href="/77">memcpy</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="ref-col">
+              <div class="ref-col-header">
+              시간 관련 라이브러리 <a href="/108">time.h</a>
+              </div>
+              <div class="ref-col-content">
+                <ul>
+                  <li><a href="/114">time</a></li>
+                  <li><a href="/110">clock</a></li>
+                  <li><a href="/111">difftime</a></li>
+                  <li><a href="/122">strftime</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="ref-box">
+          <div class="ref-header">
+            C ++ 레퍼런스 
+          </div>
+          <div class="ref-content">
+            <div class="ref-col">
+              <div class="ref-col-header">
+              표준 입출력 라이브러리 <a href="/143">iostream</a>
+              </div>
+              <div class="ref-col-content">
+                <ul>
+                  <li><a href="/151">ifstream</a></li>
+                  <li><a href="/157">ios_base::precision</a></li>
+                  <li><a href="/149">istream::getline</a></li>                  
+                  <li><a href="/191">istream::get</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="ref-col">
+              <div class="ref-col-header">
+              문자열 라이브러리 <a href="/233">string</a>
+              </div>
+              <div class="ref-col-content">
+                <ul>
+                  <li><a href="/234">string</a></li>
+                  <li><a href="/239">string_view</a></li>
+                  <li><a href="/235">substr</a></li>                  
+                  <li><a href="/241">find</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="ref-col">
+              <div class="ref-col-header">
+              알고리즘 라이브러리 <a href="/256">algorithm</a>
+              </div>
+              <div class="ref-col-content">
+                <ul>
+                  <li><a href="/261">find</a></li>
+                  <li><a href="/260">for_each</a></li>
+                  <li><a href="/262">count</a></li>                  
+                  <li><a href="/265">find_end</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row-content">
+        <div class="item">
+          <div class="item-text">
+            <div class="item-text-header comment">
+            최근 댓글
+            </div>
+            <div class="item-text-content">
+              <% for i in range(length(comments)) { %> 
+                <div class="comment-box">
+                  <div class="comment-content">       
+                    <a class="comment-link" href="<%= '/' + comments[i].article_url %>"><%= comments[i].content %></a>
+                  </div>
+                  <div class="comment-author">
+                    <%= comments[i].author_name %>
+                    <span class="comment-date"><%= timestamp_to_kor_time(comments[i].comment_date, "%m.%d") %></span>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-text">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Modoocode-front-page -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-6608926154840997"
+                data-ad-slot="8048150950"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js'>
+</script>
+<script>
+var ctx = document.getElementById("visitors").getContext('2d');
+ctx.canvas.height = ctx.canvas.width / 2.7;
+
+var counts = <%- json_stringify(visitor_counts) %>;
+var count = [];
+var labels = [];
+
+for (var i = 0; i < counts.length; i++) {
+  count.push(counts[i][1]);
+  var label = counts[i][0].substr(4);
+  label = label.slice(0, 2) + '.' + label.slice(2);
+  labels.push(label);
+}
+var visitor_chart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: labels,
+    datasets: [{
+      data: count,
+      borderColor: 'rgba(0, 190, 190)',
+      backgroundColor: 'rgba(0, 190, 190, 0.1)',
+    }],
+  },
+  options: {
+    legend: {
+      display: false
+    },
+    title: {
+      display: true,
+      text: '일일 방문자 수'
+    },
+    scales: {
+      yAxes: [{
+        ticks: {
+            min: 0,
+            stepSize: 400
+        }
+      }]
+    }
+  }
+})
+</script>

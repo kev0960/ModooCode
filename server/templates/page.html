@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+
+<%- include_template("header-common") %>
+
+<body>
+
+<%- include_template("sidebar") %>
+<div id="open-sidebar"><i class="xi-align-justify" id="open-sidebar-btn"></i></div>
+
+<div class="wrap">
+  <div class="masthead">
+    <div class="container">
+      <h2 class="masthead-title">
+        <a href="/" title="Home">모두의 코드</a><br>
+        <small><%= file_info.title %></small>
+      </h2>
+      <div class="additional-info">
+        <% if (file_info.publish_date) { %>
+        <small class="publish-date">작성일 : <%= file_info.publish_date %></small>
+        <% } %>
+        <% if (view_cnt) { %>
+        <small class="view-cnt">이 글은 <%= view_cnt %> 번 읽혔습니다. </small>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <% if (!is_mobile) { %>
+    <div class="container adsense-container-top" style="height:280px">
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- Modoocode-front-page -->
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-6608926154840997"
+          data-ad-slot="8048150950"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  <% } %>
+  <article>
+    <div class="container content">
+      <div style="display:inline-block"></div>
+      <%- include(content_url) %>
+    </div>
+  </article>
+  <nav class="page-nav-btns">
+    <% if (file_info.prev_page) { %> 
+      <a class="prev-page-btn page-btn-common" href="<%= file_info.prev_page %>">
+        <p><i class="xi-angle-left"></i>&nbsp이전 강좌</p>
+        <% if (file_infos[file_info.prev_page].cat_name) { %>
+        <p class="nav-page-title">
+        <%= file_infos[file_info.prev_page].cat_name %></p>
+        <% } else { %>
+        <p class="nav-page-title">
+        <%= file_infos[file_info.prev_page].title %></p>
+        <% } %>
+      </a>
+    <% } %>
+    <% if (file_info.next_page) { %> 
+      <a class="next-page-btn page-btn-common" href="/<%= file_info.next_page %>">
+        <p>다음 강좌&nbsp<i class="xi-angle-right"></i></p>
+        <% if (file_infos[file_info.next_page].cat_name) { %>
+          <p class="nav-page-title">
+          <%= file_infos[file_info.next_page].cat_name %></p>
+        <% } else { %>
+          <p class="nav-page-title">
+          <%= file_infos[file_info.next_page].title %></p>
+        <% } %>
+      </a>
+    <% } %>
+  </nav>
+  <div class="adsense-content-bottom">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- ModooCode Top -->
+  <% if (!is_mobile) { %>
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:728px;height:90px"
+        data-ad-client="ca-pub-6608926154840997"
+        data-ad-slot="5265146061"></ins>
+  <% } else { %>
+    <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-6608926154840997"
+    data-ad-slot="8048150950"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+  <% } %>  
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  </div>
+  <div class="container search-box">
+    <div class="search-bar-text" id="search">
+    궁금한 것은 직접 찾아보세요!
+    </div>
+    <div class="cse">
+      <script>
+      (function() {
+        var cx = '003869586044905610715:visr8hwbmrq';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+      </script>
+      <gcse:search></gcse:search>
+    </div>
+  </div>
+  <div id="num-comment">
+    <i class="xi-comment-o"></i>
+    <% if (num_comment > 0 ) { %>
+    댓글이 <span><%- num_comment %></span> 개 있습니다!
+    <% } else { %>
+    첫 댓글을 달아주세요!
+    <% } %>
+  </div>
+  <div id="comment-box">
+    <section id="comment-post-section">
+      <div class="post-box">
+        <div class="profile-pic">
+          <% if (user) { %>
+            <div id="username" class="small-comment font-bold">
+              <%= user.name %>
+            </div>
+            <img src="<%= user.image %>">
+          <% } else { %>
+          <img src="/img/unknown_person.png" alt="프로필 사진 없음">
+          <% } %>
+        </div>
+        <div class="text-area-wrapper">
+          <textarea id="posted-comment" class="comment-textarea"
+          placeholder="댓글은 글쓴이에게 큰 힘이 됩니다"></textarea>
+          <div class="comment-helper">
+          강좌에 관련 없이 궁금한 내용은 <a href="https://forum.modoocode.com/">여기를 사용해주세요</a><i class="em em-smile"></i>
+          </div>
+        </div>
+      </div>
+      <div class="login-box">
+        <% if (!user) { %>
+        <div class="social-login">
+          <div class="small-comment">다음으로 로그인 </div>
+          <div id="g_id_onload"
+               data-client_id="746982907013-o9irphhicai1dm23eru7sf4ir6g605f7.apps.googleusercontent.com"
+               data-context="signin"
+               data-ux_mode="popup"
+               data-callback="GoogleSignIn"
+               data-auto_prompt="true">
+          </div>
+          <div class="g_id_signin"
+               data-type="standard"
+               data-shape="rectangular"
+               data-theme="outline"
+               data-text="signin_with"
+               data-size="medium"
+               data-logo_alignment="left">
+          </div>
+        </div>
+        <div class="manual">
+          <div class="small-comment">
+            또는 직접 입력하세요 (댓글 수정시 비밀번호가 필요합니다)
+          </div>
+          <input name="name" id="name" placeholder="이름">
+          <input name="password" id="password" type="password" placeholder="비밀번호">
+        </div>
+        <% } %>
+        <div id="adding-comment" class="sk-fading-circle">
+          <div class="sk-circle1 sk-circle"></div>
+          <div class="sk-circle2 sk-circle"></div>
+          <div class="sk-circle3 sk-circle"></div>
+          <div class="sk-circle4 sk-circle"></div>
+          <div class="sk-circle5 sk-circle"></div>
+          <div class="sk-circle6 sk-circle"></div>
+          <div class="sk-circle7 sk-circle"></div>
+          <div class="sk-circle8 sk-circle"></div>
+          <div class="sk-circle9 sk-circle"></div>
+          <div class="sk-circle10 sk-circle"></div>
+          <div class="sk-circle11 sk-circle"></div>
+          <div class="sk-circle12 sk-circle"></div>
+        </div>
+        <button id="post-comment" class="comment-btn">댓글 달기</button>
+      </div>
+    </section>
+    <section id="comment-list-section">
+      <ul id="root-comment-list" class="comment-list">
+         <%- comments %>
+      </ul>
+    </section>
+    <div id="button-box">
+      <button id="open-comment">댓글 더 보기</button>
+    </div>
+  </div>
+</div>
+<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+<script>
+</script>
+<script src="/js/page2.js" defer></script>
+<div id="page-infos" style="display:none"><%- json_stringify(page_infos) %></div>
+<div id="file-infos" style="display:none"><%- json_stringify(file_infos) %></div>
+</body>
+</html>
