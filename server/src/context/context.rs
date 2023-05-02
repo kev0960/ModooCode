@@ -42,10 +42,11 @@ impl ProdContext {
     pub async fn new(
         connection_string: &str,
         service_account_key: &str,
+        page_path: &str,
     ) -> Result<Self, ServerError> {
         let database = Arc::new(ProdDatabase::new(connection_string).await?);
         let comment_context = Arc::new(ProdCommentContext::new(database.clone()));
-        let article_context = Arc::new(ProdArticleContext::new(database.clone()));
+        let article_context = Arc::new(ProdArticleContext::new(database.clone(), page_path).await);
         let site_state_context = Arc::new(
             ProdSiteStatContext::new(service_account_key)
                 .await
@@ -58,7 +59,7 @@ impl ProdContext {
             .unwrap();
 
         let temp = std::fs::read_to_string("templates/page.html").unwrap();
-        let result = dojang.add("page.html".to_string(), temp);
+        let result = dojang.add("page".to_string(), temp);
         if result.is_err() {
             println!("Err : {}", result.err().unwrap());
         }

@@ -4,10 +4,11 @@ use std::sync::{Arc, Mutex};
 use async_trait::async_trait;
 use axum::extract::{Path, State};
 use axum::response::{Html, IntoResponse, Redirect, Response};
+use axum_sessions::extractors::ReadableSession;
 use dojang::Dojang;
 
 use super::index::IndexPageRendererContext;
-use super::renderer::{InputValue, PageRenderer, TopLevelPageInput};
+use super::renderer::{InputValue, RequestScopedInputs};
 use crate::context::article_context::ArticleContext;
 use crate::context::comment_context::CommentContext;
 use crate::context::context::{Context, ProdContext};
@@ -22,7 +23,11 @@ where
     // Return pages that should be handled by this context.
     fn get_matching_pages(&self) -> HashSet<String>;
 
-    async fn render_page(&mut self, article_url: &str) -> Result<String, ServerError>;
+    async fn render_page(
+        &mut self,
+        article_url: &str,
+        request_scoped_inputs: Arc<dyn RequestScopedInputs>,
+    ) -> Result<String, ServerError>;
 }
 
 #[async_trait]
@@ -30,7 +35,11 @@ pub trait PageContext
 where
     Self: Send + Sync,
 {
-    async fn render_page(&self, article_url: &str) -> Result<String, ServerError>;
+    async fn render_page(
+        &self,
+        article_url: &str,
+        request_scoped_inputs: Arc<dyn RequestScopedInputs>,
+    ) -> Result<String, ServerError>;
 }
 
 pub struct ProdPageContext {
@@ -40,13 +49,16 @@ pub struct ProdPageContext {
 
 #[async_trait]
 impl PageContext for ProdPageContext {
-    async fn render_page(&self, article_url: &str) -> Result<String, ServerError> {
-        println!("render :  {:?}", self.page_url_to_renderer_index);
+    async fn render_page(
+        &self,
+        article_url: &str,
+        request_scoped_inputs: Arc<dyn RequestScopedInputs>,
+    ) -> Result<String, ServerError> {
         if let Some(renderer_index) = self.page_url_to_renderer_index.get(article_url) {
             Ok(self.page_renderers[*renderer_index]
                 .lock()
                 .await
-                .render_page(article_url)
+                .render_page(article_url, request_scoped_inputs)
                 .await?)
         } else {
             return Err(ServerError::BadRequest(format!(
@@ -102,41 +114,44 @@ impl ProdPageContext {
     }
 }
 
+pub struct ArticlePageRequestScopedInputs {}
+
+impl RequestScopedInputs for ArticlePageRequestScopedInputs {
+    fn get_input_valuess(&self) -> Result<Vec<(String, InputValue)>, ServerError> {
+        Ok(vec![])
+    }
+}
+
 pub async fn page_handler(
     Path(page_url): Path<String>,
     State(context): State<Arc<ProdContext>>,
+    session: ReadableSession,
 ) -> Response {
-    let page = context.page_context().render_page(&page_url).await;
-    println!("page : {:?}", page);
-
+    let page = context
+        .page_context()
+        .render_page(&page_url, Arc::new(ArticlePageRequestScopedInputs {}))
+        .await;
     match page {
         Ok(page) => Html(page).into_response(),
         Err(_) => Redirect::temporary("/").into_response(),
+    }
+}
+
+pub struct IndexPageRequestScopedInputs {}
+
+impl RequestScopedInputs for IndexPageRequestScopedInputs {
+    fn get_input_valuess(&self) -> Result<Vec<(String, InputValue)>, ServerError> {
+        Ok(vec![])
     }
 }
 
 pub async fn index_page_handler(State(context): State<Arc<ProdContext>>) -> Response {
-    let page = context.page_context().render_page(&"").await;
-    println!("page : {:?}", page);
-
+    let page = context
+        .page_context()
+        .render_page(&"", Arc::new(IndexPageRequestScopedInputs {}))
+        .await;
     match page {
         Ok(page) => Html(page).into_response(),
         Err(_) => Redirect::temporary("/").into_response(),
     }
 }
-/*
-struct ArticlePageContext {
-    article_page_renderers: Vec<PageRenderer>,
-}
-
-#[async_trait]
-impl PageContext for ArticlePageContext {
-    async fn render_page(&self, article_url: &str) -> Result<String, ServerError> {
-        Ok("".to_owned())
-    }
-}
-
-impl ArticlePageContext {
-    fn new() -> Self {}
-}
-*/

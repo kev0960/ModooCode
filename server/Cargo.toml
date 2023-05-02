@@ -7,6 +7,7 @@ authors = ["Jaebum Lee <kev0960@gmail.com>"]
 [dependencies]
 async-trait = "0.1.68"
 axum = "0.6.16"
+axum-sessions = "0.5.0"
 chrono = "0.4.24"
 dojang = { path = "../../dojang" }
 dotenv = "0.15.0"
@@ -14,7 +15,10 @@ futures = "0.3.28"
 google-analyticsreporting4 = "5.0.2"
 hyper = "0.14.26"
 hyper-rustls = { version = "0.24.0", features = ["rustls-native-certs"] }
+jsonwebtoken = "8.3.0"
 lru = "0.10.0"
+rand = { version = "0.8.5", features = ["min_const_gen"] }
+reqwest = { version = "0.11", features = ["json"] }
 sea-orm = { version = "0.11.2", features = ["debug-print", "runtime-tokio-native-tls", "sqlx-postgres", "mock", "postgres-array"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.68"

@@ -4,10 +4,11 @@ use async_trait::async_trait;
 use dojang::Dojang;
 use serde_json::Value;
 
-use crate::error::errors::ServerError;
+use crate::{error::errors::ServerError, user::user_info::UserInfo};
 
 type Etag = i64;
 
+#[derive(Clone)]
 pub enum InputValue {
     NonCacheable(Value),
     Cacheable(Value, Etag),
@@ -23,6 +24,14 @@ where
 
     // 현재 Value 를 얻는다.
     async fn get_input_value(&self) -> Result<InputValue, ServerError>;
+}
+
+pub trait RequestScopedInputs
+where
+    Self: Send + Sync,
+{
+    // Top level field 이름들과 현재 value 들을 얻는다.
+    fn get_input_valuess(&self) -> Result<Vec<(String, InputValue)>, ServerError>;
 }
 
 pub struct PageRenderer {
@@ -49,8 +58,19 @@ impl PageRenderer {
         }
     }
 
-    pub async fn render_page(&mut self) -> Result<String, ServerError> {
-        let caches = self.fetch_caches().await?;
+    pub async fn render_page(
+        &mut self,
+        request_scoped_inputs: Arc<dyn RequestScopedInputs>,
+    ) -> Result<String, ServerError> {
+        let mut caches = self.fetch_caches().await?;
+
+        let request_scoped_inputs = request_scoped_inputs.get_input_valuess()?;
+        caches.append(
+            &mut request_scoped_inputs
+                .iter()
+                .map(|(_, input)| input.to_owned())
+                .collect::<Vec<_>>(),
+        );
 
         // If all values are cacheable, then check the page cache.
         let is_all_cacheable = caches.iter().any(|cache| {
@@ -82,11 +102,22 @@ impl PageRenderer {
                 InputValue::Cacheable(v, _) => v,
             };
 
-            template_context.insert(self.top_level_inputs[index].input_name().to_owned(), value);
+            if index < self.top_level_inputs.len() {
+                template_context
+                    .insert(self.top_level_inputs[index].input_name().to_owned(), value);
+            } else {
+                template_context.insert(
+                    request_scoped_inputs
+                        .get(index - self.top_level_inputs.len())
+                        .unwrap()
+                        .0
+                        .to_owned(),
+                    value,
+                );
+            }
         }
 
         println!("Template context : {:?}", template_context);
-        println!("Template context val : {:?}", serde_json::to_value(template_context.clone()));
         let rendered_page = self
             .dojang
             .lock()

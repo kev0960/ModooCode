@@ -5,7 +5,7 @@ use async_trait::async_trait;
 use dojang::Dojang;
 
 use super::page::PageRendererContext;
-use super::renderer::{InputValue, PageRenderer, TopLevelPageInput};
+use super::renderer::{InputValue, PageRenderer, RequestScopedInputs, TopLevelPageInput};
 use crate::context::article_context::ArticleContext;
 use crate::context::comment_context::CommentContext;
 use crate::context::site_stat_context::{get_days_string_starting_from_today, SiteStatContext};
@@ -43,8 +43,15 @@ impl PageRendererContext for IndexPageRendererContext {
         HashSet::from_iter(vec!["".to_owned()])
     }
 
-    async fn render_page(&mut self, _article_url: &str) -> Result<String, ServerError> {
-        Ok(self.index_page_renderer.render_page().await?)
+    async fn render_page(
+        &mut self,
+        _article_url: &str,
+        request_scoped_inputs: Arc<dyn RequestScopedInputs>,
+    ) -> Result<String, ServerError> {
+        Ok(self
+            .index_page_renderer
+            .render_page(request_scoped_inputs)
+            .await?)
     }
 }
 
@@ -99,7 +106,6 @@ impl TopLevelPageInput for RecentArticles {
 
     async fn get_input_value(&self) -> Result<InputValue, ServerError> {
         let recent_articles = self.article_context.get_recent_articles(10).await?;
-
         let etag = if !recent_articles.is_empty() {
             recent_articles[0]
                 .create_time
@@ -109,7 +115,19 @@ impl TopLevelPageInput for RecentArticles {
             0
         };
 
-        let recent_articles = serde_json::to_value(recent_articles).unwrap();
+        let recent_article_urls = recent_articles
+            .into_iter()
+            .map(|a| a.article_url)
+            .collect::<Vec<_>>();
+        let recent_article_metadata = self
+            .article_context
+            .multi_get_article_metadata(recent_article_urls.as_slice())
+            .into_iter()
+            .filter_map(|m| m)
+            .collect::<Vec<_>>();
+
+        let recent_articles = serde_json::to_value(recent_article_metadata).unwrap();
+
         Ok(InputValue::Cacheable(recent_articles, etag))
     }
 }

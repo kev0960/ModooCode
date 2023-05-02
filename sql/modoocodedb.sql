@@ -13,6 +13,9 @@ CREATE TABLE article (
 	-- Content of the article.
 	content TEXT NOT NULL,
 
+	-- SHA256 string computed from the content of the article.
+	current_content_sha256 CHAR(64) NOT NULL,
+
 	view_cnt INTEGER DEFAULT 0
 );
 

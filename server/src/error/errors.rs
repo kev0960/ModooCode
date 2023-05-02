@@ -13,4 +13,10 @@ pub enum ServerError {
 
     #[error("serde Json error: {0}")]
     JsonError(#[from] serde_json::Error),
+
+    #[error("bad jwt: {0}")]
+    BadJWT(#[from] jsonwebtoken::errors::Error),
+
+    #[error("reqwest error: {0}")]
+    BadReqwest(#[from] reqwest::Error),
 }

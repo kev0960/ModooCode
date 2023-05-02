@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::sync::Arc;
 
 use async_trait::async_trait;
@@ -8,6 +9,8 @@ use serde::Serialize;
 use crate::db::db::Database;
 use crate::entity::comment as Comment;
 use crate::error::errors::ServerError;
+
+const ARTICLE_COMMENT_PAGE_SIZE: u64 = 50;
 
 #[derive(Serialize)]
 pub struct CommentData {
@@ -53,10 +56,22 @@ where
 {
     async fn get_recent_comments(&self, num_comments: u64)
         -> Result<Vec<CommentData>, ServerError>;
+
+    async fn get_latest_comment_timestamp_on_article(
+        &self,
+        article_url: &str,
+    ) -> Result<Option<i64>, ServerError>;
+
+    async fn get_comments_on_article(
+        &self,
+        article_url: &str,
+        page: u64,
+    ) -> Result<Vec<CommentData>, ServerError>;
 }
 
 pub struct ProdCommentContext {
     database: Arc<dyn Database>,
+    lastest_comment_timestamp_of_articles: std::sync::RwLock<HashMap<String, Option<i64>>>,
 }
 
 #[async_trait]
@@ -75,10 +90,66 @@ impl CommentContext for ProdCommentContext {
             .map(|comment| CommentData::from(comment))
             .collect())
     }
+
+    async fn get_latest_comment_timestamp_on_article(
+        &self,
+        article_url: &str,
+    ) -> Result<Option<i64>, ServerError> {
+        if let Some(timestamp) = self
+            .lastest_comment_timestamp_of_articles
+            .read()
+            .unwrap()
+            .get(article_url)
+        {
+            return Ok(*timestamp);
+        }
+
+        // If the entry is missing, then we should fetch from the server.
+        let oldest_comment = Comment::Entity::find()
+            .filter(Comment::Column::ArticleUrl.eq(article_url))
+            .order_by_desc(Comment::Column::CommentDate)
+            .one(self.database.connection())
+            .await?;
+
+        let timestamp = match oldest_comment {
+            Some(comment) => Some(comment.comment_date.unwrap_or_default().timestamp_millis()),
+            None => None,
+        };
+
+        self.lastest_comment_timestamp_of_articles
+            .write()
+            .unwrap()
+            .insert(article_url.to_owned(), timestamp);
+
+        Ok(timestamp)
+    }
+
+    async fn get_comments_on_article(
+        &self,
+        article_url: &str,
+        page: u64,
+    ) -> Result<Vec<CommentData>, ServerError> {
+        Ok(Comment::Entity::find()
+            .filter(
+                sea_orm::Condition::all()
+                    .add(Comment::Column::IsDeleted.eq(false))
+                    .add(Comment::Column::ArticleUrl.eq(article_url)),
+            )
+            .order_by_desc(Comment::Column::CommentDate)
+            .paginate(self.database.connection(), ARTICLE_COMMENT_PAGE_SIZE)
+            .fetch_page(page)
+            .await?
+            .into_iter()
+            .map(|comment| CommentData::from(comment))
+            .collect())
+    }
 }
 
 impl ProdCommentContext {
     pub fn new(database: Arc<dyn Database>) -> Self {
-        ProdCommentContext { database }
+        ProdCommentContext {
+            database,
+            lastest_comment_timestamp_of_articles: std::sync::RwLock::new(HashMap::new()),
+        }
     }
 }
