@@ -19,4 +19,7 @@ pub enum ServerError {
 
     #[error("reqwest error: {0}")]
     BadReqwest(#[from] reqwest::Error),
+
+    #[error("io error: {0}")]
+    IoError(#[from] std::io::Error),
 }

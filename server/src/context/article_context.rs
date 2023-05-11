@@ -12,6 +12,12 @@ use crate::db::db::Database;
 use crate::entity::article as Article;
 use crate::error::errors::ServerError;
 
+#[derive(sea_orm::FromQueryResult)]
+struct ArticlePageAndViewCount {
+    article_url: String,
+    view_count: Option<i32>,
+}
+
 #[derive(Serialize, Debug)]
 pub struct ArticleData {
     pub article_url: String,
@@ -64,11 +70,20 @@ where
 
     // Get metadata of every article available.
     fn get_every_article_metadata(&self) -> Vec<ArticleMetadata>;
+
+    // 증가된 현재 page view count 를 return 한다.
+    fn increment_page_view_count(&self, article_url: &str) -> u32;
+
+    // Cache 된 page view count 를 db 에 저장.
+    async fn save_page_view_count_to_db(&self) -> Result<(), ServerError>;
 }
 
 pub struct ProdArticleContext {
     database: Arc<dyn Database>,
     article_metadata: HashMap<String, ArticleMetadata>,
+
+    // 페이지 별 조회수 담은 map.
+    pub page_view_counts_map: std::sync::Mutex<HashMap<String, (u32, /*synced=*/ bool)>>,
 }
 
 #[async_trait]
@@ -112,6 +127,47 @@ impl ArticleContext for ProdArticleContext {
             .map(|a| a.to_owned())
             .collect()
     }
+
+    fn increment_page_view_count(&self, article_url: &str) -> u32 {
+        let mut page_view_count_map = self.page_view_counts_map.lock().unwrap();
+        if let Some((view_count, _)) = page_view_count_map.get_mut(article_url) {
+            *view_count += 1;
+
+            return *view_count;
+        } else {
+            page_view_count_map.insert(article_url.to_owned(), (1, true));
+
+            return 1;
+        }
+    }
+
+    async fn save_page_view_count_to_db(&self) -> Result<(), ServerError> {
+        let mut pages_to_update_views = vec![];
+        {
+            let page_view_counts_map = self.page_view_counts_map.lock().unwrap();
+            for (article_url, (view_count, is_synced)) in page_view_counts_map.iter() {
+                if !is_synced {
+                    pages_to_update_views.push((article_url.to_owned(), *view_count));
+                }
+            }
+        }
+
+        let mut view_count_updates = vec![];
+        for (article_url, view_count) in pages_to_update_views {
+            view_count_updates.push(
+                Article::ActiveModel {
+                    article_url: Set(article_url),
+                    view_cnt: Set(Some(view_count as i32)),
+                    ..Default::default()
+                }
+                .update(self.database.connection()),
+            )
+        }
+
+        futures::future::join_all(view_count_updates).await;
+
+        Ok(())
+    }
 }
 
 fn get_string_from_json_value(val: Option<&Value>) -> String {
@@ -122,7 +178,10 @@ fn get_string_from_json_value(val: Option<&Value>) -> String {
 }
 
 impl ProdArticleContext {
-    pub async fn new(database: Arc<dyn Database>, file_header_path: &str) -> Self {
+    pub async fn new(
+        database: Arc<dyn Database>,
+        file_header_path: &str,
+    ) -> Result<Self, ServerError> {
         let mut article_metadata = HashMap::new();
         let file_header_json = fs::read_to_string(file_header_path).await.unwrap();
         for (article_url, page_data) in serde_json::from_str::<Value>(&file_header_json)
@@ -144,9 +203,35 @@ impl ProdArticleContext {
             );
         }
 
-        ProdArticleContext {
-            database,
+        Ok(ProdArticleContext {
             article_metadata,
-        }
+            page_view_counts_map: std::sync::Mutex::new(
+                Self::get_article_visitor_counts(&*database).await?,
+            ),
+            database,
+        })
+    }
+
+    async fn get_article_visitor_counts(
+        db: &dyn Database,
+    ) -> Result<HashMap<String, (u32, bool)>, ServerError> {
+        Ok(Article::Entity::find()
+            .select_only()
+            .column_as(Article::Column::ArticleUrl, "article_url")
+            .column_as(Article::Column::ViewCnt, "view_count")
+            .into_model::<ArticlePageAndViewCount>()
+            .all(db.connection())
+            .await?
+            .into_iter()
+            .map(|page_and_view_count| {
+                (
+                    page_and_view_count.article_url,
+                    (
+                        page_and_view_count.view_count.unwrap_or_default() as u32,
+                        true,
+                    ),
+                )
+            })
+            .collect())
     }
 }

@@ -7,6 +7,7 @@ use axum::response::{Html, IntoResponse, Redirect, Response};
 use axum_sessions::extractors::ReadableSession;
 use dojang::Dojang;
 
+use super::article::ArticlePageRendererContext;
 use super::index::IndexPageRendererContext;
 use super::renderer::{InputValue, RequestScopedInputs};
 use crate::context::article_context::ArticleContext;
@@ -14,6 +15,7 @@ use crate::context::comment_context::CommentContext;
 use crate::context::context::{Context, ProdContext};
 use crate::context::site_stat_context::SiteStatContext;
 use crate::error::errors::ServerError;
+use crate::user::user_info::UserInfo;
 
 #[async_trait]
 pub trait PageRendererContext
@@ -82,10 +84,16 @@ impl ProdPageContext {
         };
 
         page_context.register_renderer(Box::new(IndexPageRendererContext::new(
+            dojang.clone(),
+            comment_context.clone(),
+            article_context.clone(),
+            site_stat_context,
+        )))?;
+
+        page_context.register_renderer(Box::new(ArticlePageRendererContext::new(
             dojang,
             comment_context,
             article_context,
-            site_stat_context,
         )))?;
 
         Ok(page_context)
@@ -114,11 +122,31 @@ impl ProdPageContext {
     }
 }
 
-pub struct ArticlePageRequestScopedInputs {}
+pub struct ArticlePageRequestScopedInputs {
+    user_info: Option<UserInfo>,
+}
 
 impl RequestScopedInputs for ArticlePageRequestScopedInputs {
     fn get_input_valuess(&self) -> Result<Vec<(String, InputValue)>, ServerError> {
-        Ok(vec![])
+        let user_info = match &self.user_info {
+            Some(user_info) => InputValue::NonCacheable(serde_json::to_value(user_info).unwrap()),
+            _ => InputValue::Cacheable(serde_json::Value::Null, /*etag=*/ 0),
+        };
+
+        Ok(vec![
+            ("user".to_owned(), user_info),
+            (
+                // TODO: This should be parsed from the user agent string.
+                "is_mobile".to_owned(),
+                InputValue::Cacheable(serde_json::to_value(false).unwrap(), /*etag=*/ 0),
+            ),
+        ])
+    }
+}
+
+impl ArticlePageRequestScopedInputs {
+    fn new(user_info: Option<UserInfo>) -> Self {
+        Self { user_info }
     }
 }
 
@@ -127,13 +155,21 @@ pub async fn page_handler(
     State(context): State<Arc<ProdContext>>,
     session: ReadableSession,
 ) -> Response {
+    let user_info = UserInfo::get_user_info(session);
     let page = context
         .page_context()
-        .render_page(&page_url, Arc::new(ArticlePageRequestScopedInputs {}))
+        .render_page(
+            &page_url,
+            Arc::new(ArticlePageRequestScopedInputs::new(user_info)),
+        )
         .await;
+
     match page {
         Ok(page) => Html(page).into_response(),
-        Err(_) => Redirect::temporary("/").into_response(),
+        Err(e) => {
+            println!("Err : {:?}", e);
+            Redirect::temporary("/").into_response()
+        }
     }
 }
 

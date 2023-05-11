@@ -8,8 +8,6 @@ use google_analyticsreporting4::AnalyticsReporting;
 use hyper::client::HttpConnector;
 use hyper_rustls::HttpsConnector;
 use std::collections::HashMap;
-use std::sync::Arc;
-use tokio::time::*;
 
 use crate::error::errors::ServerError;
 
@@ -19,12 +17,11 @@ where
     Self: Send + Sync,
 {
     fn get_num_visitors_per_day(&self, num_days: i32) -> Vec<u32>;
-
-    async fn fetch(&self) -> Result<(), ServerError>;
+    async fn fetch_site_stat(&self) -> Result<(), ServerError>;
 }
 
 pub struct ProdSiteStatContext {
-    pub visitor_counts: std::sync::RwLock<HashMap<String, u32>>,
+    pub visitor_counts_per_day: std::sync::RwLock<HashMap<String, u32>>,
     pub analytics_hub: AnalyticsReporting<HttpsConnector<HttpConnector>>,
 }
 
@@ -34,7 +31,7 @@ impl SiteStatContext for ProdSiteStatContext {
         get_days_string_starting_from_today(num_days)
             .into_iter()
             .map(|day| {
-                self.visitor_counts
+                self.visitor_counts_per_day
                     .read()
                     .unwrap()
                     .get(&day)
@@ -43,7 +40,7 @@ impl SiteStatContext for ProdSiteStatContext {
             .collect()
     }
 
-    async fn fetch(&self) -> Result<(), ServerError> {
+    async fn fetch_site_stat(&self) -> Result<(), ServerError> {
         let result = self
             .analytics_hub
             .reports()
@@ -81,7 +78,7 @@ fn create_analytics_user_count_request() -> GetReportsRequest {
 }
 
 impl ProdSiteStatContext {
-    pub async fn new(service_account_key_path: &str) -> Result<Self, std::io::Error> {
+    pub async fn new(service_account_key_path: &str) -> Result<Self, ServerError> {
         let service_account_key =
             yup_oauth2::read_service_account_key(service_account_key_path).await?;
 
@@ -100,7 +97,7 @@ impl ProdSiteStatContext {
         let hub = AnalyticsReporting::new(hyper, authenticator);
 
         Ok(Self {
-            visitor_counts: std::sync::RwLock::new(HashMap::new()),
+            visitor_counts_per_day: std::sync::RwLock::new(HashMap::new()),
             analytics_hub: hub,
         })
     }
@@ -158,7 +155,7 @@ impl ProdSiteStatContext {
                 .parse::<u32>()
                 .unwrap();
 
-            self.visitor_counts
+            self.visitor_counts_per_day
                 .write()
                 .unwrap()
                 .insert(date.clone(), num_visits);

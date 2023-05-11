@@ -4,7 +4,7 @@ use async_trait::async_trait;
 use dojang::Dojang;
 use serde_json::Value;
 
-use crate::{error::errors::ServerError, user::user_info::UserInfo};
+use crate::error::errors::ServerError;
 
 type Etag = i64;
 
@@ -32,6 +32,29 @@ where
 {
     // Top level field 이름들과 현재 value 들을 얻는다.
     fn get_input_valuess(&self) -> Result<Vec<(String, InputValue)>, ServerError>;
+}
+
+// 만약에 TopLevelInput 이 그냥 static 데이터를 리턴하는 경우 간단히 사용할 수 있는 trait.
+pub trait StaticTopLevelPageInput {
+    fn static_input_name(&self) -> &'static str;
+
+    fn static_input(&self) -> Value;
+}
+
+#[async_trait]
+impl<T> TopLevelPageInput for T
+where
+    T: StaticTopLevelPageInput + Send + Sync,
+{
+    // Top level field 이름.
+    fn input_name(&self) -> &'static str {
+        self.static_input_name()
+    }
+
+    // 현재 Value 를 얻는다.
+    async fn get_input_value(&self) -> Result<InputValue, ServerError> {
+        Ok(InputValue::Cacheable(self.static_input(), /*etag=*/0))
+    }
 }
 
 pub struct PageRenderer {

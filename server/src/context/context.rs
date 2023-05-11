@@ -6,6 +6,7 @@ use dojang::Dojang;
 use super::article_context::{ArticleContext, ProdArticleContext};
 use super::comment_context::{CommentContext, ProdCommentContext};
 use super::site_stat_context::{ProdSiteStatContext, SiteStatContext};
+use super::user_context::{ProdUserContext, UserContext};
 use crate::db::db::{Database, ProdDatabase};
 use crate::error::errors::ServerError;
 use crate::page::page::{PageContext, ProdPageContext};
@@ -16,6 +17,7 @@ pub trait Context {
     fn article_context(&self) -> Arc<dyn ArticleContext>;
     fn page_context(&self) -> Arc<dyn PageContext>;
     fn site_stat_context(&self) -> Arc<dyn SiteStatContext>;
+    fn user_context(&self) -> Arc<dyn UserContext>;
     fn dojang(&self) -> Arc<Mutex<Dojang>>;
 }
 
@@ -25,6 +27,7 @@ pub struct ProdContext {
     article_context: Arc<ProdArticleContext>,
     page_context: Arc<ProdPageContext>,
     site_stat_context: Arc<ProdSiteStatContext>,
+    user_context: Arc<ProdUserContext>,
     dojang: Arc<Mutex<Dojang>>,
 }
 
@@ -46,12 +49,13 @@ impl ProdContext {
     ) -> Result<Self, ServerError> {
         let database = Arc::new(ProdDatabase::new(connection_string).await?);
         let comment_context = Arc::new(ProdCommentContext::new(database.clone()));
-        let article_context = Arc::new(ProdArticleContext::new(database.clone(), page_path).await);
+        let article_context = Arc::new(ProdArticleContext::new(database.clone(), page_path).await?);
         let site_state_context = Arc::new(
             ProdSiteStatContext::new(service_account_key)
                 .await
                 .map_err(|err| ServerError::Internal(err.to_string()))?,
         );
+        let user_context = Arc::new(ProdUserContext::new(database.clone()).await);
 
         let mut dojang = Dojang::new();
         dojang
@@ -94,6 +98,7 @@ impl ProdContext {
                 dojang.clone(),
             )?),
             site_stat_context: site_state_context.clone(),
+            user_context: user_context.clone(),
             dojang: dojang.clone(),
         })
     }
@@ -118,6 +123,10 @@ impl Context for ProdContext {
 
     fn site_stat_context(&self) -> Arc<dyn SiteStatContext> {
         self.site_stat_context.clone()
+    }
+
+    fn user_context(&self) -> Arc<dyn UserContext> {
+        self.user_context.clone()
     }
 
     fn dojang(&self) -> Arc<Mutex<Dojang>> {
