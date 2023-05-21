@@ -71,6 +71,8 @@ where
     // Get metadata of every article available.
     fn get_every_article_metadata(&self) -> Vec<ArticleMetadata>;
 
+    fn get_category_listing_of_article(&self, article_url: &str) -> Option<String>;
+
     // 증가된 현재 page view count 를 return 한다.
     fn increment_page_view_count(&self, article_url: &str) -> u32;
 
@@ -83,7 +85,10 @@ pub struct ProdArticleContext {
     article_metadata: HashMap<String, ArticleMetadata>,
 
     // 페이지 별 조회수 담은 map.
-    pub page_view_counts_map: std::sync::Mutex<HashMap<String, (u32, /*synced=*/ bool)>>,
+    page_view_counts_map: std::sync::Mutex<HashMap<String, (u32, /*synced=*/ bool)>>,
+
+    // Page 별 category listing.
+    category_listing_map: HashMap<String, String>,
 }
 
 #[async_trait]
@@ -168,6 +173,12 @@ impl ArticleContext for ProdArticleContext {
 
         Ok(())
     }
+
+    fn get_category_listing_of_article(&self, article_url: &str) -> Option<String> {
+        self.category_listing_map
+            .get(article_url)
+            .map(|category| category.to_owned())
+    }
 }
 
 fn get_string_from_json_value(val: Option<&Value>) -> String {
@@ -180,10 +191,11 @@ fn get_string_from_json_value(val: Option<&Value>) -> String {
 impl ProdArticleContext {
     pub async fn new(
         database: Arc<dyn Database>,
-        file_header_path: &str,
+        file_header_json_path: &str,
+        page_path_json_path: &str,
     ) -> Result<Self, ServerError> {
         let mut article_metadata = HashMap::new();
-        let file_header_json = fs::read_to_string(file_header_path).await.unwrap();
+        let file_header_json = fs::read_to_string(file_header_json_path).await.unwrap();
         for (article_url, page_data) in serde_json::from_str::<Value>(&file_header_json)
             .unwrap()
             .as_object()
@@ -203,12 +215,23 @@ impl ProdArticleContext {
             );
         }
 
+        let page_path_json = fs::read_to_string(page_path_json_path).await.unwrap();
+        let page_path_json = serde_json::from_str::<Value>(&page_path_json).unwrap();
+
+        let category_listing_map = build_category_listing_helper(
+            &page_path_json,
+            &article_metadata,
+            "".to_owned(),
+            1,
+        );
+
         Ok(ProdArticleContext {
             article_metadata,
             page_view_counts_map: std::sync::Mutex::new(
                 Self::get_article_visitor_counts(&*database).await?,
             ),
             database,
+            category_listing_map
         })
     }
 
@@ -234,4 +257,112 @@ impl ProdArticleContext {
             })
             .collect())
     }
+}
+
+fn build_category_listing_helper(
+    root: &Value,
+    article_metdata_map: &HashMap<String, ArticleMetadata>,
+    mut category_html: String,
+    dir_depth: u64,
+) -> HashMap<String, String> {
+    let mut page_to_html = HashMap::<String, String>::new();
+
+    if dir_depth != 1 {
+        category_html.push_str(&format!("<div class='inner-menu{}'>", dir_depth - 1));
+    }
+    for (dir_name, folder) in root.as_object().unwrap() {
+        if dir_name == "files" {
+            // Case where file is taken.
+            let files = folder.as_array().unwrap();
+            for chosen_file in 0..files.len() {
+                let mut html = category_html.clone();
+                for i in 0..chosen_file {
+                    let article_url = files[i].as_str().unwrap();
+                    html.push_str(&format!(
+                        "<a class='sidebar-nav-item file' href='/{}' \
+                             name='{}'>{}</a>\n",
+                        article_url,
+                        article_url,
+                        article_metdata_map
+                            .get(article_url)
+                            .map_or("".to_string(), |metadata| {
+                                metadata.category_title.to_owned()
+                            })
+                    ));
+                }
+
+                let article_url = files[chosen_file].as_str().unwrap();
+                html.push_str(&format!(
+                    "<a class='sidebar-nav-item file' href='/{}' \
+                         name='{}' style='background-color: rgba(255, 255, \
+                         255, 0.33);'>{}</a>\n",
+                    article_url,
+                    article_url,
+                    article_metdata_map
+                        .get(article_url)
+                        .map_or("".to_string(), |metadata| {
+                            metadata.category_title.to_owned()
+                        })
+                ));
+
+                for i in chosen_file + 1..files.len() {
+                    let article_url = files[i].as_str().unwrap();
+                    html.push_str(&format!(
+                        "<a class='sidebar-nav-item file' href='/{}' \
+                             name='{}'>{}</a>\n",
+                        article_url,
+                        article_url,
+                        article_metdata_map
+                            .get(article_url)
+                            .map_or("".to_string(), |metadata| {
+                                metadata.category_title.to_owned()
+                            })
+                    ));
+                }
+
+                page_to_html.insert(files[chosen_file].as_str().unwrap().to_string(), html);
+            }
+        } else {
+            // The case where the dir is open.
+            let mut when_dir_open = category_html.clone();
+            when_dir_open.push_str(&format!(
+                concat!(
+                    "<a class='sidebar-nav-item dir open-cat' name='{}'>",
+                    "<i class='xi-caret-down-min' \
+                         style='font-size:0.75em;'></i>&nbsp;&nbsp;{}</a>\n"
+                ),
+                dir_name, dir_name
+            ));
+
+            let children_html = build_category_listing_helper(
+                folder,
+                article_metdata_map,
+                when_dir_open,
+                dir_depth + 1,
+            );
+
+            // The case where the dir is not open.
+            let dir_html = format!(
+                "<a class='sidebar-nav-item dir' name='{}'><i \
+                     class='xi-plus-square' \
+                     style='font-size:0.75em;'></i>&nbsp;&nbsp;{}</a>\n",
+                dir_name, dir_name
+            );
+            category_html.push_str(&dir_html);
+
+            for html in page_to_html.values_mut() {
+                html.push_str(&dir_html);
+            }
+
+            page_to_html.extend(children_html);
+        }
+    }
+
+    if dir_depth != 1 {
+        for html in page_to_html.values_mut() {
+            html.push_str("</div>");
+        }
+    }
+
+    page_to_html
 }

@@ -77,6 +77,7 @@ impl ProdPageContext {
         article_context: Arc<dyn ArticleContext>,
         site_stat_context: Arc<dyn SiteStatContext>,
         dojang: Arc<Mutex<Dojang>>,
+        page_path_json_path: &str,
     ) -> Result<Self, ServerError> {
         let mut page_context = ProdPageContext {
             page_renderers: vec![],
@@ -94,6 +95,7 @@ impl ProdPageContext {
             dojang,
             comment_context,
             article_context,
+            page_path_json_path,
         )))?;
 
         Ok(page_context)
@@ -155,6 +157,7 @@ pub async fn page_handler(
     State(context): State<Arc<ProdContext>>,
     session: ReadableSession,
 ) -> Response {
+    println!("page url : {}", page_url);
     let user_info = UserInfo::get_user_info(session);
     let page = context
         .page_context()
@@ -182,6 +185,7 @@ impl RequestScopedInputs for IndexPageRequestScopedInputs {
 }
 
 pub async fn index_page_handler(State(context): State<Arc<ProdContext>>) -> Response {
+    println!("index page!");
     let page = context
         .page_context()
         .render_page(&"", Arc::new(IndexPageRequestScopedInputs {}))

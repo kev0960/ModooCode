@@ -8,7 +8,7 @@ use crate::error::errors::ServerError;
 
 type Etag = i64;
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub enum InputValue {
     NonCacheable(Value),
     Cacheable(Value, Etag),
@@ -53,7 +53,7 @@ where
 
     // 현재 Value 를 얻는다.
     async fn get_input_value(&self) -> Result<InputValue, ServerError> {
-        Ok(InputValue::Cacheable(self.static_input(), /*etag=*/0))
+        Ok(InputValue::Cacheable(self.static_input(), /*etag=*/ 0))
     }
 }
 
@@ -140,7 +140,6 @@ impl PageRenderer {
             }
         }
 
-        println!("Template context : {:?}", template_context);
         let rendered_page = self
             .dojang
             .lock()
@@ -152,10 +151,10 @@ impl PageRenderer {
             .map_err(|err| ServerError::Internal(err))?;
 
         if is_all_cacheable {
-            self.rendered_page_cache.put(etags, rendered_page);
+            self.rendered_page_cache.put(etags, rendered_page.clone());
         }
 
-        Ok("".to_owned())
+        Ok(rendered_page)
     }
 
     async fn fetch_caches(&self) -> Result<Vec<InputValue>, ServerError> {

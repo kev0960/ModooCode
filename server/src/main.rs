@@ -30,6 +30,7 @@ async fn main() {
             &dotenv::var("DATABASE_URL").unwrap(),
             &dotenv::var("SERVICE_ACCOUNT_KEY_PATH").unwrap(),
             &dotenv::var("FILE_HEADERS").unwrap(),
+            &dotenv::var("PAGE_PATH").unwrap(),
         )
         .await
         .unwrap(),
@@ -41,7 +42,7 @@ async fn main() {
         .with_state(state)
         .layer(session_layer);
 
-    axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
+    axum::Server::bind(&"0.0.0.0:8080".parse().unwrap())
         .serve(app.into_make_service())
         .await
         .unwrap();

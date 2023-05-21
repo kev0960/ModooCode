@@ -22,8 +22,11 @@ impl ArticlePageRendererContext {
         dojang: Arc<Mutex<Dojang>>,
         comment_context: Arc<dyn CommentContext>,
         article_context: Arc<dyn ArticleContext>,
+        page_path_json_path: &str,
     ) -> Self {
         let article_metdatas = article_context.get_every_article_metadata();
+
+        let page_path_json = std::fs::read_to_string(page_path_json_path).unwrap();
 
         let mut article_page_renderer = HashMap::new();
         for metadata in &article_metdatas {
@@ -48,9 +51,12 @@ impl ArticlePageRendererContext {
                         Box::new(ArticleFileInfo::new(metadata.clone())),
                         Box::new(AllArticleMetadata::new(&article_metdatas)),
                         Box::new(ArticleContentUrl::new(&metadata.article_url)),
-                        // TODO: Implement.
-                        Box::new(CategoryHtml::new(&"")),
-                        Box::new(PageInfos::new(&"")),
+                        Box::new(CategoryHtml::new(
+                            &article_context
+                                .get_category_listing_of_article(&metadata.article_url)
+                                .unwrap_or_default(),
+                        )),
+                        Box::new(PageInfos::new(&page_path_json)),
                     ],
                     1,
                     dojang.clone(),
