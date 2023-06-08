@@ -331,10 +331,10 @@ function postGenericComment(parent_id, content, password, name) {
             body: JSON.stringify({
               parent_id: parent_id,
               content: content,
-              password: password,
+              password: password || '',
               author_name: name,
               article_url: article_url,
-              token: token,
+              captcha_token: token,
             })
           }).then(data => {
             $('#adding-comment').hide();
@@ -766,7 +766,13 @@ function BuildTOC() {
 function GoogleSignIn(sign_in) {
   fetch('/auth/goog', {
     method: 'post',
-    body: sign_in.credential,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      token: sign_in.credential
+    }),
   }).then(function(response) {
     let current_url = window.location.href;
     let content_new_comment = $('#posted-comment').val();

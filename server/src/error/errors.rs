@@ -1,3 +1,5 @@
+use axum::response::IntoResponse;
+use hyper::StatusCode;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
@@ -22,4 +24,32 @@ pub enum ServerError {
 
     #[error("io error: {0}")]
     IoError(#[from] std::io::Error),
+}
+
+impl IntoResponse for ServerError {
+    fn into_response(self) -> axum::response::Response {
+        println!("Error : {:?}", self);
+        match self {
+            ServerError::BadRequest(e) => (
+                StatusCode::BAD_REQUEST, e.to_string()).into_response(),
+            ServerError::Internal(e) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response()
+            }
+            ServerError::DatabaseError(e) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response()
+            }
+            ServerError::JsonError(e) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response()
+            }
+            ServerError::BadJWT(e) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response()
+            }
+            ServerError::BadReqwest(e) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response()
+            }
+            ServerError::IoError(e) => {
+                (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response()
+            }
+        }
+    }
 }

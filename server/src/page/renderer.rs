@@ -96,7 +96,7 @@ impl PageRenderer {
         );
 
         // If all values are cacheable, then check the page cache.
-        let is_all_cacheable = caches.iter().any(|cache| {
+        let is_all_cacheable = caches.iter().all(|cache| {
             if let InputValue::Cacheable(_, _) = cache {
                 true
             } else {

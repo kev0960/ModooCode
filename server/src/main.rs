@@ -5,8 +5,13 @@ use axum::{
     Router,
 };
 use axum_sessions::{async_session::MemoryStore, SessionLayer};
-use page::page::{index_page_handler, page_handler};
+use page::{
+    page::{index_page_handler, page_handler},
+    write_comment::write_comment,
+};
 use rand::Rng;
+use scheduler::scheduler::start_periodic_jobs;
+use user::goog_login::goog_login_handler;
 
 use crate::context::context::ProdContext;
 
@@ -15,6 +20,7 @@ mod db;
 mod entity;
 mod error;
 mod page;
+mod scheduler;
 mod user;
 
 #[tokio::main]
@@ -36,9 +42,13 @@ async fn main() {
         .unwrap(),
     );
 
+    start_periodic_jobs(state.clone());
+
     let app = Router::new()
         .route("/", get(index_page_handler))
         .route("/:article_url", get(page_handler))
+        .route("/auth/goog", post(goog_login_handler))
+        .route("/write-comment", post(write_comment))
         .with_state(state)
         .layer(session_layer);
 

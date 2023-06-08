@@ -132,7 +132,7 @@
             </div>
             <% for i in range(5) { %>
             <div class="new-article-entry">
-              <a href="<%= recent_articles[i].url %>"><%= recent_articles[i].title %></a>
+              <a href="<%= recent_articles[i].article_url %>"><%= recent_articles[i].title %></a>
               <% if (i < 2) { %>
               <span class="new-article-new">New</span>
               <% } %>

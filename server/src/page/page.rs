@@ -157,7 +157,6 @@ pub async fn page_handler(
     State(context): State<Arc<ProdContext>>,
     session: ReadableSession,
 ) -> Response {
-    println!("page url : {}", page_url);
     let user_info = UserInfo::get_user_info(session);
     let page = context
         .page_context()
@@ -185,7 +184,6 @@ impl RequestScopedInputs for IndexPageRequestScopedInputs {
 }
 
 pub async fn index_page_handler(State(context): State<Arc<ProdContext>>) -> Response {
-    println!("index page!");
     let page = context
         .page_context()
         .render_page(&"", Arc::new(IndexPageRequestScopedInputs {}))

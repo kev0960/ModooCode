@@ -57,6 +57,18 @@ where
     async fn get_recent_comments(&self, num_comments: u64)
         -> Result<Vec<CommentData>, ServerError>;
 
+    async fn create_comment(
+        &self,
+        article_url: &str,
+        parent_id: Option<i32>,
+        content: &str,
+        author_name: &str,
+        password: &str,
+        author_id: Option<i32>,
+        author_email: Option<&str>,
+        image_link: Option<&str>,
+    ) -> Result<(), ServerError>;
+
     async fn get_latest_comment_timestamp_on_article(
         &self,
         article_url: &str,
@@ -89,6 +101,86 @@ impl CommentContext for ProdCommentContext {
             .into_iter()
             .map(|comment| CommentData::from(comment))
             .collect())
+    }
+
+    async fn create_comment(
+        &self,
+        article_url: &str,
+        parent_id: Option<i32>,
+        content: &str,
+        author_name: &str,
+        password: &str,
+        author_id: Option<i32>,
+        author_email: Option<&str>,
+        image_link: Option<&str>,
+    ) -> Result<(), ServerError> {
+        let parent_comment = if let Some(parent_id) = parent_id {
+            if parent_id == -1 {
+                None
+            } else {
+                let parent_comment = Comment::Entity::find_by_id(parent_id)
+                    .one(self.database.connection())
+                    .await?;
+                if parent_comment.is_none() {
+                    return Err(ServerError::BadRequest(format!(
+                        "parent id : {} does not exist",
+                        parent_id
+                    )));
+                }
+                Some(CommentData::from(parent_comment.unwrap()))
+            }
+        } else {
+            None
+        };
+
+        let txn = self.database.connection().begin().await?;
+
+        // First create a comment.
+        let created_comment = Comment::ActiveModel {
+            article_url: Set(article_url.to_owned()),
+            comment_date: Set(Some(chrono::Utc::now().naive_utc())),
+            modified_date: Set(Some(chrono::Utc::now().naive_utc())),
+            author_name: Set(Some(author_name.to_owned())),
+            author_email: Set(author_email.map(|email| email.to_owned())),
+            image_link: Set(image_link.map(|link| link.to_owned())),
+            content: Set(content.to_owned()),
+            password: Set(password.to_owned()),
+            is_md: Set(false),
+            author_id: Set(author_id),
+            ..Default::default()
+        }
+        .insert(&txn)
+        .await?;
+
+        if let Some(parent_comment) = parent_comment {
+            let mut parent_reply_ids = parent_comment.reply_ids.unwrap_or_default();
+            parent_reply_ids.push(created_comment.comment_id);
+
+            Comment::ActiveModel {
+                comment_id: Set(parent_comment.comment_id),
+                reply_ids: Set(Some(parent_reply_ids)),
+                ..Default::default()
+            }
+            .update(&txn)
+            .await?;
+        }
+
+        txn.commit().await?;
+
+        self.lastest_comment_timestamp_of_articles
+            .write()
+            .unwrap()
+            .insert(
+                article_url.to_string(),
+                Some(
+                    created_comment
+                        .comment_date
+                        .unwrap_or_default()
+                        .timestamp_millis(),
+                ),
+            );
+
+        Ok(())
     }
 
     async fn get_latest_comment_timestamp_on_article(

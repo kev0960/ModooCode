@@ -160,6 +160,7 @@ impl ProdSiteStatContext {
                 .unwrap()
                 .insert(date.clone(), num_visits);
         }
+
         Ok(())
     }
 }

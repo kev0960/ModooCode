@@ -10,8 +10,9 @@ use super::renderer::{
     InputValue, PageRenderer, RequestScopedInputs, StaticTopLevelPageInput, TopLevelPageInput,
 };
 use crate::context::article_context::{ArticleContext, ArticleMetadata};
-use crate::context::comment_context::CommentContext;
+use crate::context::comment_context::{CommentContext, CommentData};
 use crate::error::errors::ServerError;
+use crate::page::comment_html::create_comment_list_html;
 
 pub struct ArticlePageRendererContext {
     article_page_renderer: HashMap<String, PageRenderer>,
@@ -159,18 +160,25 @@ impl TopLevelPageInput for CommentsInArticle {
                     }
                 }
 
-                let comments = self
+                let comment_id_to_comment = self
                     .comment_context
                     .get_comments_on_article(&self.article_url, 0)
-                    .await?;
+                    .await?
+                    .into_iter()
+                    .map(|comment| (comment.comment_id, comment))
+                    .collect::<HashMap<i32, CommentData>>();
 
-                let comments = to_value(comments)?;
+                let comments = to_value(create_comment_list_html(&comment_id_to_comment, 0, 30))?;
                 *self.cached_comment.write().unwrap() = Some((latest_timestamp, comments.clone()));
+
                 return Ok(InputValue::Cacheable(comments, latest_timestamp));
             }
             None => {
                 // This article has no comment.
-                Ok(InputValue::Cacheable(serde_json::Value::Null, 0))
+                Ok(InputValue::Cacheable(
+                    serde_json::Value::String("".to_string()),
+                    0,
+                ))
             }
         }
     }

@@ -221,6 +221,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "axum-macros"
+version = "0.3.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2bb524613be645939e280b7279f7b017f98cf7f5ef084ec374df373530e73277"
+dependencies = [
+ "heck 0.4.1",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.15",
+]
+
+[[package]]
 name = "axum-sessions"
 version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2256,12 +2268,14 @@ version = "0.1.0"
 dependencies = [
  "async-trait",
  "axum",
+ "axum-macros",
  "axum-sessions",
  "chrono",
  "dojang",
  "dotenv",
  "futures",
  "google-analyticsreporting4",
+ "html-escape",
  "hyper",
  "hyper-rustls 0.24.0",
  "jsonwebtoken",

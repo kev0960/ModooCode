@@ -8,6 +8,7 @@ authors = ["Jaebum Lee <kev0960@gmail.com>"]
 async-trait = "0.1.68"
 axum = "0.6.16"
 axum-sessions = "0.5.0"
+axum-macros = "0.3.7"
 chrono = "0.4.24"
 dojang = { path = "../../dojang" }
 dotenv = "0.15.0"
@@ -25,3 +26,4 @@ serde_json = "1.0.68"
 thiserror = "1.0.40"
 tokio = { version = "1.27.0", features = ["full"] }
 yup-oauth2 = "8.3.0"
+html-escape = "0.2.13"
