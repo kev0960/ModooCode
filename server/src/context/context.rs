@@ -41,6 +41,21 @@ fn timestamp_to_kor_time(timestamp: i64, format: String) -> String {
     datetime.format(&format).to_string()
 }
 
+fn add_dojang_template(template_file_path: &str, dojang: &mut Dojang) -> Result<(), ServerError> {
+    let template_file_name = &template_file_path
+        [template_file_path.rfind('/').unwrap() + 1..template_file_path.rfind('.').unwrap()];
+
+    println!("tmpl : {}", template_file_name);
+    dojang
+        .add(
+            template_file_name.to_owned(),
+            std::fs::read_to_string(template_file_path).unwrap(),
+        )
+        .map_err(|e| ServerError::Internal(e))?;
+
+    Ok(())
+}
+
 impl ProdContext {
     pub async fn new(
         connection_string: &str,
@@ -64,30 +79,15 @@ impl ProdContext {
             .add_function_2("timestamp_to_kor_time".to_string(), timestamp_to_kor_time)
             .unwrap();
 
-        dojang
-            .add(
-                "page".to_string(),
-                std::fs::read_to_string("templates/page.html").unwrap(),
-            )
-            .map_err(|e| ServerError::Internal(e))?;
-        dojang
-            .add(
-                "header-common".to_string(),
-                std::fs::read_to_string("templates/header-common.html").unwrap(),
-            )
-            .map_err(|e| ServerError::Internal(e))?;
-        dojang
-            .add(
-                "sidebar".to_string(),
-                std::fs::read_to_string("templates/sidebar.html").unwrap(),
-            )
-            .map_err(|e| ServerError::Internal(e))?;
-        dojang
-            .add(
-                "index".to_string(),
-                std::fs::read_to_string("templates/index.html").unwrap(),
-            )
-            .map_err(|e| ServerError::Internal(e))?;
+        /*
+        add_dojang_template("templates/page.html", &mut dojang)?;
+        add_dojang_template("templates/header-common.html", &mut dojang)?;
+        add_dojang_template("templates/sidebar.html", &mut dojang)?;
+        add_dojang_template("templates/index.html", &mut dojang)?;
+        */
+        add_dojang_template("templates/index.html", &mut dojang)?;
+        add_dojang_template("templates/new/new_page.html", &mut dojang)?;
+        add_dojang_template("templates/new/category.html", &mut dojang)?;
 
         let dojang = Arc::new(Mutex::new(dojang));
         Ok(ProdContext {

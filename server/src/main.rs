@@ -6,7 +6,8 @@ use axum::{
 };
 use axum_sessions::{async_session::MemoryStore, SessionLayer};
 use page::{
-    page::{index_page_handler, page_handler},
+    get_comment::get_comment,
+    page::{index_page_handler, inst_page_handler, notice_page_handler, page_handler, category_page_handler},
     write_comment::write_comment,
 };
 use rand::Rng;
@@ -46,9 +47,16 @@ async fn main() {
 
     let app = Router::new()
         .route("/", get(index_page_handler))
+        // For article pages.
         .route("/:article_url", get(page_handler))
+        .route("/category/:category_name", get(category_page_handler))
+        .route("/en/inst/:article_url", get(inst_page_handler))
+        .route("/notice/:notice_url", get(notice_page_handler))
+        // For authentication.
         .route("/auth/goog", post(goog_login_handler))
+        // Comment related.
         .route("/write-comment", post(write_comment))
+        .route("/get-comment", post(get_comment))
         .with_state(state)
         .layer(session_layer);
 

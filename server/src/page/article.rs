@@ -6,6 +6,7 @@ use dojang::Dojang;
 use serde_json::{to_value, Value};
 
 use super::page::PageRendererContext;
+use super::page_header_category::create_page_header_category_list;
 use super::renderer::{
     InputValue, PageRenderer, RequestScopedInputs, StaticTopLevelPageInput, TopLevelPageInput,
 };
@@ -34,7 +35,7 @@ impl ArticlePageRendererContext {
             article_page_renderer.insert(
                 metadata.article_url.clone(),
                 PageRenderer::new(
-                    "page",
+                    "new_page",
                     vec![
                         Box::new(CommentsInArticle::new(
                             comment_context.clone(),
@@ -58,6 +59,7 @@ impl ArticlePageRendererContext {
                                 .unwrap_or_default(),
                         )),
                         Box::new(PageInfos::new(&page_path_json)),
+                        Box::new(PageHeaderCategory::new(&page_path_json)),
                     ],
                     1,
                     dojang.clone(),
@@ -283,8 +285,12 @@ impl StaticTopLevelPageInput for AllArticleMetadata {
 
 impl AllArticleMetadata {
     fn new(metadatas: &Vec<ArticleMetadata>) -> Self {
+        let metadata_map = metadatas
+            .into_iter()
+            .map(|metadata| (metadata.article_url.to_owned(), metadata.clone()))
+            .collect::<HashMap<_, _>>();
         Self {
-            article_data: to_value(metadatas).unwrap(),
+            article_data: to_value(metadata_map).unwrap(),
         }
     }
 }
@@ -354,7 +360,31 @@ impl StaticTopLevelPageInput for PageInfos {
 impl PageInfos {
     fn new(page_infos: &str) -> Self {
         Self {
-            page_infos: to_value(page_infos).unwrap(),
+            page_infos: serde_json::from_str(page_infos).unwrap(),
+        }
+    }
+}
+
+struct PageHeaderCategory {
+    page_header_category: Value,
+}
+
+impl StaticTopLevelPageInput for PageHeaderCategory {
+    fn static_input_name(&self) -> &'static str {
+        "page_header_category"
+    }
+
+    fn static_input(&self) -> Value {
+        self.page_header_category.clone()
+    }
+}
+
+impl PageHeaderCategory {
+    fn new(page_infos_json: &str) -> Self {
+        Self {
+            page_header_category: serde_json::Value::String(create_page_header_category_list(
+                page_infos_json,
+            )),
         }
     }
 }

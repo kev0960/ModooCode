@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link
+    href="https://fonts.googleapis.com/css?family=Noto+Sans+KR|Source+Code+Pro&display=swap"
+    rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="/css/new_page.css">
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/vs-fast.css">
+<link rel="stylesheet" type="text/css" href="/css/comment.css">
+<script src="/dist/new_page.bundle.js" type="text/javascript"></script>
+
+<body>
+  <header class="top-static-header">
+    <div class="top-static-header-row top-static-header-main">
+      <div class="modoocode-name">모두의 코드</div>
+      <div class="google-custom-search">
+        <div class="gcse-search" enableAutoComplete="true"></div>
+      </div>
+      <div class="login-button-div">
+        <button class="login-button">로그인</button>
+      </div>
+    </div>
+    <div class="top-static-header-row top-static-header-category">
+      <nav class="header-category">
+        <%- page_header_category %>
+      </nav>
+    </div>
+  </header>
+  <main class="main-wrap">
+    <div class="sidebar-wrap">
+      <nav class="toc-container sidebar-box">
+        <div class="toc-header sidebar-box-header">
+          목차
+        </div>
+        <ol class="toc-list">
+        </ol>
+      </nav>
+      <div class="sidebar-box">
+        <div class="sidebar-adsense-header sidebar-box-header">
+          후원 광고
+        </div>
+        <div class="adsense-sidebar">
+          <script async
+            src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <ins class="adsbygoogle"
+            style="display:inline-block;width:160px;height:600px"
+            data-ad-client="ca-pub-6608926154840997"
+            data-ad-slot="1458582864"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="article-content-wrap">
+      <article class="article-content">
+        <%- include(content_url) %>
+      </article>
+      <div id="num-comment">
+        <i class="xi-comment-o"></i>
+        <% if (num_comment > 0 ) { %>
+        댓글이 <span><%- num_comment %></span> 개 있습니다!
+        <% } else { %>
+        첫 댓글을 달아주세요!
+        <% } %>
+      </div>
+      <div id="comment-box">
+        <section id="comment-post-section">
+          <div class="post-box">
+            <div class="profile-pic">
+              <% if (user) { %>
+              <div id="username" class="small-comment font-bold">
+                <%= user.name %>
+              </div>
+              <img src="<%= user.image %>">
+              <% } else { %>
+              <img src="/img/unknown_person.png" alt="프로필 사진 없음">
+              <% } %>
+            </div>
+            <div class="text-area-wrapper">
+              <textarea id="posted-comment" class="comment-textarea"
+                placeholder="댓글은 글쓴이에게 큰 힘이 됩니다"></textarea>
+              <div class="comment-helper">
+                강좌에 관련 없이 궁금한 내용은 <a href="https://forum.modoocode.com/">여기를
+                  사용해주세요</a><i class="em em-smile"></i>
+              </div>
+            </div>
+          </div>
+          <div class="login-box">
+            <% if (!user) { %>
+            <div class="social-login">
+              <div class="small-comment">다음으로 로그인 </div>
+              <div>
+                <i class="xi-facebook-official fb-login"></i>
+                <i class="xi-google-plus goog-login"></i>
+              </div>
+            </div>
+            <div class="manual">
+              <div class="small-comment">
+                또는 직접 입력하세요 (댓글 수정시 비밀번호가 필요합니다)
+              </div>
+              <input name="name" id="name" placeholder="이름">
+              <input name="password" id="password" type="password"
+                placeholder="비밀번호">
+            </div>
+            <% } %>
+            <div id="adding-comment" class="sk-fading-circle">
+              <div class="sk-circle1 sk-circle"></div>
+              <div class="sk-circle2 sk-circle"></div>
+              <div class="sk-circle3 sk-circle"></div>
+              <div class="sk-circle4 sk-circle"></div>
+              <div class="sk-circle5 sk-circle"></div>
+              <div class="sk-circle6 sk-circle"></div>
+              <div class="sk-circle7 sk-circle"></div>
+              <div class="sk-circle8 sk-circle"></div>
+              <div class="sk-circle9 sk-circle"></div>
+              <div class="sk-circle10 sk-circle"></div>
+              <div class="sk-circle11 sk-circle"></div>
+              <div class="sk-circle12 sk-circle"></div>
+            </div>
+            <button id="post-comment" class="comment-btn">댓글 달기</button>
+          </div>
+        </section>
+        <section id="comment-list-section">
+          <ul id="root-comment-list" class="comment-list">
+          </ul>
+        </section>
+        <div id="button-box">
+          <button id="open-comment">댓글 더 보기</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
+
+<script>
+  (function () {
+    var cx = '003869586044905610715:visr8hwbmrq';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>

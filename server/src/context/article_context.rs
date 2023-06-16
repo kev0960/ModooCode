@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
 
 use async_trait::async_trait;
@@ -27,6 +27,14 @@ pub struct ArticleData {
     pub is_deleted: bool,
     pub content: String,
     pub view_cnt: Option<i32>,
+}
+
+#[derive(Default, Debug, Clone, Serialize)]
+pub struct CategoryMetadata {
+    pub category_name: String,
+    pub files: Vec<String>,
+    pub child_categories: Vec<String>,
+    pub total_num_articles_in_category: i32,
 }
 
 impl From<Article::Model> for ArticleData {
@@ -66,15 +74,26 @@ where
         article_url: &str,
     ) -> Result<Option<ArticleData>, ServerError>;
 
+    fn get_category_metadata(&self, category_name: &str) -> Option<&CategoryMetadata>;
+
     fn multi_get_article_metadata(&self, article_urls: &[String]) -> Vec<Option<ArticleMetadata>>;
 
     // Get metadata of every article available.
     fn get_every_article_metadata(&self) -> Vec<ArticleMetadata>;
 
+    // Get every category available.
+    fn get_every_category_metadata(&self) -> Vec<CategoryMetadata>;
+
     fn get_category_listing_of_article(&self, article_url: &str) -> Option<String>;
 
     // 증가된 현재 page view count 를 return 한다.
     fn increment_page_view_count(&self, article_url: &str) -> u32;
+
+    // 페이지들의 view count 를 리턴한다.
+    fn get_page_view_counts(&self, article_urls: &[String]) -> Vec<Option<u32>>;
+
+    // Returns if the article_url is the instruction.
+    fn is_instruction(&self, article_url: &str) -> bool;
 
     // Cache 된 page view count 를 db 에 저장.
     async fn save_page_view_count_to_db(&self) -> Result<(), ServerError>;
@@ -89,6 +108,12 @@ pub struct ProdArticleContext {
 
     // Page 별 category listing.
     category_listing_map: HashMap<String, String>,
+
+    // 카테고리 별 정보들.
+    category_metadata_map: HashMap<String, CategoryMetadata>,
+
+    // Reference 가능한 모든 명령어 모음.
+    instruction_pages: HashSet<String>,
 }
 
 #[async_trait]
@@ -119,6 +144,10 @@ impl ArticleContext for ProdArticleContext {
         Ok(article.map(|a| a.into()))
     }
 
+    fn get_category_metadata(&self, category_name: &str) -> Option<&CategoryMetadata> {
+        self.category_metadata_map.get(category_name)
+    }
+
     fn multi_get_article_metadata(&self, article_urls: &[String]) -> Vec<Option<ArticleMetadata>> {
         article_urls
             .into_iter()
@@ -133,6 +162,13 @@ impl ArticleContext for ProdArticleContext {
             .collect()
     }
 
+    fn get_every_category_metadata(&self) -> Vec<CategoryMetadata> {
+        self.category_metadata_map
+            .values()
+            .map(|m| m.clone())
+            .collect()
+    }
+
     fn increment_page_view_count(&self, article_url: &str) -> u32 {
         let mut page_view_count_map = self.page_view_counts_map.lock().unwrap();
         if let Some((view_count, _)) = page_view_count_map.get_mut(article_url) {
@@ -144,6 +180,14 @@ impl ArticleContext for ProdArticleContext {
 
             return 1;
         }
+    }
+
+    fn get_page_view_counts(&self, article_urls: &[String]) -> Vec<Option<u32>> {
+        let mut page_view_count_map = self.page_view_counts_map.lock().unwrap();
+        article_urls
+            .into_iter()
+            .map(|url| page_view_count_map.get(url).map(|v| v.0))
+            .collect()
     }
 
     async fn save_page_view_count_to_db(&self) -> Result<(), ServerError> {
@@ -174,6 +218,10 @@ impl ArticleContext for ProdArticleContext {
         Ok(())
     }
 
+    fn is_instruction(&self, article_url: &str) -> bool {
+        self.instruction_pages.contains(article_url)
+    }
+
     fn get_category_listing_of_article(&self, article_url: &str) -> Option<String> {
         self.category_listing_map
             .get(article_url)
@@ -186,6 +234,29 @@ fn get_string_from_json_value(val: Option<&Value>) -> String {
         Some(val) => val.as_str().unwrap_or_default().to_owned(),
         _ => "".to_owned(),
     }
+}
+
+fn get_instruction_references_in_page_path_json(val: &Value) -> HashSet<String> {
+    let mut inst_names = HashSet::new();
+
+    let inst_references = val
+        .get("")
+        .unwrap()
+        .as_object()
+        .unwrap()
+        .get("X86-64 명령어 레퍼런스")
+        .unwrap()
+        .as_object()
+        .unwrap();
+    for (_, inst_references) in inst_references {
+        if let Some(files) = inst_references.get("files") {
+            for title in files.as_array().unwrap() {
+                inst_names.insert(title.as_str().unwrap().to_owned());
+            }
+        }
+    }
+
+    inst_names
 }
 
 impl ProdArticleContext {
@@ -218,12 +289,8 @@ impl ProdArticleContext {
         let page_path_json = fs::read_to_string(page_path_json_path).await.unwrap();
         let page_path_json = serde_json::from_str::<Value>(&page_path_json).unwrap();
 
-        let category_listing_map = build_category_listing_helper(
-            &page_path_json,
-            &article_metadata,
-            "".to_owned(),
-            1,
-        );
+        let category_listing_map =
+            build_category_listing_helper(&page_path_json, &article_metadata, "".to_owned(), 1);
 
         Ok(ProdArticleContext {
             article_metadata,
@@ -231,7 +298,9 @@ impl ProdArticleContext {
                 Self::get_article_visitor_counts(&*database).await?,
             ),
             database,
-            category_listing_map
+            category_listing_map,
+            category_metadata_map: build_category_metadata_map(&page_path_json),
+            instruction_pages: get_instruction_references_in_page_path_json(&page_path_json),
         })
     }
 
@@ -365,4 +434,66 @@ fn build_category_listing_helper(
     }
 
     page_to_html
+}
+
+fn build_category_metadata_map(page_path_json: &Value) -> HashMap<String, CategoryMetadata> {
+    let root_pages = page_path_json
+        .as_object()
+        .unwrap()
+        .get("")
+        .unwrap()
+        .as_object()
+        .unwrap();
+
+    let mut metadata_map = HashMap::new();
+    for (category_name, pages) in root_pages {
+        if category_name == "files" {
+            continue;
+        }
+
+        build_category_metadata_map_helper(category_name, pages, &mut metadata_map);
+    }
+
+    metadata_map
+}
+
+fn build_category_metadata_map_helper(
+    category_name: &str,
+    category_info: &Value,
+    metadata_map: &mut HashMap<String, CategoryMetadata>,
+) -> CategoryMetadata {
+    let category_info = category_info.as_object().unwrap();
+
+    let mut category_metadata = CategoryMetadata::default();
+    category_metadata.category_name = category_name.to_owned();
+
+    let mut current_category_childs = Vec::new();
+    let mut total_num_articles = 0;
+
+    for (child_category_name, child_category) in category_info {
+        if child_category_name == "files" {
+            category_metadata.files = child_category
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|p| p.as_str().unwrap().to_owned())
+                .collect();
+            total_num_articles += child_category.as_array().unwrap().len() as i32;
+        } else {
+            let child_metadata = build_category_metadata_map_helper(
+                child_category_name,
+                child_category,
+                metadata_map,
+            );
+            total_num_articles += child_metadata.total_num_articles_in_category;
+
+            current_category_childs.push(child_category_name.to_owned());
+        }
+    }
+
+    category_metadata.child_categories = current_category_childs;
+    category_metadata.total_num_articles_in_category = total_num_articles;
+
+    metadata_map.insert(category_name.to_owned(), category_metadata.clone());
+    category_metadata
 }

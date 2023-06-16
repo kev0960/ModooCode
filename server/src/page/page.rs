@@ -8,6 +8,7 @@ use axum_sessions::extractors::ReadableSession;
 use dojang::Dojang;
 
 use super::article::ArticlePageRendererContext;
+use super::category::CategoryPageRendererContext;
 use super::index::IndexPageRendererContext;
 use super::renderer::{InputValue, RequestScopedInputs};
 use crate::context::article_context::ArticleContext;
@@ -91,6 +92,12 @@ impl ProdPageContext {
             site_stat_context,
         )))?;
 
+        page_context.register_renderer(Box::new(CategoryPageRendererContext::new(
+            dojang.clone(),
+            article_context.clone(),
+            page_path_json_path,
+        )))?;
+
         page_context.register_renderer(Box::new(ArticlePageRendererContext::new(
             dojang,
             comment_context,
@@ -106,6 +113,7 @@ impl ProdPageContext {
         renderer: Box<dyn PageRendererContext>,
     ) -> Result<(), ServerError> {
         let covered_page_urls = renderer.get_matching_pages();
+        println!("{:?}", covered_page_urls);
         self.page_renderers.push(tokio::sync::Mutex::new(renderer));
 
         for page_url in covered_page_urls {
@@ -157,6 +165,10 @@ pub async fn page_handler(
     State(context): State<Arc<ProdContext>>,
     session: ReadableSession,
 ) -> Response {
+    if context.article_context().is_instruction(&page_url) {
+        return Redirect::permanent(&format!("/en/inst/{}", page_url)).into_response();
+    }
+
     let user_info = UserInfo::get_user_info(session);
     let page = context
         .page_context()
@@ -173,6 +185,60 @@ pub async fn page_handler(
             Redirect::temporary("/").into_response()
         }
     }
+}
+
+pub async fn category_page_handler(
+    Path(category_name): Path<String>,
+    State(context): State<Arc<ProdContext>>,
+    session: ReadableSession,
+) -> Response {
+    let user_info = UserInfo::get_user_info(session);
+    let page = context
+        .page_context()
+        .render_page(
+            &format!("/category/{}", category_name),
+            Arc::new(ArticlePageRequestScopedInputs::new(user_info)),
+        )
+        .await;
+
+    match page {
+        Ok(page) => Html(page).into_response(),
+        Err(e) => {
+            println!("Err : {:?}", e);
+            Redirect::temporary("/").into_response()
+        }
+    }
+}
+
+pub async fn inst_page_handler(
+    Path(inst_name): Path<String>,
+    State(context): State<Arc<ProdContext>>,
+    session: ReadableSession,
+) -> Response {
+    let user_info = UserInfo::get_user_info(session);
+    let page = context
+        .page_context()
+        .render_page(
+            &inst_name,
+            Arc::new(ArticlePageRequestScopedInputs::new(user_info)),
+        )
+        .await;
+
+    match page {
+        Ok(page) => Html(page).into_response(),
+        Err(e) => {
+            println!("Err : {:?}", e);
+            Redirect::temporary("/").into_response()
+        }
+    }
+}
+
+pub async fn notice_page_handler(Path(notice_url): Path<String>) -> Response {
+    if notice_url == "15" {
+        return Redirect::permanent("/231").into_response();
+    }
+
+    Redirect::permanent("/").into_response()
 }
 
 pub struct IndexPageRequestScopedInputs {}

@@ -10,7 +10,7 @@ use crate::db::db::Database;
 use crate::entity::comment as Comment;
 use crate::error::errors::ServerError;
 
-const ARTICLE_COMMENT_PAGE_SIZE: u64 = 50;
+pub const ARTICLE_COMMENT_PAGE_SIZE: u64 = 50;
 
 #[derive(Serialize)]
 pub struct CommentData {
