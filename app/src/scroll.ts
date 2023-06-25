@@ -31,11 +31,11 @@ class Scroll {
   }
 
   public RegisterScrollUpHandler(func: ()=>void) {
-    this.scroll_up_event_handlers.push(func);      
+    this.scroll_up_event_handlers.push(func);
   }
 
   public RegisterScrollDownHandler(func: ()=>void) {
-    this.scroll_down_event_handlers.push(func);      
+    this.scroll_down_event_handlers.push(func);
   }
 
   private last_position: number;

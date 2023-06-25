@@ -4,7 +4,6 @@
 
 #comment-box {
     max-width: 44rem;
-    margin-right: auto;
 }
 
 .profile-pic {
@@ -413,7 +412,6 @@
 
 #num-comment {
     max-width: 44rem;
-    margin-left: 17px;
     padding-top: 1em;
 }
 

@@ -31,7 +31,10 @@ pub struct ArticleData {
 
 #[derive(Default, Debug, Clone, Serialize)]
 pub struct CategoryMetadata {
+    // 카테고리 이름. e.g. "C++".
     pub category_name: String,
+    // 카테고리 전체 경로. e.g. ["C Reference","stdio.h"].
+    pub category_full_path: Vec<String>,
     pub files: Vec<String>,
     pub child_categories: Vec<String>,
     pub total_num_articles_in_category: i32,
@@ -74,7 +77,7 @@ where
         article_url: &str,
     ) -> Result<Option<ArticleData>, ServerError>;
 
-    fn get_category_metadata(&self, category_name: &str) -> Option<&CategoryMetadata>;
+    fn get_category_metadata(&self, category_name: &[String]) -> Option<&CategoryMetadata>;
 
     fn multi_get_article_metadata(&self, article_urls: &[String]) -> Vec<Option<ArticleMetadata>>;
 
@@ -110,7 +113,7 @@ pub struct ProdArticleContext {
     category_listing_map: HashMap<String, String>,
 
     // 카테고리 별 정보들.
-    category_metadata_map: HashMap<String, CategoryMetadata>,
+    category_metadata_map: HashMap<Vec<String>, CategoryMetadata>,
 
     // Reference 가능한 모든 명령어 모음.
     instruction_pages: HashSet<String>,
@@ -144,7 +147,7 @@ impl ArticleContext for ProdArticleContext {
         Ok(article.map(|a| a.into()))
     }
 
-    fn get_category_metadata(&self, category_name: &str) -> Option<&CategoryMetadata> {
+    fn get_category_metadata(&self, category_name: &[String]) -> Option<&CategoryMetadata> {
         self.category_metadata_map.get(category_name)
     }
 
@@ -436,7 +439,7 @@ fn build_category_listing_helper(
     page_to_html
 }
 
-fn build_category_metadata_map(page_path_json: &Value) -> HashMap<String, CategoryMetadata> {
+fn build_category_metadata_map(page_path_json: &Value) -> HashMap<Vec<String>, CategoryMetadata> {
     let root_pages = page_path_json
         .as_object()
         .unwrap()
@@ -451,7 +454,12 @@ fn build_category_metadata_map(page_path_json: &Value) -> HashMap<String, Catego
             continue;
         }
 
-        build_category_metadata_map_helper(category_name, pages, &mut metadata_map);
+        build_category_metadata_map_helper(
+            category_name.trim(),
+            &Vec::new(),
+            pages,
+            &mut metadata_map,
+        );
     }
 
     metadata_map
@@ -459,8 +467,9 @@ fn build_category_metadata_map(page_path_json: &Value) -> HashMap<String, Catego
 
 fn build_category_metadata_map_helper(
     category_name: &str,
+    parent_path: &Vec<String>,
     category_info: &Value,
-    metadata_map: &mut HashMap<String, CategoryMetadata>,
+    metadata_map: &mut HashMap<Vec<String>, CategoryMetadata>,
 ) -> CategoryMetadata {
     let category_info = category_info.as_object().unwrap();
 
@@ -469,6 +478,9 @@ fn build_category_metadata_map_helper(
 
     let mut current_category_childs = Vec::new();
     let mut total_num_articles = 0;
+
+    let mut current_path = parent_path.clone();
+    current_path.push(category_name.to_owned());
 
     for (child_category_name, child_category) in category_info {
         if child_category_name == "files" {
@@ -481,19 +493,21 @@ fn build_category_metadata_map_helper(
             total_num_articles += child_category.as_array().unwrap().len() as i32;
         } else {
             let child_metadata = build_category_metadata_map_helper(
-                child_category_name,
+                child_category_name.trim(),
+                &current_path,
                 child_category,
                 metadata_map,
             );
             total_num_articles += child_metadata.total_num_articles_in_category;
 
-            current_category_childs.push(child_category_name.to_owned());
+            current_category_childs.push(child_category_name.trim().to_owned());
         }
     }
 
     category_metadata.child_categories = current_category_childs;
+    category_metadata.category_full_path = current_path.clone();
     category_metadata.total_num_articles_in_category = total_num_articles;
 
-    metadata_map.insert(category_name.to_owned(), category_metadata.clone());
+    metadata_map.insert(current_path, category_metadata.clone());
     category_metadata
 }

@@ -57,27 +57,27 @@
     </div>
     <div class="article-content-wrap">
       <article class="article-content">
-        <h2 class="category-header">전체 글 목록 (총 <%- category_metadat.total_num_articles_in_category %> 건)</h2>
+        <h2 class="category-header"><span class="category-full-path"><%- category_path %></span> 글 목록 (총 <%- category_metadata.total_num_articles_in_category %> 건)</h2>
         <%- category_articles %>
-      </article>
-      <div class="adsense-content-bottom">
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <% if (!is_mobile) { %>
-          <ins class="adsbygoogle"
-              style="display:inline-block;width:728px;height:90px"
-              data-ad-client="ca-pub-6608926154840997"
-              data-ad-slot="5265146061"></ins>
-        <% } else { %>
-          <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-6608926154840997"
-          data-ad-slot="8048150950"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <% } %>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <%- sub_categories %>
+        <div class="adsense-content-bottom">
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <% if (!is_mobile) { %>
+            <ins class="adsbygoogle"
+                style="display:inline-block;width:728px;height:90px"
+                data-ad-client="ca-pub-6608926154840997"
+                data-ad-slot="5265146061"></ins>
+          <% } else { %>
+            <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-6608926154840997"
+            data-ad-slot="8048150950"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+          <% } %>
+          <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
         <div class="container search-box">
           <div class="search-bar-text" id="search">
@@ -98,6 +98,7 @@
             <gcse:search></gcse:search>
           </div>
         </div>
+      </article>
     </div>
   </main>
 </body>

@@ -26,14 +26,41 @@ impl CategoryPageRendererContext {
 
         let mut category_page_renderer = HashMap::new();
         for metadata in article_context.get_every_category_metadata() {
+            let child_categories = metadata
+                .child_categories
+                .iter()
+                .map(|child_category_name| {
+                    let mut full_path = metadata.category_full_path.clone();
+                    full_path.push(child_category_name.to_owned());
+                    full_path
+                })
+                .filter_map(|child_category_full_path| {
+                    article_context.get_category_metadata(&child_category_full_path)
+                })
+                .collect::<Vec<_>>();
+
+            println!("Metadata {:?}", metadata);
             category_page_renderer.insert(
-                format!("/category/{}", metadata.category_name),
+                format!(
+                    "/category/{}",
+                    metadata
+                        .category_full_path
+                        .iter()
+                        .map(|s| s.trim())
+                        .collect::<Vec<_>>()
+                        .join("/")
+                ),
                 PageRenderer::new(
-                    "new_page",
+                    "category",
                     vec![
                         /* Static values */
                         Box::new(PageHeaderCategory::new(&page_path_json)),
+                        Box::new(SubcategoryListingInput::new(
+                            &child_categories,
+                            &article_context,
+                        )),
                         Box::new(CategoryMetadataInput::new(&metadata)),
+                        Box::new(CategoryPathInput::new(&metadata)),
                         Box::new(CategoryArticleListing::new(
                             &metadata,
                             article_context.clone(),
@@ -116,6 +143,30 @@ impl CategoryMetadataInput {
     }
 }
 
+struct CategoryPathInput {
+    category_path: Value,
+}
+
+impl StaticTopLevelPageInput for CategoryPathInput {
+    fn static_input_name(&self) -> &'static str {
+        "category_path"
+    }
+
+    fn static_input(&self) -> Value {
+        self.category_path.clone()
+    }
+}
+
+impl CategoryPathInput {
+    fn new(category_metadata: &CategoryMetadata) -> Self {
+        Self {
+            category_path: serde_json::Value::String(
+                category_metadata.category_full_path.join(" &gt "),
+            ),
+        }
+    }
+}
+
 struct CategoryArticleListing {
     article_context: Arc<dyn ArticleContext>,
     articles: Vec<ArticleMetadata>,
@@ -139,10 +190,17 @@ impl TopLevelPageInput for CategoryArticleListing {
         let mut html = String::new();
         for (article, view_count) in self.articles.iter().zip(view_counts) {
             html += &format!(
-                r#"<div class="category-article-entry"><p class="category-article-info"><span class="publish-date">{}</span> <span class="view-cnt">조회수 : </span></p><a class="category-article-header" href="{}">{}</a></div>"#,
+                r#"
+<div class="category-article-entry">
+    <p class="category-article-info">
+        <span class="publish-date">{}</span> <span class="view-cnt">조회수 : {}</span>
+    </p>
+    <a class="category-article-header" href="/{}">{}</a>
+</div>"#,
+                article.publish_date,
                 view_count.unwrap_or_default(),
                 article.article_url,
-                article.title
+                html_escape::encode_safe(&article.title)
             );
         }
 
@@ -161,6 +219,76 @@ impl CategoryArticleListing {
         Self {
             articles,
             article_context,
+        }
+    }
+}
+
+struct SubcategoryListingInput {
+    sub_categories: Value,
+}
+
+impl StaticTopLevelPageInput for SubcategoryListingInput {
+    fn static_input_name(&self) -> &'static str {
+        "sub_categories"
+    }
+
+    fn static_input(&self) -> Value {
+        self.sub_categories.clone()
+    }
+}
+
+impl SubcategoryListingInput {
+    fn child_category_article_listing(
+        child_category: &CategoryMetadata,
+        article_context: &Arc<dyn ArticleContext>,
+    ) -> String {
+        let mut html = String::new();
+        for file in child_category.files.iter().take(3) {
+            let mut article = article_context.multi_get_article_metadata(&[file.to_owned()]);
+            let article = article.pop().unwrap().unwrap();
+
+            html += &format!(
+                r#"
+            <p><a class="category-article-header" href="/{}">{}</a></p>
+            "#,
+                article.article_url, article.title
+            );
+        }
+
+        if child_category.files.len() > 3 {
+            html += &format!(
+                r#"<p>... 외 <a href="/category/{}">{} 개의 글</a>들이 있습니다.</p>"#,
+                child_category.category_full_path.join("/"),
+                child_category.files.len() - 3
+            );
+        }
+
+        html
+    }
+
+    fn new(
+        sub_categories: &[&CategoryMetadata],
+        article_context: &Arc<dyn ArticleContext>,
+    ) -> Self {
+        let mut html = String::new();
+        for category in sub_categories {
+            html += &format!(
+                r#"<div>
+                    <h3 class="child-category-header">
+                        §  <a href="/category/{}">{}</a>
+                    </h3>
+                    <div class="child-category-article-listing">
+                        {}
+                    </div>
+                   </div>"#,
+                category.category_full_path.join("/"),
+                html_escape::encode_safe(&category.category_name),
+                Self::child_category_article_listing(category, article_context)
+            );
+        }
+
+        Self {
+            sub_categories: serde_json::Value::String(html),
         }
     }
 }

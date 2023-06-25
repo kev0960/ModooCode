@@ -113,7 +113,6 @@ impl ProdPageContext {
         renderer: Box<dyn PageRendererContext>,
     ) -> Result<(), ServerError> {
         let covered_page_urls = renderer.get_matching_pages();
-        println!("{:?}", covered_page_urls);
         self.page_renderers.push(tokio::sync::Mutex::new(renderer));
 
         for page_url in covered_page_urls {
@@ -192,6 +191,7 @@ pub async fn category_page_handler(
     State(context): State<Arc<ProdContext>>,
     session: ReadableSession,
 ) -> Response {
+    println!("Category : {}", category_name);
     let user_info = UserInfo::get_user_info(session);
     let page = context
         .page_context()

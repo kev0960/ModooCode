@@ -78,6 +78,10 @@ pre {
 
 .category-item-link {
   padding: 0 24px 0 24px;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  margin-top: 20px;
 }
 
 .category-item:hover {
@@ -126,11 +130,6 @@ pre {
   background-color: #eaeaea;
 }
 
-.category-item-link {
-  text-decoration: none;
-  color: inherit;
-}
-
 /* Google Custom Search */
 
 .google-custom-search {
@@ -169,6 +168,7 @@ pre {
 /* Sidebar */
 
 .sidebar-wrap {
+  z-index: 100; /* Keep it above articles */
   top: 0;
   margin-top: 96px;
   position: fixed;
@@ -253,16 +253,23 @@ div.toc-header {
 /* Article */
 
 .article-content-wrap {
-  margin-top: 96px;
-  margin-left: 276px;
-  /* 256 + 20 margin */
-  width: 70%;
-  float: left;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  margin-top: 96px; /* For the top bar. */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .article-content {
   max-width: 45em;
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
 }
 
 .anchor-offset:target {
@@ -322,6 +329,21 @@ pre {
   background-color: #f9f9f9;
 }
 
+.article-content table {
+  margin-bottom: 1rem;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+  border-collapse: collapse;
+}
+.article-content td, th {
+  padding: .25rem .5rem;
+  border: 1px solid #e5e5e5;
+}
+.article-content tbody tr:nth-child(even) td,
+.article-content tbody tr:nth-child(even) th {
+  background-color: #f9f9f9;
+}
+
 /* For category article */
 
 .category-article-header {
@@ -350,8 +372,12 @@ a:hover.category-article-header {
   padding-right: 3px;
 }
 
-h3.category-header::before {
-  content: '§';
+.child-category-header {
+  font-size: 1.5rem;
+}
+
+.child-category-article-listing {
+  padding-left: 10px;
 }
 
 /* Search box */

@@ -80,7 +80,7 @@ class TOC {
 
   private InstallTOCEventHandlers() {
     let that = this;
-    window.addEventListener('scroll', function(e) {
+    window.addEventListener('scroll', function() {
       let last_known_scroll_pos = window.scrollY;
       if (that.time_to_update_toc) {
         window.requestAnimationFrame(function() {

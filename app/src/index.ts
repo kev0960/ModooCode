@@ -1,8 +1,9 @@
-import * as Scroll from './scroll';
-import * as TOC from './toc';
+import { CreateCommentManager } from "./comment";
+import * as Scroll from "./scroll";
+import * as TOC from "./toc";
 
 // Main entry point.
-function Main() {
+async function Main() {
   TOC.BuildTableOfContents();
 
   let scroll = Scroll.CreateScrollHandler();
@@ -16,9 +17,14 @@ function Main() {
 
     // Remove # from url.
     history.replaceState(null, null, ' ');*/
-  })
+  });
+
+  let comment_manager = CreateCommentManager();
+  await comment_manager.LoadComments();
+
+  comment_manager.ComputeRootComments();
 }
 
 window.onload = () => {
   Main();
-}
+};

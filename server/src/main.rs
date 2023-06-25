@@ -49,7 +49,7 @@ async fn main() {
         .route("/", get(index_page_handler))
         // For article pages.
         .route("/:article_url", get(page_handler))
-        .route("/category/:category_name", get(category_page_handler))
+        .route("/category/*category_name", get(category_page_handler))
         .route("/en/inst/:article_url", get(inst_page_handler))
         .route("/notice/:notice_url", get(notice_page_handler))
         // For authentication.
