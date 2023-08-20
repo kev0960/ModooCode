@@ -67,5 +67,6 @@
     "**/.settings": true,
     "**/.factorypath": true
   },
-  "search.useIgnoreFiles": false
+  "search.useIgnoreFiles": false,
+  "cmake.configureOnOpen": false
 }

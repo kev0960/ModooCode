@@ -37,12 +37,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 import { CreateCommentManager } from "./comment";
 import * as Scroll from "./scroll";
 import * as TOC from "./toc";
+import "./login";
 // Main entry point.
 function Main() {
     return __awaiter(this, void 0, void 0, function () {
-        var scroll, comment_manager, _i, _a, elem;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var scroll, comment_manager;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
                     TOC.BuildTableOfContents();
                     scroll = Scroll.CreateScrollHandler();
@@ -60,13 +61,14 @@ function Main() {
                     comment_manager = CreateCommentManager();
                     return [4 /*yield*/, comment_manager.LoadComments()];
                 case 1:
-                    _b.sent();
+                    _a.sent();
                     comment_manager.ComputeRootComments();
-                    for (_i = 0, _a = comment_manager.CreateCommentList(); _i < _a.length; _i++) {
-                        elem = _a[_i];
-                        console.log(elem.innerHTML);
+                    console.log("html ", comment_manager.CreateCommentList());
+                    if (comment_manager.GetNumTotalComments() >=
+                        comment_manager.GetLastCommentIndex()) {
+                        console.log("not hidden");
+                        document.getElementById("button-box").hidden = false;
                     }
-                    console.log(comment_manager.CreateCommentList());
                     return [2 /*return*/];
             }
         });

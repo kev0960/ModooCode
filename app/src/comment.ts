@@ -1,3 +1,5 @@
+declare const grecaptcha: any;
+
 interface Comment {
   comment_id: number;
   article_url: string;
@@ -18,6 +20,9 @@ class CommentManager {
     this.last_comment_index_ = 0;
     this.comments_ = new Map();
     this.root_comments_ = [];
+
+    // @ts-ignore
+    this.num_total_comments_ = getNumTotalComments();
   }
 
   public async LoadComments() {
@@ -43,6 +48,48 @@ class CommentManager {
     for (let comment of comments) {
       this.comments_.set(comment.comment_id, comment);
     }
+
+    this.last_comment_index_ += 50;
+  }
+
+  public async PostComment(
+    parent_id: number,
+    content: string,
+    password: string,
+    name: string
+  ) {
+    const url = window.location.href;
+    let article_url = url.substr(url.lastIndexOf("/") + 1);
+
+    const post_element = document.getElementById("posted-comment");
+    grecaptcha.ready(function () {
+      grecaptcha
+        .execute("6LeE_nYUAAAAAGm9qTa71IwvvayWV9Q7flqNkto2", {
+          action: "Comment",
+        })
+        .then(function (token: string) {
+          fetch("/write-comment", {
+            method: "POST",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              parent_id: parent_id,
+              content: content,
+              password: password || "",
+              author_name: name,
+              article_url: article_url,
+              captcha_token: token,
+            }),
+          }).then((data) => {
+            console.log(data);
+            document.getElementById("adding-comment").hidden = true;
+            location.reload();
+          });
+        });
+    });
   }
 
   ComputeRootComments() {
@@ -79,12 +126,17 @@ class CommentManager {
   }
 
   CreateCommentList() {
-    let comments = [];
+    let root_comment_list = document.createElement("ul");
+    root_comment_list.classList.add("comment-list");
+    root_comment_list.id = "root-comment-list";
+
     for (const comment of this.root_comments_) {
-      comments.push(this.CreateComment(comment.comment_id));
+      for (const comment_elem of this.CreateComment(comment.comment_id)) {
+        root_comment_list.appendChild(comment_elem);
+      }
     }
 
-    return comments.flat();
+    return root_comment_list;
   }
 
   CreateComment(comment_id: number) {
@@ -168,9 +220,18 @@ class CommentManager {
     return [comment_elem, child_comments];
   }
 
+  GetNumTotalComments() {
+    return this.num_total_comments_;
+  }
+
+  GetLastCommentIndex() {
+    return this.last_comment_index_;
+  }
+
   private last_comment_index_: number;
   private comments_: Map<number, Comment>;
   private root_comments_: Comment[];
+  private num_total_comments_: number;
 }
 
 export function CreateCommentManager(): CommentManager {

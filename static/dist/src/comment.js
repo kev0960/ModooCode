@@ -39,6 +39,8 @@ var CommentManager = /** @class */ (function () {
         this.last_comment_index_ = 0;
         this.comments_ = new Map();
         this.root_comments_ = [];
+        // @ts-ignore
+        this.num_total_comments_ = getNumTotalComments();
     }
     CommentManager.prototype.LoadComments = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -71,8 +73,48 @@ var CommentManager = /** @class */ (function () {
                             comment = comments_1[_i];
                             this.comments_.set(comment.comment_id, comment);
                         }
+                        this.last_comment_index_ += 50;
                         return [2 /*return*/];
                 }
+            });
+        });
+    };
+    CommentManager.prototype.PostComment = function (parent_id, content, password, name) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, article_url, post_element;
+            return __generator(this, function (_a) {
+                url = window.location.href;
+                article_url = url.substr(url.lastIndexOf("/") + 1);
+                post_element = document.getElementById("posted-comment");
+                grecaptcha.ready(function () {
+                    grecaptcha
+                        .execute("6LeE_nYUAAAAAGm9qTa71IwvvayWV9Q7flqNkto2", {
+                        action: "Comment",
+                    })
+                        .then(function (token) {
+                        fetch("/write-comment", {
+                            method: "POST",
+                            mode: "cors",
+                            cache: "no-cache",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                parent_id: parent_id,
+                                content: content,
+                                password: password || "",
+                                author_name: name,
+                                article_url: article_url,
+                                captcha_token: token,
+                            }),
+                        }).then(function (data) {
+                            console.log(data);
+                            document.getElementById("adding-comment").hidden = true;
+                            location.reload();
+                        });
+                    });
+                });
+                return [2 /*return*/];
             });
         });
     };
@@ -104,12 +146,17 @@ var CommentManager = /** @class */ (function () {
         return;
     };
     CommentManager.prototype.CreateCommentList = function () {
-        var comments = [];
+        var root_comment_list = document.createElement("ul");
+        root_comment_list.classList.add("comment-list");
+        root_comment_list.id = "root-comment-list";
         for (var _i = 0, _a = this.root_comments_; _i < _a.length; _i++) {
             var comment = _a[_i];
-            comments.push(this.CreateComment(comment.comment_id));
+            for (var _b = 0, _c = this.CreateComment(comment.comment_id); _b < _c.length; _b++) {
+                var comment_elem = _c[_b];
+                root_comment_list.appendChild(comment_elem);
+            }
         }
-        return comments.flat();
+        return root_comment_list;
     };
     CommentManager.prototype.CreateComment = function (comment_id) {
         var _a;
@@ -173,6 +220,12 @@ var CommentManager = /** @class */ (function () {
             }
         }
         return [comment_elem, child_comments];
+    };
+    CommentManager.prototype.GetNumTotalComments = function () {
+        return this.num_total_comments_;
+    };
+    CommentManager.prototype.GetLastCommentIndex = function () {
+        return this.last_comment_index_;
     };
     return CommentManager;
 }());

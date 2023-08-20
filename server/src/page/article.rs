@@ -230,9 +230,8 @@ impl TopLevelPageInput for NumCommentsInArticle {
 
                 let num_comments = self
                     .comment_context
-                    .get_comments_on_article(&self.article_url, 0)
-                    .await?
-                    .len();
+                    .get_num_total_comments(&self.article_url)
+                    .await?;
 
                 let num_comments = to_value(num_comments)?;
                 *self.cached_num_comment.write().unwrap() =

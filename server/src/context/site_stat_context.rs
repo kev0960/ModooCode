@@ -1,13 +1,15 @@
 use async_trait::async_trait;
 
 use chrono::{FixedOffset, Utc};
-use google_analyticsreporting4::api::{
-    DateRange, Dimension, GetReportsRequest, GetReportsResponse, Metric, ReportRequest,
+use google_analytics_api_ga4::{
+    types::{
+        DateRange, Dimension, Filter, FilterExpression, FilterExpressionList, MatchType, Metric,
+        StringFilter,
+    },
+    AnalyticsDataApi, RunReportRequest,
 };
-use google_analyticsreporting4::AnalyticsReporting;
-use hyper::client::HttpConnector;
-use hyper_rustls::HttpsConnector;
 use std::collections::HashMap;
+use yup_oauth2::AccessToken;
 
 use crate::error::errors::ServerError;
 
@@ -22,13 +24,13 @@ where
 
 pub struct ProdSiteStatContext {
     pub visitor_counts_per_day: std::sync::RwLock<HashMap<String, u32>>,
-    pub analytics_hub: AnalyticsReporting<HttpsConnector<HttpConnector>>,
+    pub service_account_key_path: String,
 }
 
 #[async_trait]
 impl SiteStatContext for ProdSiteStatContext {
     fn get_num_visitors_per_day(&self, num_days: i32) -> Vec<u32> {
-        get_days_string_starting_from_today(num_days)
+        get_days_string_starting_from_today(num_days, /*dash_between_times=*/ false)
             .into_iter()
             .map(|day| {
                 self.visitor_counts_per_day
@@ -41,127 +43,119 @@ impl SiteStatContext for ProdSiteStatContext {
     }
 
     async fn fetch_site_stat(&self) -> Result<(), ServerError> {
-        let result = self
-            .analytics_hub
-            .reports()
-            .batch_get(create_analytics_user_count_request())
-            .doit()
-            .await;
+        self.parse_reports().await?;
 
+        /*
         match result {
             Err(_) => Ok(()),
-            Ok((_, reports_response)) => self.parse_reports_and_set_kv(&reports_response),
+            Ok((_, reports_response)) => self.parse_reports_and_set_kv(),
         }
-    }
-}
+        */
 
-fn create_analytics_user_count_request() -> GetReportsRequest {
-    GetReportsRequest {
-        report_requests: Some(vec![ReportRequest {
-            view_id: Some("ga:184092436".to_string()),
-            dimensions: Some(vec![Dimension {
-                name: Some("ga:date".to_string()),
-                histogram_buckets: None,
-            }]),
-            date_ranges: Some(vec![DateRange {
-                start_date: Some("7daysAgo".to_string()),
-                end_date: Some("today".to_string()),
-            }]),
-            metrics: Some(vec![Metric {
-                expression: Some("ga:1dayUsers".to_string()),
-                ..Default::default()
-            }]),
-            ..Default::default()
-        }]),
-        ..Default::default()
+        Ok(())
     }
 }
 
 impl ProdSiteStatContext {
-    pub async fn new(service_account_key_path: &str) -> Result<Self, ServerError> {
+    async fn token(&self) -> Result<AccessToken, ServerError> {
         let service_account_key =
-            yup_oauth2::read_service_account_key(service_account_key_path).await?;
+            yup_oauth2::read_service_account_key(&self.service_account_key_path).await?;
 
         let authenticator = yup_oauth2::ServiceAccountAuthenticator::builder(service_account_key)
             .build()
             .await?;
 
-        let connector = hyper_rustls::HttpsConnectorBuilder::new()
-            .with_native_roots()
-            .https_or_http()
-            .enable_http1()
-            .enable_http2()
-            .build();
+        let scopes = &["https://www.googleapis.com/auth/analytics.readonly"];
 
-        let hyper = hyper::Client::builder().build(connector);
-        let hub = AnalyticsReporting::new(hyper, authenticator);
-
-        Ok(Self {
-            visitor_counts_per_day: std::sync::RwLock::new(HashMap::new()),
-            analytics_hub: hub,
-        })
+        Ok(authenticator
+            .token(scopes)
+            .await
+            .map_err(|e| ServerError::Internal(e.to_string()))?)
     }
 
-    fn parse_reports_and_set_kv(&self, response: &GetReportsResponse) -> Result<(), ServerError> {
-        if response.reports.is_none() {
-            return Err(ServerError::Internal(
-                "Response does not have reports.".to_string(),
-            ));
+    async fn parse_reports(&self) -> Result<(), ServerError> {
+        let token = self.token().await?;
+        let property_id = "250093251";
+        let metric_values = vec!["sessions", "screenPageViews", "eventCount", "eventValue"];
+        let dimension_values = vec!["fullPageUrl", "eventName"];
+
+        let mut metrics = vec![];
+        let mut dimensions = vec![];
+        for value in metric_values {
+            metrics.push(Metric::new(value));
+        }
+        for value in dimension_values {
+            dimensions.push(google_analytics_api_ga4::types::Dimension::new(value));
         }
 
-        let reports = response.reports.as_ref().unwrap();
-        if reports.is_empty() {
-            return Err(ServerError::Internal(
-                "Response does not have reports.".to_string(),
-            ));
-        }
+        let mut filter_expression = FilterExpression::default();
+        let mut filter_list = FilterExpressionList::default();
 
-        let report_data = (&reports[0]).data.as_ref().ok_or(ServerError::Internal(
-            "Report does not have data.".to_string(),
-        ))?;
-        let report_rows = report_data.rows.as_ref().ok_or(ServerError::Internal(
-            "Report does not have rows.".to_string(),
-        ))?;
+        let mut filters = vec![];
+        filters.push(FilterExpression {
+            filter: Some(Filter {
+                field_name: Some("fullPageUrl".to_string()),
+                string_filter: Some(StringFilter {
+                    match_type: Some(MatchType::BeginsWith),
+                    value: Some("example.com".to_string()),
+                    ..StringFilter::default()
+                }),
+                ..Filter::default()
+            }),
+            ..FilterExpression::default()
+        });
+        filter_list.expressions = Some(filters);
 
-        for report_row in report_rows {
-            let date = report_row
-                .dimensions
-                .as_ref()
-                .ok_or(ServerError::Internal(
-                    "Date is missing in the report row".to_string(),
-                ))?
-                .get(0)
-                .ok_or(ServerError::Internal(
-                    "Date is missing in the report row".to_string(),
-                ))?;
+        filter_expression.and_group = Some(filter_list);
 
-            let num_visits = report_row
-                .metrics
-                .as_ref()
-                .ok_or(ServerError::Internal(
-                    "Metrics are missing in the report row".to_string(),
-                ))?
-                .get(0)
-                .ok_or(ServerError::Internal(
-                    "DateRangeValues are missing in the Metric".to_string(),
-                ))?
-                .values
-                .as_ref()
-                .ok_or(ServerError::Internal(
-                    "Values are missing in the DateRangeValues".to_string(),
-                ))?
-                .get(0)
-                .ok_or(ServerError::Internal("Value not found".to_string()))?
-                .parse::<u32>()
-                .unwrap();
+        let days = get_days_string_starting_from_today(8, /*dash_between_times=*/ true);
 
-            self.visitor_counts_per_day
-                .write()
-                .unwrap()
-                .insert(date.clone(), num_visits);
+        let request = google_analytics_api_ga4::RunReportRequest {
+            property: format!("properties/{}", property_id.to_string()),
+            dimensions: vec![Dimension::new("date")],
+            metrics: vec![Metric::new("active1DayUsers")],
+            date_ranges: vec![DateRange::new("7days", &days[0], &days.last().unwrap())],
+            ..RunReportRequest::default()
+        };
+
+        let run_report = AnalyticsDataApi::run_report(token.token().unwrap(), property_id, request)
+            .await
+            .map_err(|e| ServerError::Internal(e.to_string()))?;
+        let rows = run_report.rows.unwrap_or_default();
+        for row in rows {
+            if let Some(dimension_values) = row.dimension_values {
+                if let Some(metric_values) = row.metric_values {
+                    if !dimension_values.is_empty() && !metric_values.is_empty() {
+                        self.visitor_counts_per_day.write().unwrap().insert(
+                            dimension_values
+                                .get(0)
+                                .unwrap()
+                                .value
+                                .as_ref()
+                                .unwrap_or(&"".to_owned())
+                                .to_owned(),
+                            metric_values
+                                .get(0)
+                                .unwrap()
+                                .value
+                                .as_ref()
+                                .unwrap_or(&"0".to_owned())
+                                .parse::<u32>()
+                                .unwrap(),
+                        );
+                    }
+                }
+            }
         }
 
         Ok(())
+    }
+
+    pub async fn new(service_account_key_path: &str) -> Result<Self, ServerError> {
+        Ok(Self {
+            service_account_key_path: service_account_key_path.to_owned(),
+            visitor_counts_per_day: std::sync::RwLock::new(HashMap::new()),
+        })
     }
 }
 /*
@@ -181,12 +175,16 @@ pub fn start_analytics_api_worker(api_caller: Arc<GoogleAnalyticsApiCaller>) {
 }
     */
 
-pub fn get_days_string_starting_from_today(num_days: i32) -> Vec<String> {
+pub fn get_days_string_starting_from_today(num_days: i32, dash_between_times: bool) -> Vec<String> {
     let mut utc_time = Utc::now().with_timezone(&FixedOffset::east_opt(9 * 3600).unwrap());
 
     let mut date_vec = vec![];
     for _ in 0..num_days {
-        date_vec.push(utc_time.format("%Y%m%d").to_string());
+        if dash_between_times {
+            date_vec.push(utc_time.format("%Y-%m-%d").to_string());
+        } else {
+            date_vec.push(utc_time.format("%Y%m%d").to_string());
+        }
         utc_time = utc_time - chrono::Duration::days(1);
     }
 

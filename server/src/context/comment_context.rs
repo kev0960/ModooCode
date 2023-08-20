@@ -79,6 +79,8 @@ where
         article_url: &str,
         page: u64,
     ) -> Result<Vec<CommentData>, ServerError>;
+
+    async fn get_num_total_comments(&self, article_url: &str) -> Result<i32, ServerError>;
 }
 
 pub struct ProdCommentContext {
@@ -214,6 +216,17 @@ impl CommentContext for ProdCommentContext {
             .insert(article_url.to_owned(), timestamp);
 
         Ok(timestamp)
+    }
+
+    async fn get_num_total_comments(&self, article_url: &str) -> Result<i32, ServerError> {
+        Ok(Comment::Entity::find()
+            .filter(
+                sea_orm::Condition::all()
+                    .add(Comment::Column::IsDeleted.eq(false))
+                    .add(Comment::Column::ArticleUrl.eq(article_url)),
+            )
+            .count(self.database.connection())
+            .await? as i32)
     }
 
     async fn get_comments_on_article(

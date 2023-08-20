@@ -13,7 +13,7 @@ chrono = "0.4.24"
 dojang = { path = "../../dojang" }
 dotenv = "0.15.0"
 futures = "0.3.28"
-google-analyticsreporting4 = "5.0.2"
+google-analytics-api-ga4 = "0.1.4"
 hyper = "0.14.26"
 hyper-rustls = { version = "0.24.0", features = ["rustls-native-certs"] }
 jsonwebtoken = "8.3.0"

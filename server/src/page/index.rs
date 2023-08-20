@@ -154,7 +154,7 @@ impl TopLevelPageInput for VisitorCounts {
         let etag = recent_visitor_counts.last().map_or(0, |count| *count);
         let day_and_num_visits = recent_visitor_counts
             .into_iter()
-            .zip(get_days_string_starting_from_today(8).into_iter())
+            .zip(get_days_string_starting_from_today(8, /*dash_between_times=*/ false).into_iter())
             .map(|(count, day)| (day, count.to_string()))
             .collect::<Vec<(String, String)>>();
 
