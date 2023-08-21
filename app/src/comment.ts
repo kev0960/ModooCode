@@ -53,15 +53,14 @@ class CommentManager {
   }
 
   public async PostComment(
-    parent_id: number,
     content: string,
     password: string,
-    name: string
+    name: string,
+    parent_id?: number
   ) {
     const url = window.location.href;
     let article_url = url.substr(url.lastIndexOf("/") + 1);
 
-    const post_element = document.getElementById("posted-comment");
     grecaptcha.ready(function () {
       grecaptcha
         .execute("6LeE_nYUAAAAAGm9qTa71IwvvayWV9Q7flqNkto2", {
@@ -196,9 +195,14 @@ class CommentManager {
     comment_action.classList.add("comment-action");
     comment_action.id = "comment-id-" + comment_id;
 
-    comment_action.appendChild(createSimpleSpan("comment-upvote", "추천"));
-    comment_action.appendChild(createSimpleSpan("comment-reply", "답글"));
-    comment_action.appendChild(createSimpleSpan("comment-delete", "답글 삭제"));
+    const commentReplyAction = createSimpleSpan("comment-reply", "답글 달기");
+    commentReplyAction.onclick = () => {
+      this.CreateCommentReply(comment_id);
+    };
+    comment_action.appendChild(commentReplyAction);
+
+    const commentDeleteAction = createSimpleSpan("comment-delete", "답글 삭제");
+    comment_action.appendChild(commentDeleteAction);
     comment_info.appendChild(comment_action);
 
     comment_elem.appendChild(comment_info);
@@ -228,10 +232,61 @@ class CommentManager {
     return this.last_comment_index_;
   }
 
+  CreateCommentReply(comment_id: number) {
+    if (this.current_reply_comment_box) {
+      this.current_reply_comment_box.remove();
+    }
+
+    // Create a comment box for the comment reply.
+    let reply_box = document
+      .getElementById("comment-post-section")
+      .cloneNode(true) as HTMLElement;
+    reply_box.id = "reply-post-section";
+
+    let comment_to_add_reply = document.getElementById(
+      "comment-id-" + comment_id
+    ).parentElement.parentElement;
+
+    comment_to_add_reply.insertAdjacentElement("afterend", reply_box);
+
+    (
+      reply_box.getElementsByClassName("comment-btn")[0] as HTMLButtonElement
+    ).onclick = () => {
+      console.log("clicked");
+      let name = (
+        reply_box.getElementsByClassName(
+          "comment-box-name"
+        )[0] as HTMLInputElement
+      ).value;
+
+      let password = (
+        reply_box.getElementsByClassName(
+          "comment-box-name"
+        )[0] as HTMLInputElement
+      ).value;
+
+      let content = (
+        reply_box.getElementsByClassName(
+          "comment-textarea"
+        )[0] as HTMLInputElement
+      ).value;
+
+      this.PostComment(content, password, name, /*parent_id=*/ comment_id).then(
+        (res) => {
+          console.log(res);
+        }
+      );
+    };
+    this.current_reply_comment_box = reply_box;
+  }
+
   private last_comment_index_: number;
   private comments_: Map<number, Comment>;
   private root_comments_: Comment[];
   private num_total_comments_: number;
+
+  // Reply comment box that exists.
+  private current_reply_comment_box?: HTMLElement;
 }
 
 export function CreateCommentManager(): CommentManager {

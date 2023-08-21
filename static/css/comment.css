@@ -20,17 +20,6 @@
     flex: 1;
 }
 
-.comment-textarea {
-    margin-top: 3px;
-    height: 80%;
-    width: 100%;
-    border: 2px solid #dedede;
-    border-radius: 3px;
-    padding: 8px 0 5px 10px;
-    resize: none;
-    font-size: 17px;
-}
-
 .comment-textarea:focus {
     outline-width: 0;
 }
@@ -67,21 +56,6 @@
 
 .xi-naver-square {
     color: #1ec800;
-}
-
-@media (max-width: 587px) {
-    .login-box {
-        margin-left: 12%;
-        margin-top: 50px;
-        flex-direction: column;
-    }
-}
-
-@media (min-width: 588px) {
-    .login-box {
-        margin-left: 12%;
-        margin-top: 35px;
-    }
 }
 
 .login-box {

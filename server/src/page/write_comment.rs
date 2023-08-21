@@ -34,6 +34,10 @@ pub async fn write_comment(
     session: ReadableSession,
     Json(request): Json<WriteCommentRequest>,
 ) -> Result<Json<WriteCommentResponse>, ServerError> {
+    if request.content.is_empty() {
+        return Err(ServerError::BadRequest("Comment is empty.".to_owned()));
+    }
+
     let response = reqwest::Client::new()
         .post(GOOG_CAPTCHA_TOKEN_VERIFY_URL)
         .form(&[
@@ -49,7 +53,6 @@ pub async fn write_comment(
         // TODO: Return error if not success for PROD env.
     }
 
-
     let user_info = UserInfo::get_user_info(session);
 
     let author_name;
@@ -61,7 +64,7 @@ pub async fn write_comment(
         author_id = Some(user_info.user_id);
         author_email = user_info.email;
         image_link = user_info.image;
-    } else if request.author_name.is_none() {
+    } else if request.author_name.is_none() || request.author_name.as_ref().unwrap().is_empty() {
         return Err(ServerError::BadRequest(
             "Author name is imssing.".to_owned(),
         ));

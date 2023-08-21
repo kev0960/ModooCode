@@ -188,6 +188,12 @@ pre {
   float: left;
 }
 
+@media (max-width: 1276px) {
+  .sidebar-wrap{
+    display: none;
+  }
+}
+
 div.sidebar-box-header {
   font-size: 110%;
   color: #505050;
@@ -405,4 +411,42 @@ a:hover.category-article-header {
   margin-top: 10px;
   font-size: 120%;
   font-weight: bolder;
+}
+
+/* Comment */
+.comment-post-section .manual {
+  margin-left: 50px;
+}
+
+.comment-post-section .small-comment {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.comment-textarea {
+  margin-top: 3px;
+  height: 80%;
+  width: 100%;
+  border: 2px solid #dedede;
+  border-radius: 3px;
+  padding: 8px 0 5px 10px;
+  resize: none;
+  font-size: 17px;
+  box-sizing: border-box;
+}
+
+
+@media (max-width: 587px) {
+  .login-box {
+      margin-left: 12%;
+      margin-top: 25px;
+      flex-direction: column;
+  }
+}
+
+@media (min-width: 588px) {
+  .login-box {
+      margin-left: 12%;
+      margin-top: 25px;
+  }
 }

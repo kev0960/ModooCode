@@ -64,11 +64,23 @@ function Main() {
                     _a.sent();
                     comment_manager.ComputeRootComments();
                     console.log("html ", comment_manager.CreateCommentList());
+                    document
+                        .getElementById("root-comment-list")
+                        .replaceWith(comment_manager.CreateCommentList());
                     if (comment_manager.GetNumTotalComments() >=
                         comment_manager.GetLastCommentIndex()) {
                         console.log("not hidden");
                         document.getElementById("button-box").hidden = false;
                     }
+                    document.getElementById("post-comment").onclick = function () {
+                        var content = document.getElementById("posted-comment").value;
+                        var password = document.getElementById("password")
+                            .value;
+                        var name = document.getElementById("name").value;
+                        comment_manager.PostComment(content, password, name).then(function (res) {
+                            console.log(res);
+                        });
+                    };
                     return [2 /*return*/];
             }
         });

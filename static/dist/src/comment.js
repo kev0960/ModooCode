@@ -79,13 +79,12 @@ var CommentManager = /** @class */ (function () {
             });
         });
     };
-    CommentManager.prototype.PostComment = function (parent_id, content, password, name) {
+    CommentManager.prototype.PostComment = function (content, password, name, parent_id) {
         return __awaiter(this, void 0, void 0, function () {
-            var url, article_url, post_element;
+            var url, article_url;
             return __generator(this, function (_a) {
                 url = window.location.href;
                 article_url = url.substr(url.lastIndexOf("/") + 1);
-                post_element = document.getElementById("posted-comment");
                 grecaptcha.ready(function () {
                     grecaptcha
                         .execute("6LeE_nYUAAAAAGm9qTa71IwvvayWV9Q7flqNkto2", {
@@ -159,6 +158,7 @@ var CommentManager = /** @class */ (function () {
         return root_comment_list;
     };
     CommentManager.prototype.CreateComment = function (comment_id) {
+        var _this = this;
         var _a;
         var comment = this.comments_.get(comment_id);
         if (!comment) {
@@ -201,9 +201,13 @@ var CommentManager = /** @class */ (function () {
         var comment_action = document.createElement("div");
         comment_action.classList.add("comment-action");
         comment_action.id = "comment-id-" + comment_id;
-        comment_action.appendChild(createSimpleSpan("comment-upvote", "추천"));
-        comment_action.appendChild(createSimpleSpan("comment-reply", "답글"));
-        comment_action.appendChild(createSimpleSpan("comment-delete", "답글 삭제"));
+        var commentReplyAction = createSimpleSpan("comment-reply", "답글 달기");
+        commentReplyAction.onclick = function () {
+            _this.CreateCommentReply(comment_id);
+        };
+        comment_action.appendChild(commentReplyAction);
+        var commentDeleteAction = createSimpleSpan("comment-delete", "답글 삭제");
+        comment_action.appendChild(commentDeleteAction);
         comment_info.appendChild(comment_action);
         comment_elem.appendChild(comment_info);
         if (!((_a = comment.reply_ids) === null || _a === void 0 ? void 0 : _a.length)) {
@@ -226,6 +230,29 @@ var CommentManager = /** @class */ (function () {
     };
     CommentManager.prototype.GetLastCommentIndex = function () {
         return this.last_comment_index_;
+    };
+    CommentManager.prototype.CreateCommentReply = function (comment_id) {
+        var _this = this;
+        if (this.current_reply_comment_box) {
+            this.current_reply_comment_box.remove();
+        }
+        // Create a comment box for the comment reply.
+        var reply_box = document
+            .getElementById("comment-post-section")
+            .cloneNode(true);
+        reply_box.id = "reply-post-section";
+        var comment_to_add_reply = document.getElementById("comment-id-" + comment_id).parentElement.parentElement;
+        comment_to_add_reply.insertAdjacentElement("afterend", reply_box);
+        reply_box.getElementsByClassName("comment-btn")[0].onclick = function () {
+            console.log("clicked");
+            var name = reply_box.getElementsByClassName("comment-box-name")[0].value;
+            var password = reply_box.getElementsByClassName("comment-box-name")[0].value;
+            var content = reply_box.getElementsByClassName("comment-textarea")[0].value;
+            _this.PostComment(content, password, name, /*parent_id=*/ comment_id).then(function (res) {
+                console.log(res);
+            });
+        };
+        this.current_reply_comment_box = reply_box;
     };
     return CommentManager;
 }());

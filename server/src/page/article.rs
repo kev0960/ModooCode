@@ -37,10 +37,6 @@ impl ArticlePageRendererContext {
                 PageRenderer::new(
                     "new_page",
                     vec![
-                        Box::new(CommentsInArticle::new(
-                            comment_context.clone(),
-                            &metadata.article_url,
-                        )),
                         Box::new(NumCommentsInArticle::new(
                             comment_context.clone(),
                             &metadata.article_url,

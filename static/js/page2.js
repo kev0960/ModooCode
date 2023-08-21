@@ -325,9 +325,7 @@ function postGenericComment(parent_id, content, password, name) {
             method: 'POST',
             mode: 'cors',
             cache: 'no-cache',
-            headers: {
-              'Content-Type': 'application/json'
-            },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
               parent_id: parent_id,
               content: content,
@@ -338,7 +336,7 @@ function postGenericComment(parent_id, content, password, name) {
             })
           }).then(data => {
             $('#adding-comment').hide();
-              location.reload();
+            location.reload();
           });
         });
   });
@@ -693,7 +691,7 @@ window.onload = function() {
   });
 
   $(document).on('click', '.social-login', function() {
-    console.log("G id onload!");
+    console.log('G id onload!');
     let current_url = window.location.href;
     let content_new_comment = $('#posted-comment').val();
     let content_new_reply = undefined;
@@ -766,13 +764,8 @@ function BuildTOC() {
 function GoogleSignIn(sign_in) {
   fetch('/auth/goog', {
     method: 'post',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      token: sign_in.credential
-    }),
+    headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+    body: JSON.stringify({token: sign_in.credential}),
   }).then(function(response) {
     let current_url = window.location.href;
     let content_new_comment = $('#posted-comment').val();

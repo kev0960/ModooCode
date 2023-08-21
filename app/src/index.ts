@@ -25,6 +25,9 @@ async function Main() {
 
   comment_manager.ComputeRootComments();
   console.log("html ", comment_manager.CreateCommentList());
+  document
+    .getElementById("root-comment-list")
+    .replaceWith(comment_manager.CreateCommentList());
 
   if (
     comment_manager.GetNumTotalComments() >=
@@ -33,6 +36,19 @@ async function Main() {
     console.log("not hidden");
     document.getElementById("button-box").hidden = false;
   }
+
+  document.getElementById("post-comment").onclick = () => {
+    let content = (
+      document.getElementById("posted-comment") as HTMLTextAreaElement
+    ).value;
+    let password = (document.getElementById("password") as HTMLInputElement)
+      .value;
+    let name = (document.getElementById("name") as HTMLInputElement).value;
+
+    comment_manager.PostComment(content, password, name).then((res) => {
+      console.log(res);
+    });
+  };
 
   /*
   document.getElementById("comment-list-section").innerHTML = comment_manager

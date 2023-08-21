@@ -97,9 +97,19 @@
             </a>
           </div>
         </div>
-        <div class="item" style="display:flex;">
-          <div class="enter-community">
-            <a href="https://forum.modoocode.com">모두의 코드 대화방 들어가기</a>
+        <div class="item">
+          <div class="new-article">
+            <div class="item-text-header">
+            최근 글<span class="new-article-deco">Recent Articles</span>
+            </div>
+            <% for (let i = 0; i < 4; i ++) { %>
+            <div class="new-article-entry">
+              <a href="<%= recent_articles[i].url %>"><%= recent_articles[i].info.title %></a>
+              <% if (i < 2) { %>
+              <span class="new-article-new">New</span>
+              <% } %>
+            </div>
+            <% } %>
           </div>
         </div>
       </div>
@@ -121,28 +131,6 @@
             })();
             </script>
             <gcse:search></gcse:search>
-          </div>
-        </div>
-      </div>
-      <div class="row-content">
-        <div class="item">
-          <div class="new-article">
-            <div class="item-text-header">
-            최근 글<span class="new-article-deco">Recent Articles</span>
-            </div>
-            <% for (let i = 0; i < 4; i ++) { %>
-            <div class="new-article-entry">
-              <a href="<%= recent_articles[i].url %>"><%= recent_articles[i].info.title %></a>
-              <% if (i < 2) { %>
-              <span class="new-article-new">New</span>
-              <% } %>
-            </div>
-            <% } %>
-          </div>
-        </div>
-        <div class="item">
-          <div class="visitor-box">
-            <canvas id="visitors"></canvas>
           </div>
         </div>
       </div>
