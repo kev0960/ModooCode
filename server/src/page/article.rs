@@ -1,3 +1,4 @@
+use std::cmp::min;
 use std::collections::{HashMap, HashSet};
 use std::sync::{Arc, Mutex, RwLock};
 
@@ -10,7 +11,7 @@ use super::page_header_category::create_page_header_category_list;
 use super::renderer::{
     InputValue, PageRenderer, RequestScopedInputs, StaticTopLevelPageInput, TopLevelPageInput,
 };
-use crate::context::article_context::{ArticleContext, ArticleMetadata};
+use crate::context::article_context::{ArticleContext, ArticleMetadata, CategoryMetadata};
 use crate::context::comment_context::{CommentContext, CommentData};
 use crate::error::errors::ServerError;
 use crate::page::comment_html::create_comment_list_html;
@@ -47,13 +48,12 @@ impl ArticlePageRendererContext {
                         )),
                         /* Static values */
                         Box::new(ArticleFileInfo::new(metadata.clone())),
+                        Box::new(ArticlesInCategoryContext::new(
+                            article_context.clone(),
+                            &metadata.article_url,
+                        )),
                         Box::new(AllArticleMetadata::new(&article_metdatas)),
                         Box::new(ArticleContentUrl::new(&metadata.article_url)),
-                        Box::new(CategoryHtml::new(
-                            &article_context
-                                .get_category_listing_of_article(&metadata.article_url)
-                                .unwrap_or_default(),
-                        )),
                         Box::new(PageInfos::new(&page_path_json)),
                         Box::new(PageHeaderCategory::new(&page_path_json)),
                     ],
@@ -116,69 +116,126 @@ impl TopLevelPageInput for ArticleViewCount {
     }
 }
 
-struct CommentsInArticle {
-    comment_context: Arc<dyn CommentContext>,
-    article_url: String,
+struct ArticlesInCategoryContext {
+    article_metadatas: Vec<ArticleMetadata>,
+    category_metadata: CategoryMetadata,
+    current_article_url: String,
 
-    cached_comment: RwLock<Option<(/*timestamp=*/ i64, Value)>>,
+    has_more_article_above: bool,
+    has_more_article_below: bool,
 }
 
-impl CommentsInArticle {
-    pub fn new(comment_context: Arc<dyn CommentContext>, article_url: &str) -> Self {
+impl ArticlesInCategoryContext {
+    pub fn new(article_context: Arc<dyn ArticleContext>, article_url: &str) -> Self {
+        let category_containing_article = article_context
+            .get_category_that_article_belongs(article_url)
+            .unwrap();
+        let category_metadata = article_context
+            .get_category_metadata(&category_containing_article.category_full_path)
+            .unwrap();
+
+        let index_of_current_article = category_metadata
+            .files
+            .iter()
+            .position(|id| article_url == id)
+            .unwrap() as i32;
+
+        let mut article_urls_to_fetch = Vec::new();
+        for i in (std::cmp::max(0, index_of_current_article - 3))..index_of_current_article {
+            article_urls_to_fetch.push(category_metadata.files[i as usize].to_owned());
+        }
+        article_urls_to_fetch.push(article_url.to_owned());
+
+        let mut current_index = index_of_current_article + 1;
+        while article_urls_to_fetch.len() < 7
+            && current_index < category_metadata.files.len() as i32
+        {
+            article_urls_to_fetch.push(category_metadata.files[current_index as usize].to_owned());
+            current_index += 1;
+        }
+
+        let article_metadatas = article_context
+            .multi_get_article_metadata(&article_urls_to_fetch)
+            .into_iter()
+            .filter_map(|e| e)
+            .collect::<Vec<_>>();
+
         Self {
-            comment_context,
-            article_url: article_url.to_owned(),
-            cached_comment: RwLock::new(None),
+            article_metadatas,
+            category_metadata: category_metadata.clone(),
+            current_article_url: article_url.to_owned(),
+            has_more_article_above: index_of_current_article > 3,
+            has_more_article_below: index_of_current_article + 3
+                < category_metadata.files.len() as i32,
         }
     }
 }
 
 #[async_trait]
-impl TopLevelPageInput for CommentsInArticle {
+impl TopLevelPageInput for ArticlesInCategoryContext {
     fn input_name(&self) -> &'static str {
-        "comments"
+        "articles_in_category"
     }
 
     async fn get_input_value(&self) -> Result<InputValue, ServerError> {
-        let latest_timestamp = self
-            .comment_context
-            .get_latest_comment_timestamp_on_article(&self.article_url)
-            .await?;
+        let mut article_list_html = String::new();
 
-        match latest_timestamp {
-            Some(latest_timestamp) => {
-                {
-                    let cached_comment = self.cached_comment.read().unwrap();
-                    if cached_comment.is_some() {
-                        let (cached_etag, cached_comment) =
-                            cached_comment.as_ref().unwrap().to_owned();
-                        if cached_etag == latest_timestamp {
-                            return Ok(InputValue::Cacheable(cached_comment, cached_etag));
-                        }
-                    }
-                }
+        for article in &self.article_metadatas {
+            let current_article_marker = if article.article_url == self.current_article_url {
+                "current-article-sidebar-elem"
+            } else {
+                ""
+            };
 
-                let comment_id_to_comment = self
-                    .comment_context
-                    .get_comments_on_article(&self.article_url, 0)
-                    .await?
-                    .into_iter()
-                    .map(|comment| (comment.comment_id, comment))
-                    .collect::<HashMap<i32, CommentData>>();
-
-                let comments = to_value(create_comment_list_html(&comment_id_to_comment, 0, 30))?;
-                *self.cached_comment.write().unwrap() = Some((latest_timestamp, comments.clone()));
-
-                return Ok(InputValue::Cacheable(comments, latest_timestamp));
-            }
-            None => {
-                // This article has no comment.
-                Ok(InputValue::Cacheable(
-                    serde_json::Value::String("".to_string()),
-                    0,
-                ))
+            if article.category_title.is_empty() {
+                article_list_html += &format!(
+                    "<li class='sidebar-category-elem {}'><a href='{}'>{}</a></li>",
+                    current_article_marker, article.article_url, article.title
+                );
+            } else {
+                article_list_html += &format!(
+                    "<li class='sidebar-category-elem {}'><a href='{}'>{}</a></li>",
+                    current_article_marker, article.article_url, article.category_title
+                );
             }
         }
+
+        let category_path = format!(
+            "/category/{}",
+            self.category_metadata
+                .category_full_path
+                .join("/")
+                .to_string()
+        );
+
+        let mut html = format!(
+            r#"<div class="sidebar-category-header sidebar-box-header">§ 카테고리 - <a href="{}">{}</a></div>"#,
+            category_path, self.category_metadata.category_name,
+        );
+
+        if self.has_more_article_above {
+            html += &format!(
+                r#"
+            <div class='sidebar-show-more show-more-above'><a href='{}'><p>⋮</p><p>(더보기)</p></a></div>"#,
+                category_path
+            );
+        }
+        html += &format!(
+            r#"
+          <ul class="sidebar-category-list">
+              {}
+          </ul>"#,
+            article_list_html
+        );
+        if self.has_more_article_below {
+            html += &format!(
+                r#"
+            <div class='sidebar-show-more show-more-above'><a href='{}'><p>(더보기)</p><p>⋮</p></a></div>"#,
+                category_path
+            );
+        }
+
+        Ok(InputValue::Cacheable(Value::from(html), 0))
     }
 }
 
@@ -312,28 +369,6 @@ impl ArticleContentUrl {
                 article_url
             ))
             .unwrap(),
-        }
-    }
-}
-
-struct CategoryHtml {
-    category_html: Value,
-}
-
-impl StaticTopLevelPageInput for CategoryHtml {
-    fn static_input_name(&self) -> &'static str {
-        "category_html"
-    }
-
-    fn static_input(&self) -> Value {
-        self.category_html.clone()
-    }
-}
-
-impl CategoryHtml {
-    fn new(category_html: &str) -> Self {
-        Self {
-            category_html: to_value(category_html).unwrap(),
         }
     }
 }

@@ -79,6 +79,9 @@ where
 
     fn get_category_metadata(&self, category_name: &[String]) -> Option<&CategoryMetadata>;
 
+    // Get the category metadata that the article belongs.
+    fn get_category_that_article_belongs(&self, article_url: &str) -> Option<&CategoryMetadata>;
+
     fn multi_get_article_metadata(&self, article_urls: &[String]) -> Vec<Option<ArticleMetadata>>;
 
     // Get metadata of every article available.
@@ -86,8 +89,6 @@ where
 
     // Get every category available.
     fn get_every_category_metadata(&self) -> Vec<CategoryMetadata>;
-
-    fn get_category_listing_of_article(&self, article_url: &str) -> Option<String>;
 
     // 증가된 현재 page view count 를 return 한다.
     fn increment_page_view_count(&self, article_url: &str) -> u32;
@@ -109,11 +110,11 @@ pub struct ProdArticleContext {
     // 페이지 별 조회수 담은 map.
     page_view_counts_map: std::sync::Mutex<HashMap<String, (u32, /*synced=*/ bool)>>,
 
-    // Page 별 category listing.
-    category_listing_map: HashMap<String, String>,
-
     // 카테고리 별 정보들.
-    category_metadata_map: HashMap<Vec<String>, CategoryMetadata>,
+    category_path_to_metadata_map: HashMap<Vec<String>, CategoryMetadata>,
+
+    // Article url to Category path.
+    article_url_to_category_path: HashMap<String, Vec<String>>,
 
     // Reference 가능한 모든 명령어 모음.
     instruction_pages: HashSet<String>,
@@ -148,7 +149,15 @@ impl ArticleContext for ProdArticleContext {
     }
 
     fn get_category_metadata(&self, category_name: &[String]) -> Option<&CategoryMetadata> {
-        self.category_metadata_map.get(category_name)
+        self.category_path_to_metadata_map.get(category_name)
+    }
+
+    fn get_category_that_article_belongs(&self, article_url: &str) -> Option<&CategoryMetadata> {
+        if let Some(category_path) = self.article_url_to_category_path.get(article_url) {
+            return self.get_category_metadata(category_path);
+        }
+
+        None
     }
 
     fn multi_get_article_metadata(&self, article_urls: &[String]) -> Vec<Option<ArticleMetadata>> {
@@ -166,7 +175,7 @@ impl ArticleContext for ProdArticleContext {
     }
 
     fn get_every_category_metadata(&self) -> Vec<CategoryMetadata> {
-        self.category_metadata_map
+        self.category_path_to_metadata_map
             .values()
             .map(|m| m.clone())
             .collect()
@@ -186,7 +195,7 @@ impl ArticleContext for ProdArticleContext {
     }
 
     fn get_page_view_counts(&self, article_urls: &[String]) -> Vec<Option<u32>> {
-        let mut page_view_count_map = self.page_view_counts_map.lock().unwrap();
+        let page_view_count_map = self.page_view_counts_map.lock().unwrap();
         article_urls
             .into_iter()
             .map(|url| page_view_count_map.get(url).map(|v| v.0))
@@ -223,12 +232,6 @@ impl ArticleContext for ProdArticleContext {
 
     fn is_instruction(&self, article_url: &str) -> bool {
         self.instruction_pages.contains(article_url)
-    }
-
-    fn get_category_listing_of_article(&self, article_url: &str) -> Option<String> {
-        self.category_listing_map
-            .get(article_url)
-            .map(|category| category.to_owned())
     }
 }
 
@@ -292,17 +295,16 @@ impl ProdArticleContext {
         let page_path_json = fs::read_to_string(page_path_json_path).await.unwrap();
         let page_path_json = serde_json::from_str::<Value>(&page_path_json).unwrap();
 
-        let category_listing_map =
-            build_category_listing_helper(&page_path_json, &article_metadata, "".to_owned(), 1);
-
+        let (category_path_to_metadata_map, article_url_to_category_path) =
+            build_category_metadata_map(&page_path_json);
         Ok(ProdArticleContext {
             article_metadata,
             page_view_counts_map: std::sync::Mutex::new(
                 Self::get_article_visitor_counts(&*database).await?,
             ),
             database,
-            category_listing_map,
-            category_metadata_map: build_category_metadata_map(&page_path_json),
+            category_path_to_metadata_map,
+            article_url_to_category_path,
             instruction_pages: get_instruction_references_in_page_path_json(&page_path_json),
         })
     }
@@ -331,115 +333,12 @@ impl ProdArticleContext {
     }
 }
 
-fn build_category_listing_helper(
-    root: &Value,
-    article_metdata_map: &HashMap<String, ArticleMetadata>,
-    mut category_html: String,
-    dir_depth: u64,
-) -> HashMap<String, String> {
-    let mut page_to_html = HashMap::<String, String>::new();
-
-    if dir_depth != 1 {
-        category_html.push_str(&format!("<div class='inner-menu{}'>", dir_depth - 1));
-    }
-    for (dir_name, folder) in root.as_object().unwrap() {
-        if dir_name == "files" {
-            // Case where file is taken.
-            let files = folder.as_array().unwrap();
-            for chosen_file in 0..files.len() {
-                let mut html = category_html.clone();
-                for i in 0..chosen_file {
-                    let article_url = files[i].as_str().unwrap();
-                    html.push_str(&format!(
-                        "<a class='sidebar-nav-item file' href='/{}' \
-                             name='{}'>{}</a>\n",
-                        article_url,
-                        article_url,
-                        article_metdata_map
-                            .get(article_url)
-                            .map_or("".to_string(), |metadata| {
-                                metadata.category_title.to_owned()
-                            })
-                    ));
-                }
-
-                let article_url = files[chosen_file].as_str().unwrap();
-                html.push_str(&format!(
-                    "<a class='sidebar-nav-item file' href='/{}' \
-                         name='{}' style='background-color: rgba(255, 255, \
-                         255, 0.33);'>{}</a>\n",
-                    article_url,
-                    article_url,
-                    article_metdata_map
-                        .get(article_url)
-                        .map_or("".to_string(), |metadata| {
-                            metadata.category_title.to_owned()
-                        })
-                ));
-
-                for i in chosen_file + 1..files.len() {
-                    let article_url = files[i].as_str().unwrap();
-                    html.push_str(&format!(
-                        "<a class='sidebar-nav-item file' href='/{}' \
-                             name='{}'>{}</a>\n",
-                        article_url,
-                        article_url,
-                        article_metdata_map
-                            .get(article_url)
-                            .map_or("".to_string(), |metadata| {
-                                metadata.category_title.to_owned()
-                            })
-                    ));
-                }
-
-                page_to_html.insert(files[chosen_file].as_str().unwrap().to_string(), html);
-            }
-        } else {
-            // The case where the dir is open.
-            let mut when_dir_open = category_html.clone();
-            when_dir_open.push_str(&format!(
-                concat!(
-                    "<a class='sidebar-nav-item dir open-cat' name='{}'>",
-                    "<i class='xi-caret-down-min' \
-                         style='font-size:0.75em;'></i>&nbsp;&nbsp;{}</a>\n"
-                ),
-                dir_name, dir_name
-            ));
-
-            let children_html = build_category_listing_helper(
-                folder,
-                article_metdata_map,
-                when_dir_open,
-                dir_depth + 1,
-            );
-
-            // The case where the dir is not open.
-            let dir_html = format!(
-                "<a class='sidebar-nav-item dir' name='{}'><i \
-                     class='xi-plus-square' \
-                     style='font-size:0.75em;'></i>&nbsp;&nbsp;{}</a>\n",
-                dir_name, dir_name
-            );
-            category_html.push_str(&dir_html);
-
-            for html in page_to_html.values_mut() {
-                html.push_str(&dir_html);
-            }
-
-            page_to_html.extend(children_html);
-        }
-    }
-
-    if dir_depth != 1 {
-        for html in page_to_html.values_mut() {
-            html.push_str("</div>");
-        }
-    }
-
-    page_to_html
-}
-
-fn build_category_metadata_map(page_path_json: &Value) -> HashMap<Vec<String>, CategoryMetadata> {
+fn build_category_metadata_map(
+    page_path_json: &Value,
+) -> (
+    HashMap<Vec<String>, CategoryMetadata>,
+    HashMap<String, Vec<String>>,
+) {
     let root_pages = page_path_json
         .as_object()
         .unwrap()
@@ -448,7 +347,8 @@ fn build_category_metadata_map(page_path_json: &Value) -> HashMap<Vec<String>, C
         .as_object()
         .unwrap();
 
-    let mut metadata_map = HashMap::new();
+    let mut category_path_to_metadata_map = HashMap::new();
+    let mut article_url_to_category_path_map = HashMap::new();
     for (category_name, pages) in root_pages {
         if category_name == "files" {
             continue;
@@ -458,18 +358,23 @@ fn build_category_metadata_map(page_path_json: &Value) -> HashMap<Vec<String>, C
             category_name.trim(),
             &Vec::new(),
             pages,
-            &mut metadata_map,
+            &mut category_path_to_metadata_map,
+            &mut article_url_to_category_path_map,
         );
     }
 
-    metadata_map
+    (
+        category_path_to_metadata_map,
+        article_url_to_category_path_map,
+    )
 }
 
 fn build_category_metadata_map_helper(
     category_name: &str,
     parent_path: &Vec<String>,
     category_info: &Value,
-    metadata_map: &mut HashMap<Vec<String>, CategoryMetadata>,
+    category_path_to_metadata_map: &mut HashMap<Vec<String>, CategoryMetadata>,
+    article_url_to_category_path_map: &mut HashMap<String, Vec<String>>,
 ) -> CategoryMetadata {
     let category_info = category_info.as_object().unwrap();
 
@@ -491,12 +396,17 @@ fn build_category_metadata_map_helper(
                 .map(|p| p.as_str().unwrap().to_owned())
                 .collect();
             total_num_articles += child_category.as_array().unwrap().len() as i32;
+
+            for article_url in &category_metadata.files {
+                article_url_to_category_path_map.insert(article_url.clone(), current_path.clone());
+            }
         } else {
             let child_metadata = build_category_metadata_map_helper(
                 child_category_name.trim(),
                 &current_path,
                 child_category,
-                metadata_map,
+                category_path_to_metadata_map,
+                article_url_to_category_path_map,
             );
             total_num_articles += child_metadata.total_num_articles_in_category;
 
@@ -508,6 +418,6 @@ fn build_category_metadata_map_helper(
     category_metadata.category_full_path = current_path.clone();
     category_metadata.total_num_articles_in_category = total_num_articles;
 
-    metadata_map.insert(current_path, category_metadata.clone());
+    category_path_to_metadata_map.insert(current_path, category_metadata.clone());
     category_metadata
 }

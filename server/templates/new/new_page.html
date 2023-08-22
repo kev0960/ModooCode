@@ -15,11 +15,46 @@
     <script src="/dist/new_page.bundle.js" type="text/javascript"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://www.google.com/recaptcha/api.js?render=6LeE_nYUAAAAAGm9qTa71IwvvayWV9Q7flqNkto2"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+      integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn"
+      crossorigin="anonymous"
+    />
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+      integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+      integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        elems = document.querySelectorAll(".math-latex");
+        for (let i = 0; i < elems.length; i++) {
+          renderMathInElement(elems[i], {
+            delimiters: [
+              { left: "$$", right: "$$", display: true },
+              { left: "$", right: "$", display: false },
+            ],
+          });
+        }
+      });
+    </script>
   </head>
   <body>
     <header class="top-static-header">
       <div class="top-static-header-row top-static-header-main">
-        <div class="modoocode-name">모두의 코드</div>
+        <div class="modoocode-name"><a href="/">모두의 코드</a></div>
         <div class="google-custom-search">
           <div class="gcse-search" enableAutoComplete="true"></div>
         </div>
@@ -37,6 +72,9 @@
     </header>
     <main class="main-wrap">
       <div class="sidebar-wrap">
+        <nav class="sidebar-categories sidebar-box">
+          <%- articles_in_category %>
+        </nav>
         <nav class="toc-container sidebar-box">
           <div class="toc-header sidebar-box-header">목차</div>
           <ol class="toc-list"></ol>
@@ -62,6 +100,23 @@
       </div>
       <div class="article-content-wrap">
         <article class="article-content">
+          <div class="article-content-header">
+            <h2>
+              <a href="/" title="Home">모두의 코드</a><br />
+              <small><%= file_info.title %></small>
+            </h2>
+            <div class="additional-info">
+              <% if (file_info.publish_date) { %>
+              <small class="publish-date"
+                >작성일 : <%= file_info.publish_date %></small
+              >
+              <% } %> <% if (view_cnt) { %>
+              <small class="view-cnt"
+                >이 글은 <%= view_cnt %> 번 읽혔습니다.
+              </small>
+              <% } %>
+            </div>
+          </div>
           <%- include(content_url) %>
           <section class="comment-section">
             <div id="num-comment">
@@ -123,7 +178,12 @@
                     <div class="small-comment">
                       또는 직접 입력하세요 (댓글 수정시 비밀번호가 필요합니다)
                     </div>
-                    <input name="name" id="name" class="comment-box-name" placeholder="이름" />
+                    <input
+                      name="name"
+                      id="name"
+                      class="comment-box-name"
+                      placeholder="이름"
+                    />
                     <input
                       name="password"
                       id="password"

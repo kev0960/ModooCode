@@ -4,8 +4,9 @@ body {
   font-family: "Noto Sans KR";
   overflow-x: hidden;
   display: block;
-  font-size: 16px;
+  font-size: 17px;
   text-size-adjust: 100%;
+  color: #3c3c3c;
 }
 
 /* (TODO) Move these css to different file. */
@@ -43,12 +44,15 @@ pre {
 }
 
 .modoocode-name {
-  color: #505050;
   font-size: 22.5px;
   font-weight: bold;
   margin-top: 6px;
   margin-bottom: 6px;
   margin-left: 15px;
+}
+
+.modoocode-name a {
+  color: #505050;
 }
 
 /* Category */
@@ -184,12 +188,12 @@ pre {
   margin-top: 96px;
   position: fixed;
   height: 100%;
-  width: 256px;
+  width: max(256px, 20vw);
   float: left;
 }
 
-@media (max-width: 1276px) {
-  .sidebar-wrap{
+@media (max-width: 1300px) {
+  .sidebar-wrap {
     display: none;
   }
 }
@@ -199,6 +203,88 @@ div.sidebar-box-header {
   color: #505050;
   margin: 0 0 10px 10px;
   border: none;
+}
+
+/* Right sidebar */
+@media (max-width: 1453px) {
+  .sidenote {
+    font-size: smaller;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #5e6973;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 1454px) {
+  .sidenote {
+    position: absolute;
+    left: calc((780px + 100vw) / 2) !important;
+    width: 288px;
+    font-size: smaller;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #5e6973;
+  }
+}
+
+/* Category Sidebar */
+.sidebar-categories a:hover {
+  font-weight: bold;
+}
+
+div.sidebar-category-header {
+  font-size: 110%;
+  color: #505050;
+  margin: 0 0 10px 10px;
+  border: none;
+}
+
+ul.sidebar-category-list {
+  padding-left: 15px;
+  margin: 0px;
+}
+
+li.sidebar-category-elem {
+  list-style-type: none;
+  margin-bottom: 10px;
+}
+li.sidebar-category-elem:last-child {
+  list-style-type: none;
+  margin-bottom: 0;
+}
+
+li.current-article-sidebar-elem {
+  font-weight: bold;
+}
+
+li.current-article-sidebar-elem::before {
+  content: " →  ";
+}
+
+div.sidebar-show-more {
+  text-align: center;
+  padding: 10px;
+}
+div.sidebar-show-more:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+div.sidebar-show-more p {
+  font-size: small;
+  margin: 0;
+}
+div.sidebar-show-more a {
+  padding: 0;
+}
+
+div.show-more-above {
+  text-align: center;
 }
 
 /* TOC */
@@ -279,6 +365,26 @@ div.toc-header {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.article-content-header {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.article-content-header h2 {
+  margin-bottom: 10px;
+}
+
+.article-content-header h2 a {
+  color: #505050;
+  padding: 0;
+}
+
+.article-content-header small {
+  color: #737373;
+  font-size: 70%;
+  font-weight: 400;
 }
 
 .article-content {
@@ -435,18 +541,34 @@ a:hover.category-article-header {
   box-sizing: border-box;
 }
 
-
 @media (max-width: 587px) {
   .login-box {
-      margin-left: 12%;
-      margin-top: 25px;
-      flex-direction: column;
+    margin-left: 12%;
+    margin-top: 25px;
+    flex-direction: column;
   }
 }
 
 @media (min-width: 588px) {
   .login-box {
-      margin-left: 12%;
-      margin-top: 25px;
+    margin-left: 12%;
+    margin-top: 25px;
+  }
+}
+
+/* Block quote */
+blockquote {
+  padding: 0.5rem 1rem;
+  margin: 0.8rem 0;
+  color: #000000;
+  border-left: 0.25rem solid #e5e5e5;
+}
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+@media (min-width: 30em) {
+  blockquote {
+    padding-right: 5rem;
+    padding-left: 1.25rem;
   }
 }

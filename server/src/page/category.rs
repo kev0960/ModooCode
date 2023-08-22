@@ -39,7 +39,6 @@ impl CategoryPageRendererContext {
                 })
                 .collect::<Vec<_>>();
 
-            println!("Metadata {:?}", metadata);
             category_page_renderer.insert(
                 format!(
                     "/category/{}",

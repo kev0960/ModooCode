@@ -24,7 +24,6 @@ async function Main() {
   await comment_manager.LoadComments();
 
   comment_manager.ComputeRootComments();
-  console.log("html ", comment_manager.CreateCommentList());
   document
     .getElementById("root-comment-list")
     .replaceWith(comment_manager.CreateCommentList());
@@ -33,7 +32,6 @@ async function Main() {
     comment_manager.GetNumTotalComments() >=
     comment_manager.GetLastCommentIndex()
   ) {
-    console.log("not hidden");
     document.getElementById("button-box").hidden = false;
   }
 
@@ -41,21 +39,22 @@ async function Main() {
     let content = (
       document.getElementById("posted-comment") as HTMLTextAreaElement
     ).value;
-    let password = (document.getElementById("password") as HTMLInputElement)
-      .value;
-    let name = (document.getElementById("name") as HTMLInputElement).value;
+
+    let password = "";
+    if (document.getElementById("password")) {
+      password = (document.getElementById("password") as HTMLInputElement)
+        .value;
+    }
+
+    let name = "";
+    if (document.getElementById("name")) {
+      name = (document.getElementById("name") as HTMLInputElement).value;
+    }
 
     comment_manager.PostComment(content, password, name).then((res) => {
       console.log(res);
     });
   };
-
-  /*
-  document.getElementById("comment-list-section").innerHTML = comment_manager
-    .CreateCommentList()
-    .map((e) => e.outerHTML)
-    .join("");
-    */
 }
 
 window.onload = () => {

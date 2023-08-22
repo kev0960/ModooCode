@@ -252,18 +252,21 @@ class CommentManager {
     (
       reply_box.getElementsByClassName("comment-btn")[0] as HTMLButtonElement
     ).onclick = () => {
-      console.log("clicked");
-      let name = (
-        reply_box.getElementsByClassName(
-          "comment-box-name"
-        )[0] as HTMLInputElement
-      ).value;
+      let name = "",
+        password = "";
+      if (reply_box.getElementsByClassName("comment-box-name").length > 0) {
+        name = (
+          reply_box.getElementsByClassName(
+            "comment-box-name"
+          )[0] as HTMLInputElement
+        ).value;
 
-      let password = (
-        reply_box.getElementsByClassName(
-          "comment-box-name"
-        )[0] as HTMLInputElement
-      ).value;
+        password = (
+          reply_box.getElementsByClassName(
+            "comment-box-name"
+          )[0] as HTMLInputElement
+        ).value;
+      }
 
       let content = (
         reply_box.getElementsByClassName(

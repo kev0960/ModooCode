@@ -244,9 +244,11 @@ var CommentManager = /** @class */ (function () {
         var comment_to_add_reply = document.getElementById("comment-id-" + comment_id).parentElement.parentElement;
         comment_to_add_reply.insertAdjacentElement("afterend", reply_box);
         reply_box.getElementsByClassName("comment-btn")[0].onclick = function () {
-            console.log("clicked");
-            var name = reply_box.getElementsByClassName("comment-box-name")[0].value;
-            var password = reply_box.getElementsByClassName("comment-box-name")[0].value;
+            var name = "", password = "";
+            if (reply_box.getElementsByClassName("comment-box-name").length > 0) {
+                name = reply_box.getElementsByClassName("comment-box-name")[0].value;
+                password = reply_box.getElementsByClassName("comment-box-name")[0].value;
+            }
             var content = reply_box.getElementsByClassName("comment-textarea")[0].value;
             _this.PostComment(content, password, name, /*parent_id=*/ comment_id).then(function (res) {
                 console.log(res);
