@@ -45,7 +45,6 @@ fn add_dojang_template(template_file_path: &str, dojang: &mut Dojang) -> Result<
     let template_file_name = &template_file_path
         [template_file_path.rfind('/').unwrap() + 1..template_file_path.rfind('.').unwrap()];
 
-    println!("tmpl : {}", template_file_name);
     dojang
         .add(
             template_file_name.to_owned(),

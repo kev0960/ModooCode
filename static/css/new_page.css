@@ -188,6 +188,7 @@ pre {
   margin-top: 96px;
   position: fixed;
   height: 100%;
+  /* Modify category-content when this is modified. */
   width: max(256px, 20vw);
   float: left;
 }
@@ -473,6 +474,21 @@ th {
 
 .category-article-header {
   font-size: 20px;
+}
+
+.category-content-wrap {
+  width: inherit !important;
+}
+
+.category-content {
+  /* Modify this when sidebar-wrap is modified. */
+  margin-left: max(276px, 23vw);
+}
+
+@media (max-width: 1300px) {
+  .category-content {
+    margin-left: 10vw;
+  }
 }
 
 a.category-article-header {

@@ -83,6 +83,20 @@ impl TopLevelPageInput for RecentComments {
             0
         };
 
+        // Add integer timestamp to the CommentData.
+        let recent_comments: Vec<_> = recent_comments
+            .into_iter()
+            .map(|c| {
+                let comment_date = c.comment_date.unwrap().timestamp();
+                let mut c = serde_json::to_value(c).unwrap();
+                c.as_object_mut()
+                    .unwrap()
+                    .insert("comment_date_timestamp".to_owned(), comment_date.into());
+
+                c
+            })
+            .collect();
+
         let recent_comments = serde_json::to_value(recent_comments).unwrap();
         Ok(InputValue::Cacheable(recent_comments, etag))
     }

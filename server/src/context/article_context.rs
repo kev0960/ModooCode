@@ -347,6 +347,8 @@ fn build_category_metadata_map(
         .as_object()
         .unwrap();
 
+    let mut root_child_categories = vec![];
+
     let mut category_path_to_metadata_map = HashMap::new();
     let mut article_url_to_category_path_map = HashMap::new();
     for (category_name, pages) in root_pages {
@@ -361,7 +363,21 @@ fn build_category_metadata_map(
             &mut category_path_to_metadata_map,
             &mut article_url_to_category_path_map,
         );
+
+        root_child_categories.push(category_name.clone());
     }
+
+    category_path_to_metadata_map.insert(
+        vec![],
+        CategoryMetadata {
+            category_name: "전체 카테고리".to_owned(),
+            category_full_path: vec![],
+            files: vec![],
+            child_categories: root_child_categories,
+            // Equals to the total number of articles.
+            total_num_articles_in_category: article_url_to_category_path_map.len() as i32,
+        },
+    );
 
     (
         category_path_to_metadata_map,

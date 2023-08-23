@@ -12,7 +12,7 @@ use crate::error::errors::ServerError;
 
 pub const ARTICLE_COMMENT_PAGE_SIZE: u64 = 50;
 
-#[derive(Serialize)]
+#[derive(Serialize, Debug)]
 pub struct CommentData {
     pub comment_id: i32,
     pub article_url: String,

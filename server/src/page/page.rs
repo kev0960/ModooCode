@@ -129,6 +129,16 @@ impl ProdPageContext {
 
         Ok(())
     }
+
+    #[allow(dead_code)]
+    fn print_registered_renderers(&self) {
+        let mut page_urls = self.page_url_to_renderer_index.keys().collect::<Vec<_>>();
+        page_urls.sort();
+
+        for page_url in page_urls {
+            println!("Registered renderer on path {}", page_url);
+        }
+    }
 }
 
 pub struct ArticlePageRequestScopedInputs {

@@ -13,6 +13,8 @@ use crate::user::user_info::UserInfo;
 
 const GOOGLE_CERT_URL: &str = "https://www.googleapis.com/oauth2/v3/certs";
 
+// Dead codes are allowed since these fields are part of the Google Certs but not really used.
+#[allow(dead_code)]
 #[derive(Deserialize)]
 pub struct GoogleJwtClaims {
     pub sub: String, // Auth id.
@@ -34,6 +36,8 @@ where
     Self: Send + Sync,
 {
     async fn authenticate_user(&self, token: &str) -> Result<UserInfo, ServerError>;
+    async fn refresh_google_certs(&self) -> Result<(), ServerError>;
+    fn get_expire_time(&self) -> chrono::DateTime<chrono::Utc>;
 }
 
 pub struct ProdUserContext {
@@ -106,37 +110,6 @@ impl ProdUserContext {
         Ok(Some(result.claims))
     }
 
-    async fn refresh_google_certs(&self) -> Result<(), ServerError> {
-        let response = reqwest::get(GOOGLE_CERT_URL).await?;
-        let expires = response.headers().get(reqwest::header::EXPIRES);
-
-        if expires.is_none() {
-            return Err(ServerError::Internal(
-                "'expires' is missing from the response.".to_owned(),
-            ));
-        }
-
-        let expires = expires.unwrap();
-        *self.expire_time.lock().unwrap() =
-            chrono::DateTime::parse_from_rfc2822(expires.to_str().unwrap())
-                .unwrap()
-                .with_timezone(&chrono::Utc);
-
-        let certs_response = response.json::<GoogleCertsResponse>().await?;
-        let mut certs = self.goog_cert.lock().unwrap();
-        certs.clear();
-
-        for cert in certs_response.keys {
-            certs.insert(cert.kid.clone(), cert);
-        }
-
-        Ok(())
-    }
-
-    fn get_expire_time(&self) -> chrono::DateTime<chrono::Utc> {
-        *self.expire_time.lock().unwrap()
-    }
-
     async fn get_user_from_auth_id(&self, auth_id: &str) -> Result<Option<UserInfo>, ServerError> {
         Ok(Users::Entity::find()
             .filter(Users::Column::AuthId.eq(Some(auth_id)))
@@ -181,5 +154,36 @@ impl UserContext for ProdUserContext {
 
         // The user does not exist yet, so we need to create one.
         Ok(self.create_user(jwt_claim).await?)
+    }
+
+    async fn refresh_google_certs(&self) -> Result<(), ServerError> {
+        let response = reqwest::get(GOOGLE_CERT_URL).await?;
+        let expires = response.headers().get(reqwest::header::EXPIRES);
+
+        if expires.is_none() {
+            return Err(ServerError::Internal(
+                "'expires' is missing from the response.".to_owned(),
+            ));
+        }
+
+        let expires = expires.unwrap();
+        *self.expire_time.lock().unwrap() =
+            chrono::DateTime::parse_from_rfc2822(expires.to_str().unwrap())
+                .unwrap()
+                .with_timezone(&chrono::Utc);
+
+        let certs_response = response.json::<GoogleCertsResponse>().await?;
+        let mut certs = self.goog_cert.lock().unwrap();
+        certs.clear();
+
+        for cert in certs_response.keys {
+            certs.insert(cert.kid.clone(), cert);
+        }
+
+        Ok(())
+    }
+
+    fn get_expire_time(&self) -> chrono::DateTime<chrono::Utc> {
+        *self.expire_time.lock().unwrap()
     }
 }

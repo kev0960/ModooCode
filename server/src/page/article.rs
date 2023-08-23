@@ -1,4 +1,3 @@
-use std::cmp::min;
 use std::collections::{HashMap, HashSet};
 use std::sync::{Arc, Mutex, RwLock};
 
@@ -7,14 +6,13 @@ use dojang::Dojang;
 use serde_json::{to_value, Value};
 
 use super::page::PageRendererContext;
-use super::page_header_category::create_page_header_category_list;
+use super::page_inputs::page_header_category::PageHeaderCategory;
 use super::renderer::{
     InputValue, PageRenderer, RequestScopedInputs, StaticTopLevelPageInput, TopLevelPageInput,
 };
 use crate::context::article_context::{ArticleContext, ArticleMetadata, CategoryMetadata};
-use crate::context::comment_context::{CommentContext, CommentData};
+use crate::context::comment_context::CommentContext;
 use crate::error::errors::ServerError;
-use crate::page::comment_html::create_comment_list_html;
 
 pub struct ArticlePageRendererContext {
     article_page_renderer: HashMap<String, PageRenderer>,
@@ -391,30 +389,6 @@ impl PageInfos {
     fn new(page_infos: &str) -> Self {
         Self {
             page_infos: serde_json::from_str(page_infos).unwrap(),
-        }
-    }
-}
-
-struct PageHeaderCategory {
-    page_header_category: Value,
-}
-
-impl StaticTopLevelPageInput for PageHeaderCategory {
-    fn static_input_name(&self) -> &'static str {
-        "page_header_category"
-    }
-
-    fn static_input(&self) -> Value {
-        self.page_header_category.clone()
-    }
-}
-
-impl PageHeaderCategory {
-    fn new(page_infos_json: &str) -> Self {
-        Self {
-            page_header_category: serde_json::Value::String(create_page_header_category_list(
-                page_infos_json,
-            )),
         }
     }
 }

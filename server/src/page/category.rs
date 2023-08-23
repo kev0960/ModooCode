@@ -2,7 +2,7 @@ use std::collections::{HashMap, HashSet};
 use std::sync::{Arc, Mutex};
 
 use super::page::PageRendererContext;
-use super::page_header_category::create_page_header_category_list;
+use super::page_inputs::page_header_category::PageHeaderCategory;
 use super::renderer::{
     InputValue, PageRenderer, RequestScopedInputs, StaticTopLevelPageInput, TopLevelPageInput,
 };
@@ -26,6 +26,20 @@ impl CategoryPageRendererContext {
 
         let mut category_page_renderer = HashMap::new();
         for metadata in article_context.get_every_category_metadata() {
+            let category_page_path = if metadata.category_full_path.is_empty() {
+                "category".to_owned()
+            } else {
+                format!(
+                    "/category/{}",
+                    metadata
+                        .category_full_path
+                        .iter()
+                        .map(|s| s.trim())
+                        .collect::<Vec<_>>()
+                        .join("/")
+                )
+            };
+
             let child_categories = metadata
                 .child_categories
                 .iter()
@@ -40,15 +54,7 @@ impl CategoryPageRendererContext {
                 .collect::<Vec<_>>();
 
             category_page_renderer.insert(
-                format!(
-                    "/category/{}",
-                    metadata
-                        .category_full_path
-                        .iter()
-                        .map(|s| s.trim())
-                        .collect::<Vec<_>>()
-                        .join("/")
-                ),
+                category_page_path,
                 PageRenderer::new(
                     "category",
                     vec![
@@ -92,30 +98,6 @@ impl PageRendererContext for CategoryPageRendererContext {
             Ok(page_renderer.render_page(request_scoped_inputs).await?)
         } else {
             Err(ServerError::BadRequest("Page is not found.".to_owned()))
-        }
-    }
-}
-
-struct PageHeaderCategory {
-    page_header_category: Value,
-}
-
-impl StaticTopLevelPageInput for PageHeaderCategory {
-    fn static_input_name(&self) -> &'static str {
-        "page_header_category"
-    }
-
-    fn static_input(&self) -> Value {
-        self.page_header_category.clone()
-    }
-}
-
-impl PageHeaderCategory {
-    fn new(page_infos_json: &str) -> Self {
-        Self {
-            page_header_category: serde_json::Value::String(create_page_header_category_list(
-                page_infos_json,
-            )),
         }
     }
 }

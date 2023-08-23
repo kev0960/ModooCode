@@ -1,4 +1,4 @@
-use crate::context::comment_context::{CommentData, ARTICLE_COMMENT_PAGE_SIZE};
+use crate::context::comment_context::ARTICLE_COMMENT_PAGE_SIZE;
 use crate::context::context::{Context, ProdContext};
 use crate::error::errors::ServerError;
 use axum::extract::{Json, State};

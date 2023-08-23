@@ -18,6 +18,17 @@ pub fn start_periodic_jobs(prod_context: Arc<ProdContext>) {
                 println!("Error: {:?}", save_result.err());
             }
 
+            // Check Google certs key expiration periodically and refresh 2 hours before
+            // expiration.
+            if prod_context.user_context().get_expire_time()
+                < chrono::Utc::now() - chrono::Duration::hours(2)
+            {
+                let refresh_result = prod_context.user_context().refresh_google_certs().await;
+                if refresh_result.is_err() {
+                    println!("Error: {:?}", refresh_result.err());
+                }
+            }
+
             tokio::time::sleep(std::time::Duration::from_secs(300)).await;
         }
     });

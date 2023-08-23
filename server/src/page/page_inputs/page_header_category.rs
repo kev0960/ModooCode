@@ -1,5 +1,31 @@
 use serde_json::Value;
 
+use crate::page::renderer::StaticTopLevelPageInput;
+
+pub struct PageHeaderCategory {
+    page_header_category: Value,
+}
+
+impl StaticTopLevelPageInput for PageHeaderCategory {
+    fn static_input_name(&self) -> &'static str {
+        "page_header_category"
+    }
+
+    fn static_input(&self) -> Value {
+        self.page_header_category.clone()
+    }
+}
+
+impl PageHeaderCategory {
+    pub fn new(page_infos_json: &str) -> Self {
+        Self {
+            page_header_category: serde_json::Value::String(create_page_header_category_list(
+                page_infos_json,
+            )),
+        }
+    }
+}
+
 fn get_category_link(category_name: &str) -> String {
     format!("/category/{}", category_name)
 }
@@ -24,6 +50,13 @@ pub fn create_page_header_category_list(page_infos_json: &str) -> String {
         .unwrap();
 
     let mut html = "<ul class='header-category-list'>\n".to_owned();
+
+    // First add the '전체' category.
+    html += &format!(
+        r#"<li class="category-item"><a class="category-item-link" href="{}">{}</a>"#,
+        "/category", "모든 글"
+    );
+
     for (category_name, pages) in root_pages {
         if category_name == "files" {
             continue;
