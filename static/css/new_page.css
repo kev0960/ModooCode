@@ -61,6 +61,7 @@ pre {
   width: 100%;
   display: flex;
   flex: 1 1 auto;
+  overflow: hidden;
 }
 
 .header-category-list {
@@ -150,6 +151,12 @@ pre {
 
 .google-custom-search .gsc-control-cse button.gsc-search-button {
   padding: 6px 13px 6px 13px !important;
+}
+
+@media (max-width: 474px) {
+  .google-custom-search {
+    display: none;
+  }
 }
 
 /* Top Login Button & Account image */
