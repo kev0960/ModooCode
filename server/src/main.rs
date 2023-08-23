@@ -38,6 +38,7 @@ async fn main() {
             &dotenv::var("SERVICE_ACCOUNT_KEY_PATH").unwrap(),
             &dotenv::var("FILE_HEADERS").unwrap(),
             &dotenv::var("PAGE_PATH").unwrap(),
+            &dotenv::var("VIEW_DIRECTORY_PATH").unwrap(),
         )
         .await
         .unwrap(),

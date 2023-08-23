@@ -24,6 +24,7 @@ impl ArticlePageRendererContext {
         comment_context: Arc<dyn CommentContext>,
         article_context: Arc<dyn ArticleContext>,
         page_path_json_path: &str,
+        view_directory_path: &str,
     ) -> Self {
         let article_metdatas = article_context.get_every_article_metadata();
 
@@ -51,7 +52,7 @@ impl ArticlePageRendererContext {
                             &metadata.article_url,
                         )),
                         Box::new(AllArticleMetadata::new(&article_metdatas)),
-                        Box::new(ArticleContentUrl::new(&metadata.article_url)),
+                        Box::new(ArticleContentUrl::new(view_directory_path, &metadata.article_url)),
                         Box::new(PageInfos::new(&page_path_json)),
                         Box::new(PageHeaderCategory::new(&page_path_json)),
                     ],
@@ -360,13 +361,10 @@ impl StaticTopLevelPageInput for ArticleContentUrl {
 }
 
 impl ArticleContentUrl {
-    fn new(article_url: &str) -> Self {
+    fn new(view_directory_path: &str, article_url: &str) -> Self {
         Self {
-            content_url: to_value(format!(
-                "/home/jaebum/ModooCode/views/new/{}.html",
-                article_url
-            ))
-            .unwrap(),
+            content_url: to_value(format!("{}/new/{}.html", view_directory_path, article_url))
+                .unwrap(),
         }
     }
 }

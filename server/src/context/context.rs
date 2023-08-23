@@ -61,6 +61,7 @@ impl ProdContext {
         service_account_key: &str,
         file_header_path: &str,
         page_path: &str,
+        view_directory_path: &str,
     ) -> Result<Self, ServerError> {
         let database = Arc::new(ProdDatabase::new(connection_string).await?);
         let comment_context = Arc::new(ProdCommentContext::new(database.clone()));
@@ -78,12 +79,6 @@ impl ProdContext {
             .add_function_2("timestamp_to_kor_time".to_string(), timestamp_to_kor_time)
             .unwrap();
 
-        /*
-        add_dojang_template("templates/page.html", &mut dojang)?;
-        add_dojang_template("templates/header-common.html", &mut dojang)?;
-        add_dojang_template("templates/sidebar.html", &mut dojang)?;
-        add_dojang_template("templates/index.html", &mut dojang)?;
-        */
         add_dojang_template("templates/index.html", &mut dojang)?;
         add_dojang_template("templates/new/new_page.html", &mut dojang)?;
         add_dojang_template("templates/new/category.html", &mut dojang)?;
@@ -99,6 +94,7 @@ impl ProdContext {
                 site_state_context.clone(),
                 dojang.clone(),
                 page_path,
+                view_directory_path,
             )?),
             site_stat_context: site_state_context.clone(),
             user_context: user_context.clone(),

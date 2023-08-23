@@ -79,6 +79,7 @@ impl ProdPageContext {
         site_stat_context: Arc<dyn SiteStatContext>,
         dojang: Arc<Mutex<Dojang>>,
         page_path_json_path: &str,
+        view_directory_path: &str,
     ) -> Result<Self, ServerError> {
         let mut page_context = ProdPageContext {
             page_renderers: vec![],
@@ -103,6 +104,7 @@ impl ProdPageContext {
             comment_context,
             article_context,
             page_path_json_path,
+            view_directory_path,
         )))?;
 
         Ok(page_context)
