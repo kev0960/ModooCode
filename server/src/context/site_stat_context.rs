@@ -44,14 +44,6 @@ impl SiteStatContext for ProdSiteStatContext {
 
     async fn fetch_site_stat(&self) -> Result<(), ServerError> {
         self.parse_reports().await?;
-
-        /*
-        match result {
-            Err(_) => Ok(()),
-            Ok((_, reports_response)) => self.parse_reports_and_set_kv(),
-        }
-        */
-
         Ok(())
     }
 }
@@ -158,22 +150,6 @@ impl ProdSiteStatContext {
         })
     }
 }
-/*
-pub fn start_analytics_api_worker(api_caller: Arc<GoogleAnalyticsApiCaller>) {
-    tokio::spawn(async move {
-        loop {
-            println!("Read goog analytics");
-            match api_caller.fetch().await {
-                Err(e) => println!("Google Analytics Error : {}", e),
-                Ok(_) => {}
-            }
-
-            // Read every 5 minutes.
-            tokio::time::sleep(Duration::from_secs(300)).await;
-        }
-    });
-}
-    */
 
 pub fn get_days_string_starting_from_today(num_days: i32, dash_between_times: bool) -> Vec<String> {
     let mut utc_time = Utc::now().with_timezone(&FixedOffset::east_opt(9 * 3600).unwrap());

@@ -1789,6 +1789,11 @@
   "tex_title": "구글에서는 C++ 을 어떻게 쓰는가?",
   "title": "씹어먹는 C++ - <22. 구글에서는 C++ 을 어떻게 쓰는가?>"
  },
+ "336": {
+  "path": "/잡담",
+  "publish_date": "2023-08-23",
+  "title": "사이트 새 단장"
+ },
  "34": {
   "cat_title": "stdio.h (cstdio)",
   "path": "/C Reference/stdio.h",
