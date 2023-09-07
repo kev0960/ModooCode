@@ -208,10 +208,9 @@ class CommentManager {
     comment_elem.appendChild(comment_info);
 
     if (!comment.reply_ids) {
-      return [];
+      return [comment_elem];
     }
-
-    if (!comment.reply_ids?.length) {
+    if (!comment.reply_ids.length) {
       return [comment_elem];
     }
 

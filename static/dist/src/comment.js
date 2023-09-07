@@ -159,7 +159,6 @@ var CommentManager = /** @class */ (function () {
     };
     CommentManager.prototype.CreateComment = function (comment_id) {
         var _this = this;
-        var _a;
         var comment = this.comments_.get(comment_id);
         if (!comment) {
             return [];
@@ -211,18 +210,18 @@ var CommentManager = /** @class */ (function () {
         comment_info.appendChild(comment_action);
         comment_elem.appendChild(comment_info);
         if (!comment.reply_ids) {
-            return [];
+            return [comment_elem];
         }
-        if (!((_a = comment.reply_ids) === null || _a === void 0 ? void 0 : _a.length)) {
+        if (!comment.reply_ids.length) {
             return [comment_elem];
         }
         var child_comments = document.createElement("ul");
         child_comments.classList.add("comment-list");
-        for (var _i = 0, _b = comment.reply_ids; _i < _b.length; _i++) {
-            var reply_id = _b[_i];
+        for (var _i = 0, _a = comment.reply_ids; _i < _a.length; _i++) {
+            var reply_id = _a[_i];
             var elems = this.CreateComment(reply_id);
-            for (var _c = 0, elems_1 = elems; _c < elems_1.length; _c++) {
-                var elem = elems_1[_c];
+            for (var _b = 0, elems_1 = elems; _b < elems_1.length; _b++) {
+                var elem = elems_1[_b];
                 child_comments.append(elem);
             }
         }
