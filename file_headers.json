@@ -1804,6 +1804,19 @@
   "publish_date": "2023-08-23",
   "title": "사이트 새 단장"
  },
+ "337": {
+  "cat_title": "Rust 의 라이프타임 (lifetime) 에 관해서",
+  "is_published": "false",
+  "path": "/Rust",
+  "publish_date": "2023-09-07",
+  "title": "Rust 의 라이브타임 (lifetime) 에 관해서"
+ },
+ "338": {
+  "cat_title": "Rust 의 레퍼런스들에 관한 규칙들",
+  "path": "/Rust",
+  "publish_date": "2023-09-08",
+  "title": "Rust 의 레퍼런스들에 관한 규칙들"
+ },
  "34": {
   "cat_title": "stdio.h (cstdio)",
   "path": "/C Reference/stdio.h",

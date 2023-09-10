@@ -62,6 +62,7 @@ pub struct ArticleMetadata {
     pub title: String,
     pub prev_page: String,
     pub next_page: String,
+    pub is_published: bool,
 }
 
 #[async_trait]
@@ -127,7 +128,11 @@ impl ArticleContext for ProdArticleContext {
         num_articles: u64,
     ) -> Result<Vec<ArticleData>, ServerError> {
         Ok(Article::Entity::find()
-            .filter(Article::Column::IsDeleted.eq(false))
+            .filter(
+                Condition::all()
+                    .add(Article::Column::IsDeleted.eq(false))
+                    .add(Article::Column::IsPublished.eq(true)),
+            )
             .order_by_desc(Article::Column::CreateTime)
             .limit(num_articles)
             .all(self.database.connection())
@@ -288,6 +293,8 @@ impl ProdArticleContext {
                     publish_date: get_string_from_json_value(page_data.get("publish_date")),
                     prev_page: get_string_from_json_value(page_data.get("prev_page")),
                     next_page: get_string_from_json_value(page_data.get("next_page")),
+                    is_published: get_string_from_json_value(page_data.get("is_published"))
+                        != "false",
                 },
             );
         }
@@ -296,7 +303,7 @@ impl ProdArticleContext {
         let page_path_json = serde_json::from_str::<Value>(&page_path_json).unwrap();
 
         let (category_path_to_metadata_map, article_url_to_category_path) =
-            build_category_metadata_map(&page_path_json);
+            build_category_metadata_map(&page_path_json, &article_metadata);
         Ok(ProdArticleContext {
             article_metadata,
             page_view_counts_map: std::sync::Mutex::new(
@@ -335,6 +342,7 @@ impl ProdArticleContext {
 
 fn build_category_metadata_map(
     page_path_json: &Value,
+    article_metadata: &HashMap<String, ArticleMetadata>,
 ) -> (
     HashMap<Vec<String>, CategoryMetadata>,
     HashMap<String, Vec<String>>,
@@ -362,6 +370,7 @@ fn build_category_metadata_map(
             pages,
             &mut category_path_to_metadata_map,
             &mut article_url_to_category_path_map,
+            article_metadata,
         );
 
         root_child_categories.push(category_name.clone());
@@ -391,6 +400,7 @@ fn build_category_metadata_map_helper(
     category_info: &Value,
     category_path_to_metadata_map: &mut HashMap<Vec<String>, CategoryMetadata>,
     article_url_to_category_path_map: &mut HashMap<String, Vec<String>>,
+    article_metadata: &HashMap<String, ArticleMetadata>,
 ) -> CategoryMetadata {
     let category_info = category_info.as_object().unwrap();
 
@@ -410,6 +420,15 @@ fn build_category_metadata_map_helper(
                 .unwrap()
                 .iter()
                 .map(|p| p.as_str().unwrap().to_owned())
+                .filter_map(|url| {
+                    let metadata = article_metadata.get(&url);
+                    if let Some(metadata) = metadata {
+                        if metadata.is_published {
+                            return Some(url);
+                        }
+                    }
+                    None
+                })
                 .collect();
             total_num_articles += child_category.as_array().unwrap().len() as i32;
 
@@ -423,6 +442,7 @@ fn build_category_metadata_map_helper(
                 child_category,
                 category_path_to_metadata_map,
                 article_url_to_category_path_map,
+                article_metadata,
             );
             total_num_articles += child_metadata.total_num_articles_in_category;
 

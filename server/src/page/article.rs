@@ -32,6 +32,10 @@ impl ArticlePageRendererContext {
 
         let mut article_page_renderer = HashMap::new();
         for metadata in &article_metdatas {
+            if !metadata.is_published {
+                continue;
+            }
+
             article_page_renderer.insert(
                 metadata.article_url.clone(),
                 PageRenderer::new(
