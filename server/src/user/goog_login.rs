@@ -1,9 +1,8 @@
-use crate::context::context::{Context, ProdContext};
+use crate::context::context::{AppState, Context};
 use crate::error::errors::ServerError;
 use axum::extract::{Json, State};
-use axum_sessions::extractors::WritableSession;
+use axum_extra::extract::cookie::SignedCookieJar;
 use serde::{Deserialize, Serialize};
-use std::sync::Arc;
 
 #[derive(Deserialize, Debug)]
 pub struct GoogLoginRequest {
@@ -17,8 +16,8 @@ pub struct GoogLoginResponse {
 
 #[axum_macros::debug_handler]
 pub async fn goog_login_handler(
-    State(context): State<Arc<ProdContext>>,
-    session: WritableSession,
+    State(context): State<AppState>,
+    jar: SignedCookieJar,
     Json(request): Json<GoogLoginRequest>,
 ) -> Result<Json<GoogLoginResponse>, ServerError> {
     let user_info = context
@@ -26,7 +25,7 @@ pub async fn goog_login_handler(
         .authenticate_user(&request.token)
         .await?;
 
-    user_info.write_user_info_to_session(session);
+    user_info.write_user_info_to_cookie_jar(jar);
 
     Ok(Json(GoogLoginResponse { result: true }))
 }

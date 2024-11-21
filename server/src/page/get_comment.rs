@@ -1,9 +1,8 @@
 use crate::context::comment_context::ARTICLE_COMMENT_PAGE_SIZE;
-use crate::context::context::{Context, ProdContext};
+use crate::context::context::{AppState, Context, ProdContext};
 use crate::error::errors::ServerError;
 use axum::extract::{Json, State};
 use serde::{Deserialize, Serialize};
-use std::sync::Arc;
 
 #[derive(Deserialize, Debug)]
 pub struct GetCommentRequest {
@@ -29,7 +28,7 @@ pub struct GetCommentResponse {
 }
 
 pub async fn get_comment(
-    State(context): State<Arc<ProdContext>>,
+    State(context): State<AppState>,
     Json(request): Json<GetCommentRequest>,
 ) -> Result<Json<GetCommentResponse>, ServerError> {
     let page_to_fetch = (request.index_start as u64) / ARTICLE_COMMENT_PAGE_SIZE;

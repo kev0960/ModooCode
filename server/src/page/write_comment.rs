@@ -1,10 +1,9 @@
-use crate::context::context::{Context, ProdContext};
+use crate::context::context::{AppState, Context};
 use crate::error::errors::ServerError;
 use crate::user::user_info::UserInfo;
 use axum::extract::{Json, State};
-use axum_sessions::extractors::ReadableSession;
+use axum_extra::extract::SignedCookieJar;
 use serde::{Deserialize, Serialize};
-use std::sync::Arc;
 
 const GOOG_CAPTCHA_TOKEN_VERIFY_URL: &str = "https://www.google.com/recaptcha/api/siteverify";
 
@@ -30,8 +29,8 @@ pub struct CaptchaResponse {
 }
 
 pub async fn write_comment(
-    State(context): State<Arc<ProdContext>>,
-    session: ReadableSession,
+    State(context): State<AppState>,
+    jar: SignedCookieJar,
     Json(request): Json<WriteCommentRequest>,
 ) -> Result<Json<WriteCommentResponse>, ServerError> {
     if request.content.is_empty() {
@@ -53,12 +52,13 @@ pub async fn write_comment(
         // TODO: Return error if not success for PROD env.
     }
 
-    let user_info = UserInfo::get_user_info(session);
+    let user_info = UserInfo::get_user_info(jar);
 
     let author_name;
     let author_id;
     let author_email;
     let image_link;
+
     if let Some(user_info) = user_info {
         author_name = user_info.name;
         author_id = Some(user_info.user_id);

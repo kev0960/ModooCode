@@ -1,5 +1,8 @@
+use std::ops::Deref;
 use std::sync::{Arc, Mutex};
 
+use axum::extract::FromRef;
+use axum_extra::extract::cookie::Key;
 use chrono::TimeZone;
 use dojang::Dojang;
 
@@ -29,6 +32,31 @@ pub struct ProdContext {
     site_stat_context: Arc<ProdSiteStatContext>,
     user_context: Arc<ProdUserContext>,
     dojang: Arc<Mutex<Dojang>>,
+    key: Key,
+}
+
+#[derive(Clone)]
+pub struct AppState(Arc<ProdContext>);
+
+impl AppState {
+    pub fn new(context: ProdContext) -> Self {
+        Self(Arc::new(context))
+    }
+}
+
+// deref so you can still access the inner fields easily
+impl Deref for AppState {
+    type Target = ProdContext;
+
+    fn deref(&self) -> &Self::Target {
+        &*self.0
+    }
+}
+
+impl FromRef<AppState> for Key {
+    fn from_ref(state: &AppState) -> Self {
+        state.0.key.clone()
+    }
 }
 
 fn timestamp_to_kor_time(timestamp: i64, format: String) -> String {
@@ -62,6 +90,7 @@ impl ProdContext {
         file_header_path: &str,
         page_path: &str,
         view_directory_path: &str,
+        key: Key,
     ) -> Result<Self, ServerError> {
         let database = Arc::new(ProdDatabase::new(connection_string).await?);
         let comment_context = Arc::new(ProdCommentContext::new(database.clone()));
@@ -99,6 +128,7 @@ impl ProdContext {
             site_stat_context: site_state_context.clone(),
             user_context: user_context.clone(),
             dojang: dojang.clone(),
+            key,
         })
     }
 }

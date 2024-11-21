@@ -1,8 +1,6 @@
-use std::sync::Arc;
+use crate::context::context::{AppState, Context};
 
-use crate::context::context::{Context, ProdContext};
-
-pub fn start_periodic_jobs(prod_context: Arc<ProdContext>) {
+pub fn start_periodic_jobs(prod_context: AppState) {
     tokio::spawn(async move {
         loop {
             let stat_result = prod_context.site_stat_context().fetch_site_stat().await;

@@ -4,7 +4,7 @@ use std::sync::{Arc, Mutex};
 use async_trait::async_trait;
 use axum::extract::{Path, State};
 use axum::response::{Html, IntoResponse, Redirect, Response};
-use axum_sessions::extractors::ReadableSession;
+use axum_extra::extract::SignedCookieJar;
 use dojang::Dojang;
 
 use super::article::ArticlePageRendererContext;
@@ -13,7 +13,7 @@ use super::index::IndexPageRendererContext;
 use super::renderer::{InputValue, RequestScopedInputs};
 use crate::context::article_context::ArticleContext;
 use crate::context::comment_context::CommentContext;
-use crate::context::context::{Context, ProdContext};
+use crate::context::context::{AppState, Context, ProdContext};
 use crate::context::site_stat_context::SiteStatContext;
 use crate::error::errors::ServerError;
 use crate::user::user_info::UserInfo;
@@ -173,14 +173,14 @@ impl ArticlePageRequestScopedInputs {
 
 pub async fn page_handler(
     Path(page_url): Path<String>,
-    State(context): State<Arc<ProdContext>>,
-    session: ReadableSession,
+    jar: SignedCookieJar,
+    State(context): State<AppState>,
 ) -> Response {
     if context.article_context().is_instruction(&page_url) {
         return Redirect::permanent(&format!("/en/inst/{}", page_url)).into_response();
     }
 
-    let user_info = UserInfo::get_user_info(session);
+    let user_info = UserInfo::get_user_info(jar);
     let page = context
         .page_context()
         .render_page(
@@ -200,11 +200,11 @@ pub async fn page_handler(
 
 pub async fn category_page_handler(
     Path(category_name): Path<String>,
-    State(context): State<Arc<ProdContext>>,
-    session: ReadableSession,
+    jar: SignedCookieJar,
+    State(context): State<AppState>,
 ) -> Response {
     println!("Category : {}", category_name);
-    let user_info = UserInfo::get_user_info(session);
+    let user_info = UserInfo::get_user_info(jar);
     let page = context
         .page_context()
         .render_page(
@@ -224,10 +224,10 @@ pub async fn category_page_handler(
 
 pub async fn inst_page_handler(
     Path(inst_name): Path<String>,
-    State(context): State<Arc<ProdContext>>,
-    session: ReadableSession,
+    jar: SignedCookieJar,
+    State(context): State<AppState>,
 ) -> Response {
-    let user_info = UserInfo::get_user_info(session);
+    let user_info = UserInfo::get_user_info(jar);
     let page = context
         .page_context()
         .render_page(
@@ -261,11 +261,12 @@ impl RequestScopedInputs for IndexPageRequestScopedInputs {
     }
 }
 
-pub async fn index_page_handler(State(context): State<Arc<ProdContext>>) -> Response {
+pub async fn index_page_handler(State(context): State<AppState>) -> Response {
     let page = context
         .page_context()
         .render_page(&"", Arc::new(IndexPageRequestScopedInputs {}))
         .await;
+
     match page {
         Ok(page) => Html(page).into_response(),
         Err(_) => Redirect::temporary("/").into_response(),
