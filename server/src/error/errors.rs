@@ -30,8 +30,7 @@ impl IntoResponse for ServerError {
     fn into_response(self) -> axum::response::Response {
         println!("Error : {:?}", self);
         match self {
-            ServerError::BadRequest(e) => (
-                StatusCode::BAD_REQUEST, e.to_string()).into_response(),
+            ServerError::BadRequest(e) => (StatusCode::BAD_REQUEST, e.to_string()).into_response(),
             ServerError::Internal(e) => {
                 (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response()
             }

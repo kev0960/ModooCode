@@ -78,6 +78,7 @@ impl TopLevelPageInput for RecentComments {
             recent_comments[0]
                 .comment_date
                 .unwrap_or_default()
+                .and_utc()
                 .timestamp_millis()
         } else {
             0
@@ -87,7 +88,7 @@ impl TopLevelPageInput for RecentComments {
         let recent_comments: Vec<_> = recent_comments
             .into_iter()
             .map(|c| {
-                let comment_date = c.comment_date.unwrap().timestamp();
+                let comment_date = c.comment_date.unwrap().and_utc().timestamp();
                 let mut c = serde_json::to_value(c).unwrap();
                 c.as_object_mut()
                     .unwrap()
@@ -124,6 +125,7 @@ impl TopLevelPageInput for RecentArticles {
             recent_articles[0]
                 .create_time
                 .unwrap_or_default()
+                .and_utc()
                 .timestamp_millis()
         } else {
             0

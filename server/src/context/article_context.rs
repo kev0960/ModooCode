@@ -167,7 +167,7 @@ impl ArticleContext for ProdArticleContext {
 
     fn multi_get_article_metadata(&self, article_urls: &[String]) -> Vec<Option<ArticleMetadata>> {
         article_urls
-            .into_iter()
+            .iter()
             .map(|url| self.article_metadata.get(url).map(|m| m.to_owned()))
             .collect()
     }
@@ -188,21 +188,22 @@ impl ArticleContext for ProdArticleContext {
 
     fn increment_page_view_count(&self, article_url: &str) -> u32 {
         let mut page_view_count_map = self.page_view_counts_map.lock().unwrap();
-        if let Some((view_count, _)) = page_view_count_map.get_mut(article_url) {
+        if let Some((view_count, is_synced)) = page_view_count_map.get_mut(article_url) {
             *view_count += 1;
+            *is_synced = false;
 
-            return *view_count;
+            *view_count
         } else {
             page_view_count_map.insert(article_url.to_owned(), (1, true));
 
-            return 1;
+            1
         }
     }
 
     fn get_page_view_counts(&self, article_urls: &[String]) -> Vec<Option<u32>> {
         let page_view_count_map = self.page_view_counts_map.lock().unwrap();
         article_urls
-            .into_iter()
+            .iter()
             .map(|url| page_view_count_map.get(url).map(|v| v.0))
             .collect()
     }
@@ -217,6 +218,8 @@ impl ArticleContext for ProdArticleContext {
                 }
             }
         }
+
+        println!("Saving page view counts to db: {:?}", pages_to_update_views);
 
         let mut view_count_updates = vec![];
         for (article_url, view_count) in pages_to_update_views {

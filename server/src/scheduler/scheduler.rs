@@ -27,7 +27,7 @@ pub fn start_periodic_jobs(prod_context: AppState) {
                 }
             }
 
-            tokio::time::sleep(std::time::Duration::from_secs(300)).await;
+            tokio::time::sleep(std::time::Duration::from_secs(60)).await;
         }
     });
 }
