@@ -104,9 +104,10 @@ impl ProdUserContext {
 
         let decoding_key = DecodingKey::from_rsa_components(&cert_n, &cert_e)?;
 
-        let result =
-            decode::<GoogleJwtClaims>(token, &decoding_key, &Validation::new(Algorithm::RS256))?;
+        let mut validation = Validation::new(Algorithm::RS256);
+        validation.validate_aud = false;
 
+        let result = decode::<GoogleJwtClaims>(token, &decoding_key, &validation)?;
         Ok(Some(result.claims))
     }
 

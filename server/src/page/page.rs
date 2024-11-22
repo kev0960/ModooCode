@@ -264,7 +264,7 @@ impl RequestScopedInputs for IndexPageRequestScopedInputs {
 pub async fn index_page_handler(State(context): State<AppState>) -> Response {
     let page = context
         .page_context()
-        .render_page(&"", Arc::new(IndexPageRequestScopedInputs {}))
+        .render_page("", Arc::new(IndexPageRequestScopedInputs {}))
         .await;
 
     match page {

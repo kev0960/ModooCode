@@ -178,6 +178,7 @@ impl CommentContext for ProdCommentContext {
                     created_comment
                         .comment_date
                         .unwrap_or_default()
+                        .and_utc()
                         .timestamp_millis(),
                 ),
             );
@@ -206,7 +207,13 @@ impl CommentContext for ProdCommentContext {
             .await?;
 
         let timestamp = match oldest_comment {
-            Some(comment) => Some(comment.comment_date.unwrap_or_default().timestamp_millis()),
+            Some(comment) => Some(
+                comment
+                    .comment_date
+                    .unwrap_or_default()
+                    .and_utc()
+                    .timestamp_millis(),
+            ),
             None => None,
         };
 

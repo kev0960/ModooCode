@@ -211,15 +211,14 @@ impl ArticleContext for ProdArticleContext {
     async fn save_page_view_count_to_db(&self) -> Result<(), ServerError> {
         let mut pages_to_update_views = vec![];
         {
-            let page_view_counts_map = self.page_view_counts_map.lock().unwrap();
-            for (article_url, (view_count, is_synced)) in page_view_counts_map.iter() {
-                if !is_synced {
+            let mut page_view_counts_map = self.page_view_counts_map.lock().unwrap();
+            for (article_url, (view_count, is_synced)) in page_view_counts_map.iter_mut() {
+                if !*is_synced {
                     pages_to_update_views.push((article_url.to_owned(), *view_count));
+                    *is_synced = true;
                 }
             }
         }
-
-        println!("Saving page view counts to db: {:?}", pages_to_update_views);
 
         let mut view_count_updates = vec![];
         for (article_url, view_count) in pages_to_update_views {

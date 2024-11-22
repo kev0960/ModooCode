@@ -1,6 +1,7 @@
 use crate::context::context::{AppState, Context};
 use crate::error::errors::ServerError;
 use axum::extract::{Json, State};
+use axum::response::IntoResponse;
 use axum_extra::extract::cookie::SignedCookieJar;
 use serde::{Deserialize, Serialize};
 
@@ -19,13 +20,14 @@ pub async fn goog_login_handler(
     State(context): State<AppState>,
     jar: SignedCookieJar,
     Json(request): Json<GoogLoginRequest>,
-) -> Result<Json<GoogLoginResponse>, ServerError> {
+) -> Result<impl IntoResponse, ServerError> {
     let user_info = context
         .user_context()
         .authenticate_user(&request.token)
         .await?;
 
-    user_info.write_user_info_to_cookie_jar(jar);
+    let jar = user_info.write_user_info_to_cookie_jar(jar);
+    println!("jar : {:?}", jar);
 
-    Ok(Json(GoogLoginResponse { result: true }))
+    Ok((jar, Json(GoogLoginResponse { result: true })))
 }

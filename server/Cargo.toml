@@ -33,3 +33,4 @@ thiserror = "2.0.3"
 tokio = { version = "1.41.1", features = ["full"] }
 yup-oauth2 = "11.0.0"
 html-escape = "0.2.13"
+cookie = "0.18.1"
